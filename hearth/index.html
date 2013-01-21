@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <title>Firefox Marketplace</title>
+
+    <link rel="stylesheet" href="media/css/splash.less.css">
+
+    <link rel="stylesheet" href="media/css/reset.less.css">
+    <link rel="stylesheet" href="media/css/typography.less.css">
+    <link rel="stylesheet" href="media/css/site.less.css">
+    <link rel="stylesheet" href="media/css/banners.less.css">
+    <link rel="stylesheet" href="media/css/common/forms.less.css">
+    <link rel="stylesheet" href="media/css/forms.less.css">
+    <link rel="stylesheet" href="media/css/header.less.css">
+    <link rel="stylesheet" href="media/css/navigation.less.css">
+    <link rel="stylesheet" href="media/css/buttons.less.css">
+    <link rel="stylesheet" href="media/css/tile.less.css">
+    <link rel="stylesheet" href="media/css/notification.less.css">
+    <link rel="stylesheet" href="media/css/detail.less.css">
+    <link rel="stylesheet" href="media/css/ratings.less.css">
+    <link rel="stylesheet" href="media/css/abuse.less.css">
+    <link rel="stylesheet" href="media/css/categories.less.css">
+    <link rel="stylesheet" href="media/css/menu.less.css">
+    <link rel="stylesheet" href="media/css/infobox.less.css">
+    <link rel="stylesheet" href="media/css/promo-grid.less.css">
+    <link rel="stylesheet" href="media/css/overlay.less.css">
+    <link rel="stylesheet" href="media/css/search.less.css">
+    <link rel="stylesheet" href="media/css/paginator.less.css">
+    <link rel="stylesheet" href="media/css/suggestions.less.css">
+    <link rel="stylesheet" href="media/css/account.less.css">
+    <link rel="stylesheet" href="media/css/login.less.css">
+    <link rel="stylesheet" href="media/css/purchase.less.css">
+    <link rel="stylesheet" href="media/css/lightbox.less.css">
+    <link rel="stylesheet" href="media/css/filters.less.css">
+
+  </head>
+  <body class="html-{{ DIR }} force-mobile home"
+        data-user="{{ user_data(request.amo_user)|json }}"
+        data-media-url="/media/"
+        data-persona-unverified-issuer="{{ settings.UNVERIFIED_ISSUER }}"
+        data-collect-timings="{{ url('mkt.timing.record') }}:{{ collect_timings_percent }}"
+        data-simulate-nav-pay="{{ settings.SIMULATE_NAV_PAY|json }}"
+        data-page-type="root">
+
+      <div id="splash-overlay"><div class="throbber"></div></div>
+
+    <header id="site-header" class="c">
+      <section class="main">
+        <h1 class="page">{{ headertitle }}</h1>
+        <nav role="navigation">
+          <a href="{{ url('home') }}" class="header-button icon home left" title="{{ _('Home') }}"></a>
+          <a href="{{ url('account.settings') if
+                      request.user.is_authenticated() else
+                      url('account.feedback') }}"
+             class="header-button icon settings left" title="{{ _('Settings') }}"></a>
+          <a href="#" id="nav-back" class="header-button icon back left" title="{{ _('Back') }}"><b></b></a>
+          <a href="#" class="header-button icon search right" title="{{ _('Search') }}"></a>
+          <a href="#" class="header-button cancel right">{{ _('Cancel') }}</a>
+          <a href="#" class="header-button filter right">{{ _('Filter') }}</a>
+          <a href="#" class="header-button icon expand right" title="{{ _('Expand') }}"></a>
+          <form method="GET" id="search" action="{{ url('search.search') }}">
+            <label for="search-q">{{ _('Search') }}</label>
+            <input id="search-q" type="search" name="q" autocomplete="off" title=""
+                   placeholder="{{ category.name if category else _('Search') }}"
+                   data-placeholder-default="{{ _('Search') }}"
+                   {% if search_form.q.value() %}value="{{ search_form.q.value() }}"{% endif %}>
+          </form>
+        </nav>
+        <div id="site-search-suggestions" data-cat="apps" data-src="{{ url('search.suggestions') }}"></div>
+      </section>
+    </header>
+
+<div class="overlay nav-overlay"></div>
+    <div id="container">
+      <div id="page" role="main"
+           data-context="{{
+             {'type': pagetype or 'leaf',
+              'cache': cache_fragment,
+              'hash': get_media_hash(),
+              'title': titletag,
+              'headertitle': headertitle,
+              'bodyclass': bodyclass or '',
+              'parent': page_parent or '',
+              'category': category.name ~ '' if category else '',
+              'csrf': csrf_token if logged else ''}|json }}">
+        {# `outer_content` is for stuff you want above `content` on every page. #}
+        {% block outer_content %}
+          {% include 'site/messages/display.html' %}
+        {% endblock %}
+        <section id="featured-home" class="featured full">
+          <ul class="grid c">
+            {% for app in featured -%}
+              <li>
+                {{- market_tile(app, src='mkt-home') -}}
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    {% block sitefooter %}
+      <footer id="site-footer" class="{{ 'authenticated' if logged else 'anonymous' }} c{{ ' reviewer' if is_reviewer }}">
+        <div class="account {{ 'authenticated' if logged else 'anonymous' }}">
+          {% if logged %}
+            {% trans user=request.amo_user.email %}
+              Signed in as <b>{{ user }}</b>
+            {% endtrans %}
+            <a href="{{ url('users.logout') }}" class="sync logout">
+              ({{ _('Log Out') }})</a>
+          {% else %}
+            <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
+          {% endif %}
+        </div>
+        <nav class="footer-links c" role="navigation">
+          <p>
+            {% if logged %}
+              {% for link in tools_links -%}
+                <a href="{{ link.href }}" class="sync" rel="external">{{ link.text }}</a>
+              {%- endfor %}
+              {# TODO: Coming soon with payments. #}
+              {#<a href="{{ url('account.purchases') }}">{{ _('Account History') }}</a>#}
+              <a href="{{ url('account.settings') }}">{{ _('Account Settings') }}</a>
+            {% else %}
+              <a href="{{ url('ecosystem.landing') }}" rel="external">
+                {{ _('Developer Hub') }}
+              </a>
+            {% endif %}
+          </p>
+          <p>
+            <a href="{{ url('site.privacy') }}">{{ _('Privacy Policy') }}</a>
+            <a href="{{ url('site.terms') }}">{{ _('Terms of Use') }}</a>
+          </p>
+        </nav>
+      </footer>
+    {% endblock %}
+
+    {% include 'ratings/review.html' %}
+
+    {% if not logged %}
+      <div id="login" class="overlay">
+        <section>
+          <h2>{{ _('Please sign in') }}</h2>
+          <p>
+            {% trans url='https://login.persona.org/' %}
+              Just log in or register with your
+              <a href="{{ url }}">Persona</a> account.
+            {% endtrans %}
+          </p>
+          <footer>
+            <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
+          </footer>
+        </section>
+      </div>
+    {% endif %}
+
+    <!-- screenshot tray template-->
+    <script type="text/template" id="single-preview">
+      <li>
+        <a class="screenshot thumbnail {typeclass}"
+           href="{fullUrl}" title="{caption}">
+          <img alt="{caption}" src="{thumbUrl}">
+        </a>
+      </li>
+    </script>
+
+    <!-- screenshot tray template-->
+    <script type="text/template" id="preview-tray">
+      <div class="slider">
+        <ul class="content">{previews}</ul>
+      </div>
+      <div class="dots">{dots}</div>
+    </script>
+
+    <!-- screenshot lightbox -->
+    <div id="lightbox">
+      <section>
+        <ul class="content">
+        </ul>
+        <a class="close" href="#">{{ _('Close') }}</a>
+      </section>
+    </div>
+
+    <script src="media/js/lib/amd.js"></script>
+    <script src="media/js/lib/jquery-1.9.js"></script>
+    <script src="media/js/lib/jquery.cookie.js"></script> <!-- ? -->
+    <script src="media/js/lib/underscore.js"></script>
+    <script src="media/js/lib/format.js"></script>
+
+    <script src="media/js/lib/flipsnap.js"></script>
+
+    <script src="media/js/tracking.js"></script> <!-- ? -->
+    <script src="media/js/utils.js"></script>
+    <script src="media/js/lib/csrf.js"></script> <!-- ? -->
+    <script src="media/js/common/browser.js"></script>
+    <script src="media/js/init.js"></script>
+    <script src="media/js/lib/truncate.js"></script>
+    <script src="media/js/lib/truncation.js"></script> <!-- merge up? -->
+    <script src="media/js/common/keys.js"></script>
+    <script src="media/js/capabilities.js"></script>
+    <script src="media/js/banners.js"></script>
+    <script src="media/js/common/serializers.js"></script>
+    <script src="media/js/fragments.js"></script>
+    <script src="media/js/navigation.js"></script>
+    <script src="media/js/recaptcha.js"></script> <!-- ? -->
+    <script src="media/js/overlay.js"></script>
+    <script src="media/js/login.js"></script>
+    <script src="media/js/install.js"></script>
+    <script src="media/js/payments.js"></script>
+    <script src="media/js/buttons.js"></script>
+    <script src="media/js/search.js"></script>
+    <script src="media/js/apps.js"></script>
+
+    <script src="media/js/notification.js"></script>
+
+    <script src="media/js/common/ajaxcache.js"></script>
+    <script src="media/js/common/suggestions.js"></script>
+    <script src="media/js/mkt_suggestions.js"></script> <!-- merge these three? -->
+
+    <script src="media/js/paginator.js"></script>
+
+    <script src="media/js/account.js"></script>
+    <script src="media/js/feedback.js"></script>
+
+    <script src="media/js/home.js"></script>
+
+    <script src="media/js/detail.js"></script>
+    <script src="media/js/lightbox.js"></script>
+    <script src="media/js/previews.js"></script>
+
+    <script src="media/js/common/ratingwidget.js"></script>
+    <script src="media/js/ratings.js"></script> <!-- merge these two? -->
+
+    <script src="media/js/outgoing_links.js"></script> <!-- ? -->
+
+    <script src="media/js/lib/stick.js"></script>
+
+    <script src="media/js/consumer_init.js"></script>
+
+    <script src="{{ static(url('jsi18n'))|urlparams(lang=LANG) }}"></script>
+
+    {% endblock %}
+  </body>
+</html>

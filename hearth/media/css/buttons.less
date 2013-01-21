@@ -1,0 +1,137 @@
+@import 'lib';
+
+a.arrow, .img.arrow {
+    position: relative;
+    &:after {
+        .arrow;
+        content: "";
+        display: block;
+        opacity: .7;
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        height: 18px;
+        width: 18px;
+    }
+    &:hover, &:active {
+        &:after {
+            opacity: 1;
+        }
+    }
+}
+
+.button, button {
+    border: 0;
+    color: @white;
+    display: inline-block;
+    font: 600 16px/31px @open-stack;
+    height: 32px;
+    background-color: #267cc2;
+    padding: 0 24px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px rgba(0,0,0,0.25);
+    white-space: nowrap;
+    .border-radius(2px);
+    .box-shadow(0 2px @light-gray);
+    .gradient-two-color(#42a5e1, #267cc2);
+    .transition-property(~'-moz-box-shadow, -webkit-box-shadow, box-shadow, line-height');
+    .transition-duration(~'.2s, .2s, .2s, .2s');
+
+    &.product, &.theme-install, &.fat {
+        height: 48px;
+        padding: 0 32px;
+    }
+
+    &.delete, &.manage, &.cancel, &.product.error {
+        .gradient-two-color(#e45d56, #de4332);
+        &:hover {
+            .gradient-two-color(darken(#e45d56, 10%), darken(#de4332, 10%));
+        }
+    }
+
+    &.product.error {
+        color: #fff;
+    }
+
+    &:hover {
+        .box-shadow(0 2px #bbb);
+        .gradient-two-color(lighten(#42a5e1, 10%), lighten(#267cc2, 5%));
+        text-decoration: none;
+    }
+
+    &:active {
+        .box-shadow(inset 0 8px 20px 6px rgba(0,0,0,.1),
+                    inset 0 0 1px 1px rgba(0,0,0,.1),
+                    0 2px #aaa);
+    }
+
+    &[disabled], &.disabled,
+    &.purchasing, &.purchased,
+    &.installing, &.installed {
+        color: #919497;
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+        pointer-events: none;
+        background-color: @light-gray;
+        .gradient-two-color(#ddd, @light-gray);
+    }
+
+    &.installed, &.purchased, &.incompatible {
+        pointer-events: auto;
+    }
+
+    &.good {
+        .gradient-two-color(darken(#A2E456, 20%), darken(#86DE32, 20%));
+        &:hover {
+            .gradient-two-color(darken(#A2E456, 25%), darken(#86DE32, 25%));
+        }
+    }
+
+    &.alt {
+        .gradient-two-color(#f8f9fb, #ebeff2);
+        .box-shadow(none);
+        border: 1px solid #c0c1c3;
+        color: #3d4246;
+    }
+
+    &.arrow {
+        padding-right: 34px;
+        &:after {
+            .arrow-big;
+            content: "";
+            display: inline-block;
+            height: 19px;
+            opacity: .7;
+            position: relative;
+            width: 18px;
+            top: 3px;
+            left: 14px;
+        }
+    }
+}
+
+.button {
+    .spin {
+        .webkit-spin;
+        background: url(../img/loading-16.png) no-repeat center center;
+        display: inline-block;
+        height: 16px;
+        margin: 3px 0;
+        width: 16px;
+    }
+}
+
+@media (max-width: @4col) {
+    .button, button {
+        padding: 0 15px;
+        &.fat {
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+.fatbutton {
+    .fat-button;
+}
