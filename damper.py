@@ -9,6 +9,7 @@ from SimpleHTTPServer import SimpleHTTPRequestHandler
 
 towatch = set()
 includes = {}
+touched_files = lambda: set((f, os.stat(f).st_mtime) for f in towatch)
 
 
 def say(s):
@@ -30,11 +31,13 @@ def render_list(files):
 
 def watch():
     say('watching %d files...' % len(towatch))
-    before = set([(f, os.stat(f).st_mtime) for f in towatch])
+    before = touched_files()
     while 1:
-        for deleted in (x for x in towatch if not os.path.exists(x)):
-            towatch.remove(deleted)
-        after = set([(f, os.stat(f).st_mtime) for f in towatch])
+        for file_ in towatch:
+            if not os.path.exists(file_):
+                # File was deleted!
+                towatch.remove(file_)
+        after = touched_files()
         render_list([f for f, d in before.difference(after)])
         before = after
         time.sleep(0.5)
@@ -54,10 +57,13 @@ if not os.fork():
         less = set('%s/%s' % (root, f) for f in files if f.endswith('.less'))
         for file_ in less:
             with open(file_, 'r') as fd:
-                body = post_file = fd.read()
-            imp = re.search('@import \'([a-zA-Z0-9_-]+)\';', body)
+                body = fd.read()
+            imp = re.search('@import (.+);', body)
             if imp:
-                imp_file = '%s/%s.less' % (root, imp.group(1))
+                imp_file = imp.group(1).strip('"').strip("'").strip()
+                if not imp_file.endswith('.less'):
+                    imp_file += '.less'
+                imp_file = root + '/' + imp_file
                 includes.setdefault(imp_file, []).append(file_)
 
         if '.git' in dirs:
