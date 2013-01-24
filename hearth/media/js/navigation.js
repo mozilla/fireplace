@@ -42,7 +42,7 @@ var nav = (function() {
         ).join('&');
     }
 
-    z.page.on('fragmentloaded', function(event, href, popped, state) {
+    z.page.on('navigate', function(e, href, popped, state) {
 
         if (!state) return;
 
@@ -92,10 +92,14 @@ var nav = (function() {
             }
         }
 
+        z.page.trigger('page_setup');
+
+    }).on('page_setup', function() {
+
         setClass();
         setTitle();
-        setCSRF();
         setType();
+
     });
 
     var $body = $('body');
@@ -103,39 +107,28 @@ var nav = (function() {
     var oldClass = '';
     function setClass() {
         // We so classy.
-        var page = $('#page');
-        var newClass = page.data('context').bodyclass;
+        var newClass = z.context.bodyclass;
         $body.removeClass(oldClass).addClass(newClass);
         oldClass = newClass;
     }
 
     function setType() {
         // We so type-y.
-        var page = $('#page');
-        var type = page.data('context').type;
-        $body.attr('data-page-type', type || 'leaf');
+        var type = z.context.type;
+        z.body.attr('data-page-type', type || 'leaf');
     }
 
     function setTitle() {
         // Something something title joke.
-        var $h1 = $('#site-header h1.page');
-        var title = $('#page').data('context').headertitle || '';
-        $h1.text(title);
-    }
-
-    function setCSRF() {
-        // We CSRFing USA.
-        var csrf = $('#page').data('context').csrf;
-        if (csrf) {
-            $('meta[name=csrf]').val(csrf);
-        }
+        var title = z.context.headertitle || '';
+        $('#site-header h1.page').text(title);
     }
 
     function back() {
         // Something something back joke.
         if (stack.length > 1) {
             stack.shift();
-            $(window).trigger('loadfragment', stack[0].path);
+            navigate(stack[0].path, stack[0].params);
         } else {
             console.log('attempted nav.back at root!');
         }
@@ -143,14 +136,92 @@ var nav = (function() {
 
     $('#nav-back').on('click', _pd(back));
 
-    return {
-        stack: function() {
-            return stack;
-        },
-        back: back,
-        oldClass: function() {
-            return oldClass;
+    var builder = require('builder');
+    var views = require('views');
+
+    var last_bobj = null;
+    function navigate(url, params, popped, replaceState) {
+        if (!url) return;
+
+        // Terminate any outstanding requests.
+        if (last_bobj) {
+            last_bobj.terminate();
         }
+
+        var view_url = url;
+
+        // If we're navigating from a hash, just pretend it's a plain old URL.
+        if (url.substr(0, 2) == '#!') {
+            view_url = url.substr(2);
+        }
+
+        console.log('Navigating', view_url);
+        var view = views.match(view_url);
+        if (view === null) {
+            return;
+        }
+
+        var bobj = last_bobj = builder.getBuilder();
+        view[0](bobj, view[1], params);
+
+        var newState = {
+            path: url,
+            type: z.context.type,
+            title: z.context.title,
+            scrollTop: z.doc.scrollTop()
+        };
+        if (replaceState) {
+            history.replaceState(newState, false, url);
+        } else {
+            history.pushState(newState, false, url);
+        }
+
+        z.page.trigger('navigate', [view_url, popped, newState]);
+    }
+
+    function navigateState(state, popped) {
+        navigate(state.path, state.params, popped)
+    }
+
+    function navigationFilter(el) {
+        var href = el.getAttribute('href') || el.getAttribute('action'),
+            $el = $(el);
+        return !href || href.substr(0,4) == 'http' ||
+                href.substr(0,7) === 'mailto:' ||
+                href.substr(0,11) === 'javascript:' ||
+                href.substr(0,1) === '#' ||
+                href.indexOf('/developers/') !== -1 ||
+                href.indexOf('/ecosystem/') !== -1 ||
+                href.indexOf('/statistics/') !== -1 ||
+                href.indexOf('?modified=') !== -1 ||
+                el.getAttribute('target') === '_blank' ||
+                el.getAttribute('rel') === 'external' ||
+                $el.hasClass('post') || $el.hasClass('sync');
+    }
+
+    z.body.on('click', 'a', function(e) {
+        var href = this.getAttribute('href');
+        if (e.metaKey || e.ctrlKey || e.button !== 0) return;
+        if (navigationFilter(this)) return;
+
+        // We don't use _pd because we don't want to prevent default for the
+        // above situations.
+        e.preventDefault();
+        navigate(href, $(this).data('params') || {});
+    });
+    z.win.on('popstate', function(e) {
+        var state = e.originalEvent.state;
+        if (state) {
+            navigateState(state, true);
+        }
+    });
+
+    return {
+        back: back,
+        navigate: navigate,
+        oldClass: function() {return oldClass;},
+        stack: function() {return stack;},
+        navigationFilter: navigationFilter
     };
 
 })();

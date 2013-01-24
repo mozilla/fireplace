@@ -307,7 +307,12 @@ function fragmentFilter(el) {
             container.trigger('fragmentloaded', [href, popped, newState]);
         }
 
-        $(window).on('popstate', function(e) {
+        function updateCache() {
+            console.log('caching fragment');
+            fragmentCache[window.location.pathname] = container.html();
+        }
+
+        z.win.on('popstate', function(e) {
             var state = e.originalEvent.state;
             if (state) {
                 navigate(state, true);
@@ -320,39 +325,10 @@ function fragmentFilter(el) {
                 delete fragmentCache[path];
             }
             navigate({path: path});
-        });
+        }).on('updatecache', updateCache);
 
-        $(window).on('updatecache', function() {
-            console.log('event');
-            updateCache();
-        });
-
-        function updateCache() {
-            console.log('caching fragment');
-            fragmentCache[window.location.pathname] = container.html();
-        }
-
-        $(function() {
-            // Don't forget to update updateContent too, bro.
-            var path = window.location.pathname + window.location.search + window.location.hash;
-            var type = z.context.type;
-            cacheHash = z.context.hash;
-            var state = {
-                path: path,
-                type: type
-            };
-            history.replaceState(state, false, path);
-
-            if (z.context.cache === 'cache') {
-                updateCache();
-            }
-            container.trigger('fragmentloaded', [path, false, state]);
-        });
         console.log("fragments enabled");
     } else {
         console.warn("fragments not enabled!!");
-        $(function() {
-            container.trigger('fragmentloaded');
-        });
     }
 })(z.page, fragmentFilter);

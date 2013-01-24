@@ -73,7 +73,7 @@
             if (p.type == 'video/webm') {
                 // we can check for `HTMLMediaElement.NETWORK_NO_SOURCE` on the
                 // video's `networkState` property at some point.
-                var v = $('<video src="' + p.fullUrl + '" controls></video>');
+                var v = $('<video src="' + p.fullURL + '" controls></video>');
                 $el.removeClass('loading');
                 $el.append(v);
             } else {
@@ -89,7 +89,7 @@
                 };
 
                 // attempt to load the image.
-                i.src = p.fullUrl;
+                i.src = p.fullURL;
             }
         });
 

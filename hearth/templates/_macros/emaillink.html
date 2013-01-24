@@ -1,0 +1,17 @@
+{#
+{% macro _emaillink_inner(email) %}
+  {% set i = randint(0, email.length - 1) %}
+  {{ email.substr(0, i) }}<span class="i">null</span>{{ email.substr(i) }}
+{% endmacro %}
+
+{% macro emaillink(email, title=None, class=None) %}
+  {% set em = _emaillink_inner(email) %}
+  {% set used_title = title if title else format('<span class="emaillink">{0}</span>', em) %}
+  <a{{ class }} href="#">{{ used_title }}</a>
+  <span class="emaillink js-hidden">{{ em }}</span>
+{% endmacro %}
+#}
+
+{% macro emaillink(email, title=None, class=None) %}
+  <a{{ class }} href="mailto:{{ email }}">{{ title }}</a>
+{% endmacro %}

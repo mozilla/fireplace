@@ -20,9 +20,8 @@ $.fn.highlightTerm = function(val) {
  * processCallback - callback function that deals with the XHR call & populates
                    - the $results element.
  * Optional:
- * searchType - possible values are 'AMO', 'MKT'
 */
-$.fn.searchSuggestions = function($results, processCallback, searchType) {
+$.fn.searchSuggestions = function($results, processCallback) {
     var $self = this,
         $form = $self.closest('form');
 
@@ -31,24 +30,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
     }
 
     var cat = $results.attr('data-cat');
-
-    if (searchType == 'AMO') {
-        // Some base elements that we don't want to keep creating on the fly.
-        var msg;
-        if (cat == 'themes') {
-            msg = gettext('Search themes for <b>{0}</b>');
-        } else if (cat == 'apps') {
-            msg = gettext('Search apps for <b>{0}</b>');
-        } else {
-            msg = gettext('Search add-ons for <b>{0}</b>');
-        }
-        var base = template('<div class="wrap">' +
-                            '<p><a class="sel" href="#"><span>{msg}</span></a></p><ul></ul>' +
-                            '</div>');
-        $results.html(base({'msg': msg}));
-    } else if (searchType == 'MKT') {
-        $results.html('<div class="wrap"><ul></ul></div>');
-    }
+    $results.html('<div class="wrap"><ul></ul></div>');
 
     // Control keys that shouldn't trigger new requests.
     var ignoreKeys = [
@@ -78,9 +60,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
 
     function dismissHandler() {
         $results.removeClass('visible sel');
-        if (searchType == 'MKT') {
-            $('#site-header').removeClass('suggestions');
-        }
+        $('#site-header').removeClass('suggestions');
     }
 
     function gestureHandler(e) {
@@ -133,9 +113,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         };
 
         // Optional data for callback.
-        if (searchType == 'AMO' || searchType == 'MKT') {
-            settings['category'] = cat;
-        }
+        settings['category'] = cat;
 
         if ((e.type === 'keyup' && typeof e.which === 'undefined') ||
             $.inArray(e.which, ignoreKeys) >= 0) {

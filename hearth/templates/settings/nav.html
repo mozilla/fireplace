@@ -1,0 +1,13 @@
+{% macro _url(url, title) %}
+<li>
+  <a{% if window.location.pathname == url %} class="sel"{% endif %} href="{{ url }}">
+    {{ title }}
+  </a>
+</li>
+{% endmacro %}
+
+<ul class="toggles c">
+  {{ _url(url('settings'), _('Account')) }}
+  {{ _url(url('purchases'), _('Purchases')) }}
+  {{ _url(url('feedback'), _('Feedback')) }}
+</ul>

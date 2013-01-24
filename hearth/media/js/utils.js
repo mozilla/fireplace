@@ -49,23 +49,10 @@ _.extend(String.prototype, {
 });
 
 
-// Sample usage:
-// ['/en-US/apps/', '/ja/search/', '/fr/contact/'].startsWith('/en-US/')
-Array.prototype.startsWith = function(str) {
-    for (var i = 0; i < this.length; i++) {
-        if (str.startsWith(this[i])) {
-            return true;
-        }
-    }
-    return false;
-};
-
-
 // .exists()
 // This returns true if length > 0.
 $.fn.exists = function(callback, args) {
-    var $this = $(this),
-        len = $this.length;
+    var len = $(this).length;
     if (len && callback) {
         callback.apply(null, args);
     }
@@ -121,32 +108,6 @@ function initCharCount() {
 }
 
 
-function successNotification(msg) {
-    var success = $('.success h2');
-    if (success.length) {
-        success.text(msg);
-    } else {
-        $('#page').prepend($('<section class="full notification-box">' +
-                             '<div class="success"><h2>' + msg +
-                             '</h2></div></section>'));
-    }
-}
-
-
 $('html').ajaxSuccess(function(event, xhr, ajaxSettings) {
-    $(window).trigger('resize'); // Redraw what needs to be redrawn.
-});
-
-
-// If any field changes, submit the form.
-$('form.go').change(function() {
-    this.submit();
-});
-
-
-// If we're inside the Marketplace app, open external links in the Browser.
-$(document).on('click', 'a.external, a[rel=external]', function() {
-    if (z.capabilities.chromeless) {
-        $(this).attr('target', '_blank');
-    }
+    z.win.trigger('resize'); // Redraw what needs to be redrawn.
 });

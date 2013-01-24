@@ -94,9 +94,9 @@ define('login', ['notification'], function(notification) {
         // Load the Firefox OS include that knows how to handle native Persona.
         // Once this functionality lands in the normal include we can stop
         // doing this special case. See bug 821351.
-        s.src = z.body.data('native-persona-url');
+        s.src = 'persona';
     } else {
-        s.src = z.body.data('persona-url');
+        s.src = settings.persona_url;
     }
     document.body.appendChild(s);
     $('.browserid').css('cursor', 'wait');

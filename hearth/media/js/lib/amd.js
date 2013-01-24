@@ -18,9 +18,7 @@
     var resolved = {};
 
     function define(id, deps, module) {
-
         defined[id] = [deps, module];
-
     }
 
     function require(id) {
@@ -52,6 +50,3 @@
     window.define = define;
 
 })();
-
-// FIXME: This is only temporary!
-function gettext(text) {return text;}

@@ -41,13 +41,12 @@ body {
     overflow-x: hidden;
 }
 
-// Specificified!
-body .loading-fragment {
+#page .loading {
     background-color: rgba(0,0,0,0.5);
     z-index: 11;  // To cover the header.
-    em {
+    &:before {
         .webkit-spin;
-        background: url(../../img/zamboni/mobile/loading-white.png) center no-repeat;
+        background: url(/media/img/loading-white.png) center no-repeat;
         display: inline-block;
         height: 86px;
         margin: -43px 0 0 -43px;

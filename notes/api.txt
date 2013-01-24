@@ -1,0 +1,70 @@
+Example translated snippet:
+
+{
+    '_': 'Default text',
+    'en-US': 'English translation',
+    'fr-FR': 'Le Francais transleshon',
+    ...
+}
+
+Example app snippet:
+
+{
+    name: <trans>,
+    slug: 'something something slug'
+    summary: <trans>,
+    description: <trans>,
+    dev_comments: <trans>,
+    is_packaged: false,
+    current_version: {
+        version: '1.0',
+        release_notes: <trans>
+    },
+    url: '/app/<id>',
+    icons: {
+        16: 'http://...',
+        48: 'http://...',
+        64: 'http://...',
+        128: 'http://...'
+    },
+    image_assets: {
+        'desktop_tile': ['http://...', 32<hue>],
+        'featured_tile': ['http://...', 32<hue>],
+        'mobile_tile': ['http://...', 32<hue>]
+    },
+    listed_authors: [
+        {name: 'basta', ...},
+        {name: 'cvan', ...}
+    ],
+    price: '0.00',
+    ratings: {
+        average: 4.5,
+        count: 50
+    },
+    notices: [
+        'be careful, cvan made it.',
+        'lol jk'
+    ],
+    support_email: <trans>,
+    homepage: <trans>,
+    privacy_policy: <trans>,
+    public_stats: false,
+    upsell: false or { // False if no upsell or not available in user region.
+        url: '/app/<id>'
+        name: <trans>,
+        icons: ...,
+    },
+    content_ratings: {
+        'dejus': {name: 'rating name', description: 'rating desc'},
+        'esrb': {name: 'C', description: 'C for CVERYONE'},
+    }
+}
+
+
+Example of homepage category snippet:
+
+{
+    url: '/categories/<id>',
+    name: <trans>,
+    class_name: 'shopping',
+}

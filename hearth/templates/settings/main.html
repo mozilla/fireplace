@@ -1,0 +1,49 @@
+<section class="main account" id="account-settings">
+  {% include 'settings/nav.html' %}
+
+  <form class="container form-grid">
+
+    <div class="simple-field c">
+      <div class="form-label label">
+        {{ _('Email') }}
+      </div>
+      <div class="form-col">
+        <input type="text" id="email" readonly value="{{ user.email }}">
+      </div>
+    </div>
+
+    <div class="brform simple-field c">
+      <div class="form-label">
+        <label class="" for="id_display_name">
+          {{ _('Display Name') }}
+        </label>
+      </div>
+      <div class="form-col">
+        <input name="display_name" value="{{ user.display_name }}" maxlength="50" type="text" id="id_display_name">
+      </div>
+    </div>
+
+    <div class="simple-field c">
+      <div class="form-label">
+        <label for="region">{{ _('Region') }}</label>
+      </div>
+      <div class="form-col">
+          <select id="region" name="region">
+            {% for code, region in settings.REGIONS_CHOICES_SLUG %}
+            <option value="{{ code }}"{{' selected' if code == user.region }}>
+              {{ region.name }}</option>
+            {% endfor %}
+          </select>
+      </div>
+    </div>
+
+    <footer class="form-footer">
+      <button type="submit">{{ _('Save Changes') }}</button>
+      <div class="extras">
+        <a href="#" class="sync post logout">
+          {{ _('Log out') }}
+        </a>
+      </div>
+    </footer>
+  </form>
+</section>

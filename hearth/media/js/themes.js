@@ -1,3 +1,4 @@
+// TODO: i don't even.
 z.page.on('fragmentloaded', function() {
 
     var installButton = $('.button.theme-install');

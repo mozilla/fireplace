@@ -1,4 +1,7 @@
 define('tracking', [], function() {
+    if (!settings.tracking_enabled)
+        return;
+
     // GA Tracking.
     window._gaq = window._gaq || [];
 

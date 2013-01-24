@@ -1,4 +1,4 @@
-(function() {
+define('buttons', [], function() {
     function getButton(product) {
         // Look up button by its manifest URL.
         return $(format('.button[data-manifest_url="{0}"]', product.manifest_url));
@@ -24,7 +24,7 @@
         }
     }
 
-    $(window).bind('app_purchase_start', function(e, product) {
+    z.win.bind('app_purchase_start', function(e, product) {
         setButton(getButton(product), gettext('Purchasing'), 'purchasing');
     }).bind('app_purchase_success', function(e, product) {
         var $button = getButton(product);
@@ -129,4 +129,4 @@
             $button.parent().append($('#noApps').html());
         }
     });
-})();
+});

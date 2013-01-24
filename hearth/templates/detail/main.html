@@ -1,0 +1,61 @@
+{% include "_macros/stars.html" %}
+
+<section class="main product-details listing expanded c">
+  {# This is like a fake, scaled-back version of market_tile. #}
+  <div class="product mkt-tile">
+    <div class="info">
+      <h3 data-l10n-id="loading">Loading...</h3>
+      <div class="price vital" data-l10n-id="loading">Loading...</div>
+      <div class="rating vital unrated">
+        {{ stars(0) }}
+      </div>
+    </div>
+  </div>
+  <div class="tray previews full"></div>
+</section>
+
+{#
+{{ notification(product, amo, mkt, is_dev, unrated_brazil_game) }}
+#}
+
+<section class="main" id="installed">
+  <div>
+    <p>
+      {{ _('Installed!') }}
+    </p>
+    <p class="how mac">
+      {{ _('Launch this app from your <b>Applications</b> directory.') }}
+    </p>
+    <p class="how windows">
+      {{ _('Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>.') }}
+    </p>
+    <p class="how linux">
+      {{ _('Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>.') }}
+    </p>
+  </div>
+</section>
+<div id="purchased-message"></div>
+
+<section class="main blurbs infobox">
+  <div>
+    <p class="summary">
+      {{ _('Loading Summary...') }}
+    </p>
+  </div>
+</section>
+
+<section class="main reviews c{{ ' add-review' if add_review }}">
+  <div class="ratings-placeholder">
+    <div id="reviews">
+      <p class="not-rated">
+        {{ _('Loading ratings...') }}
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="support" class="main infobox support c">
+  <div></div>
+</section>
+
+<div class="content_ratings"></div>

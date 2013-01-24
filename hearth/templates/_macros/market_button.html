@@ -1,0 +1,6 @@
+{% macro market_button(app, classes, data_attrs) %}
+  {% set price = _('Free') if app.price == 0.00 else app.price %}
+  <button class="button product install {{ classes|join(' ') }}" {{ data_attrs|make_data_attrs }}>
+    {{ _('Install') if app.user.owns else price }}
+  </button>
+{% endmacro %}
