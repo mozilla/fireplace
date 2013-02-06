@@ -851,7 +851,7 @@ function suppressLookupValue(obj, val) {
 
 function callWrap(obj, name, args) {
     if (obj) {
-        return obj.call(obj, args);
+        return obj.apply(this, args);
     }
     throw new Error('Could not find value "' + name + '" to call.');
 }
