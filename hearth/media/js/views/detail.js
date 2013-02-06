@@ -43,7 +43,9 @@ define('views.app', [], function() {
             {dest: '.support div', template: 'detail/buttons.html'},
             {dest: '.content_ratings', template: 'detail/content_ratings.html'}
         ]).done(function(data) {
-            z.page.find('.mkt-tile').data('product', data);
+            delete data.this;
+            delete data.window;
+            z.page.find('.mkt-tile').attr('data-product', JSON.stringify(data));
         });
 
         builder.get(api('ratings', args[0]))
