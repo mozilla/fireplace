@@ -39,7 +39,7 @@ def app(name, slug, **kwargs):
         'description': kwargs.get('description', ptext(100)),
         'is_packaged': False,
         'manifest_url':
-            'http://gopher6578.testmanifest.com/manifest.webapp',  # Minifest if packaged
+            'http://%s%s.testmanifest.com/manifest.webapp' % (ptext(1), random.randint(1, 50000)),  # Minifest if packaged
         'current_version': {
             'version': '%d.0' % int(random.random() * 20),
             'release_notes': kwargs.get('release_notes', ptext())
