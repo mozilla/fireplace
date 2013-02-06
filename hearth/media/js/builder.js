@@ -103,6 +103,12 @@ define('builder', ['helpers', 'models'], function(helpers, models) {
                 prepElements(z.page.find(_.pluck(parts, 'dest').join(', ')));
 
                 return fetcher.done(function(data) {
+                    // If jQuery didn't magically parse our JSON, send it for
+                    // remediation.
+                    if (!_.isObject(data)) {
+                        data = JSON.parse(data);
+                    }
+
                     _.each(parts, function(part) {
                         // Create a copy in the local scope so we can overwrite it
                         // safely.
