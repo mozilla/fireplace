@@ -4,16 +4,28 @@ Fireplace
 Fireplace is a packaged version of the Firefox Marketplace's front-end.
 
 
-Prerequirements
----------------
+Installation
+------------
+
+Pull submodules ::
+
+    git submodule update --init
+
+Our dependencies ::
 
 - ``lessc``: For stylesheets
 - ``nunjucks``: For templates
 
-You can install these by running ::
+Installation steps ::
 
-    npm install -g less && git submodule update --init
+    brew install node
+    curl http://npmjs.org/install.sh | sh
+    npm install lessc -g
+    npm install nunjucks -g
 
+And make sure that `/usr/local/share/npm/bin` is in your `$PATH`, à la:
+
+    export PATH=/usr/local/share/npm/bin:$PATH
 
 If you intend to use Flue (the mocked-out API server), you will also need to
 have Flask and perhaps a few other packages installed. That can be set up by
@@ -21,8 +33,11 @@ running ::
 
     pip install -r flue/requirements.txt
 
+You may wish to run Flue in a `virtualenv` ::
 
-You may wish to run Flue in a virtualenv.
+    curl -s https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
+    source ~/.profile
+    mkvirtualenv --no-site-packages fireplace
 
 
 Usage
@@ -31,7 +46,6 @@ Usage
 From the terminal, run the following command ::
 
     node damper.js
-
 
 This will start a local server on port 8675.
 
