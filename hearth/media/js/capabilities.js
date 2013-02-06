@@ -1,14 +1,14 @@
-function safeMatchMedia(query) {
-    var m = window.matchMedia(query);
-    return !!m && m.matches;
-}
-
 define('capabilities', [], function() {
+    function safeMatchMedia(query) {
+        var m = window.matchMedia(query);
+        return !!m && m.matches;
+    }
+
     var capabilities = {
         'JSON': window.JSON && typeof JSON.parse == 'function',
-        'debug': (('' + document.location).indexOf('dbg') >= 0),
-        'debug_in_page': (('' + document.location).indexOf('dbginpage') >= 0),
-        'console': window.console && (typeof window.console.log == 'function'),
+        'debug': document.location.href.indexOf('dbg') >= 0,
+        'debug_in_page': document.location.href.indexOf('dbginpage') >= 0,
+        'console': window.console && typeof window.console.log == 'function',
         'replaceState': typeof history.replaceState === 'function',
         'chromeless': window.locationbar && !window.locationbar.visible,
         'localStorage': false,
@@ -23,13 +23,14 @@ define('capabilities', [], function() {
         'desktop': false,
         'tablet': false,
         'mobile': safeMatchMedia('(max-width: 600px)'),
-        'firefoxAndroid': (navigator.userAgent.indexOf('Firefox') != -1 && navigator.userAgent.indexOf('Android') != -1),
+        'firefoxAndroid': navigator.userAgent.indexOf('Firefox') != -1 && navigator.userAgent.indexOf('Android') != -1,
         'touch': ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
         'nativeScroll': (function() {
             return 'WebkitOverflowScrolling' in document.createElement('div').style;
         })(),
         'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance),
         'navPay': !!navigator.mozPay,
+        'webactivities': !!(window.setMessageHandler || window.mozSetMessageHandler),
         'firefoxOS': null  // This is set below.
     };
 
@@ -77,7 +78,6 @@ define('capabilities', [], function() {
     }
 
     return capabilities;
-
 });
 
 z.capabilities = require('capabilities');

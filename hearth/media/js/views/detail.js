@@ -1,4 +1,5 @@
-define('views.app', [], function() {
+define('views.app', ['z'], function(z) {
+    'use strict';
 
     z.page.on('click', '#product-rating-status .toggle', _pd(function() {
         // Show/hide scary content-rating disclaimers to developers.
@@ -12,15 +13,12 @@ define('views.app', [], function() {
         $this.text(newTxt);
         // Toggle description + developer comments.
         $this.closest('.blurbs').find('.collapsed').toggle();
-
     })).on('click', '.approval-pitch', _pd(function() {
         $('#preapproval-shortcut').submit();
-
     })).on('click', '.product-details .icon', _pd(function(e) {
         // When I click on the icon, append `#id=<id>` to the URL.
         window.location.hash = 'id=' + $('.product').data('product')['id'];
         e.stopPropagation();
-
     })).on('loaded', function() {
         var reviews = $('.detail .reviews li');
         if (reviews.length < 3) return;

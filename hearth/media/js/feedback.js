@@ -1,15 +1,6 @@
 // JS for the desktop Feedback overlay.
 
-define('feedback', [], function() {
-
-    var overlay = $('#feedback-overlay');
-
-    // Don't go to /account/feedback, show the overlay.
-    $('.submit-feedback').on('click', _pd(function(e) {
-        e.stopPropagation();
-        overlay.addClass('show');
-    }));
-
+define('feedback', ['browser', 'capabilities'], function(browser, capabilities) {
     function validate(form) {
         // The feedback box shouldn't be empty.
         return !!form.find('textarea').val();
@@ -21,15 +12,6 @@ define('feedback', [], function() {
         form.find('.error').removeClass('error');
         $('.feedback-form').find('textarea').val('');
     }
-
-    // Bind up them events.
-    var overlayForm = overlay.find('form')
-
-    overlayForm.on('submit', processFeedback);
-    z.page.on('fragmentloaded', function() {
-        reset(overlayForm);
-        z.page.find('.feedback-form').on('submit', processFeedback);
-    });
 
     function processFeedback(e) {
         var $form = $(this);
@@ -47,19 +29,40 @@ define('feedback', [], function() {
         }
 
         var platformInput = $form.find('input[name="platform"]');
-        if (z.capabilities.gaia) {
+        if (capabilities.gaia) {
             platformInput.val('Gaia');
-        } else if (z.nav.os.android) {
+        } else if (browser.os.android) {
             platformInput.val('Firefox for Android');
-        } else if (z.capabilities.mobile) {
+        } else if (capabilities.mobile) {
             platformInput.val('Mobile');
-        } else if (z.capabilities.desktop) {
+        } else if (capabilities.desktop) {
             platformInput.val('Desktop');
         }
-        $form.find('input[name="chromeless"]').val(z.capabilities.chromeless ? 'Yes' : 'No');
+        $form.find('input[name="chromeless"]').val(capabilities.chromeless ? 'Yes' : 'No');
         $form.find('input[name="from_url"]').val(window.location.pathname);
 
         overlay.removeClass('show');
     }
 
+
+    function init() {
+        var overlay = $('#feedback-overlay');
+
+        // Bind up them events.
+        var overlayForm = overlay.find('form')
+
+        // Don't go to /account/feedback, show the overlay.
+        $('.submit-feedback').on('click', _pd(function(e) {
+            e.stopPropagation();
+            overlay.addClass('show');
+        }));
+
+        overlayForm.on('submit', processFeedback);
+        z.page.on('loaded', function() {
+            reset(overlayForm);
+            z.page.find('.feedback-form').on('submit', processFeedback);
+        });
+    }
+
+    return {init: init};
 });

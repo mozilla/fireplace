@@ -1,8 +1,5 @@
 define('notification', ['capabilities'], function(caps) {
-
     var notificationEl = $('<div id="notification">');
-    z.body.append(notificationEl);
-
     var def;
     var addedClasses = [];
 
@@ -24,10 +21,12 @@ define('notification', ['capabilities'], function(caps) {
         hide();
     }
 
-    notificationEl.on('touchstart click', affirm);
+    function init() {
+        z.body.append(notificationEl);
+        notificationEl.on('touchstart click', affirm);
+    }
 
     function notification(opts) {
-
         if (def && def.state() === 'pending') {
             def.reject();
         }
@@ -56,8 +55,7 @@ define('notification', ['capabilities'], function(caps) {
 
         return def.promise();
 
-    };
+    }
 
-    return notification;
-
+    return {init: init, notification: notification};
 });
