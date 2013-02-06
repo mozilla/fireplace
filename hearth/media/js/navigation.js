@@ -1,4 +1,9 @@
-var nav = (function() {
+define('navigation', ['require', 'builder', 'utils', 'views', 'z'], function(require) {
+    'use strict';
+
+    var _pd = require('utils')._pd;
+    var z = require('z');
+
     var stack = [
         {
             path: '/',
@@ -23,7 +28,7 @@ var nav = (function() {
             return url;
         }
 
-        var used_params = _.pick(z.getVars(url_parts[1]), param_whitelist);
+        var used_params = _.pick(getVars(url_parts[1]), param_whitelist);
         // If there are no query params after we filter, just return the path.
         if (!_.keys(used_params).length) {  // If there are no elements in the object...
             return url_parts[0];  // ...just return the path.
@@ -134,7 +139,7 @@ var nav = (function() {
         }
     }
 
-    $('#nav-back').on('click', _pd(back));
+    $('.nav-back').on('click', _pd(back));
 
     var builder = require('builder');
     var views = require('views');
@@ -224,4 +229,4 @@ var nav = (function() {
         navigationFilter: navigationFilter
     };
 
-})();
+});

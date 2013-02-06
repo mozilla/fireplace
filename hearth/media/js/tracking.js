@@ -1,6 +1,7 @@
-define('tracking', [], function() {
-    if (!settings.tracking_enabled)
+define('tracking', ['settings'], function(settings) {
+    if (!settings.tracking_enabled) {
         return;
+    }
 
     // GA Tracking.
     window._gaq = window._gaq || [];
@@ -17,4 +18,6 @@ define('tracking', [], function() {
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(ga, s);
     })();
+
+    return {init: init};
 });

@@ -24,3 +24,10 @@ function template(s) {
     }
     return function(args) { return format(s, args); };
 }
+
+define([], function() {
+    return {
+        format: format,
+        template: template
+    };
+});

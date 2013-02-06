@@ -1,4 +1,4 @@
-(function() {
+define(["nunjucks"], function(nunjucks) {
 var templates = {};
 templates["_macros/emaillink.html"] = (function() {
 function root(env, context, frame, runtime) {
@@ -523,21 +523,19 @@ context.setVariable("has_reply", t_2);
 context.addExport("has_reply");
 }
 output += "\n\n<li id=\"review-";
-output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "id"));
+output += runtime.suppressValue(runtime.suppressLookupValue((runtime.contextOrFrameLookup(context, frame, "this")),"id"));
 output += "\" data-rating=\"";
-output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "rating"));
+output += runtime.suppressValue(runtime.suppressLookupValue((runtime.contextOrFrameLookup(context, frame, "this")),"rating"));
 output += "\"\n    class=\"review";
-output += runtime.suppressValue((t_1?" reply":""));
-output += runtime.suppressValue((runtime.contextOrFrameLookup(context, frame, "is_flagged")?" flagged":""));
+output += runtime.suppressValue((runtime.suppressLookupValue((runtime.contextOrFrameLookup(context, frame, "this")),"is_flagged")?" flagged":""));
 output += " c\">\n  <div class=\"review-inner\">\n    ";
 output += runtime.suppressValue((lineno = 6, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "stars"), "stars", [runtime.suppressLookupValue((runtime.contextOrFrameLookup(context, frame, "this")),"rating"),runtime.makeKeywordArgs({"detailpage": runtime.contextOrFrameLookup(context, frame, "True")})])));
-output += "\n    <span class=\"byline\">\n      ";
-output += "\n      by <strong>";
+output += "\n    <span class=\"byline\">\n      by <strong>";
 output += runtime.suppressValue(runtime.suppressLookupValue((runtime.contextOrFrameLookup(context, frame, "this")),"user_name"));
 output += "</strong>\n      ";
 if(runtime.suppressLookupValue((runtime.contextOrFrameLookup(context, frame, "this")),"for_old_version")) {
 output += "\n        ";
-output += runtime.suppressValue((lineno = 11, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["for previous version {{version}}",runtime.makeKeywordArgs({"version": runtime.suppressLookupValue((runtime.contextOrFrameLookup(context, frame, "this")),"for_old_version")})])));
+output += runtime.suppressValue((lineno = 10, colno = 10, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["for previous version {{version}}",runtime.makeKeywordArgs({"version": runtime.suppressLookupValue((runtime.contextOrFrameLookup(context, frame, "this")),"for_old_version")})])));
 output += "\n      ";
 }
 output += "\n    </span>\n    <div class=\"body\">\n      ";
@@ -978,4 +976,5 @@ root: root
 })();
 nunjucks.env = new nunjucks.Environment([]);
 nunjucks.env.registerPrecompiled(templates);
-})()
+return nunjucks;
+});

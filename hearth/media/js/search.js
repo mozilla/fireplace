@@ -1,32 +1,8 @@
-(function() {
-
-    z.page.on('click', 'b[data-href]', _pd(function(e) {
-        e.stopPropagation();
-        window.open($(this).data('href'), '_newtab');
-    }));
-
-    // Add 'sel' class to active filter and set hidden input value.
-    z.page.on('click', '#filters .toggles a, .filters-bar a', function() {
-        var $this = $(this);
-        selectMe($this);
-
-        // On mobile the apply button will submit our form.
-        // On desktop we'll follow the href.
-        if ($this.closest('.toggles').length) {
-            return false;
-        }
-    });
-
-    // Clear search field on 'cancel' search suggestions.
-    $('#site-header').on('click', '.header-button.cancel', _pd(function() {
-        $('#site-search-suggestions').trigger('dismiss');
-        $('#search-q').val('');
-    }));
-
+define('search', ['capabilities', 'z'], function(capabilities, z) {
     function selectMe($elm) {
         var $myUL = $elm.closest('ul'),
             val = '',
-            vars = z.getVars($elm[0].search);
+            vars = getVars($elm[0].search);
 
         if ($elm.hasClass('cancel')) {
             return;
@@ -42,57 +18,81 @@
         $elm.addClass('sel');
     }
 
-    $(document).on('click', '#filters', function(e) {
-        if ($(e.target).parent('#page').length) {
-            $('#filters').removeClass('show');
-        }
-    });
-
-    // Apply filters button.
-    z.page.on('click', '#filters .apply', _pd(function() {
-        $('#filters form').submit();
-    }));
-
-    // If we're on desktop, show graphical results - unless specified by user.
-    var expandListings;
-
-    var $expandToggle = $('#site-header .expand');
-
-    // Toggle app listing graphical/compact view.
-    $expandToggle.click(_pd(function(e) {
-        expandListings = !expandListings;
-        setTrays(expandListings);
-    }));
-
-    z.page.on('fragmentloaded', function() {
-        if (z.body.data('page-type') === 'search') {
-            initExpanded();
-            setTrays(expandListings);
-        }
-
-        // Set "Category Name" or "Apps" as search placeholder.
-        var $q = $('#search-q');
-        $q.attr('placeholder', z.context.category || $q.data('placeholder-default'));
-    });
-
     function initExpanded() {
         var storedExpand = localStorage.getItem('expand-listings');
         if (storedExpand === undefined) {
-            expandListings = z.capabilities.desktop;
+            expandListings = capabilities.desktop;
         } else {
             expandListings = storedExpand === 'true';
         }
     }
 
-    initExpanded();
+    function init() {
+        z.page.on('click', 'b[data-href]', _pd(function(e) {
+            e.stopPropagation();
+            window.open($(this).data('href'), '_newtab');
+        })).on('click', '#filters .toggles a, .filters-bar a', function() {
+            // Add 'sel' class to active filter and set hidden input value.
+            var $this = $(this);
+            selectMe($this);
 
-    function setTrays(expanded) {
-        $('ol.listing').toggleClass('expanded', expanded);
-        $expandToggle.toggleClass('active', expanded);
-        localStorage.setItem('expand-listings', expanded);
-        if (expanded) {
-            z.page.trigger('populatetray');
+            // On mobile the apply button will submit our form.
+            // On desktop we'll follow the href.
+            if ($this.closest('.toggles').length) {
+                return false;
+            }
+        });
+
+        // Clear search field on 'cancel' search suggestions.
+        $('#site-header').on('click', '.header-button.cancel', _pd(function() {
+            $('#site-search-suggestions').trigger('dismiss');
+            $('#search-q').val('');
+        }));
+
+        z.doc.on('click', '#filters', function(e) {
+            if ($(e.target).parent('#page').length) {
+                $('#filters').removeClass('show');
+            }
+        });
+
+        // Apply filters button.
+        z.page.on('click', '#filters .apply', _pd(function() {
+            $('#filters form').submit();
+        }));
+
+        // If we're on desktop, show graphical results - unless specified by user.
+        var expandListings;
+
+        var $expandToggle = $('#site-header .expand');
+
+        // Toggle app listing graphical/compact view.
+        $expandToggle.click(_pd(function(e) {
+            expandListings = !expandListings;
+            setTrays(expandListings);
+        }));
+
+        z.page.on('loaded', function() {
+            if (z.body.data('page-type') === 'search') {
+                initExpanded();
+                setTrays(expandListings);
+            }
+
+            // Set "Category Name" or "Apps" as search placeholder.
+            var $q = $('#search-q');
+            $q.attr('placeholder', z.context.category || $q.data('placeholder-default'));
+        });
+
+        initExpanded();
+
+        function setTrays(expanded) {
+            $('ol.listing').toggleClass('expanded', expanded);
+            $expandToggle.toggleClass('active', expanded);
+            localStorage.setItem('expand-listings', expanded);
+            if (expanded) {
+                z.page.trigger('populatetray');
+            }
         }
     }
 
-})();
+    return {init: init};
+});

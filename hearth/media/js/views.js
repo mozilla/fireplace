@@ -1,4 +1,4 @@
-define('views', ['builder'], function(builder) {
+define('views', ['builder', 'routes'], function(builder) {
 
     var routes = _.map(require('routes'), function(route) {
         route.regexp = new RegExp(route.pattern);

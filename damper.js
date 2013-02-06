@@ -105,7 +105,7 @@ function reload() {
 }
 
 function compileNunjucks() {
-    child_process.exec('./nunjucks/bin/precompile ./hearth/templates -f > hearth/templates.js', function(e, so, se) {
+    child_process.exec('./nunjucks/bin/precompile ./hearth/templates -f --amd > hearth/templates.js', function(e, so, se) {
         console.log(se);  // stderr
         if (e !== null) {
             console.error(e);

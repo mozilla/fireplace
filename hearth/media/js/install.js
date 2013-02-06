@@ -1,8 +1,7 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
-define('install', ['capabilities', 'payments', 'buttons'], function(caps, payments) {
-    z.page.on('click', '.product.launch', launchHandler);
-    z.page.on('click', '.button.product:not(.launch):not(.incompatible)', installHandler);
+define('install', ['apps', 'capabilities', 'payments'], function(apps, caps, payments) {
+    'use strict';
 
     function launchHandler(e) {
         e.preventDefault();
@@ -12,16 +11,17 @@ define('install', ['capabilities', 'payments', 'buttons'], function(caps, paymen
     }
 
     function installHandler(e) {
+        console.log('fart');
         e.preventDefault();
         e.stopPropagation();
-        var product = $(this).closest('.mkt-tile').data('product');
+        var product = $(this).closest('[data-product]').data('product');
         startInstall(product);
     }
 
     function startInstall(product) {
         if (z.anonymous && (!settings.allow_anon_installs || product.price != '0.00')) {
             localStorage.setItem('toInstall', product.manifest_url);
-            z.win.trigger('login');
+            z.win.trigger('login', true);
             return;
         }
         // Show "Install" button if I'm installing from the Reviewer Tools,
@@ -92,15 +92,21 @@ define('install', ['capabilities', 'payments', 'buttons'], function(caps, paymen
         z.win.trigger('app_install_error', [installer, product, msg]);
     }
 
-    $(function() {
-        if (localStorage.getItem('toInstall')) {
-            var lsVal = localStorage.getItem('toInstall');
-            localStorage.removeItem('toInstall');
-            var product = $(format('.button[data-manifest_url="{0}"]',
-                                   lsVal)).data('product');
-            if (product) {
-                startInstall(product);
+    function init() {
+        z.page.on('click', '.product.launch', launchHandler);
+        z.page.on('click', '.button.product:not(.launch):not(.incompatible)', installHandler);
+        $(function() {
+            if (localStorage.getItem('toInstall')) {
+                var lsVal = localStorage.getItem('toInstall');
+                localStorage.removeItem('toInstall');
+                var product = $(format('.product[data-manifest_url="{0}"]',
+                                       lsVal)).data('product');
+                if (product) {
+                    startInstall(product);
+                }
             }
-        }
-    });
+        });
+    }
+
+    return {init: init};
 });

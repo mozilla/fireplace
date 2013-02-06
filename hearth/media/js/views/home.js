@@ -1,4 +1,5 @@
-define('views.homepage', [], function() {
+define('views.homepage', ['z'], function(z) {
+    'use strict';
 
     function fillBg(els) {
         _.each(els, function(el) {

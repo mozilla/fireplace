@@ -1,12 +1,11 @@
 {% set is_reply = this.reply_to_id != None %}
 {% set has_reply = this.reply != None %}
 
-<li id="review-{{ id }}" data-rating="{{ rating }}"
-    class="review{{ ' reply' if is_reply }}{{ ' flagged' if is_flagged }} c">
+<li id="review-{{ this.id }}" data-rating="{{ this.rating }}"
+    class="review{{ ' flagged' if this.is_flagged }} c">
   <div class="review-inner">
     {{ stars(this.rating, detailpage=True) }}
     <span class="byline">
-      {# TODO: L10n me #}
       by <strong>{{ this.user_name }}</strong>
       {% if this.for_old_version %}
         {{ _('for previous version {{version}}', version=this.for_old_version) }}
