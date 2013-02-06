@@ -113,30 +113,41 @@ function compileNunjucks() {
     });
 }
 
+function runCommand(command, filepath) {
+    switch (command) {
+        case 'restart':
+            return reload();
+        case 'less':
+            child_process.exec('lessc ' + filepath + ' ' + filepath + '.css', function(e, so, se) {
+                if (e !== null) {
+                    console.error(e);
+                }
+            });
+            break;
+        case 'nunjucks':
+            compileNunjucks();
+            break;
+    }
+}
+
 function watch(globpath, ext, command) {
     var cb = function(err, filepaths) {
         // for single files, filepaths will just be one file: the exact match
         filepaths.forEach(function(filepath) {
             // save the filepath so that we can unwatch it easily when reloading, and start the watch
             watched_filepaths.push(filepath);
+            if (command == 'less') {
+                fs.exists(filepath, function(exists) {
+                    if (exists) {
+                        runCommand(command, filepath);
+                    }
+                });
+            }
             fs.watchFile(filepath, {interval: 250}, function(curr, prev) {
                 // ignore simple accesses
                 if (curr.mtime.valueOf() != prev.mtime.valueOf() || curr.ctime.valueOf() != prev.ctime.valueOf()) {
                     console.warn('> ' + filepath + ' changed.');
-                    switch (command) {
-                        case 'restart':
-                            return reload();
-                        case 'less':
-                            child_process.exec('lessc ' + filepath + ' ' + filepath + '.css', function(e, so, se) {
-                                if (e !== null) {
-                                    console.error(e);
-                                }
-                            });
-                            break;
-                        case 'nunjucks':
-                            compileNunjucks();
-                            break;
-                    }
+                    runCommand(command, filepath);
                 }
             });
 
