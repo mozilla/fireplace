@@ -33,7 +33,7 @@
        {% if not link %}</a>{% endif %}
       </div>
     </div>
-    {% for notice in notices %}
+    {% for notice in app.notices %}
       <div class="bad-app">{{ notice|safe }}</div>
     {% endfor %}
   </{{ tag }}>
