@@ -184,6 +184,11 @@ define('builder', ['api', 'helpers', 'models', 'settings', 'z'], function(api, h
             return request(models('app').fetch(url, slug));
         };
 
+        this.rating = function(id) {
+            var url = api('ratings', [id]);
+            return request(models('rating').fetch(url, id));
+        };
+
         this.start = function(template) {
             z.page.html(applyTemplate(template));
         };

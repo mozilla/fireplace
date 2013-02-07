@@ -1,5 +1,5 @@
+from datetime import date, timedelta
 import random
-
 
 dummy_text = 'foo bar zip zap cvan fizz buzz something something'.split()
 
@@ -94,6 +94,10 @@ def app(name, slug, **kwargs):
 
 user_names = ['Cvan', 'Basta', 'Potch', 'Queen Krupa']
 
+def rand_posted():
+    rand_date = date.today() - timedelta(days=random.randint(0, 600))
+    return rand_date.strftime('%b %d %Y %H:%M:%S')
+
 def rating(has_reply=False):
     return {
         'id': random.randint(1000, 9999),
@@ -102,5 +106,6 @@ def rating(has_reply=False):
         'body': ptext(20),
         'reply': None if not has_reply else rating(),
         'for_old_version': False,  # False or the old version number
-        'is_flagged': False
+        'is_flagged': False,
+        'posted': rand_posted()
     }
