@@ -1,14 +1,6 @@
-define('helpers', ['lib/format', 'l10n', 'templates', 'urls'], function(format, gettext, nunjucks) {
+define('helpers', ['lib/format', 'l10n', 'templates', 'urls', 'utils'], function(format, gettext, nunjucks, urls, utils) {
 
     var env = nunjucks.env;
-
-    function escape_(s) {
-        if (typeof s === 'undefined') {
-            return;
-        }
-        return s.replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;')
-                .replace(/'/g, '&#39;').replace(/"/g, '&#34;');
-    }
 
     env.addFilter('urlparams', function(obj, kwargs) {
         if (obj.indexOf('?') === -1) {
@@ -39,13 +31,13 @@ define('helpers', ['lib/format', 'l10n', 'templates', 'urls'], function(format, 
         return _.map(
             _.pairs(obj),
             function(pair) {
-                return 'data-' + escape_(pair[0]) + '="' + escape_(pair[1]) + '"';
+                return 'data-' + utils.escape_(pair[0]) + '="' + utils.escape_(pair[1]) + '"';
             }
         ).join(' ');
     });
 
     env.addFilter('external_href', function(obj) {
-        return 'href="' + escape_(obj) + '" target="_blank"';
+        return 'href="' + utils.escape_(obj) + '" target="_blank"';
     });
 
     env.addFilter('numberfmt', function(obj) {

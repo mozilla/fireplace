@@ -1,4 +1,4 @@
-define('ratings', ['capabilities', 'z'], function(capabilities, z) {
+define('ratings', ['capabilities', 'utils', 'z'], function(capabilities, utils, z) {
     // Initializes character counters for textareas.
     function initCharCount() {
         var countChars = function(el, cc) {
@@ -32,10 +32,10 @@ define('ratings', ['capabilities', 'z'], function(capabilities, z) {
 
     function init() {
         // Review/reply template.
-        var reviewTemplate = getTemplate($('#review-template'));
+        var reviewTemplate = utils.getTemplate($('#review-template'));
 
         z.page.on('loaded', function() {
-            flagOverlay = makeOrGetOverlay('flag-review');
+            flagOverlay = utils.makeOrGetOverlay('flag-review');
 
             // Hijack <select> with stars.
             $('select[name="rating"]').ratingwidget();
@@ -108,17 +108,17 @@ define('ratings', ['capabilities', 'z'], function(capabilities, z) {
                     return false;
                 }
                 // Form submission is handled by POST hijacking.
-            }).on('click', '.cancel', _pd(function() {
+            }).on('click', '.cancel', utils._pd(function() {
                 overlay.removeClass('show');
             })).on('change.comment keyup.comment', 'textarea', _.throttle(validate, 250));
         }
 
         function flagReview(reviewEl) {
-            var overlay = makeOrGetOverlay('flag-review');
+            var overlay = utils.makeOrGetOverlay('flag-review');
             overlay.addClass('show');
-            overlay.one('click', '.cancel', _pd(function() {
+            overlay.one('click', '.cancel', utils._pd(function() {
                 overlay.removeClass('show');
-            })).one('click', '.menu a', _pd(function(e) {
+            })).one('click', '.menu a', utils._pd(function(e) {
                 var flag = $(e.target).attr('href').slice(1),
                     actionEl = reviewEl.find('.actions .flag');
                 overlay.removeClass('show');
@@ -168,7 +168,7 @@ define('ratings', ['capabilities', 'z'], function(capabilities, z) {
 
         // Edit review on the review listing page.
         function editReview(reviewEl) {
-            var overlay = makeOrGetOverlay('edit-review'),
+            var overlay = utils.makeOrGetOverlay('edit-review'),
                 rating = reviewEl.data('rating'),
                 action = reviewEl.closest('[data-edit-url]').data('edit-url'),
                 body = getBody(reviewEl.find('.body'));
@@ -189,7 +189,7 @@ define('ratings', ['capabilities', 'z'], function(capabilities, z) {
 
         // This gets used when you're not editing a review on the review list page.
         function addOrEditYourReview($senderEl) {
-            var overlay = makeOrGetOverlay('edit-review'),
+            var overlay = utils.makeOrGetOverlay('edit-review'),
                 rating = $senderEl.data('rating'),
                 title = gettext('Write a Review'),
                 body = getBody($('#current-review')),
@@ -208,7 +208,7 @@ define('ratings', ['capabilities', 'z'], function(capabilities, z) {
         }
 
         function replyReview(reviewEl, action, isNewReview) {
-            var overlay = makeOrGetOverlay('edit-review'),
+            var overlay = utils.makeOrGetOverlay('edit-review'),
                 title = gettext('Reply Review'),
                 body = '';
 
@@ -232,14 +232,14 @@ define('ratings', ['capabilities', 'z'], function(capabilities, z) {
         }
 
         // Toggle rating breakdown (on listing page only, not detail page).
-        z.page.on('click', '.average-rating-listing', _pd(function() {
+        z.page.on('click', '.average-rating-listing', utils._pd(function() {
             $('.grouped-ratings').toggle();
-        })).on('click', '.grouped-ratings-listing', _pd(function() {
+        })).on('click', '.grouped-ratings-listing', utils._pd(function() {
             $('.grouped-ratings').hide();
         }));
 
         // Cancel rating button.
-        z.page.on('click', '.review .actions a, #add-first-review[data-href]', _pd(function(e) {
+        z.page.on('click', '.review .actions a, #add-first-review[data-href]', utils._pd(function(e) {
             var $this = $(this),
                 action = $this.data('action');
             if (!action) return;
@@ -264,7 +264,7 @@ define('ratings', ['capabilities', 'z'], function(capabilities, z) {
                     replyReview($review, $this.attr('href'));
                     break;
             }
-        })).on('click', '.review .view-reply', _pd(function() {
+        })).on('click', '.review .view-reply', utils._pd(function() {
             // View reply.
             $(this).closest('.review').next('.replies').find('.reply').toggle();
         }));

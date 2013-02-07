@@ -1,6 +1,6 @@
 // JS for the desktop Feedback overlay.
 
-define(['browser', 'capabilities', 'z'], function(browser, capabilities, z) {
+define(['browser', 'capabilities', 'utils', 'z'], function(browser, capabilities, utils, z) {
     function validate(form) {
         // The feedback box shouldn't be empty.
         return !!form.find('textarea').val();
@@ -52,7 +52,7 @@ define(['browser', 'capabilities', 'z'], function(browser, capabilities, z) {
         var overlayForm = overlay.find('form')
 
         // Don't go to /account/feedback, show the overlay.
-        $('.submit-feedback').on('click', _pd(function(e) {
+        $('.submit-feedback').on('click', utils._pd(function(e) {
             e.stopPropagation();
             overlay.addClass('show');
         }));

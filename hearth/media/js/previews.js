@@ -1,10 +1,10 @@
-define('previews', ['z'], function(z) {
+define('previews', ['utils', 'z'], function(utils, z) {
     function init() {
         // magic numbers!
         var THUMB_WIDTH = 180;
         var THUMB_PADDED = 195;
 
-        z.page.on('dragstart', _pd);
+        z.page.on('dragstart', utils._pd);
 
         function populateTray() {
             // preview trays expect to immediately follow a .mkt-tile.

@@ -1,4 +1,4 @@
-define('suggestions', ['capabilities', 'keys', 'z'], function(capabilities, keys, z) {
+define('suggestions', ['capabilities', 'keys', 'utils', 'z'], function(capabilities, keys, utils, z) {
     z._AjaxCache = {};
     z.AjaxCache = (function() {
         return function(namespace) {
@@ -189,7 +189,7 @@ define('suggestions', ['capabilities', 'keys', 'z'], function(capabilities, keys
         }
 
         function inputHandler(e) {
-            var val = escape_($self.val());
+            var val = utils.escape_($self.val());
             if (val.length < 3) {
                 $results.filter('.visible').removeClass('visible');
                 return;
@@ -275,8 +275,8 @@ define('suggestions', ['capabilities', 'keys', 'z'], function(capabilities, keys
 
         $results.bind('dismiss', clearCurrentSuggestions);
 
-        $(document).keyup(function(e) {
-            if (fieldFocused(e)) {
+        z.doc.keyup(function(e) {
+            if (utils.fieldFocused(e)) {
                 return;
             }
             if (e.which == 83) {
@@ -309,7 +309,7 @@ define('suggestions', ['capabilities', 'keys', 'z'], function(capabilities, keys
                     var ul = '';
                     $.each(items, function(i, item) {
                         var d = {
-                            url: escape_(item.url) || '#',
+                            url: utils.escape_(item.url) || '#',
                             icon: '',
                             cls: '',
                             subtitle: ''
@@ -317,12 +317,12 @@ define('suggestions', ['capabilities', 'keys', 'z'], function(capabilities, keys
                         if (item.icon) {
                             d.icon = format(
                                 'style="background-image:url({0})"',
-                                escape_(item.icon)
+                                utils.escape_(item.icon)
                             );
                         }
                         if (item.cls) {
                             d.cls = format('class="{0}"',
-                                           escape_(item.cls));
+                                           utils.escape_(item.cls));
                             if (item.cls == 'cat') {
                                 d.subtitle = format(
                                     ' <em class="subtitle">{0}</em>',
@@ -331,7 +331,7 @@ define('suggestions', ['capabilities', 'keys', 'z'], function(capabilities, keys
                             }
                         }
                         if (item.name) {
-                            d.name = escape_(item.name);
+                            d.name = utils.escape_(item.name);
                             // Append the item only if it has a name.
                             ul += li_item(d);
                         }
@@ -377,10 +377,10 @@ define('suggestions', ['capabilities', 'keys', 'z'], function(capabilities, keys
                 if (items !== undefined) {
                     $.each(items, function(i, item) {
                         var d = {
-                            url: escape_(item.url) || '#'
+                            url: utils.escape_(item.url) || '#'
                         };
                         if (item.name) {
-                            d.name = escape_(item.name);
+                            d.name = utils.escape_(item.name);
                             // Append the item only if it has a name.
                             listitems += li_item(d);
                         }

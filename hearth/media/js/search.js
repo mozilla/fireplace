@@ -1,8 +1,8 @@
-define('search', ['capabilities', 'z'], function(capabilities, z) {
+define('search', ['capabilities', 'utils', 'z'], function(capabilities, utils, z) {
     function selectMe($elm) {
         var $myUL = $elm.closest('ul'),
             val = '',
-            vars = getVars($elm[0].search);
+            vars = utils.getVars($elm[0].search);
 
         if ($elm.hasClass('cancel')) {
             return;
@@ -28,7 +28,7 @@ define('search', ['capabilities', 'z'], function(capabilities, z) {
     }
 
     function init() {
-        z.page.on('click', 'b[data-href]', _pd(function(e) {
+        z.page.on('click', 'b[data-href]', utils._pd(function(e) {
             e.stopPropagation();
             window.open($(this).data('href'), '_newtab');
         })).on('click', '#filters .toggles a, .filters-bar a', function() {
@@ -44,7 +44,7 @@ define('search', ['capabilities', 'z'], function(capabilities, z) {
         });
 
         // Clear search field on 'cancel' search suggestions.
-        $('#site-header').on('click', '.header-button.cancel', _pd(function() {
+        $('#site-header').on('click', '.header-button.cancel', utils._pd(function() {
             $('#site-search-suggestions').trigger('dismiss');
             $('#search-q').val('');
         }));
@@ -56,7 +56,7 @@ define('search', ['capabilities', 'z'], function(capabilities, z) {
         });
 
         // Apply filters button.
-        z.page.on('click', '#filters .apply', _pd(function() {
+        z.page.on('click', '#filters .apply', utils._pd(function() {
             $('#filters form').submit();
         }));
 
@@ -66,7 +66,7 @@ define('search', ['capabilities', 'z'], function(capabilities, z) {
         var $expandToggle = $('#site-header .expand');
 
         // Toggle app listing graphical/compact view.
-        $expandToggle.click(_pd(function(e) {
+        $expandToggle.click(utils._pd(function(e) {
             expandListings = !expandListings;
             setTrays(expandListings);
         }));

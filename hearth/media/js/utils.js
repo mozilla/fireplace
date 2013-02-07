@@ -1,4 +1,43 @@
 define(['jquery', 'underscore', 'z'], function($, _, z) {
+    _.extend(String.prototype, {
+        trim: function(str) {
+            // Trim leading and trailing whitespace (like lstrip + rstrip).
+            return this.replace(/^\s*/, '').replace(/\s*$/, '');
+        },
+        strip: function(str) {
+            // Strip all whitespace.
+            return this.replace(/\s/g, '');
+        }
+    });
+
+    function _pd(func) {
+        return function(e) {
+            e.preventDefault();
+            func.apply(this, arguments);
+        };
+    }
+
+    function escape_(s) {
+        if (s === undefined) {
+            return;
+        }
+        return s.replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;')
+                .replace(/'/g, '&#39;').replace(/"/g, '&#34;');
+    }
+
+    function fieldFocused(e) {
+        var tags = /input|keygen|meter|option|output|progress|select|textarea/i;
+        return tags.test(e.target.nodeName);
+    }
+
+    function getTemplate($el) {
+        // If the element exists, return the template.
+        if ($el.length) {
+            return template($el.html());
+        }
+        // Otherwise, return undefined.
+    }
+
     function getVars(qs, excl_undefined) {
         if (typeof qs === 'undefined') {
             qs = location.search;
@@ -16,38 +55,6 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
                 .value();
     }
 
-
-    function _pd(func) {
-        return function(e) {
-            e.preventDefault();
-            func.apply(this, arguments);
-        };
-    }
-
-    function fieldFocused(e) {
-        var tags = /input|keygen|meter|option|output|progress|select|textarea/i;
-        return tags.test(e.target.nodeName);
-    }
-
-    var escape_ = function(s) {
-        if (s === undefined) {
-            return;
-        }
-        return s.replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;')
-                .replace(/'/g, '&#39;').replace(/"/g, '&#34;');
-    };
-
-    _.extend(String.prototype, {
-        trim: function(str) {
-            // Trim leading and trailing whitespace (like lstrip + rstrip).
-            return this.replace(/^\s*/, '').replace(/\s*$/, '');
-        },
-        strip: function(str) {
-            // Strip all whitespace.
-            return this.replace(/\s/g, '');
-        }
-    });
-
     function makeOrGetOverlay(id) {
         var el = document.getElementById(id);
         if (!el) {
@@ -57,17 +64,13 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
         return $(el);
     }
 
-    function getTemplate($el) {
-        // If the element exists, return the template.
-        if ($el.length) {
-            return template($el.html());
-        }
-        // Otherwise, return undefined.
-    }
-
     return {
         '_pd': _pd,
-        'escape_': escape_
+        'escape_': escape_,
+        'fieldFocused': fieldFocused,
+        'getTemplate': getTemplate,
+        'getVars': getVars,
+        'makeOrGetOverlay': makeOrGetOverlay
     };
 
 });

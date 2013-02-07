@@ -1,4 +1,4 @@
-define('lightbox', ['keys', 'z'], function(keys, z) {
+define('lightbox', ['keys', 'utils', 'z'], function(keys, utils, z) {
     function init() {
         var $lightbox = $('#lightbox');
         var $section = $lightbox.find('section');
@@ -127,7 +127,7 @@ define('lightbox', ['keys', 'z'], function(keys, z) {
         z.win.on('resize', _.debounce(resize, 200));
 
         // if a tray thumbnail is clicked, load up our lightbox.
-        z.page.on('click', '.tray ul a', _pd(showLightbox));
+        z.page.on('click', '.tray ul a', utils._pd(showLightbox));
 
         // dismiss the lighbox when we click outside it or on the close button.
         $lightbox.click(function(e) {
@@ -136,7 +136,7 @@ define('lightbox', ['keys', 'z'], function(keys, z) {
                 e.preventDefault();
             }
         });
-        $lightbox.find('.close').click(_pd(function(e) {
+        $lightbox.find('.close').click(utils._pd(function(e) {
             hideLightbox();
         }));
 

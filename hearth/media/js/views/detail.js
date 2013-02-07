@@ -1,11 +1,11 @@
-define('views.app', ['z'], function(z) {
+define('views.app', ['utils', 'z'], function(utils, z) {
     'use strict';
 
-    z.page.on('click', '#product-rating-status .toggle', _pd(function() {
+    z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
         // Show/hide scary content-rating disclaimers to developers.
         $(this).closest('.toggle').siblings('div').toggleClass('hidden');
 
-    })).on('click', '.show-toggle', _pd(function() {
+    })).on('click', '.show-toggle', utils._pd(function() {
         var $this = $(this),
             newTxt = $this.attr('data-toggle-text');
         // Toggle "more..." or "less..." text.
@@ -13,9 +13,9 @@ define('views.app', ['z'], function(z) {
         $this.text(newTxt);
         // Toggle description + developer comments.
         $this.closest('.blurbs').find('.collapsed').toggle();
-    })).on('click', '.approval-pitch', _pd(function() {
+    })).on('click', '.approval-pitch', utils._pd(function() {
         $('#preapproval-shortcut').submit();
-    })).on('click', '.product-details .icon', _pd(function(e) {
+    })).on('click', '.product-details .icon', utils._pd(function(e) {
         // When I click on the icon, append `#id=<id>` to the URL.
         window.location.hash = 'id=' + $('.product').data('product')['id'];
         e.stopPropagation();

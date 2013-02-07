@@ -1,4 +1,4 @@
-define('overlay', ['keys', 'z'], function(keys, z) {
+define('overlay', ['keys', 'utils', 'z'], function(keys, utils, z) {
     function dismiss() {
         var $overlay = $('.overlay.show');
         if ($overlay.length) {
@@ -39,12 +39,12 @@ define('overlay', ['keys', 'z'], function(keys, z) {
                 dismiss();
             }
         }).on('keydown.overlayDismiss', function(e) {
-            if (!fieldFocused(e) && e.which == keys.ESCAPE) {
+            if (!utils.fieldFocused(e) && e.which == keys.ESCAPE) {
                 e.preventDefault();
                 dismiss();
             }
         }).on('dismiss', '.overlay', dismiss)
-          .on('click', '.overlay .dismiss', _pd(dismiss))
+          .on('click', '.overlay .dismiss', utils._pd(dismiss))
           .on('overlay_dismissed', function() {
             z.body.removeClass('overlayed');
         }).on('notify', function(e, o) {

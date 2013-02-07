@@ -1,4 +1,4 @@
-define('login', ['capabilities', 'notification', 'z'], function(capabilities, notification, z) {
+define('login', ['capabilities', 'notification', 'utils', 'z'], function(capabilities, notification, utils, z) {
     function init() {
         var requestedLogin = false;
 
@@ -66,7 +66,7 @@ define('login', ['capabilities', 'notification', 'z'], function(capabilities, no
         }
 
         function finishLogin() {
-            var to = getVars().to;
+            var to = utils.getVars().to;
             if (to && to[0] == '/') {
                 // Browsers may helpfully add "http:" to URIs that begin with double
                 // slashes. This converts instances of double slashes to single to
