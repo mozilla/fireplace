@@ -41,7 +41,7 @@ define('builder', ['helpers', 'models', 'z'], function(helpers, models, z) {
 
         function decrRequests() {
             completed_requests++;
-            if (completed_requests == requests.length) {
+            if (completed_requests >= requests.length) {
                 z.page.trigger('loaded');
             }
         }
@@ -177,6 +177,12 @@ define('builder', ['helpers', 'models', 'z'], function(helpers, models, z) {
                 }
                 request.abort();
             });
+        };
+
+        this.finish = function() {
+            if (!requests.length) {
+                decrRequests();
+            }
         };
     }
 
