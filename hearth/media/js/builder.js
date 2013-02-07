@@ -1,4 +1,4 @@
-define('builder', ['helpers', 'models'], function(helpers, models) {
+define('builder', ['helpers', 'models', 'z'], function(helpers, models, z) {
 
     var applyTemplate = function (template, data) {
 
@@ -41,7 +41,7 @@ define('builder', ['helpers', 'models'], function(helpers, models) {
 
         function decrRequests() {
             completed_requests++;
-            if (completed_requests == requests.length) {
+            if (completed_requests >= requests.length) {
                 z.page.trigger('loaded');
             }
         }
@@ -177,6 +177,12 @@ define('builder', ['helpers', 'models'], function(helpers, models) {
                 }
                 request.abort();
             });
+        };
+
+        this.finish = function() {
+            if (!requests.length) {
+                decrRequests();
+            }
         };
     }
 

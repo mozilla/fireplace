@@ -1,6 +1,6 @@
 // JS for the desktop Feedback overlay.
 
-define(['browser', 'capabilities', 'utils'], function(browser, capabilities, utils) {
+define(['browser', 'capabilities', 'z'], function(browser, capabilities, z) {
     function validate(form) {
         // The feedback box shouldn't be empty.
         return !!form.find('textarea').val();

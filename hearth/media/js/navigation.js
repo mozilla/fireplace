@@ -168,6 +168,7 @@ define('navigation', ['require', 'builder', 'utils', 'views', 'z'], function(req
 
         var bobj = last_bobj = builder.getBuilder();
         view[0](bobj, view[1], params);
+        bobj.finish();
 
         var newState = {
             path: url,

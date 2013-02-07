@@ -8,7 +8,8 @@ require.config({
         'underscore': 'lib/underscore',
         'nunjucks': 'lib/nunjucks',
         'templates': '../../templates',
-        'l10n': 'lib/l10n'
+        'l10n': 'lib/l10n',
+        'stick': 'lib/stick'
     },
     shim: {
         'jquery': {
@@ -45,6 +46,7 @@ require.config({
         'ratings',
         'search',
         'state',
+        'stick',
         'common/suggestions',
         'tracking',
         'z'
@@ -53,6 +55,7 @@ require.config({
     define('marketplace', modules, function() {
         var capabilities = require('capabilities');
         var navigation = require('navigation');
+        var stick = require('stick');
         var z = require('z');
 
         var splash = $('#splash-overlay');

@@ -1,4 +1,5 @@
-define('browser', ['l10n', 'utils'], function() {
+
+define('browser', ['l10n', 'utils'], function(gettext, utils) {
     'use strict';
 
     var VersionCompare = {
@@ -115,15 +116,14 @@ define('browser', ['l10n', 'utils'], function() {
     var browser = {},
         browserVersion = 0,
         pattern, match, i,
-        badBrowser = true,
-        escape_ = require('utils').escape_;
+        badBrowser = true;
     for (i in userAgentStrings) {
         if (userAgentStrings.hasOwnProperty(i)) {
             pattern = userAgentStrings[i];
             match = pattern.exec(navigator.userAgent);
             browser[i] = !!(match && match.length === 3);
             if (browser[i]) {
-                browserVersion = escape_(match[2]);
+                browserVersion = utils.escape_(match[2]);
                 badBrowser = false;
             }
         }
@@ -150,9 +150,6 @@ define('browser', ['l10n', 'utils'], function() {
         os['other'] = !platform;
         platform = 'other';
     }
-
-    // TODO(L10n): phase this out.
-    var gettext = require('l10n');
 
     return {
         browser: browser,
