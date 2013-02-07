@@ -10,6 +10,7 @@ Installation
 Our dependencies:
 
 - ``less``: For stylesheets
+- ``nopt``: For option parsing
 - ``nunjucks``: For templates (stored as submodule)
 
 
@@ -18,8 +19,8 @@ OS X installation steps ::
     brew install node
     curl http://npmjs.org/install.sh | sh
     npm install less -g
+    npm install nopt -g
     git submodule update --init  # For nunjucks
-
 
 And make sure that `/usr/local/share/npm/bin` is in your `$PATH`, à la: ::
 
@@ -46,7 +47,11 @@ From the terminal, run the following command ::
 
     node damper.js
 
-This will start a local server on port 8675.
+This will start a local server on 0.0.0.0:8675 by default.
+
+To control the hostname and port you can use the following otions ::
+
+    node damper.js --host 127.0.0.1 --port 8888
 
 In addition to an HTTP server, the damper will also run a LESS watcher (to
 recompile CSS as it's edited) and a template watcher (to recompile templates
@@ -64,6 +69,19 @@ The API
 
 Read the docs. <http://zamboni.readthedocs.org/en/latest/topics/api.html>
 
+
+Running Flue
+------------
+
+To run flue ::
+
+    python flue/main.py
+
+This defaults to 0.0.0.0:5000
+
+To control the hostname and port you can use the following otions ::
+
+    python flue/main.py --host 127.0.0.1 --port 9999
 
 Bugs
 ----

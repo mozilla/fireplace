@@ -1,11 +1,14 @@
 var fs = require('fs');
 var http = require('http');
 var path = require('path');
+var nopt = require('nopt');
 
-
+var knownOpts = {'host': [String], 'port': [Number]};
+var parsed = nopt(knownOpts, null, process.argv, 2);
+var port = parsed.port || 8675;
+var host = parsed.host || "0.0.0.0";
 
 // Here's the local server.
-
 var indexdata = 'Still loading...';
 fs.readFile('./hearth/index.html', function(err, data) {
     indexdata = data;
@@ -60,9 +63,9 @@ http.createServer(function(request, response) {
         }
     });
 
-}).listen(8675);
+}).listen(port, host);
 
-console.log('Server running at http://0.0.0.0:8675/');
+console.log('Server running at http://' + host + ':' + port);
 
 var child_process = require('child_process'),
     watched_filepaths = [];
