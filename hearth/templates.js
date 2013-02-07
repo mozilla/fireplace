@@ -960,7 +960,7 @@ context.setVariable("_url", macro_t_1);
 output += "\n\n<ul class=\"toggles c\">\n  ";
 output += runtime.suppressValue((lineno = 9, colno = 7, runtime.callWrap(macro_t_1, "_url", [(lineno = 9, colno = 11, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["settings"])),(lineno = 9, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Account"]))])));
 output += "\n  ";
-output += runtime.suppressValue((lineno = 10, colno = 7, runtime.callWrap(macro_t_1, "_url", [(lineno = 10, colno = 11, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["purchases"])),(lineno = 10, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Purchases"]))])));
+output += runtime.suppressValue((lineno = 10, colno = 7, runtime.callWrap(macro_t_1, "_url", [(lineno = 10, colno = 11, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["purchases"])),(lineno = 10, colno = 27, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["My Apps"]))])));
 output += "\n  ";
 output += runtime.suppressValue((lineno = 11, colno = 7, runtime.callWrap(macro_t_1, "_url", [(lineno = 11, colno = 11, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "url"), "url", ["feedback"])),(lineno = 11, colno = 26, runtime.callWrap(runtime.contextOrFrameLookup(context, frame, "_"), "_", ["Feedback"]))])));
 output += "\n</ul>\n";
