@@ -10,7 +10,6 @@ var settings = {
     fragment_error_template: 'errors.fragment',
 
     payments_enabled: false,
-    search_suggestions_enabled: true,
     tracking_enabled: false,
 
     // TODO: put real values here.
