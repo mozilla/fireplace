@@ -3,6 +3,7 @@ console.log('************** starting up Marketplace...');
 
 require.config({
     paths: {
+        'flipsnap': 'lib/flipsnap',
         'settings': '../../settings',
         'jquery': 'lib/jquery-1.9',
         'underscore': 'lib/underscore',
@@ -12,6 +13,9 @@ require.config({
         'stick': 'lib/stick'
     },
     shim: {
+        'flipsnap': {
+            exports: 'Flipsnap'
+        },
         'jquery': {
             exports: 'jQuery'
         },

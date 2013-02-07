@@ -1,4 +1,4 @@
-define('previews', ['utils', 'z'], function(utils, z) {
+define('previews', ['flipsnap', 'utils', 'z'], function(Flipsnap, utils, z) {
     function init() {
         // magic numbers!
         var THUMB_WIDTH = 180;
