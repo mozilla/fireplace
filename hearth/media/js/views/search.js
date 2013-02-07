@@ -1,4 +1,4 @@
-define(['api', 'z', 'navigation', 'utils'], function(api, z, nav, utils) {
+define(['api', 'z', 'navigation', 'urls', 'utils'], function(api, z, nav, urls, utils) {
 
     var apiParams = api.params;
     var _pd = utils._pd;
@@ -6,7 +6,7 @@ define(['api', 'z', 'navigation', 'utils'], function(api, z, nav, utils) {
     function selectMe($elm) {
         var $myUL = $elm.closest('ul'),
             val = '',
-            vars = getVars($elm[0].search);
+            vars = utils.getVars($elm[0].search);
 
         if ($elm.hasClass('cancel')) {
             return;
@@ -23,7 +23,7 @@ define(['api', 'z', 'navigation', 'utils'], function(api, z, nav, utils) {
     }
 
     function initSelectedFilter() {
-        var sortoption = getVars();
+        var sortoption = utils.getVars();
 
         $('#filter-sort li a').removeClass('sel');
         switch (sortoption.sort) {
@@ -167,7 +167,7 @@ define(['api', 'z', 'navigation', 'utils'], function(api, z, nav, utils) {
             });
 
             delete params['page'];
-            nav.navigate(urlparams(urls.reverse('search'), params));
+            nav.navigate(utils.urlparams(urls.reverse('search'), params));
 
         }));
 

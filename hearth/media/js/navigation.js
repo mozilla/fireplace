@@ -111,13 +111,11 @@ define('navigation', ['require', 'utils', 'views', 'z'], function(require, utils
 
     });
 
-    var $body = $('body');
-
     var oldClass = '';
     function setClass() {
         // We so classy.
         var newClass = z.context.bodyclass;
-        $body.removeClass(oldClass).addClass(newClass);
+        z.body.removeClass(oldClass).addClass(newClass);
         oldClass = newClass;
     }
 
@@ -125,6 +123,11 @@ define('navigation', ['require', 'utils', 'views', 'z'], function(require, utils
         // We so type-y.
         var type = z.context.type;
         z.body.attr('data-page-type', type || 'leaf');
+
+        if (type !== 'search') {
+            $('#search-q').attr('placeholder', '')
+                          .attr('data-placeholder-default', '');
+        }
     }
 
     function setTitle() {

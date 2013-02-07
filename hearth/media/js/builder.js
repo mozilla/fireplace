@@ -132,6 +132,14 @@ define('builder', ['api', 'helpers', 'models', 'z'], function(api, helpers, mode
                             return;
                         }
 
+                        if ('limit' in part) {
+                            if (!_.isArray(part_data)) {
+                                console.error('Attempted to set limit for non-array in builder part.')
+                            } else {
+                                part_data = part_data.slice(0, part.limit);
+                            }
+                        }
+
                         // If part of the data is going into `z`, this will do
                         // that for you.
                         if ('z' in part) {

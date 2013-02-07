@@ -43,10 +43,12 @@ define(['api', 'utils', 'z'], function(api, utils, z) {
         ]);
 
         builder.get(api.url('ratings', args[0]))
-               .parts([
-            {dest: '.ratings-placeholder', template: 'detail/ratings.html'},
-            {dest: '.ratings-placeholder-inner', template: 'detail/rating.html', pluck: 'ratings'},
-        ]);
+               .parts([{dest: '.ratings-placeholder',
+                        template: 'detail/ratings.html'},
+                       {dest: '.ratings-placeholder-inner',
+                        template: 'detail/rating.html',
+                        pluck: 'ratings',
+                        limit: 2}]);
 
         builder.z('type', 'leaf');
         builder.z('title', 'Loading...');  // No L10n for you!
