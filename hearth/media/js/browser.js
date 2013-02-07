@@ -1,4 +1,5 @@
-define('browser', [], function() {
+
+define('browser', ['l10n', 'utils'], function(gettext, utils) {
     'use strict';
 
     var VersionCompare = {
@@ -122,7 +123,7 @@ define('browser', [], function() {
             match = pattern.exec(navigator.userAgent);
             browser[i] = !!(match && match.length === 3);
             if (browser[i]) {
-                browserVersion = escape_(match[2]);
+                browserVersion = utils.escape_(match[2]);
                 badBrowser = false;
             }
         }
@@ -149,9 +150,6 @@ define('browser', [], function() {
         os['other'] = !platform;
         platform = 'other';
     }
-
-    // TODO(L10n): phase this out.
-    var gettext = document.webL10n.get;
 
     return {
         browser: browser,

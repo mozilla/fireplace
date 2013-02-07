@@ -1,7 +1,6 @@
-define('helpers', [], function() {
+define('helpers', ['lib/format', 'l10n', 'templates', 'urls'], function(format, gettext, nunjucks) {
 
     var env = nunjucks.env;
-    var gettext = document.webL10n.get;
 
     function escape_(s) {
         if (typeof s === 'undefined') {
@@ -65,7 +64,7 @@ define('helpers', [], function() {
 
     env.addFilter('round', Math.round);
     env.addFilter('float', parseFloat);  // TODO: remove when nunjucks is updated
-    env.addFilter('format', format);
+    env.addFilter('format', format.format);
 
     env.addFilter('sum', function(obj) {
         return _.reduce(obj, function(mem, num) {
@@ -83,7 +82,7 @@ define('helpers', [], function() {
     return {
         window: window,
         _: _gettext,
-        format: format,
+        format: format.format,
         randint: function(min, max) {
             return Math.round(min + Math.random() * (max - min));
         },

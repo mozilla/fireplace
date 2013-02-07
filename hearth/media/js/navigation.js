@@ -1,5 +1,8 @@
-define('navigation', ['z'], function(z) {
+define('navigation', ['require', 'builder', 'utils', 'views', 'z'], function(require) {
     'use strict';
+
+    var _pd = require('utils')._pd;
+    var z = require('z');
 
     var stack = [
         {

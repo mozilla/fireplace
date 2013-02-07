@@ -19,3 +19,7 @@ var settings = {
         'bra': 'Brazil'
     }
 };
+
+define('settings', [], function () {
+    return settings;
+});

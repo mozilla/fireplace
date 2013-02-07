@@ -51,7 +51,3 @@ define('urls', ['views'], function(views) {
         reverse: reverse
     };
 });
-
-var urls = require('urls');
-var api = urls.api;
-var reverse = urls.reverse;

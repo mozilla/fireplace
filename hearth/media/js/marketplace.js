@@ -1,13 +1,33 @@
 // Do this last- initialize the marketplace!
+console.log('************** starting up Marketplace...');
+
+require.config({
+    paths: {
+        'settings': '../../settings',
+        'jquery': 'lib/jquery-1.9',
+        'underscore': 'lib/underscore',
+        'nunjucks': 'lib/nunjucks',
+        'templates': '../../templates',
+        'l10n': 'lib/l10n',
+        'stick': 'lib/stick'
+    },
+    shim: {
+        'jquery': {
+            exports: 'jQuery'
+        },
+        'underscore': {
+            exports: '_'
+        },
+        'nunjucks': {
+            exports: 'nunjucks'
+        },
+        'l10n': {
+            exports: 'document.webL10n.get'
+        }
+    }
+});
 
 (function() {
-
-    $(document.body).addClass('html-' + document.webL10n.getDirection());
-
-    var splash = $('#splash-overlay');
-    $('#page').on('loaded', function() {
-       splash.addClass('hide');
-    });
 
     var modules = [
         'buttons',
@@ -27,7 +47,7 @@
         'search',
         'state',
         'stick',
-        'suggestions',
+        'common/suggestions',
         'tracking',
         'z'
     ];
@@ -35,9 +55,17 @@
     define('marketplace', modules, function() {
         var capabilities = require('capabilities');
         var navigation = require('navigation');
+        var stick = require('stick');
         var z = require('z');
 
-        if (settings.tracking_enabled) {
+        var splash = $('#splash-overlay');
+        z.body.addClass('html-' + document.webL10n.getDirection());
+
+        z.page.on('loaded', function() {
+           splash.addClass('hide');
+        });
+
+        if (false && settings.tracking_enabled) {
             // Initialize analytics tracking.
             z.page.on('loaded', function(event, href, popped, state) {
                 // Otherwise we'll track back button hits etc.
@@ -84,6 +112,9 @@
         var use_hash = hash && hash.substr(0, 2) == '#!';
         navigation.navigate(use_hash ? hash : window.location.pathname, {}, false, true);
 
+        // Navigation timing.
+        stick.basic();
+
         // Call `init` for each module.
         _.each(arguments, function(v) {
             if (typeof v === 'object' && 'init' in v) {
@@ -91,7 +122,5 @@
             }
         });
     });
-
-    require('marketplace');
 
 })();

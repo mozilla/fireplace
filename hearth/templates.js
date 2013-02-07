@@ -1,4 +1,4 @@
-(function() {
+define(["nunjucks"], function(nunjucks) {
 var templates = {};
 templates["_macros/emaillink.html"] = (function() {
 function root(env, context, frame, runtime) {
@@ -976,4 +976,5 @@ root: root
 })();
 nunjucks.env = new nunjucks.Environment([]);
 nunjucks.env.registerPrecompiled(templates);
-})()
+return nunjucks;
+});

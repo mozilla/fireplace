@@ -1,4 +1,4 @@
-define('notification', ['capabilities', 'z'], function(caps, z) {
+define('notification', ['capabilities', 'jquery', 'z'], function(caps, $, z) {
     var notificationEl = $('<div id="notification">');
     var def;
     var addedClasses = [];

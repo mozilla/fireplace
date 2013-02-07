@@ -1,4 +1,4 @@
-define('z', [], function() {
+define('z', ['jquery', 'underscore'], function($, _) {
     var z = {
         win: $(window),
         doc: $(document),
@@ -34,5 +34,3 @@ define('z', [], function() {
     return z;
 });
 
-// TODO(L10n): phase this out.
-var gettext = document.webL10n.get;
