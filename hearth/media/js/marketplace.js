@@ -44,6 +44,7 @@ require.config({
         'prefetch',
         'previews',
         'ratings',
+        'common/ratingwidget',
         'search',
         'state',
         'stick',

@@ -7,7 +7,7 @@ define('outgoing_links', ['capabilities', 'z'], function(capabilities, z) {
         z.win.bind('loaded', function mungeLinks() {
 
             // Hijack external links if we're within the app.
-            if (z.capabilities.chromeless) {
+            if (capabilities.chromeless) {
                 $('a[rel=external]').attr('target', '_blank');
             }
 
@@ -17,7 +17,7 @@ define('outgoing_links', ['capabilities', 'z'], function(capabilities, z) {
                     dest = unescape(outgoing.split('/').slice(5).join('/'));
                 // Change it to the real destination:
                 $a.attr('href', dest);
-                if (z.capabilities.chromeless) {
+                if (capabilities.chromeless) {
                     $a.attr('target', '_blank');
                 }
                 $a.click(function(e) {
@@ -35,7 +35,7 @@ define('outgoing_links', ['capabilities', 'z'], function(capabilities, z) {
 
         // If we're inside the Marketplace app, open external links in the Browser.
         z.doc.on('click', 'a.external, a[rel=external]', function() {
-            if (z.capabilities.chromeless) {
+            if (capabilities.chromeless) {
                 $(this).attr('target', '_blank');
             }
         });

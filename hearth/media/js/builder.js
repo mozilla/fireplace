@@ -1,4 +1,4 @@
-define('builder', ['helpers', 'models', 'z'], function(helpers, models, z) {
+define('builder', ['api', 'helpers', 'models', 'z'], function(api, helpers, models, z) {
 
     var applyTemplate = function (template, data) {
 
@@ -21,14 +21,12 @@ define('builder', ['helpers', 'models', 'z'], function(helpers, models, z) {
                 function(part_data) {
                     var d = {this: part_data};
                     mixin(d, helpers);
-                    console.log(d);
                     return nunjucks.env.getTemplate(template).render(d);
                 }
             ).join('');
         } else if (_.isObject(data)) {
             mixin(data, helpers);
             data.this = data;
-            console.log(data);
             return nunjucks.env.getTemplate(template).render(data);
         } else {
             return nunjucks.env.getTemplate(template).render(helpers);

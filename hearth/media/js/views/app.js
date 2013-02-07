@@ -1,4 +1,4 @@
-define('views.app', ['utils', 'z'], function(utils, z) {
+define(['api', 'utils', 'z'], function(api, utils, z) {
     'use strict';
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
