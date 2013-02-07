@@ -3,11 +3,8 @@ define('state', ['capabilities', 'z'], function(capabilities, z) {
         'language': function() {
             // Upon refocus, if `navigator.language` has changed, then let's
             // refresh the page to reset our cookies and get new localized content.
-            if (navigator.language.toLowerCase() in z.body.data('locales')) {
-                // TODO: If lang in querystring, then remove.
-                // TODO: Prompt with confirmation before reload.
-                window.location.reload();
-            }
+            // TODO: Prompt with confirmation before reload.
+            window.location.reload();
         },
         'mozApps': function() {
             // Upon refocus, if `navigator.mozApps.getInstalled()` has changed,
