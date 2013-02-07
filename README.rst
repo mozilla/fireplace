@@ -7,25 +7,24 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
 Installation
 ------------
 
-Pull submodules ::
+Our dependencies:
 
-    git submodule update --init
+- ``less``: For stylesheets
+- ``nunjucks``: For templates (stored as submodule)
 
-Our dependencies ::
 
-- ``lessc``: For stylesheets
-- ``nunjucks``: For templates
-
-Installation steps ::
+OS X installation steps ::
 
     brew install node
     curl http://npmjs.org/install.sh | sh
-    npm install lessc -g
-    npm install nunjucks -g
+    npm install less -g
+    git submodule update --init  # For nunjucks
 
-And make sure that `/usr/local/share/npm/bin` is in your `$PATH`, à la:
+
+And make sure that `/usr/local/share/npm/bin` is in your `$PATH`, à la: ::
 
     export PATH=/usr/local/share/npm/bin:$PATH
+
 
 If you intend to use Flue (the mocked-out API server), you will also need to
 have Flask and perhaps a few other packages installed. That can be set up by
