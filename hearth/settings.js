@@ -5,7 +5,6 @@ var settings = {
     persona_url: 'https://login.persona.org/include.js',
 
     simulate_nav_pay: false,
-    allow_anon_installs: true,
 
     fragment_error_template: 'errors.fragment',
 

@@ -17,8 +17,7 @@ define('z', ['jquery', 'underscore'], function($, _) {
             return '-' + z.prefix + '-' + property;
         },
         canInstallApps: true,
-        state: {},
-        allowAnonInstalls: settings.allow_anon_installs,
+        state: {}
     };
 
     var data_user = z.body.data('user');
