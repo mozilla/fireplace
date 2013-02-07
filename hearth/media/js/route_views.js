@@ -17,8 +17,9 @@ var views = [
 
 define(['underscore'].concat(views), function(_) {
     var view_dict = {};
+    console.log('View Completion Report:');
     _.each(views, function(v) {
-        console.log(v.replace('views/', ''), require(v));
+        console.log(!!require(v) ? '√' : 'X', v.replace('views/', ''));
         view_dict[v.replace('views/', '')] = require(v);
     });
     window.v = view_dict;
