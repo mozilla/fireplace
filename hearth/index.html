@@ -58,12 +58,7 @@
           <a href="#" class="header-button cancel right" data-l10n-id="cancel">Cancel</a>
           <a href="#" class="header-button filter right" data-l10n-id="filter">Filter</a>
           <a href="#" class="header-button icon expand right" data-l10n-args="{'title': 'expand'}"></a>
-          <form method="GET" id="search" action="/search">
-            <label for="search-q" data-l10n-id="search">Search</label>
-            <input id="search-q" type="search" name="q" autocomplete="off" required
-                   data-l10n-args="{'placeholder': 'search', 'data-placeholder-default': 'search'}">
-           <a href="#" class="search-clear" title="{{ _('Clear') }}">{{ _('Clear') }}</a>
-          </form>
+          <form method="GET" id="search" action="/search"></form>
         </nav>
         <div id="site-search-suggestions" data-cat="apps" data-src="{{ url('search.suggestions') }}"></div>
       </section>

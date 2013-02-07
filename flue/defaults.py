@@ -94,14 +94,13 @@ def app(name, slug, **kwargs):
 
 user_names = ['Cvan', 'Basta', 'Potch', 'Queen Krupa']
 
-def rating():
+def rating(has_reply=False):
     return {
         'id': random.randint(1000, 9999),
         'user_name': random.choice(user_names),
         'rating': 4,
         'body': ptext(20),
-        'reply': None,
-        'reply_to_id': None,
+        'reply': None if not has_reply else rating(),
         'for_old_version': False,  # False or the old version number
         'is_flagged': False
     }

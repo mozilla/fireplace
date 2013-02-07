@@ -1,13 +1,11 @@
-define('navigation', ['require', 'builder', 'utils', 'views', 'z'], function(require, builder, utils, views, z) {
+define('navigation', ['require', 'utils', 'views', 'z'], function(require, utils, views, z) {
     'use strict';
 
     var stack = [
-        {
-            path: '/',
-            type: 'root'
-        }
+        {path: '/', type: 'root'}
     ];
     var param_whitelist = ['q', 'sort', 'cat'];
+    var last_bobj = null;
 
     function extract_nav_url(url) {
         // This function returns the URL that we should use for navigation.
@@ -45,8 +43,16 @@ define('navigation', ['require', 'builder', 'utils', 'views', 'z'], function(req
     }
 
     z.page.on('navigate', function(e, href, popped, state) {
-
         if (!state) return;
+
+        var view = views.match(href);
+        if (view === null) {
+            return;
+        }
+
+        last_bobj = views.build(view[0], view[1], state.params);
+        state.type = z.context.type;
+        state.title = z.context.title;
 
         // Clean the path's parameters.
         // /foo/bar?foo=bar&q=blah -> /foo/bar?q=blah
@@ -75,6 +81,7 @@ define('navigation', ['require', 'builder', 'utils', 'views', 'z'], function(req
                 stack.unshift(state);
             }
 
+            // TODO(fireplace): Make this work with views
             // Does the page have a parent? If so, handle the parent logic.
             if (z.context.parent) {
                 var parent = _.indexOf(_.pluck(stack, 'path'), z.context.parent);
@@ -130,7 +137,7 @@ define('navigation', ['require', 'builder', 'utils', 'views', 'z'], function(req
         // Something something back joke.
         if (stack.length > 1) {
             stack.shift();
-            navigate(stack[0].path, stack[0].params);
+            z.page.trigger('navigate', [stack[0].path, true, stack[0]]);
         } else {
             console.log('attempted nav.back at root!');
         }
@@ -138,10 +145,8 @@ define('navigation', ['require', 'builder', 'utils', 'views', 'z'], function(req
 
     $('.nav-back').on('click', utils._pd(back));
 
-    var builder = require('builder');
     var views = require('views');
 
-    var last_bobj = null;
     function navigate(url, params, popped, replaceState) {
         if (!url) return;
 
@@ -150,28 +155,15 @@ define('navigation', ['require', 'builder', 'utils', 'views', 'z'], function(req
             last_bobj.terminate();
         }
 
-        var view_url = url;
-
         // If we're navigating from a hash, just pretend it's a plain old URL.
         if (url.substr(0, 2) == '#!') {
-            view_url = url.substr(2);
+            url = url.substr(2);
         }
-
-        console.log('Navigating', view_url);
-        var view = views.match(view_url);
-        if (view === null) {
-            return;
-        }
-
-        var bobj = last_bobj = builder.getBuilder();
-        view[0](bobj, view[1], params);
-        bobj.finish();
 
         var newState = {
             path: url,
-            type: z.context.type,
-            title: z.context.title,
-            scrollTop: z.doc.scrollTop()
+            scrollTop: z.doc.scrollTop(),
+            params: params
         };
         if (replaceState) {
             history.replaceState(newState, false, url);
@@ -179,11 +171,7 @@ define('navigation', ['require', 'builder', 'utils', 'views', 'z'], function(req
             history.pushState(newState, false, url);
         }
 
-        z.page.trigger('navigate', [view_url, popped, newState]);
-    }
-
-    function navigateState(state, popped) {
-        navigate(state.path, state.params, popped)
+        z.page.trigger('navigate', [url, popped, newState]);
     }
 
     function navigationFilter(el) {
@@ -211,12 +199,18 @@ define('navigation', ['require', 'builder', 'utils', 'views', 'z'], function(req
         // above situations.
         e.preventDefault();
         navigate(href, $(this).data('params') || {});
+
+    }).on('submit', 'form', function(e) {
+        e.preventDefault();
+        console.error("We don't allow form submissions.");
+
     });
     z.win.on('popstate', function(e) {
         var state = e.originalEvent.state;
         if (state) {
-            navigateState(state, true);
+            z.page.trigger('navigate', [state.path, true, state]);
         }
+
     });
 
     return {

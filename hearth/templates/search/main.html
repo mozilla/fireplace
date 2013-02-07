@@ -1,0 +1,43 @@
+<section id="filters" class="main overlay{{ ' alt' if settings.payments_enabled }}">
+  <header>
+    <a href="#" class="header-button icon back left dismiss"><b></b></a>
+    <h1>{{ _('Filter') }}</h1>
+  </header>
+
+  <div class="filters-body">
+    <div>
+      {# We're not iterating over all the sort options on purpose. #}
+      <h2>{{ _('Sort by') }}</h2>
+      <ul class="toggles two-col c" id="filter-sort">
+        {% if active_cat %}
+          <li class="popularity">
+            <a href="{{ url('search')|urlparams(page=None, sort='popularity') }}">
+              {{ _('Popularity') }}
+            </a>
+          </li>
+        {% else %}
+          <li class="relevancy">
+            <a href="{{ url('search')|urlparams(page=None, sort='None') }}">
+            {{ _('Relevancy') }}</a>
+          </li>
+        {% endif %}
+        <li class="rating">
+          <a href="{{ url('search')|urlparams(page=None, sort='rating') }}">
+            {{ _('Rating') }}
+          </a>
+        </li>
+      </ul>
+      <input type="hidden" name="sort" class="params" value="" />
+
+      <div class="footer-action">
+        <a href="#" class="apply">{{ _('Apply') }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="featured" class="main creatured full c">
+  <ol class="grid c"></ol>
+</section>
+<section id="search-results" class="main full c">
+  <ol class="container listing c"></ol>
+</section>

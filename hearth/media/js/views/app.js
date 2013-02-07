@@ -40,13 +40,9 @@ define(['api', 'utils', 'z'], function(api, utils, z) {
             {dest: '.blurbs div', template: 'detail/summary.html'},
             {dest: '.support div', template: 'detail/buttons.html'},
             {dest: '.content_ratings', template: 'detail/content_ratings.html'}
-        ]).done(function(data) {
-            delete data.this;
-            delete data.window;
-            z.page.find('.mkt-tile').attr('data-product', JSON.stringify(data));
-        });
+        ]);
 
-        builder.get(api('ratings', args[0]))
+        builder.get(api.url('ratings', args[0]))
                .parts([
             {dest: '.ratings-placeholder', template: 'detail/ratings.html'},
             {dest: '.ratings-placeholder-inner', template: 'detail/rating.html', pluck: 'ratings'},

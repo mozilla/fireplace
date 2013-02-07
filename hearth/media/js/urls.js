@@ -1,10 +1,10 @@
-define('urls', ['views'], function(views) {
+define(['routes'], function(routes) {
 
     var group_pattern = /\(.+\)/;
     var reverse = function(view_name, args) {
         args = args || [];
-        for (var i in views.routes) {
-            var route = views.routes[i];
+        for (var i in routes) {
+            var route = routes[i];
             if (route.view_name != view_name)
                 continue;
 

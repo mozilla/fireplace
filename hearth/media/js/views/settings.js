@@ -1,4 +1,4 @@
-define('views.settings', ['z'], function(z) {
+define(['z'], function(z) {
     // For stylized <select>s.
     z.body.on('focus', '.styled.select select', function() {
         $(this).closest('.select').addClass('active');

@@ -30,6 +30,27 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
         return tags.test(e.target.nodeName);
     }
 
+    function urlparams(url, kwargs) {
+        if (url.indexOf('?') === -1) {
+            url += '?';
+        } else {
+            url += '&';
+        }
+
+        var params = [];
+        for (var key in kwargs) {
+            // Skip over nunjucks keywords.
+            if (key == '__keywords') {
+                continue;
+            }
+            params.push(encodeURIComponent(key) + '=' +
+                        encodeURIComponent(kwargs[key]));
+        }
+
+        return url + params.join('&');
+
+    };
+
     function getTemplate($el) {
         // If the element exists, return the template.
         if ($el.length) {
@@ -59,7 +80,7 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
         var el = document.getElementById(id);
         if (!el) {
             el = $('<div class="overlay" id="' + id +'">');
-            z.body.append(el);
+            $(document.body).append(el);
         }
         return $(el);
     }
@@ -70,7 +91,8 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
         'fieldFocused': fieldFocused,
         'getTemplate': getTemplate,
         'getVars': getVars,
-        'makeOrGetOverlay': makeOrGetOverlay
+        'makeOrGetOverlay': makeOrGetOverlay,
+        'urlparams': urlparams
     };
 
 });

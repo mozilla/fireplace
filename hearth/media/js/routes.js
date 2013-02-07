@@ -5,7 +5,6 @@ define('routes', [], function() {
         {pattern: '^/app/([^/<>"\']+)/abuse$', view_name: 'app/abuse'},
         {pattern: '^/app/([^/<>"\']+)/privacy$', view_name: 'app/privacy'},
         {pattern: '^/app/([^/<>"\']+)$', view_name: 'app'},
-        {pattern: '^/category/([^/<>"\']+)$', view_name: 'category'},
         {pattern: '^/search$', view_name: 'search'},
         {pattern: '^/settings$', view_name: 'settings'},
         {pattern: '^/purchases$', view_name: 'purchases'},

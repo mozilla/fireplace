@@ -15,6 +15,9 @@ app = Flask("Flue")
 import defaults
 
 
+PER_PAGE = 10
+
+
 # Monkeypatching for CORS and JSON.
 ar = app.route
 @wraps(ar)
@@ -62,6 +65,38 @@ def homepage():
     }
 
 
+@app.route('/search')
+def search():
+    result_count = 34
+
+    page = int(request.args.get('page', 0))
+    if page * PER_PAGE > result_count:
+        apps = []
+        results_left = False
+    else:
+        results_left = (page + 1) * PER_PAGE < result_count
+        apps = [defaults.app('sr %d' % i, 'Result') for i in
+                xrange(min(10, result_count - page * PER_PAGE))]
+
+    creatured = [defaults.app('creat %d' % i, 'Creatued App') for
+                 i in xrange(3)]
+    return {
+        'creatured': None if (not request.args.get('cat') and
+                              not page) else creatured,
+        'apps': apps,
+        'meta': {
+            'query': request.args.get('q'),
+            'sort': request.args.get('sort'),
+            'cat': request.args.get('cat'),
+        },
+        'pagination': {
+            'page': page,
+            'has_more': results_left,
+            'count': len(apps),
+        },
+    }
+
+
 @app.route('/app/<slug>/ratings')
 def app_ratings(slug):
     return {
@@ -70,7 +105,8 @@ def app_ratings(slug):
             'average': random.random() * 4 + 1,
             'count': int(random.random() * 500),
         },
-        'ratings': [defaults.rating() for i in range(random.randint(0, 10))],
+        'ratings': [defaults.rating(random.choice((True, False))) for
+                    i in range(random.randint(0, 10))],
         'user': {
             'can_rate': True,
             'has_review': False

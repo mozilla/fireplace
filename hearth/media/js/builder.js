@@ -76,13 +76,22 @@ define('builder', ['api', 'helpers', 'models', 'z'], function(api, helpers, mode
                     applyTemplate(settings.fragment_error_template, {}));
             });
 
-            ret.dest = function(selector, template) {
-                prepElements(z.page.find(selector));
+            function writeSingle(method) {
+                return function(selector, template, pluck) {
+                    prepElements(z.page.find(selector));
 
-                return fetcher.done(function(data) {
-                    matched_elements.html(applyTemplate(template, data));
-                });
-            };
+                    return fetcher.done(function(data) {
+                        if (pluck !== undefined) {
+                            data = data[pluck];
+                        }
+                        matched_elements[method](applyTemplate(template, data));
+                    });
+                };
+            }
+
+            ret.dest = writeSingle('html');
+            ret.append = writeSingle('append');
+            ret.prepend = writeSingle('prepend');
 
             ret.as = function(type) {
                 var cast_model = models(type);
@@ -117,6 +126,10 @@ define('builder', ['api', 'helpers', 'models', 'z'], function(api, helpers, mode
                         // reviewer name, etc.).
                         if ('pluck' in part) {
                             part_data = part_data[part.pluck];
+                        }
+
+                        if (part_data === null || part_data === undefined) {
+                            return;
                         }
 
                         // If part of the data is going into `z`, this will do
@@ -159,7 +172,7 @@ define('builder', ['api', 'helpers', 'models', 'z'], function(api, helpers, mode
         // builder.app('slug').dest('.selector', 'template')
         // builder.app('slug').parts([{}])
         this.app = function(slug) {
-            var url = api('app', [slug]);
+            var url = api.url('app', [slug]);
             return request(models('app').fetch(url, slug));
         };
 

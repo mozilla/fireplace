@@ -1,4 +1,4 @@
-define('buttons', ['browser', 'z'], function(browser, z) {
+define('buttons', ['browser', 'l10n', 'z'], function(browser, gettext, z) {
     function getButton(product) {
         // Look up button by its manifest URL.
         return $(format('.button[data-manifest_url="{0}"]', product.manifest_url));

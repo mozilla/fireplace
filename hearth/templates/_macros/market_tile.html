@@ -5,7 +5,8 @@
   {% set tag = 'a' if link else 'div' %}
   <{{ tag }} class="product mkt-tile {{ classes|join(' ') }}"
     {% if link %} href="{{ url('app', [app.slug])|urlparams(src=src) }}"{% endif %}
-    {% for k, v in data_attrs.items() %} data-{{ k }}="{{ v }}"{% endfor %}>
+    {% for k, v in data_attrs.items() %} data-{{ k }}="{{ v }}"{% endfor %}
+    {{ app|dataproduct }}>
     <div class="icon featured_tile" style="background-image:url({{ app.image_assets.featured_tile[0] }})"></div>
     <img class="icon asset-tile" alt="" src="{{ app.image_assets.mobile_tile[0] }}"
          data-hue="{{ app.image_assets.mobile_tile[1] }}">
@@ -14,7 +15,7 @@
       <h3>{{ app.name }}</h3>
       {% if app.current_version and not link %}
         {{ market_button(app, classes=classes,
-                         data_attrs={'manifest_url':app.manifest_url}) }}
+                         data_attrs={'manifest_url': app.manifest_url}) }}
       {% endif %}
       {% if app.listed_authors %}
         <div class="author lineclamp vital">{{ app.listed_authors[0].name }}</div>

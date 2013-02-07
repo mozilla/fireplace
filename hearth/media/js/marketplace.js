@@ -45,7 +45,6 @@ require.config({
         'previews',
         'ratings',
         'common/ratingwidget',
-        'search',
         'state',
         'stick',
         'common/suggestions',
@@ -108,11 +107,13 @@ require.config({
             nunjucks.env.getTemplate('footer.html').render(require('helpers')));
         $('#login').html(
             nunjucks.env.getTemplate('login.html').render(require('helpers')));
+        $('#search').html(
+            nunjucks.env.getTemplate('searchbox.html').render(require('helpers')));
 
         // Perform initial navigation.
         var hash = window.location.hash;
         var use_hash = hash && hash.substr(0, 2) == '#!';
-        navigation.navigate(use_hash ? hash : window.location.pathname, {}, false, true);
+        navigation.navigate(use_hash ? hash : window.location.pathname + window.location.search, {}, false, true);
 
         // Call `init` for each module.
         _.each(arguments, function(v) {

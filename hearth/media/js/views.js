@@ -1,4 +1,4 @@
-define('views', ['builder', 'routes', 'route_views', 'underscore'], function(builder, routes, route_views, _) {
+define('views', ['builder', 'routes', 'route_views', 'underscore', 'utils'], function(builder, routes, route_views, _, utils) {
 
     var routes = _.map(routes, function(route) {
         route.regexp = new RegExp(route.pattern);
@@ -48,7 +48,18 @@ define('views', ['builder', 'routes', 'route_views', 'underscore'], function(bui
         return null;
     }
 
+    function build(view, args, params) {
+        var bobj = builder.getBuilder();
+        view(bobj, args, utils.getVars(), params);
+
+        // If there were no requests, the page is ready immediately.
+        bobj.finish();
+
+        return bobj;
+    }
+
     return {
+        build: build,
         match: match_route,
         routes: routes
     };

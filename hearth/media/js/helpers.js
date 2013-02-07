@@ -2,29 +2,10 @@ define('helpers', ['lib/format', 'l10n', 'templates', 'urls', 'utils'], function
 
     var env = nunjucks.env;
 
-    env.addFilter('urlparams', function(obj, kwargs) {
-        if (obj.indexOf('?') === -1) {
-            obj += '?';
-        } else {
-            obj += '&';
-        }
-
-        var params = [];
-        for (var key in kwargs) {
-            // Skip over nunjucks keywords.
-            if (key == '__keywords') {
-                continue;
-            }
-            params.push(encodeURIComponent(key) + '=' +
-                        encodeURIComponent(kwargs[key]));
-        }
-
-        return obj + params.join('&');
-
-    });
+    env.addFilter('urlparams', utils.urlparams);
 
     env.addFilter('nl2br', function(obj) {
-        return obj.replace('\n', '<br>');
+        return obj.replace(/\n/g, '<br>');
     });
 
     env.addFilter('make_data_attrs', function(obj) {
@@ -54,6 +35,18 @@ define('helpers', ['lib/format', 'l10n', 'templates', 'urls', 'utils'], function
         return obj;
     });
 
+    env.addFilter('dataproduct', function(obj) {
+        var product = _.extend({}, obj);
+
+        if ('this' in product) {
+            delete product.this;
+        }
+        if ('window' in product) {
+            delete product.window;
+        }
+        return 'data-product="' + utils.escape_(JSON.stringify(product)) + '"';
+    });
+
     env.addFilter('round', Math.round);
     env.addFilter('float', parseFloat);  // TODO: remove when nunjucks is updated
     env.addFilter('format', format.format);
@@ -75,9 +68,6 @@ define('helpers', ['lib/format', 'l10n', 'templates', 'urls', 'utils'], function
         window: window,
         _: _gettext,
         format: format.format,
-        randint: function(min, max) {
-            return Math.round(min + Math.random() * (max - min));
-        },
         url: function(view_name, args) {
             return require('urls').reverse(view_name, args);
         }
