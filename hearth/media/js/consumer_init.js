@@ -2,10 +2,10 @@
 
 (function() {
 
-    z.body.addClass('html-' + document.webL10n.getDirection());
+    $(document.body).addClass('html-' + document.webL10n.getDirection());
 
     var splash = $('#splash-overlay');
-    z.page.on('loaded', function() {
+    $('#page').on('loaded', function() {
        splash.addClass('hide');
     });
 
@@ -26,6 +26,7 @@
         'ratings',
         'search',
         'state',
+        'stick',
         'suggestions',
         'tracking',
         'z'
@@ -48,7 +49,7 @@
         }
 
         // This lets you refresh within the app by holding down command + R.
-        if (z.capabilities.gaia) {
+        if (capabilities.gaia) {
             window.addEventListener('keydown', function(e) {
                 if (e.keyCode == 82 && e.metaKey) {
                     window.location.reload();
@@ -82,9 +83,6 @@
         var hash = window.location.hash;
         var use_hash = hash && hash.substr(0, 2) == '#!';
         navigation.navigate(use_hash ? hash : window.location.pathname, {}, false, true);
-
-        // Navigation timing.
-        stick.basic();
 
         // Call `init` for each module.
         _.each(arguments, function(v) {

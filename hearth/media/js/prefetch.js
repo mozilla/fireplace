@@ -1,4 +1,4 @@
-define('prefetch', [], function() {
+define('prefetch', ['z'], function(z) {
     function init() {
         var assets = [
             'img/mkt/loading-16.png'

@@ -34,7 +34,5 @@ define('z', [], function() {
     return z;
 });
 
-z = require('z');
-
 // TODO(L10n): phase this out.
 var gettext = document.webL10n.get;

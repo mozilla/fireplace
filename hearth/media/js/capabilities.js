@@ -79,5 +79,3 @@ define('capabilities', [], function() {
 
     return capabilities;
 });
-
-z.capabilities = require('capabilities');
