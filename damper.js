@@ -61,7 +61,7 @@ http.createServer(function(request, response) {
 
 }).listen(8675);
 
-console.log('Server running at http://127.0.0.1:8675/');
+console.log('Server running at http://0.0.0.0:8675/');
 
 var child_process = require('child_process'),
     watched_filepaths = [];

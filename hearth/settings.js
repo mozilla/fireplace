@@ -1,5 +1,5 @@
 var settings = {
-    api_url: 'http://localhost:5000',  // No trailing slash, please.
+    api_url: 'http://' + window.location.hostname + ':5000',  // No trailing slash, please.
     persona_unverified_issuer: null,
     // To be used only outside of the simulator/device
     persona_url: 'https://login.persona.org/include.js',
