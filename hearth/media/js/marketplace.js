@@ -49,6 +49,7 @@ require.config({
         'stick',
         'common/suggestions',
         'tracking',
+        'webactivities',
         'z'
     ];
 
@@ -111,9 +112,6 @@ require.config({
         var hash = window.location.hash;
         var use_hash = hash && hash.substr(0, 2) == '#!';
         navigation.navigate(use_hash ? hash : window.location.pathname, {}, false, true);
-
-        // Navigation timing.
-        stick.basic();
 
         // Call `init` for each module.
         _.each(arguments, function(v) {
