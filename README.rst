@@ -56,7 +56,7 @@ as they're edited).
 The API
 -------
 
-[Read the docs.](http://zamboni.readthedocs.org/en/latest/topics/api.html)
+Read the docs. <http://zamboni.readthedocs.org/en/latest/topics/api.html>
 
 
 Bugs
