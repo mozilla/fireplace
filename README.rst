@@ -52,6 +52,12 @@ In addition to an HTTP server, the damper will also run a LESS watcher (to
 recompile CSS as it's edited) and a template watcher (to recompile templates
 as they're edited).
 
+To run flue, simply ``cd flue`` and run ::
+
+    python main.py
+
+This will start a (local) mocked API server on port 5000.
+
 
 The API
 -------
