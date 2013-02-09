@@ -1,4 +1,4 @@
-define('lightbox', ['keys', 'utils', 'z'], function(keys, utils, z) {
+define('lightbox', ['keys', 'utils', 'lib/truncate', 'z'], function(keys, utils, truncate, z) {
     function init() {
         var $lightbox = $('#lightbox');
         var $section = $lightbox.find('section');
