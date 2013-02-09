@@ -10,7 +10,8 @@ require.config({
         'nunjucks': 'lib/nunjucks',
         'templates': '../../templates',
         'l10n': 'lib/l10n',
-        'stick': 'lib/stick'
+        'stick': 'lib/stick',
+        'format': 'lib/format'
     },
     shim: {
         'flipsnap': {

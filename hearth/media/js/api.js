@@ -21,4 +21,4 @@ define(['format', 'settings', 'underscore', 'utils'], function(format, settings,
         url: api,
         params: apiParams
     };
-})
+});

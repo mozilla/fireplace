@@ -1,4 +1,4 @@
-define('helpers', ['lib/format', 'l10n', 'templates', 'urls', 'utils'], function(format, gettext, nunjucks, urls, utils) {
+define('helpers', ['format', 'l10n', 'templates', 'urls', 'utils'], function(format, gettext, nunjucks, urls, utils) {
 
     var env = nunjucks.env;
 
