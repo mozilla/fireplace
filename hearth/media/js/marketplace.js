@@ -2,14 +2,15 @@
 console.log('************** starting up Marketplace...');
 
 require.config({
+    enforceDefine: true,
     paths: {
         'flipsnap': 'lib/flipsnap',
-        'settings': '../../settings',
         'jquery': 'lib/jquery-1.9',
         'underscore': 'lib/underscore',
         'nunjucks': 'lib/nunjucks',
         'templates': '../../templates',
         'l10n': 'lib/l10n',
+        'settings': ['settings_local', 'settings'],
         'stick': 'lib/stick',
         'format': 'lib/format'
     },

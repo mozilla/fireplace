@@ -1,4 +1,4 @@
-define('builder', ['api', 'helpers', 'models', 'z'], function(api, helpers, models, z) {
+define('builder', ['api', 'helpers', 'models', 'settings', 'z'], function(api, helpers, models, settings, z) {
 
     var applyTemplate = function (template, data) {
 

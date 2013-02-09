@@ -1,0 +1,2 @@
+define('views/purchases', [], function() {
+});

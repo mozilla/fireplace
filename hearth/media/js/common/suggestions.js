@@ -1,4 +1,4 @@
-define('suggestions', ['capabilities', 'keys', 'utils', 'z'], function(capabilities, keys, utils, z) {
+define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(capabilities, keys, utils, z) {
     z._AjaxCache = {};
     z.AjaxCache = (function() {
         return function(namespace) {

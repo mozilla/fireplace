@@ -1,4 +1,4 @@
-define(['api', 'z'], function(api, z) {
+define('views/homepage', ['api', 'z'], function(api, z) {
     'use strict';
 
     function fillBg(els) {

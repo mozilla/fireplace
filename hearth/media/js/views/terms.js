@@ -1,0 +1,2 @@
+define('views/terms', [], function() {
+});
