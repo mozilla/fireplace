@@ -65,53 +65,68 @@ def homepage():
     }
 
 
-@app.route('/search')
-def search():
-    result_count = 34
+def _paginated(field, generator):
+    result_count = 24
 
     page = int(request.args.get('page', 0))
     if page * PER_PAGE > result_count:
-        apps = []
+        items = []
         results_left = False
     else:
         results_left = (page + 1) * PER_PAGE < result_count
-        apps = [defaults.app('sr %d' % i, 'Result') for i in
-                xrange(min(10, result_count - page * PER_PAGE))]
-
-    creatured = [defaults.app('creat %d' % i, 'Creatued App') for
-                 i in xrange(3)]
+        items = [gen for i, gen in
+                zip(xrange(min(10, result_count - page * PER_PAGE)),
+                    generator())]
     return {
-        'creatured': None if (not request.args.get('cat') and
-                              not page) else creatured,
-        'apps': apps,
-        'meta': {
-            'query': request.args.get('q'),
-            'sort': request.args.get('sort'),
-            'cat': request.args.get('cat'),
-        },
+        field: items,
         'pagination': {
             'page': page,
             'has_more': results_left,
-            'count': len(apps),
+            'count': len(items),
         },
     }
+
+
+@app.route('/search')
+def search():
+    def gen():
+        i = 0
+        while 1:
+            yield defaults.app('sr %d' % i, 'Result')
+            i += 1
+
+    data = _paginated('apps', gen)
+    result_count = 34
+    data['creatured'] = [defaults.app('creat %d' % i, 'Creatued App') for
+                         i in xrange(3)]
+    data['meta'] = {
+        'query': request.args.get('q'),
+        'sort': request.args.get('sort'),
+        'cat': request.args.get('cat'),
+    }
+    return data
 
 
 @app.route('/app/<slug>/ratings')
 def app_ratings(slug):
-    return {
-        'slug': slug,
-        'meta': {
-            'average': random.random() * 4 + 1,
-            'count': int(random.random() * 500),
-        },
-        'ratings': [defaults.rating(random.choice((True, False))) for
-                    i in range(random.randint(0, 10))],
-        'user': {
-            'can_rate': True,
-            'has_review': False
-        }
+    def gen():
+        i = 0
+        while 1:
+            yield defaults.rating(random.choice((True, False)))
+            i += 1
+
+    data = _paginated('ratings', gen)
+    result_count = 34
+    data['user'] = {
+        'can_rate': True,
+        'has_rated': False
     }
+    data['meta'] = {
+        'slug': slug,
+        'average': random.random() * 4 + 1,
+        'count': 24,
+    }
+    return data
 
 
 @app.route('/app/<slug>')
