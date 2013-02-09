@@ -1,4 +1,4 @@
-define(['underscore', 'utils'], function(_, utils) {
+define(['format', 'settings', 'underscore', 'utils'], function(format, settings, _, utils) {
     var api_endpoints = {
         'homepage': '/homepage',
         'app': '/app/{0}',
@@ -10,7 +10,7 @@ define(['underscore', 'utils'], function(_, utils) {
     };
 
     var api = _.memoize(function(endpoint, args) {
-        return settings.api_url + format(api_endpoints[endpoint], args || []);
+        return settings.api_url + format.format(api_endpoints[endpoint], args || []);
     });
 
     var apiParams = function(endpoint, params) {
