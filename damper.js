@@ -13,7 +13,8 @@ fs.readFile('./hearth/index.html', function(err, data) {
 
 var mimes = {
     'css': 'text/css',
-    'js': 'application/javascript'
+    'js': 'application/javascript',
+    'woff': 'application/font-woff'
 }
 
 http.createServer(function(request, response) {
@@ -27,7 +28,7 @@ http.createServer(function(request, response) {
     function writeIndex() {
         fs.readFile('./hearth/index.html', function(error, content) {
             // We'll assume that you don't delete index.html.
-            response.writeHead(200, { 'Content-Type': 'text/html' });
+            response.writeHead(200, {'Content-Type': 'text/html'});
             response.end(content, 'utf-8');
         });
     }

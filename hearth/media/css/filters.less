@@ -8,7 +8,7 @@
     background-color: @bg;
     .grain();
     top: 0;
-    form > div {
+    > div {
         padding: 0 15px;
         margin-top: 84px;
         > h2 {
@@ -105,13 +105,12 @@
         }
     }
 }
-
-// これはとてもうるさいでした
 @media(min-width: 450px) {
     #filters {
         background-color: rgba(0,0,0,0.4);
         top: 0;
         left: 0;
+
         header {
             border-radius: 5px 5px 0 0;
             left: 50%;
@@ -119,6 +118,7 @@
             position: absolute;
             top: 50%;
             width: 400px;
+            z-index: 1;
         }
         .filters-body {
             left: 50%;

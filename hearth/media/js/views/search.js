@@ -1,65 +1,29 @@
 define(['api', 'z', 'navigation', 'urls', 'utils'], function(api, z, nav, urls, utils) {
 
-    var apiParams = api.params;
     var _pd = utils._pd;
 
-    function selectMe($elm) {
-        var $myUL = $elm.closest('ul'),
-            val = '',
-            vars = utils.getVars($elm[0].search);
+    function initSelectedFilter() {
+        var filters = utils.getVars();
+    }
 
+    z.page.on('click', '#filters .toggles a, .filters-bar a', _pd(function() {
+        // Add 'sel' class to active filter and set hidden input value.
+        var $elm = $(this);
         if ($elm.hasClass('cancel')) {
             return;
         }
+
+        var $myUL = $elm.closest('ul');
         $myUL.find('a').removeClass('sel');
-
-        if ($myUL[0].id == 'filter-prices') {
-            val = vars.price || '';
-        } else if ($myUL[0].id == 'filter-sort') {
-            val = vars.sort || '';
-        }
-        $myUL.find('+ input[type=hidden]').val(val);
+        $myUL.find('+ input[type=hidden]').val($elm.data('option'));
         $elm.addClass('sel');
-    }
-
-    function initSelectedFilter() {
-        var sortoption = utils.getVars();
-
-        $('#filter-sort li a').removeClass('sel');
-        switch (sortoption.sort) {
-            case 'None':
-                $('#filter-sort li.relevancy a').addClass('sel');
-                break;
-            case 'popularity':
-                $('#filter-sort li.popularity a').addClass('sel');
-                break;
-            case 'rating':
-                $('#filter-sort li.rating a').addClass('sel');
-                break;
-            case '':
-            case undefined:
-                // If there's nothing selected, the first one is always the
-                // default.
-                $('#filter-sort li:first-child a').addClass('sel');
-        }
-    }
-
-    z.page.on('click', '#filters .toggles a, .filters-bar a', function() {
-        // Add 'sel' class to active filter and set hidden input value.
-        var $this = $(this);
-        selectMe($this);
-
-        // On mobile the apply button will submit our form.
-        // On desktop we'll follow the href.
-        if ($this.closest('.toggles').length) {
-            return false;
-        }
-    });
+    }));
 
     // Clear search field on 'cancel' search suggestions.
     $('#site-header').on('click', '.header-button.cancel', _pd(function() {
         $('#site-search-suggestions').trigger('dismiss');
         $('#search-q').val('');
+
     })).on('click', '.header-button, .search-clear', function(e) {
         var $this = $(this),
             $btns = $('.header-button');
@@ -68,8 +32,6 @@ define(['api', 'z', 'navigation', 'urls', 'utils'], function(api, z, nav, urls, 
             // Dismiss looks like back but actually just dismisses an overlay.
             $('#filters').removeClass('show');
         } else if ($this.hasClass('filter')) {
-            // `getVars()` defaults to use location.search.
-            initSelectedFilter();
             $('#filters').addClass('show');
         } else if ($this.hasClass('search')) {
             z.body.addClass('show-search');
@@ -102,6 +64,17 @@ define(['api', 'z', 'navigation', 'urls', 'utils'], function(api, z, nav, urls, 
     return function(builder, args, params) {
         builder.start('search/main.html');
         _.extend(params, {page: 0});
+        var is_category = 'cat' in params;
+
+        if (!('sort' in params)) {
+            params.sort = is_category ? 'popularity' : 'relevancy';
+        }
+        $('#filter-sort').find(is_category ? '.relevancy' : '.popularity').remove();
+        $('#filter-sort li:first a').each(function(i, e) {
+            var $this = $(e);
+            $this.toggleClass('sel', params.sort == $this.data('option'));
+        });
+
 
         var expandListings = false;
         var storedExpand = localStorage.getItem('expand-listings');
@@ -118,13 +91,13 @@ define(['api', 'z', 'navigation', 'urls', 'utils'], function(api, z, nav, urls, 
                                            .render(require('helpers')));
                 button.on('click', _pd(function() {
                     var $this = $(this);
-                    $this.remove();
+                    $this.addClass('loading');
+                    $this.append('<div class="throbber">');
                     params.page++;
 
-                    builder.get(apiParams('search', params))
-                        .append('#search-results ol',
-                                'market_tile_li.html',
-                                'apps')
+                    builder.get(api.params('search', params))
+                        .append('#search-results ol', 'search/result.html', 'apps')
+                        .done(function() {$this.remove();})
                         .done(loaded);
                 }));
                 results.append(button);
@@ -135,16 +108,17 @@ define(['api', 'z', 'navigation', 'urls', 'utils'], function(api, z, nav, urls, 
             }
         };
 
-        builder.get(apiParams('search', params))
+        builder.get(api.params('search', params))
             .parts([
                 {dest: '#featured ol', template: 'search/creatured_app.html', pluck: 'creatured'},
-                {dest: '#search-results ol', template: 'market_tile_li.html', pluck: 'apps'}
+                {dest: '#search-results ol', template: 'search/result.html', pluck: 'apps'}
             ]
         ).done(loaded).then(function() {
             setTrays(expandListings);
 
+            console.log('loaded');
             var $q = $('#search-q');
-            $q.attr('placeholder', params.cat || $q.data('placeholder-default'));
+            $q.attr('placeholder', z.context.title || $q.data('placeholder-default'));
         });
 
         // Handle expanded/collapsed view
@@ -172,7 +146,7 @@ define(['api', 'z', 'navigation', 'urls', 'utils'], function(api, z, nav, urls, 
         }));
 
         builder.z('type', 'search');
-        builder.z('title', 'Search');  // No L10n for you!
+        builder.z('title', params.cat || params.q);  // No L10n for you!
     };
 
 });

@@ -9,22 +9,14 @@
       {# We're not iterating over all the sort options on purpose. #}
       <h2>{{ _('Sort by') }}</h2>
       <ul class="toggles two-col c" id="filter-sort">
-        {% if active_cat %}
-          <li class="popularity">
-            <a href="{{ url('search')|urlparams(page=None, sort='popularity') }}">
-              {{ _('Popularity') }}
-            </a>
-          </li>
-        {% else %}
-          <li class="relevancy">
-            <a href="{{ url('search')|urlparams(page=None, sort='None') }}">
-            {{ _('Relevancy') }}</a>
-          </li>
-        {% endif %}
+        <li class="popularity">
+          <a href="#" data-option="popularity">{{ _('Popularity') }}</a>
+        </li>
+        <li class="relevancy">
+          <a href="#" data-option="relevancy">{{ _('Relevancy') }}</a>
+        </li>
         <li class="rating">
-          <a href="{{ url('search')|urlparams(page=None, sort='rating') }}">
-            {{ _('Rating') }}
-          </a>
+          <a href="#" data-option="rating">{{ _('Rating') }}</a>
         </li>
       </ul>
       <input type="hidden" name="sort" class="params" value="" />

@@ -1,7 +1,7 @@
 {% include "_macros/stars.html" %}
 {% include "_macros/market_button.html" %}
 
-{% macro market_tile(app, link=False, src=None, classes=None, data_attrs=None) %}
+{% macro market_tile(app, link=False, src=None, classes=None, data_attrs=None, force_button=False) %}
   {% set tag = 'a' if link else 'div' %}
   <{{ tag }} class="product mkt-tile {{ classes|join(' ') }}"
     {% if link %} href="{{ url('app', [app.slug])|urlparams(src=src) }}"{% endif %}
@@ -13,7 +13,7 @@
     <img class="icon" alt="" src="{{ app.icons[64] }}" height="64" width="64">
     <div class="info">
       <h3>{{ app.name }}</h3>
-      {% if app.current_version and not link %}
+      {% if force_button or (app.current_version and not link) %}
         {{ market_button(app, classes=classes,
                          data_attrs={'manifest_url': app.manifest_url}) }}
       {% endif %}

@@ -1,4 +1,4 @@
-define('navigation', ['require', 'utils', 'views', 'z'], function(require, utils, views, z) {
+define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(require, urls, utils, views, z) {
     'use strict';
 
     var stack = [
@@ -202,6 +202,11 @@ define('navigation', ['require', 'utils', 'views', 'z'], function(require, utils
         // above situations.
         e.preventDefault();
         navigate(href, $(this).data('params') || {});
+
+    }).on('submit', 'form#search', function(e) {
+        e.preventDefault();
+        var query = $('#search-q').val();
+        navigate(utils.urlparams(urls.reverse('search'), {q: query}));
 
     }).on('submit', 'form', function(e) {
         e.preventDefault();
