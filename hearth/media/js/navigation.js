@@ -125,8 +125,8 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
         z.body.attr('data-page-type', type || 'leaf');
 
         if (type !== 'search') {
-            $('#search-q').attr('placeholder', '')
-                          .attr('data-placeholder-default', '');
+            var search_q = $('#search-q');
+            search_q.attr('placeholder', search_q.data('placeholder-default'));
         }
     }
 
