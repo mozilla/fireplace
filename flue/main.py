@@ -5,6 +5,7 @@ quickly get up and running without needing your own installation of Zamboni
 or without needing to use -dev (offline mode).
 """
 
+import hashlib
 import json
 import random
 from functools import wraps
@@ -40,6 +41,30 @@ def corsify(*args, **kwargs):
     return decorator
 
 app.route = corsify
+
+
+@app.route('/user/login')
+def login():
+    email = request.args.get('email')
+    assertion = request.args.get('assertion')
+
+    return {
+        'error': None,
+        'email': email,
+        'token': hashlib.sha1(email).hexdigest(),  # Simulated user token.
+    }
+
+
+@app.route('/user/settings')
+def settings():
+    if request.method == 'POST':
+        pass
+
+    return {
+        'region': 'us',
+        'name': 'Joe User',
+        'email': 'c1alis@legitimatewebsite.biz',
+    }
 
 
 @app.route('/featured')
