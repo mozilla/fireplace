@@ -2,22 +2,18 @@
 
 {% if ratings.length %}
   <ul class="c ratings-placeholder-inner"></ul>
-  <div id="reviews">
-    <div class="{{ 'split' if user.can_review else 'full' }}">
-      <a class="fatbutton average-rating" href="{{ url('app.ratings', [slug]) }}">
-        <span>
-          {{ _('rating_count', n=meta.count) }}
-        </span>
-        {{ stars(meta.average, detailpage=True) }}
-      </a>
-    </div>
+  <div class="{{ 'split' if user.can_review else 'full' }}">
+    <a class="fatbutton average-rating" href="{{ url('app.ratings', [slug]) }}">
+      <span>
+        {{ _('rating_count', n=meta.count) }}
+      </span>
+      {{ stars(meta.average, detailpage=True) }}
+    </a>
   </div>
 {% else %}
-  <div id="reviews">
-    <p class="not-rated">
-      {{ _('App not yet rated') }}
-    </p>
-  </div>
+  <p class="not-rated">
+    {{ _('App not yet rated') }}
+  </p>
 {% endif %}
 {% if user.can_review %}
   <div class="{{ 'split' if ratings.length else 'full' }}">
