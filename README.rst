@@ -10,7 +10,6 @@ Installation
 Our dependencies:
 
 - ``less``: For stylesheets
-- ``nopt``: For option parsing
 - ``nunjucks``: For templates (stored as submodule)
 
 
@@ -19,7 +18,6 @@ OS X installation steps ::
     brew install node
     curl http://npmjs.org/install.sh | sh
     npm install less -g
-    npm install nopt -g
     git submodule update --init  # For nunjucks
 
 And make sure that `/usr/local/share/npm/bin` is in your `$PATH`, à la: ::
