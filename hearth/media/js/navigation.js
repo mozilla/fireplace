@@ -140,6 +140,7 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
         // Something something back joke.
         if (stack.length > 1) {
             stack.shift();
+            history.replaceState(stack[0], false, stack[0].path);
             z.page.trigger('navigate', [stack[0].path, true, stack[0]]);
         } else {
             console.log('attempted nav.back at root!');
@@ -150,7 +151,7 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
 
     var views = require('views');
 
-    function navigate(url, params, popped, replaceState) {
+    function navigate(url, params) {
         if (!url) return;
 
         // Terminate any outstanding requests.
@@ -168,13 +169,9 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
             scrollTop: z.doc.scrollTop(),
             params: params
         };
-        if (replaceState) {
-            history.replaceState(newState, false, url);
-        } else {
-            history.pushState(newState, false, url);
-        }
 
-        z.page.trigger('navigate', [url, popped, newState]);
+        history.pushState(newState, false, url);
+        z.page.trigger('navigate', [url, false, newState]);
     }
 
     function navigationFilter(el) {
