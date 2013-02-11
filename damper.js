@@ -1,12 +1,6 @@
 var fs = require('fs');
 var http = require('http');
 var path = require('path');
-var nopt = require('nopt');
-
-var knownOpts = {'host': [String], 'port': [Number]};
-var parsed = nopt(knownOpts, null, process.argv, 2);
-var port = parsed.port || 8675;
-var host = parsed.host || "0.0.0.0";
 
 // Here's the local server.
 var indexdata = 'Still loading...';
@@ -18,7 +12,27 @@ var mimes = {
     'css': 'text/css',
     'js': 'application/javascript',
     'woff': 'application/font-woff'
-}
+};
+
+var options = function(opts, defaults) {
+    var out = defaults || {},
+              last, i, is_flag;
+    for(i = 0; i < opts.length; i++) {
+        is_flag = opts[i].substr(0, 1) === '-';
+        if (is_flag && last) {
+            out[last] = true;
+        } else if (!is_flag && last) {
+            while(last.substr(0, 1) === '-'){
+                last = last.substr(1);
+            }
+            out[last] = opts[i];
+        }
+        last = is_flag ? opts[i] : null;
+    }
+    return out;
+};
+
+var opts = options(process.argv.slice(2), {'host': '0.0.0.0', 'port': '8675'});
 
 http.createServer(function(request, response) {
 
@@ -63,9 +77,9 @@ http.createServer(function(request, response) {
         }
     });
 
-}).listen(port, host);
+}).listen(opts.port, opts.host);
 
-console.log('Server running at http://' + host + ':' + port);
+console.log('Server running at http://' + opts.host + ':' + opts.port);
 
 var child_process = require('child_process'),
     watched_filepaths = [];
@@ -93,7 +107,7 @@ function glob(path, ext, done) {
             });
         });
     });
-};
+}
 
 
 function reload() {
@@ -157,8 +171,8 @@ function watch(globpath, ext, command) {
 
         });
         if (filepaths.length > 1)
-            console.log('Watching ' + filepaths.length + ' ' + ext + ' files.')
-    }
+            console.log('Watching ' + filepaths.length + ' ' + ext + ' files.');
+    };
     if (globpath.substr(1).indexOf('.') > -1) {
         cb(null, [globpath]);
     } else {
