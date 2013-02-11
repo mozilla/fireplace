@@ -8,6 +8,8 @@ or without needing to use -dev (offline mode).
 import json
 import random
 from functools import wraps
+from optparse import OptionParser
+
 
 from flask import Flask, make_response, render_template, request, url_for
 app = Flask("Flue")
@@ -134,6 +136,12 @@ def app_(slug):
     return defaults.app(slug, 'Something something %s' % slug)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
+    parser = OptionParser()
+    parser.add_option('--port', dest='port',
+            help='port', metavar='PORT', default=5000)
+    parser.add_option('--host', dest='hostname',
+            help='hostname', metavar='HOSTNAME', default='0.0.0.0')
+    (options, args) = parser.parse_args()
     app.debug = True
-    app.run(host='0.0.0.0')
+    app.run(host=options.hostname, port=int(options.port))
