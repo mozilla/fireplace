@@ -148,18 +148,22 @@
 }
 
 .transition(@property) {
+    -webkit-transition: @property;
     transition: @property;
 }
 
 .transition-property(@property) {
+    -webkit-transition-property: @property;
     transition-property: @property;
 }
 
 .transition-duration(@duration:2s) {
+    -webkit-transition-duration: @duration;
     transition-duration: @duration;
 }
 
 .transition-delay(@delay:1s) {
+    -webkit-transition-delay: @delay;
     transition-delay: @delay;
 }
 
@@ -294,7 +298,7 @@
 }
 
 .appearance-none() {
-    appearance: none;
+    // appearance: none; // This isn't even a proposed descriptor.
     -moz-appearance: none;
     -webkit-appearance: none;
 }
