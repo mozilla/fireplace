@@ -5,7 +5,7 @@ define('views/homepage', ['api', 'z'], function(api, z) {
         _.each(els, function(el) {
             var tile = el.querySelector('[data-hue]');
             if (!tile) return;
-            var hue = tile.getAttribute('data-hue');
+            var hue = +tile.getAttribute('data-hue');
             if (!hue) return;
             var canvas = el.querySelector('canvas') || document.createElement('canvas');
             var cs = window.getComputedStyle(el, null);
