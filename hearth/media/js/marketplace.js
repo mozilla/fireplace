@@ -8,6 +8,7 @@ require.config({
         'jquery': 'lib/jquery-1.9',
         'underscore': 'lib/underscore',
         'nunjucks': 'lib/nunjucks',
+        'nunjucks.compat': 'lib/nunjucks.compat',
         'templates': '../../templates',
         'l10n': 'lib/l10n',
         'settings': ['settings_local', 'settings'],
