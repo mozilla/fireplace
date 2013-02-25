@@ -24,7 +24,7 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
             ajaxFailure: $.noop       // Callback upon failure of Ajax request.
         }, o);
 
-        if (!z.capabilities.JSON || parseFloat(jQuery.fn.jquery) < 1.5) {
+        if (!capabilities.JSON || parseFloat(jQuery.fn.jquery) < 1.5) {
             // jqXHR objects allow Deferred methods as of jQuery 1.5. Some of our
             // old pages are stuck on jQuery 1.4, so hopefully this'll disappear
             // sooner than later.
@@ -151,7 +151,7 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
         function dismissHandler() {
             $results.removeClass('visible sel');
             $('#site-header').removeClass('suggestions');
-            if (z.capabilities.mobile) {
+            if (capabilities.mobile) {
                 z.body.removeClass('show-search');
             }
         }
@@ -396,7 +396,7 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
                     settings['$results'].addClass('visible')
                                         .trigger('resultsUpdated', [items]);
                     $('#site-header').addClass('suggestions');
-                    if (z.capabilities.mobile) {
+                    if (capabilities.mobile) {
                         z.body.removeClass('show-search');
                     }
                 }
