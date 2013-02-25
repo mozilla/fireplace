@@ -24,10 +24,7 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
             ajaxFailure: $.noop       // Callback upon failure of Ajax request.
         }, o);
 
-        if (!capabilities.JSON || parseFloat(jQuery.fn.jquery) < 1.5) {
-            // jqXHR objects allow Deferred methods as of jQuery 1.5. Some of our
-            // old pages are stuck on jQuery 1.4, so hopefully this'll disappear
-            // sooner than later.
+        if (!capabilities.JSON) {
             return $.ajax({
                 url: o.url,
                 type: o.method,
