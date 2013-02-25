@@ -1,31 +1,18 @@
-define('builder', ['api', 'helpers', 'models', 'settings', 'z'], function(api, helpers, models, settings, z) {
+define('builder',
+       ['api', 'helpers', 'models', 'nunjucks', 'settings', 'underscore', 'z', 'nunjucks.compat'],
+       function(api, helpers, models, nunjucks, settings, _, z) {
 
     var applyTemplate = function (template, data) {
-
-        function mixin(dest, source) {
-            for(var key in source) {
-                if (!(key in dest)) {
-                    dest[key] = source[key];
-                }
-            }
-
-            // Sneak in the global settings.
-            if (!('settings' in dest)) {
-                dest.settings = settings;
-            }
-        }
-
         if(_.isArray(data)) {
             return _.map(
                 data,
                 function(part_data) {
-                    var d = {this: part_data};
-                    mixin(d, helpers);
+                    var d = _.defaults({this: part_data}, helpers);
                     return nunjucks.env.getTemplate(template).render(d);
                 }
             ).join('');
         } else if (_.isObject(data)) {
-            mixin(data, helpers);
+            data = _.defaults(data, helpers);
             data.this = data;
             return nunjucks.env.getTemplate(template).render(data);
         } else {
@@ -44,14 +31,8 @@ define('builder', ['api', 'helpers', 'models', 'settings', 'z'], function(api, h
             }
         }
 
-        var has_initialized_z = false;
-        var set_z = this.z = function(key, val) {
-            if (!has_initialized_z) {
-                has_initialized_z = true;
-                z.context = {};
-            }
-            z.context[key] = val;
-        };
+        var context = _.once(function() {return z.context = {};});
+        this.z = function(key, val) {context()[key] = val;};
 
         function request(fetcher) {
             requests.push(fetcher);
@@ -138,13 +119,6 @@ define('builder', ['api', 'helpers', 'models', 'settings', 'z'], function(api, h
                             } else {
                                 part_data = part_data.slice(0, part.limit);
                             }
-                        }
-
-                        // If part of the data is going into `z`, this will do
-                        // that for you.
-                        if ('z' in part) {
-                            set_z(part.z[0], part.z[1]);
-                            return;
                         }
 
                         // If you provide 'as' to the part, it will store that

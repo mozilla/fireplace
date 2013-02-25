@@ -32,4 +32,3 @@ define('z', ['jquery', 'settings', 'underscore'], function($, settings, _) {
 
     return z;
 });
-

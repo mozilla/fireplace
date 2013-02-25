@@ -48,7 +48,6 @@ require.config({
         'outgoing_links',
         'overlay',
         'paginator',
-        'prefetch',
         'previews',
         'ratings',
         'common/ratingwidget',
@@ -98,7 +97,7 @@ require.config({
             z.state.mozApps = {};
             if (capabilities.webApps) {
                 // Get list of installed apps and mark as such.
-                var r = window.navigator.mozApps.getInstalled();
+                var r = navigator.mozApps.getInstalled();
                 r.onsuccess = function() {
                     _.each(r.result, function(val) {
                         z.apps[val.manifestURL] = z.state.mozApps[val.manifestURL] = val;

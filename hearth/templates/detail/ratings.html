@@ -3,7 +3,7 @@
 {% if ratings.length %}
   <ul class="c ratings-placeholder-inner"></ul>
   <div class="{{ 'split' if user.can_review else 'full' }}">
-    <a class="fatbutton average-rating" href="{{ url('app.ratings', [slug]) }}">
+    <a class="fatbutton average-rating" href="{{ url('app/ratings', [slug]) }}">
       <span>
         {{ _('rating_count', n=meta.count) }}
       </span>

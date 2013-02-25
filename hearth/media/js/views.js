@@ -1,6 +1,6 @@
-define('views', ['builder', 'routes', 'route_views', 'underscore', 'utils'], function(builder, routes, route_views, _, utils) {
+define('views', ['builder', 'routes', 'underscore', 'utils'], function(builder, routes, _, utils) {
 
-    var routes = _.map(routes, function(route) {
+    routes = routes.map(function(route) {
         route.regexp = new RegExp(route.pattern);
         return route;
     });
@@ -36,7 +36,7 @@ define('views', ['builder', 'routes', 'route_views', 'underscore', 'utils'], fun
 
             console.log('Found route: ', route.view_name);
             try {
-                return [route_views[route.view_name], _.rest(matches)];
+                return [route.view, _.rest(matches)];
             } catch(e) {
                 console.error('Route matched but view not initialized!', e);
                 return null;

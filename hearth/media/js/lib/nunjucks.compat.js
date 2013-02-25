@@ -134,7 +134,7 @@ define(['nunjucks'], function(nunjucks) {
                 case 'setdefault':
                     return function(key, def) {
                         if (key in obj) {
-                            return obj[key]
+                            return obj[key];
                         }
                         if (def === undefined) {
                             def = null;

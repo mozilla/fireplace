@@ -19,24 +19,20 @@
     </li>
   {% endif %}
   {% if privacy_policy %}
-    <li><a href="{{ url('app.privacy', [slug]) }}">
+    <li><a href="{{ url('app/privacy', [slug]) }}">
       {{ _('Privacy Policy') }}</a></li>
   {% endif %}
-  <li><a href="{{ url('app.abuse', [slug]) }}">
+  <li><a href="{{ url('app/abuse', [slug]) }}">
       {{ _('Report Abuse') }}</a></li>
 </ul>
 {% if settings.payment_enabled %}
   {# no payments for now #}
-  {% set upsell = upsell %}
   {% if upsell %}
-    {% set prm = upsell.premium_addon %}
-    {% if prm and prm.listed_in(region=request.REGION) %}
-      <a id="upsell" class="fatbutton"
-         href="{{ prm.get_url_path()|urlparams(src='mkt-detail-upsell') }}">
-         <span class="avail">{{ _('Premium version available') }}</span>
-         <img class="icon" src="{{ prm.get_icon_url(16) }}">
-         <span class="name">{{ prm.name }}</span>
-      </a>
-    {% endif %}
+    <a id="upsell" class="fatbutton"
+       href="{{ upsell.url|urlparams(src='mkt-detail-upsell') }}">
+       <span class="avail">{{ _('Premium version available') }}</span>
+       <img class="icon" src="{{ upsell.icons[16] }}">
+       <span class="name">{{ upsell.name }}</span>
+    </a>
   {% endif %}
 {% endif %}

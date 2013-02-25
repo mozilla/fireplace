@@ -1,4 +1,6 @@
-define('helpers', ['format', 'l10n', 'templates', 'urls', 'utils'], function(format, gettext, nunjucks, urls, utils) {
+define('helpers',
+       ['format', 'l10n', 'settings', 'templates', 'urls', 'utils'],
+       function(format, gettext, settings, nunjucks, urls, utils) {
 
     var env = nunjucks.env;
 
@@ -48,7 +50,6 @@ define('helpers', ['format', 'l10n', 'templates', 'urls', 'utils'], function(for
     });
 
     env.addFilter('round', Math.round);
-    env.addFilter('float', parseFloat);  // TODO: remove when nunjucks is updated
     env.addFilter('format', format.format);
 
     env.addFilter('sum', function(obj) {
@@ -68,6 +69,7 @@ define('helpers', ['format', 'l10n', 'templates', 'urls', 'utils'], function(for
         window: window,
         _: _gettext,
         format: format.format,
+        settings: settings,
         url: function(view_name, args) {
             return require('urls').reverse(view_name, args);
         }
