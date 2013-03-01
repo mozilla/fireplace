@@ -11,9 +11,7 @@ define('helpers',
     });
 
     env.addFilter('make_data_attrs', function(obj) {
-        return _.map(
-            _.pairs(obj),
-            function(pair) {
+        return _.pairs(obj).map(function(pair) {
                 return 'data-' + utils.escape_(pair[0]) + '="' + utils.escape_(pair[1]) + '"';
             }
         ).join(' ');
