@@ -7,7 +7,7 @@ define('settings_base', [], function () {
 
         simulate_nav_pay: false,
 
-        fragment_error_template: 'errors.fragment',
+        fragment_error_template: 'errors/fragment.html',
 
         payments_enabled: false,
         tracking_enabled: false,

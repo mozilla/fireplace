@@ -1,4 +1,4 @@
-define('views/homepage', ['api', 'z'], function(api, z) {
+define('views/homepage', ['urls', 'z'], function(urls, z) {
     'use strict';
 
     function fillBg(els) {
@@ -25,12 +25,7 @@ define('views/homepage', ['api', 'z'], function(api, z) {
 
     return function(builder) {
         builder.start('home/main.html');
-
-        builder.get(api.url('homepage'))
-               .parts([
-            {dest: '#featured-home ul', template: 'market_tile_li.html', pluck: 'featured', as: 'app'},
-            {dest: '.categories ul', template: 'home/category_tile.html', pluck: 'categories'}
-        ]).done(function() {
+        builder.done(function() {
             fillBg(document.querySelectorAll('.grid .mkt-tile'));
         });
 

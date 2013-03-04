@@ -64,12 +64,11 @@ define('helpers',
 
     // Functions provided in the default context.
     return {
-        window: window,
         _: _gettext,
         format: format.format,
         settings: settings,
-        url: function(view_name, args) {
-            return require('urls').reverse(view_name, args);
-        }
+        api: urls.api.url,
+        apiParams: urls.api.params,
+        url: urls.reverse
     };
 });

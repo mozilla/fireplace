@@ -1,190 +1,208 @@
-define('builder',
-       ['api', 'helpers', 'models', 'nunjucks', 'settings', 'underscore', 'z', 'nunjucks.compat'],
-       function(api, helpers, models, nunjucks, settings, _, z) {
+(function() {
 
-    var applyTemplate = function (template, data) {
-        if(_.isArray(data)) {
-            return _.map(
-                data,
-                function(part_data) {
-                    var d = _.defaults({this: part_data}, helpers);
-                    return nunjucks.env.getTemplate(template).render(d);
-                }
-            ).join('');
-        } else if (_.isObject(data)) {
-            data = _.defaults(data, helpers);
-            data.this = data;
-            return nunjucks.env.getTemplate(template).render(data);
-        } else {
-            return nunjucks.env.getTemplate(template).render(helpers);
+function defer_parser() {
+    this.tags = ['defer'];
+    this.parse = function(parser, nodes, tokens) {
+        var begun = parser.peekToken();
+        var tag = new nodes.CustomTag(begun.lineno, begun.colno, 'defer');
+
+        parser.nextToken();  // Skip the name symbol.
+        parser.skip(tokens.TOKEN_WHITESPACE);
+
+        tag.signature = parser.parseSignature();
+        parser.expect(tokens.TOKEN_BLOCK_END);
+
+        tag.body = parser.parseUntilBlocks('placeholder', 'empty', 'except', 'end');
+
+        tag.placeholder = null;
+        tag.except = null;
+
+        if (parser.skipSymbol('placeholder')) {
+            parser.skip(tokens.TOKEN_BLOCK_END);
+            tag.placeholder = parser.parseUntilBlocks('empty', 'except', 'end');
         }
-    };
 
-    function builderObj() {
-        var requests = [];
+        if (parser.skipSymbol('empty')) {
+            parser.skip(tokens.TOKEN_BLOCK_END);
+            tag.empty = parser.parseUntilBlocks('except', 'end');
+        }
+
+        if (parser.skipSymbol('except')) {
+            parser.skip(tokens.TOKEN_BLOCK_END);
+            tag.except = parser.parseUntilBlocks('end');
+        }
+
+        parser.advanceAfterBlockEnd();
+
+        return new nodes.Output(begun.lineno, begun.colno, [tag]);
+    }
+
+    this.compile = function(compiler, tag, frame) {
+        var buffer = compiler.buffer;
+        function node(contents) {
+            if (contents) {
+                compiler.emitLine(', function() {');
+                compiler.emitLine('var ' + buffer + ' = "";');
+                compiler.compile(contents, frame);
+                compiler.emitLine('return ' + buffer + ';');
+                compiler.emitLine('}');
+            } else {
+                compiler.emit(', null');
+            }
+        }
+        compiler.emitLine('env.extensions["defer"]._run(');
+        compiler.emitLine('context, ');
+        compiler.compile(tag.signature, frame);
+
+        node(tag.body);
+        node(tag.placeholder);
+        node(tag.empty);
+        node(tag.except);
+
+        compiler.emit(')');
+    };
+}
+// If we're running in node, export the extensions.
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports.extensions = [new defer_parser()];
+}
+
+// No need to install the extensions if require.js isn't around.
+if (typeof define !== 'function') {
+    return;
+}
+
+define(
+    ['templates', 'helpers', 'settings', 'underscore', 'z', 'nunjucks.compat'],
+    function(nunjucks, helpers, settings, _, z) {
+
+    console.log('Loading nunjucks builder tags...');
+    var counter = 0;
+
+    function Builder() {
+        var env = this.env = new nunjucks.Environment([]);
+        env.dev = nunjucks.env.dev;
+        env.registerPrecompiled(nunjucks.templates);
+
+        var requests = {};
+        var initiated_requests = 0;
         var completed_requests = 0;
+
+        var completion_def = $.Deferred();
 
         function decrRequests() {
             completed_requests++;
-            if (completed_requests >= requests.length) {
+            if (completed_requests >= initiated_requests) {
+                completion_def.resolve();
                 z.page.trigger('loaded');
             }
         }
 
-        var context = _.once(function() {return z.context = {};});
-        this.z = function(key, val) {context()[key] = val;};
-
-        function request(fetcher) {
-            requests.push(fetcher);
-
-            var ret = {};
-            var matched_elements;
-
-            function prepElements(elements) {
-                return matched_elements = elements.addClass('loading');
+        function start_request(url) {
+            if (url in requests) {
+                return requests[url];
             }
-
-            fetcher.always(function() {
-                console.log('Loaded');
-                matched_elements.removeClass('loading');
-
-                // This is a hack, but it allows the event handlers to get set
-                // in case the deferred returns immediately.
-                _.delay(decrRequests, 250);
-            }).fail(function(error) {
-                console.error('Resource fetch failed :( :( :(', error);
-                matched_elements.html(
-                    applyTemplate(settings.fragment_error_template, {}));
-            });
-
-            function writeSingle(method) {
-                return function(selector, template, pluck) {
-                    prepElements(z.page.find(selector));
-
-                    return fetcher.done(function(data) {
-                        if (pluck !== undefined) {
-                            data = data[pluck];
-                        }
-                        matched_elements[method](applyTemplate(template, data));
-                    });
-                };
-            }
-
-            ret.dest = writeSingle('html');
-            ret.append = writeSingle('append');
-            ret.prepend = writeSingle('prepend');
-
-            ret.as = function(type) {
-                var cast_model = models(type);
-                fetcher.done(function(data) {
-                    if(_.isArray(data)) {
-                        _.each(data, cast_model.cast);
-                    } else {
-                        cast_model.cast(data);
-                    }
-                });
-                return ret;
-            };
-
-            ret.parts = function(parts) {
-                // Put a loading indicator on all of the parts.
-                prepElements(z.page.find(_.pluck(parts, 'dest').join(', ')));
-
-                return fetcher.done(function(data) {
-                    // If jQuery didn't magically parse our JSON, send it for
-                    // remediation.
-                    if (!_.isObject(data)) {
-                        data = JSON.parse(data);
-                    }
-
-                    _.each(parts, function(part) {
-                        // Create a copy in the local scope so we can overwrite it
-                        // safely.
-                        var part_data = data;
-
-                        // Pluck specifies a field to "pluck" out of the main
-                        // data. Useful for avoiding name collissions (app name,
-                        // reviewer name, etc.).
-                        if ('pluck' in part) {
-                            part_data = part_data[part.pluck];
-                        }
-
-                        if (part_data === null || part_data === undefined) {
-                            return;
-                        }
-
-                        if ('limit' in part) {
-                            if (!_.isArray(part_data)) {
-                                console.error('Attempted to set limit for non-array in builder part.')
-                            } else {
-                                part_data = part_data.slice(0, part.limit);
-                            }
-                        }
-
-                        // If you provide 'as' to the part, it will store that
-                        // data in the models.
-                        if ('as' in part) {
-                            models(part.as).cast(part_data);
-                        }
-
-                        var trigger = 'fragment_loaded';
-                        if ('trigger' in part) {
-                            trigger = part.trigger;
-                        }
-
-                        z.page.find(part.dest)
-                              .html(applyTemplate(part.template, part_data))
-                              .trigger(trigger);
-
-                    });
-                });
-            };
-
-            return ret;
+            var req = $.get(url);
+            requests[url] = req;
+            initiated_requests++;
+            return req;
         }
 
-        // builder.get(<url>).dest('.selector', 'template')
-        // builder.get(<url>).as('app').dest('.selector', 'template')
-        // builder.get(<url>).parts([{}])
-        // builder.get(<url>).as('app').parts([{}])
-        this.get = function(url) {
-            return request($.get(url));
+        function make_paginatable(injector, placeholder, target) {
+            var els = placeholder.find('.loadmore button');
+            if (!els.length) {
+                return;
+            }
+
+            els.on('click', function() {
+                injector(els.data('url'), els.parent(), target);
+            });
+        }
+
+        // This pretends to be the nunjucks extension that does the magic.
+        var defer_runner = {
+            _run: function(context, signature, body, placeholder, empty, except) {
+                console.log(context);
+                var out = '<div class="loading">' + (placeholder ? placeholder() : '') + '</div>';
+                var uid = 'ph_' + counter++;
+                out = '<div id="' + uid + '" class="placeholder">' + out + '</div>';
+
+                var injector = function(url, replace, extract) {
+                    start_request(url).done(function(data) {
+                        context.ctx['response'] = data;
+                        if ('pluck' in signature) {
+                            data = data[signature.pluck];
+                        }
+                        var el = $('#' + uid);
+                        var apply = replace ? replace.replaceWith : el.html;
+                        var content = '';
+                        if (empty && _.isArray(data) && data.length === 0) {
+                            content = empty();
+                        } else {
+                            context.ctx.this = data;
+                            content = body();
+                        }
+                        if (extract) {
+                            var parsed = $($.parseHTML(content));
+                            content = (parsed.filter(extract) || parsed.find(extract)).children();
+                        }
+                        apply.apply(replace || el, [content]);
+                        decrRequests();
+                        if (signature.paginate) {
+                            make_paginatable(injector, el, signature.paginate);
+                        }
+                    }).fail(function() {
+                        var el = $('#' + uid);
+                        (replace ? replace.replaceWith : el.html).apply(
+                            replace || el,
+                            [except ? except() : env.getTemplate(settings.fragment_error_template).render()]);
+                    });
+                };
+                injector(signature.url);
+
+                return out;
+            }
+        };
+        this.env.addExtension('defer', defer_runner);
+
+        this.start = function(template, defaults) {
+            z.page.html(env.getTemplate(template).render(_.defaults(defaults || {}, helpers)));
+            return completion_def;
         };
 
-        // builder.app('slug').dest('.selector', 'template')
-        // builder.app('slug').parts([{}])
-        this.app = function(slug) {
-            var url = api.url('app', [slug]);
-            return request(models('app').fetch(url, slug));
-        };
-
-        this.rating = function(id) {
-            var url = api('ratings', [id]);
-            return request(models('rating').fetch(url, id));
-        };
-
-        this.start = function(template) {
-            z.page.html(applyTemplate(template));
-        };
+        this.done = completion_def.done;
 
         this.terminate = function() {
             // Abort all ongoing AJAX requests that been flagged as forced.
             _.each(requests, function(request) {
+                console.log(request);
                 if (request.abort === undefined || request.isSuccess !== false) {
                     return;
                 }
                 request.abort();
             });
         };
+        completion_def.fail(this.terminate);
 
         this.finish = function() {
-            if (!requests.length) {
-                decrRequests();
+            if (!initiated_requests) {
+                z.page.trigger('loaded');
+                completion_def.resolve();
+                return;
             }
+            completion_def.done(function() {
+                z.page.trigger('loaded');
+            });
         };
+
+        var context = _.once(function() {return z.context = {};});
+        this.z = function(key, val) {context()[key] = val;};
     }
 
     return {
-        getBuilder: function() {return new builderObj();},
-    };
+        getBuilder: function() {return new Builder();}
+    }
+
 });
+
+})();

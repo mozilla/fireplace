@@ -1,0 +1,34 @@
+{% include "_macros/stars.html" %}
+
+{% macro rating(this, detailpage=False) %}
+<li id="review-{{ this.id }}" data-rating="{{ this.rating }}"
+    class="review{{ ' flagged' if this.is_flagged }} c">
+  <div class="review-inner">
+    {{ stars(this.rating, detailpage=detailpage) }}
+    <span class="byline">
+      by <strong>{{ this.user_name }}</strong>
+      {% if this.for_old_version %}
+        {{ _('for previous version {{version}}', version=this.for_old_version) }}
+      {% endif %}
+    </span>
+    <div class="body">
+      {{ this.body|nl2br }}
+    </div>
+    {% if not detailpage %}
+      <ul class="actions">
+        {% if this.is_flagged %}
+          <li class="flagged">{{ _('Flagged for review') }}</li>
+        {% endif %}
+        {# TODO: If this user is not the rating author. #}
+          <li><a class="flag post" data-action="report" href="#">{{ _('Report') }}</a></li>
+        {% if not this.reply %}
+          <li class="reply"><a class="reply post" data-action="reply"
+            href="#">{{ _('Reply') }}</a></li>
+        {% endif %}
+      </ul>
+      {# TODO: If not details page. #}
+      <span class="timestamp">{{ this.posted }}</span>
+    {% endif %}
+  </div>
+</li>
+{% endmacro %}

@@ -1,2 +1,0 @@
-define('views/category', [], function() {
-});

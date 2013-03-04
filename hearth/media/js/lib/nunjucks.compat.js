@@ -4,6 +4,23 @@ define(['nunjucks'], function(nunjucks) {
     var runtime = nunjucks.require('runtime');
     var lib = nunjucks.require('lib');
 
+    var orig_contextOrFrameLookup = runtime.contextOrFrameLookup;
+    runtime.contextOrFrameLookup = function(context, frame, key) {
+        var val = orig_contextOrFrameLookup.apply(this, arguments);
+        if (val === undefined) {
+            switch (key) {
+                case 'True':
+                    return true;
+                case 'False':
+                    return false;
+                case 'None':
+                    return null;
+            }
+        }
+
+        return val;
+    };
+
     var orig_suppressLookupValue = runtime.suppressLookupValue;
     runtime.suppressLookupValue = function(obj, val) {
         obj = obj || {};
