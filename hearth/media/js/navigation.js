@@ -34,7 +34,7 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
             param_pairs,
             function(pair) {
                 if (typeof pair[1] === 'undefined')
-                    return encodeURIComponent(pair[1]);
+                    return encodeURIComponent(pair[0]);
                 else
                     return encodeURIComponent(pair[0]) + '=' +
                            encodeURIComponent(pair[1]);
@@ -60,7 +60,8 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
 
         // Truncate any closed navigational loops.
         for (var i=0; i<stack.length; i++) {
-            if (stack[i].path === state.path) {
+            if (stack[i].path === state.path ||
+                (state.type === 'search' && stack[i].type === state.type)) {
                 stack = stack.slice(i+1);
                 break;
             }
