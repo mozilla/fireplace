@@ -1,4 +1,6 @@
-define(['api', 'z', 'navigation', 'urls', 'utils'], function(api, z, nav, urls, utils) {
+define(
+    ['capabilities', 'utils', 'z', 'navigation', 'urls'],
+    function(capabilities, utils, z) {
 
     var _pd = utils._pd;
 
@@ -62,13 +64,25 @@ define(['api', 'z', 'navigation', 'urls', 'utils'], function(api, z, nav, urls, 
     }
 
     return function(builder, args, params) {
-        builder.start('search/main.html');
         _.extend(params, {page: 0});
         var is_category = 'cat' in params;
 
         if (!('sort' in params)) {
             params.sort = is_category ? 'popularity' : 'relevancy';
         }
+
+        builder.z('type', 'search');
+        builder.z('title', params.cat || params.q);  // No L10n for you!
+
+        builder.start('search/main.html', {params: params}).done(function() {
+            setTrays(expandListings);
+
+            console.log('loaded');
+            var $q = $('#search-q');
+            $q.attr('placeholder', z.context.title || $q.data('placeholder-default'));
+        });
+
+
         $('#filter-sort').find(is_category ? '.relevancy' : '.popularity').remove();
         $('#filter-sort li:first a').each(function(i, e) {
             var $this = $(e);
@@ -77,49 +91,7 @@ define(['api', 'z', 'navigation', 'urls', 'utils'], function(api, z, nav, urls, 
 
 
         var expandListings = false;
-        var storedExpand = localStorage.getItem('expand-listings');
-        if (storedExpand === undefined) {
-            expandListings = capabilities.desktop;
-        } else {
-            expandListings = storedExpand === 'true';
-        }
-
-        var loaded = function(data) {
-            if (data.pagination.has_more) {
-                var results = $('#search-results ol');
-                var button = $(nunjucks.env.getTemplate('search/more_button.html')
-                                           .render(require('helpers')));
-                button.on('click', _pd(function() {
-                    var $this = $(this);
-                    $this.addClass('loading');
-                    $this.append('<div class="throbber">');
-                    params.page++;
-
-                    builder.get(api.params('search', params))
-                        .append('#search-results ol', 'search/result.html', 'apps')
-                        .done(function() {$this.remove();})
-                        .done(loaded);
-                }));
-                results.append(button);
-            } else if (!data.apps.length) {
-                $('#search-results').html(
-                    nunjucks.env.getTemplate('search/no_results.html')
-                                .render(require('helpers')));
-            }
-        };
-
-        builder.get(api.params('search', params))
-            .parts([
-                {dest: '#featured ol', template: 'search/creatured_app.html', pluck: 'creatured'},
-                {dest: '#search-results ol', template: 'search/result.html', pluck: 'apps'}
-            ]
-        ).done(loaded).then(function() {
-            setTrays(expandListings);
-
-            console.log('loaded');
-            var $q = $('#search-q');
-            $q.attr('placeholder', z.context.title || $q.data('placeholder-default'));
-        });
+        var storedExpand = localStorage.getItem('expand-listings') === 'true' || capabilities.desktop;
 
         // Handle expanded/collapsed view
         var $expandToggle = $('#site-header .expand');
@@ -141,12 +113,10 @@ define(['api', 'z', 'navigation', 'urls', 'utils'], function(api, z, nav, urls, 
             });
 
             delete params['page'];
-            nav.navigate(utils.urlparams(urls.reverse('search'), params));
+            require('navigation').navigate(
+                utils.urlparams(require('urls').reverse('search'), params));
 
         }));
-
-        builder.z('type', 'search');
-        builder.z('title', params.cat || params.q);  // No L10n for you!
     };
 
 });

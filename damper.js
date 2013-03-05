@@ -118,12 +118,17 @@ function reload() {
 
     // "restart" is a special action keyword
     watch('./damper.js', null, 'restart');
+    watch('./compile_templates.js', null, 'nunjucks');
+
     watch('./hearth/media/css', 'less', 'less');
     watch('./hearth/templates', 'html', 'nunjucks');
+
+    // When the builder is updated, recompile the templates.
+    watch('./hearth/js/builder.js', null, 'nunjucks');
 }
 
 function compileNunjucks() {
-    child_process.exec('./nunjucks/bin/precompile ./hearth/templates -f --amd > hearth/templates.js', function(e, so, se) {
+    child_process.exec('./compile_templates.js ./hearth/templates > hearth/templates.js', function(e, so, se) {
         console.log(se);  // stderr
         if (e !== null) {
             console.error(e);
@@ -134,6 +139,7 @@ function compileNunjucks() {
 function runCommand(command, filepath) {
     switch (command) {
         case 'restart':
+            console.log('Restarting...');
             return reload();
         case 'less':
             child_process.exec('lessc ' + filepath + ' ' + filepath + '.css', function(e, so, se) {
@@ -143,6 +149,7 @@ function runCommand(command, filepath) {
             });
             break;
         case 'nunjucks':
+            console.log('Recompiling templates...');
             compileNunjucks();
             break;
     }

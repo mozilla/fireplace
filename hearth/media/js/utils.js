@@ -31,10 +31,12 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
     }
 
     function urlparams(url, kwargs) {
-        if (url.indexOf('?') === -1) {
+        var qpos = url.indexOf('?');
+        if (qpos === -1) {
             url += '?';
         } else {
-            url += '&';
+            kwargs = _.defaults(kwargs, getVars(url.substr(qpos)));
+            url = url.substr(0, qpos + 1);
         }
 
         var params = [];

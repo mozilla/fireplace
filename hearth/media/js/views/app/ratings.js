@@ -1,9 +1,9 @@
-define(['api', 'urls'], function(api, urls) {
+define(['urls'], function(urls) {
 
     return function(builder, args) {
         builder.start('ratings/main.html');
 
-        builder.get(api.url('ratings', args[0]))
+        builder.get(urls.api.url('ratings', args[0]))
                .parts([
             {dest: '.ratings-placeholder-inner', template: 'detail/rating.html', pluck: 'ratings'},
         ]).done().then(function() {

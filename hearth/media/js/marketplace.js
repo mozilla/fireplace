@@ -44,6 +44,7 @@ require.config({
         'lightbox',
         'login',
         'navigation',
+        'nunjucks',
         'notification',
         'outgoing_links',
         'overlay',
@@ -62,8 +63,11 @@ require.config({
     define('marketplace', modules, function() {
         var capabilities = require('capabilities');
         var navigation = require('navigation');
+        var nunjucks = require('nunjucks');
         var stick = require('stick');
         var z = require('z');
+
+        nunjucks.env.dev = true;
 
         var splash = $('#splash-overlay');
         z.body.addClass('html-' + document.webL10n.getDirection());

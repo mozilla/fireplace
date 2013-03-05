@@ -1,7 +1,27 @@
+{% include '_macros/market_tile.html' %}
+{% set endpoint = api('homepage') %}
+
 <section id="featured-home" class="featured full">
-  <ul class="grid c"></ul>
+  {% defer (url=endpoint, pluck='featured') %}
+    <ul class="grid c">
+      {% for app in this %}
+        <li>{{ market_tile(app, link=true, src='mkt-home') }}</li>
+      {% endfor %}
+    </ul>
+  {% end %}
 </section>
 <section class="main categories">
   <h2>{{ _('Categories') }}</h2>
-  <ul class="grid"></ul>
+  {% defer (url=endpoint, pluck='categories') %}
+    <ul class="grid">
+      {% for category in this %}
+        <li>
+          <a class="mkt-tile category" href="{{ url('search')|urlparams(cat=category.slug) }}">
+            <div class="icon cat-{{ category.slug }}"></div>
+            <h3 class="linefit">{{ category.name }}</h3>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% end %}
 </section>

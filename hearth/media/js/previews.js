@@ -1,4 +1,4 @@
-define('previews', ['flipsnap', 'utils', 'z'], function(Flipsnap, utils, z) {
+define('previews', ['flipsnap', 'templates', 'utils', 'z'], function(Flipsnap, nunjucks, utils, z) {
     function init() {
         // magic numbers!
         var THUMB_WIDTH = 180;

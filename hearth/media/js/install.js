@@ -1,6 +1,6 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
-define(['apps', 'capabilities', 'payments', 'z'], function(apps, caps, payments, z) {
+define(['apps', 'capabilities', 'payments/payments', 'z'], function(apps, caps, payments, z) {
     'use strict';
 
     function launchHandler(e) {

@@ -1,4 +1,4 @@
-define('payments', ['capabilities', 'notification'], function(caps, notification) {
+define(['capabilities', 'notification'], function(caps, notification) {
 
     var product,
         $def,

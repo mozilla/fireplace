@@ -1,3 +1,7 @@
+{% include '_macros/market_tile.html' %}
+
+{% set endpoint = apiParams('search', params) %}
+
 <section id="filters" class="main overlay{{ ' alt' if settings.payments_enabled }}">
   <header>
     <a href="#" class="header-button icon back left dismiss"><b></b></a>
@@ -6,7 +10,6 @@
 
   <div class="filters-body">
     <div>
-      {# We're not iterating over all the sort options on purpose. #}
       <h2>{{ _('Sort by') }}</h2>
       <ul class="toggles two-col c" id="filter-sort">
         <li class="popularity">
@@ -27,9 +30,33 @@
     </div>
   </div>
 </section>
+
+
 <section id="featured" class="main creatured full c">
-  <ol class="grid c"></ol>
+  {% defer (url=endpoint, pluck='creatured') %}
+    <ol class="grid c">
+      {% for result in this %}
+        <li>{{ market_tile(result, link=true, src='creatured') }}</li>
+      {% endfor %}
+    </ol>
+  {% end %}
 </section>
 <section id="search-results" class="main full c">
-  <ol class="container listing c"></ol>
+  {% defer (url=endpoint, pluck='apps', paginate='ol.listing') %}
+    <ol class="container listing c">
+      {% for result in this %}
+        <li>{{ market_tile(result, link=true, force_button=true, src='mkt-home') }}</li>
+      {% endfor %}
+
+      {# Render the more button if there's another page of results #}
+      {% if response.pagination.has_more %}
+        {% set next_page = response.pagination.page + 1 %}
+        {% include 'search/more_button.html' %}
+      {% endif %}
+    </ol>
+  {% empty %}
+    <div class="no-results">
+      {{ _('No results found') }}
+    </div>
+  {% end %}
 </section>

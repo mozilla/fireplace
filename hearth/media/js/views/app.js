@@ -1,4 +1,4 @@
-define(['api', 'utils', 'z'], function(api, utils, z) {
+define(['urls', 'utils', 'z'], function(urls, utils, z) {
     'use strict';
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
@@ -32,23 +32,7 @@ define(['api', 'utils', 'z'], function(api, utils, z) {
     });
 
     return function(builder, args) {
-        builder.start('detail/main.html');
-
-        builder.app(args[0])
-               .parts([
-            {dest: '.main.product-details', template: 'market_tile_direct.html'},
-            {dest: '.blurbs div', template: 'detail/summary.html'},
-            {dest: '.support div', template: 'detail/buttons.html'},
-            {dest: '.content_ratings', template: 'detail/content_ratings.html'}
-        ]);
-
-        builder.get(api.url('ratings', args[0]))
-               .parts([{dest: '.ratings-placeholder',
-                        template: 'detail/ratings.html'},
-                       {dest: '.ratings-placeholder-inner',
-                        template: 'detail/rating.html',
-                        pluck: 'ratings',
-                        limit: 2}]);
+        builder.start('detail/main.html', {slug: args[0]});
 
         builder.z('type', 'leaf');
         builder.z('title', 'Loading...');  // No L10n for you!

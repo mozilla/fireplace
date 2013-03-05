@@ -1,17 +1,25 @@
+{% include "_macros/emaillink.html" %}
+{% include "_macros/market_tile.html" %}
+{% include "_macros/rating.html" %}
 {% include "_macros/stars.html" %}
 
+{% set endpoint = api('app', [slug]) %}
+
 <section class="main product-details listing expanded c">
-  {# This is like a fake, scaled-back version of market_tile. #}
-  <div class="product mkt-tile">
-    <div class="info">
-      <h3>{{ _('Loading...') }}</h3>
-      <div class="price vital">{{ _('Loading...') }}</div>
-      <div class="rating vital unrated">
-        {{ stars(0) }}
+  {% defer (url=endpoint) %}
+    {{ market_tile(this) }}
+  {% placeholder %}
+    <div class="product mkt-tile">
+      <div class="info">
+        <h3>{{ _('Loading...') }}</h3>
+        <div class="price vital">{{ _('Loading...') }}</div>
+        <div class="rating vital unrated">
+          {{ stars(0) }}
+        </div>
       </div>
     </div>
-  </div>
-  <div class="tray previews full"></div>
+    <div class="tray previews full"></div>
+  {% end %}
 </section>
 
 {#
@@ -38,22 +46,134 @@
 
 <section class="main blurbs infobox">
   <div>
-    <p class="summary">
-      {{ _('Loading Summary...') }}
-    </p>
+    {% defer (url=endpoint) %}
+      {% set super_long = this.summary.length + description.length > 700 %}
+      <p class="summary">
+        {{ this.summary|nl2br }}
+        {% if super_long %}
+          <a href="#" class="show-toggle" data-toggle-text="{{ _('less') }}">{{ _('more') }}</a>
+        {% endif %}
+      </p>
+
+      {% if this.description.length or this.is_packaged %}
+        <div{% if super_long %} class="collapsed"{% endif %}>
+          {% if this.description.length %}
+            <h3>{{ _('Description') }}</h3>
+            <div class="description">{{ this.description|nl2br }}</div>
+          {% endif %}
+          {% if this.is_packaged %}
+            <h3>{{ _('Version') }}</h3>
+            <div class="package-version">
+              {{ _('latest_version', version=this.current_version) }}
+            </div>
+            <div class="release-notes">
+              {{ this.current_version.releasenotes|nl2br }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% placeholder %}
+      <p class="summary">
+        {{ _('Loading Summary...') }}
+      </p>
+    {% end %}
   </div>
 </section>
 
-<section class="main reviews c{{ ' add-review' if add_review }}">
-  <div id="reviews-detail" class="ratings-placeholder">
-    <p class="not-rated">
-      {{ _('Loading ratings...') }}
-    </p>
+<section class="main reviews c">
+  <div id="reviews-detail">
+    {% defer (url=api('ratings', [slug])) %}
+      {% if this.ratings.length %}
+        <ul class="c ratings-placeholder-inner">
+          {% for rat in this.ratings.slice(0, 2) %}
+            {{ rating(rat, detailpage=True) }}
+          {% endfor %}
+        </ul>
+        <div class="{{ 'split' if user.can_review else 'full' }}">
+          <a class="fatbutton average-rating" href="{{ url('app/ratings', [slug]) }}">
+            <span>
+              {{ _('rating_count', n=this.meta.count) }}
+            </span>
+            {{ stars(this.meta.average, detailpage=True) }}
+          </a>
+        </div>
+      {% else %}
+        <p class="not-rated">
+          {{ _('App not yet rated') }}
+        </p>
+      {% endif %}
+      {% if this.user.can_review %}
+        <div class="{{ 'split' if this.ratings.length else 'full' }}">
+          <a class="fatbutton" id="add-first-review" href="#">
+            {{ _('Edit Your Review') if this.user.has_review else _('Write a Review') }}</a>
+        </div>
+      {% endif %}
+
+    {% placeholder %}
+      <p class="not-rated">
+        {{ _('Loading ratings...') }}
+      </p>
+    {% end %}
   </div>
 </section>
 
 <section id="support" class="main infobox support c">
-  <div></div>
+  <div>
+    {% defer (url=endpoint) %}
+      <ul class="c">
+        {% if this.support_email %}
+          <li class="support-email">
+            {{ emaillink(this.support_email, _('Support Email')) }}
+          </li>
+        {% endif %}
+        {% if this.support_url %}
+          <li class="support-url">
+            <a rel="external" {{ this.support_url|external_href }}>
+              {{ _('Support Site') }}</a>
+          </li>
+        {% endif %}
+        {% if this.homepage %}
+          <li class="homepage">
+            <a rel="external" {{ this.homepage|external_href }}>{{ _('Homepage') }}</a>
+          </li>
+        {% endif %}
+        {% if this.privacy_policy %}
+          <li><a href="{{ url('app/privacy', [slug]) }}">
+            {{ _('Privacy Policy') }}</a></li>
+        {% endif %}
+        <li><a href="{{ url('app/abuse', [slug]) }}">
+            {{ _('Report Abuse') }}</a></li>
+      </ul>
+      {% if settings.payment_enabled %}
+        {% if this.upsell %}
+          <a id="upsell" class="fatbutton"
+             href="{{ this.upsell.url|urlparams(src='mkt-detail-upsell') }}">
+             <span class="avail">{{ _('Premium version available') }}</span>
+             <img class="icon" src="{{ upsell.icons[16] }}">
+             <span class="name">{{ this.upsell.name }}</span>
+          </a>
+        {% endif %}
+      {% endif %}
+    {% end %}
+  </div>
 </section>
 
-<div class="content_ratings"></div>
+<div class="content_ratings">
+  {% defer (url=endpoint) %}
+    {% if this.content_ratings %}
+      <div class="main content-ratings infobox c">
+        <div>
+          <h3>
+            {{ _('Rating by the <a href="{{ settings.DEJUS_URL }}" title="{{ settings.DEJUS }}">DEJUS</a>') }}
+          </h3>
+          {% for rating in this.content_ratings.values() %}
+            <div class="content-rating c">
+              <div class="icon icon-{{ rating.name }}" title="{{ rating.name }}">{{ rating.name }}</div>
+              <p class="description">{{ rating.description }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% end %}
+</div>
