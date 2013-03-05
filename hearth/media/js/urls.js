@@ -43,9 +43,10 @@ define(
         'app': '/app/{0}',
         'ratings': '/app/{0}/ratings',
         'abuse': '/app/{0}/report',
+        'privacy': '/app/{0}/privacy',
         'settings': '/user/settings',
         'search': '/search',
-        'feedback': '/feedback',
+        'feedback': '/feedback'
     };
 
     var urlparams = utils.urlparams;
