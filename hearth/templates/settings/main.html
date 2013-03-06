@@ -1,25 +1,24 @@
 <section class="main account" id="account-settings">
+  {% set current_page = 'settings' %}
   {% include 'settings/nav.html' %}
 
-  <form class="container form-grid">
+  <form class="form-grid account-settings">
 
-    <div class="simple-field c">
+    <div class="simple-field c only-logged-in">
       <div class="form-label label">
-        {{ _('Email') }}
+        <label for="email">{{ _('Email') }}</label>
       </div>
       <div class="form-col">
-        <input type="text" id="email" readonly value="{{ user.email }}">
+        <input type="email" name="email" readonly value="{{ user.get_setting('email') }}">
       </div>
     </div>
 
-    <div class="brform simple-field c">
+    <div class="brform simple-field c only-logged-in">
       <div class="form-label">
-        <label class="" for="id_display_name">
-          {{ _('Display Name') }}
-        </label>
+        <label for="display_name">{{ _('Display Name') }}</label>
       </div>
       <div class="form-col">
-        <input name="display_name" value="{{ user.display_name }}" maxlength="50" type="text" id="id_display_name">
+        <input name="display_name" value="{{ user.get_setting('display_name') }}" maxlength="50" type="text">
       </div>
     </div>
 
@@ -28,21 +27,21 @@
         <label for="region">{{ _('Region') }}</label>
       </div>
       <div class="form-col">
-          <select id="region" name="region">
-            {% for code, region in settings.REGIONS_CHOICES_SLUG %}
-            <option value="{{ code }}"{{' selected' if code == user.region }}>
-              {{ region.name }}</option>
-            {% endfor %}
-          </select>
+        <select name="region">
+          {% set user_region = user.get_setting('region') %}
+          {% for code, region in settings.REGION_CHOICES_SLUG.items() %}
+            <option value="{{ code }}"{{' selected' if code == user_region }}>
+              {{ region }}</option>
+          {% endfor %}
+        </select>
       </div>
     </div>
 
     <footer class="form-footer">
       <button type="submit">{{ _('Save Changes') }}</button>
-      <div class="extras">
-        <a href="#" class="sync post logout">
-          {{ _('Log out') }}
-        </a>
+
+      <div class="extras only-logged-in">
+        <a href="#" class="sync post logout">{{ _('Sign Out') }}</a>
       </div>
     </footer>
   </form>

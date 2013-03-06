@@ -1,0 +1,13 @@
+<section class="main">
+  <h1 class="page"></h1>
+  <nav role="navigation">
+    <a href="/settings" class="header-button icon settings left" title="{{ _('Settings') }}"></a>
+    <a href="#" class="header-button icon back left" title="{{ _('Back') }}"><b></b></a>
+    <a href="#" class="header-button icon search right" title="{{ _('Search') }}"></a>
+    <a href="#" class="header-button cancel right">{{ _('Cancel') }}</a>
+    <a href="#" class="header-button filter right">{{ _('Filter') }}</a>
+    <a href="#" class="header-button icon expand right" title="{{ _('Expand') }}"></a>
+    <form novalidate method="GET" id="search" action="/search"></form>
+  </nav>
+  <div id="site-search-suggestions" data-src="{{ api('suggestions') }}"></div>
+</section>

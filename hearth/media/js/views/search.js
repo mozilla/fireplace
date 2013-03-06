@@ -1,5 +1,5 @@
 define(
-    ['capabilities', 'utils', 'z', 'navigation', 'urls'],
+    ['capabilities', 'utils', 'z'],
     function(capabilities, utils, z) {
 
     var _pd = utils._pd;
@@ -113,8 +113,7 @@ define(
             });
 
             delete params['page'];
-            require('navigation').navigate(
-                utils.urlparams(require('urls').reverse('search'), params));
+            z.page.trigger('search', params);
 
         }));
     };

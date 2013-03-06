@@ -37,28 +37,11 @@
     <link rel="stylesheet" href="/media/css/tile.less.css">
 
   </head>
-  <body class="force-mobile home"
-        data-collect-timings="{{ url('mkt.timing.record') }}:{{ collect_timings_percent }}"
-        data-native-persona-url="https://native-persona.org/include.js"
-        data-persona-url="https://login.persona.org/include.js">
+  <body class="force-mobile home">
 
     <div id="splash-overlay"><div class="throbber"></div></div>
 
     <header id="site-header" class="c">
-      <section class="main">
-        <h1 class="page"></h1>
-        <nav role="navigation">
-          <a href="/settings"
-             class="header-button icon settings left" data-l10n-args="{'title': 'settings'}"></a>
-          <a href="#" class="header-button icon back nav-back left" data-l10n-args="{'title': 'back'}"><b></b></a>
-          <a href="#" class="header-button icon search right" data-l10n-args="{'title': 'search'}"></a>
-          <a href="#" class="header-button cancel right" data-l10n-id="cancel">Cancel</a>
-          <a href="#" class="header-button filter right" data-l10n-id="filter">Filter</a>
-          <a href="#" class="header-button icon expand right" data-l10n-args="{'title': 'expand'}"></a>
-          <form novalidate method="GET" id="search" action="/search"></form>
-        </nav>
-        <div id="site-search-suggestions" data-cat="apps" data-src="{{ url('search.suggestions') }}"></div>
-      </section>
     </header>
 
     <div class="overlay nav-overlay"></div>

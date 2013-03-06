@@ -16,6 +16,7 @@ from flask import Flask, make_response, render_template, request, url_for
 app = Flask("Flue")
 
 import defaults
+import persona
 
 
 PER_PAGE = 10
@@ -28,7 +29,9 @@ def corsify(*args, **kwargs):
     def decorator(func):
         @wraps(func)
         def wrap(*args, **kwargs):
-            resp = make_response(json.dumps(func(*args, **kwargs)), 200)
+            resp = func(*args, **kwargs)
+            if isinstance(resp, (dict, str, unicode)):
+                resp = make_response(json.dumps(resp), 200)
             resp.headers['Access-Control-Allow-Origin'] = '*'
             resp.headers['Access-Control-Allow-Methods'] = 'GET'
             resp.headers['Content-type'] = 'application/json'
@@ -43,27 +46,36 @@ def corsify(*args, **kwargs):
 app.route = corsify
 
 
-@app.route('/user/login')
+@app.route('/user/login', methods=['POST'])
 def login():
-    email = request.args.get('email')
-    assertion = request.args.get('assertion')
+    assertion = request.form.get('assertion')
+
+    email = persona.verify_assertion(assertion)
+    if not email:
+        return make_response('{"error": "bad_assertion"}', 403)
+
+    # At this point, we know that the user is a valid user.
 
     return {
         'error': None,
-        'email': email,
-        'token': hashlib.sha1(email).hexdigest(),  # Simulated user token.
+        'token': persona.get_token(email),
+        'settings': {
+            'display_name': email.split('@')[0],
+            'email': email,
+            'region': 'usa',
+        }
     }
 
 
-@app.route('/user/settings')
+@app.route('/user/settings', methods=['GET', 'POST'])
 def settings():
     if request.method == 'POST':
         pass
 
     return {
-        'region': 'us',
-        'name': 'Joe User',
-        'email': 'c1alis@legitimatewebsite.biz',
+        'display_name': 'Joe User',
+        'email': request.args.get('email'),
+        'region': 'usa',
     }
 
 

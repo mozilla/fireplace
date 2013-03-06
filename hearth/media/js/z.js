@@ -3,6 +3,7 @@ define('z', ['jquery', 'settings', 'underscore'], function($, settings, _) {
         win: $(window),
         doc: $(document),
         body: $(document.body),
+        container: $('#container'),
         page: $('#page'),
         prefix: (function() {
             try {

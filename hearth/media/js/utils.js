@@ -53,14 +53,6 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
 
     };
 
-    function getTemplate($el) {
-        // If the element exists, return the template.
-        if ($el.length) {
-            return template($el.html());
-        }
-        // Otherwise, return undefined.
-    }
-
     function getVars(qs, excl_undefined) {
         if (typeof qs === 'undefined') {
             qs = location.search;
@@ -87,12 +79,18 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
         return $(el);
     }
 
+    function _gettext(str, kwargs) {
+        // TODO: When webL10n.get fails, do a format. Note that webL10n uses
+        // double curly braces.
+        return document.webL10n.get(str, kwargs) || str;
+    }
+
     return {
         '_pd': _pd,
         'escape_': escape_,
         'fieldFocused': fieldFocused,
-        'getTemplate': getTemplate,
         'getVars': getVars,
+        'gettext': _gettext,
         'makeOrGetOverlay': makeOrGetOverlay,
         'urlparams': urlparams
     };

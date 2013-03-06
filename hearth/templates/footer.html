@@ -1,10 +1,9 @@
 <div class="account">
-  {% if user.logged_in %}
-    {{ _('Signed in as {{email}}', email=user.email) }}
-    <a href="{{ url('users.logout') }}" class="sync logout">
-      ({{ _('Log Out') }})</a>
+  {% if user.logged_in() %}
+    {{ _('Signed in as {{email}}', email=user.get_setting('email')) }}
+    <a href="#" class="sync logout">({{ _('Sign Out') }})</a>
   {% else %}
-    <a class="button browserid" href="#">{{ _('Log in / Register') }}</a>
+    <button class="persona">{{ _('Sign In / Sign Up') }}</button>
   {% endif %}
 </div>
 <nav class="footer-links c" role="navigation">

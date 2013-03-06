@@ -40,6 +40,7 @@ require.config({
         'buttons',
         'capabilities',
         'feedback',
+        'helpers',
         'install',
         'lightbox',
         'login',
@@ -56,13 +57,13 @@ require.config({
         'stick',
         'common/suggestions',
         'tracking',
+        'user',
         'webactivities',
         'z'
     ];
 
     define('marketplace', modules, function() {
         var capabilities = require('capabilities');
-        var navigation = require('navigation');
         var nunjucks = require('nunjucks');
         var stick = require('stick');
         var z = require('z');
@@ -113,17 +114,23 @@ require.config({
         });
 
         // Do some last minute template compilation.
-        $('#site-footer').html(
-            nunjucks.env.getTemplate('footer.html').render(require('helpers')));
-        $('#login').html(
-            nunjucks.env.getTemplate('login.html').render(require('helpers')));
-        $('#search').html(
-            nunjucks.env.getTemplate('searchbox.html').render(require('helpers')));
+        z.page.on('reload_chrome', function () {
+            $('#site-header').html(
+                nunjucks.env.getTemplate('header.html').render(require('helpers')));
+            $('#site-footer').html(
+                nunjucks.env.getTemplate('footer.html').render(require('helpers')));
+            $('#login').html(
+                nunjucks.env.getTemplate('login.html').render(require('helpers')));
+            $('#search').html(
+                nunjucks.env.getTemplate('searchbox.html').render(require('helpers')));
+
+            z.body.toggleClass('logged-in', require('user').logged_in());
+        }).trigger('reload_chrome');
 
         // Perform initial navigation.
         var hash = window.location.hash;
         var use_hash = hash && hash.substr(0, 2) == '#!';
-        navigation.navigate(use_hash ? hash : window.location.pathname + window.location.search, {}, false, true);
+        z.page.trigger('navigate', [use_hash ? hash : window.location.pathname + window.location.search]);
 
         // Call `init` for each module.
         _.each(arguments, function(v) {

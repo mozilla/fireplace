@@ -1,4 +1,4 @@
-define('views/homepage', ['urls', 'z'], function(urls, z) {
+define('views/homepage', ['z'], function(z) {
     'use strict';
 
     function fillBg(els) {

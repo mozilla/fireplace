@@ -1,6 +1,6 @@
 define('helpers',
-       ['format', 'l10n', 'settings', 'templates', 'urls', 'utils'],
-       function(format, gettext, settings, nunjucks, urls, utils) {
+       ['l10n', 'templates', 'require', 'utils', 'format', 'settings', 'urls', 'user'],
+       function(gettext, nunjucks, require, utils) {
 
     var env = nunjucks.env;
 
@@ -51,24 +51,18 @@ define('helpers',
     env.addFilter('format', format.format);
 
     env.addFilter('sum', function(obj) {
-        return _.reduce(obj, function(mem, num) {
-            return mem + num;
-        }, 0);
+        return obj.reduce(function(mem, num) {return mem + num;}, 0);
     });
-
-    function _gettext(str, kwargs) {
-        // TODO: When webL10n.get fails, do a format. Note that webL10n uses
-        // double curly braces.
-        return document.webL10n.get(str, kwargs) || str;
-    }
 
     // Functions provided in the default context.
     return {
-        _: _gettext,
-        format: format.format,
-        settings: settings,
-        api: urls.api.url,
-        apiParams: urls.api.params,
-        url: urls.reverse
+        api: require('urls').api.url,
+        apiParams: require('urls').api.params,
+        url: require('urls').reverse,
+
+        _: utils.gettext,
+        format: require('format').format,
+        settings: require('settings'),
+        user: require('user')
     };
 });

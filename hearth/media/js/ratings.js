@@ -32,7 +32,7 @@ define('ratings', ['capabilities', 'utils', 'z'], function(capabilities, utils, 
 
     function init() {
         // Review/reply template.
-        var reviewTemplate = utils.getTemplate($('#review-template'));
+        //var reviewTemplate = utils.getTemplate($('#review-template'));
 
         z.page.on('loaded', function() {
             flagOverlay = utils.makeOrGetOverlay('flag-review');

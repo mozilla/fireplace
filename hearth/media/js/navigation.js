@@ -1,4 +1,7 @@
-define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(require, urls, utils, views, z) {
+define('navigation',
+    ['urls', 'utils', 'views', 'z'],
+    function(urls, utils, views, z) {
+
     'use strict';
 
     var stack = [
@@ -42,7 +45,7 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
         ).join('&');
     }
 
-    z.page.on('navigate', function(e, href, popped, state) {
+    function navigate(href, popped, state) {
         if (!state) return;
 
         var view = views.match(href);
@@ -103,13 +106,11 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
         }
 
         z.page.trigger('page_setup');
-
-    }).on('page_setup', function() {
-
+    }
+    z.page.on('page_setup', function() {
         setClass();
         setTitle();
         setType();
-
     });
 
     var oldClass = '';
@@ -147,12 +148,15 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
             console.log('attempted nav.back at root!');
         }
     }
-
-    $('.nav-back').on('click', utils._pd(back));
+    z.body.on('click', '.back', utils._pd(back));
 
     var views = require('views');
 
-    function navigate(url, params) {
+    z.page.on('search', function(e, params) {
+        e.preventDefault();
+        return z.page.trigger(
+            'navigate', utils.urlparams(urls.reverse('search'), params));
+    }).on('navigate', function(e, url, params) {
         if (!url) return;
 
         // Terminate any outstanding requests.
@@ -172,8 +176,8 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
         };
 
         history.pushState(newState, false, url);
-        z.page.trigger('navigate', [url, false, newState]);
-    }
+        navigate(url, false, newState);
+    });
 
     function navigationFilter(el) {
         var href = el.getAttribute('href') || el.getAttribute('action'),
@@ -181,7 +185,7 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
         return !href || href.substr(0,4) == 'http' ||
                 href.substr(0,7) === 'mailto:' ||
                 href.substr(0,11) === 'javascript:' ||
-                href.substr(0,1) === '#' ||
+                href[0] === '#' ||
                 href.indexOf('/developers/') !== -1 ||
                 href.indexOf('/ecosystem/') !== -1 ||
                 href.indexOf('/statistics/') !== -1 ||
@@ -199,12 +203,11 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
         // We don't use _pd because we don't want to prevent default for the
         // above situations.
         e.preventDefault();
-        navigate(href, $(this).data('params') || {});
+        z.page.trigger('navigate', [href, $(this).data('params') || {path: href}]);
 
     }).on('submit', 'form#search', function(e) {
         e.preventDefault();
-        var query = $('#search-q').val();
-        navigate(utils.urlparams(urls.reverse('search'), {q: query}));
+        z.page.trigger('search', {q: $('#search-q').val()});
 
     }).on('submit', 'form', function(e) {
         e.preventDefault();
@@ -221,7 +224,6 @@ define('navigation', ['require', 'urls', 'utils', 'views', 'z'], function(requir
 
     return {
         back: back,
-        navigate: navigate,
         oldClass: function() {return oldClass;},
         stack: function() {return stack;},
         navigationFilter: navigationFilter

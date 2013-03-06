@@ -1,4 +1,7 @@
 define('overlay', ['keys', 'utils', 'z'], function(keys, utils, z) {
+
+    var gettext = utils.gettext;
+
     function dismiss() {
         var $overlay = $('.overlay.show');
         if ($overlay.length) {
@@ -34,7 +37,7 @@ define('overlay', ['keys', 'utils', 'z'], function(keys, utils, z) {
         });
 
         // Dismiss overlay when we click outside of it.
-        z.win.on('click', '.overlay', function(e) {
+        z.body.on('click', '.overlay', function(e) {
             if ($(e.target).parent('body').length) {
                 dismiss();
             }

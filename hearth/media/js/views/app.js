@@ -1,4 +1,4 @@
-define(['urls', 'utils', 'z'], function(urls, utils, z) {
+define(['utils', 'z'], function(utils, z) {
     'use strict';
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {

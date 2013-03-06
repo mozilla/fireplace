@@ -1,9 +1,6 @@
 define('settings_base', [], function () {
     var settings = {
         api_url: 'http://' + window.location.hostname + ':5000',  // No trailing slash, please.
-        persona_unverified_issuer: null,
-        // To be used only outside of the simulator/device
-        persona_url: 'https://login.persona.org/include.js',
 
         simulate_nav_pay: false,
 
@@ -16,7 +13,13 @@ define('settings_base', [], function () {
         REGION_CHOICES_SLUG: {
             'usa': 'United States',
             'bra': 'Brazil'
-        }
+        },
+
+        timing_url: '',  // TODO: figure this out
+
+        persona_unverified_issuer: null,
+        native_persona: 'https://native-persona.org/include.js',
+        persona: 'https://login.persona.org/include.js',
     };
     return settings;
 });

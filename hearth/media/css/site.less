@@ -209,7 +209,7 @@ body[data-page-type=notice], body[data-page-type=alpha] {
 }
 
 #site-footer {
-    display: none;
+    // display: none;
     padding: 15px 0 30px;
 
     margin-top: 15px;
@@ -279,4 +279,12 @@ body[data-page-type=notice], body[data-page-type=alpha] {
 @keyframes spin {
     from { transform: rotate(0turn); }
     to { transform: rotate(1turn); }
+}
+
+.only-logged-in {
+    display: none;
+}
+
+.logged-in .only-logged-in {
+    display: block;
 }

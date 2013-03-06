@@ -1,6 +1,6 @@
-define(
-    ['capabilities', 'format', 'routes', 'settings', 'underscore', 'utils'],
-    function(caps, format, routes, settings, _, utils) {
+define('urls',
+    ['capabilities', 'format', 'settings', 'underscore', 'user', 'utils'],
+    function(caps, format, settings, _) {
 
     var group_pattern = /\(.+\)/;
     var reverse = function(view_name, args) {
@@ -36,8 +36,6 @@ define(
     };
 
 
-    // API functions
-
     var api_endpoints = {
         'homepage': '/homepage',
         'app': '/app/{0}',
@@ -46,10 +44,9 @@ define(
         'privacy': '/app/{0}/privacy',
         'settings': '/user/settings',
         'search': '/search',
-        'feedback': '/feedback'
+        'feedback': '/feedback',
+        'login': '/user/login'
     };
-
-    var urlparams = utils.urlparams;
 
     function _device() {
         if (caps.firefoxOS) {
@@ -61,29 +58,34 @@ define(
         }
     }
 
+    var user = require('user');
     function _userArgs(func) {
         return function() {
             var out = func.apply(this, arguments);
             var args = {
                 lang: navigator.language,
-                reg: 'br',  // TODO(cvan): Put the actual region here once the user module is written.
-                user: null,  // TODO(cvan): Put the user token here when we're doing that.
+                reg: user.get_setting('region'),
+                user: user.get_token(),
                 scr: (caps.desktop || caps.tablet) ? 'wide' : 'mobile',
                 dev: _device()
             };
-            return urlparams(out, args);
+            if (user.logged_in()) {
+                _.extend(args, {email: user.get_setting('email')});
+            }
+            return require('utils').urlparams(out, args);
         };
     }
 
     var api = _.memoize(_userArgs(function(endpoint, args) {
         if (!(endpoint in api_endpoints)) {
-            throw new Error('Invalid API endpoint: ' + endpoint);
+            console.error('Invalid API endpoint: ' + endpoint);
+            return '';
         }
         return settings.api_url + format.format(api_endpoints[endpoint], args || []);
     }));
 
     var apiParams = _userArgs(function(endpoint, params) {
-        return urlparams(api(endpoint), params);
+        return require('utils').urlparams(api(endpoint), params);
     });
 
     return {

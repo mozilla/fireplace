@@ -344,11 +344,6 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
         });
     }
 
-    var suggestions = $('#search #search-q').searchSuggestions(
-            $('#site-search-suggestions'), processResults, 'MKT');
-
-        suggestions.on('dismissed', abortRequest);
-
     var current_search = null;
     var previous_request = null;
 
@@ -412,8 +407,16 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
         }
     }
 
+    var first_load = _.once(function() {
+        var suggestions = $('#search #search-q').searchSuggestions(
+                $('#site-search-suggestions'), processResults, 'MKT');
+
+        suggestions.on('dismissed', abortRequest);
+    });
+
     // Clear search suggestions at start and end of loaded.
     z.page.on('loaded', function() {
+        first_load();
         abortRequest();
         $('#site-search-suggestions').trigger('dismiss').find('ul').empty();
     });

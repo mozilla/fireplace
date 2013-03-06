@@ -1,4 +1,4 @@
-define('stick', ['capabilities'], function(capabilities) {
+define('stick', ['capabilities', 'settings'], function(capabilities, settings) {
     'use strict';
     /*
      * A simpler boomerang: https://github.com/yahoo/boomerang that just
@@ -12,7 +12,7 @@ define('stick', ['capabilities'], function(capabilities) {
 
     var send = function(data) {
         if (capabilities.performance) {
-            var timings = $('body').attr('data-collect-timings');
+            var timings = settings.timing_url;
             if (timings) {
                 timings = timings.split(':', 2);
                 data.client = 'stick';
