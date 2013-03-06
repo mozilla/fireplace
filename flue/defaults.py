@@ -98,13 +98,12 @@ def rand_posted():
     rand_date = date.today() - timedelta(days=random.randint(0, 600))
     return rand_date.strftime('%b %d %Y %H:%M:%S')
 
-def rating(has_reply=False):
+def rating():
     return {
         'id': random.randint(1000, 9999),
         'user_name': random.choice(user_names),
         'rating': 4,
         'body': ptext(20),
-        'reply': None if not has_reply else rating(),
         'for_old_version': False,  # False or the old version number
         'is_flagged': False,
         'posted': rand_posted()

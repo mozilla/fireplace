@@ -151,7 +151,7 @@ def app_ratings(slug):
     def gen():
         i = 0
         while 1:
-            yield defaults.rating(random.choice((True, False)))
+            yield defaults.rating()
             i += 1
 
     data = _paginated('ratings', gen)
