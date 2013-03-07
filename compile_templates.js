@@ -37,6 +37,9 @@ util.puts('(function() {');
 util.puts('var templates = {};');
 
 for(var i=0; i<templates.length; i++) {
+    var name = templates[i].replace(path.join(folder, '/'), '');
+    util.puts('templates["' + name + '"] = (function() {');
+
     var doCompile = function() {
         var src = lib.withPrettyErrors(
             templates[i],
@@ -47,18 +50,23 @@ for(var i=0; i<templates.length; i++) {
                     extensions);
             }
         );
-        var name = templates[i].replace(path.join(folder, '/'), '');
 
-        util.puts('templates["' + name + '"] = (function() {');
         util.puts(src);
-        util.puts('})();');
     };
 
     try {
         doCompile();
     } catch(e) {
+        util.puts([
+            'return {root: function() {',
+            'throw new Error("' + name + ' failed to compile. Check the damper for details.");',
+            '}}'
+        ].join('\n'));
+
         console.error(e);
     }
+
+    util.puts('})();');
 }
 
 util.puts(
