@@ -13,12 +13,15 @@ define(['utils', 'z'], function(utils, z) {
         $this.text(newTxt);
         // Toggle description + developer comments.
         $this.closest('.blurbs').find('.collapsed').toggle();
+
     })).on('click', '.approval-pitch', utils._pd(function() {
         $('#preapproval-shortcut').submit();
+
     })).on('click', '.product-details .icon', utils._pd(function(e) {
         // When I click on the icon, append `#id=<id>` to the URL.
         window.location.hash = 'id=' + $('.product').data('product')['id'];
         e.stopPropagation();
+
     })).on('loaded', function() {
         var reviews = $('.detail .reviews li');
         if (reviews.length < 3) return;

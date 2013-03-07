@@ -40,12 +40,13 @@ define('urls',
         'homepage': '/homepage',
         'app': '/app/{0}',
         'ratings': '/app/{0}/ratings',
-        'abuse': '/app/{0}/report',
+        'app_abuse': '/app/{0}/abuse',
         'privacy': '/app/{0}/privacy',
         'settings': '/user/settings',
         'search': '/search',
         'feedback': '/feedback',
-        'login': '/user/login'
+        'login': '/user/login',
+        'user_abuse': '/user/{0}/abuse'
     };
 
     function _device() {

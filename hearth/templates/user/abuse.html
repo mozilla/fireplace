@@ -1,0 +1,11 @@
+{% include "_macros/forms.html" %}
+
+<div class="main report-abuse infobox c">
+  <div>
+    <h3>{{ _('Report Abuse') }}</h3>
+    <p>{{ _('If you suspect this user violates <a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review">our policies</a>,
+            please use the form below to describe your concerns. Please do not
+            use this form for any other reason.') }}</p>
+    {{ abuse_form(api('user_abuse')) }}
+  </div>
+</div>
