@@ -81,16 +81,17 @@ def settings():
 
 @app.route('/user/<slug>/abuse', methods=['POST'])
 def user_abuse(slug):
-    return {
-        'error': False
-    }
+    return {'error': False}
 
 
 @app.route('/app/<slug>/abuse', methods=['POST'])
 def app_abuse(slug):
-    return {
-        'error': False
-    }
+    return {'error': False}
+
+
+@app.route('/feedback', methods=['POST'])
+def feedback():
+    return {'error': False}
 
 
 @app.route('/featured')

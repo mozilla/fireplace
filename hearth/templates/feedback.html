@@ -1,0 +1,16 @@
+<section class="bare">
+  <header>
+    <h1>{{ _('Feedback') }}</h1>
+    <a href="#" class="header-button icon right dismiss">{{ _('Cancel') }}</a>
+  </header>
+  <form class="container form-grid feedback-form" method="post">
+    <div class="brform simple-field c">
+      <textarea rows="4" cols="40" name="feedback" required></textarea>
+    </div>
+    <input name="chromeless" type="hidden">
+    <input name="from_url" type="hidden">
+    <footer class="form-footer c">
+      <button type="submit">{{ _('Send') }}</button>
+    </footer>
+  </form>
+</section>
