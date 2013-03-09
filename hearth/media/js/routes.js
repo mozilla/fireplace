@@ -8,7 +8,6 @@ var routes = [
     {pattern: '^/search$', view_name: 'search'},
     {pattern: '^/settings$', view_name: 'settings'},
     {pattern: '^/purchases$', view_name: 'purchases'},
-    {pattern: '^/feedback$', view_name: 'feedback'},
     {pattern: '^/abuse$', view_name: 'abuse'},
 
     {pattern: '^/privacy$', view_name: 'privacy'},

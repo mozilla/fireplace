@@ -1,68 +1,48 @@
 // JS for the desktop Feedback overlay.
 
-define(['browser', 'capabilities', 'utils', 'z'], function(browser, capabilities, utils, z) {
-    function validate(form) {
-        // The feedback box shouldn't be empty.
-        return !!form.find('textarea').val();
+define(
+    ['capabilities', 'utils', 'urls', 'z', 'templates'],
+    function(capabilities, utils, urls, z, nunjucks) {
+    var overlay = $('#feedback-overlay');
+
+    if (!overlay.length) {
+        overlay = $('<div id="feedback-overlay" class="overlay">');
+        z.container.append(overlay);
     }
 
-    function reset(form) {
-        // Remove errors and empty values.
-        form.find('.notification-box').remove();
-        form.find('.error').removeClass('error');
-        $('.feedback-form').find('textarea').val('');
-    }
+    z.container.on('submit', '.feedback-form', utils._pd(function(e) {
+        // Submit feedback form
+        var $this = $(this);
 
-    function processFeedback(e) {
-        var $form = $(this);
-
-        if (!validate($form)) {
-            if ($form.find('div.error').length === 0) {
-                $form.prepend($('<div>', {
-                    'text': gettext('Message must not be empty.'),
-                    'class': 'notification-box error c'
-                }));
-            }
-            e.stopPropagation();
-            e.preventDefault();
-            return;
-        }
-
-        var platformInput = $form.find('input[name="platform"]');
+        var platformInput = $this.find('input[name="platform"]');
         if (capabilities.gaia) {
             platformInput.val('Gaia');
-        } else if (browser.os.android) {
+        } else if (capabilities.firefoxAndroid) {
             platformInput.val('Firefox for Android');
         } else if (capabilities.mobile) {
             platformInput.val('Mobile');
         } else if (capabilities.desktop) {
             platformInput.val('Desktop');
         }
-        $form.find('input[name="chromeless"]').val(capabilities.chromeless ? 'Yes' : 'No');
-        $form.find('input[name="from_url"]').val(window.location.pathname);
+        $this.find('input[name="chromeless"]').val(capabilities.chromeless ? 'Yes' : 'No');
+        $this.find('input[name="from_url"]').val(window.location.pathname);
 
-        overlay.removeClass('show');
-    }
+        $.post(urls.api.url('feedback'), $this.serialize())
+         .success(function(data) {
+            console.log('submitted feedback');
+            $this.find('textarea, input').val('');
+            overlay.removeClass('show');
 
-
-    function init() {
-        var overlay = $('#feedback-overlay');
-
-        // Bind up them events.
-        var overlayForm = overlay.find('form')
-
-        // Don't go to /account/feedback, show the overlay.
-        $('.submit-feedback').on('click', utils._pd(function(e) {
-            e.stopPropagation();
-            overlay.addClass('show');
-        }));
-
-        overlayForm.on('submit', processFeedback);
-        z.page.on('loaded', function() {
-            reset(overlayForm);
-            z.page.find('.feedback-form').on('submit', processFeedback);
+        }).fail(function(jqXHR, textStatus, error) {
+            var err = jqXHR.responseText;
+            z.page.trigger('notify', {msg: err});
         });
-    }
 
-    return {init: init};
+    })).on('click', '.submit-feedback', utils._pd(function(e) {
+        if (!overlay.find('form').length) {
+            overlay.html(
+                nunjucks.env.getTemplate('feedback.html').render(require('helpers')));
+        }
+        overlay.addClass('show');
+    }));
 });
