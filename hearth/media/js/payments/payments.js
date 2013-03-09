@@ -1,4 +1,6 @@
-define(['capabilities', 'notification'], function(caps, notification) {
+define(
+    ['capabilities', 'notification', 'requests'],
+    function(caps, notification, requests) {
 
     var product,
         $def,
@@ -21,17 +23,15 @@ define(['capabilities', 'notification'], function(caps, notification) {
                 $def.reject(null, product, 'MKT_INSTALL_ERROR');
             }, 60000);
         }
-        $.get(contribStatusURL)
-            .done(function(result) {
-                if (result.status == 'complete') {
-                    window.clearTimeout(nextCheck);
-                    window.clearTimeout(_giveUp);
-                    $def.resolve(product);
-                }
-            })
-            .fail(function() {
-                $def.reject(null, product, 'MKT_SERVER_ERROR');
-            });
+        requests.get(contribStatusURL, function(result) {
+            if (result.status == 'complete') {
+                window.clearTimeout(nextCheck);
+                window.clearTimeout(_giveUp);
+                $def.resolve(product);
+            }
+        }, function() {
+            $def.reject(null, product, 'MKT_SERVER_ERROR');
+        });
     }
 
     if (simulateNavPay && !caps.navPay) {
@@ -84,13 +84,11 @@ define(['capabilities', 'notification'], function(caps, notification) {
         product = prod;
 
         if (caps.navPay || simulateNavPay) {
-            $.post(product.prepareNavPay, {})
-                .fail(function() {
-                    $def.reject(null, product, 'MKT_SERVER_ERROR');
-                })
-                .done(function(result) {
-                    callNavPay($def, product, result.webpayJWT, result.contribStatusURL);
-                });
+            requests.post(product.prepareNavPay, {}, function(result) {
+                callNavPay($def, product, result.webpayJWT, result.contribStatusURL);
+            }, function() {
+                $def.reject(null, product, 'MKT_SERVER_ERROR');
+            });
 
         } else {
             $def.reject(null, product, 'MKT_CANCELLED');

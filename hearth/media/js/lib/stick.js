@@ -1,4 +1,6 @@
-define('stick', ['capabilities', 'settings'], function(capabilities, settings) {
+define('stick',
+    ['capabilities', 'settings', 'requests'],
+    function(capabilities, settings, requests) {
     'use strict';
     /*
      * A simpler boomerang: https://github.com/yahoo/boomerang that just
@@ -17,7 +19,7 @@ define('stick', ['capabilities', 'settings'], function(capabilities, settings) {
                 timings = timings.split(':', 2);
                 data.client = 'stick';
                 if (Math.random() < parseFloat(timings[1])) {
-                    $.post(timings[0], data);
+                    requests.post(timings[0], data);
                 }
             }
         }
