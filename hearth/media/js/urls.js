@@ -49,7 +49,7 @@ define('urls',
         'user_abuse': '/user/{0}/abuse'
     };
 
-    function _device() {
+    var _device = _.once(function() {
         if (caps.firefoxOS) {
             return 'fxos';
         } else if (caps.firefoxAndroid) {
@@ -57,7 +57,7 @@ define('urls',
         } else {
             return 'desktop';
         }
-    }
+    });
 
     var user = require('user');
     function _userArgs(func) {
@@ -66,12 +66,13 @@ define('urls',
             var args = {
                 lang: navigator.language,
                 reg: user.get_setting('region'),
-                user: user.get_token(),
                 scr: (caps.desktop || caps.tablet) ? 'wide' : 'mobile',
+                tch: caps.touch,
                 dev: _device()
             };
             if (user.logged_in()) {
-                _.extend(args, {email: user.get_setting('email')});
+                args.user = user.get_token();
+                args.email = user.get_setting('email');
             }
             return require('utils').urlparams(out, args);
         };
