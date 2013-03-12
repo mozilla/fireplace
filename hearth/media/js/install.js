@@ -1,6 +1,8 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
-define(['apps', 'capabilities', 'payments/payments', 'z'], function(apps, caps, payments, z) {
+define(
+    ['apps', 'capabilities', 'payments/payments', 'requests', 'z'],
+    function(apps, caps, payments, requests, z) {
     'use strict';
 
     function launchHandler(e) {
@@ -66,7 +68,7 @@ define(['apps', 'capabilities', 'payments/payments', 'z'], function(apps, caps, 
         }
 
         z.win.trigger('app_install_start', product);
-        $.post(product.recordUrl, post_data).success(function(response) {
+        requests.post(product.recordUrl, post_data, function(response) {
             if (response.error) {
                 $('#pay-error').show().find('div').text(response.error);
                 installError(product);
@@ -78,7 +80,7 @@ define(['apps', 'capabilities', 'payments/payments', 'z'], function(apps, caps, 
             $.when(apps.install(product, data))
              .done(installSuccess)
              .fail(installError);
-        }).error(function(response) {
+        }, function() {
             // Could not record/generate receipt!
             installError(null, product);
         });

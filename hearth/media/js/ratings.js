@@ -1,4 +1,6 @@
-define('ratings', ['capabilities', 'utils', 'z'], function(capabilities, utils, z) {
+define('ratings',
+    ['capabilities', 'utils', 'requests', 'z'],
+    function(capabilities, utils, requests, z) {
     // Initializes character counters for textareas.
     function initCharCount() {
         var countChars = function(el, cc) {
@@ -138,7 +140,7 @@ define('ratings', ['capabilities', 'utils', 'z'], function(capabilities, utils, 
 
         function deleteReview(reviewEl, action) {
             reviewEl.addClass('deleting');
-            $.post(action);
+            requests.post(action, {});
             setTimeout(function() {
                 reviewEl.addClass('deleted');
                 // Change edit review button to submit review button.

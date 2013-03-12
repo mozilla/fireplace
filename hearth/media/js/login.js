@@ -1,6 +1,6 @@
 define('login',
-    ['capabilities', 'notification', 'settings', 'user', 'z', 'utils', 'urls'],
-    function(capabilities, notification, settings, user, z) {
+    ['capabilities', 'notification', 'settings', 'user', 'requests', 'z', 'utils', 'urls'],
+    function(capabilities, notification, settings, user, requests, z) {
 
     z.body.on('promptlogin', function(e, skipDialog) {
         if (skipDialog) {
@@ -44,8 +44,7 @@ define('login',
                 is_native: navigator.id._shimmed ? 0 : 1
             };
 
-            $.post(require('urls').api.url('login'), data)
-             .success(function(data) {
+            requests.post(require('urls').api.url('login'), data, function(data) {
                 user.set_token(data.token, data.settings);
                 console.log('finished login');
                 z.body.addClass('logged-in');
@@ -56,9 +55,7 @@ define('login',
                     z.page.trigger('navigate', [to]);
                     return;
                 }
-
-                z.page.trigger('login');
-            }).error(function(jqXHR, textStatus, error) {
+            }, function(jqXHR, textStatus, error) {
                 var err = jqXHR.responseText;
                 if (!err) {
                     err = gettext("Persona login failed. Maybe you don't have an account under that email address?") + " " + textStatus + " " + error;
@@ -69,7 +66,7 @@ define('login',
                     err = gettext('Persona login failed. A server error was encountered.');
                 }
                 z.page.trigger('notify', {msg: err});
-             });
+            });
         } else {
             $('.loading-submit').removeClass('loading-submit');
         }

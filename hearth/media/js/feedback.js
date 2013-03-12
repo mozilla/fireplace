@@ -1,8 +1,8 @@
 // JS for the desktop Feedback overlay.
 
 define(
-    ['capabilities', 'utils', 'urls', 'z', 'templates'],
-    function(capabilities, utils, urls, z, nunjucks) {
+    ['capabilities', 'utils', 'urls', 'z', 'requests', 'templates'],
+    function(capabilities, utils, urls, z, requests, nunjucks) {
     var overlay = $('#feedback-overlay');
 
     if (!overlay.length) {
@@ -27,15 +27,10 @@ define(
         $this.find('input[name="chromeless"]').val(capabilities.chromeless ? 'Yes' : 'No');
         $this.find('input[name="from_url"]').val(window.location.pathname);
 
-        $.post(urls.api.url('feedback'), $this.serialize())
-         .success(function(data) {
+        requests.post(urls.api.url('feedback'), $this.serialize(), function() {
             console.log('submitted feedback');
             $this.find('textarea, input').val('');
             overlay.removeClass('show');
-
-        }).fail(function(jqXHR, textStatus, error) {
-            var err = jqXHR.responseText;
-            z.page.trigger('notify', {msg: err});
         });
 
     })).on('click', '.submit-feedback', utils._pd(function(e) {

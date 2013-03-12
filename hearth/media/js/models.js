@@ -1,4 +1,4 @@
-define('models', [], function() {
+define('models', ['requests'], function(requests) {
 
     // {'type': {'<id>': object}}
     var data_store = {};
@@ -35,7 +35,7 @@ define('models', [], function() {
                 return $.Deferred().resolve(data_store[type][keyed_value]);
             }
 
-            return $.get(url);
+            return requests.get(url);
         }
 
         return {

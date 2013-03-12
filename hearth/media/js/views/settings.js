@@ -1,6 +1,6 @@
 define('views/settings',
-    ['urls', 'user', 'utils', 'z'],
-    function(urls, user, utils, z) {
+    ['urls', 'user', 'utils', 'requests', 'z'],
+    function(urls, user, utils, requests, z) {
 
     var _pd = utils._pd;
     var gettext = utils.gettext;
@@ -17,7 +17,6 @@ define('views/settings',
 
     z.page.on('submit', 'form.account-settings', _pd(function(e) {
         e.stopPropagation();
-
         var completion = $.Deferred();
         completion.done(function() {
             update_settings();
@@ -33,13 +32,12 @@ define('views/settings',
         }
         var data = $(this).serialize();
         user.update_settings(data);
-        $.post(urls.api.url('settings'), data)
-         .success(function(data) {
+        requests.post(urls.api.url('settings'), data, function() {
             // Re-save settings because we cray and the user cray.
             user.update_settings(data);
 
             completion.resolve();
-        }).error(function() {
+        }, function() {
             z.page.trigger('notify', [gettext('Settings could not be saved.')]);
             completion.reject();
         });
