@@ -1,5 +1,5 @@
 
-define('browser', ['l10n', 'utils'], function(gettext, utils) {
+define('browser', ['utils'], function(utils) {
     'use strict';
 
     var VersionCompare = {
@@ -156,7 +156,6 @@ define('browser', ['l10n', 'utils'], function(gettext, utils) {
         browserVersion: browserVersion,
         badBrowser: badBrowser,
         os: os,
-        platform: platform,
-        platformName: gettext(osStrings[platform])
+        platform: platform
     };
 });

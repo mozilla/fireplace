@@ -28,7 +28,8 @@
         {{ stars(app.ratings.average) }}
         {% if app.ratings.count %}
           <span class="cnt">
-            {{ _('rating_count', {n: app.ratings.count}) }}
+            {{ _plural('{n} rating', '{n} ratings',
+                       n=app.ratings.count) }}
           </span>
        {% endif %}
        {% if not link %}</a>{% endif %}

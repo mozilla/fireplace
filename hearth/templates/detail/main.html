@@ -51,7 +51,7 @@
       <p class="summary">
         {{ this.summary|nl2br }}
         {% if super_long %}
-          <a href="#" class="show-toggle" data-toggle-text="{{ _('less') }}">{{ _('more') }}</a>
+          <a href="#" class="show-toggle" data-toggle-text="{{ _('Less&hellip;') }}">{{ _('More&hellip;') }}</a>
         {% endif %}
       </p>
 
@@ -64,7 +64,8 @@
           {% if this.is_packaged %}
             <h3>{{ _('Version') }}</h3>
             <div class="package-version">
-              {{ _('latest_version', version=this.current_version) }}
+              {{ _('Latest version: {version}',
+                   version=this.current_version) }}
             </div>
             <div class="release-notes">
               {{ this.current_version.releasenotes|nl2br }}
@@ -92,7 +93,8 @@
         <div class="{{ 'split' if user.can_review else 'full' }}">
           <a class="fatbutton average-rating" href="{{ url('app/ratings', [slug]) }}">
             <span>
-              {{ _('rating_count', n=this.meta.count) }}
+              {{ _plural('{n} rating', '{n} ratings',
+                         n=this.meta.count) }}
             </span>
             {{ stars(this.meta.average, detailpage=True) }}
           </a>
@@ -164,7 +166,9 @@
       <div class="main content-ratings infobox c">
         <div>
           <h3>
-            {{ _('Rating by the <a href="{{ settings.DEJUS_URL }}" title="{{ settings.DEJUS }}">DEJUS</a>') }}
+            {{ _('Rating by the <a href="{dejus_url}" title="{dejus}">DEJUS</a>',
+                 dejus_url=settings.DEJUS_URL,
+                 dejus=settings.DEJUS) }}
           </h3>
           {% for rating in this.content_ratings.values() %}
             <div class="content-rating c">

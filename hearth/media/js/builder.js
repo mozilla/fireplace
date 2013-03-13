@@ -5,6 +5,7 @@ function defer_parser() {
     this.parse = function(parser, nodes, tokens) {
         var begun = parser.peekToken();
         var tag = new nodes.CustomTag(begun.lineno, begun.colno, 'defer');
+        tag.fields = ['body', 'placeholder', 'empty', 'except'];
 
         parser.nextToken();  // Skip the name symbol.
         parser.skip(tokens.TOKEN_WHITESPACE);

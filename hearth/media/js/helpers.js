@@ -1,6 +1,6 @@
 define('helpers',
        ['l10n', 'templates', 'require', 'utils', 'format', 'settings', 'urls', 'user'],
-       function(gettext, nunjucks, require, utils) {
+       function(l10n, nunjucks, require, utils) {
 
     var env = nunjucks.env;
 
@@ -60,7 +60,8 @@ define('helpers',
         apiParams: require('urls').api.params,
         url: require('urls').reverse,
 
-        _: utils.gettext,
+        _: l10n.gettext,
+        _plural: l10n.ngettext,
         format: require('format').format,
         settings: require('settings'),
         user: require('user')

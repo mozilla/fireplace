@@ -10,7 +10,6 @@ require.config({
         'nunjucks': 'lib/nunjucks',
         'nunjucks.compat': 'lib/nunjucks.compat',
         'templates': '../../templates',
-        'l10n': 'lib/l10n',
         'settings': ['settings_local', 'settings'],
         'stick': 'lib/stick',
         'format': 'lib/format'
@@ -27,9 +26,6 @@ require.config({
         },
         'nunjucks': {
             exports: 'nunjucks'
-        },
-        'l10n': {
-            exports: 'document.webL10n.get'
         }
     }
 });
@@ -42,10 +38,10 @@ require.config({
         'feedback',
         'helpers',
         'install',
+        'l10n',
         'lightbox',
         'login',
         'navigation',
-        'nunjucks',
         'notification',
         'outgoing_links',
         'overlay',
@@ -56,6 +52,7 @@ require.config({
         'state',
         'stick',
         'common/suggestions',
+        'templates',
         'tracking',
         'user',
         'webactivities',
@@ -64,14 +61,14 @@ require.config({
 
     define('marketplace', modules, function() {
         var capabilities = require('capabilities');
-        var nunjucks = require('nunjucks');
+        var nunjucks = require('templates');
         var stick = require('stick');
         var z = require('z');
 
         nunjucks.env.dev = true;
 
         var splash = $('#splash-overlay');
-        z.body.addClass('html-' + document.webL10n.getDirection());
+        z.body.addClass('html-' + require('l10n').getDirection());
 
         z.page.on('loaded', function() {
            splash.addClass('hide');

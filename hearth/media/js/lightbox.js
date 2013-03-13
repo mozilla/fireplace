@@ -136,9 +136,7 @@ define('lightbox', ['keys', 'utils', 'z'], function(keys, utils, z) {
                 e.preventDefault();
             }
         });
-        $lightbox.find('.close').click(utils._pd(function(e) {
-            hideLightbox();
-        }));
+        $lightbox.find('.close').click(utils._pd(hideLightbox));
 
         // Hide screenshot overlay on back button hit.
         z.page.on('startfragmentload', hideLightbox);

@@ -13,7 +13,9 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
     function _pd(func) {
         return function(e) {
             e.preventDefault();
-            func.apply(this, arguments);
+            if (func) {
+                func.apply(this, arguments);
+            }
         };
     }
 
@@ -79,18 +81,11 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
         return $(el);
     }
 
-    function _gettext(str, kwargs) {
-        // TODO: When webL10n.get fails, do a format. Note that webL10n uses
-        // double curly braces.
-        return document.webL10n.get(str, kwargs) || str;
-    }
-
     return {
         '_pd': _pd,
         'escape_': escape_,
         'fieldFocused': fieldFocused,
         'getVars': getVars,
-        'gettext': _gettext,
         'makeOrGetOverlay': makeOrGetOverlay,
         'urlparams': urlparams
     };

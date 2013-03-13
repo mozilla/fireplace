@@ -12,11 +12,15 @@ Our dependencies:
 - ``less``: For stylesheets
 - ``nunjucks``: For templates (stored as submodule)
 
+If you plan on doing compilation (i.e.: you're Wil Clouser), you'll also need
+
+- ``uglify-js``: For string extraction
+- ``requirejs``: For warming up Spaceheater
+
 
 OS X installation steps ::
 
     brew install node
-    curl http://npmjs.org/install.sh | sh
     npm install less -g
     git submodule update --init  # For nunjucks
 
@@ -59,6 +63,41 @@ For instructions on running Flue (the mock API server), please see the Flue
 docs. <https://github.com/mozilla/fireplace/blob/master/flue/README.rst>
 
 
+Compiling
+~~~~~~~~~
+
+To run the compilation process, which compiles templates, CSS, and locale
+files, run the damper with the `--compile` argument: ::
+
+    node damper.js --compile
+
+The damper will not start a local server in this case, but a `strings.po` file
+will be generated.
+
+
+Localizing
+----------
+
+The compilation process (described above) generates a file called `strings.po`
+which can be uploaded to Verbatim. When the resulting language packs are
+translated and returned, they can be reintroduced to Fireplace using the
+`scripts/generate_langpacks.js` script. Running this script on a translated
+`.po` file will produce a language pack which can be included in the repo. ::
+
+    %> node scripts/generate_langpacks.js ~/Downloads/verbatim/esperanto.po
+    %> ls ~/Downloads/verbatim
+    .
+    ..
+    esperanto.po
+    esperanto.po.js
+    %> mv ~/Downloads/verbatim/esperanto.po hearth/locales/eo.js
+
+
+Place all of the `.js` files in the `hearth/locales/` directory, renamed to
+have its name in the format of its ISO 639-1 code plus ".js". Make sure you
+commit that..stuff!
+
+
 The API
 -------
 
@@ -78,4 +117,3 @@ Missing Features
 - numberfmt doesn't work (should probably be integrated with L10n
   pluralization)
 - WebActivity support has not yet been added.
-- Review replies
