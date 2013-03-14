@@ -1,0 +1,11 @@
+<div class="main terms-of-use infobox c">
+  <div>
+    <h3>{{ _('Terms of Use') }}</h3>
+    {% defer (url=api('terms_of_use')) %}
+      {{ this.terms }}
+
+    {% placeholder %}
+      <p>{{ _('Loading terms of use...') }}</p>
+    {% end %}
+  </div>
+</div>

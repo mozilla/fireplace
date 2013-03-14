@@ -11,7 +11,7 @@ var routes = [
     {pattern: '^/abuse$', view_name: 'abuse'},
 
     {pattern: '^/privacy$', view_name: 'privacy'},
-    {pattern: '^/terms$', view_name: 'terms'}
+    {pattern: '^/terms-of-use$', view_name: 'terms'}
 ];
 
 define(

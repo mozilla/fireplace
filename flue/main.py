@@ -94,6 +94,11 @@ def feedback():
     return {'error': False}
 
 
+@app.route('/terms-of-use', methods=['GET'])
+def terms():
+    return {'terms': defaults.ptext()}
+
+
 @app.route('/featured')
 def featured():
     return [defaults.app('feat %d' % i, 'Featured App') for i in xrange(6)]

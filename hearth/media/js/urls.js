@@ -35,7 +35,6 @@ define('urls',
         console.error('Could not find the view "' + view_name + '".')
     };
 
-
     var api_endpoints = {
         'homepage': '/homepage',
         'app': '/app/{0}',
@@ -46,7 +45,8 @@ define('urls',
         'search': '/search',
         'feedback': '/feedback',
         'login': '/user/login',
-        'user_abuse': '/user/{0}/abuse'
+        'user_abuse': '/user/{0}/abuse',
+        'terms_of_use': '/terms-of-use'
     };
 
     var _device = _.once(function() {
