@@ -99,6 +99,11 @@ def terms():
     return {'terms': defaults.ptext()}
 
 
+@app.route('/privacy-policy', methods=['GET'])
+def privacy():
+    return {'privacy': defaults.ptext()}
+
+
 @app.route('/featured')
 def featured():
     return [defaults.app('feat %d' % i, 'Featured App') for i in xrange(6)]

@@ -10,7 +10,7 @@ var routes = [
     {pattern: '^/purchases$', view_name: 'purchases'},
     {pattern: '^/abuse$', view_name: 'abuse'},
 
-    {pattern: '^/privacy$', view_name: 'privacy'},
+    {pattern: '^/privacy-policy$', view_name: 'privacy'},
     {pattern: '^/terms-of-use$', view_name: 'terms'}
 ];
 
