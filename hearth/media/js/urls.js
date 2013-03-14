@@ -46,7 +46,8 @@ define('urls',
         'feedback': '/feedback',
         'login': '/user/login',
         'user_abuse': '/user/{0}/abuse',
-        'terms_of_use': '/terms-of-use'
+        'terms_of_use': '/terms-of-use',
+        'privacy_policy': '/privacy-policy'
     };
 
     var _device = _.once(function() {
