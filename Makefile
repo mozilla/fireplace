@@ -1,7 +1,11 @@
 VERSION = ` date "+%Y.%m%d%" `
 
-test:
+
+compile:
+	node damper.js --compile
+
+test: compile
 	echo "lol"
 
-package:
+package: compile
 	zip -r $(VERSION).zip hearth
