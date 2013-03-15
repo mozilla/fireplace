@@ -90,12 +90,20 @@ translated and returned, they can be reintroduced to Fireplace using the
     ..
     esperanto.po
     esperanto.po.js
-    %> mv ~/Downloads/verbatim/esperanto.po hearth/locales/eo.js
+    %> mv ~/Downloads/verbatim/esperanto.po hearth/locales/eo-EO.js
 
 
 Place all of the `.js` files in the `hearth/locales/` directory, renamed to
-have its name in the format of its ISO 639-1 code plus ".js". Make sure you
-commit that..stuff!
+have its name in the format of `xx-YY` plus ".js". Make sure you commit
+that..stuff!
+
+
+Testing Locales
+~~~~~~~~~~~~~~~
+
+You can add a query parameter to the URL to force a language override: ::
+
+    http://localhost:8675/?lang=pt-BR
 
 
 The API
