@@ -9,7 +9,7 @@ var languages = [
 
 var lang_expander = {
     'en': 'en-US', 'ga': 'ga-IE',
-    'pt': 'pt-PT', 'sv': 'sv-SE',
+    'pt': 'pt-BR', 'sv': 'sv-SE',
     'zh': 'zh-CN'
 };
 
