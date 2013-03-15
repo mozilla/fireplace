@@ -177,6 +177,7 @@ module.exports = (function() {
             '"Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"',
             '"Language-Team: LANGUAGE <LL@li.org>\\n"',
             '"MIME-Version: 1.0\\n"',
+            '"Plural-Forms: nplurals=2; plural=(n != 1);"',
             '"Content-Type: text/plain; charset=utf-8\\n"',
             '"Content-Transfer-Encoding: 8bit\\n"',
             '"X-Generator: Fireplace L10n Tools 1.0\\n"',

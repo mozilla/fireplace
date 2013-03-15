@@ -74,8 +74,8 @@ if (typeof define !== 'function') {
 }
 
 define(
-    ['templates', 'helpers', 'settings', 'underscore', 'z', 'nunjucks.compat'],
-    function(nunjucks, helpers, settings, _, z) {
+    ['templates', 'helpers', 'requests', 'settings', 'underscore', 'z', 'nunjucks.compat'],
+    function(nunjucks, helpers, requests, settings, _, z) {
 
     console.log('Loading nunjucks builder tags...');
     var counter = 0;
@@ -85,29 +85,7 @@ define(
         env.dev = nunjucks.env.dev;
         env.registerPrecompiled(nunjucks.templates);
 
-        var requests = {};
-        var initiated_requests = 0;
-        var completed_requests = 0;
-
-        var completion_def = $.Deferred();
-
-        function decrRequests() {
-            completed_requests++;
-            if (completed_requests >= initiated_requests) {
-                completion_def.resolve();
-                z.page.trigger('loaded');
-            }
-        }
-
-        function start_request(url) {
-            if (url in requests) {
-                return requests[url];
-            }
-            var req = $.get(url);
-            requests[url] = req;
-            initiated_requests++;
-            return req;
-        }
+        var pool = requests.pool();
 
         function make_paginatable(injector, placeholder, target) {
             var els = placeholder.find('.loadmore button');
@@ -123,19 +101,16 @@ define(
         // This pretends to be the nunjucks extension that does the magic.
         var defer_runner = {
             _run: function(context, signature, body, placeholder, empty, except) {
-                console.log(context);
-                var out = '<div class="loading">' + (placeholder ? placeholder() : '') + '</div>';
                 var uid = 'ph_' + counter++;
-                out = '<div id="' + uid + '" class="placeholder">' + out + '</div>';
+                var out;
 
                 var injector = function(url, replace, extract) {
-                    start_request(url).done(function(data) {
-                        context.ctx['response'] = data;
+                    var request = pool.get(url);
+
+                    function get_result(data) {
                         if ('pluck' in signature) {
                             data = data[signature.pluck];
                         }
-                        var el = $('#' + uid);
-                        var apply = replace ? replace.replaceWith : el.html;
                         var content = '';
                         if (empty && _.isArray(data) && data.length === 0) {
                             content = empty();
@@ -147,8 +122,22 @@ define(
                             var parsed = $($.parseHTML(content));
                             content = (parsed.filter(extract) || parsed.find(extract)).children();
                         }
-                        apply.apply(replace || el, [content]);
-                        decrRequests();
+                        return content;
+                    }
+
+                    if (request.__cached) {
+                        request.done(function(data) {
+                            context.ctx['response'] = data;
+                            out = get_result(data);
+                        });
+                        return;
+                    }
+
+                    request.done(function(data) {
+                        var el = $('#' + uid);
+                        context.ctx['response'] = data;
+                        var content = get_result(data);
+                        (replace ? replace.replaceWith : el.html).apply(replace || el, [content]);
                         if (signature.paginate) {
                             make_paginatable(injector, el, signature.paginate);
                         }
@@ -160,7 +149,11 @@ define(
                     });
                 };
                 injector(signature.url);
+                if (!out) {
+                    out = '<div class="loading">' + (placeholder ? placeholder() : '') + '</div>';
+                }
 
+                out = '<div id="' + uid + '" class="placeholder">' + out + '</div>';
                 return out;
             }
         };
@@ -168,32 +161,15 @@ define(
 
         this.start = function(template, defaults) {
             z.page.html(env.getTemplate(template).render(_.defaults(defaults || {}, helpers)));
-            return completion_def;
+            return this;
         };
 
-        this.done = completion_def.done;
-
-        this.terminate = function() {
-            // Abort all ongoing AJAX requests that been flagged as forced.
-            _.each(requests, function(request) {
-                console.log(request);
-                if (request.abort === undefined || request.isSuccess !== false) {
-                    return;
-                }
-                request.abort();
-            });
-        };
-        completion_def.fail(this.terminate);
+        pool.promise(this);
+        this.terminate = pool.abort;
 
         this.finish = function() {
-            if (!initiated_requests) {
-                z.page.trigger('loaded');
-                completion_def.resolve();
-                return;
-            }
-            completion_def.done(function() {
-                z.page.trigger('loaded');
-            });
+            pool.then(function() {z.page.trigger('loaded');});
+            pool.finish();
         };
 
         var context = _.once(function() {return z.context = {};});

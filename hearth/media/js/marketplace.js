@@ -112,6 +112,7 @@ require.config({
 
         // Do some last minute template compilation.
         z.page.on('reload_chrome', function () {
+            console.log('Reloading chrome');
             $('#site-header').html(
                 nunjucks.env.getTemplate('header.html').render(require('helpers')));
             $('#site-footer').html(

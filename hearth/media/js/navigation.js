@@ -195,6 +195,8 @@ define('navigation',
                 $el.hasClass('post') || $el.hasClass('sync');
     }
 
+
+
     z.body.on('click', 'a', function(e) {
         var href = this.getAttribute('href');
         if (e.metaKey || e.ctrlKey || e.button !== 0) return;
@@ -206,12 +208,9 @@ define('navigation',
         z.page.trigger('navigate', [href, $(this).data('params') || {path: href}]);
 
     }).on('submit', 'form#search', function(e) {
+        e.stopPropagation();
         e.preventDefault();
         z.page.trigger('search', {q: $('#search-q').val()});
-
-    }).on('submit', 'form', function(e) {
-        e.preventDefault();
-        console.error("We don't allow form submissions.");
 
     });
     z.win.on('popstate', function(e) {
@@ -219,6 +218,10 @@ define('navigation',
         if (state) {
             z.page.trigger('navigate', [state.path, true, state]);
         }
+
+    }).on('submit', 'form', function(e) {
+        e.preventDefault();
+        console.error("We don't allow form submissions.");
 
     });
 
