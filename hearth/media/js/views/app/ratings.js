@@ -1,4 +1,6 @@
-define(['urls'], function(urls) {
+define(['l10n', 'urls'], function(l10n, urls) {
+
+    var gettext = l10n.gettext;
 
     return function(builder, args) {
         builder.start('ratings/main.html');
@@ -15,6 +17,6 @@ define(['urls'], function(urls) {
         });
 
         builder.z('type', 'leaf');
-        builder.z('title', 'Ratings');  // No L10n for you!
+        builder.z('title', gettext('Ratings'));
     };
 });

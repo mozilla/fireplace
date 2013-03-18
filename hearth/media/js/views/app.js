@@ -35,9 +35,12 @@ define(['utils', 'z'], function(utils, z) {
     });
 
     return function(builder, args) {
-        builder.start('detail/main.html', {slug: args[0]});
+        function set_title(title) {
+            builder.z('title', title);
+        }
+        builder.start('detail/main.html', {slug: args[0], set_title: set_title});
 
         builder.z('type', 'leaf');
-        builder.z('title', 'Loading...');  // No L10n for you!
+        builder.z('title', 'Loading...');
     };
 });

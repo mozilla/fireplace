@@ -7,6 +7,7 @@
 
 <section class="main product-details listing expanded c">
   {% defer (url=endpoint) %}
+    {{ set_title(this.name) }}
     {{ market_tile(this) }}
   {% placeholder %}
     <div class="product mkt-tile">

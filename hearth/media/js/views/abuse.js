@@ -1,9 +1,13 @@
 define('views/abuse',
-    ['utils', 'requests', 'z'],
-    function(utils, requests, z) {
+       ['l10n', 'requests', 'urls', 'z'],
+       function(l10n, requests, urls, z) {
     'use strict';
 
-    z.page.on('submit', '.abuse-form', utils._pd(function(e) {
+    var gettext = l10n.gettext;
+
+    // XXX: This handles **ALL** abuse form submission.
+    z.page.on('submit', '.abuse-form', function(e) {
+        e.preventDefault();
         // Submit report abuse form
         var $this = $(this);
 
@@ -11,12 +15,12 @@ define('views/abuse',
             console.log('submitted abuse report');
             $this.find('textarea').val('');
         });
-    }));
+    });
 
     return function(builder, args) {
-        builder.start('detail/main.html', {slug: args[0]});
+        builder.start('detail/abuse.html', {slug: args[0]});
 
         builder.z('type', 'leaf');
-        builder.z('title', 'Loading...');  // No L10n for you!
+        builder.z('title', gettext('Report Abuse'));
     };
 });
