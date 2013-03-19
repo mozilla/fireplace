@@ -1,5 +1,6 @@
 define('settings_base', [], function () {
     var settings = {
+        title: 'Firefox Marketplace',
         api_url: 'http://' + window.location.hostname + ':5000',  // No trailing slash, please.
 
         simulate_nav_pay: false,

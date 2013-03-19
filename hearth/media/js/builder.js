@@ -201,6 +201,10 @@ define(
         this.z = function(key, val) {
             context()[key] = val;
             if (key === 'title') {
+                var origTitle = require('settings').title;
+                if (val != origTitle) {
+                    val += ' | ' + origTitle;
+                }
                 document.title = val;
             }
         };
