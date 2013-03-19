@@ -74,8 +74,8 @@ if (typeof define !== 'function') {
 }
 
 define(
-    ['templates', 'helpers', 'requests', 'settings', 'underscore', 'z', 'nunjucks.compat'],
-    function(nunjucks, helpers, requests, settings, _, z) {
+    ['templates', 'helpers', 'models', 'requests', 'underscore', 'z', 'nunjucks.compat', 'settings'],
+    function(nunjucks, helpers, models, requests, _, z) {
 
     console.log('Loading nunjucks builder tags...');
     var counter = 0;
@@ -84,6 +84,9 @@ define(
         var env = this.env = new nunjucks.Environment([]);
         env.dev = nunjucks.env.dev;
         env.registerPrecompiled(nunjucks.templates);
+
+        // For retrieving AJAX results from the view.
+        var result_map = this.results = {};
 
         var pool = requests.pool();
 
@@ -105,11 +108,27 @@ define(
                 var out;
 
                 var injector = function(url, replace, extract) {
-                    var request = pool.get(url);
+                    var request;
+                    if ('as' in signature && 'key' in signature) {
+                        request = models(signature.as).get(url, signature.key, pool.get);
+                    } else {
+                        request = pool.get(url);
+                    }
 
-                    function get_result(data) {
+                    function get_result(data, dont_cast) {
+                        // `pluck` pulls the value out of the response.
+                        // Equivalent to `this = this[pluck]`
                         if ('pluck' in signature) {
                             data = data[signature.pluck];
+                        }
+                        // `as` passes the data to the models for caching.
+                        if (!dont_cast && 'as' in signature) {
+                            var caster = models(signature.as).cast;
+                            if (_.isArray(data)) {
+                                _.each(data, caster)
+                            } else {
+                                caster(data);
+                            }
                         }
                         var content = '';
                         if (empty && _.isArray(data) && data.length === 0) {
@@ -125,10 +144,16 @@ define(
                         return content;
                     }
 
+                    if ('id' in signature) {
+                        request.done(function(data) {
+                            result_map[signature.id] = data;
+                        })
+                    }
+
                     if (request.__cached) {
                         request.done(function(data) {
                             context.ctx['response'] = data;
-                            out = get_result(data);
+                            out = get_result(data, true);
                         });
                         return;
                     }
@@ -145,7 +170,7 @@ define(
                         var el = $('#' + uid);
                         (replace ? replace.replaceWith : el.html).apply(
                             replace || el,
-                            [except ? except() : env.getTemplate(settings.fragment_error_template).render()]);
+                            [except ? except() : env.getTemplate(require('settings').fragment_error_template).render()]);
                     });
                 };
                 injector(signature.url);
@@ -173,7 +198,12 @@ define(
         };
 
         var context = _.once(function() {return z.context = {};});
-        this.z = function(key, val) {context()[key] = val;};
+        this.z = function(key, val) {
+            context()[key] = val;
+            if (key === 'title') {
+                document.title = val;
+            }
+        };
     }
 
     return {

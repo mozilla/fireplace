@@ -6,8 +6,7 @@
 {% set endpoint = api('app', [slug]) %}
 
 <section class="main product-details listing expanded c">
-  {% defer (url=endpoint) %}
-    {{ set_title(this.name) }}
+  {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
     {{ market_tile(this) }}
   {% placeholder %}
     <div class="product mkt-tile">
@@ -22,10 +21,6 @@
     <div class="tray previews full"></div>
   {% end %}
 </section>
-
-{#
-{{ notification(product, amo, mkt, is_dev, unrated_brazil_game) }}
-#}
 
 <section class="main" id="installed">
   <div>
@@ -47,7 +42,7 @@
 
 <section class="main blurbs infobox">
   <div>
-    {% defer (url=endpoint) %}
+    {% defer (url=endpoint, as='app', key=slug) %}
       {% set super_long = this.summary.length + description.length > 700 %}
       <p class="summary">
         {{ this.summary|nl2br }}
@@ -122,7 +117,7 @@
 
 <section id="support" class="main infobox support c">
   <div>
-    {% defer (url=endpoint) %}
+    {% defer (url=endpoint, as='app', key=slug) %}
       <ul class="c">
         {% if this.support_email %}
           <li class="support-email">
@@ -162,7 +157,7 @@
 </section>
 
 <div class="content_ratings">
-  {% defer (url=endpoint) %}
+  {% defer (url=endpoint, as='app', key=slug) %}
     {% if this.content_ratings %}
       <div class="main content-ratings infobox c">
         <div>

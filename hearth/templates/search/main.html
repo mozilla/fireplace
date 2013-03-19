@@ -42,7 +42,7 @@
   {% end %}
 </section>
 <section id="search-results" class="main full c">
-  {% defer (url=endpoint, pluck='apps', paginate='ol.listing') %}
+  {% defer (url=endpoint, pluck='apps', as='app', paginate='ol.listing') %}
     <ol class="container listing c">
       {% for result in this %}
         <li>{{ market_tile(result, link=true, force_button=true, src='mkt-home') }}</li>

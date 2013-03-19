@@ -1,4 +1,4 @@
-define(['utils', 'z'], function(utils, z) {
+define(['l10n', 'utils', 'z'], function(l10n, utils, z) {
     'use strict';
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
@@ -35,12 +35,14 @@ define(['utils', 'z'], function(utils, z) {
     });
 
     return function(builder, args) {
-        function set_title(title) {
-            builder.z('title', title);
-        }
-        builder.start('detail/main.html', {slug: args[0], set_title: set_title});
+        builder.start('detail/main.html', {slug: args[0]});
 
         builder.z('type', 'leaf');
-        builder.z('title', 'Loading...');
+        builder.z('title', gettext('Loading...'));
+
+        // Get the app name after the page loads and set the page title.
+        builder.done(function() {
+            builder.z('title', builder.results['app-data'].name);
+        });
     };
 });

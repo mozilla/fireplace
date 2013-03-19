@@ -2,7 +2,7 @@
 {% set endpoint = api('homepage') %}
 
 <section id="featured-home" class="featured full">
-  {% defer (url=endpoint, pluck='featured') %}
+  {% defer (url=endpoint, pluck='featured', as='app') %}
     <ul class="grid c">
       {% for app in this %}
         <li>{{ market_tile(app, link=true, src='mkt-home') }}</li>

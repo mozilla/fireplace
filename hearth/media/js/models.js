@@ -27,20 +27,30 @@ define('models', ['requests'], function(requests) {
             }
             var keyed_value = data[key];
             data_store[type][keyed_value] = data;
+            console.log('[model] Stored ' + keyed_value + ' as ' + type);
         }
 
-        var fetch = function(url, keyed_value) {
-            if (false &&keyed_value in data_store[type]) {
-                // Call the `.done()` function back in `request()`.
-                return $.Deferred().resolve(data_store[type][keyed_value]);
+        var get = function(url, keyed_value, getter) {
+            getter = getter || requests.get;
+
+            if (keyed_value) {
+                if (keyed_value in data_store[type]) {
+                    // Call the `.done()` function back in `request()`.
+                    console.log('[model] Found ' + type + ' with key ' + keyed_value);
+                    return $.Deferred()
+                            .resolve(data_store[type][keyed_value])
+                            .promise({__cached: true});
+                }
+
+                console.log('[model] ' + type + ' cache miss for key ' + keyed_value);
             }
 
-            return requests.get(url);
+            return getter(url);
         }
 
         return {
             cast: cast,
-            fetch: fetch
+            get: get
         };
     };
 
