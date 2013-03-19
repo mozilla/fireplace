@@ -67,7 +67,8 @@ def app(name, slug, **kwargs):
         },
         'listed_authors': [
             {'name': 'basta'},
-            {'name': 'cvan'}
+            {'name': 'cvan'},
+            {'name': 'Chris Van Halen'}
         ],
         'price': '0.00',
         'ratings': {

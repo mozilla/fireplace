@@ -1,6 +1,7 @@
 var fs = require('fs');
 var http = require('http');
 var path = require('path');
+var stylus = require('stylus');
 
 var opts = require('./scripts/utils.js').opts;
 var glob = require('./scripts/utils.js').glob;
@@ -96,11 +97,20 @@ function runCommand(command, filepath) {
             return reload();
         case 'stylus':
             var filepathDir = filepath.split('/').slice(0, -1).join('/');
-            child_process.exec('stylus --include-css --include ' + filepathDir +
-                               ' < ' + filepath + ' > ' + filepath + '.css', function(e, so, se) {
-                if (e !== null) {
-                    console.error(e);
+            fs.readFile(filepath, function (err, data) {
+                data = data.toString();
+                if (err) {
+                    console.error(filepath + ' not found!');
+                    return;
                 }
+                stylus(data)
+                    .set('filename', filepath + '.css')
+                    .set('include css', true)
+                    .include(filepathDir)
+                    .render(function(err, css) {
+                        fs.writeFileSync(filepath + '.css', css);
+                        if (err) console.error(err);
+                    });
             });
             break;
         case 'nunjucks':
