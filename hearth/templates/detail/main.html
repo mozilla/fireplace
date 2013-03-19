@@ -87,7 +87,7 @@
           {% endfor %}
         </ul>
         <div class="{{ 'split' if user.can_review else 'full' }}">
-          <a class="fatbutton average-rating" href="{{ url('app/ratings', [slug]) }}">
+          <a class="button alt average-rating" href="{{ url('app/ratings', [slug]) }}">
             <span>
               {{ _plural('{n} rating', '{n} ratings',
                          n=this.meta.count) }}
@@ -102,7 +102,7 @@
       {% endif %}
       {% if this.user.can_review %}
         <div class="{{ 'split' if this.ratings.length else 'full' }}">
-          <a class="fatbutton" id="add-first-review" href="#">
+          <a class="button alt" id="add-first-review" href="#">
             {{ _('Edit Your Review') if this.user.has_review else _('Write a Review') }}</a>
         </div>
       {% endif %}
@@ -140,7 +140,7 @@
             {{ _('Privacy Policy') }}</a></li>
         {% endif %}
         {% if product.public_stats %}
-          <li><a class="button alt view-stats" rel="external" href="/statistics/{{ slug }}/">
+          <li><a class="button alt view-stats" rel="external" href="/statistics/app/{{ slug }}/">
             {{ _('Statistics') }}</a></li>
         {% endif %}
         <li><a class="button alt" href="{{ url('app/abuse', [slug]) }}">
@@ -148,7 +148,7 @@
       </ul>
       {% if settings.payment_enabled %}
         {% if this.upsell %}
-          <a id="upsell" class="fatbutton"
+          <a id="upsell" class="button alt"
              href="{{ this.upsell.url|urlparams(src='mkt-detail-upsell') }}">
              <span class="avail">{{ _('Premium version available') }}</span>
              <img class="icon" src="{{ upsell.icons[16] }}">
