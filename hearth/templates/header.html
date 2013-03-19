@@ -1,7 +1,7 @@
 <nav role="navigation">
   <a href="#" id="nav-back" class="header-button icon back" title="{{ _('Back') }}"><b>{{ _('Back') }}</b></a>
   <h1 class="site"><a class="sync" href="{{ url('homepage') }}"><span class="wordmark">Firefox Marketplace</span></a></h1>
-  <h1 class="title"></h1>
+  <h1 class="title">{{ z.context.pagetitle or z.context.title }}</h1>
   <form novalidate method="GET" id="search" class="search" action="{{ url('search') }}"></form>
   <span class="flex-span"></span>
   <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>

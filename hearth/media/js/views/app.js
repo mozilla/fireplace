@@ -39,6 +39,7 @@ define(['l10n', 'utils', 'z'], function(l10n, utils, z) {
 
         builder.z('type', 'leaf');
         builder.z('title', gettext('Loading...'));
+        builder.z('pagetitle', gettext('App Details'));
 
         // Get the app name after the page loads and set the page title.
         builder.done(function() {

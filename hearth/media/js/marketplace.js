@@ -114,14 +114,15 @@ require.config({
         // Do some last minute template compilation.
         z.page.on('reload_chrome', function () {
             console.log('Reloading chrome');
+            var context = _.extend({z: z}, require('helpers'));
             $('#site-header').html(
-                nunjucks.env.getTemplate('header.html').render(require('helpers')));
+                nunjucks.env.getTemplate('header.html').render(context));
             $('#site-footer').html(
-                nunjucks.env.getTemplate('footer.html').render(require('helpers')));
+                nunjucks.env.getTemplate('footer.html').render(context));
             $('#login').html(
-                nunjucks.env.getTemplate('login.html').render(require('helpers')));
+                nunjucks.env.getTemplate('login.html').render(context));
             $('#search').html(
-                nunjucks.env.getTemplate('searchbox.html').render(require('helpers')));
+                nunjucks.env.getTemplate('searchbox.html').render(context));
 
             z.body.toggleClass('logged-in', require('user').logged_in());
         }).trigger('reload_chrome');
