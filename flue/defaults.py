@@ -14,6 +14,12 @@ def category(slug, name):
     }
 
 
+MESSAGES = [
+    ['be careful, cvan made it', 'loljk'],
+    ["it's probably a game or something"],
+    None
+]
+
 SCREENSHOT_MAP = [
     (70, 70367),
     (78, 78540),
@@ -68,10 +74,7 @@ def app(name, slug, **kwargs):
             'average': random.random() * 4 + 1,
             'count': int(random.random() * 500),
         },
-        'notices': [
-            'be careful, cvan made it.',
-            'lol jk'
-        ],
+        'notices': random.choice(MESSAGES),
         'support_email': 'support@%s.com' % slug,
         'homepage': 'http://marketplace.mozilla.org/',
         'privacy_policy': kwargs.get('privacy_policy', ptext()),
