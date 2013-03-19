@@ -1,17 +1,51 @@
-<div class="account">
-  {% if user.logged_in() %}
-    {{ _('Signed in as {email}', email=user.get_setting('email')) }}
-    <a href="#" class="sync logout">({{ _('Sign Out') }})</a>
-  {% else %}
-    <button class="persona">{{ _('Sign In / Sign Up') }}</button>
-  {% endif %}
+<div id="footer">
+  <div class="pad">
+    <h1 id="footzilla"><a href="https://www.mozilla.org/">mozilla</a></h1>
+    <p>
+      {{ _('Except where otherwise <a href="{legal_url}">noted</a>, content on this site is licensed under the <a href="{cc_url}">Creative Commons Attribution Share-Alike License v3.0</a> or any later version.', legal_url='http://www.mozilla.org/about/legal.html#site', cc_url='http://creativecommons.org/licenses/by-sa/3.0/') }}
+    </p>
+    <ul>
+      <li><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>
+      <li><a href="{{ url('terms') }}">{{ _('Terms of Use') }}</a></li>
+      <li><a href="http://mozilla.com/legal/fraud-report/index.html">
+        {{ _('Report Trademark Abuse') }}</a></li>
+    </ul>
+  </div>
 </div>
-<nav class="footer-links c" role="navigation">
-  <p>
-    <a href="{{ url('settings') }}">{{ _('Account Settings') }}</a>
-  </p>
-  <p>
-    <a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a>
-    <a href="{{ url('terms') }}">{{ _('Terms of Use') }}</a>
-  </p>
-</nav>
+<div id="directory-footer" class="c">
+  <div class="pad">
+    <div class="group">
+      <a class="devhub" href="/developers/">
+        <h1>{{ _('Develop apps for<br>the Marketplace!') }}</h1>
+        <b>{{ _('Visit the Developer Hub') }}</b>
+      </a>
+    </div>
+    {# TODO: Make this responsive based on basta's logged-in classes.
+       Based on ACL, show and hide these links:
+         <a href="/reviewers/apps/queue/" class="sync">Reviewer Tools</a>
+         <a href="/localizers" class="sync">Localizer Tools</a>
+         <a href="/lookup/" class="sync">Lookup Tool</a>
+         <a href="/admin/models" class="sync">Admin Tools</a>
+    #}
+    {% if logged and footer_links %}
+      <div class="group links">
+        {% for link in footer_links -%}
+          <a href="{{ link.href }}" class="sync">{{ link.text }}</a>
+        {%- endfor %}
+        <a href="{{ url('settings') }}" class="region region-{{ request.REGION.slug }}">
+          {{ LANGUAGES[request.LANG|lower] }}</a>
+      </div>
+    {% endif %}
+    <div class="group links">
+      <a href="/developers/">{{ _('Developer Hub') }}</a>
+      <a href="{{ url('feedback') }}">{{ _('Feedback') }}</a>
+      <a href="https://support.mozilla.org/products/marketplace">{{ _('Support') }}</a>
+    </div>
+    {% if not logged or not footer_links %}
+      <div class="group links">
+        <a href="{{ url('settings') }}" class="region region-{{ request.REGION.slug }}">
+          {{ LANGUAGES[request.LANG|lower] }}</a>
+      </div>
+    {% endif %}
+  </div>
+</div>

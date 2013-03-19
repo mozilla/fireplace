@@ -36,6 +36,7 @@ require.config({
         'buttons',
         'capabilities',
         'feedback',
+        'header',
         'helpers',
         'install',
         'l10n',

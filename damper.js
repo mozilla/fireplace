@@ -78,7 +78,7 @@ function reload() {
     watch('./compile_templates.js', null, 'nunjucks');
     watch('./scripts', 'js', 'nunjucks');
 
-    watch('./hearth/media/css', 'less', 'less');
+    watch('./hearth/media/css', 'styl', 'stylus');
     watch('./hearth/templates', 'html', 'nunjucks');
 
     // When the builder is updated, recompile the templates.
@@ -94,8 +94,10 @@ function runCommand(command, filepath) {
         case 'restart':
             console.log('Restarting...');
             return reload();
-        case 'less':
-            child_process.exec('lessc ' + filepath + ' ' + filepath + '.css', function(e, so, se) {
+        case 'stylus':
+            var filepathDir = filepath.split('/').slice(0, -1).join('/');
+            child_process.exec('stylus --include-css --include ' + filepathDir +
+                               ' < ' + filepath + ' > ' + filepath + '.css', function(e, so, se) {
                 if (e !== null) {
                     console.error(e);
                 }
@@ -117,7 +119,7 @@ function watch(globpath, ext, command) {
     var cb = function(err, filepaths) {
         filepaths.forEach(function(filepath) {
             watched_filepaths.push(filepath);
-            if (command == 'less') {
+            if (command == 'stylus') {
                 fs.exists(filepath, function(exists) {
                     if (exists) {
                         runCommand(command, filepath);

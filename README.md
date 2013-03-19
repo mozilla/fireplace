@@ -11,14 +11,14 @@ git submodule update --init  # For nunjucks
 
 Our dependencies:
 
-- `less`: For stylesheets
 - `nunjucks`: For templates (stored as submodule)
+- `stylus`: For stylesheets
 
 If you plan on doing compilation (i.e.: you're Wil Clouser), you'll also need
 
-- `clean-css`: For minifying css or whatever
+- `clean-css`: For minifying CSS or whatever
 - `requirejs`: For warming up Spaceheater
-- `uglify-js`: For string extraction
+- `uglify-js`: For minifying JS and L10n string extraction
 
 ### Flue
 
@@ -70,7 +70,7 @@ To control the hostname and port you can use the following otions
 node damper.js --host 127.0.0.1 --port 8888
 ```
 
-In addition to an HTTP server, the damper will also run a LESS watcher (to
+In addition to an HTTP server, the damper will also run a Stylus watcher (to
 recompile CSS as it's edited) and a template watcher (to recompile templates
 as they're edited).
 
@@ -94,10 +94,11 @@ will be generated.
 ## Localizing
 
 The compilation process (described above) generates a file called `strings.po`
-which can be uploaded to Verbatim. When the resulting language packs are
-translated and returned, they can be reintroduced to Fireplace using the
-`scripts/generate_langpacks.js` script. Running this script on a translated
-`.po` file will produce a language pack which can be included in the repo. ::
+which can be uploaded to [Verbatim](http://localize.mozilla.org/). When the
+resulting language packs are translated and returned, they can be reintroduced
+to Fireplace using the `scripts/generate_langpacks.js` script. Running this
+script on a translated `.po` file will produce a language pack which can be
+included in the repo. ::
 
     %> node scripts/generate_langpacks.js ~/Downloads/verbatim/esperanto.po
     %> ls ~/Downloads/verbatim
@@ -109,8 +110,8 @@ translated and returned, they can be reintroduced to Fireplace using the
 
 
 Place all of the `.js` files in the `hearth/locales/` directory, renamed to
-have its name in the format of `xx-YY` plus ".js". Make sure you commit
-that..stuff!
+have its name in the format of `xx-YY` plus `.js`. Make sure you commit
+that...stuff!
 
 
 ### Testing Locales
@@ -129,8 +130,8 @@ http://localhost:8675/?lang=pt-BR
 
 ## Bugs
 
-- If new templates or less files are added, they will not be recognized until
-  the damper is restarted. Deleted files may also cause problems.
+- If new templates or ``.styl`` files are added, they will not be recognized
+  until the damper is restarted. Deleted files may also cause problems.
 
 
 ## Missing Features

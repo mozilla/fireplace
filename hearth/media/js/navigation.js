@@ -135,7 +135,7 @@ define('navigation',
     function setTitle() {
         // Something something title joke.
         var title = z.context.headertitle || '';
-        $('#site-header h1.page').text(title);
+        $('#site-header h1.title').text(title);
     }
 
     function back() {
@@ -148,7 +148,7 @@ define('navigation',
             console.log('attempted nav.back at root!');
         }
     }
-    z.body.on('click', '.back', utils._pd(back));
+    z.body.on('click', '.site-header .back', utils._pd(back));
 
     var views = require('views');
 

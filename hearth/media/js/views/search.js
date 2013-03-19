@@ -94,10 +94,9 @@ define(
         var storedExpand = localStorage.getItem('expand-listings') === 'true' || capabilities.desktop;
 
         // Handle expanded/collapsed view
-        var $expandToggle = $('#site-header .expand');
-        $expandToggle.click(_pd(function(e) {
+        z.body.on('click', '.expand-toggle', _pd(function(e) {
             expandListings = !expandListings;
-            $expandToggle.toggleClass('active', expandListings);
+            $(this).toggleClass('active', expandListings);
             setTrays(expandListings);
         }));
 
