@@ -121,26 +121,30 @@
       <ul class="c">
         {% if this.support_email %}
           <li class="support-email">
-            {{ emaillink(this.support_email, _('Support Email')) }}
+            {{ emaillink(this.support_email, _('Support Email'), class='button alt') }}
           </li>
         {% endif %}
         {% if this.support_url %}
           <li class="support-url">
-            <a rel="external" {{ this.support_url|external_href }}>
+            <a class="button alt" rel="external" {{ this.support_url|external_href }}>
               {{ _('Support Site') }}</a>
           </li>
         {% endif %}
         {% if this.homepage %}
           <li class="homepage">
-            <a rel="external" {{ this.homepage|external_href }}>{{ _('Homepage') }}</a>
+            <a class="button alt" rel="external" {{ this.homepage|external_href }}>{{ _('Homepage') }}</a>
           </li>
         {% endif %}
         {% if this.privacy_policy %}
-          <li><a href="{{ url('app/privacy', [slug]) }}">
+          <li><a class="button alt" href="{{ url('app/privacy', [slug]) }}">
             {{ _('Privacy Policy') }}</a></li>
         {% endif %}
-        <li><a href="{{ url('app/abuse', [slug]) }}">
-            {{ _('Report Abuse') }}</a></li>
+        {% if product.public_stats %}
+          <li><a class="button alt view-stats" rel="external" href="/statistics/{{ slug }}/">
+            {{ _('Statistics') }}</a></li>
+        {% endif %}
+        <li><a class="button alt" href="{{ url('app/abuse', [slug]) }}">
+          {{ _('Report Abuse') }}</a></li>
       </ul>
       {% if settings.payment_enabled %}
         {% if this.upsell %}

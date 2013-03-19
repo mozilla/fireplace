@@ -13,5 +13,5 @@
 #}
 
 {% macro emaillink(email, title=None, class=None) %}
-  <a{{ class }} href="mailto:{{ email }}">{{ title }}</a>
+  <a{% if class %} class="{{ class }}"{% endif %} href="mailto:{{ email }}">{{ title }}</a>
 {% endmacro %}

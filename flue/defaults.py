@@ -86,8 +86,8 @@ def app(name, slug, **kwargs):
         #    icons: ...,
         #},
         'content_ratings': {
-            'dejus': {'name': 'M', 'description': 'rating desc'},
-            'esrb': {'name': 'C', 'description': 'C for CVERYONE'},
+            'dejus': {'name': '12', 'description': 'Ask your parents'},
+            'esrb': {'name': 'L', 'description': 'L for BASTA'},
         },
         'user': {
             'owns': random.choice((True, False))
