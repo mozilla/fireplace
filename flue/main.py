@@ -8,6 +8,7 @@ or without needing to use -dev (offline mode).
 import hashlib
 import json
 import random
+import time
 from functools import wraps
 from optparse import OptionParser
 
@@ -20,6 +21,7 @@ import persona
 
 
 PER_PAGE = 10
+LATENCY = 0
 
 
 # Monkeypatching for CORS and JSON.
@@ -35,6 +37,8 @@ def corsify(*args, **kwargs):
             resp.headers['Access-Control-Allow-Origin'] = '*'
             resp.headers['Access-Control-Allow-Methods'] = 'GET'
             resp.headers['Content-type'] = 'application/json'
+            if LATENCY:
+                time.sleep(LATENCY)
             return resp
 
         registered_func = ar(*args, **kwargs)(wrap)
@@ -204,6 +208,9 @@ if __name__ == '__main__':
             help='port', metavar='PORT', default=5000)
     parser.add_option('--host', dest='hostname',
             help='hostname', metavar='HOSTNAME', default='0.0.0.0')
+    parser.add_option('--latency', dest='latency',
+            help='latency (sec)', metavar='LATENCY', default=0)
     (options, args) = parser.parse_args()
     app.debug = True
+    LATENCY = int(options.latency)
     app.run(host=options.hostname, port=int(options.port))
