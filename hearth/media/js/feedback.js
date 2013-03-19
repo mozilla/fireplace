@@ -3,14 +3,9 @@
 define(
     ['capabilities', 'utils', 'urls', 'z', 'requests', 'templates'],
     function(capabilities, utils, urls, z, requests, nunjucks) {
-    var overlay = $('#feedback-overlay');
+    var overlay = utils.makeOrGetOverlay('feedback-overlay');
 
-    if (!overlay.length) {
-        overlay = $('<div id="feedback-overlay" class="overlay">');
-        z.container.append(overlay);
-    }
-
-    z.container.on('submit', '.feedback-form', utils._pd(function(e) {
+    z.body.on('submit', '.feedback-form', utils._pd(function(e) {
         // Submit feedback form
         var $this = $(this);
 
