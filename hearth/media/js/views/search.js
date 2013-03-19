@@ -72,7 +72,7 @@ define(
         }
 
         builder.z('type', 'search');
-        builder.z('title', params.cat || params.q);  // No L10n for you!
+        builder.z('title', params.cat || params.q || gettext('Search Results'));
 
         builder.start('search/main.html', {params: params}).done(function() {
             setTrays(expandListings);
