@@ -221,7 +221,9 @@ define(
             context()[key] = val;
             switch (key) {
                 case 'title':
-                    if (val !== settings.title_suffix) {
+                    if (!val) {
+                        val = settings.title_suffix;
+                    } else if (val !== settings.title_suffix) {
                         val += ' | ' + settings.title_suffix;
                     }
                     document.title = val;
