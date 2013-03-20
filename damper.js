@@ -44,7 +44,7 @@ if (!opts.compile) {
             return writeIndex();
 
         var filePath = './hearth' + request.url;
-        fs.exists(filePath, function(exists) {
+        fs_exists(filePath, function(exists) {
             if (exists) {
                 fs.readFile(filePath, function(error, content) {
                     if (error) {
@@ -137,7 +137,7 @@ function watch(globpath, ext, command) {
         filepaths.forEach(function(filepath) {
             watched_filepaths.push(filepath);
             if (command == 'stylus') {
-                fs.exists(filepath, function(exists) {
+                fs_exists(filepath, function(exists) {
                     if (exists) {
                         runCommand(command, filepath);
                     }
