@@ -121,8 +121,6 @@ require.config({
                 nunjucks.env.getTemplate('footer.html').render(context));
             $('#login').html(
                 nunjucks.env.getTemplate('login.html').render(context));
-            $('#search').html(
-                nunjucks.env.getTemplate('searchbox.html').render(context));
 
             z.body.toggleClass('logged-in', require('user').logged_in());
         }).trigger('reload_chrome');

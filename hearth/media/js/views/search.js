@@ -72,6 +72,7 @@ define(
         }
 
         builder.z('type', 'search');
+        builder.z('search', params.cat || params.q);
         builder.z('title', params.cat || params.q || gettext('Search Results'));
 
         builder.start('search/main.html', {params: params}).done(function() {
@@ -94,7 +95,7 @@ define(
         var storedExpand = localStorage.getItem('expand-listings') === 'true' || capabilities.desktop;
 
         // Handle expanded/collapsed view
-        z.body.on('click', '.expand-toggle', _pd(function(e) {
+        $('.expand-toggle').on('click', _pd(function(e) {
             expandListings = !expandListings;
             $(this).toggleClass('active', expandListings);
             setTrays(expandListings);
