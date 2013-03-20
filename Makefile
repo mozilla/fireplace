@@ -1,4 +1,4 @@
-VERSION = ` date "+%Y.%m%d%" `
+VERSION = ` date "+%Y.%m%d" `
 
 
 compile:
