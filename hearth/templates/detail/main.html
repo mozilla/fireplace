@@ -79,7 +79,7 @@
 
 <section class="main reviews c">
   <div id="reviews-detail">
-    {% defer (url=api('ratings', [slug])) %}
+    {% defer (url=api('ratings', [slug]), id='ratings') %}
       {% if this.ratings.length %}
         <ul class="c ratings-placeholder-inner">
           {% for rat in this.ratings.slice(0, 2) %}

@@ -22,17 +22,7 @@ define(['l10n', 'utils', 'z'], function(l10n, utils, z) {
         window.location.hash = 'id=' + $('.product').data('product')['id'];
         e.stopPropagation();
 
-    })).on('loaded', function() {
-        var reviews = $('.detail .reviews li');
-        if (reviews.length < 3) return;
-
-        for (var i=0; i<reviews.length-2; i+=2) {
-            var hgt = Math.max(reviews.eq(i).find('.review-inner').height(),
-                               reviews.eq(i+1).find('.review-inner').height());
-            reviews.eq(i).find('.review-inner').height(hgt);
-            reviews.eq(i+1).find('.review-inner').height(hgt);
-        }
-    });
+    }));
 
     return function(builder, args) {
         builder.start('detail/main.html', {slug: args[0]});
@@ -41,9 +31,18 @@ define(['l10n', 'utils', 'z'], function(l10n, utils, z) {
         builder.z('title', gettext('Loading...'));
         builder.z('pagetitle', gettext('App Details'));
 
-        // Get the app name after the page loads and set the page title.
-        builder.done(function() {
+        builder.onload('app-data', function() {
             builder.z('title', builder.results['app-data'].name);
+        }).onload('ratings', function() {
+            var reviews = $('.detail .reviews li');
+            if (reviews.length < 3) return;
+
+            for (var i=0; i<reviews.length-2; i+=2) {
+                var hgt = Math.max(reviews.eq(i).find('.review-inner').height(),
+                                   reviews.eq(i+1).find('.review-inner').height());
+                reviews.eq(i).find('.review-inner').height(hgt);
+                reviews.eq(i+1).find('.review-inner').height(hgt);
+            }
         });
     };
 });

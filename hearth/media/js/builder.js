@@ -74,8 +74,8 @@ if (typeof define !== 'function') {
 }
 
 define(
-    ['templates', 'helpers', 'models', 'requests', 'underscore', 'z', 'nunjucks.compat', 'settings'],
-    function(nunjucks, helpers, models, requests, _, z) {
+    ['templates', 'helpers', 'models', 'requests', 'settings', 'underscore', 'z', 'nunjucks.compat'],
+    function(nunjucks, helpers, models, requests, settings, _, z) {
 
     console.log('Loading nunjucks builder tags...');
     var counter = 0;
@@ -87,6 +87,7 @@ define(
 
         // For retrieving AJAX results from the view.
         var result_map = this.results = {};
+        var result_handlers = {};
 
         var pool = requests.pool();
 
@@ -145,8 +146,10 @@ define(
                     }
 
                     if ('id' in signature) {
+                        var id = signature.id;
+                        result_handlers[id] = request;
                         request.done(function(data) {
-                            result_map[signature.id] = data;
+                            result_map[id] = data;
                         })
                     }
 
@@ -170,7 +173,7 @@ define(
                         var el = $('#' + uid);
                         (replace ? replace.replaceWith : el.html).apply(
                             replace || el,
-                            [except ? except() : env.getTemplate(require('settings').fragment_error_template).render()]);
+                            [except ? except() : env.getTemplate(settings.fragment_error_template).render()]);
                     });
                 };
                 injector(signature.url);
@@ -189,6 +192,11 @@ define(
             return this;
         };
 
+        this.onload = function(id, callback) {
+            result_handlers[id].done(callback);
+            return this;
+        };
+
         pool.promise(this);
         this.terminate = pool.abort;
 
@@ -200,12 +208,16 @@ define(
         var context = _.once(function() {return z.context = {};});
         this.z = function(key, val) {
             context()[key] = val;
-            if (key === 'title') {
-                var origTitle = require('settings').title;
-                if (val != origTitle) {
-                    val += ' | ' + origTitle;
-                }
-                document.title = val;
+            switch (key) {
+                case 'title':
+                    if (val !== settings.title_suffix) {
+                        val += ' | ' + settings.title_suffix;
+                    }
+                    document.title = val;
+                    break;
+                case 'type':
+                    z.body.attr('data-page-type', val);
+                    break;
             }
         };
     }

@@ -97,7 +97,7 @@ define('lightbox', ['keys', 'utils', 'z'], function(keys, utils, z) {
 
         function resize() {
             if (!slider) return;
-            $content.find('.caption').lineclamp(2);
+            $content.find('.caption');
             slider.distance = $section.width();
             slider.refresh();
         }

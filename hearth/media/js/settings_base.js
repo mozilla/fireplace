@@ -1,6 +1,5 @@
 define('settings_base', [], function () {
     var settings = {
-        title: 'Firefox Marketplace',
         api_url: 'http://' + window.location.hostname + ':5000',  // No trailing slash, please.
 
         simulate_nav_pay: false,
@@ -21,6 +20,8 @@ define('settings_base', [], function () {
         persona_unverified_issuer: null,
         native_persona: 'https://native-persona.org/include.js',
         persona: 'https://login.persona.org/include.js',
+
+        title_suffix: 'Firefox Marketplace'
     };
     return settings;
 });

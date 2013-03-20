@@ -110,7 +110,7 @@ def privacy():
 
 @app.route('/featured')
 def featured():
-    return [defaults.app('feat %d' % i, 'Featured App') for i in xrange(6)]
+    return [defaults.app('feat %d' % i, 'Featured App') for i in xrange(8)]
 
 
 @app.route('/categories')
@@ -166,7 +166,7 @@ def search():
     data = _paginated('apps', gen)
     result_count = 34
     data['creatured'] = [defaults.app('creat %d' % i, 'Creatued App') for
-                         i in xrange(3)]
+                         i in xrange(4)]
     data['meta'] = {
         'query': request.args.get('q'),
         'sort': request.args.get('sort'),

@@ -45,7 +45,9 @@
   {% defer (url=endpoint, pluck='apps', as='app', paginate='ol.listing') %}
     <ol class="container listing c">
       {% for result in this %}
-        <li>{{ market_tile(result, link=true, force_button=true, src='mkt-home') }}</li>
+        <li class="item result app c">
+          {{ market_tile(result, link=true, force_button=true, src='mkt-home') }}
+        </li>
       {% endfor %}
 
       {# Render the more button if there's another page of results #}

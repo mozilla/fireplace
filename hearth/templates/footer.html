@@ -13,24 +13,24 @@
          <a href="/lookup/" class="sync">Lookup Tool</a>
          <a href="/admin/models" class="sync">Admin Tools</a>
     #}
-    {% if logged and footer_links %}
+    {% if user.logged_in() and footer_links %}
       <div class="group links">
         {% for link in footer_links -%}
           <a href="{{ link.href }}" class="sync">{{ link.text }}</a>
         {%- endfor %}
-        <a href="{{ url('settings') }}" class="region region-{{ request.REGION.slug }}">
-          {{ LANGUAGES[request.LANG|lower] }}</a>
+        <a href="{{ url('settings') }}" class="region region-{{ user.get_setting('region') }}">
+          {{ LANGUAGES[navigator.language] }}</a>
       </div>
     {% endif %}
     <div class="group links">
       <a href="/developers/">{{ _('Developer Hub') }}</a>
-      <a href="{{ url('feedback') }}">{{ _('Feedback') }}</a>
+      <a href="#" class="submit-feedback">{{ _('Feedback') }}</a>
       <a href="https://support.mozilla.org/products/marketplace">{{ _('Support') }}</a>
     </div>
-    {% if not logged or not footer_links %}
+    {% if not user.logged_in() or not footer_links %}
       <div class="group links">
-        <a href="{{ url('settings') }}" class="region region-{{ request.REGION.slug }}">
-          {{ LANGUAGES[request.LANG|lower] }}</a>
+        <a href="{{ url('settings') }}" class="region region-{{ user.get_setting('region') }}">
+          {{ LANGUAGES[navigator.language] }}</a>
       </div>
     {% endif %}
   </div>
@@ -39,7 +39,9 @@
   <div class="pad">
     <h1 id="footzilla"><a href="https://www.mozilla.org/">mozilla</a></h1>
     <p>
-      {{ _('Except where otherwise <a href="{legal_url}">noted</a>, content on this site is licensed under the <a href="{cc_url}">Creative Commons Attribution Share-Alike License v3.0</a> or any later version.', legal_url='http://www.mozilla.org/about/legal.html#site', cc_url='http://creativecommons.org/licenses/by-sa/3.0/') }}
+      {{ _('Except where otherwise <a href="{legal_url}">noted</a>, content on this site is licensed under the <a href="{cc_url}">Creative Commons Attribution Share-Alike License v3.0</a> or any later version.',
+           legal_url='http://www.mozilla.org/about/legal.html#site',
+           cc_url='http://creativecommons.org/licenses/by-sa/3.0/') }}
     </p>
     <ul>
       <li><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>

@@ -105,37 +105,6 @@ define('navigation',
             }
         }
 
-        z.page.trigger('page_setup');
-    }
-    z.page.on('page_setup', function() {
-        setClass();
-        setTitle();
-        setType();
-    });
-
-    var oldClass = '';
-    function setClass() {
-        // We so classy.
-        var newClass = z.context.bodyclass;
-        z.body.removeClass(oldClass).addClass(newClass);
-        oldClass = newClass;
-    }
-
-    function setType() {
-        // We so type-y.
-        var type = z.context.type;
-        z.body.attr('data-page-type', type || 'leaf');
-
-        if (type !== 'search') {
-            var search_q = $('#search-q');
-            search_q.attr('placeholder', search_q.data('placeholder-default'));
-        }
-    }
-
-    function setTitle() {
-        // Something something title joke.
-        var title = z.context.headertitle || '';
-        $('#site-header h1.title').text(title);
     }
 
     function back() {
