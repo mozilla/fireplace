@@ -188,12 +188,12 @@
     max-width: 600px;
     li {
         border-bottom: 1px solid $black-border;
-        border-left: 1px solid $black-border;
+        border-right: 1px solid $black-border;
         float: left;
         max-height: 141px;
         width: 33.33333%;
-        &:nth-child(3n) {
-            border-right: 1px solid $black-border;
+        &:first-child {
+            border-left: 1px solid $black-border;
         }
     }
     .mkt-tile {
@@ -408,6 +408,13 @@
     display: none;
 }
 
+#featured-home {
+    background: #252a2e;
+}
+#page > #featured-home {
+    max-width: 100%;
+}
+
 @media (max-width: 479px) {
     // Mobile.
     .grid {
@@ -442,9 +449,15 @@
     }
 }
 
-#featured-home {
-    background: #252a2e;
-}
-#page > #featured-home {
-    max-width: 100%;
+@media (max-width: 1023px) {
+    #featured .grid {
+        li:nth-child(n + 4) {
+            display: none;
+        }
+    }
+    #featured-home .grid {
+        li:nth-child(n + 7) {
+            display: none;
+        }
+    }
 }
