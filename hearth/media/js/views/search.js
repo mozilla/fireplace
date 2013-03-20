@@ -46,7 +46,6 @@ define(
         expand = expanded;
         $('ol.listing').toggleClass('expanded', expanded);
         $('.expand-toggle').toggleClass('active', expand);
-        console.log($('.expand-toggle'));
         localStorage.setItem('expand-listings', expanded);
         if (expanded) {
             z.page.trigger('populatetray');
@@ -57,8 +56,13 @@ define(
         setTrays(expand = !expand);
     }));
 
-    z.page.on('reloaded_chrome', function() {
+    z.page.on('loaded', function() {
+        var $q = $('#search-q');
+        $q.attr('placeholder', z.context.search || $q.data('placeholder-default'));
+    }).on('reloaded_chrome', function() {
         setTrays(expand);
+    }).on('loaded_more', function() {
+        z.page.trigger('populatetray');
     });
 
     return function(builder, args, params) {
@@ -73,11 +77,8 @@ define(
         builder.z('search', params.cat || params.q);
         builder.z('title', params.cat || params.q || gettext('Search Results'));
 
-        builder.start('search/main.html', {params: params})
-         .done(function() {
+        builder.start('search/main.html', {params: params}).done(function() {
             setTrays(expand);
-            var $q = $('#search-q');
-            $q.attr('placeholder', z.context.search || $q.data('placeholder-default'));
         });
 
 

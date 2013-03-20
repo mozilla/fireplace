@@ -107,17 +107,16 @@ define('navigation',
 
     }
 
-    function back() {
+    z.body.on('click', '.site-header .back', utils._pd(function() {
         // Something something back joke.
         if (stack.length > 1) {
             stack.shift();
             history.replaceState(stack[0], false, stack[0].path);
-            z.page.trigger('navigate', [stack[0].path, true, stack[0]]);
+            navigate(stack[0].path, true, stack[0]);
         } else {
             console.log('attempted nav.back at root!');
         }
-    }
-    z.body.on('click', '.site-header .back', utils._pd(back));
+    }));
 
     var views = require('views');
 
@@ -164,8 +163,6 @@ define('navigation',
                 $el.hasClass('post') || $el.hasClass('sync');
     }
 
-
-
     z.body.on('click', 'a', function(e) {
         var href = this.getAttribute('href');
         if (e.metaKey || e.ctrlKey || e.button !== 0) return;
@@ -185,7 +182,7 @@ define('navigation',
     z.win.on('popstate', function(e) {
         var state = e.originalEvent.state;
         if (state) {
-            z.page.trigger('navigate', [state.path, true, state]);
+            navigate(state.path, true, state);
         }
 
     }).on('submit', 'form', function(e) {
@@ -195,8 +192,6 @@ define('navigation',
     });
 
     return {
-        back: back,
-        oldClass: function() {return oldClass;},
         stack: function() {return stack;},
         navigationFilter: navigationFilter
     };

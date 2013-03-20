@@ -98,7 +98,9 @@ define(
             }
 
             els.on('click', function() {
-                injector(els.data('url'), els.parent(), target);
+                injector(els.data('url'), els.parent(), target).done(function() {
+                    z.page.trigger('loaded_more');
+                });
             });
         }
 
@@ -180,6 +182,7 @@ define(
                             replace || el,
                             [except ? except() : env.getTemplate(settings.fragment_error_template).render()]);
                     });
+                    return request;
                 };
                 injector(signature.url);
                 if (!out) {
@@ -206,7 +209,10 @@ define(
         this.terminate = pool.abort;
 
         this.finish = function() {
-            pool.then(function() {z.page.trigger('loaded');});
+            pool.then(function() {
+                z.page.trigger('loaded');
+                $('h1.title').html(z.context.pagetitle || z.context.title);
+            });
             pool.finish();
         };
 

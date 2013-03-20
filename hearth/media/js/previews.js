@@ -57,7 +57,7 @@ define('previews', ['flipsnap', 'templates', 'utils', 'z'], function(Flipsnap, n
         }
 
         z.page.on('loaded populatetray', function() {
-            var trays = $('.listing.expanded .mkt-tile + .tray');
+            var trays = $('.listing.expanded .mkt-tile + .tray:empty');
             trays.each(populateTray);
         });
     }

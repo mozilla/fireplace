@@ -32,6 +32,6 @@ define('views/homepage', ['l10n', 'z'], function(l10n, z) {
         });
 
         builder.z('type', 'root');
-        builder.z('title', gettext('Firefox Marketplace'));
+        builder.z('title', '');  // We don't want a title on the homepage.
     };
 });

@@ -64,6 +64,8 @@ define('helpers',
         _plural: l10n.ngettext,
         format: require('format').format,
         settings: require('settings'),
-        user: require('user')
+        user: require('user'),
+
+        navigator: window.navigator
     };
 });
