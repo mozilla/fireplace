@@ -13,7 +13,7 @@ from functools import wraps
 from optparse import OptionParser
 
 
-from flask import Flask, make_response, render_template, request, url_for
+from flask import Flask, make_response, request
 app = Flask("Flue")
 
 import defaults
