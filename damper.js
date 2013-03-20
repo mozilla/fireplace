@@ -3,6 +3,13 @@ var http = require('http');
 var path = require('path');
 var stylus = require('stylus');
 
+var fs_exists;
+if (!('exists' in fs)) {
+    fs_exists = fs.exists;
+} else {
+    fs_exists = require('path').exists;
+}
+
 var opts = require('./scripts/utils.js').opts;
 var glob = require('./scripts/utils.js').glob;
 
