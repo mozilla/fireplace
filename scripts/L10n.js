@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-var nodes = require('../nunjucks/src/nodes');
+var nodes = require('../node_modules/nunjucks/src/nodes');
 
 var uglify = require('uglify-js');
 

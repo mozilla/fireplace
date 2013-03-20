@@ -6,12 +6,11 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
 
 ```bash
 npm install -d
-git submodule update --init  # For nunjucks
 ```
 
 Our dependencies:
 
-- `nunjucks`: For templates (stored as submodule)
+- `nunjucks`: For templates
 - `stylus`: For stylesheets
 
 If you plan on doing compilation (i.e.: you're Wil Clouser), you'll also need
