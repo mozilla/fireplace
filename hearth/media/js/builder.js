@@ -150,7 +150,7 @@ define(
                         result_handlers[id] = request;
                         request.done(function(data) {
                             result_map[id] = data;
-                        })
+                        });
                     }
 
                     if (request.__cached) {
@@ -158,6 +158,11 @@ define(
                             context.ctx['response'] = data;
                             out = get_result(data, true);
                         });
+                        if (signature.paginate) {
+                            pool.done(function() {
+                                make_paginatable(injector, $('#' + uid), signature.paginate);
+                            });
+                        }
                         return;
                     }
 
