@@ -8,4 +8,6 @@ test: compile
 	echo "lol"
 
 package: compile
-	zip -r $(VERSION).zip hearth
+	cd hearth/
+	zip -r $(VERSION).zip *
+	cd ../
