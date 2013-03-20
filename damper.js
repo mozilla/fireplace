@@ -73,8 +73,7 @@ if (!opts.compile) {
     console.log('Starting compilation...');
 }
 
-var child_process = require('child_process'),
-    watched_filepaths = [];
+var watched_filepaths = [];
 
 
 function reload() {
@@ -93,9 +92,9 @@ function reload() {
     watch('./hearth/js/builder.js', null, 'nunjucks');
 }
 
-var _nunjucks_command = './scripts/compile.js hearth/templates hearth/templates.js strings.po';
+var nunjucks_opts = {};
 if (opts.l10n || opts.compile) {
-    _nunjucks_command += ' --l10n';
+    nunjucks_opts.l10n = true;
 }
 function runCommand(command, filepath) {
     switch (command) {
@@ -122,12 +121,12 @@ function runCommand(command, filepath) {
             break;
         case 'nunjucks':
             console.log('Recompiling templates...');
-            child_process.exec(_nunjucks_command, function(e, so, se) {
-                console.log(se);  // stderr
-                if (e !== null) {
-                    console.error(e);
-                }
-            });
+            require('./scripts/compile').process(
+                'hearth/templates',
+                'hearth/templates.js',
+                'strings.po',
+                nunjucks_opts
+            );
             break;
     }
 }
