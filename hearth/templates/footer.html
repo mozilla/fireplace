@@ -13,8 +13,8 @@
          <a href="/lookup/" class="sync">Lookup Tool</a>
          <a href="/admin/models" class="sync">Admin Tools</a>
     #}
-    {% if user.logged_in() and footer_links %}
-      <div class="group links">
+    {% if footer_links %}
+      <div class="group links only-logged-in">
         {% for link in footer_links -%}
           <a href="{{ link.href }}" class="sync">{{ link.text }}</a>
         {%- endfor %}

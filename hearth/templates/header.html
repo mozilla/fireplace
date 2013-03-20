@@ -16,20 +16,18 @@
   <div class="act-tray">
     <a href="{{ url('settings') }}" class="header-button icon settings" title="{{ _('Settings') }}"></a>
     {# TODO: Make this responsive based on basta's logged-in classes. #}
-    {% if user.logged_in() %}
-      <div class="account-links">
-        <ul>
-          <li>
-            <a href="{{ url('settings') }}">
-              <em>{{ request.amo_user.email }}</em>
-              {{ _('Edit Account Settings') }}</a>
-          </li>
-          <li><a href="{{ url('purchases') }}">{{ _('My Apps') }}</a></li>
-          <li><a class="submit-feedback" href="#">{{ _('Feedback') }}</a></li>
-          <li><a href="#" class="logout">{{ _('Sign Out') }}</a></li>
-        </ul>
-      </div>
-    {% endif %}
+    <div class="account-links only-logged-in">
+      <ul>
+        <li>
+          <a href="{{ url('settings') }}">
+            <em>{{ user.get_setting('email') }}</em>
+            {{ _('Edit Account Settings') }}</a>
+        </li>
+        <li><a href="{{ url('purchases') }}">{{ _('My Apps') }}</a></li>
+        <li><a class="submit-feedback" href="#">{{ _('Feedback') }}</a></li>
+        <li><a href="#" class="logout">{{ _('Sign Out') }}</a></li>
+      </ul>
+    </div>
   </div>
   <a href="#" class="header-button persona">{{ _('Sign In') }}</a>
 </nav>
