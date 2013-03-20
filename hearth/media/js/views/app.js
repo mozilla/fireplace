@@ -1,4 +1,6 @@
-define(['l10n', 'utils', 'z'], function(l10n, utils, z) {
+define(
+    ['l10n', 'utils', 'requests', 'urls', 'z', 'templates'],
+    function(l10n, utils, requests, urls, z, nunjucks) {
     'use strict';
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {

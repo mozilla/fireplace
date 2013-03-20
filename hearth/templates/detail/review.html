@@ -1,0 +1,25 @@
+<section class="bare">
+  <header class="header">
+    <h1 class="title">{{ title }}</h1>
+    <a href="#" class="header-button icon cancel dismiss">{{ _('Cancel') }}</a>
+  </header>
+  <form class="friendly" method="post" data-action="{{ action }}">
+    <p class="brform simple-field rating c">
+      <label for="id_rating">{{ _('Rate:') }}</label>
+      <select name="rating" id="id_rating" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </p>
+    <p class="brform simple-field c">
+      <textarea id="id_body" rows="2" cols="40" name="body" required>{{ body }}</textarea>
+    </p>
+    <footer class="form-footer c">
+      <button type="submit">{{ _('Submit') }}</button>
+      <div class="char-count" data-maxlength="150" data-for="id_body"></div>
+    </footer>
+  </form>
+</section>

@@ -113,6 +113,11 @@ def privacy():
     return {'privacy': defaults.ptext()}
 
 
+@app.route('/app/<slug>/reviews', methods=['POST'])
+def reviews(slug):
+    return {'error': False}
+
+
 @app.route('/featured')
 def featured():
     return [defaults.app('feat %d' % i, 'Featured App') for i in xrange(8)]
