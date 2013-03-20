@@ -50,9 +50,10 @@ require.config({
         'previews',
         'ratings',
         'common/ratingwidget',
+        'settings',
         'state',
-        'stick',
-        'common/suggestions',
+        //'stick',
+        //'common/suggestions',
         'templates',
         'tracking',
         'user',
@@ -63,7 +64,7 @@ require.config({
     define('marketplace', modules, function() {
         var capabilities = require('capabilities');
         var nunjucks = require('templates');
-        var stick = require('stick');
+        //var stick = require('stick');
         var z = require('z');
 
         nunjucks.env.dev = true;
@@ -75,7 +76,7 @@ require.config({
            splash.addClass('hide');
         });
 
-        if (false && settings.tracking_enabled) {
+        if (require('settings').tracking_enabled) {
             // Initialize analytics tracking.
             z.page.on('loaded', function(event, href, popped, state) {
                 // Otherwise we'll track back button hits etc.
@@ -123,6 +124,7 @@ require.config({
                 nunjucks.env.getTemplate('login.html').render(context));
 
             z.body.toggleClass('logged-in', require('user').logged_in());
+            z.page.trigger('reloaded_chrome');
         }).trigger('reload_chrome');
 
         // Perform initial navigation.

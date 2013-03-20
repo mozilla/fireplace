@@ -35,33 +35,31 @@ define(
             $('#filters').removeClass('show');
         } else if ($this.hasClass('filter')) {
             $('#filters').addClass('show');
-        } else if ($this.hasClass('search')) {
-            z.body.addClass('show-search');
-            $btns.blur();
-            $('#search-q').focus();
-        } else if ($this.hasClass('cancel')) {
-            z.body.removeClass('show-search');
-            $('#search-q').blur();
-            $btns.blur();
         } else if ($this.hasClass('search-clear')) {
             $('#search-q').val('').focus();
         }
-
-        z.page.on('loaded', function() {
-            // TODO: Is this being bound more than once?
-            z.body.removeClass('show-search');
-            $('#search-q').blur();
-        });
         e.preventDefault();
     });
 
+    var expand = localStorage.getItem('expand-listings') === 'true' || capabilities.widescreen;
     function setTrays(expanded) {
+        expand = expanded;
         $('ol.listing').toggleClass('expanded', expanded);
+        $('.expand-toggle').toggleClass('active', expand);
+        console.log($('.expand-toggle'));
         localStorage.setItem('expand-listings', expanded);
         if (expanded) {
             z.page.trigger('populatetray');
         }
     }
+
+    z.body.on('click', '.expand-toggle', _pd(function() {
+        setTrays(expand = !expand);
+    }));
+
+    z.page.on('reloaded_chrome', function() {
+        setTrays(expand);
+    });
 
     return function(builder, args, params) {
         _.extend(params, {page: 0});
@@ -75,12 +73,11 @@ define(
         builder.z('search', params.cat || params.q);
         builder.z('title', params.cat || params.q || gettext('Search Results'));
 
-        builder.start('search/main.html', {params: params}).done(function() {
-            setTrays(expandListings);
-
-            console.log('loaded');
+        builder.start('search/main.html', {params: params})
+         .done(function() {
+            setTrays(expand);
             var $q = $('#search-q');
-            $q.attr('placeholder', z.context.title || $q.data('placeholder-default'));
+            $q.attr('placeholder', z.context.search || $q.data('placeholder-default'));
         });
 
 
@@ -89,17 +86,6 @@ define(
             var $this = $(e);
             $this.toggleClass('sel', params.sort == $this.data('option'));
         });
-
-
-        var expandListings = false;
-        var storedExpand = localStorage.getItem('expand-listings') === 'true' || capabilities.desktop;
-
-        // Handle expanded/collapsed view
-        $('.expand-toggle').on('click', _pd(function(e) {
-            expandListings = !expandListings;
-            $(this).toggleClass('active', expandListings);
-            setTrays(expandListings);
-        }));
 
         // Handle filtering
         $('#filters .apply').on('click', _pd(function () {

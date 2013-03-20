@@ -22,6 +22,7 @@ define('capabilities', [], function() {
         'userAgent': navigator.userAgent,
         'desktop': false,
         'tablet': false,
+        'widescreen': safeMatchMedia('(min-width: 1024px)'),
         'mobile': safeMatchMedia('(max-width: 600px)'),
         'firefoxAndroid': navigator.userAgent.indexOf('Firefox') != -1 && navigator.userAgent.indexOf('Android') != -1,
         'touch': ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,

@@ -1,5 +1,7 @@
-define('views/homepage', ['z'], function(z) {
+define('views/homepage', ['l10n', 'z'], function(l10n, z) {
     'use strict';
+
+    var gettext = l10n.gettext;
 
     function fillBg(els) {
         _.each(els, function(el) {
@@ -30,6 +32,6 @@ define('views/homepage', ['z'], function(z) {
         });
 
         builder.z('type', 'root');
-        builder.z('title', 'Firefox Marketplace');  // No L10n for you!
+        builder.z('title', gettext('Firefox Marketplace'));
     };
 });
