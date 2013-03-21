@@ -33,7 +33,7 @@ define('ratings',
     }
 
     function init() {
-        // Review/reply template.
+        // Review template.
         //var reviewTemplate = utils.getTemplate($('#review-template'));
 
         z.page.on('loaded', function() {
@@ -58,7 +58,6 @@ define('ratings',
         function getBody($body) {
             var body = $body.clone();
             // Get the inner *text* of the review body.
-            body.find('.view-reply').remove();
             body.find('br').replaceWith('\n');
             // `.text()` returns the unescaped text content, so re-escape it.
             return body.text().trim()
@@ -68,7 +67,6 @@ define('ratings',
         }
 
         function handleReviewOverlay(overlay) {
-            // Stuff that is common to Edit and Reply.
             var $form = overlay.find('form');
 
             // Remove character counter on review field on mobile for now
@@ -146,13 +144,6 @@ define('ratings',
                 // Change edit review button to submit review button.
                 $('#add-edit-review').text(gettext('Write a Review'));
                 $('#add-review').children().text(gettext('Write a Review'));
-                if (reviewEl.hasClass('reply')) {
-                    var $parent = reviewEl.prev('.review');
-                    // If this was a reply, remove the "1 reply" link.
-                    $parent.find('.view-reply').remove();
-                    // Show "Reply" and "Delete" icons.
-                    $parent.find('li.hidden').removeClass('hidden');
-                }
                 $('.notification.box').remove();
 
                 // If already existing Django message, replace message.
@@ -176,16 +167,14 @@ define('ratings',
                 body = getBody(reviewEl.find('.body'));
             overlay.html(reviewTemplate({title: gettext('Edit Review'),
                                          action: action, body: body}));
-            if (reviewEl.hasClass('reply')) {
-                overlay.find('select[name="rating"]').remove();
+            
+            if (z.body.hasClass('desktop')) {
+                overlay.find('select[name="rating"]').ratingwidget('large');
             } else {
-                if (z.body.hasClass('desktop')) {
-                    overlay.find('select[name="rating"]').ratingwidget('large');
-                } else {
-                    overlay.find('select[name="rating"]').ratingwidget();
-                }
-                overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
+                overlay.find('select[name="rating"]').ratingwidget();
             }
+            overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
+
             handleReviewOverlay(overlay);
         }
 
@@ -207,30 +196,6 @@ define('ratings',
             overlay.find('select[name="rating"]').ratingwidget('large');
             overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
             handleReviewOverlay(overlay);
-        }
-
-        function replyReview(reviewEl, action, isNewReview) {
-            var overlay = utils.makeOrGetOverlay('edit-review'),
-                title = gettext('Reply Review'),
-                body = '';
-
-            if (!isNewReview) {
-                title = gettext('Edit Reply');
-                body = getBody(reviewEl.find('.body'));
-            }
-
-            overlay.html(reviewTemplate({title: title, action: action,
-                                         body: body}));
-            overlay.addClass('reply');
-            handleReviewOverlay(overlay);
-
-            z.page.on('loaded', function() {
-                var newReview = '#' + reviewEl.attr('id');
-                // Replies are hidden by default, so show this one.
-                $(newReview).siblings('.reply').show();
-                // Jump to new review.
-                window.location = newReview;
-            });
         }
 
         // Toggle rating breakdown (on listing page only, not detail page).
@@ -259,16 +224,7 @@ define('ratings',
                 case 'report':
                     flagReview($review);
                     break;
-                case 'reply':
-                    replyReview($review, $this.attr('href'), true);
-                    break;
-                case 'edit-reply':
-                    replyReview($review, $this.attr('href'));
-                    break;
             }
-        })).on('click', '.review .view-reply', utils._pd(function() {
-            // View reply.
-            $(this).closest('.review').next('.replies').find('.reply').toggle();
         }));
     }
 
