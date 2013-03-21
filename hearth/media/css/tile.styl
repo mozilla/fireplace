@@ -453,13 +453,9 @@
     .grid li {
         // Render featured apps and categories in multiples of three.
         // U mad, Basta?
-        &:nth-last-child(-n+3) {
-            &:nth-child(3n+1):nth-last-child(1),  // one orphan
-
-            &:nth-child(3n+1):nth-last-child(2),  // two oprhans
-            &:nth-child(3n+2):nth-last-child(1) {
-                display: none;
-            }
+        &:nth-last-child(-n+2):nth-child(3n+1),
+        &:nth-last-child(-n+1):nth-child(3n+2) {
+            display: none;
         }
     }
 }

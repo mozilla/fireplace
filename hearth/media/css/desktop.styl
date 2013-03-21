@@ -19,17 +19,10 @@ body {
 .grid li {
     // Render featured apps and categories in multiples of four.
     // U mad, Basta?
-    &:nth-last-child(-n+4) {
-        &:nth-child(4n+1):nth-last-child(1),  // one orphan
-
-        &:nth-child(4n+1):nth-last-child(2),  // two orphans
-        &:nth-child(4n+2):nth-last-child(1),
-
-        &:nth-child(4n+1):nth-last-child(3),  // three orphans
-        &:nth-child(4n+2):nth-last-child(2),
-        &:nth-child(4n+3):nth-last-child(1) {
-            display: none;
-        }
+    &:nth-last-child(-n+3):nth-child(4n+1),
+    &:nth-last-child(-n+2):nth-child(4n+2),
+    &:nth-last-child(-n+1):nth-child(4n+3) {
+        display: none;
     }
 }
 
