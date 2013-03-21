@@ -53,7 +53,9 @@
     }
     .wordmark {
         display: block;
-        background: url(../img/logos/mp_aurora_wordmark_small.png) no-repeat;
+        //background: url(../img/logos/mp_aurora_wordmark_small.png) no-repeat;
+        background: url(../img/logos/large.png) no-repeat;
+        background-size: auto 30px;
         height: 30px;
         width: 200px;
     }
@@ -348,7 +350,8 @@ input:invalid ~ .search-clear {
             height: 60px;
         }
         .wordmark {
-            background: url(../img/logos/mp_aurora_wordmark_large.png) 0 50% no-repeat;
+            //background: url(../img/logos/mp_aurora_wordmark_large.png) 0 50% no-repeat;
+            background: url(../img/logos/large.png) 0 50% no-repeat;
             background-size: 280px auto;
             width: 280px;
             max-width: 280px;
@@ -509,6 +512,9 @@ input:invalid ~ .search-clear {
     .header-button.settings:after {
         background-image: url(../img/icons/settings-2x.png);
         background-size: 23px auto;
+    }
+    .site-header .wordmark {
+        background-image: url(../img/logos/large-2x.png);
     }
 }
 $retina-wide= $retina unquote('and (min-width: 1024px)');
