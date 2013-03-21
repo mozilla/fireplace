@@ -66,7 +66,7 @@ define('urls',
             var out = func.apply(this, arguments);
             var args = {
                 lang: navigator.language,
-                reg: user.get_setting('region'),
+                region: user.get_setting('region'),
                 scr: (caps.desktop || caps.tablet) ? 'wide' : 'mobile',
                 tch: caps.touch,
                 dev: _device()
