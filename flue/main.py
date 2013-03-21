@@ -7,6 +7,7 @@ or without needing to use -dev (offline mode).
 
 import hashlib
 import json
+import os
 import random
 import time
 from functools import wraps
@@ -205,7 +206,7 @@ def app_(slug):
 if __name__ == '__main__':
     parser = OptionParser()
     parser.add_option('--port', dest='port',
-            help='port', metavar='PORT', default=5000)
+            help='port', metavar='PORT', default=os.getenv('PORT', '5000'))
     parser.add_option('--host', dest='hostname',
             help='hostname', metavar='HOSTNAME', default='0.0.0.0')
     parser.add_option('--latency', dest='latency',
