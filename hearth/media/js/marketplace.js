@@ -64,6 +64,7 @@ require.config({
     define('marketplace', modules, function() {
         var capabilities = require('capabilities');
         var nunjucks = require('templates');
+        var settings = require('settings');
         //var stick = require('stick');
         var z = require('z');
 
@@ -71,12 +72,15 @@ require.config({
 
         var splash = $('#splash-overlay');
         z.body.addClass('html-' + require('l10n').getDirection());
+        if (settings.body_classes) {
+            z.body.addClass(settings.body_classes);
+        }
 
         z.page.on('loaded', function() {
            splash.addClass('hide');
         });
 
-        if (require('settings').tracking_enabled) {
+        if (settings.tracking_enabled) {
             // Initialize analytics tracking.
             z.page.on('loaded', function(event, href, popped, state) {
                 // Otherwise we'll track back button hits etc.
