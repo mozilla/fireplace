@@ -180,7 +180,7 @@ define(
                         var el = $('#' + uid);
                         (replace ? replace.replaceWith : el.html).apply(
                             replace || el,
-                            [except ? except() : env.getTemplate(settings.fragment_error_template).render()]);
+                            [except ? except() : env.getTemplate(settings.fragment_error_template).render(helpers)]);
                     });
                     return request;
                 };
