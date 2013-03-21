@@ -49,6 +49,7 @@ define('login',
                 console.log('finished login');
                 z.body.addClass('logged-in');
                 z.page.trigger('reload_chrome');
+                z.page.trigger('logged_in');
 
                 var to = require('utils').getVars().to;
                 if (to && to[0] == '/') {

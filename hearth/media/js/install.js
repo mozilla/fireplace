@@ -1,8 +1,8 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 define(
-    ['apps', 'capabilities', 'payments/payments', 'requests', 'z'],
-    function(apps, caps, payments, requests, z) {
+    ['apps', 'capabilities', 'payments/payments', 'requests', 'user', 'z'],
+    function(apps, caps, payments, requests, user, z) {
     'use strict';
 
     function launchHandler(e) {
@@ -13,7 +13,6 @@ define(
     }
 
     function installHandler(e) {
-        console.log('fart');
         e.preventDefault();
         e.stopPropagation();
         var product = $(this).closest('[data-product]').data('product');
@@ -21,20 +20,17 @@ define(
     }
 
     function startInstall(product) {
-        if (product.price != '0.00') {
+        if (product.price != '0.00' && !user.logged_in()) {
             localStorage.setItem('toInstall', product.manifest_url);
             z.win.trigger('login', true);
+            console.log('Install suspended; user needs to log in');
             return;
         }
-        // Show "Install" button if I'm installing from the Reviewer Tools,
-        // I already purchased this, or if it's free!
-        if (location.pathname.indexOf('/reviewers/') > -1 ||
-            product.isPurchased || product.price == '0.00') {
-            install(product);
-            return;
-        }
+
         if (product.price != '0.00') {
             purchase(product);
+        } else {
+            install(product);
         }
     }
 
@@ -68,22 +64,31 @@ define(
         }
 
         z.win.trigger('app_install_start', product);
-        requests.post(product.recordUrl, post_data, function(response) {
-            if (response.error) {
-                $('#pay-error').show().find('div').text(response.error);
-                installError(product);
-                return;
-            }
-            if (response.receipt) {
-                data.data = {'receipts': [response.receipt]};
-            }
+
+        function do_install() {
             $.when(apps.install(product, data))
-             .done(installSuccess)
-             .fail(installError);
-        }, function() {
-            // Could not record/generate receipt!
-            installError(null, product);
-        });
+                 .done(installSuccess)
+                 .fail(installError);
+        }
+
+        if (!product.recordUrl) {
+            do_install();
+        } else {
+            requests.post(product.recordUrl, post_data).done(function(response) {
+                if (response.error) {
+                    $('#pay-error').show().find('div').text(response.error);
+                    installError(product);
+                    return;
+                }
+                if (response.receipt) {
+                    data.data = {'receipts': [response.receipt]};
+                }
+                do_install();
+            }).fail(function() {
+                // Could not record/generate receipt!
+                installError(null, product);
+            });
+        }
     }
 
     function installSuccess(installer, product) {
@@ -94,21 +99,17 @@ define(
         z.win.trigger('app_install_error', [installer, product, msg]);
     }
 
-    function init() {
-        z.page.on('click', '.product.launch', launchHandler);
-        z.page.on('click', '.button.product:not(.launch):not(.incompatible)', installHandler);
-        $(function() {
-            if (localStorage.getItem('toInstall')) {
-                var lsVal = localStorage.getItem('toInstall');
-                localStorage.removeItem('toInstall');
-                var product = $(format('.product[data-manifest_url="{0}"]',
-                                       lsVal)).data('product');
-                if (product) {
-                    startInstall(product);
-                }
+    z.page.on('click', '.product.launch', launchHandler)
+          .on('click', '.button.product:not(.launch):not(.incompatible)', installHandler);
+    z.body.on('logged_in', function() {
+        if (localStorage.getItem('toInstall')) {
+            var lsVal = localStorage.getItem('toInstall');
+            localStorage.removeItem('toInstall');
+            var product = $(format('.product[data-manifest_url="{0}"]',
+                                   lsVal)).data('product');
+            if (product) {
+                startInstall(product);
             }
-        });
-    }
-
-    return {init: init};
+        }
+    });
 });
