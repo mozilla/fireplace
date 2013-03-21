@@ -51,6 +51,9 @@ define(['jquery'], function($) {
 
     */
 
+    // Hax because Firefox OS is super balls.
+    $.ajaxSetup({dataType: 'json'});
+
     function _error(jqXHR, textStatus, error, errorCallback) {
         if (errorCallback) {
             errorCallback(jqXHR, textStatus, error);
