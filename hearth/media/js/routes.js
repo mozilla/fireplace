@@ -1,5 +1,6 @@
 var routes = [
-    {pattern: '^/(index.html)?$', view_name: 'homepage'},
+    {pattern: '^/$', view_name: 'homepage'},
+    {pattern: '^/index.html$', view_name: 'homepage'},
     {pattern: '^/app/([^/<>"\']+)/ratings$', view_name: 'app/ratings'},
     {pattern: '^/app/([^/<>"\']+)/abuse$', view_name: 'app/abuse'},
     {pattern: '^/app/([^/<>"\']+)/privacy$', view_name: 'app/privacy'},
