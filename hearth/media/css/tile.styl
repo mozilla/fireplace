@@ -450,14 +450,16 @@
 }
 
 @media (max-width: 1023px) {
-    #featured .grid {
-        li:nth-child(n + 4) {
-            display: none;
-        }
-    }
-    #featured-home .grid {
-        li:nth-child(n + 7) {
-            display: none;
+    .grid li {
+        // Render featured apps and categories in multiples of three.
+        // U mad, Basta?
+        &:nth-last-child(-n+3) {
+            &:nth-child(3n+1):nth-last-child(1),  // one orphan
+
+            &:nth-child(3n+1):nth-last-child(2),  // two oprhans
+            &:nth-child(3n+2):nth-last-child(1) {
+                display: none;
+            }
         }
     }
 }
