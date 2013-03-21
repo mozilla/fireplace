@@ -1,3 +1,30 @@
+{% include "_macros/emaillink.html" %}
+{% include "_macros/market_tile.html" %}
+{% include "_macros/rating.html" %}
+{% include "_macros/stars.html" %}
+
+{% set endpoint = api('ratings', [slug]) %}
+
 <section class="main c" id="reviews">
-  <ul id="review-list" class="ratings-placeholder-inner"></ul>
+  {% defer (url=endpoint, pluck='ratings', id='ratings', paginate='#review-list') %}
+
+    <!--<a class="button" id="write-review" href="{{ writeUrl }}">{{ _('Write a Review') }}</a>-->
+
+    <ul id="review-list" cla>
+      {% for rat in this %}
+        {{ rating(rat, detailpage=True) }}
+      {% endfor %}
+
+      {# Render the more button if there's another page of results #}
+      {% if response.pagination.has_more %}
+        {% set next_page = response.pagination.page + 1 %}
+        {% include 'search/more_button.html' %}
+      {% endif %}
+    </ul>
+  {% empty %}
+    <p class="no-results">
+      {{ _('No results found') }}
+    </p>
+  {% end %}
+  </ul>
 </section>

@@ -3,17 +3,17 @@ define(['l10n', 'urls'], function(l10n, urls) {
     var gettext = l10n.gettext;
 
     return function(builder, args) {
-        builder.start('ratings/main.html');
+        var slug = args[0];
+        builder.start('ratings/main.html', {
+            'slug': slug,
+            'addUrl': urls.reverse('apps/ratings', [slug])
+        });
 
-        builder.get(urls.api.url('ratings', args[0]))
-               .parts([
-            {dest: '.ratings-placeholder-inner', template: 'detail/rating.html', pluck: 'ratings'},
-        ]).done().then(function() {
-            var url = urls.reverse('apps.ratings.add', [args[0]]);
-            // TODO: This text can also be 'Edit review', 'Be the first to write a review'.
-            var btnText = 'Add a review', // TODO: L10n
-                $btn = $('<p id="add-first-review"><a href="' + url + '">' + btnText + '</a></p>');
-            $('#reviews').append($btn);
+        builder.onload('ratings', function(data) {
+            // // TODO: This text can also be 'Edit review', 'Be the first to write a review'.
+            // var btnText = 'Add a review', // TODO: L10n
+            //     $btn = $('<p id="add-review"><a class="button" href="' + url + '">' + btnText + '</a></p>');
+            // $('#reviews').prepend($btn);
         });
 
         builder.z('type', 'leaf');
