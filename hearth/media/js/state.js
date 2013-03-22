@@ -15,12 +15,12 @@ define('state', ['capabilities', 'z'], function(capabilities, z) {
             // Upon refocus, if `navigator.onLine` is now `false`, then let's
             // redirect to offline page. The offline page redirects us back
             // when `navigator.onLine` becomes `true`.
-            if (navigator.onLine === false) {
-                // TODO: Change this into a confirmation.
-                console.log('user is offline');
-                localStorage.from = window.location.href;
-                window.location = '/offline/home';
-            }
+            // if (navigator.onLine === false) {
+            //     // TODO: Change this into a confirmation.
+            //     console.log('user is offline');
+            //     localStorage.from = window.location.href;
+            //     window.location = '/offline/home';
+            // }
         }
     };
 
