@@ -67,7 +67,11 @@ app.all('/ping', function(req, res) {
         }
         function rmfonts() {
             console.log('Removing unnecessary fonts');
-            cp.exec('rm -f hearth/media/fonts/*.ttf hearth/media/fonts/*.svg hearth/media/fonts/*.eot', opts, zip);
+            cp.exec('rm -f hearth/media/fonts/*.ttf hearth/media/fonts/*.svg hearth/media/fonts/*.eot', opts, rmstyl);
+        }
+        function rmstyl() {
+            console.log('Removing unnecessary stylus files');
+            cp.exec('rm -f hearth/media/css/*.styl', opts, zip);
         }
         function zip() {
             console.log('Removing old package.zip');
