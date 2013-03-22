@@ -1,4 +1,6 @@
-define('views', ['builder', 'routes', 'underscore', 'utils'], function(builder, routes, _, utils) {
+define('views',
+    ['builder', 'routes', 'underscore', 'utils', 'views/not_found'],
+    function(builder, routes, _, utils, not_found) {
 
     routes = routes.map(function(route) {
         route.regexp = new RegExp(route.pattern);
@@ -45,7 +47,7 @@ define('views', ['builder', 'routes', 'underscore', 'utils'], function(builder, 
         }
 
         console.warn('Failed to match route for ' + url);
-        return null;
+        return [not_found, null];
     }
 
     function build(view, args, params) {
