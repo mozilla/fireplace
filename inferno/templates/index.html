@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Install Firefox Marketplace Nightly</title>
+</head>
+<body>
+<p><a class="packagedmozapp" href="/minifest">Install</a></p>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+$('a.packagedmozapp').on('click', function(e) {
+  console.log('Installing packaged app');
+  window.navigator.mozApps.installPackage(this.href);
+  e.preventDefault();
+});
+</script>
+</body>
+</html>

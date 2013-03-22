@@ -1,0 +1,11 @@
+name: inferno
+framework:
+    type: node
+
+mem: 128m
+
+hooks:
+    pre-staging:
+        - npm install
+
+ignores: ['node_modules', '.git']
