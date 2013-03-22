@@ -13,10 +13,10 @@ verifiers = {
     1: 'https://native-persona.org/verify'
 }
 
-def verify_assertion(assertion, is_native):
+def verify_assertion(assertion, audience, is_native):
     query_args = {
         'assertion': assertion,
-        'audience': 'http://localhost:8675'
+        'audience': audience
     }
     encoded_args = urllib.urlencode(query_args)
     url = verifiers[is_native]

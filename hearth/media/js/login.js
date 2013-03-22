@@ -42,6 +42,7 @@ define('login',
         if (assertion) {
             var data = {
                 assertion: assertion,
+                audience: window.location.protocol + '//' + window.location.host,
                 is_native: navigator.id._shimmed ? 0 : 1
             };
 
