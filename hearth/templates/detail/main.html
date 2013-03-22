@@ -86,7 +86,7 @@
             {{ rating(rat, detailpage=True) }}
           {% endfor %}
         </ul>
-        <div class="{{ 'split' if user.can_review else 'full' }}">
+        <div class="{{ 'split' if this.user.can_review else 'full' }}">
           <a class="button alt average-rating" href="{{ url('app/ratings', [slug]) }}">
             <span>
               {{ _plural('{n} rating', '{n} ratings',
