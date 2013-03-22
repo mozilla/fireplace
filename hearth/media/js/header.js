@@ -9,7 +9,7 @@ define('header', ['capabilities', 'z'], function(capabilities, z) {
             $('.account-links, .settings').removeClass('active');
         });
     }
-    if (capabilities.desktop) {
+    if (capabilities.widescreen) {
         act_tray();
         z.page.on('loaded', function() {
             $('.account-links, .settings').removeClass('active');

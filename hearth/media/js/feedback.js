@@ -16,7 +16,7 @@ define(
             platformInput.val('Firefox for Android');
         } else if (capabilities.mobile) {
             platformInput.val('Mobile');
-        } else if (capabilities.desktop) {
+        } else if (capabilities.widescreen) {
             platformInput.val('Desktop');
         }
         $this.find('input[name="chromeless"]').val(capabilities.chromeless ? 'Yes' : 'No');
