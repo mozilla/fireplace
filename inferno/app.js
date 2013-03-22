@@ -71,7 +71,11 @@ app.all('/ping', function(req, res) {
         }
         function rmstyl() {
             console.log('Removing unnecessary stylus files');
-            cp.exec('rm -f hearth/media/css/*.styl', opts, zip);
+            cp.exec('rm -f hearth/media/css/*.styl', opts, rmtemplates);
+        }
+        function rmtemplates() {
+            console.log('Removing raw templates');
+            cp.exec('rm -rf hearth/templates', opts, zip);
         }
         function zip() {
             console.log('Removing old package.zip');
