@@ -102,7 +102,7 @@
       {% endif %}
       {% if this.user.can_review %}
         <div class="{{ 'split' if this.ratings.length else 'full' }}">
-          <a class="button alt" id="add-first-review" href="#">
+          <a class="button alt" id="add-first-review" href="#" data-action="add-or-edit">
             {{ _('Edit Your Review') if this.user.has_review else _('Write a Review') }}</a>
         </div>
       {% endif %}

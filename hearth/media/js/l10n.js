@@ -55,7 +55,7 @@ if (!window.define) {
             return out;
         }
         function nget(str, plural, args) {
-            if (!args || !('n' in args)) {
+            if (!args && !('n' in args)) {
                 throw new Error('`n` not passed to ngettext');
             }
             var out;

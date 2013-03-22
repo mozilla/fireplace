@@ -1,6 +1,8 @@
 define('ratings',
-    ['capabilities', 'utils', 'requests', 'z'],
-    function(capabilities, utils, requests, z) {
+    ['capabilities', 'utils', 'requests', 'notification', 'urls', 'z', 'templates'],
+    function(capabilities, utils, requests, notification, urls, z, nunjucks) {
+    'use strict';
+
     // Initializes character counters for textareas.
     function initCharCount() {
         var countChars = function(el, cc) {
@@ -33,11 +35,8 @@ define('ratings',
     }
 
     function init() {
-        // Review template.
-        //var reviewTemplate = utils.getTemplate($('#review-template'));
-
         z.page.on('loaded', function() {
-            flagOverlay = utils.makeOrGetOverlay('flag-review');
+            var flagOverlay = utils.makeOrGetOverlay('flag-review');
 
             // Hijack <select> with stars.
             $('select[name="rating"]').ratingwidget();
@@ -146,16 +145,7 @@ define('ratings',
                 $('#add-review').children().text(gettext('Write a Review'));
                 $('.notification.box').remove();
 
-                // If already existing Django message, replace message.
-                var success = $('.success h2');
-                if (success.length) {
-                    success.text(gettext('Your review was successfully deleted!'));
-                } else {
-                    $('#page').prepend($('<section class="full notification-box">' +
-                        '<div class="success"><h2>' +
-                        gettext('Your review was successfully deleted!') +
-                        '</h2></div></section>'));
-                }
+                notification.notification({message: gettext('Your review was successfully deleted!')});
             }, 500);
         }
 
@@ -167,7 +157,7 @@ define('ratings',
                 body = getBody(reviewEl.find('.body'));
             overlay.html(reviewTemplate({title: gettext('Edit Review'),
                                          action: action, body: body}));
-            
+
             if (z.body.hasClass('desktop')) {
                 overlay.find('select[name="rating"]').ratingwidget('large');
             } else {
@@ -190,8 +180,10 @@ define('ratings',
                 title = gettext('Edit Your Review');
             }
 
-            overlay.html(reviewTemplate({title: title, action: action,
-                                         body: body}));
+            var helpers = _.extend({title: title, action: action, body: body}, require('helpers'));
+
+            overlay.html(
+                nunjucks.env.getTemplate('detail/review.html').render(helpers));
 
             overlay.find('select[name="rating"]').ratingwidget('large');
             overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
@@ -206,7 +198,7 @@ define('ratings',
         }));
 
         // Cancel rating button.
-        z.page.on('click', '.review .actions a, #add-first-review[data-href]', utils._pd(function(e) {
+        z.page.on('click', '.review .actions a, #add-first-review', utils._pd(function(e) {
             var $this = $(this),
                 action = $this.data('action');
             if (!action) return;
@@ -225,6 +217,19 @@ define('ratings',
                     flagReview($review);
                     break;
             }
+
+        }));
+
+        z.body.on('submit', '.friendly', utils._pd(function(e) {
+            var $this = $(this);
+            var overlay = utils.makeOrGetOverlay('edit-review');
+
+            requests.post(urls.api.url('reviews'), $this.serialize(), function() {
+                console.log('submitted review');
+                $this.find('textarea, #id_rating').val('');
+                overlay.removeClass('show');
+                notification.notification({message: gettext('Review successfully posted!')});
+            });
         }));
     }
 

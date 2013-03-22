@@ -50,6 +50,8 @@ define('login',
                 user.set_token(data.token, data.settings);
                 console.log('finished login');
                 z.body.addClass('logged-in');
+                z.page.find('.loading-submit')
+                      .removeClass('loading-submit persona');
                 z.page.trigger('reload_chrome');
                 z.page.trigger('logged_in');
 
