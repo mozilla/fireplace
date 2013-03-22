@@ -1,6 +1,6 @@
-define('overlay', ['keys', 'utils', 'z'], function(keys, utils, z) {
+define('overlay', ['keys', 'l10n', 'utils', 'z'], function(keys, l10n, utils, z) {
 
-    var gettext = utils.gettext;
+    var gettext = l10n.gettext;
 
     function dismiss() {
         var $overlay = $('.overlay.show');
