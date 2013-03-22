@@ -63,7 +63,11 @@ app.all('/ping', function(req, res) {
         }
         function ssettings() {
             console.log('Swapping in inferno settings');
-            cp.exec('cp hearth/media/js/settings_inferno.js hearth/media/js/settings_local.js', opts, zip);
+            cp.exec('cp hearth/media/js/settings_inferno.js hearth/media/js/settings_local.js', opts, rmfonts);
+        }
+        function rmfonts() {
+            console.log('Removing unnecessary fonts');
+            cp.exec('rm -f hearth/media/fonts/*.ttf hearth/media/fonts/*.svg hearth/media/fonts/*.eot', opts, zip);
         }
         function zip() {
             console.log('Removing old package.zip');
