@@ -68,7 +68,7 @@ define('urls',
             var args = {
                 lang: navigator.language,
                 region: user.get_setting('region'),
-                scr: (caps.desktop || caps.tablet) ? 'wide' : 'mobile',
+                scr: caps.widescreen ? 'wide' : 'mobile',
                 tch: caps.touch,
                 dev: _device()
             };

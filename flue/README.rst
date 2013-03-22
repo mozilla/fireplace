@@ -9,6 +9,25 @@ The API that's exposed to Fireplace from Zamboni should match the Flue's
 implementation.
 
 
+Foreword
+--------
+
+You probably don't need to install Flue! A version of flue that matches the
+implementation that exists on the Marketplace API runs at: ::
+
+    http://flue.paas.allizom.org/
+
+This is already set up in your `settings_local.js` file if you installed your
+copy of Fireplace with `npm install`. Cool!
+
+Some reasons that you might need to use a local copy of Flue:
+
+* You're working on the API
+* You have a spotty internet connection
+* You're creating new features which use yet-to-be-built APIs
+* You have trust issues and don't want us to see your Persona
+
+
 Installation
 ------------
 
