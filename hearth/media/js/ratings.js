@@ -41,11 +41,7 @@ define('ratings',
             // Hijack <select> with stars.
             $('select[name="rating"]').ratingwidget();
 
-            // Remove character counter on review field on mobile for now
-            // (770661).
-            if (!capabilities.mobile) {
-                initCharCount();
-            }
+            initCharCount();
 
             // Show add review modal on app/app_slug/reviews/add for desktop.
             if ($('.reviews.add-review').length) {
@@ -68,11 +64,7 @@ define('ratings',
         function handleReviewOverlay(overlay) {
             var $form = overlay.find('form');
 
-            // Remove character counter on review field on mobile for now
-            // (770661).
-            if (!capabilities.mobile) {
-                initCharCount();
-            }
+            initCharCount();
 
             function validate() {
                 var $error = overlay.find('.req-error'),

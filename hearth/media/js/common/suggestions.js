@@ -148,9 +148,6 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
         function dismissHandler() {
             $results.removeClass('visible sel');
             $('#site-header').removeClass('suggestions');
-            if (capabilities.mobile) {
-                z.body.removeClass('show-search');
-            }
         }
 
         function gestureHandler(e) {
@@ -388,9 +385,6 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
                     settings['$results'].addClass('visible')
                                         .trigger('resultsUpdated', [items]);
                     $('#site-header').addClass('suggestions');
-                    if (capabilities.mobile) {
-                        z.body.removeClass('show-search');
-                    }
                 }
             }
         });

@@ -56,12 +56,9 @@ define(
     function install(product, receipt) {
         var data = {};
         var post_data = {
-            src: product.src,
-            device_type: caps.getDeviceType()
+            src: product.src
+            chromeless: caps.chromeless ? 1 : 0
         };
-        if (caps.chromeless) {
-            post_data.chromeless = 1;
-        }
 
         z.win.trigger('app_install_start', product);
 
