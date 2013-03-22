@@ -18,8 +18,9 @@ define('login',
         startLogin();
         e.preventDefault();
 
-    }).on('click', '.logout', function() {
+    }).on('click', '.logout', function(e) {
         if (navigator.id) {
+            e.preventDefault();
             user.clear_token();
             navigator.id.logout();
         }

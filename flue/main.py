@@ -54,8 +54,9 @@ app.route = corsify
 @app.route('/user/login', methods=['POST'])
 def login():
     assertion = request.form.get('assertion')
+    is_native = int(request.form.get('is_native'))
 
-    email = persona.verify_assertion(assertion)
+    email = persona.verify_assertion(assertion, is_native)
     if not email:
         return make_response('{"error": "bad_assertion"}', 403)
 

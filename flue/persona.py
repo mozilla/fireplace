@@ -8,14 +8,18 @@ import uuid
 
 SECRET = "This is a value which should be unique to the service."
 
+verifiers = {
+    0: 'https://verifier.login.persona.org/verify',
+    1: 'https://native-persona.org/verify'
+}
 
-def verify_assertion(assertion):
+def verify_assertion(assertion, is_native):
     query_args = {
         'assertion': assertion,
         'audience': 'http://localhost:8675'
     }
     encoded_args = urllib.urlencode(query_args)
-    url = 'https://verifier.login.persona.org/verify'
+    url = verifiers[is_native]
     try:
         output = urllib2.urlopen(url, encoded_args).read()
         print output
