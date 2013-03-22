@@ -33,6 +33,6 @@ define(
             overlay.html(
                 nunjucks.env.getTemplate('feedback.html').render(require('helpers')));
         }
-        overlay.addClass('show');
+        overlay.addClass('show').trigger('overlayloaded');
     }));
 });

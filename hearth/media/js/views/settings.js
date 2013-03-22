@@ -48,5 +48,6 @@ define('views/settings',
 
         builder.z('type', 'leaf');
         builder.z('title', 'Account Settings');  // No L10n for you!
+        builder.done();
     };
 });

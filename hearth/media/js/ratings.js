@@ -98,7 +98,7 @@ define('ratings',
                 return valid;
             }
 
-            overlay.addClass('show');
+            overlay.addClass('show').trigger('overlayloaded');
 
             overlay.on('submit', 'form', function(e) {
                 // Trigger validation.
@@ -114,7 +114,7 @@ define('ratings',
 
         function flagReview(reviewEl) {
             var overlay = utils.makeOrGetOverlay('flag-review');
-            overlay.addClass('show');
+            overlay.addClass('show').trigger('overlayloaded');
             overlay.one('click', '.cancel', utils._pd(function() {
                 overlay.removeClass('show');
             })).one('click', '.menu a', utils._pd(function(e) {

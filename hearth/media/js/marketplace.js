@@ -36,6 +36,7 @@ require.config({
         'buttons',
         'capabilities',
         'feedback',
+        'forms',
         'header',
         'helpers',
         'install',
