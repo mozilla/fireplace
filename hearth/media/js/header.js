@@ -1,4 +1,11 @@
 define('header', ['capabilities', 'z'], function(capabilities, z) {
+    var htim;
+    z.body.on('mousedown', '.wordmark', function() {
+        htim = setTimeout(function() {z.body.toggleClass('nightly');}, 5000);
+    }).on('mouseup', '.wordmark', function() {
+        clearTimeout(htim);
+    });
+
     // We would use :hover, but we want to hide the menu on fragment load!
     function act_tray() {
         $('.act-tray').on('mouseover', function() {

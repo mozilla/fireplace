@@ -56,7 +56,7 @@ define(
     function install(product, receipt) {
         var data = {};
         var post_data = {
-            src: product.src
+            src: product.src,
             chromeless: caps.chromeless ? 1 : 0
         };
 
