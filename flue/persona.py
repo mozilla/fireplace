@@ -21,10 +21,7 @@ def verify_assertion(assertion, audience, is_native):
     encoded_args = urllib.urlencode(query_args)
     url = verifiers[is_native]
     try:
-        #output = urllib2.urlopen(url, encoded_args).read()
-
-        # Hax until Persona works for packaged apps. womp womp
-        output = '{"status": "okay", "email": "basta@mozilla.com"}'
+        output = urllib2.urlopen(url, encoded_args).read()
         print output
         data = json.loads(output)
         if data['status'] != 'okay':
