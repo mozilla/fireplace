@@ -9,3 +9,8 @@ test: compile
 
 package: compile
 	cd hearth/ && zip -r ../$(VERSION).zip * && cd ../
+
+log:
+	cp -r ./hearth/media/img/logos ./yulelog/logos
+	cd yulelog && zip -r ../yulelog_$(VERSION).zip * && cd ../
+	rm -rf ./yulelog/logos
