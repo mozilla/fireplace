@@ -41,7 +41,7 @@ define('views/settings',
             z.page.trigger('notify', [gettext('Settings could not be saved.')]);
             completion.reject();
         });
-    })).on('login', update_settings);
+    })).on('logged_in', update_settings);
 
     return function(builder) {
         builder.start('settings/main.html');
