@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Install Firefox Marketplace Nightly</title>
+    <title>Install Firefox Marketplace Nightly</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <style>
+        button {
+            display: block;
+            font-size: 20px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-<p><a class="packagedmozapp" href="/minifest">Install</a></p>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<button id="install" class="packagedmozapp" href="/minifest">Install</button>
 <script type="text/javascript">
-$('a.packagedmozapp').on('click', function(e) {
-  console.log('Installing packaged app');
+document.getElementById('install').addEventListener('click', function(e) {
   window.navigator.mozApps.installPackage(this.href);
   e.preventDefault();
 });
