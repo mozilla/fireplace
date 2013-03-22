@@ -38,7 +38,9 @@ def _app_preview():
 
 
 def app(name, slug, **kwargs):
-    return {
+    # In the API everything here except `user` should be serialized and
+    # keyed off app_id:region:locale.
+    data = {
         'name': name,
         'slug': random.choice(dummy_text),
         'summary': kwargs.get('summary', ptext(50)),
@@ -90,10 +92,18 @@ def app(name, slug, **kwargs):
             'dejus': {'name': '12', 'description': 'Ask your parents'},
             'esrb': {'name': 'L', 'description': 'L for BASTA'},
         },
-        'user': {
-            'owns': random.choice((True, False))
-        }
     }
+    data.update({
+        'user': {
+            'owns': random.choice((True, False)),
+            'has_purchased': random.choice((True, False)),
+        }
+    })
+    if data['user']['owns']:
+        data['user']['can_review'] = False
+    elif data['price'] == '0.00' or data['user']['has_purchased']:
+        data['user']['can_review'] = True
+    return data
 
 
 user_names = ['Cvan', 'Basta', 'Potch', 'Queen Krupa']
