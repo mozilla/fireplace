@@ -3,7 +3,9 @@ define('views/homepage', ['l10n', 'z'], function(l10n, z) {
 
     var gettext = l10n.gettext;
 
-    function fillBg(els) {
+    z.page.on('loaded', function() {
+        var els = document.querySelectorAll('.grid .mkt-tile');
+
         _.each(els, function(el) {
             var tile = el.querySelector('[data-hue]');
             if (!tile) return;
@@ -23,13 +25,9 @@ define('views/homepage', ['l10n', 'z'], function(l10n, z) {
             ctx.fillRect(0, 0, width, height);
             el.insertBefore(canvas, el.firstChild);
         });
-    }
-
+    });
     return function(builder) {
         builder.start('home/main.html');
-        builder.done(function() {
-            fillBg(document.querySelectorAll('.grid .mkt-tile'));
-        });
 
         builder.z('type', 'root');
         builder.z('title', '');  // We don't want a title on the homepage.
