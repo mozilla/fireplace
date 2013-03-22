@@ -1,9 +1,9 @@
 define('views/settings',
-    ['urls', 'user', 'utils', 'requests', 'z'],
-    function(urls, user, utils, requests, z) {
+    ['l10n', 'requests', 'urls', 'user', 'utils', 'z'],
+    function(l10n, requests, urls, user, utils, z) {
 
     var _pd = utils._pd;
-    var gettext = utils.gettext;
+    var gettext = l10n.gettext;
 
     function update_settings() {
         var acc_sett = $('.account-settings');
