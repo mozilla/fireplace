@@ -40,10 +40,14 @@
     </style>
 </head>
 <body>
+
 <div><button id="install" class="packagedmozapp">Install<br><br><marquee><blink>OH YEAH</blink></marquee></button></div>
 <script type="text/javascript">
 document.getElementById('install').addEventListener('click', function(e) {
-  window.navigator.mozApps.installPackage(window.location.origin + "/minifest");
+    var a = document.createElement('a');
+    a.href = '/minifest';
+    console.log(a.href);
+  window.navigator.mozApps.installPackage(a.href);
   e.preventDefault();
 });
 </script>
