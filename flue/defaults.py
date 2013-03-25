@@ -72,7 +72,6 @@ def app(name, slug, **kwargs):
             {'name': 'cvan'},
             {'name': 'Chris Van Halen'}
         ],
-        'price': '0.00',
         'ratings': {
             'average': random.random() * 4 + 1,
             'count': int(random.random() * 500),
@@ -93,7 +92,13 @@ def app(name, slug, **kwargs):
             'esrb': {'name': 'L', 'description': 'L for BASTA'},
         },
     }
+    data.update(app_user_data(data))
+    return data
+
+
+def app_user_data(data):
     data.update({
+        'price': '0.00',
         'user': {
             'owns': random.choice((True, False)),
             'has_purchased': random.choice((True, False)),
