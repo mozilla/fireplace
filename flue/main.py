@@ -192,13 +192,11 @@ def app_ratings(slug):
         while 1:
             yield defaults.rating()
             i += 1
-
     data = _paginated('ratings', gen)
     result_count = 34
-    data['user'] = {
-        'can_rate': True,
-        'has_rated': False
-    }
+    data.update(defaults.app_user_data(data))
+    data['user']['can_rate'] = True
+    data['user']['has_rated'] = False
     data['meta'] = {
         'slug': slug,
         'average': random.random() * 4 + 1,

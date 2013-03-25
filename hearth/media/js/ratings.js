@@ -1,7 +1,9 @@
 define('ratings',
-    ['capabilities', 'utils', 'requests', 'notification', 'urls', 'z', 'templates'],
-    function(capabilities, utils, requests, notification, urls, z, nunjucks) {
+    ['capabilities', 'l10n', 'utils', 'requests', 'notification', 'urls', 'z', 'templates'],
+    function(capabilities, l10n, utils, requests, notification, urls, z, nunjucks) {
     'use strict';
+
+    var gettext = l10n.gettext;
 
     // Initializes character counters for textareas.
     function initCharCount() {
@@ -219,6 +221,7 @@ define('ratings',
             requests.post(urls.api.url('reviews'), $this.serialize(), function() {
                 console.log('submitted review');
                 $this.find('textarea, #id_rating').val('');
+                $('#add-first-review').text(gettext('Edit Your Review'));
                 overlay.removeClass('show');
                 notification.notification({message: gettext('Review successfully posted!')});
             });
