@@ -119,9 +119,14 @@ def privacy():
     return {'privacy': defaults.ptext()}
 
 
-@app.route('/app/<slug>/reviews', methods=['POST'])
-def reviews(slug):
+@app.route('/app/<slug>/reviews/self', methods=['POST'])
+def reviews_self(slug):
     return {'error': False}
+
+
+@app.route('/app/<slug>/reviews/self', methods=['GET'])
+def reviews_self(slug):
+    return defaults.app_user_review(slug)
 
 
 @app.route('/featured')
