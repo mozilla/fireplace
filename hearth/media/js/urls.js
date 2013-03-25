@@ -43,10 +43,11 @@ define('urls',
         'app_abuse': '/app/{0}/abuse',
         'privacy': '/app/{0}/privacy',
         'settings': '/user/settings',
-        'search': '/search',
-        'feedback': '/feedback',
+        'purchases': '/user/purchases',
         'login': '/user/login',
         'user_abuse': '/user/{0}/abuse',
+        'search': '/search',
+        'feedback': '/feedback',
         'terms_of_use': '/terms-of-use',
         'privacy_policy': '/privacy-policy'
     };

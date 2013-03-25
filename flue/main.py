@@ -33,7 +33,7 @@ def corsify(*args, **kwargs):
         @wraps(func)
         def wrap(*args, **kwargs):
             resp = func(*args, **kwargs)
-            if isinstance(resp, (dict, str, unicode)):
+            if isinstance(resp, (dict, list, tuple, str, unicode)):
                 resp = make_response(json.dumps(resp), 200)
             resp.headers['Access-Control-Allow-Origin'] = '*'
             resp.headers['Access-Control-Allow-Methods'] = 'GET'
@@ -91,6 +91,12 @@ def settings():
 @app.route('/user/<slug>/abuse', methods=['POST'])
 def user_abuse(slug):
     return {'error': False}
+
+
+@app.route('/user/purchases')
+def user_purchases():
+    return [defaults.app('purchase %d' % i, 'Purchased App')
+            for i in xrange(random.randint(5, 30))]
 
 
 @app.route('/app/<slug>/abuse', methods=['POST'])

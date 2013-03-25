@@ -7,8 +7,6 @@
 
 #page .account-settings {
     padding: 15px;
-
-
     .form-footer {
         text-align: center;
         button {
@@ -20,7 +18,30 @@
         }
     }
 }
+.account {
+    h2 {
+        display: none;
+        margin-bottom: 15px;
+    }
+    footer {
+        padding: 15px;
+    }
+}
 
 #feedback-overlay section {
     width: 450px;
+}
+
+// Does not work with $desktop.
+@media $at-least-desktop {
+    .account h2 {
+        display: block;
+    }
+    // TODO: This has to be fixed properly.
+    body[data-page-type=leaf] #page .main.account {
+        background-color: transparent;
+    }
+    .toggles {
+        display: none;
+    }
 }

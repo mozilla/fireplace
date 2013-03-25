@@ -1,0 +1,31 @@
+{% include "_macros/market_tile.html" %}
+
+<section class="main account purchases c" id="account-settings">
+  {% set current_page = 'purchases' %}
+  {% include 'settings/nav.html' %}
+
+  <h2>{{ _('My Apps') }}</h2>
+
+  {% if user.logged_in() %}
+    {% defer (url=api('purchases'), as='app') %}
+      <ol class="container listing only-logged-in c">
+        {% for result in this %}
+          <li class="item result app c">
+            {{ market_tile(result, link=true, force_button=true) }}
+          </li>
+        {% endfor %}
+      </ol>
+    {% empty %}
+      <p class="no-results only-logged-in">
+        {{ _('You have no apps') }}
+      </p>
+    {% end %}
+  {% else %}
+    <footer>
+      <div class="extras only-logged-out">
+        <p class="notice">{{ _('You must be signed in to view your apps.') }}</p>
+        <a class="button full persona" href="#">{{ _('Sign in / Sign up') }}</a>
+      </div>
+    </footer>
+  {% endif %}
+</section>
