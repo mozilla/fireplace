@@ -6,11 +6,6 @@ var feq_ = a.feq_;
 
 var utils = require('utils');
 
-test('String trim', function(done) {
-    eq_(('  asdf   ').trim(), 'asdf');
-    done();
-});
-
 test('String strip', function(done) {
     eq_(('  a s d  f   ').strip(), 'asdf');
     done();
