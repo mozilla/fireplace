@@ -12,7 +12,9 @@ var routes = [
     {pattern: '^/abuse$', view_name: 'abuse'},
 
     {pattern: '^/privacy-policy$', view_name: 'privacy'},
-    {pattern: '^/terms-of-use$', view_name: 'terms'}
+    {pattern: '^/terms-of-use$', view_name: 'terms'},
+
+    {pattern: '^/tests$', view_name: 'tests'}
 ];
 
 define(

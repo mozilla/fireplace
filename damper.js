@@ -40,12 +40,18 @@ if (!opts.compile) {
             });
         }
 
-        if(request.url == '/')
+        if (request.url == '/') {
             return writeIndex();
+        }
+
+        var qindex;
+        if ((qindex = request.url.indexOf('?')) !== -1) {
+            request.url = request.url.substr(0, qindex);
+        }
 
         var filePath = './hearth' + request.url;
         fs_exists(filePath, function(exists) {
-            if (exists) {
+            if (exists && !fs.statSync(filePath).isDirectory()) {
                 fs.readFile(filePath, function(error, content) {
                     if (error) {
                         response.writeHead(500);

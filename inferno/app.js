@@ -74,8 +74,8 @@ app.all('/ping', function(req, res) {
             cp.exec('rm -f hearth/media/css/*.styl', opts, rmtemplates);
         }
         function rmtemplates() {
-            console.log('Removing raw templates');
-            cp.exec('rm -rf hearth/templates', opts, zip);
+            console.log('Removing raw templates and tests');
+            cp.exec('rm -rf hearth/templates hearth/tests', opts, zip);
         }
         function zip() {
             console.log('Removing old package.zip');
