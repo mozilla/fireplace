@@ -1,11 +1,11 @@
-define('views/purchases', ['l10n', 'utils', 'urls', 'z'],
-    function(l10n, utils, urls, z) {
+define('views/purchases', ['l10n', 'urls', 'z'],
+    function(l10n, urls, z) {
     'use strict';
 
     var gettext = l10n.gettext;
 
     z.page.on('logged_in', function() {
-        z.page.trigger('navigate', utils.urlparams(urls.reverse('purchases')));
+        z.page.trigger('navigate', urls.reverse('purchases'));
     });
 
     return function(builder, args) {
