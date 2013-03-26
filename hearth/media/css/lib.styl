@@ -193,6 +193,65 @@ webkit-spin() {
     -webkit-animation-timing-function: linear;
 }
 
+// Spinners!
+spinner-base() {
+    animation(unquote('0.9s spin infinite steps(30)'));
+    height: 30px;
+    margin: 0 auto;
+    spinner-base-image();
+    width: 30px;
+}
+
+spinner-abs() {
+    left: 50%;
+    margin-left: -15px;
+    position: absolute;
+}
+
+spinner-alt-image(type = '') {
+    if (type == 'retina') {
+        background-image: url(../img/btn_spinner_alt_2x.png);
+        background-size: 30px auto;
+    } else {
+        background-image: url(../img/btn_spinner_alt.png);
+    }
+}
+
+spinner-base-image(type = '') {
+    if (type == 'retina') {
+        background-image: url(../img/btn_spinner_2x.png);
+        background-size: 30px auto;
+    } else {
+        background: url(../img/btn_spinner.png) no-repeat center;
+    }
+}
+
+spinner-install-image(type = '') {
+    if (type == 'retina') {
+        background-image: url(../img/btn_spinner_18_2x.png);
+        background-size: 18px auto;
+    } else {
+        background: url(../img/btn_spinner_18.png) no-repeat center;
+    }
+}
+
+spinner(type = '') {
+    spinner-base();
+    if (type == 'absolute') {
+        spinner-abs();
+    } else if (type == 'absolute alt') {
+        spinner-abs();
+        spinner-alt-image();
+    } else if (type == 'alt') {
+        spinner-alt-image();
+    } else if (type == 'install') {
+        height: 18px;
+        margin: 2px 0;
+        spinner-install-image();
+        width: 18px;
+    }
+}
+
 // Flex Box (trim me!)
 
 display-flex() {

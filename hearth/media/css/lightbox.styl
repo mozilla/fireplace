@@ -69,7 +69,7 @@
             display: inline-block;
             position: relative;
             &.loading {
-                background: url(../img/zamboni/mobile/loading-white.png) 50% 50% no-repeat;
+                spinner-base-image();
             }
         }
     }
@@ -101,5 +101,10 @@
         max-height: 80px;
         line-height: 60px;
     }
+}
 
+@media $retina {
+    #lightbox .content li.loading {
+        spinner-base-image('retina');
+    }
 }

@@ -8,7 +8,7 @@ define('paginator', ['z'], function(z) {
             var swapEl = button.parents('.loadmore');
             // Show a loading indicator.
             swapEl.addClass('loading');
-            swapEl.append('<div class="throbber">');
+            swapEl.append('<div class="spinner alt btn-replace">');
             // Grab the url to fetch the data from.
         });
     }

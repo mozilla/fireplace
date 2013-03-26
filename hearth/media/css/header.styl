@@ -212,8 +212,7 @@ input:invalid ~ .search-clear {
         display: none;
         &.loading-submit {
             hidetext();
-            animation(unquote('0.9s spin infinite steps(30)'));
-            background: url(../img/btn_spinner_18.png) center no-repeat;
+            spinner('install');
             outline: 0;
             &:after {
                 display: none;
@@ -517,8 +516,7 @@ input:invalid ~ .search-clear {
         background-image: url(../img/logos/large-2x.png);
     }
     .header-button.persona.loading-submit {
-        background-image: url(../img/btn_spinner_18_2x.png);
-        background-size: 18px auto;
+        spinner-install-image('retina');
     }
 }
 $retina-wide= $retina unquote('and (min-width: 1024px)');

@@ -85,16 +85,10 @@ button, .button {
     &.loading-submit {
         position: relative;
         &:after {
-            animation(unquote('0.9s spin infinite steps(30)'));
-            background-image: url(../img/btn_spinner_alt.png);
             content: "";
             display: block;
-            height: 30px;
-            left: 50%;
-            margin-left: -15px;
-            position: absolute;
+            spinner('absolute alt');
             top: 8px;
-            width: 30px;
         }
     }
 }
@@ -119,24 +113,17 @@ button {
 }
 
 .button .spin {
-    animation(unquote('0.9s spin infinite steps(30)'));
-    background: url(../img/btn_spinner_18.png) no-repeat center;
     display: inline-block;
-    height: 18px;
-    margin: 2px 0;
-    webkit-spin();
-    width: 18px;
+    spinner('install');
 }
 
 @media $retina {
     .button {
         &.loading-submit:after {
-            background-image: url(../img/btn_spinner_alt_2x.png);
-            background-size: 30px auto;
+            spinner-alt-image('retina');
         }
         .spin {
-            background: url(../img/btn_spinner_18_2x.png) no-repeat center;
-            background-size: 18px auto;
+            spinner-install-image('retina');
         }
     }
 }

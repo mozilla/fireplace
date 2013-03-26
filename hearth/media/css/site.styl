@@ -42,37 +42,6 @@ body {
     overflow-x: hidden;
 }
 
-// Specificified!
-body .loading-fragment {
-    background-color: rgba(0,0,0,0.5);
-    z-index: 11;  // To cover the header.
-    em {
-        webkit-spin();
-        background: url(../img/zamboni/mobile/loading-white.png) center no-repeat;
-        display: inline-block;
-        height: 86px;
-        margin: -43px 0 0 -43px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        z-index: 1;
-        width: 86px;
-        &:before {
-            border-radius: 180px;
-            background: rgba(0,0,0,.3);
-            content: "";
-            display: block;
-            height: 86px;
-            margin: -43px 0 0 -43px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 86px;
-            z-index: 2;
-        }
-    }
-}
-
 .notification-box {
     box-shadow: 0 -1px 0 #ddd inset, 0 1px 0 rgba(0,0,0,.1);
     padding: 15px;
@@ -225,6 +194,26 @@ body[data-page-type=notice], body[data-page-type=alpha] {
 
 .logged-in .only-logged-out {
     display: none;
+}
+
+.spinner {
+    spinner();
+    &.alt {
+        spinner-alt-image();
+    }
+    &.btn-replace {
+        spinner-abs();
+        top: 24px;
+    }
+}
+
+@media $retina {
+    .spinner {
+        spinner-base-image('retina');
+        &.alt {
+            spinner-alt-image('retina');
+        }
+    }
 }
 
 @-webkit-keyframes spin {
