@@ -77,9 +77,10 @@ function process(folder, output_file, locale_file, opts) {
 
     if (opts.compile || opts.l10n) {
         glob(__dirname + '/../hearth/media/js', '.js', function(err, js_files) {
+            var fireplace_root = path.normalize(__dirname + '/../');
             js_files.forEach(function(file) {
                 var js_data = fs.readFileSync(file) + '';
-                L10n.extract_js(js_data, file);
+                L10n.extract_js(js_data, file.replace(fireplace_root, ''));
             });
         });
         L10n.save_po(locale_file);

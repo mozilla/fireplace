@@ -12,12 +12,18 @@ module.exports = (function() {
         this.str = string;
         this.plural = null;
         this.locations = [];
+        this.pushLocation = function(location) {
+            while (location.indexOf('../') !== -1) {
+                location = location.replace(/\.\.\/[a-zA-Z]+/g, '');
+            }
+            this.locations.push(location);
+        };
         this.escaped = function(str) {
             return JSON.stringify(str || this.str);
         };
         this.toString = function() {
             var out = [
-                this.locations.map(function(L) {return '#: ' + L;}).join('\n'),
+                '#: ' + this.locations.join('\n#: '),
                 'msgid ' + this.escaped()
             ];
             if (this.plural) {
