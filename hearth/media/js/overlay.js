@@ -31,6 +31,10 @@ define('overlay', ['keys', 'l10n', 'utils', 'z'], function(keys, l10n, utils, z)
             e.stopPropagation();
         });
 
+        z.body.on('click', function() {
+            $('#notification').removeClass('show');
+        });
+
         z.page.on('loaded', function(e) {
             // Dismiss overlay when we load a new fragment.
             dismiss();
