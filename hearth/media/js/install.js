@@ -1,8 +1,8 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 define(
-    ['apps', 'capabilities', 'payments/payments', 'requests', 'user', 'z'],
-    function(apps, caps, payments, requests, user, z) {
+    ['apps', 'capabilities', 'notification', 'payments/payments', 'requests', 'user', 'z'],
+    function(apps, caps, notification, payments, requests, user, z) {
     'use strict';
 
     function launchHandler(e) {
@@ -93,6 +93,26 @@ define(
     }
 
     function installError(installer, product, msg) {
+        console.log('error: ' +  msg);
+
+        switch (msg) {
+            // mozApps error codes, defined in
+            // https://developer.mozilla.org/en-US/docs/Apps/Apps_JavaScript_API/Error_object
+            case 'MKT_CANCELLED':
+            case 'DENIED':
+            case 'MANIFEST_URL_ERROR':
+            case 'NETWORK_ERROR':
+            case 'MANIFEST_PARSE_ERROR':
+            case 'INVALID_MANIFEST':
+                break;
+            // Marketplace specific error codes.
+            default:
+                notification.notification({
+                    message: gettext('Install failed. Please try again later.')
+                });
+                break;
+        }
+
         z.win.trigger('app_install_error', [installer, product, msg]);
     }
 
