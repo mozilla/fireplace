@@ -7,6 +7,10 @@ def ptext(len=10):
     return ' '.join(random.choice(dummy_text) for i in xrange(len))
 
 
+def rand_bool():
+    return random.choice((True, False))
+
+
 def category(slug, name):
     return {
         'name': name,
@@ -72,7 +76,7 @@ def app(name, slug, **kwargs):
             {'name': 'cvan'},
             {'name': 'Chris Van Halen'}
         ],
-        'ratings': {
+        'reviews': {
             'average': random.random() * 4 + 1,
             'count': int(random.random() * 500),
         },
@@ -83,10 +87,10 @@ def app(name, slug, **kwargs):
         'public_stats': False,
         'upsell': False,
         # or { // False if no upsell or not available in user region.
-        #    url: '/app/<id>'
+        #    slug: 'slug',
         #    name: name,
         #    icons: ...,
-        #},
+        # },
         'content_ratings': {
             'dejus': {'name': '12', 'description': 'Ask your parents'},
             'esrb': {'name': 'L', 'description': 'L for BASTA'},
@@ -100,17 +104,14 @@ def app_user_data(data):
     data.update({
         'price': '0.00',
         'user': {
-            'owns': random.choice((True, False)),
-            'has_purchased': random.choice((True, False)),
+            'owns': rand_bool(),
+            'has_purchased': rand_bool(),
+            'can_review': rand_bool()
         }
     })
-    if data['user']['owns']:
-        data['user']['can_review'] = False
-    elif data['price'] == '0.00' or data['user']['has_purchased']:
-        data['user']['can_review'] = True
     if data['user']['can_review']:
-        data['rating'] = 4
-        data['user']['has_review'] = random.choice((True, False))
+        data['rating'] = random.randint(1, 5)
+        data['user']['has_review'] = rand_bool()
     return data
 
 

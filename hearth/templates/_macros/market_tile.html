@@ -21,15 +21,14 @@
         <div class="author lineclamp vital">{{ app.listed_authors[0].name }}</div>
       {% endif %}
       <div class="price vital">{{ _('Free') if app.price == '0.00' else app.price }}</div>
-      <div class="rating vital{{ ' unrated' if not app.ratings.count }}">
+      <div class="rating vital{{ ' unrated' if not app.reviews.count }}">
         {% if not link %}
           <a href="{{ url('app/ratings', [app.slug]) }}" class="rating_link">
         {% endif %}
-        {{ stars(app.ratings.average) }}
-        {% if app.ratings.count %}
+        {{ stars(app.reviews.average) }}
+        {% if app.reviews.count %}
           <span class="cnt">
-            {{ _plural('{n} rating', '{n} ratings',
-                       n=app.ratings.count) }}
+            {{ _plural('{n} review', '{n} reviews', n=app.reviews.count) }}
           </span>
        {% endif %}
        {% if not link %}</a>{% endif %}

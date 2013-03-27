@@ -34,6 +34,7 @@
         width: 383px;
         left: 26px;
         > label {
+            display: inline-block;
             font-weight: normal;
             font-size: 13px;
             padding: 0 10px;
@@ -45,6 +46,16 @@
     }
     // Override mobile stars. In our galaxy all stars are mobile no?
     .stars {
+        background: url(../img/stars_18.png) no-repeat;
+        width: 90px;
+        height: 18px;
+
+        &.stars-4 { background-position: -18px 0; }
+        &.stars-3 { background-position: -36px 0; }
+        &.stars-2 { background-position: -54px 0; }
+        &.stars-1 { background-position: -72px 0; }
+        &.stars-0 { background-position: -90px 0; }
+
         &.ratingwidget {
             label {
                 height: 18px;

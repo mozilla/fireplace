@@ -201,26 +201,27 @@ select[name=rating] {
         height: 32px;
         width: 200px;
         // Yeah, maybe I should just set a class in JS. I thought I was being clever.
-        &.stars-1 label[data-stars="1"], &.stars-2 label[data-stars="1"], &.stars-2 label[data-stars="2"],
-        &.stars-3 label[data-stars="1"], &.stars-3 label[data-stars="2"], &.stars-3 label[data-stars="3"],
-        &.stars-4 label[data-stars="1"], &.stars-4 label[data-stars="2"], &.stars-4 label[data-stars="3"], &.stars-4 label[data-stars="4"],
-        &.stars-5 label[data-stars="1"], &.stars-5 label[data-stars="2"], &.stars-5 label[data-stars="3"], &.stars-5 label[data-stars="4"], &.stars-5 label[data-stars="5"] {
+        &.stars-1 label[data-stars="1"],
+        &.stars-2 label[data-stars="1"],
+        &.stars-2 label[data-stars="2"],
+        &.stars-3 label[data-stars="1"],
+        &.stars-3 label[data-stars="2"],
+        &.stars-3 label[data-stars="3"],
+        &.stars-4 label[data-stars="1"],
+        &.stars-4 label[data-stars="2"],
+        &.stars-4 label[data-stars="3"],
+        &.stars-4 label[data-stars="4"],
+        &.stars-5 label[data-stars="1"],
+        &.stars-5 label[data-stars="2"],
+        &.stars-5 label[data-stars="3"],
+        &.stars-5 label[data-stars="4"],
+        &.stars-5 label[data-stars="5"] {
             background: url(../img/stars_32.png) 100% 100%;
         }
         label {
             height: 32px;
             width: 40px;
         }
-    }
-    &.large {
-        background: url(../img/stars_18.png) no-repeat;
-        width: 90px;
-        height: 18px;
-        &.stars-4 { background-position: -18px 0; }
-        &.stars-3 { background-position: -36px 0; }
-        &.stars-2 { background-position: -54px 0; }
-        &.stars-1 { background-position: -72px 0; }
-        &.stars-0 { background-position: -90px 0; }
     }
 }
 
@@ -280,6 +281,9 @@ select[name=rating] {
     background: rgba(200, 200, 200, .2);
     margin-bottom: 15px;
     padding: 20px 10px;
+    > label {
+        display: none;
+    }
     .ratingwidget {
         margin: 0 auto;
     }
