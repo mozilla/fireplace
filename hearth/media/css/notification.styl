@@ -1,42 +1,49 @@
 @import 'lib';
 
 #notification {
-    background: #ccc;
+    background-color: #3b3b3b;
+    border-radius: 4px 4px 0 0;
     bottom: 0;
-    height: 32px;
+    color: #fff;
+    cursor: pointer;
+    font-family: "MozTT", $open-stack;
+    grain();
+    height: 62px;
     left: 50%;
+    line-height: 1.4em;
+    max-width: 600px;
+    min-height: 62px;
     padding: 10px;
     position: fixed;
-    width: 100%;
-    text-align: right;
-    max-width: 600px;
-    line-height: 14px;
-
-    border-radius: 4px 4px 0 0;
-
-    z-index: 9999;
-
-    color: $text;
-    font-weight: bold;
-
-    cursor: pointer;
-
     transform(unquote('translate(-50%, 110%)'));
-    transition-property(unquote('transform, -moz-transform, -webkit-transform, -ms-transform'));
     transition-duration(unquote('.3s, .3s, .3s, .3s'));
+    transition-property(unquote('transform, -moz-transform, -webkit-transform, -ms-transform'));
+    width: 100%;
+    z-index: 9999;
 
     &.show {
         transform(unquote('translate(-50%, 0%)'));
     }
-    &.error {
-        background: lighten(#f99, 15%);
-        color: lighten(#600, 10%);
-    }
+}
+
+#notification-content {
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform(unquote('translate(-50%, -50%)'));
+    width: 75%;
+
+    b {
+      text-transform: uppercase;
+      color: #0995b0;
+  }
 }
 
 @media (max-width: 600px) {
     #notification {
-        width: 100%;
+        border-radius: 0;
         max-width: 100%;
+        width: 100%;
     }
 }

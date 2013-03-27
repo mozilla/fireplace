@@ -19,17 +19,16 @@ var routes = [
 
 define(
     'routes',
+    // dynamically import all the view modules form the routes
     routes.map(function(i) {return 'views/' + i.view_name;}),
     function() {
         console.log('View Completion Report:');
-        var view_dict = {};
         for (var i = 0; i < routes.length; i++) {
             var route = routes[i];
             var view = require('views/' + route.view_name);
             console.log(!!view ? '√' : 'X', route.view_name);
             route.view = view;
         }
-        window.v = view_dict;
         return routes;
     }
 );
