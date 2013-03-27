@@ -83,7 +83,7 @@
       {% if this.ratings.length %}
         <ul class="c ratings-placeholder-inner">
           {% for rat in this.ratings.slice(0, 2) %}
-            {{ rating(rat, detailpage=True) }}
+            {{ rating(rat, detailpage=true) }}
           {% endfor %}
         </ul>
         <div class="{{ 'split' if this.user.can_review else 'full' }}">
@@ -92,7 +92,7 @@
               {{ _plural('{n} rating', '{n} ratings',
                          n=this.meta.count) }}
             </span>
-            {{ stars(this.meta.average, detailpage=True) }}
+            {{ stars(this.meta.average, detailpage=true) }}
           </a>
         </div>
       {% else %}
@@ -102,7 +102,9 @@
       {% endif %}
       {% if this.user.can_review %}
         <div class="{{ 'split' if this.ratings.length else 'full' }}">
-          <a class="button alt" id="add-first-review" href="#" data-action="add-or-edit">
+          <a class="button alt" id="add-first-review" href="#" data-action="add-or-edit"
+             data-rating="{{ this.rating if this.user.has_review else 0 }}"
+             data-href="{{ api('reviews', [slug]) }}">
             {{ _('Edit Your Review') if this.user.has_review else _('Write a Review') }}</a>
         </div>
       {% endif %}

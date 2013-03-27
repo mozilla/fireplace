@@ -63,6 +63,12 @@ define('ratings',
                        .replace(/>/g,'&gt;');
         }
 
+        function renderReviewTemplate(overlay, ctx) {
+            overlay.html(
+                    nunjucks.env.getTemplate('detail/review.html').render(ctx));
+            overlay.find('select[name="rating"]').ratingwidget('large');
+        }
+
         function handleReviewOverlay(overlay) {
             var $form = overlay.find('form');
 
@@ -149,14 +155,14 @@ define('ratings',
                 rating = reviewEl.data('rating'),
                 action = reviewEl.closest('[data-edit-url]').data('edit-url'),
                 body = getBody(reviewEl.find('.body'));
-            overlay.html(reviewTemplate({title: gettext('Edit Review'),
-                                         action: action, body: body}));
 
-            if (z.body.hasClass('desktop')) {
-                overlay.find('select[name="rating"]').ratingwidget('large');
-            } else {
-                overlay.find('select[name="rating"]').ratingwidget();
-            }
+            var ctx = _.extend({
+                title: gettext('Edit Your Review'),
+                action: action
+            }, require('helpers'));
+
+            renderReviewTemplate(overlay, ctx);
+            overlay.find('textarea').text(body);
             overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
 
             handleReviewOverlay(overlay);
@@ -165,22 +171,28 @@ define('ratings',
         // This gets used when you're not editing a review on the review list page.
         function addOrEditYourReview($senderEl) {
             var overlay = utils.makeOrGetOverlay('edit-review'),
-                rating = $senderEl.data('rating'),
+                rating = $senderEl.attr('data-rating'),
                 title = gettext('Write a Review'),
-                body = getBody($('#current-review')),
                 action = $senderEl.data('href');
+
+            var ctx = _.extend({
+                title: title,
+                action: action
+            }, require('helpers'));
 
             if (rating > 0) {
                 title = gettext('Edit Your Review');
+
+                requests.get(action, function(data) {
+                    renderReviewTemplate(overlay, ctx);
+                    var body = overlay.find('textarea').text(data.body);
+                    overlay.find('textarea').text(getBody(body));
+                    overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
+                });
+            } else {
+                renderReviewTemplate(overlay, ctx);
             }
-
-            var helpers = _.extend({title: title, action: action, body: body}, require('helpers'));
-
-            overlay.html(
-                nunjucks.env.getTemplate('detail/review.html').render(helpers));
-
-            overlay.find('select[name="rating"]').ratingwidget('large');
-            overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
+            initCharCount();
             handleReviewOverlay(overlay);
         }
 
@@ -193,8 +205,11 @@ define('ratings',
 
         // Cancel rating button.
         z.page.on('click', '.review .actions a, #add-first-review', utils._pd(function(e) {
-            var $this = $(this),
-                action = $this.data('action');
+            var $this = $(this);
+
+            // data('action') only picks up once so we reference attr('data-action') since
+            // it changes if a user edits a review
+            var action = $this.attr('data-action');
             if (!action) return;
             var $review = $this.closest('.review');
             switch (action) {
@@ -211,7 +226,6 @@ define('ratings',
                     flagReview($review);
                     break;
             }
-
         }));
 
         z.body.on('submit', '.friendly', utils._pd(function(e) {
@@ -220,8 +234,9 @@ define('ratings',
 
             requests.post(urls.api.url('reviews'), $this.serialize(), function() {
                 console.log('submitted review');
+                $('#add-first-review').text(gettext('Edit Your Review'))
+                                      .attr('data-rating', $this.find('input[type=radio]:checked').val());
                 $this.find('textarea, #id_rating').val('');
-                $('#add-first-review').text(gettext('Edit Your Review'));
                 overlay.removeClass('show');
                 notification.notification({message: gettext('Review successfully posted!')});
             });

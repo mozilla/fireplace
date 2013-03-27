@@ -1,6 +1,6 @@
 {% include "_macros/stars.html" %}
 
-{% macro rating(this, detailpage=False) %}
+{% macro rating(this, detailpage=false) %}
 <li id="review-{{ this.id }}" data-rating="{{ this.rating }}"
     class="review{{ ' flagged' if this.is_flagged }} c">
   <div class="review-inner">
@@ -19,8 +19,11 @@
         {% if this.is_flagged %}
           <li class="flagged">{{ _('Flagged for review') }}</li>
         {% endif %}
-        {# TODO: If this user is not the rating author. #}
+        {% if this.user.owns %}
+          <li><a class="edit post" data-action="edit" href="#">{{ _('Edit') }}</a></li>
+        {% else %}
           <li><a class="flag post" data-action="report" href="#">{{ _('Report') }}</a></li>
+        {% endif %}
         {% if not this.reply %}
           <li class="reply"><a class="reply post" data-action="reply"
             href="#">{{ _('Reply') }}</a></li>

@@ -108,6 +108,17 @@ def app_user_data(data):
         data['user']['can_review'] = False
     elif data['price'] == '0.00' or data['user']['has_purchased']:
         data['user']['can_review'] = True
+    if data['user']['can_review']:
+        data['rating'] = 4
+        data['user']['has_review'] = random.choice((True, False))
+    return data
+
+
+def app_user_review(slug, **kwargs):
+    data = {
+        'body': kwargs.get('review', ptext()),
+        'rating': 4
+    }
     return data
 
 
