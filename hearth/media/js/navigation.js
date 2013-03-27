@@ -57,6 +57,14 @@ define('navigation',
         state.type = z.context.type;
         state.title = z.context.title;
 
+        if (popped && state.scrollTop) {
+            console.log('Scrolling', state.scrollTop);
+            z.doc.scrollTop(state.scrollTop);
+        } else {
+            console.log('Resetting scroll');
+            z.doc.scrollTop(0);
+        }
+
         // Clean the path's parameters.
         // /foo/bar?foo=bar&q=blah -> /foo/bar?q=blah
         state.path = extract_nav_url(state.path);
