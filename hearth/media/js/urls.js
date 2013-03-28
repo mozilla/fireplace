@@ -54,7 +54,7 @@ define('urls',
 
     var _device = _.once(function() {
         if (caps.firefoxOS) {
-            return 'fxos';
+            return 'firefoxos';
         } else if (caps.firefoxAndroid) {
             return 'android';
         } else {

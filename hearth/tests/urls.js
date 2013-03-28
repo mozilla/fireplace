@@ -43,7 +43,7 @@ test('api url', function(done) {
         }, function(urls) {
             var hp_url = urls.api.url('homepage');
             eq_(hp_url.substr(0, 13), 'api:/homepage');
-            contains(hp_url, 'dev=fxos');
+            contains(hp_url, 'dev=firefoxos');
             contains(hp_url, 'scr=mobile');
             contains(hp_url, 'tch=foo');
             done();
