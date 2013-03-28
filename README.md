@@ -16,6 +16,10 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
 
   <dt>Inferno</dt>
   <dd>A build server which generates a packaged version of the Marketplace.</dd>
+
+  <dt>Yule Log</dt>
+  <dd>A fake version of Fireplace to provide the Gaia team with a package that can
+  be shipped and later upgraded to the real Fireplace.</dd>
 </dl>
 
 ## Installation
