@@ -186,13 +186,26 @@ def search():
 
     data = _paginated('apps', gen)
     result_count = 34
-    data['creatured'] = [defaults.app('creat %d' % i, 'Creatued App') for
-                         i in xrange(4)]
     data['meta'] = {
         'query': request.args.get('q'),
         'sort': request.args.get('sort'),
-        'cat': request.args.get('cat'),
     }
+    return data
+
+
+@app.route('/category/<slug>')
+def category(slug):
+    def gen():
+        i = 0
+        while 1:
+            yield defaults.app('catm %d' % i, 'Category Item')
+            i += 1
+
+    data = _paginated('apps', gen)
+    result_count = 34
+    data['creatured'] = [defaults.app('creat %d' % i, 'Creatued App') for
+                         i in xrange(4)]
+    data['meta'] = {'sort': request.args.get('sort')}
     return data
 
 

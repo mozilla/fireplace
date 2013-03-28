@@ -16,7 +16,9 @@
     <ul class="grid">
       {% for category in this %}
         <li>
-          <a class="mkt-tile category" href="{{ url('search')|urlparams(cat=category.slug) }}">
+          <a class="mkt-tile category"
+             href="{{ url('category', [category.slug]) }}"
+             data-params="{{ {'name': category.name}|stringify|escape }}">
             <div class="icon cat-{{ category.slug }}"></div>
             <h3 class="linefit">{{ category.name }}</h3>
           </a>

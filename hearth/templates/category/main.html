@@ -1,5 +1,7 @@
 {% include '_macros/market_tile.html' %}
 
+{% set endpoint = api('category', [category]) %}
+
 <section id="filters" class="main overlay{{ ' alt' if settings.payments_enabled }}">
   <header class="header">
     <a href="#" class="header-button icon back left dismiss"><b></b></a>
@@ -10,8 +12,8 @@
     <div>
       <h2>{{ _('Sort by') }}</h2>
       <ul class="toggles two-col c" id="filter-sort">
-        <li class="relevancy">
-          <a href="#" data-option="relevancy">{{ _('Relevance') }}</a>
+        <li class="popularity">
+          <a href="#" data-option="popularity">{{ _('Popularity') }}</a>
         </li>
         <li class="rating">
           <a href="#" data-option="rating">{{ _('Rating') }}</a>
@@ -27,18 +29,26 @@
 </section>
 
 
+<section id="featured" class="main creatured full c">
+  {% defer (url=endpoint, pluck='creatured') %}
+    <ol class="grid c">
+      {% for result in this %}
+        <li>{{ market_tile(result, link=true, src='creatured') }}</li>
+      {% endfor %}
+    </ol>
+  {% end %}
+</section>
 <section id="search-results" class="main full c">
-  {% defer (url=apiParams('search', params), pluck='apps', as='app', paginate='ol.listing') %}
+  {% defer (url=endpoint, pluck='apps', as='app', paginate='ol.listing') %}
     <ol class="container listing c">
       {% for result in this %}
         <li class="item result app c">
-          {{ market_tile(result, link=true, force_button=true, src='search') }}
+          {{ market_tile(result, link=true, force_button=true, src='category-' + category) }}
         </li>
       {% endfor %}
 
       {# Render the more button if there's another page of results #}
       {% if response.pagination.has_more %}
-        {% set endpoint = apiParams('search', params) %} {# XXX: This will be removed #}
         {% set next_page = response.pagination.page + 1 %}
         {% include 'more_button.html' %}
       {% endif %}
@@ -47,7 +57,7 @@
     <p class="spinner alt"></p>
   {% empty %}
     <p class="no-results">
-      {{ _('No results found') }}
+      {{ _('No apps in this category') }}
     </p>
   {% except %}
 

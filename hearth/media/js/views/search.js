@@ -43,7 +43,9 @@ define(
 
     var expand = localStorage.getItem('expand-listings') === 'true' || capabilities.widescreen;
     function setTrays(expanded) {
-        expand = expanded;
+        if (expanded !== undefined) {
+            expand = expanded;
+        }
         $('ol.listing').toggleClass('expanded', expanded);
         $('.expand-toggle').toggleClass('active', expand);
         localStorage.setItem('expand-listings', expanded);
@@ -51,6 +53,7 @@ define(
             z.page.trigger('populatetray');
         }
     }
+    window.setTrays = setTrays; // TODO: this is less than optimal.
 
     z.body.on('click', '.expand-toggle', _pd(function() {
         setTrays(expand = !expand);
@@ -67,22 +70,19 @@ define(
 
     return function(builder, args, params) {
         _.extend(params, {page: 0});
-        var is_category = 'cat' in params;
 
         if (!('sort' in params)) {
-            params.sort = is_category ? 'popularity' : 'relevancy';
+            params.sort = 'relevancy';
         }
 
         builder.z('type', 'search');
-        builder.z('search', params.cat || params.q);
-        builder.z('title', params.cat || params.q || gettext('Search Results'));
+        builder.z('search', params.q);
+        builder.z('title', params.q || gettext('Search Results'));
 
         builder.start('search/main.html', {params: params}).done(function() {
-            setTrays(expand);
+            setTrays();
         });
 
-
-        $('#filter-sort').find(is_category ? '.relevancy' : '.popularity').remove();
         $('#filter-sort li:first a').each(function(i, e) {
             var $this = $(e);
             $this.toggleClass('sel', params.sort == $this.data('option'));

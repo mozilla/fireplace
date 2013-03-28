@@ -46,6 +46,7 @@ define('urls',
         'login': '/user/login',
         'user_abuse': '/user/{0}/abuse',
         'search': '/search',
+        'category': '/category/{0}',
         'feedback': '/feedback',
         'terms_of_use': '/terms-of-use',
         'privacy_policy': '/privacy-policy'

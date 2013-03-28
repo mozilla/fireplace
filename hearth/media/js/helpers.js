@@ -26,6 +26,8 @@ define('helpers',
         return obj;
     });
 
+    env.addFilter('stringify', JSON.stringify);
+
     env.addFilter('join', function(obj, delim) {
         return _.isArray(obj) ? obj.join(delim) : '';
     });
