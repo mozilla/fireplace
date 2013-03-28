@@ -39,7 +39,7 @@ define(['underscore'], function(_) {
         } else if (_.isString(haystack)) {
             assert(haystack.indexOf(needle) !== -1, msg);
         } else {
-
+            assert(_.contains(haystack, needle), msg);
         }
     }
 

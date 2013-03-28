@@ -26,16 +26,19 @@ define(['assert'], function() {
                     infobox.find('span').text('Passed').css('background-color', 'lime');
                     is_done();
                 };
+                var failed = function(message) {
+                    console.error(name, message);
+                    failed++;
+                    infobox.find('span').html('Failed<br>' + message).css('background-color', 'pink');
+                    $('#c_failed').text(failed);
+                };
                 try {
                     console.log('Starting ' + name);
                     infobox.find('span').text('Started').css('background-color', 'goldenrod');
-                    runner(completion);
+                    runner(completion, failed);
                 } catch(e) {
-                    console.error(name, e.message);
-                    failed++;
-                    infobox.find('span').html('Failed<br>' + e.message).css('background-color', 'pink');
+                    failed(e.message);
                 }
-                $('#c_failed').text(failed);
             }, 0);
             $('#c_started').text(started);
         };

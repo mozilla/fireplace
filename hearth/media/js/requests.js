@@ -78,10 +78,12 @@ define(['jquery'], function($) {
 
     function _get(url, success, errorCallback) {
         console.log('[req] GETing', url);
-        return $.get(url, success)
-         .done(function(data) {
+        return $.get(url).done(function(data) {
             console.log('[req] GOT', url);
             cache[url] = data;
+            if (success) {
+                success(data);
+            }
         }).fail(function (jqXHR, textStatus, error) {
             _error(jqXHR, textStatus, error, errorCallback);
         });
@@ -89,9 +91,11 @@ define(['jquery'], function($) {
 
     function post(url, data, success, errorCallback) {
         console.log('[req] POSTing', url);
-        return $.post(url, data, success)
-         .done(function() {
+        return $.post(url, data).done(function(data) {
             console.log('[req] POSTed', url);
+            if (success) {
+                success(data);
+            }
         }).fail(function (jqXHR, textStatus, error) {
             _error(jqXHR, textStatus, error, errorCallback);
         });

@@ -14,24 +14,24 @@ test('reverse', function(done) {
     done();
 });
 
-test('reverse missing args', function(done) {
+test('reverse missing args', function(done, fail) {
     var reverse = urls.reverse;
     try {
         reverse('app', []);
     } catch(e) {
         return done();
     }
-    throw new Error('reverse() did not throw exception');
+    fail('reverse() did not throw exception');
 });
 
-test('reverse too many args', function(done) {
+test('reverse too many args', function(done, fail) {
     var reverse = urls.reverse;
     try {
         reverse('app', ['foo', 'bar']);
     } catch(e) {
         return done();
     }
-    throw new Error('reverse() did not throw exception');
+    fail('reverse() did not throw exception');
 });
 
 test('api url', function(done) {
