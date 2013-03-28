@@ -41,21 +41,8 @@ If you plan on doing compilation (i.e.: you're Wil Clouser), you'll also need
 
 ### Flue
 
-If you intend to use Flue (the mocked-out API server), you will also need to
-have Flask and perhaps a few other packages installed. That can be set up by
-running:
-
-```bash
-pip install -r flue/requirements.txt
-```
-
-You may wish to run Flue in a `virtualenv`:
-
-```bash
-curl -s https://raw.github.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
-source ~/.profile
-mkvirtualenv --no-site-packages fireplace
-```
+Comprehensive Flue documentation can be found in
+[Flue's README](https://github.com/mozilla/fireplace/blob/master/flue/README.rst).
 
 
 ### Getting node/npm
