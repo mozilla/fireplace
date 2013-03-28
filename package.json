@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./damper.js",
-    "postinstall": "cp -n hearth/media/js/settings_local.js.dist hearth/media/js/settings_local.js"
+    "postinstall": "node ./scripts/install.js"
   },
   "engines": {
     "node": ">= 0.8.2",
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "clean-css": "0.10.x",
-    "nunjucks": "https://github.com/mattbasta/nunjucks/tarball/custom_tags",
+    "nunjucks": "https://github.com/mattbasta/nunjucks/tarball/combined",
     "stylus": "0.32.x",
     "uglify-js": "2.2.x"
   }

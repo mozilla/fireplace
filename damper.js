@@ -1,6 +1,5 @@
 var fs = require('fs');
 var http = require('http');
-var path = require('path');
 var stylus = require('stylus');
 
 var fs_exists;
