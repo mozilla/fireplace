@@ -28,10 +28,6 @@ define('helpers',
 
     env.addFilter('stringify', JSON.stringify);
 
-    env.addFilter('join', function(obj, delim) {
-        return _.isArray(obj) ? obj.join(delim) : '';
-    });
-
     env.addFilter('safe', function(obj) {
         // TODO: When jlongster's autoescaping patch lands, this won't be needed.
         return obj;
@@ -49,7 +45,6 @@ define('helpers',
         return 'data-product="' + utils.escape_(JSON.stringify(product)) + '"';
     });
 
-    env.addFilter('round', Math.round);
     env.addFilter('format', format.format);
 
     env.addFilter('sum', function(obj) {
