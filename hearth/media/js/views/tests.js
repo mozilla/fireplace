@@ -33,7 +33,7 @@ define(['assert'], function() {
                 } catch(e) {
                     console.error(name, e.message);
                     failed++;
-                    infobox.find('span').text('Failed<br>' + e.message).css('background-color', 'pink');
+                    infobox.find('span').html('Failed<br>' + e.message).css('background-color', 'pink');
                 }
                 $('#c_failed').text(failed);
             }, 0);

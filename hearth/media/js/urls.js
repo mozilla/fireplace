@@ -24,9 +24,8 @@ define('urls',
 
             // Check that we got the right number of arguments.
             if (args.length != i) {
-                console.error('Wrong number of arguments passed to reverse()', view_name, args);
-                console.log('Expected ' + i + ' args, got ' + args.length);
-                return null;
+                console.error('Expected ' + i + ' args, got ' + args.length);
+                throw new Error('Wrong number of arguments passed to reverse()', view_name, args);
             }
 
             return format.format(url, args);

@@ -18,20 +18,20 @@ test('reverse missing args', function(done) {
     var reverse = urls.reverse;
     try {
         reverse('app', []);
-        throw new Error('reverse() did not throw exception');
     } catch(e) {
-        done();
+        return done();
     }
+    throw new Error('reverse() did not throw exception');
 });
 
 test('reverse too many args', function(done) {
     var reverse = urls.reverse;
     try {
         reverse('app', ['foo', 'bar']);
-        throw new Error('reverse() did not throw exception');
     } catch(e) {
-        done();
+        return done();
     }
+    throw new Error('reverse() did not throw exception');
 });
 
 test('api url', function(done) {
