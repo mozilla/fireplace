@@ -19,21 +19,22 @@ define(['assert'], function() {
             is_done();
             setTimeout(function() {
                 var infobox = $('<li><b>' + name + '</b> <span>Running...</span></li>');
-                $('ul.tests').append(infobox);
+                $('ol.tests').append(infobox);
                 var completion = function() {
                     passed++;
+                    $('#c_passed').text(passed);
+                    infobox.find('span').text('Passed').css('background-color', 'lime');
                     is_done();
                 };
                 try {
                     console.log('Starting ' + name);
+                    infobox.find('span').text('Started').css('background-color', 'goldenrod');
                     runner(completion);
-                    infobox.find('span').text('Passed');
                 } catch(e) {
                     console.error(name, e.message);
-                    failed++
-                    infobox.find('span').text('Failed');
+                    failed++;
+                    infobox.find('span').text('Failed<br>' + e.message).css('background-color', 'pink');
                 }
-                $('#c_passed').text(passed);
                 $('#c_failed').text(failed);
             }, 0);
             $('#c_started').text(started);
