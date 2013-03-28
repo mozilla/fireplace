@@ -108,34 +108,8 @@ will be generated.
 
 ## Localizing
 
-The compilation process (described above) generates a file called `strings.po`
-which can be uploaded to [Verbatim](http://localize.mozilla.org/). When the
-resulting language packs are translated and returned, they can be reintroduced
-to Fireplace using the `scripts/generate_langpacks.js` script. Running this
-script on a translated `.po` file will produce a language pack which can be
-included in the repo. ::
-
-    %> node scripts/generate_langpacks.js ~/Downloads/verbatim/esperanto.po
-    %> ls ~/Downloads/verbatim
-    .
-    ..
-    esperanto.po
-    esperanto.po.js
-    %> mv ~/Downloads/verbatim/esperanto.po hearth/locales/eo-EO.js
-
-
-Place all of the `.js` files in the `hearth/locales/` directory, renamed to
-have its name in the format of `xx-YY` plus `.js`. Make sure you commit
-that...stuff!
-
-
-### Testing Locales
-
-You can add a query parameter to the URL to force a language override:
-
-```
-http://localhost:8675/?lang=pt-BR
-```
+A detailed guide to extracting strings and creating JS language packs can be
+found [on the wiki](https://github.com/mozilla/fireplace/wiki/L10n#extracting-strings).
 
 
 ## The API
