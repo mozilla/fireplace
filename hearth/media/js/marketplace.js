@@ -152,12 +152,14 @@ require.config({
         // Debug page
         (function() {
             $('.wordmark').on('touchstart', function() {
+                console.log('hold for debug...');
                 if (to) clearTimeout(to);
                 to = setTimeout(function() {
                     z.page.trigger('navigate', ['/debug']);
                 }, 5000);
             });
             $('.wordmark').on('touchend', function() {
+                console.log('debug hold broken.');
                 if (to) clearTimeout(to);
             });
         })();
