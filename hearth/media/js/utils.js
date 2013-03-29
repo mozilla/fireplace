@@ -61,7 +61,7 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
         if (!qs) return {};
 
         return _.chain(qs.split('&'))  // ['a=b', 'c=d']
-                .map(function(c) {return _.map(c.split('='), escape_);}) //  [['a', 'b'], ['c', 'd']]
+                .map(function(c) {return c.split('=').map(decodeURIComponent).map(escape_);}) //  [['a', 'b'], ['c', 'd']]
                 .filter(function(p) {  // [['a', 'b'], ['c', undefined]] -> [['a', 'b']]
                     return !!p[0] && (!excl_undefined || !_.isUndefined(p[1]));
                 }).object()  // {'a': 'b', 'c': 'd'}

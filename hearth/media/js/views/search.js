@@ -79,7 +79,7 @@ define(
         builder.z('search', params.q);
         builder.z('title', params.q || gettext('Search Results'));
 
-        builder.start('search/main.html', {params: params}).done(function() {
+        builder.start('search/main.html', {params: _.extend({}, params)}).done(function() {
             setTrays();
         });
 

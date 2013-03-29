@@ -38,6 +38,7 @@ test('urlparams', function(done) {
 
 test('getVars', function(done) {
     feq_(utils.getVars('a=b'), {a: 'b'});
+    feq_(utils.getVars('a%20z=b%20c'), {'a z': 'b c'});
     feq_(utils.getVars('?a=b'), {a: 'b'});
     feq_(utils.getVars('?'), {});
     feq_(utils.getVars('?a=b&c=d'), {a: 'b', c: 'd'});

@@ -185,7 +185,11 @@ define('navigation',
     }).on('submit', 'form#search', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        z.page.trigger('search', {q: $('#search-q').val()});
+        var query = $('#search-q').val();
+        if (query == 'do a barrel roll') {
+            z.body.toggleClass('roll');
+        }
+        z.page.trigger('search', {q: query});
 
     });
     z.win.on('popstate', function(e) {
