@@ -20,7 +20,7 @@ define('capabilities', [], function() {
         'userAgent': navigator.userAgent,
         'widescreen': safeMatchMedia('(min-width: 1024px)'),
         'firefoxAndroid': navigator.userAgent.indexOf('Firefox') != -1 && navigator.userAgent.indexOf('Android') != -1,
-        'touch': ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
+        'touch': !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch),
         'nativeScroll': (function() {
             return 'WebkitOverflowScrolling' in document.createElement('div').style;
         })(),
