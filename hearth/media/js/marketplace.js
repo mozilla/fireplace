@@ -151,7 +151,7 @@ require.config({
 
         // Debug page
         (function() {
-            var to;
+            var to = false;
             z.doc.on('touchstart', '.wordmark', function() {
                 console.log('hold for debug...');
                 if (to) clearTimeout(to);
