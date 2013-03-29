@@ -151,10 +151,12 @@ require.config({
 
         // Debug page
         (function() {
+            var to;
             z.doc.on('touchstart', '.wordmark', function() {
                 console.log('hold for debug...');
                 if (to) clearTimeout(to);
                 to = setTimeout(function() {
+                    console.log('navigating to debug...');
                     z.page.trigger('navigate', ['/debug']);
                 }, 5000);
             });
