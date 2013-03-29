@@ -18,7 +18,7 @@
       {# Render the more button if there's another page of results #}
       {% if response.pagination.has_more %}
         {% set next_page = response.pagination.page + 1 %}
-        {% include 'search/more_button.html' %}
+        {% include 'more_button.html' %}
       {% endif %}
     </ul>
   {% empty %}
