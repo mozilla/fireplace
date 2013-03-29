@@ -4,8 +4,6 @@ define('previews', ['flipsnap', 'templates', 'utils', 'z'], function(Flipsnap, n
         var THUMB_WIDTH = 180;
         var THUMB_PADDED = 195;
 
-        z.page.on('dragstart', utils._pd());
-
         function populateTray() {
             // preview trays expect to immediately follow a .mkt-tile.
             var $tray = $(this);
@@ -35,8 +33,8 @@ define('previews', ['flipsnap', 'templates', 'utils', 'z'], function(Flipsnap, n
             var width = numPreviews * THUMB_PADDED - 15;
 
             $tray.find('.content').css({
-                'width': width + 'px',
-                'margin': '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px'
+                width: width + 'px',
+                margin: '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px'
             });
 
             var slider = Flipsnap($tray.find('.content')[0], {distance: 195});
@@ -51,14 +49,38 @@ define('previews', ['flipsnap', 'templates', 'utils', 'z'], function(Flipsnap, n
                 $pointer.filter('.current').removeClass('current');
                 $pointer.eq(slider.currentPoint).addClass('current');
             }
-            $tray.on('click', '.dot', function() {
+            $tray.on('click.tray', '.dot', function() {
                 slider.moveToPoint($(this).index());
+            });
+
+            // Reinitialize Flipsnap positions on resize.
+            z.doc.on('saferesize.tray', function() {
+                if (slider) {
+                    $tray.find('.content').css('margin', '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px');
+                    slider.refresh();
+                }
+            });
+
+            // We're leaving the page, so destroy Flipsnap.
+            z.win.on('unloading.tray', function() {
+                if (slider) {
+                    slider.destroy();
+                }
             });
         }
 
+        z.page.on('dragstart', utils._pd);
+
+        // Remove our event listeners because we good like dat.
+        // BTW, this is how we should always do things.
+        z.win.on('unloading', function() {
+            $('.tray').off('click.tray');
+            z.doc.off('saferesize.tray');
+            z.doc.off('unloading.tray');
+        });
+
         z.page.on('loaded populatetray', function() {
-            var trays = $('.listing.expanded .mkt-tile + .tray:empty');
-            trays.each(populateTray);
+            $('.listing.expanded .mkt-tile + .tray:empty').each(populateTray);
         });
     }
 

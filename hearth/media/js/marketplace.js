@@ -132,6 +132,11 @@ require.config({
             z.page.trigger('reloaded_chrome');
         }).trigger('reload_chrome');
 
+        function trigger() {
+            z.doc.trigger('saferesize');
+        }
+        window.addEventListener('resize', _.debounce(trigger, 200), false);
+
         // Perform initial navigation.
         var hash = window.location.hash;
         var use_hash = hash && hash.substr(0, 2) == '#!';
