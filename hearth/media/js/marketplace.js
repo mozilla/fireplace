@@ -154,7 +154,7 @@ require.config({
             var to = false;
             z.doc.on('touchstart', '.wordmark', function() {
                 console.log('hold for debug...');
-                if (to) clearTimeout(to);
+                clearTimeout(to);
                 to = setTimeout(function() {
                     console.log('navigating to debug...');
                     z.page.trigger('navigate', ['/debug']);
@@ -162,7 +162,7 @@ require.config({
             });
             z.doc.on('touchend', '.wordmark', function() {
                 console.log('debug hold broken.');
-                if (to) clearTimeout(to);
+                clearTimeout(to);
             });
         })();
 
