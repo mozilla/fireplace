@@ -148,6 +148,38 @@ require.config({
                 v.init();
             }
         });
+
+        // Debug page
+        (function() {
+            var b1 = false;
+            var b2 = false;
+            var to = false;
+            $('.wordmark').on('touchstart', function() {
+                b1 = true;
+                checkPress();
+            });
+            $('.settings').on('touchstart', function() {
+                b2 = true;
+                checkPress();
+            });
+            $('.wordmark').on('touchend', function() {
+                b1 = false;
+                if (to) clearTimeout(to);
+            });
+            $('.settings').on('touchend', function() {
+                b2 = false;
+                if (to) clearTimeout(to);
+            });
+            function checkPress() {
+                if (b1 && b2) {
+                    if (to) clearTimeout(to);
+                    to = setTimeout(function() {
+                        z.page.trigger('navigate', ['/debug']);
+                    }, 5000);
+                }
+            }
+        })();
+
     });
 
 })();

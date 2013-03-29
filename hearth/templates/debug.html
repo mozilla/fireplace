@@ -1,0 +1,20 @@
+<section class="main infobox">
+  <div>
+    <style>
+      dt {
+        clear: left;
+        float: left;
+      }
+      dd {
+        float: left;
+      }
+    </style>
+    <h2>Debug</h2>
+    <dl>
+      {% for cap in capabilities.items() %}
+        <dt>{{ cap[0] }}</dt>
+        <dd>{{ cap[1] }}</dd>
+      {% endfor %}
+    </dl>
+  </div>
+</section>

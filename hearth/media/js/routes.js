@@ -15,7 +15,8 @@ var routes = [
     {pattern: '^/privacy-policy$', view_name: 'privacy'},
     {pattern: '^/terms-of-use$', view_name: 'terms'},
 
-    {pattern: '^/tests$', view_name: 'tests'}
+    {pattern: '^/tests$', view_name: 'tests'},
+    {pattern: '^/debug$', view_name: 'debug'}
 ];
 
 define(
