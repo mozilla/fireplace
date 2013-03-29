@@ -6,7 +6,8 @@ define('z', ['jquery', 'settings', 'underscore'], function($, settings, _) {
         container: $('#container'),
         page: $('#page'),
         canInstallApps: true,
-        state: {}
+        state: {},
+        apps: {}
     };
 
     var data_user = z.body.data('user');
