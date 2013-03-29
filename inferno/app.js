@@ -26,56 +26,58 @@ app.get('/package.zip', function(req, res){
     });
 });
 
-var bundle = 'https://nodeload.github.com/mozilla/fireplace/zip/master';
 app.all('/ping', function(req, res) {
-    http.get(bundle, function(request) {
-        var downloadfile = fs.openSync('build/temp.zip', 'w');
-        var buffer = '';
-        request.on('data', function(chunk) {
-            fs.write(downloadfile, chunk, 0, chunk.length, null, function() {});
-        });
-        request.on('end', function() {
-            fs.closeSync(downloadfile);
-            console.log('Wrote to temp');
-            res.send("Fetched, thanks. We'll take it from here.");
-            extract();
-        });
-    });
 
-    function extract() {
-        cp.exec('rm -rf fireplace-master', {cwd: 'build/'}, unzip) ;
-        function unzip() {
-            cp.exec('unzip -u temp.zip', {cwd: 'build/'}, rmold) ;
+    function cpe(command, options, callback) {
+        function cb(error, stdout, stderr) {
+            if (error) {
+                console.error(error);
+                console.error(stderr);
+            } else {
+                callback();
+            }
         }
-        function rmold() {
-            console.log('Removing temp file.');
-            cp.exec('rm build/temp.zip', {}, compile);
-        }
+        var proc = cp.exec(command, options, cb);
+        proc.on('error', function() {console.error(arguments);});
+        proc.on('exit', function(code) {
+            if (code !== 0) {
+                console.error('Bad error code: ', code);
+            }
+        });
+    }
+
+    cpe('rm -rf fireplace-master', {cwd: 'build/'}, git);
+
+    function git() {
+        cpe('git clone git://github.com/mozilla/fireplace.git fireplace-master', {cwd: 'build/'}, compile);
     }
 
     var opts = {cwd: 'build/fireplace-master/'};
     function compile() {
+
+        res.send("Fetched, thanks. We'll take it from here.");
+
         console.log('Installing deps');
-        cp.exec('npm install', opts, damper);
+        cpe('npm install', opts, damper);
         function damper() {
             console.log('Running damper compiler');
-            cp.exec('node damper.js --compile', opts, ssettings);
+            cpe('node damper.js --compile', opts, ssettings);
         }
         function ssettings() {
             console.log('Swapping in inferno settings');
-            cp.exec('cp hearth/media/js/settings_inferno.js hearth/media/js/settings_local.js', opts, rmfonts);
+            cpe('cp hearth/media/js/settings_inferno.js hearth/media/js/settings_local.js', opts, rmfonts);
         }
         function rmfonts() {
             console.log('Removing unnecessary fonts');
-            cp.exec('rm -f hearth/media/fonts/*.ttf hearth/media/fonts/*.svg hearth/media/fonts/*.eot', opts, rmstyl);
+            cpe('rm -f hearth/media/fonts/*.ttf hearth/media/fonts/*.svg hearth/media/fonts/*.eot', opts, rmstyl);
         }
         function rmstyl() {
             console.log('Removing unnecessary stylus files');
-            cp.exec('rm -f hearth/media/css/*.styl', opts, rmtemplates);
+            cpe('rm -f hearth/media/css/*.styl', opts, rmtemplates);
         }
         function rmtemplates() {
             console.log('Removing raw templates and tests');
-            cp.exec('rm -rf hearth/templates hearth/tests', opts, zip);
+            cpe('rm -rf hearth/templates hearth/tests', opts, zip);
         }
         function zip() {
             console.log('Removing old package.zip');
@@ -84,7 +86,7 @@ app.all('/ping', function(req, res) {
             } catch(e) {
                 console.log('No package.zip to remove');
             }
-            cp.exec('cd hearth/ && zip -r ../../package.zip *', opts, finish);
+            cpe('cd hearth/ && zip -r ../../package.zip *', opts, finish);
         }
     }
 
