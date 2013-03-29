@@ -1,4 +1,5 @@
-define('previews', ['flipsnap', 'templates', 'utils', 'z'], function(Flipsnap, nunjucks, utils, z) {
+define('previews', ['flipsnap', 'templates', 'utils', 'capabilities', 'shothandles', 'z'],
+       function(Flipsnap, nunjucks, utils, caps, handles, z) {
     function init() {
         // magic numbers!
         var THUMB_WIDTH = 180;
@@ -29,10 +30,11 @@ define('previews', ['flipsnap', 'templates', 'utils', 'z'], function(Flipsnap, n
             }));
 
             var numPreviews = $tray.find('li').length;
+            var $content = $tray.find('.content');
 
             var width = numPreviews * THUMB_PADDED - 15;
 
-            $tray.find('.content').css({
+            $content.css({
                 width: width + 'px',
                 margin: '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px'
             });
@@ -52,6 +54,11 @@ define('previews', ['flipsnap', 'templates', 'utils', 'z'], function(Flipsnap, n
             $tray.on('click.tray', '.dot', function() {
                 slider.moveToPoint($(this).index());
             });
+
+            // Tray can fit 3 desktop thumbs before paging is required.
+            if (numPreviews > 3 && caps.widescreen) {
+                handles.attachHandles(slider, $tray.find('.slider'));
+            }
 
             // Reinitialize Flipsnap positions on resize.
             z.doc.on('saferesize.tray', function() {

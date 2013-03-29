@@ -62,7 +62,7 @@ def app(name, slug, **kwargs):
             64: '/media/img/icons/firefox-beta.png',
             128: '/media/img/icons/firefox-beta.png'
         },
-        'previews': [_app_preview() for i in range(3)],
+        'previews': [_app_preview() for i in range(4)],
         'image_assets': {
             'desktop_tile': ['/media/img/icons/firefox-beta.png',
                              int(random.random() * 255)],

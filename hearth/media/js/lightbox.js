@@ -1,11 +1,14 @@
-define('lightbox', ['keys', 'utils', 'z'], function(keys, utils, z) {
+define('lightbox', ['keys', 'utils', 'shothandles', 'z'],
+       function(keys, utils, handles, z) {
     function init() {
-        var $lightbox = $('#lightbox');
+        var $lightbox = $(document.getElementById('lightbox'));
         var $section = $lightbox.find('section');
         var $content = $lightbox.find('.content');
         var currentApp;
         var previews;
         var slider;
+
+        $lightbox.addClass('shots');
 
         function showLightbox() {
             var $this = $(this);
@@ -93,6 +96,8 @@ define('lightbox', ['keys', 'utils', 'z'], function(keys, utils, z) {
             // $section doesn't have its proper width until after a paint.
             slider = Flipsnap($content[0]);
             slider.element.addEventListener('fsmoveend', pauseVideos, false);
+
+            handles.attachHandles(slider, $section);
         }
 
         function resize() {

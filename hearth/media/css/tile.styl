@@ -449,6 +449,55 @@
     }
 }
 
+.shots {
+    .next, .prev {
+        display: none;
+    }
+}
+
+@media $at-least-desktop {
+    .shots {
+        position: relative;
+        .next, .prev {
+            border-radius: 0 30px 30px 0;
+            border: 15px solid rgba(#252525,.7);
+            height: 60px;
+            margin-top: -30px;
+            position: absolute;
+            top: 50%;
+            width: 0;
+            &:after {
+                background: url(../img/icons/slider_arrow.png) no-repeat;
+                content: "";
+                float: right;
+                height: 22px;
+                left: 7px;
+                position: relative;
+                top: 4px;
+                width: 15px;
+            }
+            &:hover {
+                border-color: rgba(#252525,.9);
+            }
+        }
+        .next {
+            border-radius: 30px 0 0 30px;
+            right: 0;
+            &:after {
+                transform(scaleX(-1));
+            }
+        }
+        .prev {
+            left: 0;
+        }
+    }
+    #lightbox {
+        .next, .prev {
+            box-shadow: 0 0 4px #fff;
+        }
+    }
+}
+
 @media (max-width: 1023px) {
     .grid li {
         // Render featured apps and categories in multiples of three.
@@ -456,6 +505,14 @@
         &:nth-last-child(-n+2):nth-child(3n+1),
         &:nth-last-child(-n+1):nth-child(3n+2) {
             display: none;
+        }
+    }
+}
+
+@media $retina {
+    .shots .next, .shots .prev {
+        &:after {
+            background: url(../img/icons/slider_arrow-2x.png) no-repeat;
         }
     }
 }
