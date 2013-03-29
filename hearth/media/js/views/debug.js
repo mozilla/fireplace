@@ -1,22 +1,28 @@
 define(
     ['capabilities', 'notification', 'z'],
-    function(capabilities, 'z') {
+    function(capabilities, notification, z) {
     'use strict';
 
+    var debugEnabled = localStorage.getItem('debug-enabled');
+    var label = $('#debug-status');
     z.doc.on('click', '#toggle-debug', function() {
-        var debugEnabled = localStorage.getItem('debug-enabled');
-        if (debugEnabled) {
+        debugEnabled = localStorage.getItem('debug-enabled');
+        if (debugEnabled === 'yes') {
             notification.notification({message: 'debug mode disabled', timeout: 1000});
-            localStorage.setItem('debug-enabled', false);
+            localStorage.setItem('debug-enabled', 'no');
+            label.text('no');
         } else {
-            notification.notification({message: 'debug mode disabled', timeout: 1000});
-            localStorage.setItem('debug-enabled', true);
+            notification.notification({message: 'debug mode enabled', timeout: 1000});
+            localStorage.setItem('debug-enabled', 'yes');
+            label.text('yes');
         }
     });
 
     return function debug_view(builder, args) {
-        console.log(capabilities);
-        builder.start('debug.html', {capabilities: capabilities});
+        builder.start('debug.html', {
+            capabilities: capabilities,
+            dbg: debugEnabled || 'no'
+        });
 
         builder.z('type', 'leaf');
     };
