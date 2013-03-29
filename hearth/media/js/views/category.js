@@ -6,6 +6,7 @@ define(
 
     return function(builder, args, __, params) {
         var category = args[0];
+        params = params || {};
         _.extend(params, {page: 0});
 
         if (!('sort' in params)) {
