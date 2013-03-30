@@ -28,7 +28,7 @@
 
 
 <section id="search-results" class="main full c">
-  {% defer (url=apiParams('search', params), pluck='apps', as='app', paginate='ol.listing') %}
+  {% defer (url=apiParams('search', params), pluck='objects', as='app', paginate='ol.listing') %}
     <ol class="container listing c">
       {% for result in this %}
         <li class="item result app c">

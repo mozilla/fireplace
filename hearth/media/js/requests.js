@@ -52,7 +52,7 @@ define(['jquery'], function($) {
     */
 
     // Hax because Firefox OS is super balls.
-    $.ajaxSetup({dataType: 'json'});
+    //$.ajaxSetup({dataType: 'json'});
 
     function _error(jqXHR, textStatus, error, errorCallback) {
         if (errorCallback) {
@@ -65,6 +65,9 @@ define(['jquery'], function($) {
     var cache = {};
 
     function get(url, success, errorCallback) {
+        if (success) {
+            console.error('[dep] Success callbacks are deprecated');
+        }
         if (url in cache) {
             if (success) {
                 success(cache[url]);
@@ -90,6 +93,9 @@ define(['jquery'], function($) {
     }
 
     function post(url, data, success, errorCallback) {
+        if (success) {
+            console.error('[dep] Success callbacks are deprecated');
+        }
         console.log('[req] POSTing', url);
         return $.post(url, data).done(function(data) {
             console.log('[req] POSTed', url);

@@ -71,8 +71,8 @@ define(
     return function(builder, args, params) {
         _.extend(params, {page: 0});
 
-        if (!('sort' in params)) {
-            params.sort = 'relevancy';
+        if ('sort' in params && params.sort == 'relevancy') {
+            delete params.sort;
         }
 
         builder.z('type', 'search');

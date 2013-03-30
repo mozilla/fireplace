@@ -36,8 +36,9 @@ def _app_preview():
                random.choice(SCREENSHOT_MAP))
     return {
         'caption': ptext(5),
-        'thumbURL': url % 'thumbs',
-        'fullURL': url % 'full',
+        'type': 'image/png',
+        'thumb_url': url % 'thumbs',
+        'full_url': url % 'full',
     }
 
 
@@ -76,7 +77,7 @@ def app(name, slug, **kwargs):
             {'name': 'cvan'},
             {'name': 'Chris Van Halen'}
         ],
-        'reviews': {
+        'ratings': {
             'average': random.random() * 4 + 1,
             'count': int(random.random() * 500),
         },

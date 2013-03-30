@@ -22,7 +22,7 @@ define(
     function startInstall(product) {
         if (product.price != '0.00' && !user.logged_in()) {
             localStorage.setItem('toInstall', product.manifest_url);
-            z.win.trigger('login', true);
+            z.body.trigger('promptlogin', true);
             console.log('Install suspended; user needs to log in');
             return;
         }

@@ -46,12 +46,11 @@ define('login',
                 is_native: navigator.id._shimmed ? 0 : 1
             };
 
-            requests.post(require('urls').api.url('login'), data, function(data) {
+            requests.post(require('urls').api.url('login'), data).done(function(data) {
                 user.set_token(data.token, data.settings);
                 console.log('finished login');
                 z.body.addClass('logged-in');
-                z.page.find('.loading-submit')
-                      .removeClass('loading-submit persona');
+                $('.loading-submit').removeClass('loading-submit persona');
                 z.page.trigger('reload_chrome');
                 z.page.trigger('logged_in');
 
@@ -60,7 +59,7 @@ define('login',
                     z.page.trigger('navigate', [to]);
                     return;
                 }
-            }, function(jqXHR, textStatus, error) {
+            }).fail(function(jqXHR, textStatus, error) {
                 var err = jqXHR.responseText;
                 if (!err) {
                     err = gettext("Persona login failed. Maybe you don't have an account under that email address?") + " " + textStatus + " " + error;
@@ -70,6 +69,7 @@ define('login',
                 if (jqXHR.status != 200) {
                     err = gettext('Persona login failed. A server error was encountered.');
                 }
+                $('.loading-submit').removeClass('loading-submit');
                 z.page.trigger('notify', {msg: err});
             });
         } else {

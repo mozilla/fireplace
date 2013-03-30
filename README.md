@@ -5,6 +5,9 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
 ## Glossary
 
 <dl>
+  <dt>Chimney</dt>
+  <dd>A bridge between Flue and the actual Zamboni API</dd>
+
   <dt>Damper</dt>
   <dd>A node.js server that serves a browser-friendly version of Fireplace</dd>
 
