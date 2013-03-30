@@ -4,7 +4,7 @@ define(
     'use strict';
 
     var debugEnabled = localStorage.getItem('debug-enabled');
-    var label = $('#debug-status');
+    var label = $(document.getElementById('debug-status'));
     z.doc.on('click', '#toggle-debug', function() {
         debugEnabled = localStorage.getItem('debug-enabled');
         if (debugEnabled === 'yes') {
