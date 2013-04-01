@@ -33,6 +33,16 @@
             display: block;
         }
     }
+    // Show one button per line when text is longer. This class is set via JS.
+    &.overflowing {
+        ul.c li {
+            padding-right: 0;
+            width: 100%;
+            &:nth-child(2n) {
+                padding: 0;
+            }
+        }
+    }
     dl {
         margin: 15px 0 0;
     }
@@ -42,5 +52,31 @@
     }
     dt {
         margin-right: 5px;
+    }
+}
+
+@media $at-least-desktop {
+    // Let's undo the overflow widths for desktop.
+    .infobox {
+        > div {
+            padding: 20px;
+        }
+        ul.c {
+            margin: -5px;
+            li {
+                margin: 0;
+                width: 25%;
+                padding: 5px;
+            }
+        }
+        &.overflowing {
+            ul.c li {
+                padding: 5px;
+                width: 50%;
+                &:nth-child(2n) {
+                    padding: 5px;
+                }
+            }
+        }
     }
 }
