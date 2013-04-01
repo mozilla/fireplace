@@ -7,7 +7,7 @@ app = Flask("Flue")
 
 
 FLUE = 'http://flue.paas.allizom.org'
-MARKETPLACE = 'https://marketplace-dev.allizom.org'
+MARKETPLACE = 'http://localhost:8000'
 
 IGNORED_HEADERS = ('transfer-encoding', 'content-encoding', 'connection')
 
@@ -127,22 +127,7 @@ def category(slug):
 
 @app.route('/app/<slug>/ratings')
 def app_ratings(slug):
-    def gen():
-        i = 0
-        while 1:
-            yield defaults.rating()
-            i += 1
-    data = _paginated('ratings', gen)
-    result_count = 34
-    data.update(defaults.app_user_data(data))
-    data['user']['can_rate'] = True
-    data['user']['has_rated'] = False
-    data['meta'] = {
-        'slug': slug,
-        'average': random.random() * 4 + 1,
-        'count': 24,
-    }
-    return data
+    return _proxy(FLUE + request.path)
 
 
 @app.route('/app/<slug>')
