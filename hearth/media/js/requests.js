@@ -107,6 +107,16 @@ define(['jquery'], function($) {
         });
     }
 
+    // Delete request does not need to care about a callback for success/failure,
+    // since it is already handled with a notification where this is called.
+    function del(url) {
+        console.log('[req] DELETing', url);
+        return $.ajax({
+            url: url,
+            type: 'DELETE'
+        });
+    }
+
     function Pool() {
         console.log('[req] Opening pool');
         var requests = [];
@@ -126,6 +136,7 @@ define(['jquery'], function($) {
                 // Don't allow new requests.
                 this.get = null;
                 this.post = null;
+                this.del = null;
 
                 // Resolve the deferred whenevs.
                 if (window.setImmediate) {
@@ -156,6 +167,7 @@ define(['jquery'], function($) {
             return req;
         };
         this.post = function() {return make(post, arguments);};
+        this.del = function() {return make(del, arguments);};
 
         this.abort = function() {
             for (var i = 0, request; request = requests[i++];) {
@@ -173,6 +185,7 @@ define(['jquery'], function($) {
     return {
         get: get,
         post: post,
+        del: del,
         pool: function() {return new Pool();}
     };
 });

@@ -33,6 +33,9 @@ def _proxy(url):
     if request.method == 'POST':
         print 'POSTing %s' % url
         req = requests.post(url, request.form)
+    elif request.method == 'DELETE':
+        print 'DELETing %s' % url
+        req = requests.delete(url)
     else:
         print 'GETing %s' % url
         req = requests.get(url)
@@ -67,6 +70,11 @@ def reviews_self(slug):
                         {app: slug, body: self.args.get('body'),
                          rating: self.args.get('rating')})
     return req.text
+
+
+@app.route('/app/<slug>/reviews/self', methods=['DELETE'])
+def reviews_self_delete(slug):
+    return _proxy(MARKETPLACE + '/api/apps/rating/?app=%s' % slug)
 
 
 @app.route('/app/<slug>/reviews/self', methods=['GET'])

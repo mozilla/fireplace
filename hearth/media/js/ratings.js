@@ -137,16 +137,10 @@ define('ratings',
 
         function deleteReview(reviewEl, action) {
             reviewEl.addClass('deleting');
-            requests.post(action, {});
-            setTimeout(function() {
-                reviewEl.addClass('deleted');
-                // Change edit review button to submit review button.
-                $('#add-edit-review').text(gettext('Write a Review'));
-                $('#add-review').children().text(gettext('Write a Review'));
-                $('.notification.box').remove();
-
-                notification.notification({message: gettext('Your review was successfully deleted!')});
-            }, 500);
+            requests.del(action);
+            $('#add-first-review').text(gettext('Write a Review'));
+            reviewEl.addClass('deleted');
+            notification.notification({message: gettext('Your review was successfully deleted!')});
         }
 
         // Edit review on the review listing page.
@@ -214,7 +208,7 @@ define('ratings',
             var $review = $this.closest('.review');
             switch (action) {
                 case 'delete':
-                    deleteReview($review, $this.attr('href'));
+                    deleteReview($review, $this.attr('data-href'));
                     break;
                 case 'edit':
                     editReview($review);
