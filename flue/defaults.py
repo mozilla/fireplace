@@ -36,9 +36,9 @@ def _app_preview():
                random.choice(SCREENSHOT_MAP))
     return {
         'caption': ptext(5),
-        'type': 'image/png',
-        'thumb_url': url % 'thumbs',
-        'full_url': url % 'full',
+        'filetype': 'image/png',
+        'thumbnail_url': url % 'thumbs',
+        'image_url': url % 'full',
     }
 
 

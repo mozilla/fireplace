@@ -7,7 +7,8 @@ app = Flask("Flue")
 
 
 FLUE = 'http://flue.paas.allizom.org'
-MARKETPLACE = 'http://localhost:8000'
+#MARKETPLACE = 'http://localhost:8000'
+MARKETPLACE = 'https://marketplace-dev.allizom.org'
 
 IGNORED_HEADERS = ('transfer-encoding', 'content-encoding', 'connection')
 
