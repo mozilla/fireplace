@@ -1,33 +1,33 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 define(
-    ['apps', 'capabilities', 'notification', 'payments/payments', 'requests', 'user', 'z'],
-    function(apps, caps, notification, payments, requests, user, z) {
+    ['apps', 'capabilities', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
+    function(apps, caps, notification, payments, requests, urls, user, z) {
     'use strict';
 
-    function launchHandler(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var product = $(this).closest('[data-product]').data('product');
-        z.apps[product.manifest_url].launch();
+    function _handler(func) {
+        return function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            func($(this).closest('[data-product]').data('product'));
+        }
     }
 
-    function installHandler(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var product = $(this).closest('[data-product]').data('product');
-        startInstall(product);
-    }
+    var launchHandler = _handler(function(product) {
+        z.apps[product.manifest_url].launch();
+    });
+
+    var installHandler = _handler(startInstall);
 
     function startInstall(product) {
-        if (product.price != '0.00' && !user.logged_in()) {
+        if (product.price && !user.logged_in()) {
             localStorage.setItem('toInstall', product.manifest_url);
             z.body.trigger('promptlogin', true);
             console.log('Install suspended; user needs to log in');
             return;
         }
 
-        if (product.price != '0.00') {
+        if (product.price) {
             purchase(product);
         } else {
             install(product);
@@ -56,7 +56,7 @@ define(
     function install(product, receipt) {
         var data = {};
         var post_data = {
-            src: product.src,
+            app: product.id,
             chromeless: caps.chromeless ? 1 : 0
         };
 
@@ -71,7 +71,7 @@ define(
         if (!product.recordUrl) {
             do_install();
         } else {
-            requests.post(product.recordUrl, post_data).done(function(response) {
+            requests.post(urls.api.url('record'), post_data).done(function(response) {
                 if (response.error) {
                     $('#pay-error').show().find('div').text(response.error);
                     installError(product);

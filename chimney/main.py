@@ -46,24 +46,9 @@ def _proxy(url):
     return resp
 
 
-@app.route('/user/login', methods=['POST'])
-def login():
-    return _proxy(MARKETPLACE + '/api/account/login/')
-
-
-@app.route('/user/settings', methods=['GET', 'POST'])
-def settings():
-    return _proxy(MARKETPLACE + '/api/account/settings/mine/')
-
-
 @app.route('/user/<slug>/abuse', methods=['POST'])
 def user_abuse(slug):
     return _proxy(FLUE + request.path)
-
-
-@app.route('/user/purchases')
-def user_purchases():
-    return _proxy(MARKETPLACE + '/api/account/settings/mine/')
 
 
 @app.route('/app/<slug>/abuse', methods=['POST'])
@@ -74,16 +59,6 @@ def app_abuse(slug):
 @app.route('/feedback', methods=['POST'])
 def feedback():
     return _proxy(FLUE + request.path)
-
-
-@app.route('/terms-of-use', methods=['GET'])
-def terms():
-    return _proxy(MARKETPLACE + '/terms-of-use.html')
-
-
-@app.route('/privacy-policy', methods=['GET'])
-def privacy():
-    return _proxy(MARKETPLACE + '/privacy-policy.html')
 
 
 @app.route('/app/<slug>/reviews/self', methods=['POST'])
@@ -104,6 +79,38 @@ def featured():
     return _proxy(FLUE + request.path)
 
 
+@app.route('/category/<slug>')
+def category(slug):
+    return _proxy(FLUE + request.path)
+
+
+@app.route('/app/<slug>/ratings')
+def app_ratings(slug):
+    return _proxy(FLUE + request.path)
+
+
+# PARITY
+
+@app.route('/user/purchases')
+def user_purchases():
+    return _proxy(MARKETPLACE + '/api/account/settings/mine/')
+
+
+@app.route('/user/settings', methods=['GET', 'POST'])
+def settings():
+    return _proxy(MARKETPLACE + '/api/account/settings/mine/')
+
+
+@app.route('/user/login', methods=['POST'])
+def login():
+    return _proxy(MARKETPLACE + '/api/account/login/')
+
+
+@app.route('/app/<slug>')
+def app_(slug):
+    return _proxy(MARKETPLACE + '/api/apps/app/%s/' % slug)
+
+
 @app.route('/categories')
 def categories():
     return _proxy(MARKETPLACE + '/api/apps/category/')
@@ -119,19 +126,21 @@ def search():
     return _proxy(MARKETPLACE + '/api/apps/search/')
 
 
-@app.route('/category/<slug>')
-def category(slug):
-    return _proxy(FLUE + request.path)
+@app.route('/terms-of-use', methods=['GET'])
+def terms():
+    return _proxy(MARKETPLACE + '/terms-of-use.html')
 
 
-@app.route('/app/<slug>/ratings')
-def app_ratings(slug):
-    return _proxy(FLUE + request.path)
+@app.route('/privacy-policy', methods=['GET'])
+def privacy():
+    return _proxy(MARKETPLACE + '/privacy-policy.html')
 
 
-@app.route('/app/<slug>')
+# MERGED
+
+@app.route('/api/receipts/install/')
 def app_(slug):
-    return _proxy(MARKETPLACE + '/api/apps/app/%s/' % slug)
+    return _proxy(MARKETPLACE + request.path)
 
 
 if __name__ == '__main__':

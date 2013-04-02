@@ -234,6 +234,11 @@ def app_(slug):
     return defaults.app(slug, 'Something something %s' % slug)
 
 
+@app.route('/api/receipts/install/', methods=['POST'])
+def record():
+    return {'error': False}
+
+
 if __name__ == '__main__':
     parser = OptionParser()
     parser.add_option('--port', dest='port',
