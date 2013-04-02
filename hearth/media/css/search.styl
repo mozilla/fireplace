@@ -16,3 +16,16 @@ b[data-href] {
         text-decoration: underline;
     }
 }
+
+@media $at-least-desktop {
+    #search-results .listing > li {
+        .shots .next, .shots .prev {
+            opacity: 0;
+        }
+        &:hover {
+            .shots .next, .shots .prev {
+                opacity: 1;
+            }
+        }
+    }
+}
