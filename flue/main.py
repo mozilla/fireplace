@@ -134,7 +134,7 @@ def featured():
     return [defaults.app('feat %d' % i, 'Featured App') for i in xrange(8)]
 
 
-@app.route('/categories')
+@app.route('/api/apps/category/')
 def categories():
     return [
         defaults.category('shopping', 'Shopping'),
@@ -146,7 +146,7 @@ def categories():
     ]
 
 
-@app.route('/homepage')
+@app.route('/api/home/page/')
 def homepage():
     return {
         'featured': featured._orig(),
@@ -176,7 +176,7 @@ def _paginated(field, generator):
     }
 
 
-@app.route('/search')
+@app.route('/api/apps/search/')
 def search():
     def gen():
         i = 0
@@ -229,7 +229,7 @@ def app_ratings(slug):
     return data
 
 
-@app.route('/app/<slug>')
+@app.route('/api/apps/app/<slug>/')
 def app_(slug):
     return defaults.app(slug, 'Something something %s' % slug)
 

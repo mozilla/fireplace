@@ -106,35 +106,38 @@ def login():
     return _proxy(MARKETPLACE + '/api/account/login/')
 
 
-@app.route('/app/<slug>')
-def app_(slug):
-    return _proxy(MARKETPLACE + '/api/apps/app/%s/' % slug)
-
-
-@app.route('/categories')
-def categories():
-    return _proxy(MARKETPLACE + '/api/apps/category/')
-
-
-@app.route('/homepage')
-def homepage():
-    return _proxy(MARKETPLACE + '/api/home/page/')
-
-
-@app.route('/search')
-def search():
-    return _proxy(MARKETPLACE + '/api/apps/search/')
-
-
 # MERGED
+
+
+@app.route('/api/home/page/')
+def homepage():
+    return _proxy(MARKETPLACE + request.path)
+
+
+@app.route('/api/apps/category/')
+def categories():
+    return _proxy(MARKETPLACE + request.path)
+
+
+@app.route('/api/apps/app/<slug>/')
+def app_(slug):
+    return _proxy(MARKETPLACE + request.path)
+
+
+@app.route('/api/apps/search/')
+def search():
+    return _proxy(MARKETPLACE + request.path)
+
 
 @app.route('/terms-of-use.html', methods=['GET'])
 def terms():
     return _proxy(MARKETPLACE + request.path)
 
+
 @app.route('/privacy-policy.html', methods=['GET'])
 def privacy():
     return _proxy(MARKETPLACE + request.path)
+
 
 @app.route('/api/receipts/install/')
 def app_(slug):
