@@ -109,12 +109,12 @@ def feedback():
     return {'error': False}
 
 
-@app.route('/terms-of-use', methods=['GET'])
+@app.route('/terms-of-use.html', methods=['GET'])
 def terms():
     return defaults.ptext()
 
 
-@app.route('/privacy-policy', methods=['GET'])
+@app.route('/privacy-policy.html', methods=['GET'])
 def privacy():
     return defaults.ptext()
 

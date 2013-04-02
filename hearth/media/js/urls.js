@@ -49,8 +49,8 @@ define('urls',
         'search': '/search',
         'category': '/category/{0}',
         'feedback': '/feedback',
-        'terms_of_use': '/terms-of-use',
-        'privacy_policy': '/privacy-policy'
+        'terms_of_use': '/terms-of-use.html',
+        'privacy_policy': '/privacy-policy.html'
     };
 
     var _device = _.once(function() {

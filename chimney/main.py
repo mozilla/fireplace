@@ -126,17 +126,15 @@ def search():
     return _proxy(MARKETPLACE + '/api/apps/search/')
 
 
-@app.route('/terms-of-use', methods=['GET'])
-def terms():
-    return _proxy(MARKETPLACE + '/terms-of-use.html')
-
-
-@app.route('/privacy-policy', methods=['GET'])
-def privacy():
-    return _proxy(MARKETPLACE + '/privacy-policy.html')
-
-
 # MERGED
+
+@app.route('/terms-of-use.html', methods=['GET'])
+def terms():
+    return _proxy(MARKETPLACE + request.path)
+
+@app.route('/privacy-policy.html', methods=['GET'])
+def privacy():
+    return _proxy(MARKETPLACE + request.path)
 
 @app.route('/api/receipts/install/')
 def app_(slug):
