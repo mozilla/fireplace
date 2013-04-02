@@ -184,7 +184,7 @@ def search():
             yield defaults.app('sr %d' % i, 'Result')
             i += 1
 
-    data = _paginated('apps', gen)
+    data = _paginated('objects', gen)
     result_count = 34
     data['meta'] = {
         'query': request.args.get('q'),
