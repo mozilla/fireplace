@@ -77,6 +77,9 @@ define('urls',
                 args.user = user.get_token();
                 args.email = user.get_setting('email');
             }
+            if (settings.carrier) {
+                args.carrier = settings.carrier.slug;
+            }
             return require('utils').urlparams(out, args);
         };
     }

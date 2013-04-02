@@ -95,8 +95,8 @@ def user_abuse(slug):
 
 @app.route('/user/purchases')
 def user_purchases():
-    return [defaults.app('purchase %d' % i, 'Purchased App')
-            for i in xrange(random.randint(5, 30))]
+    return {"installed": [defaults.app('purchase %d' % i, 'Purchased App')
+                          for i in xrange(random.randint(5, 30))]}
 
 
 @app.route('/app/<slug>/abuse', methods=['POST'])
@@ -111,12 +111,12 @@ def feedback():
 
 @app.route('/terms-of-use', methods=['GET'])
 def terms():
-    return {'terms': defaults.ptext()}
+    return defaults.ptext()
 
 
 @app.route('/privacy-policy', methods=['GET'])
 def privacy():
-    return {'privacy': defaults.ptext()}
+    return defaults.ptext()
 
 
 @app.route('/app/<slug>/reviews/self', methods=['POST'])

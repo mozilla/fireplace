@@ -21,7 +21,8 @@ define('settings_base', [], function () {
         native_persona: 'https://native-persona.org/include.js',
         persona: 'https://login.persona.org/include.js',
 
-        title_suffix: 'Firefox Marketplace'
+        title_suffix: 'Firefox Marketplace',
+        carrier: null
     };
     return settings;
 });

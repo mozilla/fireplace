@@ -7,7 +7,7 @@ app = Flask("Flue")
 
 
 FLUE = 'http://flue.paas.allizom.org'
-#MARKETPLACE = 'http://localhost:8000'
+# MARKETPLACE = 'http://localhost:8000'
 MARKETPLACE = 'https://marketplace-dev.allizom.org'
 
 IGNORED_HEADERS = ('transfer-encoding', 'content-encoding', 'connection')
@@ -55,7 +55,7 @@ def login():
 
 @app.route('/user/settings', methods=['GET', 'POST'])
 def settings():
-    return _proxy(FLUE + request.path)
+    return _proxy(MARKETPLACE + '/api/account/settings/mine/')
 
 
 @app.route('/user/<slug>/abuse', methods=['POST'])
@@ -65,7 +65,7 @@ def user_abuse(slug):
 
 @app.route('/user/purchases')
 def user_purchases():
-    return _proxy(FLUE + request.path)
+    return _proxy(MARKETPLACE + '/api/account/settings/mine/')
 
 
 @app.route('/app/<slug>/abuse', methods=['POST'])

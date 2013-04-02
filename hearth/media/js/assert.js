@@ -32,15 +32,24 @@ define(['underscore'], function(_) {
         }
     }
 
+    function _contain(haystack, needle) {
+        if (_.isObject(haystack)) {
+            return needle in haystack;
+        } else if (_.isString(haystack)) {
+            return haystack.indexOf(needle) !== -1;
+        } else {
+            return _.contains(haystack, needle);
+        }
+    }
+
     function contains(haystack, needle, msg) {
         msg = msg || (JSON.stringify(haystack) + ' does not contain ' + JSON.stringify(needle));
-        if (_.isObject(haystack)) {
-            assert(needle in haystack, msg);
-        } else if (_.isString(haystack)) {
-            assert(haystack.indexOf(needle) !== -1, msg);
-        } else {
-            assert(_.contains(haystack, needle), msg);
-        }
+        assert(_contain(haystack, needle), msg);
+    }
+
+    function disincludes(haystack, needle, msg) {
+        msg = msg || (JSON.stringify(haystack) + ' contains ' + JSON.stringify(needle));
+        assert(!_contain(haystack, needle), msg);
     }
 
     /*
@@ -103,6 +112,7 @@ define(['underscore'], function(_) {
         eq_: eq_,
         feq_: feq_,
         contains: contains,
+        disincludes: disincludes,
         mock: mock
     }
 });
