@@ -70,6 +70,30 @@
     }
 }
 
+@media $at-least-desktop {
+    .categories {
+        padding: 50px 0;
+        h2 {
+            light-text-shadow();
+            color: $dark-gray;
+            display: block;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        .grid li {
+            border-color: transparent;
+            &:nth-child(4n + 1) {
+                // Leftmost tile.
+                border-left: 1px solid transparent;
+            }
+            &:nth-child(4n), &:nth-child(3n) {
+                // Rightmost tile.
+                border-right: 0;
+            }
+        }
+    }
+}
+
 @media $retina {
     .categories .grid .mkt-tile .icon {
         background-image: url(../img/categories-2x.png);
