@@ -28,7 +28,7 @@ def _urlparams(url):
 
     return url + qs
 
-def _proxy(url, rewrite=True):
+def _proxy(url):
     url = _urlparams(url)
     if request.method == 'POST':
         print 'POSTing %s' % url
@@ -42,9 +42,7 @@ def _proxy(url, rewrite=True):
         if header.lower() in IGNORED_HEADERS:
             continue
         resp.headers[header] = val
-    if rewrite:
-        resp.headers['Access-Control-Allow-Origin'] = '*'
-        resp.headers['Access-Control-Allow-Methods'] = 'GET'
+
     return resp
 
 
@@ -80,12 +78,12 @@ def feedback():
 
 @app.route('/terms-of-use', methods=['GET'])
 def terms():
-    return _proxy(MARKETPLACE + '/terms-of-use.html', False)
+    return _proxy(MARKETPLACE + '/terms-of-use.html')
 
 
 @app.route('/privacy-policy', methods=['GET'])
 def privacy():
-    return _proxy(MARKETPLACE + '/privacy-policy.html', False)
+    return _proxy(MARKETPLACE + '/privacy-policy.html')
 
 
 @app.route('/app/<slug>/reviews/self', methods=['POST'])
