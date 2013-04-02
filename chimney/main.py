@@ -131,7 +131,7 @@ def app_ratings(slug):
 
 @app.route('/app/<slug>')
 def app_(slug):
-    return _proxy(FLUE + request.path)
+    return _proxy(MARKETPLACE + '/api/apps/app/%s/' % slug)
 
 
 if __name__ == '__main__':
