@@ -2,7 +2,10 @@
 // - Currently only deals with infobox buttons.
 define('overflow', [], function() {
     function init() {
-        var $infobox = $('.infobox');
+
+        // If this happens elsewhere we can target `.button` and use the
+        // .closest() parent to apply "overflowing" to.
+        var $infobox = $('.infobox.support');
 
         $infobox.find('ul.c a').each(function() {
             if (this.scrollWidth > $(this).innerWidth()) {

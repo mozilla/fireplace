@@ -1,6 +1,6 @@
 define(
     ['l10n', 'utils', 'requests', 'urls', 'z', 'templates', 'overflow'],
-    function(l10n, utils, requests, urls, z, nunjucks, o) {
+    function(l10n, utils, requests, urls, z, nunjucks, overflow) {
     'use strict';
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
@@ -35,9 +35,9 @@ define(
 
         builder.onload('app-data', function() {
             builder.z('title', builder.results['app-data'].name);
+            overflow.init();
         }).onload('ratings', function() {
             var reviews = $('.detail .reviews li');
-            o.init();
             if (reviews.length < 3) return;
 
             for (var i=0; i<reviews.length-2; i+=2) {
