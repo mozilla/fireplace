@@ -103,13 +103,15 @@ def app(name, slug, **kwargs):
 
 def app_user_data(data):
     data.update({
-        'price': '0.00',
+        'price': None,
         'user': {
             'owns': rand_bool(),
             'has_purchased': rand_bool(),
             'can_review': rand_bool()
         }
     })
+    if random.choice((True, False)):
+        data['price'] = '$%.2f' % (random.random() * 10)
     if data['user']['can_review']:
         data['rating'] = random.randint(1, 5)
         data['user']['has_review'] = rand_bool()
