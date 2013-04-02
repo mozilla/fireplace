@@ -8,7 +8,7 @@ var mock = a.mock;
 function MockJQuery() {
     this.Deferred = $.Deferred;
     this.ajaxSetup = function() {};
-    this.get = this.post = function() {
+    this.get = this.post = this.ajax = function() {
         var def = $.Deferred();
         def.args = arguments;
         return def;
@@ -119,6 +119,22 @@ test('requests.post callback', function(done, fail) {
     );
 });
 
+test('requests.del', function(done, fail) {
+    mock(
+        'requests',
+        {jquery: new MockJQuery()},
+        function(requests) {
+            var def = requests.del('foo/bar');
+            eq_(def.args[0].url, 'foo/bar');
+            def.done(function(data) {
+                eq_(data, 'sample data');
+                done();
+            }).fail(fail);
+            def.resolve('sample data');
+        }
+    );
+});
+
 test('requests.get never cached', function(done, fail) {
     mock(
         'requests',
@@ -134,6 +150,7 @@ test('requests.get never cached', function(done, fail) {
 
             var def = requests.post('foo/bar', {foo: 'bar'});
             assert(!('__cached' in def));
+
             def.done(function(data) {
                 eq_(data, 'boop');
                 done();
@@ -143,10 +160,30 @@ test('requests.get never cached', function(done, fail) {
     );
 });
 
+test('requests.del never cached', function(done, fail) {
+    mock(
+        'requests',
+        {jquery: new MockJQuery()},
+        function(requests) {
+            var uncached = requests.del('foo/bar');
+            assert(!('__cached' in uncached));
+            uncached.resolve('data to cache');
+
+            var def = requests.del('foo/bar');
+            assert(!('__cached' in def));
+
+            def.done(function(data) {
+                eq_(data, 'boop');
+                done();
+            }).fail(fail);
+            def.resolve('boop');
+        }
+    );
+});
 
 // Pool tests //////////////////////////////////
 
-test('requests.pool get post', function(done, fail) {
+test('requests.pool get post del', function(done, fail) {
     mock(
         'requests',
         {jquery: new MockJQuery()},
@@ -160,6 +197,10 @@ test('requests.pool get post', function(done, fail) {
             var orig_post_req = pool.post('test/foo', {abc: 'def'});
             var second_post_req = pool.post('test/foo', {abc: 'def'});
             assert(orig_post_req != second_post_req);  // Pools should never coalesce POSTs.
+
+            var orig_del_req = pool.del('test/foo');
+            var second_del_req = pool.del('test/foo');
+            assert(orig_del_req != second_del_req);  // Pools should never coalesce DELETEs.
 
             // Test that it's actually the same request.
             second_req.done(done);
@@ -232,6 +273,7 @@ test('requests.pool finish resolution', function(done, fail) {
 
             pool.get('foo/bar').resolve('it finished');
             pool.post('foo/bar', {some: 'data'}).resolve('it finished also');
+            pool.del('foo/bar').resolve('it finished also');
 
             // It shouldn't have resolved up until now. Now it should resolve.
             timing = done;

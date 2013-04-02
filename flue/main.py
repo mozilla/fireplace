@@ -119,7 +119,7 @@ def privacy():
     return defaults.ptext()
 
 
-@app.route('/app/<slug>/reviews/self', methods=['POST'])
+@app.route('/app/<slug>/reviews/self', methods=['POST', 'DELETE'])
 def reviews_self(slug):
     return {'error': False}
 
