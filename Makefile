@@ -15,7 +15,8 @@ langpacks:
 	done
 
 test: compile
-	echo "lol"
+	cd locale ; \
+	casperjs test tests
 
 package: compile
 	cd hearth/ && zip -r ../$(VERSION).zip * && cd ../
