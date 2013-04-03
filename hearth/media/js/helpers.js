@@ -2,7 +2,18 @@ define('helpers',
        ['l10n', 'templates', 'require', 'utils', 'format', 'settings', 'urls', 'user'],
        function(l10n, nunjucks, require, utils) {
 
+    var SafeString = nunjucks.require('runtime').SafeString;
     var env = nunjucks.env;
+
+    function make_safe(func) {
+        return function() {
+            return new SafeString(func.apply(this, arguments));
+        };
+    }
+
+    function safe_filter(name, func) {
+        env.addFilter(name, make_safe(func));
+    }
 
     env.addFilter('urlparams', utils.urlparams);
 
@@ -10,14 +21,14 @@ define('helpers',
         return obj.replace(/\n/g, '<br>');
     });
 
-    env.addFilter('make_data_attrs', function(obj) {
+    safe_filter('make_data_attrs', function(obj) {
         return _.pairs(obj).map(function(pair) {
                 return 'data-' + utils.escape_(pair[0]) + '="' + utils.escape_(pair[1]) + '"';
             }
         ).join(' ');
     });
 
-    env.addFilter('external_href', function(obj) {
+    safe_filter('external_href', function(obj) {
         return 'href="' + utils.escape_(obj) + '" target="_blank"';
     });
 
@@ -26,14 +37,9 @@ define('helpers',
         return obj;
     });
 
-    env.addFilter('stringify', JSON.stringify);
+    safe_filter('stringify', JSON.stringify);
 
-    env.addFilter('safe', function(obj) {
-        // TODO: When jlongster's autoescaping patch lands, this won't be needed.
-        return obj;
-    });
-
-    env.addFilter('dataproduct', function(obj) {
+    safe_filter('dataproduct', function(obj) {
         var product = _.extend({}, obj);
 
         if ('this' in product) {
@@ -57,8 +63,8 @@ define('helpers',
         apiParams: require('urls').api.params,
         url: require('urls').reverse,
 
-        _: l10n.gettext,
-        _plural: l10n.ngettext,
+        _: make_safe(l10n.gettext),
+        _plural: make_safe(l10n.ngettext),
         format: require('format').format,
         settings: require('settings'),
         user: require('user'),

@@ -21,8 +21,8 @@ define(['nunjucks'], function(nunjucks) {
         return val;
     };
 
-    var orig_suppressLookupValue = runtime.suppressLookupValue;
-    runtime.suppressLookupValue = function(obj, val) {
+    var orig_memberLookup = runtime.memberLookup;
+    runtime.memberLookup = function(obj, val, autoescape) {
         obj = obj || {};
 
         // If the object is an object, return any of the methods that Python would
@@ -169,7 +169,7 @@ define(['nunjucks'], function(nunjucks) {
             }
         }
 
-        return orig_suppressLookupValue.apply(this, arguments);
+        return orig_memberLookup.apply(this, arguments);
     };
 
 });

@@ -1,67 +1,38 @@
 (function() {
 
 function defer_parser() {
+    this._name = 'defer';
     this.tags = ['defer'];
     this.parse = function(parser, nodes, tokens) {
         var begun = parser.peekToken();
-        var tag = new nodes.CustomTag(begun.lineno, begun.colno, 'defer');
-        tag.fields = ['body', 'placeholder', 'empty', 'except'];
-
-        parser.nextToken();  // Skip the name symbol.
+        parser.skipSymbol('defer');
         parser.skip(tokens.TOKEN_WHITESPACE);
+        var args = parser.parseSignature();
+        parser.advanceAfterBlockEnd(begun.value);
 
-        tag.signature = parser.parseSignature();
-        parser.expect(tokens.TOKEN_BLOCK_END);
-
-        tag.body = parser.parseUntilBlocks('placeholder', 'empty', 'except', 'end');
-
-        tag.placeholder = null;
-        tag.except = null;
+        var body, placeholder, empty, except;
+        body = parser.parseUntilBlocks('placeholder', 'empty', 'except', 'end');
 
         if (parser.skipSymbol('placeholder')) {
             parser.skip(tokens.TOKEN_BLOCK_END);
-            tag.placeholder = parser.parseUntilBlocks('empty', 'except', 'end');
+            placeholder = parser.parseUntilBlocks('empty', 'except', 'end');
         }
 
         if (parser.skipSymbol('empty')) {
             parser.skip(tokens.TOKEN_BLOCK_END);
-            tag.empty = parser.parseUntilBlocks('except', 'end');
+            empty = parser.parseUntilBlocks('except', 'end');
         }
 
         if (parser.skipSymbol('except')) {
             parser.skip(tokens.TOKEN_BLOCK_END);
-            tag.except = parser.parseUntilBlocks('end');
+            except = parser.parseUntilBlocks('end');
         }
 
         parser.advanceAfterBlockEnd();
 
-        return new nodes.Output(begun.lineno, begun.colno, [tag]);
+        return new nodes.CallExtension(this, 'run', args, [body, placeholder, empty, except]);
     }
 
-    this.compile = function(compiler, tag, frame) {
-        var buffer = compiler.buffer;
-        function node(contents) {
-            if (contents) {
-                compiler.emitLine(', function() {');
-                compiler.emitLine('var ' + buffer + ' = "";');
-                compiler.compile(contents, frame);
-                compiler.emitLine('return ' + buffer + ';');
-                compiler.emitLine('}');
-            } else {
-                compiler.emit(', null');
-            }
-        }
-        compiler.emitLine('env.extensions["defer"]._run(');
-        compiler.emitLine('context, ');
-        compiler.compile(tag.signature, frame);
-
-        node(tag.body);
-        node(tag.placeholder);
-        node(tag.empty);
-        node(tag.except);
-
-        compiler.emit(')');
-    };
 }
 // If we're running in node, export the extensions.
 if (typeof module !== 'undefined' && module.exports) {
@@ -77,11 +48,13 @@ define(
     ['templates', 'helpers', 'models', 'requests', 'settings', 'underscore', 'z', 'nunjucks.compat'],
     function(nunjucks, helpers, models, requests, settings, _, z) {
 
+    var SafeString = nunjucks.require('runtime').SafeString;
+
     console.log('Loading nunjucks builder tags...');
     var counter = 0;
 
     function Builder() {
-        var env = this.env = new nunjucks.Environment([]);
+        var env = this.env = new nunjucks.Environment([], {autoescape: true});
         env.dev = nunjucks.env.dev;
         env.registerPrecompiled(nunjucks.templates);
 
@@ -106,7 +79,7 @@ define(
 
         // This pretends to be the nunjucks extension that does the magic.
         var defer_runner = {
-            _run: function(context, signature, body, placeholder, empty, except) {
+            run: function(context, signature, body, placeholder, empty, except) {
                 var uid = 'ph_' + counter++;
                 var out;
 
@@ -190,7 +163,8 @@ define(
                 }
 
                 out = '<div id="' + uid + '" class="placeholder">' + out + '</div>';
-                return out;
+                var safestring = new SafeString(out);
+                return safestring;
             }
         };
         this.env.addExtension('defer', defer_runner);

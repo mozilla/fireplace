@@ -63,6 +63,18 @@ modules['object'] = extend(Object, "Object", {});
 var ArrayProto = Array.prototype;
 var ObjProto = Object.prototype;
 
+var escapeMap = {
+    '&': '&amp;',
+    '"': '&quot;',
+    "'": '&#39;',
+    "<": '&lt;',
+    ">": '&gt;'
+};
+
+var lookupEscape = function(ch) {
+    return escapeMap[ch];
+};
+
 var exports = modules['lib'] = {};
 
 exports.withPrettyErrors = function(path, withInternals, func) {
@@ -85,7 +97,6 @@ exports.withPrettyErrors = function(path, withInternals, func) {
         throw e;
     }
 }
-//exports.withPrettyErrors = function(path, withInternals, func) {return func();}
 
 exports.TemplateError = function(message, lineno, colno) {
     var err = this;
@@ -131,6 +142,10 @@ exports.TemplateError = function(message, lineno, colno) {
 };
 
 exports.TemplateError.prototype = Error.prototype;
+
+exports.escape = function(val) {
+    return val.replace(/[&"'<>]/g, lookupEscape);
+};
 
 exports.isFunction = function(obj) {
     return ObjProto.toString.call(obj) == '[object Function]';
@@ -233,370 +248,6 @@ exports.map = function(obj, func) {
 })();
 (function() {
 
-var lib = modules["lib"];
-
-var filters = {
-    abs: function(n) {
-        return Math.abs(n);
-    },
-
-    batch: function(arr, linecount, fill_with) {
-        var res = [];
-        var tmp = [];
-
-        for(var i=0; i<arr.length; i++) {
-            if(i % linecount === 0 && tmp.length) {
-                res.push(tmp);
-                tmp = [];
-            }
-
-            tmp.push(arr[i]);
-        }
-
-        if(tmp.length) {
-            if(fill_with) {
-                for(var i=tmp.length; i<linecount; i++) {
-                    tmp.push(fill_with);
-                }
-            }
-
-            res.push(tmp);
-        }
-
-        return res;
-    },
-
-    capitalize: function(str) {
-        str = str.toLowerCase();
-        return str[0].toUpperCase() + str.slice(1);
-    },
-
-    center: function(str, width) {
-        width = width || 80;
-
-        if(str.length >= width) {
-            return str;
-        }
-
-        var spaces = width - str.length;
-        var pre = lib.repeat(" ", spaces/2 - spaces % 2);
-        var post = lib.repeat(" ", spaces/2);
-        return pre + str + post;
-    },
-
-    'default': function(val, def) {
-        return val ? val : def;
-    },
-
-    dictsort: function(val, case_sensitive, by) {
-        if (!lib.isObject(val)) {
-            throw new lib.TemplateError("dictsort filter: val must be an object");
-        }
-
-        var array = [];
-        for (var k in val) {
-            // deliberately include properties from the object's prototype
-            array.push([k,val[k]]);
-        }
-
-        var si;
-        if (by === undefined || by === "key") {
-            si = 0;
-        } else if (by === "value") {
-            si = 1;
-        } else {
-            throw new lib.TemplateError(
-                "dictsort filter: You can only sort by either key or value");
-        }
-
-        array.sort(function(t1, t2) {
-            var a = t1[si];
-            var b = t2[si];
-
-            if (!case_sensitive) {
-                if (lib.isString(a)) {
-                    a = a.toUpperCase();
-                }
-                if (lib.isString(b)) {
-                    b = b.toUpperCase();
-                }
-            }
-
-            return a > b ? 1 : (a == b ? 0 : -1);
-        });
-
-        return array;
-    },
-
-    escape: function(str) {
-        if(typeof str === 'string') {
-            return str.replace(/&/g, '&amp;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#39;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;');
-        }
-        else {
-            return str;
-        }
-    },
-
-    first: function(arr) {
-        return arr[0];
-    },
-
-    groupby: function(arr, attr) {
-        return lib.groupBy(arr, attr);
-    },
-
-    indent: function(str, width, indentfirst) {
-        width = width || 4;
-        var res = '';
-        var lines = str.split('\n');
-        var sp = lib.repeat(' ', width);
-
-        for(var i=0; i<lines.length; i++) {
-            if(i == 0 && !indentfirst) {
-                res += lines[i] + '\n';
-            }
-            else {
-                res += sp + lines[i] + '\n';
-            }
-        }
-
-        return res;
-    },
-
-    join: function(arr, del, attr) {
-        del = del || '';
-
-        if(attr) {
-            arr = lib.map(arr, function(v) {
-                return v[attr];
-            });
-        }
-
-        return arr.join(del);
-    },
-
-    last: function(arr) {
-        return arr[arr.length-1];
-    },
-
-    length: function(arr) {
-        return arr.length;
-    },
-
-    list: function(val) {
-        if(lib.isString(val)) {
-            return val.split('');
-        }
-        else if(lib.isObject(val)) {
-            var keys = [];
-
-            if(Object.keys) {
-                keys = Object.keys(val);
-            }
-            else {
-                for(var k in val) {
-                    keys.push(k);
-                }
-            }
-
-            return lib.map(keys, function(k) {
-                return { key: k,
-                         value: val[k] };
-            });
-        }
-        else {
-            throw new lib.TemplateError("list filter: type not iterable");
-        }
-    },
-
-    lower: function(str) {
-        return str.toLowerCase();
-    },
-
-    random: function(arr) {
-        var i = Math.floor(Math.random() * arr.length);
-        if(i == arr.length) {
-            i--;
-        }
-
-        return arr[i];
-    },
-
-    replace: function(str, old, new_, maxCount) {
-        var res = str;
-        var last = res;
-        var count = 1;
-        res = res.replace(old, new_);
-
-        while(last != res) {
-            if(count >= maxCount) {
-                break;
-            }
-
-            last = res;
-            res = res.replace(old, new_);
-            count++;
-        }
-
-        return res;
-    },
-
-    reverse: function(val) {
-        var arr;
-        if(lib.isString(val)) {
-            arr = filters.list(val);
-        }
-        else {
-            // Copy it
-            arr = lib.map(val, function(v) { return v; });
-        }
-
-        arr.reverse();
-
-        if(lib.isString(val)) {
-            return arr.join('');
-        }
-        return arr;
-    },
-
-    round: function(val, precision, method) {
-        precision = precision || 0;
-        var factor = Math.pow(10, precision);
-        var rounder;
-
-        if(method == 'ceil') {
-            rounder = Math.ceil;
-        }
-        else if(method == 'floor') {
-            rounder = Math.floor;
-        }
-        else {
-            rounder = Math.round;
-        }
-
-        return rounder(val * factor) / factor;
-    },
-
-    slice: function(arr, slices, fillWith) {
-        var sliceLength = Math.floor(arr.length / slices);
-        var extra = arr.length % slices;
-        var offset = 0;
-        var res = [];
-
-        for(var i=0; i<slices; i++) {
-            var start = offset + i * sliceLength;
-            if(i < extra) {
-                offset++;
-            }
-            var end = offset + (i + 1) * sliceLength;
-
-            var slice = arr.slice(start, end);
-            if(fillWith && i >= extra) {
-                slice.push(fillWith);
-            }
-            res.push(slice);
-        }
-
-        return res;
-    },
-
-    sort: function(arr, reverse, caseSens, attr) {
-        // Copy it
-        arr = lib.map(arr, function(v) { return v; });
-
-        arr.sort(function(a, b) {
-            var x, y;
-
-            if(attr) {
-                x = a[attr];
-                y = b[attr];
-            }
-            else {
-                x = a;
-                y = b;
-            }
-
-            if(!caseSens && lib.isString(x) && lib.isString(y)) {
-                x = x.toLowerCase();
-                y = y.toLowerCase();
-            }
-
-            if(x < y) {
-                return reverse ? 1 : -1;
-            }
-            else if(x > y) {
-                return reverse ? -1: 1;
-            }
-            else {
-                return 0;
-            }
-        });
-
-        return arr;
-    },
-
-    string: function(obj) {
-        return obj.toString();
-    },
-
-    title: function(str) {
-        var words = str.split(' ');
-        for(var i = 0; i < words.length; i++) {
-            words[i] = filters.capitalize(words[i]);
-        }
-        return words.join(' ');
-    },
-
-    trim: function(str) {
-        return str.replace(/^\s*|\s*$/g, '');
-    },
-
-    truncate: function(input, length, killwords, end) {
-        length = length || 255;
-
-        if (input.length <= length)
-            return input;
-
-        if (killwords) {
-            input = input.substring(0, length);
-        } else {
-            input = input.substring(0, input.lastIndexOf(' ', length));
-        }
-
-        input += (end !== undefined && end !== null) ? end : '...';
-        return input;
-    },
-
-    upper: function(str) {
-        return str.toUpperCase();
-    },
-
-    wordcount: function(str) {
-        return str.match(/\w+/g).length;
-    },
-
-    'float': function(val, def) {
-        var res = parseFloat(val);
-        return isNaN(res) ? def : res;
-    },
-
-    'int': function(val, def) {
-        var res = parseInt(val, 10);
-        return isNaN(res) ? def : res;
-    }
-};
-
-// Aliases
-filters.d = filters['default'];
-filters.e = filters.escape;
-
-modules['filters'] = filters;
-})();
-(function() {
 var lib = modules["lib"];
 var Object = modules["object"];
 
@@ -712,22 +363,72 @@ function numArgs(args) {
     }
 }
 
-function suppressValue(val) {
-    return (val !== undefined && val !== null) ? val : "";
+// A SafeString object indicates that the string should not be
+// autoescaped. This happens magically because autoescaping only
+// occurs on primitive string objects.
+function SafeString(val) {
+    if(typeof val != 'string') {
+        return val;
+    }
+
+    this.toString = function() {
+        return val;
+    };
+
+    this.length = val.length;
+
+    var methods = [
+        'charAt', 'charCodeAt', 'concat', 'contains',
+        'endsWith', 'fromCharCode', 'indexOf', 'lastIndexOf',
+        'length', 'localeCompare', 'match', 'quote', 'replace',
+        'search', 'slice', 'split', 'startsWith', 'substr',
+        'substring', 'toLocaleLowerCase', 'toLocaleUpperCase',
+        'toLowerCase', 'toUpperCase', 'trim', 'trimLeft', 'trimRight'
+    ];
+
+    for(var i=0; i<methods.length; i++) {
+        this[methods[i]] = proxyStr(val[methods[i]]);
+    }
 }
 
-function suppressLookupValue(obj, val) {
-    obj = obj || {};
-    val = obj[val];
+function copySafeness(dest, target) {
+    if(dest instanceof SafeString) {
+        return new SafeString(target);
+    }
+    return target.toString();
+}
 
-    if(typeof val === 'function') {
+function proxyStr(func) {
+    return function() {
+        var ret = func.apply(this, arguments);
+
+        if(typeof ret == 'string') {
+            return new SafeString(ret);
+        }
+        return ret;
+    };
+}
+
+function suppressValue(val, autoescape) {
+    val = (val !== undefined && val !== null) ? val : "";
+
+    if(autoescape && typeof val === "string") {
+        val = lib.escape(val);
+    }
+
+    return val;
+}
+
+function memberLookup(obj, val, autoescape) {
+    obj = obj || {};
+
+    if(typeof obj[val] === 'function') {
         return function() {
-            return suppressValue(val.apply(obj, arguments));
+            return obj[val].apply(obj, arguments);
         };
     }
-    else {
-        return suppressValue(val);
-    }
+
+    return suppressValue(obj[val], autoescape);
 }
 
 function callWrap(obj, name, args) {
@@ -763,12 +464,380 @@ modules['runtime'] = {
     makeKeywordArgs: makeKeywordArgs,
     numArgs: numArgs,
     suppressValue: suppressValue,
-    suppressLookupValue: suppressLookupValue,
+    memberLookup: memberLookup,
     contextOrFrameLookup: contextOrFrameLookup,
     callWrap: callWrap,
     handleError: handleError,
-    isArray: lib.isArray
+    isArray: lib.isArray,
+    SafeString: SafeString,
+    copySafeness: copySafeness
 };
+})();
+(function() {
+
+var lib = modules["lib"];
+var r = modules["runtime"];
+
+var filters = {
+    abs: function(n) {
+        return Math.abs(n);
+    },
+
+    batch: function(arr, linecount, fill_with) {
+        var res = [];
+        var tmp = [];
+
+        for(var i=0; i<arr.length; i++) {
+            if(i % linecount === 0 && tmp.length) {
+                res.push(tmp);
+                tmp = [];
+            }
+
+            tmp.push(arr[i]);
+        }
+
+        if(tmp.length) {
+            if(fill_with) {
+                for(var i=tmp.length; i<linecount; i++) {
+                    tmp.push(fill_with);
+                }
+            }
+
+            res.push(tmp);
+        }
+
+        return res;
+    },
+
+    capitalize: function(str) {
+        var ret = str.toLowerCase();
+        return r.copySafeness(str, ret[0].toUpperCase() + ret.slice(1));
+    },
+
+    center: function(str, width) {
+        width = width || 80;
+
+        if(str.length >= width) {
+            return str;
+        }
+
+        var spaces = width - str.length;
+        var pre = lib.repeat(" ", spaces/2 - spaces % 2);
+        var post = lib.repeat(" ", spaces/2);
+        return r.copySafeness(str, pre + str + post);
+    },
+
+    'default': function(val, def) {
+        return val ? val : def;
+    },
+
+    dictsort: function(val, case_sensitive, by) {
+        if (!lib.isObject(val)) {
+            throw new lib.TemplateError("dictsort filter: val must be an object");
+        }
+
+        var array = [];
+        for (var k in val) {
+            // deliberately include properties from the object's prototype
+            array.push([k,val[k]]);
+        }
+
+        var si;
+        if (by === undefined || by === "key") {
+            si = 0;
+        } else if (by === "value") {
+            si = 1;
+        } else {
+            throw new lib.TemplateError(
+                "dictsort filter: You can only sort by either key or value");
+        }
+
+        array.sort(function(t1, t2) {
+            var a = t1[si];
+            var b = t2[si];
+
+            if (!case_sensitive) {
+                if (lib.isString(a)) {
+                    a = a.toUpperCase();
+                }
+                if (lib.isString(b)) {
+                    b = b.toUpperCase();
+                }
+            }
+
+            return a > b ? 1 : (a == b ? 0 : -1);
+        });
+
+        return array;
+    },
+
+    escape: function(str) {
+        if(typeof str == 'string' ||
+           str instanceof r.SafeString) {
+            return lib.escape(str);
+        }
+        return str;
+    },
+
+    safe: function(str) {
+        return new r.SafeString(str);
+    },
+
+    first: function(arr) {
+        return arr[0];
+    },
+
+    groupby: function(arr, attr) {
+        return lib.groupBy(arr, attr);
+    },
+
+    indent: function(str, width, indentfirst) {
+        width = width || 4;
+        var res = '';
+        var lines = str.split('\n');
+        var sp = lib.repeat(' ', width);
+
+        for(var i=0; i<lines.length; i++) {
+            if(i == 0 && !indentfirst) {
+                res += lines[i] + '\n';
+            }
+            else {
+                res += sp + lines[i] + '\n';
+            }
+        }
+
+        return r.copySafeness(str, res);
+    },
+
+    join: function(arr, del, attr) {
+        del = del || '';
+
+        if(attr) {
+            arr = lib.map(arr, function(v) {
+                return v[attr];
+            });
+        }
+
+        return arr.join(del);
+    },
+
+    last: function(arr) {
+        return arr[arr.length-1];
+    },
+
+    length: function(arr) {
+        return arr.length;
+    },
+
+    list: function(val) {
+        if(lib.isString(val)) {
+            return val.split('');
+        }
+        else if(lib.isObject(val)) {
+            var keys = [];
+
+            if(Object.keys) {
+                keys = Object.keys(val);
+            }
+            else {
+                for(var k in val) {
+                    keys.push(k);
+                }
+            }
+
+            return lib.map(keys, function(k) {
+                return { key: k,
+                         value: val[k] };
+            });
+        }
+        else {
+            throw new lib.TemplateError("list filter: type not iterable");
+        }
+    },
+
+    lower: function(str) {
+        return str.toLowerCase();
+    },
+
+    random: function(arr) {
+        var i = Math.floor(Math.random() * arr.length);
+        if(i == arr.length) {
+            i--;
+        }
+
+        return arr[i];
+    },
+
+    replace: function(str, old, new_, maxCount) {
+        var res = str;
+        var last = res;
+        var count = 1;
+        res = res.replace(old, new_);
+
+        while(last != res) {
+            if(count >= maxCount) {
+                break;
+            }
+
+            last = res;
+            res = res.replace(old, new_);
+            count++;
+        }
+
+        return r.copySafeness(str, res);
+    },
+
+    reverse: function(val) {
+        var arr;
+        if(lib.isString(val)) {
+            arr = filters.list(val);
+        }
+        else {
+            // Copy it
+            arr = lib.map(val, function(v) { return v; });
+        }
+
+        arr.reverse();
+
+        if(lib.isString(val)) {
+            return r.copySafeness(val, arr.join(''));
+        }
+        return arr;
+    },
+
+    round: function(val, precision, method) {
+        precision = precision || 0;
+        var factor = Math.pow(10, precision);
+        var rounder;
+
+        if(method == 'ceil') {
+            rounder = Math.ceil;
+        }
+        else if(method == 'floor') {
+            rounder = Math.floor;
+        }
+        else {
+            rounder = Math.round;
+        }
+
+        return rounder(val * factor) / factor;
+    },
+
+    slice: function(arr, slices, fillWith) {
+        var sliceLength = Math.floor(arr.length / slices);
+        var extra = arr.length % slices;
+        var offset = 0;
+        var res = [];
+
+        for(var i=0; i<slices; i++) {
+            var start = offset + i * sliceLength;
+            if(i < extra) {
+                offset++;
+            }
+            var end = offset + (i + 1) * sliceLength;
+
+            var slice = arr.slice(start, end);
+            if(fillWith && i >= extra) {
+                slice.push(fillWith);
+            }
+            res.push(slice);
+        }
+
+        return res;
+    },
+
+    sort: function(arr, reverse, caseSens, attr) {
+        // Copy it
+        arr = lib.map(arr, function(v) { return v; });
+
+        arr.sort(function(a, b) {
+            var x, y;
+
+            if(attr) {
+                x = a[attr];
+                y = b[attr];
+            }
+            else {
+                x = a;
+                y = b;
+            }
+
+            if(!caseSens && lib.isString(x) && lib.isString(y)) {
+                x = x.toLowerCase();
+                y = y.toLowerCase();
+            }
+
+            if(x < y) {
+                return reverse ? 1 : -1;
+            }
+            else if(x > y) {
+                return reverse ? -1: 1;
+            }
+            else {
+                return 0;
+            }
+        });
+
+        return arr;
+    },
+
+    string: function(obj) {
+        return r.copySafeness(obj, obj);
+    },
+
+    title: function(str) {
+        var words = str.split(' ');
+        for(var i = 0; i < words.length; i++) {
+            words[i] = filters.capitalize(words[i]);
+        }
+        return r.copySafeness(str, words.join(' '));
+    },
+
+    trim: function(str) {
+        return r.copySafeness(str, str.replace(/^\s*|\s*$/g, ''));
+    },
+
+    truncate: function(input, length, killwords, end) {
+        var orig = input;
+        length = length || 255;
+
+        if (input.length <= length)
+            return input;
+
+        if (killwords) {
+            input = input.substring(0, length);
+        } else {
+            input = input.substring(0, input.lastIndexOf(' ', length));
+        }
+
+        input += (end !== undefined && end !== null) ? end : '...';
+        return r.copySafeness(orig, input);
+    },
+
+    upper: function(str) {
+        return str.toUpperCase();
+    },
+
+    wordcount: function(str) {
+        return str.match(/\w+/g).length;
+    },
+
+    'float': function(val, def) {
+        var res = parseFloat(val);
+        return isNaN(res) ? def : res;
+    },
+
+    'int': function(val, def) {
+        var res = parseInt(val, 10);
+        return isNaN(res) ? def : res;
+    }
+};
+
+// Aliases
+filters.d = filters['default'];
+filters.e = filters.escape;
+
+modules['filters'] = filters;
 })();
 (function() {
 var lib = modules["lib"];
@@ -781,13 +850,21 @@ var runtime = modules["runtime"];
 var Frame = runtime.Frame;
 
 var Environment = Object.extend({
-    init: function(loaders, tags, dev) {
+    init: function(loaders, opts) {
         // The dev flag determines the trace that'll be shown on errors.
         // If set to true, returns the full trace from the error point,
         // otherwise will return trace starting from Template.render
         // (the full trace from within nunjucks may confuse developers using
         //  the library)
-        this.dev = dev;
+        // defaults to false
+        opts = opts || {};
+        this.dev = !!opts.dev;
+
+        // The autoescape flag sets global autoescaping. If true,
+        // every string variable will be escaped by default.
+        // If false, strings can be manually escaped using the `escape` filter.
+        // defaults to false
+        this.autoesc = !!opts.autoescape;
 
         if(!loaders) {
             // The filesystem loader is only available client-side
@@ -802,19 +879,24 @@ var Environment = Object.extend({
             this.loaders = lib.isArray(loaders) ? loaders : [loaders];
         }
 
-        if(tags) {
-            lexer.setTags(tags);
+        if(opts.tags) {
+            lexer.setTags(opts.tags);
         }
 
         this.filters = builtin_filters;
         this.cache = {};
         this.extensions = {};
-        this.extensions_list = [];
+        this.extensionsList = [];
     },
 
     addExtension: function(name, extension) {
+        extension._name = name;
         this.extensions[name] = extension;
-        this.extensions_list.push(extension);
+        this.extensionsList.push(extension);
+    },
+
+    getExtension: function(name) {
+        return this.extensions[name];
     },
 
     addFilter: function(name, func) {
@@ -829,6 +911,10 @@ var Environment = Object.extend({
     },
 
     getTemplate: function(name, eagerCompile) {
+        if (name && name.raw) {
+            // this fixes autoescape for templates referenced in symbols
+            name = name.raw;
+        }
         var info = null;
         var tmpl = this.cache[name];
         var upToDate;
@@ -1073,9 +1159,8 @@ var Template = Object.extend({
             props = this.tmplProps;
         }
         else {
-            var compiled = compiler.compile(this.tmplStr, this.env.extensions_list, this.path);
-            //console.log(compiled);
-            var func = new Function(compiled);
+            var source = compiler.compile(this.tmplStr, this.env.extensionsList, this.path);
+            var func = new Function(source);
             props = func();
         }
 
@@ -1099,15 +1184,19 @@ var Template = Object.extend({
 
 // var fs = modules["fs"];
 // var src = fs.readFileSync('test.html', 'utf-8');
-// //var src = '{% macro foo(x, y, z=3) %}h{% endmacro %}';
-// //var src = '{% macro foo() %}{{ h }}{% endmacro %} {{ foo() }}';
+// var src = '{{ foo|safe|bar }}';
+// var env = new Environment(null, { autoescape: true, dev: true });
 
-// var env = new Environment();
+// env.addFilter('bar', function(x) {
+//     return runtime.copySafeness(x, x.substring(3, 1) + x.substring(0, 2));
+// });
+
+// //env.addExtension('testExtension', new testExtension());
 // console.log(compiler.compile(src));
 
 // var tmpl = new Template(src, env);
 // console.log("OUTPUT ---");
-// console.log(tmpl.render({ username: "James" }));
+// console.log(tmpl.render({ foo: '<>&' }));
 
 modules['environment'] = {
     Environment: Environment,
