@@ -9,7 +9,7 @@ before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
-  - "node damper.js"  # start the damper
+  - "nohup node damper.js &"  # start the damper
   - sleep 3 # give Web server some time to bind to sockets, etc
 script:
   - "cd smokealarm && DISPLAY=:99.0 ./bin/casperjs test tests"
