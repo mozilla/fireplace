@@ -46,7 +46,7 @@ if (!window.define) {
 
             var out;
             if (navigator.l10n && str in navigator.l10n.strings) {
-                out = navigator.l10n.strings[str];
+                out = navigator.l10n.strings[str].body;
             } else {
                 out = str;
             }
