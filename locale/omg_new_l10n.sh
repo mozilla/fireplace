@@ -29,18 +29,6 @@ function confirm {
 
 echo "Alright, here we go..."
 
-if confirm "Update locales?"; then
-    #pushd locale > /dev/null
-    # TODO - how is this done in fireplace?
-    echo 'todo'
-    #popd > /dev/null
-fi
-
-if confirm "Extract new strings?"; then
-    # TODO - how is this done in fireplace?
-    echo 'todo'
-fi
-
 if confirm "Merge new strings to .po files?"; then
     #pushd locale > /dev/null
 

@@ -129,7 +129,7 @@ function runCommand(command, filepath) {
             require('./scripts/compile').process(
                 'hearth/templates',
                 'hearth/templates.js',
-                'strings.po',
+                'locale/templates/LC_MESSAGES/messages.pot',
                 nunjucks_opts
             );
             break;
