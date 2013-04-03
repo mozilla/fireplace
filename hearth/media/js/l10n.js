@@ -5,6 +5,7 @@ var languages = [
     'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
     'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
     'zh-CN', 'zh-TW',
+    'dbg'  // debug locale <3
 ];
 
 var lang_expander = {
