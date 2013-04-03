@@ -15,7 +15,7 @@ langpacks:
 	done
 
 test: compile
-	cd locale ; \
+	cd smokealarm ; \
 	casperjs test tests
 
 package: compile
