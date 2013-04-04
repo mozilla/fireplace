@@ -31,7 +31,7 @@ define('urls',
             return format.format(url, args);
 
         }
-        console.error('Could not find the view "' + view_name + '".');
+        console.error('Could not find the view "' + view_name + '".')
     };
 
     var api_endpoints = {
@@ -76,8 +76,7 @@ define('urls',
                 pro: buckets.get_profile()
             };
             if (user.logged_in()) {
-                args.user = user.get_token();
-                args.email = user.get_setting('email');
+                args._user = user.get_token();
             }
             if (settings.carrier) {
                 args.carrier = settings.carrier.slug;
