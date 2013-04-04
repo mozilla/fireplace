@@ -12,10 +12,9 @@ define('browser', ['utils'], function(utils) {
 
     var os = {};
     var platform = '';
-    for (i in osStrings) {
+    for (var i in osStrings) {
         if (osStrings.hasOwnProperty(i)) {
-            pattern = osStrings[i];
-            os[i] = navigator.userAgent.indexOf(pattern) != -1;
+            os[i] = navigator.userAgent.indexOf(osStrings[i]) != -1;
             if (os[i]) {
                 platform = i;
             }

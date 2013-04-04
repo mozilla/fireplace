@@ -66,7 +66,7 @@ def feedback():
 
 @app.route('/app/<slug>/reviews/self', methods=['POST'])
 def reviews_self(slug):
-    req = requests.post(MARKETPLACE + '/api/apps/rating/',
+    req = requests.post(MARKETPLACE + '/api/v1/apps/rating/',
                         {app: slug, body: self.args.get('body'),
                          rating: self.args.get('rating')})
     return req.text
@@ -74,12 +74,12 @@ def reviews_self(slug):
 
 @app.route('/app/<slug>/reviews/self', methods=['DELETE'])
 def reviews_self_delete(slug):
-    return _proxy(MARKETPLACE + '/api/apps/rating/?app=%s' % slug)
+    return _proxy(MARKETPLACE + '/api/v1/apps/rating/?app=%s' % slug)
 
 
 @app.route('/app/<slug>/reviews/self', methods=['GET'])
 def reviews_self_get(slug):
-    return _proxy(MARKETPLACE + '/api/apps/rating/?app=%s' % slug)
+    return _proxy(MARKETPLACE + '/api/v1/apps/rating/?app=%s' % slug)
 
 
 @app.route('/featured')
@@ -101,38 +101,38 @@ def app_ratings(slug):
 
 @app.route('/user/purchases')
 def user_purchases():
-    return _proxy(MARKETPLACE + '/api/account/settings/mine/')
+    return _proxy(MARKETPLACE + '/api/v1/account/settings/mine/')
 
 
 @app.route('/user/settings', methods=['GET', 'POST'])
 def settings():
-    return _proxy(MARKETPLACE + '/api/account/settings/mine/')
+    return _proxy(MARKETPLACE + '/api/v1/account/settings/mine/')
 
 
 @app.route('/user/login', methods=['POST'])
 def login():
-    return _proxy(MARKETPLACE + '/api/account/login/')
+    return _proxy(MARKETPLACE + '/api/v1/account/login/')
 
 
 # MERGED
 
 
-@app.route('/api/home/page/')
+@app.route('/api/v1/home/page/')
 def homepage():
     return _proxy(MARKETPLACE + request.path)
 
 
-@app.route('/api/apps/category/')
+@app.route('/api/v1/apps/category/')
 def categories():
     return _proxy(MARKETPLACE + request.path)
 
 
-@app.route('/api/apps/app/<slug>/')
+@app.route('/api/v1/apps/app/<slug>/')
 def app_(slug):
     return _proxy(MARKETPLACE + request.path)
 
 
-@app.route('/api/apps/search/')
+@app.route('/api/v1/apps/search/')
 def search():
     return _proxy(MARKETPLACE + request.path)
 

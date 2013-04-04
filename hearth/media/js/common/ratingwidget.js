@@ -6,7 +6,7 @@ define(['jquery'], function($) {
                 classes = '';
             }
             var $el = $(el);
-            var allClasses = 'ratingwidget stars stars-0 ' + classes,
+            var allClasses = 'ratingwidget stars stars-0 ' + classes;
             var $widget = $('<span class="' + allClasses + '"></span>');
             var rs = '';
             var showStars = function(n) {

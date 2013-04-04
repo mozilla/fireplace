@@ -12,12 +12,6 @@ define('notification', ['capabilities', 'jquery', 'z'], function(caps, $, z) {
         notificationEl.removeClass('show');
     }
 
-    function init() {
-        notificationEl.append(contentEl);
-        z.body.append(notificationEl);
-        notificationEl.on('touchstart click', def.resolve);
-    }
-
     // allow *bolding* message text
     var re = /\*([^\*]+)\*/g;
     function fancy(s) {
@@ -64,5 +58,10 @@ define('notification', ['capabilities', 'jquery', 'z'], function(caps, $, z) {
 
     }
 
-    return {init: init, notification: notification};
+    notificationEl.append(contentEl).on('touchstart click', function() {
+        def.resolve();
+    });
+    z.body.append(notificationEl);
+
+    return {notification: notification};
 });
