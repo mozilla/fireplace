@@ -8559,6 +8559,11 @@ if ( xhrSupported ) {
                                     status = xhr.status;
                                     responseHeaders = xhr.getAllResponseHeaders();
 
+                                    // XXX(basta): This is a hack to work around bug 858225
+                                    if (!responseHeaders) {
+                                        responseHeaders = 'Content-Type: ' + xhr.getResponseHeader('Content-Type');
+                                    }
+
                                     // When requesting binary data, IE6-9 will throw an exception
                                     // on any attempt to access responseText (#11426)
                                     if ( typeof xhr.responseText === "string" ) {
