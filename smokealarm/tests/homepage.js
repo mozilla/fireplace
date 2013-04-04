@@ -13,7 +13,7 @@ suite.run('/', function(test, waitFor) {
         assert.title('Firefox Marketplace');
 
         assert.visible('.wordmark');
-        assert.visible('.header-button.persona');
+        assert.visible('.header-button.settings');  // Persona not visible at mobile width :O
         assert.visible('#search-q');
 
         assert.selectorExists('#featured-home');

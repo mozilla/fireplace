@@ -12,14 +12,13 @@ function assert(cobj) {
     this.asserts = 0;
     function wrap(func) {
         return function() {
-            func.apply(this, arguments);
+            func.apply(cobj.test, arguments);
             me.asserts++;
         };
     }
     this.that = wrap(cobj.test.assert);
-    this.visible = wrap(function(selector) {
-        cobj.test.assert(cobj.visible(selector), selector + ' is visible');
-    });
+    this.equal = wrap(cobj.test.assertEquals);
+    this.visible = wrap(cobj.test.assertVisible);
     this.title = wrap(function(title) {cobj.test.assertTitle(title);});
     this.URL = wrap(function(url) {cobj.test.assertUrlMatch(url);});
     this.selectorExists = wrap(function(selector) {cobj.test.assertExists(selector);});
@@ -32,7 +31,7 @@ function Suite(options) {
     options = options || {};
     options.verbose = true;
     options.logLevel = 'warning';
-    var cobj = require('casper').create(options);
+    var cobj = casper;
 
     var then_queue = [];
 
@@ -88,7 +87,6 @@ function Suite(options) {
         console.log('Running tests...')
         cobj.run(function() {
             this.test.done(asserts);
-            this.test.renderResults(true);
         });
     };
 
@@ -113,11 +111,15 @@ function Suite(options) {
 
     this.exists = function(selector) {
         return cobj.exists(selector);
-    }
+    };
 
     this.visible = function(selector) {
         return cobj.visible(selector);
-    }
+    };
+
+    this.getText = function(selector) {
+        return cobj.fetchText(selector);
+    };
 
 }
 
