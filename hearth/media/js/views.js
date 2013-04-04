@@ -39,7 +39,7 @@ define('views',
             console.log('Found route: ', route.view_name);
             try {
                 return [route.view, _.rest(matches)];
-            } catch(e) {
+            } catch (e) {
                 console.error('Route matched but view not initialized!', e);
                 return null;
             }

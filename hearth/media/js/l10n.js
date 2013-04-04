@@ -82,7 +82,7 @@ if (!window.define) {
                 // Arabic, Hebrew, Farsi, Pashto, Urdu
                 return rtlList.indexOf(navigator.language) >= 0 ? 'rtl' : 'ltr';
             }
-        }
+        };
     });
 }
 })();

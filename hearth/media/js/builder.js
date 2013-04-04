@@ -31,7 +31,7 @@ function defer_parser() {
         parser.advanceAfterBlockEnd();
 
         return new nodes.CallExtension(this, 'run', args, [body, placeholder, empty, except]);
-    }
+    };
 
 }
 // If we're running in node, export the extensions.
@@ -101,7 +101,7 @@ define(
                         if (!dont_cast && 'as' in signature) {
                             var caster = models(signature.as).cast;
                             if (_.isArray(data)) {
-                                _.each(data, caster)
+                                _.each(data, caster);
                             } else {
                                 caster(data);
                             }
@@ -211,7 +211,7 @@ define(
 
     return {
         getBuilder: function() {return new Builder();}
-    }
+    };
 
 });
 

@@ -71,7 +71,7 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
     function makeOrGetOverlay(id) {
         var el = document.getElementById(id);
         if (!el) {
-            el = $('<div class="overlay" id="' + id +'">');
+            el = $('<div class="overlay" id="' + id + '">');
             $(document.body).append(el);
         }
         return $(el);

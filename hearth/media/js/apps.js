@@ -40,7 +40,7 @@ define('apps', ['jquery', 'underscore'], function($, _) {
 
         /* Try to install the app. */
         if (manifest_url && mozApps &&
-            (product.is_packaged ? mozApps.installPackage: mozApps.install)) {
+            (product.is_packaged ? mozApps.installPackage : mozApps.install)) {
 
             var installRequest = (
                 mozApps[product.is_packaged ? 'installPackage' : 'install'](manifest_url, opt.data));

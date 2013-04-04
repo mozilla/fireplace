@@ -5,28 +5,29 @@ define(['jquery'], function($) {
             if (!classes) {
                 classes = '';
             }
-            var $el = $(el),
-                allClasses = 'ratingwidget stars stars-0 ' + classes,
-                $widget = $('<span class="' + allClasses + '"></span>'),
-                rs = '',
-                showStars = function(n) {
-                    $widget.removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + n);
-                },
-                setStars = function(n) {
-                    if (rating == n) return;
-                    var e = $widget.find(format('[value="{0}"]', n));
-                    e.click();
-                    showStars(n);
-                    rating = n;
-                },
-                rating = null;
+            var $el = $(el);
+            var allClasses = 'ratingwidget stars stars-0 ' + classes,
+            var $widget = $('<span class="' + allClasses + '"></span>');
+            var rs = '';
+            var showStars = function(n) {
+                $widget.removeClass('stars-0 stars-1 stars-2 stars-3 stars-4 stars-5').addClass('stars-' + n);
+            };
+            var setStars = function(n) {
+                if (rating == n) return;
+                var e = $widget.find(format('[value="{0}"]', n));
+                e.click();
+                showStars(n);
+                rating = n;
+            };
+            var rating;
+
             // Existing rating found so initialize the widget.
             if ($('option[selected]', $el).length) {
                 var temp_rating = $el.val();
                 setStars(temp_rating);
                 rating = parseInt(temp_rating, 10);
             }
-            for (var i=1; i<=5; i++) {
+            for (var i = 1; i <= 5; i++) {
                 var checked = rating === i ? ' checked' : '';
                 rs += format('<label data-stars="{0}">{1}<input type="radio" name="rating"{2} value="{3}"></label>',
                              [i, ngettext('{n} star', '{n} stars', {n: i}), checked, i]);
@@ -52,7 +53,7 @@ define(['jquery'], function($) {
                 var wid = $widget.width();
                 var left = $widget.offset().left;
                 var r = (e.originalEvent.touches[0].clientX - left) / wid * 5 + 1;
-                r = ~~Math.min(Math.max(r,1),5);
+                r = Math.min(Math.max(r, 1), 5) | 0;
                 setStars(r);
             });
             $widget.html(rs);

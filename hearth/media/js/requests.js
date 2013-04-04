@@ -87,7 +87,7 @@ define(['jquery'], function($) {
             if (success) {
                 success(data);
             }
-        }).fail(function (jqXHR, textStatus, error) {
+        }).fail(function(jqXHR, textStatus, error) {
             _error(jqXHR, textStatus, error, errorCallback);
         });
     }
@@ -102,7 +102,7 @@ define(['jquery'], function($) {
             if (success) {
                 success(data);
             }
-        }).fail(function (jqXHR, textStatus, error) {
+        }).fail(function(jqXHR, textStatus, error) {
             _error(jqXHR, textStatus, error, errorCallback);
         });
     }
@@ -145,7 +145,7 @@ define(['jquery'], function($) {
                     setTimeout(def.resolve, 0);
                 }
             }
-        }
+        };
 
         function make(func, args) {
             var req = func.apply(this, args);

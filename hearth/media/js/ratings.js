@@ -17,7 +17,7 @@ define('ratings',
             cc.html(format(ngettext('<b>{0}</b> character left.',
                                     '<b>{0}</b> characters left.', left), [left]))
               .toggleClass('error', left < 0);
-            if(left >= 0 && cc_parent.hasClass('error')) {
+            if (left >= 0 && cc_parent.hasClass('error')) {
                 cc_parent.removeClass('error');
             }
         };
@@ -57,10 +57,7 @@ define('ratings',
             // Get the inner *text* of the review body.
             body.find('br').replaceWith('\n');
             // `.text()` returns the unescaped text content, so re-escape it.
-            return body.text().trim()
-                       .replace(/&/g,'&amp;')
-                       .replace(/</g,'&lt;')
-                       .replace(/>/g,'&gt;');
+            return utils.escape_(body.text().trim());
         }
 
         function renderReviewTemplate(overlay, ctx) {
@@ -114,7 +111,7 @@ define('ratings',
 
         function flagReview(reviewEl) {
             var overlay = utils.makeOrGetOverlay('flag-review');
-            overlay.addClass('show').trigger('overlayloaded');
+            overlay.addClass('show').trigger('overlayloaded')
             overlay.one('click', '.cancel', utils._pd(function() {
                 overlay.removeClass('show');
             })).one('click', '.menu a', utils._pd(function(e) {
@@ -122,15 +119,11 @@ define('ratings',
                     actionEl = reviewEl.find('.actions .flag');
                 overlay.removeClass('show');
                 actionEl.text(gettext('Sending report...'));
-                $.ajax({
-                    type: 'POST',
-                    url: reviewEl.data('flag-url'),
-                    data: {flag: flag},
-                    success: function() {
-                        actionEl.replaceWith(gettext('Flagged for review'));
-                    },
-                    error: function(){ },
-                    dataType: 'json'
+                requests.post(
+                    reviewEl.data('flag-url'),
+                    {flag: flag}
+                ).then(function() {
+                    actionEl.replaceWith(gettext('Flagged for review'));
                 });
             }));
         }

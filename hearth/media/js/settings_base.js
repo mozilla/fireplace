@@ -1,4 +1,4 @@
-define('settings_base', [], function () {
+define('settings_base', [], function() {
     var settings = {
         api_url: 'http://' + window.location.hostname + ':5000',  // No trailing slash, please.
 

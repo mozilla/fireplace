@@ -93,7 +93,7 @@ define(
     }
 
     function installError(installer, product, msg) {
-        console.log('error: ' +  msg);
+        console.log('error: ' + msg);
 
         switch (msg) {
             // mozApps error codes, defined in

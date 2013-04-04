@@ -31,7 +31,7 @@ define('urls',
             return format.format(url, args);
 
         }
-        console.error('Could not find the view "' + view_name + '".')
+        console.error('Could not find the view "' + view_name + '".');
     };
 
     var api_endpoints = {

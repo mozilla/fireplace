@@ -21,14 +21,14 @@ define('models', ['requests'], function(requests) {
         var key = prototypes[type];
 
         var cast = function(data) {
-            if(_.isArray(data)) {
+            if (_.isArray(data)) {
                 _.each(data, cast);
                 return;
             }
             var keyed_value = data[key];
             data_store[type][keyed_value] = data;
             console.log('[model] Stored ' + keyed_value + ' as ' + type);
-        }
+        };
 
         var get = function(url, keyed_value, getter) {
             getter = getter || requests.get;
@@ -46,7 +46,7 @@ define('models', ['requests'], function(requests) {
             }
 
             return getter(url);
-        }
+        };
 
         return {
             cast: cast,

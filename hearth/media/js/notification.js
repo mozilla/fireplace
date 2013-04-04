@@ -12,20 +12,10 @@ define('notification', ['capabilities', 'jquery', 'z'], function(caps, $, z) {
         notificationEl.removeClass('show');
     }
 
-    function die() {
-        def.reject();
-        hide();
-    }
-
-    function affirm() {
-        def.resolve();
-        hide();
-    }
-
     function init() {
         notificationEl.append(contentEl);
         z.body.append(notificationEl);
-        notificationEl.on('touchstart click', affirm);
+        notificationEl.on('touchstart click', def.resolve);
     }
 
     // allow *bolding* message text
@@ -40,6 +30,7 @@ define('notification', ['capabilities', 'jquery', 'z'], function(caps, $, z) {
             def.reject();
         }
         def = $.Deferred();
+        def.then(hide);
         notificationEl.removeClass(addedClasses.join(' '));
         contentEl.text('');
         addedClasses = [];
@@ -55,7 +46,7 @@ define('notification', ['capabilities', 'jquery', 'z'], function(caps, $, z) {
             addedClasses.push('closable');
         }
         if (opts.timeout) {
-            setTimeout(die, opts.timeout);
+            setTimeout(def.reject, opts.timeout);
         }
 
         notificationEl.addClass(addedClasses.join(' '));

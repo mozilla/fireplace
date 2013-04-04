@@ -71,10 +71,10 @@ define('navigation',
         state.path = extract_nav_url(state.path);
 
         // Truncate any closed navigational loops.
-        for (var i=0; i<stack.length; i++) {
+        for (var i = 0; i < stack.length; i++) {
             if (stack[i].path === state.path ||
                 (state.type === 'search' && stack[i].type === state.type)) {
-                stack = stack.slice(i+1);
+                stack = stack.slice(i + 1);
                 break;
             }
         }
@@ -159,9 +159,9 @@ define('navigation',
     function navigationFilter(el) {
         var href = el.getAttribute('href') || el.getAttribute('action'),
             $el = $(el);
-        return !href || href.substr(0,4) == 'http' ||
-                href.substr(0,7) === 'mailto:' ||
-                href.substr(0,11) === 'javascript:' ||
+        return !href || href.substr(0, 4) == 'http' ||
+                href.substr(0, 7) === 'mailto:' ||
+                href.substr(0, 11) === 'javascript:' ||
                 href[0] === '#' ||
                 href.indexOf('/developers/') !== -1 ||
                 href.indexOf('/ecosystem/') !== -1 ||

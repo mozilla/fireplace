@@ -40,11 +40,11 @@ define(
             var reviews = $('.detail .reviews li');
             if (reviews.length < 3) return;
 
-            for (var i=0; i<reviews.length-2; i+=2) {
+            for (var i = 0; i < reviews.length - 2; i += 2) {
                 var hgt = Math.max(reviews.eq(i).find('.review-inner').height(),
-                                   reviews.eq(i+1).find('.review-inner').height());
+                                   reviews.eq(i + 1).find('.review-inner').height());
                 reviews.eq(i).find('.review-inner').height(hgt);
-                reviews.eq(i+1).find('.review-inner').height(hgt);
+                reviews.eq(i + 1).find('.review-inner').height(hgt);
             }
         });
     };

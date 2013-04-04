@@ -26,9 +26,9 @@ define(
         });
 
         // Handle filtering
-        $('#filters .apply').on('click', _pd(function () {
+        $('#filters .apply').on('click', _pd(function() {
             $('#filters').removeClass('show');
-            $('#filters .params').each(function (i, e) {
+            $('#filters .params').each(function(i, e) {
                 var $this = $(e);
                 var val = $this.val();
                 if (val) {

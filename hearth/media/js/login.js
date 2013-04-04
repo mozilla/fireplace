@@ -14,7 +14,7 @@ define('login',
         $this.addClass('loading-submit');
         z.win.on('logincancel', function() {
             $this.removeClass('loading-submit').blur();
-        })
+        });
         startLogin();
         e.preventDefault();
 
@@ -62,7 +62,7 @@ define('login',
             }).fail(function(jqXHR, textStatus, error) {
                 var err = jqXHR.responseText;
                 if (!err) {
-                    err = gettext("Persona login failed. Maybe you don't have an account under that email address?") + " " + textStatus + " " + error;
+                    err = gettext("Persona login failed. Maybe you don't have an account under that email address?") + ' ' + textStatus + ' ' + error;
                 }
                 // Catch-all for XHR errors otherwise we'll trigger 'notify'
                 // with its message as one of the error templates.

@@ -7,9 +7,9 @@ define(['assert'], function() {
         function is_done() {
             var ndone = passed + failed;
             var progress = $('progress');
-            progress.attr('value', ndone / started)
+            progress.attr('value', ndone / started);
             if (ndone === started) {
-                console.log('Tests completed.')
+                console.log('Tests completed.');
                 $('<b>Completed ' + ndone + ' tests.</b>').insertAfter(progress);
             }
         }
@@ -36,7 +36,7 @@ define(['assert'], function() {
                     console.log('Starting ' + name);
                     infobox.find('span').text('Started').css('background-color', 'goldenrod');
                     runner(completion, failed);
-                } catch(e) {
+                } catch (e) {
                     failed(e.message);
                 }
             }, 0);

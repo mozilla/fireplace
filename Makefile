@@ -23,3 +23,7 @@ package: compile
 
 log:
 	cd yulelog && zip -r ../yulelog_$(VERSION).zip * && cd ../
+
+lint:
+	# You need closure-linter installed for this.
+	gjslint --nojsdoc -r hearth/media/js/ -e lib

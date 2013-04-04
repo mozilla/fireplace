@@ -14,7 +14,7 @@ define(['underscore'], function(_) {
     function eq_(x, y, msg) {
         try {
             assert(x == y);
-        } catch(e) {
+        } catch (e) {
             throw new Error(msg || ('"' + x + '" did not match "' + y + '"'));
         }
     }
@@ -23,7 +23,7 @@ define(['underscore'], function(_) {
     function feq_(x, y, msg) {
         try {
             assert(_.isEqual(x, y));
-        } catch(e) {
+        } catch (e) {
             if (msg) {
                 throw new Error(msg);
             } else {
@@ -114,5 +114,5 @@ define(['underscore'], function(_) {
         contains: contains,
         disincludes: disincludes,
         mock: mock
-    }
+    };
 });

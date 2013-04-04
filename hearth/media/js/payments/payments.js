@@ -51,7 +51,7 @@ define(
                 request.onsuccess();
             }, 3000);
             return request;
-        }
+        };
         console.log('stubbed out navigator.mozPay()');
     }
 

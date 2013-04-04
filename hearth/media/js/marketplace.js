@@ -118,7 +118,7 @@ require.config({
         });
 
         // Do some last minute template compilation.
-        z.page.on('reload_chrome', function () {
+        z.page.on('reload_chrome', function() {
             console.log('Reloading chrome');
             var context = _.extend({z: z}, require('helpers'));
             $('#site-header').html(
