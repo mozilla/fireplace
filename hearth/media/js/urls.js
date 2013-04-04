@@ -1,6 +1,6 @@
 define('urls',
-    ['capabilities', 'format', 'settings', 'underscore', 'user', 'utils'],
-    function(caps, format, settings, _) {
+    ['buckets', 'capabilities', 'format', 'settings', 'underscore', 'user', 'utils'],
+    function(buckets, caps, format, settings, _) {
 
     var group_pattern = /\(.+\)/;
     var reverse = function(view_name, args) {
@@ -72,7 +72,8 @@ define('urls',
                 region: user.get_setting('region'),
                 scr: caps.widescreen ? 'wide' : 'mobile',
                 tch: caps.touch,
-                dev: _device()
+                dev: _device(),
+                pro: buckets.get_profile()
             };
             if (user.logged_in()) {
                 args.user = user.get_token();
