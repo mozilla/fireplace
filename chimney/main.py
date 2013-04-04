@@ -59,11 +59,6 @@ def app_abuse(slug):
     return _proxy(FLUE + request.path)
 
 
-@app.route('/feedback', methods=['POST'])
-def feedback():
-    return _proxy(FLUE + request.path)
-
-
 @app.route('/app/<slug>/reviews/self', methods=['POST'])
 def reviews_self(slug):
     req = requests.post(MARKETPLACE + '/api/v1/apps/rating/',
@@ -80,6 +75,11 @@ def reviews_self_delete(slug):
 @app.route('/app/<slug>/reviews/self', methods=['GET'])
 def reviews_self_get(slug):
     return _proxy(MARKETPLACE + '/api/v1/apps/rating/?app=%s' % slug)
+
+
+@app.route('/featured')
+def featured():
+    return _proxy(FLUE + request.path)
 
 
 @app.route('/category/<slug>')
@@ -112,8 +112,8 @@ def login():
 # MERGED
 
 
-@app.route('/api/v1/account/feedback/')
-def featured():
+@app.route('/api/v1/account/feedback/', methods=['POST'])
+def feedback():
     return _proxy(MARKETPLACE + request.path)
 
 

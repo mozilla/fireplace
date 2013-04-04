@@ -104,7 +104,7 @@ def app_abuse(slug):
     return {'error': False}
 
 
-@app.route('/feedback', methods=['POST'])
+@app.route('/api/v1/account/feedback/', methods=['POST'])
 def feedback():
     return {'error': False}
 
@@ -129,7 +129,7 @@ def reviews_self(slug):
     return defaults.app_user_review(slug)
 
 
-@app.route('/api/v1/account/feedback/')
+@app.route('/featured')
 def featured():
     return [defaults.app('feat %d' % i, 'Featured App') for i in xrange(8)]
 
