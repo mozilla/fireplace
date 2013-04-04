@@ -129,7 +129,7 @@ def reviews_self(slug):
     return defaults.app_user_review(slug)
 
 
-@app.route('/featured')
+@app.route('/api/v1/account/feedback/')
 def featured():
     return [defaults.app('feat %d' % i, 'Featured App') for i in xrange(8)]
 

@@ -16,7 +16,7 @@ define('notification', ['capabilities', 'jquery', 'z'], function(caps, $, z) {
     var re = /\*([^\*]+)\*/g;
     function fancy(s) {
         if (!s) return;
-        return s.replace(re, function(_, match){ return '<b>' + match + '</b>' });
+        return s.replace(re, function(_, match) { return '<b>' + match + '</b>'; });
     }
 
     function notification(opts) {

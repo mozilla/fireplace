@@ -48,7 +48,7 @@ define('urls',
         'user_abuse': '/user/{0}/abuse',
         'search': '/api/v1/apps/search/',
         'category': '/category/{0}',
-        'feedback': '/feedback',
+        'feedback': '/api/v1/account/feedback/',
         'terms_of_use': '/terms-of-use.html',
         'privacy_policy': '/privacy-policy.html'
     };

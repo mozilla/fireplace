@@ -82,11 +82,6 @@ def reviews_self_get(slug):
     return _proxy(MARKETPLACE + '/api/v1/apps/rating/?app=%s' % slug)
 
 
-@app.route('/featured')
-def featured():
-    return _proxy(FLUE + request.path)
-
-
 @app.route('/category/<slug>')
 def category(slug):
     return _proxy(FLUE + request.path)
@@ -115,6 +110,11 @@ def login():
 
 
 # MERGED
+
+
+@app.route('/api/v1/account/feedback/')
+def featured():
+    return _proxy(MARKETPLACE + request.path)
 
 
 @app.route('/api/v1/home/page/')
