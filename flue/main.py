@@ -10,6 +10,8 @@ import json
 import os
 import random
 import time
+import urllib
+import urlparse
 from functools import wraps
 from optparse import OptionParser
 
@@ -34,7 +36,7 @@ def corsify(*args, **kwargs):
         def wrap(*args, **kwargs):
             resp = func(*args, **kwargs)
             if isinstance(resp, (dict, list, tuple, str, unicode)):
-                resp = make_response(json.dumps(resp), 200)
+                resp = make_response(json.dumps(resp, indent=2), 200)
             resp.headers['Access-Control-Allow-Origin'] = '*'
             resp.headers['Access-Control-Allow-Methods'] = 'GET'
             resp.headers['Content-type'] = 'application/json'
@@ -157,21 +159,35 @@ def homepage():
 def _paginated(field, generator):
     result_count = 24
 
-    page = int(request.args.get('page', 0))
+    page = int(request.args.get('offset', 0)) / PER_PAGE
     if page * PER_PAGE > result_count:
         items = []
-        results_left = False
     else:
-        results_left = (page + 1) * PER_PAGE < result_count
         items = [gen for i, gen in
-                zip(xrange(min(10, result_count - page * PER_PAGE)),
-                    generator())]
+                 zip(xrange(min(10, result_count - page * PER_PAGE)),
+                     generator())]
+
+    next_page = None
+    if (page + 1) * PER_PAGE <= result_count:
+        next_page = request.url
+        if '?' in next_page:
+            next_page_qs = urlparse.parse_qs(next_page[next_page.index('?') + 1:])
+            next_page_qs = dict(zip(next_page_qs.keys(),
+                                    [x[0] for x in next_page_qs.values()]))
+            next_page = next_page[:next_page.index('?')]
+        else:
+            next_page_qs = {}
+        next_page_qs['offset'] = (page + 1) * PER_PAGE
+        next_page_qs['limit'] = PER_PAGE
+        next_page = next_page + '?' + urllib.urlencode(next_page_qs)
+
     return {
         field: items,
-        'pagination': {
-            'page': page,
-            'has_more': results_left,
-            'count': len(items),
+        'meta': {
+            'limit': PER_PAGE,
+            'offset': PER_PAGE * page,
+            'next': next_page,
+            'total_count': len(items),
         },
     }
 
@@ -185,11 +201,6 @@ def search():
             i += 1
 
     data = _paginated('objects', gen)
-    result_count = 34
-    data['meta'] = {
-        'query': request.args.get('q'),
-        'sort': request.args.get('sort'),
-    }
     return data
 
 
@@ -202,10 +213,8 @@ def category(slug):
             i += 1
 
     data = _paginated('apps', gen)
-    result_count = 34
     data['creatured'] = [defaults.app('creat %d' % i, 'Creatued App') for
                          i in xrange(4)]
-    data['meta'] = {'sort': request.args.get('sort')}
     return data
 
 
@@ -221,11 +230,10 @@ def app_ratings():
     data.update(defaults.app_user_data(data))
     data['user']['can_rate'] = True
     data['user']['has_rated'] = False
-    data['meta'] = {
-        'slug': request.args.get('app'),
+    data['meta'].update({
         'average': random.random() * 4 + 1,
         'count': 24,
-    }
+    })
     return data
 
 

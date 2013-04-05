@@ -6,7 +6,7 @@
   {% set classes = classes or [] %}
   <{{ tag }} class="product mkt-tile {{ classes|join(' ') }}"
     {% if link %} href="{{ url('app', [app.slug])|urlparams(src=src) }}"{% endif %}
-    {% for k, v in data_attrs.items() %} data-{{ k }}="{{ v }}"{% endfor %}
+    {{ data_attrs|make_data_attrs }}
     {{ app|dataproduct }}>
     <div class="icon featured_tile" style="background-image:url({{ app.image_assets.featured_tile[0] }})"></div>
     <img class="icon asset-tile" alt="" src="{{ app.image_assets.mobile_tile[0] }}"
@@ -36,7 +36,7 @@
       </div>
     </div>
     {% for notice in app.notices %}
-      <div class="bad-app">{{ notice|safe }}</div>
+      <div class="bad-app">{{ notice }}</div>
     {% endfor %}
   </{{ tag }}>
   <div class="tray previews full"></div>

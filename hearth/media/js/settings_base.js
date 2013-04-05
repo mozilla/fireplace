@@ -6,7 +6,7 @@ define('settings_base', [], function() {
 
         fragment_error_template: 'errors/fragment.html',
 
-        payments_enabled: false,
+        payments_enabled: true,
         tracking_enabled: false,
 
         // TODO: put real values here.

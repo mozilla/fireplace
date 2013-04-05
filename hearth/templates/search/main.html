@@ -1,4 +1,5 @@
 {% include '_macros/market_tile.html' %}
+{% include '_macros/more_button.html' %}
 
 <section id="filters" class="main overlay{{ ' alt' if settings.payments_enabled }}">
   <header class="header">
@@ -37,10 +38,8 @@
       {% endfor %}
 
       {# Render the more button if there's another page of results #}
-      {% if response.pagination.has_more %}
-        {% set endpoint = apiParams('search', params) %} {# XXX: This will be removed #}
-        {% set next_page = response.pagination.page + 1 %}
-        {% include 'more_button.html' %}
+      {% if response.meta.next %}
+        {{ more_button(response.meta.next) }}
       {% endif %}
     </ol>
   {% placeholder %}
