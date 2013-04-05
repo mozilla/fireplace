@@ -126,7 +126,7 @@ def app_user_review(slug, **kwargs):
     return data
 
 
-user_names = ['Cvan', 'Basta', 'Potch', 'Queen Krupa']
+user_names = ['Cvan', 'Basta', 'Davor', 'Queen Krupa']
 
 def rand_posted():
     rand_date = date.today() - timedelta(days=random.randint(0, 600))
