@@ -5,7 +5,7 @@ define('views/user/abuse', ['l10n'], function(l10n) {
     // Form submission handled in views/abuse.js
 
     return function(builder, args) {
-        builder.start('user/abuse.html', {slug: args[0]});
+        builder.start('user/abuse.html', {id: args[0]});
 
         builder.z('type', 'leaf');
         builder.z('title', gettext('Report Abuse'));

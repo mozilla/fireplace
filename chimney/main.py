@@ -49,21 +49,11 @@ def _proxy(url):
     return resp
 
 
-@app.route('/user/<slug>/abuse', methods=['POST'])
-def user_abuse(slug):
-    return _proxy(FLUE + request.path)
-
-
-@app.route('/app/<slug>/abuse', methods=['POST'])
-def app_abuse(slug):
-    return _proxy(FLUE + request.path)
-
-
 @app.route('/app/<slug>/reviews/self', methods=['POST'])
 def reviews_self(slug):
     req = requests.post(MARKETPLACE + '/api/v1/apps/rating/',
-                        {app: slug, body: self.args.get('body'),
-                         rating: self.args.get('rating')})
+                        {app: slug, body: request.args.get('body'),
+                         rating: request.args.get('rating')})
     return req.text
 
 
@@ -77,39 +67,50 @@ def reviews_self_get(slug):
     return _proxy(MARKETPLACE + '/api/v1/apps/rating/?app=%s' % slug)
 
 
-@app.route('/featured')
-def featured():
-    return _proxy(FLUE + request.path)
-
-
 @app.route('/category/<slug>')
 def category(slug):
     return _proxy(FLUE + request.path)
 
 
-@app.route('/app/<slug>/ratings')
-def app_ratings(slug):
+# PARITY
+
+
+@app.route('/api/v1/apps/rating/')
+def app_ratings():
     return _proxy(FLUE + request.path)
 
 
-# PARITY
-
-@app.route('/user/purchases')
-def user_purchases():
-    return _proxy(MARKETPLACE + '/api/v1/account/settings/mine/')
-
-
-@app.route('/user/settings', methods=['GET', 'POST'])
-def settings():
-    return _proxy(MARKETPLACE + '/api/v1/account/settings/mine/')
-
-
-@app.route('/user/login', methods=['POST'])
-def login():
-    return _proxy(MARKETPLACE + '/api/v1/account/login/')
-
-
 # MERGED
+
+
+@app.route('/api/v1/abuse/app/', methods=['POST'])
+def user_abuse():
+    return _proxy(MARKETPLACE + request.path)
+
+
+@app.route('/api/v1/abuse/user/', methods=['POST'])
+def app_abuse():
+    return _proxy(MARKETPLACE + request.path)
+
+
+@app.route('/api/v1/account/login/', methods=['POST'])
+def login():
+    return _proxy(MARKETPLACE + request.path)
+
+
+@app.route('/api/v1/account/settings/mine/', methods=['GET', 'POST'])
+def settings():
+    return _proxy(MARKETPLACE + request.path)
+
+
+@app.route('/api/v1/account/installed/')
+def settings():
+    return _proxy(MARKETPLACE + request.path)
+
+
+@app.route('/api/v1/home/featured/')
+def featured():
+    return _proxy(MARKETPLACE + request.path)
 
 
 @app.route('/api/v1/account/feedback/', methods=['POST'])
@@ -148,7 +149,7 @@ def privacy():
 
 
 @app.route('/api/receipts/install/')
-def app_(slug):
+def receipts(slug):
     return _proxy(MARKETPLACE + request.path)
 
 

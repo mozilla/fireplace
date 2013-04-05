@@ -23,9 +23,6 @@ require.config({
         },
         'underscore': {
             exports: '_'
-        },
-        'nunjucks': {
-            exports: 'nunjucks'
         }
     }
 });
@@ -159,8 +156,7 @@ require.config({
                     console.log('navigating to debug...');
                     z.page.trigger('navigate', ['/debug']);
                 }, 5000);
-            });
-            z.doc.on('touchend', '.wordmark', function() {
+            }).on('touchend', '.wordmark', function() {
                 console.log('debug hold broken.');
                 clearTimeout(to);
             });

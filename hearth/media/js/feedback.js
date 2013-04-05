@@ -8,7 +8,7 @@ define(
     z.body.on('submit', '.feedback-form', utils._pd(function(e) {
         // Submit feedback form
         var $this = $(this);
-        var data = $this.serialize();
+        var data = utils.getVars($this.serialize());
         data.chromeless = capabilities.chromeless ? 'Yes' : 'No';
         data.from_url = window.location.pathname;
         data.profile = buckets.get_profile();

@@ -7,7 +7,7 @@
   <h2>{{ _('My Apps') }}</h2>
 
   {% if user.logged_in() %}
-    {% defer (url=api('purchases'), pluck='installed', as='app') %}
+    {% defer (url=api('installed'), pluck='objects', as='app') %}
       <ol class="container listing only-logged-in c">
         {% for result in this %}
           <li class="item result app c">

@@ -104,7 +104,7 @@
         <div class="{{ 'split' if this.ratings.length else 'full' }}">
           <a class="button alt" id="add-first-review" href="#" data-action="add-or-edit"
              data-rating="{{ this.rating if this.user.has_review else 0 }}"
-             data-href="{{ api('reviews', [slug]) }}">
+             data-href="{{ api('reviews.mine', [slug]) }}">
             {{ _('Edit Your Review') if this.user.has_review else _('Write a Review') }}</a>
         </div>
       {% endif %}

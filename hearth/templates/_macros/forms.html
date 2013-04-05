@@ -1,9 +1,12 @@
-{% macro abuse_form() %}
-  <form method="post" class="abuse-form">
+{% macro abuse_form(url, type, id) %}
+  <form method="post" class="abuse-form" action="{{ url }}">
     <p class="brform simple-field c">
       <textarea rows="10" cols="40" name="text" required></textarea>
     </p>
     <p class="form-footer">
+      <input type="hidden" name="sprout" value="potato">
+      <input type="hidden" name="tuber">
+      <input type="hidden" name="{{ type }}" value="{{ id }}">
       <button type="submit">{{ _('Send Report') }}</button>
     </p>
   </form>

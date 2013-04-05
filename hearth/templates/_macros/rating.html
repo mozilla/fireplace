@@ -23,7 +23,7 @@
           <li><a class="edit post" data-action="edit" href="#">{{ _('Edit') }}</a></li>
           <li>
             <a class="delete post" data-action="delete" href="#"
-               data-href="{{ api('reviews', [slug]) }}">{{ _('Delete') }}</a></li>
+               data-href="{{ api('reviews.mine', [slug]) }}">{{ _('Delete') }}</a></li>
         {% else %}
           <li><a class="flag post" data-action="report" href="#">{{ _('Report') }}</a></li>
         {% endif %}

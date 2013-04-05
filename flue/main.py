@@ -76,11 +76,8 @@ def login():
     }
 
 
-@app.route('/user/settings', methods=['GET', 'POST'])
+@app.route('/api/v1/account/settings/mine/', methods=['GET', 'POST'])
 def settings():
-    if request.method == 'POST':
-        pass
-
     return {
         'display_name': 'Joe User',
         'email': request.args.get('email'),
@@ -88,18 +85,20 @@ def settings():
     }
 
 
-@app.route('/user/<slug>/abuse', methods=['POST'])
+@app.route('/api/v1/account/installed/')
+def settings():
+    return {
+        'objects': [defaults.app('purchase %d' % i, 'Purchased App') for
+                      i in xrange(random.randint(5, 30))]
+    }
+
+
+@app.route('/api/v1/abuse/user/', methods=['POST'])
 def user_abuse(slug):
     return {'error': False}
 
 
-@app.route('/user/purchases')
-def user_purchases():
-    return {"installed": [defaults.app('purchase %d' % i, 'Purchased App')
-                          for i in xrange(random.randint(5, 30))]}
-
-
-@app.route('/app/<slug>/abuse', methods=['POST'])
+@app.route('/api/v1/abuse/app/', methods=['POST'])
 def app_abuse(slug):
     return {'error': False}
 
@@ -129,9 +128,10 @@ def reviews_self(slug):
     return defaults.app_user_review(slug)
 
 
-@app.route('/featured')
+@app.route('/api/v1/home/featured/')
 def featured():
-    return [defaults.app('feat %d' % i, 'Featured App') for i in xrange(8)]
+    return {'objects':
+        [defaults.app('feat %d' % i, 'Featured App') for i in xrange(8)]}
 
 
 @app.route('/api/v1/apps/category/')
@@ -149,7 +149,7 @@ def categories():
 @app.route('/api/v1/home/page/')
 def homepage():
     return {
-        'featured': featured._orig(),
+        'featured': featured._orig()['objects'],
         'categories': categories._orig(),
     }
 
@@ -209,8 +209,8 @@ def category(slug):
     return data
 
 
-@app.route('/app/<slug>/ratings')
-def app_ratings(slug):
+@app.route('/api/v1/apps/rating/')
+def app_ratings():
     def gen():
         i = 0
         while 1:
@@ -222,7 +222,7 @@ def app_ratings(slug):
     data['user']['can_rate'] = True
     data['user']['has_rated'] = False
     data['meta'] = {
-        'slug': slug,
+        'slug': request.args.get('app'),
         'average': random.random() * 4 + 1,
         'count': 24,
     }
