@@ -1,7 +1,7 @@
 {% include "_macros/stars.html" %}
 
 {% macro rating(this, detailpage=false) %}
-<li id="review-{{ this.id }}" data-rating="{{ this.rating }}"
+<li data-report-uri="{{ this.report_spam }}" data-rating="{{ this.rating }}"
     class="review{{ ' flagged' if this.is_flagged }} c">
   <div class="review-inner">
     {{ stars(this.rating, detailpage=detailpage) }}

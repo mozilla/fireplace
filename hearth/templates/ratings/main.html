@@ -11,7 +11,7 @@
       <a class="button only-logged-in" id="write-review" href="{{ url('app/ratings/add', [slug]) }}">{{ _('Write a Review') }}</a>
     {% endif %}
 
-    <ul id="review-list" cla>
+    <ul id="review-list">
       {% for rat in this %}
         {{ rating(rat) }}
       {% endfor %}
@@ -21,10 +21,10 @@
         {{ more_button(response.meta.next) }}
       {% endif %}
     </ul>
+    {% include 'ratings/report.html' %}
   {% empty %}
     <p class="no-results">
       {{ _('No results found') }}
     </p>
   {% end %}
-  </ul>
 </section>
