@@ -19,6 +19,7 @@ function assert(cobj) {
     this.that = wrap(cobj.test.assert);
     this.equal = wrap(cobj.test.assertEquals);
     this.visible = wrap(cobj.test.assertVisible);
+    this.invisible = wrap(cobj.test.assertNotVisible);
     this.title = wrap(function(title) {cobj.test.assertTitle(title);});
     this.URL = wrap(function(url) {cobj.test.assertUrlMatch(url);});
     this.selectorExists = wrap(function(selector) {cobj.test.assertExists(selector);});

@@ -1,7 +1,4 @@
-var suite = require('./kasperle').suite({viewportSize: {
-    width: 1024,
-    height: 768
-}});
+var suite = require('./kasperle').suite();
 
 suite.run('/', function(test, waitFor) {
 
@@ -15,6 +12,7 @@ suite.run('/', function(test, waitFor) {
         assert.visible('.wordmark');
         assert.visible('.header-button.settings');  // Persona not visible at mobile width :O
         assert.visible('#search-q');
+        assert.invisible('.expand-toggle');
 
         assert.selectorExists('#featured-home');
         assert.selectorExists('#featured-home ul.grid li a h3:not(:empty)');
