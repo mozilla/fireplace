@@ -1,12 +1,6 @@
 (function() {
 
-var languages = [
-    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu', 'fa',
-    'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
-    'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
-    'zh-CN', 'zh-TW',
-    'dbg'  // debug locale <3
-];
+var languages = ['en-US', 'es', 'pl', 'pt-BR', 'dbg'];
 
 var lang_expander = {
     'en': 'en-US', 'ga': 'ga-IE',
@@ -42,11 +36,11 @@ if (!window.define) {
     define('l10n', ['format'], function(format) {
         var rtlList = ['ar', 'he', 'fa', 'ps', 'ur'];
 
-        function get(str, args) {
-
+        function get(str, args, context) {
+            context = context || navigator;
             var out;
-            if (navigator.l10n && str in navigator.l10n.strings) {
-                out = navigator.l10n.strings[str].body;
+            if (context.l10n && str in context.l10n.strings) {
+                out = context.l10n.strings[str].body;
             } else {
                 out = str;
             }
@@ -55,15 +49,16 @@ if (!window.define) {
             }
             return out;
         }
-        function nget(str, plural, args) {
-            if (!args && !('n' in args)) {
+        function nget(str, plural, args, context) {
+            context = context || navigator;
+            if (!args || !('n' in args)) {
                 throw new Error('`n` not passed to ngettext');
             }
             var out;
             var n = args.n;
-            if (navigator.l10n && str in navigator.l10n.strings) {
-                var plid = navigator.l10n.pluralize(n);
-                out = navigator.l10n.strings[str].plurals[plid];
+            if (context.l10n && str in context.l10n.strings) {
+                var plid = context.l10n.pluralize(n);
+                out = context.l10n.strings[str].plurals[plid];
             } else {
                 out = n === 1 ? str : plural;
             }
@@ -77,10 +72,14 @@ if (!window.define) {
         return {
             gettext: get,
             ngettext: nget,
-            getDirection: function() {
+            getDirection: function(context) {
+                var language = context ? context.language : navigator.language;
+                if (language.indexOf('-') > -1) {
+                    language = language.split('-')[0];
+                }
                 // http://www.w3.org/International/questions/qa-scripts
                 // Arabic, Hebrew, Farsi, Pashto, Urdu
-                return rtlList.indexOf(navigator.language) >= 0 ? 'rtl' : 'ltr';
+                return rtlList.indexOf(language) >= 0 ? 'rtl' : 'ltr';
             }
         };
     });
