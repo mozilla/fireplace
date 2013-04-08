@@ -34,15 +34,18 @@ function Suite(options) {
     options.logLevel = 'warning';
     var cobj = casper;
 
-    
+
     this.run = function(url, callback) {
         if (url[0] === '/') {
             url = url.substr(1);
         }
+        url = base_url + url;
         var started = false;
         var next_runner = function(callback) {
-            cobj.start(url, callback);
-            next_runner = cobj.then;
+            cobj.start.apply(cobj, [url, callback]);
+            next_runner = function() {
+                cobj.then.apply(cobj, arguments);
+            };
             started = true;
         };
 
@@ -67,7 +70,9 @@ function Suite(options) {
             cobj.waitFor(
                 waiter,
                 callback || function() {console.log('Wait condition met.');},
-                function() {console.error('waitFor timeout :(');}
+                function() {
+                    throw new Error('waitFor timeout :(');
+                }
             );
         });
 

@@ -1,4 +1,6 @@
 import os
+import time
+from functools import wraps
 from optparse import OptionParser
 
 import requests
@@ -11,6 +13,26 @@ FLUE = 'http://flue.paas.allizom.org'
 MARKETPLACE = 'https://marketplace-dev.allizom.org'
 
 IGNORED_HEADERS = ('transfer-encoding', 'content-encoding', 'connection')
+LATENCY = 0
+
+
+ar = app.route
+@wraps(ar)
+def latencify(*args, **kwargs):
+    def decorator(func):
+        @wraps(func)
+        def wrap(*args, **kwargs):
+            if LATENCY:
+                time.sleep(LATENCY)
+            return func(*args, **kwargs)
+
+        registered_func = ar(*args, **kwargs)(wrap)
+        registered_func._orig = func
+        return registered_func
+
+    return decorator
+
+app.route = latencify
 
 
 def _qs():
@@ -27,6 +49,7 @@ def _urlparams(url):
         url += '&'
 
     return url + qs
+
 
 def _proxy(url):
     url = _urlparams(url)
@@ -159,6 +182,9 @@ if __name__ == '__main__':
             help='port', metavar='PORT', default=os.getenv('PORT', '5000'))
     parser.add_option('--host', dest='hostname',
             help='hostname', metavar='HOSTNAME', default='0.0.0.0')
+    parser.add_option('--latency', dest='latency',
+            help='latency (sec)', metavar='LATENCY', default=0)
     (options, args) = parser.parse_args()
     app.debug = True
+    LATENCY = int(options.latency)
     app.run(host=options.hostname, port=int(options.port))
