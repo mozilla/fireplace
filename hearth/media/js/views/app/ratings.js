@@ -6,7 +6,7 @@ define(['l10n', 'urls'], function(l10n, urls) {
         var slug = args[0];
         builder.start('ratings/main.html', {
             'slug': slug,
-            'addUrl': urls.reverse('apps/ratings', [slug])
+            'addUrl': urls.reverse('app/ratings', [slug])
         });
 
         builder.onload('ratings', function(data) {

@@ -170,8 +170,11 @@ def _paginated(field, generator):
     next_page = None
     if (page + 1) * PER_PAGE <= result_count:
         next_page = request.url
+        next_page = next_page[len(request.base_url) -
+                              len(request.path + request.script_root):]
         if '?' in next_page:
-            next_page_qs = urlparse.parse_qs(next_page[next_page.index('?') + 1:])
+            next_page_qs = urlparse.parse_qs(
+                next_page[next_page.index('?') + 1:])
             next_page_qs = dict(zip(next_page_qs.keys(),
                                     [x[0] for x in next_page_qs.values()]))
             next_page = next_page[:next_page.index('?')]
