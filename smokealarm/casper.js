@@ -34,57 +34,43 @@ function Suite(options) {
     options.logLevel = 'warning';
     var cobj = casper;
 
-    var then_queue = [];
-
-    function testgen(name, callback) {
-        then_queue.push(function() {
-            var asserter = new assert(this);
-            console.log('RUNNING:: ' + name);
-            callback(asserter);
-            asserts += asserter.asserts;
-        });
-    }
-
-    function wrap_casper(callback) {
-        // Give a tiny pause for async setup
-        return function() {
-            var args = arguments;
-            cobj.wait(100, function() {
-                callback.apply(this, args);
-            });
-        };
-    }
-
-    var waiter;
-
+    
     this.run = function(url, callback) {
         if (url[0] === '/') {
             url = url.substr(1);
         }
-        console.log('Planning test case.');
-        callback(testgen, function(test) {
-            waiter = test;
-        });
-        console.log('Tests planned, queueing tests.');
+        var started = false;
+        var next_runner = function(callback) {
+            cobj.start(url, callback);
+            next_runner = cobj.then;
+            started = true;
+        };
 
-        if (waiter) {
-            cobj.start(base_url + url);
-            console.log('Waiting for condition before tests...');
+        console.log('Queueing test case.');
+        callback(function(name, callback) {
+            next_runner(function(response) {
+                console.log('RUNNING:: ' + name);
+                var asserter = new assert(this);
+                callback(asserter, response);
+                asserts += asserter.asserts;
+            });
+        }, function(waiter, callback) {
+            // If we're waiting for something and the tests haven't started,
+            // start the tests with a noop callback.
+            if (!started) {
+                next_runner(function() {
+                    console.log('Initial navigation initiated.');
+                });
+            }
+            // Tell casper to wait until `waiter` evaluates to a truthy return
+            // value.
             cobj.waitFor(
                 waiter,
-                wrap_casper(then_queue.shift()),
-                function() {
-                    console.error('waitFor timeout :(');
-                }
+                callback || function() {console.log('Wait condition met.');},
+                function() {console.error('waitFor timeout :(');}
             );
-        } else {
-            cobj.start(base_url + url, wrap_casper(then_queue.shift()));
-        }
+        });
 
-        while (then_queue.length) {
-            console.log('Queueing next test step...');
-            casper.then(wrap_casper(then_queue.shift()));
-        }
         console.log('Running tests...')
         cobj.run(function() {
             this.test.done(asserts);
@@ -92,12 +78,7 @@ function Suite(options) {
     };
 
     this.capture = function(filename) {
-        cobj.capture('captures/' + filename, {
-            top: 0,
-            left: 0,
-            width: 1024,
-            height: 768
-        });
+        cobj.capture('captures/' + filename);
     };
 
     this.fill = function(form_selector, data) {

@@ -10,6 +10,10 @@ suite.run('/', function(test, waitFor) {
         suite.press('.categories ul li a:first-child');
     });
 
+    waitFor(function() {
+        return suite.exists('#search-results li a');
+    });
+
     test('Category baseline tests', function(assert) {
         assert.URL(/\/category\/[a-zA-Z0-9]+/);
         //assert.invisible('h1.site', 'Wordmark should be hidden');
@@ -30,6 +34,5 @@ suite.run('/', function(test, waitFor) {
 
     test('Continue to detail page', function(assert) {
         assert.URL(/\/app\/[a-zA-Z0-9]+/);
-
     });
 });
