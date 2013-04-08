@@ -34,7 +34,6 @@ function Suite(options) {
     options.logLevel = 'warning';
     var cobj = casper;
 
-
     this.run = function(url, callback) {
         if (url[0] === '/') {
             url = url.substr(1);

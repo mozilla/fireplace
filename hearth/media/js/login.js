@@ -77,15 +77,6 @@ define('login',
         }
     }
 
-    function finishLogin() {
-        z.page.trigger('reload_chrome');
-        console.log('finished login');
-        var to = utils.getVars().to;
-        if (to && to[0] == '/') {
-            z.page.trigger('navigate', [to]);
-        }
-    }
-
     function init_persona() {
         $('.persona').css('cursor', 'pointer');
         var email = user.get_setting('email') || '';
