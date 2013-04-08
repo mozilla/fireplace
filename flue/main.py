@@ -87,7 +87,7 @@ def settings():
     }
 
 
-@app.route('/api/v1/account/installed/')
+@app.route('/api/v1/account/installed/mine/')
 def settings():
     return {
         'objects': [defaults.app('purchase %d' % i, 'Purchased App') for

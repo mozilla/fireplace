@@ -126,7 +126,7 @@ def settings():
     return _proxy(MARKETPLACE + request.path)
 
 
-@app.route('/api/v1/account/installed/')
+@app.route('/api/v1/account/installed/mine/')
 def settings():
     return _proxy(MARKETPLACE + request.path)
 

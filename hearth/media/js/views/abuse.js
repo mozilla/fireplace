@@ -11,9 +11,11 @@ define('views/abuse',
         // Submit report abuse form
         var $this = $(this);
 
-        requests.post($this.data('action'), $this.serialize(), function(data) {
+        requests.post($this.data('action'), $this.serialize()).done(function(data) {
             console.log('submitted abuse report');
             $this.find('textarea').val('');
+        }).fail(function() {
+            z.page.trigger('notify', {msg: gettext('There was a problem submitting your report. Please try again later.')})
         });
     });
 

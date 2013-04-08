@@ -169,7 +169,7 @@ define('ratings',
         if (rating > 0) {
             title = gettext('Edit Your Review');
 
-            requests.get(action, function(data) {
+            requests.get(action).done(function(data) {
                 renderReviewTemplate(overlay, ctx);
                 var body = overlay.find('textarea').text(data.body);
                 overlay.find('textarea').text(getBody(body));

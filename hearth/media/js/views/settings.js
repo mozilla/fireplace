@@ -32,12 +32,12 @@ define('views/settings',
         }
         var data = $(this).serialize();
         user.update_settings(data);
-        requests.post(urls.api.url('settings'), data, function() {
+        requests.post(urls.api.url('settings'), data).done(function() {
             // Re-save settings because we cray and the user cray.
             user.update_settings(data);
 
             completion.resolve();
-        }, function() {
+        }).fail(function() {
             z.page.trigger('notify', [gettext('Settings could not be saved.')]);
             completion.reject();
         });

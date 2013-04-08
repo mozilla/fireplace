@@ -32,22 +32,6 @@ test('requests.get', function(done, fail) {
     );
 });
 
-test('requests.get callback', function(done, fail) {
-    mock(
-        'requests',
-        {jquery: new MockJQuery()},
-        function(requests) {
-            var def = requests.get('foo/bar', function(data) {
-                eq_(data, 'sample data');
-                done();
-            }, fail);
-            // Test that the URL isn't mangled before being sent to jQuery.
-            eq_(def.args[0], 'foo/bar');
-            def.resolve('sample data');
-        }
-    );
-});
-
 test('requests.get cached', function(done, fail) {
     mock(
         'requests',
@@ -67,23 +51,6 @@ test('requests.get cached', function(done, fail) {
     );
 });
 
-test('requests.get cached callback', function(done, fail) {
-    mock(
-        'requests',
-        {jquery: new MockJQuery()},
-        function(requests) {
-            var uncached = requests.get('foo/bar');
-            assert(!('__cached' in uncached));
-            uncached.resolve('data to cache');
-
-            requests.get('foo/bar', function(data) {
-                eq_(data, 'data to cache');
-                done();
-            });
-        }
-    );
-});
-
 test('requests.post', function(done, fail) {
     mock(
         'requests',
@@ -97,23 +64,6 @@ test('requests.post', function(done, fail) {
                 eq_(data, 'sample data');
                 done();
             }).fail(fail);
-            def.resolve('sample data');
-        }
-    );
-});
-
-test('requests.post callback', function(done, fail) {
-    mock(
-        'requests',
-        {jquery: new MockJQuery()},
-        function(requests) {
-            var data = {foo: 'bar'};
-            var def = requests.post('foo/bar', data, function(data) {
-                eq_(data, 'sample data');
-                done();
-            }, fail);
-            eq_(def.args[0], 'foo/bar');
-            eq_(def.args[1], data);
             def.resolve('sample data');
         }
     );

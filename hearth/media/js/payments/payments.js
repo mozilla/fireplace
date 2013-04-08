@@ -23,13 +23,13 @@ define(
                 $def.reject(null, product, 'MKT_INSTALL_ERROR');
             }, 60000);
         }
-        requests.get(contribStatusURL, function(result) {
+        requests.get(contribStatusURL).done(function(result) {
             if (result.status == 'complete') {
                 window.clearTimeout(nextCheck);
                 window.clearTimeout(_giveUp);
                 $def.resolve(product);
             }
-        }, function() {
+        }).fail(function() {
             $def.reject(null, product, 'MKT_SERVER_ERROR');
         });
     }
@@ -84,9 +84,9 @@ define(
         product = prod;
 
         if (caps.navPay || simulateNavPay) {
-            requests.post(product.prepareNavPay, {}, function(result) {
+            requests.post(product.prepareNavPay, {}).done(function(result) {
                 callNavPay($def, product, result.webpayJWT, result.contribStatusURL);
-            }, function() {
+            }).fail(function() {
                 $def.reject(null, product, 'MKT_SERVER_ERROR');
             });
 

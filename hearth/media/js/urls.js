@@ -31,7 +31,7 @@ define('urls',
             return format.format(url, args);
 
         }
-        console.error('Could not find the view "' + view_name + '".')
+        console.error('Could not find the view "' + view_name + '".');
     };
 
     var api_endpoints = {
@@ -41,7 +41,7 @@ define('urls',
         'reviews.mine': '/app/{0}/reviews/self',
         'privacy': '/app/{0}/privacy',
         'settings': '/api/v1/account/settings/mine/',
-        'installed': '/api/v1/account/installed/',
+        'installed': '/api/v1/account/installed/mine/',
         'login': '/api/v1/account/login/',
         'record': '/api/v1/receipts/install/',
         'app_abuse': '/api/v1/abuse/app/',

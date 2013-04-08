@@ -51,27 +51,10 @@ define(['jquery'], function($) {
 
     */
 
-    // Hax because Firefox OS is super balls.
-    //$.ajaxSetup({dataType: 'json'});
-
-    function _error(jqXHR, textStatus, error, errorCallback) {
-        if (errorCallback) {
-            errorCallback(jqXHR, textStatus, error);
-        } else {
-            $('#page').trigger('notify', {msg: jqXHR.responseText});
-        }
-    }
-
     var cache = {};
 
-    function get(url, success, errorCallback) {
-        if (success) {
-            console.error('[dep] Success callbacks are deprecated');
-        }
+    function get(url) {
         if (url in cache) {
-            if (success) {
-                success(cache[url]);
-            }
             return $.Deferred()
                     .resolve(cache[url])
                     .promise({__cached: true});
@@ -79,31 +62,18 @@ define(['jquery'], function($) {
         return _get.apply(this, arguments);
     }
 
-    function _get(url, success, errorCallback) {
+    function _get(url) {
         console.log('[req] GETing', url);
         return $.get(url).done(function(data) {
             console.log('[req] GOT', url);
             cache[url] = data;
-            if (success) {
-                success(data);
-            }
-        }).fail(function(jqXHR, textStatus, error) {
-            _error(jqXHR, textStatus, error, errorCallback);
         });
     }
 
-    function post(url, data, success, errorCallback) {
-        if (success) {
-            console.error('[dep] Success callbacks are deprecated');
-        }
+    function post(url, data) {
         console.log('[req] POSTing', url);
         return $.post(url, data).done(function(data) {
             console.log('[req] POSTed', url);
-            if (success) {
-                success(data);
-            }
-        }).fail(function(jqXHR, textStatus, error) {
-            _error(jqXHR, textStatus, error, errorCallback);
         });
     }
 
