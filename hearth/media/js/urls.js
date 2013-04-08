@@ -35,11 +35,13 @@ define('urls',
     };
 
     var api_endpoints = {
-        'homepage': '/api/v1/home/page/',
-        'app': '/api/v1/apps/app/{0}/',
-        'ratings': '/api/v1/apps/rating/?app={0}',
+        'category': '/category/{0}',
         'reviews.mine': '/app/{0}/reviews/self',
         'privacy': '/app/{0}/privacy',
+
+        'homepage': '/api/v1/home/page/',
+        'app': '/api/v1/apps/app/{0}/',
+        'reviews': '/api/v1/apps/rating/?app={0}',
         'settings': '/api/v1/account/settings/mine/',
         'installed': '/api/v1/account/installed/mine/',
         'login': '/api/v1/account/login/',
@@ -47,7 +49,6 @@ define('urls',
         'app_abuse': '/api/v1/abuse/app/',
         'user_abuse': '/api/v1/abuse/user/',
         'search': '/api/v1/apps/search/',
-        'category': '/category/{0}',
         'feedback': '/api/v1/account/feedback/',
         'terms_of_use': '/terms-of-use.html',
         'privacy_policy': '/privacy-policy.html'

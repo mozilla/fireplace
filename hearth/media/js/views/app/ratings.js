@@ -17,6 +17,6 @@ define(['l10n', 'urls'], function(l10n, urls) {
         });
 
         builder.z('type', 'leaf');
-        builder.z('title', gettext('Ratings'));
+        builder.z('title', gettext('Reviews'));
     };
 });

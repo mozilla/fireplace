@@ -1,6 +1,6 @@
 define(
-    ['capabilities', 'notification', 'z'],
-    function(capabilities, notification, z) {
+    ['buckets', 'capabilities', 'notification', 'z'],
+    function(buckets, capabilities, notification, z) {
     'use strict';
 
     var debugEnabled = localStorage.getItem('debug-enabled');
@@ -21,7 +21,8 @@ define(
     return function debug_view(builder, args) {
         builder.start('debug.html', {
             capabilities: capabilities,
-            dbg: debugEnabled || 'no'
+            dbg: debugEnabled || 'no',
+            profile: buckets.get_profile()
         });
 
         builder.z('type', 'leaf');

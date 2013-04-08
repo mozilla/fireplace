@@ -3,7 +3,7 @@
 {% include "_macros/rating.html" %}
 
 <section class="main c" id="reviews">
-  {% defer (url=api('ratings', [slug]), pluck='ratings', id='ratings', paginate='#review-list') %}
+  {% defer (url=api('reviews', [slug]), pluck='ratings', id='ratings', paginate='#review-list') %}
 
     <a class="button only-logged-in" id="write-review" href="{{ writeUrl }}">{{ _('Write a Review') }}</a>
 
