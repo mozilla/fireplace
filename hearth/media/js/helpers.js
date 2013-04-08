@@ -17,7 +17,7 @@ define('helpers',
 
     env.addFilter('urlparams', utils.urlparams);
 
-    env.addFilter('nl2br', function(obj) {
+    safe_filter('nl2br', function(obj) {
         return obj.replace(/\n/g, '<br>');
     });
 
