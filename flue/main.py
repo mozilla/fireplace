@@ -88,7 +88,7 @@ def settings():
 
 
 @app.route('/api/v1/account/installed/mine/')
-def settings():
+def installed():
     return {
         'objects': [defaults.app('purchase %d' % i, 'Purchased App') for
                       i in xrange(random.randint(5, 30))]
@@ -207,15 +207,15 @@ def search():
     return data
 
 
-@app.route('/category/<slug>')
-def category(slug):
+@app.route('/api/v1/apps/search/creatured/')
+def category():
     def gen():
         i = 0
         while 1:
             yield defaults.app('catm %d' % i, 'Category Item')
             i += 1
 
-    data = _paginated('apps', gen)
+    data = _paginated('objects', gen)
     data['creatured'] = [defaults.app('creat %d' % i, 'Creatued App') for
                          i in xrange(4)]
     return data

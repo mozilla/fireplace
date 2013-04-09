@@ -90,11 +90,6 @@ def reviews_self_get(slug):
     return _proxy(MARKETPLACE + '/api/v1/apps/rating/?app=%s' % slug)
 
 
-@app.route('/category/<slug>')
-def category(slug):
-    return _proxy(FLUE + request.path)
-
-
 # PARITY
 
 
@@ -104,6 +99,11 @@ def app_ratings():
 
 
 # MERGED
+
+
+@app.route('/api/v1/apps/search/creatured/')
+def category():
+    return _proxy(MARKETPLACE + request.path)
 
 
 @app.route('/api/v1/abuse/app/', methods=['POST'])

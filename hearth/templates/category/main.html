@@ -40,7 +40,7 @@
   {% end %}
 </section>
 <section id="search-results" class="main full c">
-  {% defer (url=endpoint, pluck='apps', as='app', paginate='ol.listing') %}
+  {% defer (url=endpoint, pluck='objects', as='app', paginate='ol.listing') %}
     <ol class="container listing c">
       {% for result in this %}
         <li class="item result app c">
@@ -59,7 +59,5 @@
     <p class="no-results">
       {{ _('No apps in this category') }}
     </p>
-  {% except %}
-
   {% end %}
 </section>
