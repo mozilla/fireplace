@@ -17,7 +17,7 @@ suite.run('/', function(test, waitFor) {
 
     test('Detail page baseline tests', function(assert) {
         assert.URL(/\/app\/[a-zA-Z0-9]+/);
-        assert.invisible('#search-q');
+        //assert.invisible('#search-q');
         assert.invisible('.expand-toggle');
         assert.hasText('h1.title');
 
@@ -26,7 +26,7 @@ suite.run('/', function(test, waitFor) {
 
         assert.hasText('.blurbs .summary');
 
-        assert.exists('.support ul li');
+        assert.selectorExists('.support ul li');
 
         suite.capture('detail.png');
     });
