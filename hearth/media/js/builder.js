@@ -184,7 +184,6 @@ define(
         this.finish = function() {
             pool.then(function() {
                 z.page.trigger('loaded');
-                $('h1.title').html(z.context.pagetitle || z.context.title);
             });
             pool.finish();
         };

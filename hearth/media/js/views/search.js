@@ -62,6 +62,12 @@ define(
     z.page.on('loaded', function() {
         var $q = $('#search-q');
         $q.attr('placeholder', z.context.search || $q.data('placeholder-default'));
+        $q.val(z.context.search);
+        if (z.context.search) {
+            $q.attr('data-context', '');
+        } else {
+            $q.removeAttr('data-context');
+        }
     }).on('reloaded_chrome', function() {
         setTrays(expand);
     }).on('loaded_more', function() {

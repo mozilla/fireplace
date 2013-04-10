@@ -14,7 +14,10 @@ var glob = require('./scripts/utils.js').glob;
 
 var mimes = {
     'css': 'text/css',
+    'jpg': 'image/jpeg',
     'js': 'application/javascript',
+    'png': 'image/png',
+    'svg': 'image/svg+xml',
     'woff': 'application/font-woff'
 };
 

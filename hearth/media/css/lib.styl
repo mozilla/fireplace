@@ -3,11 +3,12 @@ $desktop = 672px;
 
 // These are potentially temporary while real desktop widths are birthed.
 $desktop-content = 612px;
-$desktop-hdr = 732px;
-$desktop-ftr = $desktop-hdr;
+$desktop-ftr = 732px;
 
 // Use these as @media $at-least-desktop {}
 $at-least-desktop = unquote('(min-width: 672px)');
+$retina-tablet = $retina unquote('and (max-width: 540px)');
+$retina-wide = $retina unquote('and (min-width: 1024px)');
 
 // Colors
 // TODO: Have Michael take a peek at these!
@@ -43,6 +44,16 @@ $bg-lite = lighten($bg, 2%);
 $faint-blue = #ECF5FE;
 $grain = #394C58;
 
+
+// New design.
+$sailor-blue = #0096dc;
+$castle-skull-gray = #333;
+$grey-gardens-gray = #4d4d4d;
+$sloppy-joes-gray = #5f5f5f;
+$cement-gray = #c7c7c7;
+$london-fog-gray = #f1f1f1;
+
+
 // Used for content ratings for games in Brazil.
 // You can use them elsewhere when you want colourful boxes.
 // Don't be a square.
@@ -59,7 +70,7 @@ $btn-b-lite = saturate(spin($btn-b, 4), 4%);
 
 
 // Font Stacks
-$open-stack = "Open Sans", "OpenSansWeb", "Helvetica Neue", Arial, sans-serif;
+$open-stack = "Feura Sans", FeuraSansWeb, "Open Sans", "Helvetica Neue", Arial, sans-serif;
 
 
 // Retina
@@ -235,6 +246,11 @@ spinner-install-image(type = '') {
     }
 }
 
+spinner-loading-image() {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAEfklEQVRIib3Wa2wUVRQH8AHEAiICJgRJ2W7fj91Cl93ug+22S7u7pRADwYj6oTFRP2AMLwnEiNg1xg9ghARjQiOkCrizc2fm3pldbBCJq+ycc6bFiERjYjBBQQ0+Y1R8RHD9QJFHC2mx6z85H+bemfvLSe69GUkaRWYf7J9Rns7f71SsneVpOFwuw9lyGc6WyXC2LA0fOVLWgfmytbFUzgdGs95N45Rzzsq01VepQKFSgUKFAoWKNBTKh8o5VA7ZulCWgnPzU9bx0hSsvWWwSoFktYKFKgUKVUNo5QhomQwXHTKcd8jWGUfKQocMrHTv4dlj664vN7OGwYkahoVqhoXL8NVoxdVoagR0J5s6VvCDWoaFmqGqVq7AFWk4XZG2djlT1gannI86U8dWOmTocchW2iFbZ+anrCOlB/LRMXVZy+B4LYMLNQz/vgxf6hZOVMljXGyU4NY6Ff6oZ/hnHYO/ahS8WMuwUKNActwxSZKkCmY5Ghj8Uq/i+ToGv1+BrYeLAkqSJLkUeMXF8Kd6FX5uYPhrHcPfalV4pnggy01vYPBdA8MfXAx+HMI/Lhp4Cc0vdat4zq3BN24Vvm1Q8XuXgg8VFXUza3Ojil82qvCVW4OvXRp8WlRQkiSpUYXtCzQ6vUDDz90qfOFW4dX/AcV9C1U8tVDFU40afubWYF0RmAnXPDVpaDTp9Mm/peET404mkxOvR1/0aHTSo9HJJp0+XKjRmqKjHg2f9ej0vkfD4006Di7ScMc4kxMkxiZdi+rQ7dERPRqCV0NrEaf+cSWTyYnRZO62a8a8zGpZpON7Po7venV6x8fxqFeFxHiZ3t7eyd7e3snXDWan+Tge9el0pFnHwz5O/T6O+8ZFZGxStC83ZRgqSZLk1WGTT6c3mzlm/RyNgE6an9N/vewnRFlueojhVBdjtw+bXcBhjp+j0cxJ93NkAU5yQOD+oE7hW+KSyYnLD+Vnxdjbd92bzU7r2t1fMuJ7zRqt9nNUggLfCHB8PcTtfQFu7wlyWjUWr2t3f8kyNjg3wWFOVORmJva/dUe0Lzflhh8EOWwNcnwtKGhvgNt7Qjq93CLopYigLYsFNN0Mi/blpsRNa95yTvXLdChbxgbnLj+UnxVluek3Rb292WlBQT2XwZBBO1sEbW8R9HxE2NsiAje0CkhEBPrbdSiLcapfkrFc7QYuTmQG2jsF+jszg65EZqC8Uz92TyfD2WHTunPYOR0JDgl7fVjYu8KGvSPM6YUWQT1tBj0dMXFz1LTXtwt6vN2gx+LC7o5laHUsY6+IZ7EjYVAgwcHdJaAyblrzOvjA3SPu3BtlsYBEi6CeiGE/FxH2tlbDfqpV2JuWGLQuatKajgw+Ghd2d4dBD3SIgZUxg2JLswOhmIGNnSZWJTjMGXYpjCZNIjczwmFFG6cn2wRtaTNoY5ugtVGT1sRMfCQu7O6EaT8YM2lVp4lL4yaFuwy7oeugPWPM2PWp2t1f0qrZ1RGdwm3cji/htCom7PtiGXtFhzEQiZuWL8YsR4jhqH6y/wGjN55P0DKcoQAAAABJRU5ErkJggg==') no-repeat center;
+    background-size: 18px auto;
+}
+
 spinner(type = '') {
     spinner-base();
     if (type == 'absolute') {
@@ -248,6 +264,11 @@ spinner(type = '') {
         height: 18px;
         margin: 2px 0;
         spinner-install-image();
+        width: 18px;
+    } else if (type == 'loading') {
+        height: 18px;
+        margin: 2px 0;
+        spinner-loading-image();
         width: 18px;
     }
 }

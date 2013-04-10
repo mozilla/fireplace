@@ -41,6 +41,11 @@
 </section>
 <section id="search-results" class="main full c">
   {% defer (url=endpoint, pluck='objects', as='app', paginate='ol.listing') %}
+    <div class="header results-header c">
+      <div>{{ _plural('<b>{n}</b> Result', '<b>{n}</b> Results', n=response.meta.total_count) }}</div>
+      <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
+    </div>
+
     <ol class="container listing c">
       {% for result in this %}
         <li class="item result app c">

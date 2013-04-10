@@ -19,7 +19,7 @@ suite.run('/', function(test, waitFor) {
         assert.URL(/\/app\/[a-zA-Z0-9]+/);
         //assert.invisible('#search-q');
         assert.invisible('.expand-toggle');
-        assert.hasText('h1.title');
+        assert.hasText('h3');
 
         assert.textIsnt('.mkt-tile h3', 'Loading...');
         assert.textIsnt('.mkt-tile .price', 'Loading...');

@@ -225,9 +225,15 @@ define('navigation',
     }).on('submit', 'form#search', function(e) {
         e.stopPropagation();
         e.preventDefault();
-        var query = $('#search-q').val();
+        var $q = $('#search-q');
+        var query = $q.val();
         if (query == 'do a barrel roll') {
             z.body.toggleClass('roll');
+        }
+        if (z.context.search) {
+            $q.attr('data-context', '');
+        } else {
+            $q.removeAttr('data-context');
         }
         z.page.trigger('search', {q: query});
 
