@@ -30,6 +30,7 @@ define(
         builder.start('detail/main.html', {slug: args[0]});
 
         builder.z('type', 'leaf');
+        builder.z('reload_on_login', true);
         builder.z('title', gettext('Loading...'));
         builder.z('pagetitle', gettext('App Details'));
 

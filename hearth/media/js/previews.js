@@ -15,7 +15,7 @@ define('previews', ['flipsnap', 'templates', 'capabilities', 'shothandles', 'z']
         }
         var product = $tile.data('product');
         var previewsHTML = '';
-         if (!product.previews) return;
+        if (!product || !product.previews) return;
         _.each(product.previews, function(p) {
             p.typeclass = p.filetype === 'video/webm' ? 'video' : 'img';
             previewsHTML += nunjucks.env.getTemplate('detail/single_preview.html').render(p);

@@ -1,8 +1,8 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 define(
-    ['apps', 'capabilities', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
-    function(apps, caps, notification, payments, requests, urls, user, z) {
+    ['apps', 'capabilities', 'jquery', 'login', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
+    function(apps, caps, $, login, notification, payments, requests, urls, user, z) {
     'use strict';
 
     function _handler(func) {
@@ -21,24 +21,25 @@ define(
 
     function startInstall(product) {
         if (product.price && !user.logged_in()) {
-            localStorage.setItem('toInstall', product.manifest_url);
-            z.body.trigger('promptlogin', true);
             console.log('Install suspended; user needs to log in');
+            return login.login().done(function() {
+                startInstall(product);
+            });
             return;
         }
 
         if (product.price) {
-            purchase(product);
+            return purchase(product);
         } else {
-            install(product);
+            return install(product);
         }
     }
 
     function purchase(product) {
         z.win.trigger('app_purchase_start', product);
-        $.when(payments.purchase(product))
-         .done(purchaseSuccess)
-         .fail(purchaseError);
+        return $.when(payments.purchase(product))
+                .done(purchaseSuccess)
+                .fail(purchaseError);
     }
 
     function purchaseSuccess(product, receipt) {
@@ -63,28 +64,32 @@ define(
         z.win.trigger('app_install_start', product);
 
         function do_install() {
-            $.when(apps.install(product, data))
-                 .done(installSuccess)
-                 .fail(installError);
+            return $.when(apps.install(product, data))
+                    .done(installSuccess)
+                    .fail(installError);
         }
 
         if (!product.recordUrl) {
-            do_install();
+            return do_install();
         } else {
+            var def = $.Deferred();
             requests.post(urls.api.url('record'), post_data).done(function(response) {
                 if (response.error) {
                     $('#pay-error').show().find('div').text(response.error);
                     installError(product);
+                    def.reject();
                     return;
                 }
                 if (response.receipt) {
                     data.data = {'receipts': [response.receipt]};
                 }
-                do_install();
+                do_install().done(def.resolve).fail(def.reject);
             }).fail(function() {
                 // Could not record/generate receipt!
                 installError(null, product);
+                def.reject();
             });
+            return def;
         }
     }
 

@@ -1,22 +1,15 @@
 define('login',
-    ['capabilities', 'notification', 'settings', 'user', 'requests', 'z', 'utils', 'urls'],
-    function(capabilities, notification, settings, user, requests, z) {
+    ['capabilities', 'jquery', 'notification', 'settings', 'underscore', 'user', 'requests', 'z', 'utils', 'urls', 'views'],
+    function(capabilities, $, notification, settings, _, user, requests, z) {
 
-    z.body.on('promptlogin', function(e, skipDialog) {
-        if (skipDialog) {
-            startLogin();
-        } else {
-            $('#login').addClass('show');
-        }
+    z.body.on('click', '.persona', function(e) {
+        e.preventDefault();
 
-    }).on('click', '.persona', function(e) {
         var $this = $(this);
         $this.addClass('loading-submit');
-        z.win.on('logincancel', function() {
+        startLogin().then(function() {
             $this.removeClass('loading-submit').blur();
         });
-        startLogin();
-        e.preventDefault();
 
     }).on('click', '.logout', function(e) {
         if (navigator.id) {
@@ -26,16 +19,23 @@ define('login',
         }
     });
 
+    var pending_logins = [];
+
     function startLogin() {
+        var def = $.Deferred();
+        pending_logins.push(def);
+
         navigator.id.request({
             forceIssuer: settings.persona_unverified_issuer || null,
             allowUnverified: true,
             termsOfService: '/terms-of-use',
             privacyPolicy: '/privacy-policy',
             oncancel: function() {
-                z.win.trigger('logincancel');
+                _.invoke(pending_logins, 'reject');
+                pending_logins = [];
             }
         });
+        return def.promise();
     }
 
     function gotVerifiedEmail(assertion) {
@@ -54,6 +54,18 @@ define('login',
                 z.page.trigger('reload_chrome');
                 z.page.trigger('logged_in');
 
+                function resolve_pending() {
+                    _.invoke(pending_logins, 'resolve');
+                    pending_logins = [];
+                }
+
+                if (z.context.reload_on_login) {
+                    require('views').reload().done(resolve_pending);
+                } else {
+                    resolve_pending();
+                }
+
+
                 var to = require('utils').getVars().to;
                 if (to && to[0] == '/') {
                     z.page.trigger('navigate', [to]);
@@ -71,6 +83,9 @@ define('login',
                 }
                 $('.loading-submit').removeClass('loading-submit');
                 z.page.trigger('notify', {msg: err});
+
+                _.invoke(pending_logins, 'reject');
+                pending_logins = [];
             });
         } else {
             $('.loading-submit').removeClass('loading-submit');
@@ -80,12 +95,12 @@ define('login',
     function init_persona() {
         $('.persona').css('cursor', 'pointer');
         var email = user.get_setting('email') || '';
-        console.log('detected user', email);
+        if (email) {
+            console.log('detected user', email);
+        }
         navigator.id.watch({
             loggedInUser: email,
-            onlogin: function(assertion) {
-                gotVerifiedEmail(assertion);
-            },
+            onlogin: gotVerifiedEmail,
             onlogout: function() {
                 z.body.removeClass('logged-in');
                 z.page.trigger('reload_chrome');
@@ -107,4 +122,8 @@ define('login',
     }
     document.body.appendChild(s);
     $('.persona').css('cursor', 'wait');
+
+    return {
+        login: startLogin
+    };
 });

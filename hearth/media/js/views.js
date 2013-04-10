@@ -1,6 +1,6 @@
 define('views',
-    ['builder', 'routes', 'underscore', 'utils', 'views/not_found'],
-    function(builder, routes, _, utils, not_found) {
+    ['builder', 'routes', 'underscore', 'utils', 'views/not_found', 'z'],
+    function(builder, routes, _, utils, not_found, z) {
 
     routes = routes.map(function(route) {
         route.regexp = new RegExp(route.pattern);
@@ -50,7 +50,10 @@ define('views',
         return [not_found, null];
     }
 
+    var last_args;
     function build(view, args, params) {
+        last_args = arguments;  // Save the arguments in case we reload.
+
         var bobj = builder.getBuilder();
         view(bobj, args, utils.getVars(), params);
 
@@ -60,9 +63,15 @@ define('views',
         return bobj;
     }
 
+    function reload() {
+        z.win.trigger('unloading');
+        return build.apply(this, last_args);
+    }
+
     return {
         build: build,
         match: match_route,
+        reload: reload,
         routes: routes
     };
 

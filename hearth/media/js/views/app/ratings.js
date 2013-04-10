@@ -9,6 +9,7 @@ define(['l10n'], function(l10n) {
         });
 
         builder.z('type', 'leaf');
+        builder.z('reload_on_login', true);
         builder.z('title', gettext('Reviews'));
     };
 });

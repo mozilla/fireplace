@@ -1,6 +1,6 @@
 define('ratings',
-    ['capabilities', 'l10n', 'utils', 'requests', 'notification', 'urls', 'z', 'templates'],
-    function(capabilities, l10n, utils, requests, notification, urls, z, nunjucks) {
+    ['capabilities', 'l10n', 'login', 'utils', 'urls', 'user', 'z', 'templates', 'requests', 'notification'],
+    function(capabilities, l10n, login, utils, urls, user, z, nunjucks) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -13,9 +13,9 @@ define('ratings',
                 max = parseInt(cc.attr('data-maxlength'), 10),
                 left = max - val.length,
                 cc_parent = cc.parent();
-            // L10n: {0} is the number of characters left.
-            cc.html(format(ngettext('<b>{0}</b> character left.',
-                                    '<b>{0}</b> characters left.', left), [left]))
+            // L10n: {n} is the number of characters left.
+            cc.html(ngettext('<b>{n}</b> character left.',
+                             '<b>{n}</b> characters left.', {n: left}))
               .toggleClass('error', left < 0);
             if (left >= 0 && cc_parent.hasClass('error')) {
                 cc_parent.removeClass('error');
@@ -36,20 +36,6 @@ define('ratings',
         });
     }
 
-    z.page.on('loaded', function() {
-        var flagOverlay = utils.makeOrGetOverlay('flag-review');
-
-        // Hijack <select> with stars.
-        $('select[name="rating"]').ratingwidget();
-
-        initCharCount();
-
-        // Show add review modal on app/app_slug/reviews/add for desktop.
-        if ($('.reviews.add-review').length) {
-            addOrEditYourReview($('#add-first-review'));
-        }
-    });
-
     // Returns the review body text or '' if the supplied element is not found.
     function getBody($body) {
         var body = $body.clone();
@@ -61,7 +47,7 @@ define('ratings',
 
     function renderReviewTemplate(overlay, ctx) {
         overlay.html(
-                nunjucks.env.getTemplate('detail/review.html').render(ctx));
+                nunjucks.env.getTemplate('ratings/write.html').render(ctx));
         overlay.find('select[name="rating"]').ratingwidget('large');
     }
 
@@ -118,7 +104,7 @@ define('ratings',
                 actionEl = reviewEl.find('.actions .flag');
             overlay.removeClass('show');
             actionEl.text(gettext('Sending report...'));
-            requests.post(
+            require('requests').post(
                 reviewEl.data('flag-url'),
                 {flag: flag}
             ).then(function() {
@@ -129,7 +115,7 @@ define('ratings',
 
     function deleteReview(reviewEl, action) {
         reviewEl.addClass('deleting');
-        requests.del(action);
+        require('requests').del(action);
         $('#add-first-review').text(gettext('Write a Review'));
         reviewEl.addClass('deleted');
         notification.notification({message: gettext('Your review was successfully deleted!')});
@@ -156,20 +142,27 @@ define('ratings',
 
     // This gets used when you're not editing a review on the review list page.
     function addOrEditYourReview($senderEl) {
+
+        // If the user isn't logged in, prompt them to do so.
+        if (!user.logged_in()) {
+            login.login().done(function() {
+                addOrEditYourReview($senderEl);
+            });
+            return;
+        }
+
         var overlay = utils.makeOrGetOverlay('edit-review'),
-            rating = $senderEl.attr('data-rating'),
-            title = gettext('Write a Review'),
-            action = $senderEl.data('href');
+            rating = $senderEl.attr('data-rating');
 
         var ctx = _.extend({
-            title: title,
-            action: action
+            title: gettext('Write a Review'),
+            action: $senderEl.data('href')
         }, require('helpers'));
 
         if (rating > 0) {
-            title = gettext('Edit Your Review');
+            ctx.title = gettext('Edit Your Review');
 
-            requests.get(action).done(function(data) {
+            require('requests').get(action).done(function(data) {
                 renderReviewTemplate(overlay, ctx);
                 var body = overlay.find('textarea').text(data.body);
                 overlay.find('textarea').text(getBody(body));
@@ -187,10 +180,7 @@ define('ratings',
         $('.grouped-ratings').toggle();
     })).on('click', '.grouped-ratings-listing', utils._pd(function() {
         $('.grouped-ratings').hide();
-    }));
-
-    // Cancel rating button.
-    z.page.on('click', '.review .actions a, #add-first-review', utils._pd(function(e) {
+    })).on('click', '.review .actions a, #add-first-review', utils._pd(function(e) {
         var $this = $(this);
 
         // data('action') only picks up once so we reference attr('data-action') since
@@ -212,13 +202,23 @@ define('ratings',
                 flagReview($review);
                 break;
         }
-    }));
+    })).on('loaded', function() {
+        // Hijack <select> with stars.
+        $('select[name="rating"]').ratingwidget();
+
+        initCharCount();
+
+        // Show add review modal on app/app_slug/reviews/add for desktop.
+        if ($('.reviews.add-review').length) {
+            addOrEditYourReview($('#add-first-review'));
+        }
+    });
 
     z.body.on('submit', '.friendly', utils._pd(function(e) {
         var $this = $(this);
         var overlay = utils.makeOrGetOverlay('edit-review');
 
-        requests.post(urls.api.url('reviews.mine'), $this.serialize(), function() {
+        require('requests').post(urls.api.url('reviews.mine'), $this.serialize(), function() {
             console.log('submitted review');
             $('#add-first-review').text(gettext('Edit Your Review'))
                                   .attr('data-rating', $this.find('input[type=radio]:checked').val());
