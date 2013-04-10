@@ -84,7 +84,7 @@
             {{ rating(rat, detailpage=true) }}
           {% endfor %}
         </ul>
-        <div class="{{ 'split' if this.user.can_review else 'full' }}">
+        <div class="{{ 'split' if this.user.can_rate else 'full' }}">
           <a class="button alt average-rating" href="{{ url('app/ratings', [slug]) }}">
             <span>
               {{ _plural('{n} review', '{n} reviews',
@@ -98,9 +98,10 @@
           {{ _('App not yet rated') }}
         </p>
       {% endif %}
-      {% if this.user.can_review %}
+      {% if this.user.can_rate %}
         <div class="{{ 'split' if this.objects.length else 'full' }}">
-          <a class="button alt" id="add-first-review" href="#" data-action="add-or-edit"
+          <a class="button alt" id="add-first-review" href="#"
+             data-action="add-or-edit"
              data-rating="{{ this.info.rating if this.user.has_rated else 0 }}"
              data-href="{{ api('reviews.mine', [slug]) }}">
             {{ _('Edit Your Review') if this.user.has_rated else _('Write a Review') }}</a>
@@ -137,7 +138,7 @@
           <li><a class="button alt" href="{{ url('app/privacy', [slug]) }}">
             {{ _('Privacy Policy') }}</a></li>
         {% endif %}
-        {% if product.public_stats %}
+        {% if this.public_stats %}
           <li><a class="button alt view-stats" rel="external" href="/statistics/app/{{ slug }}/">
             {{ _('Statistics') }}</a></li>
         {% endif %}
