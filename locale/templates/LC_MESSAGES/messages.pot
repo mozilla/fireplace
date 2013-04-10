@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-05T19:47:09.184Z\n"
+"POT-Creation-Date: 2013-04-10T02:23:57.562Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,6 +32,10 @@ msgid_plural "{n} reviews"
 msgstr[0] ""
 msgstr[1] ""
 
+#: hearth/templates/_macros/more_button.html:2
+msgid "More"
+msgstr ""
+
 #: hearth/templates/_macros/rating.html:10
 msgid "for previous version {version}"
 msgstr ""
@@ -53,38 +57,38 @@ msgstr ""
 msgid "Report"
 msgstr ""
 
-#: hearth/templates/_macros/stars.html:2
+#: hearth/templates/_macros/stars.html:3
 msgid "Rated {stars} out of 5 stars"
 msgstr ""
 
-#: hearth/templates/category/main.html:7
+#: hearth/templates/category/main.html:8
 #: hearth/templates/header.html:14
-#: hearth/templates/search/main.html:5
+#: hearth/templates/search/main.html:6
 msgid "Filter"
 msgstr ""
 
-#: hearth/templates/category/main.html:12
-#: hearth/templates/search/main.html:10
+#: hearth/templates/category/main.html:13
+#: hearth/templates/search/main.html:11
 msgid "Sort by"
 msgstr ""
 
-#: hearth/templates/category/main.html:15
+#: hearth/templates/category/main.html:16
 msgid "Popularity"
 msgstr ""
 
-#: hearth/templates/category/main.html:18
-#: hearth/templates/search/main.html:16
+#: hearth/templates/category/main.html:19
+#: hearth/templates/search/main.html:17
 msgid "Rating"
 msgstr ""
 
-#: hearth/templates/category/main.html:24
-#: hearth/templates/search/main.html:22
+#: hearth/templates/category/main.html:25
+#: hearth/templates/search/main.html:23
 msgid "Apply"
 msgstr ""
 
 #: hearth/templates/detail/abuse.html:4
 #: hearth/templates/user/abuse.html:4
-#: hearth/media/js/views/abuse.js:24
+#: hearth/media/js/views/abuse.js:26
 #: hearth/media/js/views/app/abuse.js:11
 #: hearth/media/js/views/user/abuse.js:11
 msgid "Report Abuse"
@@ -113,19 +117,6 @@ msgstr ""
 msgid "Privacy Policy"
 msgstr ""
 
-#: hearth/templates/detail/review.html:3
-#: hearth/templates/feedback.html:3
-msgid "Cancel"
-msgstr ""
-
-#: hearth/templates/detail/review.html:7
-msgid "Rate:"
-msgstr ""
-
-#: hearth/templates/detail/review.html:20
-msgid "Submit"
-msgstr ""
-
 #: hearth/templates/errors/fragment.html:1
 #: hearth/templates/not_found.html:2
 msgid "Oh no!"
@@ -140,6 +131,11 @@ msgstr ""
 #: hearth/templates/header.html:26
 #: hearth/templates/settings/nav.html:11
 msgid "Feedback"
+msgstr ""
+
+#: hearth/templates/feedback.html:3
+#: hearth/templates/ratings/write.html:3
+msgid "Cancel"
 msgstr ""
 
 #: hearth/templates/feedback.html:12
@@ -236,15 +232,19 @@ msgstr ""
 msgid "Sign in / Sign up"
 msgstr ""
 
-#: hearth/templates/more_button.html:1
-msgid "More"
-msgstr ""
-
 #: hearth/templates/not_found.html:3
 msgid "The page you were looking for was not found."
 msgstr ""
 
-#: hearth/templates/search/main.html:13
+#: hearth/templates/ratings/write.html:7
+msgid "Rate:"
+msgstr ""
+
+#: hearth/templates/ratings/write.html:20
+msgid "Submit"
+msgstr ""
+
+#: hearth/templates/search/main.html:14
 msgid "Relevance"
 msgstr ""
 
@@ -302,6 +302,10 @@ msgstr[1] ""
 msgid "Category"
 msgstr ""
 
+#: hearth/media/js/feedback.js:22
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr ""
+
 #: hearth/media/js/install.js:111
 msgid "Install failed. Please try again later."
 msgstr ""
@@ -338,6 +342,7 @@ msgstr ""
 
 #: hearth/media/js/ratings.js:133
 #: hearth/media/js/ratings.js:161
+#: hearth/media/js/views/app/ratings/add.js:19
 msgid "Write a Review"
 msgstr ""
 
@@ -355,8 +360,12 @@ msgstr ""
 msgid "Review successfully posted!"
 msgstr ""
 
-#: hearth/media/js/views/app/ratings.js:20
-msgid "Ratings"
+#: hearth/media/js/views/abuse.js:18
+msgid "There was a problem submitting your report. Please try again later."
+msgstr ""
+
+#: hearth/media/js/views/app/ratings.js:12
+msgid "Reviews"
 msgstr ""
 
 #: hearth/media/js/views/app.js:33

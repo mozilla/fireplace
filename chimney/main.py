@@ -95,7 +95,7 @@ def reviews_self_get(slug):
 
 @app.route('/api/v1/apps/rating/')
 def app_ratings():
-    return _proxy(FLUE + request.path)
+    return _proxy(MARKETPLACE + request.path)
 
 
 # MERGED

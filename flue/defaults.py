@@ -134,11 +134,13 @@ def rand_posted():
 
 def rating():
     return {
-        'id': random.randint(1000, 9999),
-        'user_name': random.choice(user_names),
         'rating': 4,
         'body': ptext(20),
         'for_old_version': False,  # False or the old version number
         'is_flagged': False,
-        'posted': rand_posted()
+        'posted': rand_posted(),
+        'user': {
+            'username': random.choice(user_names),
+            'id': random.randint(1000, 9999),
+        },
     }

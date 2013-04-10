@@ -85,13 +85,13 @@ define('urls',
         };
     }
 
-    var api = _.memoize(_userArgs(function(endpoint, args) {
+    var api = _userArgs(function(endpoint, args) {
         if (!(endpoint in api_endpoints)) {
             console.error('Invalid API endpoint: ' + endpoint);
             return '';
         }
         return settings.api_url + format.format(api_endpoints[endpoint], args || []);
-    }));
+    });
 
     var apiParams = _userArgs(function(endpoint, params) {
         return require('utils').urlparams(api(endpoint), params);
