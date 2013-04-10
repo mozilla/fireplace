@@ -13,7 +13,7 @@ define(
         // Toggle "more..." or "less..." text.
         $this.attr('data-toggle-text', $this.text());
         $this.text(newTxt);
-        // Toggle description + developer comments.
+        // Toggle description.
         $this.closest('.blurbs').find('.collapsed').toggle();
 
     })).on('click', '.approval-pitch', utils._pd(function() {
