@@ -107,12 +107,12 @@ def category():
 
 
 @app.route('/api/v1/abuse/app/', methods=['POST'])
-def user_abuse():
+def app_abuse():
     return _proxy(MARKETPLACE + request.path)
 
 
 @app.route('/api/v1/abuse/user/', methods=['POST'])
-def app_abuse():
+def user_abuse():
     return _proxy(MARKETPLACE + request.path)
 
 
