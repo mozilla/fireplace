@@ -120,6 +120,27 @@ found [on the wiki](https://github.com/mozilla/fireplace/wiki/L10n#extracting-st
   until the damper is restarted. Deleted files may also cause problems.
 
 
+## Tests
+
+Install casper
+
+```bash
+brew install casperjs
+```
+
+
+### Running unit tests:
+
+Load [http://localhost:8675/tests](http://localhost:8675/tests) in your browser.
+
+
+### Running functional tests:
+
+```bash
+make test
+```
+
+
 ## Missing Features
 
 - `numberfmt` doesn't work (should probably be integrated with L10n
