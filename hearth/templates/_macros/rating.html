@@ -6,7 +6,7 @@
   <div class="review-inner">
     {{ stars(this.rating, detailpage=detailpage) }}
     <span class="byline">
-      by <strong>{{ this.user.username }}</strong>
+      {{ _('by <strong>{author}</strong>', author=this.user.display_name|safe) }}
       {% if this.for_old_version %}
         {{ _('for previous version {version}', version=this.for_old_version) }}
       {% endif %}

@@ -140,7 +140,7 @@ def rating():
         'is_flagged': False,
         'posted': rand_posted(),
         'user': {
-            'username': random.choice(user_names),
+            'display_name': random.choice(user_names),
             'id': random.randint(1000, 9999),
         },
     }
