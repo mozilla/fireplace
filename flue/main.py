@@ -101,7 +101,9 @@ def user_abuse(slug):
 
 
 @app.route('/api/v1/abuse/app/', methods=['POST'])
-def app_abuse(slug):
+def app_abuse():
+    if not request.form.get('text'):
+        return {'error': True}
     return {'error': False}
 
 

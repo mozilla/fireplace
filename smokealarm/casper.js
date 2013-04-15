@@ -31,7 +31,8 @@ function assert(cobj) {
         cobj.test.assertNotEquals(cobj.fetchText(selector), text, msg);
     });
     this.URL = wrap(function(url) {cobj.test.assertUrlMatch(url);});
-    this.selectorExists = wrap(function(selector) {cobj.test.assertExists(selector);});
+    this.selectorExists = wrap(cobj.test.assertExists);
+    this.selectorDoesNotExist = wrap(cobj.test.assertDoesntExist);
 }
 
 function Suite(options) {
@@ -96,7 +97,7 @@ function Suite(options) {
 
     this.fill = function(form_selector, data) {
         console.log('Filling ' + form_selector);
-        cobj.fill(selector, data);
+        cobj.fill(form_selector, data);
     };
 
     this.press = function(selector) {
