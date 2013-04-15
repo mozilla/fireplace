@@ -109,6 +109,8 @@ def app_abuse():
 
 @app.route('/api/v1/account/feedback/', methods=['POST'])
 def feedback():
+    if not request.form.get('feedback'):
+        return {'error': True}
     return {'error': False}
 
 
