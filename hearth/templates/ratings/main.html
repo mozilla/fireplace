@@ -4,12 +4,13 @@
 
 <section class="main c" id="reviews">
   {% defer (url=apiParams('reviews', {'app': slug}), pluck='objects', id='ratings', paginate='#review-list') %}
-
+    <p id="add-review">
     {% if response.user.has_rated %}
       <a class="button only-logged-in" id="write-review" href="{{ url('app/ratings/add', [slug]) }}">{{ _('Edit Review') }}</a>
     {% else %}
       <a class="button only-logged-in" id="write-review" href="{{ url('app/ratings/add', [slug]) }}">{{ _('Write a Review') }}</a>
     {% endif %}
+    </p>
 
     <ul id="review-list">
       {% for rat in this %}
