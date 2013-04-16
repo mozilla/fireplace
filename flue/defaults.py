@@ -149,14 +149,21 @@ def rand_posted():
     return rand_date.strftime('%b %d %Y %H:%M:%S')
 
 def rating():
+    version = None
+    if random.choice((True, False)):
+        version = {
+            'name': random.randint(1, 3),
+            'latest': False,
+        }
+
     return {
         'rating': 4,
         'body': ptext(20),
-        'for_old_version': False,  # False or the old version number
         'is_flagged': False,
         'posted': rand_posted(),
         'user': {
             'display_name': random.choice(user_names),
             'id': random.randint(1000, 9999),
         },
+        'version': version,
     }
