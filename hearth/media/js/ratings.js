@@ -46,11 +46,6 @@ define('ratings',
         return utils.escape_(body.text().trim());
     }
 
-    function renderReviewTemplate(overlay, ctx) {
-        overlay.html(nunjucks.env.getTemplate('ratings/write.html').render(ctx));
-        overlay.find('select[name="rating"]').ratingwidget('large');
-    }
-
     function flagReview($reviewEl) {
         var $overlay = utils.makeOrGetOverlay('flag-review');
         $overlay.addClass('show').trigger('overlayloaded');
@@ -93,18 +88,14 @@ define('ratings',
         // If the user isn't logged in, prompt them to do so.
         if (!user.logged_in()) {
             login.login().done(function() {
-                addOrEditYourReview($senderEl);
+                addReview($senderEl);
             });
             return;
         }
 
         var overlay = utils.makeOrGetOverlay('edit-review');
-        var ctx = _.extend({
-            title: gettext('Write a Review'),
-            action: urls.api.url('reviews')
-        }, require('helpers'));
-
-        renderReviewTemplate(overlay, ctx);
+        overlay.html(nunjucks.env.getTemplate('ratings/write-overlay.html').render(require('helpers')));
+        overlay.find('select[name="rating"]').ratingwidget('large');
 
         initCharCount();
 
@@ -120,9 +111,7 @@ define('ratings',
                 $error.remove();
                 overlay.off('submit.disable', 'form');
             } else {
-                if (!$parent.hasClass('error')) {
-                    $parent.addClass('error');
-                }
+                $parent.addClass('error');
                 if (!msg && !$error.length) {
                     $(format('<div class="error req-error">{0}</div>',
                              gettext('This field is required.'))).insertBefore($cc);
@@ -134,19 +123,16 @@ define('ratings',
 
         overlay.addClass('show').trigger('overlayloaded');
 
-        overlay.find('form').on('submit', function(e) {
+        overlay.on('click', '.cancel', function(e) {
+            e.preventDefault();
+            overlay.removeClass('show');
+        }).on('change.comment keyup.comment', 'textarea', _.throttle(validate, 250))
+          .on('submit', 'form', function(e) {
+            e.preventDefault();
             // Trigger validation.
             if (!validate(e)) {
-                e.preventDefault();
                 return false;
             }
-        });
-
-        overlay.on('click', '.cancel', utils._pd(function() {
-            overlay.removeClass('show');
-        })).on('change.comment keyup.comment', 'textarea', _.throttle(validate, 250))
-           .on('submit', 'form', function(e) {
-            e.preventDefault();
 
             var data = utils.getVars($(this).serialize());
             data.app = $senderEl.data('app');
@@ -162,12 +148,7 @@ define('ratings',
         });
     }
 
-    // Toggle rating breakdown (on listing page only, not detail page).
-    z.page.on('click', '.average-rating-listing', utils._pd(function() {
-        $('.grouped-ratings').toggle();
-    })).on('click', '.grouped-ratings-listing', utils._pd(function() {
-        $('.grouped-ratings').hide();
-    })).on('click', '.review .actions a, #add-review', utils._pd(function(e) {
+    z.page.on('click', '.review .actions a, #add-review', utils._pd(function(e) {
         var $this = $(this);
 
         // data('action') only picks up once so we reference attr('data-action') since
