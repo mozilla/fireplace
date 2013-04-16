@@ -1,3 +1,5 @@
+{% include "_macros/forms.html" %}
+
 <section class="bare">
   <header class="header">
     <h1 class="title">{{ _('Feedback') }}</h1>
@@ -7,8 +9,7 @@
     <div class="brform simple-field c">
       <textarea rows="4" cols="40" name="feedback" required></textarea>
     </div>
-    <input name="sprout" type="hidden" value="potato">
-    <input name="tuber" type="hidden">
+    {{ potato_captcha() }}
     <footer class="form-footer c">
       <button type="submit">{{ _('Send') }}</button>
     </footer>
