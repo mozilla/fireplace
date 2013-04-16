@@ -22,7 +22,8 @@ define([], function() {
         'mozTime' in navigator,
         'vibrate' in navigator,
         'mozFM' in navigator || 'mozFMRadio' in navigator,
-        'mozSms' in navigator
+        'mozSms' in navigator,
+        !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch)
     ];
 
     var profile = parseInt(capabilities.map(function(x) {return !!x ? '1' : '0';}).join(''), 2);
