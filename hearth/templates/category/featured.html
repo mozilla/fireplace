@@ -1,0 +1,19 @@
+{% include '_macros/market_tile.html' %}
+
+<section id="search-results" class="main full c">
+  {% defer (url=api('category', [category]), pluck='creatured', as='app') %}
+    <ol class="container listing c">
+      {% for result in this %}
+        <li class="item result app c">
+          {{ market_tile(result, link=true, force_button=true, src='creatured') }}
+        </li>
+      {% endfor %}
+    </ol>
+  {% placeholder %}
+    <p class="spinner alt"></p>
+  {% empty %}
+    <p class="no-results">
+      {{ _('No featured apps in this category') }}
+    </p>
+  {% end %}
+</section>

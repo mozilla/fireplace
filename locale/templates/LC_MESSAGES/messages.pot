@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-10T02:23:57.562Z\n"
+"POT-Creation-Date: 2013-04-16T21:34:48.876Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,12 +36,16 @@ msgstr[1] ""
 msgid "More"
 msgstr ""
 
+#: hearth/templates/_macros/rating.html:8
+msgid "by <strong>{author}</strong>"
+msgstr ""
+
 #: hearth/templates/_macros/rating.html:10
 msgid "for previous version {version}"
 msgstr ""
 
 #: hearth/templates/_macros/rating.html:19
-#: hearth/media/js/ratings.js:125
+#: hearth/media/js/ratings.js:66
 msgid "Flagged for review"
 msgstr ""
 
@@ -134,6 +138,8 @@ msgid "Feedback"
 msgstr ""
 
 #: hearth/templates/feedback.html:3
+#: hearth/templates/ratings/report.html:21
+#: hearth/templates/ratings/write-overlay.html:3
 #: hearth/templates/ratings/write.html:3
 msgid "Cancel"
 msgstr ""
@@ -202,7 +208,7 @@ msgstr ""
 #: hearth/templates/header.html:25
 #: hearth/templates/settings/nav.html:10
 #: hearth/templates/user/purchases.html:6
-#: hearth/media/js/views/purchases.js:15
+#: hearth/media/js/views/purchases.js:12
 msgid "My Apps"
 msgstr ""
 
@@ -228,12 +234,34 @@ msgid "Just log in or register with your <a href=\"{url}\">Persona</a> account."
 msgstr ""
 
 #: hearth/templates/login.html:7
-#: hearth/templates/user/purchases.html:26
+#: hearth/templates/user/purchases.html:32
 msgid "Sign in / Sign up"
 msgstr ""
 
 #: hearth/templates/not_found.html:3
 msgid "The page you were looking for was not found."
+msgstr ""
+
+#: hearth/templates/ratings/report.html:2
+msgid "Please select a reason:"
+msgstr ""
+
+#: hearth/templates/ratings/report.html:6
+msgid "Spam or otherwise non-review content"
+msgstr ""
+
+#: hearth/templates/ratings/report.html:11
+msgid "Inappropriate language/dialog"
+msgstr ""
+
+#: hearth/templates/ratings/report.html:16
+msgid "Misplaced bug report or support request"
+msgstr ""
+
+#: hearth/templates/ratings/write-overlay.html:2
+#: hearth/media/js/ratings.js:79
+#: hearth/media/js/views/app/ratings/add.js:12
+msgid "Write a Review"
 msgstr ""
 
 #: hearth/templates/ratings/write.html:7
@@ -276,7 +304,7 @@ msgstr ""
 msgid "If you suspect this user violates <a href=\"{url}\">our policies</a>, please use the form below to describe your concerns. Please do not use this form for any other reason."
 msgstr ""
 
-#: hearth/templates/user/purchases.html:25
+#: hearth/templates/user/purchases.html:31
 msgid "You must be signed in to view your apps."
 msgstr ""
 
@@ -306,15 +334,15 @@ msgstr ""
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr ""
 
-#: hearth/media/js/install.js:111
+#: hearth/media/js/install.js:116
 msgid "Install failed. Please try again later."
 msgstr ""
 
-#: hearth/media/js/login.js:65
+#: hearth/media/js/login.js:77
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr ""
 
-#: hearth/media/js/login.js:70
+#: hearth/media/js/login.js:82
 msgid "Persona login failed. A server error was encountered."
 msgstr ""
 
@@ -326,53 +354,53 @@ msgstr ""
 msgid "Payment failed. Try again later."
 msgstr ""
 
-#: hearth/media/js/ratings.js:17
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#: hearth/media/js/ratings.js:18
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
 msgstr[0] ""
 msgstr[1] ""
 
-#: hearth/media/js/ratings.js:90
-msgid "This field is required."
-msgstr ""
-
-#: hearth/media/js/ratings.js:120
+#: hearth/media/js/ratings.js:61
 msgid "Sending report..."
 msgstr ""
 
-#: hearth/media/js/ratings.js:133
-#: hearth/media/js/ratings.js:161
-#: hearth/media/js/views/app/ratings/add.js:19
-msgid "Write a Review"
+#: hearth/media/js/ratings.js:69
+msgid "Report review operation failed"
 msgstr ""
 
-#: hearth/media/js/ratings.js:135
+#: hearth/media/js/ratings.js:81
 msgid "Your review was successfully deleted!"
 msgstr ""
 
-#: hearth/media/js/ratings.js:146
-#: hearth/media/js/ratings.js:170
-#: hearth/media/js/ratings.js:223
-msgid "Edit Your Review"
+#: hearth/media/js/ratings.js:117
+msgid "This field is required."
 msgstr ""
 
-#: hearth/media/js/ratings.js:227
-msgid "Review successfully posted!"
+#: hearth/media/js/ratings.js:144
+msgid "Your review was posted!"
+msgstr ""
+
+#: hearth/media/js/ratings.js:146
+msgid "There was a problem submitting your review."
 msgstr ""
 
 #: hearth/media/js/views/abuse.js:18
 msgid "There was a problem submitting your report. Please try again later."
 msgstr ""
 
-#: hearth/media/js/views/app/ratings.js:12
+#: hearth/media/js/views/app/ratings/edit.js:25
+msgid "Edit Review"
+msgstr ""
+
+#: hearth/media/js/views/app/ratings.js:13
 msgid "Reviews"
 msgstr ""
 
-#: hearth/media/js/views/app.js:33
+#: hearth/media/js/views/app.js:34
 msgid "Loading..."
 msgstr ""
 
-#: hearth/media/js/views/app.js:34
+#: hearth/media/js/views/app.js:35
 msgid "App Details"
 msgstr ""
 
