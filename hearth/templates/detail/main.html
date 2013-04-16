@@ -77,7 +77,7 @@
 
 <section class="main reviews c">
   <div id="reviews-detail">
-    {% defer (url=api('reviews', [slug]), id='ratings') %}
+    {% defer (url=apiParams('reviews', {'app': slug}), id='ratings') %}
       {% if this.meta.total_count %}
         <ul class="c ratings-placeholder-inner">
           {% for rat in this.objects.slice(0, 2) %}
@@ -99,12 +99,16 @@
         </p>
       {% endif %}
       {% if this.user.can_rate %}
-        <div class="{{ 'split' if this.objects.length else 'full' }}">
-          <a class="button alt" id="add-first-review" href="#"
-             data-action="add-or-edit"
-             data-rating="{{ this.info.rating if this.user.has_rated else 0 }}"
-             data-href="{{ api('reviews.mine', [slug]) }}">
-            {{ _('Edit Your Review') if this.user.has_rated else _('Write a Review') }}</a>
+        <div class="only-if-logged-in{{ ' split' if this.objects.length else ' full' }}">
+          {% if this.user.has_rated %}
+            <a class="button alt" id="edit-review" href="{{ url('app/ratings/edit', [slug]) }}">
+              {{ _('Edit Your Review') }}</a>
+          {% else %}
+            <a class="button alt" id="add-review" href="#"
+               data-action="add"
+               data-app="{{ slug }}">
+              {{ _('Write a Review') }}</a>
+          {% endif %}
         </div>
       {% endif %}
 

@@ -74,6 +74,7 @@ def _proxy(url):
 
 @app.route('/app/<slug>/reviews/self', methods=['POST'])
 def reviews_self(slug):
+    print "DEPRECATED!"
     req = requests.post(MARKETPLACE + '/api/v1/apps/rating/',
                         {app: slug, body: request.args.get('body'),
                          rating: request.args.get('rating')})
@@ -82,18 +83,20 @@ def reviews_self(slug):
 
 @app.route('/app/<slug>/reviews/self', methods=['DELETE'])
 def reviews_self_delete(slug):
+    print "DEPRECATED!"
     return _proxy(MARKETPLACE + '/api/v1/apps/rating/?app=%s' % slug)
 
 
 @app.route('/app/<slug>/reviews/self', methods=['GET'])
 def reviews_self_get(slug):
+    print "DEPRECATED!"
     return _proxy(MARKETPLACE + '/api/v1/apps/rating/?app=%s' % slug)
 
 
 # PARITY
 
 
-@app.route('/api/v1/apps/rating/')
+@app.route('/api/v1/apps/rating/', methods=['GET', 'POST'])
 def app_ratings():
     return _proxy(MARKETPLACE + request.path)
 

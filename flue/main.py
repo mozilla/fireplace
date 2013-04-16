@@ -53,7 +53,7 @@ def corsify(*args, **kwargs):
 app.route = corsify
 
 
-@app.route('/user/login', methods=['POST'])
+@app.route('/api/v1/account/login/', methods=['POST'])
 def login():
     assertion = request.form.get('assertion')
     audience = request.form.get('audience')
@@ -122,16 +122,6 @@ def terms():
 @app.route('/privacy-policy.html', methods=['GET'])
 def privacy():
     return defaults.ptext()
-
-
-@app.route('/app/<slug>/reviews/self', methods=['POST', 'DELETE'])
-def reviews_self(slug):
-    return {'error': False}
-
-
-@app.route('/app/<slug>/reviews/self', methods=['GET'])
-def reviews_self(slug):
-    return defaults.app_user_review(slug)
 
 
 @app.route('/api/v1/home/featured/')
@@ -225,22 +215,26 @@ def category():
     return data
 
 
-@app.route('/api/v1/apps/rating/')
+@app.route('/api/v1/apps/rating/', methods=['GET', 'POST'])
 def app_ratings():
+    if request.method == 'POST':
+        return {'error': False}
+
     def gen():
         i = 0
         while 1:
             yield defaults.rating()
             i += 1
+
+    slug = request.form.get('app') or request.args.get('app')
+
     data = _paginated('objects', gen)
-    result_count = 34
-    data.update(defaults.app_user_data(data))
-    data['user']['can_rate'] = True
-    data['user']['has_rated'] = False
     data['info'] = {
-        'slug': 'foo',
+        'slug': slug,
         'average': random.random() * 4 + 1,
     }
+    result_count = 34
+    data.update(defaults.app_user_data(slug))
     return data
 
 

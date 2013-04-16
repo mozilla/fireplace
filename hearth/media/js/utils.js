@@ -49,7 +49,11 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
 
         return url + params.join('&');
 
-    };
+    }
+
+    function decodeURIComponent() {
+        return window.decodeURIComponent.apply(this, arguments).replace(/\+/g, ' ');
+    }
 
     function getVars(qs, excl_undefined) {
         if (typeof qs === 'undefined') {
@@ -69,12 +73,10 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
     }
 
     function makeOrGetOverlay(id) {
-        var el = document.getElementById(id);
-        if (!el) {
-            el = $('<div class="overlay" id="' + id + '">');
-            $(document.body).append(el);
-        }
-        return $(el);
+        $('#' + el).remove();
+        var el = $('<div class="overlay" id="' + id + '">');
+        z.body.append(el);
+        return el;
     }
 
     return {

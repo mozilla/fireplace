@@ -1,10 +1,11 @@
-define(['lib/jquery.cookie'], function() {
+define([], function() {
 
-    var token = $.cookie('user');
+    var token = localStorage.getItem('user');
     var settings = JSON.parse(localStorage.getItem('settings') || '{}');
 
     function clear_token() {
-        $.cookie('user', token = null);
+        localStorage.removeItem('user');
+        token = null;
     }
 
     function get_setting(setting) {
@@ -18,7 +19,7 @@ define(['lib/jquery.cookie'], function() {
         if (!new_token) {
             return;
         }
-        $.cookie('user', token = new_token);
+        localStorage.setItem('user', token = new_token);
         update_settings(new_settings);
     }
 

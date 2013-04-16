@@ -1,9 +1,10 @@
 define('ratings',
-    ['capabilities', 'l10n', 'login', 'utils', 'urls', 'user', 'z', 'templates'],
-    function(capabilities, l10n, login, utils, urls, user, z, nunjucks) {
+    ['capabilities', 'l10n', 'login', 'utils', 'urls', 'user', 'views', 'z', 'templates', 'requests', 'notification'],
+    function(capabilities, l10n, login, utils, urls, user, views, z, nunjucks) {
     'use strict';
 
     var gettext = l10n.gettext;
+    var notification = require('notification').notification;
 
     // Initializes character counters for textareas.
     function initCharCount() {
@@ -46,52 +47,8 @@ define('ratings',
     }
 
     function renderReviewTemplate(overlay, ctx) {
-        overlay.html(
-                nunjucks.env.getTemplate('ratings/write.html').render(ctx));
+        overlay.html(nunjucks.env.getTemplate('ratings/write.html').render(ctx));
         overlay.find('select[name="rating"]').ratingwidget('large');
-    }
-
-    function handleReviewOverlay(overlay) {
-        var $form = overlay.find('form');
-
-        initCharCount();
-
-        function validate() {
-            var $error = overlay.find('.req-error'),
-                $comment = overlay.find('textarea'),
-                msg = $comment.val().strip(),
-                $parent = $comment.closest('.simple-field'),
-                $cc = overlay.find('.char-count'),
-                valid = !$cc.hasClass('error') && msg;
-            if (valid) {
-                $parent.removeClass('error');
-                $error.remove();
-                overlay.off('submit.disable', 'form');
-            } else {
-                if (!$parent.hasClass('error')) {
-                    $parent.addClass('error');
-                }
-                if (!msg && !$error.length) {
-                    $(format('<div class="error req-error">{0}</div>',
-                             gettext('This field is required.'))).insertBefore($cc);
-                }
-                overlay.on('submit.disable', 'form', false);
-            }
-            return valid;
-        }
-
-        overlay.addClass('show').trigger('overlayloaded');
-
-        overlay.on('submit', 'form', function(e) {
-            // Trigger validation.
-            if (!validate(e)) {
-                e.preventDefault();
-                return false;
-            }
-            // Form submission is handled by POST hijacking.
-        }).on('click', '.cancel', utils._pd(function() {
-            overlay.removeClass('show');
-        })).on('change.comment keyup.comment', 'textarea', _.throttle(validate, 250));
     }
 
     function flagReview($reviewEl) {
@@ -123,33 +80,15 @@ define('ratings',
 
     function deleteReview(reviewEl, action) {
         reviewEl.addClass('deleting');
-        require('requests').del(action);
-        $('#add-first-review').text(gettext('Write a Review'));
+        require('requests').del(action).done(function() {
+            $('#add-first-review').text(gettext('Write a Review'));
+            views.reload();
+            notification({message: gettext('Your review was successfully deleted!')});
+        });
         reviewEl.addClass('deleted');
-        notification.notification({message: gettext('Your review was successfully deleted!')});
     }
 
-    // Edit review on the review listing page.
-    function editReview(reviewEl) {
-        var overlay = utils.makeOrGetOverlay('edit-review'),
-            rating = reviewEl.data('rating'),
-            action = reviewEl.closest('[data-edit-url]').data('edit-url'),
-            body = getBody(reviewEl.find('.body'));
-
-        var ctx = _.extend({
-            title: gettext('Edit Your Review'),
-            action: action
-        }, require('helpers'));
-
-        renderReviewTemplate(overlay, ctx);
-        overlay.find('textarea').text(body);
-        overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
-
-        handleReviewOverlay(overlay);
-    }
-
-    // This gets used when you're not editing a review on the review list page.
-    function addOrEditYourReview($senderEl) {
+    function addReview($senderEl) {
 
         // If the user isn't logged in, prompt them to do so.
         if (!user.logged_in()) {
@@ -159,28 +98,68 @@ define('ratings',
             return;
         }
 
-        var overlay = utils.makeOrGetOverlay('edit-review'),
-            rating = $senderEl.attr('data-rating');
-
+        var overlay = utils.makeOrGetOverlay('edit-review');
         var ctx = _.extend({
             title: gettext('Write a Review'),
-            action: $senderEl.data('href')
+            action: urls.api.url('reviews')
         }, require('helpers'));
 
-        if (rating > 0) {
-            ctx.title = gettext('Edit Your Review');
+        renderReviewTemplate(overlay, ctx);
 
-            require('requests').get(action).done(function(data) {
-                renderReviewTemplate(overlay, ctx);
-                var body = overlay.find('textarea').text(data.body);
-                overlay.find('textarea').text(getBody(body));
-                overlay.find(format('.ratingwidget [value="{0}"]', rating)).click();
-            });
-        } else {
-            renderReviewTemplate(overlay, ctx);
-        }
         initCharCount();
-        handleReviewOverlay(overlay);
+
+        function validate() {
+            var $error = overlay.find('.req-error'),
+                $comment = overlay.find('textarea'),
+                msg = $comment.val().strip(),
+                $parent = $comment.closest('.simple-field'),
+                $cc = overlay.find('.char-count'),
+                valid = !$cc.hasClass('error') && msg;
+            if (valid) {
+                $parent.removeClass('error');
+                $error.remove();
+                overlay.off('submit.disable', 'form');
+            } else {
+                if (!$parent.hasClass('error')) {
+                    $parent.addClass('error');
+                }
+                if (!msg && !$error.length) {
+                    $(format('<div class="error req-error">{0}</div>',
+                             gettext('This field is required.'))).insertBefore($cc);
+                }
+                overlay.on('submit.disable', 'form', false);
+            }
+            return valid;
+        }
+
+        overlay.addClass('show').trigger('overlayloaded');
+
+        overlay.find('form').on('submit', function(e) {
+            // Trigger validation.
+            if (!validate(e)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        overlay.on('click', '.cancel', utils._pd(function() {
+            overlay.removeClass('show');
+        })).on('change.comment keyup.comment', 'textarea', _.throttle(validate, 250))
+           .on('submit', 'form', function(e) {
+            e.preventDefault();
+
+            var data = utils.getVars($(this).serialize());
+            data.app = $senderEl.data('app');
+            require('requests').post(
+                urls.api.url('reviews'),
+                data
+            ).done(function() {
+                overlay.removeClass('show');
+                notification({message: gettext('Your review was posted!')});
+            }).fail(function() {
+                notification({message: gettext('There was a problem submitting your review.')});
+            });
+        });
     }
 
     // Toggle rating breakdown (on listing page only, not detail page).
@@ -188,7 +167,7 @@ define('ratings',
         $('.grouped-ratings').toggle();
     })).on('click', '.grouped-ratings-listing', utils._pd(function() {
         $('.grouped-ratings').hide();
-    })).on('click', '.review .actions a, #add-first-review', utils._pd(function(e) {
+    })).on('click', '.review .actions a, #add-review', utils._pd(function(e) {
         var $this = $(this);
 
         // data('action') only picks up once so we reference attr('data-action') since
@@ -200,11 +179,8 @@ define('ratings',
             case 'delete':
                 deleteReview($review, $this.attr('data-href'));
                 break;
-            case 'edit':
-                editReview($review);
-                break;
-            case 'add-or-edit':
-                addOrEditYourReview($this);
+            case 'add':
+                addReview($this);
                 break;
             case 'report':
                 flagReview($review);
@@ -221,19 +197,5 @@ define('ratings',
             addOrEditYourReview($('#add-first-review'));
         }
     });
-
-    z.body.on('submit', '.friendly', utils._pd(function(e) {
-        var $this = $(this);
-        var overlay = utils.makeOrGetOverlay('edit-review');
-
-        require('requests').post(urls.api.url('reviews.mine'), $this.serialize(), function() {
-            console.log('submitted review');
-            $('#add-first-review').text(gettext('Edit Your Review'))
-                                  .attr('data-rating', $this.find('input[type=radio]:checked').val());
-            $this.find('textarea, #id_rating').val('');
-            overlay.removeClass('show');
-            notification.notification({message: gettext('Review successfully posted!')});
-        });
-    }));
 
 });

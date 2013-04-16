@@ -35,12 +35,10 @@ define('urls',
     };
 
     var api_endpoints = {
-        'reviews.mine': '/app/{0}/reviews/self',
-
         'homepage': '/api/v1/home/page/',
         'app': '/api/v1/apps/app/{0}/',
         'category': '/api/v1/apps/search/creatured/?cat={0}',
-        'reviews': '/api/v1/apps/rating/?app={0}',
+        'reviews': '/api/v1/apps/rating/',
         'settings': '/api/v1/account/settings/mine/',
         'installed': '/api/v1/account/installed/mine/',
         'login': '/api/v1/account/login/',

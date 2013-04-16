@@ -87,6 +87,8 @@ def app(name, slug, **kwargs):
         'privacy_policy': kwargs.get('privacy_policy', ptext()),
         'public_stats': False,
         'upsell': False,
+        'price': None if random.choice((True, False)) else
+                 '$%.2f' % (random.random() * 10),
         # or { // False if no upsell or not available in user region.
         #    slug: 'slug',
         #    name: name,
@@ -97,24 +99,38 @@ def app(name, slug, **kwargs):
             'esrb': {'name': 'L', 'description': 'L for BASTA'},
         },
     }
-    data.update(app_user_data(data))
+    data.update(app_user_data(slug))
     return data
 
 
-def app_user_data(data):
-    data.update({
-        'price': None,
+def app_user_data(slug=None):
+    data = {
         'user': {
             'owns': rand_bool(),
-            'has_purchased': rand_bool(),
-            'can_review': rand_bool()
+            'has_rated': rand_bool(),
+            'can_rate': rand_bool(),
         }
-    })
+    }
     if random.choice((True, False)):
         data['price'] = '$%.2f' % (random.random() * 10)
-    if data['user']['can_review']:
+    if data['user']['can_rate']:
         data['rating'] = random.randint(1, 5)
-        data['user']['has_review'] = rand_bool()
+        data['user']['has_rated'] = rand_bool()
+
+    # Conditional slugs for great debugging.
+    if slug == 'has_rated':
+        data['user']['has_rated'] = True
+        data['user']['can_rate'] = True
+    elif slug == 'can_rate':
+        data['user']['has_rated'] = False
+        data['user']['can_rate'] = True
+    elif slug == 'cant_rate':
+        data['user']['can_rate'] = False
+    elif slug == 'owns':
+        data['user']['owns'] = True
+    elif slug == 'free':
+        data['price'] = None
+
     return data
 
 

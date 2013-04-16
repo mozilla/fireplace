@@ -2,6 +2,7 @@
 var a = require('assert');
 var assert = a.assert;
 var eq_ = a.eq_;
+var feq_ = a.feq_;
 var contains = a.contains;
 var mock = a.mock;
 
@@ -51,89 +52,62 @@ test('requests.get cached', function(done, fail) {
     );
 });
 
-test('requests.post', function(done, fail) {
-    mock(
-        'requests',
-        {jquery: new MockJQuery()},
-        function(requests) {
-            var data = {foo: 'bar'};
-            var def = requests.post('foo/bar', data);
-            eq_(def.args[0], 'foo/bar');
-            eq_(def.args[1], data);
-            def.done(function(data) {
-                eq_(data, 'sample data');
-                done();
-            }).fail(fail);
-            def.resolve('sample data');
-        }
-    );
+var data = {foo: 'bar'};
+var methods_to_test = ['post', 'del', 'put', 'patch'];
+var test_output = {
+    post: ['foo/bar', data],
+    del: [{url: 'foo/bar', type: 'DELETE'}],
+    put: [{url: 'foo/bar', type: 'PUT', data: data}],
+    patch: [{url: 'foo/bar', type: 'PATCH', data: data}]
+};
+
+methods_to_test.forEach(function(v) {
+    test('requests.' + v, function(done, fail) {
+        mock(
+            'requests',
+            {jquery: new MockJQuery()},
+            function(requests) {
+                var def = requests[v]('foo/bar', data);
+                feq_(_.toArray(def.args), test_output[v]);
+                def.done(function(data) {
+                    eq_(data, 'sample data');
+                    done();
+                }).fail(fail);
+                def.resolve('sample data');
+            }
+        );
+    });
+
+    test('requests.' + v + ' never cached', function(done, fail) {
+        mock(
+            'requests',
+            {jquery: new MockJQuery()},
+            function(requests) {
+                var uncached = requests.get('foo/bar');
+                assert(!('__cached' in uncached));
+                uncached.resolve('data to cache');
+
+                requests[v]('foo/bar', {foo: 'bar'});
+                assert(!('__cached' in uncached));
+                uncached.resolve('data to cache');
+
+                var def = requests[v]('foo/bar', {foo: 'bar'});
+                assert(!('__cached' in def));
+
+                def.done(function(data) {
+                    eq_(data, 'boop');
+                    done();
+                }).fail(fail);
+                def.resolve('boop');
+            }
+        );
+    });
 });
 
-test('requests.del', function(done, fail) {
-    mock(
-        'requests',
-        {jquery: new MockJQuery()},
-        function(requests) {
-            var def = requests.del('foo/bar');
-            eq_(def.args[0].url, 'foo/bar');
-            def.done(function(data) {
-                eq_(data, 'sample data');
-                done();
-            }).fail(fail);
-            def.resolve('sample data');
-        }
-    );
-});
-
-test('requests.get never cached', function(done, fail) {
-    mock(
-        'requests',
-        {jquery: new MockJQuery()},
-        function(requests) {
-            var uncached = requests.get('foo/bar');
-            assert(!('__cached' in uncached));
-            uncached.resolve('data to cache');
-
-            requests.post('foo/bar', {foo: 'bar'});
-            assert(!('__cached' in uncached));
-            uncached.resolve('data to cache');
-
-            var def = requests.post('foo/bar', {foo: 'bar'});
-            assert(!('__cached' in def));
-
-            def.done(function(data) {
-                eq_(data, 'boop');
-                done();
-            }).fail(fail);
-            def.resolve('boop');
-        }
-    );
-});
-
-test('requests.del never cached', function(done, fail) {
-    mock(
-        'requests',
-        {jquery: new MockJQuery()},
-        function(requests) {
-            var uncached = requests.del('foo/bar');
-            assert(!('__cached' in uncached));
-            uncached.resolve('data to cache');
-
-            var def = requests.del('foo/bar');
-            assert(!('__cached' in def));
-
-            def.done(function(data) {
-                eq_(data, 'boop');
-                done();
-            }).fail(fail);
-            def.resolve('boop');
-        }
-    );
-});
 
 // Pool tests //////////////////////////////////
 
-test('requests.pool get post del', function(done, fail) {
+test('requests.pool methods', function(done, fail) {
     mock(
         'requests',
         {jquery: new MockJQuery()},
@@ -151,6 +125,14 @@ test('requests.pool get post del', function(done, fail) {
             var orig_del_req = pool.del('test/foo');
             var second_del_req = pool.del('test/foo');
             assert(orig_del_req != second_del_req);  // Pools should never coalesce DELETEs.
+
+            var orig_put_req = pool.put('test/foo');
+            var second_put_req = pool.put('test/foo');
+            assert(orig_put_req != second_put_req);  // Pools should never coalesce PUTs.
+
+            var orig_patch_req = pool.patch('test/foo');
+            var second_patch_req = pool.patch('test/foo');
+            assert(orig_patch_req != second_patch_req);  // Pools should never coalesce PATCHs.
 
             // Test that it's actually the same request.
             second_req.done(done);

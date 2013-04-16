@@ -1,6 +1,6 @@
 define('helpers',
-       ['l10n', 'templates', 'require', 'utils', 'format', 'settings', 'urls', 'user'],
-       function(l10n, nunjucks, require, utils) {
+       ['l10n', 'templates', 'require', 'underscore', 'utils', 'format', 'settings', 'urls', 'user'],
+       function(l10n, nunjucks, require, _, utils) {
 
     var SafeString = nunjucks.require('runtime').SafeString;
     var env = nunjucks.env;
@@ -68,6 +68,8 @@ define('helpers',
         format: require('format').format,
         settings: require('settings'),
         user: require('user'),
+
+        range: _.range,
 
         navigator: window.navigator
     };

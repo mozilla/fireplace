@@ -77,13 +77,29 @@ define(['jquery'], function($) {
         });
     }
 
-    // Delete request does not need to care about a callback for success/failure,
-    // since it is already handled with a notification where this is called.
     function del(url) {
         console.log('[req] DELETing', url);
         return $.ajax({
             url: url,
             type: 'DELETE'
+        });
+    }
+
+    function put(url, data) {
+        console.log('[req] PUTing', url);
+        return $.ajax({
+            url: url,
+            type: 'PUT',
+            data: data
+        });
+    }
+
+    function patch(url, data) {
+        console.log('[req] PATCHing', url);
+        return $.ajax({
+            url: url,
+            type: 'PATCH',
+            data: data
         });
     }
 
@@ -138,6 +154,8 @@ define(['jquery'], function($) {
         };
         this.post = function() {return make(post, arguments);};
         this.del = function() {return make(del, arguments);};
+        this.put = function() {return make(put, arguments);};
+        this.patch = function() {return make(patch, arguments);};
 
         this.abort = function() {
             for (var i = 0, request; request = requests[i++];) {
@@ -156,6 +174,8 @@ define(['jquery'], function($) {
         get: get,
         post: post,
         del: del,
+        put: put,
+        patch: patch,
         pool: function() {return new Pool();}
     };
 });
