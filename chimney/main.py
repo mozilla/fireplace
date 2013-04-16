@@ -143,7 +143,7 @@ def settings():
     return _proxy(MARKETPLACE + request.path)
 
 
-@app.route('/api/v1/home/featured/')
+@app.route('/api/v1/apps/search/featured/')
 def featured():
     return _proxy(MARKETPLACE + request.path)
 

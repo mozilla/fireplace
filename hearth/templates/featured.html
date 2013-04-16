@@ -5,15 +5,15 @@
     <ol class="container listing c">
       {% for result in this %}
         <li class="item result app c">
-          {{ market_tile(result, link=true, force_button=true, src='categoryfeat') }}
+          {{ market_tile(result, link=true, force_button=true, src='featured') }}
         </li>
       {% endfor %}
     </ol>
   {% placeholder %}
-    <p class="spinner spaced alt"></p>
+    <p class="spinner alt"></p>
   {% empty %}
     <p class="no-results">
-      {{ _('No featured apps in this category') }}
+      {{ _('No featured apps found') }}
     </p>
   {% end %}
 </section>

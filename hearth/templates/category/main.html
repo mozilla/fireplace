@@ -34,7 +34,7 @@
   {% defer (url=endpoint, pluck='featured') %}
     <ol class="grid c">
       {% for result in this %}
-        <li>{{ market_tile(result, link=true, src='creatured') }}</li>
+        <li>{{ market_tile(result, link=true, src='featured') }}</li>
       {% endfor %}
     </ol>
   {% end %}
