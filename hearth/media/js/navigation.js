@@ -154,6 +154,23 @@ define('navigation',
 
         history.pushState(newState, false, url);
         navigate(url, false, newState);
+    }).on('divert', function(e, url, params) {
+        if (!url) return;
+
+        // Terminate any outstanding requests.
+        if (last_bobj) {
+            last_bobj.terminate();
+        }
+
+        var newState = {
+            path: url,
+            scrollTop: 0,
+            params: params
+        };
+
+        history.replaceState(newState, false, url);
+        stack.shift();
+        navigate(url, false, newState);
     });
 
     function navigationFilter(el) {

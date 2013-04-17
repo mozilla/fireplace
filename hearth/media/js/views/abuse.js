@@ -1,9 +1,10 @@
 define('views/abuse',
-       ['l10n', 'requests', 'urls', 'z'],
-       function(l10n, requests, urls, z) {
+       ['l10n', 'notification', 'requests', 'urls', 'z'],
+       function(l10n, notification, requests, urls, z) {
     'use strict';
 
     var gettext = l10n.gettext;
+    var notify = notification.notification;
 
     // XXX: This handles **ALL** abuse form submission.
     z.page.on('submit', '.abuse-form', function(e) {
@@ -13,9 +14,10 @@ define('views/abuse',
 
         requests.post($this.data('action'), $this.serialize()).done(function(data) {
             console.log('submitted abuse report');
+            notify({message: gettext('Abuse reported')})
             $this.find('textarea').val('');
         }).fail(function() {
-            z.page.trigger('notify', {msg: gettext('There was a problem submitting your report. Please try again later.')})
+            notify({message: gettext('Error while submitting report')})
         });
     });
 

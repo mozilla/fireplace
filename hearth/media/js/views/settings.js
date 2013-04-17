@@ -1,9 +1,10 @@
 define('views/settings',
-    ['l10n', 'requests', 'urls', 'user', 'utils', 'z'],
-    function(l10n, requests, urls, user, utils, z) {
+    ['l10n', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
+    function(l10n, notification, requests, urls, user, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
+    var notify = notification.notification;
 
     function update_settings() {
         var acc_sett = $('.account-settings');
@@ -20,9 +21,9 @@ define('views/settings',
         var completion = $.Deferred();
         completion.done(function() {
             update_settings();
-            z.page.trigger('notify', [{msg: gettext('Settings saved.')}]);
+            notify({message: gettext('Settings saved.')});
         }).fail(function() {
-            z.page.trigger('notify', [{msg: gettext('Settings could not be saved.')}]);
+            notify({message: gettext('Settings could not be saved.')});
         });
 
         if (!user.logged_in()) {
@@ -38,7 +39,7 @@ define('views/settings',
 
             completion.resolve();
         }).fail(function() {
-            z.page.trigger('notify', [gettext('Settings could not be saved.')]);
+            notify({message: gettext('Settings could not be saved.')});
             completion.reject();
         });
     })).on('logged_in', update_settings);

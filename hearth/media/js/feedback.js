@@ -1,10 +1,11 @@
 // JS for the desktop Feedback overlay.
 
 define(
-    ['buckets', 'capabilities', 'l10n', 'urls', 'utils', 'z', 'requests', 'templates'],
-    function(buckets, capabilities, l10n, urls, utils, z, requests, nunjucks) {
+    ['buckets', 'capabilities', 'l10n', 'notification', 'urls', 'utils', 'z', 'requests', 'templates'],
+    function(buckets, capabilities, l10n, notification, urls, utils, z, requests, nunjucks) {
 
     var gettext = l10n.gettext;
+    var notify = notification.notification;
     var overlay = utils.makeOrGetOverlay('feedback-overlay');
 
     z.body.on('submit', '.feedback-form', utils._pd(function(e) {
@@ -18,8 +19,9 @@ define(
             console.log('submitted feedback');
             $this.find('textarea').val('');
             overlay.removeClass('show');
+            notify({message: gettext('Feedback submitted. Thanks!')});
         }).fail(function() {
-            z.page.trigger('notify', {msg: gettext('There was a problem submitting your feedback. Try again soon.')});
+            notify({message: gettext('There was a problem submitting your feedback. Try again soon.')});
         });
 
     })).on('click', '.submit-feedback', utils._pd(function(e) {

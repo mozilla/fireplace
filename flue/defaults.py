@@ -159,7 +159,8 @@ def rating():
     return {
         'rating': 4,
         'body': ptext(20),
-        'is_flagged': False,
+        'is_flagged': random.randint(1, 5) == 1,
+        'is_author': random.randint(1, 5) == 1,
         'posted': rand_posted(),
         'user': {
             'display_name': random.choice(user_names),

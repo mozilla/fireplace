@@ -91,6 +91,13 @@ define(
                         request = pool.get(url);
                     }
 
+                    if ('id' in signature) {
+                        result_handlers[signature.id] = request;
+                        request.done(function(data) {
+                            result_map[signature.id] = data;
+                        });
+                    }
+
                     function get_result(data, dont_cast) {
                         // `pluck` pulls the value out of the response.
                         // Equivalent to `this = this[pluck]`
@@ -118,14 +125,6 @@ define(
                             content = (parsed.filter(extract) || parsed.find(extract)).children();
                         }
                         return content;
-                    }
-
-                    if ('id' in signature) {
-                        var id = signature.id;
-                        result_handlers[id] = request;
-                        request.done(function(data) {
-                            result_map[id] = data;
-                        });
                     }
 
                     if (request.__cached) {

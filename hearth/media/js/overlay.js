@@ -10,28 +10,11 @@ define('overlay', ['keys', 'l10n', 'utils', 'z'], function(keys, l10n, utils, z)
         }
     }
 
-    function notify(msg, title) {
-        $('#msg-overlay').remove();
-
-        var $overlay = $('<div id="msg-overlay" class="overlay">');
-        var $section = $('<section>');
-        if (title) {
-            $section.append($('<h3>').text(title));
-        }
-        $section.append($('<p>').text(msg));
-        $section.append($('<button class="dismiss">').text(gettext('OK')));
-        $overlay.append($section);
-        z.body.append($overlay);
-        $overlay.addClass('show');
-    }
-
     function init() {
         z.body.on('touchmove', '.overlay', function(e) {
             e.preventDefault();
             e.stopPropagation();
-        });
-
-        z.body.on('click', function() {
+        }).on('click', function() {
             $('#notification').removeClass('show');
         });
 
@@ -54,11 +37,8 @@ define('overlay', ['keys', 'l10n', 'utils', 'z'], function(keys, l10n, utils, z)
           .on('click', '.overlay .dismiss', utils._pd(dismiss))
           .on('overlay_dismissed', function() {
             z.body.removeClass('overlayed');
-        }).on('notify', function(e, o) {
-            if (!o.msg) return;
-            notify(o.msg, o.title);
         });
     }
 
-    return {init: init, notify: notify};
+    return {init: init};
 });

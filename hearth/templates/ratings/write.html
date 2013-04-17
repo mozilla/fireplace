@@ -1,4 +1,4 @@
-<form class="friendly main">
+<form class="friendly main add-review-form" data-app="{{ slug }}">
   <p class="brform simple-field rating c">
     <label for="id_rating">{{ _('Rate:') }}</label>
     <select name="rating" id="id_rating" required>
@@ -8,11 +8,11 @@
     </select>
   </p>
   <p class="brform simple-field c">
-    <textarea id="id_body" rows="2" cols="40" name="body" required></textarea>
+    <textarea id="id_body" rows="2" cols="40" name="body" required maxlength="150"></textarea>
   </p>
   <footer class="form-footer c only-logged-in">
     <button type="submit">{{ _('Submit') }}</button>
-    <div class="char-count" data-maxlength="150" data-for="id_body"></div>
+    <div class="char-count" data-for="id_body"></div>
   </footer>
   <footer class="form-footer c only-logged-out">
     <p>{{ _('Only logged in users may edit reviews.') }}</p>

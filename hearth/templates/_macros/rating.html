@@ -19,11 +19,12 @@
         {% if this.is_flagged %}
           <li class="flagged">{{ _('Flagged for review') }}</li>
         {% endif %}
-        {% if this.is_owner %}
-          <li><a class="edit post" data-action="edit" href="#">{{ _('Edit') }}</a></li>
+        {% if this.is_author %}
+          <li><a class="edit"
+                 href="{{ url('app/ratings/edit', [slug]) }}">{{ _('Edit') }}</a></li>
           <li>
             <a class="delete post" data-action="delete" href="#"
-               data-href="{{ api('reviews.mine', [slug]) }}">{{ _('Delete') }}</a></li>
+               data-href="{{ this.resource_uri }}">{{ _('Delete') }}</a></li>
         {% else %}
           <li><a class="flag post" data-action="report" href="#">{{ _('Report') }}</a></li>
         {% endif %}

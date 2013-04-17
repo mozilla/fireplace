@@ -4,7 +4,7 @@ define('capabilities', [], function() {
         return !!m && m.matches;
     }
 
-    var capabilities = {
+    return {
         'JSON': window.JSON && typeof JSON.parse == 'function',
         'debug': document.location.href.indexOf('dbg') >= 0,
         'debug_in_page': document.location.href.indexOf('dbginpage') >= 0,
@@ -27,17 +27,7 @@ define('capabilities', [], function() {
         'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance),
         'navPay': !!navigator.mozPay,
         'webactivities': !!(window.setMessageHandler || window.mozSetMessageHandler),
-        'firefoxOS': null  // This is set below.
+        'firefoxOS': navigator.mozApps && navigator.mozApps.installPackage && !capabilities.firefoxAndroid
     };
 
-    // Packaged-app installation are supported only on Firefox OS, so this is how we sniff.
-    capabilities.gaia = !!(navigator.mozApps && navigator.mozApps.installPackage);
-
-    // Detect Firefox OS.
-    // This will be true if the request is from a Firefox OS phone *or*
-    // a desktop B2G build with the correct UA pref, such as this:
-    // https://github.com/mozilla/r2d2b2g/blob/master/prosthesis/defaults/preferences/prefs.js
-    capabilities.firefoxOS = capabilities.gaia && !capabilities.firefoxAndroid;
-
-    return capabilities;
 });

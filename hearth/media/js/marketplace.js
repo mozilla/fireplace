@@ -90,7 +90,7 @@ require.config({
         }
 
         // This lets you refresh within the app by holding down command + R.
-        if (capabilities.gaia) {
+        if (capabilities.chromeless) {
             window.addEventListener('keydown', function(e) {
                 if (e.keyCode == 82 && e.metaKey) {
                     window.location.reload();

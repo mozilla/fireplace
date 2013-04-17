@@ -76,13 +76,13 @@ define('login',
                 if (!err) {
                     err = gettext("Persona login failed. Maybe you don't have an account under that email address?") + ' ' + textStatus + ' ' + error;
                 }
-                // Catch-all for XHR errors otherwise we'll trigger 'notify'
+                // Catch-all for XHR errors otherwise we'll trigger a notification
                 // with its message as one of the error templates.
                 if (jqXHR.status != 200) {
                     err = gettext('Persona login failed. A server error was encountered.');
                 }
                 $('.loading-submit').removeClass('loading-submit');
-                z.page.trigger('notify', {msg: err});
+                notification.notification({message: err});
 
                 _.invoke(pending_logins, 'reject');
                 pending_logins = [];
