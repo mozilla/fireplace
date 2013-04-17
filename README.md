@@ -111,7 +111,7 @@ found [on the wiki](https://github.com/mozilla/fireplace/wiki/L10n#extracting-st
 
 ## The API
 
-[Read the docs.](http://zamboni.readthedocs.org/en/latest/topics/api.html)
+[Read the docs.](http://firefox-marketplace-api.readthedocs.org/)
 
 
 ## Bugs
