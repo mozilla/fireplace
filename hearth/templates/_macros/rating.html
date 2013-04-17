@@ -19,7 +19,7 @@
         {% if this.is_flagged %}
           <li class="flagged">{{ _('Flagged for review') }}</li>
         {% endif %}
-        {% if this.user.owns %}
+        {% if this.is_owner %}
           <li><a class="edit post" data-action="edit" href="#">{{ _('Edit') }}</a></li>
           <li>
             <a class="delete post" data-action="delete" href="#"
