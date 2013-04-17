@@ -1,33 +1,122 @@
 @import 'lib';
 
-$text-gray = #424f5a;  // Why's this not in lib.styl?
-$link = #2d87ca;
-
+$triangle-size = 20px;
 
 // Description.
 
 body[data-page-type=leaf] {
     h3 {
-        font-size: 14px;
         font-weight: 600;
         line-height: 16px;
     }
     .infobox .button {
         display: block;
     }
+    .infobox {
+        border-top: 1px dashed $london-fog-gray;
+        border-bottom: none;
+    }
+    .blurbs {
+        border-top: none;
+    }
+    .support,
+    .content-ratings {
+        diagonal-lines();
+    }
+}
+
+.blurbs,
+.reviews,
+.support {
+    background-color: #fff;
+}
+
+.product-details {
+    font-size: 15px;
+    line-height: 18px;
+    &.listing {
+        margin-bottom: 0;
+    }
+    .icon {
+        width: 64px;
+    }
+    .mkt-tile h3 {
+        color: #000;
+        ellipsis();
+        max-width: 100%;
+        font-size: 30px;
+        line-height: 37px;
+        margin-top: 0;
+    }
+    .mkt-tile .author {
+        font-size: 15px;
+        line-height: 15px;
+    }
+    .mkt-tile {
+        position: relative;
+    }
+    .mkt-tile {
+        padding: 20px 10px 30px;
+        diagonal-lines();
+    }
+    .mkt-tile:before,
+    .mkt-tile:after {
+        border-bottom: $triangle-size solid $salt-flat-white;
+        bottom: 0;
+        content: ''
+        display: block;
+        height: 0;
+        position: absolute;
+        width: 50%;
+    }
+    .mkt-tile:before {
+        // dotted gets rid of strange edge rendering in b2g.
+        border-right: $triangle-size dotted transparent;
+        left: -($triangle-size);
+    }
+    .mkt-tile:after {
+        border-left: $triangle-size dotted transparent;
+        right: -($triangle-size);
+    }
+    .install {
+        bottom: (10px + $triangle-size);
+        position: absolute;
+        right: 10px;
+    }
+    &.listing .rating {
+        clear: left;
+        float: left;
+    }
+    &.listing .icon {
+        float: left;
+        margin: 0 14px 10px 0;
+        position: static;
+    }
+    // TODO: refactor/remove when default listing
+    // rating styles are updated.
+    &.listing .rating .cnt,
+    &.listing .rating a:hover .cnt {
+        color: $sailor-blue;
+        border: none;
+        font-size: 12px;
+        margin-left: 10px;
+    }
+    &.listing .rating a:hover .cnt {
+        text-decoration: underline;
+    }
 }
 
 .blurbs {
     clear: both;
-    color: $text-gray;
+    color: $dark-gray;
+    .description,
     p {
-        font-size: 14px;
         margin: 0;
     }
     h3 {
-        font-size: 16px;
+        font-size: 15px;
         line-height: 18px;
-        margin: 15px 0 5px;
+        margin: 15px 0 20px;
     }
     ul, ol {
         margin: 10px 0;
@@ -39,6 +128,12 @@ body[data-page-type=leaf] {
         margin: 0;
         padding: 5px 10px;
     }
+}
+
+.reviews h3 {
+    color: #000;
+    font-size: 15px;
+    margin-bottom: 20px;
 }
 
 .show-toggle {
@@ -63,11 +158,23 @@ body[data-page-type=leaf] {
     display: none;
 }
 
+.content-ratings {
+    border-top: 1px dashed $london-fog-gray;
+    h3 {
+        color: #000;
+        font-size: 15px;
+        padding-bottom: 20px;
+    }
+}
+
 .content-rating {
-    color: $text-gray;
+    color: $text;
     display: table;
     font-size: 12px;
-    margin-top: 10px;
+    margin-bottom: 10px;
+    &:last-child {
+        margin-bottom: 0;
+    }
     .icon {
         border-radius: 5px;
         background: $black;
@@ -136,10 +243,6 @@ body[data-page-type=leaf] {
         color: darken(#ffe, 75%);
         margin-bottom: 10px;
     }
-    .upsell, .prose, .vitals {
-        padding-left: 86px;
-        width: 75%;
-    }
     .upsell {
         ellipsis();
         display: block;
@@ -207,41 +310,8 @@ body[data-page-type=leaf] {
     }
 }
 
-.product-details {
-    font-size: 14px;
-    text-shadow: 0 1px 0 $white;
-    .icon {
-        max-width: 120px;
-    }
-    .vitals {
-        float: left;
-        margin-left: 22px;
-        max-width: 624px;
-        h1 {
-            font-size: 32px;
-            font-weight: 100;
-            margin: 0 0 0 -1px;
-        }
-        .authors {
-            font-weight: normal;
-            font-size: 14px;
-            margin-top: 7px;
-        }
-        .price {
-            text-shadow: 0 1px 0 $black;
-            &:after {
-                text-shadow: 0 1px 0 $white;
-            }
-        }
-        p {
-            display: inline-block;
-            margin: 10px 0 5px;
-        }
-    }
-}
 
 .support {
-    font-size: 14px;
     ul {
         margin: 0;
         list-style-type: none;
@@ -306,18 +376,30 @@ body[data-page-type=leaf] {
     body[data-page-type=leaf] {
         #page {
             padding: 90px 0 75px;
+            background: $salt-flat-white;
+        }
+        .blurbs,
+        .reviews,
+        .support {
+            background-color: #fff;
+            border-top: 1px dashed $london-fog-gray;
+            border-bottom: none;
+        }
+        .blurbs {
+            border-top: none;
+        }
+        .blurbs > div {
+            text-columns(2);
         }
         #reviews {
             margin: 20px auto;
         }
         .listing {
             border: 0;
-            .mkt-tile h3 {
-                font-weight: 600;
-            }
         }
         #reviews-detail {
             padding: 20px;
+            font-size: 15px;
             ul {
                 margin: 0 -20px;
                 position: relative;
@@ -326,19 +408,44 @@ body[data-page-type=leaf] {
                     padding: 0 20px;
                     width: 50%;
                 }
-                &:before {
-                    content: '';
-                    display: block;
-                    position: absolute;
-                    top: 0;
-                    right: 50%;
-                    width: 0;
-                    bottom: 20px;
-                    border-left: 1px solid rgba(255,255,255,.5);
-                    border-right: 1px solid rgba(3, 16, 26, .13);
-
-                }
             }
+            .byline,
+            .byline strong {
+                color: $ship-gray;
+                font-size: 15px;
+            }
+        }
+    }
+
+    .detail {
+        border: 1px solid $sky-gray;
+        max-width: $desktop-content + 2;
+        margin: 0 auto;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .product-details {
+        background: #fff;
+        .bad-app {
+            padding-top: 5px;
+            clear: left;
+        }
+        &.listing .mkt-tile {
+            padding: 15px 15px 35px;
+            diagonal-lines();
+        }
+        .install {
+            right: 15px;
+            bottom: (15px + $triangle-size);
+        }
+       .mkt-tile h3 {
+            font-size: 40px;
+            line-height: 48px;
+        }
+        .mkt-tile + .tray:after,
+        .mkt-tile + .tray:before {
+            background-image: none;
         }
     }
 

@@ -318,67 +318,98 @@
 // Previews tray.
 .expanded .mkt-tile + .tray {
     display: block;
-    height: 232px;
 }
 .mkt-tile + .tray {
     display: none;
-    gradient-two-color-with-image(rgba(221, 225, 228, .35), rgba(159, 164, 169, .95), $grain-src);
-    height: 0;
-    border-bottom: 1px solid rgba(0,0,0,.3);
-    border-top: 1px solid rgba(0,0,0,.05);
+    padding-bottom: 30px;
     position: relative;
+    height: 230px;
     .slider {
-        height: 230px;
         overflow: hidden;
         user-select: none;
         -webkit-user-select: none;
         -moz-user-select: none;
     }
     ul {
+        height: 215px;
         padding: 15px 0;
         margin: 0 auto;
         list-style-type: none;
         white-space: nowrap;
-        height: 232px;
     }
     li {
         margin-left: 15px;
         float: left;
         text-align: center;
         width: 180px;
-        height: 270px;
         &:first-child {
             margin-left: 0;
         }
+        // The following creates a square container
+        // that is as tall as the li is wide and
+        // positions the img vertically and
+        // horizontally center.
+        .thumbnail {
+            display: block;
+            padding-bottom: 100%;
+            position: relative;
+            width: 100%;
+        }
         img {
             -moz-user-select: none;
-            max-width: 180px;
-            max-height: 215px;
+            bottom: 0;
+            display: block;
+            left: 0;
+            margin: auto;
+            max-height: 100%;
+            max-width: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
         }
     }
 }
+
+$dot-size = 12px;
 
 .tray {
     .dots {
         width: 100%;
         position: absolute;
-        top: -4px;
+        bottom: 10px;
         text-align: center;
-        height: 6px;
-        line-height: 6px;
+        height: $dot-size;
+        line-height: $dot-size;
     }
     .dot {
-        gradient-two-color(#667480, #828f99);
-        box-shadow: 0 0 1px rgba(255,255,255,.5), 1px 0 2px 2px rgba(0,0,0,.21) inset, 0 1px 1px rgba(0,0,0,.005);
+        background: #d7d7d7;
         display: inline-block;
         vertical-align: top;
-        width: 6px;
-        height: 6px;
-        border-radius: 3px;
+        width: $dot-size;
+        height: $dot-size;
+        border-radius: ($dot-size/2);
         margin: 0 3px;
+        position: relative;
+        &:after {
+            background: $salt-flat-white;
+            content: "";
+            display: block;
+            position: absolute;
+            height: ($dot-size/2);
+            width: ($dot-size/2);
+            border-radius: ($dot-size/2/2);
+            top: ($dot-size/2/2);
+            left: ($dot-size/2/2);
+        }
+        &:hover,
+        &:active {
+            background: $sailor-blue;
+        }
         &.current {
-            gradient-two-color(#368dd9, #57a9fa);
-            box-shadow: 0 -1px 1px rgba(#03101a, .35) inset, 0 0 4px rgba(#0091ff, .56);
+            background: $sailor-blue;
+            &:after {
+                display: none;
+            }
         }
     }
 }
@@ -446,6 +477,9 @@
     .shots {
         position: relative;
         .next, .prev {
+            // TODO: Temporarily display:none but may want to remove this if
+            // arrows are 100% gone from the new design.
+            display: none !important;
             border-radius: 0 30px 30px 0;
             border: 15px solid rgba(#252525,.7);
             height: 60px;
