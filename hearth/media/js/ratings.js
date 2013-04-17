@@ -10,7 +10,7 @@ define('ratings',
     function initCharCount() {
         var countChars = function(el, cc) {
             var $el = $(el);
-            var max = parseInt(cc.attr('maxlength'), 10);
+            var max = parseInt($el.attr('maxlength'), 10);
             var left = max - $el.val().length;
             // L10n: {n} is the number of characters left.
             cc.html(ngettext('<b>{n}</b> character left.',
