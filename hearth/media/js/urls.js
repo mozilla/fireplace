@@ -68,8 +68,8 @@ define('urls',
             var args = {
                 lang: navigator.language,
                 region: user.get_setting('region'),
-                scr: caps.widescreen ? 'wide' : 'mobile',
-                tch: caps.touch,
+                //scr: caps.widescreen ? 'wide' : 'mobile',
+                //tch: caps.touch,
                 dev: _device(),
                 pro: buckets.get_profile()
             };
@@ -99,7 +99,8 @@ define('urls',
         reverse: reverse,
         api: {
             url: api,
-            params: apiParams
+            params: apiParams,
+            sign: _userArgs(_.identity)
         }
     };
 });

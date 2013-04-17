@@ -81,7 +81,8 @@ function Suite(options) {
                 callback || function() {console.log('Wait condition met.');},
                 function() {
                     throw new Error('waitFor timeout :(');
-                }
+                },
+                5000
             );
         });
 

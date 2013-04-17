@@ -15,7 +15,7 @@
       {{ this.body|nl2br }}
     </div>
     {% if not detailpage %}
-      <ul class="actions">
+      <ul class="actions only-if-logged-in">
         {% if this.is_flagged %}
           <li class="flagged">{{ _('Flagged for review') }}</li>
         {% endif %}

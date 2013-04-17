@@ -31,6 +31,8 @@ LATENCY = 0
 ar = app.route
 @wraps(ar)
 def corsify(*args, **kwargs):
+    print kwargs
+    methods = kwargs.get('methods') or ['GET']
     def decorator(func):
         @wraps(func)
         def wrap(*args, **kwargs):
@@ -38,11 +40,15 @@ def corsify(*args, **kwargs):
             if isinstance(resp, (dict, list, tuple, str, unicode)):
                 resp = make_response(json.dumps(resp, indent=2), 200)
             resp.headers['Access-Control-Allow-Origin'] = '*'
-            resp.headers['Access-Control-Allow-Methods'] = 'GET'
+            resp.headers['Access-Control-Allow-Methods'] = ','.join(methods)
+            resp.headers['Access-Control-Allow-Headers'] = 'X-HTTP-METHOD-OVERRIDE'
             resp.headers['Content-type'] = 'application/json'
             if LATENCY:
                 time.sleep(LATENCY)
             return resp
+
+        if 'methods' in kwargs:
+            kwargs['methods'].append('OPTIONS')
 
         registered_func = ar(*args, **kwargs)(wrap)
         registered_func._orig = func
@@ -236,6 +242,14 @@ def app_ratings():
     result_count = 34
     data.update(defaults.app_user_data(slug))
     return data
+
+
+@app.route('/api/v1/apps/rating/<id>/', methods=['GET', 'PUT', 'DELETE'])
+def app_rating(id):
+    if request.method in ('PUT', 'DELETE'):
+        return {'error': False}
+
+    return defaults.rating()
 
 
 @app.route('/api/v1/apps/app/<slug>/')

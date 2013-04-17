@@ -48,6 +48,7 @@ define('ratings',
 
     function flagReview($reviewEl) {
         var $overlay = utils.makeOrGetOverlay('flag-review');
+        $overlay.html(nunjucks.env.getTemplate('ratings/report.html').render(require('helpers')));
         $overlay.addClass('show').trigger('overlayloaded');
 
         $overlay.one('click', '.cancel', utils._pd(function() {
@@ -60,7 +61,7 @@ define('ratings',
             $overlay.removeClass('show');
             $actionEl.text(gettext('Sending report...'));
             require('requests').post(
-                require('settings').api_url + $reviewEl.data('report-uri'),
+                require('settings').api_url + urls.api.sign($reviewEl.data('report-uri')),
                 {flag: reason}
             ).then(function() {
                 $actionEl.replaceWith(gettext('Flagged for review'));

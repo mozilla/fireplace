@@ -82,6 +82,8 @@ define(['jquery'], function($) {
         return $.ajax({
             url: url,
             type: 'DELETE'
+            // type: 'POST',
+            // headers: {'X-HTTP-METHOD-OVERRIDE': 'DELETE'}
         });
     }
 
@@ -90,6 +92,8 @@ define(['jquery'], function($) {
         return $.ajax({
             url: url,
             type: 'PUT',
+            // type: 'POST',
+            // headers: {'X-HTTP-METHOD-OVERRIDE': 'PUT'},
             data: data
         });
     }
@@ -99,6 +103,8 @@ define(['jquery'], function($) {
         return $.ajax({
             url: url,
             type: 'PATCH',
+            // type: 'POST',
+            // headers: {'X-HTTP-METHOD-OVERRIDE': 'PATCH'},
             data: data
         });
     }

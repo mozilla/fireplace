@@ -1,5 +1,6 @@
-{% defer (url=apiParams('reviews', app=slug)) %}
-  <form class="friendly main c edit-review-form" method="post">
+{% defer (url=apiParams('reviews', app=slug, user='mine')) %}
+  {% set this = this.objects[0] %}
+  <form class="friendly main c edit-review-form" data-uri="{{ this.resource_uri }}" data-slug="{{ slug }}">
     <p class="brform simple-field rating c">
       <label for="id_rating">{{ _('Rate:') }}</label>
       <select name="rating" id="id_rating" required>
@@ -12,7 +13,7 @@
       <textarea id="id_body" rows="2" cols="40" name="body" required>{{ this.body }}</textarea>
     </p>
     <footer class="form-footer c only-logged-in">
-      <button type="submit">{{ _('Submit') }}</button>
+      <button type="submit">{{ _('Save Changes') }}</button>
       <div class="char-count" data-maxlength="150" data-for="id_body"></div>
     </footer>
     <footer class="form-footer c only-logged-out">

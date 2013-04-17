@@ -19,6 +19,8 @@ LATENCY = 0
 ar = app.route
 @wraps(ar)
 def latencify(*args, **kwargs):
+    if 'methods' in kwargs:
+        kwargs['methods'].append('OPTIONS')
     def decorator(func):
         @wraps(func)
         def wrap(*args, **kwargs):
@@ -53,12 +55,24 @@ def _urlparams(url):
 
 def _proxy(url):
     url = _urlparams(url)
-    if request.method == 'POST':
+    method = request.method
+    if 'X-HTTP-METHOD-OVERRIDE' in request.headers:
+        print ('Overriding called method: %s' %
+                   request.headers['X-HTTP-METHOD-OVERRIDE'])
+        method = request.headers['X-HTTP-METHOD-OVERRIDE']
+
+    if method == 'POST':
         print 'POSTing %s' % url
         req = requests.post(url, request.form)
-    elif request.method == 'DELETE':
+    elif method == 'DELETE':
         print 'DELETing %s' % url
         req = requests.delete(url)
+    elif method == 'PUT':
+        print 'PUTing %s' % url
+        req = requests.put(url)
+    elif method == 'OPTIONS':
+        print 'OPTIONing %s' % url
+        req = requests.options(url)
     else:
         print 'GETing %s' % url
         req = requests.get(url)
@@ -72,36 +86,19 @@ def _proxy(url):
     return resp
 
 
-@app.route('/app/<slug>/reviews/self', methods=['POST'])
-def reviews_self(slug):
-    print "DEPRECATED!"
-    req = requests.post(MARKETPLACE + '/api/v1/apps/rating/',
-                        {app: slug, body: request.args.get('body'),
-                         rating: request.args.get('rating')})
-    return req.text
-
-
-@app.route('/app/<slug>/reviews/self', methods=['DELETE'])
-def reviews_self_delete(slug):
-    print "DEPRECATED!"
-    return _proxy(MARKETPLACE + '/api/v1/apps/rating/?app=%s' % slug)
-
-
-@app.route('/app/<slug>/reviews/self', methods=['GET'])
-def reviews_self_get(slug):
-    print "DEPRECATED!"
-    return _proxy(MARKETPLACE + '/api/v1/apps/rating/?app=%s' % slug)
-
-
 # PARITY
+
+@app.route('/api/v1/apps/rating/<id>/', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def app_rating(id):
+    return _proxy(MARKETPLACE + request.path)
+
+
+# MERGED
 
 
 @app.route('/api/v1/apps/rating/', methods=['GET', 'POST'])
 def app_ratings():
     return _proxy(MARKETPLACE + request.path)
-
-
-# MERGED
 
 
 @app.route('/api/v1/apps/search/creatured/')
