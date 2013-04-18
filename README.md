@@ -28,6 +28,9 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
   <dt>Smoke Alarm</dt>
   <dd>A functional test runner for great justice.</dd>
 
+  <dt>Space Heater</dt>
+  <dd>A server-side app that serves primed, pre-rendered pages.</dd>
+
   <dt>Yule Log</dt>
   <dd>A fake version of Fireplace to provide the Gaia team with a package that can
   be shipped and later upgraded to the real Fireplace.</dd>

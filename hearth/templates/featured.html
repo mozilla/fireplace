@@ -1,4 +1,4 @@
-{% include '_macros/market_tile.html' %}
+{% from '_macros/market_tile.html' import market_tile %}
 
 <section id="search-results" class="main full c">
   {% defer (url=endpoint, pluck='featured', as='app') %}

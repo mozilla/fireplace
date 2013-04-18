@@ -4,7 +4,7 @@
   <meta itemprop="worstRating" content="1">
   <span class="stars{{ ' large' if detailpage }} large stars-{{ rating }}" title="{{ title }}">
     {{ _('Rated {stars} out of {maxstars} stars',
-         stars='<span itemprop="' + rating_itemprop + '">' + rating + '</span>',
+         stars='<span itemprop="{itemprop}">{rating}</span>'|format(itemprop=rating_itemprop, rating=rating),
          maxstars='<span itemprop="bestRating">5</span>') }}
   </span>
 {% endmacro %}

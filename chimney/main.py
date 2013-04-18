@@ -5,7 +5,7 @@ from optparse import OptionParser
 
 import requests
 from flask import Flask, make_response, request
-app = Flask("Flue")
+app = Flask("Chimney")
 
 
 FLUE = 'http://flue.paas.allizom.org'
