@@ -26,7 +26,7 @@ define([], function() {
         !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch)
     ];
 
-    var profile = parseInt(capabilities.map(function(x) {return !!x ? '1' : '0';}).join(''), 2);
+    var profile = parseInt(capabilities.map(function(x) {return !!x ? '1' : '0';}).join(''), 2).toString(16);
     // Add a count.
     profile += '.' + capabilities.length;
     // Add a version number.
