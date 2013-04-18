@@ -4,10 +4,14 @@
       <textarea rows="10" cols="40" name="text" required></textarea>
     </p>
     <p class="form-footer">
-      <input type="hidden" name="sprout" value="potato">
-      <input type="hidden" name="tuber">
+      {{ potato_captcha() }}
       <input type="hidden" name="{{ type }}" value="{{ id }}">
       <button type="submit">{{ _('Send Report') }}</button>
     </p>
   </form>
+{% endmacro %}
+
+{% macro potato_captcha() %}
+  <input type="text" name="sprout" value="potato" class="potato-captcha">
+  <input type="text" name="tuber" class="potato-captcha">
 {% endmacro %}
