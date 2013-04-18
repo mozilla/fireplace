@@ -84,7 +84,7 @@ def login():
     }
 
 
-@app.route('/api/v1/account/settings/mine/', methods=['GET', 'POST'])
+@app.route('/api/v1/account/settings/mine/', methods=['GET', 'PATCH'])
 def settings():
     return {
         'display_name': 'Joe User',

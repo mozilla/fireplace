@@ -21,9 +21,9 @@ define('views/settings',
         var completion = $.Deferred();
         completion.done(function() {
             update_settings();
-            notify({message: gettext('Settings saved.')});
+            notify({message: gettext('Settings saved')});
         }).fail(function() {
-            notify({message: gettext('Settings could not be saved.')});
+            notify({message: gettext('Settings could not be saved')});
         });
 
         if (!user.logged_in()) {
@@ -31,17 +31,11 @@ define('views/settings',
             completion.resolve();
             return;
         }
-        var data = $(this).serialize();
+        var data = utils.getVars($(this).serialize());
         user.update_settings(data);
-        requests.post(urls.api.url('settings'), data).done(function() {
-            // Re-save settings because we cray and the user cray.
-            user.update_settings(data);
-
-            completion.resolve();
-        }).fail(function() {
-            notify({message: gettext('Settings could not be saved.')});
-            completion.reject();
-        });
+        requests.patch(urls.api.url('settings'), data)
+                .done(completion.resolve)
+                .fail(completion.reject);
     })).on('logged_in', update_settings);
 
     return function(builder) {

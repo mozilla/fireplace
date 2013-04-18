@@ -75,6 +75,9 @@ def _proxy(url):
     elif method == 'PUT':
         print 'PUTing %s' % url
         req = requests.put(url, request.form, headers=filtered_headers)
+    elif method == 'PATCH':
+        print 'PATCHing %s' % url
+        req = requests.patch(url, request.form, headers=filtered_headers)
     elif method == 'OPTIONS':
         print 'OPTIONing %s' % url
         req = requests.options(url, headers=filtered_headers)
@@ -130,7 +133,7 @@ def login():
     return _proxy(MARKETPLACE + request.path)
 
 
-@app.route('/api/v1/account/settings/mine/', methods=['GET', 'POST'])
+@app.route('/api/v1/account/settings/mine/', methods=['GET', 'PATCH'])
 def settings():
     return _proxy(MARKETPLACE + request.path)
 
