@@ -1,11 +1,11 @@
 {% include '_macros/market_tile.html' %}
 
 <section id="search-results" class="main full c">
-  {% defer (url=api('category', [category]), pluck='creatured', as='app') %}
+  {% defer (url=api('category', [category]), pluck='featured', as='app') %}
     <ol class="container listing c">
       {% for result in this %}
         <li class="item result app c">
-          {{ market_tile(result, link=true, force_button=true, src='creatured') }}
+          {{ market_tile(result, link=true, force_button=true, src='categoryfeat') }}
         </li>
       {% endfor %}
     </ol>

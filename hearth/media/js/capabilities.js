@@ -5,10 +5,10 @@ define('capabilities', [], function() {
     }
 
     return {
-        'JSON': window.JSON && typeof JSON.parse == 'function',
+        'JSON': window.JSON && typeof JSON.parse === 'function',
         'debug': document.location.href.indexOf('dbg') >= 0,
         'debug_in_page': document.location.href.indexOf('dbginpage') >= 0,
-        'console': window.console && typeof window.console.log == 'function',
+        'console': window.console && typeof window.console.log === 'function',
         'replaceState': typeof history.replaceState === 'function',
         'chromeless': window.locationbar && !window.locationbar.visible,
         'webApps': !!(navigator.mozApps && navigator.mozApps.install),
@@ -19,7 +19,7 @@ define('capabilities', [], function() {
         'fileAPI': !!window.FileReader,
         'userAgent': navigator.userAgent,
         'widescreen': safeMatchMedia('(min-width: 1024px)'),
-        'firefoxAndroid': navigator.userAgent.indexOf('Firefox') != -1 && navigator.userAgent.indexOf('Android') != -1,
+        'firefoxAndroid': navigator.userAgent.indexOf('Firefox') !== -1 && navigator.userAgent.indexOf('Android') !== -1,
         'touch': !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch),
         'nativeScroll': (function() {
             return 'WebkitOverflowScrolling' in document.createElement('div').style;

@@ -37,7 +37,7 @@ define('urls',
     var api_endpoints = {
         'homepage': '/api/v1/home/page/',
         'app': '/api/v1/apps/app/{0}/',
-        'category': '/api/v1/apps/search/creatured/?cat={0}',
+        'category': '/api/v1/apps/search/featured/?cat={0}',
         'reviews': '/api/v1/apps/rating/',
         'settings': '/api/v1/account/settings/mine/',
         'installed': '/api/v1/account/installed/mine/',

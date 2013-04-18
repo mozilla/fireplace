@@ -207,7 +207,7 @@ def search():
     return data
 
 
-@app.route('/api/v1/apps/search/creatured/')
+@app.route('/api/v1/apps/search/featured/')
 def category():
     def gen():
         i = 0
@@ -216,8 +216,8 @@ def category():
             i += 1
 
     data = _paginated('objects', gen)
-    data['creatured'] = [defaults.app('creat %d' % i, 'Creatued App') for
-                         i in xrange(4)]
+    data['featured'] = [defaults.app('creat %d' % i, 'Creatued App') for
+                        i in xrange(4)]
     return data
 
 

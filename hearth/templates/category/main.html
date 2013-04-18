@@ -31,7 +31,7 @@
 
 
 <section id="featured" class="main creatured full c">
-  {% defer (url=endpoint, pluck='creatured') %}
+  {% defer (url=endpoint, pluck='featured') %}
     <ol class="grid c">
       {% for result in this %}
         <li>{{ market_tile(result, link=true, src='creatured') }}</li>

@@ -13,6 +13,8 @@ FLUE = 'http://flue.paas.allizom.org'
 MARKETPLACE = 'https://marketplace-dev.allizom.org'
 
 IGNORED_HEADERS = ('transfer-encoding', 'content-encoding', 'connection')
+IGNORED_REQUEST_HEADERS = ['host', 'user-agent']
+
 LATENCY = 0
 
 
@@ -61,21 +63,28 @@ def _proxy(url):
                    request.headers['X-HTTP-METHOD-OVERRIDE'])
         method = request.headers['X-HTTP-METHOD-OVERRIDE']
 
+    filtered_headers = dict((k, v) for k, v in request.headers.items() if
+                            k.lower() not in IGNORED_REQUEST_HEADERS)
+
     if method == 'POST':
         print 'POSTing %s' % url
-        req = requests.post(url, request.form)
+        req = requests.post(url, request.form, headers=filtered_headers)
     elif method == 'DELETE':
         print 'DELETing %s' % url
-        req = requests.delete(url)
+        req = requests.delete(url, headers=filtered_headers)
     elif method == 'PUT':
         print 'PUTing %s' % url
-        req = requests.put(url)
+        req = requests.put(url, request.form, headers=filtered_headers)
     elif method == 'OPTIONS':
         print 'OPTIONing %s' % url
-        req = requests.options(url)
+        req = requests.options(url, headers=filtered_headers)
     else:
         print 'GETing %s' % url
-        req = requests.get(url)
+        req = requests.get(url, headers=filtered_headers)
+
+    print 'Received: %s' % req.status_code
+    if req.status_code != 200:
+        print req.text
 
     resp = make_response(req.text, req.status_code)
     for header, val in req.headers.items():
@@ -101,7 +110,7 @@ def app_ratings():
     return _proxy(MARKETPLACE + request.path)
 
 
-@app.route('/api/v1/apps/search/creatured/')
+@app.route('/api/v1/apps/search/featured/')
 def category():
     return _proxy(MARKETPLACE + request.path)
 
