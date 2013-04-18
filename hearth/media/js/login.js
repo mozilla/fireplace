@@ -2,6 +2,8 @@ define('login',
     ['capabilities', 'jquery', 'notification', 'settings', 'underscore', 'user', 'requests', 'z', 'utils', 'urls', 'views'],
     function(capabilities, $, notification, settings, _, user, requests, z) {
 
+    var _shimmed = false;
+
     z.body.on('click', '.persona', function(e) {
         e.preventDefault();
 
@@ -12,11 +14,9 @@ define('login',
         });
 
     }).on('click', '.logout', function(e) {
-        if (navigator.id) {
-            e.preventDefault();
-            user.clear_token();
-            navigator.id.logout();
-        }
+        e.preventDefault();
+        user.clear_token();
+        postBack('navigator.id.logout', true);
     });
 
     var pending_logins = [];
@@ -25,15 +25,11 @@ define('login',
         var def = $.Deferred();
         pending_logins.push(def);
 
-        navigator.id.request({
+        postBack('navigator.id.request', {
             forceIssuer: settings.persona_unverified_issuer || null,
             allowUnverified: true,
             termsOfService: '/terms-of-use',
-            privacyPolicy: '/privacy-policy',
-            oncancel: function() {
-                _.invoke(pending_logins, 'reject');
-                pending_logins = [];
-            }
+            privacyPolicy: '/privacy-policy'
         });
         return def.promise();
     }
@@ -42,8 +38,7 @@ define('login',
         if (assertion) {
             var data = {
                 assertion: assertion,
-                audience: window.location.protocol + '//' + window.location.host,
-                is_native: navigator.id._shimmed ? 0 : 1
+                is_native: _shimmed ? 0 : 1
             };
 
             requests.post(require('urls').api.url('login'), data).done(function(data) {
@@ -92,38 +87,50 @@ define('login',
         }
     }
 
-    function init_persona() {
+    window.addEventListener('message', function(e) {
+
+        var key = e.data[0];
+        var body = e.data[1];
+        console.log('[potato] Got message from ' + e.origin, key, body);
+
+        switch (key) {
+            case 'navigator.id.request:cancel':
+                _.invoke(pending_logins, 'reject');
+                pending_logins = [];
+                break;
+            case 'navigator.id.watch:login':
+                gotVerifiedEmail(body);
+                break;
+            case 'navigator.id.watch:logout':
+                z.body.removeClass('logged-in');
+                z.page.trigger('reload_chrome');
+                z.win.trigger('logout');
+                break;
+            case '_shimmed':
+                _shimmed = body;
+                break;
+        }
+
+    }, false);
+
+    var s = document.createElement('iframe');
+    function postBack(key, value) {
+        s.contentWindow.postMessage([key, value], '*');
+    }
+
+    s.onload = function() {
         $('.persona').css('cursor', 'pointer');
         var email = user.get_setting('email') || '';
         if (email) {
             console.log('detected user', email);
         }
-        navigator.id.watch({
-            loggedInUser: email,
-            onlogin: gotVerifiedEmail,
-            onlogout: function() {
-                z.body.removeClass('logged-in');
-                z.page.trigger('reload_chrome');
-                z.win.trigger('logout');
-            }
-        });
-    }
-
-    // Load `include.js` from persona.org, and drop login hotness like it's hot.
-    var s = document.createElement('script');
-    s.onload = init_persona;
-    if (capabilities.firefoxOS) {
-        // Load the Firefox OS include that knows how to handle native Persona.
-        // Once this functionality lands in the normal include we can stop
-        // doing this special case. See bug 821351.
-        s.src = settings.native_persona;
-    } else {
-        s.src = settings.persona;
-    }
+        postBack('navigator.id.watch', email);
+    };
+    s.src = settings.login_provider + '/potato-login';
+    s.style.display = 'none';
     document.body.appendChild(s);
+
     $('.persona').css('cursor', 'wait');
 
-    return {
-        login: startLogin
-    };
+    return {login: startLogin};
 });
