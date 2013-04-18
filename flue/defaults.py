@@ -155,6 +155,7 @@ def rating():
             'name': random.randint(1, 3),
             'latest': False,
         }
+    report_spam = '/api/v1/apps/rating/%d/flag/' % random.randint(1000, 9999)
 
     return {
         'rating': 4,
@@ -162,6 +163,7 @@ def rating():
         'is_flagged': random.randint(1, 5) == 1,
         'is_author': random.randint(1, 5) == 1,
         'posted': rand_posted(),
+        'report_spam': report_spam,
         'user': {
             'display_name': random.choice(user_names),
             'id': random.randint(1000, 9999),
