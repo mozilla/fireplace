@@ -252,6 +252,11 @@ def app_rating(id):
     return defaults.rating()
 
 
+@app.route('/api/v1/apps/rating/<id>/flag/', methods=['POST'])
+def app_rating_flag(id):
+    return ''
+
+
 @app.route('/api/v1/apps/app/<slug>/')
 def app_(slug):
     return defaults.app(slug, 'Something something %s' % slug)

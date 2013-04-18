@@ -98,14 +98,14 @@ def _proxy(url):
     return resp
 
 
-# PARITY
-
 @app.route('/api/v1/apps/rating/<id>/', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def app_rating(id):
     return _proxy(MARKETPLACE + request.path)
 
 
-# MERGED
+@app.route('/api/v1/apps/rating/<id>/flag/', methods=['POST'])
+def app_rating_flag(id):
+    return _proxy(MARKETPLACE + request.path)
 
 
 @app.route('/api/v1/apps/rating/', methods=['GET', 'POST'])
