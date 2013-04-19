@@ -15,50 +15,43 @@ require.config({
         'format': 'lib/format'
     },
     shim: {
-        'flipsnap': {
-            exports: 'Flipsnap'
-        },
-        'jquery': {
-            exports: 'jQuery'
-        },
-        'underscore': {
-            exports: '_'
-        }
+        'flipsnap': {exports: 'Flipsnap'},
+        'jquery': {exports: 'jQuery'},
+        'underscore': {exports: '_'}
     }
 });
 
 (function() {
 
-    var modules = [
-        'buttons',
-        'capabilities',
-        'feedback',
-        'forms',
-        'header',
-        'helpers',
-        'install',
-        'l10n',
-        'lightbox',
-        'login',
-        'navigation',
-        'notification',
-        'outgoing_links',
-        'overlay',
-        'paginator',
-        'previews',
-        'ratings',
-        'common/ratingwidget',
-        'settings',
-        //'stick',
-        //'common/suggestions',
-        'templates',
-        'tracking',
-        'user',
-        'webactivities',
-        'z'
-    ];
-
-    define('marketplace', modules, function() {
+    define(
+        'marketplace',
+        [
+           'buttons',
+           'capabilities',
+           'feedback',
+           'forms',
+           'header',
+           'helpers',
+           'install',
+           'l10n',
+           'lightbox',
+           'login',
+           'navigation',
+           'notification',
+           'outgoing_links',
+           'overlay',
+           'paginator',
+           'previews',
+           'ratings',
+           'common/ratingwidget',
+           'settings',
+           'templates',
+           'tracking',
+           'user',
+           'webactivities',
+           'z'
+        ],
+    function() {
         var capabilities = require('capabilities');
         var nunjucks = require('templates');
         var settings = require('settings');

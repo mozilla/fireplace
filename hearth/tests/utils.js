@@ -43,6 +43,9 @@ test('getVars', function(done) {
     feq_(utils.getVars('?a=b'), {a: 'b'});
     feq_(utils.getVars('?'), {});
     feq_(utils.getVars('?a=b&c=d'), {a: 'b', c: 'd'});
+    // Test that there's not weird HTML encoding going on.
+    feq_(utils.getVars('%3C%3E%22\'%26=%3C%3E%22\'%26'),
+         {'<>"\'&': '<>"\'&'});
     done();
 });
 
