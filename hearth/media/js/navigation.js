@@ -1,8 +1,9 @@
 define('navigation',
-    ['urls', 'utils', 'views', 'z'],
-    function(urls, utils, views, z) {
-
+    ['l10n', 'notification', 'urls', 'utils', 'views', 'z'],
+    function(l10n, notification, urls, utils, views, z) {
     'use strict';
+
+    var gettext = l10n.gettext;
 
     var stack = [
         {path: '/', type: 'root'}
@@ -43,6 +44,14 @@ define('navigation',
                            encodeURIComponent(pair[1]);
             }
         ).join('&');
+    }
+
+    function canNavigate() {
+        if (!navigator.onLine) {
+            notification.notification({message: gettext('No internet connection')});
+            return false;
+        }
+        return true;
     }
 
     function navigate(href, popped, state) {
@@ -117,6 +126,11 @@ define('navigation',
     }
 
     z.body.on('click', '.site-header .back', utils._pd(function() {
+
+        if (!canNavigate()) {
+            return;
+        }
+
         // Something something back joke.
         if (stack.length > 1) {
             stack.shift();
@@ -135,6 +149,10 @@ define('navigation',
             'navigate', utils.urlparams(urls.reverse('search'), params));
     }).on('navigate', function(e, url, params) {
         if (!url) return;
+
+        if (!canNavigate()) {
+            return;
+        }
 
         // Terminate any outstanding requests.
         if (last_bobj) {
@@ -156,6 +174,10 @@ define('navigation',
         navigate(url, false, newState);
     }).on('divert', function(e, url, params) {
         if (!url) return;
+
+        if (!canNavigate()) {
+            return;
+        }
 
         // Terminate any outstanding requests.
         if (last_bobj) {
@@ -197,6 +219,7 @@ define('navigation',
         // We don't use _pd because we don't want to prevent default for the
         // above situations.
         e.preventDefault();
+        e.stopPropagation();
         z.page.trigger('navigate', [href, $(this).data('params') || {path: href}]);
 
     }).on('submit', 'form#search', function(e) {
