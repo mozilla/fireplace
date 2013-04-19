@@ -12,6 +12,7 @@ suite.run('/app/foo/abuse', function(test, waitFor) {
         assert.visible('.abuse-form');
         assert.visible('.abuse-form textarea');
         assert.selectorExists('.abuse-form button[disabled]');
+        suite.capture('app-abuse-form.png');
     });
 
     test('Verify form is submitted', function(assert) {

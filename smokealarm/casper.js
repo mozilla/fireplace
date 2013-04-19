@@ -39,10 +39,15 @@ function Suite(options) {
     var _this = this;
     var asserts = 0;
 
-    options = options || {};
-    options.verbose = true;
-    options.logLevel = 'warning';
     var cobj = casper;
+    // options = options || {};
+    // options.verbose = true;
+    // options.logLevel = 'debug';
+    // var cobj = require('casper').create(options);
+
+    cobj.on('page.error', function(err, trace) {
+        console.error(err, trace);
+    });
 
     this.run = function(url, callback) {
         if (url[0] === '/') {
@@ -80,6 +85,7 @@ function Suite(options) {
                 waiter,
                 callback || function() {console.log('Wait condition met.');},
                 function() {
+                    cobj.capture('captures/error.png');
                     throw new Error('waitFor timeout :(');
                 },
                 5000

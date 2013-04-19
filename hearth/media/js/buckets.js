@@ -3,6 +3,12 @@ define([], function() {
     var aelem = document.createElement('audio');
     var velem = document.createElement('video');
 
+    // Compatibilty with PhantomJS, which doesn't implement canPlayType
+    if (!('canPlayType' in aelem)) {
+        function noop() {return '';};
+        velem = aelem = {canPlayType: noop};
+    }
+
     var prefixes = ['moz', 'webkit', 'ms'];
 
     function prefixed(property, context) {
