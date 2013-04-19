@@ -26,15 +26,6 @@ define('ratings',
         });
     }
 
-    // Returns the review body text or '' if the supplied element is not found.
-    function getBody($body) {
-        var body = $body.clone();
-        // Get the inner *text* of the review body.
-        body.find('br').replaceWith('\n');
-        // `.text()` returns the unescaped text content, so re-escape it.
-        return utils.escape_(body.text().trim());
-    }
-
     function flagReview($reviewEl) {
         var $overlay = utils.makeOrGetOverlay('flag-review');
         $overlay.html(nunjucks.env.getTemplate('ratings/report.html').render(require('helpers')));
