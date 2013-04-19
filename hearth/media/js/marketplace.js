@@ -49,7 +49,6 @@ require.config({
         'ratings',
         'common/ratingwidget',
         'settings',
-        'state',
         //'stick',
         //'common/suggestions',
         'templates',
