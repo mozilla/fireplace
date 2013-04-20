@@ -1,4 +1,4 @@
-define(['jquery'], function($) {
+define(['cache', 'jquery'], function(cache, $) {
     /*
     Methods:
 
@@ -51,12 +51,10 @@ define(['jquery'], function($) {
 
     */
 
-    var cache = {};
-
     function get(url) {
-        if (url in cache) {
+        if (cache.has(url)) {
             return $.Deferred()
-                    .resolve(cache[url])
+                    .resolve(cache.get(url))
                     .promise({__cached: true});
         }
         return _get.apply(this, arguments);
@@ -66,7 +64,7 @@ define(['jquery'], function($) {
         console.log('[req] GETing', url);
         return $.get(url).done(function(data) {
             console.log('[req] GOT', url);
-            cache[url] = data;
+            cache.set(url, data);
         });
     }
 

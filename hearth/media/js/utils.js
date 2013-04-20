@@ -28,27 +28,38 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
         return tags.test(e.target.nodeName);
     }
 
-    function urlparams(url, kwargs) {
+    function querystring(url) {
         var qpos = url.indexOf('?');
         if (qpos === -1) {
-            url += '?';
+            return {};
         } else {
-            kwargs = _.defaults(kwargs, getVars(url.substr(qpos)));
-            url = url.substr(0, qpos + 1);
+            return getVars(url.substr(qpos + 1));
         }
+    }
 
+    function baseurl(url) {
+        var qpos = url.indexOf('?');
+        if (qpos === -1) {
+            return url;
+        } else {
+            return url.substr(0, qpos);
+        }
+    }
+
+    function urlencode(kwargs) {
         var params = [];
+        if ('__keywords' in kwargs) {
+            delete kwargs.__keywords;
+        }
         for (var key in kwargs) {
-            // Skip over nunjucks keywords.
-            if (key == '__keywords') {
-                continue;
-            }
             params.push(encodeURIComponent(key) + '=' +
                         encodeURIComponent(kwargs[key]));
         }
+        return params.join('&');
+    }
 
-        return url + params.join('&');
-
+    function urlparams(url, kwargs) {
+        return baseurl(url) + '?' + urlencode(_.defaults(kwargs, querystring(url)));
     }
 
     function decodeURIComponent() {
@@ -85,7 +96,10 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
         'fieldFocused': fieldFocused,
         'getVars': getVars,
         'makeOrGetOverlay': makeOrGetOverlay,
-        'urlparams': urlparams
+        'urlparams': urlparams,
+        'baseurl': baseurl,
+        'querystring': querystring,
+        'urlencode': urlencode
     };
 
 });

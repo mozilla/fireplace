@@ -26,7 +26,7 @@ define(['assert'], function() {
                     infobox.find('span').text('Passed').css('background-color', 'lime');
                     is_done();
                 };
-                var failed = function(message) {
+                var has_failed = function(message) {
                     console.error(name, message);
                     failed++;
                     infobox.find('span').html('Failed<br>' + message).css('background-color', 'pink');
@@ -35,9 +35,9 @@ define(['assert'], function() {
                 try {
                     console.log('Starting ' + name);
                     infobox.find('span').text('Started').css('background-color', 'goldenrod');
-                    runner(completion, failed);
+                    runner(completion, has_failed);
                 } catch (e) {
-                    failed(e.message);
+                    has_failed(e.message);
                 }
             }, 0);
             $('#c_started').text(started);

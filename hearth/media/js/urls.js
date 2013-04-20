@@ -83,24 +83,28 @@ define('urls',
         };
     }
 
-    var api = _userArgs(function(endpoint, args) {
+    var api = function(endpoint, args) {
         if (!(endpoint in api_endpoints)) {
             console.error('Invalid API endpoint: ' + endpoint);
             return '';
         }
         return settings.api_url + format.format(api_endpoints[endpoint], args || []);
-    });
+    };
 
-    var apiParams = _userArgs(function(endpoint, params) {
+    var apiParams = function(endpoint, params) {
         return require('utils').urlparams(api(endpoint), params);
-    });
+    };
 
     return {
         reverse: reverse,
         api: {
-            url: api,
-            params: apiParams,
-            sign: _userArgs(_.identity)
+            url: _userArgs(api),
+            params: _userArgs(apiParams),
+            sign: _userArgs(_.identity),
+            unsigned: {
+                url: api,
+                params: apiParams
+            }
         }
     };
 });

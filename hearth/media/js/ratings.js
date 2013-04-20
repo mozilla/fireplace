@@ -1,6 +1,6 @@
 define('ratings',
-    ['capabilities', 'l10n', 'login', 'templates', 'underscore', 'utils', 'urls', 'user', 'views', 'z', 'requests', 'notification'],
-    function(capabilities, l10n, login, nunjucks, _, utils, urls, user, views, z) {
+    ['cache', 'capabilities', 'l10n', 'login', 'templates', 'underscore', 'utils', 'urls', 'user', 'views', 'z', 'requests', 'notification'],
+    function(cache, capabilities, l10n, login, nunjucks, _, utils, urls, user, views, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -24,6 +24,22 @@ define('ratings',
                .on('keyup blur', _.throttle(function() {countChars(this, $cc);}, 250))
                .trigger('blur');
         });
+    }
+
+    function rewriter(app, rewriter) {
+        var unsigned_url = urls.api.unsigned.url('reviews');
+        cache.attemptRewrite(
+            function(key) {
+                if (utils.baseurl(key) !== unsigned_url) {
+                    return;
+                }
+                var kwargs = utils.querystring(key);
+                if ('app' in kwargs && kwargs.app === app) {
+                    return true;
+                }
+            },
+            rewriter
+        );
     }
 
     function flagReview($reviewEl) {
@@ -50,11 +66,21 @@ define('ratings',
         }));
     }
 
-    function deleteReview(reviewEl, uri) {
+    function deleteReview(reviewEl, uri, app) {
         reviewEl.addClass('deleting');
         require('requests').del(require('settings').api_url + urls.api.sign(uri)).done(function() {
-            reviewEl.remove();
             notify({message: gettext('Your review was deleted')});
+
+            rewriter(app, function(data) {
+                data.objects = data.objects.filter(function(obj) {
+                    return obj.resource_uri !== uri;
+                });
+                data.meta.total_count -= 1;
+                data.user.has_rated = false;
+                return data;
+            });
+            views.reload();
+
         }).fail(function() {
             notify({message: gettext('There was a problem deleting the review')});
         });
@@ -93,7 +119,7 @@ define('ratings',
         var $review = $this.closest('.review');
         switch (action) {
             case 'delete':
-                deleteReview($review, $this.data('href'));
+                deleteReview($review, $this.data('href'), $this.data('app'));
                 break;
             case 'add':
                 addReview($this);
@@ -118,16 +144,29 @@ define('ratings',
         e.preventDefault();
 
         var $this = $(this);
+        var app = $this.data('app');
+
         var data = utils.getVars($this.serialize());
-        data.app = $this.data('app');
+        data.app = app;
         require('requests').post(
             urls.api.url('reviews'),
             data
-        ).done(function() {
+        ).done(function(new_review) {
+
+            rewriter(app, function(data) {
+                data.objects.unshift(new_review);
+                if (data.meta.total_count + 1 <= data.meta.limit) {
+                    data.meta.total_count += 1;
+                }
+                data.user.has_rated = true;
+                return data;
+            });
+
             notify({message: gettext('Your review was posted')});
             var overlay = $this.closest('.overlay');
             if (overlay.length) {
                 overlay.remove();
+                views.reload();
             } else {
                 z.page.trigger('navigate', urls.reverse('app', [$this.data('app')]));
             }
@@ -135,5 +174,7 @@ define('ratings',
             notify({message: gettext('Error while submitting review')});
         });
     });
+
+    return {_rewriter: rewriter};
 
 });

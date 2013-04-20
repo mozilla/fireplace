@@ -27,6 +27,12 @@ test('fieldFocused', function(done) {
     done();
 });
 
+test('baseurl', function(done) {
+    eq_(utils.baseurl('http://foo/bar?asdf/asdf'), 'http://foo/bar');
+    eq_(utils.baseurl('http://foo/bar/?asdf/asdf'), 'http://foo/bar/');
+    done();
+});
+
 test('urlparams', function(done) {
     eq_(utils.urlparams('', {a: 'b'}), '?a=b');
     eq_(utils.urlparams('?', {a: 'b'}), '?a=b');
