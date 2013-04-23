@@ -5,7 +5,6 @@ quickly get up and running without needing your own installation of Zamboni
 or without needing to use -dev (offline mode).
 """
 
-import hashlib
 import json
 import os
 import random
@@ -216,7 +215,7 @@ def category():
             i += 1
 
     data = _paginated('objects', gen)
-    data['featured'] = [defaults.app('creat %d' % i, 'Creatued App') for
+    data['featured'] = [defaults.app('creat %d' % i, 'Creatured App') for
                         i in xrange(4)]
     return data
 
@@ -239,7 +238,6 @@ def app_ratings():
         'slug': slug,
         'average': random.random() * 4 + 1,
     }
-    result_count = 34
     data.update(defaults.app_user_data(slug))
     return data
 
