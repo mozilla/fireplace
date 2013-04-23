@@ -60,14 +60,13 @@ require.config({
 
         nunjucks.env.dev = true;
 
-        var splash = $('#splash-overlay');
         z.body.addClass('html-' + require('l10n').getDirection());
         if (settings.body_classes) {
             z.body.addClass(settings.body_classes);
         }
 
-        z.page.on('loaded', function() {
-           splash.addClass('hide');
+        z.page.one('loaded', function() {
+           $('#splash-overlay').addClass('hide');
         });
 
         if (settings.tracking_enabled) {
@@ -121,22 +120,14 @@ require.config({
             z.page.trigger('reloaded_chrome');
         }).trigger('reload_chrome');
 
-        function trigger() {
-            z.doc.trigger('saferesize');
-        }
-        window.addEventListener('resize', _.debounce(trigger, 200), false);
+        window.addEventListener(
+            'resize',
+            _.debounce(function() {z.doc.trigger('saferesize');}, 200),
+            false
+        );
 
         // Perform initial navigation.
-        var hash = window.location.hash;
-        var use_hash = hash && hash.substr(0, 2) == '#!';
-        z.page.trigger('navigate', [use_hash ? hash : window.location.pathname + window.location.search]);
-
-        // Call `init` for each module.
-        _.each(arguments, function(v) {
-            if (typeof v === 'object' && 'init' in v) {
-                v.init();
-            }
-        });
+        z.page.trigger('navigate', [window.location.pathname + window.location.search]);
 
         // Debug page
         (function() {
