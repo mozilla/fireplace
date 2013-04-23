@@ -1,6 +1,6 @@
 define('navigation',
-    ['l10n', 'notification', 'urls', 'utils', 'views', 'z'],
-    function(l10n, notification, urls, utils, views, z) {
+    ['capabilities', 'l10n', 'notification', 'urls', 'utils', 'views', 'z'],
+    function(capabilities, l10n, notification, urls, utils, views, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -47,7 +47,7 @@ define('navigation',
     }
 
     function canNavigate() {
-        if (!navigator.onLine) {
+        if (!navigator.onLine && !capabilities.phantom) {
             notification.notification({message: gettext('No internet connection')});
             return false;
         }

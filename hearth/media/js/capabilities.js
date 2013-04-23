@@ -29,7 +29,8 @@ define('capabilities', [], function() {
         'webactivities': !!(window.setMessageHandler || window.mozSetMessageHandler),
         'firefoxOS': navigator.mozApps && navigator.mozApps.installPackage &&
                      navigator.userAgent.indexOf('Android') === -1 &&
-                     navigator.userAgent.indexOf('Mobile') !== -1
+                     navigator.userAgent.indexOf('Mobile') !== -1,
+        'phantom': navigator.userAgent.match(/PhantomJS/)  // Don't use this if you can help it.
     };
 
 });
