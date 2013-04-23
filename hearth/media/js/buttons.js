@@ -1,4 +1,7 @@
-define('buttons', ['browser', 'format', 'l10n', 'z'], function(browser, format, l10n, z) {
+define('buttons',
+    ['browser', 'capabilities', 'format', 'l10n', 'z'],
+    function(browser, capabilities, format, l10n, z) {
+
     var gettext = l10n.gettext;
 
     function getButton(product) {
@@ -74,6 +77,10 @@ define('buttons', ['browser', 'format', 'l10n', 'z'], function(browser, format, 
             $noApps.show();
         } else {
             $button.parent().append($('#noApps').html());
+        }
+    }).on('loaded', function() {
+        if (!capabilities.webApps) {
+            $('.button.product').attr('disabled', true);
         }
     });
 });
