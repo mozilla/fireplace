@@ -1,3 +1,7 @@
+(function() {
+
+var dependencies;
+/* dtrace */
 var routes = [
     {pattern: '^/$', view_name: 'homepage'},
     {pattern: '^/index.html$', view_name: 'homepage'},
@@ -23,10 +27,14 @@ var routes = [
     {pattern: '^/debug$', view_name: 'debug'}
 ];
 
+dependencies = routes.map(function(i) {return 'views/' + i.view_name;});
+/* /dtrace */
+window.routes = routes;
+
 define(
     'routes',
     // dynamically import all the view modules form the routes
-    routes.map(function(i) {return 'views/' + i.view_name;}),
+    dependencies,
     function() {
         for (var i = 0; i < routes.length; i++) {
             var route = routes[i];
@@ -36,3 +44,5 @@ define(
         return routes;
     }
 );
+
+})()
