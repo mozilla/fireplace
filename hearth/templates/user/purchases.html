@@ -7,7 +7,7 @@
 
   {% if user.logged_in() %}
     {% defer (url=api('installed'), pluck='objects', as='app', paginate='ol.listing') %}
-      <header class="header results-header c">
+      <header class="results-header c">
         <h2>{{ _('My Apps') }}</h2>
         <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
       </header>
@@ -25,7 +25,7 @@
     {% placeholder %}
       <p class="spinner alt"></p>
     {% empty %}
-      <header class="header results-header c">
+      <header class="results-header c">
         <h2>{{ _('My Apps') }}</h2>
       </header>
       <p class="no-results only-logged-in">

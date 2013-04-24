@@ -8,9 +8,6 @@
     {% if link %} href="{{ url('app', [app.slug])|urlparams(src=src) }}"{% endif %}
     {{ data_attrs|make_data_attrs }}
     {{ app|dataproduct }}>
-    <div class="icon featured_tile" style="background-image:url({{ app.image_assets.featured_tile[0] }})"></div>
-    <img class="icon asset-tile" alt="" src="{{ app.image_assets.mobile_tile[0] }}"
-         data-hue="{{ app.image_assets.mobile_tile[1] }}">
     <img class="icon" alt="" src="{{ app.icons[64] }}" height="64" width="64">
     <div class="info">
       <h3>{{ app.name }}</h3>

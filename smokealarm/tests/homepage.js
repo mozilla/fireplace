@@ -14,14 +14,6 @@ suite.run('/', function(test, waitFor) {
         assert.visible('#search-q');
         assert.invisible('.expand-toggle');
 
-        assert.selectorExists('#featured-home');
-        assert.selectorExists('#featured-home ul.grid li a h3:not(:empty)');
-        assert.visible('#featured-home a .price');
-        assert.visible('#featured-home a .rating');
-
-        assert.selectorExists('.categories');
-        assert.selectorExists('.categories ul li a h3:not(:empty)');
-
         suite.capture('homepage.png');
     });
 });

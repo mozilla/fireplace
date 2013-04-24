@@ -1,12 +1,11 @@
 // Widths
-$desktop = 710px;
-
-// These are potentially temporary while real desktop widths are birthed.
 $desktop-content = 690px;
 $desktop-ftr = 732px;
 
 // Use these as @media $at-least-desktop {}
 $at-least-desktop = unquote('(min-width: 710px)');
+$narrower-than-desktop = unquote('(max-width: 709px)');
+
 $retina-tablet = $retina unquote('and (max-width: 540px)');
 $retina-wide = $retina unquote('and (min-width: 1024px)');
 
@@ -45,15 +44,16 @@ $faint-blue = #ECF5FE;
 $grain = #394C58;
 
 // New design.
+$flamin-hot-cheetos-orange = #ff9500;
 $sailor-blue = #0096dc;
 $castle-skull-gray = #333;
 $grey-gardens-gray = #4d4d4d;
 $london-fog-gray = #5f5f5f;
+$earl-gray = #a7a7a7;
 $cement-gray = #c7c7c7;
 $seavan-salt-white = #e7e7e7;
 $salt-flat-white = #f1f1f1;
-$ship-gray = #a7a7a7;
-$sky-gray = #e7e7e7;
+
 
 // Used for content ratings for games in Brazil.
 // You can use them elsewhere when you want colourful boxes.
@@ -336,4 +336,3 @@ diagonal-lines($stripe-color=rgba(216,216,216,0.15), $bg-color=#fff, $bg-size=un
     background-size: $bg-size;
     gradientLinear(unquote('-45deg, '+$stripe-color+' 5%, transparent 5%, transparent 45%, '+$stripe-color+' 45%, '+$stripe-color+' 55%, transparent 55%, transparent 95%, '+$stripe-color+' 95%'));
 }
-

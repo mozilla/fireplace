@@ -1,8 +1,8 @@
 {% include '_macros/market_tile.html' %}
 
 <section id="search-results" class="main full c">
-  {% defer (url=api('category', [category]), pluck='featured', as='app') %}
-    <header class="header results-header c">
+  {% defer (url=endpoint, pluck='featured', as='app') %}
+    <header class="results-header c">
       <h2>{{ _('Featured') }}</h2>
       <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
     </header>

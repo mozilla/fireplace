@@ -6,9 +6,9 @@ suite.run('/', function(test, waitFor) {
         return suite.exists('#splash-overlay.hide');
     });
 
-    test('Click on category from homepage', function() {
-        suite.press('.categories ul li a:first-child');
-    });
+    // test('Click on category from homepage', function() {
+    //     suite.press('.categories ul li a:first-child');
+    // });
 
     waitFor(function() {
         return suite.exists('#search-results li a');

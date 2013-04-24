@@ -3,7 +3,7 @@
 
 <section id="search-results" class="main full c">
   {% defer (url=apiParams('search', params), pluck='objects', as='app', paginate='ol.listing') %}
-    <header class="header results-header c">
+    <header class="results-header c">
       <h2>{{ _plural('<b>{n}</b> Result', '<b>{n}</b> Results', n=response.meta.total_count) }}</h2>
       <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
     </header>

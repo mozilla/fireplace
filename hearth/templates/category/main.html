@@ -1,28 +1,53 @@
 {% include '_macros/market_tile.html' %}
 {% include '_macros/more_button.html' %}
 
-{% set endpoint = api('category', [category]) %}
+{% set featured_url = url('featured', [category or 'all']) %}
+{% set featured_url = featured_url|urlparams(src='category-featured') %}
 
-<section id="featured" class="main creatured full c">
-  {% defer (url=endpoint, pluck='featured') %}
+{% set category_url = url('category', [category]) if category else url('homepage') %}
+
+{% set popular_url = category_url|urlparams(src='category-featured') + '#gallery' %}
+{% set new_url = category_url|urlparams(sort='created', src='category-featured') + '#gallery' %}
+
+{% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
+
+<section class="main category-dropdown full c">
+  <header class="results-header c">
+    <h2>{{ category_name }}</h2>
+  </header>
+</section>
+
+{% defer (url=endpoint, pluck='featured') %}
+  <section id="featured" class="main category featured full c">
+    <header class="featured-header c">
+      <h3>{{ _('Featured Apps') }}</h3>
+      <a href="{{ featured_url }}" class="view-all">{{ _('View All') }}</a>
+    </header>
     <ol class="grid c">
       {% for result in this %}
         <li>{{ market_tile(result, link=true, src='featured') }}</li>
       {% endfor %}
     </ol>
-  {% end %}
-</section>
-<section id="search-results" class="main full c">
-  {% defer (url=endpoint, pluck='objects', as='app', paginate='ol.listing') %}
-    <header class="header results-header c">
-      <h2>{{ _plural('<b>{n}</b> Result', '<b>{n}</b> Results', n=response.meta.total_count) }}</h2>
-      <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
-    </header>
+  </section>
+{% placeholder %}
+{# Placeholder is empty because this section is often empty, and we already
+   have a placeholder for the Popular/New sections below. #}
+{% empty %}
+{% end %}
 
-    <ol class="container listing c">
+{% defer (url=endpoint, pluck='objects', as='app', paginate='ol.listing') %}
+  <section id="gallery" class="main category gallery full c">
+    <header class="featured-header c">
+      <nav class="tabs">
+        <a{% if sort == 'popularity' %} class="active"{% endif %} href="{{ popular_url }}">{{ _('Popular') }}</a>
+        <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}">{{ _('New') }}</a>
+      </nav>
+      <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
+    </header>
+    <ol class="container listing grid-if-desktop c">
       {% for result in this %}
         <li class="item result app c">
-          {{ market_tile(result, link=true, force_button=true, src='category-' + category) }}
+          {{ market_tile(result, link=true, force_button=true, src=sort) }}
         </li>
       {% endfor %}
 
@@ -31,11 +56,11 @@
         {{ more_button(response.meta.next) }}
       {% endif %}
     </ol>
-  {% placeholder %}
-    <p class="spinner spaced alt"></p>
-  {% empty %}
-    <p class="no-results">
-      {{ _('No apps in this category') }}
-    </p>
-  {% end %}
-</section>
+  </section>
+{% placeholder %}
+  <p class="spinner spaced alt"></p>
+{% empty %}
+  <p class="no-results">
+    {{ _('No apps in this category') }}
+  </p>
+{% end %}

@@ -25,7 +25,7 @@ define('urls',
             // Check that we got the right number of arguments.
             if (args.length != i) {
                 console.error('Expected ' + i + ' args, got ' + args.length);
-                throw new Error('Wrong number of arguments passed to reverse()', view_name, args);
+                throw new Error('Wrong number of arguments passed to reverse(). View: "' + view_name + '", Argument "' + args + '"');
             }
 
             return format.format(url, args);
@@ -35,7 +35,6 @@ define('urls',
     };
 
     var api_endpoints = {
-        'homepage': '/api/v1/home/page/',
         'app': '/api/v1/apps/app/{0}/',
         'category': '/api/v1/apps/search/featured/?cat={0}',
         'reviews': '/api/v1/apps/rating/',

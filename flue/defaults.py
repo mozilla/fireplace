@@ -71,14 +71,6 @@ def app(name, slug, **kwargs):
             128: '/media/img/icons/firefox-beta.png'
         },
         'previews': [_app_preview() for i in range(4)],
-        'image_assets': {
-            'desktop_tile': ['/media/img/icons/firefox-beta.png',
-                             int(random.random() * 255)],
-            'featured_tile': ['/media/img/icons/firefox-beta.png',
-                              int(random.random() * 255)],
-            'mobile_tile': ['/media/img/icons/firefox-beta.png',
-                            int(random.random() * 255)],
-        },
         'listed_authors': [
             {'name': text('basta')},
             {'name': text('cvan')},

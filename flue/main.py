@@ -215,7 +215,7 @@ def category():
 
     data = _paginated('objects', gen)
     data['featured'] = [defaults.app('creat %d' % i, 'Creatured App') for
-                        i in xrange(4)]
+                        i in xrange(15)]
     return data
 
 

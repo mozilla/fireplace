@@ -9,12 +9,12 @@ body[data-page-type=leaf] {
         font-weight: 600;
         line-height: 16px;
     }
-    .infobox .button {
-        display: block;
-    }
     .infobox {
         border-top: 1px dashed $london-fog-gray;
         border-bottom: none;
+        .button {
+            display: block;
+        }
     }
     .blurbs {
         border-top: none;
@@ -310,7 +310,6 @@ body[data-page-type=leaf] {
     }
 }
 
-
 .support {
     ul {
         margin: 0;
@@ -374,10 +373,6 @@ body[data-page-type=leaf] {
 
 @media $at-least-desktop {
     body[data-page-type=leaf] {
-        #page {
-            padding: 90px 0 75px;
-            background: $salt-flat-white;
-        }
         .blurbs,
         .reviews,
         .support {
@@ -417,17 +412,17 @@ body[data-page-type=leaf] {
             }
             .byline,
             .byline strong {
-                color: $ship-gray;
+                color: $earl-gray;
                 font-size: 15px;
             }
         }
     }
 
     .detail {
-        border: 1px solid $sky-gray;
-        max-width: $desktop-content + 2;
-        margin: 0 auto;
         border-radius: 5px;
+        border: 1px solid $seavan-salt-white;
+        margin: 0 auto;
+        max-width: $desktop-content + 2;
         overflow: hidden;
     }
 
@@ -468,13 +463,5 @@ body[data-page-type=leaf] {
     // Chrome fix. This seems to be the reflow issue: http://is.gd/d06sTY
     .actions .button {
         width: 572px;
-    }
-}
-
-@media (min-width: 1024px) {
-    body[data-page-type=leaf] {
-        #page {
-            padding: 50px 0 75px;
-        }
     }
 }

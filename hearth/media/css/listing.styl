@@ -11,6 +11,9 @@
         border-radius: 5px;
         margin: 10px 10px 0;
         position: relative;
+        &:hover {
+            border-color: darken($seavan-salt-white, 10%);
+        }
     }
     .mkt-tile + .tray {
         border-radius: 0 0 5px 5px;
@@ -18,9 +21,6 @@
 }
 
 @media $at-least-desktop {
-    #search-results {
-        padding: 40px 0;
-    }
     .listing {
         li {
             &.item, &.loadmore {
@@ -28,9 +28,6 @@
             }
             &.loadmore {
                 margin-bottom: -25px;
-            }
-            &.item:hover {
-                border-color: darken($seavan-salt-white, 10%);
             }
             a {
                 position: static;
@@ -60,28 +57,6 @@
         }
         .dot {
             cursor: pointer;
-        }
-    }
-
-    .grid .mkt-tile {
-        &.category {
-            background: $grain-src rgba(255,255,255,.3);
-            // EVIL- kills page perf. Don't do this.
-            /*background-size: 10px 10px;*/
-            h3 {
-                light-text-shadow();
-                color: $medium-gray;
-                font-weight: 400;
-            }
-            &:hover, &:active {
-                background-color: rgba(255,255,255,.6);
-                h3 {
-                    color: $dark-gray;
-                }
-            }
-            &:active {
-                depressed();
-            }
         }
     }
 }
