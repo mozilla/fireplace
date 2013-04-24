@@ -2,11 +2,10 @@
 
 <section id="search-results" class="main full c">
   {% defer (url=api('category', [category]), pluck='featured', as='app') %}
-    <div class="header results-header c">
-      <div>{{ _('Featured') }}</div>
+    <header class="header results-header c">
+      <h2>{{ _('Featured') }}</h2>
       <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
-    </div>
-
+    </header>
     <ol class="container listing c">
       {% for result in this %}
         <li class="item result app c">

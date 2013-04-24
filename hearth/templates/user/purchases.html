@@ -5,10 +5,12 @@
   {% set current_page = 'purchases' %}
   {% include 'settings/nav.html' %}
 
-  <h2>{{ _('My Apps') }}</h2>
-
   {% if user.logged_in() %}
     {% defer (url=api('installed'), pluck='objects', as='app', paginate='ol.listing') %}
+      <header class="header results-header c">
+        <h2>{{ _('My Apps') }}</h2>
+        <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
+      </header>
       <ol class="container listing only-logged-in c">
         {% for result in this %}
           <li class="item result app c">
@@ -23,6 +25,9 @@
     {% placeholder %}
       <p class="spinner alt"></p>
     {% empty %}
+      <header class="header results-header c">
+        <h2>{{ _('My Apps') }}</h2>
+      </header>
       <p class="no-results only-logged-in">
         {{ _('You have no apps') }}
       </p>

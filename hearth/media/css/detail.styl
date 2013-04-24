@@ -300,13 +300,12 @@ body[data-page-type=leaf] {
     }
 }
 
+// ***************** Wide Mobile (> 671px)
+
 @media $at-least-desktop {
     body[data-page-type=leaf] {
         #page {
-            padding: 40px 0;
-            .main {
-                background-color: rgba(255,255,255,.3);
-            }
+            padding: 90px 0 75px;
         }
         #reviews {
             margin: 20px auto;
@@ -356,5 +355,13 @@ body[data-page-type=leaf] {
     // Chrome fix. This seems to be the reflow issue: http://is.gd/d06sTY
     .actions .button {
         width: 572px;
+    }
+}
+
+@media (min-width: 1024px) {
+    body[data-page-type=leaf] {
+        #page {
+            padding: 50px 0 75px;
+        }
     }
 }

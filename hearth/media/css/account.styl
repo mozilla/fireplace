@@ -1,6 +1,5 @@
 @import 'lib';
 
-
 #account-settings .toggles {
     padding: 15px;
 }
@@ -19,9 +18,8 @@
     }
 }
 .account {
-    h2 {
+    .results-header {
         display: none;
-        margin-bottom: 15px;
     }
     footer {
         padding: 15px;
@@ -32,11 +30,16 @@
     width: 450px;
 }
 
-// Does not work with $desktop.
-@media $at-least-desktop {
-    .account h2 {
+// ***************** Wide Mobile (> 671px)
+
+@media (min-width: 672px) {
+    .account .results-header {
         display: block;
     }
+}
+
+// Does not work with $desktop.
+@media $at-least-desktop {
     // TODO: This has to be fixed properly.
     body[data-page-type=leaf] #page .main.account {
         background-color: transparent;
