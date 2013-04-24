@@ -1,6 +1,6 @@
 define(
-    ['buckets', 'capabilities', 'notification', 'z'],
-    function(buckets, capabilities, notification, z) {
+    ['buckets', 'cache', 'capabilities', 'notification', 'utils', 'z'],
+    function(buckets, cache, capabilities, notification, utils, z) {
     'use strict';
 
     var debugEnabled = localStorage.getItem('debug-enabled');
@@ -16,10 +16,16 @@ define(
             localStorage.setItem('debug-enabled', 'yes');
             label.text('yes');
         }
+    }).on('click', '.cache-menu a', function(e) {
+        e.preventDefault();
+        var data = cache.get($(this).data('url'));
+        data = JSON.stringify(data, null, '  ');
+        $('#cache-inspector').html(utils.escape_(data));
     });
 
     return function debug_view(builder, args) {
         builder.start('debug.html', {
+            cache: cache.raw,
             capabilities: capabilities,
             dbg: debugEnabled || 'no',
             profile: buckets.get_profile()

@@ -14,7 +14,7 @@
       <button id="toggle-debug">Debug Mode: <b id="debug-status">{{ dbg }}</b></button>
     </p>
 
-    <dl>
+    <dl class="c">
       {% for cap in capabilities.items() %}
         <dt>{{ cap[0] }}</dt>
         <dd>{{ cap[1] }}</dd>
@@ -22,5 +22,15 @@
       <dt>Feature Profile</dt>
       <dd>{{ profile }}</dd>
     </dl>
+
+    <h3>Cache</h3>
+
+    <pre id="cache-inspector"></pre>
+
+    <ul class="cache-menu">
+      {% for k in cache.keys() %}
+        <li><a href="#" data-url="{{ k }}">{{ k|urlparams(_user='REDACTED') }}</a></li>
+      {% endfor %}
+    </ul>
   </div>
 </section>
