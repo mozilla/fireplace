@@ -70,6 +70,7 @@ define('helpers',
         user: require('user'),
 
         range: _.range,
+        escape: utils.escape_,
 
         navigator: window.navigator
     };

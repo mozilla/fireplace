@@ -30,7 +30,6 @@ LATENCY = 0
 ar = app.route
 @wraps(ar)
 def corsify(*args, **kwargs):
-    print kwargs
     methods = kwargs.get('methods') or ['GET']
     def decorator(func):
         @wraps(func)
@@ -273,7 +272,11 @@ if __name__ == '__main__':
             help='hostname', metavar='HOSTNAME', default='0.0.0.0')
     parser.add_option('--latency', dest='latency',
             help='latency (sec)', metavar='LATENCY', default=0)
+    parser.add_option('--xss', dest='xss',
+            help='xss?', metavar='XSS', default=0)
     (options, args) = parser.parse_args()
     app.debug = True
     LATENCY = int(options.latency)
+    if options.xss:
+        defaults.XSS = bool(options.xss)
     app.run(host=options.hostname, port=int(options.port))

@@ -1,10 +1,17 @@
 from datetime import date, timedelta
 import random
 
+
+XSS = False
+
+xss_text = '"\'><script>alert("poop");</script><\'"'
 dummy_text = 'foo bar zip zap cvan fizz buzz something something'.split()
 
+def text(default):
+    return xss_text if XSS else default
+
 def ptext(len=10):
-    return ' '.join(random.choice(dummy_text) for i in xrange(len))
+    return text(' '.join(random.choice(dummy_text) for i in xrange(len)))
 
 
 def rand_bool():
@@ -13,7 +20,7 @@ def rand_bool():
 
 def category(slug, name):
     return {
-        'name': name,
+        'name': text(name),
         'slug': slug,
     }
 
@@ -46,7 +53,7 @@ def app(name, slug, **kwargs):
     # In the API everything here except `user` should be serialized and
     # keyed off app_id:region:locale.
     data = {
-        'name': name,
+        'name': text(name),
         'slug': random.choice(dummy_text),
         'summary': kwargs.get('summary', ptext(50)),
         'description': kwargs.get('description', ptext(100)),
@@ -54,7 +61,7 @@ def app(name, slug, **kwargs):
         'manifest_url':
             'http://%s%s.testmanifest.com/manifest.webapp' % (ptext(1), random.randint(1, 50000)),  # Minifest if packaged
         'current_version': {
-            'version': '%d.0' % int(random.random() * 20),
+            'version': text('%d.0' % int(random.random() * 20)),
             'release_notes': kwargs.get('release_notes', ptext())
         },
         'icons': {
@@ -73,16 +80,16 @@ def app(name, slug, **kwargs):
                             int(random.random() * 255)],
         },
         'listed_authors': [
-            {'name': 'basta'},
-            {'name': 'cvan'},
-            {'name': 'Chris Van Halen'}
+            {'name': text('basta')},
+            {'name': text('cvan')},
+            {'name': text('Chris Van Halen')}
         ],
         'ratings': {
             'average': random.random() * 4 + 1,
             'count': int(random.random() * 500),
         },
         'notices': random.choice(MESSAGES),
-        'support_email': 'support@%s.com' % slug,
+        'support_email': text('support@%s.com' % slug),
         'homepage': 'http://marketplace.mozilla.org/',
         'privacy_policy': kwargs.get('privacy_policy', ptext()),
         'public_stats': False,
@@ -95,8 +102,8 @@ def app(name, slug, **kwargs):
         #    icons: ...,
         # },
         'content_ratings': {
-            'dejus': {'name': '12', 'description': 'Ask your parents'},
-            'esrb': {'name': 'L', 'description': 'L for BASTA'},
+            'dejus': {'name': '12', 'description': text('Ask your parents')},
+            'esrb': {'name': 'L', 'description': text('L for BASTA')},
         },
     }
     data.update(app_user_data(slug))
@@ -165,7 +172,7 @@ def rating():
         'posted': rand_posted(),
         'report_spam': report_spam,
         'user': {
-            'display_name': random.choice(user_names),
+            'display_name': text(random.choice(user_names)),
             'id': random.randint(1000, 9999),
         },
         'version': version,

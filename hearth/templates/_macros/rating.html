@@ -6,13 +6,13 @@
   <div class="review-inner">
     {{ stars(this.rating, detailpage=detailpage) }}
     <span class="byline">
-      {{ _('by <strong>{author}</strong>', author=this.user.display_name|safe) }}
+      {{ _('by <strong>{author}</strong>', author=escape(this.user.display_name)) }}
       {% if this.version and not this.version.latest %}
         {{ _('for previous version {version}', version=this.version.name) }}
       {% endif %}
     </span>
     <div class="body">
-      {{ this.body|nl2br }}
+      {{ this.body|escape|nl2br }}
     </div>
     {% if not detailpage %}
       <ul class="actions only-if-logged-in">
