@@ -182,7 +182,7 @@ define(
         this.terminate = pool.abort;
 
         this.finish = function() {
-            pool.then(function() {
+            pool.always(function() {
                 z.page.trigger('loaded');
             });
             pool.finish();

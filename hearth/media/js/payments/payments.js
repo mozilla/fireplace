@@ -68,7 +68,7 @@ define(
                     classes: 'error',
                     message: gettext('Payment failed. Try again later.'),
                     timeout: 5000
-                }).then(window.location.reload);
+                });
             }
             $def.reject(null, product, 'MKT_CANCELLED');
         };

@@ -141,7 +141,7 @@ define(['cache', 'jquery'], function(cache, $) {
             var req = func.apply(this, args);
             initiated++;
             requests.push(req);
-            req.then(function() {
+            req.always(function() {
                 initiated--;
                 finish();
             });

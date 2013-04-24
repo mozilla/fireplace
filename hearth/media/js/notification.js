@@ -24,7 +24,7 @@ define('notification', ['capabilities', 'jquery', 'z'], function(caps, $, z) {
             def.reject();
         }
         def = $.Deferred();
-        def.then(hide);
+        def.always(hide);
         notificationEl.removeClass(addedClasses.join(' '));
         contentEl.text('');
         addedClasses = [];

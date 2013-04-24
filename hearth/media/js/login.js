@@ -9,14 +9,17 @@ define('login',
 
         var $this = $(this);
         $this.addClass('loading-submit');
-        startLogin().then(function() {
+        startLogin().always(function() {
             $this.removeClass('loading-submit').blur();
         });
 
     }).on('click', '.logout', function(e) {
         e.preventDefault();
         user.clear_token();
+        z.body.removeClass('logged-in');
+        z.page.trigger('reload_chrome');
         postBack('navigator.id.logout', true);
+        notification.notification({message: gettext('You have been signed out')});
     });
 
     var pending_logins = [];
@@ -60,6 +63,7 @@ define('login',
                     resolve_pending();
                 }
 
+                notification.notification({message: gettext('You have been signed in')});
 
                 var to = require('utils').getVars().to;
                 if (to && to[0] == '/') {
