@@ -1,31 +1,36 @@
 @import 'lib';
 
+.listing {
+    margin-bottom: 10px;
+    .loadmore {
+        margin-bottom: -10px;
+    }
+    li.item {
+        background: #fff;
+        border: 1px solid $seavan-salt-white;
+        border-radius: 5px;
+        margin: 10px 10px 0;
+        position: relative;
+    }
+    .mkt-tile + .tray {
+        border-radius: 0 0 3px 3px;
+    }
+}
+
 @media $at-least-desktop {
+    #search-results {
+        padding: 40px 0;
+    }
     .listing {
         li {
-            border: 0;
-            position: relative;
-            &.item:hover {
-                background-color: rgba(255,255,255,.25);
+            &.item, &.loadmore {
+                margin: 25px 0 0;
             }
-            &.item + li.item {
-                &:before,
-                &:after {
-                    content: "";
-                    display: block;
-                    height: 1px;
-                    position: absolute;
-                    top: 0;
-                    width: 100%;
-                }
-                &:before {
-                    gradientLeft(unquote('rgba(199, 199, 203, 0), rgba(199, 199, 203, .75) 25%, rgba(199, 199, 203, .75) 75%, rgba(199, 199, 203, 0) 100%'));
-                }
-                &:after {
-                    gradientLeft(unquote('rgba(235, 238, 239, 0), rgba(255,255,255,.75) 25%, rgba(255,255,255,.75) 75%, rgba(235, 238, 239, 0) 100%'));
-                    top: 1px;
-                    visibility: visible;
-                }
+            &.loadmore {
+                margin-bottom: -25px;
+            }
+            &.item:hover {
+                border-color: darken($seavan-salt-white, 10%);
             }
             a {
                 position: static;

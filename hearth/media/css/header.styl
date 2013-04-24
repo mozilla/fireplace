@@ -261,6 +261,8 @@
 }
 
 .results-header {
+    background: $salt-flat-white;
+    border-top: 1px solid #fff;
     height: 40px;
     max-height: 40px;
     position: relative;
@@ -281,9 +283,9 @@
     height: 22px;
     line-height: 22px;
     position: absolute;
-    right: 15px;
+    right: 10px;
     top: 9px;
-    width: 64px;
+    width: 69px;
     &:before,
     &:after {
         content: "";
@@ -454,7 +456,7 @@
     }
 }
 
-// ***************** Narrow Mobile (< 600px)
+// ***************** Narrow Mobile (<= 671px)
 
 @media (max-width: 671px) {
     [data-page-type=search] {
@@ -465,9 +467,28 @@
             }
         }
     }
+}
+
+// ***************** Wide Mobile (> 671px)
+
+@media (min-width: 672px) {
     .results-header {
-        background: $salt-flat-white;
-        border-top: 1px solid #fff;
+        border: 0;
+        height: 53px;
+        max-height: 53px;
+        position: relative;
+        &:before {
+            display: none;
+        }
+        div {
+            font-size: 40px;
+            line-height: 50px;
+            padding: 0;
+        }
+    }
+    .expand-toggle {
+        top: 13px;
+        right: 0;
     }
 }
 

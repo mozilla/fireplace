@@ -20,7 +20,14 @@ define(
         }
     }));
 
-    var expand = localStorage.getItem('expand-listings') === 'true' || capabilities.widescreen;
+    // Default to the graphical view at desktop widths and traditional
+    // list view at lesser widths.
+    var expand = capabilities.widescreen;
+    if ('expand-listings' in localStorage) {
+        // If we've set this value in localStorage before, then use it.
+        expand = localStorage['expand-listings'] === 'true';
+    }
+
     function setTrays(expanded) {
         if (expanded !== undefined) {
             expand = expanded;
@@ -47,6 +54,7 @@ define(
         } else {
             $q.removeAttr('data-context');
         }
+        setTrays(expand);
     }).on('reloaded_chrome', function() {
         setTrays(expand);
     }).on('loaded_more', function() {

@@ -235,6 +235,7 @@ define('navigation',
         } else {
             $q.removeAttr('data-context');
         }
+        $q.blur();
         z.page.trigger('search', {q: query});
 
     });
