@@ -151,6 +151,11 @@ animation($animation) {
     animation: $animation;
 }
 
+gradientLinear($gradient) {
+    background-image: -webkit-linear-gradient($gradient);
+    background-image:         linear-gradient($gradient);
+}
+
 gradientLeft($gradient) {
     background-image: -webkit-linear-gradient(left, $gradient);
     background-image:         linear-gradient(to right, $gradient);
