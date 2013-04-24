@@ -1,4 +1,4 @@
-define('z', ['jquery', 'settings', 'underscore'], function($, settings, _) {
+define('z', ['jquery', 'underscore'], function($, _) {
     var z = {
         win: $(window),
         doc: $(document),

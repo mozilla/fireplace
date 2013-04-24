@@ -1,6 +1,6 @@
-define(['underscore'], function(_) {
+define(['rewriters', 'underscore'], function(rewriters, _) {
 
-    cache = {};
+    var cache = {};
 
     function has(key) {
         return key in cache;
@@ -11,6 +11,14 @@ define(['underscore'], function(_) {
     }
 
     function set(key, value) {
+        for (var i = 0, rw; rw = rewriters[i++];) {
+            var output = rw(key, value, cache);
+            if (output === null) {
+                return;
+            } else if (output) {
+                value = output;
+            }
+        }
         cache[key] = value;
     }
 

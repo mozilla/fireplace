@@ -1,8 +1,10 @@
 define(
-    ['capabilities', 'utils', 'z'],
-    function(capabilities, utils, z) {
+    ['capabilities', 'l10n', 'utils', 'z'],
+    function(capabilities, l10n, utils, z) {
 
     var _pd = utils._pd;
+    var gettext = l10n.gettext;
+    var ngettext = l10n.ngettext;
 
     // Clear search field on 'cancel' search suggestions.
     $('#site-header').on('click', '.header-button.cancel', _pd(function() {
@@ -52,8 +54,6 @@ define(
     });
 
     return function(builder, args, params) {
-        _.extend(params, {page: 0});
-
         if ('sort' in params && params.sort == 'relevancy') {
             delete params.sort;
         }
@@ -62,9 +62,7 @@ define(
         builder.z('search', params.q);
         builder.z('title', params.q || gettext('Search Results'));
 
-        builder.start('search/main.html', {params: _.extend({}, params)}).done(function() {
-            setTrays();
-        });
+        builder.start('search/main.html', {params: _.extend({}, params)}).done(setTrays);
     };
 
 });

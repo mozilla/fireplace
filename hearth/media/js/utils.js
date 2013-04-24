@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'z'], function($, _, z) {
+define(['jquery', 'underscore'], function($, _) {
     _.extend(String.prototype, {
         strip: function(str) {
             // Strip all whitespace.
@@ -38,12 +38,7 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
     }
 
     function baseurl(url) {
-        var qpos = url.indexOf('?');
-        if (qpos === -1) {
-            return url;
-        } else {
-            return url.substr(0, qpos);
-        }
+        return url.split('?')[0];
     }
 
     function urlencode(kwargs) {
@@ -51,7 +46,9 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
         if ('__keywords' in kwargs) {
             delete kwargs.__keywords;
         }
-        for (var key in kwargs) {
+        var keys = _.keys(kwargs).sort();
+        for (var i = 0; i < keys.length; i++) {
+            var key = keys[i];
             params.push(encodeURIComponent(key) + '=' +
                         encodeURIComponent(kwargs[key]));
         }
@@ -86,7 +83,7 @@ define(['jquery', 'underscore', 'z'], function($, _, z) {
     function makeOrGetOverlay(id) {
         $('#' + el).remove();
         var el = $('<div class="overlay" id="' + id + '">');
-        z.body.append(el);
+        document.body.appendChild(el[0]);
         return el;
     }
 

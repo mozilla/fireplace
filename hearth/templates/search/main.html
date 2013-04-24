@@ -1,33 +1,6 @@
 {% include '_macros/market_tile.html' %}
 {% include '_macros/more_button.html' %}
 
-<section id="filters" class="main overlay{{ ' alt' if settings.payments_enabled }}">
-  <header class="header">
-    <a href="#" class="header-button icon back left dismiss"><b></b></a>
-    <h1 class="title">{{ _('Filter') }}</h1>
-  </header>
-
-  <div class="filters-body">
-    <div>
-      <h2>{{ _('Sort by') }}</h2>
-      <ul class="toggles two-col c" id="filter-sort">
-        <li class="relevancy">
-          <a href="#" data-option="relevancy">{{ _('Relevance') }}</a>
-        </li>
-        <li class="rating">
-          <a href="#" data-option="rating">{{ _('Rating') }}</a>
-        </li>
-      </ul>
-      <input type="hidden" name="sort" class="params" value="" />
-
-      <div class="footer-action">
-        <a href="#" class="apply">{{ _('Apply') }}</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <section id="search-results" class="main full c">
   {% defer (url=apiParams('search', params), pluck='objects', as='app', paginate='ol.listing') %}
     <div class="header results-header c">
@@ -53,7 +26,5 @@
     <p class="no-results">
       {{ _('No results found') }}
     </p>
-  {% except %}
-
   {% end %}
 </section>
