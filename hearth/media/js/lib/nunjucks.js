@@ -428,7 +428,7 @@ function memberLookup(obj, val, autoescape) {
         };
     }
 
-    return suppressValue(obj[val], autoescape);
+    return suppressValue(obj[val]);
 }
 
 function callWrap(obj, name, args) {

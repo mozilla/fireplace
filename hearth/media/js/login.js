@@ -11,6 +11,8 @@ define('login',
         $this.addClass('loading-submit');
         startLogin().always(function() {
             $this.removeClass('loading-submit').blur();
+        }).done(function() {
+            notification.notification({message: gettext('You have been signed in')});
         });
 
     }).on('click', '.logout', function(e) {
@@ -62,8 +64,6 @@ define('login',
                 } else {
                     resolve_pending();
                 }
-
-                notification.notification({message: gettext('You have been signed in')});
 
                 var to = require('utils').getVars().to;
                 if (to && to[0] == '/') {
