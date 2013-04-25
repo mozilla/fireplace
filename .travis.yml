@@ -8,6 +8,11 @@ notifications:
       - "irc.mozilla.org#fireplace"
     on_success: change
     on_failure: change
+language: node_js
+node_js:
+  - "0.11"
+  - "0.10"
+  - "0.8"
 before_script:
   - "export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'"
   - "export DISPLAY=:99.0"
