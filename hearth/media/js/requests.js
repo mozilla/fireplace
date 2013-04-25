@@ -1,4 +1,4 @@
-define(['cache', 'jquery'], function(cache, $) {
+define(['cache', 'jquery', 'user', 'utils'], function(cache, $, user, utils) {
     /*
     Methods:
 
@@ -62,9 +62,16 @@ define(['cache', 'jquery'], function(cache, $) {
 
     function _get(url) {
         console.log('[req] GETing', url);
-        return $.get(url).done(function(data) {
+        return $.get(url).done(function(data, status, xhr) {
             console.log('[req] GOT', url);
             cache.set(url, data);
+
+            var filter_header;
+            if ((!user.get_setting('region') || user.get_setting('region') == 'internet') &&
+                (filter_header = xhr.getResponseHeader('X-API-Filter'))) {
+                var region = utils.getVars(xhr.getResponseHeader('X-API-Filter')).region;
+                user.update_settings({region: region});
+            }
         });
     }
 
