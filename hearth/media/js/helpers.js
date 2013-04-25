@@ -72,6 +72,8 @@ define('helpers',
         range: _.range,
         escape: utils.escape_,
 
+        REGIONS: require('settings').REGION_CHOICES_SLUG,
+
         navigator: window.navigator
     };
 });

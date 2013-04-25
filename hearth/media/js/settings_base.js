@@ -11,8 +11,9 @@ define('settings_base', [], function() {
 
         // TODO: put real values here.
         REGION_CHOICES_SLUG: {
-            'usa': 'United States',
-            'bra': 'Brazil'
+            'us': 'United States',
+            'br': 'Brazil',
+            'es': 'Spain'
         },
 
         timing_url: '',  // TODO: figure this out

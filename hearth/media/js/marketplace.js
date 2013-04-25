@@ -66,7 +66,8 @@ require.config({
         }
 
         z.page.one('loaded', function() {
-           $('#splash-overlay').addClass('hide');
+            console.log('[mkt] Hiding splash screen');
+            $('#splash-overlay').addClass('hide');
         });
 
         if (settings.tracking_enabled) {

@@ -6,22 +6,6 @@
         <b>{{ _('Visit the Developer Hub') }}</b>
       </a>
     </div>
-    {# TODO: Make this responsive based on basta's logged-in classes.
-       Based on ACL, show and hide these links:
-         <a href="https://marketplace.firefox.com/reviewers/apps/queue/" class="sync">Reviewer Tools</a>
-         <a href="https://marketplace.firefox.com/localizers" class="sync">Localizer Tools</a>
-         <a href="https://marketplace.firefox.com/lookup/" class="sync">Lookup Tool</a>
-         <a href="https://marketplace.firefox.com/admin/models" class="sync">Admin Tools</a>
-    #}
-    {% if footer_links %}
-      <div class="group links only-logged-in">
-        {% for link in footer_links -%}
-          <a href="{{ link.href }}" class="sync">{{ link.text }}</a>
-        {%- endfor %}
-        <a href="{{ url('settings') }}" class="region region-{{ user.get_setting('region') }}">
-          {{ LANGUAGES[navigator.language] }}</a>
-      </div>
-    {% endif %}
     <div class="group links">
       <a href="https://marketplace.firefox.com/developers/">{{ _('Developer Hub') }}</a>
       <a href="#" class="submit-feedback">{{ _('Feedback') }}</a>
@@ -30,7 +14,7 @@
     {% if not user.logged_in() or not footer_links %}
       <div class="group links">
         <a href="{{ url('settings') }}" class="region region-{{ user.get_setting('region') }}">
-          {{ LANGUAGES[navigator.language] }}</a>
+          {{ REGIONS[user.get_setting('region')] }}</a>
       </div>
     {% endif %}
   </div>
