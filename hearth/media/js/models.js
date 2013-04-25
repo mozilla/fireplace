@@ -5,6 +5,7 @@ define('models', ['requests'], function(requests) {
 
     var prototypes = {
         'app': 'slug',
+        'category': 'slug',
         'rating': 'id'
     };
 
