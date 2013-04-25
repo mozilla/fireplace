@@ -147,4 +147,3 @@ make test
 
 - `numberfmt` doesn't work (should probably be integrated with L10n
   pluralization)
-- `WebActivity` support has not yet been added.
