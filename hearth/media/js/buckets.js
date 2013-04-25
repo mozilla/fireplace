@@ -60,7 +60,7 @@ define([], function() {
         !!velem.canPlayType('video/webm; codecs="vp8"').replace(/^no$/,''),  // WebM
         !!prefixed('cancelFullScreen', document),  // Full Screen API
         !!prefixed('getGamepads', navigator),  // Gamepad API
-        !!(prefixed('storageInfo') || window.StorageInfo)  // Quota Management API
+        !!(prefixed('persistentStorage') || window.StorageInfo)  // Quota Management API
     ];
 
     var profile = parseInt(capabilities.map(function(x) {return !!x ? '1' : '0';}).join(''), 2).toString(16);
