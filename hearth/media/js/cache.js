@@ -30,7 +30,7 @@ define(['rewriters', 'underscore'], function(rewriters, _) {
         var count = 0;
         for (var key in cache) {
             if (matcher(key)) {
-                cache[key] = worker(cache[key]);
+                cache[key] = worker(cache[key], key);
                 if (limit && ++count >= limit) {
                     return;
                 }

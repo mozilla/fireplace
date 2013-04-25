@@ -19,6 +19,14 @@ define(['underscore'], function(_) {
         }
     }
 
+    function eeq_(x, y, msg) {
+        try {
+            assert(x === y);
+        } catch (e) {
+            throw new Error(msg || ('"' + x + '" did not exactly match "' + y + '"'));
+        }
+    }
+
     // Fuzzy equals
     function feq_(x, y, msg) {
         try {
@@ -84,11 +92,17 @@ define(['underscore'], function(_) {
             // Function-ify non-functions.
             if (_.isFunction(x[1])) {
                 x[1] = x[1]();
+            } else if (_.isArray(x[1])) {
+                // If it's an array, convert it to an array-like object.
+                // Require.js freaks out when you give it an array, but this
+                // should work in (almost) all circumstances.
+                x[1] = _.extend({}, x[1])
             }
 
             return x;
         }));
 
+        console.log(stub_map);
         var context = require.config({
             context: _.uniqueId(),
             map: {'*': stub_map},
@@ -110,6 +124,7 @@ define(['underscore'], function(_) {
         assert: assert,
         ok_: ok_,
         eq_: eq_,
+        eeq_: eeq_,
         feq_: feq_,
         contains: contains,
         disincludes: disincludes,
