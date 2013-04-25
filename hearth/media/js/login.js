@@ -126,7 +126,7 @@ define('login',
         $('.persona').css('cursor', 'pointer');
         var email = user.get_setting('email') || '';
         if (email) {
-            console.log('detected user', email);
+            console.log('[login] detected user', email);
         }
         postBack('navigator.id.watch', email);
     };

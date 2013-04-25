@@ -46,7 +46,10 @@ function Suite(options) {
     // var cobj = require('casper').create(options);
 
     cobj.on('page.error', function(err, trace) {
-        console.error(err, trace);
+        console.error(err);
+        trace.forEach(function(item) {
+            console.log('  ', item.file, ':', item.line);
+        });
     });
 
     this.run = function(url, callback) {

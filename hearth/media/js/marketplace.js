@@ -1,5 +1,8 @@
 // Do this last- initialize the marketplace!
-console.log('************** starting up Marketplace...');
+console.log('Mozilla(R) FP-MKT (R) 1.0');
+console.log('   (C)Copyright Mozilla Corp 1998-2013');
+console.log('');
+console.log('64K High Memory Area is available.');
 
 require.config({
     enforceDefine: true,
@@ -52,6 +55,9 @@ require.config({
            'z'
         ],
     function() {
+
+        console.log('[mkt] Dependencies resolved, starting init');
+
         var capabilities = require('capabilities');
         var nunjucks = require('templates');
         var settings = require('settings');
@@ -108,7 +114,7 @@ require.config({
 
         // Do some last minute template compilation.
         z.page.on('reload_chrome', function() {
-            console.log('Reloading chrome');
+            console.log('[mkt] Reloading chrome');
             var context = _.extend({z: z}, require('helpers'));
             $('#site-header').html(
                 nunjucks.env.getTemplate('header.html').render(context));
@@ -128,24 +134,26 @@ require.config({
         );
 
         // Perform initial navigation.
+        console.log('[mkt] Triggering initial navigation');
         z.page.trigger('navigate', [window.location.pathname + window.location.search]);
 
         // Debug page
         (function() {
             var to = false;
             z.doc.on('touchstart', '.wordmark', function() {
-                console.log('hold for debug...');
+                console.log('[mkt] hold for debug...');
                 clearTimeout(to);
                 to = setTimeout(function() {
                     console.log('navigating to debug...');
                     z.page.trigger('navigate', ['/debug']);
                 }, 5000);
             }).on('touchend', '.wordmark', function() {
-                console.log('debug hold broken.');
+                console.log('[mkt] debug hold broken.');
                 clearTimeout(to);
             });
         })();
 
+        console.log('[mkt] Initialization complete');
     });
 
 })();

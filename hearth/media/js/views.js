@@ -26,17 +26,17 @@ define('views',
             url = '/' + url;
         }
 
-        console.log('Routing', url);
+        console.log('[views] Routing', url);
         for (var i in routes) {
             var route = routes[i];
             if (route === undefined) continue;
 
-            console.log('Testing route', route.regexp);
+            // console.log('Testing route', route.regexp);
             var matches = route.regexp.exec(url);
             if (!matches)
                 continue;
 
-            console.log('Found route: ', route.view_name);
+            // console.log('Found route: ', route.view_name);
             try {
                 return [route.view, _.rest(matches)];
             } catch (e) {

@@ -16,6 +16,8 @@ suite.run('/', function(test, waitFor) {
 
     test('Category baseline tests', function(assert) {
         assert.URL(/\/category\/[a-zA-Z0-9]+/);
+        suite.capture('category.png');
+
         //assert.invisible('h1.site', 'Wordmark should be hidden');
         assert.visible('#search-q');
         assert.visible('.expand-toggle');
@@ -25,8 +27,6 @@ suite.run('/', function(test, waitFor) {
 
         assert.visible('#search-results');
         assert.visible('#search-results ol.listing li a.mkt-tile');
-
-        suite.capture('category.png');
 
         suite.press('#search-results ol.listing li a.mkt-tile:first-child');
 

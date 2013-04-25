@@ -41,8 +41,9 @@ define(
             var view = require('views/' + route.view_name);
             route.view = view;
         }
+        console.log('[routes] Views loaded')
         return routes;
     }
 );
 
-})()
+})();

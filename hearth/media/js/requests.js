@@ -53,6 +53,7 @@ define(['cache', 'jquery', 'user', 'utils'], function(cache, $, user, utils) {
 
     function get(url) {
         if (cache.has(url)) {
+            console.log('[req] GETing from cache', url);
             return $.Deferred()
                     .resolve(cache.get(url))
                     .promise({__cached: true});
@@ -66,6 +67,9 @@ define(['cache', 'jquery', 'user', 'utils'], function(cache, $, user, utils) {
             console.log('[req] GOT', url);
             cache.set(url, data);
 
+            if (!xhr) {
+                return;
+            }
             var filter_header;
             if ((!user.get_setting('region') || user.get_setting('region') == 'internet') &&
                 (filter_header = xhr.getResponseHeader('X-API-Filter'))) {

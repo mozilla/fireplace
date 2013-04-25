@@ -57,6 +57,7 @@ define('navigation',
     function navigate(href, popped, state) {
         if (!state) return;
 
+        console.log('[nav] Navigation started: ', href);
         var view = views.match(href);
         if (view === null) {
             return;
@@ -126,18 +127,18 @@ define('navigation',
     }
 
     z.body.on('click', '.site-header .back', utils._pd(function() {
-
+        console.log('[nav] Back button pressed');
         if (!canNavigate()) {
+            console.log('[nav] Back button aborted; canNavigate is falsey.');
             return;
         }
 
-        // Something something back joke.
         if (stack.length > 1) {
             stack.shift();
             history.replaceState(stack[0], false, stack[0].path);
             navigate(stack[0].path, true, stack[0]);
         } else {
-            console.log('attempted nav.back at root!');
+            console.log('[nav] attempted nav.back at root!');
         }
     }));
 
@@ -147,35 +148,14 @@ define('navigation',
         e.preventDefault();
         return z.page.trigger(
             'navigate', utils.urlparams(urls.reverse('search'), params));
-    }).on('navigate', function(e, url, params) {
+    }).on('navigate divert', function(e, url, params) {
+        console.log('[nav] Received ' + e.type + ' event:', url);
         if (!url) return;
 
-        if (!canNavigate()) {
-            return;
-        }
-
-        // Terminate any outstanding requests.
-        if (last_bobj) {
-            last_bobj.terminate();
-        }
-
-        // If we're navigating from a hash, just pretend it's a plain old URL.
-        if (url.substr(0, 2) == '#!') {
-            url = url.substr(2);
-        }
-
-        var newState = {
-            path: url,
-            scrollTop: z.doc.scrollTop(),
-            params: params
-        };
-
-        history.pushState(newState, false, url);
-        navigate(url, false, newState);
-    }).on('divert', function(e, url, params) {
-        if (!url) return;
+        var divert = e.type === 'divert';
 
         if (!canNavigate()) {
+            console.log('[nav] Navigation aborted; canNavigate is falsey.');
             return;
         }
 
@@ -186,12 +166,16 @@ define('navigation',
 
         var newState = {
             path: url,
-            scrollTop: 0,
+            scrollTop: divert ? 0 : z.doc.scrollTop(),
             params: params
         };
 
-        history.replaceState(newState, false, url);
-        stack.shift();
+        if (divert) {
+            history.replaceState(newState, false, url);
+            stack.shift();
+        } else {
+            history.pushState(newState, false, url);
+        }
         navigate(url, false, newState);
     });
 
