@@ -41,6 +41,14 @@ define(['jquery', 'underscore'], function($, _) {
         return url.split('?')[0];
     }
 
+    function encodeURIComponent() {
+        return window.encodeURIComponent.apply(this, arguments).replace(/%20/g, '+');
+    }
+
+    function decodeURIComponent() {
+        return window.decodeURIComponent.apply(this, arguments).replace(/\+/g, ' ');
+    }
+
     function urlencode(kwargs) {
         var params = [];
         if ('__keywords' in kwargs) {
@@ -57,10 +65,6 @@ define(['jquery', 'underscore'], function($, _) {
 
     function urlparams(url, kwargs) {
         return baseurl(url) + '?' + urlencode(_.defaults(kwargs, querystring(url)));
-    }
-
-    function decodeURIComponent() {
-        return window.decodeURIComponent.apply(this, arguments).replace(/\+/g, ' ');
     }
 
     function getVars(qs, excl_undefined) {

@@ -53,6 +53,21 @@ test('api url', function(done) {
     );
 });
 
+test('api url signage', function(done) {
+    mock(
+        'urls',
+        {
+            capabilities: {firefoxOS: true, widescreen: false, touch: 'foo'},
+            settings: {api_url: 'api:'}
+        }, function(urls) {
+            var hp_url = urls.api.unsigned.url('homepage');
+            eq_(hp_url, 'api:/api/v1/home/page/');
+            eq_(urls.api.sign(hp_url), urls.api.url('homepage'));
+            done();
+        }
+    );
+});
+
 test('api carrier', function(done) {
     mock(
         'urls',

@@ -27,23 +27,40 @@ test('fieldFocused', function(done) {
     done();
 });
 
+test('querystring', function(done) {
+    feq_(utils.querystring('?a=b&c=d'), {a: 'b', c: 'd'});
+    feq_(utils.querystring('asdfoobar?a=b&c=d'), {a: 'b', c: 'd'});
+    feq_(utils.querystring('?a=b&a=d'), utils.getVars('a=b&a=d'));
+    done();
+});
+
 test('baseurl', function(done) {
+    eq_(utils.baseurl('http://foo/bar'), 'http://foo/bar');
     eq_(utils.baseurl('http://foo/bar?asdf/asdf'), 'http://foo/bar');
     eq_(utils.baseurl('http://foo/bar/?asdf/asdf'), 'http://foo/bar/');
+    done();
+});
+
+test('urlencode', function(done) {
+    eq_(utils.urlencode({a: 'b'}), 'a=b');
+    eq_(utils.urlencode({a: 'b', c: 'd'}), 'a=b&c=d');
+    eq_(utils.urlencode({c: 'b', a: 'd'}), 'a=d&c=b');  // Must be alphabetized.
+    eq_(utils.urlencode({__keywords: 'poop', test: 'crap'}), 'test=crap');
+    eq_(utils.urlencode({test: 'cr ap'}), 'test=cr+ap');
     done();
 });
 
 test('urlparams', function(done) {
     eq_(utils.urlparams('', {a: 'b'}), '?a=b');
     eq_(utils.urlparams('?', {a: 'b'}), '?a=b');
-    eq_(utils.urlparams('?', {a: ' '}), '?a=%20');
+    eq_(utils.urlparams('?', {a: ' '}), '?a=+');
     eq_(utils.urlparams('?a=d', {a: 'b'}), '?a=b');
-    eq_(utils.urlparams('?', {__keywords: true}), '?');
     done();
 });
 
 test('getVars', function(done) {
     feq_(utils.getVars('a=b'), {a: 'b'});
+    feq_(utils.getVars('a=b+c'), {a: 'b c'});
     feq_(utils.getVars('a%20z=b%20c'), {'a z': 'b c'});
     feq_(utils.getVars('a+z=b+c'), {'a z': 'b c'});
     feq_(utils.getVars('?a=b'), {a: 'b'});
