@@ -1,7 +1,7 @@
 <div class="main privacy infobox c">
   <div>
     {% defer (url=api('privacy_policy')) %}
-      {{ this }}
+      {{ this|safe }}
 
     {% placeholder %}
       <p>{{ _('Loading privacy policy...') }}</p>
