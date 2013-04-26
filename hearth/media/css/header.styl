@@ -357,13 +357,16 @@
     .act-tray {
         margin-left: 15px;
         &.active .settings {
+            background-position: calc(unquote('50% + 30px')) 10px;
             height: 70px;
+            margin-left: -60px;
+            width: 110px;
             &:after {
                 border: 38px solid transparent;
                 border-bottom-color: $grey-gardens-gray;
                 display: block;
                 position: absolute;
-                left: -13px;
+                right: -13px;
                 top: 10px;
             }
         }
