@@ -170,6 +170,7 @@ define(
         this.env.addExtension('defer', defer_runner);
 
         this.start = function(template, defaults) {
+            z.page.trigger('build_start');
             z.page.html(env.getTemplate(template).render(_.defaults(defaults || {}, helpers)));
             return this;
         };

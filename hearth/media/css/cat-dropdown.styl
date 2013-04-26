@@ -1,0 +1,251 @@
+@import 'lib';
+
+.dropdown {
+    display: none;
+}
+
+$cat-icon-size-default = 28px;
+$cat-icon-size-desktop = 60px;
+
+.cat-icon,
+.cat-icons a {
+    &:before {
+        // Default to 'all' icon
+        background: url(../img/pretty/cat-icons.svg) no-repeat 50% 94.8%;
+        background-size: $cat-icon-size-default;
+        content: '';
+        display: inline-block;
+        height: $cat-icon-size-default;
+        margin: 0 10px 0 0;
+        vertical-align: middle;
+        width: $cat-icon-size-default;
+    }
+    &:focus:before,
+    &:hover:before {
+        background-image: url(../img/pretty/cat-icons-white.svg);
+    }
+    &.cat-entertainment:before,
+    &.cat-sports:before {
+        background-position: 50% 48.9%;
+    }
+    &.cat-business:before {
+        background-position: 50% 42.5%;
+    }
+    &.cat-games:before {
+        background-position: 50% -1%;
+    }
+    &.cat-music:before {
+        background-position: 50% 11.4%;
+    }
+    &.cat-news-weather:before {
+        background-position: 50% 4.9%;
+    }
+    &.cat-productivity:before {
+        background-position: 50% 68.5%;
+    }
+    &.cat-social:before {
+        background-position: 50% 75.4%;
+    }
+    &.cat-travel:before {
+        background-position: 50% 88.2%;
+    }
+    &.cat-books:before,
+    &.cat-reference:before {
+        background-position: 50% 81.6%;
+    }
+    &.cat-education:before {
+        background-position: 50% 23.2%;
+    }
+    &.cat-health-fitness:before {
+        background-position: 50% 17.9%;
+    }
+    &.cat-lifestyle:before {
+        background-position: 50% 36.3%;
+    }
+    &.cat-photo-video:before {
+        background-position: 50% 61.9%;
+    }
+    &.cat-utilities:before {
+        background-position: 50% 29.5%;
+    }
+    &.cat-shopping:before {
+        background-position: 50% 55.6%;
+    }
+}
+
+.show-cats {
+    #page {
+        padding-top: 0;
+    }
+    .dropdown {
+        display: block;
+        height: auto;
+        &:before {
+            background-image: none;
+        }
+        &:after {
+            content: '';
+            display: block;
+            // Pseudo shadow under dropdown
+            gradientLinear(unquote('to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%'));
+            height: 5px;
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+        }
+        a {
+            background: $salt-flat-white;
+            color: $castle-skull-gray;
+            display: block;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 40px;
+            padding-right: 40px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            z-index: 1;
+            &:focus,
+            &:hover {
+                color: $sailor-blue;
+            }
+            // Dropdown category icon
+            &:focus:before,
+            &:hover:before {
+                // Cat icons are blue on dropdown hover.
+                background-image: url(../img/pretty/cat-icons-blue.svg);
+            }
+            // Dropdown arrow
+            &:after {
+                background: url(../img/pretty/dropdown.svg) 0 50% no-repeat;
+                background-size: 24px auto;
+                content: '';
+                display: inline-block;
+                height: 15px;
+                margin-left: 10px;
+                position: absolute;
+                right: 5px;
+                top: 15px;
+                width: 30px;
+            }
+        }
+        &.active a:after,
+        a:hover:after,
+        a:focus:after {
+            background-image: url(../img/pretty/dropdown_active.svg);
+            text-decoration: none;
+        }
+    }
+    .cat-menu {
+        background: $grey-gardens-gray;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li:last-child a {
+            border-bottom: none;
+        }
+        a {
+            border-bottom: 1px dashed $cement-gray;
+            color: $cement-gray;
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 40px;
+            padding: 0 10px;
+            position: relative;
+            width: 100%;
+            &:focus,
+            &:hover,
+            &:focus:hover {
+                background-color: $sailor-blue;
+                color: #fff;
+                text-decoration: none;
+            }
+            &:focus {
+                background-color: darken($sailor-blue, 15%);
+                outline: none;
+            }
+            &.current:after {
+                background: url(../img/pretty/tick.svg) no-repeat;
+                background-size: 17px auto;
+                content: '';
+                display: block;
+                height: 12px;
+                position: absolute;
+                right: 12px;
+                top: 15px;
+                width: 17px;
+            }
+            &.current:hover:after,
+            &.current:focus:after {
+                background-image: url(../img/pretty/tick-white.svg);
+            }
+        }
+    }
+}
+
+
+@media $at-least-desktop {
+    .show-cats {
+        .dropdown {
+            margin: 0 auto;
+            width: $desktop-content;
+            &.results-header {
+                height: auto;
+                max-height: 100%;
+            }
+            &:after {
+                background: none;
+            }
+            a {
+                border-bottom: none;
+                color: $castle-skull-gray;
+                font-size: 40px;
+                font-weight: 300;
+                height: auto;
+                line-height: 59px; // Just enough so the float gets caught when wrapped
+                margin-bottom: 38px;
+                text-align: left;
+                text-shadow: 0 1px 0 $steam-white;
+                vertical-align: middle;
+                // Dropdown category icon
+                &:before {
+                    background-image: url(../img/pretty/cat-icons-blue.svg);
+                    background-size: $cat-icon-size-desktop auto;
+                    float: left;
+                    height: $cat-icon-size-desktop;
+                    width: $cat-icon-size-desktop;
+                }
+                // Dropdown Arrow
+                &:after {
+                    background-size: 30px auto;
+                    margin-left: 20px;
+                    position: static;
+                }
+            }
+        }
+        .cat-menu {
+            box-shadow: 0 1px 3px 0 $primer-gray;
+            margin: 0 auto 48px;
+            overflow: hidden;
+            position: relative;
+            width: $desktop-content;
+            z-index: 1;
+            li {
+                float: left;
+                width: 50%;
+            }
+            // Remove the border on the last but
+            // one when we have two cols of cats.
+            // and only when this child is odd
+            // (When the number of children is even)
+            li:nth-last-child(2):nth-child(odd) a {
+                border-bottom: none;
+            }
+            li:nth-child(odd) {
+                border-right: 1px dashed $cement-gray;
+            }
+        }
+    }
+}

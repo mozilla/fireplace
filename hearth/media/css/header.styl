@@ -45,8 +45,9 @@
 .site-header {
     display: block;
     position: fixed;
-    z-index: 10;
     text-align: center;
+    top: 0;
+    z-index: 10;
     > * {
         display: block;
     }
@@ -300,20 +301,6 @@
     }
 }
 
-@media $narrower-than-desktop {
-    .category-dropdown h2 {
-        max-width: 100%;
-        text-align: center;
-        width: 100%;
-    }
-}
-
-@media $at-least-desktop {
-    .category-dropdown {
-        padding-bottom: 30px;
-    }
-}
-
 // search results tile expand toggle
 .expand-toggle {
     display: block;
@@ -379,12 +366,12 @@
     }
 }
 
-.page {
+.page-container {
     padding-top: 50px;
 }
 
 @media (min-width: 710px) {
-    .page {
+    .page-container {
         padding: 98px 0 48px;  // 48px + 50px to offset header
     }
 }
@@ -393,7 +380,7 @@
 
 // This probably shouldn't be media query based.
 @media (min-width: 1024px) {
-    .page {
+    .page-container {
         padding: 48px 0;
     }
 

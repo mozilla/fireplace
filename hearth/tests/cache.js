@@ -1,5 +1,6 @@
 (function() {
 var a = require('assert');
+var _ = require('underscore');
 var assert = a.assert;
 var eq_ = a.eq_;
 var eeq_ = a.eeq_;
@@ -43,6 +44,20 @@ test('cache non-strings', function(done) {
     done();
 });
 
+test('cache purge', function(done) {
+    var key = 'test:';
+    var str = 'poop';
+    cache.set(key + 'foo', str);
+    cache.set(key + 'abc', str);
+    cache.set(key + 'bar', str);
+    cache.purge();
+    eq_(_.size(cache.raw), 0);
+    assert(!cache.has(key + 'foo'));
+    assert(!cache.has(key + 'abc'));
+    assert(!cache.has(key + 'bar'));
+    done();
+});
+
 test('cache rewrite', function(done) {
     var key = 'test:';
     var str = 'poop';
@@ -80,6 +95,9 @@ test('cache rewrite', function(done) {
 test('cache rewrite limit', function(done) {
     var key = 'test:';
     var str = 'poop';
+
+    cache.purge();
+
     cache.set(key + 'foo', str);
     cache.set(key + 'abc', str);
     cache.set(key + 'bar', str);

@@ -10,6 +10,8 @@ define('views/category',
         builder.z('type', 'root');
         builder.z('search', params.name || category);
         builder.z('title', params.name || category);
+        builder.z('show_cats', true);
+        builder.z('cat', category);
 
         builder.start('category/main.html', {
             category: category,

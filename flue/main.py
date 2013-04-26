@@ -136,14 +136,16 @@ def featured():
 
 @app.route('/api/v1/apps/category/')
 def categories():
-    return [
-        defaults.category('shopping', 'Shopping'),
-        defaults.category('games', 'Games'),
-        defaults.category('productivity', 'Productivity'),
-        defaults.category('social', 'Social'),
-        defaults.category('music', 'Music'),
-        defaults.category('lifestyle', 'Thug Life'),
-    ]
+    return {
+        'objects': [
+            defaults.category('shopping', 'Shopping'),
+            defaults.category('games', 'Games'),
+            defaults.category('productivity', 'Productivity'),
+            defaults.category('social', 'Social'),
+            defaults.category('music', 'Music'),
+            defaults.category('lifestyle', 'Thug Life'),
+        ]
+    }
 
 
 @app.route('/api/v1/home/page/')

@@ -1,0 +1,12 @@
+<menu class="cat-menu cat-icons hidden c">
+  <li>
+    <a class="cat-all" data-cat-slug="all"
+       href="{{ url('homepage') }}">{{ _('All Categories') }}</a>
+  </li>
+{% for cat in categories %}
+  <li>
+      <a class="cat-{{ cat.slug }}" data-cat-slug="{{ cat.slug }}"
+         href="{{ url('category', [cat.slug]) }}">{{ cat.name }}</a>
+  </li>
+{% endfor %}
+</menu>

@@ -14,6 +14,9 @@ define('views/homepage',
         builder.z('search', params.name);
         builder.z('title', params.name);
 
+        builder.z('cat', 'all');
+        builder.z('show_cats', true);
+
         builder.start('category/main.html', {
             endpoint: urls.api.url('category', ['']),
             category_name: gettext('All Categories'),
