@@ -68,7 +68,7 @@ define('urls',
             var args = {
                 format: 'json',
                 lang: navigator.language,
-                region: user.get_setting('region'),
+                region: user.get_setting('region') || '',
                 //scr: caps.widescreen ? 'wide' : 'mobile',
                 //tch: caps.touch,
                 dev: _device(),
