@@ -5,6 +5,7 @@
 
 {% set endpoint = api('app', [slug]) %}
 
+<div class="detail">
 <section class="main product-details listing expanded c">
   {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
     {{ market_tile(this) }}
@@ -78,6 +79,7 @@
 <section class="main reviews c">
   <div id="reviews-detail">
     {% defer (url=apiParams('reviews', {'app': slug}), id='ratings') %}
+      <h3>{{ _('Reviews') }}</h3>
       {% if this.meta.total_count %}
         <ul class="c ratings-placeholder-inner">
           {% for rat in this.objects.slice(0, 2) %}
@@ -87,7 +89,7 @@
         <div class="{{ 'split' if this.user.can_rate else 'full' }}">
           <a class="button alt average-rating" href="{{ url('app/ratings', [slug]) }}">
             <span>
-              {{ _plural('{n} review', '{n} reviews',
+              {{ _plural('{n} Review', '{n} Reviews',
                          n=this.meta.total_count) }}
             </span>
             {{ stars(this.info.average, detailpage=true) }}
@@ -183,4 +185,5 @@
       </div>
     {% endif %}
   {% end %}
+</div>
 </div>
