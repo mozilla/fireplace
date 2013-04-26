@@ -66,6 +66,7 @@ define('urls',
         return function() {
             var out = func.apply(this, arguments);
             var args = {
+                format: 'json',
                 lang: navigator.language,
                 region: user.get_setting('region'),
                 //scr: caps.widescreen ? 'wide' : 'mobile',

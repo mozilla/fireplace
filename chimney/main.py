@@ -46,7 +46,8 @@ def _urlparams(url):
     qs = _qs()
     if not qs:
         return url
-    qs += '&format=json'
+    if 'format=json' not in qs:
+        qs += '&format=json'
     if '?' not in url:
         url += '?'
     else:

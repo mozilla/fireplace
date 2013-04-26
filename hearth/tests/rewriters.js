@@ -15,7 +15,7 @@ test('rewriter pagination cache', function(done) {
     var first_result = cache[require('urls').api.params('search', {q: 'foo'})] = {
         objects: ['first', 'second', 'third'],
         meta: {
-            total_count: 3,
+            total_count: 6,
             limit: 3,
             next: 'second page'
         }
@@ -25,7 +25,7 @@ test('rewriter pagination cache', function(done) {
     var value = {
         objects: ['fourth', 'fifth', 'sixth'],
         meta: {
-            total_count: 3,
+            total_count: 6,
             limit: 3,
             next: 'third page'
         }

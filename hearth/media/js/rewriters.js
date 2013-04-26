@@ -22,7 +22,6 @@ define(['underscore', 'urls', 'utils'], function(_, urls, utils) {
                 return;
             }
 
-            c[old_url].meta.total_count += new_value.meta.total_count;
             c[old_url].meta.limit += new_value.meta.limit;
             c[old_url].meta.next = new_value.meta.next;
             c[old_url].objects = c[old_url].objects.concat(new_value.objects);

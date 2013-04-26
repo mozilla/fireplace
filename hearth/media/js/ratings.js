@@ -155,9 +155,7 @@ define('ratings',
 
             rewriter(app, function(data) {
                 data.objects.unshift(new_review);
-                if (data.meta.total_count + 1 <= data.meta.limit) {
-                    data.meta.total_count += 1;
-                }
+                data.meta.total_count += 1;
                 data.user.has_rated = true;
                 return data;
             });
