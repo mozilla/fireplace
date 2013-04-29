@@ -3,7 +3,7 @@ var suite = require('./kasperle').suite();
 suite.run('/category/foo', function(test, waitFor) {
 
     waitFor(function() {
-        return suite.exists('#splash-overlay.hide');
+        return suite.exists('#featured');
     });
 
     test('Click on creatured app', function() {

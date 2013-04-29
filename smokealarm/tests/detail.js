@@ -3,11 +3,11 @@ var suite = require('./kasperle').suite();
 suite.run('/', function(test, waitFor) {
 
     waitFor(function() {
-        return suite.exists('#splash-overlay.hide');
+        return suite.exists('#featured');
     });
 
     test('Click on featured app', function() {
-        suite.press('.featured ul li a:first-child');
+        suite.press('#featured ol li a:first-child');
     });
 
     waitFor(function() {

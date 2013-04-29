@@ -1,34 +1,23 @@
 var suite = require('./kasperle').suite();
 
-suite.run('/', function(test, waitFor) {
+suite.run('/category/foo', function(test, waitFor) {
 
     waitFor(function() {
-        return suite.exists('#splash-overlay.hide');
-    });
-
-    // test('Click on category from homepage', function() {
-    //     suite.press('.categories ul li a:first-child');
-    // });
-
-    waitFor(function() {
-        return suite.exists('#search-results li a');
+        return suite.exists('#featured li a');
     });
 
     test('Category baseline tests', function(assert) {
         assert.URL(/\/category\/[a-zA-Z0-9]+/);
         suite.capture('category.png');
 
-        //assert.invisible('h1.site', 'Wordmark should be hidden');
         assert.visible('#search-q');
-        assert.visible('.expand-toggle');
+        assert.selectorExists('#featured');
+        assert.selectorExists('#featured ol.grid li a h3:not(:empty)');
 
-        assert.selectorExists('#featured.creatured');
-        assert.selectorExists('#featured.creatured ol.grid li a h3:not(:empty)');
+        assert.visible('#gallery');
+        assert.visible('#gallery ol.listing li a.mkt-tile');
 
-        assert.visible('#search-results');
-        assert.visible('#search-results ol.listing li a.mkt-tile');
-
-        suite.press('#search-results ol.listing li a.mkt-tile:first-child');
+        suite.press('#gallery ol.listing li a.mkt-tile:first-child');
 
     });
 
