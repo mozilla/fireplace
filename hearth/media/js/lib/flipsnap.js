@@ -462,4 +462,6 @@ function triggerEvent(element, type, bubbles, cancelable) {
 
 window.Flipsnap = Flipsnap;
 
+define('flipsnap', [], function() {return Flipsnap;});
+
 })(window, window.document);

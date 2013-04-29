@@ -1,4 +1,4 @@
-define(
+define('payments/payments',
     ['capabilities', 'notification', 'requests'],
     function(caps, notification, requests) {
 

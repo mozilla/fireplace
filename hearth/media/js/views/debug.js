@@ -1,4 +1,4 @@
-define(
+define('views/debug',
     ['buckets', 'cache', 'capabilities', 'notification', 'utils', 'z'],
     function(buckets, cache, capabilities, notification, utils, z) {
     'use strict';

@@ -1,6 +1,6 @@
 define('helpers',
-       ['l10n', 'templates', 'require', 'underscore', 'utils', 'format', 'settings', 'urls', 'user'],
-       function(l10n, nunjucks, require, _, utils) {
+       ['l10n', 'templates', 'underscore', 'utils', 'format', 'settings', 'urls', 'user'],
+       function(l10n, nunjucks, _, utils) {
 
     var SafeString = nunjucks.require('runtime').SafeString;
     var env = nunjucks.env;

@@ -45,6 +45,7 @@ if (typeof define !== 'function') {
 }
 
 define(
+    'builder',
     ['templates', 'helpers', 'models', 'requests', 'settings', 'underscore', 'z', 'nunjucks.compat'],
     function(nunjucks, helpers, models, requests, settings, _, z) {
 

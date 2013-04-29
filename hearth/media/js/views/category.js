@@ -1,4 +1,6 @@
-define('views/category', ['capabilities', 'urls', 'utils', 'z'], function(capabilities, urls, utils, z) {
+define('views/category',
+    ['capabilities', 'urls', 'utils', 'z'],
+    function(capabilities, urls, utils, z) {
     'use strict';
 
     return function(builder, args, params) {

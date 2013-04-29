@@ -1,4 +1,6 @@
-define(['cache', 'jquery', 'user', 'utils'], function(cache, $, user, utils) {
+define('requests',
+    ['cache', 'jquery', 'user', 'utils'],
+    function(cache, $, user, utils) {
     /*
     Methods:
 

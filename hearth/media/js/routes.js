@@ -4,7 +4,7 @@ var dependencies;
 /* dtrace */
 var routes = [
     {pattern: '^/$', view_name: 'homepage'},
-    {pattern: '^/index.html$', view_name: 'homepage'},
+    {pattern: '^/(index|server).html$', view_name: 'homepage'},
     {pattern: '^/app/([^/<>"\']+)/ratings/add$', view_name: 'app/ratings/add'},
     {pattern: '^/app/([^/<>"\']+)/ratings/edit$', view_name: 'app/ratings/edit'},
     {pattern: '^/app/([^/<>"\']+)/ratings$', view_name: 'app/ratings'},

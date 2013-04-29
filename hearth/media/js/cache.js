@@ -1,4 +1,4 @@
-define(['rewriters', 'underscore'], function(rewriters, _) {
+define('cache', ['rewriters', 'underscore'], function(rewriters, _) {
 
     var cache = {};
 

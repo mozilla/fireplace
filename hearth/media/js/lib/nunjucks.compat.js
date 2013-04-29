@@ -1,4 +1,4 @@
-define(['nunjucks'], function(nunjucks) {
+define('nunjucks.compat', ['nunjucks'], function(nunjucks) {
     console.log('Loading nunjucks compat...')
 
     var runtime = nunjucks.require('runtime');

@@ -1,5 +1,5 @@
-define('lightbox', ['keys', 'utils', 'shothandles', 'z'],
-       function(keys, utils, handles, z) {
+define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
+       function(keys, utils, handles, _, z) {
 
     var $lightbox = $(document.getElementById('lightbox'));
     var $section = $lightbox.find('section');

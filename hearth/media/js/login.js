@@ -1,5 +1,5 @@
 define('login',
-    ['capabilities', 'jquery', 'notification', 'settings', 'underscore', 'user', 'requests', 'z', 'utils', 'urls', 'views'],
+    ['capabilities', 'jquery', 'notification', 'settings', 'underscore', 'user', 'requests', 'z', 'utils', 'urls'],
     function(capabilities, $, notification, settings, _, user, requests, z) {
 
     z.body.on('click', '.persona', function(e) {

@@ -1,6 +1,6 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
-define(
+define('install',
     ['apps', 'capabilities', 'jquery', 'login', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
     function(apps, caps, $, login, notification, payments, requests, urls, user, z) {
     'use strict';

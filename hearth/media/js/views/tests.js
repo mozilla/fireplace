@@ -1,4 +1,4 @@
-define(['assert'], function() {
+define('views/tests', ['assert'], function() {
     return function(builder) {
         var started = 0;
         var passed = 0;

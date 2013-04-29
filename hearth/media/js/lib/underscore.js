@@ -1224,4 +1224,6 @@
 
   });
 
+  define('underscore', [], function() {return _;});
+
 }).call(this);
