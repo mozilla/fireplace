@@ -1,6 +1,6 @@
 define('navigation',
-    ['capabilities', 'l10n', 'notification', 'urls', 'utils', 'views', 'z'],
-    function(capabilities, l10n, notification, urls, utils, views, z) {
+    ['capabilities', 'l10n', 'notification', 'underscore', 'urls', 'utils', 'views', 'z'],
+    function(capabilities, l10n, notification, _, urls, utils, views, z) {
     'use strict';
 
     var gettext = l10n.gettext;

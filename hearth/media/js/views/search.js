@@ -1,6 +1,6 @@
 define('views/search',
-    ['capabilities', 'l10n', 'utils', 'z'],
-    function(capabilities, l10n, utils, z) {
+    ['capabilities', 'l10n', 'underscore', 'utils', 'z'],
+    function(capabilities, l10n, _, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;

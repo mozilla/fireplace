@@ -1,6 +1,6 @@
 define('views/category',
-    ['capabilities', 'urls', 'utils', 'z'],
-    function(capabilities, urls, utils, z) {
+    ['capabilities', 'underscore', 'urls', 'utils', 'z'],
+    function(capabilities, _, urls, utils, z) {
     'use strict';
 
     return function(builder, args, params) {

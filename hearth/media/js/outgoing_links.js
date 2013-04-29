@@ -32,7 +32,6 @@ define('outgoing_links', ['capabilities', 'z'], function(capabilities, z) {
         });
     });
 
-
     // If we're inside the Marketplace app, open external links in the Browser.
     z.doc.on('click', 'a.external, a[rel=external]', function() {
         if (capabilities.chromeless) {

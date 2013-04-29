@@ -4,12 +4,13 @@ import re
 
 # JS
 blacklist = [
-    'require.js',
-    'suggestions.js',
     'jquery.cookie.js',
-    'stick.js',
+    'require.js',
     'settings_inferno.js',
-    'settings_travis.js'
+    'settings_local.js',
+    'settings_travis.js',
+    'stick.js',
+    'suggestions.js',
 ]
 
 output = []
