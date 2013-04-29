@@ -19,7 +19,6 @@ define('settings_base', [], function() {
         timing_url: '',  // TODO: figure this out
 
         persona_unverified_issuer: null,
-        login_provider: 'https://marketplace-dev.allizom.org',
         native_persona: 'https://native-persona.org/include.js',
         persona: 'https://login.persona.org/include.js',
 
