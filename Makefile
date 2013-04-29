@@ -30,17 +30,13 @@ clean:
 	rm -f hearth/media/css/include.css
 	rm -f hearth/media/include.*
 
-includes: clean css-include js-include
-
-css-include: compile
+includes: clean compile
 	echo "/* $(VERSION) */" > hearth/media/include.css
-	cat hearth/media/css/*.css | cleancss >> hearth/media/include.css
-	mv hearth/media/include.css hearth/media/css/
-
-js-include: compile
 	echo "/* $(VERSION) */" > hearth/media/include.js
 	cat yulelog/amd.js >> hearth/media/include.js
 	python build.py
+	cat hearth/media/include.css | cleancss > hearth/media/css/include.css
+	rm hearth/media/include.css
 	uglifyjs hearth/media/include.js -o hearth/media/include.js -m
 
 lint:
