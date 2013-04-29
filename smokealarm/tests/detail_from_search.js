@@ -3,7 +3,7 @@ var suite = require('./kasperle').suite();
 suite.run('/search?q=test', function(test, waitFor) {
 
     waitFor(function() {
-        return suite.exists('#splash-overlay.hide');
+        return suite.exists('#search-results');
     });
 
     test('Click on search result', function() {

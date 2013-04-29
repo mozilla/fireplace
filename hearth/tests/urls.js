@@ -42,12 +42,12 @@ test('api url', function(done) {
             capabilities: {firefoxOS: true, widescreen: false, touch: 'foo'},
             settings: {api_url: 'api:'}
         }, function(urls) {
-            var hp_url = urls.api.url('homepage');
-            eq_(hp_url.substr(0, 22), 'api:/api/v1/home/page/');
-            contains(hp_url, 'dev=firefoxos');
-            // contains(hp_url, 'scr=mobile');
-            // contains(hp_url, 'tch=foo');
-            disincludes(hp_url, 'carrier=');
+            var search_url = urls.api.url('search');
+            eq_(search_url.substr(0, 24), 'api:/api/v1/apps/search/');
+            contains(search_url, 'dev=firefoxos');
+            // contains(search_url, 'scr=mobile');
+            // contains(search_url, 'tch=foo');
+            disincludes(search_url, 'carrier=');
             done();
         }
     );
@@ -60,9 +60,9 @@ test('api url signage', function(done) {
             capabilities: {firefoxOS: true, widescreen: false, touch: 'foo'},
             settings: {api_url: 'api:'}
         }, function(urls) {
-            var hp_url = urls.api.unsigned.url('homepage');
-            eq_(hp_url, 'api:/api/v1/home/page/');
-            eq_(urls.api.sign(hp_url), urls.api.url('homepage'));
+            var search_url = urls.api.unsigned.url('search');
+            eq_(search_url, 'api:/api/v1/apps/search/');
+            eq_(urls.api.sign(search_url), urls.api.url('search'));
             done();
         }
     );
@@ -75,7 +75,7 @@ test('api carrier', function(done) {
             capabilities: {firefoxOS: true, widescreen: false, touch: 'foo'},
             settings: {api_url: 'api:', carrier: {slug: 'bastacom'}}
         }, function(urls) {
-            contains(urls.api.url('homepage'), 'carrier=bastacom');
+            contains(urls.api.url('search'), 'carrier=bastacom');
             done();
         }
     );
@@ -87,9 +87,9 @@ test('api url params', function(done) {
         {
             settings: {api_url: 'api:'}
         }, function(urls) {
-            var hp_url = urls.api.params('homepage', {cvan: 'poop'});
-            eq_(hp_url.substr(0, 22), 'api:/api/v1/home/page/');
-            contains(hp_url, 'cvan=poop');
+            var search_url = urls.api.params('search', {q: 'poop'});
+            eq_(search_url.substr(0, 24), 'api:/api/v1/apps/search/');
+            contains(search_url, 'q=poop');
             done();
         }
     );

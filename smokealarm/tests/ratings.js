@@ -17,7 +17,12 @@ suite.run('/app/foo', function(test, waitFor) {
     });
 
     test('Click on report review', function() {
-        suite.press('#review-list .actions a');
+        suite.press('#review-list .actions .flag');
+    });
+
+    waitFor(function() {
+        // Wait for flag dialogue
+        return suite.exists('#flag-review');
     });
 
     test('Ratings page baseline tests', function(assert) {
