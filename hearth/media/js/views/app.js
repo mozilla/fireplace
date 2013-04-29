@@ -1,4 +1,4 @@
-define(
+define('views/app',
     ['l10n', 'utils', 'requests', 'urls', 'z', 'templates', 'overflow'],
     function(l10n, utils, requests, urls, z, nunjucks, overflow) {
     'use strict';

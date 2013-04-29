@@ -1,5 +1,7 @@
-define('previews', ['flipsnap', 'templates', 'capabilities', 'shothandles', 'z'],
-       function(Flipsnap, nunjucks, caps, handles, z) {
+define('previews',
+    ['flipsnap', 'templates', 'capabilities', 'shothandles', 'underscore', 'z'],
+    function(Flipsnap, nunjucks, caps, handles, _, z) {
+
     // magic numbers!
     var THUMB_WIDTH = 180;
     var THUMB_PADDED = 195;

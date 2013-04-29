@@ -1,4 +1,4 @@
-define(['underscore'], function(_) {
+define('assert', ['underscore'], function(_) {
 
     function assert(x, msg) {
         if (!x) {

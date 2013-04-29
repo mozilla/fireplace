@@ -1,4 +1,4 @@
-define([], function() {
+define('buckets', [], function() {
 
     var aelem = document.createElement('audio');
     var velem = document.createElement('video');

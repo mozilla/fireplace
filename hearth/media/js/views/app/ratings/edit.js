@@ -1,4 +1,4 @@
-define(
+define('views/app/ratings/edit',
     ['l10n', 'notification', 'ratings', 'requests', 'settings', 'urls', 'user', 'utils', 'z'],
     function(l10n, notification, ratings, requests, settings, urls, user, utils, z) {
 

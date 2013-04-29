@@ -1,6 +1,7 @@
 // JS for the desktop Feedback overlay.
 
 define(
+    'feedback',
     ['buckets', 'capabilities', 'l10n', 'notification', 'urls', 'utils', 'z', 'requests', 'templates'],
     function(buckets, capabilities, l10n, notification, urls, utils, z, requests, nunjucks) {
 

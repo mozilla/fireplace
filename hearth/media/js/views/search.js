@@ -1,4 +1,4 @@
-define(
+define('views/search',
     ['capabilities', 'l10n', 'utils', 'z'],
     function(capabilities, l10n, utils, z) {
 

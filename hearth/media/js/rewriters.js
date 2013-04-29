@@ -1,4 +1,6 @@
-define(['underscore', 'urls', 'utils'], function(_, urls, utils) {
+define('rewriters',
+    ['underscore', 'urls', 'utils'],
+    function(_, urls, utils) {
 
     function pagination(url) {
         return function(new_key, new_value, c) {

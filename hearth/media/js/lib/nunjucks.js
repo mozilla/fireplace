@@ -1232,7 +1232,7 @@ nunjucks.lexer = lexer;
 nunjucks.require = function(name) { return modules[name]; };
 
 if(typeof define === 'function' && define.amd) {
-    define(function() { return nunjucks; });
+    define('nunjucks', function() { return nunjucks; });
 }
 else {
     window.nunjucks = nunjucks;

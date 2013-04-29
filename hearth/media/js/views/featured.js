@@ -1,4 +1,4 @@
-define(['urls', 'z'], function(urls, z) {
+define('views/featured', ['urls', 'z'], function(urls, z) {
 
     return function(builder, args, __, params) {
         var category = args[0] || '';

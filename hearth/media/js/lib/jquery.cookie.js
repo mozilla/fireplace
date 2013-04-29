@@ -39,7 +39,7 @@
  * @author Klaus Hartl/klaus.hartl@stilbuero.de
  */
 
-define(['jquery'], function() {
+define('lib/jquery.cookie', ['jquery'], function() {
     /**
      * Get the value of a cookie with the given name.
      *

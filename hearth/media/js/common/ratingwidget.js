@@ -1,4 +1,4 @@
-define(['jquery'], function($) {
+define('common/ratingwidget', ['jquery'], function($) {
     // Replaces rating selectboxes with the rating widget
     $.fn.ratingwidget = function(classes) {
         this.each(function(n, el) {

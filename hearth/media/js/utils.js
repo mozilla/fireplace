@@ -1,4 +1,4 @@
-define(['jquery', 'underscore'], function($, _) {
+define('utils', ['jquery', 'underscore'], function($, _) {
     _.extend(String.prototype, {
         strip: function(str) {
             // Strip all whitespace.

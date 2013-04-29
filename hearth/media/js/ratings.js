@@ -1,6 +1,6 @@
 define('ratings',
-    ['cache', 'capabilities', 'l10n', 'login', 'templates', 'underscore', 'utils', 'urls', 'user', 'views', 'z', 'requests', 'notification'],
-    function(cache, capabilities, l10n, login, nunjucks, _, utils, urls, user, views, z) {
+    ['cache', 'capabilities', 'l10n', 'login', 'templates', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification'],
+    function(cache, capabilities, l10n, login, nunjucks, _, utils, urls, user, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -79,7 +79,7 @@ define('ratings',
                 data.user.has_rated = false;
                 return data;
             });
-            views.reload();
+            require('views').reload();
 
         }).fail(function() {
             notify({message: gettext('There was a problem deleting the review')});
@@ -164,7 +164,7 @@ define('ratings',
             var overlay = $this.closest('.overlay');
             if (overlay.length) {
                 overlay.remove();
-                views.reload();
+                require('views').reload();
             } else {
                 z.page.trigger('navigate', urls.reverse('app', [$this.data('app')]));
             }

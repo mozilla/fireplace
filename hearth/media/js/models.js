@@ -1,4 +1,4 @@
-define('models', ['requests'], function(requests) {
+define('models', ['requests', 'underscore'], function(requests, _) {
 
     // {'type': {'<id>': object}}
     var data_store = {};

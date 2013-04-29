@@ -1,4 +1,4 @@
-define([], function() {
+define('user', [], function() {
 
     var token = localStorage.getItem('user');
     var settings = JSON.parse(localStorage.getItem('settings') || '{}');

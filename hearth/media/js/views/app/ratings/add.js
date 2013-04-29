@@ -1,4 +1,6 @@
-define(['login', 'l10n', 'user', 'z'], function(login, l10n, user, z) {
+define('views/app/ratings/add',
+    ['login', 'l10n', 'user', 'z'],
+    function(login, l10n, user, z) {
 
     var gettext = l10n.gettext;
 

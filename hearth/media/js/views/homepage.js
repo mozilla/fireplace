@@ -1,6 +1,6 @@
 define('views/homepage',
-      ['capabilities', 'l10n', 'urls', 'utils', 'z'],
-      function(capabilities, l10n, urls, utils, z) {
+    ['l10n', 'underscore', 'urls'],
+    function(l10n, _, urls) {
     'use strict';
 
     var gettext = l10n.gettext;

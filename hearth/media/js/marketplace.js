@@ -29,32 +29,33 @@ require.config({
     define(
         'marketplace',
         [
-           'buttons',
-           'capabilities',
-           'feedback',
-           'forms',
-           'header',
-           'helpers',
-           'install',
-           'l10n',
-           'lightbox',
-           'login',
-           'navigation',
-           'notification',
-           'outgoing_links',
-           'overlay',
-           'paginator',
-           'previews',
-           'ratings',
-           'common/ratingwidget',
-           'settings',
-           'templates',
-           'tracking',
-           'user',
-           'webactivities',
-           'z'
+            'underscore',
+            'buttons',
+            'capabilities',
+            'feedback',
+            'forms',
+            'header',
+            'helpers',
+            'install',
+            'l10n',
+            'lightbox',
+            'login',
+            'navigation',
+            'notification',
+            'outgoing_links',
+            'overlay',
+            'paginator',
+            'previews',
+            'ratings',
+            'common/ratingwidget',
+            'settings',
+            'templates',
+            'tracking',
+            'user',
+            'webactivities',
+            'z'
         ],
-    function() {
+    function(_) {
 
         console.log('[mkt] Dependencies resolved, starting init');
 
@@ -120,8 +121,6 @@ require.config({
                 nunjucks.env.getTemplate('header.html').render(context));
             $('#site-footer').html(
                 nunjucks.env.getTemplate('footer.html').render(context));
-            $('#login').html(
-                nunjucks.env.getTemplate('login.html').render(context));
 
             z.body.toggleClass('logged-in', require('user').logged_in());
             z.page.trigger('reloaded_chrome');
