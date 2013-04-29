@@ -1,8 +1,6 @@
-define('settings', ['settings_base', 'underscore'], function(settings_base, _) {
-    // Override settings here!
-    settings_base = _.defaults({
+define('settings', [], function() {
+    return {
         api_url: 'http://chimney.paas.allizom.org',
         body_classes: 'nightly'
-    }, settings_base);
-    return settings_base;
+    };
 });

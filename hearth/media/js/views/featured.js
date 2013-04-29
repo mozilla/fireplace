@@ -1,4 +1,3 @@
-
 define('views/featured', ['urls', 'z'], function(urls, z) {
 
     return function(builder, args, __, params) {
