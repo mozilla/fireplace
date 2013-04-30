@@ -1,3 +1,5 @@
 define('settings_local', [], function() {
-    return {api_url: window.location.origin};
+    var origin = window.location.origin || (
+        window.location.protocol + '//' + window.location.host);
+    return {api_url: origin};
 });
