@@ -105,6 +105,30 @@ The damper will not start a local server in this case, but a `strings.po` file
 will be generated.
 
 
+### Compiling Includes
+
+If you need to compile include files (i.e.: for Space Heater or a less HTTP-
+heavy version of the project), run `make includes`. This will generate two files:
+
+```
+hearth/media/include.js
+hearth/media/css/include.css
+```
+
+The CSS in `include.css` is generated in the order in which CSS files are
+included in `hearth/index.html`.
+
+`include.js` uses a lightweight AMD loader (rather than require.js). This keeps
+file size down and also makes it possible to name-mangle internal keywords which
+otherwise wouldn't be minifiable. Note that the only safe globals are `require`
+and `define`---using any other non-browser globals will result in errors. I.e.:
+accessing `_` without requiring `'underscore'` will cause the code to fail. Also
+note that all modules must include a name as the first parameter.
+
+Note that you need the dev dependencies to run this compilation. You can get
+them by running `npm install -d`.
+
+
 ## Localizing
 
 A detailed guide to extracting strings and creating JS language packs can be
