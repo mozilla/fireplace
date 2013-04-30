@@ -6,6 +6,10 @@ suite.run('/search?q=test', function(test, waitFor) {
         return suite.exists('#search-results');
     });
 
+    test('Ensure no cat dropdown on search page', function(assert) {
+        assert.invisible('.dropdown a');
+    });
+
     test('Click on search result', function() {
         suite.press('#search-results li a:first-child');
     });

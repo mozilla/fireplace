@@ -1,4 +1,3 @@
-
 var base_url = 'http://localhost:8675/';
 if (window.casper) {
     base_url = casper.cli.get(1) || base_url;
@@ -95,7 +94,7 @@ function Suite(options) {
             );
         });
 
-        console.log('Running tests...')
+        console.log('Running tests...');
         cobj.run(function() {
             this.test.done(asserts);
         });

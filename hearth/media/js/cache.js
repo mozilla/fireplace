@@ -8,6 +8,15 @@ define('cache', ['rewriters', 'underscore'], function(rewriters, _) {
 
     function get(key) {
         return cache[key];
+
+    }
+
+    function purge() {
+        for (var key in cache) {
+            if (cache.hasOwnProperty(key)) {
+                delete cache[key];
+            }
+        }
     }
 
     function set(key, value) {
@@ -43,6 +52,7 @@ define('cache', ['rewriters', 'underscore'], function(rewriters, _) {
         get: get,
         set: set,
         bust: bust,
+        purge: purge,
 
         attemptRewrite: rewrite,
         raw: cache

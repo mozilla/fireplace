@@ -32,6 +32,7 @@ require.config({
             'underscore',
             'buttons',
             'capabilities',
+            'cat-dropdown',
             'feedback',
             'forms',
             'header',
@@ -72,7 +73,7 @@ require.config({
             z.body.addClass(settings.body_classes);
         }
 
-        z.page.one('loaded', function() {
+        z.page.one('cats_rendered', function() {
             console.log('[mkt] Hiding splash screen');
             $('#splash-overlay').addClass('hide');
         });
@@ -113,10 +114,12 @@ require.config({
             }
         });
 
+
         // Do some last minute template compilation.
         z.page.on('reload_chrome', function() {
             console.log('[mkt] Reloading chrome');
             var context = _.extend({z: z}, require('helpers'));
+
             $('#site-header').html(
                 nunjucks.env.getTemplate('header.html').render(context));
             $('#site-footer').html(
