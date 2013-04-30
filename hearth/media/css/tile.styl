@@ -335,9 +335,6 @@ gridStyle() {
     .shots {
         position: relative;
         .next, .prev {
-            // TODO: Temporarily display:none but may want to remove this if
-            // arrows are 100% gone from the new design.
-            display: none !important;
             border-radius: 0 30px 30px 0;
             border: 15px solid rgba(#252525,.7);
             height: 60px;
@@ -345,6 +342,8 @@ gridStyle() {
             position: absolute;
             top: 50%;
             width: 0;
+            transition(all .2s linear);
+            outline: 0;
             &:after {
                 background: url(../img/icons/slider_arrow.png) no-repeat;
                 content: "";
@@ -357,6 +356,10 @@ gridStyle() {
             }
             &:hover {
                 border-color: rgba(#252525,.9);
+                border-left-width: 22px;
+            }
+            &:active {
+                border-color: rgba(#777,.9);
             }
         }
         .next {
@@ -364,6 +367,10 @@ gridStyle() {
             right: 0;
             &:after {
                 transform(scaleX(-1));
+            }
+            &:hover {
+                border-left-width: 15px;
+                border-right-width: 22px;
             }
         }
         .prev {
