@@ -1,5 +1,6 @@
-from datetime import date, timedelta
 import random
+from cgi import escape
+from datetime import date, timedelta
 
 
 XSS = False
@@ -55,8 +56,8 @@ def app(name, slug, **kwargs):
     data = {
         'name': text(name),
         'slug': random.choice(dummy_text),
-        'summary': kwargs.get('summary', ptext(50)),
-        'description': kwargs.get('description', ptext(100)),
+        'summary': escape(kwargs.get('summary', ptext(50))),
+        'description': escape(kwargs.get('description', ptext(100))),
         'is_packaged': False,
         'manifest_url':
             'http://%s%s.testmanifest.com/manifest.webapp' % (ptext(1), random.randint(1, 50000)),  # Minifest if packaged

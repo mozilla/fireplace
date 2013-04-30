@@ -46,7 +46,7 @@
     {% defer (url=endpoint, as='app', key=slug) %}
       {% set super_long = this.summary.length + description.length > 700 %}
       <p class="summary">
-        {{ this.summary|escape|nl2br }}
+        {{ this.summary|nl2br }}
         {% if super_long %}
           <a href="#" class="show-toggle" data-toggle-text="{{ _('Less&hellip;') }}">{{ _('More&hellip;') }}</a>
         {% endif %}
@@ -56,7 +56,7 @@
         <div{% if super_long %} class="collapsed"{% endif %}>
           {% if this.description.length %}
             <h3>{{ _('Description') }}</h3>
-            <div class="description">{{ this.description|escape|nl2br }}</div>
+            <div class="description">{{ this.description|nl2br }}</div>
           {% endif %}
           {% if this.is_packaged %}
             <h3>{{ _('Version') }}</h3>
