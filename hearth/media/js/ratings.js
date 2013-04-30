@@ -5,6 +5,7 @@ define('ratings',
 
     var gettext = l10n.gettext;
     var notify = require('notification').notification;
+    var forms = require('forms');
 
     // Initializes character counters for textareas.
     function initCharCount() {
@@ -146,6 +147,8 @@ define('ratings',
         var $this = $(this);
         var app = $this.data('app');
 
+        forms.toggleReviewFormState($this);
+
         var data = utils.getVars($this.serialize());
         data.app = app;
         require('requests').post(
@@ -169,6 +172,7 @@ define('ratings',
                 z.page.trigger('navigate', urls.reverse('app', [$this.data('app')]));
             }
         }).fail(function() {
+            forms.toggleReviewFormState($this, true);
             notify({message: gettext('Error while submitting review')});
         });
     });

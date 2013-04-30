@@ -12,4 +12,17 @@ define('forms', ['z'], function(z) {
             checkValid(this);
         });
     });
+
+    function toggleReviewFormState($formElm, enabled) {
+        if (enabled) {
+            $formElm.find('textarea, button').prop('disabled', false);
+            $formElm.find('.ratingwidget').removeClass('disabled');
+        } else {
+            $formElm.find('textarea, button').prop('disabled', true);
+            $formElm.find('.ratingwidget').addClass('disabled');
+        }
+    }
+
+    return {toggleReviewFormState: toggleReviewFormState};
+
 });

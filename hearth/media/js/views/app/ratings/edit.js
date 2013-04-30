@@ -4,6 +4,7 @@ define('views/app/ratings/edit',
 
     var gettext = l10n.gettext;
     var notify = notification.notification;
+    var forms = require('forms');
 
     z.page.on('submit', '.edit-review-form', function(e) {
         e.preventDefault();
@@ -11,6 +12,8 @@ define('views/app/ratings/edit',
         var uri = $this.data('uri');
         var slug = $this.data('slug');
         var _data = utils.getVars($this.serialize());
+
+        forms.toggleReviewFormState($this);
 
         requests.put(
             settings.api_url + urls.api.sign(uri),
@@ -30,6 +33,7 @@ define('views/app/ratings/edit',
 
             z.page.trigger('navigate', urls.reverse('app', [slug]));
         }).fail(function() {
+            forms.toggleReviewFormState($this, true);
             notify({message: gettext('There was a problem updating your review')});
         });
     });
