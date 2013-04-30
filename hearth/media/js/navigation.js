@@ -33,17 +33,16 @@ define('navigation',
             return url_parts[0];  // ...just return the path.
         }
 
-        var param_pairs = _.sortBy(_.pairs(used_params), function(x) {return x[0];});
-        return url_parts[0] + '?' + _.map(
-            param_pairs,
-            function(pair) {
+        return url_parts[0] + '?' + (
+            _.pairs(used_params)
+            .sort(function(a, b) {return a[0] < b[0];})
+            .map(function(pair) {
                 if (typeof pair[1] === 'undefined')
                     return encodeURIComponent(pair[0]);
                 else
                     return encodeURIComponent(pair[0]) + '=' +
                            encodeURIComponent(pair[1]);
-            }
-        ).join('&');
+            }).join('&'));
     }
 
     function canNavigate() {
@@ -69,11 +68,15 @@ define('navigation',
         state.title = z.context.title;
 
         if (popped && state.scrollTop) {
-            console.log('Scrolling', state.scrollTop);
+            console.log('[nav] Setting scroll: ', state.scrollTop);
             z.doc.scrollTop(state.scrollTop);
         } else {
-            console.log('Resetting scroll');
-            z.doc.scrollTop(0);
+            console.log('[nav] Resetting scroll');
+            // Asynchronously reset scroll position.
+            // This works around a bug in B2G/Android where rendering blocks interaction.
+            setTimeout(function() {
+                z.doc.scrollTop(0);
+            }, 0);
         }
 
         // Clean the path's parameters.
@@ -84,6 +87,7 @@ define('navigation',
         for (var i = 0; i < stack.length; i++) {
             if (stack[i].path === state.path ||
                 (state.type === 'search' && stack[i].type === state.type)) {
+                console.log('[nav] Navigation loop truncated:', stack.slice(0, i));
                 stack = stack.slice(i + 1);
                 break;
             }
@@ -99,8 +103,10 @@ define('navigation',
         } else {
             // handle the back and forward buttons.
             if (popped && stack[0].path === state.path) {
+                console.log('[nav] Shifting stack (used → or ← button)');
                 stack.shift();
             } else {
+                console.log('[nav] Pushed state onto stack: ', state.path);
                 stack.unshift(state);
             }
 
@@ -113,23 +119,23 @@ define('navigation',
                     // The parent is in the stack and it's not immediately
                     // behind the current page in the stack.
                     stack.splice(1, parent - 1);
-                    console.log('Closing navigation loop to parent (1 to ' + (parent - 1) + ')');
+                    console.log('[nav] Closing navigation loop to parent (1 to ' + (parent - 1) + ')');
                 } else if (parent == -1) {
                     // The parent isn't in the stack. Splice it in just below
                     // where the value we just pushed in is.
                     stack.splice(1, 0, {path: z.context.parent});
-                    console.log('Injecting parent into nav stack at 1');
+                    console.log('[nav] Injecting parent into nav stack at 1');
                 }
-                console.log('New stack size: ' + stack.length);
+                console.log('[nav] New stack size: ' + stack.length);
             }
         }
 
     }
 
     z.body.on('click', '.site-header .back', utils._pd(function() {
-        console.log('[nav] Back button pressed');
+        console.log('[nav] ← button pressed');
         if (!canNavigate()) {
-            console.log('[nav] Back button aborted; canNavigate is falsey.');
+            console.log('[nav] ← button aborted; canNavigate is falsey.');
             return;
         }
 
@@ -141,8 +147,6 @@ define('navigation',
             console.log('[nav] attempted nav.back at root!');
         }
     }));
-
-    var views = require('views');
 
     z.page.on('search', function(e, params) {
         e.preventDefault();
