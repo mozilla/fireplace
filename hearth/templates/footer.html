@@ -1,23 +1,18 @@
-<div id="directory-footer" class="c">
-  <div class="pad">
-    <div class="group">
-      <a class="devhub" href="https://marketplace.firefox.com/developers/">
-        <h1>{{ _('Develop apps for<br>the Marketplace!') }}</h1>
-        <b>{{ _('Visit the Developer Hub') }}</b>
-      </a>
-    </div>
-    <div class="group links">
-      <a href="https://marketplace.firefox.com/developers/">{{ _('Developer Hub') }}</a>
-      <a href="#" class="submit-feedback">{{ _('Feedback') }}</a>
-      <a href="https://support.mozilla.org/products/marketplace">{{ _('Support') }}</a>
-    </div>
-    {% if not user.logged_in() or not footer_links %}
-      <div class="group links">
-        <a href="{{ url('settings') }}" class="region region-{{ user.get_setting('region') }}">
-          {{ REGIONS[user.get_setting('region')] }}</a>
-      </div>
-    {% endif %}
+<div id="directory-footer" class="main full c">
+  <div class="group">
+    <a class="button alt devhub" href="https://marketplace.firefox.com/developers/">{{ _('Develop Apps') }}</a>
   </div>
+  <div class="group links">
+    <a href="https://marketplace.firefox.com/developers/">{{ _('Developer Hub') }}</a>
+    <a href="#" class="submit-feedback">{{ _('Feedback') }}</a>
+    <a href="https://support.mozilla.org/products/marketplace">{{ _('Support') }}</a>
+  </div>
+  {% if not user.logged_in() or not footer_links %}
+    <div class="language group links">
+      <a href="{{ url('settings') }}" class="region region-{{ user.get_setting('region') }}">
+        {{ REGIONS[user.get_setting('region')] }}</a>
+    </div>
+  {% endif %}
 </div>
 <div id="footer">
   <div class="pad">
