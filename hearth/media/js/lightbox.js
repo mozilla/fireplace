@@ -115,6 +115,7 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
 
     function hideLightbox() {
         pauseVideos();
+        if (slider) slider.refresh();
         $lightbox.removeClass('show');
         // We can't trust transitionend to fire in all cases.
         setTimeout(function() {
