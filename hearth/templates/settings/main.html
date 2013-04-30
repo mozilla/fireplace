@@ -1,15 +1,18 @@
 <section class="main account" id="account-settings">
+  <header class="secondary-header hide-on-mobile c">
+    <h2>{{ _('Account Settings') }}</h2>
+  </header>
+
   {% set current_page = 'settings' %}
   {% include 'settings/nav.html' %}
 
   <form class="form-grid account-settings">
-
     <div class="simple-field c only-logged-in">
       <div class="form-label label">
         <label for="email">{{ _('Email') }}</label>
       </div>
       <div class="form-col">
-        <input type="email" name="email" readonly value="{{ user.get_setting('email') }}">
+        <input type="email" name="email" id="email" readonly value="{{ user.get_setting('email') }}">
       </div>
     </div>
 
@@ -18,7 +21,7 @@
         <label for="display_name">{{ _('Display Name') }}</label>
       </div>
       <div class="form-col">
-        <input name="display_name" value="{{ user.get_setting('display_name') }}" maxlength="50" type="text" required>
+        <input name="display_name" id="display_name" value="{{ user.get_setting('display_name') }}" maxlength="50" type="text" required>
       </div>
     </div>
 
@@ -27,23 +30,25 @@
         <label for="region">{{ _('Region') }}</label>
       </div>
       <div class="form-col">
-        <select name="region">
-          {% set user_region = user.get_setting('region') %}
-          {% for code, region in settings.REGION_CHOICES_SLUG.items() %}
-            <option value="{{ code }}"{{' selected' if code == user_region }}>
-              {{ region }}</option>
-          {% endfor %}
-        </select>
+        <div class="pretty-select">
+          <select name="region" id="region">
+            {% set user_region = user.get_setting('region') %}
+            {% for code, region in settings.REGION_CHOICES_SLUG.items() %}
+              <option value="{{ code }}"{{' selected' if code == user_region }}>
+                {{ region }}</option>
+            {% endfor %}
+          </select>
+        </div>
       </div>
     </div>
 
-    <footer class="form-footer">
-      <button type="submit">{{ _('Save Changes') }}</button>
-
-      <div class="extras">
+    <footer>
+      <p><button type="submit">{{ _('Save Changes') }}</button></p>
+      <p class="extras">
         <button class="alt logout only-logged-in">{{ _('Sign Out') }}</button>
-        <button class="alt persona only-logged-out">{{ _('Sign In / Register') }}</button>
-      </div>
+        <button class="alt persona only-logged-out">{{ _('Sign In / Sign Up') }}</button>
+      </p>
     </footer>
   </form>
+
 </section>

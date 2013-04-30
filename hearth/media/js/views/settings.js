@@ -41,7 +41,7 @@ define('views/settings',
     return function(builder) {
         builder.start('settings/main.html');
 
-        builder.z('type', 'leaf');
+        builder.z('type', 'root settings');
         builder.z('title', gettext('Account Settings'));
         builder.done();
     };

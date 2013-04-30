@@ -1,49 +1,44 @@
 @import 'lib';
 
-#account-settings .toggles {
-    padding: 15px;
-}
-
-#page .account-settings {
-    padding: 15px;
-    .form-footer {
-        text-align: center;
-        button {
-            margin-bottom: 1em;
-        }
-        .extras button {
-            float: none;
-            width: 100%;
-        }
-    }
-}
-.account {
-    .results-header {
-        display: none;
-    }
-    footer {
-        padding: 15px;
-    }
-}
-
 #feedback-overlay section {
     width: 450px;
 }
 
-// ***************** Wide Mobile (> 671px)
-
-@media (min-width: 672px) {
-    .account .results-header {
+.toggles {
+    list-style: none;
+    li {
+        float: left;
+        height: 24px;
+        margin: 7px 0;
+        width: (100% / 3);
+        + li {
+            border-left: 1px dotted $cement-gray;
+            text-align: center;
+        }
+        &:last-child {
+            text-align: right;
+        }
+    }
+    a {
+        color: $text;
         display: block;
+        ellipsis();
+        font-weight: 500;
+        line-height: 40px;
+        margin: -7px 0;
+        padding: 0 10px;
+        &.sel, &:active {
+            color: $sailor-blue;
+            font-weight: 500;
+        }
+        &:hover {
+            text-decoration: none;
+        }
     }
 }
 
 // Does not work with $desktop.
 @media $at-least-desktop {
-    // TODO: This has to be fixed properly.
-    body[data-page-type=leaf] #page .main.account {
-        background-color: transparent;
-    }
     .toggles {
         display: none;
     }

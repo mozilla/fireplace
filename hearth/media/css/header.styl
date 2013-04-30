@@ -27,7 +27,7 @@
     }
 }
 
-.header, .results-header {
+.header, .secondary-header {
     &:before {
         // Because box-shadows can go suck it.
         bottom: -10px;
@@ -144,10 +144,6 @@
     padding: 2px 10px 1px;
     width: 100%;
     z-index: 2;
-    &:focus {
-        border-color: $sailor-blue;
-        box-shadow: 0 0 8px $sailor-blue;
-    }
     &:-moz-placeholder {
         color: darken($cement-gray, 5%);
     }
@@ -254,11 +250,14 @@
     }
 }
 
-.act-tray.active .header-button.settings {
+// On hover the settings gear icon should turn blue.
+// On the Account Settings page the gear should also turn blue.
+.act-tray.active .header-button.settings,
+[data-page-type~=settings] .header-button.settings {
     background-image: url(../img/pretty/settings_gear_active.svg);
 }
 
-.results-header,
+.secondary-header,
 .featured-header {
     position: relative;
     h2, h3 {
@@ -274,8 +273,11 @@
 }
 
 @media $narrower-than-desktop {
-    .results-header {
+    .secondary-header {
         height: 40px;
+        &.hide-on-mobile {
+            display: none;
+        }
         h2 {
             font-size: 15px;
             line-height: 40px;
@@ -285,12 +287,12 @@
 }
 
 @media $at-least-desktop {
-    .results-header h2 {
+    .secondary-header h2 {
         margin: 0;
     }
 }
 
-.results-header {
+.secondary-header {
     background: $salt-flat-white;
     border-top: 1px solid #fff;
 }
@@ -345,15 +347,15 @@
 }
 
 // How does the header look for the various page "types"?
-[data-page-type=root] {
+[data-page-type~=root] {
     .header .expand-toggle {
         display: none;
     }
 }
 
 // TODO: Remove "leaf" `data-page-type`. We now have only two: "root" and "search".
-[data-page-type=search],
-[data-page-type=leaf] {
+[data-page-type~=search],
+[data-page-type~=leaf] {
     .back, .expand {
         display: block;
     }
@@ -478,8 +480,8 @@ main {
     }
 
     // How does the header look for the various page "types"?
-    [data-page-type=search],
-    [data-page-type=leaf] {
+    [data-page-type~=search],
+    [data-page-type~=leaf] {
         .back, .site {
             display: block;
         }
@@ -496,8 +498,8 @@ main {
 // ***************** Narrow Mobile (<= 671px)
 
 @media $narrower-than-desktop {
-    [data-page-type=root],
-    [data-page-type=search] {
+    [data-page-type~=root],
+    [data-page-type~=search] {
         .site-header {
             border-bottom: 1px solid darken($cement-gray, 5%);
             &:before {
@@ -510,10 +512,10 @@ main {
 // ***************** Wide Mobile (> 671px)
 
 @media $at-least-desktop {
-    .results-header {
+    .secondary-header {
         border: 0;
-        height: 53px;
-        max-height: 53px;
+        height: 48px;
+        max-height: 48px;
         position: relative;
         &:before {
             display: none;
@@ -532,7 +534,7 @@ main {
             width: auto;
         }
     }
-    [data-page-type=root] {
+    [data-page-type~=root] {
         .site-header {
             .site, .wordmark {
                 margin-right: 10px;
@@ -543,8 +545,8 @@ main {
             }
         }
     }
-    [data-page-type=search],
-    [data-page-type=leaf] {
+    [data-page-type~=search],
+    [data-page-type~=leaf] {
         .flex-span, .act-tray {
             display: none;
         }

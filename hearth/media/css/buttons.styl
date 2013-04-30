@@ -1,20 +1,5 @@
 @import 'lib';
 
-// Move these to 'lib' if needed elsewhere.
-btn-shadow() {
-    box-shadow: 0, 0 -2px 0 0 rgba(255,255,255,.1) inset;
-}
-alt-btn-shadow() {
-    box-shadow: 0 1px 0 #fff, 0 1px 0 $salt-flat-white inset;
-}
-btn-shadow-active() {
-    box-shadow: 0 2px 0 0 rgba(0,0,0,.2) inset, 0 12px 24px 6px rgba(0,0,0,.2) inset, 0 0 2px 2px rgba(0,0,0,.2) inset;
-}
-fatten() {
-    height: 48px;
-    padding: 0 32px;
-}
-
 .button, .button:visited, button {
     // Bluish.
     btn-shadow();
@@ -72,14 +57,13 @@ button, .button {
         border: 1px solid #b7b7b7;
         color: $london-fog-gray;
         &:hover, &:focus {
-            gradient-two-color(darken(#fff, 10%), darken(#e7e7e7, 10%));
+            alt-btn-hover-focus();
         }
         &:hover, &:focus, &:active {
-            color: darken($london-fog-gray, 10%);
+            alt-btn-hover-focus-active();
         }
         &:active {
-            btn-shadow-active();
-            border: 1px solid darken(#b7b7b7, 10%);
+            alt-btn-active();
         }
     }
     // Waiting/Loading spinner.

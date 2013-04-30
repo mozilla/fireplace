@@ -278,7 +278,14 @@ gridStyle() {
 
 .listing.grid-if-desktop {
     padding-top: 10px;
-    .tray {
+}
+
+.listing.grid-if-desktop .mkt-tile + .tray {
+    display: none;
+}
+
+@media $narrower-than-desktop {
+    .purchases .mkt-tile + .tray {
         display: none;
     }
 }

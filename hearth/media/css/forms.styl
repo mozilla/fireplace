@@ -21,17 +21,22 @@ button, input[type=button], input[type=reset], input[type=submit] {
     cursor: pointer;
 }
 
+label {
+    display: block;
+    font-weight: 400;
+}
+
 input::-webkit-input-placeholder {
     color: $gray;
 }
 
 input:-moz-placeholder {
     color: $gray;
-    text-overflow: ellipsis;  /* Firefox 18 and below */
+    text-overflow: ellipsis;  // Firefox 18 and below
 }
 
 input::-moz-placeholder {
-    text-overflow: ellipsis;  /* Firefox 19+ */
+    text-overflow: ellipsis;  // Firefox 19+
 }
 
 input[placeholder] {
@@ -49,47 +54,21 @@ input[placeholder] {
     }
 }
 
-input[type=text], input[type=email], select, textarea, .input {
-    border-radius: 2px;
-    box-shadow: 0 1px 0 rgba(255,255,255,.6), 0 1px 1px rgba(0,0,0,.1) inset, 0 1px 0 #fff inset;
-    background: rgba(255,255,255,.8);
-    border: 1px solid $light-gray;
-    color: $dark-gray;
-    padding: 5px;
-    &:focus {
-        background: rgba(255,255,255,.9);
-        color: $black;
-        border-color: $medium-gray;
+form {
+    input[type=email], input[type=text], textarea {
+        border-radius: 2px;
+        border: 1px solid $light-gray;
+        padding: 5px;
+        &[disabled], &[readonly] {
+            background: $seavan-salt-white;
+            color: $earl-gray;
+            cursor: not-allowed;
+        }
     }
-    &[disabled], &[readonly] {
-        background-color: $faint-gray;
-        color: $note-gray;
-        cursor: not-allowed;
-    }
-}
-
-input[type=file], select {
-    &:focus {
-        box-shadow: none;
-    }
-}
-
-input {
-    &[type=file] {
-        font-family: sans-serif;
-    }
-    &[type=checkbox],
-    &[type=radio] {
-        margin-right: 5px;
-        vertical-align: baseline;
-    }
-}
-
-.html-rtl {
-    input {
-        &[type=checkbox],
-        &[type=radio] {
-            margin: 0 0 0 5px;
+    input[type=email], input[type=text], #search-q, textarea {
+        &:focus {
+            border-color: $sailor-blue;
+            box-shadow: 0 0 8px $sailor-blue;
         }
     }
 }
@@ -98,326 +77,118 @@ textarea {
     display: block;
     overflow: auto;
     vertical-align: top;
-    width: 100%;
-}
-
-select {
-    padding: 0;
-    width: 100%;
-}
-
-option {
-    max-width: 634px;
-}
-
-label, .label {
-    font-weight: bold;
-    text-shadow: .5px .5px $white;
-}
-
-.choice label,
-label.choice,
-li label {
-    cursor: pointer;
-}
-
-.choice label,
-label.choice {
-    font-weight: normal;
-}
-
-.req,
-.errorlist,
-.error,
-.error label {
-    color: $red;
-}
-
-form .error {
-    margin-bottom: 5px;
-    input[type=text], input[type=password], input[type=email], select,
-    textarea {
-        border-color: $red;
-    }
-}
-
-.errorlist {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-p.req {
-    font-size: 11px;
-    margin: 0 0 10px;
-}
-
-.optional {
-    color: $note-gray;
-    font-size: 11px;
-    font-weight: normal;
-}
-
-.simple-field {
-    label, .label {
-        color: $dark-gray;
-        display: inline-block;
-        margin-bottom: 5px;
-    }
-    .errorlist {
-        margin-top: 5px;
-    }
-}
-
-form {
-    margin: 10px 0;
-    .note,
-    .html-support {
-        color: $medium-gray;
-        font-size: 11px;
-        line-height: 1.4;
-    }
-    .html-support {
-        margin: 5px 0 0;
-        text-align: right;
-        span {
-            border-bottom: 1px dotted $light-gray;
-            cursor: help;
-        }
-    }
-}
-
-#page form {
-    margin-top: 0;
-}
-
-.form-footer {
-    clear: both;
-    color: $medium-gray;
-}
-
-.friendly .form-footer .or a:only-child {
-    margin-left: 5px;
 }
 
 .form-grid {
-    .simple-field {
-        padding: 0 0 5px;
-        width: 100%;
-        label, .label {
-            margin: 0;
-        }
-        + .simple-field {
-            padding: 5px 0;
-        }
-    }
-    .form-label,
-    .form-col {
-        float: left;
-    }
-    .form-label {
-        padding: 5px 0;
-        min-height: 1px;
-        width: 25%;
-    }
-    .form-col {
-        color: $text;
-        width: 75%;
-        p,
-        .errorlist {
-            margin: 5px 0 0;
-        }
-    }
-    .form-col p,
-    input + a,
-    .form-col a:only-child {
-        color: $medium-gray;
-    }
-    .form-col p,
-    input + a,
-    .form-col a:only-child,
-    .errorlist {
-        font-size: 11px;
-        line-height: 13px;
-    }
-    .form-col a:only-child {
-        line-height: 28px;
-    }
-    .form-footer {
-        padding-top: 5px;
-    }
+    diagonal-lines();
+    width: 100%;
+    input[type=email],
     input[type=text],
-    textarea {
+    .pretty-select,
+    select {
+        height: 48px;
         width: 100%;
     }
-    input[type=text] {
-        height: 32px;
+    input[type=email],
+    input[type=text],
+    .pretty-select {
+        alt-btn-shadow();
+        border-radius: 3px;
+        border: 1px solid $primer-gray;
+        box-shadow: 0 1px 0 #fff, 0 1px 1px $seavan-salt-white inset;
+        color: $london-fog-gray;
+        font: 400 15px/28px $open-stack;
+        height: 48px;
+        padding: 10px 12px;
+        text-decoration: none;
     }
-    .html-support {
-        max-width: 264px;
+    .pretty-select,
+    .pretty-select select {
+        cursor: pointer;
     }
-    input + a {
-        margin-left: 10px;
-    }
-    .edit_with_prefix {
-        width: 264px;
-    }
-}
-
-.html-rtl .form-grid {
-    input {
-        + a {
-            margin: 0 10px 0 0;
+    .pretty-select {
+        gradient-two-color(#fff, $seavan-salt-white);
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+        &:before {
+            dropdown();
+            z-index: 2;
         }
-    }
-
-}
-
-
-.form-grid {
-    .form-label,
-    .form-col {
-        float: none;
-        width: 100%;
-    }
-}
-
-
-.form-footer {
-    button {
-        font-size: 14px;
-        width: 100%;
-    }
-    a {
-        display: inline-block;
-        margin-left: 5px;
-        &:only-child {
-            margin: 0;
+        &:after {
+            // Hide the native `<select>` arrow so we can overlay our
+            // dropdown arrow in `:before`.
+            border-left: 1px solid $cement-gray;
+            box-shadow: 0 1px 0 #fff, 0 1px 1px $seavan-salt-white inset;
+            content: "";
+            display: block;
+            gradient-two-color(#fff, $seavan-salt-white);
+            height: 100%;
+            pointer-events: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 45px;
+            z-index: 1;
         }
-        &.logout {
-            min-width: 50%;
-            line-height: 33px;
-            border: 1px solid #cdcbcb;
-            display: inline-block;
-            text-align: center;
-            gradient-two-color(#f7f7f7, $faint-gray);
-            font-weight: 600;
-            color: $text;
-            ellipsis();
-            font-size: 14px;
-            border-radius: 5px;
-            &:hover {
-                text-decoration: none;
+        &:hover, &:active {
+            &:before {
+                background-image: url(../img/pretty/dropdown_active.svg);
             }
         }
+        select {
+            -moz-padding-start: 10px;
+            appearance-none();
+            background: none;
+            border: 0;
+            padding: 10px 12px;
+        }
     }
-}
-
-.html-rtl .form-footer {
-    button {
-        margin: 0 0 0 5px;
+    label {
+        margin-bottom: 5px;
     }
-    a {
-        margin-left: 0 5px 0 0;
-        &:only-child {
-            margin: 0;
+    .simple-field {
+        padding: 10px 10px 0;
+    }
+    footer {
+        border-top: $castle-skull-gray 1px dashed;
+        margin-top: 10px;
+        p {
+            border-bottom: $castle-skull-gray 1px dashed;
+            padding: 10px;
+        }
+        .extras {
+            background: $salt-flat-white;
+            border: 0;
+        }
+        button {
+            width: 100%;
         }
     }
 }
 
 @media $at-least-desktop {
-    .friendly h1 + p.intro {
-        margin-top: 15px;
-    }
     .form-grid {
+        border: 1px solid $seavan-salt-white;
+        border-radius: 10px;
         float: left;
-        margin: 0;
-        width: 100%;
-        .form-footer {
-            button {
-                height: auto;
-                line-height: 26px;
-                padding: 0 12px;
-            }
+        margin-top: 30px;
+        padding: 3px 5px 8px;  // On desktop we want 18px above and below.
+        position: relative;
+        .simple-field {
+            float: left;
+            padding: 15px 10px 10px;
+            width: 50%;
         }
-        .form-label {
-            label {
-                margin-top: 5px;
-            }
+        footer {
+            position: absolute;
+            top: -90px;
+            right: -10px;
         }
-    }
-    .form-col {
-        .styled {
-            margin: 0;
-            overflow: hidden;
-            padding: 0;
-            select {
-                appearance-none();
-                background: none;
-                border: none;
-                box-shadow: none;
-                cursor: pointer;
-                margin-top: 0;
-                max-width: 115%;
-                padding: 5px;
-                width: 115%;
-            }
-            &.select {
-                margin-top: 5px;
-                position: relative;
-                width: 60%;
-                &:before,
-                &:after {
-                    content: "";
-                    display: block;
-                    pointer-events: none;
-                    position: absolute;
-                    top: 13px;
-                }
-                &:before {
-                    border: transparent 8px solid;
-                    border-top-color: #e1e2e4;
-                    height: 0;
-                    right: 11px;
-                    width: 0;
-                }
-                &:after {
-                    background: #c4c9cc;
-                    height: 1px;
-                    right: 12px;
-                    width: 13.5px;
-                }
-                &:hover {
-                    &:before {
-                        border-top-color: darken(#e1e2e4, 10%);
-                    }
-                    &:after {
-                        background: darken(#c4c9cc, 10%);
-                    }
-                }
-                &.active {
-                    background: rgba(255,255,255,.9);
-                    border-color: $medium-gray;
-                }
-            }
+        footer, footer p {
+            border: 0;
         }
-    }
-    .button.full {
-        display: block;
-        width: 100%;
-    }
-    p.form-footer {
-        margin: 10px 0 15px;
-    }
-    .form-footer {
-        margin-top: 10px;
-        .button {
-            margin-top: 10px;
-        }
-        button:only-child {
-            width: 100%;
-        }
-        .or {
+        .extras {
             display: none;
         }
     }

@@ -118,16 +118,7 @@ $cat-icon-size-desktop = 60px;
             }
             // Dropdown arrow
             &:after {
-                background: url(../img/pretty/dropdown.svg) 0 50% no-repeat;
-                background-size: 24px auto;
-                content: '';
-                display: inline-block;
-                height: 15px;
-                margin-left: 10px;
-                position: absolute;
-                right: 5px;
-                top: 15px;
-                width: 30px;
+                dropdown();
             }
         }
         &.active a:after,
@@ -197,7 +188,7 @@ $cat-icon-size-desktop = 60px;
         .dropdown {
             margin: 0 auto;
             width: $desktop-content;
-            &.results-header {
+            &.secondary-header {
                 height: auto;
                 max-height: 100%;
             }
