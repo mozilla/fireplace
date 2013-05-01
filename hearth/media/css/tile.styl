@@ -67,9 +67,6 @@
         display: block;
         font-size: 11px;
         .cnt {
-            border-bottom: 1px solid transparent;
-            font-weight: 600;
-            padding-bottom: 1px;
             position: relative;
             top: 1px;
         }
@@ -77,8 +74,7 @@
             color: $note-gray;
             text-decoration: none;
             &:hover .cnt {
-                border-bottom-color: $note-gray;
-                color: $dark-gray;
+                text-decoration: underline;
             }
         }
     }
@@ -95,28 +91,34 @@
     display: block;
 }
 .mkt-tile + .tray {
+    background: $salt-flat-white;
     display: none;
-    padding-bottom: 30px;
+    height: 208px; // 150 + 15*2 + 13 (dots) + 15;
+    overflow: hidden;
     position: relative;
-    height: 230px;
+    &.single {
+        height: 180px; // No dots so make it smaller.
+    }
     .slider {
+        margin-top: 15px;
         overflow: hidden;
         user-select: none;
         -webkit-user-select: none;
         -moz-user-select: none;
     }
     ul {
-        height: 215px;
-        padding: 15px 0;
-        margin: 0 auto;
+        height: 150px; // 150 + 15
         list-style-type: none;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 0;
         white-space: nowrap;
     }
     li {
-        margin-left: 15px;
         float: left;
+        margin-left: 15px;
         text-align: center;
-        width: 180px;
+        width: 150px; // Max height/width of image.
         &:first-child {
             margin-left: 0;
         }
@@ -145,38 +147,36 @@
     }
 }
 
-$dot-size = 12px;
+$dot-size = 13px;
 
 .tray {
     .dots {
-        width: 100%;
-        position: absolute;
-        bottom: 10px;
-        text-align: center;
+        margin: 15px 0;
         height: $dot-size;
-        line-height: $dot-size;
+        text-align: center;
+        width: 100%;
     }
     .dot {
         background: $salt-flat-white;
         // Don't use shorthand, we do transitions.
-        border-color: #d7d7d7;
+        border-color: $cloud-gray;
         border-radius: ($dot-size/2);
         border-style: solid;
-        border-width: ($dot-size/2/2);
+        border-width: 3px;
+        cursor: pointer;
         display: inline-block;
         height: $dot-size;
         margin: 0 3px;
-        position: relative;
         transition-duration: 0.15s;
         transition-property: border-color, border-width;
-        vertical-align: top;
         width: $dot-size;
-        &:hover, &:active {
-            background: $sailor-blue;
+        &.current,
+        &:hover,
+        &:active {
+            border-color: $sailor-blue;
         }
         &.current {
-            border-color: $sailor-blue;
-            border-width: ($dot-size/2);
+            background: $sailor-blue;
         }
     }
 }

@@ -3,8 +3,8 @@ define('previews',
     function(Flipsnap, nunjucks, caps, handles, _, z) {
 
     // magic numbers!
-    var THUMB_WIDTH = 180;
-    var THUMB_PADDED = 195;
+    var THUMB_WIDTH = 150;
+    var THUMB_PADDED = 165;
 
     var slider_pool = [];
 
@@ -26,6 +26,8 @@ define('previews',
         var dotHTML = '';
         if (product.previews.length > 1) {
             dotHTML = Array(product.previews.length + 1).join('<b class="dot"></b>');
+        } else {
+            $tray.addClass('single');
         }
         $tray.html(nunjucks.env.getTemplate('detail/preview_tray.html').render({
             previews: previewsHTML,
@@ -42,7 +44,7 @@ define('previews',
             margin: '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px'
         });
 
-        var slider = Flipsnap($tray.find('.content')[0], {distance: 195});
+        var slider = Flipsnap($tray.find('.content')[0], {distance: THUMB_PADDED});
         var $pointer = $tray.find('.dots .dot');
 
         slider.element.addEventListener('fsmoveend', setActiveDot, false);

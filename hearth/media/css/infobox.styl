@@ -1,13 +1,9 @@
 @import 'lib';
 
 .infobox {
-    border-top: 1px solid rgba(255,255,255,.5);
-    border-bottom: 1px solid rgba(3, 16, 26, .13);
-    &:last-child {
-        border-bottom: 0;
-    }
+    border-top: 1px dashed $london-fog-gray;
     > div {
-        padding: 15px;
+        padding: 15px 10px;
     }
     .not-rated {
         color: $medium-gray;
@@ -59,25 +55,25 @@
     // Let's undo the overflow widths for desktop.
     .infobox {
         > div {
-            padding: 20px;
+            padding: 24px 15px;
         }
         ul.c {
-            margin: -5px;
+            margin: -12px;
             li {
                 margin: 0;
+                padding: 12px;
                 width: 25%;
-                padding: 5px;
                 &:nth-child(2n) {
-                    padding: 5px;
+                    padding: 12px;
                 }
             }
         }
         &.overflowing {
             ul.c li {
-                padding: 5px;
+                padding: 12px;
                 width: 50%;
                 &:nth-child(2n) {
-                    padding: 5px;
+                    padding: 12px;
                 }
             }
         }
