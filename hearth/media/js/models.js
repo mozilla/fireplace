@@ -5,8 +5,7 @@ define('models', ['requests', 'underscore'], function(requests, _) {
 
     var prototypes = {
         'app': 'slug',
-        'category': 'slug',
-        'rating': 'id'
+        'category': 'slug'
     };
 
     return function(type) {
@@ -49,9 +48,28 @@ define('models', ['requests', 'underscore'], function(requests, _) {
             return getter(url);
         };
 
+        var lookup = function(keyed_value, by) {
+            if (by) {
+                for (var key in data_store[type]) {
+                    var item = data_store[type][key];
+                    if (by in item && item[by] === keyed_value) {
+                        return item;
+                    }
+                }
+                return;
+            }
+            if (keyed_value in data_store[type]) {
+                console.log('[model] Found ' + type + ' with lookup key ' + keyed_value);
+                return data_store[type][keyed_value];
+            }
+
+            console.log('[model] ' + type + ' cache miss for key ' + keyed_value);
+        };
+
         return {
             cast: cast,
-            get: get
+            get: get,
+            lookup: lookup
         };
     };
 

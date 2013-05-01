@@ -1,8 +1,27 @@
 define('cat-dropdown',
-    ['underscore', 'helpers', 'models', 'requests', 'templates', 'urls', 'z'],
-    function(_, helpers, models, requests, nunjucks, urls, z) {
-
+    ['underscore', 'helpers', 'jquery', 'l10n', 'models', 'requests', 'templates', 'urls', 'z'],
+    function(_, helpers, $, l10n, models, requests, nunjucks, urls, z) {
     'use strict';
+
+    var gettext = l10n.gettext;
+
+    var cat_models = models('category');
+    cat_models.cast({
+        name: gettext('All Categories'),
+        slug: 'all'
+    });
+
+    var cat_dropdown = $('#cat-dropdown');
+    var cat_list = $('#cat-list');
+
+    // TODO: Detect when the user is offline and raise an error.
+
+    // Do the request out here so it happens immediately when the app loads.
+    var category_req = requests.get(urls.api.url('categories'));
+    // Store the categories in models.
+    category_req.done(function(data) {
+        cat_models.cast(data.objects);
+    });
 
     function toggleMenu(e) {
         if (e) {
@@ -16,13 +35,16 @@ define('cat-dropdown',
         var $dropDown = $('.dropdown a');
         var oldCatSlug = $dropDown.data('catSlug');
         if (oldCatSlug !== catSlug) {
-            catTitle = catTitle || $('.cat-menu').find('.cat-' + catSlug).text();
-            if (catTitle && catSlug && oldCatSlug) {
-                $dropDown.text(catTitle)
-                         .removeClass('cat-' + oldCatSlug)
-                         .addClass('cat-' + catSlug)
-                         .data('catSlug', catSlug);
-            }
+            category_req.then(function() {
+                var model = cat_models.lookup(catSlug);
+                catTitle = catTitle || (model && model.name) || catSlug;
+                if (catTitle && catSlug && oldCatSlug) {
+                    $dropDown.text(catTitle)
+                             .removeClass('cat-' + oldCatSlug)
+                             .addClass('cat-' + catSlug)
+                             .data('catSlug', catSlug);
+                }
+            });
         }
     }
 
@@ -68,19 +90,15 @@ define('cat-dropdown',
         }
     }
 
-
     function handleRenderDropdown() {
-        var context = _.extend({z: z}, helpers);
         // Render the dropdown itself.
-        $('#cat-dropdown').html(
-            nunjucks.env.getTemplate('cat_dropdown.html').render(context));
+        cat_dropdown.html(
+            nunjucks.env.getTemplate('cat_dropdown.html').render(helpers));
 
         // Fetch the category dropdown-data
-        var req = requests.get(urls.api.url('categories'));
-        req.done(function(data) {
-            models('category').cast(data.objects);
-            context.categories = data.objects;
-            $('#cat-list').html(
+        category_req.done(function(data) {
+            var context = _.extend({categories: data.objects}, helpers);
+            cat_list.html(
                 nunjucks.env.getTemplate('cat_list.html').render(context));
             handleCatsRendered();
             z.page.trigger('cats_rendered');

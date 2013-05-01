@@ -8,7 +8,6 @@ define('views/category',
         _.defaults(params || {}, {sort: 'popularity'});
 
         builder.z('type', 'root');
-        builder.z('search', params.name || category);
         builder.z('title', params.name || category);
         builder.z('show_cats', true);
         builder.z('cat', category);
@@ -18,6 +17,6 @@ define('views/category',
             category_name: category,
             endpoint: urls.api.url('category', [category]),
             sort: params.sort
-        }).done(function() {setTrays();});
+        }).done(setTrays);
     };
 });
