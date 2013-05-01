@@ -174,12 +174,17 @@ define('navigation',
             params: params
         };
 
-        if (divert) {
-            history.replaceState(newState, false, url);
-            stack.shift();
-        } else {
-            history.pushState(newState, false, url);
+        var state_method = history.pushState;
+
+        if (!last_bobj || divert) {
+            // If we're redirecting or we've never loaded a page before,
+            // use replaceState instead of pushState.
+            state_method = history.replaceState;
         }
+        if (divert) {
+            stack.shift();
+        }
+        state_method.apply(history, [newState, false, url]);
         navigate(url, false, newState);
     });
 
