@@ -73,7 +73,7 @@ require.config({
             z.body.addClass(settings.body_classes);
         }
 
-        z.page.one('cats_rendered', function() {
+        z.page.one('loaded', function() {
             console.log('[mkt] Hiding splash screen');
             $('#splash-overlay').addClass('hide');
         });
