@@ -6,10 +6,11 @@
 
 {% set category_url = url('category', [category]) if category else url('homepage') %}
 
-{% set popular_url = category_url|urlparams(src='category-featured') + '#gallery' %}
-{% set new_url = category_url|urlparams(sort='created', src='category-featured') + '#gallery' %}
+{% set popular_url = category_url|urlparams(src='category-popular') + '#gallery' %}
+{% set new_url = category_url|urlparams(sort='created', src='category-new') + '#gallery' %}
 
 {% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
+{% set search_url = search_url|urlparams(sort=sort) if sort == 'created' else search_url %}
 
 {% defer (url=endpoint, pluck='featured') %}
   <section id="featured" class="main category featured full c">

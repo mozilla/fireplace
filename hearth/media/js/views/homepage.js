@@ -18,7 +18,7 @@ define('views/homepage',
         builder.z('show_cats', true);
 
         builder.start('category/main.html', {
-            endpoint: urls.api.url('category', ['']),
+            endpoint: urls.api.url('category', [''], {sort: params.sort}),
             category_name: gettext('All Categories'),
             sort: params.sort
         }).done(setTrays);

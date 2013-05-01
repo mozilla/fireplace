@@ -70,7 +70,10 @@ define('views/search',
         builder.z('search', params.q);
         builder.z('title', params.q || gettext('Search Results'));
 
-        builder.start('search/main.html', {params: _.extend({}, params)}).done(setTrays);
+        builder.start(
+            'search/main.html',
+            {params: _.extend({}, params)}
+        ).done(setTrays);
     };
 
 });

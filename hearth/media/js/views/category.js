@@ -19,7 +19,7 @@ define('views/category',
         builder.start('category/main.html', {
             category: category,
             category_name: category,
-            endpoint: urls.api.url('category', [category]),
+            endpoint: urls.api.url('category', [category], {sort: params.sort}),
             sort: params.sort
         }).done(setTrays);
     };
