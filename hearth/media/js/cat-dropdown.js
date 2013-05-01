@@ -101,7 +101,6 @@ define('cat-dropdown',
             cat_list.html(
                 nunjucks.env.getTemplate('cat_list.html').render(context));
             handleCatsRendered();
-            z.page.trigger('cats_rendered');
         });
     }
 
