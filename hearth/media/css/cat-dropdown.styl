@@ -149,6 +149,7 @@ $cat-icon-size-desktop = 60px;
             border-bottom: 1px dashed $cement-gray;
             color: $cement-gray;
             display: block;
+            ellipsis();
             font-size: 15px;
             font-weight: 600;
             line-height: 40px;
@@ -165,6 +166,11 @@ $cat-icon-size-desktop = 60px;
             &:focus {
                 background-color: darken($sailor-blue, 15%);
                 outline: none;
+            }
+            &.current {
+                // Pad the text away from the tick when it's there
+                // 10px + 17px + 10px = 37
+                padding-right: 37px;
             }
             &.current:after {
                 background: url(../img/pretty/tick.svg) no-repeat;
