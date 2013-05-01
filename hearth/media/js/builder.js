@@ -123,7 +123,7 @@ define(
                         }
                         if (extract) {
                             var parsed = $($.parseHTML(content));
-                            content = (parsed.filter(extract) || parsed.find(extract)).children();
+                            content = $(parsed.filter(extract).get().concat(parsed.find(extract).get())).children();
                         }
                         return content;
                     }
