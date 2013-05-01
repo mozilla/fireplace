@@ -42,13 +42,11 @@ require.config({
             'lightbox',
             'login',
             'navigation',
-            'notification',
             'outgoing_links',
             'overlay',
             'paginator',
             'previews',
             'ratings',
-            'common/ratingwidget',
             'settings',
             'templates',
             'tracking',
@@ -63,7 +61,6 @@ require.config({
         var capabilities = require('capabilities');
         var nunjucks = require('templates');
         var settings = require('settings');
-        //var stick = require('stick');
         var z = require('z');
 
         nunjucks.env.dev = true;
@@ -80,11 +77,11 @@ require.config({
 
         if (settings.tracking_enabled) {
             // Initialize analytics tracking.
-            z.page.on('loaded', function(event, href, popped, state) {
+            z.page.on('loaded', function() {
                 // Otherwise we'll track back button hits etc.
                 if (!popped) {
                     // GA track every fragment loaded page.
-                    _gaq.push(['_trackPageview', href]);
+                    _gaq.push(['_trackPageview', window.location.href]);
                 }
             });
         }

@@ -1,5 +1,5 @@
 define('ratings',
-    ['cache', 'capabilities', 'l10n', 'login', 'templates', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification'],
+    ['cache', 'capabilities', 'l10n', 'login', 'templates', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
     function(cache, capabilities, l10n, login, nunjucks, _, utils, urls, user, z) {
     'use strict';
 
