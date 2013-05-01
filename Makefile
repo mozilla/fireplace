@@ -47,7 +47,7 @@ clean:
 	rm -f hearth/media/css/include.css
 	rm -f hearth/media/include.*
 
-includes: clean compile
+includes: compile
 	echo "/* $(VERSION) */" > hearth/media/include.css
 	echo "/* $(VERSION) */" > hearth/media/include.js
 	cat yulelog/amd.js >> hearth/media/include.js
