@@ -101,7 +101,7 @@ function reload() {
 }
 
 var nunjucks_opts = {};
-if (opts.l10n || opts.compile) {
+if (opts.l10n || opts.compile === true || opts.compile === 'l10n') {
     nunjucks_opts.l10n = true;
 }
 function runCommand(command, filepath) {
@@ -110,6 +110,8 @@ function runCommand(command, filepath) {
             console.log('Restarting...');
             return reload();
         case 'stylus':
+            filepath = filepath || opts.path;
+
             var filepathDir = filepath.split('/').slice(0, -1).join('/');
             fs.readFile(filepath, function (err, data) {
                 data = data.toString();
@@ -176,5 +178,9 @@ function watch(globpath, ext, command) {
     }
 }
 
-runCommand('nunjucks');
-reload();
+if (opts.compile && opts.compile !== true) {
+    runCommand(opts.compile);
+} else {
+    runCommand('nunjucks');
+    reload();
+}

@@ -1,8 +1,25 @@
 VERSION = `date "+%Y.%m.%d_%H.%M.%S"`
+TEMPLATES = $(wildcard \
+	hearth/templates/*.html \
+	public/templates/**/*.html \
+)
+STYL_FILES = $(wildcard \
+	hearth/media/css/*.styl \
+	public/media/css/**/*.styl \
+)
+CSS_FILES = $(STYL_FILES:.styl=.styl.css)
+COMPILED_TEMPLATES = hearth/templates.js
 
+compile: $(COMPILED_TEMPLATES) $(CSS_FILES)
 
-compile:
+fastcompile:
 	node damper.js --compile
+
+$(COMPILED_TEMPLATES): $(TEMPLATES)
+	node damper.js --compile nunjucks
+
+%.styl.css: %.styl
+	node damper.js --compile stylus --path $<
 
 l10n: compile
 	cd locale ; \
@@ -14,7 +31,7 @@ langpacks:
 		mv $$po.js hearth/locales/`basename \`dirname \\\`dirname $$po\\\`\` | tr "_" "-"`.js ; \
 	done
 
-test: compile
+test: clean compile
 	cd smokealarm ; \
 	casperjs test tests
 
@@ -26,7 +43,7 @@ log:
 
 
 clean:
-	rm -f hearth/media/css/*.styl.css
+	rm -f $(CSS_FILES)
 	rm -f hearth/media/css/include.css
 	rm -f hearth/media/include.*
 
