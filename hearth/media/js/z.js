@@ -3,7 +3,7 @@ define('z', ['jquery', 'underscore'], function($, _) {
         win: $(window),
         doc: $(document),
         body: $(document.body),
-        container: $('#container'),
+        container: $('main'),
         page: $('#page'),
         canInstallApps: true,
         state: {},
