@@ -32,13 +32,15 @@
 
 {% defer (url=endpoint, pluck='objects', as='app', paginate='ol.listing') %}
   <section id="gallery" class="main category gallery full c">
-    <header class="featured-header c">
-      <nav class="tabs">
-        <a{% if sort == 'popularity' %} class="active"{% endif %} href="{{ popular_url }}">{{ _('Popular') }}</a>
-        <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}">{{ _('New') }}</a>
-      </nav>
-      <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
-    </header>
+    {% if response.meta.total_count == response.meta.limit %}
+      <header class="featured-header c">
+        <nav class="tabs">
+          <a{% if sort == 'popularity' %} class="active"{% endif %} href="{{ popular_url }}">{{ _('Popular') }}</a>
+          <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}">{{ _('New') }}</a>
+        </nav>
+        <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
+      </header>
+    {% endif %}
     <ol class="container listing grid-if-desktop c">
       {% for result in this %}
         <li class="item result app c">
