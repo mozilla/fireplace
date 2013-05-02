@@ -1,5 +1,7 @@
 define('shothandles', ['utils'], function(utils) {
     function attachHandles(slider, $container) {
+        $container.find('.prev, .next').remove();
+
         var $prevHandle = $('<a href="#" class="prev"></a>'),
             $nextHandle = $('<a href="#" class="next"></a>');
 
