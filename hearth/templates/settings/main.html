@@ -34,7 +34,7 @@
           <select name="region" id="region">
             {% set user_region = user.get_setting('region') %}
             {% for code, region in settings.REGION_CHOICES_SLUG.items() %}
-              <option value="{{ code }}"{{' selected' if code == user_region }}>
+              <option value="{{ code }}"{{ ' selected' if code == user_region }}>
                 {{ region }}</option>
             {% endfor %}
           </select>
