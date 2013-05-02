@@ -6,7 +6,7 @@ define('views/homepage',
     var gettext = l10n.gettext;
 
     return function(builder, args, params) {
-        _.defaults(params || {}, {sort: 'popularity'});
+        params = params || {};
 
         builder.z('title', '');  // We don't want a title on the homepage.
 
