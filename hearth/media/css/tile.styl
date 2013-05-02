@@ -157,34 +157,26 @@ $dot-size = 12px;
         line-height: $dot-size;
     }
     .dot {
-        background: #d7d7d7;
-        display: inline-block;
-        vertical-align: top;
-        width: $dot-size;
-        height: $dot-size;
+        background: $salt-flat-white;
+        // Don't use shorthand, we do transitions.
+        border-color: #d7d7d7;
         border-radius: ($dot-size/2);
+        border-style: solid;
+        border-width: ($dot-size/2/2);
+        display: inline-block;
+        height: $dot-size;
         margin: 0 3px;
         position: relative;
-        &:after {
-            background: $salt-flat-white;
-            content: "";
-            display: block;
-            position: absolute;
-            height: ($dot-size/2);
-            width: ($dot-size/2);
-            border-radius: ($dot-size/2/2);
-            top: ($dot-size/2/2);
-            left: ($dot-size/2/2);
-        }
-        &:hover,
-        &:active {
+        transition-duration: 0.15s;
+        transition-property: border-color, border-width;
+        vertical-align: top;
+        width: $dot-size;
+        &:hover, &:active {
             background: $sailor-blue;
         }
         &.current {
-            background: $sailor-blue;
-            &:after {
-                display: none;
-            }
+            border-color: $sailor-blue;
+            border-width: ($dot-size/2);
         }
     }
 }
