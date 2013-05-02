@@ -32,7 +32,7 @@
 
 {% defer (url=endpoint, pluck='objects', as='app', paginate='ol.listing') %}
   <section id="gallery" class="main category gallery full c">
-    {% if response.meta.total_count == response.meta.limit %}
+    {% if response.meta.total_count > response.meta.limit %}
       <header class="featured-header c">
         <nav class="tabs">
           <a{% if sort == 'popularity' %} class="active"{% endif %} href="{{ popular_url }}">{{ _('Popular') }}</a>
