@@ -110,6 +110,29 @@ apps['placemat'] = {
     'ratings': {'average': 3, 'count': int(random.random() * 500)},
     'homepage': 'https://marketplace-altdev.allizom.org/',
 }
+apps['retroplace'] = {
+    'name': 'Retroplace',
+    'summary': 'Old, stale apps',
+    'manifest_url': 'https://marketplace-altdev.allizom.org/manifest.webapp',
+    'icons': {
+        64: '/media/img/bitplace.png',
+        128: '/media/img/bitplace.png',
+    },
+    'ratings': {'average': 3, 'count': int(random.random() * 500)},
+    'homepage': 'https://marketplace-altdev.allizom.org/',
+}
+apps['nightly'] = {
+    'name': 'Marketplace Nightly',
+    'summary': 'Cutting edge Marketplace shenanigans',
+    'manifest_url': 'http://inferno.paas.allizom.org/minifest',
+    'is_packaged': True,
+    'icons': {
+        64: '/media/img/nightly.png',
+        128: '/media/img/nightly.png',
+    },
+    'ratings': {'average': 3, 'count': int(random.random() * 500)},
+    'homepage': 'https://marketplace-altdev.allizom.org/',
+}
 apps['bastaplace'] = {
     'name': 'BastaCorp Apps and AI',
     'summary': 'We make your apps come to life',
@@ -142,6 +165,8 @@ for slug, app_ in apps.iteritems():
     app_['upsell'] = False
     if 'price' not in app_:
         app_['price'] = None
+    if 'is_packaged' not in app_:
+        app_['is_packaged'] = False
     if 'listed_authors' not in app_:
         app_['listed_authors'] = [random.choice([
             {'name': 'basta'},
@@ -150,7 +175,6 @@ for slug, app_ in apps.iteritems():
         ])]
     if 'previews' not in app_:
         app_['previews'] = [defaults._app_preview() for i in range(4)]
-    app_['is_packaged'] = False
     app_['notices'] = []
     app_['description'] = app_['summary']
 
