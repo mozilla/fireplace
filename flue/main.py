@@ -49,8 +49,8 @@ apps['marketplace'] = {
     'summary': 'The Firefox Marketplace, powered by Zamboni',
     'manifest_url': 'https://marketplace.firefox.com/manifest.webapp',
     'icons': {
-        64: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/64.png',
-        128: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/128.png',
+        64: '/media/img/marketplace.png',
+        128: '/media/img/marketplace.png',
     },
     'ratings': {'average': 3, 'count': int(random.random() * 500)},
     'homepage': 'https://marketplace.firefox.com/',
@@ -104,8 +104,8 @@ apps['placemat'] = {
     'summary': 'We sell table coverings',
     'manifest_url': 'https://marketplace-altdev.allizom.org/manifest.webapp',
     'icons': {
-        64: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/64.png',
-        128: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/128.png',
+        64: '/media/img/placemat.png',
+        128: '/media/img/placemat.png',
     },
     'ratings': {'average': 3, 'count': int(random.random() * 500)},
     'homepage': 'https://marketplace-altdev.allizom.org/',
