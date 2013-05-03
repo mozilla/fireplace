@@ -16,37 +16,19 @@ from optparse import OptionParser
 
 
 from flask import Flask, make_response, request
-app = Flask("Flue")
+app = Flask("Flue", static_path='/media', static_folder='media')
 
-import defaults
-import persona
-
-
-PER_PAGE = 10
-LATENCY = 0
-
-
-# Monkeypatching for CORS and JSON.
 ar = app.route
 @wraps(ar)
-def corsify(*args, **kwargs):
-    methods = kwargs.get('methods') or ['GET']
+def magicify(*args, **kwargs):
     def decorator(func):
         @wraps(func)
         def wrap(*args, **kwargs):
             resp = func(*args, **kwargs)
-            if isinstance(resp, (dict, list, tuple, str, unicode)):
+            if isinstance(resp, (dict, list, tuple)):
                 resp = make_response(json.dumps(resp, indent=2), 200)
-            resp.headers['Access-Control-Allow-Origin'] = '*'
-            resp.headers['Access-Control-Allow-Methods'] = ','.join(methods)
-            resp.headers['Access-Control-Allow-Headers'] = 'X-HTTP-METHOD-OVERRIDE'
-            resp.headers['Content-type'] = 'application/json'
-            if LATENCY:
-                time.sleep(LATENCY)
+                resp.headers['Content-type'] = 'application/json'
             return resp
-
-        if 'methods' in kwargs:
-            kwargs['methods'].append('OPTIONS')
 
         registered_func = ar(*args, **kwargs)(wrap)
         registered_func._orig = func
@@ -54,7 +36,138 @@ def corsify(*args, **kwargs):
 
     return decorator
 
-app.route = corsify
+app.route = magicify
+
+
+import defaults
+import persona
+
+
+apps = {}
+apps['marketplace'] = {
+    'name': 'Firefox Marketplace',
+    'summary': 'The Firefox Marketplace, powered by Zamboni',
+    'manifest_url': 'https://marketplace.firefox.com/manifest.webapp',
+    'icons': {
+        64: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/64.png',
+        128: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/128.png',
+    },
+    'ratings': {'average': 3, 'count': int(random.random() * 500)},
+    'homepage': 'https://marketplace.firefox.com/',
+}
+apps['fireplace'] = {
+    'name': 'Fireplace',
+    'summary': 'The Firefox Marketplace, powered by the magic of JavaScript',
+    'manifest_url': 'https://marketplace-altdev.allizom.org/manifest.webapp',
+    'icons': {
+        64: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/64.png',
+        128: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/128.png',
+    },
+    'ratings': {'average': 5, 'count': int(random.random() * 500)},
+    'homepage': 'https://marketplace-altdev.allizom.org/',
+}
+apps['afterhours'] = {
+    'name': 'Firefox After Hours',
+    'summary': 'Get your fox on',
+    'manifest_url': 'https://marketplace-altdev.allizom.org/manifest.webapp',
+    'icons': {
+        64: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/64.png',
+        128: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/128.png',
+    },
+    'ratings': {'average': 5, 'count': int(random.random() * 500)},
+    'homepage': 'https://marketplace-altdev.allizom.org/',
+}
+apps['foxfire'] = {
+    'name': 'FoxFire Place of Marketing',
+    'summary': 'The best place.',
+    'manifest_url': 'https://marketplace-altdev.allizom.org/manifest.webapp',
+    'icons': {
+        64: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/64.png',
+        128: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/128.png',
+    },
+    'ratings': {'average': 2, 'count': int(random.random() * 500)},
+    'homepage': 'https://marketplace-altdev.allizom.org/',
+}
+apps['gambling'] = {
+    'name': 'Firepoker Gambleplace',
+    'summary': 'Spend your bitcoins with us',
+    'manifest_url': 'https://marketplace-altdev.allizom.org/manifest.webapp',
+    'icons': {
+        64: 'http://www.veryicon.com/icon/png/Game/Poker/Poker.png',
+        128: 'http://www.veryicon.com/icon/png/Game/Poker/Poker.png',
+    },
+    'ratings': {'average': 4, 'count': int(random.random() * 500)},
+    'homepage': 'https://marketplace-altdev.allizom.org/',
+}
+apps['placemat'] = {
+    'name': 'Marketplacemat',
+    'summary': 'We sell table coverings',
+    'manifest_url': 'https://marketplace-altdev.allizom.org/manifest.webapp',
+    'icons': {
+        64: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/64.png',
+        128: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/128.png',
+    },
+    'ratings': {'average': 3, 'count': int(random.random() * 500)},
+    'homepage': 'https://marketplace-altdev.allizom.org/',
+}
+apps['bastaplace'] = {
+    'name': 'BastaCorp Apps and AI',
+    'summary': 'We make your apps come to life',
+    'manifest_url': 'https://marketplace-altdev.allizom.org/manifest.webapp',
+    'icons': {
+        64: '/media/img/bastacorp.png',
+        128: '/media/img/bastacorp.png',
+    },
+    'ratings': {'average': 5, 'count': int(random.random() * 500)},
+    'homepage': 'https://marketplace-altdev.allizom.org/',
+}
+apps['idw'] = {
+    'name': 'Informed Discussion App Store',
+    'summary': 'Apps that are informed about having discussions',
+    'manifest_url': 'https://marketplace-altdev.allizom.org/manifest.webapp',
+    'icons': {
+        64: '/media/img/idw.png',
+        128: '/media/img/idw.png',
+    },
+    'ratings': {'average': 5, 'count': int(random.random() * 500)},
+    'homepage': 'https://marketplace-altdev.allizom.org/',
+}
+
+for slug, app_ in apps.iteritems():
+    app_['slug'] = slug
+    app_['support_email'] = 'noreply@mozilla.com'
+    app_['privacy_policy'] = ''
+    app_['current_version'] = False
+    app_['public_stats'] = False
+    app_['upsell'] = False
+    if 'price' not in app_:
+        app_['price'] = None
+    if 'listed_authors' not in app_:
+        app_['listed_authors'] = [random.choice([
+            {'name': 'basta'},
+            {'name': 'cvan'},
+            {'name': 'Chris Van Halen'},
+        ])]
+    if 'previews' not in app_:
+        app_['previews'] = [defaults._app_preview() for i in range(4)]
+    app_['is_packaged'] = False
+    app_['notices'] = []
+    app_['description'] = app_['summary']
+
+categories = {
+    'marketplaces': ['marketplace', 'fireplace'],
+    'app-stores': ['foxfire', 'afterhours', 'placemat'],
+    'mozilla': ['marketplace', 'fireplace'],
+    'basta': ['bastaplace', 'idw'],
+    'adult': ['afterhours'],
+    'gambling': ['gambling', 'placemat'],
+}
+
+for cat_ in categories:
+    apps_ = []
+    for slug in categories[cat_]:
+        apps_.append(apps[slug])
+    categories[cat_] = apps_
 
 
 @app.route('/api/v1/account/login/', methods=['POST'])
@@ -77,7 +190,6 @@ def login():
         'settings': {
             'display_name': email.split('@')[0],
             'email': email,
-            'region': 'usa',
         }
     }
 
@@ -94,14 +206,8 @@ def settings():
 @app.route('/api/v1/account/installed/mine/')
 def installed():
     return {
-        'objects': [defaults.app('purchase %d' % i, 'Purchased App') for
-                      i in xrange(random.randint(5, 30))]
+        'objects': random.sample(apps.values(), 4)
     }
-
-
-@app.route('/api/v1/abuse/user/', methods=['POST'])
-def user_abuse(slug):
-    return {'error': False}
 
 
 @app.route('/api/v1/abuse/app/', methods=['POST'])
@@ -118,57 +224,27 @@ def feedback():
     return {'error': False}
 
 
-@app.route('/terms-of-use.html', methods=['GET'])
-def terms():
-    return defaults.ptext()
-
-
-@app.route('/privacy-policy.html', methods=['GET'])
-def privacy():
-    return defaults.ptext()
-
-
-@app.route('/api/v1/home/featured/')
-def featured():
-    return {'objects':
-        [defaults.app('feat %d' % i, 'Featured App') for i in xrange(8)]}
-
-
 @app.route('/api/v1/apps/category/')
-def categories():
+def categories_():
     return {
         'objects': [
-            defaults.category('shopping', 'Shopping'),
-            defaults.category('games', 'Games'),
-            defaults.category('productivity', 'Productivity'),
-            defaults.category('social', 'Social'),
-            defaults.category('music', 'Music'),
-            defaults.category('lifestyle', 'Thug Life'),
+            defaults.category('marketplaces', 'Marketplaces'),
+            defaults.category('app-stores', 'App Stores'),
+            defaults.category('mozilla', 'Mozilla'),
+            defaults.category('basta', 'BastaCorp'),
+            defaults.category('adult', 'Adult Themed'),
+            defaults.category('gambling', 'Gambling'),
         ]
     }
 
 
-@app.route('/api/v1/home/page/')
-def homepage():
-    return {
-        'featured': featured._orig()['objects'],
-        'categories': categories._orig(),
-    }
-
-
-def _paginated(field, generator):
-    result_count = 24
-
-    page = int(request.args.get('offset', 0)) / PER_PAGE
-    if page * PER_PAGE > result_count:
-        items = []
-    else:
-        items = [gen for i, gen in
-                 zip(xrange(min(10, result_count - page * PER_PAGE)),
-                     generator())]
+def _paginated(generator):
+    offset = int(request.args.get('offset', 0))
+    PER_PAGE = 10
+    objects = generator[offset:offset + PER_PAGE]
 
     next_page = None
-    if (page + 1) * PER_PAGE <= result_count:
+    if offset + PER_PAGE < len(generator):
         next_page = request.url
         next_page = next_page[len(request.base_url) -
                               len(request.path + request.script_root):]
@@ -180,44 +256,48 @@ def _paginated(field, generator):
             next_page = next_page[:next_page.index('?')]
         else:
             next_page_qs = {}
-        next_page_qs['offset'] = (page + 1) * PER_PAGE
+        next_page_qs['offset'] = offset + PER_PAGE
         next_page_qs['limit'] = PER_PAGE
         next_page = next_page + '?' + urllib.urlencode(next_page_qs)
 
     return {
-        field: items,
+        'objects': objects,
         'meta': {
             'limit': PER_PAGE,
-            'offset': PER_PAGE * page,
+            'offset': offset,
             'next': next_page,
-            'total_count': len(items),
+            'total_count': len(objects),
         },
     }
 
 
-@app.route('/api/v1/apps/search/')
 def search():
-    def gen():
-        i = 0
-        while 1:
-            yield defaults.app('sr %d' % i, 'Result')
-            i += 1
+    q = request.args.get('q')
+    if not q:
+        return _paginated(apps.values())
 
-    data = _paginated('objects', gen)
-    return data
+    def gen(app_):
+        for k in app_.keys():
+            if (isinstance(app_[k], (str, unicode)) and
+                q.lower() in app_[k].lower()):
+                print 'Found %s in %s' % (q, app_[k])
+                return True
+
+    return _paginated([a for a in apps.values() if gen(a)])
+
+app.route('/api/v1/apps/search/')(search)
 
 
 @app.route('/api/v1/apps/search/featured/')
 def category():
-    def gen():
-        i = 0
-        while 1:
-            yield defaults.app('catm %d' % i, 'Category Item')
-            i += 1
-
-    data = _paginated('objects', gen)
-    data['featured'] = [defaults.app('creat %d' % i, 'Creatured App') for
-                        i in xrange(15)]
+    cat = request.form.get('cat')
+    if not cat:
+        data = search()
+        data['featured'] = [apps['marketplace'], apps['fireplace'],
+                            apps['afterhours']]
+    else:
+        data = _paginated(categories[cat])
+        data['featured'] = []
     return data
 
 
@@ -226,15 +306,9 @@ def app_ratings():
     if request.method == 'POST':
         return {'error': False}
 
-    def gen():
-        i = 0
-        while 1:
-            yield defaults.rating()
-            i += 1
-
     slug = request.form.get('app') or request.args.get('app')
 
-    data = _paginated('objects', gen)
+    data = _paginated([defaults.rating() for r in xrange(random.randint(1, 250))])
     data['info'] = {
         'slug': slug,
         'average': random.random() * 4 + 1,
@@ -251,19 +325,21 @@ def app_rating(id):
     return defaults.rating()
 
 
-@app.route('/api/v1/apps/rating/<id>/flag/', methods=['POST'])
-def app_rating_flag(id):
-    return ''
-
-
 @app.route('/api/v1/apps/app/<slug>/')
 def app_(slug):
-    return defaults.app(slug, 'Something something %s' % slug)
+    return apps[slug]
 
 
 @app.route('/api/v1/receipts/install/', methods=['POST'])
 def record():
     return {'error': False}
+
+
+@app.route('/')
+@app.route('/<dummy>')
+def index(dummy=None):
+    with open('server.html') as file_:
+        return file_.read()
 
 
 if __name__ == '__main__':
@@ -272,13 +348,6 @@ if __name__ == '__main__':
             help='port', metavar='PORT', default=os.getenv('PORT', '5000'))
     parser.add_option('--host', dest='hostname',
             help='hostname', metavar='HOSTNAME', default='0.0.0.0')
-    parser.add_option('--latency', dest='latency',
-            help='latency (sec)', metavar='LATENCY', default=0)
-    parser.add_option('--xss', dest='xss',
-            help='xss?', metavar='XSS', default=0)
     (options, args) = parser.parse_args()
     app.debug = True
-    LATENCY = int(options.latency)
-    if options.xss:
-        defaults.XSS = bool(options.xss)
     app.run(host=options.hostname, port=int(options.port))

@@ -159,7 +159,13 @@ def rating():
 
     return {
         'rating': 4,
-        'body': ptext(20),
+        'body': random.choice([
+            "It's pretty ok, I guess.",
+            "I don't like it. Not enough drama.",
+            "Too much drama! I don't like it.",
+            "It's too cheap.",
+            "I wish payments were enabled."
+        ]),
         'is_flagged': random.randint(1, 5) == 1,
         'is_author': random.randint(1, 5) == 1,
         'posted': rand_posted(),
@@ -168,5 +174,5 @@ def rating():
             'display_name': text(random.choice(user_names)),
             'id': random.randint(1000, 9999),
         },
-        'version': version,
+        'version': version if rand_bool() else None,
     }
