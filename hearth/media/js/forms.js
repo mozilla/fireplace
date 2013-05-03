@@ -11,6 +11,9 @@ define('forms', ['z'], function(z) {
         $('form').each(function() {
             checkValid(this);
         });
+        $('form[novalidate]').each(function() {
+            $(this).find('button[type=submit]').removeAttr('disabled');
+        });
     });
 
     function toggleReviewFormState($formElm, enabled) {

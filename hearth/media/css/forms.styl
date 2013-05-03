@@ -193,3 +193,14 @@ textarea {
         }
     }
 }
+
+// Because specificity :sadface:
+.only-logged-in.button,
+.logged-in .only-logged-out.button {
+    display: none;
+}
+
+.only-logged-out.button,
+.logged-in .only-logged-in.button {
+    display: block;
+}
