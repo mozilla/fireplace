@@ -48,10 +48,13 @@ define('urls',
         'search': '/api/v1/apps/search/',
         'feedback': '/api/v1/account/feedback/',
         'terms_of_use': '/terms-of-use.html',
-        'privacy_policy': '/privacy-policy.html'
+        'privacy_policy': '/privacy-policy.html',
+
+        'prepare_nav_pay': '/api/v1/webpay/prepare/',
+        'payments_status': '/api/v1/webpay/status/{0}/'
     };
 
-    var _device = _.once(function() {
+    var _device = function() {
         if (caps.firefoxOS) {
             return 'firefoxos';
         } else if (caps.firefoxAndroid) {
@@ -59,7 +62,7 @@ define('urls',
         } else {
             return 'desktop';
         }
-    });
+    };
 
     var user = require('user');
     function _userArgs(func) {

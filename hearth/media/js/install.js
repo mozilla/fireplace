@@ -1,8 +1,8 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 define('install',
-    ['apps', 'capabilities', 'jquery', 'login', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
-    function(apps, caps, $, login, notification, payments, requests, urls, user, z) {
+    ['apps', 'cache', 'capabilities', 'jquery', 'login', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
+    function(apps, cache, caps, $, login, notification, payments, requests, urls, user, z) {
     'use strict';
 
     function _handler(func) {
@@ -48,6 +48,9 @@ define('install',
         setTimeout(function() {
             install(product);
         }, 0);
+
+        // Bust the cache
+        cache.bust(urls.api.url('purchases'));
     }
 
     function purchaseError(product, msg) {
@@ -95,6 +98,9 @@ define('install',
 
     function installSuccess(installer, product) {
         z.win.trigger('app_install_success', [installer, product, true]);
+
+        // Bust the cache
+        cache.bust(urls.api.url('purchases'));
     }
 
     function installError(installer, product, msg) {

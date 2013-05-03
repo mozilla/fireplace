@@ -1,32 +1,29 @@
 define('payments/payments',
-    ['capabilities', 'notification', 'requests'],
-    function(caps, notification, requests) {
+    ['capabilities', 'notification', 'requests', 'settings', 'urls'],
+    function(caps, notification, requests, settings, urls) {
 
-    var product,
-        $def,
-        simulateNavPay = $('body').data('simulate-nav-pay');
+    var notify = notification.notification;
 
-    var _giveUp;
     var _abortCheck = false;
-
+    var _giveUp;
     function waitForPayment($def, product, webpayJWT, contribStatusURL) {
         if (_abortCheck) {
             return;
         }
         var selfArgs = arguments;
-        var nextCheck = window.setTimeout(function() {
+        var nextCheck = setTimeout(function() {
             waitForPayment.apply(this, selfArgs);
         }, 2000);
         if (!_giveUp) {
-            _giveUp = window.setTimeout(function() {
+            _giveUp = setTimeout(function() {
                 _abortCheck = true;
                 $def.reject(null, product, 'MKT_INSTALL_ERROR');
             }, 60000);
         }
-        requests.get(contribStatusURL).done(function(result) {
+        requests.get(settings.api_url + urls.api.sign(contribStatusURL)).done(function(result) {
             if (result.status == 'complete') {
-                window.clearTimeout(nextCheck);
-                window.clearTimeout(_giveUp);
+                clearTimeout(nextCheck);
+                clearTimeout(_giveUp);
                 $def.resolve(product);
             }
         }).fail(function() {
@@ -34,58 +31,53 @@ define('payments/payments',
         });
     }
 
-    if (simulateNavPay && !caps.navPay) {
+    if (settings.simulate_nav_pay && !caps.navPay) {
         navigator.mozPay = function(jwts) {
             var request = {
                 onsuccess: function() {
-                    console.warning('handler did not define request.onsuccess');
+                    console.warning('[payments][mock] handler did not define request.onsuccess');
                 },
                 onerror: function() {
-                    console.warning('handler did not define request.onerror');
+                    console.warning('[payments][mock] handler did not define request.onerror');
                 }
             };
-            console.log('STUB navigator.mozPay received', jwts);
-            console.log('calling onsuccess() in 3 seconds...');
-            window.setTimeout(function() {
-                console.log('calling onsuccess()');
+            console.log('[payments][mock] STUB navigator.mozPay received', jwts);
+            console.log('[payments][mock] calling onsuccess() in 3 seconds...');
+            setTimeout(function() {
+                console.log('[payments][mock] calling onsuccess()');
                 request.onsuccess();
             }, 3000);
             return request;
         };
-        console.log('stubbed out navigator.mozPay()');
-    }
-
-    function callNavPay($def, product, webpayJWT, contribStatusURL) {
-        var request = navigator.mozPay([webpayJWT]);
-        request.onsuccess = function() {
-            console.log('navigator.mozPay success');
-            waitForPayment($def, product, webpayJWT, contribStatusURL);
-        };
-        request.onerror = function() {
-            if (this.error.name !== 'cancelled') {
-                console.log('navigator.mozPay error:', this.error.name);
-                notification({
-                    classes: 'error',
-                    message: gettext('Payment failed. Try again later.'),
-                    timeout: 5000
-                });
-            }
-            $def.reject(null, product, 'MKT_CANCELLED');
-        };
+        console.log('[payments] stubbed out navigator.mozPay()');
     }
 
     function beginPurchase(prod) {
         if (!prod) return;
-        if ($def && $def.state() == 'pending') {
-            $def.reject(null, product, 'collision');
-            return;
-        }
-        $def = $.Deferred();
-        product = prod;
+        var $def = $.Deferred();
+        var product = prod;
 
-        if (caps.navPay || simulateNavPay) {
-            requests.post(product.prepareNavPay, {}).done(function(result) {
-                callNavPay($def, product, result.webpayJWT, result.contribStatusURL);
+        console.log('[payments] Initiating transaction');
+
+        if (caps.navPay || settings.simulate_nav_pay) {
+            requests.post(urls.api.url('prepare_nav_pay'), {app: product.slug}).done(function(result) {
+                console.log('[payments] Calling mozPay with JWT: ', result.webpayJWT);
+                var request = navigator.mozPay([result.webpayJWT]);
+                request.onsuccess = function() {
+                    console.log('[payments] navigator.mozPay success');
+                    waitForPayment($def, product, result.webpayJWT, result.contribStatusURL);
+                };
+                request.onerror = function() {
+                    if (this.error.name !== 'cancelled') {
+                        console.log('navigator.mozPay error:', this.error.name);
+                        notify({
+                            classes: 'error',
+                            message: gettext('Payment failed. Try again later.'),
+                            timeout: 5000
+                        });
+                    }
+                    $def.reject(null, product, 'MKT_CANCELLED');
+                };
             }).fail(function() {
                 $def.reject(null, product, 'MKT_SERVER_ERROR');
             });

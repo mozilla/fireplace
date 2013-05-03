@@ -32,7 +32,9 @@ define('cache', ['rewriters', 'underscore'], function(rewriters, _) {
     }
 
     function bust(key) {
-        delete cache[key];
+        if (key in cache) {
+            delete cache[key];
+        }
     }
 
     function rewrite(matcher, worker, limit) {
