@@ -54,6 +54,14 @@ apps['marketplace'] = {
     },
     'ratings': {'average': 3, 'count': int(random.random() * 500)},
     'homepage': 'https://marketplace.firefox.com/',
+    'previews': [
+        {
+            'caption': 'The Marketplace',
+            'filetype': 'image/jpg',
+            'thumbnail_url': 'http://i.imgur.com/oXYEAyC.jpg',
+            'image_url': 'http://i.imgur.com/6q3w3O8h.jpg',
+        },
+    ],
 }
 apps['fireplace'] = {
     'name': 'Fireplace',
@@ -65,6 +73,14 @@ apps['fireplace'] = {
     },
     'ratings': {'average': 5, 'count': int(random.random() * 500)},
     'homepage': 'https://marketplace-altdev.allizom.org/',
+    'previews': [
+        {
+            'caption': 'The Marketplace',
+            'filetype': 'image/jpg',
+            'thumbnail_url': 'http://i.imgur.com/Fs2e1ze.jpg',
+            'image_url': 'http://i.imgur.com/yE7hfgSh.jpg',
+        },
+    ],
 }
 apps['afterhours'] = {
     'name': 'Firefox After Hours',
@@ -109,6 +125,14 @@ apps['placemat'] = {
     },
     'ratings': {'average': 3, 'count': int(random.random() * 500)},
     'homepage': 'https://marketplace-altdev.allizom.org/',
+    'previews': [
+        {
+            'caption': 'The Marketplace',
+            'filetype': 'image/jpg',
+            'thumbnail_url': 'http://www.battenburglace.com/LX_Placemat_20871.jpg',
+            'image_url': 'http://www.battenburglace.com/LX_Placemat_20871.jpg',
+        },
+    ],
 }
 apps['retroplace'] = {
     'name': 'Retroplace',
@@ -120,6 +144,14 @@ apps['retroplace'] = {
     },
     'ratings': {'average': 3, 'count': int(random.random() * 500)},
     'homepage': 'https://marketplace-altdev.allizom.org/',
+    'previews': [
+        {
+            'caption': 'The Marketplace',
+            'filetype': 'image/jpg',
+            'thumbnail_url': 'http://i.imgur.com/kXkqCLw.jpg',
+            'image_url': 'http://i.imgur.com/JRf1Ifhh.jpg',
+        },
+    ],
 }
 apps['nightly'] = {
     'name': 'Marketplace Nightly',
