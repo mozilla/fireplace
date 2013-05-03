@@ -15,7 +15,7 @@ define('views/featured', ['urls', 'z'], function(urls, z) {
         builder.start('featured.html', {
             category: category,
             endpoint: urls.api.url('category', [category])
-        }).done(setTrays);
+        });
     };
 
 });

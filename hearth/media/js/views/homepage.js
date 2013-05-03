@@ -21,6 +21,6 @@ define('views/homepage',
             endpoint: urls.api.url('category', [''], params),
             category_name: gettext('All Categories'),
             sort: params.sort
-        }).done(setTrays);
+        });
     };
 });

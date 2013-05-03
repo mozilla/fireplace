@@ -39,7 +39,6 @@ define('views/search',
             z.page.trigger('populatetray');
         }
     }
-    window.setTrays = setTrays; // TODO: this is less than ideal.
 
     z.body.on('click', '.expand-toggle', _pd(function() {
         setTrays(expand = !expand);
@@ -54,7 +53,10 @@ define('views/search',
         } else {
             $q.removeAttr('data-context');
         }
-        setTrays(expand);
+        // If this is a search results or "my apps" page.
+        if ($('#search-results').length || $('#account-settings .listing').length) {
+            setTrays(expand);
+        }
     }).on('reloaded_chrome', function() {
         setTrays(expand);
     }).on('loaded_more', function() {
@@ -73,7 +75,7 @@ define('views/search',
         builder.start(
             'search/main.html',
             {params: _.extend({}, params)}
-        ).done(setTrays);
+        );
     };
 
 });

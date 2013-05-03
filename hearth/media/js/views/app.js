@@ -36,6 +36,7 @@ define('views/app',
 
         builder.onload('app-data', function() {
             builder.z('title', builder.results['app-data'].name);
+            z.page.trigger('populatetray');
             overflow.init();
         }).onload('ratings', function() {
             var reviews = $('.detail .reviews li');

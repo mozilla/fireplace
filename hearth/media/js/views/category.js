@@ -21,6 +21,6 @@ define('views/category',
             category_name: category,
             endpoint: urls.api.url('category', [category], params),
             sort: params.sort
-        }).done(setTrays);
+        });
     };
 });
