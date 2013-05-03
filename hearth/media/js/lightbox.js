@@ -61,14 +61,14 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
     function ghettoFresh(transformation) {
         if (!transformation) return;
         var trans = transformation.replace('translate3d(', '');
-        trans = +trans.split(',')[0] || 0;
+        trans = parseInt(trans.split(',')[0], 10) | 0;
 
         // Shift the tray by 1px then reset to original position.
         setTimeout(function() {
             trayOrigin.style.MozTransform = 'translate3d(' + (trans + 1) + 'px, 0, 0)';
             trayOrigin.style.MozTransform = 'translate3d(' + trans + 'px, 0, 0)';
             console.log('[lightbox] ghettoFresh() happened');
-        }, 10);
+        }, 100);
     }
 
     function renderPreviews() {
