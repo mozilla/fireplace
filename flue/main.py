@@ -137,7 +137,7 @@ for slug, app_ in apps.iteritems():
     app_['slug'] = slug
     app_['support_email'] = 'noreply@mozilla.com'
     app_['privacy_policy'] = ''
-    app_['current_version'] = False
+    app_['current_version'] = 1
     app_['public_stats'] = False
     app_['upsell'] = False
     if 'price' not in app_:
