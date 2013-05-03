@@ -6,7 +6,7 @@
 {% set endpoint = api('app', [slug]) %}
 
 <div class="detail">
-<section class="main product-details listing expanded c">
+<section class="main product-details listing verbose expanded c">
   {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
     {{ market_tile(this) }}
   {% placeholder %}
@@ -168,19 +168,21 @@
 <div class="content_ratings">
   {% defer (url=endpoint, as='app', key=slug) %}
     {% if this.content_ratings %}
-      <div class="main content-ratings infobox c">
+      <div class="content-ratings-wrapper main infobox c">
         <div>
           <h3>
             {{ _('Rating by the <a href="{dejus_url}" title="{dejus}">DEJUS</a>',
                  dejus_url=settings.DEJUS_URL,
                  dejus=settings.DEJUS) }}
           </h3>
-          {% for rating in this.content_ratings.values() %}
-            <div class="content-rating c">
-              <div class="icon icon-{{ rating.name }}" title="{{ rating.name }}">{{ rating.name }}</div>
-              <p class="description">{{ rating.description }}</p>
-            </div>
-          {% endfor %}
+          <div class="content-ratings">
+            {% for rating in this.content_ratings.values() %}
+              <div class="content-rating c">
+                <div class="icon icon-{{ rating.name }}" title="{{ rating.name }}">{{ rating.name }}</div>
+                <p class="description">{{ rating.description }}</p>
+              </div>
+            {% endfor %}
+          </div>
         </div>
       </div>
     {% endif %}

@@ -11,10 +11,6 @@
     <img class="icon" alt="" src="{{ app.icons[64] }}" height="64" width="64">
     <div class="info">
       <h3>{{ app.name }}</h3>
-      {% if force_button or (app.current_version and not link) %}
-        {{ market_button(app, classes=classes,
-                         data_attrs={'manifest_url': app.manifest_url}) }}
-      {% endif %}
       {% if app.listed_authors %}
         <div class="author lineclamp vital">{{ app.listed_authors[0].name }}</div>
       {% endif %}
@@ -29,8 +25,14 @@
             {{ _plural('{n} Review', '{n} Reviews', n=app.ratings.count) }}
           </span>
        {% endif %}
-       {% if not link %}</a>{% endif %}
+        {% if not link %}
+          </a>
+        {% endif %}
       </div>
+      {% if force_button or (app.current_version and not link) %}
+        {{ market_button(app, classes=classes,
+                         data_attrs={'manifest_url': app.manifest_url}) }}
+      {% endif %}
     </div>
     {% for notice in app.notices %}
       <div class="bad-app">{{ notice }}</div>

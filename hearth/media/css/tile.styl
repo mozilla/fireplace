@@ -30,22 +30,23 @@
 
 .listing .mkt-tile {
     min-height: 66px;
-    padding: 20px 10px 20px 88px;
+    padding: 15px 10px 15px 84px;
     h3 {
-        font-size: 20px;
+        font-size: 15px;
         font-weight: 400;
-        line-height: 22px;
+        line-height: 20px;
         margin: -4px 0 -7px;
         padding-bottom: 9px;
     }
     .icon {
         float: left;
         position: absolute;
-        top: 20px;
+        top: 15px;
         left: 10px;
     }
     .author {
         color: $earl-gray;
+        ellipsis();
         font-size: 12px;
         line-height: 14px;
         max-height: 28px;
@@ -53,22 +54,21 @@
         padding-bottom: 2px;
     }
     .button {
-        float: right;
         height: 24px;
         line-height: 24px;
         font-size: 13px;
         margin: 2px 0 2px 10px;
+        min-width: 70px;
         padding: 0;
         width: 70px;
     }
     .rating {
-        clear: both;
         color: $sailor-blue;
         display: block;
-        font-size: 11px;
+        font-size: 12px;
+        vertical-align: top;
         .cnt {
-            position: relative;
-            top: 1px;
+            display: none;
         }
         a {
             color: $note-gray;
@@ -185,7 +185,6 @@ $dot-size = 13px;
     color: $maroon;
     font-size: 11px;
     line-height: 12px;
-    margin-top: 4px;
 }
 
 .grid .bad-app,
@@ -196,11 +195,11 @@ $dot-size = 13px;
 
 .category {
     background: #fff;
+    font-size: 15px;
+    line-height: 16px;
     .view-all {
         display: block;
         float: right;
-        font-size: 15px;
-        line-height: 15px;
     }
     &.featured {
         diagonal-lines();
@@ -219,12 +218,11 @@ $dot-size = 13px;
 gridStyle() {
     margin: 0 auto;
     max-width: $desktop-content;
-    padding: 0 5px;  // Each <li> is padded by 10px, so 15px on each side.
     li {
         float: left;
         padding: 15px 10px;
         position: relative;
-        width: 33.33333%;
+        width: (100% / 3);
     }
     .author,
     .button,
@@ -243,11 +241,9 @@ gridStyle() {
         }
         h3, .vital {
             font-size: 12px;
-            line-height: 13px;
-            margin: 0;
-            padding: 0;
         }
         h3 {
+            line-height: 16px;
             margin-bottom: -2px;
             padding-bottom: 2px;
         }
@@ -256,9 +252,7 @@ gridStyle() {
         }
         .price {
             color: $sailor-blue;
-            font-size: 11px;
             font-weight: 400;
-            padding: 2px 0;
         }
     }
 }
@@ -388,6 +382,11 @@ gridStyle() {
                 display: none;
             }
         }
+    }
+
+    .grid,
+    .listing.grid-if-desktop {
+        padding: 0 5px;
     }
 
     // Turn listing style into category horizontal style on desktop.

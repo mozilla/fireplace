@@ -1,5 +1,7 @@
 @import 'lib';
 
+$triangle-size = 20px;
+
 .listing {
     margin-bottom: 10px;
     .loadmore {
@@ -15,9 +17,10 @@
             border-color: darken($seavan-salt-white, 10%);
         }
     }
-    .mkt-tile + .tray {
-        border-radius: 0 0 5px 5px;
-    }
+}
+
+.search-listing .mkt-tile + .tray {
+    border-radius: 0 0 5px 5px;
 }
 
 @media $at-least-desktop {
@@ -25,6 +28,9 @@
         li {
             &.item, &.loadmore {
                 margin: 25px 0 0;
+            }
+            &.item {
+                border-radius: 10px;
             }
             &.loadmore {
                 margin-bottom: -25px;
@@ -34,14 +40,118 @@
             }
         }
         .mkt-tile {
-            background: none;
-            padding: 20px 20px 20px 108px;
-            .icon {
-                left: 20px;
-            }
             .author {
-                font-weight: 600;
+                font-weight: 400;
             }
+        }
+    }
+}
+
+.listing.verbose {
+    margin-bottom: 0;
+    .bad-app {
+        padding-top: 5px;
+        clear: left;
+    }
+    .mkt-tile {
+        padding: 15px 10px;
+        position: relative;
+        .icon {
+            float: left;
+            margin: 0 15px 15px 0;
+            position: static;
+            width: 64px;
+        }
+        h3 {
+            color: #000;
+            ellipsis();
+            font-size: 30px;
+            line-height: 30px;
+            font-weight: 300;
+            margin-top: 0;
+            max-width: 100%;
+        }
+        .author {
+            font-size: 15px;
+            line-height: 18px;
+        }
+    }
+    .install {
+        bottom: 15px;
+        position: absolute;
+        right: 10px;
+    }
+    .rating {
+        clear: left;
+        .cnt {
+            display: inline-block;
+            margin-left: 12px;
+        }
+    }
+    &.expanded .mkt-tile {
+        padding-bottom: 38px;
+        &:before,
+        &:after {
+            border-bottom: $triangle-size solid $salt-flat-white;
+            bottom: 0;
+            content: '';
+            display: block;
+            height: 0;
+            position: absolute;
+            width: 50%;
+        }
+        &:before {
+            // dotted gets rid of strange edge rendering in b2g.
+            border-right: $triangle-size dotted transparent;
+            left: -($triangle-size);
+        }
+        &:after {
+            border-left: $triangle-size dotted transparent;
+            right: -($triangle-size);
+        }
+        .install {
+            bottom: (18px + $triangle-size);
+        }
+    }
+    &.product-details {
+        .mkt-tile {
+            diagonal-lines();
+            + .tray {
+                border-radius: 0;
+            }
+        }
+        .rating_link {
+            color: $sailor-blue;
+        }
+    }
+}
+
+@media $at-least-desktop {
+    .listing.verbose {
+        .mkt-tile {
+            padding: 18px 15px;
+        }
+        .install {
+            bottom: 18px;
+            right: 15px;
+        }
+        &.expanded .mkt-tile {
+            .install {
+                bottom: (18px + $triangle-size);
+            }
+        }
+    }
+    .search-listing .mkt-tile + .tray {
+        border-radius: 0 0 10px 10px;
+    }
+    .product-details {
+        .mkt-tile h3 {
+            font-size: 40px;
+            line-height: 48px;
+        }
+        .mkt-tile + .tray:after,
+        .mkt-tile + .tray:before {
+            background-image: none;
         }
     }
 }

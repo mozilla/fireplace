@@ -61,6 +61,8 @@ define('views/search',
         setTrays(expand);
     }).on('loaded_more', function() {
         z.page.trigger('populatetray');
+        // Update "Showing 1—{total}" text.
+        z.page.find('.total-results').text(z.page.find('.item.app').length);
     });
 
     return function(builder, args, params) {
