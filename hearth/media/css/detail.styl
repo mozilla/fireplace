@@ -2,29 +2,19 @@
 
 $triangle-size = 20px;
 
-// Description.
 
-body[data-page-type~=leaf] {
-    h3 {
-        font-weight: 600;
-        line-height: 16px;
-    }
-    .infobox {
-        border-top: 1px dashed $london-fog-gray;
-        border-bottom: none;
-        .button {
-            display: block;
-        }
-    }
-    .blurbs {
-        border-top: none;
-    }
-    .support,
-    .content-ratings {
-        diagonal-lines();
-    }
+.infobox.blurbs {
+    border-top: 0;
 }
-
+.support,
+.content-ratings {
+    diagonal-lines();
+}
+.detail .support > div {
+    // Necessary to not clobber desktop L+R
+    padding-bottom: 24px;
+    padding-top: 24px;
+}
 .blurbs,
 .reviews,
 .support {
@@ -32,94 +22,86 @@ body[data-page-type~=leaf] {
 }
 
 .product-details {
-    font-size: 15px;
     line-height: 18px;
-    &.listing {
-        margin-bottom: 0;
-    }
-    .icon {
-        width: 64px;
-    }
-    .mkt-tile h3 {
-        color: #000;
-        ellipsis();
-        max-width: 100%;
-        font-size: 30px;
-        line-height: 37px;
-        margin-top: 0;
-    }
-    .mkt-tile .author {
-        font-size: 15px;
-        line-height: 15px;
-    }
-    .mkt-tile {
-        position: relative;
+    margin-bottom: 0;
+    .bad-app {
+        padding-top: 5px;
+        clear: left;
     }
     .mkt-tile {
         padding: 20px 10px 30px;
+        position: relative;
         diagonal-lines();
-    }
-    .mkt-tile:before,
-    .mkt-tile:after {
-        border-bottom: $triangle-size solid $salt-flat-white;
-        bottom: 0;
-        content: ''
-        display: block;
-        height: 0;
-        position: absolute;
-        width: 50%;
-    }
-    .mkt-tile:before {
-        // dotted gets rid of strange edge rendering in b2g.
-        border-right: $triangle-size dotted transparent;
-        left: -($triangle-size);
-    }
-    .mkt-tile:after {
-        border-left: $triangle-size dotted transparent;
-        right: -($triangle-size);
+        .icon {
+            float: left;
+            margin: 0 14px 10px 0;
+            position: static;
+            width: 64px;
+        }
+        h3 {
+            color: #000;
+            ellipsis();
+            font-size: 30px;
+            line-height: 37px;
+            font-weight: 300;
+            margin-top: 0;
+            max-width: 100%;
+        }
+        .author {
+            font-size: 15px;
+            line-height: 15px;
+        }
+        &:before,
+        &:after {
+            border-bottom: $triangle-size solid $salt-flat-white;
+            bottom: 0;
+            content: '';
+            display: block;
+            height: 0;
+            position: absolute;
+            width: 50%;
+        }
+        &:before {
+            // dotted gets rid of strange edge rendering in b2g.
+            border-right: $triangle-size dotted transparent;
+            left: -($triangle-size);
+        }
+        &:after {
+            border-left: $triangle-size dotted transparent;
+            right: -($triangle-size);
+        }
+        + .tray {
+            border-radius: 0;
+        }
+        .rating .cnt {
+            margin-left: 10px;
+        }
     }
     .install {
         bottom: (10px + $triangle-size);
         position: absolute;
         right: 10px;
     }
-    &.listing .rating {
+    .rating {
         clear: left;
         float: left;
-    }
-    &.listing .icon {
-        float: left;
-        margin: 0 14px 10px 0;
-        position: static;
-    }
-    // TODO: refactor/remove when default listing
-    // rating styles are updated.
-    &.listing .rating .cnt,
-    &.listing .rating a:hover .cnt {
-        color: $sailor-blue;
-        border: none;
-        font-size: 12px;
-        margin-left: 10px;
-    }
-    &.listing .rating a:hover .cnt {
-        text-decoration: underline;
     }
 }
 
 .blurbs {
     clear: both;
     color: $dark-gray;
-    .description,
-    p {
+    line-height: 22px;
+    .summary {
         margin: 0;
+    }
+    h3, p, ol, ul, dl {
+        margin: 15px 0;
     }
     h3 {
         font-size: 15px;
+        font-weight: 500;
         line-height: 18px;
-        margin: 15px 0 20px;
-    }
-    ul, ol {
-        margin: 10px 0;
     }
     blockquote {
         background: $faint-gray;
@@ -131,8 +113,8 @@ body[data-page-type~=leaf] {
 }
 
 .reviews h3 {
-    color: #000;
-    font-size: 15px;
+    color: #333;
+    font-weight: 500;
     margin-bottom: 20px;
 }
 
@@ -161,8 +143,6 @@ body[data-page-type~=leaf] {
 .content-ratings {
     border-top: 1px dashed $london-fog-gray;
     h3 {
-        color: #000;
-        font-size: 15px;
         padding-bottom: 20px;
     }
 }
@@ -170,8 +150,7 @@ body[data-page-type~=leaf] {
 .content-rating {
     color: $text;
     display: table;
-    font-size: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     &:last-child {
         margin-bottom: 0;
     }
@@ -338,67 +317,55 @@ body[data-page-type~=leaf] {
 // ***************** Wide Mobile (> 671px)
 
 @media $at-least-desktop {
-    body[data-page-type~=leaf] {
-        .blurbs,
-        .reviews,
-        .support {
-            background-color: #fff;
-            border-top: 1px dashed $london-fog-gray;
-            border-bottom: none;
+    .blurbs {
+        padding-top: 10px; // Allow for drop-cap in padding.
+        > div {
+            text-columns(2, 24px);
+            -webkit-flex-flow: column wrap; // Allows the drop-cap to overflow.
         }
-        .blurbs {
-            border-top: none;
-            h3 {
-                display: none;
-            }
-            > div {
-                text-columns(2);
-            }
-            .description {
-                margin-top: 15px;
+        h3, p, ol, ul, dl {
+            margin: 24px 0;
+        }
+        .summary {
+            position: relative;
+            &:first-letter {
+                font-size: 40px;
+                font-weight: 300;
+                line-height: 0; // Prevents padding of first col.
             }
         }
-        #reviews {
-            margin: 20px auto;
-        }
-        .listing {
-            border: 0;
-        }
-        #reviews-detail {
-            padding: 20px;
-            font-size: 15px;
-            ul {
-                margin: 0 -20px;
-                position: relative;
-                .review {
-                    float: left;
-                    padding: 0 20px;
-                    width: 50%;
-                }
-            }
-            .byline,
-            .byline strong {
-                color: $earl-gray;
-                font-size: 15px;
+
+    }
+    .listing {
+        border: 0;
+    }
+    #reviews-detail {
+        font-size: 15px;
+        ul.c {
+            margin: 0 -12px;
+            position: relative;
+            li.review {
+                float: left;
+                padding: 0 12px;
+                width: 50%;
             }
         }
     }
 
     .detail {
-        border-radius: 5px;
+        border-radius: 10px;
         border: 1px solid $seavan-salt-white;
         margin: 0 auto;
         max-width: $desktop-content + 2;
         overflow: hidden;
+        h3 {
+            font-weight: 500;
+        }
     }
 
     .product-details {
         background: #fff;
-        .bad-app {
-            padding-top: 5px;
-            clear: left;
-        }
-        &.listing .mkt-tile {
+        .mkt-tile {
             padding: 15px 15px 35px;
             diagonal-lines();
         }

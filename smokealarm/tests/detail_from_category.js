@@ -3,7 +3,7 @@ var suite = require('./kasperle').suite();
 suite.run('/category/foo', function(test, waitFor) {
 
     waitFor(function() {
-        return suite.exists('#featured');
+        return suite.exists('#featured li a:first-child');
     });
 
     test('Click on creatured app', function() {

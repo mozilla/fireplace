@@ -25,20 +25,13 @@ select[name=rating] {
     list-style-type: none;
     padding: 10px 16px;
     position: relative;
-    .byline, .timestamp {
+    .timestamp {
         font-size: 12px;
     }
-    .byline {
-        color: $medium-gray;
+    .byline, .byline strong{
+        line-height: 15px;
+        color: $earl-gray;
         font-weight: 600;
-        line-height: 18px;
-        vertical-align: middle;
-        b {
-            color: $gray;
-        }
-        strong {
-            color: #444;
-        }
     }
     time {
         color: $note-gray;
@@ -69,13 +62,11 @@ select[name=rating] {
 
 // This applies to "app details" pages only.
 .reviews {
-    border-top: 1px solid rgba(255,255,255,.5);
-    border-bottom: 1px solid rgba(3, 16, 26, .13);
     .not-rated {
-        color: lighten($text, 5%);
+        color: $earl-gray;
         font-size: 14px;
         font-weight: 600;
-        margin: 0;
+        margin: 0 0 24px;
     }
     .full .button {
         display: block;
@@ -86,7 +77,9 @@ select[name=rating] {
 }
 
 #reviews-detail {
-    padding: 15px;
+    border-top: 1px dashed $london-fog-gray;
+    padding: 15px 10px 24px;
+    overflow: hidden;
     ul {
         margin: 0;
         padding: 0;
@@ -304,6 +297,9 @@ select[name=rating] {
 }
 
 @media $at-least-desktop {
+    #reviews-detail {
+        padding: 24px 15px;
+    }
     #edit-review {
         form {
             padding: 5px 25px;
@@ -376,11 +372,11 @@ select[name=rating] {
     // ratings
     .split {
         float: left;
-        padding: 0 5px 15px 0;
-        width: 324px;
+        padding: 0 12px 0 0;
+        width: 50%;
         + .split {
             margin-top: 0;
-            padding: 0 0 15px 5px;
+            padding: 0 0 0 12px;
         }
     }
 }

@@ -3,7 +3,7 @@ var suite = require('./kasperle').suite();
 suite.run('/search?q=test', function(test, waitFor) {
 
     waitFor(function() {
-        return suite.exists('#search-results');
+        return suite.exists('#search-results li a:first-child');
     });
 
     test('Ensure no cat dropdown on search page', function(assert) {
