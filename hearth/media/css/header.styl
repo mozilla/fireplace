@@ -5,10 +5,11 @@
 
 // usable on any header
 .header {
+    border-top: 1px solid $salt-flat-white;
     display-flex();
     gradient-two-color(#fff, #e1e1e1);
-    height: 50px;
-    max-height: 50px;
+    height: 48px;
+    max-height: 48px;
     position: relative;
     width: 100%;
     > * {
@@ -22,7 +23,7 @@
         color: $castle-skull-gray;
         font-size: 18px;
         font-weight: 400;
-        line-height: 50px;
+        line-height: 48px;
         z-index: 10;
     }
 }
@@ -52,7 +53,7 @@
         display: block;
     }
     > nav {
-        height: 50px;
+        height: 48px;
         display-flex();
         position: relative;
         text-align: left;
@@ -63,17 +64,21 @@
         }
     }
     .site {
-        height: 30px;
-        margin-left: 10px;
+        height: 48px;
+        margin: 0 5px;
         text-indent: -9999px;
         width: 200px;
+        a {
+            display: block;
+            height: 47px;
+            width: 100%;
+        }
     }
     .wordmark {
-        background: url(../img/pretty/desktop_logo.png) no-repeat;
-        background-size: auto 30px;
+        background: url(../img/pretty/marketplace_logo.png) 0 50% no-repeat;
+        background-size: auto 37px;
         display: block;
-        height: 30px;
-        width: 200px;
+        height: 47px;
     }
     .header-button {
         display: none;
@@ -138,8 +143,8 @@
     border-color: $cement-gray #d5d5d5 #e0e0e0;
     border-radius: 10px;
     color: $sailor-blue;
-    font: 17px/28px $open-stack;
-    height: 30px;
+    font: 15px/28px $open-stack;
+    height: 34px;
     outline: none;
     padding: 2px 10px 1px;
     width: 100%;
@@ -180,7 +185,7 @@
 .search-clear {
     background: url(../img/pretty/close.svg) 0 50% no-repeat;
     background-size: 18px auto;
-    height: 30px;
+    height: 34px;
     hidetext();
     position: absolute;
     right: 10px;
@@ -192,10 +197,10 @@
 .header-button {
     color: $castle-skull-gray;
     display: block;
-    height: 50px;
-    line-height: 50px;
+    height: 48px;
+    line-height: 48px;
     text-align: center;
-    width: 50px;
+    width: 48px;
 
     // header buttons with icons
     &.icon {
@@ -369,12 +374,12 @@
 }
 
 main {
-    padding-top: 50px;
+    padding-top: 48px;
 }
 
 @media (min-width: 710px) {
     main {
-        padding: 98px 0 48px;  // 48px + 50px to offset header
+        padding: 96px 0 48px;  // 48px padding + 48px to offset header
     }
 }
 
@@ -393,7 +398,7 @@ main {
 
     .act-tray,
     .act-tray .header-button.settings {
-        height: 50px;
+        height: 48px;
         width: 50px;
     }
 
@@ -425,13 +430,15 @@ main {
             max-width: 1024px;
         }
         .site {
-            height: 60px;
+            margin: 0;
             width: 280px;
         }
-        .wordmark {
-            background-position: 0 50%;
-            background-size: 232px auto;
+        .site, .site a, .wordmark {
             height: 60px;
+        }
+        .wordmark {
+            background-position: -5px 50%;
+            background-size: 245px auto;
             max-width: 232px;
             width: 232px;
         }
@@ -476,7 +483,7 @@ main {
 
     .search-clear {
         right: 15px;
-        top: 10px;
+        top: 8px;
     }
 
     // How does the header look for the various page "types"?
@@ -537,8 +544,7 @@ main {
     [data-page-type~=root] {
         .site-header {
             .site, .wordmark {
-                margin-right: 10px;
-                width: 32px;
+                width: 35px;
             }
             .flex-shift {
                 display: none;
