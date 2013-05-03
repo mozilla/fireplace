@@ -211,7 +211,6 @@ $dot-size = 12px;
     }
 }
 
-
 // Grid
 // store graphic, name, price in a floated grid (3 tiles wide at 320).
 
@@ -274,12 +273,6 @@ gridStyle() {
 
 .listing.grid-if-desktop .mkt-tile + .tray {
     display: none;
-}
-
-@media $narrower-than-desktop {
-    .purchases .mkt-tile + .tray {
-        display: none;
-    }
 }
 
 .tabs {
@@ -463,6 +456,15 @@ gridStyle() {
 }
 
 @media $narrower-than-desktop {
+    .category.nonpaginated {
+        border-top: 0;
+        .listing {
+            padding-top: 0;
+        }
+    }
+    .purchases .mkt-tile + .tray {
+        display: none;
+    }
     .gallery {
         background: $salt-flat-white;
     }
