@@ -85,7 +85,7 @@ apps['fireplace'] = {
 apps['afterhours'] = {
     'name': 'Firefox After Hours',
     'summary': 'Get your fox on',
-    'manifest_url': 'https://marketplace-altdev.allizom.org/manifest.webapp',
+    'manifest_url': 'http://people.mozilla.org/~cwiemeersch/afterhours.webapp',
     'icons': {
         64: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/64.png',
         128: 'https://marketplace.cdn.mozilla.net/media/fireplace/img/logos/128.png',
@@ -183,6 +183,17 @@ apps['idw'] = {
     'icons': {
         64: '/media/img/idw.png',
         128: '/media/img/idw.png',
+    },
+    'ratings': {'average': 5, 'count': int(random.random() * 500)},
+    'homepage': 'https://marketplace-altdev.allizom.org/',
+}
+apps['kumarketplace'] = {
+    'name': 'Kumarketplace',
+    'summary': 'Apps made by Kumar',
+    'manifest_url': 'https://marketplace-altdev.allizom.org/manifest.webapp',
+    'icons': {
+        64: '/media/img/marketplace.png',
+        128: '/media/img/marketplace.png',
     },
     'ratings': {'average': 5, 'count': int(random.random() * 500)},
     'homepage': 'https://marketplace-altdev.allizom.org/',

@@ -22,7 +22,7 @@ define('settings', ['settings_local', 'underscore'], function(settings_local, _)
         native_persona: 'https://native-persona.org/include.js',
         persona: 'https://login.persona.org/include.js',
 
-        title_suffix: 'Firefox Marketplace',
+        title_suffix: 'Firefox Marketplace Marketplace',
         carrier: null
     });
 });
