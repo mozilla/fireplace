@@ -7,7 +7,7 @@ define('views/category',
 
     return function(builder, args, params) {
         var category = args[0];
-        _.defaults(params || {}, {sort: 'popularity'});
+        params = params || {};
 
         var model = cat_models.lookup(category);
 
@@ -19,7 +19,7 @@ define('views/category',
         builder.start('category/main.html', {
             category: category,
             category_name: category,
-            endpoint: urls.api.url('category', [category], {sort: params.sort}),
+            endpoint: urls.api.url('category', [category], params),
             sort: params.sort
         }).done(setTrays);
     };
