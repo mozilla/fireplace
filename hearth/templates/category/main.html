@@ -61,4 +61,9 @@
   <p class="no-results">
     {{ _('No apps in this category') }}
   </p>
+{% except %}
+  <p class="no-results">
+    {# Handle 500s so the page isn't blank. (bug 868667) #}
+    {{ _('No apps in this category, try again later') }}
+  </p>
 {% end %}

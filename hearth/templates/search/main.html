@@ -28,5 +28,10 @@
     <p class="no-results">
       {{ _('No results found') }}
     </p>
+  {% except %}
+    <p class="no-results">
+      {# Handle 500s so the page isn't blank. (bug 868667) #}
+      {{ _('No results found, try again later') }}
+    </p>
   {% end %}
 </section>
