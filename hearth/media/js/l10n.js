@@ -56,10 +56,10 @@ if (!window.define) {
             }
             var out;
             var n = args.n;
-            var plid = context.l10n.pluralize(n);
             var strings = context.l10n.strings;
             if (context.l10n && str in strings) {
                 if (strings[str].plurals) {
+                    var plid = context.l10n.pluralize(n);
                     out = strings[str].plurals[plid];
                 } else {
                     // Support for languages like zh-TW where there is no plural form.
