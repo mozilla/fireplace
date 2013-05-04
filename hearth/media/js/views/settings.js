@@ -14,6 +14,7 @@ define('views/settings',
         acc_sett.find('[name=display_name]').val(user.get_setting('display_name'));
         acc_sett.find('[name=email]').val(user.get_setting('email'));
         acc_sett.find('[name=region]').val(user.get_setting('region'));
+        z.page.trigger('reload_chrome');
     }
 
     z.page.on('submit', 'form.account-settings', _pd(function(e) {
