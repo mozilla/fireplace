@@ -17,6 +17,10 @@ define('views/homepage',
         builder.z('cat', 'all');
         builder.z('show_cats', true);
 
+        if ('src' in params) {
+            delete params.src;
+        }
+
         builder.start('category/main.html', {
             endpoint: urls.api.url('category', [''], params),
             category_name: gettext('All Categories'),

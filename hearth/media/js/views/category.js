@@ -16,6 +16,10 @@ define('views/category',
         builder.z('show_cats', true);
         builder.z('cat', category);
 
+        if ('src' in params) {
+            delete params.src;
+        }
+
         builder.start('category/main.html', {
             category: category,
             category_name: category,

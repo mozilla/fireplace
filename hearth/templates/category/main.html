@@ -12,7 +12,7 @@
 {% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
 {% set search_url = search_url|urlparams(sort=sort) if sort == 'created' else search_url %}
 
-{% defer (url=endpoint, pluck='featured') %}
+{% defer (url=endpoint, pluck='featured', as='app') %}
   <section id="featured" class="main category featured full c">
     <header class="featured-header c">
       <h3>{{ _('Featured Apps') }}</h3>
