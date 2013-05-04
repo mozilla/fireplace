@@ -62,8 +62,11 @@ define('navigation',
             return;
         }
 
-        z.win.trigger('unloading');  // Tell the world that we're cleaning stuff up.
+        if (last_bobj) {
+            z.win.trigger('unloading');  // Tell the world that we're cleaning stuff up.
+        }
         last_bobj = views.build(view[0], view[1], state.params);
+        z.win.trigger('navigating', [popped]);
         state.type = z.context.type;
         state.title = z.context.title;
 

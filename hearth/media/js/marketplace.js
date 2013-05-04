@@ -75,17 +75,6 @@ require.config({
             $('#splash-overlay').addClass('hide');
         });
 
-        if (settings.tracking_enabled) {
-            // Initialize analytics tracking.
-            z.page.on('loaded', function() {
-                // Otherwise we'll track back button hits etc.
-                if (!popped) {
-                    // GA track every fragment loaded page.
-                    _gaq.push(['_trackPageview', window.location.href]);
-                }
-            });
-        }
-
         // This lets you refresh within the app by holding down command + R.
         if (capabilities.chromeless) {
             window.addEventListener('keydown', function(e) {
