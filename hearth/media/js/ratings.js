@@ -147,10 +147,13 @@ define('ratings',
         var $this = $(this);
         var app = $this.data('app');
 
-        forms.toggleReviewFormState($this);
 
         var data = utils.getVars($this.serialize());
         data.app = app;
+
+        // This must be below `.serialize()`. Disabled form controls aren't posted.
+        forms.toggleReviewFormState($this);
+
         require('requests').post(
             urls.api.url('reviews'),
             data
