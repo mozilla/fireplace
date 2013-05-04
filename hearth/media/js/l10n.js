@@ -56,14 +56,19 @@ if (!window.define) {
             }
             var out;
             var n = args.n;
-            if (context.l10n && str in context.l10n.strings) {
-                var plid = context.l10n.pluralize(n);
-                out = context.l10n.strings[str].plurals[plid];
+            var plid = context.l10n.pluralize(n);
+            var strings = context.l10n.strings;
+            if (context.l10n && str in strings) {
+                if (strings[str].plurals) {
+                    out = strings[str].plurals[plid];
+                } else {
+                    // Support for languages like zh-TW where there is no plural form.
+                    out = strings[str].body;
+                }
             } else {
                 out = n === 1 ? str : plural;
             }
-            out = format.format(out, args);
-            return out;
+            return format.format(out, args);
         }
 
         window.gettext = get;
