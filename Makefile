@@ -31,7 +31,7 @@ langpacks:
 		mv $$po.js hearth/locales/`basename \`dirname \\\`dirname $$po\\\`\` | tr "_" "-"`.js ; \
 	done
 
-test: clean compile
+test: clean fastcompile
 	cd smokealarm ; \
 	casperjs test tests
 

@@ -8,8 +8,14 @@ suite.run('/', function(test, waitFor) {
 
     test('Clicking on feedback displays overlay', function(assert) {
         suite.press('#site-footer .submit-feedback');
+        suite.capture('feedback.png');
+
         assert.visible('#feedback-overlay');
         assert.visible('.feedback-form textarea');
+
+        assert.selectorExists('.potato-captcha');
+        assert.invisible('.potato-captcha');
+
         assert.selectorExists('.feedback-form button[disabled]');
     });
 
