@@ -57,14 +57,34 @@ define('utils', ['jquery', 'underscore'], function($, _) {
         var keys = _.keys(kwargs).sort();
         for (var i = 0; i < keys.length; i++) {
             var key = keys[i];
-            params.push(encodeURIComponent(key) + '=' +
-                        encodeURIComponent(kwargs[key]));
+            var value = kwargs[key];
+            if (value === undefined) {
+                params.push(encodeURIComponent(key));
+            } else {
+                params.push(encodeURIComponent(key) + '=' +
+                            encodeURIComponent(value));
+            }
         }
         return params.join('&');
     }
 
     function urlparams(url, kwargs) {
         return baseurl(url) + '?' + urlencode(_.defaults(kwargs, querystring(url)));
+    }
+
+    function urlunparam(url, params) {
+        var qs = querystring(url);
+        for (var i = 0, p; p = params[i++];) {
+            if (!(p in qs)) {
+                continue;
+            }
+            delete qs[p];
+        }
+        var base = baseurl(url);
+        if (_.isEmpty(qs)) {
+            return base;
+        }
+        return base + '?' + urlencode(qs);
     }
 
     function getVars(qs, excl_undefined) {
@@ -98,6 +118,7 @@ define('utils', ['jquery', 'underscore'], function($, _) {
         'getVars': getVars,
         'makeOrGetOverlay': makeOrGetOverlay,
         'urlparams': urlparams,
+        'urlunparam': urlunparam,
         'baseurl': baseurl,
         'querystring': querystring,
         'urlencode': urlencode

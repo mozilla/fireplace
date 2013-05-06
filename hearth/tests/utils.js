@@ -47,6 +47,7 @@ test('urlencode', function(done) {
     eq_(utils.urlencode({c: 'b', a: 'd'}), 'a=d&c=b');  // Must be alphabetized.
     eq_(utils.urlencode({__keywords: 'poop', test: 'crap'}), 'test=crap');
     eq_(utils.urlencode({test: 'cr ap'}), 'test=cr+ap');
+    eq_(utils.urlencode({foo: void 0, zap: 0}), 'foo&zap=0');
     done();
 });
 
@@ -55,6 +56,15 @@ test('urlparams', function(done) {
     eq_(utils.urlparams('?', {a: 'b'}), '?a=b');
     eq_(utils.urlparams('?', {a: ' '}), '?a=+');
     eq_(utils.urlparams('?a=d', {a: 'b'}), '?a=b');
+    done();
+});
+
+test('urlunparam', function(done) {
+    eq_(utils.urlunparam('foo/bar?a=1&b=2&c=3', ['']), 'foo/bar?a=1&b=2&c=3');
+    eq_(utils.urlunparam('foo/bar?a=1&b=2&c=3', ['d']), 'foo/bar?a=1&b=2&c=3');
+    eq_(utils.urlunparam('foo/bar?a=1&b=2&c=3', ['b']), 'foo/bar?a=1&c=3');
+    eq_(utils.urlunparam('foo/bar?a&b&c=3', ['b']), 'foo/bar?a&c=3');
+    eq_(utils.urlunparam('foo/bar?b=1', ['b']), 'foo/bar');
     done();
 });
 
