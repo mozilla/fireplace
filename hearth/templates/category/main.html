@@ -30,33 +30,32 @@
 {% empty %}
 {% end %}
 
+<section id="gallery" class="main category gallery full c">
 {% defer (url=endpoint, pluck='objects', as='app', paginate='ol.listing') %}
   {% set paginated = response.meta.total_count > response.meta.limit %}
-  <section id="gallery" class="main category gallery{{ ' nonpaginated' if not paginated }} full c">
-    {% if paginated %}
-      <header class="featured-header c">
-        <nav class="tabs">
-          <a{% if not sort %} class="active"{% endif %} href="{{ popular_url }}">{{ _('Popular') }}</a>
-          <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}">{{ _('New') }}</a>
-        </nav>
-        <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
-      </header>
-    {% endif %}
-    <ol class="container listing grid-if-desktop search-listing c">
-      {% for result in this %}
-        <li class="item result app c">
-          {{ market_tile(result, link=true, force_button=true, src=sort) }}
-        </li>
-      {% endfor %}
+  {% if paginated %}
+    <header class="featured-header c">
+      <nav class="tabs">
+        <a{% if not sort %} class="active"{% endif %} href="{{ popular_url }}">{{ _('Popular') }}</a>
+        <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}">{{ _('New') }}</a>
+      </nav>
+      <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
+    </header>
+  {% endif %}
+  <ol class="container listing grid-if-desktop search-listing c">
+    {% for result in this %}
+      <li class="item result app c">
+        {{ market_tile(result, link=true, force_button=true, src=sort) }}
+      </li>
+    {% endfor %}
 
-      {# Render the more button if there's another page of results #}
-      {% if response.meta.next %}
-        {{ more_button(response.meta.next) }}
-      {% endif %}
-    </ol>
-  </section>
+    {# Render the more button if there's another page of results #}
+    {% if response.meta.next %}
+      {{ more_button(response.meta.next) }}
+    {% endif %}
+  </ol>
 {% placeholder %}
-  <p class="spinner spaced alt"></p>
+  <p class="spinner padded alt"></p>
 {% empty %}
   <p class="no-results">
     {{ _('No apps in this category') }}
@@ -67,3 +66,4 @@
     {{ _('No apps in this category, try again later') }}
   </p>
 {% end %}
+</section>
