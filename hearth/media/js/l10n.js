@@ -56,8 +56,8 @@ if (!window.define) {
             }
             var out;
             var n = args.n;
-            var strings = context.l10n.strings;
-            if (context.l10n && str in strings) {
+            var strings;
+            if (context.l10n && str in (strings = context.l10n.strings)) {
                 if (strings[str].plurals) {
                     var plid = context.l10n.pluralize(n);
                     out = strings[str].plurals[plid];
