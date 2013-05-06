@@ -39,15 +39,10 @@ $triangle-size = 20px;
                 position: static;
             }
         }
-        .mkt-tile {
-            .author {
-                font-weight: 400;
-            }
-        }
     }
 }
 
-.listing.verbose {
+.listing {
     margin-bottom: 0;
     .bad-app {
         padding-top: 5px;
@@ -58,22 +53,18 @@ $triangle-size = 20px;
         position: relative;
         .icon {
             float: left;
-            margin: 0 15px 15px 0;
+            margin-right: 15px;
             position: static;
             width: 64px;
         }
         h3 {
-            color: #000;
+            color: $castle-skull-gray;
             ellipsis();
-            font-size: 30px;
-            line-height: 30px;
-            font-weight: 300;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 20px;
             margin-top: 0;
             max-width: 100%;
-        }
-        .author {
-            font-size: 15px;
-            line-height: 18px;
         }
     }
     .install {
@@ -81,12 +72,8 @@ $triangle-size = 20px;
         position: absolute;
         right: 10px;
     }
-    .rating {
-        clear: left;
-        .cnt {
-            display: inline-block;
-            margin-left: 12px;
-        }
+    .rating .cnt {
+        display: none;
     }
     &.expanded .mkt-tile {
         padding-bottom: 38px;
@@ -119,6 +106,28 @@ $triangle-size = 20px;
             + .tray {
                 border-radius: 0;
             }
+            .icon {
+                // Leave room for reviews stars/count.
+                margin-bottom: 15px;
+            }
+            h3 {
+                font-size: 30px;
+                line-height: 30px;
+                font-weight: 300;
+                margin-top: 0;
+                max-width: 100%;
+            }
+            .author {
+                font-size: 15px;
+                line-height: 18px;
+            }
+        }
+        .rating {
+            clear: left;
+            .cnt {
+                display: inline-block;
+                margin-left: 12px;
+            }
         }
         .rating_link {
             color: $sailor-blue;
@@ -127,7 +136,7 @@ $triangle-size = 20px;
 }
 
 @media $at-least-desktop {
-    .listing.verbose {
+    .listing {
         .mkt-tile {
             padding: 18px 15px;
         }
@@ -139,6 +148,10 @@ $triangle-size = 20px;
             .install {
                 bottom: (18px + $triangle-size);
             }
+        }
+        .author {
+            font-size: 15px;
+            line-height: 18px;
         }
     }
     .search-listing .mkt-tile + .tray {

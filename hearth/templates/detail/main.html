@@ -6,7 +6,7 @@
 {% set endpoint = api('app', [slug]) %}
 
 <div class="detail">
-<section class="main product-details listing verbose expanded c">
+<section class="main product-details listing expanded c">
   {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
     {{ market_tile(this) }}
   {% placeholder %}
