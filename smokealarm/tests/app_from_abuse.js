@@ -24,7 +24,7 @@ suite.run('/app/foo/abuse', function(test, waitFor) {
         assert.URL(/\/app\/foo\/abuse/);
     });
 
-    test('Test abuse form submission URL redirect', function() {
+    test('Test abuse form submission URL redirect', function(assert) {
         suite.press('.abuse-form button');
         assert.URL(/\/app\/foo/);
     });
