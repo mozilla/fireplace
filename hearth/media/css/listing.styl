@@ -90,6 +90,11 @@ blockRatings() {
     .rating .cnt {
         display: none;
     }
+    &.grid-if-desktop {
+        .icon {
+            margin-bottom: 0;
+        }
+    }
     &.expanded .mkt-tile {
         padding-bottom: 38px;
         &:before,
@@ -176,5 +181,12 @@ blockRatings() {
         .mkt-tile + .tray:before {
             background-image: none;
         }
+    }
+}
+
+@media $narrower-than-desktop {
+    .listing.grid-if-desktop {
+        // Create 10px between Popular/New tabs.
+        padding-top: 14px;
     }
 }
