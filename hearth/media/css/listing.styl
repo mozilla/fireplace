@@ -42,6 +42,21 @@ $triangle-size = 20px;
     }
 }
 
+blockRatings() {
+    // These rules get applied on mobile detail page and desktop category listing pages.
+    .icon {
+        // Leave room for reviews stars/count.
+        margin-bottom: 15px;
+    }
+    .rating {
+        clear: left;
+        .cnt {
+            display: inline-block;
+            margin-left: 12px;
+        }
+    }
+}
+
 .listing {
     margin-bottom: 0;
     .bad-app {
@@ -103,12 +118,9 @@ $triangle-size = 20px;
     &.product-details {
         .mkt-tile {
             diagonal-lines();
+            blockRatings();
             + .tray {
                 border-radius: 0;
-            }
-            .icon {
-                // Leave room for reviews stars/count.
-                margin-bottom: 15px;
             }
             h3 {
                 font-size: 30px;
@@ -122,13 +134,6 @@ $triangle-size = 20px;
                 line-height: 18px;
             }
         }
-        .rating {
-            clear: left;
-            .cnt {
-                display: inline-block;
-                margin-left: 12px;
-            }
-        }
         .rating_link {
             color: $sailor-blue;
         }
@@ -137,6 +142,7 @@ $triangle-size = 20px;
 
 @media $at-least-desktop {
     .listing {
+        blockRatings();
         .mkt-tile {
             padding: 18px 15px;
         }
