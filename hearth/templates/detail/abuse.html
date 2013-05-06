@@ -3,6 +3,15 @@
 <div class="main report-abuse infobox c">
   <div>
     <h1>{{ _('Report Abuse') }}</h1>
-    {{ abuse_form(api('app_abuse'), 'app', slug) }}
+    <form method="post" class="abuse-form" data-action="{{ api('app_abuse') }}">
+      <p class="brform simple-field c">
+        <textarea rows="10" cols="40" name="text" required></textarea>
+      </p>
+      <p class="form-footer">
+        {{ potato_captcha() }}
+        <input type="hidden" name="app" value="{{ slug }}">
+        <button type="submit">{{ _('Send Report') }}</button>
+      </p>
+    </form>
   </div>
 </div>

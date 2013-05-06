@@ -1,6 +1,6 @@
 define('views/abuse',
-       ['l10n', 'notification', 'requests', 'urls', 'z'],
-       function(l10n, notification, requests, urls, z) {
+       ['forms', 'l10n', 'notification', 'requests', 'urls', 'z'],
+       function(forms, l10n, notification, requests, urls, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -11,13 +11,17 @@ define('views/abuse',
         e.preventDefault();
         // Submit report abuse form
         var $this = $(this);
+        var slug = $this.find('input[name=app]').val();
+        var data = $this.serialize();
 
-        requests.post($this.data('action'), $this.serialize()).done(function(data) {
-            console.log('submitted abuse report');
-            notify({message: gettext('Abuse reported')})
-            $this.find('textarea').val('');
+        forms.toggleSubmitFormState($this);
+
+        requests.post($this.data('action'), data).done(function(data) {
+            notify({message: gettext('Abuse reported')});
+            z.page.trigger('navigate', urls.reverse('app', [slug]));
         }).fail(function() {
-            notify({message: gettext('Error while submitting report')})
+            forms.toggleSubmitFormState($this, true);
+            notify({message: gettext('Error while submitting report')});
         });
     });
 

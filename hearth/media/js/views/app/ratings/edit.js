@@ -13,7 +13,7 @@ define('views/app/ratings/edit',
         var slug = $this.data('slug');
         var _data = utils.getVars($this.serialize());
 
-        forms.toggleReviewFormState($this);
+        forms.toggleSubmitFormState($this);
 
         requests.put(
             settings.api_url + urls.api.sign(uri),
@@ -33,7 +33,7 @@ define('views/app/ratings/edit',
 
             z.page.trigger('navigate', urls.reverse('app', [slug]));
         }).fail(function() {
-            forms.toggleReviewFormState($this, true);
+            forms.toggleSubmitFormState($this, true);
             notify({message: gettext('There was a problem updating your review')});
         });
     });
