@@ -14,7 +14,7 @@
       {% if app.listed_authors %}
         <div class="author lineclamp vital">{{ app.listed_authors[0].name }}</div>
       {% endif %}
-      <div class="price vital">{{ app.price if app.price else _('Free') }}</div>
+      <div class="price vital">{{ app.price_locale if app.price else _('Free') }}</div>
       <div class="rating vital{{ ' unrated' if not app.ratings.count }}">
         {% if not link %}
           <a href="{{ url('app/ratings', [app.slug]) }}" class="rating_link">

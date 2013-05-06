@@ -87,8 +87,6 @@ def app(name, slug, **kwargs):
         'privacy_policy': kwargs.get('privacy_policy', ptext()),
         'public_stats': False,
         'upsell': False,
-        'price': None if random.choice((True, False)) else
-                 '$%.2f' % (random.random() * 10),
         # or { // False if no upsell or not available in user region.
         #    slug: 'slug',
         #    name: name,
@@ -99,6 +97,13 @@ def app(name, slug, **kwargs):
             'esrb': {'name': 'L', 'description': text('L for BASTA')},
         },
     }
+
+    price = (None if random.choice((True, False)) else
+             '%.2f' % (random.random() * 10))
+
+    if price:
+        data.update(price=price, price_locale='$%s' % price)
+
     data.update(app_user_data(slug))
     return data
 

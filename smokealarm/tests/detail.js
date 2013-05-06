@@ -23,6 +23,7 @@ suite.run('/', function(test, waitFor) {
 
         assert.textIsnt('.mkt-tile h3', 'Loading...');
         assert.textIsnt('.mkt-tile .price', 'Loading...');
+        assert.hasText('.mkt-tile .price', '$');
 
         assert.hasText('.blurbs .summary');
 
