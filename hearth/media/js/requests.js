@@ -81,11 +81,25 @@ define('requests',
         });
     }
 
+    function handle_errors(jqxhr, status) {
+        console.log('[req] Request failed: ', status);
+        if (jqxhr.responseText) {
+            try {
+                var data = JSON.parse(jqxhr.responseText);
+                if ('error_message' in data) {
+                    console.log('[req] Error message: ', data.error_message);
+                } else {
+                    console.log('[req] Response data: ', jqxhr.responseText);
+                }
+            } catch(e) {}
+        }
+    }
+
     function post(url, data) {
         console.log('[req] POSTing', url);
         return $.post(url, data).done(function(data) {
             console.log('[req] POSTed', url);
-        });
+        }).fail(handle_errors);
     }
 
     function del(url) {
@@ -95,7 +109,7 @@ define('requests',
             type: 'DELETE'
             // type: 'POST',
             // headers: {'X-HTTP-METHOD-OVERRIDE': 'DELETE'}
-        });
+        }).fail(handle_errors);
     }
 
     function put(url, data) {
@@ -106,7 +120,7 @@ define('requests',
             // type: 'POST',
             // headers: {'X-HTTP-METHOD-OVERRIDE': 'PUT'},
             data: data
-        });
+        }).fail(handle_errors);
     }
 
     function patch(url, data) {
@@ -117,7 +131,7 @@ define('requests',
             // type: 'POST',
             // headers: {'X-HTTP-METHOD-OVERRIDE': 'PATCH'},
             data: data
-        });
+        }).fail(handle_errors);
     }
 
     function Pool() {
