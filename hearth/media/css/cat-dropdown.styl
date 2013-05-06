@@ -1,5 +1,7 @@
 @import 'lib';
 
+.cat-menu,
+.show-cats .cat-menu.hidden,  // Specifically for specificity
 .dropdown {
     display: none;
 }
@@ -130,6 +132,7 @@ $cat-icon-size-desktop = 60px;
     }
     .cat-menu {
         background: $grey-gardens-gray;
+        display: block;
         list-style-type: none;
         margin: 0;
         padding: 0;
