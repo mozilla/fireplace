@@ -1,11 +1,15 @@
 {% include "_macros/forms.html" %}
 
-<div class="main report-abuse infobox c">
+
+<div class="main report-abuse modal c">
   <div>
-    <h1>{{ _('Report Abuse') }}</h1>
+    <div class="secondary-header">
+      <h2>{{ _('Report Abuse') }}</h2>
+      <a href="#" class="close btn-cancel">{{ _('Close') }}</a>
+    </div>
     <form method="post" class="abuse-form" data-action="{{ api('app_abuse') }}">
       <p class="brform simple-field c">
-        <textarea rows="10" cols="40" name="text" required></textarea>
+        <textarea name="text" required></textarea>
       </p>
       <p class="form-footer">
         {{ potato_captcha() }}

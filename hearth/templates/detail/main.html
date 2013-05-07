@@ -148,8 +148,10 @@
           <li><a class="button alt view-stats" rel="external" href="/statistics/app/{{ slug }}/">
             {{ _('Statistics') }}</a></li>
         {% endif %}
-        <li><a class="button alt" href="{{ url('app/abuse', [slug]) }}">
-          {{ _('Report Abuse') }}</a></li>
+        <li class="abuse">
+          <a class="button alt" href="{{ url('app/abuse', [slug]) }}">
+          {{ _('Report Abuse') }}</a>
+        </li>
       </ul>
       {% if settings.payment_enabled %}
         {% if this.upsell %}
@@ -164,6 +166,8 @@
     {% end %}
   </div>
 </section>
+
+{% include 'detail/abuse.html' %}
 
 <div class="content_ratings">
   {% defer (url=endpoint, as='app', key=slug) %}

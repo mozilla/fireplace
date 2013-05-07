@@ -24,7 +24,9 @@ define('views/app/abuse',
     });
 
     return function(builder, args) {
-        builder.start('detail/abuse.html', {slug: args[0]});
+        builder.start('detail/abuse.html', {slug: args[0]}).done(function() {
+            $('.report-abuse').removeClass('modal');
+        });
 
         builder.z('type', 'leaf');
         builder.z('title', gettext('Report Abuse'));

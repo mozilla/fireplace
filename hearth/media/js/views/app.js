@@ -1,6 +1,6 @@
 define('views/app',
-    ['l10n', 'utils', 'requests', 'urls', 'z', 'templates', 'overflow'],
-    function(l10n, utils, requests, urls, z, nunjucks, overflow) {
+    ['capabilities', 'l10n', 'utils', 'requests', 'urls', 'z', 'templates', 'overflow'],
+    function(caps, l10n, utils, requests, urls, z, nunjucks, overflow) {
     'use strict';
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
@@ -23,8 +23,18 @@ define('views/app',
         // When I click on the icon, append `#id=<id>` to the URL.
         window.location.hash = 'id=' + $('.product').data('product')['id'];
         e.stopPropagation();
-
     }));
+
+    // Init desktop abuse form modal trigger.
+    // The modal is responsive even if this handler isn't removed.
+    if (caps.widescreen) {
+        z.page.on('click', '.abuse .button', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            z.body.trigger('decloak');
+            $('.report-abuse.modal').addClass('show');
+        });
+    }
 
     return function(builder, args) {
         builder.start('detail/main.html', {slug: args[0]});
