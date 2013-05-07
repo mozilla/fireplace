@@ -47,11 +47,6 @@ define('views/search',
     z.page.on('loaded', function() {
         var $q = $('#search-q');
         $q.val(z.context.search);
-        if (z.context.search) {
-            $q.attr('data-context', '');
-        } else {
-            $q.removeAttr('data-context');
-        }
         // If this is a search results or "my apps" page.
         if ($('#search-results').length || $('#account-settings .listing').length) {
             setTrays(expand);

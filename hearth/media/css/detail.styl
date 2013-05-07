@@ -18,20 +18,35 @@
     background-color: #fff;
 }
 
-.blurbs {
-    clear: both;
-    color: $dark-gray;
-    line-height: 22px;
-    .summary {
-        margin: 0;
-    }
-    h3, p, ol, ul, dl {
-        margin: 15px 0;
-    }
+.detail {
     h3 {
         font-size: 15px;
         font-weight: 500;
         line-height: 18px;
+    }
+}
+
+.blurbs {
+    clear: both;
+    color: $dark-gray;
+    line-height: 22px;
+    > div {
+        padding: 0 10px 24px;
+    }
+    h3, p, ol, ul, dl {
+        margin: 0;
+        padding: 24px 0;
+    }
+    .summary:only-child {
+        padding-bottom: 0;
+    }
+    .summary + div > {
+        h3:first-child {
+            padding-top: 0;
+        }
+        :last-child {
+            padding-bottom: 0;
+        }
     }
     blockquote {
         background: $faint-gray;
@@ -43,9 +58,7 @@
 }
 
 .reviews h3 {
-    color: #333;
-    font-weight: 500;
-    margin-bottom: 20px;
+    margin: 24px 0 18px;
 }
 
 .show-toggle {
@@ -157,16 +170,12 @@
 // ***************** Wide Mobile (> 671px)
 
 @media $at-least-desktop {
-    .blurbs {
-        > div {
-            text-columns(2, 24px);
+    .blurbs > div {
+        padding: 24px 15px;
+        p.summary {
+            padding-top: 0;
         }
-        h3, p, ol, ul, dl {
-            margin: 24px 0;
-        }
-        .summary {
-            position: relative;
-        }
+        text-columns(2, 24px);
     }
     #reviews-detail {
         font-size: 15px;

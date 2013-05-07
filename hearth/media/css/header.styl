@@ -158,10 +158,8 @@
     &::-webkit-input-placeholder {
         color: darken($cement-gray, 5%);
     }
-    &:not([data-context]):invalid ~ .search-clear,
-    &[data-context]:invalid:focus ~ .search-clear {
+    &:invalid ~ .search-clear {
         // Hide the X icon when the search field is empty.
-        // Hide the X icon when the search field is focused if there's a category placeholder.
         display: none;
     }
     &:valid {
@@ -468,11 +466,11 @@ main {
     }
 
     #search-q {
-        font-size: 24px;
+        font-size: 18px;
         font-weight: 400;
         height: 48px;
         line-height: 48px;
-        padding: 7px 15px 3px;
+        padding: 6px 15px 4px;
         &:valid {
             // Adjust width for padding for the X icon.
             padding-right: 42px;
@@ -535,6 +533,11 @@ main {
     .expand-toggle {
         top: 13px;
         right: 0;
+    }
+    // Even if there's no Popular/New tabs, we show an orange border on
+    /// desktop but not on mobile.
+    .category .not-paginated {
+        border-top: 7px solid $flamin-hot-cheetos-orange;
     }
 }
 

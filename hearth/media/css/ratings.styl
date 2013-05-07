@@ -14,10 +14,14 @@ select[name=rating] {
     .timestamp {
         font-size: 12px;
     }
+    .byline {
+        position: relative;
+        top: -3px;
+    }
     .byline, .byline strong {
         color: $earl-gray;
-        font-weight: 600;
-        line-height: 15px;
+        font-weight: 500;
+        line-height: 9px;
     }
     time {
         color: $note-gray;
@@ -27,7 +31,7 @@ select[name=rating] {
         }
     }
     .body {
-        margin: 5px 0 15px;
+        margin: 0 0 24px;
     }
     ul {
         float: left;
@@ -61,7 +65,7 @@ select[name=rating] {
 
 #reviews-detail {
     border-top: 1px dashed $london-fog-gray;
-    padding: 15px 10px 24px;
+    padding: 0 10px 24px;
     overflow: hidden;
     ul {
         .review {
@@ -146,26 +150,11 @@ select[name=rating] {
 
 .stars {
     background: url(../img/pretty/stars_small.svg) no-repeat;
-    background-size: auto 9px;
     display: inline-block;
-    height: 15px;
+    height: 12px;
     margin-right: 4px;
     text-indent: -9999px;
-    vertical-align: middle;
-    width: 48px;
-    &.stars-4 { background-position: -10px 0; }
-    &.stars-3 { background-position: -19px 0; }
-    &.stars-2 { background-position: -28px 0; }
-    &.stars-1 { background-position: -38px 0; }
-    &.stars-0 { background-position: -48px 0; }
-}
-
-.html-rtl .stars {
-    margin: 0 0 0 4px;
-}
-
-bigStars() {
-    background-size: auto;
+    vertical-align: top;
     width: 64px;
     &.stars-4 { background-position: -12px 0; }
     &.stars-3 { background-position: -25px 0; }
@@ -174,15 +163,24 @@ bigStars() {
     &.stars-0 { background-position: -64px 0; }
 }
 
-// Bigger stars on detail page (mobile/desktop) and everywhere on desktop.
-.product-details .stars {
-    bigStars();
+.html-rtl .stars {
+    margin: 0 0 0 4px;
 }
 
-@media $at-least-desktop {
-    .stars {
-        bigStars();
-    }
+tinyStars() {
+    background-size: auto 9px;
+    height: 12px;
+    &.stars-4 { background-position: -10px 0; }
+    &.stars-3 { background-position: -19px 0; }
+    &.stars-2 { background-position: -28px 0; }
+    &.stars-1 { background-position: -38px 0; }
+    &.stars-0 { background-position: -48px 0; }
+    width: 48px;
+}
+
+// Bigger stars on detail page (mobile/desktop) and everywhere on desktop.
+.category .stars {
+    tinyStars();
 }
 
 .stars.ratingwidget {
@@ -198,10 +196,6 @@ bigStars() {
         height: 40px;
         width: 52px;
     }
-}
-
-.category .rating .cnt {
-    display: none;
 }
 
 .no-rating strong {
@@ -259,8 +253,11 @@ bigStars() {
 }
 
 @media $at-least-desktop {
+    .category .stars {
+        display: block;
+    }
     #reviews-detail {
-        padding: 24px 15px;
+        padding: 0 15px 24px;
     }
     #edit-review {
         form {

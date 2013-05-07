@@ -226,11 +226,6 @@ define('navigation',
         if (query == 'do a barrel roll') {
             z.body.toggleClass('roll');
         }
-        if (z.context.search) {
-            $q.attr('data-context', '');
-        } else {
-            $q.removeAttr('data-context');
-        }
         $q.blur();
         z.page.trigger('search', {q: query});
 

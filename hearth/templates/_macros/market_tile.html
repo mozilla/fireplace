@@ -24,10 +24,10 @@
           <span class="cnt">
             {{ _plural('{n} Review', '{n} Reviews', n=app.ratings.count) }}
           </span>
-       {% endif %}
-        {% if not link %}
-          </a>
+        {% else %}
+          <span class="cnt">{{ _('Not yet rated') }}</span>
         {% endif %}
+        {% if not link %}</a>{% endif %}
       </div>
       {% if force_button or (app.current_version and not link) %}
         {{ market_button(app, classes=classes,
