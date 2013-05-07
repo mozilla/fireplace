@@ -5,6 +5,10 @@ define('user', [], function() {
 
     function clear_token() {
         localStorage.removeItem('user');
+        if ('email' in settings) {
+            delete settings.email;
+            save_settings();
+        }
         token = null;
     }
 
@@ -23,12 +27,16 @@ define('user', [], function() {
         update_settings(new_settings);
     }
 
+    function save_settings() {
+        localStorage.setItem('settings', JSON.stringify(settings));
+    }
+
     function update_settings(data) {
         if (!data) {
             return;
         }
         _.extend(settings, data);
-        localStorage.setItem('settings', JSON.stringify(settings));
+        save_settings();
     }
 
     return {
