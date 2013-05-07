@@ -2,6 +2,6 @@
   {% set price = app.price if app.price else _('Free') %}
   {% set classes = classes or [] %}
   <button class="button product install {{ classes|join(' ') }}" {{ data_attrs|make_data_attrs }}>
-    {{ _('Install') if app.user.owns else price }}
+    {{ _('Install') if app.user.installed or app.user.purchased else price }}
   </button>
 {% endmacro %}

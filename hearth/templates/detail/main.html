@@ -100,7 +100,7 @@
           {{ _('App not yet rated') }}
         </p>
       {% endif %}
-      {% if not this.user.owns %}
+      {% if not this.user.developed %}
         <div class="{{ 'split' if this.objects.length else ' full' }}">
           {% if user.logged_in() and this.user.has_rated %}
             <a class="button alt" id="edit-review" href="{{ url('app/ratings/edit', [slug]) }}">
