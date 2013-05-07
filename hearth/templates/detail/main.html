@@ -100,15 +100,14 @@
           {{ _('App not yet rated') }}
         </p>
       {% endif %}
-      {% if this.user.can_rate %}
-        <div class="only-if-logged-in{{ ' split' if this.objects.length else ' full' }}">
-          {% if this.user.has_rated %}
+      {% if not this.user.owns %}
+        <div class="{{ 'split' if this.objects.length else ' full' }}">
+          {% if user.logged_in() and this.user.has_rated %}
             <a class="button alt" id="edit-review" href="{{ url('app/ratings/edit', [slug]) }}">
               {{ _('Edit Your Review') }}</a>
           {% else %}
             <a class="button alt" id="add-review" href="#"
-               data-action="add"
-               data-app="{{ slug }}">
+               data-action="add" data-app="{{ slug }}">
               {{ _('Write a Review') }}</a>
           {% endif %}
         </div>
