@@ -1,5 +1,5 @@
 {% macro more_button(next_page_url) %}
 <li class="loadmore">
-  <button data-url="{{ (settings.api_url + next_page_url)|safe }}">{{ _('More') }}</button>
+  <button class="alt" data-url="{{ (settings.api_url + next_page_url)|safe }}">{{ _('More') }}</button>
 </li>
 {% endmacro %}

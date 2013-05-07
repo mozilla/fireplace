@@ -4,20 +4,20 @@ suite.run('/app/foo', function(test, waitFor) {
 
     waitFor(function() {
         // Wait for reviews to load in.
-        return suite.exists('#reviews-detail ul, #reviews-detail p.not-rated');
+        return suite.exists('.reviews ul, .reviews p.not-rated');
     });
 
     test('Click on reviews button', function() {
-        suite.press('#reviews-detail .average-rating');
+        suite.press('.reviews .average-rating');
     });
 
     waitFor(function() {
         // Wait for reviews list.
-        return suite.exists('#review-list');
+        return suite.exists('.reviews-listing');
     });
 
     test('Click on report review', function() {
-        suite.press('#review-list .actions .flag');
+        suite.press('.reviews-listing .actions .flag');
     });
 
     waitFor(function() {

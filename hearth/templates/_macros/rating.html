@@ -22,15 +22,15 @@
         {% if this.is_author %}
           <li><a class="edit"
                  href="{{ url('app/ratings/edit', [slug]) }}">{{ _('Edit') }}</a></li>
-          <li>
-            <a class="delete post" data-action="delete" href="#"
-               data-href="{{ this.resource_uri }}"
-               data-app="{{ slug }}">{{ _('Delete') }}</a></li>
+          <li><a class="delete post" data-action="delete" href="#"
+                 data-href="{{ this.resource_uri }}"
+                 data-app="{{ slug }}">{{ _('Delete') }}</a></li>
         {% else %}
           <li><a class="flag post" data-action="report" href="#">{{ _('Report') }}</a></li>
         {% endif %}
       </ul>
-      <time>{{ this.posted }}</time>
+      {# TODO: Format dates with bug 867897. #}
+      <time>{{ this.posted|replace(' 00:00:00', '') }}</time>
     {% endif %}
   </div>
 </li>

@@ -12,7 +12,7 @@ suite.run('/', function(test, waitFor) {
 
     waitFor(function() {
         // Wait for reviews to load in.
-        return suite.exists('#reviews-detail ul, #reviews-detail p.not-rated');
+        return suite.exists('.reviews ul, .reviews p.not-rated');
     });
 
     test('Detail page baseline tests', function(assert) {

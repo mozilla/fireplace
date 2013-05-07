@@ -81,12 +81,12 @@
   </div>
 </section>
 
-<section class="main reviews c">
-  <div id="reviews-detail">
+<section class="main reviews-wrapper c">
+  <div class="reviews">
     {% defer (url=apiParams('reviews', {'app': slug}), id='ratings') %}
       <h3>{{ _('Reviews') }}</h3>
       {% if this.meta.total_count %}
-        <ul class="c ratings-placeholder-inner">
+        <ul class="ratings-placeholder-inner">
           {% for rat in this.objects.slice(0, 2) %}
             {{ rating(rat, detailpage=true) }}
           {% endfor %}

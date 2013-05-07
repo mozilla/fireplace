@@ -13,7 +13,7 @@
     padding-top: 24px;
 }
 .blurbs,
-.reviews,
+.reviews-wrapper,
 .support {
     background-color: #fff;
 }
@@ -55,10 +55,6 @@
         margin: 0;
         padding: 5px 10px;
     }
-}
-
-.reviews h3 {
-    margin: 24px 0 18px;
 }
 
 .show-toggle {
@@ -150,9 +146,9 @@
 .support {
     ul {
         margin: 0;
-        list-style-type: none;
+        list-style: none;
         padding: 0;
-        a, time {
+        a {
             display: inline-block;
         }
     }
@@ -177,18 +173,6 @@
         }
         text-columns(2, 24px);
     }
-    #reviews-detail {
-        font-size: 15px;
-        ul.c {
-            margin: 0 -12px;
-            position: relative;
-            li.review {
-                float: left;
-                padding: 0 12px;
-                width: 50%;
-            }
-        }
-    }
 
     .detail {
         border-radius: 10px;
@@ -210,10 +194,5 @@
         float: left;
         padding: 0 15px;
         width: 50%;
-    }
-
-    // Chrome fix. This seems to be the reflow issue: http://is.gd/d06sTY
-    .actions .button {
-        width: 572px;
     }
 }

@@ -1,15 +1,15 @@
 @import 'lib';
 
+.reviews-wrapper h3 {
+    margin: 24px 0 18px;
+}
+
 select[name=rating] {
     display: none;
 }
 
-#review-list {
-    list-style: none;
-}
-
 .review {
-    padding: 10px 16px;
+    color: $earl-gray;
     position: relative;
     .timestamp {
         font-size: 12px;
@@ -19,22 +19,23 @@ select[name=rating] {
         top: -3px;
     }
     .byline, .byline strong {
-        color: $earl-gray;
         font-weight: 500;
         line-height: 9px;
     }
+    .actions li, time {
+        font-size: 12px;
+    }
+    .actions {
+        float: left;
+        font-size: 0;
+    }
     time {
-        color: $note-gray;
         float: right;
-        &:hover {
-            color: $gray;
-        }
     }
     .body {
-        margin: 0 0 24px;
+        color: $castle-skull-gray;
     }
     ul {
-        float: left;
         list-style: none;
     }
     li {
@@ -44,10 +45,14 @@ select[name=rating] {
         }
         &:not(.hidden) + li:before,
         + li.hidden + li:before {
-            color: $note-gray;
-            content: "\00a0\2022\00a0\00a0";
+            color: $cement-gray;
+            content: "\00a0\00a0\2022\00a0\00a0";
         }
     }
+}
+
+.reviews-listing .body {
+    margin-bottom: 10px;
 }
 
 // This applies to "app details" pages only.
@@ -62,49 +67,75 @@ select[name=rating] {
     }
 }
 
-#reviews-detail {
-    border-top: 1px dashed $london-fog-gray;
-    padding: 0 10px 24px;
+.ratings-placeholder-inner {
+    margin-bottom: 24px;
+}
+
+.reviews {
     overflow: hidden;
-    ul {
-        .review {
-            padding: 0;
-        }
-    }
+    padding: 0 10px;
     .button {
         display: block;
     }
 }
 
-// This applies to "reviews list" pages only.
-// TODO: make proper review tiles. This is an interim solution.
-#review-list {
-    #add-review {
-        margin: 0;
-        padding: 30px 16px;
+.detail .reviews {
+    border-top: 1px dashed $london-fog-gray;
+    padding: 0 10px 24px;
+}
+
+@media $at-least-desktop {
+    .reviews {
+        padding-bottom: 24px;
     }
-    .button.fat {
-        line-height: 35px;
-        height: 35px;
-        &:hover {
-            line-height: 35px;
+    .ratings-placeholder-inner {
+        display: inline-block;
+        // `font-size: 0` so we can do `display: inline-block` without
+        // having to worry about the whitespace between the <li>s.
+        font-size: 0;
+        margin-left: -12px;
+        margin-right: -12px;
+        position: relative;
+        li {
+            font-size: 15px;
         }
     }
     .review {
-        border-top: 1px solid #bcc0c2;
-        border-bottom: 1px solid #bcc0c2;
-        &:nth-of-type(2n) {
-            border-top: 1px solid #eceff0;
-            border-bottom: 0;
+        display: inline-block;
+        padding: 0 12px;
+        vertical-align: top;
+        width: 50%;
+    }
+    .reviews-listing {
+        .ratings-placeholder-inner {
+            margin-bottom: 0;
         }
-        .actions {
-            margin-right: 10px;
+        .review {
+            padding-top: 24px;
         }
     }
-}
 
-#review-list .review:nth-of-type(2n + 1) {
-    background-color: darken($bg, 5%);
+    // Chrome fix. This seems to be the reflow issue: http://is.gd/d06sTY
+    .actions .button {
+        width: 572px;
+    }
+
+    .reviews-listing {
+        background: #fff;
+        border: 1px solid $seavan-salt-white;
+        border-radius: 10px;
+        .loadmore {
+            padding: 24px 15px 0;
+        }
+    }
+
+    .primary-button {
+        margin: 0 0 -16px;
+        position: relative;
+        right: 0;
+        text-align: right;
+        top: -40px;
+    }
 }
 
 #submit-review {
@@ -220,10 +251,6 @@ tinyStars() {
     }
 }
 
-#write-review {
-    width: 100%;
-}
-
 .split + .split {
     margin-top: 15px;
 }
@@ -262,7 +289,7 @@ tinyStars() {
     .category .stars {
         display: block;
     }
-    #reviews-detail {
+    .reviews {
         padding: 0 15px 24px;
     }
     #edit-review {
@@ -295,5 +322,37 @@ tinyStars() {
             margin-top: 0;
             padding: 0 0 0 12px;
         }
+    }
+}
+
+@media $narrower-than-desktop {
+    .primary-button {
+        padding: 15px 10px;
+        width: 100%;
+    }
+    .reviews-listing {
+        .ratings-placeholder-inner {
+            margin-bottom: 0;
+        }
+        .review {
+            background: #fff;
+            border: 1px solid $seavan-salt-white;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 15px 10px;
+        }
+        .actions {
+            float: right;
+        }
+        time {
+            display: none;
+        }
+        .loadmore {
+            // 15px above and below reviews.
+            padding: 5px 0 15px;
+        }
+    }
+    .detail .review + .review {
+        margin-top: 24px;
     }
 }

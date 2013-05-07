@@ -2,26 +2,30 @@
 {% include "_macros/more_button.html" %}
 {% include "_macros/rating.html" %}
 
-<section class="main c" id="reviews">
-  {% defer (url=apiParams('reviews', {'app': slug}), pluck='objects', id='ratings', paginate='#review-list') %}
-    <p id="add-review" class="only-logged-in">
+<section class="main c">
+  <header class="secondary-header c">
+    <h2>{{ _('Reviews') }}</h2>
+  </header>
+  {% defer (url=apiParams('reviews', {'app': slug}), pluck='objects', id='ratings', paginate='.ratings-placeholder-inner') %}
+    <p id="add-review" class="primary-button">
       {% if response.user.has_rated %}
         <a class="button" id="write-review" href="{{ url('app/ratings/edit', [slug]) }}">{{ _('Edit Review') }}</a>
       {% else %}
         <a class="button" id="write-review" href="{{ url('app/ratings/add', [slug]) }}">{{ _('Write a Review') }}</a>
       {% endif %}
     </p>
+    <div class="reviews reviews-listing">
+      <ul class="ratings-placeholder-inner">
+        {% for rat in this %}
+          {{ rating(rat) }}
+        {% endfor %}
 
-    <ul id="review-list">
-      {% for rat in this %}
-        {{ rating(rat) }}
-      {% endfor %}
-
-      {# Render the more button if there's another page of results #}
-      {% if response.meta.next %}
-        {{ more_button(response.meta.next) }}
-      {% endif %}
-    </ul>
+        {# Render the more button if there's another page of results #}
+        {% if response.meta.next %}
+          {{ more_button(response.meta.next) }}
+        {% endif %}
+      </ul>
+    </div>
   {% empty %}
     <p class="no-results">
       {{ _('No results found') }}
