@@ -42,7 +42,7 @@
       <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
     </header>
   {% endif %}
-  <ol class="container listing grid-if-desktop search-listing{{ ' not-paginated' if not paginated }} c">
+  <ol class="container listing grid-if-desktop search-listing c">
     {% for result in this %}
       <li class="item result app c">
         {{ market_tile(result, link=true, force_button=true, src=sort) }}

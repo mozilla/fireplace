@@ -516,6 +516,12 @@ main {
 // ***************** Wide Mobile (> 671px)
 
 @media $at-least-desktop {
+    .category.gallery {
+        border-top: 7px solid $flamin-hot-cheetos-orange;
+        .featured-header {
+            border-top: 0;
+        }
+    }
     .secondary-header {
         border: 0;
         height: 48px;
@@ -534,11 +540,6 @@ main {
     .expand-toggle {
         top: 13px;
         right: 0;
-    }
-    // Even if there's no Popular/New tabs, we show an orange border on
-    /// desktop but not on mobile.
-    .category .not-paginated {
-        border-top: 7px solid $flamin-hot-cheetos-orange;
     }
 }
 
