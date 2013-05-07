@@ -1,6 +1,14 @@
 define('login',
-    ['capabilities', 'jquery', 'notification', 'settings', 'underscore', 'user', 'requests', 'z', 'utils', 'urls'],
-    function(capabilities, $, notification, settings, _, user, requests, z) {
+    ['cache', 'capabilities', 'jquery', 'models', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z', 'utils'],
+    function(cache, capabilities, $, models, notification, settings, _, urls, user, requests, z) {
+
+    function flush_caches() {
+        // We need to flush the global cache
+        var cat_url = urls.api.url('categories');
+        cache.purge(function(key) {return key != cat_url;});
+
+        models('apps').purge();
+    }
 
     z.body.on('click', '.persona', function(e) {
         e.preventDefault();
@@ -18,6 +26,7 @@ define('login',
         user.clear_token();
         z.body.removeClass('logged-in');
         z.page.trigger('reload_chrome');
+        flush_caches();
         navigator.id.logout();
         notification.notification({message: gettext('You have been signed out')});
     });
@@ -49,7 +58,9 @@ define('login',
                 is_native: navigator.id._shimmed ? 0 : 1
             };
 
-            requests.post(require('urls').api.url('login'), data).done(function(data) {
+            flush_caches();
+
+            requests.post(urls.api.url('login'), data).done(function(data) {
                 user.set_token(data.token, data.settings);
                 console.log('finished login');
                 z.body.addClass('logged-in');

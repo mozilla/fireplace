@@ -5,7 +5,11 @@ define('models', ['requests', 'underscore'], function(requests, _) {
 
     var prototypes = {
         'app': 'slug',
-        'category': 'slug'
+        'category': 'slug',
+
+        // Dummy prototypes to facilitate testing
+        'dummy': 'id',
+        'dummy2': 'id'
     };
 
     return function(type) {
@@ -66,10 +70,15 @@ define('models', ['requests', 'underscore'], function(requests, _) {
             console.log('[model] ' + type + ' cache miss for key ' + keyed_value);
         };
 
+        var purge = function() {
+            data_store[type] = [];
+        }
+
         return {
             cast: cast,
             get: get,
-            lookup: lookup
+            lookup: lookup,
+            purge: purge
         };
     };
 

@@ -45,21 +45,47 @@ test('cache non-strings', function(done) {
 });
 
 test('cache purge', function(done) {
-    var key = 'test:';
-    var str = 'poop';
-    cache.set(key + 'foo', str);
-    cache.set(key + 'abc', str);
-    cache.set(key + 'bar', str);
-    cache.purge();
-    eq_(_.size(cache.raw), 0);
-    assert(!cache.has(key + 'foo'));
-    assert(!cache.has(key + 'abc'));
-    assert(!cache.has(key + 'bar'));
-    done();
+    mock(
+        'cache',
+        {},
+        function(cache) {
+            var key = 'test1:';
+            var str = 'poop';
+            cache.set(key + 'foo', str);
+            cache.set(key + 'abc', str);
+            cache.set(key + 'bar', str);
+            cache.purge();
+            eq_(_.size(cache.raw), 0);
+            assert(!cache.has(key + 'foo'));
+            assert(!cache.has(key + 'abc'));
+            assert(!cache.has(key + 'bar'));
+            done();
+        }
+    );
+});
+
+test('cache purge filter', function(done) {
+    mock(
+        'cache',
+        {},
+        function(cache) {
+            var key = 'test2:';
+            var str = 'poop';
+            cache.set(key + 'foo', str);
+            cache.set(key + 'abc', str);
+            cache.set(key + 'bar', str);
+            cache.purge(function(k) {return k == key + 'abc';});
+            eq_(_.size(cache.raw), 2);
+            assert(cache.has(key + 'foo'));
+            assert(!cache.has(key + 'abc'));
+            assert(cache.has(key + 'bar'));
+            done();
+        }
+    );
 });
 
 test('cache rewrite', function(done) {
-    var key = 'test:';
+    var key = 'test3:';
     var str = 'poop';
     cache.set(key + 'foo', str);
     cache.set(key + 'rewrite', str);
@@ -93,7 +119,7 @@ test('cache rewrite', function(done) {
 });
 
 test('cache rewrite limit', function(done) {
-    var key = 'test:';
+    var key = 'test4:';
     var str = 'poop';
 
     cache.purge();
