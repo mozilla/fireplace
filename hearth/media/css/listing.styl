@@ -651,8 +651,13 @@ ratings-sidebar() {
 }
 
 @media $narrower-than-desktop {
-    .listing.grid-if-desktop:not(:first-child) {
-        // Create 10px between Popular/New tabs.
-        padding-top: 14px;
+    .listing.grid-if-desktop {
+        .mkt-tile .rating .cnt {
+            top: -3px;
+        }
+        &:not(:first-child) {
+            // Create 10px between Popular/New tabs.
+            padding-top: 14px;
+        }
     }
 }
