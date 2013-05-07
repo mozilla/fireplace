@@ -13,9 +13,6 @@ define('user', [], function() {
     }
 
     function get_setting(setting) {
-        if (!token) {
-            return undefined;
-        }
         return settings[setting];
     }
 
