@@ -70,8 +70,11 @@ define('helpers',
         settings: require('settings'),
         user: require('user'),
 
-        range: _.range,
         escape: utils.escape_,
+        len: function(x) {return x.length;},
+        max: Math.max,
+        min: Math.min,
+        range: _.range,
 
         REGIONS: require('settings').REGION_CHOICES_SLUG,
 

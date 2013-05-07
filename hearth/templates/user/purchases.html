@@ -10,7 +10,7 @@
       <header class="secondary-header hide-on-mobile c">
         <h2>
           {{ _('My Apps') }}
-          <span class="subtitle">{{ _('Showing <b>1</b>&ndash;<b class="total-results">{total}</b>', total=response.meta.offset + response.meta.limit) }}</span>
+          <span class="subtitle">{{ _('Showing <b>1</b>&ndash;<b class="total-results">{total}</b>', total=len(this)) }}</span>
         </h2>
         <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
       </header>
