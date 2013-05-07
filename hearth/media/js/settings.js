@@ -18,7 +18,7 @@ define('settings', ['settings_local', 'underscore'], function(settings_local, _)
             'es': 'Spain',
             'uk': 'United Kingdom',
             'us': 'United States',
-            've': 'Venezuela',
+            've': 'Venezuela'
         },
 
         timing_url: '',  // TODO: figure this out
