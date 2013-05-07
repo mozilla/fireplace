@@ -74,8 +74,8 @@ define('requests',
             }
             var filter_header;
             if ((!user.get_setting('region') || user.get_setting('region') == 'internet') &&
-                (filter_header = xhr.getResponseHeader('X-API-Filter'))) {
-                var region = utils.getVars(xhr.getResponseHeader('X-API-Filter')).region;
+                (filter_header = xhr.getResponseHeader('API-Filter'))) {
+                var region = utils.getVars(filter_header).region;
                 user.update_settings({region: region});
             }
         });
