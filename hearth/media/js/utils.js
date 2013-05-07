@@ -104,19 +104,11 @@ define('utils', ['jquery', 'underscore'], function($, _) {
                 .value();
     }
 
-    function makeOrGetOverlay(id) {
-        $('#' + el).remove();
-        var el = $('<div class="overlay" id="' + id + '">');
-        document.body.appendChild(el[0]);
-        return el;
-    }
-
     return {
         '_pd': _pd,
         'escape_': escape_,
         'fieldFocused': fieldFocused,
         'getVars': getVars,
-        'makeOrGetOverlay': makeOrGetOverlay,
         'urlparams': urlparams,
         'urlunparam': urlunparam,
         'baseurl': baseurl,

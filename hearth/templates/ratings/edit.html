@@ -1,25 +1,31 @@
 {% defer (url=apiParams('reviews', app=slug, user='mine'), id='main') %}
   {% set this = this.objects[0] %}
-  <form class="friendly main c edit-review-form" data-uri="{{ this.resource_uri }}" data-slug="{{ slug }}">
-    <p class="brform simple-field rating c">
-      <label for="id_rating">{{ _('Rate:') }}</label>
-      <select name="rating" id="id_rating" required>
-        {% for i in range(1, 6) %}
-          <option value="{{ i }}"{{ ' selected' if i == this.rating }}>{{ i }}</option>
-        {% endfor %}
-      </select>
-    </p>
-    <p class="brform simple-field c">
-      <textarea id="id_body" rows="2" cols="40" name="body" required maxlength="150">{{ this.body }}</textarea>
-    </p>
-    <footer class="form-footer c only-logged-in">
-      <button type="submit">{{ _('Save Changes') }}</button>
-      <div class="char-count" data-for="id_body"></div>
-    </footer>
-    <footer class="form-footer c only-logged-out">
-      <p>{{ _('Only logged in users may edit reviews.') }}</p>
-    </footer>
-  </form>
+  <div class="main compose-review">
+    <header class="secondary-header">
+      <h2>{{ _('Edit Review') }}</h2>
+    </header>
+    <form class="edit-review-form form-modal" data-uri="{{ this.resource_uri }}" data-slug="{{ slug }}">
+      <p class="brform simple-field rating c">
+        <label for="id_rating">{{ _('Rate:') }}</label>
+        <select name="rating" id="id_rating" required>
+          {% for i in range(1, 6) %}
+            <option value="{{ i }}"{{ ' selected' if i == this.rating }}>{{ i }}</option>
+          {% endfor %}
+        </select>
+      </p>
+      <p class="brform simple-field c">
+        <textarea id="id_body" rows="2" cols="40" name="body" required maxlength="150">{{ this.body }}</textarea>
+        <div class="char-count" data-for="id_body"></div>
+      </p>
+      <footer class="form-footer buttons c only-logged-in">
+        <div class="two-up"><a href="#" class="alt cancel button">{{ _('Cancel') }}</a></div>
+        <div class="two-up"><button type="submit">{{ _('Submit') }}</button></div>
+      </footer>
+      <footer class="form-footer c only-logged-out">
+        <p>{{ _('Only logged in users may edit reviews.') }}</p>
+      </footer>
+    </form>
+  </div>
 {% placeholder %}
   <p class="spinner alt"></p>
 {% end %}

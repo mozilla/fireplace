@@ -1,38 +1,42 @@
 define('overlay', ['keys', 'l10n', 'utils', 'z'], function(keys, l10n, utils, z) {
+    // Welcome to the world of overlays!
+    // To setup your trigger do:
+    // function() { z.body.trigger('decloak');doOtherStuff(); }
 
     var gettext = l10n.gettext;
+    var $cloak = $('.cloak');
 
     function dismiss() {
-        var $overlay = $('.overlay.show');
-        if ($overlay.length) {
-            $overlay.removeClass('show');
-            $overlay.trigger('overlay_dismissed');
+        if ($cloak.is('.show')) {
+            $('.modal').removeClass('show');
+            $cloak.removeClass('show').trigger('overlay_dismissed');
         }
     }
 
-    z.body.on('touchmove', '.overlay', function(e) {
+    $cloak.on('touchmove', function(e) {
         e.preventDefault();
         e.stopPropagation();
-    }).on('click', function() {
-        $('#notification').removeClass('show');
-    });
-
-    z.page.on('loaded', dismiss);
-
-    // Dismiss overlay when we click outside of it.
-    z.body.on('click', '.overlay', function(e) {
+    }).on('click', function(e) {
         if ($(e.target).parent('body').length) {
             dismiss();
         }
+    }).on('dismiss', function() {
+        dismiss();
+    });
+
+    z.body.on('click', function() {
+        $('#notification').removeClass('show');
     }).on('keydown.overlayDismiss', function(e) {
         if (!utils.fieldFocused(e) && e.which == keys.ESCAPE) {
             e.preventDefault();
             dismiss();
         }
-    }).on('dismiss', '.overlay', dismiss)
-      .on('click', '.overlay .dismiss', utils._pd(dismiss))
-      .on('overlay_dismissed', function() {
+    }).on('overlay_dismissed', function() {
         z.body.removeClass('overlayed');
-    });
+    }).on('decloak', function() {
+        z.body.addClass('overlayed');
+        $cloak.addClass('show');
+    }).on('click', '.modal .btn-cancel, .modal .cancel', utils._pd(dismiss));
 
+    z.page.on('loaded', dismiss);
 });

@@ -33,7 +33,6 @@ require.config({
             'buttons',
             'capabilities',
             'cat-dropdown',
-            'feedback',
             'forms',
             'header',
             'helpers',

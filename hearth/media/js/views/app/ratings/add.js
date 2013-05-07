@@ -20,8 +20,8 @@ define('views/app/ratings/add',
             return;
         }
 
-        builder.start('ratings/write.html', {
-            'slug': slug
+        builder.start('ratings/write.html', {'slug': slug}).done(function() {
+            $('.compose-review').removeClass('modal');
         });
 
         builder.z('type', 'leaf');

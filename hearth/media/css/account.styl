@@ -1,9 +1,5 @@
 @import 'lib';
 
-#feedback-overlay section {
-    width: 450px;
-}
-
 .toggles {
     list-style: none;
     li {
@@ -40,6 +36,9 @@
 // Does not work with $desktop.
 @media $at-least-desktop {
     .toggles {
+        display: none;
+    }
+    #account-settings div.secondary-header {
         display: none;
     }
 }

@@ -44,16 +44,18 @@ define('ratings',
     }
 
     function flagReview($reviewEl) {
-        var $overlay = utils.makeOrGetOverlay('flag-review');
-        $overlay.html(nunjucks.env.getTemplate('ratings/report.html').render(require('helpers')));
-        $overlay.addClass('show').trigger('overlayloaded');
+        var $modal = $('.report-spam');
 
-        $overlay.one('click', '.cancel', utils._pd(function() {
-            $overlay.removeClass('show');
-        })).one('click', '.menu a', utils._pd(function(e) {
+        if (!$modal.length) {
+            z.page.append(
+                nunjucks.env.getTemplate('ratings/report.html').render(require('helpers'))
+            );
+            $modal = $('.report-spam');
+        }
+
+        $modal.one('click', '.menu a', utils._pd(function(e) {
             var $actionEl = $reviewEl.find('.actions .flag');
-
-            $overlay.removeClass('show');
+            $('.cloak').trigger('dismiss');
             $actionEl.text(gettext('Sending report...'));
             require('requests').post(
                 require('settings').api_url + urls.api.sign($reviewEl.data('report-uri')),
@@ -65,6 +67,9 @@ define('ratings',
                 notify({message: gettext('Report review operation failed')});
             });
         }));
+
+        z.body.trigger('decloak');
+        $modal.addClass('show');
     }
 
     function deleteReview(reviewEl, uri, app) {
@@ -97,24 +102,21 @@ define('ratings',
             return;
         }
 
-        var overlay = utils.makeOrGetOverlay('edit-review');
         var ctx = _.extend({slug: $senderEl.data('app')}, require('helpers'));
-        overlay.html(nunjucks.env.getTemplate('ratings/write-overlay.html').render(ctx));
-        overlay.find('select[name="rating"]').ratingwidget('large');
+        z.page.append(
+            nunjucks.env.getTemplate('ratings/write.html').render(ctx)
+        );
 
+        $('.compose-review').find('select[name="rating"]').ratingwidget('large');
         initCharCount();
-        overlay.addClass('show').trigger('overlayloaded');
-        overlay.on('click', '.cancel', function(e) {
-            e.preventDefault();
-            overlay.removeClass('show');
-        });
+
+        z.body.trigger('decloak');
+        $('.compose-review.modal').addClass('show');
     }
 
     z.page.on('click', '.review .actions a, #add-review', utils._pd(function(e) {
         var $this = $(this);
 
-        // data('action') only picks up once so we reference attr('data-action') since
-        // it changes if a user edits a review
         var action = $this.data('action');
         if (!action) return;
         var $review = $this.closest('.review');
@@ -132,13 +134,7 @@ define('ratings',
     })).on('loaded', function() {
         // Hijack <select> with stars.
         $('select[name="rating"]').ratingwidget();
-
         initCharCount();
-
-        // Show add review modal on app/app_slug/reviews/add for desktop.
-        if ($('.reviews.add-review').length) {
-            addOrEditYourReview($('#add-first-review'));
-        }
     });
 
     z.body.on('submit', 'form.add-review-form', function(e) {
@@ -152,7 +148,7 @@ define('ratings',
         data.app = app;
 
         // This must be below `.serialize()`. Disabled form controls aren't posted.
-        forms.toggleReviewFormState($this);
+        forms.toggleSubmitFormState($this);
 
         require('requests').post(
             urls.api.url('reviews'),
@@ -167,15 +163,10 @@ define('ratings',
             });
 
             notify({message: gettext('Your review was posted')});
-            var overlay = $this.closest('.overlay');
-            if (overlay.length) {
-                overlay.remove();
-                require('views').reload();
-            } else {
-                z.page.trigger('navigate', urls.reverse('app', [$this.data('app')]));
-            }
+            z.page.trigger('navigate', urls.reverse('app', [$this.data('app')]));
+
         }).fail(function() {
-            forms.toggleReviewFormState($this, true);
+            forms.toggleSubmitFormState($this, true);
             notify({message: gettext('Error while submitting review')});
         });
     });

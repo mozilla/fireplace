@@ -16,6 +16,7 @@ var routes = [
     {pattern: '^/category/([^/<>"\']+)$', view_name: 'category'},
     {pattern: '^/category/([^/<>"\']+)/featured$', view_name: 'featured'},
     {pattern: '^/settings$', view_name: 'settings'},
+    {pattern: '^/feedback$', view_name: 'feedback'},
     {pattern: '^/purchases$', view_name: 'purchases'},
 
     {pattern: '^/privacy-policy$', view_name: 'privacy'},

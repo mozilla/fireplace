@@ -138,35 +138,20 @@ select[name=rating] {
     }
 }
 
-#submit-review {
-    padding: 0 15px;
-    header.product .simple-field,
-    h2 {
-        font-size: 18px;
-        font-weight: 400;
+.rating, .stars {
+    height: 12px;
+}
+
+.compose-review {
+    .simple-field.rating {
+        height: inherit;
+        padding-top: 12px;
     }
-    .req,
-    label[for=id_body], label[for=id_rating] {
-        display: none;
+    textarea {
+        margin-bottom: 10px;
     }
-    .charlimit {
-        font-size: 12px;
-        margin: 5px 0 15px;
-        text-align: right;
-        line-height: 12px;
-    }
-    .submit-review {
-        button, .button {
-            padding: 0 16px;
-            font-size: 14px;
-            width: auto;
-            line-height: 48px;
-            float: right;
-            margin: 0;
-        }
-        .button {
-            float: left;
-        }
+    footer {
+        margin-top: 15px;
     }
     .two-up {
         &:nth-child(2n+1) {
@@ -176,10 +161,14 @@ select[name=rating] {
             padding: 0 0 0 5px;
         }
     }
+    .button {
+        width: 100%;
+    }
 }
 
-.rating, .stars {
-    height: 12px;
+.char-count {
+    font-size: 12px;
+    color: $earl-gray;
 }
 
 .stars {
@@ -288,6 +277,28 @@ tinyStars() {
 @media $at-least-desktop {
     .category .stars {
         display: block;
+    }
+    .report-spam {
+        width: 331px;
+        margin-left: -165px;
+        button {
+            width: 100%;
+        }
+    }
+    .compose-review.modal {
+        .buttons {
+            text-align: right;
+            .two-up {
+                display: inline;
+                float: none;
+                width: inherit;
+                .button, button {
+                    min-width: 145px;
+                    width: inherit;
+                    vertical-align: top;
+                }
+            }
+        }
     }
     .reviews {
         padding: 0 15px 24px;

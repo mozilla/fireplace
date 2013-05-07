@@ -49,8 +49,10 @@ define('views/app/ratings/edit',
             return;
         }
 
-        builder.start('ratings/edit.html', {
-            'slug': slug
+        builder.start('ratings/edit.html', {'slug': slug}).done(function() {
+            $('.edit-review-form .cancel').click(utils._pd(function() {
+                z.page.trigger('navigate', urls.reverse('app', [slug]));
+            }));
         });
 
         // If we hit the API and find out that there's no review for the user,

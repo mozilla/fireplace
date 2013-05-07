@@ -10,7 +10,7 @@ suite.run('/', function(test, waitFor) {
         suite.press('#site-footer .submit-feedback');
         suite.capture('feedback.png');
 
-        assert.visible('#feedback-overlay');
+        assert.visible('.feedback.modal');
         assert.visible('.feedback-form textarea');
 
         assert.selectorExists('.potato-captcha');

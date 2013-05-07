@@ -6,5 +6,9 @@
 <menu class="secondary-header toggles c">
   {{ _url('settings', _('Account')) }}
   {{ _url('purchases', _('My Apps')) }}
-  <li><a class="submit-feedback" href="#">{{ _('Feedback') }}</a></li>
+  {{ _url('feedback', _('Feedback')) }}
 </menu>
+<div class="secondary-header hide-on-mobile">
+  <h2>{{ _('Feedback') }}</h2>
+  <a href="#" class="close btn-cancel">{{ _('Close') }}</a>
+</div>
