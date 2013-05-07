@@ -148,10 +148,13 @@ select[name=rating] {
     }
 }
 
+.rating, .stars {
+    height: 12px;
+}
+
 .stars {
     background: url(../img/pretty/stars_small.svg) no-repeat;
     display: inline-block;
-    height: 12px;
     margin-right: 4px;
     text-indent: -9999px;
     vertical-align: top;
@@ -168,18 +171,22 @@ select[name=rating] {
 }
 
 tinyStars() {
-    background-size: auto 9px;
-    height: 12px;
-    &.stars-4 { background-position: -10px 0; }
-    &.stars-3 { background-position: -19px 0; }
-    &.stars-2 { background-position: -28px 0; }
-    &.stars-1 { background-position: -38px 0; }
-    &.stars-0 { background-position: -48px 0; }
-    width: 48px;
+    .rating, .stars {
+        height: 9px;
+    }
+    .stars {
+        background-size: auto 9px;
+        &.stars-4 { background-position: -10px 0; }
+        &.stars-3 { background-position: -19px 0; }
+        &.stars-2 { background-position: -28px 0; }
+        &.stars-1 { background-position: -38px 0; }
+        &.stars-0 { background-position: -48px 0; }
+        width: 48px;
+    }
 }
 
 // Bigger stars on detail page (mobile/desktop) and everywhere on desktop.
-.category .stars {
+.category {
     tinyStars();
 }
 
