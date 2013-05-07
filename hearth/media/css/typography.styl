@@ -99,10 +99,61 @@ dd {
     overflow: hidden;
 }
 
+article {
+    background: #fff;
+    border: 1px solid $seavan-salt-white;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 15px 10px;
+}
+
+@media $narrower-than-desktop {
+    .back-to-app {
+        display: none;
+    }
+}
+
 @media $at-least-desktop {
     h2 {
         font-size: 40px;
         font-weight: 300;
         line-height: 50px;
+    }
+    article {
+        border-radius: 10px;
+        margin: 48px 0 0;
+        padding: 18px 15px;
+    }
+}
+
+.prose {
+    color: $london-fog-gray;
+    h3, h4 {
+        font-weight: 500;
+    }
+    h3 {
+        color: $castle-skull-gray;
+        font-size: 24px;
+        line-height: 28px;
+    }
+    h4 {
+        color: $grey-gardens-gray;
+        font-size: 18px;
+        line-height: 24px;
+    }
+    blockquote, dl, h3, h4, ol, p, ul {
+        margin: 24px 0;
+    }
+    :first-child {
+        margin-top: 0;
+    }
+    :last-child {
+        margin-bottom: 0;
+    }
+    address, blockquote, dl, ol, ul {
+        margin-left: 48px;
+    }
+    address, blockquote {
+        margin-right: 48px;
     }
 }
