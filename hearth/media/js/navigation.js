@@ -237,9 +237,8 @@ define('navigation',
         }
 
     }).on('submit', 'form', function(e) {
-        e.preventDefault();
         console.error("We don't allow form submissions.");
-
+        return false;
     });
 
     return {
