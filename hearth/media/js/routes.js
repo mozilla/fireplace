@@ -10,7 +10,6 @@ var routes = [
     {pattern: '^/app/([^/<>"\']+)/ratings$', view_name: 'app/ratings'},
     {pattern: '^/app/([^/<>"\']+)/abuse$', view_name: 'app/abuse'},
     {pattern: '^/app/([^/<>"\']+)/privacy$', view_name: 'app/privacy'},
-    {pattern: '^/user/([^/<>"\']+)/abuse', view_name: 'user/abuse'},
     {pattern: '^/app/([^/<>"\']+)$', view_name: 'app'},
     {pattern: '^/app/([^/<>"\']+)/$', view_name: 'app'},  // For the trailing slash
     {pattern: '^/search$', view_name: 'search'},
@@ -18,7 +17,6 @@ var routes = [
     {pattern: '^/category/([^/<>"\']+)/featured$', view_name: 'featured'},
     {pattern: '^/settings$', view_name: 'settings'},
     {pattern: '^/purchases$', view_name: 'purchases'},
-    {pattern: '^/abuse$', view_name: 'abuse'},
 
     {pattern: '^/privacy-policy$', view_name: 'privacy'},
     {pattern: '^/terms-of-use$', view_name: 'terms'},

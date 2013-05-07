@@ -124,22 +124,12 @@ def app_abuse():
     return _proxy(MARKETPLACE + request.path)
 
 
-@app.route('/api/v1/abuse/user/', methods=['POST'])
-def user_abuse():
-    return _proxy(MARKETPLACE + request.path)
-
-
 @app.route('/api/v1/account/login/', methods=['POST'])
 def login():
     return _proxy(MARKETPLACE + request.path)
 
 
 @app.route('/api/v1/account/settings/mine/', methods=['GET', 'PATCH'])
-def settings():
-    return _proxy(MARKETPLACE + request.path)
-
-
-@app.route('/api/v1/account/installed/mine/')
 def settings():
     return _proxy(MARKETPLACE + request.path)
 

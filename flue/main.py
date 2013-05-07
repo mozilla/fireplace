@@ -99,11 +99,6 @@ def installed():
     }
 
 
-@app.route('/api/v1/abuse/user/', methods=['POST'])
-def user_abuse(slug):
-    return {'error': False}
-
-
 @app.route('/api/v1/abuse/app/', methods=['POST'])
 def app_abuse():
     if not request.form.get('text'):
