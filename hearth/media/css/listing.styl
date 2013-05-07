@@ -507,6 +507,10 @@ grid-style() {
         }
         &.item {
             border-radius: 10px;
+            .mkt-tile + .tray {
+                // Subtract 1px for border.
+                border-radius: 0 0 9px 9px;
+            }
         }
         &.loadmore {
             margin-bottom: -25px;
