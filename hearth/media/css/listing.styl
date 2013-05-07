@@ -217,12 +217,14 @@ $dot-size = 13px;
 // We need to duplicate these styles because we use this for
 // .grid at desktop width and for .listing.grid-if-desktop at mobile width.
 grid-style() {
+    font-size: 0; // Nuke whitespace
     margin: 0 auto;
     max-width: $desktop-content;
     li {
-        float: left;
+        display: inline-block;
         padding: 15px 10px;
         position: relative;
+        vertical-align: top;
         width: (100% / 3);
     }
     .author, .button, .cnt, .unrated {
