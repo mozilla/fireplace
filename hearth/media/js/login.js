@@ -18,7 +18,7 @@ define('login',
         user.clear_token();
         z.body.removeClass('logged-in');
         z.page.trigger('reload_chrome');
-        postBack('navigator.id.logout', true);
+        navigator.id.logout();
         notification.notification({message: gettext('You have been signed out')});
     });
 
