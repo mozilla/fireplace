@@ -21,7 +21,10 @@
         {% endif %}
         {{ stars(app.ratings.average) }}
         {% if app.ratings.count %}
-          <span class="cnt">
+          <span class="cnt short">
+            {{ _('({n})', n=app.ratings.count) }}
+          </span>
+          <span class="cnt long">
             {{ _plural('{n} Review', '{n} Reviews', n=app.ratings.count) }}
           </span>
         {% else %}

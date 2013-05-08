@@ -534,6 +534,9 @@ ratings-sidebar() {
             // To line up with app name.
             margin-left: 8px;
             top: -1px;
+            &.short {
+                display: none;
+            }
         }
     }
     h3 {
@@ -662,5 +665,20 @@ ratings-sidebar() {
             // Create 10px between Popular/New tabs.
             padding-top: 14px;
         }
+    }
+}
+
+.cnt.short {
+    display: none;
+}
+
+@media (max-width: 400px) {
+    // Show "({num})" on narrow mobile.
+    .cnt.short {
+        display: inline-block;
+    }
+    // Hide "{num} Reviews" on narrow mobile.
+    .cnt.long {
+        display: none;
     }
 }
