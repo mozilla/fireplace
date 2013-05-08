@@ -7,7 +7,7 @@ define('login',
         var cat_url = urls.api.url('categories');
         cache.purge(function(key) {return key != cat_url;});
 
-        models('apps').purge();
+        models('app').purge();
     }
 
     z.body.on('click', '.persona', function(e) {
