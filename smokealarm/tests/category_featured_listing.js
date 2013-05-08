@@ -1,6 +1,16 @@
 var suite = require('./kasperle').suite();
 
-suite.run('/category/shopping/featured', function(test, waitFor) {
+suite.run('/category/shopping', function(test, waitFor) {
+
+    waitFor(function() {
+        return suite.exists('#featured li a');
+    });
+
+    test('Navigate from the category to the featured listing', function(assert) {
+        assert.URL(/\/category\/[a-zA-Z0-9]+/);
+        suite.press('#featured .view-all');
+
+    });
 
     waitFor(function() {
         return suite.exists('ol.listing');
@@ -8,14 +18,13 @@ suite.run('/category/shopping/featured', function(test, waitFor) {
 
     test('Category featured listing baseline tests', function(assert) {
         assert.URL(/\/category\/shopping\/featured/);
+        suite.capture('category_featured.png');
 
         // Only category listing pages have the #featured container.
         assert.selectorDoesNotExist('#featured');
 
         assert.visible('#search-results');
         assert.visible('#search-results ol.listing li a.mkt-tile');
-
-        suite.capture('category-featured-listing.png');
 
         suite.press('#search-results ol.listing li a.mkt-tile:first-child');
 

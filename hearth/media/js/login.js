@@ -62,7 +62,7 @@ define('login',
 
             requests.post(urls.api.url('login'), data).done(function(data) {
                 user.set_token(data.token, data.settings);
-                console.log('finished login');
+                console.log('[login] Finished login');
                 z.body.addClass('logged-in');
                 $('.loading-submit').removeClass('loading-submit');
                 z.page.trigger('reload_chrome');

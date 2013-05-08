@@ -68,7 +68,7 @@ function Suite(options) {
         console.log('Queueing test case.');
         callback(function(name, callback) {
             next_runner(function(response) {
-                console.log('RUNNING:: ' + name);
+                console.log('RUNNING :: ' + name);
                 var asserter = new assert(this);
                 callback(asserter, response);
                 asserts += asserter.asserts;
@@ -87,7 +87,11 @@ function Suite(options) {
                 waiter,
                 callback || function() {console.log('Wait condition met.');},
                 function() {
-                    cobj.capture('captures/error.png');
+                    var path_safe = url.replace(/\//g, '_');
+                    cobj.capture(
+                        'captures/errors/timeout_' +
+                        path_safe + '_' +
+                        ((new Date()).getTime() / 1000 | 0) + '.png');
                     throw new Error('waitFor timeout :(');
                 },
                 5000
@@ -122,8 +126,16 @@ function Suite(options) {
         return cobj.visible(selector);
     };
 
+    this.getFormValues = function(selector) {
+        return cobj.getFormValues(selector);
+    };
+
     this.getText = function(selector) {
         return cobj.fetchText(selector);
+    };
+
+    this.evaluate = function(func) {
+        return cobj.evaluate(func);
     };
 
 }

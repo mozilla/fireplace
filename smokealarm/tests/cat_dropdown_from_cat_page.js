@@ -17,7 +17,8 @@ suite.run('/category/shopping', function(test, waitFor) {
         return suite.exists('.cat-menu');
     });
 
-    test('Click social cat', function() {
+    test('Click social cat', function(assert) {
+        assert.selectorExists('.cat-menu .cat-shopping.current');
         suite.press('.cat-menu .cat-social');
     });
 
@@ -27,7 +28,8 @@ suite.run('/category/shopping', function(test, waitFor) {
     });
 
     test('Category drop-down on cats page', function(assert) {
-        assert.URL(/\/category\/[a-zA-Z0-9]+/);
+        assert.URL(/\/category\/social/);
+        assert.hasText('.dropdown a', 'Social');
         assert.selectorExists('.cat-menu .cat-social.current');
         assert.selectorExists('.dropdown a');
         suite.press('.dropdown a');
@@ -38,17 +40,18 @@ suite.run('/category/shopping', function(test, waitFor) {
     });
 
     test('Click all cats', function() {
-        suite.press('.cat-menu .cat-shopping');
+        suite.press('.cat-menu .cat-all');
     });
 
     waitFor(function() {
         return suite.exists('.dropdown a');
     });
 
-    test('Check shopping cats text', function(assert) {
-        assert.hasText('.dropdown a', 'Shopping');
-        assert.selectorExists('.cat-menu .cat-shopping.current');
-        assert.selectorDoesNotExist('.cat-menu .cat-social.current');
+    test('Check all cats text', function(assert) {
+        assert.URL(/\//);
+        assert.hasText('.dropdown a', 'All Categories');
+        assert.selectorExists('.cat-menu .cat-all.current');
+        assert.selectorDoesNotExist('.cat-menu .current:not(.cat-all)');
     });
 
 });

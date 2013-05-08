@@ -1,7 +1,14 @@
-define('user', [], function() {
+define('user', ['capabilities'], function(capabilities) {
 
-    var token = localStorage.getItem('user');
-    var settings = JSON.parse(localStorage.getItem('settings') || '{}');
+    var token;
+    var settings = {};
+
+    var save_to_ls = !capabilities.phantom;
+
+    if (!save_to_ls) {
+        token = localStorage.getItem('user');
+        settings = JSON.parse(localStorage.getItem('settings') || '{}');
+    }
 
     function clear_token() {
         localStorage.removeItem('user');
@@ -20,12 +27,17 @@ define('user', [], function() {
         if (!new_token) {
             return;
         }
-        localStorage.setItem('user', token = new_token);
+        token = new_token;
+        if (save_to_ls) {
+            localStorage.setItem('user', token);
+        }
         update_settings(new_settings);
     }
 
     function save_settings() {
-        localStorage.setItem('settings', JSON.stringify(settings));
+        if (save_to_ls) {
+            localStorage.setItem('settings', JSON.stringify(settings));
+        }
     }
 
     function update_settings(data) {
