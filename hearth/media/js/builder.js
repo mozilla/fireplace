@@ -46,13 +46,15 @@ if (typeof define !== 'function') {
 
 define(
     'builder',
-    ['templates', 'helpers', 'models', 'requests', 'settings', 'underscore', 'z', 'nunjucks.compat'],
-    function(nunjucks, helpers, models, requests, settings, _, z) {
+    ['templates', 'helpers', 'l10n', 'models', 'notification', 'requests', 'settings', 'underscore', 'z', 'nunjucks.compat'],
+    function(nunjucks, helpers, l10n, models, notification, requests, settings, _, z) {
 
     var SafeString = nunjucks.require('runtime').SafeString;
 
     console.log('Loading nunjucks builder tags...');
     var counter = 0;
+    
+    var gettext = l10n.gettext;
 
     function Builder() {
         var env = this.env = new nunjucks.Environment([], {autoescape: true});
@@ -74,6 +76,8 @@ define(
             els.on('click', function() {
                 injector(els.data('url'), els.parent(), target).done(function() {
                     z.page.trigger('loaded_more');
+                }).fail(function() {
+                    notification.notification({message: gettext('Failed to load the next page.')});
                 });
             });
         }
