@@ -27,9 +27,12 @@ function parse(po_content) {
     var current_obj = {};
 
     function store_current() {
-        output[id] = current_obj;
-        id = null;
-        current_obj = {};
+        if (id) {
+            // Don't save a copy of the headers in the langpack.
+            output[id] = current_obj;
+        }
+        id = '';
+        current_obj = {body: ''};
     }
 
     for (var i = 0; i < po_content.length; i++) {
@@ -39,15 +42,26 @@ function parse(po_content) {
             continue;
         }
 
-        if (sw(line, S_ID)) {
-            var new_id = JSON.parse(line.substr(S_ID.length));
+        function got_id(new_id) {
+            console.log('Found ID: ', new_id);
             if (new_id === '') {
-                continue;
+                console.log(' > Ignoring blank id');
+                id = '';
+                return;
             }
-            if (id) {
-                store_current();
+            id += new_id;
+            if (id !== new_id) {
+                console.log(' > ID now: ', id);
             }
-            id = new_id;
+        }
+
+        if (sw(line, S_ID)) {
+            console.log(' > Storing existing id: ', id);
+            store_current();
+
+            var new_id = JSON.parse(line.substr(S_ID.length));
+            got_id(new_id);
+            last = 'id';
             continue;
         }
         if (sw(line, S_PLURAL_STR)) {
@@ -61,13 +75,20 @@ function parse(po_content) {
             continue;
         }
         if (sw(line, S_STR)) {
-            current_obj.body = JSON.parse(line.substr(S_STR.length));
             last = 'body';
+            var body = JSON.parse(line.substr(S_STR.length));
+            console.log(' > Storing body: ', body);
+            current_obj.body += body;
             continue;
         }
         if (sw(line, S_PLURAL)) {
             last = 'plural';
-            current_obj.plural = JSON.parse(line.substr(S_PLURAL.length));
+            var plural = JSON.parse(line.substr(S_PLURAL.length));
+            console.log(' > Plural form: ', plural);
+            if (!('plural' in current_obj)) {
+                current_obj.plural = '';
+            }
+            current_obj.plural += plural;
             continue;
         }
 
@@ -79,8 +100,12 @@ function parse(po_content) {
             }
             pluralizer = plex_match[1];
         } else if (last === 'plurals') {
+            console.log(' >> Appending plural: ', line_val);
             current_obj.plurals[last_plural] += line_val;
+        } else if (last === 'id') {
+            got_id(line_val);
         } else {
+            console.log(' >> (' + last + ':' + id + ') Appending : ', line_val);
             current_obj[last] += line_val;
         }
     }
