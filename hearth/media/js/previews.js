@@ -44,7 +44,11 @@ define('previews',
             margin: '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px'
         });
 
-        var slider = Flipsnap($tray.find('.content')[0], {distance: THUMB_PADDED});
+        var slider = Flipsnap(
+            $tray.find('.content')[0],
+            {distance: THUMB_PADDED,
+             disable3d: true}
+        );
         var $pointer = $tray.find('.dots .dot');
 
         slider.element.addEventListener('fsmoveend', setActiveDot, false);
