@@ -1,67 +1,15 @@
 @import 'lib';
 
-.abuse-form {
-    diagonal-lines();
-    min-height: 492px;
-    padding: 10px;
-    textarea {
-        border-radius: 5px;
-        box-shadow: 0 2px 2px 0 rgba(0,0,0,.15) inset;
-        margin-bottom: 15px;
-        min-height: 96px;
-        width: 100%;
-    }
-    button {
-        width: 100%;
-    }
-}
+#abuse {
+    padding: 0 15px;
 
-.report-abuse {
-    .btn-cancel {
+    form, form .simple-field {
+        margin: 0;
+    }
+    form label[for=id_text] {
         display: none;
     }
-}
-
-// This is because the modal and the mobile view share the same markup.
-.modal.show {
-    .abuse-form {
-        min-height: inherit;
-        padding: 0;
-    }
-    .secondary-header {
-        background: none;
-        border-top: 0;
-        height: 25px;
-        h2 {
-            line-height: 18px;
-            margin: -3px 0 0;
-        }
-        &:before {
-            background-image: none;
-        }
-        .btn-cancel {
-            display: block;
-        }
-    }
-}
-
-@media $at-least-desktop {
-    .abuse-form {
-        background: none;
-        min-height: inherit;
-        padding: 0;
-        textarea {
-            margin-bottom: 18px;
-            min-height: 170px;
-        }
-    }
-    .report-abuse:not(.modal) .abuse-form {
-        margin-top: 48px;
-    }
-    .modal {
-        .secondary-header {
-            background: none;
-            height: 22px;
-        }
+    .form-footer button {
+        margin-bottom: 15px;
     }
 }
