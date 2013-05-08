@@ -14,7 +14,7 @@ define('models', ['requests', 'underscore'], function(requests, _) {
 
     return function(type) {
         if (!(type in prototypes)) {
-            throw new Exception('Unknown model "' + type + '"');
+            throw new Error('Unknown model "' + type + '"');
         }
 
         if (!(type in data_store)) {

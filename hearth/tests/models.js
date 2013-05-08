@@ -8,6 +8,15 @@ var mock = a.mock;
 
 var models = require('models');
 
+test('model invalid type', function(done, fail) {
+    try {
+        var d1 = models('does not exist trololo');
+        fail();
+    } catch(e) {
+        done();
+    }
+});
+
 test('model cast/lookup/purge', function(done) {
     mock(
         'models', {},
