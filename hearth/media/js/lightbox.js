@@ -110,7 +110,7 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
         });
 
         // $section doesn't have its proper width until after a paint.
-        slider = Flipsnap($content[0]);
+        slider = Flipsnap($content[0], {disable3d: true});
         slider.element.addEventListener('fsmoveend', pauseVideos, false);
 
         handles.attachHandles(slider, $section);
