@@ -55,7 +55,7 @@ def app(name, slug, **kwargs):
     # keyed off app_id:region:locale.
     data = {
         'name': text(name),
-        'slug': random.choice(dummy_text),
+        'slug': slug,
         'summary': escape(kwargs.get('summary', ptext(50))),
         'description': escape(kwargs.get('description', ptext(100))),
         'is_packaged': False,
@@ -87,22 +87,24 @@ def app(name, slug, **kwargs):
         'privacy_policy': kwargs.get('privacy_policy', ptext()),
         'public_stats': False,
         'upsell': False,
-        # or { // False if no upsell or not available in user region.
-        #    slug: 'slug',
-        #    name: name,
-        #    icons: ...,
-        # },
         'content_ratings': {
             'dejus': {'name': '12', 'description': text('Ask your parents')},
             'esrb': {'name': 'L', 'description': text('L for BASTA')},
         },
     }
 
-    price = (None if random.choice((True, False)) else
-             '%.2f' % (random.random() * 10))
+    has_price = rand_bool()
+    price = '%.2f' % (random.random() * 10)
+    if slug == 'free':
+        has_price = False
+    elif slug == 'paid':
+        has_price = True
+        price = '0.99'
 
-    if price:
+    if has_price:
         data.update(price=price, price_locale='$%s' % price)
+    else:
+        data.update(price=None, price_locale='$0.00')
 
     data.update(app_user_data(slug))
     return data
@@ -116,8 +118,6 @@ def app_user_data(slug=None):
             'can_rate': rand_bool(),
         }
     }
-    if random.choice((True, False)):
-        data['price'] = '$%.2f' % (random.random() * 10)
     if data['user']['can_rate']:
         data['rating'] = random.randint(1, 5)
         data['user']['has_rated'] = rand_bool()
@@ -133,8 +133,6 @@ def app_user_data(slug=None):
         data['user']['can_rate'] = False
     elif slug == 'owns':
         data['user']['owns'] = True
-    elif slug == 'free':
-        data['price'] = None
 
     return data
 

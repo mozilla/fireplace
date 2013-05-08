@@ -94,7 +94,7 @@ def settings():
 @app.route('/api/v1/account/installed/mine/')
 def installed():
     return {
-        'objects': [defaults.app('purchase %d' % i, 'Purchased App') for
+        'objects': [defaults.app('Purchased App', 'purchase%d' % i) for
                       i in xrange(random.randint(5, 30))]
     }
 
@@ -126,7 +126,7 @@ def privacy():
 @app.route('/api/v1/home/featured/')
 def featured():
     return {'objects':
-        [defaults.app('feat %d' % i, 'Featured App') for i in xrange(8)]}
+        [defaults.app('Featured App', 'feat%d' % i) for i in xrange(8)]}
 
 
 @app.route('/api/v1/apps/category/')
@@ -195,7 +195,7 @@ def search():
     def gen():
         i = 0
         while 1:
-            yield defaults.app('sr %d' % i, 'Result')
+            yield defaults.app('Result', 'sr%d' % i)
             i += 1
 
     data = _paginated('objects', gen)
@@ -207,11 +207,11 @@ def category():
     def gen():
         i = 0
         while 1:
-            yield defaults.app('catm %d' % i, 'Category Item')
+            yield defaults.app('Category Item', 'catm %d' % i)
             i += 1
 
     data = _paginated('objects', gen)
-    data['featured'] = [defaults.app('creat %d' % i, 'Creatured App') for
+    data['featured'] = [defaults.app('Creatured App', 'creat%d' % i) for
                         i in xrange(15)]
     return data
 
@@ -253,7 +253,7 @@ def app_rating_flag(id):
 
 @app.route('/api/v1/apps/app/<slug>/')
 def app_(slug):
-    return defaults.app(slug, 'Something something %s' % slug)
+    return defaults.app('Something something %s' % slug, slug)
 
 
 @app.route('/api/v1/receipts/install/', methods=['POST'])
