@@ -6,7 +6,7 @@
     <header class="secondary-header c">
       <h2>
         {{ _plural('<b>{n}</b> Result', '<b>{n}</b> Results', n=response.meta.total_count) }}
-        <span class="subtitle">{{ _('Showing <b>1</b>&ndash;<b class="total-results">{total}</b>', total=len(this)) }}</span>
+        <span class="subtitle hide-on-mobile">{{ _('Showing <b>1</b>&ndash;<b class="total-results">{total}</b>', total=len(this)) }}</span>
       </h2>
       <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
     </header>
