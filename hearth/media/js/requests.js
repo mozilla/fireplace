@@ -170,7 +170,9 @@ define('requests',
             requests.push(req);
             req.always(function() {
                 initiated--;
-                finish();
+                // Prevent race condition causing early
+                // closing of pool.
+                setTimeout(finish, 0);
             });
             return req;
         }

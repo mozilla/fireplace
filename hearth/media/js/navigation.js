@@ -4,7 +4,6 @@ define('navigation',
     'use strict';
 
     var gettext = l10n.gettext;
-
     var stack = [
         {path: '/', type: 'root'}
     ];
@@ -70,9 +69,11 @@ define('navigation',
         state.type = z.context.type;
         state.title = z.context.title;
 
-        if (popped && state.scrollTop) {
-            console.log('[nav] Setting scroll: ', state.scrollTop);
-            z.doc.scrollTop(state.scrollTop);
+        if ((state.preserveScroll || popped) && state.scrollTop) {
+            z.page.one('loaded', function() {
+                console.log('[nav] Setting scroll: ', state.scrollTop);
+                z.doc.scrollTop(state.scrollTop);
+            });
         } else {
             console.log('[nav] Resetting scroll');
             // Asynchronously reset scroll position.
@@ -155,11 +156,22 @@ define('navigation',
         e.preventDefault();
         return z.page.trigger(
             'navigate', utils.urlparams(urls.reverse('search'), params));
-    }).on('navigate divert', function(e, url, params) {
+    }).on('navigate divert', function(e, url, params, preserveScroll) {
         console.log('[nav] Received ' + e.type + ' event:', url);
         if (!url) return;
 
         var divert = e.type === 'divert';
+        var newState = {
+            params: params,
+            path: url
+        };
+        var scrollTop = z.doc.scrollTop();
+        var state_method = history.pushState;
+
+        if (preserveScroll) {
+            newState.preserveScroll = preserveScroll;
+            newState.scrollTop = scrollTop;
+        }
 
         if (!canNavigate()) {
             console.log('[nav] Navigation aborted; canNavigate is falsey.');
@@ -171,13 +183,12 @@ define('navigation',
             last_bobj.terminate();
         }
 
-        var newState = {
-            path: url,
-            scrollTop: divert ? 0 : z.doc.scrollTop(),
-            params: params
-        };
-
-        var state_method = history.pushState;
+        // Update scrollTop for current history state.
+        if (stack.length && scrollTop !== stack[0].scrollTop) {
+            stack[0].scrollTop = scrollTop;
+            console.log('[nav] Updating scrollTop for path: "' + stack[0].path + '" as: ' + scrollTop);
+            history.replaceState(stack[0], false, stack[0].path);
+        }
 
         if (!last_bobj || divert) {
             // If we're redirecting or we've never loaded a page before,
@@ -209,6 +220,10 @@ define('navigation',
 
     z.body.on('click', 'a', function(e) {
         var href = this.getAttribute('href');
+        var $elm = $(this);
+        var preserveScrollData = $elm.data('preserveScroll');
+        // Handle both data-preserve-scroll and data-preserve-scroll="true"
+        var preserveScroll = typeof preserveScrollData !== 'undefined' && preserveScrollData !== false;
         if (e.metaKey || e.ctrlKey || e.button !== 0) return;
         if (navigationFilter(this)) return;
 
@@ -216,7 +231,7 @@ define('navigation',
         // above situations.
         e.preventDefault();
         e.stopPropagation();
-        z.page.trigger('navigate', [href, $(this).data('params') || {path: href}]);
+        z.page.trigger('navigate', [href, $elm.data('params') || {path: href}, preserveScroll]);
 
     }).on('submit', 'form#search', function(e) {
         e.stopPropagation();
@@ -233,9 +248,9 @@ define('navigation',
     z.win.on('popstate', function(e) {
         var state = e.originalEvent.state;
         if (state) {
+            console.log('[nav] popstate navigate');
             navigate(state.path, true, state);
         }
-
     }).on('submit', 'form', function(e) {
         console.error("We don't allow form submissions.");
         return false;

@@ -37,8 +37,8 @@
   {% if paginated %}
     <header class="featured-header c">
       <nav class="tabs">
-        <a{% if not sort %} class="active"{% endif %} href="{{ popular_url }}">{{ _('Popular') }}</a>
-        <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}">{{ _('New') }}</a>
+        <a{% if not sort %} class="active"{% endif %} href="{{ popular_url }}" data-preserve-scroll>{{ _('Popular') }}</a>
+        <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}" data-preserve-scroll>{{ _('New') }}</a>
       </nav>
       <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
     </header>
