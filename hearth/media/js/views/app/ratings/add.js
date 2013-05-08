@@ -1,6 +1,6 @@
 define('views/app/ratings/add',
-    ['login', 'l10n', 'user', 'z'],
-    function(login, l10n, user, z) {
+    ['login', 'l10n', 'urls', 'user', 'z'],
+    function(login, l10n, urls, user, z) {
 
     var gettext = l10n.gettext;
 
@@ -25,6 +25,7 @@ define('views/app/ratings/add',
         });
 
         builder.z('type', 'leaf');
+        builder.z('parent', urls.reverse('app/ratings', [slug]));
         builder.z('title', gettext('Write a Review'));
     };
 });

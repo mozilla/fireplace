@@ -20,6 +20,11 @@
       </div>
     </div>
     <div class="tray previews full"></div>
+  {% except %}
+    <div>
+      <h2>{{ _('Oh no!') }}</h2>
+      <p>{{ _('The page you were looking for was not found.') }}</p>
+    </div>
   {% end %}
 </section>
 

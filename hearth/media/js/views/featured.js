@@ -6,6 +6,8 @@ define('views/featured', ['urls', 'z'], function(urls, z) {
 
         if (category === 'all' || category === undefined) {
             category = '';
+        } else {
+            builder.z('parent', urls.reverse('category', [category]));
         }
 
         builder.z('type', 'search');
