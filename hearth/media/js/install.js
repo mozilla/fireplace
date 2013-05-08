@@ -72,28 +72,24 @@ define('install',
                     .fail(installError);
         }
 
-        if (!product.recordUrl) {
-            return do_install();
-        } else {
-            var def = $.Deferred();
-            requests.post(urls.api.url('record'), post_data).done(function(response) {
-                if (response.error) {
-                    $('#pay-error').show().find('div').text(response.error);
-                    installError(product);
-                    def.reject();
-                    return;
-                }
-                if (response.receipt) {
-                    data.data = {'receipts': [response.receipt]};
-                }
-                do_install().done(def.resolve).fail(def.reject);
-            }).fail(function() {
-                // Could not record/generate receipt!
-                installError(null, product);
+        var def = $.Deferred();
+        requests.post(urls.api.url('record'), post_data).done(function(response) {
+            if (response.error) {
+                $('#pay-error').show().find('div').text(response.error);
+                installError(product);
                 def.reject();
-            });
-            return def;
-        }
+                return;
+            }
+            if (response.receipt) {
+                data.data = {'receipts': [response.receipt]};
+            }
+            do_install().done(def.resolve).fail(def.reject);
+        }).fail(function() {
+            // Could not record/generate receipt!
+            installError(null, product);
+            def.reject();
+        });
+        return def;
     }
 
     function installSuccess(installer, product) {
