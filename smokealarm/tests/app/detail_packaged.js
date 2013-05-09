@@ -10,8 +10,8 @@ suite.run('/app/packaged', function(test, waitFor) {
         assert.URL(/\/app\/packaged/);
         suite.capture('detail_packaged.png');
 
-        assert.selectorExists('.blurbs .package_version');
-        assert.text('.blurbs.package_version', 'Latest version: 1.0');
+        assert.selectorExists('.blurbs .package-version');
+        assert.text('.blurbs.package-version', 'Latest version: 1.0');
 
     });
 });
