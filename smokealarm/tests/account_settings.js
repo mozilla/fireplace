@@ -56,6 +56,16 @@ suite.run('/', function(test, waitFor) {
             suite.getFormValues('.account-settings').display_name,
             'hello my name is rob hudson'
         );
+
+        suite.press('.logout');
+    });
+
+    test('Tests that we were logged out', function(assert) {
+        assert.URL(/\/settings/);
+
+        assert.visible('.account-settings .persona');
+        assert.text('.account-settings .persona', 'Sign In / Sign Up');
+        assert.invisible('.account-settings .logout');
     });
 
 });
