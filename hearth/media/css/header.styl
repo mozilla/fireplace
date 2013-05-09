@@ -262,6 +262,11 @@
 .secondary-header {
     background: $salt-flat-white;
     border-top: 1px solid #fff;
+    position: fixed;
+    left: 0;
+    top: 48px;
+    z-index: 20;
+    width: 100%;
     .subtitle {
         color: $earl-gray;
         font-size: 20px;
@@ -272,6 +277,27 @@
             font-size: 30px;
         }
     }
+    + .listing {
+        padding-top: 40px;
+    }
+}
+
+.show-cats {
+    .page {
+        // To offset sticky header.
+        padding-top: 40px;
+    }
+}
+
+.cats-open {
+    .secondary-header {
+//        position: static;
+    }
+    .page {
+        // To offset sticky header.
+        padding-top: 0px;
+    }
+
 }
 
 .featured-header {

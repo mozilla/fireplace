@@ -30,6 +30,7 @@ define('cat-dropdown',
         }
         $('.cat-menu').toggleClass('hidden');
         $('.dropdown').toggleClass('active');
+        $('body').toggleClass('cats-open');
     }
 
     function updateDropDown(catSlug, catTitle) {
