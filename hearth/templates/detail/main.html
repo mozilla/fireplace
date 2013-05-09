@@ -5,7 +5,7 @@
 
 {% set endpoint = api('app', [slug]) %}
 
-<div class="detail">
+<div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication">
 <section class="main product-details listing expanded c">
   {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
     {{ market_tile(this) }}
@@ -50,7 +50,7 @@
   <div>
     {% defer (url=endpoint, as='app', key=slug) %}
       {% set super_long = this.summary.length + description.length > 700 %}
-      <p class="summary">
+      <p class="summary" itemprop="description">
         {{ this.summary|nl2br }}
         {% if super_long %}
           <a href="#" class="show-toggle" data-toggle-text="{{ _('Less&hellip;') }}">{{ _('More&hellip;') }}</a>
@@ -192,4 +192,5 @@
     {% endif %}
   {% end %}
 </div>
+
 </div>

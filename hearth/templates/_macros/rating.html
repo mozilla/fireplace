@@ -2,16 +2,18 @@
 
 {% macro rating(this, detailpage=false) %}
 <li data-report-uri="{{ this.report_spam }}" data-rating="{{ this.rating }}"
-    class="review{{ ' flagged' if this.is_flagged }} c">
+    class="review{{ ' flagged' if this.is_flagged }} c"
+    itemprop="review" itemscope itemtype="http://schema.org/Review">
   <div class="review-inner">
-    {{ stars(this.rating, detailpage=detailpage) }}
+    {{ stars(this.rating, detailpage=detailpage, aggregate=False) }}
     <span class="byline">
-      {{ _('by <strong>{author}</strong>', author=escape(this.user.display_name)) }}
+      {{ _('by {author}',
+           author='<strong itemprop="author">' + escape(this.user.display_name + '</strong>')) }}
       {% if this.version and not this.version.latest %}
         {{ _('for previous version {version}', version=this.version.name) }}
       {% endif %}
     </span>
-    <div class="body">
+    <div class="body" itemprop="reviewBody">
       {{ this.body|escape|nl2br }}
     </div>
     {% if not detailpage %}
@@ -30,7 +32,7 @@
         {% endif %}
       </ul>
       {# TODO: Format dates with bug 867897. #}
-      <time>{{ this.posted|replace(' 00:00:00', '') }}</time>
+      <time itemprop="datePublished">{{ this.posted|replace(' 00:00:00', '') }}</time>
     {% endif %}
   </div>
 </li>

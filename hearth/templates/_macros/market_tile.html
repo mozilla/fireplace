@@ -7,22 +7,24 @@
   <{{ tag }} class="product mkt-tile {{ classes|join(' ') }}"
     {% if link %} href="{{ url('app', [app.slug])|urlparams(src=src) }}"{% endif %}
     {{ data_attrs|make_data_attrs }}
-    {{ app|dataproduct }}>
-    <img class="icon" alt="" src="{{ app.icons[64] }}" height="64" width="64">
+    {{ app|dataproduct }}
+    {% if link %}itemscope itemtype="http://schema.org/SoftwareApplication"{% endif %}>
+    <img class="icon" alt="" src="{{ app.icons[64] }}" height="64" width="64" itemprop="image">
     <div class="info">
-      <h3>{{ app.name }}</h3>
+      <h3 itemprop="name">{{ app.name }}</h3>
       {% if app.listed_authors %}
-        <div class="author lineclamp vital">{{ app.listed_authors[0].name }}</div>
+        {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
+        <div class="author lineclamp vital" itemprop="creator">{{ app.listed_authors[0].name }}</div>
       {% endif %}
       <div class="price vital">{{ app.price_locale if app.price else _('Free') }}</div>
-      <div class="rating vital{{ ' unrated' if not app.ratings.count }}">
+      <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
         {% if not link %}
           <a href="{{ url('app/ratings', [app.slug]) }}" class="rating_link">
         {% endif %}
         {{ stars(app.ratings.average) }}
         {% if app.ratings.count %}
           <span class="cnt short">
-            {{ _('({n})', n=app.ratings.count) }}
+            {{ _('({n})', n='<span itemprop="reviewCount">' + app.ratings.count + '</span>') }}
           </span>
           <span class="cnt long">
             {{ _plural('{n} Review', '{n} Reviews', n=app.ratings.count) }}
