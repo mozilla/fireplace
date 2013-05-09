@@ -11,7 +11,7 @@ define('forms', ['z'], function(z) {
         $('form:not([novalidate])').each(function() {
             checkValid(this);
         });
-        $('form[novalidate]').find('button[type=submit]').removeAttr('disabled');
+        $('form[novalidate] button[type=submit]').removeAttr('disabled');
     });
 
     // Use this if you want to disable form inputs while the post/put happens.
