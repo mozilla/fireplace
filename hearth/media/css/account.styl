@@ -1,5 +1,23 @@
 @import 'lib';
 
+@media $narrower-than-desktop {
+    article.extras {
+        background: none;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        .notice {
+            diagonal-lines();
+            border-bottom: $castle-skull-gray 1px dashed;
+            padding: 15px 10px;
+        }
+        .button {
+            display: block;
+            margin: 10px;
+        }
+    }
+}
+
 .toggles {
     list-style: none;
     li {
@@ -38,7 +56,7 @@
     .toggles {
         display: none;
     }
-    #account-settings div.secondary-header {
-        display: none;
+    article.extras .notice {
+        padding: 0 0 15px;
     }
 }

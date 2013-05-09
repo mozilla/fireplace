@@ -1,7 +1,7 @@
 <section class="app-privacy-policy main full c">
   {% defer (url=api('app', [slug]), as='app', key=slug) %}
     <header class="secondary-header c">
-      <h2>{{ _('Privacy Policy') }}</h2>
+      <h2>{{ _('Privacy Policy: {app}', app=this.name) }}</h2>
     </header>
     <a href="{{ url('app', [this.slug]) }}" class="back-to-app">{{ _('Back to {app}', app=this.name) }}</a>
     <article class="prose">

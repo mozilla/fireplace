@@ -35,11 +35,15 @@
         {{ _('You have no apps') }}
       </p>
     {% end %}
+  {% else %}
+    <header class="secondary-header hide-on-mobile c">
+      <h2>{{ _('My Apps') }}</h2>
+    </header>
   {% endif %}
   <footer class="only-logged-out">
-    <div class="extras">
+    <article class="extras">
       <p class="notice">{{ _('You must be signed in to view your apps.') }}</p>
       <a class="button full persona" href="#">{{ _('Sign in / Sign up') }}</a>
-    </div>
+    </article>
   </footer>
 </section>

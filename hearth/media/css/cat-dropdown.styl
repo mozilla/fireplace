@@ -151,13 +151,16 @@ $cat-icon-size-desktop = 60px;
             position: relative;
             width: 100%;
             &:focus,
+            &:active,
             &:hover,
-            &:focus:hover {
+            &:focus:hover,
+            &:active:hover {
                 background-color: $sailor-blue;
                 color: #fff;
                 text-decoration: none;
             }
-            &:focus {
+            &:focus,
+            &:active {
                 background-color: darken($sailor-blue, 15%);
                 outline: none;
             }

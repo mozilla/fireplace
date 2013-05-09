@@ -14,6 +14,7 @@ define('cat-dropdown',
     var cat_dropdown = $('#cat-dropdown');
     var cat_list = $('#cat-list');
 
+
     // TODO: Detect when the user is offline and raise an error.
 
     // Do the request out here so it happens immediately when the app loads.
@@ -68,6 +69,13 @@ define('cat-dropdown',
         updateCurrentCat(newCat, $target);
     }
 
+    function handleDropDownMousedowns(e) {
+        // When I press down on the mouse, add that cute little white checkmark.
+        e.preventDefault();
+        var $target = $(e.target);
+        updateCurrentCat($target.data('catSlug'), $target);
+    }
+
     function dropDownRefresh(catSlug) {
         updateDropDown(catSlug);
         updateCurrentCat(catSlug);
@@ -105,7 +113,8 @@ define('cat-dropdown',
     }
 
     z.body.on('click', '.dropdown a', toggleMenu)
-          .on('click', '.cat-menu a', handleDropDownClicks);
+          .on('mouseup', '.cat-menu a', handleDropDownClicks)
+          .on('mousedown', '.cat-menu a', handleDropDownMousedowns);
     z.page.on('build_start', handleBuildStart)
           .on('reload_chrome', handleRenderDropdown);
 

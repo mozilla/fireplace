@@ -60,9 +60,9 @@ $triangle-size = 20px;
         line-height: 24px;
         font-size: 13px;
         margin-left: 10px;
-        min-width: 70px;
+        min-width: 90px;
         padding: 0;
-        width: 70px;
+        width: 90px;
     }
     .rating {
         color: $sailor-blue;
@@ -205,6 +205,11 @@ $dot-size = 13px;
     .view-all {
         display: block;
         float: right;
+        // Bigger click area.
+        margin: -10px -6px -6px;
+        padding: 10px 6px 6px;
+        position: relative;
+        z-index: 1;
     }
     &.featured {
         diagonal-lines();
@@ -272,6 +277,7 @@ grid-style() {
     left: 0;
     position: absolute;
     top: -7px;
+    width: 100%;
     a {
         color: $earl-gray;
         display: block;
@@ -470,6 +476,12 @@ grid-style() {
     }
     .tabs + .view-all {
         display: none;
+    }
+    .tabs a {
+        width: 50%;
+        + a {
+            margin-left: 0;
+        }
     }
 }
 
