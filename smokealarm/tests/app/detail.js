@@ -21,10 +21,19 @@ suite.run('/', function(test, waitFor) {
         assert.invisible('.expand-toggle');
         assert.hasText('h3');
 
-        assert.textIsnt('.mkt-tile h3', 'Loading...');
-        assert.textIsnt('.mkt-tile .price', 'Loading...');
-
-        assert.hasText('.blurbs .summary');
+        assert.validText('.mkt-tile h3', 'Loading...');  // Has a name
+        assert.validText('.mkt-tile .price', 'Loading...');  // Has a price
+        assert.hasText('.detail .info .author');  // Has an author
+        assert.visible('.detail .icon');  // Visible icon
+        assert.visible('.detail .info button.install');  // Visible icon
+        assert.visible('.tray.previews');  // Visible previews section
+        assert.visible('.tray.previews img');  // Has visible previews
+        assert.visible('.tray.previews .dots .dot');  // Has dots for the previews section
+        assert.selectorExists('.tray.previews .dots .current');  // At least one of the dots is selected
+        assert.hasText('.blurbs .summary');  // Has summary/description
+        assert.visible('section.support .support-email a');  // Has a support email button
+        assert.visible('section.support .homepage a');  // Has a homepage button
+        assert.visible('section.support .privacy-policy a');  // Has a privacy policy button
 
         assert.selectorExists('.support ul li');
 

@@ -32,6 +32,10 @@ function assert(cobj) {
     this.URL = wrap(function(url) {cobj.test.assertUrlMatch(url);});
     this.selectorExists = wrap(cobj.test.assertExists);
     this.selectorDoesNotExist = wrap(cobj.test.assertDoesntExist);
+    this.validText = function(selector, textShouldntBe) {
+        this.hasText(selector);
+        this.textIsnt(textShouldntBe);
+    };
 }
 
 function Suite(options) {

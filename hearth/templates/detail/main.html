@@ -146,8 +146,10 @@
           </li>
         {% endif %}
         {% if this.privacy_policy %}
-          <li><a class="button alt" href="{{ url('app/privacy', [slug]) }}">
-            {{ _('Privacy Policy') }}</a></li>
+          <li class="privacy-policy">
+            <a class="button alt" href="{{ url('app/privacy', [slug]) }}">
+            {{ _('Privacy Policy') }}</a>
+          </li>
         {% endif %}
         {% if this.public_stats %}
           <li><a class="button alt view-stats" rel="external" href="/statistics/app/{{ slug }}/">
