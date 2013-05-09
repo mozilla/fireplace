@@ -54,7 +54,7 @@ includes: compile
 	python build.py
 	cat hearth/media/include.css | cleancss > hearth/media/css/include.css
 	rm hearth/media/include.css
-	uglifyjs hearth/media/include.js -o hearth/media/include.js -m
+	#uglifyjs hearth/media/include.js -o hearth/media/include.js -m
 
 lint:
 	# You need closure-linter installed for this.
