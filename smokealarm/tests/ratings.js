@@ -20,11 +20,6 @@ suite.run('/app/foo', function(test, waitFor) {
         suite.press('.reviews-listing .actions .flag');
     });
 
-    waitFor(function() {
-        // Wait for flag dialogue
-        return suite.exists('.report-spam.show');
-    });
-
     test('Ratings page baseline tests', function(assert) {
         assert.URL(/\/app\/foo\/ratings/);
 
