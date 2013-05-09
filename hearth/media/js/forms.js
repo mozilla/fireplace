@@ -8,12 +8,10 @@ define('forms', ['z'], function(z) {
     z.body.on('change keyup paste', 'input, select, textarea', function(e) {
         checkValid(e.target.form);
     }).on('loaded overlayloaded', function() {
-        $('form').each(function() {
+        $('form:not([novalidate])').each(function() {
             checkValid(this);
         });
-        $('form[novalidate]').each(function() {
-            $(this).find('button[type=submit]').removeAttr('disabled');
-        });
+        $('form[novalidate]').find('button[type=submit]').removeAttr('disabled');
     });
 
     // Use this if you want to disable form inputs while the post/put happens.
