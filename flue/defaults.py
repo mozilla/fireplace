@@ -58,7 +58,7 @@ def app(name, slug, **kwargs):
         'slug': slug,
         'summary': escape(kwargs.get('summary', ptext(50))),
         'description': escape(kwargs.get('description', ptext(100))),
-        'is_packaged': False,
+        'is_packaged': slug == 'packaged' or rand_bool(),
         'manifest_url':
             'http://%s%s.testmanifest.com/manifest.webapp' % (ptext(1), random.randint(1, 50000)),  # Minifest if packaged
         'current_version': {
@@ -105,6 +105,9 @@ def app(name, slug, **kwargs):
         data.update(price=price, price_locale='$%s' % price)
     else:
         data.update(price=None, price_locale='$0.00')
+
+    if slug == 'packaged':
+        data['current_version']['version'] = '1.0'
 
     data.update(app_user_data(slug))
     return data

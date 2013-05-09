@@ -27,7 +27,7 @@ suite.run('/', function(test, waitFor) {
         assert.visible('.detail .icon');  // Visible icon
         assert.visible('.detail .info button.install');  // Visible icon
         assert.visible('.tray.previews');  // Visible previews section
-        assert.visible('.tray.previews img');  // Has visible previews
+        assert.selectorExists('.tray.previews img');  // Has preview images
         assert.visible('.tray.previews .dots .dot');  // Has dots for the previews section
         assert.selectorExists('.tray.previews .dots .current');  // At least one of the dots is selected
         assert.hasText('.blurbs .summary');  // Has summary/description
