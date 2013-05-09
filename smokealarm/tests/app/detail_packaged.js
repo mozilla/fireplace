@@ -11,7 +11,7 @@ suite.run('/app/packaged', function(test, waitFor) {
         suite.capture('detail_packaged.png');
 
         assert.selectorExists('.blurbs .package-version');
-        assert.text('.blurbs.package-version', 'Latest version: 1.0');
+        assert.text('.blurbs .package-version', 'Latest version: 1.0');
 
     });
 });

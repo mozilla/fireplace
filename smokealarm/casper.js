@@ -21,13 +21,13 @@ function assert(cobj) {
     this.invisible = wrap(cobj.test.assertNotVisible);
     this.title = wrap(function(title) {cobj.test.assertTitle(title);});
     this.hasText = wrap(function(selector, msg) {
-        cobj.test.assert(!!cobj.fetchText(selector), msg);
+        cobj.test.assert(!!cobj.fetchText(selector).trim(), msg);
     });
     this.text = wrap(function(selector, text, msg) {
-        cobj.test.assertEquals(cobj.fetchText(selector), text, msg);
+        cobj.test.assertEquals(cobj.fetchText(selector).trim(), text, msg);
     });
     this.textIsnt = wrap(function(selector, text, msg) {
-        cobj.test.assertNotEquals(cobj.fetchText(selector), text, msg);
+        cobj.test.assertNotEquals(cobj.fetchText(selector).trim(), text, msg);
     });
     this.URL = wrap(function(url) {cobj.test.assertUrlMatch(url);});
     this.selectorExists = wrap(cobj.test.assertExists);
