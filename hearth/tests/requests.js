@@ -33,6 +33,39 @@ test('requests.get', function(done, fail) {
     );
 });
 
+test('requests.get region header', function(done, fail) {
+    mock(
+        'requests',
+        {
+            jquery: new MockJQuery(),
+            user: {
+                get_setting: function(setting) {
+                    eq_(setting, 'region');
+                    return null;
+                },
+                update_settings: function(settings) {
+                    assert('region' in settings);
+                    eq_(settings.region, 'bastania');
+                    done();
+                }
+            }
+        },
+        function(requests) {
+            var def = requests.get('foo/bar');
+            def.resolve(
+                'foo',
+                200,
+                {
+                    getResponseHeader: function(header) {
+                        eq_(header, 'API-Filter');
+                        return 'foo=bar&region=bastania&zip=zap';
+                    }
+                }
+            );
+        }
+    );
+});
+
 test('requests.get cached', function(done, fail) {
     mock(
         'requests',
