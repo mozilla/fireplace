@@ -22,7 +22,7 @@ suite.run('/app/foo', function(test, waitFor) {
 
     waitFor(function() {
         // Wait for flag dialogue
-        return suite.exists('#flag-review');
+        return suite.exists('.report-spam.show');
     });
 
     test('Ratings page baseline tests', function(assert) {
@@ -30,8 +30,8 @@ suite.run('/app/foo', function(test, waitFor) {
 
         assert.hasText('#write-review');
 
-        assert.visible('#flag-review');
-        assert.selectorExists('#flag-review ul li a');
+        assert.visible('.report-spam');
+        assert.selectorExists('.report-spam ul li a');
 
         // Once this is finalized we should test the report review API call
         // and other parts of the review listing page.
