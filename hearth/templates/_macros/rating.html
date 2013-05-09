@@ -8,7 +8,7 @@
     {{ stars(this.rating, detailpage=detailpage, aggregate=False) }}
     <span class="byline">
       {{ _('by {author}',
-           author='<strong itemprop="author">' + escape(this.user.display_name + '</strong>')) }}
+           author='<strong itemprop="author">' + escape(this.user.display_name) + '</strong>') }}
       {% if this.version and not this.version.latest %}
         {{ _('for previous version {version}', version=this.version.name) }}
       {% endif %}
