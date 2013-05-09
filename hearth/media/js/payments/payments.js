@@ -1,33 +1,30 @@
 define('payments/payments',
-    ['capabilities', 'notification', 'requests', 'settings', 'urls'],
-    function(caps, notification, requests, settings, urls) {
+    ['capabilities', 'l10n', 'notification', 'requests', 'settings', 'urls'],
+    function(caps, l10n, notification, requests, settings, urls) {
 
     var notify = notification.notification;
+    var gettext = l10n.gettext;
 
-    var _abortCheck = false;
-    var _giveUp;
     function waitForPayment($def, product, webpayJWT, contribStatusURL) {
-        if (_abortCheck) {
-            return;
-        }
-        var selfArgs = arguments;
-        var nextCheck = setTimeout(function() {
-            waitForPayment.apply(this, selfArgs);
-        }, 2000);
-        if (!_giveUp) {
-            _giveUp = setTimeout(function() {
-                _abortCheck = true;
-                $def.reject(null, product, 'MKT_INSTALL_ERROR');
-            }, 60000);
-        }
-        requests.get(settings.api_url + urls.api.sign(contribStatusURL)).done(function(result) {
-            if (result.status == 'complete') {
-                clearTimeout(nextCheck);
-                clearTimeout(_giveUp);
-                $def.resolve(product);
-            }
-        }).fail(function() {
-            $def.reject(null, product, 'MKT_SERVER_ERROR');
+        var checkFunc = function() {
+            requests.get(settings.api_url + urls.api.sign(contribStatusURL)).done(function(result) {
+                if (result.status == 'complete') {
+                    $def.resolve(product);
+                }
+            }).fail(function() {
+                $def.reject(null, product, 'MKT_SERVER_ERROR');
+            });
+        };
+        var checker = setInterval(checkFunc, 3000);
+        var giveUp = setTimeout(function() {
+            $def.reject(null, product, 'MKT_INSTALL_ERROR');
+        }, 60000);
+
+        checkFunc();
+
+        $def.always(function() {
+            clearTimeout(checker);
+            clearTimeout(giveUp);
         });
     }
 
@@ -52,10 +49,9 @@ define('payments/payments',
         console.log('[payments] stubbed out navigator.mozPay()');
     }
 
-    function beginPurchase(prod) {
-        if (!prod) return;
+    function beginPurchase(product) {
+        if (!product) return;
         var $def = $.Deferred();
-        var product = prod;
 
         console.log('[payments] Initiating transaction');
 
