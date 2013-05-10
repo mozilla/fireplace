@@ -54,7 +54,6 @@ includes: compile
 	python build.py
 	cleancss hearth/media/include.css
 	mv hearth/media/include.css hearth/media/css/
-	rm hearth/media/include.css
 	mv hearth/media/include.js hearth/media/js/
 	#uglifyjs hearth/media/js/include.js -o hearth/media/js/include.js -m
 
