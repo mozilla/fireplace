@@ -14,7 +14,14 @@
       <button id="toggle-debug">Debug Mode: <b id="debug-status">{{ dbg }}</b></button>
     </p>
 
-    <dl class="c">
+    <dl class="settings c">
+      {% for setting in settings.items() %}
+        <dt>{{ setting[0] }}</dt>
+        <dd>{{ setting[1] or '––' }}</dd>
+      {% endfor %}
+    </dl>
+
+    <dl class="capabilities c">
       {% for cap in capabilities.items() %}
         <dt>{{ cap[0] }}</dt>
         <dd>{{ cap[1] }}</dd>

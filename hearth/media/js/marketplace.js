@@ -64,6 +64,11 @@ require.config({
 
         nunjucks.env.dev = true;
 
+        // Get mobile region and carrier information.
+        var GET = require('utils').getVars();
+        settings.mcc = GET.mcc;
+        settings.mnc = GET.mnc;
+
         z.body.addClass('html-' + require('l10n').getDirection());
         if (settings.body_classes) {
             z.body.addClass(settings.body_classes);
