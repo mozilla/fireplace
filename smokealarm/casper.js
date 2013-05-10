@@ -150,6 +150,11 @@ function Suite(options) {
         return cobj.fetchText(selector);
     };
 
+    this.viewport = function(w, h) {
+        console.log('Setting viewport to ' + w + 'x' + h);
+        return cobj.viewport(w, h);
+    };
+
 }
 
 exports.suite = function(options) {
