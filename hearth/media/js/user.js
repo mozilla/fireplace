@@ -5,7 +5,7 @@ define('user', ['capabilities'], function(capabilities) {
 
     var save_to_ls = !capabilities.phantom;
 
-    if (!save_to_ls) {
+    if (save_to_ls) {
         token = localStorage.getItem('user');
         settings = JSON.parse(localStorage.getItem('settings') || '{}');
     }
