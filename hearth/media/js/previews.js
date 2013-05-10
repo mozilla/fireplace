@@ -67,7 +67,7 @@ define('previews',
         });
 
         // Tray can fit 3 desktop thumbs before paging is required.
-        if (numPreviews > 3 && caps.widescreen) {
+        if (numPreviews > 3 && caps.widescreen()) {
             handles.attachHandles(slider, $tray.find('.slider'));
         }
 

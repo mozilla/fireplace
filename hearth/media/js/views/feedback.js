@@ -32,11 +32,13 @@ define('views/feedback',
 
     // Init desktop feedback form modal trigger.
     // The modal is responsive even if this handler isn't removed.
-    if (caps.widescreen) {
+    if (caps.widescreen()) {
         z.page.on('loaded', function() {
-            z.page.append(
-                nunjucks.env.getTemplate('settings/feedback.html').render(require('helpers'))
-            );
+            if (!$('.main.feedback').length) {
+                z.page.append(
+                    nunjucks.env.getTemplate('settings/feedback.html').render(require('helpers'))
+                );
+            }
         });
         z.body.on('click', '.submit-feedback', function(e) {
             e.preventDefault();
