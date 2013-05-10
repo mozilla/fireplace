@@ -151,9 +151,7 @@ def homepage():
     }
 
 
-def _paginated(field, generator):
-    result_count = 24
-
+def _paginated(field, generator, result_count=24):
     page = int(request.args.get('offset', 0)) / PER_PAGE
     if page * PER_PAGE > result_count:
         items = []
@@ -167,7 +165,6 @@ def _paginated(field, generator):
         next_page = request.url
         next_page = next_page[len(request.base_url) -
                               len(request.path + request.script_root):]
-        print next_page
         if '?' in next_page:
             next_page_qs = urlparse.parse_qs(
                 next_page[next_page.index('?') + 1:],
@@ -200,7 +197,8 @@ def search():
             yield defaults.app('Result', 'sr%d' % i)
             i += 1
 
-    data = _paginated('objects', gen)
+    query = request.args.get('q')
+    data = _paginated('objects', gen, 0 if query == 'empty' else 24)
     return data
 
 
