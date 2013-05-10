@@ -50,7 +50,7 @@ clean:
 includes: compile
 	echo "/* $(VERSION) */" > hearth/media/include.css
 	echo "/* $(VERSION) */" > hearth/media/include.js
-	cat hearth/media/js/amd.js >> hearth/media/include.js
+	cat amd/amd.js >> hearth/media/include.js
 	python build.py
 	cat hearth/media/include.css | cleancss > hearth/media/css/include.css
 	rm hearth/media/include.css
