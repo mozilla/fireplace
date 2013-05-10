@@ -18,7 +18,7 @@ define('capabilities', [], function() {
         ),
         'fileAPI': !!window.FileReader,
         'userAgent': navigator.userAgent,
-        'widescreen': function(){ return safeMatchMedia('(min-width: 710px)'); },
+        'widescreen': function() { return safeMatchMedia('(min-width: 710px)'); },
         'firefoxAndroid': navigator.userAgent.indexOf('Firefox') !== -1 && navigator.userAgent.indexOf('Android') !== -1,
         'touch': !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch),
         'nativeScroll': (function() {

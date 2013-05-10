@@ -7,7 +7,6 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
     var currentApp;
     var previews;
     var slider;
-    var trayOrigin; // Remember the tray that originated the lightbox trigger.
 
     $lightbox.addClass('shots');
 
@@ -16,7 +15,6 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
         var which = $this.closest('li').index();
         var $tray = $this.closest('.tray');
         var $tile = $tray.prev();
-        trayOrigin = $this.closest('.content')[0];
 
         // we get the screenshots from the associated tile. No tile? bail.
         if (!$tile.hasClass('mkt-tile')) return;
@@ -55,20 +53,6 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
             resize();
             $lightbox.addClass('show');
         }, 0);
-    }
-
-    // Beat this mutant with a stick once FF fixes layered transition repaints.
-    function ghettoFresh(transformation) {
-        if (!transformation) return;
-        var trans = transformation.replace('translate3d(', '');
-        trans = parseInt(trans.split(',')[0], 10) | 0;
-
-        // Shift the tray by 1px then reset to original position.
-        setTimeout(function() {
-            trayOrigin.style.MozTransform = 'translate3d(' + (trans + 1) + 'px, 0, 0)';
-            trayOrigin.style.MozTransform = 'translate3d(' + trans + 'px, 0, 0)';
-            console.log('[lightbox] ghettoFresh() happened');
-        }, 100);
     }
 
     function renderPreviews() {
@@ -137,9 +121,6 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
             $lightbox.hide();
         }, 500);
         z.win.unbind('keydown.lightboxDismiss');
-        if (trayOrigin) {
-            ghettoFresh(trayOrigin.style.MozTransform);
-        }
     }
 
     // prevent mouse cursors from dragging these images.
