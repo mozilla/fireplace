@@ -62,4 +62,4 @@ lint:
 	gjslint --nojsdoc -r hearth/media/js/ -e lib
 
 deploy:
-	git fetch && git reset --hard origin/master && npm install && includes
+	git fetch && git reset --hard origin/master && npm install && make includes
