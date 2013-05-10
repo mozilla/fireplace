@@ -136,6 +136,28 @@ define(
                         request.done(function(data) {
                             context.ctx['response'] = data;
                             out = get_result(data, true);
+
+                            // Now update the response with the values from the model cache
+                            // For details, see bug 870447
+                            if ('as' in signature) {
+                                var resp = data;
+                                var plucked = 'pluck' in signature;
+                                var uncaster = models(signature.as).uncast;
+
+                                if (plucked) {
+                                    resp = resp[signature.pluck];
+                                }
+                                if (_.isArray(resp)) {
+                                    for (var i = 0; i < resp.length; i++) {
+                                        resp[i] = uncaster(resp[i]);
+                                    }
+                                } else if (plucked) {
+                                    data[signature.pluck] = uncaster(resp[i]);
+                                }
+                                // We can't do this for requests which have no pluck
+                                // and aren't an array. :(
+                            }
+
                         });
                         if (signature.paginate) {
                             pool.done(function() {

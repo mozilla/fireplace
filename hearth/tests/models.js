@@ -53,6 +53,66 @@ test('model cast/lookup/purge', function(done) {
     );
 });
 
+test('model cast/uncast', function(done) {
+    mock(
+        'models', {},
+        function(models) {
+            var d1 = models('dummy');
+
+            var obj1 = {
+                id: 1,
+                val: 'foo'
+            };
+            var obj2 = {
+                id: 1,
+                val: 'bar'
+            };
+
+            d1.cast(obj1);
+            eq_(d1.uncast(obj2).val, 'foo');
+
+            done();
+        }
+    );
+});
+
+test('model cast/uncast lists', function(done) {
+    mock(
+        'models', {},
+        function(models) {
+            var d1 = models('dummy');
+
+            var obj1 = {
+                id: 1,
+                val: 'foo'
+            };
+            var obj2 = {
+                id: 2,
+                val: 'bar'
+            };
+            var obj3 = {
+                id: 1,
+                val: 'zip'
+            };
+            var obj4 = {
+                id: 2,
+                val: 'zap'
+            };
+
+            d1.cast([obj1, obj2]);
+
+            var output = d1.uncast([
+                obj3,
+                obj4
+            ]);
+            eq_(output[0].val, 'foo');
+            eq_(output[1].val, 'bar');
+
+            done();
+        }
+    );
+});
+
 test('model get hit', function(done) {
     mock(
         'models',

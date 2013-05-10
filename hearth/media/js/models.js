@@ -25,13 +25,26 @@ define('models', ['requests', 'underscore'], function(requests, _) {
         var key = prototypes[type];
 
         var cast = function(data) {
+            function do_cast(data) {
+                var keyed_value = data[key];
+                data_store[type][keyed_value] = data;
+                console.log('[model] Stored ' + keyed_value + ' as ' + type);
+            }
             if (_.isArray(data)) {
-                _.each(data, cast);
+                _.each(data, do_cast);
                 return;
             }
-            var keyed_value = data[key];
-            data_store[type][keyed_value] = data;
-            console.log('[model] Stored ' + keyed_value + ' as ' + type);
+            return do_cast(data);
+        };
+
+        var uncast = function(object) {
+            function do_uncast(object) {
+                return data_store[type][object[key]];
+            }
+            if (_.isArray(object)) {
+                return object.map(uncast);
+            }
+            return do_uncast(object);
         };
 
         var get = function(url, keyed_value, getter) {
@@ -76,6 +89,7 @@ define('models', ['requests', 'underscore'], function(requests, _) {
 
         return {
             cast: cast,
+            uncast: uncast,
             get: get,
             lookup: lookup,
             purge: purge
