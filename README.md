@@ -171,3 +171,51 @@ make test
 
 - `numberfmt` doesn't work (should probably be integrated with L10n
   pluralization)
+
+
+## Local Development With Nginx
+
+If you want to run a local Fireplace against your local
+[Zamboni API](http://firefox-marketplace-api.readthedocs.org/)
+you can use [nginx](http://nginx.org/).
+
+The following snippet can go in the server section of your local
+``nginx.conf``. It assumes the following parameters so change them
+accordingly.
+
+* You are running Zamboni at ``localhost:8000``
+* You have Zamboni source checked out to ``/Users/your_name/dev``
+* You want to access Fireplace at ``http://localhost/``
+
+
+Snippet:
+
+    http {
+        ...
+        server {
+            listen       80 default;
+            server_name  localhost;
+
+            location / {
+                rewrite ^/$ /server.html break;
+                rewrite ^/abuse$ /server.html break;
+                rewrite "^/app/(?![0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/manifest\.webapp$).*" /server.html break;
+                rewrite ^/category/.* /server.html break;
+                rewrite ^/debug$ /server.html break;
+                rewrite ^/feedback$ /server.html break;
+                rewrite ^/privacy-policy$ /server.html break;
+                rewrite ^/purchases$ /server.html break;
+                rewrite ^/search$ /server.html break;
+                rewrite ^/settings$ /server.html break;
+                rewrite ^/terms-of-use$ /server.html break;
+                rewrite ^/tests$ /server.html break;
+                rewrite ^/user/.* /server.html break;
+                proxy_pass http://localhost:8000;
+                proxy_set_header Host $host;
+            }
+
+            location /media {
+                alias /Users/your_name/dev/zamboni/media;
+            }
+        }
+    }
