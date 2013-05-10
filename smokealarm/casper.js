@@ -56,6 +56,13 @@ function Suite(options) {
     });
 
     this.run = function(url, callback) {
+
+        if (_this.casperSkip) {
+            console.log('Skipping...');
+            cobj.test.done();
+            return;
+        }
+
         if (url[0] === '/') {
             url = url.substr(1);
         }
@@ -63,6 +70,10 @@ function Suite(options) {
         var started = false;
         var next_runner = function(callback) {
             cobj.start.apply(cobj, [url, callback]);
+            if (_this.setUp) {
+                console.log('Running setUp');
+                _this.setUp();
+            }
             next_runner = function() {
                 cobj.then.apply(cobj, arguments);
             };
@@ -104,6 +115,10 @@ function Suite(options) {
 
         console.log('Running tests...');
         cobj.run(function() {
+            if (_this.tearDown) {
+                console.log('Running tearDown');
+                _this.tearDown();
+            }
             this.test.done(asserts);
         });
     };
