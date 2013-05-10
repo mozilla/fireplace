@@ -22,7 +22,7 @@ import defaults
 import persona
 
 
-PER_PAGE = 10
+PER_PAGE = 5
 LATENCY = 0
 
 

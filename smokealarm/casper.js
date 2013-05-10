@@ -108,8 +108,16 @@ function Suite(options) {
         });
     };
 
+    this.back = function() {
+        return cobj.back();
+    };
+
     this.capture = function(filename) {
         cobj.capture('captures/' + filename);
+    };
+
+    this.evaluate = function() {
+        return cobj.evaluate.apply(cobj, arguments);
     };
 
     this.fill = function(form_selector, data) {
@@ -126,6 +134,10 @@ function Suite(options) {
         return cobj.exists(selector);
     };
 
+    this.getElementBounds = function(selector) {
+        return cobj.getElementBounds(selector);
+    };
+
     this.visible = function(selector) {
         return cobj.visible(selector);
     };
@@ -136,10 +148,6 @@ function Suite(options) {
 
     this.getText = function(selector) {
         return cobj.fetchText(selector);
-    };
-
-    this.evaluate = function(func) {
-        return cobj.evaluate(func);
     };
 
 }
