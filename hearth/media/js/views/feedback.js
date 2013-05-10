@@ -21,6 +21,8 @@ define('views/feedback',
 
         requests.post(urls.api.url('feedback'), data).done(function(data) {
             $this.find('textarea').val('');
+            forms.toggleSubmitFormState($this, true);
+            $('.cloak').trigger('dismiss');
             notify({message: gettext('Feedback submitted. Thanks!')});
         }).fail(function() {
             forms.toggleSubmitFormState($this, true);
