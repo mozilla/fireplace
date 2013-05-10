@@ -52,7 +52,7 @@ includes: compile
 	echo "/* $(VERSION) */" > hearth/media/include.js
 	cat amd/amd.js >> hearth/media/include.js
 	python build.py
-        cleancss hearth/media/include.css > hearth/media/css/include.css
+	cleancss hearth/media/include.css > hearth/media/css/include.css
 	rm -f hearth/media/include.css
 	mv hearth/media/include.js hearth/media/js/
 	#uglifyjs hearth/media/js/include.js -o hearth/media/js/include.js -m
