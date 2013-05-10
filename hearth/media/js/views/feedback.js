@@ -1,12 +1,10 @@
 define('views/feedback',
-       ['buckets', 'capabilities', 'forms', 'l10n', 'notification', 'requests', 'z'],
-       function(buckets, caps, forms, l10n, notification, requests, z) {
+       ['buckets', 'capabilities', 'forms', 'l10n', 'notification', 'requests', 'templates', 'utils', 'z'],
+       function(buckets, caps, forms, l10n, notification, requests, nunjucks, utils, z) {
 
     var gettext = l10n.gettext;
     var notify = notification.notification;
-    var nunjucks = require('templates');
     var urls = require('urls');
-    var utils = require('utils');
 
     z.page.on('submit', '.feedback-form', function(e) {
         e.preventDefault();
