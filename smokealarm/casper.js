@@ -120,9 +120,17 @@ function Suite(options) {
         return cobj.evaluate.apply(cobj, arguments);
     };
 
-    this.fill = function(form_selector, data) {
-        console.log('Filling ' + form_selector);
+    this.fill = function(form_selector, data, submit) {
+        console.log('Filling ', form_selector);
         cobj.fill(form_selector, data);
+        if (submit) {
+            console.log('Submitting ', form_selector);
+            cobj.evaluate(function(selector) {
+                var e = document.createEvent('HTMLEvents');
+                e.initEvent('submit', true, true);
+                document.querySelector(selector).dispatchEvent(e);
+            }, form_selector);
+        }
     };
 
     this.press = function(selector) {

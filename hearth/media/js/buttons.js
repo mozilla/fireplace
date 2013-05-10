@@ -78,7 +78,7 @@ define('buttons',
         } else {
             $button.parent().append($('#noApps').html());
         }
-    }).on('loaded', function() {
+    }).on('loaded loaded_more', function() {
         if (!capabilities.webApps) {
             $('.button.product').attr('disabled', true);
         }
