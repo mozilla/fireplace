@@ -16,6 +16,16 @@ define('views/debug',
             localStorage.setItem('debug-enabled', 'yes');
             label.text('yes');
         }
+    }).on('click', '#install-yulelog', function(e) {
+        var origin = window.location.origin || (
+            window.location.protocol + '//' + window.location.host);
+        var request = window.navigator.mozApps.installPackage(origin + '/packaged.webapp', null);
+        request.onerror = function(e) {
+            console.error('Error installing app:', + request.error.name);
+        };
+        request.onsuccess = function(e) {
+            console.log('Success installing app:', + request.result.manifest.name);
+        };
     }).on('click', '.cache-menu a', function(e) {
         e.preventDefault();
         var data = cache.get($(this).data('url'));
