@@ -34,6 +34,7 @@ define('cache', ['rewriters', 'underscore'], function(rewriters, _) {
     }
 
     function bust(key) {
+        console.log('[cache] Busting cache for ', key);
         if (key in cache) {
             delete cache[key];
         }
