@@ -11,17 +11,17 @@ define('views/app/ratings/add',
         // open a login window. If they complete the login, click the Write
         // Review button if it exists.
         if (!user.logged_in()) {
-            z.page.trigger('navigate', urls.reverse('app', [slug]));
-            setTimeout(function() {
-                login.login().done(function() {
-                    $('#add-review').click();
-                });
-            }, 0);
+            login.login().done(function() {
+                $('#add-review').trigger('click');
+            });
             return;
         }
 
         builder.start('ratings/write.html', {'slug': slug}).done(function() {
             $('.compose-review').removeClass('modal');
+            $('.compose-review .cancel').on('click', function() {
+                z.page.trigger('navigate', urls.reverse('app', [slug]));
+            });
         });
 
         builder.z('type', 'leaf');
