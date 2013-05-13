@@ -32,7 +32,7 @@ define('buckets', [], function() {
         'mozApps' in navigator,
         'mozApps' in navigator && navigator.mozApps.installPackage,
         'mozPay' in navigator,
-        'MozActivity' in window,
+        !!window.MozActivity, // FF 18 and earlier throw an exception on this key
         'ondevicelight' in window,
         'ArchiveReader' in window,
         'battery' in navigator,
