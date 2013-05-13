@@ -94,7 +94,7 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
         });
 
         // $section doesn't have its proper width until after a paint.
-        slider = Flipsnap($content[0], {disable3d: true});
+        slider = Flipsnap($content[0]);
         slider.element.addEventListener('fsmoveend', pauseVideos, false);
 
         handles.attachHandles(slider, $section);
@@ -113,6 +113,17 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
         });
     }
 
+    // Horrible hack to work around trays repainting upon lightbox dismissal.
+    // This affects FF only.
+    function ghettoFresh() {
+        // z-index should be between 10, 15
+        var z = ~~(Math.random() * 5 + 10);
+
+        setTimeout(function() {
+            $('.product-details .slider .content').css({'z-index': z});
+        }, 100);
+    }
+
     function hideLightbox() {
         pauseVideos();
         $lightbox.removeClass('show');
@@ -120,6 +131,7 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
         setTimeout(function() {
             $lightbox.hide();
         }, 500);
+        ghettoFresh();
         z.win.unbind('keydown.lightboxDismiss');
     }
 
