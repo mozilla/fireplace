@@ -45,9 +45,9 @@ log:
 clean:
 	rm -f $(CSS_FILES)
 	rm -f hearth/media/css/include.css
-	rm -f hearth/media/include.*
+	rm -f hearth/media/js/include.*
 
-includes: compile
+includes: clean compile
 	echo "/* $(VERSION) */" > hearth/media/include.css
 	echo "/* $(VERSION) */" > hearth/media/include.js
 	cat amd/amd.js >> hearth/media/include.js
