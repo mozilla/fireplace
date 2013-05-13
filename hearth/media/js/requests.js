@@ -4,7 +4,7 @@ define('requests',
     /*
     Methods:
 
-    - get(url, [successCallback, [errorCallback]])
+    - get(url)
       Makes a GET request to the specified URL.
 
       Returns a promise object similar to the one returned by jQuery AJAX
@@ -14,11 +14,17 @@ define('requests',
       If you do not want your request intentionally cached, use `_get`
       (which has an identical prototype) instead.
 
-    - post(url, body, [successCallback, [errorCallback]])
-      Makes a POST request to the specified URL with the given body.
+    - post|put|patch(url, body)
+      Makes a POST/PUT/PATCH request to the specified URL with the given body.
 
       Returns a promise object similar to the one returned by jQuery AJAX
-      methods. POST requests are never intentionally cached.
+      methods. These requests are never intentionally cached.
+
+    - del(url)
+      Makes a DELETE request to the specified URL.
+
+      Returns a promise object similar to the one returned by jQuery AJAX
+      methods. These requests are never intentionally cached.
 
     - pool()
       Creates a new request pool and returns the request pool.
@@ -29,7 +35,7 @@ define('requests',
 
     Request Pool Methods:
 
-    - get(url, [successCallback, [errorCallback]])
+    - get(url)
       Functionally similar to the root `get()` method.
 
       If a GET request to that URL has already been made, that request's
@@ -38,11 +44,11 @@ define('requests',
       The initiated request is added to the pool. The request will block the
       pool's promise from resolving or rejecting.
 
-    - post(url, body, [successCallback, [errorCallback]])
-      Functionally similar to the root `post()` method.
+    - post|put|patch(url, body)
+      Functionally similar to the root counterparts with pool support.
 
-      The initiated request is added to the pool. The request will block the
-      pool's promise from resolving or rejecting.
+    - del(url)
+      Functionally similar to the root `del()` method with pool support.
 
     - finish()
       Closes the pool (prevents new requests). If no requests have been made
@@ -95,13 +101,6 @@ define('requests',
         }
     }
 
-    function post(url, data) {
-        console.log('[req] POSTing', url);
-        return $.post(url, data).done(function(data) {
-            console.log('[req] POSTed', url);
-        }).fail(handle_errors);
-    }
-
     function del(url) {
         console.log('[req] DELETing', url);
         return $.ajax({
@@ -109,17 +108,6 @@ define('requests',
             type: 'DELETE'
             // type: 'POST',
             // headers: {'X-HTTP-METHOD-OVERRIDE': 'DELETE'}
-        }).fail(handle_errors);
-    }
-
-    function put(url, data) {
-        console.log('[req] PUTing', url);
-        return $.ajax({
-            url: url,
-            type: 'PUT',
-            // type: 'POST',
-            // headers: {'X-HTTP-METHOD-OVERRIDE': 'PUT'},
-            data: data
         }).fail(handle_errors);
     }
 
@@ -134,6 +122,24 @@ define('requests',
         }).fail(handle_errors);
     }
 
+    function post(url, data) {
+        console.log('[req] POSTing', url);
+        return $.post(url, data).done(function(data) {
+            console.log('[req] POSTed', url);
+        }).fail(handle_errors);
+    }
+
+    function put(url, data) {
+        console.log('[req] PUTing', url);
+        return $.ajax({
+            url: url,
+            type: 'PUT',
+            // type: 'POST',
+            // headers: {'X-HTTP-METHOD-OVERRIDE': 'PUT'},
+            data: data
+        }).fail(handle_errors);
+    }
+
     function Pool() {
         console.log('[req] Opening pool');
         var requests = [];
@@ -141,19 +147,22 @@ define('requests',
 
         var def = $.Deferred();
         var initiated = 0;
+        var marked_to_finish = false;
         var closed = false;
 
-        var finish = this.finish = function() {
+        var _this = this;
+
+        function finish() {
             if (closed) {
                 return;
             }
-            if (!initiated) {
+            if (!initiated && marked_to_finish) {
                 console.log('[req] Closing pool');
                 closed = true;
                 // Don't allow new requests.
-                this.get = null;
-                this.post = null;
-                this.del = null;
+                _this.get = null;
+                _this.post = null;
+                _this.del = null;
 
                 // Resolve the deferred whenevs.
                 if (window.setImmediate) {
@@ -162,6 +171,11 @@ define('requests',
                     setTimeout(def.resolve, 0);
                 }
             }
+        };
+
+        this.finish = function() {
+            marked_to_finish = true;
+            finish();
         };
 
         function make(func, args) {
@@ -185,15 +199,15 @@ define('requests',
             req_map[url] = req;
             return req;
         };
-        this.post = function() {return make(post, arguments);};
         this.del = function() {return make(del, arguments);};
-        this.put = function() {return make(put, arguments);};
         this.patch = function() {return make(patch, arguments);};
+        this.post = function() {return make(post, arguments);};
+        this.put = function() {return make(put, arguments);};
 
         this.abort = function() {
             for (var i = 0, request; request = requests[i++];) {
                 if (request.abort === undefined || request.isSuccess !== false) {
-                    return;
+                    continue;
                 }
                 request.abort();
             }
