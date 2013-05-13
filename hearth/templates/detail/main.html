@@ -108,7 +108,7 @@
             <a class="button alt" id="edit-review" href="{{ url('app/ratings/edit', [slug]) }}">
               {{ _('Edit Your Review') }}</a>
           {% else %}
-            <a class="button alt" id="add-review" href="#"
+            <a class="button alt" id="add-review" href="{{ url('app/ratings/add', [slug]) }}"
                data-action="add" data-app="{{ slug }}">
               {{ _('Write a Review') }}</a>
           {% endif %}

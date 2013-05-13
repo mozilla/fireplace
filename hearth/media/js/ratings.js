@@ -92,26 +92,29 @@ define('ratings',
         });
     }
 
-    function addReview($senderEl) {
+    function addReview(e, $senderEl) {
 
         // If the user isn't logged in, prompt them to do so.
         if (!user.logged_in()) {
             login.login().done(function() {
-                addReview($senderEl);
+                addReview(e, $senderEl);
             });
             return;
         }
 
         var ctx = _.extend({slug: $senderEl.data('app')}, require('helpers'));
-        z.page.append(
-            nunjucks.env.getTemplate('ratings/write.html').render(ctx)
-        );
+
+        if (capabilities.widescreen()) {
+            e.stopPropagation();
+            z.page.append(
+                nunjucks.env.getTemplate('ratings/write.html').render(ctx)
+            );
+            z.body.trigger('decloak');
+            $('.compose-review.modal').addClass('show');
+        }
 
         $('.compose-review').find('select[name="rating"]').ratingwidget('large');
         initCharCount();
-
-        z.body.trigger('decloak');
-        $('.compose-review.modal').addClass('show');
     }
 
     z.page.on('click', '.review .actions a, #add-review', utils._pd(function(e) {
@@ -125,7 +128,7 @@ define('ratings',
                 deleteReview($review, $this.data('href'), $this.data('app'));
                 break;
             case 'add':
-                addReview($this);
+                addReview(e, $this);
                 break;
             case 'report':
                 flagReview($review);

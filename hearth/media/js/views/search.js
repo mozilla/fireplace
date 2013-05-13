@@ -22,7 +22,7 @@ define('views/search',
 
     // Default to the graphical view at desktop widths and traditional
     // list view at lesser widths.
-    var expand = capabilities.widescreen;
+    var expand = capabilities.widescreen();
     if ('expand-listings' in localStorage) {
         // If we've set this value in localStorage before, then use it.
         expand = localStorage['expand-listings'] === 'true';
