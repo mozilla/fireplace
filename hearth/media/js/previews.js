@@ -52,8 +52,8 @@ define('previews',
 
         slider.element.addEventListener('fsmoveend', setActiveDot, false);
 
-        // Show as many thumbs as possible to start. Using MATH!
-        slider.moveToPoint(~~($tray.width() / THUMB_PADDED / 2));
+        // Show as many thumbs as possible to start (zero-indexed).
+        slider.moveToPoint(~~($tray.width() / THUMB_PADDED / 2) - 1);
 
         slider_pool.push(slider);
 
