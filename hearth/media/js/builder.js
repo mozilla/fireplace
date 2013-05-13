@@ -74,6 +74,10 @@ define(
             }
 
             els.on('click', function() {
+                // Call the injector to load the next page's URL into the
+                // more button's parent. `target` is the selector to extract
+                // from the newly built HTML to inject into the currently
+                // visible page.
                 injector(els.data('url'), els.parent(), target).done(function() {
                     z.page.trigger('loaded_more');
                 }).fail(function() {

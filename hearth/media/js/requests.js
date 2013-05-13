@@ -150,8 +150,6 @@ define('requests',
         var marked_to_finish = false;
         var closed = false;
 
-        var _this = this;
-
         function finish() {
             if (closed) {
                 return;
@@ -159,10 +157,6 @@ define('requests',
             if (!initiated && marked_to_finish) {
                 console.log('[req] Closing pool');
                 closed = true;
-                // Don't allow new requests.
-                _this.get = null;
-                _this.post = null;
-                _this.del = null;
 
                 // Resolve the deferred whenevs.
                 if (window.setImmediate) {
