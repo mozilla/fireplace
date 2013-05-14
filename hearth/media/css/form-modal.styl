@@ -39,8 +39,13 @@
     }
 }
 
-.main:not(.modal) .btn-cancel {
-    display: none;
+.main:not(.modal) {
+    .form-modal {
+        min-height: inherit;
+    }
+    .btn-cancel {
+        display: none;
+    }
 }
 
 @media $at-least-desktop {
