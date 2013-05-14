@@ -85,21 +85,23 @@ select[name=rating] {
 }
 
 @media $at-least-desktop {
-    .reviews {
-        padding-bottom: 24px;
+    .reviews, .detail .reviews {
+        padding: 0 15px 24px;
     }
     .ratings-placeholder-inner {
-        display: inline-block;
         // `font-size: 0` so we can do `display: inline-block` without
         // having to worry about the whitespace between the <li>s.
         font-size: 0;
-        margin-left: -12px;
-        margin-right: -12px;
+        margin: 0 -15px 24px;
+        padding: 0 3px;
         position: relative;
+        width: calc(unquote('100% + 30px'));
         li {
             font-size: 15px;
         }
     }
+    // On detail/review listing pages:
+    // [ 15px ] { review } [ 24px ] { review } [ 15px ]
     .review {
         display: inline-block;
         padding: 0 12px;
@@ -364,6 +366,11 @@ tinyStars() {
     .primary-button {
         padding: 15px 10px;
         width: 100%;
+        .button {
+            display: block;
+            max-width: 400px;
+            margin: 0 auto;
+        }
     }
     .reviews-listing {
         .ratings-placeholder-inner {
