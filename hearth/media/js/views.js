@@ -1,6 +1,8 @@
 define('views',
-    ['builder', 'routes', 'underscore', 'utils', 'views/not_found', 'z'],
-    function(builder, routes, _, utils, not_found, z) {
+    ['builder', 'log', 'routes', 'underscore', 'utils', 'views/not_found', 'z'],
+    function(builder, log, routes, _, utils, not_found, z) {
+
+    var console = log('views');
 
     routes = routes.map(function(route) {
         route.regexp = new RegExp(route.pattern);
@@ -26,7 +28,7 @@ define('views',
             url = '/' + url;
         }
 
-        console.log('[views] Routing', url);
+        console.log('Routing', url);
         for (var i in routes) {
             var route = routes[i];
             if (route === undefined) continue;
@@ -65,6 +67,7 @@ define('views',
 
     function reload() {
         z.win.trigger('unloading');
+        console.log('Reloading current view');
         return build.apply(this, last_args);
     }
 

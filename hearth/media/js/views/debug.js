@@ -1,6 +1,6 @@
 define('views/debug',
-    ['buckets', 'cache', 'capabilities', 'notification', 'utils', 'z'],
-    function(buckets, cache, capabilities, notification, utils, z) {
+    ['buckets', 'cache', 'capabilities', 'log', 'notification', 'utils', 'z'],
+    function(buckets, cache, capabilities, log, notification, utils, z) {
     'use strict';
 
     var debugEnabled = localStorage.getItem('debug-enabled');
@@ -34,11 +34,15 @@ define('views/debug',
     });
 
     return function debug_view(builder, args) {
+        var recent_logs = log.get_recent(100);
+
         builder.start('debug.html', {
             cache: cache.raw,
             capabilities: capabilities,
             dbg: debugEnabled || 'no',
-            profile: buckets.get_profile()
+            profile: buckets.get_profile(),
+            recent_logs: recent_logs,
+            filter: log.filter
         });
 
         builder.z('type', 'leaf');

@@ -1,6 +1,8 @@
 define('rewriters',
-    ['underscore', 'urls', 'utils'],
-    function(_, urls, utils) {
+    ['log', 'underscore', 'urls', 'utils'],
+    function(log, _, urls, utils) {
+
+    var console = log('console');
 
     function pagination(url) {
         return function(new_key, new_value, c) {
@@ -18,9 +20,9 @@ define('rewriters',
             delete new_qs.offset;
             delete new_qs.limit;
             var old_url = utils.urlparams(new_base, new_qs);
-            console.log('[rewrite] Attempting to rewrite', old_url);
+            console.log('Attempting to rewrite', old_url);
             if (!(old_url in c)) {
-                console.error('[rewrite] Could not find cache entry to rewrite');
+                console.error('Could not find cache entry to rewrite');
                 return;
             }
 

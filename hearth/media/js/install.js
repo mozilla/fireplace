@@ -1,9 +1,11 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 define('install',
-    ['apps', 'cache', 'capabilities', 'jquery', 'login', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
-    function(apps, cache, caps, $, login, notification, payments, requests, urls, user, z) {
+    ['apps', 'cache', 'capabilities', 'jquery', 'log', 'login', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
+    function(apps, cache, caps, $, log, login, notification, payments, requests, urls, user, z) {
     'use strict';
+
+    var console = log('install');
 
     function _handler(func) {
         return function(e) {
@@ -28,6 +30,7 @@ define('install',
             return;
         }
 
+        console.log('Starting app installation');
         if (product.price) {
             return purchase(product);
         } else {
@@ -54,6 +57,7 @@ define('install',
     }
 
     function purchaseError(product, msg) {
+        console.error('Purchase error: ', msg);
         z.win.trigger('app_purchase_error', [product, msg]);
     }
 
@@ -100,7 +104,7 @@ define('install',
     }
 
     function installError(installer, product, msg) {
-        console.log('error: ' + msg);
+        console.error('Error installing app: ', msg);
 
         switch (msg) {
             // mozApps error codes, defined in

@@ -39,6 +39,7 @@ require.config({
             'install',
             'l10n',
             'lightbox',
+            'log',
             'login',
             'navigation',
             'outgoing_links',
@@ -55,7 +56,9 @@ require.config({
         ],
     function(_) {
 
-        console.log('[mkt] Dependencies resolved, starting init');
+        var console = require('log')('mkt');
+
+        console.log('Dependencies resolved, starting init');
 
         var capabilities = require('capabilities');
         var nunjucks = require('templates');
@@ -75,7 +78,7 @@ require.config({
         }
 
         z.page.one('loaded', function() {
-            console.log('[mkt] Hiding splash screen');
+            console.log('Hiding splash screen');
             $('#splash-overlay').addClass('hide');
         });
 
@@ -107,7 +110,7 @@ require.config({
 
         // Do some last minute template compilation.
         z.page.on('reload_chrome', function() {
-            console.log('[mkt] Reloading chrome');
+            console.log('Reloading chrome');
             var context = _.extend({z: z}, require('helpers'));
 
             $('#site-header').html(
@@ -126,26 +129,26 @@ require.config({
         );
 
         // Perform initial navigation.
-        console.log('[mkt] Triggering initial navigation');
+        console.log('Triggering initial navigation');
         z.page.trigger('navigate', [window.location.pathname + window.location.search]);
 
         // Debug page
         (function() {
             var to = false;
             z.doc.on('touchstart', '.wordmark', function() {
-                console.log('[mkt] hold for debug...');
+                console.log('hold for debug...');
                 clearTimeout(to);
                 to = setTimeout(function() {
                     console.log('navigating to debug...');
                     z.page.trigger('navigate', ['/debug']);
                 }, 5000);
             }).on('touchend', '.wordmark', function() {
-                console.log('[mkt] debug hold broken.');
+                console.log('debug hold broken.');
                 clearTimeout(to);
             });
         })();
 
-        console.log('[mkt] Initialization complete');
+        console.log('Initialization complete');
     });
 
 })();

@@ -40,8 +40,15 @@
 
     <ul class="cache-menu">
       {% for k in cache.keys() %}
-        <li><a href="#" data-url="{{ k }}">{{ k|urlparams(_user='REDACTED') }}</a></li>
+        <li><a href="#" data-url="{{ k }}">{{ filter(k) }}</a></li>
       {% endfor %}
     </ul>
+
+    <h3>Recent Logs</h3>
+    <ol class="debug-log">
+      {% for entry in recent_logs %}
+        <li>{% for piece in entry %}{{ piece }} {% endfor %}</li>
+      {% endfor %}
+    </ol>
   </div>
 </section>

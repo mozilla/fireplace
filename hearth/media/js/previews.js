@@ -1,6 +1,8 @@
 define('previews',
-    ['flipsnap', 'templates', 'capabilities', 'shothandles', 'underscore', 'z'],
-    function(Flipsnap, nunjucks, caps, handles, _, z) {
+    ['flipsnap', 'log', 'templates', 'capabilities', 'shothandles', 'underscore', 'z'],
+    function(Flipsnap, log, nunjucks, caps, handles, _, z) {
+
+    var console = log('previews');
 
     // magic numbers!
     var THUMB_WIDTH = 150;
@@ -64,6 +66,7 @@ define('previews',
         setActiveDot();
 
         $tray.on('click.tray', '.dot', function() {
+            console.log('Dot clicked, repositioning trays');
             slider.moveToPoint($(this).index());
         });
 
@@ -98,7 +101,7 @@ define('previews',
         e.preventDefault();
     }).on('populatetray', function() {
         // TODO: Nuke this logging once we're sure trays work as intended.
-        console.log('[previews] Populating trays');
+        console.log('Populating trays');
         $('.listing.expanded .mkt-tile + .tray:empty').each(populateTray);
     });
 

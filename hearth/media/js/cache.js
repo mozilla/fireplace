@@ -1,4 +1,6 @@
-define('cache', ['rewriters', 'underscore'], function(rewriters, _) {
+define('cache', ['log', 'rewriters', 'underscore'], function(log, rewriters, _) {
+
+    var console = log('cache');
 
     var cache = {};
 
@@ -34,7 +36,7 @@ define('cache', ['rewriters', 'underscore'], function(rewriters, _) {
     }
 
     function bust(key) {
-        console.log('[cache] Busting cache for ', key);
+        console.log('Busting cache for ', key);
         if (key in cache) {
             delete cache[key];
         }
@@ -42,10 +44,13 @@ define('cache', ['rewriters', 'underscore'], function(rewriters, _) {
 
     function rewrite(matcher, worker, limit) {
         var count = 0;
+        console.log('Attempting cache rewrite');
         for (var key in cache) {
             if (matcher(key)) {
+                console.log('Matched cache rewrite pattern for key ', key);
                 cache[key] = worker(cache[key], key);
                 if (limit && ++count >= limit) {
+                    console.log('Cache rewrite limit hit, exiting');
                     return;
                 }
             }

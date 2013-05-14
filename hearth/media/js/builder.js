@@ -51,7 +51,6 @@ define(
 
     var SafeString = nunjucks.require('runtime').SafeString;
 
-    console.log('Loading nunjucks builder tags...');
     var counter = 0;
 
     var gettext = l10n.gettext;

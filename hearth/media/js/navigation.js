@@ -1,7 +1,9 @@
 define('navigation',
-    ['capabilities', 'l10n', 'notification', 'underscore', 'urls', 'utils', 'views', 'z'],
-    function(capabilities, l10n, notification, _, urls, utils, views, z) {
+    ['capabilities', 'l10n', 'log', 'notification', 'underscore', 'urls', 'utils', 'views', 'z'],
+    function(capabilities, l10n, log, notification, _, urls, utils, views, z) {
     'use strict';
+
+    var console = log('nav');
 
     var gettext = l10n.gettext;
     var stack = [
@@ -55,7 +57,7 @@ define('navigation',
     function navigate(href, popped, state) {
         if (!state) return;
 
-        console.log('[nav] Navigation started: ', href);
+        console.log('Navigation started: ', href);
         var view = views.match(href);
         if (view === null) {
             return;
@@ -70,7 +72,7 @@ define('navigation',
         state.title = z.context.title;
 
         if ((state.preserveScroll || popped) && state.scrollTop) {
-            console.log('[nav] Setting scroll: ', state.scrollTop);
+            console.log('Setting scroll: ', state.scrollTop);
             if (state.docHeight) {
                 // Preserve document min-height for scroll restoration.
                 z.body.css('min-height', state.docHeight);
@@ -81,7 +83,7 @@ define('navigation',
             }
             window.scrollTo(0, state.scrollTop);
         } else {
-            console.log('[nav] Resetting scroll');
+            console.log('Resetting scroll');
             window.scrollTo(0, 0);
         }
 
@@ -93,7 +95,7 @@ define('navigation',
         for (var i = 0; i < stack.length; i++) {
             if (stack[i].path === state.path ||
                 (state.type === 'search' && stack[i].type === state.type)) {
-                console.log('[nav] Navigation loop truncated:', stack.slice(0, i));
+                console.log('Navigation loop truncated:', stack.slice(0, i));
                 stack = stack.slice(i + 1);
                 break;
             }
@@ -109,10 +111,10 @@ define('navigation',
         } else {
             // handle the back and forward buttons.
             if (popped && stack[0].path === state.path) {
-                console.log('[nav] Shifting stack (used → or ← button)');
+                console.log('Shifting stack (used → or ← button)');
                 stack.shift();
             } else {
-                console.log('[nav] Pushed state onto stack: ', state.path);
+                console.log('Pushed state onto stack: ', state.path);
                 stack.unshift(state);
             }
 
@@ -125,23 +127,23 @@ define('navigation',
                     // The parent is in the stack and it's not immediately
                     // behind the current page in the stack.
                     stack.splice(1, parent - 1);
-                    console.log('[nav] Closing navigation loop to parent (1 to ' + (parent - 1) + ')');
+                    console.log('Closing navigation loop to parent (1 to ' + (parent - 1) + ')');
                 } else if (parent == -1) {
                     // The parent isn't in the stack. Splice it in just below
                     // where the value we just pushed in is.
                     stack.splice(1, 0, {path: z.context.parent});
-                    console.log('[nav] Injecting parent into nav stack at 1');
+                    console.log('Injecting parent into nav stack at 1');
                 }
-                console.log('[nav] New stack size: ' + stack.length);
+                console.log('New stack size: ' + stack.length);
             }
         }
 
     }
 
     z.body.on('click', '.site-header .back', utils._pd(function() {
-        console.log('[nav] ← button pressed');
+        console.log('← button pressed');
         if (!canNavigate()) {
-            console.log('[nav] ← button aborted; canNavigate is falsey.');
+            console.log('← button aborted; canNavigate is falsey.');
             return;
         }
 
@@ -150,7 +152,7 @@ define('navigation',
             history.replaceState(stack[0], false, stack[0].path);
             navigate(stack[0].path, true, stack[0]);
         } else {
-            console.log('[nav] attempted nav.back at root!');
+            console.log('attempted nav.back at root!');
         }
     }));
 
@@ -159,7 +161,7 @@ define('navigation',
         return z.page.trigger(
             'navigate', utils.urlparams(urls.reverse('search'), params));
     }).on('navigate divert', function(e, url, params, preserveScroll) {
-        console.log('[nav] Received ' + e.type + ' event:', url);
+        console.log('Received ' + e.type + ' event:', url);
         if (!url) return;
 
         var divert = e.type === 'divert';
@@ -177,7 +179,7 @@ define('navigation',
         }
 
         if (!canNavigate()) {
-            console.log('[nav] Navigation aborted; canNavigate is falsey.');
+            console.log('Navigation aborted; canNavigate is falsey.');
             return;
         }
 
@@ -189,7 +191,7 @@ define('navigation',
         // Update scrollTop for current history state.
         if (stack.length && scrollTop !== stack[0].scrollTop) {
             stack[0].scrollTop = scrollTop;
-            console.log('[nav] Updating scrollTop');
+            console.log('Updating scrollTop');
             history.replaceState(stack[0], false, stack[0].path);
         }
 
@@ -251,7 +253,7 @@ define('navigation',
     z.win.on('popstate', function(e) {
         var state = e.originalEvent.state;
         if (state) {
-            console.log('[nav] popstate navigate');
+            console.log('popstate navigate');
             navigate(state.path, true, state);
         }
     }).on('submit', 'form', function(e) {

@@ -1,4 +1,6 @@
-define('models', ['requests', 'underscore'], function(requests, _) {
+define('models', ['log', 'requests', 'underscore'], function(log, requests, _) {
+
+    var console = log('model');
 
     // {'type': {'<id>': object}}
     var data_store = {};
@@ -28,7 +30,7 @@ define('models', ['requests', 'underscore'], function(requests, _) {
             function do_cast(data) {
                 var keyed_value = data[key];
                 data_store[type][keyed_value] = data;
-                console.log('[model] Stored ' + keyed_value + ' as ' + type);
+                console.log('Stored ' + keyed_value + ' as ' + type);
             }
             if (_.isArray(data)) {
                 _.each(data, do_cast);
@@ -53,13 +55,13 @@ define('models', ['requests', 'underscore'], function(requests, _) {
             if (keyed_value) {
                 if (keyed_value in data_store[type]) {
                     // Call the `.done()` function back in `request()`.
-                    console.log('[model] Found ' + type + ' with key ' + keyed_value);
+                    console.log('Found ' + type + ' with key ' + keyed_value);
                     return $.Deferred()
                             .resolve(data_store[type][keyed_value])
                             .promise({__cached: true});
                 }
 
-                console.log('[model] ' + type + ' cache miss for key ' + keyed_value);
+                console.log(type + ' cache miss for key ' + keyed_value);
             }
 
             return getter(url);
@@ -76,11 +78,11 @@ define('models', ['requests', 'underscore'], function(requests, _) {
                 return;
             }
             if (keyed_value in data_store[type]) {
-                console.log('[model] Found ' + type + ' with lookup key ' + keyed_value);
+                console.log('Found ' + type + ' with lookup key ' + keyed_value);
                 return data_store[type][keyed_value];
             }
 
-            console.log('[model] ' + type + ' cache miss for key ' + keyed_value);
+            console.log(type + ' cache miss for key ' + keyed_value);
         };
 
         var purge = function() {

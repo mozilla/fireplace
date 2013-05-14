@@ -10,7 +10,7 @@ define('log', [], function() {
         // Give nice log prefixes:
         // > [log] This is a nice message!
         var prefix = '[' + type + ']';
-        
+
         // If we have a tag, add that on:
         // > [log][special] Special messages!
         if (tag) {
@@ -60,6 +60,11 @@ define('log', [], function() {
 
     logs = logger.logs = {};
     logger.all = all_logs;
+    logger.get_recent = function(count, type) {
+        var selected_logs = type ? logs[type] : all_logs;
+        var length = selected_logs.length;
+        return selected_logs.slice(Math.max(length - count, 0), length);
+    };
 
     filter = logger.filter = function(data) {
         if (typeof data !== 'string') {
