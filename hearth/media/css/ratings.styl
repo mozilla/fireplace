@@ -190,11 +190,9 @@ select[name=rating] {
 }
 
 tinyStars() {
-    .rating, .stars {
-        height: 9px;
-    }
     .stars {
         background-size: auto 9px;
+        height: 9px;
         &.stars-4 { background-position: -10px 0; }
         &.stars-3 { background-position: -20px 0; }
         &.stars-2 { background-position: -29px 0; }
@@ -207,6 +205,10 @@ tinyStars() {
 // Bigger stars on detail page (mobile/desktop) and everywhere on desktop.
 .category {
     tinyStars();
+    .rating .cnt {
+        // Maybe we should show the review rating but the mocks omit them.
+        display: none;
+    }
 }
 
 .stars.ratingwidget {

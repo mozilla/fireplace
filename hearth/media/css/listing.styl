@@ -31,6 +31,28 @@ $triangle-size = 20px;
 // name + icon + price + rating in a vertical listview.
 // also used as standalone "card" on detail pages.
 
+.mkt-tile {
+    .rating {
+        color: $sailor-blue;
+        display: block;
+        font-size: 12px;
+        position: relative;
+        a {
+            text-decoration: none;
+            &:hover .cnt {
+                text-decoration: underline;
+            }
+        }
+        .cnt {
+            position: relative;
+            top: -1px;
+        }
+        &.unrated, &.unrated a {
+            color: $earl-gray;
+        }
+    }
+}
+
 .listing .mkt-tile {
     min-height: 64px;
     padding: 15px 10px 15px 84px;
@@ -63,25 +85,6 @@ $triangle-size = 20px;
         min-width: 90px;
         padding: 0;
         width: 90px;
-    }
-    .rating {
-        color: $sailor-blue;
-        display: block;
-        font-size: 12px;
-        position: relative;
-        a {
-            text-decoration: none;
-            &:hover .cnt {
-                text-decoration: underline;
-            }
-        }
-        .cnt {
-            position: relative;
-            top: -1px;
-        }
-        &.unrated, &.unrated a {
-            color: $earl-gray;
-        }
     }
     .price {
         display: none;
@@ -469,7 +472,7 @@ grid-style() {
         &:nth-last-child(-n+2):nth-child(3n+1),
         &:nth-last-child(-n+1):nth-child(3n+2) {
              display: none;
-         }
+        }
         // Show 3 at most (per UX).
         &:nth-child(3) ~ li {
             display: none;
