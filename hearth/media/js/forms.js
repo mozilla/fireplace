@@ -7,7 +7,7 @@ define('forms', ['z'], function(z) {
     }
     z.body.on('change keyup paste', 'input, select, textarea', function(e) {
         checkValid(e.target.form);
-    }).on('loaded overlayloaded', function() {
+    }).on('loaded decloak', function() {
         $('form:not([novalidate])').each(function() {
             checkValid(this);
         });

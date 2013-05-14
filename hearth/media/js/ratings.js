@@ -102,19 +102,18 @@ define('ratings',
             return;
         }
 
-        var ctx = _.extend({slug: $senderEl.data('app')}, require('helpers'));
-
         if (capabilities.widescreen()) {
             e.stopPropagation();
+            var ctx = _.extend({slug: $senderEl.data('app')}, require('helpers'));
             z.page.append(
                 nunjucks.env.getTemplate('ratings/write.html').render(ctx)
             );
             z.body.trigger('decloak');
             $('.compose-review.modal').addClass('show');
+            $('.compose-review').find('select[name="rating"]').ratingwidget('large');
+            initCharCount();
         }
 
-        $('.compose-review').find('select[name="rating"]').ratingwidget('large');
-        initCharCount();
     }
 
     z.page.on('click', '.review .actions a, #add-review', utils._pd(function(e) {
