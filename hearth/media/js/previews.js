@@ -61,6 +61,8 @@ define('previews',
             $pointer.filter('.current').removeClass('current');
             $pointer.eq(slider.currentPoint).addClass('current');
         }
+        setActiveDot();
+
         $tray.on('click.tray', '.dot', function() {
             slider.moveToPoint($(this).index());
         });
