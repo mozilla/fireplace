@@ -24,7 +24,7 @@ define('settings', ['settings_local', 'underscore'], function(settings_local, _)
         timing_url: '',  // TODO: figure this out
 
         persona_unverified_issuer: null,
-        native_persona: 'https://native-persona.org/include.js',
+        native_persona: 'https://firefoxos.persona.org/include.js',
         persona: 'https://login.persona.org/include.js',
 
         title_suffix: 'Firefox Marketplace',

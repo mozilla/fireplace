@@ -10,7 +10,7 @@ SECRET = "This is a value which should be unique to the service."
 
 verifiers = {
     0: 'https://verifier.login.persona.org/verify',
-    1: 'https://native-persona.org/verify'
+    1: 'https://firefoxos.persona.org/verify'
 }
 
 def verify_assertion(assertion, audience, is_native):
