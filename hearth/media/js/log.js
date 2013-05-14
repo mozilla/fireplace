@@ -5,18 +5,29 @@ define('log', [], function() {
     var logs;
     var all_logs = [];
 
-    var logger = function(logger) {
+    var logger = function(type, tag) {
 
-        if (!(logger in logs)) {
-            logs[logger] = [];
+        // Give nice log prefixes:
+        // > [log] This is a nice message!
+        var prefix = '[' + type + ']';
+        
+        // If we have a tag, add that on:
+        // > [log][special] Special messages!
+        if (tag) {
+            prefix += '[' + tag + ']';
+        }
+        prefix += ' ';
+
+        if (!(type in logs)) {
+            logs[type] = [];
         }
 
-        var log_queue = logs[logger];
+        var log_queue = logs[type];
 
         function make(log_level) {
             return function() {
                 var args = slice.call(arguments, 0);
-                args[0] = '[' + logger + '] ' + args[0];
+                args[0] = prefix + args[0];
                 args = args.map(filter);
                 log_queue.push(args);
                 all_logs.push(args);
@@ -31,7 +42,13 @@ define('log', [], function() {
         return {
             log: make('log'),
             warn: make('warn'),
-            error: make('error')
+            error: make('error'),
+
+            // Have log('payments') but want log('payments', 'mock')?
+            // log('payments').tagged('mock') gives you the latter.
+            tagged: function(tag) {
+                return logger(type, tag);
+            }
         };
     };
 
