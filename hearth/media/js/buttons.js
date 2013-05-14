@@ -63,22 +63,7 @@ define('buttons',
         setButton($button, gettext('Launch'), 'launch install');
     }).on('app_purchase_error app_install_error', function(e, installer, product, msg) {
         revertButton($('button.installing'));
-    }).on('buttons.overlay_dismissed', function() {
-        // Dismissed error. Roll back.
-        revertButton($('.button.error'));
-    }).on('app_install_disabled', function(e, product) {
-        // You're not using a compatible browser.
-        var $button = $('.button.product'),
-            $noApps = $('.no-apps'); // Reviewers page.
-
-        setButton($button, $button.html(), 'disabled');
-
-        if ($noApps.length) {
-            $noApps.show();
-        } else {
-            $button.parent().append($('#noApps').html());
-        }
-    }).on('loaded loaded_more', function() {
+    }).on('fragment_loaded loaded_more', function() {
         if (!capabilities.webApps) {
             $('.button.product').attr('disabled', true);
         }

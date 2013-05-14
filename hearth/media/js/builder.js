@@ -64,6 +64,8 @@ define(
         var result_map = this.results = {};
         var result_handlers = {};
 
+        var has_cached_elements = false;
+
         var pool = requests.pool();
 
         function make_paginatable(injector, placeholder, target) {
@@ -83,6 +85,10 @@ define(
                     notification.notification({message: gettext('Failed to load the next page.')});
                 });
             });
+        }
+
+        function trigger_fragment_loaded(id) {
+            z.page.trigger('fragment_loaded', [id || null]);
         }
 
         // This pretends to be the nunjucks extension that does the magic.
@@ -136,6 +142,8 @@ define(
                     }
 
                     if (request.__cached) {
+                        has_cached_elements = true;
+
                         request.done(function(data) {
                             context.ctx['response'] = data;
                             out = get_result(data, true);
@@ -160,7 +168,6 @@ define(
                                 // We can't do this for requests which have no pluck
                                 // and aren't an array. :(
                             }
-
                         });
                         if (signature.paginate) {
                             pool.done(function() {
@@ -178,6 +185,9 @@ define(
                         if (signature.paginate) {
                             make_paginatable(injector, el, signature.paginate);
                         }
+
+                        trigger_fragment_loaded(signature.id || null);
+
                     }).fail(function() {
                         var el = $('#' + uid);
                         (replace ? replace.replaceWith : el.html).apply(
@@ -201,6 +211,9 @@ define(
         this.start = function(template, defaults) {
             z.page.trigger('build_start');
             z.page.html(env.getTemplate(template).render(_.defaults(defaults || {}, helpers)));
+            if (has_cached_elements) {
+                trigger_fragment_loaded();
+            }
             return this;
         };
 
