@@ -44,8 +44,8 @@ define('login',
 
         console.log('Requesting login from Persona');
         navigator.id.request({
-            forceIssuer: settings.persona_unverified_issuer || null,
-            allowUnverified: true,
+            experimental_forceIssuer: settings.persona_unverified_issuer || null,
+            experimental_allowUnverified: true,
             termsOfService: '/terms-of-use',
             privacyPolicy: '/privacy-policy',
             oncancel: function() {
