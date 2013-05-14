@@ -1,23 +1,21 @@
 // Desktop tests for feedback modal
 var suite = require('./kasperle').suite();
 
+// Desktop only tests.
+suite.marionetteSkip = true;
+
+suite.setUp = function(){
+    suite.viewport(720, 500);
+};
+
+suite.tearDown = function(){
+    suite.viewport(400, 300);
+};
+
 suite.run('/', function(test, waitFor) {
 
-    test('Set viewport to desktop', function() {
-        suite.viewport(720, 500);
-    });
-
     waitFor(function() {
-        return suite.exists('#site-footer .submit-feedback');
-    });
-
-    // TODO have a way to setup/teardown prior to navigating.
-    test('Navigate back to /', function(assert) {
-        suite.press('h1.site a');
-    });
-
-    waitFor(function() {
-        return suite.exists('#site-footer .submit-feedback');
+        return suite.exists('#splash-overlay.hide');
     });
 
     test('Clicking on feedback link', function(assert) {
@@ -40,11 +38,6 @@ suite.run('/', function(test, waitFor) {
     test('Verify form is submitted', function(assert) {
         suite.fill('.feedback-form', {'feedback': 'test'});
         assert.selectorExists('.feedback-form button:not([disabled])');
-    });
-
-    test('Restore viewport', function() {
-        // Needed or else we are stuck on 1024x768
-        suite.viewport(400, 300);
     });
 
 });
