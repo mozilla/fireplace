@@ -76,6 +76,9 @@ $cat-icon-size-desktop = 60px;
 }
 
 .show-cats {
+    #page {
+        padding-top: 0;
+    }
     .dropdown {
         display: block;
         height: auto;
@@ -118,8 +121,6 @@ $cat-icon-size-desktop = 60px;
             // Dropdown arrow
             &:after {
                 dropdown();
-                transition: .3s transform ease-in-out;
-                transform-origin(50%, 50%);
             }
         }
         &.active a:after,
@@ -127,10 +128,6 @@ $cat-icon-size-desktop = 60px;
         a:focus:after {
             background-image: url(../img/pretty/dropdown_active.svg);
             text-decoration: none;
-        }
-        &.active a:after {
-            transform(unquote('rotate(-180deg)'));
-            right: 10px;
         }
     }
     .cat-menu {
