@@ -116,11 +116,15 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
     // Horrible hack to work around trays repainting upon lightbox dismissal.
     // This affects FF only.
     function ghettoFresh() {
-        // z-index should be between 10, 15
+        // z-index should be between 10, 15 (9 is also OK).
         var z = ~~(Math.random() * 5 + 10);
+        var $mainSlider = $('.product-details .slider .content');
+
+        // Make sure the new value is always different to force a repaint.
+        if (parseInt($mainSlider.css('z-index'), 10) === z) z--;
 
         setTimeout(function() {
-            $('.product-details .slider .content').css({'z-index': z});
+            $mainSlider.css({'z-index': z});
         }, 100);
     }
 
