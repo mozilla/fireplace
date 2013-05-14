@@ -133,6 +133,11 @@ define('login',
                 z.body.removeClass('logged-in');
                 z.page.trigger('reload_chrome');
                 z.win.trigger('logout');
+
+                if (z.context.reload_on_logout) {
+                    console.log('Page requested reload on logout');
+                    require('views').reload();
+                }
             }
         });
     }
