@@ -1,6 +1,9 @@
 define('requests',
-    ['cache', 'jquery', 'user', 'utils'],
-    function(cache, $, user, utils) {
+    ['cache', 'jquery', 'log', 'user', 'utils'],
+    function(cache, $, log, user, utils) {
+
+    var console = log('req');
+
     /*
     Methods:
 
@@ -61,7 +64,7 @@ define('requests',
 
     function get(url) {
         if (cache.has(url)) {
-            console.log('[req] GETing from cache', url);
+            console.log('GETing from cache', url);
             return $.Deferred()
                     .resolve(cache.get(url))
                     .promise({__cached: true});
@@ -70,9 +73,9 @@ define('requests',
     }
 
     function _get(url) {
-        console.log('[req] GETing', url);
+        console.log('GETing', url);
         return $.get(url).done(function(data, status, xhr) {
-            console.log('[req] GOT', url);
+            console.log('GOT', url);
             cache.set(url, data);
 
             if (!xhr) {
@@ -88,21 +91,21 @@ define('requests',
     }
 
     function handle_errors(jqxhr, status) {
-        console.log('[req] Request failed: ', status);
+        console.log('Request failed: ', status);
         if (jqxhr.responseText) {
             try {
                 var data = JSON.parse(jqxhr.responseText);
                 if ('error_message' in data) {
-                    console.log('[req] Error message: ', data.error_message);
+                    console.log('Error message: ', data.error_message);
                 } else {
-                    console.log('[req] Response data: ', jqxhr.responseText);
+                    console.log('Response data: ', jqxhr.responseText);
                 }
             } catch(e) {}
         }
     }
 
     function del(url) {
-        console.log('[req] DELETing', url);
+        console.log('DELETing', url);
         return $.ajax({
             url: url,
             type: 'DELETE'
@@ -112,7 +115,7 @@ define('requests',
     }
 
     function patch(url, data) {
-        console.log('[req] PATCHing', url);
+        console.log('PATCHing', url);
         return $.ajax({
             url: url,
             type: 'PATCH',
@@ -123,14 +126,14 @@ define('requests',
     }
 
     function post(url, data) {
-        console.log('[req] POSTing', url);
+        console.log('POSTing', url);
         return $.post(url, data).done(function(data) {
-            console.log('[req] POSTed', url);
+            console.log('POSTed', url);
         }).fail(handle_errors);
     }
 
     function put(url, data) {
-        console.log('[req] PUTing', url);
+        console.log('PUTing', url);
         return $.ajax({
             url: url,
             type: 'PUT',
@@ -141,7 +144,7 @@ define('requests',
     }
 
     function Pool() {
-        console.log('[req] Opening pool');
+        console.log('Opening pool');
         var requests = [];
         var req_map = {};
 
@@ -155,7 +158,7 @@ define('requests',
                 return;
             }
             if (!initiated && marked_to_finish) {
-                console.log('[req] Closing pool');
+                console.log('Closing pool');
                 closed = true;
 
                 // Resolve the deferred whenevs.
