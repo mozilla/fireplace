@@ -70,17 +70,19 @@ define('navigation',
         state.title = z.context.title;
 
         if ((state.preserveScroll || popped) && state.scrollTop) {
-            z.page.one('loaded', function() {
-                console.log('[nav] Setting scroll: ', state.scrollTop);
-                z.doc.scrollTop(state.scrollTop);
-            });
+            console.log('[nav] Setting scroll: ', state.scrollTop);
+            if (state.docHeight) {
+                // Preserve document min-height for scroll restoration.
+                z.body.css('min-height', state.docHeight);
+                z.page.one('loaded', function() {
+                    // Remove specified min-height.
+                    z.body.css('min-height', '');
+                });
+            }
+            window.scrollTo(0, state.scrollTop);
         } else {
             console.log('[nav] Resetting scroll');
-            // Asynchronously reset scroll position.
-            // This works around a bug in B2G/Android where rendering blocks interaction.
-            setTimeout(function() {
-                z.doc.scrollTop(0);
-            }, 0);
+            window.scrollTo(0, 0);
         }
 
         // Clean the path's parameters.
@@ -171,6 +173,7 @@ define('navigation',
         if (preserveScroll) {
             newState.preserveScroll = preserveScroll;
             newState.scrollTop = scrollTop;
+            newState.docHeight = z.doc.height();
         }
 
         if (!canNavigate()) {
@@ -186,7 +189,7 @@ define('navigation',
         // Update scrollTop for current history state.
         if (stack.length && scrollTop !== stack[0].scrollTop) {
             stack[0].scrollTop = scrollTop;
-            console.log('[nav] Updating scrollTop for path: "' + stack[0].path + '" as: ' + scrollTop);
+            console.log('[nav] Updating scrollTop');
             history.replaceState(stack[0], false, stack[0].path);
         }
 

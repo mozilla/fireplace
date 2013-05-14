@@ -54,7 +54,7 @@ define('requests',
       Functionally similar to the root `del()` method with pool support.
 
     - finish()
-      Closes the pool (prevents new requests). If no requests have been made
+      Closes the pool. If no requests have been made
       at this point, the pool's promise will resolve.
 
     - abort()
@@ -168,7 +168,7 @@ define('requests',
                     setTimeout(def.resolve, 0);
                 }
             }
-        };
+        }
 
         this.finish = function() {
             marked_to_finish = true;
@@ -181,9 +181,7 @@ define('requests',
             requests.push(req);
             req.always(function() {
                 initiated--;
-                // Prevent race condition causing early
-                // closing of pool.
-                setTimeout(finish, 0);
+                finish();
             });
             return req;
         }
