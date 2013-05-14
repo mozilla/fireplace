@@ -1,6 +1,8 @@
 define('login',
-    ['cache', 'capabilities', 'jquery', 'models', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z', 'utils'],
-    function(cache, capabilities, $, models, notification, settings, _, urls, user, requests, z) {
+    ['cache', 'capabilities', 'jquery', 'log', 'models', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z', 'utils'],
+    function(cache, capabilities, $, log, models, notification, settings, _, urls, user, requests, z) {
+
+    var console = log('login');
 
     function flush_caches() {
         // We need to flush the global cache
@@ -27,7 +29,10 @@ define('login',
         z.body.removeClass('logged-in');
         z.page.trigger('reload_chrome');
         flush_caches();
+
+        console.log('Triggering Persona logout');
         navigator.id.logout();
+
         notification.notification({message: gettext('You have been signed out')});
     });
 
@@ -37,12 +42,14 @@ define('login',
         var def = $.Deferred();
         pending_logins.push(def);
 
+        console.log('Requesting login from Persona');
         navigator.id.request({
             forceIssuer: settings.persona_unverified_issuer || null,
             allowUnverified: true,
             termsOfService: '/terms-of-use',
             privacyPolicy: '/privacy-policy',
             oncancel: function() {
+                console.log('Persona login cancelled');
                 _.invoke(pending_logins, 'reject');
                 pending_logins = [];
             }
@@ -51,66 +58,74 @@ define('login',
     }
 
     function gotVerifiedEmail(assertion) {
-        if (assertion) {
-            var data = {
-                assertion: assertion,
-                audience: window.location.protocol + '//' + window.location.host,
-                is_native: navigator.id._shimmed ? 0 : 1
-            };
+        console.log('Got assertion from Persona');
 
-            flush_caches();
+        var data = {
+            assertion: assertion,
+            audience: window.location.protocol + '//' + window.location.host,
+            is_native: navigator.id._shimmed ? 0 : 1
+        };
 
-            requests.post(urls.api.url('login'), data).done(function(data) {
-                user.set_token(data.token, data.settings);
-                console.log('[login] Finished login');
-                z.body.addClass('logged-in');
-                $('.loading-submit').removeClass('loading-submit');
-                z.page.trigger('reload_chrome');
-                z.page.trigger('logged_in');
+        flush_caches();
 
-                function resolve_pending() {
-                    _.invoke(pending_logins, 'resolve');
-                    pending_logins = [];
-                }
+        requests.post(urls.api.url('login'), data).done(function(data) {
+            user.set_token(data.token, data.settings);
+            console.log('Login succeeded, preparing the app');
 
-                if (z.context.reload_on_login) {
-                    require('views').reload().done(resolve_pending);
-                } else {
-                    resolve_pending();
-                }
-
-                var to = require('utils').getVars().to;
-                if (to && to[0] == '/') {
-                    z.page.trigger('navigate', [to]);
-                    return;
-                }
-            }).fail(function(jqXHR, textStatus, error) {
-                var err = jqXHR.responseText;
-                if (!err) {
-                    err = gettext("Persona login failed. Maybe you don't have an account under that email address?") + ' ' + textStatus + ' ' + error;
-                }
-                // Catch-all for XHR errors otherwise we'll trigger a notification
-                // with its message as one of the error templates.
-                if (jqXHR.status != 200) {
-                    err = gettext('Persona login failed. A server error was encountered.');
-                }
-                $('.loading-submit').removeClass('loading-submit');
-                notification.notification({message: err});
-
-                _.invoke(pending_logins, 'reject');
-                pending_logins = [];
-            });
-        } else {
+            z.body.addClass('logged-in');
             $('.loading-submit').removeClass('loading-submit');
-        }
+            z.page.trigger('reload_chrome');
+            z.page.trigger('logged_in');
+
+            function resolve_pending() {
+                _.invoke(pending_logins, 'resolve');
+                pending_logins = [];
+            }
+
+            if (z.context.reload_on_login) {
+                console.log('Page requested reload on login');
+                require('views').reload().done(resolve_pending);
+            } else {
+                console.log('Resolving outstanding login requests');
+                resolve_pending();
+            }
+
+            var to = require('utils').getVars().to;
+            if (to && to[0] == '/') {
+                console.log('Navigating to post-login destination');
+                z.page.trigger('navigate', [to]);
+                return;
+            }
+        }).fail(function(jqXHR, textStatus, error) {
+            console.warn('Assertion verification failed!', textStatus, error);
+
+            var err = jqXHR.responseText;
+            if (!err) {
+                err = gettext("Persona login failed. Maybe you don't have an account under that email address?") + ' ' + textStatus + ' ' + error;
+            }
+            // Catch-all for XHR errors otherwise we'll trigger a notification
+            // with its message as one of the error templates.
+            if (jqXHR.status != 200) {
+                err = gettext('Persona login failed. A server error was encountered.');
+            }
+            $('.loading-submit').removeClass('loading-submit');
+            notification.notification({message: err});
+
+            _.invoke(pending_logins, 'reject');
+            pending_logins = [];
+        });
     }
 
     function init_persona() {
         $('.persona').css('cursor', 'pointer');
         var email = user.get_setting('email') || '';
         if (email) {
-            console.log('[login] detected user', email);
+            console.log('Detected user', email);
+        } else {
+            console.log('No previous user detected');
         }
+
+        console.log('Calling navigator.id.watch');
         navigator.id.watch({
             loggedInUser: email,
             onlogin: gotVerifiedEmail,
