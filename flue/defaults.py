@@ -110,13 +110,14 @@ def app(name, slug, **kwargs):
         data['current_version']['version'] = '1.0'
 
     data.update(app_user_data(slug))
+
     return data
 
 
 def app_user_data(slug=None):
     data = {
         'user': {
-            'owns': rand_bool(),
+            'developed': rand_bool(),
             'has_rated': rand_bool(),
             'can_rate': rand_bool(),
         }
@@ -134,8 +135,10 @@ def app_user_data(slug=None):
         data['user']['can_rate'] = True
     elif slug == 'cant_rate':
         data['user']['can_rate'] = False
-    elif slug == 'owns':
-        data['user']['owns'] = True
+    elif slug == 'developer':
+        data['user']['developed'] = True
+    elif slug == 'user':
+        data['user']['developed'] = False
 
     return data
 

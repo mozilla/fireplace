@@ -4,6 +4,7 @@ define('user', ['capabilities', 'log'], function(capabilities, log) {
 
     var token;
     var settings = {};
+    var permissions = {};
 
     var save_to_ls = !capabilities.phantom;
 
@@ -11,6 +12,7 @@ define('user', ['capabilities', 'log'], function(capabilities, log) {
         token = localStorage.getItem('user');
         log.unmention(token);
         settings = JSON.parse(localStorage.getItem('settings') || '{}');
+        permissions = JSON.parse(localStorage.getItem('permissions') || '{}');
     }
 
     function clear_token() {
@@ -20,12 +22,18 @@ define('user', ['capabilities', 'log'], function(capabilities, log) {
         if ('email' in settings) {
             delete settings.email;
             save_settings();
+            permissions = {};
+            save_permissions();
         }
         token = null;
     }
 
     function get_setting(setting) {
         return settings[setting];
+    }
+
+    function get_permission(setting) {
+        return permissions[setting] || false;
     }
 
     function set_token(new_token, new_settings) {
@@ -65,12 +73,32 @@ define('user', ['capabilities', 'log'], function(capabilities, log) {
         save_settings();
     }
 
+    function save_permissions() {
+        if (save_to_ls) {
+            console.log('Saving permissions to localStorage');
+            localStorage.setItem('permissions', JSON.stringify(permissions));
+        } else {
+            console.log('Permissions not saved to localStorage');
+        }
+    }
+
+    function update_permissions(data) {
+        if (!data) {
+            return;
+        }
+        console.log('Updating user permissions', data);
+        permissions = data;
+        save_permissions();
+    }
+
     return {
         clear_token: clear_token,
         get_setting: get_setting,
+        get_permission: get_permission,
         get_token: function() {return token;},
         logged_in: function() {return !!token;},
         set_token: set_token,
-        update_settings: update_settings
+        update_settings: update_settings,
+        update_permissions: update_permissions
     };
 });

@@ -70,6 +70,7 @@ define('login',
 
         requests.post(urls.api.url('login'), data).done(function(data) {
             user.set_token(data.token, data.settings);
+            user.update_permissions(data.permissions);
             console.log('Login succeeded, preparing the app');
 
             z.body.addClass('logged-in');
