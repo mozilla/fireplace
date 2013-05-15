@@ -39,7 +39,7 @@ define('notification', ['capabilities', 'jquery', 'z'], function(caps, $, z) {
         if (opts.closable) {
             addedClasses.push('closable');
         }
-        setTimeout(def.reject, opts.timeout || 5000);
+        setTimeout(function() {def.reject();}, opts.timeout || 5000);
 
         notificationEl.addClass(addedClasses.join(' '));
 
