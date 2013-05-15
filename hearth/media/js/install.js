@@ -1,17 +1,19 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 define('install',
-    ['apps', 'cache', 'capabilities', 'jquery', 'log', 'login', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
-    function(apps, cache, caps, $, log, login, notification, payments, requests, urls, user, z) {
+    ['apps', 'cache', 'capabilities', 'jquery', 'log', 'login', 'models', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
+    function(apps, cache, caps, $, log, login, models, notification, payments, requests, urls, user, z) {
     'use strict';
 
     var console = log('install');
+
+    var apps = models('app');
 
     function _handler(func) {
         return function(e) {
             e.preventDefault();
             e.stopPropagation();
-            func($(this).closest('[data-product]').data('product'));
+            func(apps.lookup($(this).closest('[data-slug]').data('slug')));
         }
     }
 
@@ -129,15 +131,5 @@ define('install',
 
     z.page.on('click', '.product.launch', launchHandler)
           .on('click', '.button.product:not(.launch):not(.incompatible)', installHandler);
-    z.body.on('logged_in', function() {
-        if (localStorage.getItem('toInstall')) {
-            var lsVal = localStorage.getItem('toInstall');
-            localStorage.removeItem('toInstall');
-            var product = $(format('.product[data-manifest_url="{0}"]',
-                                   lsVal)).data('product');
-            if (product) {
-                startInstall(product);
-            }
-        }
-    });
+
 });

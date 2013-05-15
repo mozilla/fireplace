@@ -1,6 +1,6 @@
 define('previews',
-    ['flipsnap', 'log', 'templates', 'capabilities', 'shothandles', 'underscore', 'z'],
-    function(Flipsnap, log, nunjucks, caps, handles, _, z) {
+    ['flipsnap', 'log', 'models', 'templates', 'capabilities', 'shothandles', 'underscore', 'z'],
+    function(Flipsnap, log, models, nunjucks, caps, handles, _, z) {
 
     var console = log('previews');
 
@@ -17,7 +17,7 @@ define('previews',
         if (!$tile.hasClass('mkt-tile') || $tray.find('.slider').length) {
             return;
         }
-        var product = $tile.data('product');
+        var product = models('app').lookup($tile.data('slug'));
         var previewsHTML = '';
         if (!product || !product.previews) return;
         _.each(product.previews, function(p) {

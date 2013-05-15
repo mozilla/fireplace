@@ -1,5 +1,5 @@
 define('views/app',
-    ['capabilities', 'l10n', 'utils', 'requests', 'urls', 'z', 'templates', 'overflow'],
+    ['capabilities', 'l10n',  'utils', 'requests', 'urls', 'z', 'templates', 'overflow'],
     function(caps, l10n, utils, requests, urls, z, nunjucks, overflow) {
     'use strict';
 
@@ -21,7 +21,7 @@ define('views/app',
 
     })).on('click', '.product-details .icon', utils._pd(function(e) {
         // When I click on the icon, append `#id=<id>` to the URL.
-        window.location.hash = 'id=' + $('.product').data('product')['id'];
+        window.location.hash = 'id=' + $('.product').data('id');
         e.stopPropagation();
     }));
 

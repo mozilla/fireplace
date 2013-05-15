@@ -1,5 +1,5 @@
-define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
-       function(keys, utils, handles, _, z) {
+define('lightbox', ['keys', 'models', 'utils', 'shothandles', 'underscore', 'z'],
+       function(keys, models, utils, handles, _, z) {
 
     var $lightbox = $(document.getElementById('lightbox'));
     var $section = $lightbox.find('section');
@@ -19,7 +19,7 @@ define('lightbox', ['keys', 'utils', 'shothandles', 'underscore', 'z'],
         // we get the screenshots from the associated tile. No tile? bail.
         if (!$tile.hasClass('mkt-tile')) return;
 
-        var product = $tile.data('product');
+        var product = models('app').lookup($tile.data('slug'));
         var id = product.id;
 
         if (id != currentApp || !slider) {
