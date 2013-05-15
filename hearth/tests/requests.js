@@ -23,7 +23,14 @@ test('requests.get', function(done, fail) {
         function(requests) {
             var def = requests.get('foo/bar');
             // Test that the URL isn't mangled before being sent to jQuery.
-            eq_(def.args[0], 'foo/bar');
+            feq_(
+                def.args[0],
+                {
+                    url: 'foo/bar',
+                    type: 'GET',
+                    headers: {'Content-type':'application/json'}
+                }
+            );
             def.done(function(data) {
                 eq_(data, 'sample data');
                 done();
@@ -88,10 +95,10 @@ test('requests.get cached', function(done, fail) {
 var data = {foo: 'bar'};
 var methods_to_test = ['post', 'del', 'put', 'patch'];
 var test_output = {
-    post: ['foo/bar', data],
-    del: [{url: 'foo/bar', type: 'DELETE'}],
-    put: [{url: 'foo/bar', type: 'PUT', data: data}],
-    patch: [{url: 'foo/bar', type: 'PATCH', data: data}]
+    post: {url: 'foo/bar', type: 'POST', data: data, 'headers': {'Content-type':'application/json'}},
+    del: {url: 'foo/bar', type: 'DELETE', 'headers': {'Content-type':'application/json'}},
+    put: {url: 'foo/bar', type: 'PUT', data: data, 'headers': {'Content-type':'application/json'}},
+    patch: {url: 'foo/bar', type: 'PATCH', data: data, 'headers': {'Content-type':'application/json'}}
 };
 
 methods_to_test.forEach(function(v) {
@@ -101,7 +108,7 @@ methods_to_test.forEach(function(v) {
             {jquery: new MockJQuery()},
             function(requests) {
                 var def = requests[v]('foo/bar', data);
-                feq_(_.toArray(def.args), test_output[v]);
+                feq_(def.args[0], test_output[v]);
                 def.done(function(data) {
                     eq_(data, 'sample data');
                     done();

@@ -62,6 +62,13 @@ define('requests',
 
     */
 
+    function _headers() {
+        // XXX: This will be more pertinent when andym adds the user token header.
+        return {
+            'Content-type': 'application/json'
+        };
+    }
+
     function get(url) {
         if (cache.has(url)) {
             console.log('GETing from cache', url);
@@ -74,7 +81,11 @@ define('requests',
 
     function _get(url) {
         console.log('GETing', url);
-        return $.get(url).done(function(data, status, xhr) {
+        return $.ajax({
+            url: url,
+            type: 'GET',
+            headers: _headers()
+        }).done(function(data, status, xhr) {
             console.log('GOT', url);
             cache.set(url, data);
 
@@ -108,9 +119,8 @@ define('requests',
         console.log('DELETing', url);
         return $.ajax({
             url: url,
-            type: 'DELETE'
-            // type: 'POST',
-            // headers: {'X-HTTP-METHOD-OVERRIDE': 'DELETE'}
+            type: 'DELETE',
+            headers: _headers()
         }).fail(handle_errors);
     }
 
@@ -119,15 +129,19 @@ define('requests',
         return $.ajax({
             url: url,
             type: 'PATCH',
-            // type: 'POST',
-            // headers: {'X-HTTP-METHOD-OVERRIDE': 'PATCH'},
+            headers: _headers(),
             data: data
         }).fail(handle_errors);
     }
 
     function post(url, data) {
         console.log('POSTing', url);
-        return $.post(url, data).done(function(data) {
+        return $.ajax({
+            url: url,
+            type: 'POST',
+            headers: _headers(),
+            data: data
+        }).done(function(data) {
             console.log('POSTed', url);
         }).fail(handle_errors);
     }
@@ -137,8 +151,7 @@ define('requests',
         return $.ajax({
             url: url,
             type: 'PUT',
-            // type: 'POST',
-            // headers: {'X-HTTP-METHOD-OVERRIDE': 'PUT'},
+            headers: _headers(),
             data: data
         }).fail(handle_errors);
     }
