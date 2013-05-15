@@ -40,18 +40,6 @@ define('helpers',
 
     safe_filter('stringify', JSON.stringify);
 
-    safe_filter('dataproduct', function(obj) {
-        var product = _.extend({}, obj);
-
-        if ('this' in product) {
-            delete product.this;
-        }
-        if ('window' in product) {
-            delete product.window;
-        }
-        return 'data-product="' + utils.escape_(JSON.stringify(product)) + '"';
-    });
-
     env.addFilter('format', format.format);
 
     env.addFilter('sum', function(obj) {
