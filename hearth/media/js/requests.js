@@ -64,9 +64,7 @@ define('requests',
 
     function _headers() {
         // XXX: This will be more pertinent when andym adds the user token header.
-        return {
-            'Content-type': 'application/json'
-        };
+        return {};
     }
 
     function get(url) {

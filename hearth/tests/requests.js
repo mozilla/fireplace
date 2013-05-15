@@ -28,7 +28,7 @@ test('requests.get', function(done, fail) {
                 {
                     url: 'foo/bar',
                     type: 'GET',
-                    headers: {'Content-type':'application/json'}
+                    headers: {}
                 }
             );
             def.done(function(data) {
@@ -95,10 +95,10 @@ test('requests.get cached', function(done, fail) {
 var data = {foo: 'bar'};
 var methods_to_test = ['post', 'del', 'put', 'patch'];
 var test_output = {
-    post: {url: 'foo/bar', type: 'POST', data: data, 'headers': {'Content-type':'application/json'}},
-    del: {url: 'foo/bar', type: 'DELETE', 'headers': {'Content-type':'application/json'}},
-    put: {url: 'foo/bar', type: 'PUT', data: data, 'headers': {'Content-type':'application/json'}},
-    patch: {url: 'foo/bar', type: 'PATCH', data: data, 'headers': {'Content-type':'application/json'}}
+    post: {url: 'foo/bar', type: 'POST', data: data, headers: {}},
+    del: {url: 'foo/bar', type: 'DELETE', headers: {}},
+    put: {url: 'foo/bar', type: 'PUT', data: data, headers: {}},
+    patch: {url: 'foo/bar', type: 'PATCH', data: data, headers: {}}
 };
 
 methods_to_test.forEach(function(v) {
