@@ -44,6 +44,7 @@ log:
 
 clean:
 	rm -f $(CSS_FILES)
+	rm -f $(COMPILED_TEMPLATES)
 	rm -f hearth/media/css/include.css
 	rm -f hearth/media/js/include.*
 
