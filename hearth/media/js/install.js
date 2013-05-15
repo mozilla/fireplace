@@ -7,13 +7,13 @@ define('install',
 
     var console = log('install');
 
-    var apps = models('app');
+    var apps_model = models('app');
 
     function _handler(func) {
         return function(e) {
             e.preventDefault();
             e.stopPropagation();
-            func(apps.lookup($(this).closest('[data-slug]').data('slug')));
+            func(apps_model.lookup($(this).closest('[data-slug]').data('slug')));
         }
     }
 
