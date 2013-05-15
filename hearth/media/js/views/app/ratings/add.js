@@ -1,6 +1,6 @@
 define('views/app/ratings/add',
-    ['login', 'l10n', 'urls', 'user', 'z'],
-    function(login, l10n, urls, user, z) {
+    ['capabilities', 'login', 'l10n', 'urls', 'user', 'z'],
+    function(caps, login, l10n, urls, user, z) {
 
     var gettext = l10n.gettext;
 
@@ -18,10 +18,22 @@ define('views/app/ratings/add',
         }
 
         builder.start('ratings/write.html', {'slug': slug}).done(function() {
-            $('.compose-review').removeClass('modal');
-            $('.compose-review .cancel').on('click', function() {
+            var $reviewBox = $('.compose-review');
+
+            $reviewBox.removeClass('modal')
+                      .find('.cancel').on('click', function() {
                 z.page.trigger('navigate', urls.reverse('app', [slug]));
             });
+
+            // Scroll the page down to make the send/cancel buttons visible.
+            $reviewBox.find('.rating').on('click touchend', function() {
+                $reviewBox.find('textarea').trigger('focus');
+            });
+            if (scrollTo && !caps.widescreen()) {
+                $reviewBox.find('textarea').on('focus', function() {
+                    setTimeout(function() {window.scrollTo(0, 200);}, 350);
+                });
+            }
         });
 
         builder.z('type', 'leaf');
