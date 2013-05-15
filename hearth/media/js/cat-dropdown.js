@@ -1,5 +1,7 @@
 define('cat-dropdown',
-    ['underscore', 'helpers', 'jquery', 'l10n', 'models', 'requests', 'templates', 'urls', 'z'],
+    // We require `user` here to initialize carrier/region detection so that gets
+    // set before we pass those values to the API to get the list of categories.
+    ['underscore', 'helpers', 'jquery', 'l10n', 'models', 'requests', 'templates', 'urls', 'z', 'user'],
     function(_, helpers, $, l10n, models, requests, nunjucks, urls, z) {
     'use strict';
 
