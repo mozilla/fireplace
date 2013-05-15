@@ -1,4 +1,7 @@
+UUID = "8af8c763-da9b-444d-a911-206f9e225b55"
 VERSION = `date "+%Y.%m.%d_%H.%M.%S"`
+VERSION_INT = $(shell date "+%Y%m%d%H%M%S")
+TMP = _tmp
 TEMPLATES = $(wildcard \
 	hearth/templates/*.html \
 	public/templates/**/*.html \
@@ -39,8 +42,12 @@ package: compile
 	cd hearth/ && zip -r ../$(VERSION).zip * && cd ../
 
 log:
-	cd yulelog && zip -r ../yulelog_$(VERSION).zip * && cd ../
-
+	@mkdir TMP && cp -pR yulelog/* TMP/.
+	@mkdir TMP/META-INF
+	@echo '{"id": $(UUID), "version": $(VERSION_INT)}' > TMP/META-INF/ids.json
+	@cd TMP && zip -q -r ../yulelog_$(VERSION).zip * && cd ../
+	@rm -rf TMP
+	@echo "Created file: yulelog_$(VERSION).zip"
 
 clean:
 	rm -f $(CSS_FILES)
