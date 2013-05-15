@@ -14,7 +14,7 @@ define('views/app/abuse',
 
         forms.toggleSubmitFormState($this);
 
-        requests.post($this.data('action'), data).done(function(data) {
+        requests.post(urls.api.url('app_abuse'), data).done(function(data) {
             notify({message: gettext('Abuse reported')});
             z.page.trigger('navigate', urls.reverse('app', [slug]));
         }).fail(function() {
