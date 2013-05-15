@@ -70,7 +70,7 @@ define('urls',
             var args = {
                 lang: navigator.language,
                 region: user.get_setting('region') || '',
-                //scr: caps.widescreen ? 'wide' : 'mobile',
+                //scr: caps.widescreen() ? 'wide' : 'mobile',
                 //tch: caps.touch,
                 dev: _device(),
                 pro: buckets.get_profile()

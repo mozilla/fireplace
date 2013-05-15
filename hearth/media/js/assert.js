@@ -70,7 +70,7 @@ define('assert', ['underscore'], function(_) {
                 return { ... };
             },
             capabilities: {
-                widescreen: false
+                widescreen: function() { return false; }
             }
         },
         function(foomodule) {  // We import the module for you.

@@ -39,7 +39,7 @@ test('api url', function(done) {
     mock(
         'urls',
         {
-            capabilities: {firefoxOS: true, widescreen: false, touch: 'foo'},
+            capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
             settings: {api_url: 'api:'}
         }, function(urls) {
             var search_url = urls.api.url('search');
@@ -57,7 +57,7 @@ test('api url signage', function(done) {
     mock(
         'urls',
         {
-            capabilities: {firefoxOS: true, widescreen: false, touch: 'foo'},
+            capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
             settings: {api_url: 'api:'}
         }, function(urls) {
             var search_url = urls.api.unsigned.url('search');
@@ -72,7 +72,7 @@ test('api carrier', function(done) {
     mock(
         'urls',
         {
-            capabilities: {firefoxOS: true, widescreen: false, touch: 'foo'},
+            capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
             settings: {api_url: 'api:', carrier: {slug: 'bastacom'}}
         }, function(urls) {
             contains(urls.api.url('search'), 'carrier=bastacom');
