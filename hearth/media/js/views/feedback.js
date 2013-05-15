@@ -53,7 +53,7 @@ define('views/feedback',
             $('.feedback').removeClass('modal');
         });
 
-        builder.z('type', 'leaf');
+        builder.z('type', 'root');
         builder.z('title', gettext('Feedback'));
     };
 });
