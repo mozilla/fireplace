@@ -43,6 +43,7 @@ define('views/settings',
         builder.start('settings/main.html');
 
         builder.z('type', 'root settings');
+        builder.z('reload_on_logout', true);
         builder.z('title', gettext('Account Settings'));
         builder.done();
     };
