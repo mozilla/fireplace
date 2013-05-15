@@ -21,7 +21,9 @@ define('cat-dropdown',
     var category_req = requests.get(urls.api.url('categories'));
     // Store the categories in models.
     category_req.done(function(data) {
+        console.groupCollapsed('Casting categories to model cache...');
         cat_models.cast(data.objects);
+        console.groupEnd();
     });
 
     function toggleMenu(e) {

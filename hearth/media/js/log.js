@@ -27,10 +27,12 @@ define('log', [], function() {
         function make(log_level) {
             return function() {
                 var args = slice.call(arguments, 0);
-                args[0] = prefix + args[0];
-                args = args.map(filter);
-                log_queue.push(args);
-                all_logs.push(args);
+                if (args.length) {
+                    args[0] = prefix + args[0];
+                    args = args.map(filter);
+                    log_queue.push(args);
+                    all_logs.push(args);
+                }
 
                 // TODO: Add colorification support here for browsers that support it.
                 // *cough cough* not firefox *cough*
@@ -43,6 +45,10 @@ define('log', [], function() {
             log: make('log'),
             warn: make('warn'),
             error: make('error'),
+
+            group: make('group'),
+            groupCollapsed: make('groupCollapsed'),
+            groupEnd: make('groupEnd'),
 
             // Have log('payments') but want log('payments', 'mock')?
             // log('payments').tagged('mock') gives you the latter.

@@ -120,12 +120,9 @@ define(
                         }
                         // `as` passes the data to the models for caching.
                         if (!dont_cast && 'as' in signature) {
-                            var caster = models(signature.as).cast;
-                            if (_.isArray(data)) {
-                                _.each(data, caster);
-                            } else {
-                                caster(data);
-                            }
+                            console.groupCollapsed('Casting ' + signature.as + 's to model cache...');
+                            models(signature.as).cast(data);
+                            console.groupEnd();
                         }
                         var content = '';
                         if (empty && _.isArray(data) && data.length === 0) {
