@@ -295,9 +295,9 @@ grid-style() {
         position: relative;
         text-align: center;
         text-decoration: none;
+        z-index: 2;
         &.active {
             color: #fff;
-            gradient-two-color($flamin-hot-cheetos-orange, #e66000);
             pointer-events: none;
             &:before, &:after {
                 background: $salt-flat-white url(../img/pretty/tab.svg) no-repeat;
@@ -307,8 +307,8 @@ grid-style() {
                 left: 0;
                 position: absolute;
                 top: -7px;
-                width: 50px;
-                z-index: 1;
+                width: 50%;
+                z-index: -1;
             }
             &:after {
                 transform(scaleX(-1));
