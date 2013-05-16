@@ -1,5 +1,6 @@
 import os
 import re
+import time
 
 
 # JS
@@ -39,6 +40,8 @@ css_pattern = re.compile(r'href="(\/media\/css\/.+\.styl\.css)"', re.I)
 with open('hearth/index.html') as file_:
     index_html = file_.read()
 
+timestamp = int(time.time())
+
 css_files = css_pattern.findall(index_html)
 output = []
 for css_file in css_pattern.findall(index_html):
@@ -46,4 +49,19 @@ for css_file in css_pattern.findall(index_html):
         output.append(file_.read())
 
 with open('hearth/media/include.css', mode='wa') as inc:
-    inc.write('\n'.join(output))
+    rewritten_output = '\n'.join(output)
+
+    def bust(img):
+        url = img.group(1).strip('"\'')
+        if url.startswith('data:') or url.startswith('http'):
+            return "url(%s)" % url
+
+        if '#' in url:
+            url, hash = url.split('#', 1)
+            return "url(%s?%d#%s)" % (url, timestamp, hash)
+        else:
+            return "url(%s?%d)" % (url, timestamp)
+
+    rewritten_output = re.sub('url\(([^)]*?)\)', bust, rewritten_output)
+
+    inc.write(rewritten_output)
