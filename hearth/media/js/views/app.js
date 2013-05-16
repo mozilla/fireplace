@@ -1,6 +1,6 @@
 define('views/app',
-    ['capabilities', 'l10n',  'utils', 'requests', 'urls', 'z', 'templates', 'overflow'],
-    function(caps, l10n, utils, requests, urls, z, nunjucks, overflow) {
+    ['capabilities', 'l10n',  'utils', 'requests', 'underscore', 'urls', 'z', 'templates', 'overflow'],
+    function(caps, l10n, utils, requests, urls, _, z, nunjucks, overflow) {
     'use strict';
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
@@ -37,7 +37,8 @@ define('views/app',
     }
 
     return function(builder, args) {
-        builder.start('detail/main.html', {slug: args[0]});
+        var slug = args[0];
+        builder.start('detail/main.html', {slug: slug});
 
         builder.z('type', 'leaf');
         builder.z('reload_on_login', true);
@@ -50,7 +51,9 @@ define('views/app',
             overflow.init();
             if (caps.widescreen() && !$('.report-abuse').length) {
                 z.page.append(
-                    nunjucks.env.getTemplate('detail/abuse.html').render(require('helpers'))
+                    nunjucks.env.getTemplate('detail/abuse.html').render(
+                        _.extend({slug: slug}, require('helpers'))
+                    )
                 );
             }
         }).onload('ratings', function() {
