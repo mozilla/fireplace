@@ -94,16 +94,19 @@ define('ratings',
 
     function addReview(e, $senderEl) {
 
-        // If the user isn't logged in, prompt them to do so.
-        if (!user.logged_in()) {
-            login.login().done(function() {
-                addReview(e, $senderEl);
-            });
-            return;
-        }
-
+        // This is only need on desktop because if we're not showing the
+        // modal, instead we go to the add review view.
         if (capabilities.widescreen()) {
             e.stopPropagation();
+
+            // If the user isn't logged in, prompt them to do so.
+            if (!user.logged_in()) {
+                login.login().done(function() {
+                    addReview(e, $senderEl);
+                });
+                return;
+            }
+
             var ctx = _.extend({slug: $senderEl.data('app')}, require('helpers'));
             z.page.append(
                 nunjucks.env.getTemplate('ratings/write.html').render(ctx)
