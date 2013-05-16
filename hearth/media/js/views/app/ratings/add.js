@@ -37,6 +37,7 @@ define('views/app/ratings/add',
         });
 
         builder.z('type', 'leaf');
+        builder.z('reload_on_login', true);
         builder.z('parent', urls.reverse('app/ratings', [slug]));
         builder.z('title', gettext('Write a Review'));
     };

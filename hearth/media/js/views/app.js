@@ -3,6 +3,8 @@ define('views/app',
     function(caps, l10n, utils, requests, _, urls, z, nunjucks, overflow) {
     'use strict';
 
+    var login = require('login');
+
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
         // Show/hide scary content-rating disclaimers to developers.
         $(this).closest('.toggle').siblings('div').toggleClass('hidden');
@@ -58,6 +60,14 @@ define('views/app',
             }
         }).onload('ratings', function() {
             var reviews = $('.detail .reviews li');
+            if (!require('user').logged_in()) {
+                $('#add-review').text(gettext('Sign in to Review')).on('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    login.login();
+                });
+            }
+
             if (reviews.length < 3) return;
 
             for (var i = 0; i < reviews.length - 2; i += 2) {

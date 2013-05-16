@@ -102,7 +102,8 @@ define('ratings',
             // If the user isn't logged in, prompt them to do so.
             if (!user.logged_in()) {
                 login.login().done(function() {
-                    addReview(e, $senderEl);
+                    // TODO: This should be more graceful than a page reload.
+                    require('views').reload();
                 });
                 return;
             }
