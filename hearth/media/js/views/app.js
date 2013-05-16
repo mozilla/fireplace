@@ -1,6 +1,6 @@
 define('views/app',
     ['capabilities', 'l10n',  'utils', 'requests', 'underscore', 'urls', 'z', 'templates', 'overflow'],
-    function(caps, l10n, utils, requests, urls, _, z, nunjucks, overflow) {
+    function(caps, l10n, utils, requests, _, urls, z, nunjucks, overflow) {
     'use strict';
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
