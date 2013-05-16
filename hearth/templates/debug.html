@@ -1,4 +1,4 @@
-<section class="main infobox">
+<section class="main infobox prose">
   <div>
     <style>
       dt {
@@ -15,15 +15,28 @@
     </p>
 
     <p>
-      <button id="install-yulelog">Install Yulelog</button>
+      <button id="clear-localstorage">Clear <code>localStorage</code></button>
     </p>
 
-    <dl class="settings c">
+    <h3>Site Settings</h3>
+
+    <dl class="site-settings c">
       {% for setting in settings.items() %}
         <dt>{{ setting[0] }}</dt>
         <dd>{{ setting[1] or '––' }}</dd>
       {% endfor %}
     </dl>
+
+    <h3>User Settings</h3>
+
+    <dl class="user-settings c">
+      {% for setting in user.get_settings().items() %}
+        <dt>{{ setting[0] }}</dt>
+        <dd>{{ setting[1] or '––' }}</dd>
+      {% endfor %}
+    </dl>
+
+    <h3>Capabilities</h3>
 
     <dl class="capabilities c">
       {% for cap in capabilities.items() %}

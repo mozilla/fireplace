@@ -36,6 +36,10 @@ define('user', ['capabilities', 'log'], function(capabilities, log) {
         return permissions[setting] || false;
     }
 
+    function get_settings() {
+        return settings;
+    }
+
     function set_token(new_token, new_settings) {
         console.log('Setting new user token');
         if (!new_token) {
@@ -95,6 +99,7 @@ define('user', ['capabilities', 'log'], function(capabilities, log) {
         clear_token: clear_token,
         get_setting: get_setting,
         get_permission: get_permission,
+        get_settings: get_settings,
         get_token: function() {return token;},
         logged_in: function() {return !!token;},
         set_token: set_token,
