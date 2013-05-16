@@ -62,7 +62,7 @@ define('buttons',
         z.apps[product.manifest_url] = z.state.mozApps[product.manifest_url] = installer;
         setButton($button, gettext('Launch'), 'launch install');
     }).on('app_purchase_error app_install_error', function(e, installer, product, msg) {
-        revertButton($('button.installing'));
+        revertButton($('button.installing, button.purchasing'));
     }).on('fragment_loaded loaded_more', function() {
         if (!capabilities.webApps) {
             $('.button.product').attr('disabled', true);
