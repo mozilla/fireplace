@@ -10,14 +10,20 @@
 }
 
 .feedback .support-list {
-    border-top: 1px dashed #1a1a1a;
     list-style: none;
-    padding: 10px;
+    padding: 5px 10px 10px;
     li {
-        margin-bottom: 5px;
+        margin-top: 10px;
         .button {
-            width: 100%;
+            display: block;
         }
+    }
+}
+
+@media $narrower-than-desktop {
+    .feedback-form.form-modal {
+        border-bottom: $castle-skull-gray 1px dashed;
+        padding: 15px 10px;
     }
 }
 

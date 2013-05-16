@@ -5,7 +5,7 @@
   <div class="group links">
     <a href="/developers/">{{ _('Developer Hub') }}</a>
     <a href="#" class="submit-feedback">{{ _('Feedback') }}</a>
-    <a href="https://support.mozilla.org/products/marketplace">{{ _('Support') }}</a>
+    <a href="https://support.mozilla.org/products/marketplace" target="_blank">{{ _('Support') }}</a>
   </div>
   <div class="language group links">
     <a href="{{ url('settings') }}" class="region region-{{ user.get_setting('region') }}">
@@ -14,16 +14,16 @@
 </div>
 <div id="footer">
   <div class="pad">
-    <h1 id="footzilla"><a href="https://www.mozilla.org/">mozilla</a></h1>
+    <h1 id="footzilla"><a href="https://www.mozilla.org/" target="_blank">mozilla</a></h1>
     <p>
-      {{ _('Except where otherwise <a href="{legal_url}">noted</a>, content on this site is licensed under the <a href="{cc_url}">Creative Commons Attribution Share-Alike License v3.0</a> or any later version.',
+      {{ _('Except where otherwise <a href="{legal_url}" target="_blank">noted</a>, content on this site is licensed under the <a href="{cc_url}" target="_blank">Creative Commons Attribution Share-Alike License v3.0</a> or any later version.',
            legal_url='http://www.mozilla.org/about/legal.html#site',
            cc_url='http://creativecommons.org/licenses/by-sa/3.0/') }}
     </p>
     <ul>
       <li><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>
       <li><a href="{{ url('terms') }}">{{ _('Terms of Use') }}</a></li>
-      <li><a href="http://mozilla.com/legal/fraud-report/index.html">
+      <li><a href="http://mozilla.com/legal/fraud-report/index.html" target="_blank">
         {{ _('Report Trademark Abuse') }}</a></li>
     </ul>
   </div>
