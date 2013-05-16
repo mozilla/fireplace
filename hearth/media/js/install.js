@@ -48,6 +48,10 @@ define('install',
     }
 
     function purchaseSuccess(product, receipt) {
+        if (product.user) {
+            product.user.purchased = true;
+        }
+
         // Firefox doesn't successfully fetch the manifest unless I do this.
         z.win.trigger('app_purchase_success', [product]);
         setTimeout(function() {
@@ -103,6 +107,10 @@ define('install',
     }
 
     function installSuccess(installer, product) {
+        if (product.user) {
+            product.user.installed = true;
+        }
+
         z.win.trigger('app_install_success', [installer, product, true]);
 
         // Bust the cache
