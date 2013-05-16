@@ -33,7 +33,7 @@ if (!window.define) {
 
     // Cachebust the .js file for our CDN.
     var build_id = document.body.getAttribute('data-build-id-js') || +new Date();
-    document.write('<script src="/locales/' + locale + '.js?' + build_id + '"></script>');
+    document.write('<script src="/locales/' + locale + '.js?b=' + build_id + '"></script>');
 
 } else {
     define('l10n', ['format'], function(format) {
