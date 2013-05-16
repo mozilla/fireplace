@@ -182,10 +182,22 @@ textarea {
             position: absolute;
             top: -90px;
             right: -10px;
+            p {
+                float: left;
+            }
         }
         footer, footer p {
             border: 0;
         }
+    }
+    #account-settings .secondary-header h2 {
+        // To accomodate the floated "Sign in" button.
+        max-width: calc(unquote('100% - 330px'));
+    }
+}
+
+@media (min-width: 1024px) {
+    .form-grid {
         .extras {
             display: none;
         }
