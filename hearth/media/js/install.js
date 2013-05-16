@@ -89,7 +89,11 @@ define('install',
             if (response.receipt) {
                 data.data = {'receipts': [response.receipt]};
             }
-            do_install().done(def.resolve).fail(def.reject);
+            do_install().done(function() {
+                def.resolve();
+            }).fail(function() {
+                def.reject();
+            });
         }).fail(function() {
             // Could not record/generate receipt!
             installError(null, product);
