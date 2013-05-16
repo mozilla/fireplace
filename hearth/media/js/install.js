@@ -55,7 +55,7 @@ define('install',
         }, 0);
 
         // Bust the cache
-        cache.bust(urls.api.url('purchases'));
+        cache.bust(urls.api.url('installed'));
     }
 
     function purchaseError(product, msg) {
@@ -106,7 +106,7 @@ define('install',
         z.win.trigger('app_install_success', [installer, product, true]);
 
         // Bust the cache
-        cache.bust(urls.api.url('purchases'));
+        cache.bust(urls.api.url('installed'));
     }
 
     function installError(installer, product, msg) {
