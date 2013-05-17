@@ -82,12 +82,10 @@
   {% if this.user.developed or user.get_permission('reviewer') %}
     <section class="main actions infobox">
       <div>
-        {% if this.user.developed %}
-          <p class="split"><a href="/developers/app/{{ slug }}/edit" class="button manage" rel="external">
-            {{ _('Edit Listing') }}</a></p>
-        {% endif %}
+        <p class="split"><a href="/developers/app/{{ slug }}/edit" class="button manage" rel="external">
+          {{ _('Edit Listing') }}</a></p>
         {% if user.get_permission('reviewer') %}
-          <p class="split"><a href="/reviewers/app/{{ slug }}" class="button good reviewer" rel="external">
+          <p class="split"><a href="/reviewers/apps/review/{{ slug }}" class="button good reviewer" rel="external">
             {{ _('Approve / Reject') if this.status == 2 or this.status == 13 else _('Review History') }}</a></p>
         {% endif %}
       </div>
