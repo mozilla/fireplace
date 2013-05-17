@@ -19,6 +19,7 @@ define('views/app/ratings', ['l10n', 'urls', 'user'], function(l10n, urls, user)
 
         builder.z('type', 'leaf');
         builder.z('reload_on_login', true);
+        builder.z('reload_on_logout', true);
         builder.z('parent', urls.reverse('app', [slug]));
         builder.z('title', gettext('Reviews'));
     };

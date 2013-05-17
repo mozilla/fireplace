@@ -1,9 +1,7 @@
 define('views/app',
-    ['capabilities', 'l10n',  'utils', 'requests', 'underscore', 'urls', 'z', 'templates', 'overflow'],
-    function(caps, l10n, utils, requests, _, urls, z, nunjucks, overflow) {
+    ['capabilities', 'l10n', 'login', 'utils', 'requests', 'underscore', 'urls', 'z', 'templates', 'overflow'],
+    function(caps, l10n, login, utils, requests, _, urls, z, nunjucks, overflow) {
     'use strict';
-
-    var login = require('login');
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
         // Show/hide scary content-rating disclaimers to developers.
@@ -44,6 +42,7 @@ define('views/app',
 
         builder.z('type', 'leaf');
         builder.z('reload_on_login', true);
+        builder.z('reload_on_logout', true);
         builder.z('title', gettext('Loading...'));
         builder.z('pagetitle', gettext('App Details'));
 

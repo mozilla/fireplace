@@ -15,6 +15,7 @@ function assert(cobj) {
             me.asserts++;
         };
     }
+    this.fail = wrap(cobj.test.fail);
     this.that = wrap(cobj.test.assert);
     this.equal = wrap(cobj.test.assertEquals);
     this.visible = wrap(cobj.test.assertVisible);
