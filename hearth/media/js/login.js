@@ -33,6 +33,14 @@ define('login',
         console.log('Triggering Persona logout');
         navigator.id.logout();
 
+        // Moved here from the onlogout callback for now until
+        // https://github.com/mozilla/browserid/issues/3229
+        // gets fixed.
+        if (z.context.reload_on_logout) {
+            console.log('Page requested reload on logout');
+            require('views').reload();
+        }
+
         notification.notification({message: gettext('You have been signed out')});
     });
 
@@ -134,11 +142,6 @@ define('login',
                 z.body.removeClass('logged-in');
                 z.page.trigger('reload_chrome');
                 z.win.trigger('logout');
-
-                if (z.context.reload_on_logout) {
-                    console.log('Page requested reload on logout');
-                    require('views').reload();
-                }
             }
         });
     }

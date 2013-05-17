@@ -94,8 +94,7 @@ define('ratings',
 
     function addReview(e, $senderEl) {
 
-        // This is only need on desktop because if we're not showing the
-        // modal, instead we go to the add review view.
+        // This is only needed for desktop modals.
         if (capabilities.widescreen()) {
             e.stopPropagation();
 
