@@ -15,6 +15,26 @@ define('utils', ['jquery', 'underscore'], function($, _) {
         };
     }
 
+    // Initializes character counters for textareas.
+    function initCharCount() {
+        var countChars = function(el, cc) {
+            var $el = $(el);
+            var max = parseInt($el.attr('maxlength'), 10);
+            var left = max - $el.val().length;
+            // L10n: {n} is the number of characters left.
+            cc.html(ngettext('<b>{n}</b> character left.',
+                             '<b>{n}</b> characters left.', {n: left}))
+              .toggleClass('error', left < 0);
+        };
+        $('.char-count').each(function() {
+            var $cc = $(this);
+            $cc.closest('form')
+               .find('#' + $cc.data('for'))
+               .on('keyup blur', _.throttle(function() {countChars(this, $cc);}, 250))
+               .trigger('blur');
+        });
+    }
+
     function escape_(s) {
         if (s === undefined) {
             return;
@@ -106,14 +126,15 @@ define('utils', ['jquery', 'underscore'], function($, _) {
 
     return {
         '_pd': _pd,
+        'baseurl': baseurl,
         'escape_': escape_,
         'fieldFocused': fieldFocused,
         'getVars': getVars,
-        'urlparams': urlparams,
-        'urlunparam': urlunparam,
-        'baseurl': baseurl,
+        'initCharCount': initCharCount,
         'querystring': querystring,
-        'urlencode': urlencode
+        'urlencode': urlencode,
+        'urlparams': urlparams,
+        'urlunparam': urlunparam
     };
 
 });

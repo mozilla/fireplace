@@ -7,26 +7,6 @@ define('ratings',
     var notify = require('notification').notification;
     var forms = require('forms');
 
-    // Initializes character counters for textareas.
-    function initCharCount() {
-        var countChars = function(el, cc) {
-            var $el = $(el);
-            var max = parseInt($el.attr('maxlength'), 10);
-            var left = max - $el.val().length;
-            // L10n: {n} is the number of characters left.
-            cc.html(ngettext('<b>{n}</b> character left.',
-                             '<b>{n}</b> characters left.', {n: left}))
-              .toggleClass('error', left < 0);
-        };
-        $('.char-count').each(function() {
-            var $cc = $(this);
-            $cc.closest('form')
-               .find('#' + $cc.data('for'))
-               .on('keyup blur', _.throttle(function() {countChars(this, $cc);}, 250))
-               .trigger('blur');
-        });
-    }
-
     function rewriter(app, rewriter) {
         var unsigned_url = urls.api.unsigned.url('reviews');
         cache.attemptRewrite(
@@ -114,7 +94,7 @@ define('ratings',
             z.body.trigger('decloak');
             $('.compose-review.modal').addClass('show');
             $('.compose-review').find('select[name="rating"]').ratingwidget('large');
-            initCharCount();
+            utils.initCharCount();
         }
 
     }
@@ -139,7 +119,7 @@ define('ratings',
     })).on('loaded', function() {
         // Hijack <select> with stars.
         $('select[name="rating"]').ratingwidget();
-        initCharCount();
+        utils.initCharCount();
     });
 
     z.body.on('submit', 'form.add-review-form', function(e) {

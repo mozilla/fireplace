@@ -1,6 +1,9 @@
-define('views/app/ratings', ['l10n', 'urls', 'user'], function(l10n, urls, user) {
+define('views/app/ratings', ['l10n', 'urls', 'user', 'utils', 'z'],
+       function(l10n, urls, user, utils, z) {
 
     var gettext = l10n.gettext;
+    var caps = require('capabilities');
+    var nunjucks = require('templates');
 
     return function(builder, args) {
         var slug = args[0];
@@ -13,6 +16,23 @@ define('views/app/ratings', ['l10n', 'urls', 'user'], function(l10n, urls, user)
                     e.preventDefault();
                     e.stopPropagation();
                     require('login').login();
+                });
+            }
+
+            if (caps.widescreen()) {
+                $('#write-review').on('click', function(e) {
+                    var ctx = _.extend({slug: slug}, require('helpers'));
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    z.page.append(
+                        nunjucks.env.getTemplate('ratings/write.html').render(ctx)
+                    );
+
+                    z.body.trigger('decloak');
+                    $('.compose-review.modal').addClass('show');
+                    $('.compose-review').find('select[name="rating"]').ratingwidget('large');
+                    utils.initCharCount();
                 });
             }
         });
