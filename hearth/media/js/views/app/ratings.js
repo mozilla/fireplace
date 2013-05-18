@@ -1,9 +1,7 @@
-define('views/app/ratings', ['l10n', 'urls', 'user', 'utils', 'z'],
-       function(l10n, urls, user, utils, z) {
+define('views/app/ratings', ['capabilities', 'l10n', 'templates', 'urls', 'user', 'utils', 'z'],
+       function(capabilities, l10n, nunjucks, urls, user, utils, z) {
 
     var gettext = l10n.gettext;
-    var caps = require('capabilities');
-    var nunjucks = require('templates');
 
     return function(builder, args) {
         var slug = args[0];
