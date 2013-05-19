@@ -1,5 +1,5 @@
-define('views/app/ratings', ['capabilities', 'l10n', 'templates', 'urls', 'user', 'utils', 'z'],
-       function(capabilities, l10n, nunjucks, urls, user, utils, z) {
+define('views/app/ratings', ['capabilities', 'helpers', 'l10n', 'templates', 'urls', 'user', 'utils', 'z'],
+       function(capabilities, helpers, l10n, nunjucks, urls, user, utils, z) {
 
     var gettext = l10n.gettext;
 
@@ -19,7 +19,7 @@ define('views/app/ratings', ['capabilities', 'l10n', 'templates', 'urls', 'user'
 
             if (capabilities.widescreen()) {
                 $('#write-review').on('click', function(e) {
-                    var ctx = _.extend({slug: slug}, require('helpers'));
+                    var ctx = _.extend({slug: slug}, helpers);
                     e.preventDefault();
                     e.stopPropagation();
 
