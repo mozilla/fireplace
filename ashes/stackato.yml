@@ -1,0 +1,11 @@
+name: ashes
+framework:
+    type: python
+
+processes:
+    web: python main.py
+
+services:
+    ${name}-db: mongodb
+
+ignores: ['.git']

@@ -1,6 +1,6 @@
 define('views/debug',
-    ['buckets', 'cache', 'capabilities', 'log', 'notification', 'utils', 'z'],
-    function(buckets, cache, capabilities, log, notification, utils, z) {
+    ['buckets', 'cache', 'capabilities', 'log', 'notification', 'requests', 'settings', 'utils', 'z'],
+    function(buckets, cache, capabilities, log, notification, requests, settings, utils, z) {
     'use strict';
 
     var debugEnabled = localStorage.getItem('debug-enabled');
@@ -24,6 +24,22 @@ define('views/debug',
         var data = cache.get($(this).data('url'));
         data = JSON.stringify(data, null, '  ');
         $('#cache-inspector').html(utils.escape_(data));
+    }).on('click', '#submit-debug', function(e) {
+        e.preventDefault();
+        var data = {body: JSON.stringify({
+            cache: cache.raw,
+            logs: log.all,
+            capabilities: capabilities,
+            profile: buckets.get_profile(),
+            settings: settings,
+            report_version: 1.0
+        })};
+        requests.post('http://ashes.paas.allizom.org/post_report', data).done(function(data) {
+            notification.notification({
+                message: 'ID: ' + data.id,
+                timeout: 30000
+            });
+        });
     });
 
     return function debug_view(builder, args) {

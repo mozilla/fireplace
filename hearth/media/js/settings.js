@@ -1,6 +1,6 @@
 define('settings', ['settings_local', 'underscore'], function(settings_local, _) {
     return _.defaults(settings_local, {
-        api_url: 'http://' + window.location.hostname + ':5000',  // No trailing slash, please.
+        api_url: 'http://' + window.location.hostname,  // No trailing slash, please.
 
         simulate_nav_pay: false,
 
