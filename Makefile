@@ -63,7 +63,7 @@ includes: clean compile
 	cleancss hearth/media/include.css > hearth/media/css/include.css
 	rm -f hearth/media/include.css
 	mv hearth/media/include.js hearth/media/js/
-	uglifyjs hearth/media/js/include.js -o hearth/media/js/include.js -m -c
+	uglifyjs hearth/media/js/include.js -o hearth/media/js/include.js -m -c --screw-ie8
 
 lint:
 	# You need closure-linter installed for this.
