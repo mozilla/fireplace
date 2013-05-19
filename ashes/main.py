@@ -66,8 +66,8 @@ app.route = corsify
 def verify_assertion(assertion):
     query_args = {
         'assertion': assertion,
-        #'audience': 'http://ashes.paas.allizom.org',
-        'audience': 'http://localhost:5000',
+        'audience': 'http://ashes.paas.allizom.org',
+        # 'audience': 'http://localhost:5000',
     }
     encoded_args = urllib.urlencode(query_args)
     url = 'https://verifier.login.persona.org/verify'
