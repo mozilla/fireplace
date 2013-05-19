@@ -17,7 +17,7 @@ define('views/app/ratings', ['capabilities', 'l10n', 'templates', 'urls', 'user'
                 });
             }
 
-            if (caps.widescreen()) {
+            if (capabilities.widescreen()) {
                 $('#write-review').on('click', function(e) {
                     var ctx = _.extend({slug: slug}, require('helpers'));
                     e.preventDefault();
