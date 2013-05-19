@@ -1,11 +1,10 @@
 define('ratings',
-    ['cache', 'capabilities', 'l10n', 'login', 'templates', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
-    function(cache, capabilities, l10n, login, nunjucks, _, utils, urls, user, z) {
+    ['cache', 'capabilities', 'forms', 'helpers', 'l10n', 'login', 'templates', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
+    function(cache, capabilities, forms, helpers, l10n, login, nunjucks, _, utils, urls, user, z) {
     'use strict';
 
     var gettext = l10n.gettext;
     var notify = require('notification').notification;
-    var forms = require('forms');
 
     function rewriter(app, rewriter) {
         var unsigned_url = urls.api.unsigned.url('reviews');
@@ -28,7 +27,7 @@ define('ratings',
 
         if (!$modal.length) {
             z.page.append(
-                nunjucks.env.getTemplate('ratings/report.html').render(require('helpers'))
+                nunjucks.env.getTemplate('ratings/report.html').render(helpers)
             );
             $modal = $('.report-spam');
         }
