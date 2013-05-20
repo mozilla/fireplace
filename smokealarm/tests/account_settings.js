@@ -52,7 +52,6 @@ suite.run('/', function(test, waitFor) {
     test('Tests that values were saved', function(assert) {
         assert.URL(/\/settings/);
 
-        console.log(suite.getFormValues('.account-settings'))
         assert.equal(
             suite.getFormValues('.account-settings').display_name,
             'hello my name is rob hudson'
