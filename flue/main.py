@@ -78,7 +78,8 @@ def login():
             'display_name': email.split('@')[0],
             'email': email,
             'region': 'usa',
-        }
+        },
+        'permissions': {}
     }
 
 
