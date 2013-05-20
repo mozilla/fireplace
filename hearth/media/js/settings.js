@@ -30,12 +30,6 @@ define('settings', ['settings_local', 'underscore'], function(settings_local, _)
         persona: 'https://login.persona.org/include.js',
 
         title_suffix: 'Firefox Marketplace',
-        carrier: null,
-
-        // `MCC`: Mobile Country Code
-        mcc: null,
-
-        // `MNC`: Mobile Network Code
-        mnc: null
+        carrier: null
     });
 });

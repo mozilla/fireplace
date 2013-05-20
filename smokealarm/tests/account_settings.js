@@ -52,6 +52,7 @@ suite.run('/', function(test, waitFor) {
     test('Tests that values were saved', function(assert) {
         assert.URL(/\/settings/);
 
+        console.log(suite.getFormValues('.account-settings'))
         assert.equal(
             suite.getFormValues('.account-settings').display_name,
             'hello my name is rob hudson'
@@ -66,6 +67,21 @@ suite.run('/', function(test, waitFor) {
         assert.visible('.account-settings .persona');
         assert.text('.account-settings .persona', 'Sign In / Sign Up');
         assert.invisible('.account-settings .logout');
+    });
+
+    test('Set region to Poland', function(assert) {
+        assert.equal(suite.getFormValues('.account-settings').region, '');
+
+        suite.evaluate(function() {
+            console.log('[*][phantom] Mocking user settings for "region" to be "Poland"');
+            window.require('user').get_setting = function(x) { return x == 'region' && 'pl'; };
+        });
+    });
+
+    test('Tests that region is set to Poland', function(assert) {
+        // Reload settings page to see new region.
+        suite.press('.header-button.settings');
+        assert.equal(suite.getFormValues('.account-settings').region, 'pl');
     });
 
 });

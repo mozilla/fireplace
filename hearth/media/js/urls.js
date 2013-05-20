@@ -1,6 +1,6 @@
 define('urls',
     ['buckets', 'capabilities', 'format', 'settings', 'underscore', 'user', 'utils'],
-    function(buckets, caps, format, settings, _) {
+    function(buckets, caps, format, settings, _, user) {
 
     var group_pattern = /\(.+\)/;
     var reverse = function(view_name, args) {
@@ -63,13 +63,14 @@ define('urls',
         }
     };
 
-    var user = require('user');
+
     function _userArgs(func) {
         return function() {
             var out = func.apply(this, arguments);
             var args = {
                 lang: navigator.language,
                 region: user.get_setting('region') || '',
+                carrier: user.get_setting('carrier') || '',
                 //scr: caps.widescreen() ? 'wide' : 'mobile',
                 //tch: caps.touch,
                 dev: _device(),
@@ -77,9 +78,6 @@ define('urls',
             };
             if (user.logged_in()) {
                 args._user = user.get_token();
-            }
-            if (settings.carrier) {
-                args.carrier = settings.carrier.slug;
             }
             return require('utils').urlparams(out, args);
         };
