@@ -34,7 +34,7 @@ define('views/debug',
             settings: settings,
             report_version: 1.0
         })};
-        requests.post('http://ashes.paas.allizom.org/post_report', data).done(function(data) {
+        requests.post('https://ashes.paas.allizom.org/post_report', data).done(function(data) {
             notification.notification({
                 message: 'ID: ' + data.id,
                 timeout: 30000
