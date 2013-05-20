@@ -31,10 +31,12 @@ define('views/feedback',
     });
 
     // Init desktop feedback form modal trigger.
-    // The modal is responsive even if this handler isn't removed.
-    if (caps.widescreen()) {
+    // The modal will exist on the feedback page also.
+    function addFeedbackModal(forceInjection) {
+        if (!caps.widescreen()) return;
+
         z.page.on('loaded', function() {
-            if (!$('.main.feedback').length) {
+            if (!$('.main.feedback').length || forceInjection) {
                 z.page.append(
                     nunjucks.env.getTemplate('settings/feedback.html').render(require('helpers'))
                 );
@@ -48,9 +50,12 @@ define('views/feedback',
         });
     }
 
+    addFeedbackModal();
+
     return function(builder, args) {
         builder.start('settings/feedback.html').done(function() {
             $('.feedback').removeClass('modal');
+            addFeedbackModal(true);
         });
 
         builder.z('type', 'root');

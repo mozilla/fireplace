@@ -37,6 +37,8 @@ function assert(cobj) {
         this.hasText(selector);
         this.textIsnt(textShouldntBe);
     };
+    // Wish you could just provide the selector.
+    this.selectorLength = wrap(cobj.test.assertEvalEquals);
 }
 
 function Suite(options) {

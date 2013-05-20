@@ -33,6 +33,9 @@ suite.run('/', function(test, waitFor) {
         assert.selectorExists('.potato-captcha');
         assert.invisible('.potato-captcha');
         assert.selectorExists('.feedback-form button[disabled]');
+        assert.selectorLength(function() {
+            return document.querySelectorAll('.feedback.modal').length;
+        }, 1, 'Only one feedback modal exists');
     });
 
     test('Verify form is submitted', function(assert) {
