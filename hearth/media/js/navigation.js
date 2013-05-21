@@ -216,6 +216,7 @@ define('navigation',
                 href[0] === '#' ||
                 href.indexOf('/developers/') !== -1 ||
                 href.indexOf('/ecosystem/') !== -1 ||
+                href.indexOf('/reviewers/') !== -1 ||
                 href.indexOf('/statistics/') !== -1 ||
                 href.indexOf('?modified=') !== -1 ||
                 el.getAttribute('target') === '_blank' ||
