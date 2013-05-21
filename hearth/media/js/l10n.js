@@ -1,6 +1,6 @@
 (function() {
 
-var languages = ['cs', 'de', 'en-US', 'es', 'ga-IE', 'it', 'pl', 'pt-BR', 'zh-TW', 'dbg'];
+var languages = ['cs', 'de', 'en-US', 'es', 'fr', 'ga-IE', 'it', 'pl', 'pt-BR', 'zh-TW', 'dbg'];
 
 var lang_expander = {
     'en': 'en-US', 'ga': 'ga-IE',
