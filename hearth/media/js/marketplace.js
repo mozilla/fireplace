@@ -56,9 +56,7 @@ require.config({
             'z'
         ],
     function(_) {
-
         var console = require('log')('mkt');
-
         console.log('Dependencies resolved, starting init');
 
         var capabilities = require('capabilities');
