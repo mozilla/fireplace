@@ -27,7 +27,6 @@ define('views/debug',
     }).on('click', '#submit-debug', function(e) {
         e.preventDefault();
         var data = {body: JSON.stringify({
-            cache: cache.raw,
             logs: log.all,
             capabilities: capabilities,
             profile: buckets.get_profile(),
