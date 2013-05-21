@@ -158,6 +158,9 @@ textarea {
         .extras {
             background: $salt-flat-white;
             border: 0;
+            a + a {
+                margin-top: 15px;
+            }
         }
         button {
             width: 100%;
@@ -184,6 +187,10 @@ textarea {
             right: -10px;
             p {
                 float: left;
+            }
+            // Show only "Save Changes" and "Sign Out" buttons on tablet and larger.
+            a:nth-child(2) ~ a {
+                display: none;
             }
         }
         footer, footer p {
