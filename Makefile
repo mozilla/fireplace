@@ -24,7 +24,7 @@ $(COMPILED_TEMPLATES): $(TEMPLATES)
 %.styl.css: %.styl
 	node damper.js --compile stylus --path $<
 
-l10n: compile
+l10n: fastcompile
 	cd locale ; \
 	./omg_new_l10n.sh
 

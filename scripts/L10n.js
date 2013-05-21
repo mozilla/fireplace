@@ -109,8 +109,24 @@ module.exports = (function() {
                     filename + ':' + node.lineno);
     }
 
+    function extract_callextension(tree) {
+        var calls = [];
+        var defers = tree.findAll(nodes.CallExtension);
+        for (var i = 0, e; e = defers[i++];) {
+            e.contentArgs.map(function(arg) {
+                if (!arg) {
+                    return;
+                }
+                calls = calls.concat(arg.findAll(nodes.FunCall));
+                calls = calls.concat(extract_callextension(arg).map(calls.push));
+            });
+        }
+        return calls;
+    }
+
     function extract_template(parseTree, filename) {
         var calls = parseTree.findAll(nodes.FunCall);
+        calls = calls.concat(extract_callextension(parseTree));
         for (var i = 0, node; node = calls[i++];) {
             // Exclude function calls that aren't to gettext.
             var node_name = node.name;
