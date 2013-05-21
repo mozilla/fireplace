@@ -9,10 +9,11 @@ import uuid
 from functools import wraps
 from optparse import OptionParser
 
-from flask import Flask, make_response, render_template, request
+from flask import Flask, make_response, redirect, render_template, request
 app = Flask("Ashes")
 
 SECRET = uuid.uuid4().hex
+DEBUG = False
 
 import pymongo
 
@@ -35,6 +36,9 @@ mongo = pymongo.Connection(mongouri)
 db = mongo.db
 
 
+def sslify(resp):
+    resp.headers['Strict-Transport-Security'] = 'max-age=31536000'
+
 ar = app.route
 @wraps(ar)
 def corsify(*args, **kwargs):
@@ -42,6 +46,16 @@ def corsify(*args, **kwargs):
     def decorator(func):
         @wraps(func)
         def wrap(*args, **kwargs):
+            # Don't allow insecure connections in prod.
+            if (False and
+                not request.url.startswith('https:') and
+                not DEBUG):
+                redir = redirect(request.url.replace('http:', 'https:', 1),
+                                 code=301)
+                redir.headers['Redirecting-From'] = request.url
+                sslify(redir)
+                return redir
+
             resp = func(*args, **kwargs)
             if isinstance(resp, (dict, list, tuple)):
                 resp = make_response(json.dumps(resp, indent=2), 200)
@@ -49,6 +63,12 @@ def corsify(*args, **kwargs):
                 resp.headers['Access-Control-Allow-Origin'] = '*'
                 resp.headers['Access-Control-Allow-Methods'] = ','.join(methods)
                 resp.headers['Access-Control-Allow-Headers'] = 'X-HTTP-METHOD-OVERRIDE'
+            else:
+                resp = make_response(resp, 200)
+
+            # Make the request secure.
+            if not DEBUG:
+                sslify(resp)
             return resp
 
         if 'methods' in kwargs:
@@ -66,7 +86,7 @@ app.route = corsify
 def verify_assertion(assertion):
     query_args = {
         'assertion': assertion,
-        'audience': 'http://ashes.paas.allizom.org',
+        'audience': 'https://ashes.paas.allizom.org',
         # 'audience': 'http://localhost:5000',
     }
     encoded_args = urllib.urlencode(query_args)
@@ -130,8 +150,10 @@ def post_report():
         data = json.loads(body)
         data['posted'] = time.time()
     except Exception as e:
-        print e
-        return {'error': 'Could not parse document.'}
+        doc = {'error': 'Could not parse document.'}
+        if DEBUG:
+            doc['message'] = str(e)
+        return doc
 
     data['cache'] = json.dumps(data['cache'])
 
@@ -156,7 +178,7 @@ def report(id):
 
     report = db.reports.find_one({'uid': id})
     if not report:
-        return make_response('{"error": "Not Found"}', 404)
+        return make_response('{"error":"Not Found"}', 404)
     del report['_id']
     return report
 
@@ -175,9 +197,6 @@ if __name__ == '__main__':
             help='port', metavar='PORT', default=os.getenv('PORT', '5000'))
     parser.add_option('--host', dest='hostname',
             help='hostname', metavar='HOSTNAME', default='0.0.0.0')
-    parser.add_option('--latency', dest='latency',
-            help='latency (sec)', metavar='LATENCY', default=0)
     (options, args) = parser.parse_args()
-    app.debug = True
-    LATENCY = int(options.latency)
+    app.debug = DEBUG
     app.run(host=options.hostname, port=int(options.port))
