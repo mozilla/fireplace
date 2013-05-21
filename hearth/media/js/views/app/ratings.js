@@ -1,5 +1,5 @@
-define('views/app/ratings', ['capabilities', 'helpers', 'l10n', 'templates', 'urls', 'user', 'utils', 'z'],
-       function(capabilities, helpers, l10n, nunjucks, urls, user, utils, z) {
+define('views/app/ratings', ['capabilities', 'helpers', 'l10n', 'templates', 'urls', 'user', 'utils', 'underscore', 'z'],
+       function(capabilities, helpers, l10n, nunjucks, urls, user, utils, _, z) {
 
     var gettext = l10n.gettext;
 
