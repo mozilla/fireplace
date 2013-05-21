@@ -43,7 +43,7 @@ if (!window.define) {
             context = context || navigator;
             var out;
             if (context.l10n && str in context.l10n.strings) {
-                out = context.l10n.strings[str].body;
+                out = context.l10n.strings[str].body || str;
             } else {
                 out = str;
             }
@@ -60,16 +60,17 @@ if (!window.define) {
             var out;
             var n = args.n;
             var strings;
+            var fallback = n === 1 ? str : plural;
             if (context.l10n && str in (strings = context.l10n.strings)) {
                 if (strings[str].plurals) {
                     var plid = context.l10n.pluralize(n);
-                    out = strings[str].plurals[plid];
+                    out = strings[str].plurals[plid] || fallback;
                 } else {
                     // Support for languages like zh-TW where there is no plural form.
-                    out = strings[str].body;
+                    out = strings[str].body || fallback;
                 }
             } else {
-                out = n === 1 ? str : plural;
+                out = fallback;
             }
             return format.format(out, args);
         }
