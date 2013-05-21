@@ -1,10 +1,9 @@
 define('views/feedback',
-       ['buckets', 'capabilities', 'forms', 'l10n', 'notification', 'requests', 'templates', 'utils', 'z'],
-       function(buckets, caps, forms, l10n, notification, requests, nunjucks, utils, z) {
+       ['buckets', 'capabilities', 'forms', 'helpers', 'l10n', 'notification', 'requests', 'templates', 'urls', 'utils', 'z'],
+       function(buckets, caps, forms, helpers, l10n, notification, requests, nunjucks, urls, utils, z) {
 
     var gettext = l10n.gettext;
     var notify = notification.notification;
-    var urls = require('urls');
 
     z.page.on('submit', '.feedback-form', function(e) {
         e.preventDefault();
@@ -32,30 +31,28 @@ define('views/feedback',
 
     // Init desktop feedback form modal trigger.
     // The modal will exist on the feedback page also.
-    function addFeedbackModal(forceInjection) {
+    function addFeedbackModal() {
         if (!caps.widescreen()) return;
 
-        z.page.on('loaded', function() {
-            if (!$('.main.feedback').length || forceInjection) {
-                z.page.append(
-                    nunjucks.env.getTemplate('settings/feedback.html').render(require('helpers'))
-                );
-            }
-        });
-        z.body.on('click', '.submit-feedback', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            z.body.trigger('decloak');
-            $('.feedback.modal').addClass('show');
-        });
+        if (!$('.main.feedback').length) {
+            z.page.append(
+                nunjucks.env.getTemplate('settings/feedback.html').render(helpers)
+            );
+        }
+        z.body.trigger('decloak');
     }
+    
+    z.body.on('click', '.submit-feedback', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        addFeedbackModal();
+        $('.feedback.modal').addClass('show');
+    });
 
-    addFeedbackModal();
-
-    return function(builder, args) {
+    return function(builder) {
         builder.start('settings/feedback.html').done(function() {
             $('.feedback').removeClass('modal');
-            addFeedbackModal(true);
+            addFeedbackModal();
         });
 
         builder.z('type', 'root');
