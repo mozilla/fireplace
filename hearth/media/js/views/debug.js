@@ -53,6 +53,6 @@ define('views/debug',
             filter: log.filter
         });
 
-        builder.z('type', 'leaf');
+        builder.z('type', 'leaf debug');
     };
 });

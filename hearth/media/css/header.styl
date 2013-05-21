@@ -353,10 +353,14 @@
 }
 
 // How does the header look for the various page "types"?
-[data-page-type~=root] {
-    .header .expand-toggle {
-        display: none;
-    }
+[data-page-type~=root] .header .expand-toggle {
+    display: none;
+}
+
+// When we're holding down on the debug page, don't allow clicking on the logo
+// because that would take us back home.
+[data-page-type~=debug] .header .wordmark {
+    pointer-events: none;
 }
 
 // TODO: Remove "leaf" `data-page-type`. We now have only two: "root" and "search".

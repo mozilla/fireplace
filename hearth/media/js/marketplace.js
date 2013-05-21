@@ -128,15 +128,15 @@ require.config({
         // Debug page
         (function() {
             var to = false;
-            z.doc.on('touchstart', '.wordmark', function() {
-                console.log('hold for debug...');
+            z.doc.on('touchstart mousedown', '.wordmark', function(e) {
+                console.log('hold for debug...', e.type);
                 clearTimeout(to);
                 to = setTimeout(function() {
                     console.log('navigating to debug...');
                     z.page.trigger('navigate', ['/debug']);
-                }, 5000);
-            }).on('touchend', '.wordmark', function() {
-                console.log('debug hold broken.');
+                }, 3000);
+            }).on('touchend mouseup', '.wordmark', function(e) {
+                console.log('debug hold released...', e.type);
                 clearTimeout(to);
             });
         })();
