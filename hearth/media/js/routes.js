@@ -32,7 +32,7 @@ window.routes = routes;
 
 define(
     'routes',
-    // dynamically import all the view modules form the routes
+    // Dynamically import all the view modules from the routes
     dependencies,
     function() {
         for (var i = 0; i < routes.length; i++) {
