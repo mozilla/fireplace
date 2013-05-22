@@ -59,12 +59,15 @@ define('views/app/ratings/edit',
             }));
 
             $reviewBox.find('.rating').on('click touchend', function() {
-                $reviewBox.find('textarea:invalid').trigger('focus');
+                var textarea = document.querySelector('.compose-review textarea:invalid');
+                if (textarea) {
+                    textarea.focus();
+                }
             });
 
             if (scrollTo && !caps.widescreen()) {
                 $reviewBox.find('textarea').on('focus', function() {
-                    setTimeout(function() {window.scrollTo(0, 200);}, 350);
+                    window.scrollTo(0, 200);
                 });
             }
         });

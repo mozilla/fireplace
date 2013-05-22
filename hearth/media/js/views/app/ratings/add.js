@@ -27,11 +27,14 @@ define('views/app/ratings/add',
 
             // Scroll the page down to make the send/cancel buttons visible.
             $reviewBox.find('.rating').on('click touchend', function() {
-                $reviewBox.find('textarea').trigger('focus');
+                var textarea = document.querySelector('.compose-review textarea');
+                if (textarea) {
+                    textarea.focus();
+                }
             });
             if (scrollTo && !caps.widescreen()) {
                 $reviewBox.find('textarea').on('focus', function() {
-                    setTimeout(function() {window.scrollTo(0, 200);}, 500);
+                    window.scrollTo(0, 200);
                 });
             }
         });
