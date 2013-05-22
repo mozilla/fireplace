@@ -58,8 +58,6 @@ define('urls',
             return 'firefoxos';
         } else if (caps.firefoxAndroid) {
             return 'android';
-        } else {
-            return 'desktop';
         }
     };
 
@@ -79,6 +77,11 @@ define('urls',
             if (user.logged_in()) {
                 args._user = user.get_token();
             }
+            Object.keys(args).forEach(function(k) {
+                if (!args[k]) {
+                    delete args[k];
+                }
+            });
             return require('utils').urlparams(out, args);
         };
     }

@@ -3,6 +3,7 @@ var a = require('assert');
 var assert = a.assert;
 var eq_ = a.eq_;
 var contains = a.contains;
+var disincludes = a.disincludes;
 var mock = a.mock;
 
 var urls = require('urls');
@@ -46,7 +47,7 @@ test('api url', function(done) {
             contains(search_url, 'dev=firefoxos');
             // contains(search_url, 'scr=mobile');
             // contains(search_url, 'tch=foo');
-            contains(search_url, 'carrier=');
+            disincludes(search_url, 'carrier=');
             done();
         }
     );

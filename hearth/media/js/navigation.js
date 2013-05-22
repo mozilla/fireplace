@@ -156,11 +156,7 @@ define('navigation',
         }
     }));
 
-    z.page.on('search', function(e, params) {
-        e.preventDefault();
-        return z.page.trigger(
-            'navigate', utils.urlparams(urls.reverse('search'), params));
-    }).on('navigate divert', function(e, url, params, preserveScroll) {
+    z.page.on('navigate divert', function(e, url, params, preserveScroll) {
         console.log('Received ' + e.type + ' event:', url);
         if (!url) return;
 
@@ -238,17 +234,6 @@ define('navigation',
         e.preventDefault();
         e.stopPropagation();
         z.page.trigger('navigate', [href, $elm.data('params') || {path: href}, preserveScroll]);
-
-    }).on('submit', 'form#search', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        var $q = $('#search-q');
-        var query = $q.val();
-        if (query == 'do a barrel roll') {
-            z.body.toggleClass('roll');
-        }
-        $q.blur();
-        z.page.trigger('search', {q: query});
 
     });
     z.win.on('popstate', function(e) {

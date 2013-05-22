@@ -1,6 +1,6 @@
 define('views/search',
-    ['capabilities', 'l10n', 'storage', 'underscore', 'utils', 'z'],
-    function(capabilities, l10n, storage, _, utils, z) {
+    ['capabilities', 'l10n', 'storage', 'underscore', 'urls', 'utils', 'z'],
+    function(capabilities, l10n, storage, _, urls, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -40,9 +40,62 @@ define('views/search',
         }
     }
 
+    function parsePotatoSearch(query) {
+        // This handles PotatoSearch queries:
+        // https://github.com/mozilla/fireplace/wiki/QuickSearch-(PotatoSearch%E2%84%A2)
+
+        query = query || {};
+
+        // We keep track of the full query separately, since we don't want
+        // to send it as `q` to the API.
+        query.full_q = query.q || '';
+        query.q = [];
+
+        query.full_q.split(' ').forEach(function(value) {
+            if (value[0] === ':') {
+                value = value.slice(1);
+                if (value === 'packaged' || value === 'hosted') {
+                    query.app_type = value;
+                } else if (value === 'free' || value === 'free-inapp') {
+                    query.premium_types = value;
+                } else if (value === 'premium' || value === 'paid') {
+                    query.premium_types = 'premium';
+                } else if (value === 'premium-inapp' || value === 'paid-inapp') {
+                    query.premium_types = 'premium-inapp';
+                } else if (value === 'premium-other' || value === 'paid-other') {
+                    query.premium_types = 'premium-other';
+                } else if (value.indexOf('cat-') === 0) {
+                    query.cat = value.slice(4);
+                }
+            } else {
+                // Include anything that's not a keyword in the `q` search term.
+                query.q.push(value);
+            }
+        });
+
+        query.q = query.q.join(' ');  // This is what gets sent to the API.
+
+        // There were no keywords, so remove full_q.
+        if (query.q === query.full_q) {
+            delete query.full_q;
+        }
+
+        return query;
+    }
+
     z.body.on('click', '.expand-toggle', _pd(function() {
         setTrays(expand = !expand);
-    }));
+    })).on('submit', 'form#search', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var $q = $('#search-q');
+        var query = $q.val();
+        if (query == 'do a barrel roll') {
+            z.body.toggleClass('roll');
+        }
+        $q.blur();
+        z.page.trigger('search', parsePotatoSearch({q: query}));
+    });
 
     z.page.on('loaded', function() {
         var $q = $('#search-q');
@@ -57,6 +110,10 @@ define('views/search',
         z.page.trigger('populatetray');
         // Update "Showing 1—{total}" text.
         z.page.find('.total-results').text(z.page.find('.item.app').length);
+    }).on('search', function(e, params) {
+        e.preventDefault();
+        return z.page.trigger(
+            'navigate', utils.urlparams(urls.reverse('search'), params));
     });
 
     return function(builder, args, params) {
@@ -65,8 +122,8 @@ define('views/search',
         }
 
         builder.z('type', 'search');
-        builder.z('search', params.q);
-        builder.z('title', params.q || gettext('Search Results'));
+        builder.z('search', params.full_q || params.q);
+        builder.z('title', params.q || params.full_q || gettext('Search Results'));
 
         builder.start(
             'search/main.html',
