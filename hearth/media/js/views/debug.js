@@ -1,23 +1,23 @@
 define('views/debug',
-    ['buckets', 'cache', 'capabilities', 'log', 'notification', 'requests', 'settings', 'utils', 'z'],
-    function(buckets, cache, capabilities, log, notification, requests, settings, utils, z) {
+    ['buckets', 'cache', 'capabilities', 'log', 'notification', 'requests', 'settings', 'storage', 'utils', 'z'],
+    function(buckets, cache, capabilities, log, notification, requests, settings, storage, utils, z) {
     'use strict';
 
-    var debugEnabled = localStorage.getItem('debug-enabled');
+    var debugEnabled = storage.getItem('debug-enabled');
     var label = $(document.getElementById('debug-status'));
     z.doc.on('click', '#toggle-debug', function() {
-        debugEnabled = localStorage.getItem('debug-enabled');
+        debugEnabled = storage.getItem('debug-enabled');
         if (debugEnabled === 'yes') {
             notification.notification({message: 'debug mode disabled', timeout: 1000});
-            localStorage.setItem('debug-enabled', 'no');
+            storage.setItem('debug-enabled', 'no');
             label.text('no');
         } else {
             notification.notification({message: 'debug mode enabled', timeout: 1000});
-            localStorage.setItem('debug-enabled', 'yes');
+            storage.setItem('debug-enabled', 'yes');
             label.text('yes');
         }
     }).on('click', '#clear-localstorage', function(e) {
-        localStorage.clear();
+        storage.clear();
         notification.notification({message: 'localStorage cleared', timeout: 1000});
     }).on('click', '.cache-menu a', function(e) {
         e.preventDefault();

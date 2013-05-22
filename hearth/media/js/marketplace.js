@@ -49,6 +49,7 @@ require.config({
             'previews',
             'ratings',
             'settings',
+            'storage',
             'templates',
             'tracking',
             'user',

@@ -1,6 +1,6 @@
 define('user',
-    ['capabilities', 'log', 'mobilenetwork', 'settings', 'utils'],
-    function(capabilities, log, mobilenetwork, site_settings, utils) {
+    ['capabilities', 'log', 'mobilenetwork', 'settings', 'storage', 'utils'],
+    function(capabilities, log, mobilenetwork, site_settings, storage, utils) {
 
     var console = log('user');
 
@@ -11,10 +11,10 @@ define('user',
     var save_to_ls = !capabilities.phantom;
 
     if (save_to_ls) {
-        token = localStorage.getItem('user');
+        token = storage.getItem('user');
         log.unmention(token);
-        settings = JSON.parse(localStorage.getItem('settings') || '{}');
-        permissions = JSON.parse(localStorage.getItem('permissions') || '{}');
+        settings = JSON.parse(storage.getItem('settings') || '{}');
+        permissions = JSON.parse(storage.getItem('permissions') || '{}');
     }
 
     function detect_mobile_network(navigator) {
@@ -90,7 +90,7 @@ define('user',
     function clear_token() {
         console.log('Clearing user token');
 
-        localStorage.removeItem('user');
+        storage.removeItem('user');
         if ('email' in settings) {
             delete settings.email;
             save_settings();
@@ -123,7 +123,7 @@ define('user',
 
         // If we're allowed to save to localStorage, do that now.
         if (save_to_ls) {
-            localStorage.setItem('user', token);
+            storage.setItem('user', token);
         }
 
         // Update the user's settings with the ones that are in the
@@ -134,7 +134,7 @@ define('user',
     function save_settings() {
         if (save_to_ls) {
             console.log('Saving settings to localStorage');
-            localStorage.setItem('settings', JSON.stringify(settings));
+            storage.setItem('settings', JSON.stringify(settings));
         } else {
             console.log('Settings not saved to localStorage');
         }
@@ -152,7 +152,7 @@ define('user',
     function save_permissions() {
         if (save_to_ls) {
             console.log('Saving permissions to localStorage');
-            localStorage.setItem('permissions', JSON.stringify(permissions));
+            storage.setItem('permissions', JSON.stringify(permissions));
         } else {
             console.log('Permissions not saved to localStorage');
         }

@@ -1,6 +1,6 @@
 define('views/search',
-    ['capabilities', 'l10n', 'underscore', 'utils', 'z'],
-    function(capabilities, l10n, _, utils, z) {
+    ['capabilities', 'l10n', 'storage', 'underscore', 'utils', 'z'],
+    function(capabilities, l10n, storage, _, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -23,9 +23,9 @@ define('views/search',
     // Default to the graphical view at desktop widths and traditional
     // list view at lesser widths.
     var expand = capabilities.widescreen();
-    if ('expand-listings' in localStorage) {
+    if ('expand-listings' in storage) {
         // If we've set this value in localStorage before, then use it.
-        expand = localStorage['expand-listings'] === 'true';
+        expand = storage['expand-listings'] === 'true';
     }
 
     function setTrays(expanded) {
@@ -34,7 +34,7 @@ define('views/search',
         }
         $('ol.listing').toggleClass('expanded', expanded);
         $('.expand-toggle').toggleClass('active', expand);
-        localStorage.setItem('expand-listings', expanded);
+        storage.setItem('expand-listings', expanded);
         if (expanded) {
             z.page.trigger('populatetray');
         }
