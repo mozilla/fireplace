@@ -1,4 +1,4 @@
-// Desktop tests for feedback modal when deeplinked to the feedback page.
+// Desktop tests for deeplinking to the feedback page.
 var suite = require('./kasperle').suite();
 
 // Desktop only tests.
@@ -18,8 +18,9 @@ suite.run('/feedback', function(test, waitFor) {
         return suite.exists('#splash-overlay.hide');
     });
 
-    test('Both modal and regular form exist', function(assert) {
+    test('Check regular form exists', function(assert) {
         assert.visible('.feedback:not(.modal)');
-        assert.selectorExists('.feedback.modal');
+        suite.press('.submit-feedback');
+        assert.hasFocus('.simple-field textarea', 'Textarea should have focus');
     });
 });
