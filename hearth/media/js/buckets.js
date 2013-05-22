@@ -40,7 +40,7 @@ define('buckets', [], function() {
         'mozBluetooth' in navigator,
         'mozContacts' in navigator,
         'getDeviceStorage' in navigator,
-        window.mozIndexedDB || window.indexedDB,
+        (function() { try{return window.mozIndexedDB || window.indexedDB} catch(e) {return false}})(),
         'geolocation' in navigator && 'getCurrentPosition' in navigator.geolocation,
         'addIdleObserver' in navigator && 'removeIdleObserver' in navigator,
         'mozConnection' in navigator && (navigator.mozConnection.metered === true || navigator.mozConnection.metered === false),
