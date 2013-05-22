@@ -39,6 +39,12 @@ function assert(cobj) {
     };
     // Wish you could just provide the selector.
     this.selectorLength = wrap(cobj.test.assertEvalEquals);
+    this.hasFocus = wrap(function (selector, msg) {
+        var hasFocus = cobj.evaluate(function(sel) {
+            return document.querySelector(sel) === document.activeElement;
+        }, selector);
+        return cobj.test.assert(hasFocus, msg);
+    });
 }
 
 function Suite(options) {

@@ -41,10 +41,15 @@ define('views/feedback',
         }
         z.body.trigger('decloak');
     }
-    
+
     z.body.on('click', '.submit-feedback', function(e) {
         e.preventDefault();
         e.stopPropagation();
+        // Focus the form if we're on the feedback page.
+        if ($('.main.feedback').length) {
+            $('.simple-field textarea').focus();
+            return;
+        }
         addFeedbackModal();
         $('.feedback.modal').addClass('show');
     });
