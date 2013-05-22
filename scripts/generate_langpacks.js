@@ -93,7 +93,7 @@ function parse(po_content) {
         }
 
         var line_val = JSON.parse(line);
-        if (id === null && last !== 'plurals') {
+        if (!id && last !== 'plurals') {
             var plex_match = RE_PLURALIZER.exec(line_val);
             if (!plex_match) {
                 continue;

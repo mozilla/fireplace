@@ -63,7 +63,8 @@ if (!window.define) {
             var fallback = n === 1 ? str : plural;
             if (context.l10n && str in (strings = context.l10n.strings)) {
                 if (strings[str].plurals) {
-                    var plid = context.l10n.pluralize(n);
+                    // +true is 1 / +false is 0
+                    var plid = +context.l10n.pluralize(n);
                     out = strings[str].plurals[plid] || fallback;
                 } else {
                     // Support for languages like zh-TW where there is no plural form.
