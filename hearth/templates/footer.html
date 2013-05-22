@@ -13,6 +13,9 @@
     {% if user.get_permission('reviewer') %}
       <a href="/reviewers/apps/queue/" class="only-logged-in">{{ _('Reviewer Tools') }}</a>
     {% endif %}
+    {% if user.get_permission('lookup') %}
+      <a href="/lookup/" class="only-logged-in">{{ _('Lookup Tool') }}</a>
+    {% endif %}
   </div>
 </div>
 <div id="footer">
