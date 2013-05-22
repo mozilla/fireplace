@@ -33,7 +33,9 @@ define('views/app/ratings/add',
                 }
             });
             if (scrollTo && !caps.widescreen()) {
+                console.log('scrollTo');
                 $reviewBox.find('textarea').on('focus', function() {
+                    console.log('focus');
                     window.scrollTo(0, 200);
                 });
             }
