@@ -29,6 +29,7 @@ l10n: clean fastcompile
 	./omg_new_l10n.sh
 
 langpacks:
+	mkdir -p hearth/locales
 	for po in `find locale -name "*.po"` ; do \
 		node scripts/generate_langpacks.js $$po ; \
 		mv $$po.js hearth/locales/`basename \`dirname \\\`dirname $$po\\\`\` | tr "_" "-"`.js ; \
@@ -52,6 +53,7 @@ log:
 clean:
 	rm -f $(CSS_FILES)
 	rm -f $(COMPILED_TEMPLATES)
+	rm -f hearth/locales/*
 	rm -f hearth/media/css/include.css
 	rm -f hearth/media/js/include.*
 
