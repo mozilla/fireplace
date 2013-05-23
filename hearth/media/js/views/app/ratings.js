@@ -3,6 +3,23 @@ define('views/app/ratings', ['capabilities', 'helpers', 'l10n', 'templates', 'ur
 
     var gettext = l10n.gettext;
 
+    z.page.on('click', '#write-review', function() {
+        if (capabilities.widescreen()) {
+            var ctx = _.extend({slug: $(this).data('slug')}, helpers);
+            e.preventDefault();
+            e.stopPropagation();
+
+            z.page.append(
+                nunjucks.env.getTemplate('ratings/write.html').render(ctx)
+            );
+
+            z.body.trigger('decloak');
+            $('.compose-review.modal').addClass('show');
+            $('.compose-review').find('select[name="rating"]').ratingwidget('large');
+            utils.initCharCount();
+        }
+    });
+
     return function(builder, args) {
         var slug = args[0];
 
@@ -14,23 +31,6 @@ define('views/app/ratings', ['capabilities', 'helpers', 'l10n', 'templates', 'ur
                     e.preventDefault();
                     e.stopPropagation();
                     require('login').login();
-                });
-            }
-
-            if (capabilities.widescreen()) {
-                $('#write-review').on('click', function(e) {
-                    var ctx = _.extend({slug: slug}, helpers);
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    z.page.append(
-                        nunjucks.env.getTemplate('ratings/write.html').render(ctx)
-                    );
-
-                    z.body.trigger('decloak');
-                    $('.compose-review.modal').addClass('show');
-                    $('.compose-review').find('select[name="rating"]').ratingwidget('large');
-                    utils.initCharCount();
                 });
             }
         });
