@@ -32,6 +32,7 @@ define('cat-dropdown',
         if (e) {
             e.preventDefault();
         }
+        $('.cat-icon').blur();
         $('.cat-menu').toggleClass('hidden');
         $('.dropdown').toggleClass('active');
     }
