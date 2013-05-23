@@ -114,14 +114,11 @@ def feedback():
     return {'error': False}
 
 
-@app.route('/terms-of-use.html', methods=['GET'])
-def terms():
-    return defaults.ptext()
-
-
-@app.route('/privacy-policy.html', methods=['GET'])
-def privacy():
-    return defaults.ptext()
+@app.route('/api/v1/apps/app/<slug>/privacy/', methods=['GET'])
+def privacy(slug):
+    return {
+        'privacy_policy': defaults.ptext(),
+    }
 
 
 @app.route('/api/v1/home/featured/')
