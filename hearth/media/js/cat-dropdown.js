@@ -116,10 +116,25 @@ define('cat-dropdown',
             handleCatsRendered();
         });
     }
-
+    /*
+        Simple Display toggler
+    */
+    function handleDropDownDisplay(){
+        $('.cat-menu').toggleClass('hidden');
+        $('.dropdown').toggleClass('active');
+    }
+    /*
+        Escape Key Handler
+    */
+    function handleDropDownDisplayByKey(event){
+        if(e.keyCode==27)
+            handleDropDownDisplay();
+    }
     z.body.on('click', '.dropdown a', toggleMenu)
           .on('mouseup', '.cat-menu a', handleDropDownClicks)
-          .on('mousedown', '.cat-menu a', handleDropDownMousedowns);
+          .on('mousedown', '.cat-menu a', handleDropDownMousedowns)
+          .on('blur','#cat-list',handleDropDownDisplay)
+          .on('keydown','body',handleDropDownDisplayByKey);
     z.page.on('build_start', handleBuildStart)
           .on('reload_chrome', handleRenderDropdown);
 
