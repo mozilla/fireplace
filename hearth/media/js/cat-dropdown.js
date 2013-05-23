@@ -134,6 +134,7 @@ define('cat-dropdown',
           .on('mouseup', '.cat-menu a', handleDropDownClicks)
           .on('mousedown', '.cat-menu a', handleDropDownMousedowns)
           .on('blur','#cat-list',handleDropDownDisplay)
+          .on('click','#cat-list',handleDropDownDisplay)
           .on('keydown','body',handleDropDownDisplayByKey);
     z.page.on('build_start', handleBuildStart)
           .on('reload_chrome', handleRenderDropdown);
