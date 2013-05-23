@@ -90,8 +90,11 @@ define('views/search',
         e.preventDefault();
         var $q = $('#search-q');
         var query = $q.val();
-        if (query == 'do a barrel roll') {
+        if (query === 'do a barrel roll') {
             z.body.toggleClass('roll');
+        } else if (query === ':debug') {
+            z.page.trigger('navigate', urls.reverse('debug'));
+            return;
         }
         $q.blur();
         z.page.trigger('search', parsePotatoSearch({q: query}));
