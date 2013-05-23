@@ -55,7 +55,7 @@ clean:
 	rm -f hearth/media/css/include.css
 	rm -f hearth/media/js/include.*
 
-includes: clean compile
+includes: clean compile langpacks
 	echo "/* $(VERSION) */" > hearth/media/include.css
 	echo "/* $(VERSION) */" > hearth/media/include.js
 	cat amd/amd.js >> hearth/media/include.js
@@ -64,7 +64,6 @@ includes: clean compile
 	rm -f hearth/media/include.css
 	mv hearth/media/include.js hearth/media/js/
 	uglifyjs hearth/media/js/include.js -o hearth/media/js/include.js -m -c --screw-ie8
-	make langpacks
 
 lint:
 	# You need closure-linter installed for this.
