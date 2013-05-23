@@ -127,7 +127,7 @@ define('cat-dropdown',
         Escape Key Handler
     */
     function handleDropDownDisplayByKey(event){
-        if(e.keyCode==27)
+        if(event.keyCode==27)
             handleDropDownDisplay();
     }
     z.body.on('click', '.dropdown a', toggleMenu)
