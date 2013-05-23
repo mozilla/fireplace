@@ -36,6 +36,7 @@ define('urls',
 
     var api_endpoints = {
         'app': '/api/v1/apps/app/{0}/',
+        'app/privacy': '/api/v1/apps/app/{0}/privacy/',
         'category': '/api/v1/apps/search/featured/?cat={0}',
         'categories': '/api/v1/apps/category/',
         'reviews': '/api/v1/apps/rating/',
@@ -46,8 +47,6 @@ define('urls',
         'app_abuse': '/api/v1/abuse/app/',
         'search': '/api/v1/apps/search/',
         'feedback': '/api/v1/account/feedback/',
-        'terms_of_use': '/terms-of-use.html',
-        'privacy_policy': '/privacy-policy.html',
 
         'prepare_nav_pay': '/api/v1/webpay/prepare/',
         'payments_status': '/api/v1/webpay/status/{0}/'
@@ -60,7 +59,6 @@ define('urls',
             return 'android';
         }
     };
-
 
     function _userArgs(func) {
         return function() {

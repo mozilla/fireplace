@@ -173,12 +173,12 @@
           {{ _('Report Abuse') }}</a>
         </li>
       </ul>
-      {% if settings.payment_enabled %}
+      {% if settings.payments_enabled %}
         {% if this.upsell %}
           <a id="upsell" class="button alt"
-             href="{{ this.upsell.url|urlparams(src='mkt-detail-upsell') }}">
+             href="{{ url('app', [this.upsell.app_slug])|urlparams(src='mkt-detail-upsell') }}">
              <span class="avail">{{ _('Premium version available') }}</span>
-             <img class="icon" src="{{ upsell.icons[16] }}">
+             <img class="icon" src="{{ upsell.icon_url }}">
              <span class="name">{{ this.upsell.name }}</span>
           </a>
         {% endif %}

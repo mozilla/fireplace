@@ -101,6 +101,15 @@ def app(name, slug, **kwargs):
         has_price = True
         price = '0.99'
 
+    if slug == 'upsell':
+        data['upsell'] = {
+            'id': random.randint(1, 10000),
+            'name': ptext(),
+            'icon_url': '/media/img/icons/firefox-beta.png',
+            'app_slug': 'upsold',
+            'resource_uri': '/api/v1/apps/app/%s/' % 'upsold',
+        }
+
     if has_price:
         data.update(price=price, price_locale='$%s' % price)
     else:
