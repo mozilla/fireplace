@@ -1,6 +1,6 @@
 define('ratings',
-    ['cache', 'capabilities', 'forms', 'helpers', 'l10n', 'login', 'templates', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
-    function(cache, capabilities, forms, helpers, l10n, login, nunjucks, _, utils, urls, user, z) {
+    ['cache', 'capabilities', 'forms', 'helpers', 'l10n', 'login', 'settings', 'templates', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
+    function(cache, capabilities, forms, helpers, l10n, login, settings, nunjucks, _, utils, urls, user, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -53,7 +53,7 @@ define('ratings',
 
     function deleteReview(reviewEl, uri, app) {
         reviewEl.addClass('deleting');
-        require('requests').del(require('settings').api_url + urls.api.sign(uri)).done(function() {
+        require('requests').del(settings.api_url + urls.api.sign(uri)).done(function() {
             notify({message: gettext('Your review was deleted')});
 
             rewriter(app, function(data) {
@@ -86,7 +86,7 @@ define('ratings',
                 return;
             }
 
-            var ctx = _.extend({slug: $senderEl.data('app')}, require('helpers'));
+            var ctx = _.extend({slug: $senderEl.data('app')}, helpers);
             z.page.append(
                 nunjucks.env.getTemplate('ratings/write.html').render(ctx)
             );
