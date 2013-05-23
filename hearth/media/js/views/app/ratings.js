@@ -1,5 +1,5 @@
-define('views/app/ratings', ['capabilities', 'helpers', 'l10n', 'templates', 'urls', 'user', 'utils', 'underscore', 'z'],
-       function(capabilities, helpers, l10n, nunjucks, urls, user, utils, _, z) {
+define('views/app/ratings', ['capabilities', 'helpers', 'l10n', 'login', 'templates', 'urls', 'user', 'utils', 'underscore', 'z'],
+       function(capabilities, helpers, l10n, login, nunjucks, urls, user, utils, _, z) {
 
     var gettext = l10n.gettext;
 
@@ -30,7 +30,7 @@ define('views/app/ratings', ['capabilities', 'helpers', 'l10n', 'templates', 'ur
                 $('#write-review').text(gettext('Sign in to Review')).on('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    require('login').login();
+                    login.login();
                 });
             }
         });
