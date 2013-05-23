@@ -8,11 +8,11 @@ define('views/app/ratings/add',
         var slug = args[0];
 
         // If the user isn't logged in, redirect them to the detail page and
-        // open a login window. If they complete the login, click the Write
-        // Review button if it exists.
+        // open a login window. If they complete the login, click the "Write a
+        // Review" button if it exists.
         if (!user.logged_in()) {
             login.login().done(function() {
-                $('#add-review').trigger('click');
+                $('.write-review').trigger('click');
             });
             return;
         }

@@ -10,7 +10,7 @@ define('views/app/ratings', ['capabilities', 'helpers', 'l10n', 'templates', 'ur
             'slug': slug
         }).done(function() {
             if (!user.logged_in()) {
-                $('#write-review').text(gettext('Sign in to Review')).on('click', function(e) {
+                $('.write-review').text(gettext('Sign in to Review')).on('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     require('login').login();
@@ -18,7 +18,7 @@ define('views/app/ratings', ['capabilities', 'helpers', 'l10n', 'templates', 'ur
             }
 
             if (capabilities.widescreen()) {
-                $('#write-review').on('click', function(e) {
+                $('.write-review').on('click', function(e) {
                     var ctx = _.extend({slug: slug}, helpers);
                     e.preventDefault();
                     e.stopPropagation();
@@ -27,9 +27,19 @@ define('views/app/ratings', ['capabilities', 'helpers', 'l10n', 'templates', 'ur
                         nunjucks.env.getTemplate('ratings/write.html').render(ctx)
                     );
 
+                    var $reviewBox = $('.compose-review');
+
+                    // Scroll the page down to make the send/cancel buttons visible.
+                    $reviewBox.find('.rating').on('click touchend', function() {
+                        var textarea = document.querySelector('.compose-review textarea');
+                        if (textarea) {
+                            textarea.focus();
+                        }
+                    });
+
                     z.body.trigger('decloak');
                     $('.compose-review.modal').addClass('show');
-                    $('.compose-review').find('select[name="rating"]').ratingwidget('large');
+                    $reviewBox.find('select[name="rating"]').ratingwidget('large');
                     utils.initCharCount();
                 });
             }

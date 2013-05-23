@@ -121,10 +121,10 @@
       {% if (this.user.can_rate or not user.logged_in()) or this.user.has_rated %}
         <div class="{{ 'split' if this.objects.length else ' full' }}">
           {% if user.logged_in() and this.user.has_rated %}
-            <a class="button alt" id="edit-review" href="{{ url('app/ratings/edit', [slug]) }}">
+            <a class="button write-review alt" id="edit-review" href="{{ url('app/ratings/edit', [slug]) }}">
               {{ _('Edit Your Review') }}</a>
           {% else %}
-            <a class="button alt" id="add-review" href="{{ url('app/ratings/add', [slug]) }}"
+            <a class="button write-review alt" id="add-review" href="{{ url('app/ratings/add', [slug]) }}"
                data-action="add" data-app="{{ slug }}">
               {{ _('Write a Review') }}</a>
           {% endif %}
