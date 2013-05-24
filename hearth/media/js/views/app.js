@@ -1,7 +1,9 @@
 define('views/app',
-    ['capabilities', 'l10n', 'login', 'utils', 'requests', 'underscore', 'urls', 'z', 'templates', 'overflow'],
-    function(caps, l10n, login, utils, requests, _, urls, z, nunjucks, overflow) {
+    ['capabilities', 'helpers', 'l10n', 'utils', 'underscore', 'z', 'templates', 'overflow'],
+    function(caps, helpers, l10n, utils, _, z, nunjucks, overflow) {
     'use strict';
+
+    var gettext = l10n.gettext;
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
         // Show/hide scary content-rating disclaimers to developers.
@@ -53,27 +55,19 @@ define('views/app',
             if (caps.widescreen() && !$('.report-abuse').length) {
                 z.page.append(
                     nunjucks.env.getTemplate('detail/abuse.html').render(
-                        _.extend({slug: slug}, require('helpers'))
+                        _.extend({slug: slug}, helpers)
                     )
                 );
             }
         }).onload('ratings', function() {
             var reviews = $('.detail .reviews li');
-            if (!require('user').logged_in()) {
-                $('#add-review').text(gettext('Sign in to Review')).on('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    login.login();
-                });
-            }
-
-            if (reviews.length < 3) return;
-
-            for (var i = 0; i < reviews.length - 2; i += 2) {
-                var hgt = Math.max(reviews.eq(i).find('.review-inner').height(),
-                                   reviews.eq(i + 1).find('.review-inner').height());
-                reviews.eq(i).find('.review-inner').height(hgt);
-                reviews.eq(i + 1).find('.review-inner').height(hgt);
+            if (reviews.length >= 3) {
+                for (var i = 0; i < reviews.length - 2; i += 2) {
+                    var hgt = Math.max(reviews.eq(i).find('.review-inner').height(),
+                                       reviews.eq(i + 1).find('.review-inner').height());
+                    reviews.eq(i).find('.review-inner').height(hgt);
+                    reviews.eq(i + 1).find('.review-inner').height(hgt);
+                }
             }
         });
     };

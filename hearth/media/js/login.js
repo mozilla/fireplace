@@ -58,6 +58,7 @@ define('login',
             privacyPolicy: '/privacy-policy',
             oncancel: function() {
                 console.log('Persona login cancelled');
+                z.page.trigger('login_cancel');
                 _.invoke(pending_logins, 'reject');
                 pending_logins = [];
             }
@@ -120,6 +121,7 @@ define('login',
             $('.loading-submit').removeClass('loading-submit');
             notification.notification({message: err});
 
+            z.page.trigger('login_fail');
             _.invoke(pending_logins, 'reject');
             pending_logins = [];
         });

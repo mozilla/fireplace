@@ -1,6 +1,6 @@
 var suite = require('./kasperle').suite();
 
-suite.run('/app/foo', function(test, waitFor) {
+suite.run('/app/can_rate', function(test, waitFor) {
 
     waitFor(function() {
         // Wait for reviews to load in.
@@ -21,7 +21,7 @@ suite.run('/app/foo', function(test, waitFor) {
     });
 
     test('Ratings page baseline tests', function(assert) {
-        assert.URL(/\/app\/foo\/ratings/);
+        assert.URL(/\/app\/can_rate\/ratings/);
 
         assert.hasText('#write-review');
 

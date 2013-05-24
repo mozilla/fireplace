@@ -71,36 +71,69 @@ define('ratings',
         });
     }
 
-    function addReview(e, $senderEl) {
+    function loginToRate() {
+        login.login();
+        // Set a flag to know that we expect the modal to open
+        // this prevents opening later if login was cancelled
+        // as this flag is cleared in that case.
+        z.flags.open_rating = true;
+        z.page.one('loaded', function(){
+            if (z.flags.open_rating){
+                z.flags.open_rating = false;
+                var $reviewButton = $('.write-review');
+                if ($reviewButton.attr('id') == 'edit-review') {
+                    // load the edit view.
+                    z.page.trigger('navigate', $reviewButton.attr('href'));
+                } else {
+                    // Do the write modal.
+                    if (capabilities.widescreen()) {
+                        $('.write-review').trigger('click');
+                    } else {
+                        z.page.trigger('navigate', $reviewButton.attr('href'));
+                    }
+                }
+            }
+        });
+        return;
+    }
 
-        // This is only needed for desktop modals.
-        if (capabilities.widescreen()) {
+    function addReview(e) {
+        var $this = $(this);
+
+        // If the user isn't logged in, prompt them to do so.
+        if (!user.logged_in()) {
+            e.preventDefault();
             e.stopPropagation();
+            return loginToRate();
+        }
 
-            // If the user isn't logged in, prompt them to do so.
-            if (!user.logged_in()) {
-                login.login().done(function() {
-                    // TODO: This should be more graceful than a page reload.
-                    require('views').reload();
-                });
+        if (capabilities.widescreen()) {
+            // For now, edits go through to the view.
+            if  (this.id === 'edit-review') {
                 return;
             }
 
-            var ctx = _.extend({slug: $senderEl.data('app')}, helpers);
-            z.page.append(
-                nunjucks.env.getTemplate('ratings/write.html').render(ctx)
-            );
+            e.preventDefault();
+            e.stopPropagation();
+
+            var $ratingModal = $('.compose-review.modal');
+            if (!$ratingModal.length) {
+                var ctx = _.extend({slug: $this.data('app')}, helpers);
+                z.page.append(
+                    nunjucks.env.getTemplate('ratings/write.html').render(ctx)
+                );
+                $ratingModal = $('.compose-review.modal');
+            }
+
             z.body.trigger('decloak');
-            $('.compose-review.modal').addClass('show');
-            $('.compose-review').find('select[name="rating"]').ratingwidget('large');
+            $ratingModal.addClass('show');
+            $ratingModal.find('select[name="rating"]').ratingwidget('large');
             utils.initCharCount();
         }
-
     }
 
-    z.page.on('click', '.review .actions a, #add-review', utils._pd(function(e) {
+    z.page.on('click', '.review .actions a', utils._pd(function(e) {
         var $this = $(this);
-
         var action = $this.data('action');
         if (!action) return;
         var $review = $this.closest('.review');
@@ -108,17 +141,18 @@ define('ratings',
             case 'delete':
                 deleteReview($review, $this.data('href'), $this.data('app'));
                 break;
-            case 'add':
-                addReview(e, $this);
-                break;
             case 'report':
                 flagReview($review);
                 break;
         }
-    })).on('loaded', function() {
+    })).on('click', '.write-review', addReview)
+    .on('loaded', function() {
         // Hijack <select> with stars.
         $('select[name="rating"]').ratingwidget();
         utils.initCharCount();
+    }).on('login_cancel login_fail', function() {
+        // Clear flag for open rating modal on cancel/fail of login.
+        z.flags.open_rating = false;
     });
 
     z.body.on('submit', 'form.add-review-form', function(e) {
