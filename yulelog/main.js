@@ -1,8 +1,8 @@
 (function() {
 
+  var qs = '';
   try {
     var conn = navigator.mozMobileConnection;
-    var qs = '';
     if (conn) {
       // `MCC`: Mobile Country Code
       // `MNC`: Mobile Network Code
