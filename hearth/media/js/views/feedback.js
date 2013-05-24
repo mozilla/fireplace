@@ -33,7 +33,7 @@ define('views/feedback',
     function addFeedbackModal() {
         if (!caps.widescreen()) return;
 
-        if (!$('.main.feedback:not(".modal")').length) {
+        if (!$('.main.feedback:not(.modal)').length) {
             z.page.append(
                 nunjucks.env.getTemplate('settings/feedback.html').render(helpers)
             );
@@ -45,7 +45,7 @@ define('views/feedback',
         e.preventDefault();
         e.stopPropagation();
         // Focus the form if we're on the feedback page.
-        if ($('.main.feedback:not(".modal")').length) {
+        if ($('.main.feedback:not(.modal)').length) {
             $('.simple-field textarea').focus();
             return;
         }
