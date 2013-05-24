@@ -1,22 +1,49 @@
 (function() {
 
+  try {
+    var conn = navigator.mozMobileConnection;
+    var qs = '';
+    if (conn) {
+      // `MCC`: Mobile Country Code
+      // `MNC`: Mobile Network Code
+      // `lastKnownNetwork`: `{MCC}-{MNC}`.
+      var network = (conn.lastKnownNetwork || conn.lastKnownHomeNetwork || '-').split('-');
+      qs = '?mcc=' + (network[0] || '') + '&mnc=' + (network[1] || '');
+      console.log('MCC: "' + network[0] + '"');
+      console.log('MNC: "' + network[1] + '"');
+    }
+  } catch(e) {
+    // Fail gracefully if `navigator.mozMobileConnection` gives us problems.
+  }
+  var iframeSrc = 'https://marketplace.firefox.com/' + qs;
+  var i = document.createElement('iframe');
+  i.seamless = true;
+  i.onerror = function() {
+      document.body.classList.add('offline');
+  };
+  i.src = iframeSrc;
+  document.body.appendChild(i);
+
   // When refocussing the app, toggle the iframe based on `navigator.onLine`.
   window.addEventListener('focus', toggleOffline, false);
 
-  function toggleOffline() {
+  function toggleOffline(init) {
     console.log('Checking for network connection...')
     if (navigator.onLine === false) {
       // Hide iframe.
-      console.log('Network connection not found; hiding iframe ...')
+      console.log('Network connection not found; hiding iframe ...');
       document.body.classList.add('offline');
     } else {
       // Show iframe.
-      console.log('Network connection found; showing iframe ...')
-      document.body.classList.remove('offline');
+      console.log('Network connection found; showing iframe ...');
+      if (!init) {
+        // Reload the page to reload the iframe.
+        window.location.reload();
+      }
     }
   }
 
-  toggleOffline();
+  toggleOffline(true);
 
   document.querySelector('.try-again').addEventListener('click', function(e) {
     toggleOffline();
@@ -78,26 +105,4 @@
     }
   }
 
-  try {
-    var conn = navigator.mozMobileConnection;
-    var qs = '';
-    if (conn) {
-      // `MCC`: Mobile Country Code
-      // `MNC`: Mobile Network Code
-      // `lastKnownNetwork`: `{MCC}-{MNC}`.
-      var network = (conn.lastKnownNetwork || conn.lastKnownHomeNetwork || '-').split('-');
-      qs = '?mcc=' + (network[0] || '') + '&mnc=' + (network[1] || '');
-      console.log('MCC: "' + network[0] + '"');
-      console.log('MNC: "' + network[1] + '"');
-    }
-  } catch(e) {
-    // Fail gracefully if `navigator.mozMobileConnection` gives us problems.
-  }
-  var i = document.createElement('iframe');
-  i.seamless = true;
-  i.onerror = function() {
-      document.body.classList.add('offline');
-  };
-  i.src = 'https://marketplace.firefox.com/' + qs;
-  document.body.appendChild(i);
 })();
