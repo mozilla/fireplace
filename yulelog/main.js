@@ -26,7 +26,6 @@
 
   var lang_expander = {
       en: 'en-US',
-      es: 'es',
       pt: 'pt-BR'
   };
 
@@ -55,7 +54,7 @@
       'de': 'Es tut uns Leid, Sie müssen online sein, um auf den Marktplatz zugreifen zu können.',
       'es': 'Disculpa, debes tener una conexión a internet para acceder al Marketplace.',
       'fr': 'Désolé, vous devez être en ligne pour accéder au Marketplace.',
-      'it': 'Devi essere in linea per accedere al marketplace.',
+      'it': 'Devi essere in linea per accedere al Marketplace.',
       'pl': 'Przepraszamy, musisz być online, by mieć dostęp do Marketplace.',
       'pt-BR': 'Lamentamos, mas você precisa estar on-line para acessar o Marketplace.'
     },
