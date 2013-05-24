@@ -47,7 +47,6 @@ define('views/app/ratings/edit',
         // have even gotten to this page in their current state anyway.
         if (!user.logged_in()) {
             z.page.trigger('navigate', urls.reverse('app', [slug]));
-            require('views').reload();
             return;
         }
 

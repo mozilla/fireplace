@@ -32,8 +32,7 @@ define('views/feedback',
     // Init desktop feedback form modal trigger.
     function addFeedbackModal() {
         if (!caps.widescreen()) return;
-
-        if (!$('.main.feedback:not(.modal)').length) {
+        if (!$('.main.feedback:not(.modal)').length && !$('.feedback.modal').length) {
             z.page.append(
                 nunjucks.env.getTemplate('settings/feedback.html').render(helpers)
             );

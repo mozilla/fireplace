@@ -7,13 +7,9 @@ define('views/app/ratings/add',
     return function(builder, args) {
         var slug = args[0];
 
-        // If the user isn't logged in, redirect them to the detail page and
-        // open a login window. If they complete the login, click the Write
-        // Review button if it exists.
+        // If the user isn't logged in, redirect them to the detail page.
         if (!user.logged_in()) {
-            login.login().done(function() {
-                $('#add-review').trigger('click');
-            });
+            z.page.trigger('navigate', urls.reverse('app', [slug]));
             return;
         }
 
@@ -32,6 +28,7 @@ define('views/app/ratings/add',
                     textarea.focus();
                 }
             });
+
             if (scrollTo && !caps.widescreen()) {
                 console.log('scrollTo');
                 $reviewBox.find('textarea').on('focus', function() {
