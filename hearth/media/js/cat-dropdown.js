@@ -127,15 +127,15 @@ define('cat-dropdown',
         Escape Key Handler
     */
     function handleDropDownDisplayByKey(event){
-        if(event.keyCode==27)
+        if( event.keyCode == 27 )
             handleDropDownDisplay();
     }
     z.body.on('click', '.dropdown a', toggleMenu)
           .on('mouseup', '.cat-menu a', handleDropDownClicks)
           .on('mousedown', '.cat-menu a', handleDropDownMousedowns)
-          .on('blur','#cat-list',handleDropDownDisplay)
-          .on('click','#cat-list',handleDropDownDisplay)
-          .on('keydown','body',handleDropDownDisplayByKey);
+          .on('blur', '#cat-list', handleDropDownDisplay)
+          .on('click', '#cat-list', handleDropDownDisplay)
+          .on('keydown', handleDropDownDisplayByKey);
     z.page.on('build_start', handleBuildStart)
           .on('reload_chrome', handleRenderDropdown);
 
