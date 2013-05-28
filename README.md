@@ -162,10 +162,13 @@ Load [http://localhost:8675/tests](http://localhost:8675/tests) in your browser.
 
 ### Running functional tests:
 
+Before you run the functional tests, make sure your `settings_local.js` file has
+the subset of keys found in
+[`settings_travis.js`](https://github.com/mozilla/fireplace/blob/master/hearth/media/js/settings_travis.js).
+
 ```bash
 make test
 ```
-
 
 ## Missing Features
 
