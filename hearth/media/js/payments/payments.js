@@ -1,6 +1,6 @@
 define('payments/payments',
-    ['capabilities', 'l10n', 'log', 'notification', 'requests', 'settings', 'urls'],
-    function(caps, l10n, log, notification, requests, settings, urls) {
+    ['capabilities', 'l10n', 'log', 'notification', 'requests', 'settings', 'urls', 'z'],
+    function(caps, l10n, log, notification, requests, settings, urls, z) {
 
     var console = log('payments');
 
@@ -72,15 +72,25 @@ define('payments/payments',
                     console.log('navigator.mozPay success');
                     waitForPayment($def, product, result.webpayJWT, result.contribStatusURL);
                 };
-                request.onerror = function() {
-                    if (this.error.name !== 'cancelled') {
-                        console.error('`navigator.mozPay` error:', this.error.name);
-                        notify({
-                            classes: 'error',
-                            message: gettext('Payment failed. Try again later.'),
-                            timeout: 5000
-                        });
+                request.onerror = function(errorMsg) {
+                    var msg;
+                    console.error('`navigator.mozPay` error:', this.error.name);
+                    switch (this.error.name) {
+                        case 'cancelled':
+                        case 'Dialog closed by the user':
+                            msg = gettext('Payment cancelled');
+                            break;
+                        default:
+                            msg = gettext('Payment failed. Try again later.');
+                            break;
                     }
+
+                    notify({
+                        classes: 'error',
+                        message: msg,
+                        timeout: 5000
+                    });
+
                     $def.reject(null, product, 'MKT_CANCELLED');
                 };
             }).fail(function(xhr, status, error) {
