@@ -38,9 +38,19 @@ suite.run('/', function(test, waitFor) {
         }, 1, 'Only one feedback modal exists');
     });
 
-    test('Verify form is submitted', function(assert) {
+    test('Verify form is filled and button is enabled.', function(assert) {
         suite.fill('.feedback-form', {'feedback': 'test'});
         assert.selectorExists('.feedback-form button:not([disabled])');
+        suite.press('.feedback-form button');
     });
+
+    waitFor(function() {
+        return !suite.visible('.feedback.modal');
+    });
+
+    test('Verify form is submitted', function(assert) {
+        assert.invisible('.feedback.modal');
+    });
+
 
 });
