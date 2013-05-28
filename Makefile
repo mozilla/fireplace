@@ -31,8 +31,9 @@ l10n: clean fastcompile
 langpacks:
 	mkdir -p hearth/locales
 	for po in `find locale -name "*.po"` ; do \
-		node scripts/generate_langpacks.js $$po ; \
-		mv $$po.js hearth/locales/`basename \`dirname \\\`dirname $$po\\\`\` | tr "_" "-"`.js ; \
+		lang=`basename \`dirname \\\`dirname $$po\\\`\` | tr "_" "-"`; \
+		node scripts/generate_langpacks.js $$po $$lang; \
+		mv $$po.js hearth/locales/$$lang.js ; \
 	done
 
 test: clean fastcompile
