@@ -116,12 +116,13 @@ function parse(po_content) {
     };
 }
 
-function gen_pack(data) {
+function gen_pack(data, lang) {
     var parsed = parse(String(data).split('\n'));
 
     return [
     '(function() {',
     'navigator.l10n = {};',
+    'navigator.l10n.language = "' + lang + '";',
     'navigator.l10n.strings = ' + JSON.stringify(parsed.output) + ';',
     'navigator.l10n.pluralize = function(n) {',
     'return ' + parsed.pluralizer + ';',
@@ -130,10 +131,10 @@ function gen_pack(data) {
     ].join('\n');
 }
 
-function process_file(path) {
+function process_file(path, lang) {
     var data = fs.readFileSync(path);
-    var compiled = gen_pack(data);
+    var compiled = gen_pack(data, lang);
     fs.writeFileSync(path + '.js', compiled);
 }
 
-process_file(args[0]);
+process_file(args[0], args[1]);

@@ -63,8 +63,12 @@ define('urls',
     function _userArgs(func) {
         return function() {
             var out = func.apply(this, arguments);
+            var lang = navigator.language;
+            if (navigator.l10n && navigator.l10n.language) {
+                lang = navigator.l10n.language;
+            }
             var args = {
-                lang: navigator.language,
+                lang: lang,
                 region: user.get_setting('region') || '',
                 carrier: user.get_setting('carrier') || '',
                 //scr: caps.widescreen() ? 'wide' : 'mobile',
