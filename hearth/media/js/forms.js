@@ -20,7 +20,7 @@ define('forms', ['z'], function(z) {
             $formElm.find('textarea, button, input').prop('disabled', true);
             $formElm.find('.ratingwidget').toggleClass('disabled', true);
         } else {
-            checkValid($formElm);
+            checkValid($formElm[0]);
         }
     }
 
