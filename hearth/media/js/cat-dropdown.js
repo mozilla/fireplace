@@ -32,6 +32,7 @@ define('cat-dropdown',
         if (e) {
             e.preventDefault();
         }
+        $('.cat-icon').blur();
         $('.cat-menu').toggleClass('hidden');
         $('.dropdown').toggleClass('active');
     }
@@ -115,10 +116,27 @@ define('cat-dropdown',
             handleCatsRendered();
         });
     }
-
+    /*
+        Simple Display toggler
+    */
+    function handleDropDownDisplay(){
+        $('.cat-menu').toggleClass('hidden');
+        $('.dropdown').toggleClass('active');
+    }
+    /*
+        Escape Key Handler
+    */
+    function handleDropDownDisplayByKey(event){
+        if (event.keyCode === 27) {
+            handleDropDownDisplay();
+        }
+    }
     z.body.on('click', '.dropdown a', toggleMenu)
           .on('mouseup', '.cat-menu a', handleDropDownClicks)
-          .on('mousedown', '.cat-menu a', handleDropDownMousedowns);
+          .on('mousedown', '.cat-menu a', handleDropDownMousedowns)
+          .on('blur', '#cat-list', handleDropDownDisplay)
+          .on('click', '#cat-list', handleDropDownDisplay)
+          .on('keydown', handleDropDownDisplayByKey);
     z.page.on('build_start', handleBuildStart)
           .on('reload_chrome', handleRenderDropdown);
 
