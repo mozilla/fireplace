@@ -75,6 +75,12 @@ $cat-icon-size-desktop = 60px;
     }
 }
 
+.dropdown a:after {
+    // Only -moz because Webkit has a gross transition/transform bug.
+    -moz-transition: 0.5s transform;
+    transform: rotate(0);
+}
+
 .show-cats {
     #page {
         padding-top: 0;
@@ -121,6 +127,7 @@ $cat-icon-size-desktop = 60px;
             // Dropdown arrow
             &:after {
                 dropdown();
+                //transform: rotate(0);
             }
         }
         &.active a:after,
@@ -128,6 +135,9 @@ $cat-icon-size-desktop = 60px;
         a:focus:after {
             background-image: url(../img/pretty/dropdown_active.svg);
             text-decoration: none;
+        }
+        &.active a:after {
+            transform: rotate(180deg);
         }
     }
     .cat-menu {

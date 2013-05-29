@@ -28,13 +28,20 @@ define('cat-dropdown',
         console.groupEnd();
     });
 
+    var $cat_menu = $('.cat-menu');
+    var $dropdown = $('.dropdown');
     function toggleMenu(e) {
         if (e) {
             e.preventDefault();
         }
+<<<<<<< Updated upstream
         $('.cat-icon').blur();
         $('.cat-menu').toggleClass('hidden');
         $('.dropdown').toggleClass('active');
+=======
+        $cat_menu.toggleClass('hidden');
+        $dropdown.toggleClass('active');
+>>>>>>> Stashed changes
     }
 
     function updateDropDown(catSlug, catTitle) {
@@ -55,11 +62,10 @@ define('cat-dropdown',
     }
 
     function updateCurrentCat(catSlug, $elm) {
-        var $catMenu = $('.cat-menu');
         var currentClass = 'current';
-        $elm = $elm || $catMenu.find('.cat-' + catSlug);
+        $elm = $elm || $cat_menu.find('.cat-' + catSlug);
         if (!$elm.hasClass(currentClass)) {
-            $catMenu.find('.' + currentClass).removeClass(currentClass);
+            $cat_menu.find('.' + currentClass).removeClass(currentClass);
             $elm.addClass(currentClass);
         }
     }
@@ -107,12 +113,14 @@ define('cat-dropdown',
         // Render the dropdown itself.
         cat_dropdown.html(
             nunjucks.env.getTemplate('cat_dropdown.html').render(helpers));
+        $dropdown = $('.dropdown');
 
         // Fetch the category dropdown-data
         category_req.done(function(data) {
             var context = _.extend({categories: data.objects}, helpers);
             cat_list.html(
                 nunjucks.env.getTemplate('cat_list.html').render(context));
+            $cat_menu = $('.cat-menu');
             handleCatsRendered();
         });
     }
