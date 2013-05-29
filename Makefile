@@ -43,26 +43,26 @@ test: clean fastcompile
 package: compile
 	cd hearth/ && zip -r ../$(VERSION).zip * && cd ../
 
-log:
-	@rm -rf TMP
-	@mkdir TMP && cp -pR yulelog/* TMP/.
-	@mkdir TMP/META-INF
-	# We have to have a temp file to work around a bug in Mac's version of sed :(
+# This is what the iframe src points to.
+DOMAIN?=marketplace.firefox.com
+
+log: clean
+	@mkdir -p TMP && cp -pR yulelog/* TMP/.
+	@# We have to have a temp file to work around a bug in Mac's version of sed :(
+	@sed -i'.bak' -e 's/marketplace\.firefox\.com/$(DOMAIN)/g' TMP/main.js
 	@sed -i'.bak' -e 's/{version}/$(VERSION_INT)/g' TMP/manifest.webapp
-	@rm -f TMP/manifest.webapp.bak
-	@echo '{"id": $(UUID), "version": $(VERSION_INT)}' > TMP/META-INF/ids.json
-	@cd TMP && zip -q -r ../yulelog_$(VERSION).zip * && cd ../
+	@rm -f TMP/*.bak
+	@cd TMP && zip -q -r ../yulelog_$(VERSION_INT).zip * && cd ../
 	@rm -rf TMP
 	@echo "Created file: yulelog_$(VERSION).zip"
 
-# TODO: log dev, log stage, etc.
-
 clean:
-	rm -f $(CSS_FILES)
-	rm -f $(COMPILED_TEMPLATES)
-	rm -f hearth/locales/*
-	rm -f hearth/media/css/include.css
-	rm -f hearth/media/js/include.*
+	@rm -rf TMP \
+		$(CSS_FILES) \
+		$(COMPILED_TEMPLATES) \
+		hearth/locales/* \
+		hearth/media/css/include.css \
+		hearth/media/js/include.*
 
 includes: clean compile langpacks
 	echo "/* $(VERSION) */" > hearth/media/include.css
