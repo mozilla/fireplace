@@ -44,12 +44,18 @@ package: compile
 	cd hearth/ && zip -r ../$(VERSION).zip * && cd ../
 
 log:
+	@rm -rf TMP
 	@mkdir TMP && cp -pR yulelog/* TMP/.
 	@mkdir TMP/META-INF
+	# We have to have a temp file to work around a bug in Mac's version of sed :(
+	@sed -i'.bak' -e 's/{version}/$(VERSION_INT)/g' TMP/manifest.webapp
+	@rm -f TMP/manifest.webapp.bak
 	@echo '{"id": $(UUID), "version": $(VERSION_INT)}' > TMP/META-INF/ids.json
 	@cd TMP && zip -q -r ../yulelog_$(VERSION).zip * && cd ../
 	@rm -rf TMP
 	@echo "Created file: yulelog_$(VERSION).zip"
+
+# TODO: log dev, log stage, etc.
 
 clean:
 	rm -f $(CSS_FILES)
