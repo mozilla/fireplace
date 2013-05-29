@@ -46,13 +46,17 @@ package: compile
 # This is what the iframe src points to.
 DOMAIN?=marketplace.firefox.com
 
+# This is what the app will be named on the device.
+NAME?=Marketplace
+
 log: clean
 	@mkdir -p TMP && cp -pR yulelog/* TMP/.
 	@# We have to have a temp file to work around a bug in Mac's version of sed :(
 	@sed -i'.bak' -e 's/marketplace\.firefox\.com/$(DOMAIN)/g' TMP/main.js
 	@sed -i'.bak' -e 's/{version}/$(VERSION_INT)/g' TMP/manifest.webapp
+	@sed -i'.bak' -e 's/"Marketplace"/"$(NAME)"/g' TMP/manifest.webapp
 	@rm -f TMP/*.bak
-	@cd TMP && zip -q -r ../yulelog_$(VERSION_INT).zip * && cd ../
+	@cd TMP && zip -q -r ../yulelog_$(NAME)_$(VERSION_INT).zip * && cd ../
 	@rm -rf TMP
 	@echo "Created file: yulelog_$(VERSION).zip"
 

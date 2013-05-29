@@ -52,6 +52,19 @@ If you plan on doing compilation (i.e.: you're Wil Clouser), you'll also need
 Comprehensive Flue documentation can be found in
 [Flue's README](https://github.com/mozilla/fireplace/blob/master/flue/README.rst).
 
+## Yule Log
+
+To create a new Yule Log package for production:
+
+    make log
+
+For -dev:
+
+    NAME='Dev' DOMAIN='marketplace-dev.allizom.org' make log
+
+For stage:
+
+    NAME='Stage' DOMAIN='marketplace.allizom.org' make log
 
 ### Getting node/npm
 
