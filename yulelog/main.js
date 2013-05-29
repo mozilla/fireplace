@@ -19,7 +19,7 @@
   var i = document.createElement('iframe');
   i.seamless = true;
   i.onerror = function() {
-      document.body.classList.add('offline');
+    document.body.classList.add('offline');
   };
   i.src = iframeSrc;
   document.body.appendChild(i);
@@ -52,25 +52,25 @@
   var languages = ['cs', 'de', 'en-US', 'es', 'fr', 'ga-IE', 'it', 'pl', 'pt-BR'];
 
   var lang_expander = {
-      en: 'en-US',
-      pt: 'pt-BR'
+    en: 'en-US',
+    pt: 'pt-BR'
   };
 
   function get_locale(locale) {
+    if (languages.indexOf(locale) !== -1) {
+      return locale;
+    }
+    locale = locale.split('-')[0];
+    if (languages.indexOf(locale) !== -1) {
+      return locale;
+    }
+    if (locale in lang_expander) {
+      locale = lang_expander[locale];
       if (languages.indexOf(locale) !== -1) {
-          return locale;
+        return locale;
       }
-      locale = locale.split('-')[0];
-      if (languages.indexOf(locale) !== -1) {
-          return locale;
-      }
-      if (locale in lang_expander) {
-          locale = lang_expander[locale];
-          if (languages.indexOf(locale) !== -1) {
-              return locale;
-          }
-      }
-      return 'en-US';
+    }
+    return 'en-US';
   }
   var qs_lang = /[\?&]lang=([\w\-]+)/i.exec(window.location.search);
   var locale = get_locale((qs_lang && qs_lang[1]) || navigator.language);
