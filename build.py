@@ -3,7 +3,6 @@ import re
 import time
 
 
-# JS
 blacklist = [
     'jquery.cookie.js',
     'require.js',
@@ -12,6 +11,8 @@ blacklist = [
     'settings_travis.js',
     'stick.js',
     'suggestions.js',
+
+    'splash.styl.css',
 ]
 
 output = []
@@ -45,6 +46,8 @@ timestamp = int(time.time())
 css_files = css_pattern.findall(index_html)
 output = []
 for css_file in css_pattern.findall(index_html):
+    if css_file.split('/')[-1] in blacklist:
+        continue
     with open('hearth%s' % css_file) as file_:
         output.append(file_.read())
 
