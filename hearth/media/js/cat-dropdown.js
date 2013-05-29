@@ -34,14 +34,9 @@ define('cat-dropdown',
         if (e) {
             e.preventDefault();
         }
-<<<<<<< Updated upstream
         $('.cat-icon').blur();
-        $('.cat-menu').toggleClass('hidden');
-        $('.dropdown').toggleClass('active');
-=======
         $cat_menu.toggleClass('hidden');
         $dropdown.toggleClass('active');
->>>>>>> Stashed changes
     }
 
     function updateDropDown(catSlug, catTitle) {
