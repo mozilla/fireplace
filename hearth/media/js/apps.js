@@ -60,7 +60,15 @@ define('apps', ['jquery', 'underscore'], function($, _) {
                 $def.reject(installRequest.result, product, this.error.name || this.error);
             };
         } else {
-            $def.reject();
+            var reason;
+            if (!manifest_url) {
+                reason = 'Could not find a manifest URL in the product object.';
+            } else if (product.is_packaged) {
+                reason = 'Could not find platform support to install packaged app';
+            } else {
+                reason = 'Could not find platform support to install hosted app';
+            }
+            $def.reject(null, product, reason);
         }
         return $def.promise();
     }

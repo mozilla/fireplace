@@ -86,7 +86,7 @@ define('install',
         requests.post(urls.api.url('record'), post_data).done(function(response) {
             if (response.error) {
                 $('#pay-error').show().find('div').text(response.error);
-                installError(product);
+                installError(null, product, 'Server returned error: ' + response.error);
                 def.reject();
                 return;
             }
@@ -100,7 +100,7 @@ define('install',
             });
         }).fail(function() {
             // Could not record/generate receipt!
-            installError(null, product);
+            installError(null, product, 'Could not generate receipt');
             def.reject();
         });
         return def;
