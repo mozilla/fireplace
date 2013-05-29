@@ -52,13 +52,26 @@ define('urls',
         'payments_status': '/api/v1/webpay/status/{0}/'
     };
 
-    var _device = function() {
+    function _dev() {
         if (caps.firefoxOS) {
             return 'firefoxos';
         } else if (caps.firefoxAndroid) {
             return 'android';
         }
-    };
+    }
+
+    function _device() {
+        // TODO: Deprecate this. (This was a quick fix for bug 875495
+        // until buchets land.)
+        if (caps.firefoxOS) {
+            return 'firefoxos';
+        } else if (caps.firefoxAndroid) {
+            if (caps.widescreen()) {
+                return 'tablet';
+            }
+            return 'mobile';
+        }
+    }
 
     function _userArgs(func) {
         return function() {
@@ -73,7 +86,8 @@ define('urls',
                 carrier: user.get_setting('carrier') || '',
                 //scr: caps.widescreen() ? 'wide' : 'mobile',
                 //tch: caps.touch,
-                dev: _device(),
+                dev: _dev(),
+                device: _device(),
                 pro: buckets.get_profile()
             };
             if (user.logged_in()) {
