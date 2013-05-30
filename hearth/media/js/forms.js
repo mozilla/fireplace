@@ -2,7 +2,7 @@ define('forms', ['z'], function(z) {
 
     function checkValid(form) {
         if (form) {
-            $(form).find('button[type=submit]').attr('disabled', !form.checkValidity());
+            $(form).filter(':not([novalidate])').find('button[type=submit]').attr('disabled', !form.checkValidity());
         }
     }
     z.body.on('change keyup paste', 'input, select, textarea', function(e) {
