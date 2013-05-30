@@ -58,7 +58,7 @@ log: clean
 	@rm -f TMP/*.bak
 	@cd TMP && zip -q -r ../yulelog_$(NAME)_$(VERSION_INT).zip * && cd ../
 	@rm -rf TMP
-	@echo "Created file: yulelog_$(VERSION).zip"
+	@echo "Created file: yulelog_$(NAME)_$(VERSION_INT).zip"
 
 clean:
 	@rm -rf TMP \
