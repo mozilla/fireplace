@@ -45,10 +45,13 @@ define('user',
             if (conn) {
                 // `MCC`: Mobile Country Code
                 // `MNC`: Mobile Network Code
-                // `lastKnownNetwork`: `{MCC}-{MNC}`
-                var network = (conn.lastKnownNetwork || conn.lastKnownHomeNetwork || '-').split('-');
+                // `lastKnownHomeNetwork`: `{MCC}-{MNC}` (SIM's origin)
+                // `lastKnownNetwork`: `{MCC}-{MNC}` (could be different network if roaming)
+                var network = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
                 mcc = network[0];
                 mnc = network[1];
+                console.log('lastKnownNetwork', conn.lastKnownNetwork);
+                console.log('lastKnownHomeNetwork', conn.lastKnownHomeNetwork);
                 console.log('MCC = ' + mcc + ', MNC = ' + mnc);
             } else {
                 console.warn('Error accessing navigator.mozMobileConnection');
