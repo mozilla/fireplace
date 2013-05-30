@@ -12,6 +12,14 @@ define('login',
         models('app').purge();
     }
 
+    function signOutNotification() {
+        notification.notification({message: gettext('You have been signed out')});
+    }
+
+    function signInNotification() {
+        notification.notification({message: gettext('You have been signed in')});
+    }
+
     z.body.on('click', '.persona', function(e) {
         e.preventDefault();
 
@@ -19,8 +27,6 @@ define('login',
         $this.addClass('loading-submit');
         startLogin().always(function() {
             $this.removeClass('loading-submit').trigger('blur');
-        }).done(function() {
-            notification.notification({message: gettext('You have been signed in')});
         });
 
     }).on('click', '.logout', function(e) {
@@ -38,10 +44,12 @@ define('login',
         // gets fixed.
         if (z.context.reload_on_logout) {
             console.log('Page requested reload on logout');
-            require('views').reload();
+            require('views').reload().done(function(){
+                signOutNotification();
+            });
+        } else {
+            signOutNotification();
         }
-
-        notification.notification({message: gettext('You have been signed out')});
     });
 
     var pending_logins = [];
@@ -94,9 +102,13 @@ define('login',
 
             if (z.context.reload_on_login) {
                 console.log('Page requested reload on login');
-                require('views').reload().done(resolve_pending);
+                require('views').reload().done(function() {
+                    resolve_pending();
+                    signInNotification();
+                });
             } else {
                 console.log('Resolving outstanding login requests');
+                signInNotification();
                 resolve_pending();
             }
 

@@ -1,7 +1,10 @@
 define('notification', ['capabilities', 'helpers', 'jquery', 'templates', 'z'], function(caps, helpers, $, nunjucks, z) {
+
     var notificationDef;
-    var notificationEl = $('<div id="notification">');
+    var notificationEl = $('<div id="notification" class="hidden">');
     var contentEl = $('<div id="notification-content">');
+    var showTimer;
+    var hideTimer;
 
     // allow *bolding* message text
     var re = /\*([^\*]+)\*/g;
@@ -11,11 +14,26 @@ define('notification', ['capabilities', 'helpers', 'jquery', 'templates', 'z'], 
     }
 
     function notificationShow() {
-        notificationEl.addClass('show');
+        if (hideTimer) {
+            window.clearTimeout(hideTimer);
+        }
+        notificationEl.removeClass('hidden');
+        // Delay to ensure transition onto screen happens.
+        showTimer = window.setTimeout(function() {
+            notificationEl.addClass('show');
+        }, 700);
     }
 
     function notificationHide() {
+        if (showTimer) {
+            window.clearTimeout(showTimer);
+        }
         notificationEl.removeClass('show');
+        // This needs to be greater than the transition timing
+        // in notification.styl.
+        hideTimer = window.setTimeout(function() {
+            notificationEl.addClass('hidden');
+        }, 400);
     }
 
     function notification(opts) {
@@ -55,7 +73,6 @@ define('notification', ['capabilities', 'helpers', 'jquery', 'templates', 'z'], 
         notificationDef.resolve();
     });
     z.body.append(notificationEl);
-
 
     var confirmationDef = $.Deferred();
     var cloakEl = $('.cloak');
