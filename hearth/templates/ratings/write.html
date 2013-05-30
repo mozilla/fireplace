@@ -4,7 +4,7 @@
     <a href="#" class="close btn-cancel">{{ _('Cancel') }}</a>
   </header>
   <form class="add-review-form form-modal" data-app="{{ slug }}">
-    <p class="brform simple-field rating c">
+    <p class="simple-field rating c">
       <label for="id_rating">{{ _('Rate:') }}</label>
       <select name="rating" id="id_rating" required>
         {% for i in range(1, 6) %}
@@ -12,7 +12,7 @@
         {% endfor %}
       </select>
     </p>
-    <p class="brform simple-field c">
+    <p>
       <textarea id="id_body" rows="2" cols="40" name="body" required maxlength="150"></textarea>
       <div class="char-count" data-for="id_body"></div>
     </p>

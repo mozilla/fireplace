@@ -137,6 +137,87 @@ body {
     }
 }
 
+.newssignup {
+    border-bottom: 1px dashed $london-fog-gray;
+    diagonal-lines();
+    min-height: 90px;
+    position: relative;
+    &.loading {
+        background-color: rgba(255,255,255,.7);
+        min-height: 90px;
+        * {
+            display: none;
+        }
+        .spinner {
+            margin-bottom: 5px;
+        }
+        .processing {
+            bottom: 10px;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+        }
+    }
+    p {
+        color: rgb(95,95,95);
+    }
+    .processing, .finished {
+        display: none;
+    }
+    > div {
+        float: left;
+        padding: 15px 10px;
+        width: 285px;
+    }
+    &.done {
+        * {
+            display: none;
+        }
+        .finished, .close {
+            display: block;
+        }
+        .finished {
+            padding: 25px 10px 15px;
+            text-align: center;
+            width: 270px;
+        }
+    }
+    header {
+        background: transparent;
+        border-top: 0;
+        height: inherit;
+        min-height: 25px;
+        &:before {
+            display: none;
+        }
+        h3 {
+            overflow: visible;
+            position: static;
+        }
+    }
+    input[type=email], button {
+        border-radius: 5px;
+        font-size: 13px;
+        font-weight: 400;
+    }
+    input[type=email] {
+        color: rgb(95,95,95);
+        margin-right: 10px;
+    }
+    button {
+        height: 32px;
+        min-width: inherit;
+    }
+    .btn-side-cancel {
+        background-position: right center;
+        border-left: 2px solid #bbb;
+        float: right;
+        height: 60px;
+        margin-top: 15px;
+        width: 30px;
+    }
+}
+
 @-webkit-keyframes spin {
     from { -webkit-transform: rotate(0turn); }
     to { -webkit-transform: rotate(1turn); }
