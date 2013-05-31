@@ -191,47 +191,54 @@ make test
 
 ## Local Development With Nginx
 
-If you want to run a local Fireplace against your local
-[Zamboni API](http://firefox-marketplace-api.readthedocs.org/)
-you can use [nginx](http://nginx.org/).
-
-The following snippet can go in the server section of your local
-``nginx.conf``. It assumes the following parameters so change them
-accordingly.
-
-* You are running Zamboni at ``localhost:8000``
-* You have Zamboni source checked out to ``/Users/your_name/dev``
-* You want to access Fireplace at ``http://localhost/``
-
+If you want to run Fireplace locally in a way that's similar to
+production, you can use [nginx](http://nginx.org/).
+This snippet is an ``nginx.conf`` example. You'll probably want to
+edit the port numbers to match your own configuration.
 
 Snippet:
 
     http {
         ...
         server {
+            # Listening on port 80 is nice but you have to start nginx
+            # with the right permissions.
             listen       80 default;
-            server_name  localhost;
+            # Set a host name. You also have to alias this host to
+            # 127.0.0.1 in /etc/hosts
+            server_name  fireplace.local;
 
-            location / {
-                rewrite ^/$ /server.html break;
-                rewrite ^/abuse$ /server.html break;
-                rewrite "^/app/(?![0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/manifest\.webapp$).*" /server.html break;
-                rewrite ^/category/.* /server.html break;
-                rewrite ^/debug$ /server.html break;
-                rewrite ^/feedback$ /server.html break;
-                rewrite ^/privacy-policy$ /server.html break;
-                rewrite ^/purchases$ /server.html break;
-                rewrite ^/search$ /server.html break;
-                rewrite ^/settings$ /server.html break;
-                rewrite ^/terms-of-use$ /server.html break;
-                rewrite ^/tests$ /server.html break;
-                rewrite ^/user/.* /server.html break;
+            location /mozpay/ {
+                # This is an optional alias to your local Webpay server
+                # so you can process payments.
                 proxy_pass http://localhost:8000;
                 proxy_set_header Host $host;
             }
 
-            location /media {
-                alias /Users/your_name/dev/zamboni/media;
+            location /developers/ {
+                # This is an optional alias to your local Zamboni so
+                # you can use the DevHub.
+                proxy_pass http://localhost:8002;
+                proxy_set_header Host $host;
+            }
+
+            location /media/fireplace/ {
+                # This is an alias to Fireplace media.
+                proxy_pass http://localhost:8675;
+                proxy_set_header Host $host;
+            }
+
+            location /media/ {
+                # This is an alias to Zamboni media (for DevHub).
+                proxy_pass http://localhost:8002;
+                proxy_set_header Host $host;
+            }
+
+            location / {
+                # This is an alias to the local Fireplace server (damper)
+                # to mimic a hosted Fireplace.
+                proxy_pass http://localhost:8675;
+                proxy_set_header Host $host;
             }
         }
     }
