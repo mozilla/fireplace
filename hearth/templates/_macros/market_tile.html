@@ -38,7 +38,7 @@
         {% if not link %}</a>{% endif %}
       </div>
       {% if force_button or (app.current_version and not link) %}
-        {{ market_button(app, classes=classes,
+        {{ market_button(app, classes=(['paid'] if app.price else []),
                          data_attrs={'manifest_url': app.manifest_url}) }}
       {% endif %}
     </div>

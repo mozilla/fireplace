@@ -67,5 +67,8 @@ define('buttons',
         if (!capabilities.webApps) {
             $('.button.product').attr('disabled', true);
         }
+        if (!capabilities.navPay) {
+            $('.button.product.paid').attr('disabled', true);
+        }
     });
 });
