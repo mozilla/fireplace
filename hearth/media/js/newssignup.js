@@ -51,7 +51,7 @@ define('newssignup',
 
         $signup.addClass('loading').find('.processing, .spinner').css('display', 'block');
 
-        requests.post(urls.api.url('app_abuse'), data).done(function() {
+        requests.post(urls.api.url('newsletter'), data).done(function() {
             $signup.removeClass('loading').addClass('done')
                                           .find('.processing').hide();
         }).fail(function() {
