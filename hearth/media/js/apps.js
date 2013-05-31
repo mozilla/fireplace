@@ -1,7 +1,7 @@
 /*
     Provides the apps module, a wrapper around navigator.mozApps
 */
-define('apps', ['jquery', 'underscore'], function($, _) {
+define('apps', ['buckets', 'jquery', 'underscore', 'utils'], function(buckets, $, _, utils) {
     'use strict';
 
     /*
@@ -34,7 +34,8 @@ define('apps', ['jquery', 'underscore'], function($, _) {
         _.defaults(opt, {'navigator': navigator,
                          'data': {}});
         opt.data.categories = product.categories;
-        var manifest_url = product.manifest_url;
+        var manifest_url = utils.urlparams(product.manifest_url, {feature_profile: buckets.get_profile()});
+
         var $def = $.Deferred();
         var mozApps = opt.navigator.mozApps;
 
