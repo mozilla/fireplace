@@ -195,6 +195,8 @@ If you want to run Fireplace locally in a way that's similar to
 production, you can use [nginx](http://nginx.org/).
 This snippet is an ``nginx.conf`` example. You'll probably want to
 edit the port numbers to match your own configuration.
+This doesn't include a proxy to Zamboni (for DevHub, etc) because
+the media URLs will collide. You'll need to set up a new server for that.
 
 Snippet:
 
@@ -212,25 +214,6 @@ Snippet:
                 # This is an optional alias to your local Webpay server
                 # so you can process payments.
                 proxy_pass http://localhost:8000;
-                proxy_set_header Host $host;
-            }
-
-            location /developers/ {
-                # This is an optional alias to your local Zamboni so
-                # you can use the DevHub.
-                proxy_pass http://localhost:8002;
-                proxy_set_header Host $host;
-            }
-
-            location /media/fireplace/ {
-                # This is an alias to Fireplace media.
-                proxy_pass http://localhost:8675;
-                proxy_set_header Host $host;
-            }
-
-            location /media/ {
-                # This is an alias to Zamboni media (for DevHub).
-                proxy_pass http://localhost:8002;
                 proxy_set_header Host $host;
             }
 
