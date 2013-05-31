@@ -34,7 +34,10 @@ define('apps', ['buckets', 'jquery', 'underscore', 'utils'], function(buckets, $
         _.defaults(opt, {'navigator': navigator,
                          'data': {}});
         opt.data.categories = product.categories;
-        var manifest_url = utils.urlparams(product.manifest_url, {feature_profile: buckets.get_profile()});
+        var manifest_url;
+        if (product.manifest_url) {
+            manifest_url = utils.urlparams(product.manifest_url, {feature_profile: buckets.get_profile()});
+        }
 
         var $def = $.Deferred();
         var mozApps = opt.navigator.mozApps;
