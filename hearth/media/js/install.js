@@ -1,20 +1,21 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 define('install',
-    ['apps', 'cache', 'capabilities', 'jquery', 'log', 'login', 'models', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
-    function(apps, cache, caps, $, log, login, models, notification, payments, requests, urls, user, z) {
+    ['apps', 'cache', 'capabilities', 'jquery', 'l10n', 'log', 'login', 'models', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
+    function(apps, cache, caps, $, l10n, log, login, models, notification, payments, requests, urls, user, z) {
     'use strict';
 
     var console = log('install');
 
     var apps_model = models('app');
+    var gettext = l10n.gettext;
 
     function _handler(func) {
         return function(e) {
             e.preventDefault();
             e.stopPropagation();
             func(apps_model.lookup($(this).closest('[data-slug]').data('slug')));
-        }
+        };
     }
 
     var launchHandler = _handler(function(product) {
@@ -28,8 +29,9 @@ define('install',
             console.log('Install suspended; user needs to log in');
             return login.login().done(function() {
                 startInstall(product);
+            }).fail(function(){
+                notification.notification({message: gettext('Payment cancelled')});
             });
-            return;
         }
 
         console.log('Starting app installation');
