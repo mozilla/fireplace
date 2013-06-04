@@ -91,6 +91,7 @@ def app(name, slug, **kwargs):
             'dejus': {'name': '12', 'description': text('Ask your parents')},
             'esrb': {'name': 'L', 'description': text('L for BASTA')},
         },
+        'device_types': ['desktop', 'firefoxos', 'android-mobile', 'android-tablet'],
     }
 
     has_price = rand_bool()
