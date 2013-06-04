@@ -1,12 +1,13 @@
 define('buttons',
-    ['browser', 'capabilities', 'format', 'l10n', 'z'],
-    function(browser, capabilities, format, l10n, z) {
+    ['browser', 'capabilities', 'format', 'l10n', 'utils', 'z'],
+    function(browser, capabilities, format, l10n, utils, z) {
 
     var gettext = l10n.gettext;
 
     function getButton(product) {
-        // Look up button by its manifest URL.
-        return $(format.format('.button[data-manifest_url="{0}"]', product.manifest_url));
+        // Look up button by its manifest URL, excluding the feature profile.
+        var manifest_url = utils.urlunparam(product.manifest_url, ['feature_profile']);
+        return $(format.format('.button[data-manifest_url="{0}"]', manifest_url));
     }
 
     function setButton($button, text, cls) {

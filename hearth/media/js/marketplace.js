@@ -86,21 +86,26 @@ require.config({
             });
         }
 
-        z.page.on('loaded', function() {
+        var get_installed = function() {
+            if (!capabilities.webApps) {
+                return;
+            }
             z.apps = {};
             z.state.mozApps = {};
-            if (capabilities.webApps) {
-                // Get list of installed apps and mark as such.
-                var r = navigator.mozApps.getInstalled();
-                r.onsuccess = function() {
-                    _.each(r.result, function(val) {
-                        z.apps[val.manifestURL] = z.state.mozApps[val.manifestURL] = val;
-                        z.win.trigger('app_install_success',
-                                      [val, {'manifest_url': val.manifestURL}, false]);
-                    });
-                };
-            }
-        });
+            // Get list of installed apps and mark as such.
+            var r = navigator.mozApps.getInstalled();
+            r.onsuccess = function() {
+                _.each(r.result, function(val) {
+                    z.apps[val.manifestURL] = z.state.mozApps[val.manifestURL] = val;
+                    z.win.trigger('app_install_success',
+                                  [val, {'manifest_url': val.manifestURL}, false]);
+                });
+            };
+        };
+        var get_installed_debounced = _.debounce(get_installed, 2000, true);  // Immediate so there's no delay.
+
+        z.page.on('loaded', get_installed);
+        z.page.on('fragment_loaded', get_installed_debounced);
 
         // Do some last minute template compilation.
         z.page.on('reload_chrome', function() {
