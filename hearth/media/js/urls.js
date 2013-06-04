@@ -62,8 +62,7 @@ define('urls',
     }
 
     function _device() {
-        // TODO: Deprecate this. (This was a quick fix for bug 875495
-        // until buchets land.)
+        // TODO: Deprecate this. (This was a quick fix for bug 875495 until buchets land.)
         if (caps.firefoxOS) {
             return 'firefoxos';
         } else if (caps.firefoxAndroid) {
@@ -129,6 +128,7 @@ define('urls',
                 url: api,
                 params: apiParams
             }
-        }
+        },
+        _device: _device
     };
 });

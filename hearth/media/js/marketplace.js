@@ -105,7 +105,7 @@ require.config({
         var get_installed_debounced = _.debounce(get_installed, 2000, true);  // Immediate so there's no delay.
 
         z.page.on('loaded', get_installed);
-        z.page.on('fragment_loaded', get_installed_debounced);
+        z.page.on('fragment_loaded loaded_more', get_installed_debounced);
 
         // Do some last minute template compilation.
         z.page.on('reload_chrome', function() {

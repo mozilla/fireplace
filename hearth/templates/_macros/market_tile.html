@@ -39,7 +39,8 @@
       </div>
       {% if force_button or (app.current_version and not link) %}
         {{ market_button(app, classes=(['paid'] if app.price else []),
-                         data_attrs={'manifest_url': app.manifest_url}) }}
+                         data_attrs={'manifest_url': app.manifest_url,
+                                     'slug': app.slug}) }}
       {% endif %}
     </div>
     {% for notice in app.notices %}

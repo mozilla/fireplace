@@ -71,5 +71,13 @@ define('buttons',
         if (!capabilities.navPay) {
             $('.button.product.paid').attr('disabled', true);
         }
+
+        var device = capabilities.device_type();
+        $('.button.product:not([disabled])').each(function() {
+            var $this = $(this);
+            if (!$this.hasClass(device)) {
+                $this.attr('disabled', true).addClass('incompatible');
+            }
+        });
     });
 });
