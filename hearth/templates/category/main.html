@@ -1,7 +1,9 @@
 {% include '_macros/market_tile.html' %}
 {% include '_macros/more_button.html' %}
 
-{% set featured_url = url('featured', [category or 'all']) %}
+{% set source = category or 'all' %}
+
+{% set featured_url = url('featured', [source]) %}
 {% set featured_url = featured_url|urlparams(src='category-featured') %}
 
 {% set category_url = url('category', [category]) if category else url('homepage') %}
@@ -46,7 +48,7 @@
   <ol class="container listing grid-if-desktop search-listing c">
     {% for result in this %}
       <li class="item result app c">
-        {{ market_tile(result, link=true, force_button=true, src=sort) }}
+        {{ market_tile(result, link=true, force_button=true, src=source + '-' + (sort or 'popular')) }}
       </li>
     {% endfor %}
 

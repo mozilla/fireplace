@@ -76,13 +76,10 @@ define('views/app',
             }
 
             tracking.setVar(6, 'App name', app.name, 3);
-            tracking.setVar(8, 'App developer', app.listed_authors[0].name, 3);
-            var source = utils.getVars().src;
-            if (source) {
-                tracking.setVar(9, 'App view source', source, 3);
-            }
-            tracking.setVar(10, 'App price', app.price ? 'paid' : 'free', 3);
             tracking.setVar(7, 'App ID', app.id, 3);
+            tracking.setVar(8, 'App developer', app.listed_authors[0].name, 3);
+            tracking.setVar(9, 'App view source', utils.getVars().src || 'direct', 3);
+            tracking.setVar(10, 'App price', app.price ? 'paid' : 'free', 3);
 
         }).onload('ratings', function() {
             var reviews = $('.detail .reviews li');
