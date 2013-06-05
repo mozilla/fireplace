@@ -13,6 +13,7 @@ var routes = [
     {pattern: '^/app/([^/<>"\']+)$', view_name: 'app'},
     {pattern: '^/app/([^/<>"\']+)/$', view_name: 'app'},  // For the trailing slash
     {pattern: '^/search$', view_name: 'search'},
+    {pattern: '^/search/$', view_name: 'search'},  // For the trailing slash
     {pattern: '^/category/([^/<>"\']+)$', view_name: 'category'},
     {pattern: '^/category/([^/<>"\']+)/featured$', view_name: 'featured'},
     {pattern: '^/settings$', view_name: 'settings'},
