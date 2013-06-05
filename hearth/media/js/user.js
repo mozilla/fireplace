@@ -1,6 +1,6 @@
 define('user',
-    ['capabilities', 'log', 'mobilenetwork', 'settings', 'storage', 'utils'],
-    function(capabilities, log, mobilenetwork, site_settings, storage, utils) {
+    ['capabilities', 'log', 'storage', 'utils'],
+    function(capabilities, log, storage, utils) {
 
     var console = log('user');
 
@@ -16,71 +16,6 @@ define('user',
         settings = JSON.parse(storage.getItem('settings') || '{}');
         permissions = JSON.parse(storage.getItem('permissions') || '{}');
     }
-
-    function detect_mobile_network(navigator) {
-        navigator = navigator || window.navigator;
-
-        var GET = utils.getVars();
-        var mcc;
-        var mnc;
-        var region;
-
-        // Hardcoded carrier should never get overridden.
-        var carrier = site_settings.carrier;
-        if (carrier && typeof carrier === 'object') {
-            carrier = carrier.slug;
-        }
-        carrier = carrier || GET.carrier || null;
-
-        if (!carrier) {
-            // Get mobile region and carrier information passed via querystring.
-            mcc = GET.mcc;
-            mnc = GET.mnc;
-        }
-
-        try {
-            // When Fireplace is served as a privileged packaged app (and not
-            // served via Yulelog) our JS will have direct access to this API.
-            var conn = navigator.mozMobileConnection;
-            if (conn) {
-                // `MCC`: Mobile Country Code
-                // `MNC`: Mobile Network Code
-                // `lastKnownHomeNetwork`: `{MCC}-{MNC}` (SIM's origin)
-                // `lastKnownNetwork`: `{MCC}-{MNC}` (could be different network if roaming)
-                var network = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
-                mcc = network[0];
-                mnc = network[1];
-                console.log('lastKnownNetwork', conn.lastKnownNetwork);
-                console.log('lastKnownHomeNetwork', conn.lastKnownHomeNetwork);
-                console.log('MCC = ' + mcc + ', MNC = ' + mnc);
-            } else {
-                console.warn('Error accessing navigator.mozMobileConnection');
-            }
-        } catch(e) {
-            // Fail gracefully if `navigator.mozMobileConnection` gives us problems.
-            console.warn('Error accessing navigator.mozMobileConnection:', e);
-        }
-
-        if (mcc || mnc) {
-            // Look up region and carrier from MCC (Mobile Country Code)
-            // and MNC (Mobile Network Code).
-            var network = mobilenetwork.getNetwork(mcc, mnc);
-            region = network.region;
-            carrier = network.carrier;
-        }
-
-        // Get region from settings saved to localStorage.
-        region = settings.region || region;
-
-        // If it turns out the region is null, when we get a response from an
-        // API request, we look at the `API-Filter` header to determine the region
-        // in which Zamboni geolocated the user.
-
-        settings.carrier = carrier || null;
-        settings.region = region || null;
-    }
-
-    detect_mobile_network(navigator);
 
     if (save_to_ls) {
         save_settings();
@@ -173,7 +108,6 @@ define('user',
     return {
         clear_settings: clear_settings,
         clear_token: clear_token,
-        detect_mobile_network: detect_mobile_network,
         get_setting: get_setting,
         get_permission: get_permission,
         get_settings: get_settings,

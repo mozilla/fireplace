@@ -23,6 +23,9 @@ body.overlayed {
         opacity: 1;
         pointer-events: auto;
     }
+    &.light {
+        background: rgba(255,255,255,.75);
+    }
 }
 
 .modal {
@@ -31,9 +34,10 @@ body.overlayed {
     border-radius: 10px;
     diagonal-lines();
     display: none;
+    left: 5%;
     position: fixed;
     top: 49px;
-    width: 100%;
+    width: 90%;
     z-index: 60;
     &.show {
         display: block;
@@ -45,6 +49,28 @@ body.overlayed {
     }
     textarea {
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.15) inset;
+    }
+    &.confirmation {
+        background: rgba(0,0,0,.85);
+        border: 1px solid #000;
+        border-radius: 5px;
+        color: #fff;
+        text-align: center;
+        top: 102px;
+        .content {
+            margin: 15px 0;
+        }
+    }
+    button {
+        height: 30px;
+        line-height: 32px;
+        min-width: auto;
+        + button {
+            margin-left: 10px;
+        }
+    }
+    button.alt {
+        box-shadow: none;
     }
 }
 
@@ -64,6 +90,10 @@ body.overlayed {
             button {
                 width: 60%;
             }
+        }
+        &.confirmation {
+            margin-left: -215px;
+            width: 431px;
         }
     }
 }

@@ -1,4 +1,9 @@
-define('mobilenetwork', [], function() {
+define('mobilenetwork',
+       ['l10n', 'log', 'notification', 'settings', 'user', 'utils', 'views'],
+       function(l10n, log, notification, settings, user, utils, views) {
+    var console = log('mobilenetwork');
+    var gettext = l10n.gettext;
+
     var regions = {
         // United States
         310: 'us',
@@ -196,7 +201,105 @@ define('mobilenetwork', [], function() {
         };
     }
 
+    function confirmRegion(currentRegion, newRegion) {
+        // Ask user to switch to the new region we detected from the SIM card.
+        var currentRegionName = settings.REGION_CHOICES_SLUG[currentRegion];
+        var newRegionName = settings.REGION_CHOICES_SLUG[newRegion];
+        var message = gettext(
+            'You are currently browsing content for *{current_region}*. ' +
+            'Would you like to switch to *{new_region}*?',
+            {current_region: currentRegionName,
+             new_region: newRegionName});
+        $.when(notification.confirmation({message: message}))
+         .fail(function() {
+            console.log('User declined to change region from', currentRegionName, 'to', newRegionName);
+         })
+         .done(function() {
+            console.log('User changed region from', currentRegionName, 'to', newRegionName);
+            user.update_settings({region: newRegion});
+            views.reload();
+         });
+    }
+
+    function detectMobileNetwork(navigator, fake) {
+        navigator = navigator || window.navigator;
+
+        var GET = utils.getVars();
+        var mcc;
+        var mnc;
+        var region;
+
+        // Hardcoded carrier should never get overridden.
+        var carrier = user.get_setting('carrier');
+        if (carrier && typeof carrier === 'object') {
+            carrier = carrier.slug;
+        }
+        carrier = carrier || GET.carrier || null;
+
+        if (!carrier) {
+            // Get mobile region and carrier information passed via querystring.
+            mcc = GET.mcc;
+            mnc = GET.mnc;
+        }
+
+        try {
+            // When Fireplace is served as a privileged packaged app (and not
+            // served via Yulelog) our JS will have direct access to this API.
+            var conn = navigator.mozMobileConnection;
+            if (conn) {
+                // `MCC`: Mobile Country Code
+                // `MNC`: Mobile Network Code
+                // `lastKnownHomeNetwork`: `{MCC}-{MNC}` (SIM's origin)
+                // `lastKnownNetwork`: `{MCC}-{MNC}` (could be different network if roaming)
+                var network = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
+                mcc = network[0];
+                mnc = network[1];
+                console.log('lastKnownNetwork', conn.lastKnownNetwork);
+                console.log('lastKnownHomeNetwork', conn.lastKnownHomeNetwork);
+                console.log('MCC = ' + mcc + ', MNC = ' + mnc);
+            } else {
+                console.warn('Error accessing navigator.mozMobileConnection');
+            }
+        } catch(e) {
+            // Fail gracefully if `navigator.mozMobileConnection` gives us problems.
+            console.warn('Error accessing navigator.mozMobileConnection:', e);
+        }
+
+        if (mcc || mnc) {
+            // Look up region and carrier from MCC (Mobile Country Code)
+            // and MNC (Mobile Network Code).
+            var network = getNetwork(mcc, mnc);
+            region = network.region;
+            carrier = network.carrier;
+        }
+
+        var newSettings = {};
+
+        var lastRegion = user.get_setting('last_region');
+
+        if (region && lastRegion && lastRegion != region) {
+            confirmRegion(lastRegion, region);
+            // Update the last region we detected from the SIM.
+            newSettings.last_region = region;
+        }
+
+        // Get region from settings saved to localStorage.
+        region = user.get_setting('region') || region;
+
+        // If it turns out the region is null, when we get a response from an
+        // API request, we look at the `API-Filter` header to determine the region
+        // in which Zamboni geolocated the user.
+
+        newSettings.carrier = carrier || null;
+        newSettings.region = region || null;
+
+        user.update_settings(newSettings);
+    }
+
+    detectMobileNetwork(navigator);
+
     return {
+        detectMobileNetwork: detectMobileNetwork,
         getNetwork: getNetwork
     };
 });

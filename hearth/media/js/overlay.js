@@ -9,7 +9,8 @@ define('overlay', ['keys', 'l10n', 'utils', 'z'], function(keys, l10n, utils, z)
     function dismiss() {
         if ($cloak.is('.show')) {
             $('.modal').removeClass('show');
-            $cloak.removeClass('show').trigger('overlay_dismissed');
+            // Reset class to `cloak`, since we may have added other classes.
+            $cloak.attr('class', 'cloak').trigger('overlay_dismissed');
         }
     }
 
@@ -38,5 +39,5 @@ define('overlay', ['keys', 'l10n', 'utils', 'z'], function(keys, l10n, utils, z)
         $cloak.addClass('show');
     }).on('click', '.modal .btn-cancel, .modal .cancel', utils._pd(dismiss));
 
-    z.page.on('loaded', dismiss);
+    z.page.on('navigating', dismiss);
 });
