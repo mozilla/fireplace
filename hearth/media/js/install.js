@@ -30,6 +30,7 @@ define('install',
             return login.login().done(function() {
                 startInstall(product);
             }).fail(function(){
+                console.log('Install cancelled; login aborted');
                 notification.notification({message: gettext('Payment cancelled')});
             });
         }
@@ -50,6 +51,7 @@ define('install',
     }
 
     function purchaseSuccess(product, receipt) {
+        console.log('Purchase succeeded, running post-purchase logic');
         if (product.user) {
             product.user.purchased = true;
         }
@@ -109,6 +111,7 @@ define('install',
     }
 
     function installSuccess(installer, product) {
+        console.log('App successfuly installed');
         if (product.user) {
             product.user.installed = true;
         }

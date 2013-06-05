@@ -1,6 +1,6 @@
 define('views/search',
-    ['capabilities', 'l10n', 'storage', 'underscore', 'urls', 'utils', 'z'],
-    function(capabilities, l10n, storage, _, urls, utils, z) {
+    ['capabilities', 'l10n', 'storage', 'tracking', 'underscore', 'urls', 'utils', 'z'],
+    function(capabilities, l10n, storage, tracking, _, urls, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -85,6 +85,12 @@ define('views/search',
 
     z.body.on('click', '.expand-toggle', _pd(function() {
         setTrays(expand = !expand);
+
+        tracking.trackEvent(
+            'View type interactions',
+            'click',
+            expand ? 'Expanded view' : 'List view'
+        );
     })).on('submit', 'form#search', function(e) {
         e.stopPropagation();
         e.preventDefault();

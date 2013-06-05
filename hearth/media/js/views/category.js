@@ -1,6 +1,6 @@
 define('views/category',
-    ['capabilities', 'models', 'underscore', 'urls', 'utils', 'z'],
-    function(capabilities, models, _, urls, utils, z) {
+    ['capabilities', 'models', 'tracking', 'underscore', 'urls', 'utils', 'z'],
+    function(capabilities, models, tracking, _, urls, utils, z) {
     'use strict';
 
     var cat_models = models('category');
@@ -10,9 +10,10 @@ define('views/category',
         params = params || {};
 
         var model = cat_models.lookup(category);
+        var name = (model && model.name) || category;
 
         builder.z('type', 'root');
-        builder.z('title', (model && model.name) || category);
+        builder.z('title', name);
         builder.z('show_cats', true);
         builder.z('cat', category);
 
@@ -26,5 +27,7 @@ define('views/category',
             endpoint: urls.api.url('category', [category], params),
             sort: params.sort
         });
+
+        tracking.setVar(5, 'Category', name, 3);
     };
 });
