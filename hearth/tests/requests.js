@@ -6,29 +6,25 @@ var feq_ = a.feq_;
 var contains = a.contains;
 var mock = a.mock;
 
-function MockJQuery() {
-    this.Deferred = $.Deferred;
-    this.ajaxSetup = function() {};
-    this.get = this.post = this.ajax = function() {
-        var def = $.Deferred();
-        def.args = arguments;
-        return def;
-    };
+
+function mock_xhr(args) {
+    var def = $.Deferred();
+    def.args = arguments;
+    return def;
 }
 
 test('requests.get', function(done, fail) {
     mock(
-        'requests',
-        {jquery: new MockJQuery()},
+        'requests', {},
         function(requests) {
+            requests._set_xhr(mock_xhr);
             var def = requests.get('foo/bar');
             // Test that the URL isn't mangled before being sent to jQuery.
             feq_(
                 def.args[0],
                 {
                     url: 'foo/bar',
-                    type: 'GET',
-                    headers: {}
+                    type: 'GET'
                 }
             );
             def.done(function(data) {
@@ -44,7 +40,6 @@ test('requests.get region header', function(done, fail) {
     mock(
         'requests',
         {
-            jquery: new MockJQuery(),
             user: {
                 get_setting: function(setting) {
                     eq_(setting, 'region');
@@ -58,6 +53,7 @@ test('requests.get region header', function(done, fail) {
             }
         },
         function(requests) {
+            requests._set_xhr(mock_xhr);
             var def = requests.get('foo/bar');
             def.resolve(
                 'foo',
@@ -69,15 +65,15 @@ test('requests.get region header', function(done, fail) {
                     }
                 }
             );
-        }
+        }, fail
     );
 });
 
 test('requests.get cached', function(done, fail) {
     mock(
-        'requests',
-        {jquery: new MockJQuery()},
+        'requests', {},
         function(requests) {
+            requests._set_xhr(mock_xhr);
             var uncached = requests.get('foo/bar');
             assert(!('__cached' in uncached));
             uncached.resolve('data to cache');
@@ -88,25 +84,25 @@ test('requests.get cached', function(done, fail) {
                 eq_(data, 'data to cache');
                 done();
             }).fail(fail);
-        }
+        }, fail
     );
 });
 
 var data = {foo: 'bar'};
 var methods_to_test = ['post', 'del', 'put', 'patch'];
 var test_output = {
-    post: {url: 'foo/bar', type: 'POST', data: data, headers: {}},
-    del: {url: 'foo/bar', type: 'DELETE', headers: {}},
-    put: {url: 'foo/bar', type: 'PUT', data: data, headers: {}},
-    patch: {url: 'foo/bar', type: 'PATCH', data: data, headers: {}}
+    post: {url: 'foo/bar', type: 'POST', data: data},
+    del: {url: 'foo/bar', type: 'DELETE'},
+    put: {url: 'foo/bar', type: 'PUT', data: data},
+    patch: {url: 'foo/bar', type: 'PATCH', data: data}
 };
 
 methods_to_test.forEach(function(v) {
     test('requests.' + v, function(done, fail) {
         mock(
-            'requests',
-            {jquery: new MockJQuery()},
+            'requests', {},
             function(requests) {
+                requests._set_xhr(mock_xhr);
                 var def = requests[v]('foo/bar', data);
                 feq_(def.args[0], test_output[v]);
                 def.done(function(data) {
@@ -114,15 +110,15 @@ methods_to_test.forEach(function(v) {
                     done();
                 }).fail(fail);
                 def.resolve('sample data');
-            }
+            }, fail
         );
     });
 
     test('requests.' + v + ' never cached', function(done, fail) {
         mock(
-            'requests',
-            {jquery: new MockJQuery()},
+            'requests', {},
             function(requests) {
+                requests._set_xhr(mock_xhr);
                 var uncached = requests.get('foo/bar');
                 assert(!('__cached' in uncached));
                 uncached.resolve('data to cache');
@@ -139,7 +135,7 @@ methods_to_test.forEach(function(v) {
                     done();
                 }).fail(fail);
                 def.resolve('boop');
-            }
+            }, fail
         );
     });
 });
@@ -149,9 +145,9 @@ methods_to_test.forEach(function(v) {
 
 test('requests.pool methods', function(done, fail) {
     mock(
-        'requests',
-        {jquery: new MockJQuery()},
+        'requests', {},
         function(requests) {
+            requests._set_xhr(mock_xhr);
             var pool = requests.pool();
 
             var orig_req = pool.get('test/foo');
@@ -183,9 +179,9 @@ test('requests.pool methods', function(done, fail) {
 
 test('requests.pool abort', function(done, fail) {
     mock(
-        'requests',
-        {jquery: new MockJQuery()},
+        'requests', {},
         function(requests) {
+            requests._set_xhr(mock_xhr);
             var pool = requests.pool();
 
             var orig_req = pool.get('test/foo');
@@ -194,27 +190,27 @@ test('requests.pool abort', function(done, fail) {
             orig_req.isSuccess = false;
 
             pool.abort();
-        }
+        }, fail
     );
 });
 
 test('requests.pool abort resolution', function(done, fail) {
     mock(
-        'requests',
-        {jquery: new MockJQuery()},
+        'requests', {},
         function(requests) {
+            requests._set_xhr(mock_xhr);
             var pool = requests.pool();
             pool.fail(done);
             pool.abort();
-        }
+        }, fail
     );
 });
 
 test('requests.pool finish', function(done, fail) {
     mock(
-        'requests',
-        {jquery: new MockJQuery()},
+        'requests', {},
         function(requests) {
+            requests._set_xhr(mock_xhr);
             var timing = fail;
             var timing_closure = function() {
                 timing();
@@ -226,15 +222,15 @@ test('requests.pool finish', function(done, fail) {
             // It shouldn't have resolved up until now. Now it should resolve.
             timing = done;
             pool.finish();
-        }
+        }, fail
     );
 });
 
 test('requests.pool finish resolution', function(done, fail) {
     mock(
-        'requests',
-        {jquery: new MockJQuery()},
+        'requests', {},
         function(requests) {
+            requests._set_xhr(mock_xhr);
             var timing = fail;
             var timing_closure = function() {
                 timing();
@@ -250,7 +246,7 @@ test('requests.pool finish resolution', function(done, fail) {
             // It shouldn't have resolved up until now. Now it should resolve.
             timing = done;
             pool.finish();
-        }
+        }, fail
     );
 });
 

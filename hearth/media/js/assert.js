@@ -82,7 +82,7 @@ define('assert', ['underscore'], function(_) {
         }
     );
     */
-    function mock(test_module, mock_objs, runner) {
+    function mock(test_module, mock_objs, runner, failfunc) {
         var stub_map = {};
         var stubbed = _.object(_.pairs(mock_objs).map(function(x) {
             var orig = x[0];
@@ -102,7 +102,6 @@ define('assert', ['underscore'], function(_) {
             return x;
         }));
 
-        console.log(stub_map);
         var context = require.config({
             context: _.uniqueId(),
             map: {'*': stub_map},
@@ -116,7 +115,13 @@ define('assert', ['underscore'], function(_) {
         });
 
         context([test_module], function(module) {
-            runner.apply(this, [module, mock_objs]);
+            try {
+                runner.apply(this, [module, mock_objs]);
+            } catch (e) {
+                if (failfunc) {
+                    failfunc(e);
+                }
+            }
         });
     }
 
