@@ -1,6 +1,6 @@
 define('settings', [], function() {
     return {
-        api_url: 'http://chimney.paas.allizom.org',
+        api_url: 'https://marketplace-dev.allizom.org',
         body_classes: 'nightly'
     };
 });

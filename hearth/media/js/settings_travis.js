@@ -1,5 +1,5 @@
 define('settings_local', [], function() {
     return {
-        api_url: 'http://flue.paas.allizom.org'
+        api_url: 'https://flue.paas.allizom.org'
     };
 });
