@@ -18,6 +18,7 @@ var mimes = {
     'js': 'application/javascript',
     'png': 'image/png',
     'svg': 'image/svg+xml',
+    'webapp': 'application/x-web-app-manifest+json',
     'woff': 'application/font-woff'
 };
 
