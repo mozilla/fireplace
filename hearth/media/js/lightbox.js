@@ -1,5 +1,6 @@
-define('lightbox', ['keys', 'models', 'utils', 'shothandles', 'underscore', 'z'],
-       function(keys, models, utils, handles, _, z) {
+define('lightbox',
+    ['keys', 'models', 'utils', 'shothandles', 'tracking', 'underscore', 'z'],
+    function(keys, models, utils, handles, tracking, _, z) {
 
     var $lightbox = $(document.getElementById('lightbox'));
     var $section = $lightbox.find('section');
@@ -11,6 +12,17 @@ define('lightbox', ['keys', 'models', 'utils', 'shothandles', 'underscore', 'z']
     $lightbox.addClass('shots');
 
     function showLightbox() {
+
+        if (z.context.type === 'leaf') {
+            tracking.trackEvent('App view interactions', 'click', 'Screenshot view');
+        } else if (z.context.type === 'search') {
+            tracking.trackEvent(
+                'Category view interactions',
+                'click',
+                'Screenshot view'
+            );
+        }
+
         var $this = $(this);
         var which = $this.closest('li').index();
         var $tray = $this.closest('.tray');
@@ -151,13 +163,13 @@ define('lightbox', ['keys', 'models', 'utils', 'shothandles', 'underscore', 'z']
     z.page.on('click', '.tray ul a', utils._pd(showLightbox));
 
     // dismiss the lighbox when we click outside it or on the close button.
-    $lightbox.click(function(e) {
+    $lightbox.on('click', function(e) {
         if ($(e.target).is('#lightbox')) {
             hideLightbox();
             e.preventDefault();
         }
     });
-    $lightbox.find('.close').click(utils._pd(hideLightbox));
+    $lightbox.find('.close').on('click', utils._pd(hideLightbox));
 
     // Hide screenshot overlay on back button hit.
     z.page.on('navigate', hideLightbox);

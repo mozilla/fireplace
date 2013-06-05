@@ -1,6 +1,6 @@
 define('buttons',
-    ['browser', 'capabilities', 'format', 'l10n', 'utils', 'z'],
-    function(browser, capabilities, format, l10n, utils, z) {
+    ['browser', 'capabilities', 'format', 'l10n', 'tracking', 'utils', 'z'],
+    function(browser, capabilities, format, l10n, tracking, utils, z) {
 
     var gettext = l10n.gettext;
 
@@ -43,6 +43,13 @@ define('buttons',
         setButton($button, '<span class="spin"></span>',
                   'installing');
 
+        tracking.trackEvent(
+            'Click to install app',
+            product.price ? 'paid' : 'free',
+            product.name + ':' + product.id,
+            $('.button.product').index($button)
+        );
+
         // Reset button if it's been 30 seconds without user action.
         setTimeout(function() {
             if ($button.hasClass('installing')) {
@@ -59,6 +66,13 @@ define('buttons',
                 $installed.show();
                 $how.show();
             }
+
+            tracking.trackEvent(
+                'Successful app install',
+                product.price ? 'paid' : 'free',
+                product.name + ':' + product.id,
+                $('.button.product').index($button)
+            );
         }
         z.apps[product.manifest_url] = z.state.mozApps[product.manifest_url] = installer;
         setButton($button, gettext('Launch'), 'launch install');

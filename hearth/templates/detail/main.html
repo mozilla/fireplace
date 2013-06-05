@@ -144,32 +144,34 @@
   <div>
     <ul class="c">
       {% if this.support_email %}
-        <li class="support-email">
+        <li class="support-email" data-tracking="Support email">
           {{ emaillink(this.support_email, _('Support Email'), class='button alt') }}
         </li>
       {% endif %}
       {% if this.support_url %}
-        <li class="support-url">
+        <li class="support-url" data-tracking="Support site">
           <a class="button alt" rel="external" {{ this.support_url|external_href }}>
             {{ _('Support Site') }}</a>
         </li>
       {% endif %}
       {% if this.homepage %}
-        <li class="homepage">
+        <li class="homepage" data-tracking="Homepage">
           <a class="button alt" rel="external" {{ this.homepage|external_href }}>{{ _('Homepage') }}</a>
         </li>
       {% endif %}
       {% if this.privacy_policy %}
-        <li class="privacy-policy">
+        <li class="privacy-policy" data-tracking="Privacy policy">
           <a class="button alt" href="{{ url('app/privacy', [slug]) }}">
           {{ _('Privacy Policy') }}</a>
         </li>
       {% endif %}
       {% if this.public_stats %}
-        <li class="statistics"><a class="button alt view-stats" rel="external" href="{{ url('app', [slug]) }}/statistics">
-          {{ _('Statistics') }}</a></li>
+        <li class="statistics" data-tracking="Statistics">
+          <a class="button alt view-stats" rel="external" href="{{ url('app', [slug]) }}/statistics">
+          {{ _('Statistics') }}</a>
+        </li>
       {% endif %}
-      <li class="abuse">
+      <li class="abuse" data-tracking="Report abuse">
         <a class="button alt" href="{{ url('app/abuse', [slug]) }}">
         {{ _('Report Abuse') }}</a>
       </li>

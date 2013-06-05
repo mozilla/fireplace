@@ -1,6 +1,6 @@
 define('ratings',
-    ['cache', 'capabilities', 'forms', 'helpers', 'l10n', 'login', 'settings', 'templates', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
-    function(cache, capabilities, forms, helpers, l10n, login, settings, nunjucks, _, utils, urls, user, z) {
+    ['cache', 'capabilities', 'forms', 'helpers', 'l10n', 'login', 'settings', 'templates', 'tracking', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
+    function(cache, capabilities, forms, helpers, l10n, login, settings, nunjucks, tracking, _, utils, urls, user, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -182,6 +182,15 @@ define('ratings',
 
             notify({message: gettext('Your review was posted')});
             z.page.trigger('navigate', urls.reverse('app', [$this.data('app')]));
+
+            tracking.trackEvent('App view interactions', 'click', 'Successful review');
+            tracking.setVar(12, 'Reviewer', 'Reviewer', 1);
+            tracking.trackEvent(
+                'Write a Review',
+                'click',
+                app,
+                data.rating
+            );
 
         }).fail(function() {
             forms.toggleSubmitFormState($this, true);

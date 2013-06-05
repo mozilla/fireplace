@@ -1,6 +1,6 @@
 define('views/app',
-    ['capabilities', 'helpers', 'l10n', 'utils', 'underscore', 'z', 'templates', 'overflow'],
-    function(caps, helpers, l10n, utils, _, z, nunjucks, overflow) {
+    ['capabilities', 'helpers', 'l10n', 'tracking', 'utils', 'underscore', 'z', 'templates', 'overflow'],
+    function(caps, helpers, l10n, tracking, utils, _, z, nunjucks, overflow) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -18,6 +18,8 @@ define('views/app',
         // Toggle description.
         $this.closest('.blurbs').find('.collapsed').toggle();
 
+        tracking.trackEvent('App view interactions', 'click', 'Toggle description');
+
     })).on('click', '.approval-pitch', utils._pd(function() {
         $('#preapproval-shortcut').submit();
 
@@ -26,6 +28,16 @@ define('views/app',
         window.location.hash = 'id=' + $('.product').data('id');
         e.stopPropagation();
     }));
+
+    if (tracking.actions_enabled) {
+        z.page.on('click', '.detail .support li a.button', function(e) {
+            tracking.trackEvent(
+                'App view interaction',
+                'click',
+                this.parentNode.getAttribute('data-tracking')
+            );
+        });
+    }
 
     // Init desktop abuse form modal trigger.
     // The modal is responsive even if this handler isn't removed.
@@ -49,9 +61,12 @@ define('views/app',
         builder.z('pagetitle', gettext('App Details'));
 
         builder.onload('app-data', function() {
-            builder.z('title', builder.results['app-data'].name);
+            var app = builder.results['app-data'];
+            builder.z('title', app.name);
+
             z.page.trigger('populatetray');
             overflow.init();
+
             if (caps.widescreen() && !$('.report-abuse').length) {
                 z.page.append(
                     nunjucks.env.getTemplate('detail/abuse.html').render(
@@ -59,6 +74,16 @@ define('views/app',
                     )
                 );
             }
+
+            tracking.setVar(6, 'App name', app.name, 3);
+            tracking.setVar(8, 'App developer', app.listed_authors[0].name, 3);
+            var source = utils.getVars().src;
+            if (source) {
+                tracking.setVar(9, 'App view source', source, 3);
+            }
+            tracking.setVar(10, 'App price', app.price ? 'paid' : 'free', 3);
+            tracking.setVar(7, 'App ID', app.id, 3);
+
         }).onload('ratings', function() {
             var reviews = $('.detail .reviews li');
             if (reviews.length >= 3) {
