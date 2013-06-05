@@ -21,7 +21,7 @@
     </div>
     <div class="tray previews full"></div>
   {% except %}
-    <div>
+    <div class="detailed-error">
       <h2>{{ _('Oh no!') }}</h2>
       <p>{{ _('The page you were looking for was not found.') }}</p>
     </div>
@@ -74,6 +74,7 @@
       {% endif %}
     {% placeholder %}
       <p class="spinner alt"></p>
+    {% except %}
     {% end %}
   </div>
 </section>
@@ -95,8 +96,8 @@
 {% end %}
 
 <section class="main reviews-wrapper c">
-  <div class="reviews">
-    {% defer (url=apiParams('reviews', {'app': slug}), id='ratings') %}
+  {% defer (url=apiParams('reviews', {'app': slug}), id='ratings') %}
+    <div class="reviews">
       <h3>{{ _('Reviews') }}</h3>
       {% if this.meta.total_count %}
         <ul class="ratings-placeholder-inner">
@@ -131,62 +132,62 @@
           {% endif %}
         </div>
       {% endif %}
-
-    {% placeholder %}
-      <p class="spinner alt padded"></p>
-    {% except %}
-    {% end %}
-  </div>
+    </div>
+  {% placeholder %}
+    <p class="spinner alt padded"></p>
+  {% except %}
+  {% end %}
 </section>
 
+{% defer (url=endpoint, as='app', key=slug) %}
 <section class="main infobox support c">
   <div>
-    {% defer (url=endpoint, as='app', key=slug) %}
-      <ul class="c">
-        {% if this.support_email %}
-          <li class="support-email">
-            {{ emaillink(this.support_email, _('Support Email'), class='button alt') }}
-          </li>
-        {% endif %}
-        {% if this.support_url %}
-          <li class="support-url">
-            <a class="button alt" rel="external" {{ this.support_url|external_href }}>
-              {{ _('Support Site') }}</a>
-          </li>
-        {% endif %}
-        {% if this.homepage %}
-          <li class="homepage">
-            <a class="button alt" rel="external" {{ this.homepage|external_href }}>{{ _('Homepage') }}</a>
-          </li>
-        {% endif %}
-        {% if this.privacy_policy %}
-          <li class="privacy-policy">
-            <a class="button alt" href="{{ url('app/privacy', [slug]) }}">
-            {{ _('Privacy Policy') }}</a>
-          </li>
-        {% endif %}
-        {% if this.public_stats %}
-          <li class="statistics"><a class="button alt view-stats" rel="external" href="{{ url('app', [slug]) }}/statistics">
-            {{ _('Statistics') }}</a></li>
-        {% endif %}
-        <li class="abuse">
-          <a class="button alt" href="{{ url('app/abuse', [slug]) }}">
-          {{ _('Report Abuse') }}</a>
+    <ul class="c">
+      {% if this.support_email %}
+        <li class="support-email">
+          {{ emaillink(this.support_email, _('Support Email'), class='button alt') }}
         </li>
-      </ul>
-      {% if settings.payments_enabled %}
-        {% if this.upsell %}
-          <a id="upsell" class="button alt"
-             href="{{ url('app', [this.upsell.app_slug])|urlparams(src='mkt-detail-upsell') }}">
-             <span class="avail">{{ _('Premium version available') }}</span>
-             <img class="icon" src="{{ upsell.icon_url }}">
-             <span class="name">{{ this.upsell.name }}</span>
-          </a>
-        {% endif %}
       {% endif %}
-    {% end %}
+      {% if this.support_url %}
+        <li class="support-url">
+          <a class="button alt" rel="external" {{ this.support_url|external_href }}>
+            {{ _('Support Site') }}</a>
+        </li>
+      {% endif %}
+      {% if this.homepage %}
+        <li class="homepage">
+          <a class="button alt" rel="external" {{ this.homepage|external_href }}>{{ _('Homepage') }}</a>
+        </li>
+      {% endif %}
+      {% if this.privacy_policy %}
+        <li class="privacy-policy">
+          <a class="button alt" href="{{ url('app/privacy', [slug]) }}">
+          {{ _('Privacy Policy') }}</a>
+        </li>
+      {% endif %}
+      {% if this.public_stats %}
+        <li class="statistics"><a class="button alt view-stats" rel="external" href="{{ url('app', [slug]) }}/statistics">
+          {{ _('Statistics') }}</a></li>
+      {% endif %}
+      <li class="abuse">
+        <a class="button alt" href="{{ url('app/abuse', [slug]) }}">
+        {{ _('Report Abuse') }}</a>
+      </li>
+    </ul>
+    {% if settings.payments_enabled %}
+      {% if this.upsell %}
+        <a id="upsell" class="button alt"
+           href="{{ url('app', [this.upsell.app_slug])|urlparams(src='mkt-detail-upsell') }}">
+           <span class="avail">{{ _('Premium version available') }}</span>
+           <img class="icon" src="{{ upsell.icon_url }}">
+           <span class="name">{{ this.upsell.name }}</span>
+        </a>
+      {% endif %}
+    {% endif %}
   </div>
 </section>
+{% except %}
+{% end %}
 
 <div class="content_ratings">
   {% defer (url=endpoint, as='app', key=slug) %}
@@ -209,6 +210,7 @@
         </div>
       </div>
     {% endif %}
+  {% except %}
   {% end %}
 </div>
 

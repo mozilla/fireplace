@@ -75,8 +75,27 @@ body {
     clear: both;
 }
 
+.detailed-error, .fragment-error {
+    background: #fff;
+}
+
+.detailed-error {
+    padding: 15px;
+}
+
+.fragment-error {
+    display: block;
+    padding: 15px;
+    b {
+        display: block;
+    }
+}
+
 .main {
     margin: 0 auto;
+    .fragment-error {
+        padding: 0;
+    }
 }
 #page > .overlay {
     max-width: 100%;
