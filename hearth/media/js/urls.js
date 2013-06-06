@@ -90,6 +90,9 @@ define('urls',
                 device: _device(),
                 pro: buckets.get_profile()
             };
+            if (args.region === 'worldwide') {
+                delete args.region;
+            }
             if (user.logged_in()) {
                 args._user = user.get_token();
             }

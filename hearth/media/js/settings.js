@@ -13,7 +13,7 @@ define('settings', ['settings_local', 'underscore'], function(settings_local, _)
         tracking_id: 'UA-36116321-6',
 
         REGION_CHOICES_SLUG: {
-            '': 'Worldwide',
+            'worldwide': 'Worldwide',
             'br': 'Brazil',
             'co': 'Colombia',
             'pl': 'Poland',

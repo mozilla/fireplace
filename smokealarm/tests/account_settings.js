@@ -69,7 +69,7 @@ suite.run('/', function(test, waitFor) {
     });
 
     test('Set region to Poland', function(assert) {
-        assert.equal(suite.getFormValues('.account-settings').region, '');
+        assert.equal(suite.getFormValues('.account-settings').region, 'worldwide');
 
         suite.evaluate(function() {
             console.log('[*][phantom] Mocking user settings for "region" to be "Poland"');
