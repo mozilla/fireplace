@@ -44,7 +44,7 @@ define('views/tests', ['assert'], function() {
         };
         builder.start('tests.html');
 
-        builder.z('type', 'leaf');
+        builder.z('type', 'debug');
         builder.z('title', 'Unit Tests');
     };
 });

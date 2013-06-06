@@ -1,6 +1,6 @@
 define('requests',
-    ['cache', 'jquery', 'log', 'user', 'utils'],
-    function(cache, $, log, user, utils) {
+    ['cache', 'defer', 'log', 'user', 'utils'],
+    function(cache, defer, log, user, utils) {
 
     var console = log('req');
 
@@ -62,27 +62,72 @@ define('requests',
 
     */
 
-    function _headers() {
-        // XXX: This will be more pertinent when andym adds the user token header.
-        return {};
+    function _ajax(args) {
+        var xhr = new XMLHttpRequest();
+        var def = defer.Deferred();
+
+        function statusText() {
+            if (xhr.status === 204) {
+                return 'nocontent';
+            } else if (xhr.status === 304) {
+                return 'notmodified';
+            } else if (xhr.status >= 200 && xhr.status < 300) {
+                return 'success';
+            } else {
+                return 'error';
+            }
+        }
+
+        xhr.addEventListener('load', function() {
+            var data = xhr.responseText;
+            if (xhr.getResponseHeader('Content-Type').split(';', 1)[0] === 'application/json') {
+                data = JSON.parse(data);
+            }
+
+            def.resolve(data, statusText(), xhr);
+        }, false);
+
+        xhr.addEventListener('error', function() {
+            var error = xhr.statusText;
+            if (error) {
+                // This cuts off the response code so we can return just the
+                // response code text.
+                error = error.substr(4);
+            }
+            def.reject(xhr, statusText(), error);
+        }, false);
+
+        xhr.open(
+            args.type || 'GET',
+            args.url,
+            true
+            // Auth would go here, but let's not.
+        );
+        var data = args.data;
+        if (typeof data === 'object') {
+            data = utils.urlencode(data);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        }
+        xhr.send(data || undefined);
+
+        return def.promise(xhr);
     }
 
     function get(url) {
         if (cache.has(url)) {
             console.log('GETing from cache', url);
-            return $.Deferred()
-                    .resolve(cache.get(url))
-                    .promise({__cached: true});
+            return defer.Deferred()
+                        .resolve(cache.get(url))
+                        .promise({__cached: true});
         }
         return _get.apply(this, arguments);
     }
 
     function _get(url) {
         console.log('GETing', url);
-        return $.ajax({
+        return _ajax({
             url: url,
-            type: 'GET',
-            headers: _headers()
+            type: 'GET'
         }).done(function(data, status, xhr) {
             console.log('GOT', url);
             cache.set(url, data);
@@ -99,15 +144,15 @@ define('requests',
         });
     }
 
-    function handle_errors(jqxhr, status) {
+    function handle_errors(xhr, status) {
         console.log('Request failed: ', status);
-        if (jqxhr.responseText) {
+        if (xhr.responseText) {
             try {
-                var data = JSON.parse(jqxhr.responseText);
+                var data = JSON.parse(xhr.responseText);
                 if ('error_message' in data) {
                     console.log('Error message: ', data.error_message);
                 } else {
-                    console.log('Response data: ', jqxhr.responseText);
+                    console.log('Response data: ', xhr.responseText);
                 }
             } catch(e) {}
         }
@@ -115,29 +160,26 @@ define('requests',
 
     function del(url) {
         console.log('DELETing', url);
-        return $.ajax({
+        return _ajax({
             url: url,
-            type: 'DELETE',
-            headers: _headers()
+            type: 'DELETE'
         }).fail(handle_errors);
     }
 
     function patch(url, data) {
         console.log('PATCHing', url);
-        return $.ajax({
+        return _ajax({
             url: url,
             type: 'PATCH',
-            headers: _headers(),
             data: data
         }).fail(handle_errors);
     }
 
     function post(url, data) {
         console.log('POSTing', url);
-        return $.ajax({
+        return _ajax({
             url: url,
             type: 'POST',
-            headers: _headers(),
             data: data
         }).done(function(data) {
             console.log('POSTed', url);
@@ -146,10 +188,9 @@ define('requests',
 
     function put(url, data) {
         console.log('PUTing', url);
-        return $.ajax({
+        return _ajax({
             url: url,
             type: 'PUT',
-            headers: _headers(),
             data: data
         }).fail(handle_errors);
     }
@@ -159,7 +200,7 @@ define('requests',
         var requests = [];
         var req_map = {};
 
-        var def = $.Deferred();
+        var def = defer.Deferred();
         var initiated = 0;
         var marked_to_finish = false;
         var closed = false;
@@ -212,7 +253,7 @@ define('requests',
 
         this.abort = function() {
             for (var i = 0, request; request = requests[i++];) {
-                if (request.abort === undefined || request.isSuccess !== false) {
+                if (request.abort === undefined || request.readyState === 4) {
                     continue;
                 }
                 request.abort();
@@ -229,6 +270,8 @@ define('requests',
         del: del,
         put: put,
         patch: patch,
-        pool: function() {return new Pool();}
+        pool: function() {return new Pool();},
+        // This is for testing purposes.
+        _set_xhr: function(func) {_ajax = func;}
     };
 });
