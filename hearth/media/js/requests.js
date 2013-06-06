@@ -120,8 +120,8 @@ define('requests',
         return def.promise(xhr);
     }
 
-    function get(url) {
-        if (cache.has(url)) {
+    function get(url, nocache) {
+        if (cache.has(url) && !nocache) {
             console.log('GETing from cache', url);
             return defer.Deferred()
                         .resolve(cache.get(url))
@@ -130,14 +130,16 @@ define('requests',
         return _get.apply(this, arguments);
     }
 
-    function _get(url) {
+    function _get(url, nocache) {
         console.log('GETing', url);
         return _ajax({
             url: url,
             type: 'GET'
         }).done(function(data, status, xhr) {
             console.log('GOT', url);
-            cache.set(url, data);
+            if (!nocache) {
+                cache.set(url, data);
+            }
 
             if (!xhr) {
                 return;

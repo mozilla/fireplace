@@ -1,4 +1,4 @@
-define('views/tests', ['assert'], function() {
+define('views/tests', ['assert', 'requests'], function(assert, requests) {
     return function(builder) {
         var started = 0;
         var passed = 0;
@@ -43,6 +43,13 @@ define('views/tests', ['assert'], function() {
             $('#c_started').text(started);
         };
         builder.start('tests.html');
+        var scripts = document.querySelectorAll('#page script');
+        for (var i = 0; i < scripts.length; i++) {
+            var script = scripts[i];
+            requests.get(script.getAttribute('src'), true).done(function(data) {
+                eval(data);
+            });
+        }
 
         builder.z('type', 'debug');
         builder.z('title', 'Unit Tests');

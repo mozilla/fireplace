@@ -248,7 +248,7 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
                 $self.val('');
                 $sel[0].click();
             }
-            $self.blur();
+            $self.trigger('blur');
             clearCurrentSuggestions(e);
         });
 
@@ -277,7 +277,7 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
                 return;
             }
             if (e.which == 83) {
-                $self.focus();
+                $self.trigger('focus');
             }
         });
 

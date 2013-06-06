@@ -15,7 +15,7 @@ define('common/ratingwidget', ['jquery'], function($) {
             var setStars = function(n) {
                 if (rating == n) return;
                 var e = $widget.find(format('[value="{0}"]', n));
-                e.click();
+                e.trigger('click');
                 showStars(n);
                 rating = n;
             };
@@ -32,7 +32,7 @@ define('common/ratingwidget', ['jquery'], function($) {
                 rs += format('<label data-stars="{0}">{1}<input required type="radio" name="rating"{2} value="{3}"></label>',
                              [i, ngettext('{n} star', '{n} stars', {n: i}), checked, i]);
             }
-            $widget.click(function(evt) {
+            $widget.on('click', function(evt) {
                 var t = $(evt.target);
                 if (t.is('input[type=radio]')) {
                     showStars(rating = t.attr('value'));
@@ -42,14 +42,14 @@ define('common/ratingwidget', ['jquery'], function($) {
                         t.attr('checked', true);
                     }
                 }
-            }).mouseover(function(evt) {
+            }).on('mouseover', function(evt) {
                 var t = $(evt.target);
                 if (t.attr('data-stars')) {
                     showStars(t.attr('data-stars'));
                 }
-            }).mouseout(function(evt) {
+            }).on('mouseout', function(evt) {
                 showStars(rating || 0);
-            }).bind('touchmove touchend', function(e) {
+            }).on('touchmove touchend', function(e) {
                 var wid = $widget.width();
                 var left = $widget.offset().left;
                 var r = (e.originalEvent.touches[0].clientX - left) / wid * 5 + 1;

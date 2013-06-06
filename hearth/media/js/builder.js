@@ -44,16 +44,43 @@ if (typeof define !== 'function') {
     return;
 }
 
-define(
-    'builder',
-    ['templates', 'helpers', 'l10n', 'models', 'notification', 'requests', 'settings', 'underscore', 'z', 'nunjucks.compat'],
-    function(nunjucks, helpers, l10n, models, notification, requests, settings, _, z) {
+define('builder',
+    ['templates', 'helpers', 'l10n', 'models', 'requests', 'settings', 'z', 'nunjucks.compat'],
+    function(nunjucks, helpers, l10n, models, requests, settings, z) {
 
     var SafeString = nunjucks.require('runtime').SafeString;
 
     var counter = 0;
 
     var gettext = l10n.gettext;
+
+    var page = document.getElementById('page');
+
+    function parse_and_find(snippet, selector) {
+        var dom = document.implementation.createHTMLDocument();
+        dom.body.innerHTML = snippet;
+        return dom.body.querySelector(selector);
+    }
+
+    function parse_and_replace(snippet, to_replace) {
+        var dom = document.implementation.createHTMLDocument();
+        dom.body.innerHTML = snippet;
+        var parent = to_replace.parentNode;
+        while (dom.body.childNodes.length) {
+            var child = dom.body.childNodes[0];
+            dom.body.removeChild(child);
+            parent.insertBefore(child, to_replace);
+        }
+        parent.removeChild(to_replace);
+    }
+
+    function fire(el, event_name) {
+        var args = Array.prototype.slice.call(arguments, 2);
+        var e = document.createEvent('Event');
+        e.initEvent.apply(e, [event_name, true, false].concat(args));
+        el.dispatchEvent(e);
+        return e;
+    }
 
     function Builder() {
         var env = this.env = new nunjucks.Environment([], {autoescape: true});
@@ -69,26 +96,28 @@ define(
         var pool = requests.pool();
 
         function make_paginatable(injector, placeholder, target) {
-            var els = placeholder.find('.loadmore button');
-            if (!els.length) {
+            var el = placeholder.querySelector('.loadmore button');
+            if (!el) {
                 return;
             }
 
-            els.on('click', function() {
+            el.addEventListener('click', function(e) {
                 // Call the injector to load the next page's URL into the
                 // more button's parent. `target` is the selector to extract
                 // from the newly built HTML to inject into the currently
                 // visible page.
-                injector(els.data('url'), els.parent(), target).done(function() {
-                    z.page.trigger('loaded_more');
+                injector(el.getAttribute('data-url'), el.parentNode, target).done(function() {
+                    fire(page, 'loaded_more');
                 }).fail(function() {
-                    notification.notification({message: gettext('Failed to load the next page.')});
+                    // TODO: Move this into the content rather than showing a notification.
+                    // TODO: Provide an option to retry
+                    fire(document.body, 'notification', gettext('Failed to load the next page.'));
                 });
-            });
+            }, false);
         }
 
         function trigger_fragment_loaded(id) {
-            z.page.trigger('fragment_loaded', [id || null]);
+            fire(page, 'fragment_loaded', id || null);
         }
 
         // This pretends to be the nunjucks extension that does the magic.
@@ -125,15 +154,14 @@ define(
                             console.groupEnd();
                         }
                         var content = '';
-                        if (empty && _.isArray(data) && data.length === 0) {
+                        if (empty && Array.isArray(data) && data.length === 0) {
                             content = empty();
                         } else {
                             context.ctx.this = data;
                             content = body();
                         }
                         if (extract) {
-                            var parsed = $($.parseHTML(content));
-                            content = $(parsed.filter(extract).get().concat(parsed.find(extract).get())).children();
+                            content = parse_and_find(content, extract).innerHTML;
                         }
                         return content;
                     }
@@ -155,7 +183,7 @@ define(
                                 if (plucked) {
                                     resp = resp[signature.pluck];
                                 }
-                                if (_.isArray(resp)) {
+                                if (Array.isArray(resp)) {
                                     for (var i = 0; i < resp.length; i++) {
                                         resp[i] = uncaster(resp[i]);
                                     }
@@ -168,17 +196,21 @@ define(
                         });
                         if (signature.paginate) {
                             pool.done(function() {
-                                make_paginatable(injector, $('#' + uid), signature.paginate);
+                                make_paginatable(injector, document.getElementById(uid), signature.paginate);
                             });
                         }
                         return;
                     }
 
                     request.done(function(data) {
-                        var el = $('#' + uid);
+                        var el = document.getElementById(uid);
                         context.ctx['response'] = data;
                         var content = get_result(data);
-                        (replace ? replace.replaceWith : el.html).apply(replace || el, [content]);
+                        if (replace) {
+                            parse_and_replace(content, replace);
+                        } else {
+                            el.innerHTML = content;
+                        }
                         if (signature.paginate) {
                             make_paginatable(injector, el, signature.paginate);
                         }
@@ -186,10 +218,12 @@ define(
                         trigger_fragment_loaded(signature.id || null);
 
                     }).fail(function() {
-                        var el = $('#' + uid);
-                        (replace ? replace.replaceWith : el.html).apply(
-                            replace || el,
-                            [except ? except() : env.getTemplate(settings.fragment_error_template).render(helpers)]);
+                        var content = except ? except() : env.getTemplate(settings.fragment_error_template).render(helpers);
+                        if (replace) {
+                            parse_and_replace(content, replace);
+                        } else {
+                            document.getElementById(uid).innerHTML = content;
+                        }
                     });
                     return request;
                 };
@@ -198,19 +232,29 @@ define(
                     out = '<div class="loading">' + (placeholder ? placeholder() : '') + '</div>';
                 }
 
-                out = '<div id="' + uid + '" class="placeholder">' + out + '</div>';
-                var safestring = new SafeString(out);
-                return safestring;
+                return new SafeString('<div id="' + uid + '" class="placeholder">' + out + '</div>');
             }
         };
         this.env.addExtension('defer', defer_runner);
 
         this.start = function(template, defaults) {
-            z.page.trigger('build_start');
-            z.page.html(env.getTemplate(template).render(_.defaults(defaults || {}, helpers)));
+            fire(page, 'build_start');
+
+            var context = helpers;
+            if (defaults) {
+                context = defaults;
+                for (var h in helpers) {
+                    if (!(h in context)) {
+                        context[h] = helpers[h];
+                    }
+                }
+            }
+
+            page.innerHTML = env.getTemplate(template).render(context);
             if (has_cached_elements) {
                 trigger_fragment_loaded();
             }
+
             return this;
         };
 
@@ -224,12 +268,18 @@ define(
 
         this.finish = function() {
             pool.always(function() {
-                z.page.trigger('loaded');
+                fire(page, 'loaded');
             });
             pool.finish();
         };
 
-        var context = _.once(function() {return z.context = {};});
+        // Create a closure that constructs a new context only when it's needed.
+        var context = (function () {
+            var context;
+            return function() {
+                return context || (context = z.context = {});
+            };
+        })();
         this.z = function(key, val) {
             context()[key] = val;
             switch (key) {
@@ -242,14 +292,22 @@ define(
                     document.title = val;
                     break;
                 case 'type':
-                    z.body.attr('data-page-type', val);
+                    document.body.setAttribute('data-page-type', val);
                     break;
             }
         };
     }
 
+    var last_builder;
     return {
-        getBuilder: function() {return new Builder();}
+        getBuilder: function() {
+            if (last_builder) {
+                fire(page, 'unloading');
+                last_builder.terminate();
+            }
+            return last_builder = new Builder();
+        },
+        getLastBuilder: function() {return last_builder;}
     };
 
 });

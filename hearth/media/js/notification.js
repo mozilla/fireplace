@@ -118,6 +118,10 @@ define('notification', ['capabilities', 'helpers', 'jquery', 'templates', 'z'], 
     });
     z.body.append(confirmationEl);
 
+    z.win.on('notification', function(text) {
+        notification({message: text});
+    });
+
     return {
         notification: notification,
         confirmation: confirmation

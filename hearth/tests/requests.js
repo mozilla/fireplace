@@ -88,6 +88,22 @@ test('requests.get cached', function(done, fail) {
     );
 });
 
+test('requests.get nocache', function(done, fail) {
+    mock(
+        'requests', {},
+        function(requests) {
+            requests._set_xhr(mock_xhr);
+            var uncached = requests.get('foo/bar', true);
+            assert(!('__cached' in uncached));
+            uncached.resolve('data to cache');
+
+            var def = requests.get('foo/bar', true);
+            assert(!('__cached' in uncached));
+            done();
+        }, fail
+    );
+});
+
 var data = {foo: 'bar'};
 var methods_to_test = ['post', 'del', 'put', 'patch'];
 var test_output = {

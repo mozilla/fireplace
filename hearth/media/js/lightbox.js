@@ -41,7 +41,7 @@ define('lightbox',
         }
 
         // set up key bindings
-        z.win.bind('keydown.lightboxDismiss', function(e) {
+        z.win.on('keydown.lightboxDismiss', function(e) {
             switch (e.which) {
                 case keys.ESCAPE:
                     e.preventDefault();
@@ -148,7 +148,7 @@ define('lightbox',
             $lightbox.hide();
         }, 500);
         ghettoFresh();
-        z.win.unbind('keydown.lightboxDismiss');
+        z.win.off('keydown.lightboxDismiss');
     }
 
     // prevent mouse cursors from dragging these images.
