@@ -48,7 +48,7 @@
         <a href="javascript:" class="button alt logout only-logged-in">{{ _('Sign Out') }}</a>
         <a href="javascript:" class="button alt persona only-logged-out">{{ _('Sign In / Sign Up') }}</a>
         {% if user.get_permission('reviewer') %}
-          <a href="/reviewers/apps/queue/" class="button alt only-logged-in">{{ _('Reviewer Tools') }}</a>
+          <a href="/reviewers/apps/queue/" class="button alt only-logged-in reviewer-tools">{{ _('Reviewer Tools') }}</a>
         {% endif %}
       </p>
     </footer>
