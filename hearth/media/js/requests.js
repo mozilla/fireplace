@@ -78,7 +78,22 @@ define('requests',
             }
         }
 
+        function error() {
+            var error = xhr.statusText;
+            if (error) {
+                // This cuts off the response code so we can return just the
+                // response code text.
+                error = error.substr(4);
+            }
+            def.reject(xhr, statusText(), error);
+        }
+
         xhr.addEventListener('load', function() {
+            var statusCode = xhr.status / 100 | 0;
+            if (statusCode < 2 || statusCode > 3) {
+                return error();
+            }
+
             var data = xhr.responseText;
             if (xhr.getResponseHeader('Content-Type').split(';', 1)[0] === 'application/json') {
                 data = JSON.parse(data);
@@ -87,15 +102,7 @@ define('requests',
             def.resolve(data, statusText(), xhr);
         }, false);
 
-        xhr.addEventListener('error', function() {
-            var error = xhr.statusText;
-            if (error) {
-                // This cuts off the response code so we can return just the
-                // response code text.
-                error = error.substr(4);
-            }
-            def.reject(xhr, statusText(), error);
-        }, false);
+        xhr.addEventListener('error', error, false);
 
         xhr.open(
             args.type || 'GET',
