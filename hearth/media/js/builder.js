@@ -39,7 +39,7 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports.extensions = [new defer_parser()];
 }
 
-// No need to install the extensions if require.js isn't around.
+// No need to install the extensions if AMD isn't around.
 if (typeof define !== 'function') {
     return;
 }
@@ -55,6 +55,13 @@ define('builder',
     var gettext = l10n.gettext;
 
     var page = document.getElementById('page');
+    if (!page) {
+        // We can't run without a <div id="page">
+        console.error('Could not start the builder; #page not found!');
+        return;
+    }
+
+    var error_template = nunjucks.env.getTemplate(settings.fragment_error_template).render(helpers);
 
     function parse_and_find(snippet, selector) {
         var dom = document.implementation.createHTMLDocument();
@@ -96,6 +103,10 @@ define('builder',
         var pool = requests.pool();
 
         function make_paginatable(injector, placeholder, target) {
+            if (!placeholder) {
+                return;
+            }
+
             var el = placeholder.querySelector('.loadmore button');
             if (!el) {
                 return;
@@ -161,7 +172,12 @@ define('builder',
                             content = body();
                         }
                         if (extract) {
-                            content = parse_and_find(content, extract).innerHTML;
+                            try {
+                                content = parse_and_find(content, extract).innerHTML;
+                            } catch (e) {
+                                console.error('There was an error extracting the result from the rendered response.');
+                                content = error_template;
+                            }
                         }
                         return content;
                     }
@@ -204,6 +220,7 @@ define('builder',
 
                     request.done(function(data) {
                         var el = document.getElementById(uid);
+                        if (!el) return;
                         context.ctx['response'] = data;
                         var content = get_result(data);
                         if (replace) {
@@ -218,11 +235,13 @@ define('builder',
                         trigger_fragment_loaded(signature.id || null);
 
                     }).fail(function() {
-                        var content = except ? except() : env.getTemplate(settings.fragment_error_template).render(helpers);
+                        var content = except ? except() : error_template;
                         if (replace) {
                             parse_and_replace(content, replace);
                         } else {
-                            document.getElementById(uid).innerHTML = content;
+                            var el = document.getElementById(uid);
+                            if (!el) return;
+                            el.innerHTML = content;
                         }
                     });
                     return request;

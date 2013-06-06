@@ -21,7 +21,7 @@ define('views/app',
         tracking.trackEvent('App view interactions', 'click', 'Toggle description');
 
     })).on('click', '.approval-pitch', utils._pd(function() {
-        $('#preapproval-shortcut').submit();
+        $('#preapproval-shortcut').trigger('submit');
 
     })).on('click', '.product-details .icon', utils._pd(function(e) {
         // When I click on the icon, append `#id=<id>` to the URL.

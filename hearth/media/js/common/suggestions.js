@@ -214,7 +214,7 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
         var pollVal = 0;
 
         if (capabilities.touch) {
-            $self.focus(function() {
+            $self.on('focus', function() {
                 // If we've already got a timer, clear it.
                 if (pollVal !== 0) {
                     clearInterval(pollVal);
@@ -226,8 +226,8 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
                 }, 150);
             });
         } else {
-            $self.keydown(gestureHandler).bind('keyup paste',
-                                               _.throttle(inputHandler, 250));
+            $self.on('keydown', gestureHandler)
+                 .on('keyup paste', _.throttle(inputHandler, 250));
         }
 
         function clearCurrentSuggestions(e) {
@@ -239,29 +239,29 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
             $self.trigger('dismissed');
         }
 
-        $self.blur(clearCurrentSuggestions);
-        $form.submit(function(e) {
+        $self.on('blur', clearCurrentSuggestions);
+        $form.on('submit', function(e) {
             var $sel = $results.find('.sel');
-            if ($sel.length && $sel.eq(0).attr('href') != '#') {
+            if ($sel.length && $sel.eq(0).attr('href') !== '#') {
                 e.stopPropagation();
                 e.preventDefault();
                 $self.val('');
-                $sel[0].click();
+                $sel.first().trigger('click');
             }
             $self.trigger('blur');
             clearCurrentSuggestions(e);
         });
 
-        $results.delegate('li, p', 'hover', function() {
+        $results.on('hover', 'li, p', function() {
             $results.find('.sel').removeClass('sel');
             $results.addClass('sel');
             $(this).find('a').addClass('sel');
-        }).delegate('a', 'click', function() {
+        }).on('click', 'a', function() {
             clearCurrentSuggestions();
             $self.val('');
         });
 
-        $results.bind('highlight', function(e, val) {
+        $results.on('highlight', function(e, val) {
             // If an item starts with `val`, wrap the matched text with boldness.
             $results.find('ul a span').highlightTerm(val);
             $results.addClass('visible');
@@ -270,9 +270,9 @@ define('common/suggestions', ['capabilities', 'keys', 'utils', 'z'], function(ca
             }
         });
 
-        $results.bind('dismiss', clearCurrentSuggestions);
+        $results.on('dismiss', clearCurrentSuggestions);
 
-        z.doc.keyup(function(e) {
+        z.doc.on('keyup', function(e) {
             if (utils.fieldFocused(e)) {
                 return;
             }
