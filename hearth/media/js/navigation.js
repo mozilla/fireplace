@@ -163,7 +163,7 @@ define('navigation',
             params: params,
             path: url
         };
-        var scrollTop = z.doc.scrollTop();
+        var scrollTop = window.pageYOffset;
         var state_method = history.pushState;
 
         if (preserveScroll) {

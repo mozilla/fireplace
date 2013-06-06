@@ -51,7 +51,8 @@ define('common/ratingwidget', ['jquery'], function($) {
                 showStars(rating || 0);
             }).on('touchmove touchend', function(e) {
                 var wid = $widget.width();
-                var left = $widget.offset().left;
+                var widget = $widget[0];
+                var left = widget.getBoundingClientRect().left + window.pageXOffset - document.body.clientLeft;
                 var r = (e.originalEvent.touches[0].clientX - left) / wid * 5 + 1;
                 r = Math.min(Math.max(r, 1), 5) | 0;
                 setStars(r);
