@@ -55,30 +55,40 @@ test('no carrier+region', function(done) {
 });
 
 test('carrier+region for Telefónica España SIM via querystring', function(done, fail) {
+    var failed = false;
     function update_settings(data) {
         try {
             eq_(data.carrier, 'telefonica');
             eq_(data.region, 'es');
-            done();
         } catch(e) {
             fail(e);
+            failed = true;
         }
     }
     mock(
         'mobilenetwork',
         {
+            login: {login: function() {}},
             user: {
                 get_setting: function() { return null; },
                 get_settings: function() { return {}; },
+                logged_in: function() { return false; },
+                set_token: function() {},
+                update_permissions: function() {},
                 update_settings: update_settings
             },
             utils: {
                 _pd: utils._pd,
                 getVars: function() { return {mcc: '214', mnc: '005'}; },
+                urlencode: utils.urlencode,
+                urlparams: utils.urlparams
             }
         }, function(mobilenetwork) {
             user.clear_settings();
             mobilenetwork.detectMobileNetwork({}, true);
+            if (!failed) {
+                done();
+            }
         }
     );
 });
