@@ -90,7 +90,7 @@ define('buttons',
         $('.button.product:not([disabled])').each(function() {
             var $this = $(this);
             if (!$this.hasClass(device)) {
-                $this.attr('disabled', true).addClass('incompatible');
+                $this.attr('disabled', true).addClass('incompatible disabled');
             }
         });
     });
