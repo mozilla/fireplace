@@ -45,7 +45,7 @@ define('views/feedback',
         e.stopPropagation();
         // Focus the form if we're on the feedback page.
         if ($('.main.feedback:not(.modal)').length) {
-            $('.simple-field textarea').focus();
+            $('.simple-field textarea').trigger('focus');
             return;
         }
         addFeedbackModal();

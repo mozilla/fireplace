@@ -10,7 +10,7 @@ define('navigation',
         {path: '/', type: 'root'}
     ];
     var param_whitelist = ['q', 'sort', 'cat'];
-    var last_bobj = null;
+    var initialized = false;
 
     function extract_nav_url(url) {
         // This function returns the URL that we should use for navigation.
@@ -63,10 +63,8 @@ define('navigation',
             return;
         }
 
-        if (last_bobj) {
-            z.win.trigger('unloading');  // Tell the world that we're cleaning stuff up.
-        }
-        last_bobj = views.build(view[0], view[1], state.params);
+        views.build(view[0], view[1], state.params);
+        initialized = true;
         z.win.trigger('navigating', [popped]);
         state.type = z.context.type;
         state.title = z.context.title;
@@ -165,7 +163,7 @@ define('navigation',
             params: params,
             path: url
         };
-        var scrollTop = z.doc.scrollTop();
+        var scrollTop = window.pageYOffset;
         var state_method = history.pushState;
 
         if (preserveScroll) {
@@ -179,11 +177,6 @@ define('navigation',
             return;
         }
 
-        // Terminate any outstanding requests.
-        if (last_bobj) {
-            last_bobj.terminate();
-        }
-
         // Update scrollTop for current history state.
         if (stack.length && scrollTop !== stack[0].scrollTop) {
             stack[0].scrollTop = scrollTop;
@@ -191,7 +184,7 @@ define('navigation',
             history.replaceState(stack[0], false, stack[0].path);
         }
 
-        if (!last_bobj || divert) {
+        if (!initialized || divert) {
             // If we're redirecting or we've never loaded a page before,
             // use replaceState instead of pushState.
             state_method = history.replaceState;

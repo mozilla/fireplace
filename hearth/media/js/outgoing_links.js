@@ -4,7 +4,7 @@ define('outgoing_links', ['capabilities', 'z'], function(capabilities, z) {
     // e.g. http://outgoing.mozilla.org/v1/b2d58f443178ce1de2ef80bb57dcc80211232c8b/http%3A//wvtc.net/
     // ...will display as http://wvtc.net/
     //
-    z.win.bind('loaded', function mungeLinks() {
+    z.win.on('loaded', function() {
 
         // Hijack external links if we're within the app.
         if (capabilities.chromeless) {
@@ -20,7 +20,7 @@ define('outgoing_links', ['capabilities', 'z'], function(capabilities, z) {
             if (capabilities.chromeless) {
                 $a.attr('target', '_blank');
             }
-            $a.click(function(e) {
+            $a.on('click', function(e) {
                 // Change it to the outgoing URL:
                 $a.attr('href', outgoing);
                 setTimeout(function() {

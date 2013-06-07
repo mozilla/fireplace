@@ -18,7 +18,7 @@ define('login',
         var $this = $(this);
         $this.addClass('loading-submit');
         startLogin().always(function() {
-            $this.removeClass('loading-submit').blur();
+            $this.removeClass('loading-submit').trigger('blur');
         }).done(function() {
             notification.notification({message: gettext('You have been signed in')});
         });

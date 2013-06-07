@@ -4,7 +4,6 @@ import time
 
 
 blacklist = [
-    'jquery.cookie.js',
     'require.js',
     'settings_inferno.js',
     'settings_local.js',

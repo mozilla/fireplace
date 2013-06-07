@@ -16,7 +16,7 @@ define('views/search',
             $btns = $('.header-button');
 
         if ($this.hasClass('search-clear')) {
-            $('#search-q').val('').focus();
+            $('#search-q').val('').trigger('focus');
         }
     }));
 
@@ -102,7 +102,7 @@ define('views/search',
             z.page.trigger('navigate', urls.reverse('debug'));
             return;
         }
-        $q.blur();
+        $q.trigger('blur');
         z.page.trigger('search', parsePotatoSearch({q: query}));
     });
 
