@@ -60,7 +60,7 @@ define('buttons',
         var $button = getButton(product);
         if (installedNow) {
             var $installed = $('#installed'),
-                $how = $installed.find('.' + browser.platform);
+                $how = $installed.find('.' + browser);
             // Supported: Mac, Windows, or Linux.
             if ($how.length) {
                 $installed.show();
