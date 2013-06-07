@@ -2,48 +2,48 @@
 
 #notification {
     background-color: #3b3b3b;
-    border-radius: 4px 4px 0 0;
     bottom: 0;
     color: #fff;
     cursor: pointer;
     font-family: "MozTT", $open-stack;
     grain();
     height: 62px;
-    left: 50%;
-    line-height: 1.4em;
-    max-width: 600px;
-    min-height: 62px;
-    padding: 10px;
+    left: 0;
+    line-height: 42px; // height less padding.
+    margin: 0 auto;
+    padding: 10px 15px;
     position: fixed;
-    transform(unquote('translate(-50%, 110%)'));
+    right: 0;
+    transform(translateY(62px));
+    // If this duration is increased update the duration in notification.js
+    // to ensure hiding the notification only happens when transition is complete.
     transition-duration(unquote('.3s, .3s, .3s, .3s'));
     transition-property(unquote('transform, -moz-transform, -webkit-transform, -ms-transform'));
     width: 100%;
     z-index: 9999;
-
     &.show {
-        transform(unquote('translate(-50%, 0%)'));
+        transform(translateY(0));
+        transition-duration(unquote('.3s, .3s, .3s, .3s'));
+        transition-property(unquote('transform, -moz-transform, -webkit-transform, -ms-transform'));
+    }
+    &.hidden {
+        display: none;
     }
 }
 
 #notification-content {
-    display: block;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform(unquote('translate(-50%, -50%)'));
-    width: 75%;
-
+    display: inline-block;
+    line-height: 1.5;
+    vertical-align: middle;
     b {
       text-transform: uppercase;
       color: #0995b0;
   }
 }
 
-@media (max-width: 600px) {
+@media (min-width: 600px) {
     #notification {
-        border-radius: 0;
-        max-width: none;
-        right: 0;
+        border-radius: 4px 4px 0 0;
+        max-width: 600px;
     }
 }
