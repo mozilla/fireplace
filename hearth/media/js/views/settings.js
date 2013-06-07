@@ -1,6 +1,6 @@
 define('views/settings',
-    ['l10n', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
-    function(l10n, notification, requests, urls, user, utils, z) {
+    ['common/linefit', 'l10n', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
+    function(linefit, l10n, notification, requests, urls, user, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -37,7 +37,10 @@ define('views/settings',
         requests.patch(urls.api.url('settings'), data)
                 .done(completion.resolve)
                 .fail(completion.reject);
-    })).on('logged_in', update_settings);
+    })).on('logged_in', update_settings)
+       .on('loaded', function() {
+        $('.toggles a').linefit();
+    });
 
     return function(builder) {
         builder.start('settings/main.html');
