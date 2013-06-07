@@ -45,7 +45,6 @@ require.config({
             'navigation',
             'outgoing_links',
             'overlay',
-            'paginator',
             'previews',
             'ratings',
             'settings',

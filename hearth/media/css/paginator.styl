@@ -4,12 +4,18 @@
     list-style: none;
     position: relative;
     padding: 15px;
+    span {
+        display: none;
+    }
     button {
         display: block;
         margin: auto;
         max-width: 400px;
         padding: 0;
         width: 100%;
+        &.hide, &:not(.hide) + .spinner {
+            display: none;
+        }
     }
     .throbber {
         display: none;
@@ -34,6 +40,11 @@
             animation(unquote('spin 1s linear infinite'));
         }
     }
+}
+
+.loadmore.pagination-error span.error-text {
+    display: block;
+    text-align: center;
 }
 
 .listing .loadmore {

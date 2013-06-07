@@ -45,14 +45,12 @@ if (typeof define !== 'function') {
 }
 
 define('builder',
-    ['templates', 'helpers', 'l10n', 'models', 'requests', 'settings', 'z', 'nunjucks.compat'],
-    function(nunjucks, helpers, l10n, models, requests, settings, z) {
+    ['templates', 'helpers', 'models', 'requests', 'settings', 'z', 'nunjucks.compat'],
+    function(nunjucks, helpers, models, requests, settings, z) {
 
     var SafeString = nunjucks.require('runtime').SafeString;
 
     var counter = 0;
-
-    var gettext = l10n.gettext;
 
     var page = document.getElementById('page');
     if (!page) {
@@ -61,7 +59,11 @@ define('builder',
         return;
     }
 
-    var error_template = nunjucks.env.getTemplate(settings.fragment_error_template).render(helpers);
+    function render(template, context, env) {
+        return (env || nunjucks.env).getTemplate(template).render(context);
+    }
+
+    var error_template = render(settings.fragment_error_template, helpers);
 
     function parse_and_find(snippet, selector) {
         var dom = document.implementation.createHTMLDocument();
@@ -89,6 +91,18 @@ define('builder',
         return e;
     }
 
+    function extend(base, extension, defaults) {
+        for (var i in extension) {
+            if (defaults && i in base) {
+                continue;
+            }
+            if (extension.hasOwnProperty(i)) {
+                base[i] = extension[i];
+            }
+        }
+        return base;
+    }
+
     function Builder() {
         var env = this.env = new nunjucks.Environment([], {autoescape: true});
         env.dev = nunjucks.env.dev;
@@ -104,6 +118,7 @@ define('builder',
 
         function make_paginatable(injector, placeholder, target) {
             if (!placeholder) {
+                console.log('No element to paginate');
                 return;
             }
 
@@ -113,16 +128,20 @@ define('builder',
             }
 
             el.addEventListener('click', function(e) {
+                el.classList.add('hide');
+                el.parentNode.classList.remove('pagination-error');
                 // Call the injector to load the next page's URL into the
                 // more button's parent. `target` is the selector to extract
                 // from the newly built HTML to inject into the currently
                 // visible page.
-                injector(el.getAttribute('data-url'), el.parentNode, target).done(function() {
+                var url = el.getAttribute('data-url');
+                injector(url, el.parentNode, target).done(function() {
                     fire(page, 'loaded_more');
                 }).fail(function() {
-                    // TODO: Move this into the content rather than showing a notification.
-                    // TODO: Provide an option to retry
-                    fire(document.body, 'notification', gettext('Failed to load the next page.'));
+                    url += (url.indexOf('?') + 1 ? '&' : '?') + '_bust=' + (new Date()).getTime();
+                    var ctx = extend({more_url: url}, helpers);
+                    parse_and_replace(render(settings.pagination_error_template, ctx), el.parentNode);
+                    make_paginatable(injector, placeholder, target);
                 });
             }, false);
         }
@@ -235,13 +254,10 @@ define('builder',
                         trigger_fragment_loaded(signature.id || null);
 
                     }).fail(function() {
-                        var content = except ? except() : error_template;
-                        if (replace) {
-                            parse_and_replace(content, replace);
-                        } else {
+                        if (!replace) {
                             var el = document.getElementById(uid);
                             if (!el) return;
-                            el.innerHTML = content;
+                            el.innerHTML = except ? except() : error_template;
                         }
                     });
                     return request;
@@ -261,15 +277,10 @@ define('builder',
 
             var context = helpers;
             if (defaults) {
-                context = defaults;
-                for (var h in helpers) {
-                    if (!(h in context)) {
-                        context[h] = helpers[h];
-                    }
-                }
+                extend(context, helpers, true);
             }
 
-            page.innerHTML = env.getTemplate(template).render(context);
+            page.innerHTML = render(template, context, env);
             if (has_cached_elements) {
                 trigger_fragment_loaded();
             }

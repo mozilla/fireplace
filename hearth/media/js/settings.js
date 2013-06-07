@@ -5,6 +5,7 @@ define('settings', ['settings_local', 'underscore'], function(settings_local, _)
         simulate_nav_pay: false,
 
         fragment_error_template: 'errors/fragment.html',
+        pagination_error_template: 'errors/pagination.html',
 
         payments_enabled: true,
         tracking_enabled: false,

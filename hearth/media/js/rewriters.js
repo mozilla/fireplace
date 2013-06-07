@@ -19,6 +19,7 @@ define('rewriters',
 
             delete new_qs.offset;
             delete new_qs.limit;
+            delete new_qs._bust;
             var old_url = utils.urlparams(new_base, new_qs);
             console.log('Attempting to rewrite', old_url);
             if (!(old_url in c)) {
