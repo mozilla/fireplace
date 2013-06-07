@@ -12,6 +12,7 @@ blacklist = [
     'suggestions.js',
 
     'splash.styl.css',
+    'suggestions.styl.css',
 ]
 
 output = []
