@@ -277,7 +277,7 @@ define('builder',
 
             var context = helpers;
             if (defaults) {
-                extend(context, helpers, true);
+                context = extend(defaults, helpers, true);
             }
 
             page.innerHTML = render(template, context, env);
