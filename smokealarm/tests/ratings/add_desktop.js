@@ -32,4 +32,20 @@ suite.run('/app/can_rate', function(test, waitFor) {
         assert.visible('.compose-review.modal');
     });
 
+    test('Verify form is filled and button is enabled.', function(assert) {
+        suite.press('.ratingwidget label:last-child');
+        suite.fill('.add-review-form', {body: 'this is a test'});
+        assert.selectorExists('.add-review-form button:not([disabled])');
+        suite.press('.add-review-form button');
+    });
+
+    waitFor(function() {
+        return !suite.visible('.compose-review.modal');
+    });
+
+    test('Verify form is submitted and cloak is gone', function(assert) {
+        assert.invisible('.compose-review.modal');
+        assert.selectorDoesNotExist('.cloak.show');
+    });
+
 });
