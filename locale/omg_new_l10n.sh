@@ -27,10 +27,24 @@ function confirm {
     fi
 }
 
+if [ ! -d "locale" ]; then
+    echo "Sorry, please run from the root of the project, eg.  ./locale/omg_new_l10n.sh"
+    exit 1
+fi
+
 echo "Alright, here we go..."
 
+if confirm "Update to the latest code?"; then
+    git co master
+    git pull
+fi
+
+if confirm "Extract new strings?"; then
+    echo "[ALERT] I don't actually know how to extract strings!  Not extracting."
+fi
+
 if confirm "Merge new strings to .po files?"; then
-    #pushd locale > /dev/null
+    pushd locale > /dev/null
 
     echo "Merging any new keys..."
     for i in `find . -name "messages.po" | grep -v "en_US"`; do
@@ -43,34 +57,32 @@ if confirm "Merge new strings to .po files?"; then
         msgattrib $CLEAN_FLAGS --output-file=$i $i
     done
 
-    #popd > /dev/null
+    popd > /dev/null
 fi
 
 if confirm "Process your debug language?"; then
-    podebug --rewrite=unicode templates/LC_MESSAGES/messages.pot dbg/LC_MESSAGES/messages.po
+    podebug --rewrite=unicode locale/templates/LC_MESSAGES/messages.pot locale/dbg/LC_MESSAGES/messages.po
 fi
 
 if confirm "Commit your changes?"; then
-    #pushd locale > /dev/null
-    git commit . -m "Extract/compile script"
-    git svn dcommit
-    #popd > /dev/null
+    git commit locale -m "L10n Extract/compile script."
+    git push mozilla master
 fi
 
 echo "Calculating changes...."
-#pushd locale > /dev/null
-SUBJECT="[Marketplace Frontend] .po files updated"
+pushd locale > /dev/null
+SUBJECT="[Mkt Frontend] .po files updated"
 CHANGES=$(cat <<MAIL
-From: "Wil Clouser" <wclouser@mozilla.com>
+From: "Marketplace Developers" <marketplace-devs@mozilla.org>
 To: "Awesome Localizers" <$LOCALIZERS>
 Subject: $SUBJECT
 
 Hi,
 
-I am an automated script letting you know the AMO .po files have just been
-updated.  Unless something unusual is happening, we do weekly pushes on
-Thursdays so any strings committed by then will go live.  To give you an
-idea of the number of new strings I will calculate untranslated strings.
+I am an automated script letting you know the Marketplace Frontend  .po files
+have just been updated.  Unless something unusual is happening, we do weekly
+pushes on Thursdays so any strings committed by then will go live.  To give you
+an idea of the number of new strings I will calculate untranslated strings.
 
 `./stats-po.sh`
 

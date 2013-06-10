@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Marketplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-21T18:02:52.718Z\n"
+"POT-Creation-Date: 2013-06-10T22:38:11.469Z\n"
 "PO-Revision-Date: 2013-05-30 21:27+0100\n"
 "Last-Translator: Pavel Cvrček <pcvrcek@mozilla.cz>\n"
 "Language-Team: Czech <info@mozilla.cz>\n"
@@ -10,12 +10,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.5.5\n"
 
-#: hearth/templates/_macros/market_button.html:1
-#: hearth/templates/_macros/market_tile.html:19
+#: hearth/templates/_macros/market_button.html:1 hearth/templates/_macros/market_tile.html:19
 msgid "Free"
 msgstr "Zdarma"
 
@@ -27,8 +25,7 @@ msgstr "Instalovat"
 msgid "({n})"
 msgstr "({n})"
 
-#: hearth/templates/_macros/market_tile.html:30
-#: hearth/templates/detail/main.html:109
+#: hearth/templates/_macros/market_tile.html:30 hearth/templates/detail/main.html:110
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} recenze"
@@ -75,44 +72,49 @@ msgstr "Hlášení"
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Hodnocení {stars} z {maxstars} hvězdiček"
 
-#: hearth/templates/cat_dropdown.html:1 hearth/templates/cat_list.html:3
-#: hearth/media/js/cat-dropdown.js:12 hearth/media/js/views/homepage.js:26
+#: hearth/templates/cat_dropdown.html:1 hearth/templates/cat_list.html:3 hearth/media/js/cat-dropdown.js:12 hearth/media/js/views/homepage.js:26
 msgid "All Categories"
 msgstr "Všechny kategorie"
 
-#: hearth/templates/category/main.html:17
+#: hearth/templates/category/main.html:19
 msgid "Featured Apps"
 msgstr "Propagované aplikace"
 
-#: hearth/templates/category/main.html:18
-#: hearth/templates/category/main.html:42
+#: hearth/templates/category/main.html:20 hearth/templates/category/main.html:44
 msgid "View All"
 msgstr "Zobrazit vše"
 
-#: hearth/templates/category/main.html:39
+#: hearth/templates/category/main.html:41
 msgid "Popular"
 msgstr "Populární"
 
-#: hearth/templates/category/main.html:40
+#: hearth/templates/category/main.html:42
 msgid "New"
 msgstr "Nové"
 
-#: hearth/templates/category/main.html:61
+#: hearth/templates/category/main.html:63
 msgid "No apps in this category"
 msgstr "V této kategorii není žádná aplikace"
 
-#: hearth/templates/category/main.html:66
+#: hearth/templates/category/main.html:68
 msgid "No apps in this category, try again later"
 msgstr "V této kategorii nejsou žádné aplikace. Zkuste to později."
 
-#: hearth/templates/detail/abuse.html:5 hearth/templates/detail/main.html:172
-#: hearth/media/js/views/app/abuse.js:33
-msgid "Report Abuse"
-msgstr "Nahlásit zneužití"
-
-#: hearth/templates/detail/abuse.html:6 hearth/templates/settings/nav.html:12
+#: hearth/templates/confirmation.html:0 hearth/templates/detail/abuse.html:6 hearth/templates/settings/nav.html:12
 msgid "Close"
 msgstr "Zavřít"
+
+#: hearth/templates/confirmation.html:3
+msgid "No"
+msgstr ""
+
+#: hearth/templates/confirmation.html:4
+msgid "Yes"
+msgstr ""
+
+#: hearth/templates/detail/abuse.html:5 hearth/templates/detail/main.html:175 hearth/media/js/views/app/abuse.js:33
+msgid "Report Abuse"
+msgstr "Nahlásit zneužití"
 
 #: hearth/templates/detail/abuse.html:15
 msgid "Send Report"
@@ -127,28 +129,18 @@ msgid "Launch this app from your <b>Applications</b> directory."
 msgstr "Spusťte aplikaci z vašeho adresáře <b>Aplikace</b>."
 
 #: hearth/templates/detail/main.html:39
-msgid ""
-"Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All "
-"Programs</b>."
-msgstr ""
-"Spusťte aplikaci z <b>Plochy Windows</b> či <b>Start &#9658; Všechny "
-"programy</b>."
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Spusťte aplikaci z <b>Plochy Windows</b> či <b>Start &#9658; Všechny programy</b>."
 
 #: hearth/templates/detail/main.html:42
-msgid ""
-"Launch this app from your <b>dash</b>, <b>Application picker</b>, or "
-"<b>Applications menu</b>."
-msgstr ""
-"Spusťte aplikaci z vašeho <b>Dash</b>, <b>Application picker</b> nebo "
-"<b>nabídky Applications</b>."
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Spusťte aplikaci z vašeho <b>Dash</b>, <b>Application picker</b> nebo <b>nabídky Applications</b>."
 
-#: hearth/templates/detail/main.html:14 hearth/templates/detail/main.html:15
-#: hearth/media/js/views/app.js:46
+#: hearth/templates/detail/main.html:14 hearth/templates/detail/main.html:15 hearth/media/js/views/app.js:60
 msgid "Loading..."
 msgstr "Načítání..."
 
-#: hearth/templates/detail/main.html:24
-#: hearth/templates/errors/fragment.html:1 hearth/templates/not_found.html:2
+#: hearth/templates/detail/main.html:24 hearth/templates/errors/fragment.html:1 hearth/templates/not_found.html:2
 msgid "Oh no!"
 msgstr "Ale ne!"
 
@@ -176,74 +168,70 @@ msgstr "Verze"
 msgid "Latest version: {version}"
 msgstr "Poslední verze: {version}"
 
-#: hearth/templates/detail/main.html:85
+#: hearth/templates/detail/main.html:86
 msgid "Edit Listing"
 msgstr "Úprava stránky"
 
-#: hearth/templates/detail/main.html:88
+#: hearth/templates/detail/main.html:89
 msgid "Approve / Reject"
 msgstr "Schválit / Zamítnout"
 
-#: hearth/templates/detail/main.html:88
+#: hearth/templates/detail/main.html:89
 msgid "Review History"
 msgstr "Historie kontrol"
 
-#: hearth/templates/detail/main.html:99 hearth/templates/ratings/main.html:6
-#: hearth/media/js/views/app/ratings.js:42
+#: hearth/templates/detail/main.html:100 hearth/templates/ratings/main.html:6 hearth/media/js/views/app/ratings.js:17
 msgid "Reviews"
 msgstr "Recenze"
 
-#: hearth/templates/detail/main.html:117
+#: hearth/templates/detail/main.html:118
 msgid "App not yet rated"
 msgstr "Aplikace dosud nebyla hodnocena"
 
-#: hearth/templates/detail/main.html:124
+#: hearth/templates/detail/main.html:126
 msgid "Edit Your Review"
 msgstr "Úprava recenze"
 
-#: hearth/templates/detail/main.html:128 hearth/templates/ratings/main.html:13
-#: hearth/templates/ratings/write.html:2
-#: hearth/media/js/views/app/ratings/add.js:42
+#: hearth/templates/detail/main.html:130 hearth/templates/ratings/main.html:17 hearth/templates/ratings/write.html:2 hearth/media/js/views/app/ratings/add.js:44
 msgid "Write a Review"
 msgstr "Napsání recenze"
 
-#: hearth/templates/detail/main.html:146
+#: hearth/templates/detail/main.html:130 hearth/templates/ratings/main.html:17
+msgid "Sign in to Review"
+msgstr "Pro přidání recenze se přihlašte."
+
+#: hearth/templates/detail/main.html:147
 msgid "Support Email"
 msgstr "E-mail podpory"
 
-#: hearth/templates/detail/main.html:152
+#: hearth/templates/detail/main.html:153
 msgid "Support Site"
 msgstr "Stránka podpory"
 
-#: hearth/templates/detail/main.html:157
+#: hearth/templates/detail/main.html:158
 msgid "Homepage"
 msgstr "Domovská stránka"
 
-#: hearth/templates/detail/main.html:163 hearth/templates/footer.html:26
-#: hearth/templates/privacy.html:2 hearth/templates/settings/feedback.html:22
+#: hearth/templates/detail/main.html:164 hearth/templates/detail/privacy.html:3 hearth/templates/footer.html:29 hearth/templates/privacy.html:2 hearth/templates/settings/feedback.html:22
 #: hearth/media/js/views/app/privacy.js:10 hearth/media/js/views/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Zásady ochrany soukromí"
 
-#: hearth/templates/detail/main.html:168
+#: hearth/templates/detail/main.html:170
 msgid "Statistics"
 msgstr "Statistiky"
 
-#: hearth/templates/detail/main.html:179
+#: hearth/templates/detail/main.html:182
 msgid "Premium version available"
 msgstr "K dispozici je placená verze"
 
-#: hearth/templates/detail/main.html:195
+#: hearth/templates/detail/main.html:199
 msgid "Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
 msgstr "Hodnocení od <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
 
-#: hearth/templates/detail/privacy.html:3
-msgid "Privacy Policy: {app}"
-msgstr "Zásady ochrany soukromí: {app}"
-
 #: hearth/templates/detail/privacy.html:5
-msgid "Back to {app}"
-msgstr "Zpět na {app}"
+msgid "Back to app"
+msgstr ""
 
 #: hearth/templates/detail/privacy.html:11
 msgid "Loading Privacy Policy..."
@@ -253,12 +241,19 @@ msgstr "Probíhá načítání zásad ochrany soukromí..."
 msgid "An error occurred."
 msgstr "Nastala chyba"
 
+#: hearth/templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr ""
+
+#: hearth/templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr ""
+
 #: hearth/templates/featured.html:5
 msgid "Featured"
 msgstr "Propagovaná"
 
-#: hearth/templates/featured.html:6 hearth/templates/search/main.html:10
-#: hearth/templates/user/purchases.html:14
+#: hearth/templates/featured.html:6 hearth/templates/search/main.html:10 hearth/templates/user/purchases.html:14
 msgid "Expand"
 msgstr "Rozšířit"
 
@@ -274,9 +269,7 @@ msgstr "Vývoj aplikací"
 msgid "Developer Hub"
 msgstr "Pro vývojáře"
 
-#: hearth/templates/footer.html:6 hearth/templates/header.html:26
-#: hearth/templates/settings/nav.html:8 hearth/templates/settings/nav.html:11
-#: hearth/media/js/views/feedback.js:59
+#: hearth/templates/footer.html:6 hearth/templates/header.html:26 hearth/templates/settings/nav.html:8 hearth/templates/settings/nav.html:11 hearth/media/js/views/feedback.js:62
 msgid "Feedback"
 msgstr "Reakce"
 
@@ -288,24 +281,23 @@ msgstr "Podpora"
 msgid "Reviewer Tools"
 msgstr "Nástroje pro redaktora"
 
-#: hearth/templates/footer.html:21
-msgid ""
-"Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, "
-"content on this site is licensed under the <a href=\"{cc_url}\" target="
-"\"_blank\">Creative Commons Attribution Share-Alike License v3.0</a> or any "
-"later version."
+#: hearth/templates/footer.html:16
+msgid "Lookup Tool"
 msgstr ""
-"Pokud není <a href=\"{legal_url}\" target=\"_blank\">řečeno</a> jinak, je "
-"obsah této stránky dostupný pod licencí <a href=\"{cc_url}\" target=\"_blank"
-"\">Creative Commons Attribution Share-Alike License v. 3.0</a> či kterékoliv "
-"pozdější verze."
 
-#: hearth/templates/footer.html:27 hearth/templates/settings/feedback.html:27
-#: hearth/templates/terms.html:2 hearth/media/js/views/terms.js:10
+#: hearth/templates/footer.html:24
+msgid ""
+"Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
+"Alike License v3.0</a> or any later version."
+msgstr ""
+"Pokud není <a href=\"{legal_url}\" target=\"_blank\">řečeno</a> jinak, je obsah této stránky dostupný pod licencí <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike "
+"License v. 3.0</a> či kterékoliv pozdější verze."
+
+#: hearth/templates/footer.html:30 hearth/templates/settings/feedback.html:27 hearth/templates/terms.html:2 hearth/media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Podmínky použití"
 
-#: hearth/templates/footer.html:29
+#: hearth/templates/footer.html:32
 msgid "Report Trademark Abuse"
 msgstr "Nahlášení zneužití ochranné známky"
 
@@ -329,10 +321,7 @@ msgstr "Nastavení"
 msgid "Edit Account Settings"
 msgstr "Úprava nastavení účtu"
 
-#: hearth/templates/header.html:22 hearth/templates/settings/nav.html:7
-#: hearth/templates/user/purchases.html:39
-#: hearth/templates/user/purchases.html:11
-#: hearth/templates/user/purchases.html:31
+#: hearth/templates/header.html:22 hearth/templates/settings/nav.html:7 hearth/templates/user/purchases.html:39 hearth/templates/user/purchases.html:11 hearth/templates/user/purchases.html:31
 #: hearth/media/js/views/purchases.js:30
 msgid "My Apps"
 msgstr "Mé aplikace"
@@ -349,12 +338,7 @@ msgstr "Odhlášení"
 msgid "Sign In"
 msgstr "Přihlášení"
 
-#: hearth/templates/home/main.html:15
-msgid "Categories"
-msgstr "Kategorie"
-
-#: hearth/templates/ratings/edit.html:4 hearth/templates/ratings/main.html:11
-#: hearth/media/js/views/app/ratings/edit.js:83
+#: hearth/templates/ratings/edit.html:4 hearth/templates/ratings/main.html:13 hearth/media/js/views/app/ratings/edit.js:85
 msgid "Edit Review"
 msgstr "Úprava recenze"
 
@@ -362,27 +346,22 @@ msgstr "Úprava recenze"
 msgid "Rate:"
 msgstr "Hodnocení:"
 
-#: hearth/templates/ratings/edit.html:20
-#: hearth/templates/ratings/report.html:3
-#: hearth/templates/ratings/report.html:23
-#: hearth/templates/ratings/write.html:3
-#: hearth/templates/ratings/write.html:19
+#: hearth/templates/ratings/edit.html:20 hearth/templates/ratings/report.html:3 hearth/templates/ratings/report.html:23 hearth/templates/ratings/write.html:3 hearth/templates/ratings/write.html:19
+#: hearth/templates/user/newssignup.html:12
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: hearth/templates/ratings/edit.html:21
-#: hearth/templates/ratings/write.html:20
+#: hearth/templates/ratings/edit.html:21 hearth/templates/ratings/write.html:20
 msgid "Submit"
 msgstr "Odeslat"
 
-#: hearth/templates/ratings/edit.html:24
-#: hearth/templates/ratings/write.html:23
+#: hearth/templates/ratings/edit.html:24 hearth/templates/ratings/write.html:23
 msgid "Only logged in users may edit reviews."
 msgstr "Upravovat recenze smí pouze přihlášení uživatelé."
 
-#: hearth/templates/ratings/main.html:30 hearth/templates/search/main.html:28
-msgid "No results found"
-msgstr "Nebyly nalezeny žádné výsledky"
+#: hearth/templates/ratings/main.html:34
+msgid "This app has no reviews."
+msgstr ""
 
 #: hearth/templates/ratings/report.html:2
 msgid "Please select a reason:"
@@ -411,6 +390,10 @@ msgstr[2] "<b>{n}</b> výsledků"
 msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
 msgstr "Zobrazeno <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
 
+#: hearth/templates/search/main.html:28
+msgid "No results found"
+msgstr "Nebyly nalezeny žádné výsledky"
+
 #: hearth/templates/search/main.html:33
 msgid "No results found, try again later"
 msgstr "Nebyly nalezeny žádné výsledky. Zkuste to znovu později."
@@ -423,7 +406,7 @@ msgstr "Odeslat"
 msgid "Get Help"
 msgstr "Získat pomoc"
 
-#: hearth/templates/settings/main.html:2 hearth/media/js/views/settings.js:47
+#: hearth/templates/settings/main.html:2 hearth/media/js/views/settings.js:50
 msgid "Account Settings"
 msgstr "Nastavení účtu"
 
@@ -451,6 +434,22 @@ msgstr "Přihlášení / Registrace"
 msgid "Account"
 msgstr "Účet"
 
+#: hearth/templates/user/newssignup.html:3
+msgid "Get Firefox Marketplace news"
+msgstr ""
+
+#: hearth/templates/user/newssignup.html:8
+msgid "Sign up"
+msgstr ""
+
+#: hearth/templates/user/newssignup.html:14
+msgid "Signing up..."
+msgstr ""
+
+#: hearth/templates/user/newssignup.html:17
+msgid "You were successfully signed up for the Marketplace newsletter!"
+msgstr ""
+
 #: hearth/templates/user/purchases.html:44
 msgid "You must be signed in to view your apps."
 msgstr "Pro zobrazení svých aplikací musíte být přihlášen(a)."
@@ -463,19 +462,15 @@ msgstr "Přihlášení / Registrace"
 msgid "You have no apps"
 msgstr "Nemáte žádné aplikace"
 
-#: hearth/media/js/builder.js:85
-msgid "Failed to load the next page."
-msgstr "Při načítání další stránky nastala chyba."
-
-#: hearth/media/js/buttons.js:33
+#: hearth/media/js/buttons.js:34
 msgid "Purchasing"
 msgstr "Probíhá zakoupení"
 
-#: hearth/media/js/buttons.js:39
+#: hearth/media/js/buttons.js:40
 msgid "Purchased"
 msgstr "Zakoupeno"
 
-#: hearth/media/js/buttons.js:63
+#: hearth/media/js/buttons.js:78
 msgid "Launch"
 msgstr "Spuštění"
 
@@ -490,35 +485,43 @@ msgstr[2] "{n} hvězdiček"
 msgid "Category"
 msgstr "Kategorie"
 
-#: hearth/media/js/install.js:136
+#: hearth/media/js/install.js:34 hearth/media/js/payments/payments.js:81
+msgid "Payment cancelled"
+msgstr ""
+
+#: hearth/media/js/install.js:141
 msgid "Install failed. Please try again later."
 msgstr "Instalace selhala. Zkuste to prosím znovu později."
 
-#: hearth/media/js/login.js:23
-msgid "You have been signed in"
-msgstr "Byl(a) jste přihlášen(a)"
-
-#: hearth/media/js/login.js:44
+#: hearth/media/js/login.js:16
 msgid "You have been signed out"
 msgstr "Byl(a) jste odhlášen(a)"
 
-#: hearth/media/js/login.js:113
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Přihlášení pomocí Persona selhalo. Možná nemáte účet pod touto e-mailovou "
-"adresou?"
+#: hearth/media/js/login.js:20
+msgid "You have been signed in"
+msgstr "Byl(a) jste přihlášen(a)"
 
-#: hearth/media/js/login.js:118
+#: hearth/media/js/login.js:126
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Přihlášení pomocí Persona selhalo. Možná nemáte účet pod touto e-mailovou adresou?"
+
+#: hearth/media/js/login.js:131
 msgid "Persona login failed. A server error was encountered."
 msgstr "Přihlášení pomocí Persona selhalo. Vyskytla se chyba na serveru."
+
+#: hearth/media/js/mobilenetwork.js:208
+msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
+msgstr ""
 
 #: hearth/media/js/navigation.js:51
 msgid "No internet connection"
 msgstr "Žádné připojení k Internetu"
 
-#: hearth/media/js/payments/payments.js:80
+#: hearth/media/js/newssignup.js:62
+msgid "There was an error submitting your newsletter sign up request"
+msgstr ""
+
+#: hearth/media/js/payments/payments.js:84
 msgid "Payment failed. Try again later."
 msgstr "Platba selhala. Zkuste to znovu později."
 
@@ -542,11 +545,11 @@ msgstr "Vaše recenze byla smazána"
 msgid "There was a problem deleting the review"
 msgstr "Při mazání recenze se vyskytla chyba"
 
-#: hearth/media/js/ratings.js:149
+#: hearth/media/js/ratings.js:183
 msgid "Your review was posted"
 msgstr "Recenze byla přidána"
 
-#: hearth/media/js/ratings.js:154
+#: hearth/media/js/ratings.js:197
 msgid "Error while submitting review"
 msgstr "Chyba při odesílání recenze"
 
@@ -573,11 +576,7 @@ msgstr "Recenze byla úspěšně upravena."
 msgid "There was a problem updating your review"
 msgstr "Při úpravě vaší recenze se vyskytla chyba"
 
-#: hearth/media/js/views/app/ratings.js:13 hearth/media/js/views/app.js:63
-msgid "Sign in to Review"
-msgstr "Pro přidání recenze se přihlašte."
-
-#: hearth/media/js/views/app.js:47
+#: hearth/media/js/views/app.js:61
 msgid "App Details"
 msgstr "Detaily o aplikaci"
 
@@ -593,7 +592,7 @@ msgstr "Při odeslání vaší reakce nastala chyba. Zkuste to brzy znovu."
 msgid "Not Found"
 msgstr "Nebylo nalezeno"
 
-#: hearth/media/js/views/search.js:69
+#: hearth/media/js/views/search.js:135
 msgid "Search Results"
 msgstr "Výsledky vyhledávání"
 
