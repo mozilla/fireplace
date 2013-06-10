@@ -205,9 +205,7 @@ define('mobilenetwork',
         // Ask user to switch to the new region we detected from the SIM card.
         var currentRegionName = settings.REGION_CHOICES_SLUG[currentRegion];
         var newRegionName = settings.REGION_CHOICES_SLUG[newRegion];
-        var message = gettext(
-            'You are currently browsing content for *{current_region}*. ' +
-            'Would you like to switch to *{new_region}*?',
+        var message = gettext('You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?',
             {current_region: currentRegionName,
              new_region: newRegionName});
         $.when(notification.confirmation({message: message}))
