@@ -99,12 +99,12 @@ echo "$CHANGES"
 echo "-----------------------------------------------"
 
 # Uses sendmail so we can set a real From address
-#if confirm "Do you want to send that to $LOCALIZERS?"; then
-    #echo "$CHANGES" | /usr/lib/sendmail -t
-#fi
+if confirm "Do you want to send that to $LOCALIZERS?"; then
+    echo "$CHANGES" | /usr/lib/sendmail -t
+fi
 
-#if confirm "Do you want to email Milos? :D"; then
-    #echo "Please update AMO in Verbatim. Thanks." | mail -s "Verbatim update" milos@mozilla.com
-#fi
+if confirm "Do you want to email Milos? :D"; then
+    echo "Please update Marketplace Frontend in Verbatim. Thanks." | mail -s "Verbatim update for mkt frontend" milos@mozilla.com
+fi
 
 echo "done."
