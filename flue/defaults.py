@@ -63,7 +63,8 @@ def app(name, slug, **kwargs):
             'http://%s%s.testmanifest.com/manifest.webapp' % (ptext(1), random.randint(1, 50000)),  # Minifest if packaged
         'current_version': {
             'version': text('%d.0' % int(random.random() * 20)),
-            'release_notes': kwargs.get('release_notes', ptext())
+            'release_notes': kwargs.get('release_notes', ptext()),
+            'developer_name': text('Me, myself and I')
         },
         'icons': {
             16: '/media/img/icons/firefox-beta.png',
