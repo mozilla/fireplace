@@ -32,8 +32,8 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
     z.win.on('navigating', function(e, popped) {
         // Otherwise we'll track back button hits etc.
         if (!popped) {
-            console.log('Tracking page view', window.location.href);
-            window._gaq.push(['_trackPageview', window.location.href]);
+            console.log('Tracking page view', window.location.pathname);
+            window._gaq.push(['_trackPageview']);
             window._gaq.push([
                 '_setCustomVar',
                 3,
