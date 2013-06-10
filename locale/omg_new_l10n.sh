@@ -86,6 +86,8 @@ an idea of the number of new strings I will calculate untranslated strings.
 
 `./stats-po.sh`
 
+Source files: https://github.com/mozilla/fireplace/tree/master/locale
+
 If you have any questions please reply to the list.
 
 Thanks so much for all your help!
