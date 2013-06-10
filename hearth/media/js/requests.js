@@ -110,12 +110,11 @@ define('requests',
             true
             // Auth would go here, but let's not.
         );
-        var data = args.data;
-        if (typeof data === 'object') {
-            data = utils.urlencode(data);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        }
-        xhr.send(data || undefined);
+        
+        // TODO: Should we be smarter about this?
+        // TODONT: nahhhh
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(args.data ? utils.urlencode(args.data) : undefined);
 
         return def.promise(xhr);
     }
