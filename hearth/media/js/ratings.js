@@ -35,6 +35,7 @@ define('ratings',
         $modal.one('click', '.menu a', utils._pd(function(e) {
             var $actionEl = $reviewEl.find('.actions .flag');
             $('.cloak').trigger('dismiss');
+            // L10n: The report is an abuse report for reviews
             $actionEl.text(gettext('Sending report...'));
             require('requests').post(
                 require('settings').api_url + urls.api.sign($reviewEl.data('report-uri')),
@@ -43,6 +44,7 @@ define('ratings',
                 notify({message: gettext('Review flagged')});
                 $actionEl.remove();
             }).fail(function() {
+                // L10n: There was a problem submitting a report about a review.
                 notify({message: gettext('Report review operation failed')});
             });
         }));

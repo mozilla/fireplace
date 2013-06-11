@@ -10,6 +10,7 @@ module.exports = (function() {
 
     function LocalString(string) {
         this.str = string;
+        this.comment = null;
         this.plural = null;
         this.locations = [];
         this.pushLocation = function(location) {
@@ -22,10 +23,14 @@ module.exports = (function() {
             return JSON.stringify(str || this.str);
         };
         this.toString = function() {
-            var out = [
+            var out = [];
+            if (this.comment) {
+                out.push('#. ' + this.comment.replace(/\n/g, '\n#. ').trim());
+            }
+            out = out.concat([
                 '#: ' + this.locations.join('\n#: '),
                 'msgid ' + this.escaped()
-            ];
+            ]);
             if (this.plural) {
                 out.push('msgid_plural ' + this.escaped(this.plural));
                 out.push('msgstr[0] ""');
@@ -47,20 +52,22 @@ module.exports = (function() {
         return string;
     }
 
-    function save_singular(normalized, location) {
+    function save_singular(normalized, location, comment) {
+        comment = comment || null;
         normalized = normalize_string(normalized);
         var ls;
         if (normalized in localizable_string_map) {
             ls = localizable_string_map[normalized];
         } else {
             ls = new LocalString(normalized);
+            ls.comment = comment;
             localizable_string_map[normalized] = ls;
             localizable_strings.push(ls);
         }
         ls.locations.push(location);
     }
 
-    function extract_singular(node, filename) {
+    function extract_singular(node, filename, comment) {
         if (!node.args.children.length) {
             throw new Error(
                 'No string supplied for localization (line ' + node.lineno + ')');
@@ -71,10 +78,10 @@ module.exports = (function() {
                 'Cannot localize string (line ' + node.lineno + ')');
         }
 
-        save_singular(string_node.value, filename + ':' + node.lineno);
+        save_singular(string_node.value, filename + ':' + node.lineno, comment);
     }
 
-    function save_plural(norm_singular, norm_plural, location) {
+    function save_plural(norm_singular, norm_plural, location, comment) {
         norm_singular = normalize_string(norm_singular);
         norm_plural = normalize_string(norm_plural);
         var ls;
@@ -84,13 +91,14 @@ module.exports = (function() {
         } else {
             ls = new LocalString(norm_singular);
             ls.plural = norm_plural;
+            ls.comment = comment;
             localizable_string_map[norm_singular] = ls;
             localizable_strings.push(ls);
         }
         ls.locations.push(location);
     }
 
-    function extract_plural(node, filename) {
+    function extract_plural(node, filename, comment) {
         if (node.args.children.length < 3) {
             throw new Error(
                 'Invalid plural localization. Must have singular, plural, and parameters. (line ' + string_node.lineno + ')');
@@ -106,7 +114,8 @@ module.exports = (function() {
 
         save_plural(node.args.children[0].value,
                     node.args.children[1].value,
-                    filename + ':' + node.lineno);
+                    filename + ':' + node.lineno,
+                    comment);
     }
 
     function extract_callextension(tree) {
@@ -124,7 +133,65 @@ module.exports = (function() {
         return calls;
     }
 
-    function extract_template(parseTree, filename) {
+    function find_comments(doc) {
+
+        function getLineNo(index) {
+            return doc.substr(0, index).split('\n').length;
+        }
+
+        var patterns = [
+            /\{#\s*L10n(\(.+\))?:((.|\n)+)\s*#\}/im,
+            /\/\/ L10n(\(.+\))?:(.+)$/im,
+            /\/\*\s*L10n(\(.+\))?:((.|\n)+?)\s*\*\//im
+        ];
+
+        var comments = [];
+
+        for (var i = 0, p; p = patterns[i++];) {
+            var match;
+            //console.log('Matching', p);
+            var pat_doc = doc;
+            while (match = p.exec(pat_doc)) {
+                pat_doc = pat_doc.substr(match.index + match[0].length);
+                comments.push({
+                    line: getLineNo(match.index),
+                    paren: match[1],
+                    body: match[2]
+                });
+            }
+        }
+
+        comments.sort(function(a, b) {return a.line - b.line;});
+
+        function formatComment(comment) {
+            if (comment.paren) {
+                return '(' + comment.paren + '): ' + comment.body;
+            } else {
+                return comment.body;
+            }
+        }
+
+        return function(line) {
+            if (!comments.length) {
+                return null;
+            }
+            if (comments[0].line > line) {
+                return null;
+            }
+            var comment = comments.shift();
+            if (!comments.length) {
+                return formatComment(comment);
+            }
+            while (comments.length && comments[0].line <= line) {
+                comment = comments.shift();
+            }
+            return formatComment(comment);
+        };
+    }
+
+    function extract_template(data, parseTree, filename) {
+        var comments = find_comments(data);
+
         var calls = parseTree.findAll(nodes.FunCall);
         calls = calls.concat(extract_callextension(parseTree));
         for (var i = 0, node; node = calls[i++];) {
@@ -136,18 +203,21 @@ module.exports = (function() {
                 continue;
             }
 
+            var comment = comments(node.lineno);
             switch (node_name.value) {
                 case '_':
-                    extract_singular(node, filename);
+                    extract_singular(node, filename, comment);
                     break;
                 case '_plural':
-                    extract_plural(node, filename);
+                    extract_plural(node, filename, comment);
                     break;
             }
         }
     }
 
     function extract_js(data, filename) {
+        var comments = find_comments(data);
+
         var ast = uglify.parse(
             data,
             {filename: filename, toplevel: null}
@@ -168,8 +238,9 @@ module.exports = (function() {
                     return;
                 }
 
+                var comment = comments(node.start.line);
                 if (node.start.value === 'gettext') {
-                    save_singular(args[0].value, raw_location);
+                    save_singular(args[0].value, raw_location, comment);
                 } else if (node.start.value === 'ngettext') {
                     if (args.length < 3) {
                         console.error('Invalid ngettext call: not enough parameters ' + location);
@@ -179,8 +250,7 @@ module.exports = (function() {
                         console.error('Invlid ngettext call: plural form not string ' + location);
                         return;
                     }
-                    save_plural(args[0].value, args[1].value,
-                                raw_location);
+                    save_plural(args[0].value, args[1].value, raw_location, comment);
                 }
             }
         });

@@ -14,6 +14,7 @@ define('views/app/ratings', ['l10n', 'urls'],
         builder.z('reload_on_login', true);
         builder.z('reload_on_logout', true);
         builder.z('parent', urls.reverse('app', [slug]));
+        // L10n: The title for the list of reviews
         builder.z('title', gettext('Reviews'));
     };
 });

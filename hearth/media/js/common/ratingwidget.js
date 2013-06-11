@@ -29,6 +29,7 @@ define('common/ratingwidget', ['jquery'], function($) {
             }
             for (var i = 1; i <= 5; i++) {
                 var checked = rating === i ? ' checked' : '';
+                // L10n: {n} is the number of stars
                 rs += format('<label data-stars="{0}">{1}<input required type="radio" name="rating"{2} value="{3}"></label>',
                              [i, ngettext('{n} star', '{n} stars', {n: i}), checked, i]);
             }

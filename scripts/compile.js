@@ -39,7 +39,7 @@ function process(folder, output_file, locale_file, opts) {
                 // be added here.
                 var parseTree = parser.parse(src, extensions);
                 if (opts.l10n) {
-                    L10n.extract_template(parseTree, templates[i]);
+                    L10n.extract_template(src, parseTree, templates[i]);
                 }
                 cinst.compile(parseTree)
                 template_strings += cinst.getCode();

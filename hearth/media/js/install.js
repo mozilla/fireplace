@@ -137,6 +137,7 @@ define('install',
                 break;
             // Marketplace specific error codes.
             default:
+                // L10n: The app's installation has failed.
                 notification.notification({
                     message: gettext('Install failed. Please try again later.')
                 });

@@ -75,6 +75,7 @@ define('buttons',
             );
         }
         z.apps[product.manifest_url] = z.state.mozApps[product.manifest_url] = installer;
+        // L10n: "Launch" as in "Launch the app"
         setButton($button, gettext('Launch'), 'launch install');
     }).on('app_purchase_error app_install_error', function(e, installer, product, msg) {
         revertButton($('button.installing, button.purchasing'));
