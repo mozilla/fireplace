@@ -76,8 +76,13 @@ define('payments/payments',
                     var msg;
                     console.error('`navigator.mozPay` error:', this.error.name);
                     switch (this.error.name) {
+                        // Sent from webpay.
                         case 'cancelled':
+                        // TODO: The following only works for en locale, remove this once
+                        // DIALOG_CLOSED_BY_USER is sent by the device (Bug 879579).
                         case 'Dialog closed by the user':
+                        // Sent from the trusted-ui on cancellation.
+                        case 'DIALOG_CLOSED_BY_USER':
                             msg = gettext('Payment cancelled');
                             break;
                         default:
