@@ -222,10 +222,11 @@ define('mobilenetwork',
     function detectMobileNetwork(navigator, fake) {
         navigator = navigator || window.navigator;
 
-        var GET = utils.getVars();
-        var mcc;
-        var mnc;
         var region;
+        var GET = utils.getVars();
+        // Get mobile region and carrier information passed via querystring.
+        var mcc = GET.mcc;
+        var mnc = GET.mnc;
 
         // Hardcoded carrier should never get overridden.
         var carrier = user.get_setting('carrier');
@@ -233,12 +234,6 @@ define('mobilenetwork',
             carrier = carrier.slug;
         }
         carrier = carrier || GET.carrier || null;
-
-        if (!carrier) {
-            // Get mobile region and carrier information passed via querystring.
-            mcc = GET.mcc;
-            mnc = GET.mnc;
-        }
 
         try {
             // When Fireplace is served as a privileged packaged app (and not
@@ -268,15 +263,19 @@ define('mobilenetwork',
             // and MNC (Mobile Network Code).
             var network = getNetwork(mcc, mnc);
             region = network.region;
-            carrier = network.carrier;
+            if (!carrier) {
+                carrier = network.carrier;
+            }
         }
 
         var newSettings = {};
 
         var lastRegion = user.get_setting('last_region');
 
-        if (region && lastRegion && lastRegion != region) {
-            confirmRegion(lastRegion, region);
+        if (region && lastRegion != region) {
+            if (lastRegion) {
+                confirmRegion(lastRegion, region);
+            }
             // Update the last region we detected from the SIM.
             newSettings.last_region = region;
         }
