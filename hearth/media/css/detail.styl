@@ -192,11 +192,21 @@
         width: 50%;
     }
 
+    .secondary-header .leading {
+        diagonal-lines();
+        font-size: 24px;
+        gradient-two-color(#fff, #e1e1e1);
+        line-height: 24px;
+        max-width: 100%;
+        padding: 15px;
+        position: static;
+    }
+
 }
 
 
 // Statistics page is not mobile-optimized. Hide button to that page at non-
-// desktop widths. 
+// desktop widths.
 @media $narrower-than-desktop{
     .statistics{
         display: none;
