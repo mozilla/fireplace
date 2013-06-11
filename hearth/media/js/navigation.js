@@ -64,8 +64,10 @@ define('navigation',
         }
 
         views.build(view[0], view[1], state.params);
+        if (initialized) {
+            z.win.trigger('navigating', [popped]);
+        }
         initialized = true;
-        z.win.trigger('navigating', [popped]);
         state.type = z.context.type;
         state.title = z.context.title;
 

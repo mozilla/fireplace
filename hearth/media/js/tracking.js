@@ -19,6 +19,7 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
     window._gaq = window._gaq || [];
 
     window._gaq.push(['_setAccount', settings.tracking_id]);
+    window._gaq.push(['_trackPageview']);
 
     var ga = document.createElement('script');
     ga.type = 'text/javascript';
