@@ -85,7 +85,7 @@ define('requests',
                 // response code text.
                 error = error.substr(4);
             }
-            def.reject(xhr, statusText(), error);
+            def.reject(xhr, statusText(), error, xhr.status);
         }
 
         xhr.addEventListener('load', function() {
