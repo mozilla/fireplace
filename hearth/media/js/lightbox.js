@@ -40,24 +40,6 @@ define('lightbox',
             renderPreviews();
         }
 
-        // set up key bindings
-        z.win.on('keydown.lightboxDismiss', function(e) {
-            switch (e.which) {
-                case keys.ESCAPE:
-                    e.preventDefault();
-                    hideLightbox();
-                    break;
-                case keys.LEFT:
-                    e.preventDefault();
-                    if (slider) slider.toPrev();
-                    break;
-                case keys.RIGHT:
-                    e.preventDefault();
-                    if (slider) slider.toNext();
-                    break;
-            }
-        });
-
         // fade that bad boy in
         $lightbox.show();
         setTimeout(function() {
@@ -66,6 +48,24 @@ define('lightbox',
             $lightbox.addClass('show');
         }, 0);
     }
+
+    // set up key bindings
+    z.win.on('keydown.lightboxDismiss', function(e) {
+        switch (e.which) {
+            case keys.ESCAPE:
+                e.preventDefault();
+                hideLightbox();
+                break;
+            case keys.LEFT:
+                e.preventDefault();
+                if (slider) slider.toPrev();
+                break;
+            case keys.RIGHT:
+                e.preventDefault();
+                if (slider) slider.toNext();
+                break;
+        }
+    });
 
     function renderPreviews() {
         // clear out the existing content
@@ -149,12 +149,9 @@ define('lightbox',
         }, 500);
         ghettoFresh();
         z.win.off('keydown.lightboxDismiss');
+        slider.element.removeEventListener('fsmoveend', pauseVideos);
+        slider.destroy();
     }
-
-    // prevent mouse cursors from dragging these images.
-    $lightbox.on('dragstart', function(e) {
-        e.preventDefault();
-    });
 
     // we need to adjust the scroll distances on resize.
     z.win.on('resize', _.debounce(resize, 200));
@@ -168,6 +165,8 @@ define('lightbox',
             hideLightbox();
             e.preventDefault();
         }
+    }).on('dragstart', function(e) {
+        e.preventDefault();
     });
     $lightbox.find('.close').on('click', utils._pd(hideLightbox));
 
