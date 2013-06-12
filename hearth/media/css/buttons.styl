@@ -1,6 +1,6 @@
 @import 'lib';
 
-.button, .button:visited, button {
+.button, .button:visited {
     // Bluish.
     btn-shadow();
     gradient-two-color(#4cb1ff, #1793e5);
@@ -28,10 +28,10 @@
         border: 1px solid darken(#1793e5, 10%);
     }
 }
-button, .button {
+.button {
     ellipsis();
     // Grayish.
-    &.disabled {
+    &.disabled, &[disabled] {
         gradient-two-color(#e7e7e7, #fafbfc);
         box-shadow: none;
         color: #a7a7a7;
@@ -76,17 +76,10 @@ button, .button {
             top: 8px;
         }
     }
-}
-button {
     &.product {
         fatten();
     }
-    // Grayish.
-    &[disabled] {
-        gradient-two-color(#e7e7e7, #fafbfc);
-        color: #a7a7a7;
-        border: 1px solid #b7b7b7;
-    }
+
     &[disabled], &.disabled,
     &.purchasing, &.purchased,
     &.installing, &.installed {
@@ -95,11 +88,11 @@ button {
     &.installed, &.purchased, &.incompatible {
         pointer-events: auto;
     }
-}
 
-.button .spin {
-    display: inline-block;
-    spinner('install');
+    .spin {
+        display: inline-block;
+        spinner('install');
+    }
 }
 
 @media $retina {
@@ -114,7 +107,7 @@ button {
 }
 
 @media (max-width: 600px) {
-    .button, button {
+    .button {
         padding: 0 15px;
         &.fat {
             display: block;
