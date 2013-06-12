@@ -149,8 +149,10 @@ define('lightbox',
         }, 500);
         ghettoFresh();
         z.win.off('keydown.lightboxDismiss');
-        slider.element.removeEventListener('fsmoveend', pauseVideos);
-        slider.destroy();
+        if (slider.element) {
+            slider.element.removeEventListener('fsmoveend', pauseVideos);
+            slider.destroy();
+        }
     }
 
     // we need to adjust the scroll distances on resize.
