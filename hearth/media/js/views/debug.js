@@ -24,12 +24,6 @@ define('views/debug',
         var data = cache.get($(this).data('url'));
         data = JSON.stringify(data, null, '  ');
         $('#cache-inspector').html(utils.escape_(data));
-    }).on('click', '#install-yulelog', function(e) {
-        e.preventDefault();
-        var origin = window.location.origin || (
-            window.location.protocol + '//' + window.location.host);
-        window.navigator.mozApps.installPackage(origin + '/packaged.webapp');
-        notification.notification({message: 'yulelog installed (sorry, krupa, everything is the worst)', timeout: 1000});
     }).on('click', '#submit-debug', function(e) {
         e.preventDefault();
         var data = {body: JSON.stringify({
