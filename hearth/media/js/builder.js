@@ -253,10 +253,11 @@ define('builder',
 
                         trigger_fragment_loaded(signature.id || null);
 
-                    }).fail(function() {
+                    }).fail(function(xhr, text, error, code) {
                         if (!replace) {
                             var el = document.getElementById(uid);
                             if (!el) return;
+                            context.ctx['error'] = code;
                             el.innerHTML = except ? except() : error_template;
                         }
                     });
