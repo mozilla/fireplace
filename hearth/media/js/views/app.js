@@ -1,6 +1,6 @@
 define('views/app',
-    ['capabilities', 'helpers', 'l10n', 'tracking', 'utils', 'underscore', 'z', 'templates', 'overflow'],
-    function(caps, helpers, l10n, tracking, utils, _, z, nunjucks, overflow) {
+    ['capabilities', 'l10n', 'tracking', 'utils', 'underscore', 'z', 'templates', 'overflow'],
+    function(caps, l10n, tracking, utils, _, z, nunjucks, overflow) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -69,9 +69,7 @@ define('views/app',
 
             if (caps.widescreen() && !$('.report-abuse').length) {
                 z.page.append(
-                    nunjucks.env.getTemplate('detail/abuse.html').render(
-                        _.extend({slug: slug}, helpers)
-                    )
+                    nunjucks.env.getTemplate('detail/abuse.html').render({slug: slug})
                 );
             }
 

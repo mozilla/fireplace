@@ -1,6 +1,6 @@
 define('ratings',
-    ['cache', 'capabilities', 'forms', 'helpers', 'l10n', 'login', 'settings', 'templates', 'tracking', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
-    function(cache, capabilities, forms, helpers, l10n, login, settings, nunjucks, tracking, _, utils, urls, user, z) {
+    ['cache', 'capabilities', 'forms', 'l10n', 'login', 'settings', 'templates', 'tracking', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
+    function(cache, capabilities, forms, l10n, login, settings, nunjucks, tracking, _, utils, urls, user, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -27,7 +27,7 @@ define('ratings',
 
         if (!$modal.length) {
             z.page.append(
-                nunjucks.env.getTemplate('ratings/report.html').render(helpers)
+                nunjucks.env.getTemplate('ratings/report.html').render()
             );
             $modal = $('.report-spam');
         }
@@ -120,9 +120,8 @@ define('ratings',
 
             var $ratingModal = $('.compose-review.modal');
             if (!$ratingModal.length) {
-                var ctx = _.extend({slug: $this.data('app')}, helpers);
                 z.page.append(
-                    nunjucks.env.getTemplate('ratings/write.html').render(ctx)
+                    nunjucks.env.getTemplate('ratings/write.html').render({slug: $this.data('app')})
                 );
                 $ratingModal = $('.compose-review.modal');
             }

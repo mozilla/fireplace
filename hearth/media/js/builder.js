@@ -45,8 +45,8 @@ if (typeof define !== 'function') {
 }
 
 define('builder',
-    ['templates', 'helpers', 'models', 'requests', 'settings', 'z', 'nunjucks.compat'],
-    function(nunjucks, helpers, models, requests, settings, z) {
+    ['templates', 'models', 'requests', 'settings', 'z', 'nunjucks.compat'],
+    function(nunjucks, models, requests, settings, z) {
 
     var SafeString = nunjucks.require('runtime').SafeString;
 
@@ -60,10 +60,10 @@ define('builder',
     }
 
     function render(template, context, env) {
-        return (env || nunjucks.env).getTemplate(template).render(context);
+        return (env || nunjucks.env).getTemplate(template).render(context || {});
     }
 
-    var error_template = render(settings.fragment_error_template, helpers);
+    var error_template = render(settings.fragment_error_template);
 
     function parse_and_find(snippet, selector) {
         var dom = document.implementation.createHTMLDocument();
@@ -139,8 +139,7 @@ define('builder',
                     fire(page, 'loaded_more');
                 }).fail(function() {
                     url += (url.indexOf('?') + 1 ? '&' : '?') + '_bust=' + (new Date()).getTime();
-                    var ctx = extend({more_url: url}, helpers);
-                    parse_and_replace(render(settings.pagination_error_template, ctx), el.parentNode);
+                    parse_and_replace(render(settings.pagination_error_template, {more_url: url}), el.parentNode);
                     make_paginatable(injector, placeholder, target);
                 });
             }, false);
@@ -275,13 +274,7 @@ define('builder',
 
         this.start = function(template, defaults) {
             fire(page, 'build_start');
-
-            var context = helpers;
-            if (defaults) {
-                context = extend(defaults, helpers, true);
-            }
-
-            page.innerHTML = render(template, context, env);
+            page.innerHTML = render(template, defaults, env);
             if (has_cached_elements) {
                 trigger_fragment_loaded();
             }

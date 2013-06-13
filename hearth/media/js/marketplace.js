@@ -30,12 +30,12 @@ require.config({
         'marketplace',
         [
             'underscore',
+            'helpers',  // Must come before mostly everything else.
             'buttons',
             'capabilities',
             'cat-dropdown',
             'forms',
             'header',
-            'helpers',
             'install',
             'l10n',
             'lightbox',
@@ -109,8 +109,7 @@ require.config({
         // Do some last minute template compilation.
         z.page.on('reload_chrome', function() {
             console.log('Reloading chrome');
-            var context = _.extend({z: z}, require('helpers'));
-
+            var context = {z: z};
             $('#site-header').html(
                 nunjucks.env.getTemplate('header.html').render(context));
             $('#site-footer').html(

@@ -47,7 +47,7 @@ define('helpers',
     });
 
     // Functions provided in the default context.
-    return {
+    var helpers = {
         api: require('urls').api.url,
         apiParams: require('urls').api.params,
         url: require('urls').reverse,
@@ -68,4 +68,14 @@ define('helpers',
 
         navigator: window.navigator
     };
+
+    // Put the helpers into the nunjucks global.
+    var globals = nunjucks.require('globals');
+    for (var i in helpers) {
+        if (helpers.hasOwnProperty(i)) {
+            globals[i] = helpers[i];
+        }
+    }
+
+    return helpers;
 });

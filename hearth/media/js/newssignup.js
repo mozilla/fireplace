@@ -1,7 +1,7 @@
 define('newssignup',
-       ['capabilities', 'helpers', 'l10n', 'notification', 'requests',
+       ['capabilities', 'l10n', 'notification', 'requests',
         'storage', 'templates', 'underscore', 'urls', 'user', 'utils', 'z'],
-    function(caps, helpers, l10n, n, requests, storage, nunjucks, _, urls, user, utils, z) {
+    function(caps, l10n, n, requests, storage, nunjucks, _, urls, user, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -64,10 +64,9 @@ define('newssignup',
     });
 
     function injectSignupForm() {
-        var ctx = _.extend({email: user.get_setting('email')}, helpers);
         var $signup;
         z.page.prepend(
-            nunjucks.env.getTemplate('user/newssignup.html').render(ctx)
+            nunjucks.env.getTemplate('user/newssignup.html').render({email: user.get_setting('email')})
         );
 
         $signup = z.page.find('.newssignup');

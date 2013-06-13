@@ -1,6 +1,6 @@
 define('views/feedback',
-       ['buckets', 'capabilities', 'forms', 'helpers', 'l10n', 'notification', 'requests', 'templates', 'urls', 'utils', 'z'],
-       function(buckets, caps, forms, helpers, l10n, notification, requests, nunjucks, urls, utils, z) {
+       ['buckets', 'capabilities', 'forms', 'l10n', 'notification', 'requests', 'templates', 'urls', 'utils', 'z'],
+       function(buckets, caps, forms, l10n, notification, requests, nunjucks, urls, utils, z) {
 
     var gettext = l10n.gettext;
     var notify = notification.notification;
@@ -33,9 +33,7 @@ define('views/feedback',
     function addFeedbackModal() {
         if (!caps.widescreen()) return;
         if (!$('.main.feedback:not(.modal)').length && !$('.feedback.modal').length) {
-            z.page.append(
-                nunjucks.env.getTemplate('settings/feedback.html').render(helpers)
-            );
+            z.page.append(nunjucks.env.getTemplate('settings/feedback.html').render());
         }
         z.body.trigger('decloak');
     }

@@ -1,8 +1,8 @@
 define('cat-dropdown',
     // We require `mobilenetwork` here to initialize carrier/region detection so that gets
     // set before we pass those values to the API to get the list of categories.
-    ['underscore', 'helpers', 'jquery', 'l10n', 'models', 'requests', 'templates', 'urls', 'z', 'mobilenetwork'],
-    function(_, helpers, $, l10n, models, requests, nunjucks, urls, z) {
+    ['underscore', 'jquery', 'l10n', 'models', 'requests', 'templates', 'urls', 'z', 'mobilenetwork'],
+    function(_, $, l10n, models, requests, nunjucks, urls, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -106,14 +106,13 @@ define('cat-dropdown',
     function handleRenderDropdown() {
         // Render the dropdown itself.
         cat_dropdown.html(
-            nunjucks.env.getTemplate('cat_dropdown.html').render(helpers));
+            nunjucks.env.getTemplate('cat_dropdown.html').render());
         $dropdown = $('.dropdown');
 
         // Fetch the category dropdown-data
         category_req.done(function(data) {
-            var context = _.extend({categories: data.objects}, helpers);
             cat_list.html(
-                nunjucks.env.getTemplate('cat_list.html').render(context));
+                nunjucks.env.getTemplate('cat_list.html').render({categories: data.objects}));
             $cat_menu = $('.cat-menu');
             handleCatsRendered();
         });

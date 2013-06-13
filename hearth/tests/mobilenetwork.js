@@ -68,6 +68,8 @@ test('carrier+region for Telefónica España SIM via querystring', function(done
     mock(
         'mobilenetwork',
         {
+            notification: {},
+            views: {reload: function() {}},
             login: {login: function() {}},
             user: {
                 get_setting: function() { return null; },
