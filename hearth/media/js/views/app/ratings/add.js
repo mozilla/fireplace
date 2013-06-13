@@ -25,7 +25,7 @@ define('views/app/ratings/add',
             $reviewBox.find('.rating').on('click touchend', function() {
                 var textarea = document.querySelector('.compose-review textarea');
                 if (textarea) {
-                    textarea.trigger('focus');
+                    textarea.focus();
                 }
             });
 
