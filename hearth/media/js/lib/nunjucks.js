@@ -37,7 +37,7 @@ function extend(cls, name, props) {
 
     prototype.typename = name;
 
-    var new_cls = function() {
+    var new_cls = function() { 
         if(prototype.init) {
             prototype.init.apply(this, arguments);
         }
@@ -105,7 +105,9 @@ exports.TemplateError = function(message, lineno, colno) {
         err = message;
         message = message.name + ": " + message.message;
     } else {
-        Error.captureStackTrace(err);
+        if(Error.captureStackTrace) {
+            Error.captureStackTrace(err);
+        }
     }
 
     err.name = "Template render error";
@@ -278,6 +280,14 @@ var Frame = Object.extend({
         obj[parts[parts.length - 1]] = val;
     },
 
+    get: function(name) {
+        var val = this.variables[name];
+        if(val !== undefined && val !== null) {
+            return val;
+        }
+        return null;
+    },
+
     lookup: function(name) {
         var p = this.parent;
         var val = this.variables[name];
@@ -345,21 +355,28 @@ function makeKeywordArgs(obj) {
 }
 
 function getKeywordArgs(args) {
-    if(args.length && args[args.length - 1].__keywords) {
-        return args[args.length - 1];
+    var len = args.length;
+    if(len) {
+        var lastArg = args[len - 1];
+        if(lastArg && lastArg.hasOwnProperty('__keywords')) {
+            return lastArg;
+        }
     }
     return {};
 }
 
 function numArgs(args) {
-    if(args.length === 0) {
+    var len = args.length;
+    if(len === 0) {
         return 0;
     }
-    else if(args[args.length - 1].__keywords) {
-        return args.length - 1;
+
+    var lastArg = args[len - 1];
+    if(lastArg && lastArg.hasOwnProperty('__keywords')) {
+        return len - 1;
     }
     else {
-        return args.length;
+        return len;
     }
 }
 
@@ -419,7 +436,7 @@ function suppressValue(val, autoescape) {
     return val;
 }
 
-function memberLookup(obj, val, autoescape) {
+function memberLookup(obj, val) {
     obj = obj || {};
 
     if(typeof obj[val] === 'function') {
@@ -552,7 +569,7 @@ var filters = {
                 "dictsort filter: You can only sort by either key or value");
         }
 
-        array.sort(function(t1, t2) {
+        array.sort(function(t1, t2) { 
             var a = t1[si];
             var b = t2[si];
 
@@ -570,9 +587,9 @@ var filters = {
 
         return array;
     },
-
+    
     escape: function(str) {
-        if(typeof str == 'string' ||
+        if(typeof str == 'string' || 
            str instanceof r.SafeString) {
             return lib.escape(str);
         }
@@ -766,7 +783,7 @@ var filters = {
                 x = x.toLowerCase();
                 y = y.toLowerCase();
             }
-
+               
             if(x < y) {
                 return reverse ? 1 : -1;
             }
@@ -807,7 +824,12 @@ var filters = {
         if (killwords) {
             input = input.substring(0, length);
         } else {
-            input = input.substring(0, input.lastIndexOf(' ', length));
+            var idx = input.lastIndexOf(' ', length);
+            if(idx === -1) {
+                idx = length;
+            }
+
+            input = input.substring(0, idx);
         }
 
         input += (end !== undefined && end !== null) ? end : '...';
@@ -840,6 +862,74 @@ filters.e = filters.escape;
 modules['filters'] = filters;
 })();
 (function() {
+
+function cycler(items) {
+    var index = -1;
+    var current = null;
+
+    return {
+        reset: function() {
+            index = -1;
+            current = null;
+        },
+
+        next: function() {
+            index++;
+            if(index >= items.length) {
+                index = 0;
+            }
+
+            current = items[index];
+            return current;
+        }
+    };
+
+}
+
+function joiner(sep) {
+    sep = sep || ',';
+    var first = true;
+
+    return function() {
+        var val = first ? '' : sep;
+        first = false;
+        return val;
+    };
+}
+
+var globals = {
+    range: function(start, stop, step) {
+        if(!stop) {
+            stop = start;
+            start = 0;
+            step = 1;
+        }
+        else if(!step) {
+            step = 1;
+        }
+
+        var arr = [];
+        for(var i=start; i<stop; i+=step) {
+            arr.push(i);
+        }
+        return arr;
+    },
+
+    // lipsum: function(n, html, min, max) {
+    // },
+
+    cycler: function() {
+        return cycler(Array.prototype.slice.call(arguments));
+    },
+
+    joiner: function(sep) {
+        return joiner(sep);
+    }
+}
+
+modules['globals'] = globals;
+})();
+(function() {
 var lib = modules["lib"];
 var Object = modules["object"];
 var lexer = modules["lexer"];
@@ -847,6 +937,7 @@ var compiler = modules["compiler"];
 var builtin_filters = modules["filters"];
 var builtin_loaders = modules["loaders"];
 var runtime = modules["runtime"];
+var globals = modules["globals"];
 var Frame = runtime.Frame;
 
 var Environment = Object.extend({
@@ -1031,7 +1122,14 @@ var Context = Object.extend({
     },
 
     lookup: function(name) {
-        return this.ctx[name];
+        // This is one of the most called functions, so optimize for
+        // the typical case where the name isn't in the globals
+        if(name in globals && !(name in this.ctx)) {
+            return globals[name];
+        }
+        else {
+            return this.ctx[name];
+        }
     },
 
     setVariable: function(name, val) {
@@ -1184,7 +1282,7 @@ var Template = Object.extend({
 
 // var fs = modules["fs"];
 // var src = fs.readFileSync('test.html', 'utf-8');
-// var src = '{{ foo|safe|bar }}';
+// var src = '{% macro foo(x) %}{{ x }}{% endmacro %}{{ foo("<>") }}';
 // var env = new Environment(null, { autoescape: true, dev: true });
 
 // env.addFilter('bar', function(x) {
@@ -1196,7 +1294,7 @@ var Template = Object.extend({
 
 // var tmpl = new Template(src, env);
 // console.log("OUTPUT ---");
-// console.log(tmpl.render({ foo: '<>&' }));
+// console.log(tmpl.render({ bar: '<>&' }));
 
 modules['environment'] = {
     Environment: Environment,
@@ -1209,6 +1307,7 @@ var env = modules["environment"];
 var compiler = modules["compiler"];
 var parser = modules["parser"];
 var lexer = modules["lexer"];
+var runtime = modules["runtime"];
 var loaders = modules["loaders"];
 
 nunjucks = {};
@@ -1228,6 +1327,7 @@ if(loaders) {
 nunjucks.compiler = compiler;
 nunjucks.parser = parser;
 nunjucks.lexer = lexer;
+nunjucks.runtime = runtime;
 
 nunjucks.require = function(name) { return modules[name]; };
 
