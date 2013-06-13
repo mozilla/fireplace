@@ -60,7 +60,7 @@ define('views/app/ratings/edit',
             $reviewBox.find('.rating').on('click touchend', function() {
                 var textarea = document.querySelector('.compose-review textarea:invalid');
                 if (textarea) {
-                    textarea.trigger('focus');
+                    textarea.focus();
                 }
             });
 
