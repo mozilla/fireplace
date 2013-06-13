@@ -51,13 +51,18 @@ define('buttons',
         );
 
         // Reset button if it's been 30 seconds without user action.
-        setTimeout(function() {
+        $button[0].timeout = setTimeout(function() {
             if ($button.hasClass('installing')) {
                 revertButton($button);
             }
         }, 30000);
     }).on('app_install_success', function(e, installer, product, installedNow) {
         var $button = getButton(product);
+
+        if ($button[0].timeout) {
+            clearTimeout($button[0].timeout);
+        }
+
         if (installedNow) {
             var $installed = $('#installed'),
                 $how = $installed.find('.' + browser);

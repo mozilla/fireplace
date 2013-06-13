@@ -10,6 +10,12 @@ define('previews',
 
     var slider_pool = [];
 
+    z.page.on('click', '.dot', function() {
+        console.log('Dot clicked, repositioning trays');
+        var $this = $(this);
+        $this.closest('.tray')[0].slider.moveToPoint($this.index());
+    });
+
     function populateTray() {
         // preview trays expect to immediately follow a .mkt-tile.
         var $tray = $(this);
@@ -50,6 +56,7 @@ define('previews',
             $tray.find('.content')[0],
             {distance: THUMB_PADDED}
         );
+        this.slider = slider;
         var $pointer = $tray.find('.dots .dot');
 
         slider.element.addEventListener('fsmoveend', setActiveDot, false);
@@ -64,11 +71,6 @@ define('previews',
             $pointer.eq(slider.currentPoint).addClass('current');
         }
         setActiveDot();
-
-        $tray.on('click.tray', '.dot', function() {
-            console.log('Dot clicked, repositioning trays');
-            slider.moveToPoint($(this).index());
-        });
 
         // Tray can fit 3 desktop thumbs before paging is required.
         if (numPreviews > 3 && caps.widescreen()) {
@@ -90,7 +92,6 @@ define('previews',
 
     // We're leaving the page, so destroy Flipsnap.
     z.win.on('unloading.tray', function() {
-        $('.tray').off('click.tray');
         for (var i = 0, e; e = slider_pool[i++];) {
             e.destroy();
         }

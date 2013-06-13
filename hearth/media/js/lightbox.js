@@ -148,7 +148,6 @@ define('lightbox',
             $lightbox.hide();
         }, 500);
         ghettoFresh();
-        z.win.off('keydown.lightboxDismiss');
         if (slider && slider.element) {
             slider.element.removeEventListener('fsmoveend', pauseVideos);
             slider.destroy();
