@@ -1,4 +1,4 @@
-define('notification', ['capabilities', 'helpers', 'jquery', 'templates', 'z'], function(caps, helpers, $, nunjucks, z) {
+define('notification', ['helpers', 'jquery', 'templates', 'z'], function(helpers, $, nunjucks, z) {
 
     var notificationDef;
     var notificationEl = $('<div id="notification" class="hidden">');
