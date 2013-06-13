@@ -173,6 +173,6 @@ define('lightbox',
     $lightbox.find('.close').on('click', utils._pd(hideLightbox));
 
     // Hide screenshot overlay on back button hit.
-    z.page.on('navigate', hideLightbox);
+    z.win.on('navigating', hideLightbox);
 
 });
