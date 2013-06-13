@@ -182,13 +182,15 @@ define('navigation',
         // Update scrollTop for current history state.
         if (stack.length && scrollTop !== stack[0].scrollTop) {
             stack[0].scrollTop = scrollTop;
-            console.log('Updating scrollTop');
+            console.log('Updating scrollTop with replaceState');
             history.replaceState(stack[0], false, stack[0].path);
         }
 
         if (!initialized || divert) {
             // If we're redirecting or we've never loaded a page before,
             // use replaceState instead of pushState.
+            console.log('Using replaceState due to ' +
+                        (initialized ? 'diversion' : 'fresh load'));
             state_method = history.replaceState;
         }
         if (divert) {
