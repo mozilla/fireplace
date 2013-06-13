@@ -1,7 +1,7 @@
 define('cat-dropdown',
-    // We require `user` here to initialize carrier/region detection so that gets
+    // We require `mobilenetwork` here to initialize carrier/region detection so that gets
     // set before we pass those values to the API to get the list of categories.
-    ['underscore', 'helpers', 'jquery', 'l10n', 'models', 'requests', 'templates', 'urls', 'z', 'user'],
+    ['underscore', 'helpers', 'jquery', 'l10n', 'models', 'requests', 'templates', 'urls', 'z', 'mobilenetwork'],
     function(_, helpers, $, l10n, models, requests, nunjucks, urls, z) {
     'use strict';
 
@@ -15,7 +15,6 @@ define('cat-dropdown',
 
     var cat_dropdown = $('#cat-dropdown');
     var cat_list = $('#cat-list');
-
 
     // TODO: Detect when the user is offline and raise an error.
 
