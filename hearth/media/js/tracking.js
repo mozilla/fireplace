@@ -19,6 +19,13 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
     window._gaq = window._gaq || [];
 
     window._gaq.push(['_setAccount', settings.tracking_id]);
+    window._gaq.push([
+        '_setCustomVar',
+        3,
+        'Site section',
+        'Consumer',
+        3
+    ]);
     window._gaq.push(['_trackPageview']);
 
     var ga = document.createElement('script');
@@ -35,13 +42,6 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
         if (!popped) {
             console.log('Tracking page view', window.location.pathname);
             window._gaq.push(['_trackPageview']);
-            window._gaq.push([
-                '_setCustomVar',
-                3,
-                'Site section',
-                'Consumer',
-                3
-            ])
         }
     });
 
