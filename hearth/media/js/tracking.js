@@ -45,6 +45,20 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
         }
     });
 
+    var page_vars = [];
+
+    z.page.on('unloading', function() {
+        if (page_vars.length) {
+            console.groupCollapsed('Cleaning up page vars');
+            var i;
+            while (i = page_vars.pop()) {
+                console.log('Cleaning up var ' + i);
+                window._gaq.push(['_deleteCustomVar', i]);
+            }
+            console.groupEnd();
+        }
+    });
+
     function actionWrap(func) {
         return function() {
             if (!actions_enabled) {
@@ -58,7 +72,13 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
         enabled: true,
         actions_enabled: actions_enabled,
         setVar: actionWrap(function() {
-            window._gaq.push(['_setCustomVar'].concat(Array.prototype.slice.call(arguments, 0)));
+            var args = Array.prototype.slice.call(arguments, 0);
+            // If we're setting a page var and it hasn't been defined before,
+            // add it to the list of vars that have been set.
+            if (args[3] === 3 && page_vars.indexOf(args[0]) === -1) {
+                page_vars.push(args[0]);
+            }
+            window._gaq.push(['_setCustomVar'].concat(args));
         }),
         trackEvent: actionWrap(function() {
             window._gaq.push(['_trackEvent'].concat(Array.prototype.slice.call(arguments, 0)));
