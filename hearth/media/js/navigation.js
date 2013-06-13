@@ -1,6 +1,6 @@
 define('navigation',
-    ['capabilities', 'l10n', 'log', 'notification', 'underscore', 'urls', 'utils', 'views', 'z'],
-    function(capabilities, l10n, log, notification, _, urls, utils, views, z) {
+    ['capabilities', 'l10n', 'log', 'notification', 'underscore', 'utils', 'views', 'z'],
+    function(capabilities, l10n, log, notification, _, utils, views, z) {
     'use strict';
 
     var console = log('nav');
