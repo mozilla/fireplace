@@ -1,20 +1,20 @@
 {% defer (url=apiParams('reviews', app=slug, user='mine'), id='main') %}
-  {% set this = this.objects[0] %}
+  {% set obj = this.objects[0] %}
   <div class="main compose-review">
     <header class="secondary-header">
       <h2>{{ _('Edit Review') }}</h2>
     </header>
-    <form class="edit-review-form form-modal" data-uri="{{ this.resource_uri }}" data-slug="{{ slug }}">
+    <form class="edit-review-form form-modal" data-uri="{{ obj.resource_uri }}" data-slug="{{ slug }}">
       <p class="simple-field rating c">
         <label for="id_rating">{{ _('Rate:') }}</label>
         <select name="rating" id="id_rating" required>
           {% for i in range(1, 6) %}
-            <option value="{{ i }}"{{ ' selected' if i == this.rating }}>{{ i }}</option>
+            <option value="{{ i }}"{{ ' selected' if i == obj.rating }}>{{ i }}</option>
           {% endfor %}
         </select>
       </p>
       <p>
-        <textarea id="id_body" rows="2" cols="40" name="body" required maxlength="150">{{ this.body }}</textarea>
+        <textarea id="id_body" rows="2" cols="40" name="body" required maxlength="150">{{ obj.body }}</textarea>
         <div class="char-count" data-for="id_body"></div>
       </p>
       <footer class="form-footer buttons c only-logged-in">
