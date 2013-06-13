@@ -1,0 +1,20 @@
+{% include "_macros/rating.html" %}
+
+<section class="main c">
+  <header class="secondary-header c">
+    <h2>{{ _('App Review') }}</h2>
+  </header>
+  {% defer (url=api('review', [id])) %}
+    <div class="reviews reviews-listing single-review">
+      <ul class="ratings-placeholder-inner">
+        {{ rating(this) }}
+      </ul>
+    </div>
+  {% placeholder %}
+    <p class="spinner padded alt"></p>
+  {% empty %}
+    <p class="no-results">
+      {{ _('The review you requested does not exist.') }}
+    </p>
+  {% end %}
+</section>
