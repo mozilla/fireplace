@@ -61,7 +61,7 @@ function process(folder, output_file, locale_file, opts) {
         }
 
         template_strings += (
-            'define("templates", ["nunjucks"], function(nunjucks) {\n' +
+            'define("templates", ["nunjucks", "helpers"], function(nunjucks) {\n' +
             '    nunjucks.env = new nunjucks.Environment([], {autoescape: true});\n' +
             '    nunjucks.env.registerPrecompiled(templates);\n' +
             '    nunjucks.templates = templates;\n' +

@@ -1,9 +1,9 @@
 define('helpers',
-       ['l10n', 'templates', 'underscore', 'utils', 'format', 'settings', 'urls', 'user'],
+       ['l10n', 'nunjucks', 'underscore', 'utils', 'format', 'settings', 'urls', 'user'],
        function(l10n, nunjucks, _, utils) {
 
     var SafeString = nunjucks.require('runtime').SafeString;
-    var env = nunjucks.env;
+    var filters = nunjucks.require('filters');
 
     function make_safe(func) {
         return function() {
@@ -12,11 +12,11 @@ define('helpers',
     }
 
     function safe_filter(name, func) {
-        env.addFilter(name, make_safe(func));
+        filters[name] = make_safe(func);
     }
 
-    env.addFilter('urlparams', utils.urlparams);
-    env.addFilter('urlunparam', utils.urlunparam);
+    filters.urlparams = utils.urlparams;
+    filters.urlunparam = utils.urlunparam;
 
     safe_filter('nl2br', function(obj) {
         return obj.replace(/\n/g, '<br>');
@@ -33,18 +33,14 @@ define('helpers',
         return 'href="' + utils.escape_(obj) + '" target="_blank"';
     });
 
-    env.addFilter('numberfmt', function(obj) {
-        // TODO: Provide number formatting
-        return obj;
-    });
+    filters.numberfmt = _.identity;
 
     safe_filter('stringify', JSON.stringify);
 
-    env.addFilter('format', format.format);
-
-    env.addFilter('sum', function(obj) {
+    filters.format = format.format;
+    filters.sum = function(obj) {
         return obj.reduce(function(mem, num) {return mem + num;}, 0);
-    });
+    };
 
     // Functions provided in the default context.
     var helpers = {
