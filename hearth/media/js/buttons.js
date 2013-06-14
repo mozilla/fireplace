@@ -1,13 +1,20 @@
 define('buttons',
-    ['browser', 'capabilities', 'format', 'l10n', 'tracking', 'utils', 'z'],
-    function(browser, capabilities, format, l10n, tracking, utils, z) {
+    ['browser', 'capabilities', 'format', 'l10n', 'log', 'tracking', 'utils', 'z'],
+    function(browser, capabilities, format, l10n, log, tracking, utils, z) {
+
+    var console = log('buttons');
 
     var gettext = l10n.gettext;
 
     function getButton(product) {
         // Look up button by its manifest URL, excluding the feature profile.
         var manifest_url = utils.urlunparam(product.manifest_url, ['feature_profile']);
-        return $(format.format('.button[data-manifest_url="{0}"]', manifest_url));
+        console.log('Updating button for ', manifest_url);
+        var button = $(format.format('.button[data-manifest_url="{0}"]', manifest_url));
+        if (!button.length) {
+            console.warn('Could not find button.');
+        }
+        return button;
     }
 
     function setButton($button, text, cls) {
@@ -59,7 +66,7 @@ define('buttons',
     }).on('app_install_success', function(e, installer, product, installedNow) {
         var $button = getButton(product);
 
-        if ($button[0].timeout) {
+        if ($button.length && $button[0].timeout) {
             clearTimeout($button[0].timeout);
         }
 
