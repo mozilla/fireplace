@@ -254,5 +254,11 @@ Snippet:
                 proxy_set_header Host $host;
                 proxy_pass http://localhost:8002;
             }
+
+            location /jsi18n.js {
+                # This serves i18n from Zamboni.
+                proxy_set_header Host $host;
+                proxy_pass http://localhost:8002;
+            }
         }
     }
