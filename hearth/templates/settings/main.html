@@ -45,8 +45,8 @@
     <footer>
       <p><button type="submit" class="button">{{ _('Save Changes') }}</button></p>
       <p class="extras">
-        <a href="javascript:" class="button alt logout only-logged-in">{{ _('Sign Out') }}</a>
-        <a href="javascript:" class="button alt persona only-logged-out">{{ _('Sign In / Sign Up') }}</a>
+        <a href="#" class="button alt logout only-logged-in">{{ _('Sign Out') }}</a>
+        <a href="#" class="button alt persona only-logged-out">{{ _('Sign In / Sign Up') }}</a>
         {% if user.get_permission('reviewer') %}
           <a href="/reviewers/apps/queue/" class="button alt only-logged-in reviewer-tools">{{ _('Reviewer Tools') }}</a>
         {% endif %}
