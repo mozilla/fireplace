@@ -66,13 +66,13 @@ define('builder',
     var error_template = render(settings.fragment_error_template);
 
     function parse_and_find(snippet, selector) {
-        var dom = document.implementation.createHTMLDocument();
+        var dom = document.implementation.createHTMLDocument('');
         dom.body.innerHTML = snippet;
         return dom.body.querySelector(selector);
     }
 
     function parse_and_replace(snippet, to_replace) {
-        var dom = document.implementation.createHTMLDocument();
+        var dom = document.implementation.createHTMLDocument('');
         dom.body.innerHTML = snippet;
         var parent = to_replace.parentNode;
         while (dom.body.childNodes.length) {
