@@ -57,11 +57,7 @@ define('login',
     function startLogin() {
         var def = $.Deferred();
         pending_logins.push(def);
-
-        console.log('Requesting login from Persona');
-        navigator.id.request({
-            experimental_forceIssuer: settings.persona_unverified_issuer || null,
-            experimental_allowUnverified: true,
+        var opt = {
             termsOfService: '/terms-of-use',
             privacyPolicy: '/privacy-policy',
             oncancel: function() {
@@ -70,7 +66,18 @@ define('login',
                 _.invoke(pending_logins, 'reject');
                 pending_logins = [];
             }
-        });
+        };
+        if (!navigator.id._shimmed) {
+            // When on B2G (i.e. no shim), we don't require new accounts to verify their email
+            // address. When on desktop, we do require verification.
+            _.extend(opt, {
+                experimental_forceIssuer: settings.persona_unverified_issuer || null,
+                experimental_allowUnverified: true
+            });
+        }
+
+        console.log('Requesting login from Persona');
+        navigator.id.request(opt);
         return def.promise();
     }
 
