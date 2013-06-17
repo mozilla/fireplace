@@ -34,6 +34,11 @@
       <p class="no-results only-logged-in">
         {{ _('You have no apps') }}
       </p>
+    {% except %}
+      <div class="detailed-error">
+        <h2>{{ _('Oh no!') }}</h2>
+        <p>{{ _('An internal server error occurred. Please try again later.') }}</p>
+      </div>
     {% end %}
   {% else %}
     <header class="secondary-header hide-on-mobile c">
