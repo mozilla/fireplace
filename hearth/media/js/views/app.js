@@ -41,14 +41,14 @@ define('views/app',
 
     // Init desktop abuse form modal trigger.
     // The modal is responsive even if this handler isn't removed.
-    if (caps.widescreen()) {
-        z.page.on('click', '.abuse .button', function(e) {
+    z.page.on('click', '.abuse .button', function(e) {
+        if (caps.widescreen()) {
             e.preventDefault();
             e.stopPropagation();
             z.body.trigger('decloak');
             $('.report-abuse.modal').addClass('show');
-        });
-    }
+        }
+    });
 
     return function(builder, args) {
         var slug = args[0];
