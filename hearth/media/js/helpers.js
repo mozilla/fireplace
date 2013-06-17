@@ -33,7 +33,12 @@ define('helpers',
         return 'href="' + utils.escape_(obj) + '" target="_blank"';
     });
 
-    filters.numberfmt = _.identity;
+    filters.numberfmt = function(num) {
+        if (typeof num === 'number' && num.toLocaleString) {
+            return num.toLocaleString();
+        }
+        return num;
+    };
 
     safe_filter('stringify', JSON.stringify);
 
