@@ -1,8 +1,8 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 define('install',
-    ['apps', 'cache', 'capabilities', 'jquery', 'l10n', 'log', 'login', 'models', 'notification', 'payments/payments', 'requests', 'urls', 'user', 'z'],
-    function(apps, cache, caps, $, l10n, log, login, models, notification, payments, requests, urls, user, z) {
+    ['apps', 'cache', 'capabilities', 'jquery', 'l10n', 'log', 'login', 'models', 'notification', 'payments/payments', 'requests', 'tracking', 'urls', 'user', 'z'],
+    function(apps, cache, caps, $, l10n, log, login, models, notification, payments, requests, tracking, urls, user, z) {
     'use strict';
 
     var console = log('install');
@@ -20,6 +20,11 @@ define('install',
 
     var launchHandler = _handler(function(product) {
         z.apps[product.manifest_url].launch();
+        tracking.trackEvent(
+            'Launch app',
+            product.price ? 'Paid' : 'Free',
+            product.slug
+        );
     });
 
     var installHandler = _handler(startInstall);
