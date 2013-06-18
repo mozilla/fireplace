@@ -30,8 +30,8 @@
       {% elif error == 451 %}
         <p>{{ _('The app requested is not available for your region.') }}</p>
         <p>{{ _('You may wish to contact the developer if you would like to see a version of this app for your region.') }}</p>
-      {% elif error == 500 %}
-        <p>{{ _('A server error occurred.') }}</p>
+      {% else %}
+        <p>{{ _('A server error occurred. Please try again later.') }}</p>
       {% endif %}
 
       {% if not error %}
