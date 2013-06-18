@@ -40,7 +40,7 @@ define('views/settings',
                 .fail(completion.reject);
     })).on('logged_in', update_settings);
 
-    z.win.on('navigating', function() {
+    z.win.on('loaded navigating', function() {
         $('.toggles a').linefit();
     });
 
