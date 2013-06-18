@@ -232,7 +232,7 @@ Snippet:
             location /users {
                 # Allows login to work on the devhub.
                 proxy_set_header Host $host;
-                if ($http_referer ~ '^http://[^/]*?/developers') {
+                if ($http_referer ~ '^http://[^/]*?/developers|login|reviewers') {
                     proxy_pass http://localhost:8002;
                     break;
                 }
