@@ -239,10 +239,31 @@ Snippet:
                 proxy_pass http://localhost:8675;
             }
 
+            location /reviewers/ {
+                # This is an optional alias to your local Zamboni so
+                # you can use the reviewer tools.
+                proxy_pass http://localhost:8002;
+                proxy_set_header Host $host;
+            }
+
+            location /login {
+                # This is an optional alias to your local Zamboni so
+                # you can log in :)
+                proxy_pass http://localhost:8002;
+                proxy_set_header Host $host;
+            }
+
+            location /logout {
+                # This is an optional alias to your local Zamboni so
+                # you can log out :)
+                proxy_pass http://localhost:8002;
+                proxy_set_header Host $host;
+            }
+
             location /media {
                 # Conditional proxying of media for devhub (Zamboni) and fireplace.
                 proxy_set_header Host $host;
-                if ($http_referer ~ '^http://[^/]*?/(developers|media/css/mkt|media/css/devreg)') {
+                if ($http_referer ~ '^http://[^/]*?/(login|logout|developers|reviewers|media/css/mkt|media/css/devreg)') {
                     proxy_pass http://localhost:8002;
                     break;
                 }
