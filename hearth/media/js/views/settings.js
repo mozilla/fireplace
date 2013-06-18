@@ -1,3 +1,4 @@
+
 define('views/settings',
     ['common/linefit', 'l10n', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
     function(linefit, l10n, notification, requests, urls, user, utils, z) {
@@ -37,8 +38,9 @@ define('views/settings',
         requests.patch(urls.api.url('settings'), data)
                 .done(completion.resolve)
                 .fail(completion.reject);
-    })).on('logged_in', update_settings)
-       .on('loaded', function() {
+    })).on('logged_in', update_settings);
+
+    z.win.on('navigating', function() {
         $('.toggles a').linefit();
     });
 
