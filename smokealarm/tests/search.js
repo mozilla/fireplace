@@ -31,7 +31,7 @@ suite.run('/', function(test, waitFor) {
     });
 
     waitFor(function() {
-        return !suite.exists('.search-listing li.loadmore.loading');
+        return suite.exists('.search-listing li:nth-child(12)');
     });
 
     test('Test that more apps were loaded', function(assert) {
@@ -50,7 +50,7 @@ suite.run('/', function(test, waitFor) {
     });
 
     waitFor(function() {
-        return suite.exists('.search-listing li');
+        return suite.exists('.search-listing li:nth-child(12)');
     });
 
     test('Test that more apps were loaded', function(assert) {
