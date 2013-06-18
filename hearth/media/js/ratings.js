@@ -1,6 +1,6 @@
 define('ratings',
-    ['cache', 'capabilities', 'forms', 'l10n', 'login', 'settings', 'templates', 'tracking', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
-    function(cache, capabilities, forms, l10n, login, settings, nunjucks, tracking, _, utils, urls, user, z) {
+    ['cache', 'capabilities', 'forms', 'l10n', 'login', 'models', 'settings', 'templates', 'tracking', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
+    function(cache, capabilities, forms, l10n, login, models, settings, nunjucks, tracking, _, utils, urls, user, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -58,6 +58,7 @@ define('ratings',
         require('requests').del(settings.api_url + urls.api.sign(uri)).done(function() {
             notify({message: gettext('Your review was deleted')});
 
+            // Update the app's review listing.
             rewriter(app, function(data) {
                 data.objects = data.objects.filter(function(obj) {
                     return obj.resource_uri !== uri;
@@ -66,6 +67,20 @@ define('ratings',
                 data.user.has_rated = false;
                 return data;
             });
+
+            // Update the app model.
+            var app_model;
+            if (app_model = models('app').lookup(app)) {
+                app_model.ratings.count -= 1;
+                if (!app_model.ratings.count) {
+                    app_model.ratings.average = 0;
+                }
+                // We cheat and don't update the average.
+            }
+
+            // Clear the user's review from the request cache.
+            cache.bust(urls.api.params('reviews', {app: app, user: 'mine'}));
+
             require('views').reload();
 
         }).fail(function() {
@@ -74,7 +89,11 @@ define('ratings',
     }
 
     function loginToRate() {
-        login.login();
+        login.login().fail(function() {
+            // Clear flag for open rating modal on cancel/fail of login.
+            z.flags.open_rating = false;
+        });
+
         // Set a flag to know that we expect the modal to open
         // this prevents opening later if login was cancelled
         // as this flag is cleared in that case.
@@ -151,9 +170,6 @@ define('ratings',
         // Hijack <select> with stars.
         $('select[name="rating"]').ratingwidget();
         utils.initCharCount();
-    }).on('login_cancel login_fail', function() {
-        // Clear flag for open rating modal on cancel/fail of login.
-        z.flags.open_rating = false;
     });
 
     z.body.on('submit', 'form.add-review-form', function(e) {
@@ -161,7 +177,6 @@ define('ratings',
 
         var $this = $(this);
         var app = $this.data('app');
-
 
         var data = utils.getVars($this.serialize());
         data.app = app;
@@ -174,6 +189,7 @@ define('ratings',
             data
         ).done(function(new_review) {
 
+            // Update the ratings listing for the app.
             rewriter(app, function(data) {
                 data.objects.unshift(new_review);
                 data.meta.total_count += 1;
@@ -181,8 +197,32 @@ define('ratings',
                 return data;
             });
 
+            // Update the app model.
+            var app_model;
+            if (app_model = models('app').lookup(app)) {
+                var num_ratings = app_model.ratings.count;
+                var new_rating = parseInt(data.rating, 10);
+                if (!num_ratings) {
+                    app_model.ratings.average = new_rating;
+                } else {
+                    // Update the app's rating to reflect the new average.
+                    app_model.ratings.average = (app_model.ratings.average * num_ratings + new_rating) / (num_ratings + 1);
+                }
+                app_model.ratings.count += 1;
+            }
+
+            // Set the user's review in the request cache.
+            cache.set(
+                urls.api.params('reviews', {app: app, user: 'mine'}),
+                {
+                    meta: {limit: 20, next: null, offset: 0, total_count: 1},
+                    info: {average: new_rating, slug: app},
+                    objects: [new_review]
+                }
+            );
+
             notify({message: gettext('Your review was posted')});
-            z.page.trigger('navigate', urls.reverse('app', [$this.data('app')]));
+            z.page.trigger('navigate', urls.reverse('app', [app]));
 
             tracking.trackEvent('App view interactions', 'click', 'Successful review');
             tracking.setVar(12, 'Reviewer', 'Reviewer', 1);
