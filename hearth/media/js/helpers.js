@@ -40,6 +40,21 @@ define('helpers',
         return num;
     };
 
+    filters.datetime = function(date) {
+        if (!date) {
+            return '';
+        }
+        if (!(date instanceof Date)) {
+            date = new Date(date);
+        }
+        var dateStr = date.toLocaleString();
+        if (dateStr === 'Invalid Date') {
+            return '';
+        } else {
+            return dateStr;
+        }
+    };
+
     safe_filter('stringify', JSON.stringify);
 
     filters.format = format.format;

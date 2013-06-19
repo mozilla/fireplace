@@ -4,6 +4,7 @@ var assert = a.assert;
 var eq_ = a.eq_;
 var feq_ = a.feq_;
 
+var filters = nunjucks.require('filters');
 var utils = require('utils');
 
 test('String strip', function(done) {
@@ -79,6 +80,26 @@ test('getVars', function(done) {
     // Test that there's not weird HTML encoding going on.
     feq_(utils.getVars('%3C%3E%22\'%26=%3C%3E%22\'%26'),
          {'<>"\'&': '<>"\'&'});
+    done();
+});
+
+test('datetime', function(done) {
+    // Test some timestamp in different types as argument.
+    var d = new Date(2132414);
+    eq_(filters.datetime('2132414'), d.toLocalString());
+    eq_(filters.datetime(2132414), d.toLocalString());
+
+    // Test a date string as argument.
+    d = new Date('2013-06-14T11:54:24');
+    eq_(filters.datetime('2013-06-14T11:54:24'), d.toLocalString());
+
+    // Test a `Date` type object as argument.
+    eq_(filters.datetime(d), d.toLocalString());
+
+    // Test with junk arguments.
+    eq_(filters.datetime(undefined), '');
+    eq_(filters.datetime(null), '');
+    eq_(filters.datetime('junk'), '');
     done();
 });
 
