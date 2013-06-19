@@ -189,18 +189,22 @@
         {{ _('Report Abuse') }}</a>
       </li>
     </ul>
-    {% if settings.payments_enabled and settings.upsell_enabled %}
-      {% if this.upsell %}
-        <a id="upsell" class="button alt"
-           href="{{ url('app', [this.upsell.app_slug])|urlparams(src='mkt-detail-upsell') }}">
-           <span class="avail">{{ _('Premium version available') }}</span>
-           <img class="icon" src="{{ upsell.icon_url }}">
-           <span class="name">{{ this.upsell.name }}</span>
-        </a>
-      {% endif %}
-    {% endif %}
   </div>
 </section>
+{% if settings.payments_enabled and settings.upsell_enabled and this.upsell %}
+  <section class="main upsell-wrapper c">
+    <div>
+      <a class="upsell" href="{{ url('app', [this.upsell.app_slug])|urlparams(src='mkt-detail-upsell') }}">
+        <img class="icon" src="{{ upsell.icon_url }}">
+        <div>
+          <span class="avail">{{ _('Premium version available') }}</span>
+          <span class="name">{{ this.upsell.name }}</span>
+        </div>
+      </a>
+    </div>
+  </section>
+{% endif %}
+
 {% except %}
 {% end %}
 

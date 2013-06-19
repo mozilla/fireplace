@@ -4,7 +4,8 @@
     border-top: 0;
 }
 .support,
-.content-ratings-wrapper {
+.content-ratings-wrapper,
+.upsell-wrapper {
     diagonal-lines();
 }
 .detail .support > div {
@@ -159,11 +160,78 @@
     }
 }
 
+.upsell-wrapper {
+    background: $salt-flat-white;
+    border-top: 1px dashed $london-fog-gray;
+}
+
+.upsell {
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid $seavan-salt-white;
+    display: block;
+    font-size: 0;
+    margin: 10px;
+    padding: 15px 10px;
+    text-decoration: none;
+    &:hover {
+        border-color: darken($seavan-salt-white, 10%);
+        img {
+            opacity: .8;
+        }
+    }
+    &:active {
+        depressed();
+    }
+    div {
+        display: inline-block;
+        padding: 8px 10px;
+        vertical-align: top;
+    }
+    img {
+        height: 64px;
+        width: 64px;
+    }
+    .avail {
+        color: #000;
+        display: block;
+        font-size: 15px;
+        line-height: 17px;
+    }
+    .name {
+        color: $earl-gray;
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
 // ***************** Wide Mobile (> 671px)
 
 @media $at-least-desktop {
+    .upsell-wrapper {
+        background: #fff;
+    }
+    .upsell,
     .blurbs > div {
         padding: 24px 15px;
+    }
+    .upsell {
+        border: 0;
+        border-radius: 0;
+        margin: 0;
+        div {
+            padding: 8px 15px;
+        }
+        .avail {
+            font-size: 17px;
+            line-height: 19px;
+        }
+        .name {
+            font-size: 15px;
+            line-height: 21px;
+        }
+    }
+    .blurbs > div {
         p.summary {
             padding-top: 0;
         }
@@ -207,8 +275,8 @@
 
 // Statistics page is not mobile-optimized. Hide button to that page at non-
 // desktop widths.
-@media $narrower-than-desktop{
-    .statistics{
+@media $narrower-than-desktop {
+    .statistics {
         display: none;
     }
 }
