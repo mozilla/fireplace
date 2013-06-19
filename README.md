@@ -54,7 +54,8 @@ Comprehensive Flue documentation can be found in
 
 ### Yule Log
 
-Docs can be found in [Yule Log's README]()
+Docs can be found in
+[Yule Log's README](https://github.com/mozilla/fireplace/blob/master/yulelog/README.md)
 
 ### Getting node/npm
 
