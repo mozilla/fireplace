@@ -10,6 +10,7 @@ define('settings', ['settings_local', 'underscore'], function(settings_local, _)
         payments_enabled: true,
         tracking_enabled: false,
         action_tracking_enabled: true,
+        upsell_enabled: false,
 
         tracking_id: 'UA-36116321-6',
 

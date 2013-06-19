@@ -189,7 +189,7 @@
         {{ _('Report Abuse') }}</a>
       </li>
     </ul>
-    {% if settings.payments_enabled %}
+    {% if settings.payments_enabled and settings.upsell_enabled %}
       {% if this.upsell %}
         <a id="upsell" class="button alt"
            href="{{ url('app', [this.upsell.app_slug])|urlparams(src='mkt-detail-upsell') }}">
