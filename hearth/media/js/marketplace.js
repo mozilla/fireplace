@@ -95,9 +95,10 @@ require.config({
             var r = navigator.mozApps.getInstalled();
             r.onsuccess = function() {
                 _.each(r.result, function(val) {
-                    z.apps[val.manifestURL] = z.state.mozApps[val.manifestURL] = val;
+                    var url = val.manifestURL.split('?')[0];
+                    z.apps[url] = z.state.mozApps[url] = val;
                     z.win.trigger('app_install_success',
-                                  [val, {'manifest_url': val.manifestURL}, false]);
+                                  [val, {'manifest_url': url}, false]);
                 });
             };
         };
