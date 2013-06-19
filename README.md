@@ -183,11 +183,6 @@ the subset of keys found in
 make test
 ```
 
-## Missing Features
-
-- `numberfmt` doesn't work (should probably be integrated with L10n
-  pluralization)
-
 
 ## Local Development With Nginx
 
