@@ -4,6 +4,24 @@ define('views/app/ratings/add',
 
     var gettext = l10n.gettext;
 
+    z.page.on('click', '.compose-review .cancel', function(e) {
+        e.preventDefault();
+        var slug = $(this).closest('.compose-review').attr('data-slug');
+        z.page.trigger('navigate', urls.reverse('app', [slug]));
+
+    }).on('click touchend', '.compose-review .rating', function() {
+        // Scroll the page down to make the send/cancel buttons visible.
+        var textarea = document.querySelector('.compose-review textarea:invalid');
+        if (textarea) {
+            textarea.focus();
+        }
+        
+    }).on('focus', '.compose-review textarea', function() {
+        if (window.scrollTo && !caps.widescreen()) {
+            window.scrollTo(0, 200);
+        }
+    });
+
     return function(builder, args) {
         var slug = args[0];
 
@@ -14,28 +32,7 @@ define('views/app/ratings/add',
         }
 
         builder.start('ratings/write.html', {'slug': slug}).done(function() {
-            var $reviewBox = $('.compose-review');
-
-            $reviewBox.removeClass('modal')
-                      .find('.cancel').on('click', function() {
-                z.page.trigger('navigate', urls.reverse('app', [slug]));
-            });
-
-            // Scroll the page down to make the send/cancel buttons visible.
-            $reviewBox.find('.rating').on('click touchend', function() {
-                var textarea = document.querySelector('.compose-review textarea');
-                if (textarea) {
-                    textarea.focus();
-                }
-            });
-
-            if (scrollTo && !caps.widescreen()) {
-                console.log('scrollTo');
-                $reviewBox.find('textarea').on('focus', function() {
-                    console.log('focus');
-                    window.scrollTo(0, 200);
-                });
-            }
+            $('.compose-review').attr('data-slug', slug).removeClass('modal');
         });
 
         builder.z('type', 'leaf');

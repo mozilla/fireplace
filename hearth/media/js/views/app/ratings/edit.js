@@ -37,6 +37,10 @@ define('views/app/ratings/edit',
             forms.toggleSubmitFormState($this, true);
             notify({message: gettext('There was a problem updating your review')});
         });
+    }).on('click', '.edit-review-form .cancel', function(e) {
+        e.preventDefault();
+        var slug = $(this).closest('.edit-review-form').data('slug');
+        z.page.trigger('navigate', urls.reverse('app', [slug]));
     });
 
     return function(builder, args) {
@@ -46,29 +50,12 @@ define('views/app/ratings/edit',
         // I'm not concerned with trying to log them in because they shouldn't
         // have even gotten to this page in their current state anyway.
         if (!user.logged_in()) {
-            z.page.trigger('navigate', urls.reverse('app', [slug]));
+            z.page.trigger('divert', urls.reverse('app', [slug]));
             return;
         }
 
         builder.start('ratings/edit.html', {'slug': slug}).done(function() {
-            var $reviewBox = $('.compose-review');
-
-            $('.edit-review-form .cancel').on('click', utils._pd(function() {
-                z.page.trigger('navigate', urls.reverse('app', [slug]));
-            }));
-
-            $reviewBox.find('.rating').on('click touchend', function() {
-                var textarea = document.querySelector('.compose-review textarea:invalid');
-                if (textarea) {
-                    textarea.focus();
-                }
-            });
-
-            if (scrollTo && !caps.widescreen()) {
-                $reviewBox.find('textarea').on('focus', function() {
-                    window.scrollTo(0, 200);
-                });
-            }
+            $('.compose-review').attr('data-slug', slug);
         });
 
         // If we hit the API and find out that there's no review for the user,
