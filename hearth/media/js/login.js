@@ -104,7 +104,7 @@ define('login',
 
             z.body.addClass('logged-in');
             $('.loading-submit').removeClass('loading-submit');
-            z.page.trigger('reload_chrome logged_in');
+            z.page.trigger('reload_chrome').trigger('logged_in');
 
             function resolve_pending() {
                 _.invoke(pending_logins, 'resolve');
@@ -164,7 +164,7 @@ define('login',
             onlogin: gotVerifiedEmail,
             onlogout: function() {
                 z.body.removeClass('logged-in');
-                z.page.trigger('reload_chrome logout');
+                z.page.trigger('reload_chrome').trigger('logout');
             }
         });
     }
