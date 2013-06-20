@@ -10,7 +10,7 @@ $cat-icon-size-default = 28px;
 $cat-icon-size-desktop = 60px;
 
 .cat-icon,
-.cat-icons a {
+.cat-icon-a {
     &:before {
         // Default to 'all' icon
         background: url(../img/pretty/cat-icons.svg) no-repeat 50% 94.8%;
@@ -22,57 +22,68 @@ $cat-icon-size-desktop = 60px;
         vertical-align: middle;
         width: $cat-icon-size-default;
     }
-    &:focus:before,
-    &:hover:before {
+
+    &:focus:before, &:hover:before {
         background-image: url(../img/pretty/cat-icons-white.svg);
     }
-    &.cat-entertainment:before,
-    &.cat-sports:before {
-        background-position: 50% 48.9%;
-    }
-    &.cat-business:before {
-        background-position: 50% 42.5%;
-    }
-    &.cat-games:before {
-        background-position: 50% -1%;
-    }
-    &.cat-music:before {
-        background-position: 50% 11.4%;
-    }
-    &.cat-news-weather:before {
-        background-position: 50% 4.9%;
-    }
-    &.cat-productivity:before {
-        background-position: 50% 68.5%;
-    }
-    &.cat-social:before {
-        background-position: 50% 75.4%;
-    }
-    &.cat-travel:before {
-        background-position: 50% 88.2%;
-    }
-    &.cat-books:before,
-    &.cat-reference:before {
-        background-position: 50% 81.6%;
-    }
-    &.cat-education:before {
-        background-position: 50% 23.2%;
-    }
-    &.cat-health-fitness:before {
-        background-position: 50% 17.9%;
-    }
-    &.cat-lifestyle:before {
-        background-position: 50% 36.3%;
-    }
-    &.cat-photo-video:before {
-        background-position: 50% 61.9%;
-    }
-    &.cat-utilities:before {
-        background-position: 50% 29.5%;
-    }
-    &.cat-shopping:before {
-        background-position: 50% 55.6%;
-    }
+}
+
+.cat-entertainment:before,
+.cat-sports:before {
+    background-position: 50% 48.9%;
+}
+.cat-business:before {
+    background-position: 50% 42.5%;
+}
+.cat-games:before {
+    background-position: 50% -1%;
+}
+.cat-music:before {
+    background-position: 50% 11.4%;
+}
+.cat-news-weather:before {
+    background-position: 50% 4.9%;
+}
+.cat-productivity:before {
+    background-position: 50% 68.5%;
+}
+.cat-social:before {
+    background-position: 50% 75.4%;
+}
+.cat-travel:before {
+    background-position: 50% 88.2%;
+}
+.cat-books:before,
+.cat-reference:before {
+    background-position: 50% 81.6%;
+}
+.cat-education:before {
+    background-position: 50% 23.2%;
+}
+.cat-health-fitness:before {
+    background-position: 50% 17.9%;
+}
+.cat-lifestyle:before {
+    background-position: 50% 36.3%;
+}
+.cat-photo-video:before {
+    background-position: 50% 61.9%;
+}
+.cat-utilities:before {
+    background-position: 50% 29.5%;
+}
+.cat-shopping:before {
+    background-position: 50% 55.6%;
+}
+
+.cat-movistar-es:before,
+.cat-movistar-co:before,
+.cat-movistar-ve:before,
+.cat-movistar-es:hover:before,
+.cat-movistar-co:hover:before,
+.cat-movistar-ve:hover:before {
+    background-image: url(../img/carriers/movistar.svg) !important;
+    background-position: 0 40%;
 }
 
 .dropdown a:after {
@@ -114,20 +125,19 @@ $cat-icon-size-desktop = 60px;
             text-decoration: none;
             width: 100%;
             z-index: 1;
-            &:focus,
-            &:hover {
+
+            &:focus, &:hover {
                 color: $sailor-blue;
-            }
-            // Dropdown category icon
-            &:focus:before,
-            &:hover:before {
-                // Cat icons are blue on dropdown hover.
-                background-image: url(../img/pretty/cat-icons-blue.svg);
+
+                // Dropdown category icon
+                &:before {
+                    // Cat icons are blue on dropdown hover.
+                    background-image: url(../img/pretty/cat-icons-blue.svg);
+                }
             }
             // Dropdown arrow
             &:after {
                 dropdown();
-                //transform: rotate(0);
             }
         }
         &.active a:after,
@@ -160,6 +170,7 @@ $cat-icon-size-desktop = 60px;
             padding: 0 10px;
             position: relative;
             width: 100%;
+
             &:focus,
             &:active,
             &:hover,
@@ -189,6 +200,7 @@ $cat-icon-size-desktop = 60px;
                 right: 12px;
                 top: 15px;
                 width: 17px;
+
             }
             &.current:hover:after,
             &.current:focus:after {
