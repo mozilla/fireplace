@@ -1,5 +1,3 @@
-(function() {
-
 define('builder',
     ['templates', 'models', 'requests', 'settings', 'z', 'nunjucks.compat'],
     function(nunjucks, models, requests, settings, z) {
@@ -291,5 +289,3 @@ define('builder',
     };
 
 });
-
-})();
