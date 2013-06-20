@@ -6,7 +6,7 @@ define('views/app/ratings/add',
 
     z.page.on('click', '.compose-review .cancel', function(e) {
         e.preventDefault();
-        var slug = $(this).closest('.compose-review').attr('data-slug');
+        var slug = $(this).closest('.add-review-form').attr('data-app');
         z.page.trigger('navigate', urls.reverse('app', [slug]));
 
     }).on('click touchend', '.compose-review .rating', function() {
@@ -32,7 +32,7 @@ define('views/app/ratings/add',
         }
 
         builder.start('ratings/write.html', {'slug': slug}).done(function() {
-            $('.compose-review').attr('data-slug', slug).removeClass('modal');
+            $('.compose-review').removeClass('modal');
         });
 
         builder.z('type', 'leaf');
