@@ -1,6 +1,6 @@
 define('buttons',
-    ['browser', 'capabilities', 'format', 'l10n', 'log', 'tracking', 'utils', 'z'],
-    function(browser, capabilities, format, l10n, log, tracking, utils, z) {
+    ['browser', 'capabilities', 'format', 'l10n', 'log', 'settings', 'tracking', 'utils', 'z'],
+    function(browser, capabilities, format, l10n, log, settings, tracking, utils, z) {
 
     var console = log('buttons');
 
@@ -44,11 +44,10 @@ define('buttons',
 
         product['isPurchased'] = true;
 
-        setButton($button, gettext('Purchased'), 'purchased');
+        setButton($button, gettext('Install'), 'purchased');
     }).on('app_install_start', function(e, product) {
         var $button = getButton(product);
-        setButton($button, '<span class="spin"></span>',
-                  'installing');
+        setButton($button, '<span class="spin"></span>', 'installing');
 
         tracking.trackEvent(
             'Click to install app',
@@ -95,7 +94,7 @@ define('buttons',
         if (!capabilities.webApps) {
             $('.button.product').attr('disabled', true);
         }
-        if (!capabilities.navPay) {
+        if (!capabilities.navPay && !settings.simulate_nav_pay) {
             $('.button.product.paid').attr('disabled', true);
         }
 

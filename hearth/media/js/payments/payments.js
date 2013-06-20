@@ -1,6 +1,6 @@
 define('payments/payments',
-    ['capabilities', 'l10n', 'log', 'notification', 'requests', 'settings', 'urls', 'z'],
-    function(caps, l10n, log, notification, requests, settings, urls, z) {
+    ['capabilities', 'defer', 'l10n', 'log', 'notification', 'requests', 'settings', 'urls', 'z'],
+    function(caps, defer, l10n, log, notification, requests, settings, urls, z) {
 
     var console = log('payments');
 
@@ -60,7 +60,7 @@ define('payments/payments',
 
     function beginPurchase(product) {
         if (!product) return;
-        var $def = $.Deferred();
+        var $def = defer.Deferred();
 
         console.log('Initiating transaction');
 
@@ -100,11 +100,15 @@ define('payments/payments',
                 };
             }).fail(function(xhr, status, error) {
                 console.error('Error fetching JWT from API: ', status, error);
+                // L10n: This error is raised when we are unable to fetch a JWT from the payments API.
+                notify({message: gettext('Error while communicating with server. Try again later.')});
                 $def.reject(null, product, 'MKT_SERVER_ERROR');
             });
 
         } else {
             console.log('`navigator.mozPay` unavailable and mocking disabled. Cancelling.');
+            // L10n: When a user tries to make a purchase from a device that does not support payments, this is the error.
+            notify({message: gettext('Your device does not support purchases.')});
             $def.reject(null, product, 'MKT_CANCELLED');
         }
 
