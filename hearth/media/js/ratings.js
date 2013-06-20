@@ -57,6 +57,7 @@ define('ratings',
         reviewEl.addClass('deleting');
         require('requests').del(settings.api_url + urls.api.sign(uri)).done(function() {
             notify({message: gettext('Your review was deleted')});
+            reviewEl.remove();
 
             // Update the app's review listing.
             rewriter(app, function(data) {
@@ -80,8 +81,6 @@ define('ratings',
 
             // Clear the user's review from the request cache.
             cache.bust(urls.api.params('reviews', {app: app, user: 'mine'}));
-
-            require('views').reload();
 
         }).fail(function() {
             notify({message: gettext('There was a problem deleting the review')});
