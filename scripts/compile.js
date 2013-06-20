@@ -20,7 +20,7 @@ if (args) {
 }
 
 function process(folder, output_file, locale_file, opts) {
-    var extensions = require('../hearth/media/js/builder').extensions || [];
+    var extensions = require('./deferparser').extensions || [];
 
     glob(folder, '.html', function(err, templates) {
         var template_strings = (

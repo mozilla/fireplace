@@ -1,49 +1,5 @@
 (function() {
 
-function defer_parser() {
-    this._name = 'defer';
-    this.tags = ['defer'];
-    this.parse = function(parser, nodes, tokens) {
-        var begun = parser.peekToken();
-        parser.skipSymbol('defer');
-        parser.skip(tokens.TOKEN_WHITESPACE);
-        var args = parser.parseSignature();
-        parser.advanceAfterBlockEnd(begun.value);
-
-        var body, placeholder, empty, except;
-        body = parser.parseUntilBlocks('placeholder', 'empty', 'except', 'end');
-
-        if (parser.skipSymbol('placeholder')) {
-            parser.skip(tokens.TOKEN_BLOCK_END);
-            placeholder = parser.parseUntilBlocks('empty', 'except', 'end');
-        }
-
-        if (parser.skipSymbol('empty')) {
-            parser.skip(tokens.TOKEN_BLOCK_END);
-            empty = parser.parseUntilBlocks('except', 'end');
-        }
-
-        if (parser.skipSymbol('except')) {
-            parser.skip(tokens.TOKEN_BLOCK_END);
-            except = parser.parseUntilBlocks('end');
-        }
-
-        parser.advanceAfterBlockEnd();
-
-        return new nodes.CallExtension(this, 'run', args, [body, placeholder, empty, except]);
-    };
-
-}
-// If we're running in node, export the extensions.
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports.extensions = [new defer_parser()];
-}
-
-// No need to install the extensions if AMD isn't around.
-if (typeof define !== 'function') {
-    return;
-}
-
 define('builder',
     ['templates', 'models', 'requests', 'settings', 'z', 'nunjucks.compat'],
     function(nunjucks, models, requests, settings, z) {
