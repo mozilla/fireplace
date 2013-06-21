@@ -35,7 +35,7 @@ define('urls',
     };
 
     var api_endpoints = {
-        'app': '/api/v1/apps/app/{0}/',
+        'app': '/api/v1/fireplace/app/{0}/',
         'app/privacy': '/api/v1/apps/app/{0}/privacy/',
         'category': '/api/v1/fireplace/search/featured/?cat={0}',
         'categories': '/api/v1/apps/category/',

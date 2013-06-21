@@ -109,7 +109,7 @@ def app(name, slug, **kwargs):
             'name': ptext(),
             'icon_url': '/media/img/icons/firefox-beta.png',
             'app_slug': 'upsold',
-            'resource_uri': '/api/v1/apps/app/%s/' % 'upsold',
+            'resource_uri': '/api/v1/fireplace/app/%s/' % 'upsold',
         }
 
     if has_price:

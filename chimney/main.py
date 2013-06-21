@@ -154,7 +154,7 @@ def categories():
     return _proxy(MARKETPLACE + request.path)
 
 
-@app.route('/api/v1/apps/app/<slug>/')
+@app.route('/api/v1/fireplace/app/<slug>/')
 def app_(slug):
     return _proxy(MARKETPLACE + request.path)
 
