@@ -104,7 +104,7 @@ define('builder',
         }
 
         // This pretends to be the nunjucks extension that does the magic.
-        var defer_runner = {
+        this.env.addExtension('defer', {
             run: function(context, signature, body, placeholder, empty, except) {
                 var uid = 'ph_' + counter++;
                 var out;
@@ -223,8 +223,7 @@ define('builder',
 
                 return new SafeString('<div id="' + uid + '" class="placeholder">' + out + '</div>');
             }
-        };
-        this.env.addExtension('defer', defer_runner);
+        });
 
         this.start = function(template, defaults) {
             fire(page, 'build_start');
