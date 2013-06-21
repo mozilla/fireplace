@@ -233,7 +233,7 @@ define('mobilenetwork',
         if (settings.carrier && typeof settings.carrier === 'object') {
             carrier = settings.carrier.slug;
         }
-        carrier = carrier || GET.carrier || null;
+        carrier = GET.carrier || carrier || null;
 
         try {
             // When Fireplace is served as a privileged packaged app (and not
