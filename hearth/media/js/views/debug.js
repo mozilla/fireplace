@@ -3,20 +3,8 @@ define('views/debug',
     function(buckets, cache, capabilities, log, notification, requests, settings, storage, utils, z) {
     'use strict';
 
-    var debugEnabled = storage.getItem('debug-enabled');
     var label = $(document.getElementById('debug-status'));
-    z.doc.on('click', '#toggle-debug', function() {
-        debugEnabled = storage.getItem('debug-enabled');
-        if (debugEnabled === 'yes') {
-            notification.notification({message: 'debug mode disabled', timeout: 1000});
-            storage.setItem('debug-enabled', 'no');
-            label.text('no');
-        } else {
-            notification.notification({message: 'debug mode enabled', timeout: 1000});
-            storage.setItem('debug-enabled', 'yes');
-            label.text('yes');
-        }
-    }).on('click', '#clear-localstorage', function(e) {
+    z.doc.on('click', '#clear-localstorage', function(e) {
         storage.clear();
         notification.notification({message: 'localStorage cleared', timeout: 1000});
     }).on('click', '.cache-menu a', function(e) {
@@ -47,7 +35,6 @@ define('views/debug',
         builder.start('debug.html', {
             cache: cache.raw,
             capabilities: capabilities,
-            dbg: debugEnabled || 'no',
             profile: buckets.get_profile(),
             recent_logs: recent_logs,
             filter: log.filter
