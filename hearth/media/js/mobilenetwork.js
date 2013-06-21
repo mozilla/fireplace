@@ -228,10 +228,10 @@ define('mobilenetwork',
         var mcc = GET.mcc;
         var mnc = GET.mnc;
 
-        // Hardcoded carrier should never get overridden.
         var carrier = user.get_setting('carrier');
-        if (carrier && typeof carrier === 'object') {
-            carrier = carrier.slug;
+        // Hardcoded carrier should never get overridden.
+        if (settings.carrier && typeof settings.carrier === 'object') {
+            carrier = settings.carrier.slug;
         }
         carrier = carrier || GET.carrier || null;
 
