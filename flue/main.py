@@ -121,12 +121,6 @@ def privacy(slug):
     }
 
 
-@app.route('/api/v1/home/featured/')
-def featured():
-    return {'objects':
-        [defaults.app('Featured App', 'feat%d' % i) for i in xrange(8)]}
-
-
 @app.route('/api/v1/apps/category/')
 def categories():
     return {
@@ -138,14 +132,6 @@ def categories():
             defaults.category('music', 'Music'),
             defaults.category('lifestyle', 'Thug Life'),
         ]
-    }
-
-
-@app.route('/api/v1/home/page/')
-def homepage():
-    return {
-        'featured': featured._orig()['objects'],
-        'categories': categories._orig(),
     }
 
 
@@ -200,7 +186,7 @@ def search():
     return data
 
 
-@app.route('/api/v1/apps/search/featured/')
+@app.route('/api/v1/fireplace/search/featured/')
 def category():
     def gen():
         i = 0
