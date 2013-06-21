@@ -68,11 +68,13 @@ clean:
 		hearth/media/css/include.css \
 		hearth/media/js/include.*
 
-includes: clean compile langpacks
+raw_includes: clean compile langpacks
 	echo "/* $(VERSION) */" > hearth/media/include.css
 	echo "/* $(VERSION) */" > hearth/media/include.js
 	cat amd/amd.js >> hearth/media/include.js
 	python build.py
+
+includes: raw_includes
 	cleancss hearth/media/include.css > hearth/media/css/include.css
 	rm -f hearth/media/include.css
 	mv hearth/media/include.js hearth/media/js/
