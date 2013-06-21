@@ -30,7 +30,7 @@ suite.run('/', function(test, waitFor) {
         assert.selectorExists('.tray.previews img');  // Has preview images
         assert.visible('.tray.previews .dots .dot');  // Has dots for the previews section
         assert.selectorExists('.tray.previews .dots .current');  // At least one of the dots is selected
-        assert.hasText('.blurbs .summary');  // Has summary/description
+        assert.hasText('.blurbs .description');  // Has description
         assert.visible('section.support .support-email a');  // Has a support email button
         assert.visible('section.support .homepage a');  // Has a homepage button
         assert.visible('section.support .privacy-policy a');  // Has a privacy policy button

@@ -62,27 +62,18 @@
 <section class="main blurbs prose infobox">
   <div>
     {% defer (url=endpoint, as='app', key=slug) %}
-      {% set super_long = this.summary.length + description.length > 700 %}
-      <p class="summary" itemprop="description">
-        {{ this.summary|nl2br }}
-        {% if super_long %}
+      <p class="description" itemprop="description">
+        {{ this.description|nl2br }}
+        {% if this.description.length > 700 %}
           <a href="#" class="show-toggle" data-toggle-text="{{ _('Less&hellip;') }}">{{ _('More&hellip;') }}</a>
         {% endif %}
       </p>
 
-      {% if this.description.length or this.is_packaged %}
-        <div{% if super_long %} class="collapsed"{% endif %}>
-          {% if this.description.length %}
-            <h3>{{ _('Description') }}</h3>
-            <div class="description">{{ this.description|nl2br }}</div>
-          {% endif %}
-          {% if this.is_packaged %}
-            <h3>{{ _('Version') }}</h3>
-            <div class="package-version">
-              {{ _('Latest version: {version}',
-                   version=this.current_version.version) }}
-            </div>
-          {% endif %}
+      {% if this.is_packaged %}
+        <h3>{{ _('Version') }}</h3>
+        <div class="package-version">
+          {{ _('Latest version: {version}',
+               version=this.current_version.version) }}
         </div>
       {% endif %}
     {% placeholder %}

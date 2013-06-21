@@ -56,7 +56,6 @@ def app(name, slug, **kwargs):
     data = {
         'name': text(name),
         'slug': slug,
-        'summary': escape(kwargs.get('summary', ptext(50))),
         'description': escape(kwargs.get('description', ptext(100))),
         'is_packaged': slug == 'packaged' or rand_bool(),
         'manifest_url':
