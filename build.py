@@ -26,8 +26,12 @@ for root, _, files in os.walk('hearth/media/js'):
         with open(os.path.join(root, f)) as file_:
             output.append(file_.read())
 
+
+whitespace_lines = re.compile(r'output \+= "(\\n|\\t| )+";')
 with open('hearth/templates.js') as file_:
-    output.append(file_.read())
+    data = file_.read().decode('utf-8').split(u'\n')
+    data = filter(lambda line: whitespace_lines.match(line), data)
+    output.append(u'\n'.join(data).encode('utf-8'))
 
 with open('hearth/media/include.js') as inc:
     inc_data = inc.read()
