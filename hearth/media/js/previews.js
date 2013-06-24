@@ -20,6 +20,7 @@ define('previews',
         // preview trays expect to immediately follow a .mkt-tile.
         var $tray = $(this);
         var $tile = $tray.prev();
+        var singleShot = false;
         if (!$tile.hasClass('mkt-tile') || $tray.find('.slider').length) {
             return;
         }
@@ -36,11 +37,14 @@ define('previews',
             dotHTML = Array(product.previews.length + 1).join('<b class="dot"></b>');
         } else {
             $tray.addClass('single');
+            singleShot = true;
         }
         $tray.html(nunjucks.env.getTemplate('detail/preview_tray.html').render({
             previews: previewsHTML,
             dots: dotHTML
         }));
+
+        if (singleShot) return;
 
         var numPreviews = $tray.find('li').length;
         var $content = $tray.find('.content');
