@@ -4,15 +4,19 @@ define('common/linefit', ['jquery'], function($) {
         var min_font_size = 7;
         lines = lines || 1;
         return this.each(function() {
-            var $this = $(this),
-                fs = parseFloat($this.css('font-size').replace('px', '')),
-                max_height = Math.ceil(parseFloat($this.css('line-height').replace('px', ''))) * lines,
-                height = $this.height();
-            while (height > max_height && fs > min_font_size) {
-                // Repeatedly shrink the text by 0.5px until all the text fits.
-                fs -= .5;
-                $this.css('font-size', fs);
-                height = $this.height();
+            this.innerHTML = '<span class="linefitted">' + this.innerHTML + '</span>';
+            var $span = $(this).find('span'),
+                fs = parseFloat($span.css('font-size').replace('px', '')),
+                max_height = Math.ceil(parseFloat($span.css('line-height').replace('px', ''))) * lines,
+                height = $span.height();
+            if (+height > +max_height * 2) {
+                // It's more than one line.
+                while (height > max_height && fs > min_font_size) {
+                    // Repeatedly shrink the text by 0.5px until all the text fits.
+                    fs -= .5;
+                    $span.css('font-size', fs);
+                    height = $span.height();
+                }
             }
         });
     };

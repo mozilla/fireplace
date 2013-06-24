@@ -1,5 +1,5 @@
 {% macro _url(view_name, title) %}
-<li><a{% if current_page == view_name %} class="sel"{% endif %} href="{{ url(view_name) }}">
+<li><a class="linefit {% if current_page == view_name %} sel{% endif %}" href="{{ url(view_name) }}">
   {{ title }}</a></li>
 {% endmacro %}
 
