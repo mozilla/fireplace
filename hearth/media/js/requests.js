@@ -81,7 +81,7 @@ define('requests',
                 data = JSON.parse(data);
             }
 
-            def.resolve(data, statusText(), xhr);
+            def.resolve(data, xhr.statusText, xhr);
         }, false);
 
         xhr.addEventListener('error', error, false);
