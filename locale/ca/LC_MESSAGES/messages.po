@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-11T22:45:08.053Z\n"
-"PO-Revision-Date: 2013-06-24 15:43+0200\n"
+"PO-Revision-Date: 2013-06-25 19:59+0200\n"
 "Last-Translator: Toni Hermoso Pulido <toniher@softcatala.org>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
 "Language: ca\n"
@@ -31,13 +31,13 @@ msgstr "({n})"
 #: hearth/templates/detail/main.html:110
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{n}} valoració"
+msgstr[1] "{{n}} valoracions"
 
 #. "(0)" means "0 reviews."
 #: hearth/templates/_macros/market_tile.html:34
 msgid "(0)"
-msgstr ""
+msgstr "«(0)» vol dir «0 valoracions.»"
 
 #: hearth/templates/_macros/market_tile.html:35
 msgid "Not yet rated"
@@ -53,11 +53,11 @@ msgstr "per {author}"
 
 #: hearth/templates/_macros/rating.html:12
 msgid "for previous version {version}"
-msgstr ""
+msgstr "per a versió anterior {version}"
 
 #: hearth/templates/_macros/rating.html:21
 msgid "Flagged for review"
-msgstr ""
+msgstr "Senyalat per a valorar"
 
 #: hearth/templates/_macros/rating.html:25
 msgid "Edit"
@@ -73,21 +73,21 @@ msgstr "Informa"
 
 #: hearth/templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
-msgstr ""
+msgstr "Puntuat amb {stars} de {maxstars} estrelles"
 
 #: hearth/templates/cat_dropdown.html:1 hearth/templates/cat_list.html:3
 #: hearth/media/js/cat-dropdown.js:12 hearth/media/js/views/homepage.js:26
 msgid "All Categories"
-msgstr ""
+msgstr "Totes les categories"
 
 #: hearth/templates/category/main.html:19
 msgid "Featured Apps"
-msgstr ""
+msgstr "Aplicacions destacades"
 
 #: hearth/templates/category/main.html:20
 #: hearth/templates/category/main.html:44
 msgid "View All"
-msgstr ""
+msgstr "Mostra-les totes"
 
 #: hearth/templates/category/main.html:41
 msgid "Popular"
@@ -133,13 +133,15 @@ msgstr "Instal·lada!"
 
 #: hearth/templates/detail/main.html:36
 msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Executa l'aplicació del directori <b>Aplicacions</b>."
+msgstr "Executeu l'aplicació del directori <b>Aplicacions</b>."
 
 #: hearth/templates/detail/main.html:39
 msgid ""
 "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All "
 "Programs</b>."
 msgstr ""
+"Executeu l'aplicació de l'<b>escriptori del Windows</b> o des d'<b>Inicia "
+"&#9658; Tots els programes</b>."
 
 #: hearth/templates/detail/main.html:42
 msgid ""
@@ -150,7 +152,7 @@ msgstr ""
 #: hearth/templates/detail/main.html:14 hearth/templates/detail/main.html:15
 #: hearth/media/js/views/app.js:60
 msgid "Loading..."
-msgstr ""
+msgstr "S'està carregant..."
 
 #: hearth/templates/detail/main.html:24
 #: hearth/templates/errors/fragment.html:1 hearth/templates/not_found.html:2
@@ -191,38 +193,38 @@ msgstr "Aprova / rebutja"
 
 #: hearth/templates/detail/main.html:89
 msgid "Review History"
-msgstr "Historial de revisions"
+msgstr "Historial de valoracions"
 
 #: hearth/templates/detail/main.html:100 hearth/templates/ratings/main.html:6
 #: hearth/media/js/views/app/ratings.js:17
 msgid "Reviews"
-msgstr "Revisions"
+msgstr "Valoracions"
 
 #: hearth/templates/detail/main.html:118
 msgid "App not yet rated"
-msgstr ""
+msgstr "No s'ha puntuat encara l'aplicació"
 
 #: hearth/templates/detail/main.html:126
 msgid "Edit Your Review"
-msgstr ""
+msgstr "Edita la valoració"
 
 #: hearth/templates/detail/main.html:130 hearth/templates/ratings/main.html:17
 #: hearth/templates/ratings/write.html:2
 #: hearth/media/js/views/app/ratings/add.js:44
 msgid "Write a Review"
-msgstr ""
+msgstr "Escriviu una valoració"
 
 #: hearth/templates/detail/main.html:130 hearth/templates/ratings/main.html:17
 msgid "Sign in to Review"
-msgstr ""
+msgstr "Inicieu una sessió per a valorar"
 
 #: hearth/templates/detail/main.html:147
 msgid "Support Email"
-msgstr ""
+msgstr "Adreça electrònica de suport"
 
 #: hearth/templates/detail/main.html:153
 msgid "Support Site"
-msgstr ""
+msgstr "Lloc web de suport"
 
 #: hearth/templates/detail/main.html:158
 msgid "Homepage"
@@ -237,11 +239,11 @@ msgstr "Política de privadesa"
 
 #: hearth/templates/detail/main.html:170
 msgid "Statistics"
-msgstr ""
+msgstr "Estadístiques"
 
 #: hearth/templates/detail/main.html:182
 msgid "Premium version available"
-msgstr ""
+msgstr "Versió Premium disponible"
 
 #: hearth/templates/detail/main.html:199
 msgid "Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
@@ -253,7 +255,7 @@ msgstr "Torna a l'aplicació"
 
 #: hearth/templates/detail/privacy.html:11
 msgid "Loading Privacy Policy..."
-msgstr ""
+msgstr "S'està carregant la política de privadesa..."
 
 #: hearth/templates/errors/fragment.html:2
 msgid "An error occurred."
@@ -261,11 +263,11 @@ msgstr "S'ha produït un error."
 
 #: hearth/templates/errors/pagination.html:1
 msgid "Error loading more"
-msgstr ""
+msgstr "Error en carregar més"
 
 #: hearth/templates/errors/pagination.html:2
 msgid "Try Again"
-msgstr ""
+msgstr "Torna-ho a provar"
 
 #: hearth/templates/featured.html:5
 msgid "Featured"
@@ -274,19 +276,19 @@ msgstr "Destacada"
 #: hearth/templates/featured.html:6 hearth/templates/search/main.html:10
 #: hearth/templates/user/purchases.html:14
 msgid "Expand"
-msgstr ""
+msgstr "Amplia"
 
 #: hearth/templates/featured.html:19
 msgid "No featured apps found"
-msgstr ""
+msgstr "No s'han trobat aplicacions destacades"
 
 #: hearth/templates/footer.html:2
 msgid "Develop Apps"
-msgstr ""
+msgstr "Aplicacions de desenvolupament"
 
 #: hearth/templates/footer.html:5
 msgid "Developer Hub"
-msgstr ""
+msgstr "Centre del desenvolupador"
 
 #: hearth/templates/footer.html:6 hearth/templates/header.html:26
 #: hearth/templates/settings/nav.html:8 hearth/templates/settings/nav.html:11
@@ -341,7 +343,7 @@ msgstr "Paràmetres"
 
 #: hearth/templates/header.html:20
 msgid "Edit Account Settings"
-msgstr ""
+msgstr "Edita els paràmetres del compte"
 
 #: hearth/templates/header.html:22 hearth/templates/settings/nav.html:7
 #: hearth/templates/user/purchases.html:39
@@ -349,28 +351,28 @@ msgstr ""
 #: hearth/templates/user/purchases.html:31
 #: hearth/media/js/views/purchases.js:30
 msgid "My Apps"
-msgstr ""
+msgstr "Les meves aplicacions"
 
 #: hearth/templates/header.html:24
 msgid "My Submissions"
-msgstr ""
+msgstr "Les meves trameses"
 
 #: hearth/templates/header.html:27 hearth/templates/settings/main.html:47
 msgid "Sign Out"
-msgstr ""
+msgstr "Finalitza la sessió"
 
 #: hearth/templates/header.html:31
 msgid "Sign In"
-msgstr ""
+msgstr "Inicia una sessió"
 
 #: hearth/templates/ratings/edit.html:4 hearth/templates/ratings/main.html:13
 #: hearth/media/js/views/app/ratings/edit.js:85
 msgid "Edit Review"
-msgstr ""
+msgstr "Edita la valoraciño"
 
 #: hearth/templates/ratings/edit.html:8 hearth/templates/ratings/write.html:7
 msgid "Rate:"
-msgstr ""
+msgstr "Puntuació:"
 
 #: hearth/templates/ratings/edit.html:20
 #: hearth/templates/ratings/report.html:3
@@ -427,7 +429,7 @@ msgstr "No s'ha trobat cap resultat"
 
 #: hearth/templates/search/main.html:33
 msgid "No results found, try again later"
-msgstr ""
+msgstr "No s'ha trobat cap resultat, torneu-ho a provar"
 
 #: hearth/templates/settings/feedback.html:12
 msgid "Send"
@@ -443,11 +445,11 @@ msgstr "Paràmetres del compte"
 
 #: hearth/templates/settings/main.html:11
 msgid "Email"
-msgstr ""
+msgstr "Adreça electrònica"
 
 #: hearth/templates/settings/main.html:20
 msgid "Display Name"
-msgstr ""
+msgstr "Nom a mostrar"
 
 #: hearth/templates/settings/main.html:29
 msgid "Region"
@@ -455,7 +457,7 @@ msgstr "Regió"
 
 #: hearth/templates/settings/main.html:45
 msgid "Save Changes"
-msgstr ""
+msgstr "Desa els canvis"
 
 #: hearth/templates/settings/main.html:48
 msgid "Sign In / Sign Up"
@@ -565,7 +567,7 @@ msgstr ""
 #. The report is an abuse report for reviews
 #: hearth/media/js/ratings.js:39
 msgid "Sending report..."
-msgstr ""
+msgstr "S'està enviant l'informe..."
 
 #: hearth/media/js/ratings.js:44
 msgid "Review flagged"
@@ -600,19 +602,19 @@ msgstr[1] ""
 
 #: hearth/media/js/views/app/abuse.js:18
 msgid "Abuse reported"
-msgstr ""
+msgstr "S'ha informat d'un abús"
 
 #: hearth/media/js/views/app/abuse.js:22
 msgid "Error while submitting report"
-msgstr ""
+msgstr "S'ha produït un error en enviar l'informe"
 
 #: hearth/media/js/views/app/ratings/edit.js:23
 msgid "Review updated successfully"
-msgstr ""
+msgstr "S'ha actualitzat la valoració correctament"
 
 #: hearth/media/js/views/app/ratings/edit.js:38
 msgid "There was a problem updating your review"
-msgstr ""
+msgstr "S'ha produït un problema en actualitzar la valoració"
 
 #: hearth/media/js/views/app.js:61
 msgid "App Details"
