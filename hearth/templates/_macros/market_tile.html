@@ -1,5 +1,5 @@
-{% include "_macros/stars.html" %}
-{% include "_macros/market_button.html" %}
+{% from "_macros/stars.html" import stars %}
+{% from "_macros/market_button.html" import market_button %}
 
 {% macro market_tile(app, link=False, src=None, classes=None, data_attrs=None, force_button=False) %}
   {% set tag = 'a' if link else 'div' %}
