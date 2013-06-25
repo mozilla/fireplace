@@ -12,6 +12,8 @@ define('z', ['jquery', 'underscore'], function($, _) {
         context: {}
     };
 
+    z.spaceheater = z.body.data('spaceheater') === 'true';
+
     var data_user = z.body.data('user');
 
     _.extend(z, {

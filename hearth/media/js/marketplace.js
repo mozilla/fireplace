@@ -128,7 +128,11 @@ require.config({
 
         // Perform initial navigation.
         console.log('Triggering initial navigation');
-        z.page.trigger('navigate', [window.location.pathname + window.location.search]);
+        if (!z.spaceheater) {
+            z.page.trigger('navigate', [window.location.pathname + window.location.search]);
+        } else {
+            z.page.trigger('loaded');
+        }
 
         // Debug page
         (function() {
