@@ -251,7 +251,7 @@ define('mobilenetwork',
                 console.log('lastKnownHomeNetwork', conn.lastKnownHomeNetwork);
                 console.log('MCC = ' + mcc + ', MNC = ' + mnc);
             } else {
-                console.warn('Error accessing navigator.mozMobileConnection');
+                console.warn('navigator.mozMobileConnection unavailable');
             }
         } catch(e) {
             // Fail gracefully if `navigator.mozMobileConnection` gives us problems.

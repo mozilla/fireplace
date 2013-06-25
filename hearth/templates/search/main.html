@@ -4,7 +4,7 @@
 <section id="search-results" class="main full c">
   {% defer (url=apiParams('search', params), pluck='objects', as='app', paginate='ol.listing') %}
     <header class="secondary-header c">
-      <h2>
+      <h2 class="linefit">
         {{ _plural('<b>{n}</b> Result', '<b>{n}</b> Results', n=response.meta.total_count) }}
         <span class="subtitle hide-on-mobile">{{ _('Showing <b>1</b>&ndash;<b class="total-results">{total}</b>', total=len(this)) }}</span>
       </h2>

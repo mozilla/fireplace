@@ -40,16 +40,13 @@ define('views/settings',
                 .fail(completion.reject);
     })).on('logged_in', update_settings);
 
-    z.win.on('loaded navigating', function() {
-        $('.toggles a').linefit();
-    });
-
     return function(builder) {
         builder.start('settings/main.html');
+
+        $('.linefit').linefit();
 
         builder.z('type', 'root settings');
         builder.z('reload_on_logout', true);
         builder.z('title', gettext('Account Settings'));
-        builder.done();
     };
 });

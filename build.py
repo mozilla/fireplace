@@ -26,6 +26,7 @@ for root, _, files in os.walk('hearth/media/js'):
         with open(os.path.join(root, f)) as file_:
             output.append(file_.read())
 
+
 with open('hearth/templates.js') as file_:
     output.append(file_.read())
 

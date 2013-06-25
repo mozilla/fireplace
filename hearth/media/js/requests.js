@@ -66,26 +66,8 @@ define('requests',
         var xhr = new XMLHttpRequest();
         var def = defer.Deferred();
 
-        function statusText() {
-            if (xhr.status === 204) {
-                return 'nocontent';
-            } else if (xhr.status === 304) {
-                return 'notmodified';
-            } else if (xhr.status >= 200 && xhr.status < 300) {
-                return 'success';
-            } else {
-                return 'error';
-            }
-        }
-
         function error() {
-            var error = xhr.statusText;
-            if (error) {
-                // This cuts off the response code so we can return just the
-                // response code text.
-                error = error.substr(4);
-            }
-            def.reject(xhr, statusText(), error, xhr.status);
+            def.reject(xhr, xhr.statusText, xhr.status);
         }
 
         xhr.addEventListener('load', function() {
@@ -99,7 +81,7 @@ define('requests',
                 data = JSON.parse(data);
             }
 
-            def.resolve(data, statusText(), xhr);
+            def.resolve(data, xhr.statusText, xhr);
         }, false);
 
         xhr.addEventListener('error', error, false);

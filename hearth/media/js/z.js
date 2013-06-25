@@ -1,4 +1,4 @@
-define('z', ['jquery', 'underscore'], function($, _) {
+define('z', ['jquery'], function($) {
     var z = {
         win: $(window),
         doc: $(document),
@@ -11,15 +11,6 @@ define('z', ['jquery', 'underscore'], function($, _) {
         flags: {},
         context: {}
     };
-
-    var data_user = z.body.data('user');
-
-    _.extend(z, {
-        allowAnonInstalls: !!z.body.data('allow-anon-installs'),
-        enableSearchSuggestions: !!z.body.data('enable-search-suggestions'),
-        anonymous: data_user ? data_user.anonymous : false,
-        pre_auth: data_user ? data_user.pre_auth : false
-    });
-
+    z.spaceheater = z.body.data('spaceheater');
     return z;
 });
