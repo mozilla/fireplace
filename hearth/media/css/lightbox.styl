@@ -49,19 +49,34 @@
         background: #f1f1f1;
     }
     .content {
-        list-style-type: none;
-        white-space: nowrap;
         height: 100%;
-        width: 100%;
+        list-style: none;
         margin: 0;
         padding: 0;
+        white-space: nowrap;
+        width: 100%;
         li {
-            height: 100%;
-            width: 100%;
             display: inline-block;
+            height: 100%;
             position: relative;
+            width: 100%;
             &.loading {
-                spinner-base-image();
+                > * {
+                    display: none;
+                }
+                > .throbber {
+                    // spinner() has to be first here.
+                    spinner('loading');
+                    background-size: 33px auto;
+                    display: block;
+                    height: 33px;
+                    left: 50%;
+                    margin-left: -17px;
+                    margin-top: -17px;
+                    position: absolute;
+                    top: 50%;
+                    width: 33px;
+                }
             }
         }
     }
@@ -92,11 +107,5 @@
         font-size: 100px;
         max-height: 80px;
         line-height: 60px;
-    }
-}
-
-@media $retina {
-    #lightbox .content li.loading {
-        spinner-base-image('retina');
     }
 }

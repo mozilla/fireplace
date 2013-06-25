@@ -74,7 +74,7 @@ define('lightbox',
         // place in a pane for each image/video with a 'loading' placeholder
         // and caption.
         _.each(previews, function(p) {
-            var $el = $('<li class="loading">');
+            var $el = $('<li class="loading"><span class="throbber">');
             var $cap = $('<div class="caption">');
             $cap.text(p.caption);
             $el.append($cap);
