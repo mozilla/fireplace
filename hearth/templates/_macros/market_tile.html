@@ -10,7 +10,7 @@
     data-slug="{{ app.slug }}"
     data-id="{{ app.id }}"
     {% if link %}itemscope itemtype="http://schema.org/SoftwareApplication"{% endif %}>
-    <img class="icon" alt="" src="{{ app.icons[64] }}" height="64" width="64" itemprop="image">
+    <img class="icon" alt="" src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
     <div class="info">
       <h3 itemprop="name">{{ app.name }}</h3>
       {% if app.current_version and app.current_version.developer_name %}
