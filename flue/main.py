@@ -92,14 +92,6 @@ def settings():
     }
 
 
-@app.route('/api/v1/account/installed/mine/')
-def installed():
-    return {
-        'objects': [defaults.app('Purchased App', 'purchase%d' % i) for
-                      i in xrange(random.randint(5, 30))]
-    }
-
-
 @app.route('/api/v1/abuse/app/', methods=['POST'])
 def app_abuse():
     if not request.form.get('text'):
@@ -171,6 +163,19 @@ def _paginated(field, generator, result_count=24):
             'total_count': result_count,
         },
     }
+
+
+@app.route('/api/v1/account/installed/mine/')
+def installed():
+    def gen():
+        i = 0
+        while 1:
+            yield defaults.app('Purchased App', 'purchase%d' % i)
+            i += 1
+
+    query = request.args.get('q')
+    data = _paginated('objects', gen, 0 if query == 'empty' else 24)
+    return data
 
 
 @app.route('/api/v1/apps/search/')
