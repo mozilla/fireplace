@@ -1,4 +1,6 @@
-define('settings', ['settings_local', 'underscore'], function(settings_local, _) {
+define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, settings_local, _) {
+    var gettext = l10n.gettext;
+
     return _.defaults(settings_local, {
         api_url: 'http://' + window.location.hostname,  // No trailing slash, please.
 
@@ -15,14 +17,14 @@ define('settings', ['settings_local', 'underscore'], function(settings_local, _)
         tracking_id: 'UA-36116321-6',
 
         REGION_CHOICES_SLUG: {
-            'worldwide': 'Worldwide',
-            'br': 'Brazil',
-            'co': 'Colombia',
-            'pl': 'Poland',
-            'es': 'Spain',
-            'uk': 'United Kingdom',
-            'us': 'United States',
-            've': 'Venezuela'
+            'worldwide': gettext('Worldwide'),
+            'br': gettext('Brazil'),
+            'co': gettext('Colombia'),
+            'pl': gettext('Poland'),
+            'es': gettext('Spain'),
+            'uk': gettext('United Kingdom'),
+            'us': gettext('United States'),
+            've': gettext('Venezuela')
         },
 
         timing_url: '',  // TODO: figure this out
