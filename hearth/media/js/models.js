@@ -44,7 +44,7 @@ define('models', ['log', 'requests', 'underscore'], function(log, requests, _) {
                 return data_store[type][object[key]];
             }
             if (_.isArray(object)) {
-                return object.map(uncast);
+                return object.map(do_uncast);
             }
             return do_uncast(object);
         };
