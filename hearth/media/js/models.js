@@ -1,4 +1,4 @@
-define('models', ['log', 'requests', 'underscore'], function(log, requests, _) {
+define('models', ['defer', 'log', 'requests', 'underscore'], function(defer, log, requests, _) {
 
     var console = log('model');
 
@@ -56,9 +56,9 @@ define('models', ['log', 'requests', 'underscore'], function(log, requests, _) {
                 if (keyed_value in data_store[type]) {
                     // Call the `.done()` function back in `request()`.
                     console.log('Found ' + type + ' with key ' + keyed_value);
-                    return $.Deferred()
-                            .resolve(data_store[type][keyed_value])
-                            .promise({__cached: true});
+                    return defer.Deferred()
+                                .resolve(data_store[type][keyed_value])
+                                .promise({__cached: true});
                 }
 
                 console.log(type + ' cache miss for key ' + keyed_value);
