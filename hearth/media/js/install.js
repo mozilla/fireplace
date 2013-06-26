@@ -59,6 +59,11 @@ define('install',
         console.log('Purchase succeeded, running post-purchase logic');
         if (product.user) {
             product.user.purchased = true;
+        } else {
+            product.user = {
+                purchased: true,
+                installed: false
+            };
         }
 
         // Firefox doesn't successfully fetch the manifest unless I do this.
@@ -119,6 +124,8 @@ define('install',
         console.log('App successfuly installed');
         if (product.user) {
             product.user.installed = true;
+        } else {
+            product.user = {installed: true};
         }
 
         z.win.trigger('app_install_success', [installer, product, true]);
