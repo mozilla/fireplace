@@ -164,9 +164,3 @@ Load [http://localhost:8675/tests](http://localhost:8675/tests) in your browser.
 ```bash
 make test
 ```
-
-
-## Missing Features
-
-- `numberfmt` doesn't work (should probably be integrated with L10n
-  pluralization)
