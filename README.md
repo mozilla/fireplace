@@ -44,7 +44,6 @@ Our dependencies:
 If you plan on doing compilation (i.e.: you're Wil Clouser), you'll also need
 
 - `clean-css`: For minifying CSS or whatever
-- `requirejs`: For warming up Spaceheater
 - `uglify-js`: For minifying JS and L10n string extraction
 
 ### Flue
