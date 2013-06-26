@@ -6,17 +6,14 @@ define('common/linefit', ['jquery'], function($) {
         return this.each(function() {
             this.innerHTML = '<span class="linefitted">' + this.innerHTML + '</span>';
             var $span = $(this).find('span'),
+                span = $span.get(0),
                 fs = parseFloat($span.css('font-size').replace('px', '')),
-                max_height = Math.ceil(parseFloat($span.css('line-height').replace('px', ''))) * lines,
-                height = $span.height();
-            if (+height > +max_height * 2) {
-                // It's more than one line.
-                while (height > max_height && fs > min_font_size) {
-                    // Repeatedly shrink the text by 0.5px until all the text fits.
-                    fs -= .5;
-                    $span.css('font-size', fs);
-                    height = $span.height();
-                }
+                nb_rects = span.getClientRects().length;
+            while (nb_rects > lines && fs > min_font_size) {
+                // Repeatedly shrink the text by 0.5px until all the text fits.
+                fs -= .5;
+                $span.css('font-size', fs);
+                nb_rects = span.getClientRects().length;
             }
         });
     };

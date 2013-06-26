@@ -1,5 +1,5 @@
-define('views/purchases', ['cache', 'l10n', 'urls', 'utils', 'z'],
-    function(cache, l10n, urls, utils, z) {
+define('views/purchases', ['cache', 'l10n', 'common/linefit', 'urls', 'utils', 'z'],
+    function(cache, l10n, linefit, urls, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -24,6 +24,8 @@ define('views/purchases', ['cache', 'l10n', 'urls', 'utils', 'z'],
 
     return function(builder, args) {
         builder.start('user/purchases.html');
+
+        $('.linefit').linefit();
 
         builder.z('type', 'root');
         builder.z('reload_on_login', true);
