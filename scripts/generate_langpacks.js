@@ -56,7 +56,7 @@ function parse(po_content) {
         }
 
         if (sw(line, S_ID)) {
-            console.log(' > Storing existing id: ', id);
+            console.log('...Storing existing id: ', id);
             store_current();
 
             var new_id = JSON.parse(line.substr(S_ID.length));
@@ -93,16 +93,15 @@ function parse(po_content) {
         }
 
         var line_val = JSON.parse(line);
-        if (!id && last !== 'plurals') {
-            var plex_match = RE_PLURALIZER.exec(line_val);
-            if (!plex_match) {
-                continue;
-            }
+        var plex_match;
+        if (!id && last !== 'plurals' && (plex_match = RE_PLURALIZER.exec(line_val))) {
+            console.log('!!! Found pluralizer')
             pluralizer = plex_match[1];
         } else if (last === 'plurals') {
             console.log(' >> Appending plural: ', line_val);
             current_obj.plurals[last_plural] += line_val;
         } else if (last === 'id') {
+            console.log(' >> Last was ID');
             got_id(line_val);
         } else {
             console.log(' >> (' + last + ':' + id + ') Appending : ', line_val);
@@ -121,11 +120,11 @@ function gen_pack(data, lang) {
 
     return [
     '(function() {',
-    'navigator.l10n = {};',
+    'if (!navigator.l10n) {navigator.l10n = {};}',
     'navigator.l10n.language = "' + lang + '";',
     'navigator.l10n.strings = ' + JSON.stringify(parsed.output) + ';',
     'navigator.l10n.pluralize = function(n) {',
-    'return ' + parsed.pluralizer + ';',
+    '  return ' + parsed.pluralizer + ';',
     '};',
     '})();',
     ].join('\n');

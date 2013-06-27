@@ -1,8 +1,8 @@
 (function() {
 
 var languages = [
-  'bg', 'ca', 'cs', 'de', 'en-US', 'es', 'eu', 'fr', 'ga-IE', 'hr', 'it', 'ja',
-  'pl', 'pt-BR', 'sk', 'zh-TW', 'dbg'
+    'bg', 'ca', 'cs', 'de', 'en-US', 'es', 'eu', 'fr', 'ga-IE', 'hr', 'it', 'ja',
+    'pl', 'pt-BR', 'sk', 'zh-TW', 'dbg'
 ];
 
 var lang_expander = {
