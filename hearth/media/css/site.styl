@@ -128,13 +128,15 @@ body {
 
 .two-up {
     width: 50%;
-    padding: 0 5px;
     float: left;
     &:nth-child(2n+1) {
-        padding-right: 0;
+        padding: 0 5px 0 0;
     }
     &:nth-child(2n) {
-        padding-left: 0;
+        padding: 0 0 0 5px;
+    }
+    .button {
+        display: block;
     }
 }
 

@@ -37,17 +37,6 @@
             display: block;
         }
     }
-    .two-up {
-        &:nth-child(2n+1) {
-            padding: 0 5px 0 0;
-        }
-        &:nth-child(2n) {
-            padding: 0 0 0 5px;
-        }
-    }
-    .buttons .button {
-        width: auto;
-    }
 }
 
 .main:not(.modal) {
@@ -73,6 +62,11 @@
         .secondary-header {
             background: none;
             height: 22px;
+        }
+    }
+    .modal.show {
+        .buttons .button {
+            width: auto;
         }
     }
     .main:not(.modal) .form-modal {
