@@ -2,7 +2,7 @@
 
 var defined = {};
 var resolved = {};
-var console = window.console;
+var amd_console = window.console;
 
 function define(id, deps, module) {
     defined[id] = [deps, module];
@@ -30,13 +30,13 @@ function require(id) {
         try {
             deps = deps.map(require);
         } catch(e) {
-            console.error('Error initializing dependencies: ', id);
+            amd_console.error('Error initializing dependencies: ', id);
             throw e;
         }
         try {
             resolved[id] = module.apply(window, deps);
         } catch(e) {
-            console.error('Error initializing module: ', id);
+            amd_console.error('Error initializing module: ', id);
             throw e;
         }
 
@@ -52,7 +52,7 @@ window.define = define;
 'replace me';
 
 if ('log' in defined) {
-    console = require('log')('amd');
+    amd_console = require('log')('amd');
 }
 var settings = require('settings');
 require(settings.init_module);
