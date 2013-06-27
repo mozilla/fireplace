@@ -2,6 +2,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
     var gettext = l10n.gettext;
 
     return _.defaults(settings_local, {
+        init_module: 'marketplace',
         api_url: 'http://' + window.location.hostname,  // No trailing slash, please.
 
         simulate_nav_pay: false,

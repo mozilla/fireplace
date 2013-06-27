@@ -2,6 +2,7 @@
 
 var defined = {};
 var resolved = {};
+var console = window.console;
 
 function define(id, deps, module) {
     defined[id] = [deps, module];
@@ -26,7 +27,18 @@ function require(id) {
             deps = [];
         }
 
-        resolved[id] = module.apply(window, deps.map(require));
+        try {
+            deps = deps.map(require);
+        } catch(e) {
+            console.error('Error initializing dependencies: ', id);
+            throw e;
+        }
+        try {
+            resolved[id] = module.apply(window, deps);
+        } catch(e) {
+            console.error('Error initializing module: ', id);
+            throw e;
+        }
 
     }
     return resolved[id];
@@ -39,6 +51,10 @@ window.define = define;
 
 'replace me';
 
-require('marketplace');
+if ('log' in defined) {
+    console = require('log')('amd');
+}
+var settings = require('settings');
+require(settings.init_module);
 
 })(window, void 0);
