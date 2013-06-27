@@ -256,6 +256,45 @@ body {
     }
 }
 
+.partner-napster {
+    diagonal-lines();
+    padding: 30px 10px;
+    text-align: center;
+    .logo {
+        background: url(../img/partners/napster.png) 50% 0 no-repeat;
+        background-size: 105px auto;
+        height: 105px;
+    }
+    p {
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 32px;
+        margin: 15px 0 30px;
+    }
+    .button {
+        font-size: 20px;
+    }
+}
+
+@media $at-least-desktop {
+    .partner-napster {
+        border: 1px solid $seavan-salt-white;
+        border-radius: 5px;
+        padding: 45px 10px;
+        .logo {
+            background-size: 165px auto;
+            height: 165px;
+        }
+        p {
+            font-size: 40px;
+            line-height: 42px;
+        }
+        .button {
+            font-size: 30px;
+        }
+    }
+}
+
 @-webkit-keyframes spin {
     from { -webkit-transform: rotate(0turn); }
     to { -webkit-transform: rotate(1turn); }
