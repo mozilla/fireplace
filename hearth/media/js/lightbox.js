@@ -151,7 +151,7 @@ define('lightbox',
         if (slider && slider.element) {
             slider.element.removeEventListener('fsmoveend', pauseVideos);
             slider.destroy();
-            //slider = null;
+            slider = null;
         }
     }
 
