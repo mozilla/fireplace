@@ -24,6 +24,11 @@ var routes = [
     {'pattern': '^/feedback$', 'view_name': 'feedback'},
     {'pattern': '^/purchases$', 'view_name': 'purchases'},
 
+    {'pattern': '^/partners/([^/<>"\']+)/([^/<>"\']+)/([^/<>"\']+)$',
+     'view_name': 'partners'},
+    {'pattern': '^/partners/([^/<>"\']+)/([^/<>"\']+)/([^/<>"\']+)/$',
+     'view_name': 'partners'},
+
     {'pattern': '^/privacy-policy$', 'view_name': 'privacy'},
     {'pattern': '^/terms-of-use$', 'view_name': 'terms'},
 
