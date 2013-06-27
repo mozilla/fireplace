@@ -10,6 +10,10 @@
   <div class="language group links">
     <a href="{{ url('settings') }}" class="region region-{{ user.get_setting('region') }}">
       {{ REGIONS[user.get_setting('region')] }}</a>
+    <a href="{{ url('purchases') }}">{{ _('My Apps') }}</a>
+    {% if user.get_permission('developer') %}
+      <a href="/developers/submissions">{{ _('My Submissions') }}</a>
+    {% endif %}
     {% if user.get_permission('reviewer') %}
       <a href="/reviewers/apps/queue/" class="only-logged-in">{{ _('Reviewer Tools') }}</a>
     {% endif %}
