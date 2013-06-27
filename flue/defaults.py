@@ -8,8 +8,10 @@ XSS = False
 xss_text = '"\'><script>alert("poop");</script><\'"'
 dummy_text = 'foo bar zip zap cvan fizz buzz something something'.split()
 
+
 def text(default):
     return xss_text if XSS else default
+
 
 def ptext(len=10):
     return text(' '.join(random.choice(dummy_text) for i in xrange(len)))
@@ -38,6 +40,7 @@ SCREENSHOT_MAP = [
     (72, 72384),
 ]
 
+
 def _app_preview():
     url = ('https://marketplace-dev-cdn.allizom.org/'
            'img/uploads/previews/%%s/%d/%d.png' %
@@ -59,7 +62,8 @@ def app(name, slug, **kwargs):
         'description': escape(kwargs.get('description', ptext(100))),
         'is_packaged': slug == 'packaged' or rand_bool(),
         'manifest_url':
-            'http://%s%s.testmanifest.com/manifest.webapp' % (ptext(1), random.randint(1, 50000)),  # Minifest if packaged
+            'http://%s%s.testmanifest.com/manifest.webapp' %
+            (ptext(1), random.randint(1, 50000)),  # Minifest if packaged
         'current_version': {
             'version': text('%d.0' % int(random.random() * 20)),
             'release_notes': kwargs.get('release_notes', ptext()),
@@ -91,7 +95,8 @@ def app(name, slug, **kwargs):
             'dejus': {'name': '12', 'description': text('Ask your parents')},
             'esrb': {'name': 'L', 'description': text('L for BASTA')},
         },
-        'device_types': ['desktop', 'firefoxos', 'android-mobile', 'android-tablet'],
+        'device_types': ['desktop', 'firefoxos', 'android-mobile',
+                         'android-tablet'],
     }
 
     has_price = rand_bool()
@@ -115,6 +120,8 @@ def app(name, slug, **kwargs):
         data.update(price=price, price_locale='$%s' % price)
     else:
         data.update(price=None, price_locale='$0.00')
+
+    data[payment_required] = has_price
 
     if slug == 'packaged':
         data['current_version']['version'] = '1.0'
@@ -163,9 +170,11 @@ def app_user_review(slug, **kwargs):
 
 user_names = ['Cvan', 'Basta', 'Davor', 'Queen Krupa']
 
+
 def rand_posted():
     rand_date = date.today() - timedelta(days=random.randint(0, 600))
     return rand_date.strftime('%b %d %Y %H:%M:%S')
+
 
 def rating():
     version = None

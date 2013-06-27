@@ -17,7 +17,7 @@
         {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
         <div class="author lineclamp vital" itemprop="creator">{{ app.current_version.developer_name }}</div>
       {% endif %}
-      <div class="price vital">{{ app.price_locale if app.price else _('Free') }}</div>
+      <div class="price vital">{{ app.price_locale if app.payment_required else _('Free') }}</div>
       <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
         {% if not link %}
           <a href="{{ url('app/ratings', [app.slug]) }}" class="rating_link">
@@ -38,7 +38,7 @@
         {% if not link %}</a>{% endif %}
       </div>
       {% if force_button or (app.current_version and not link) %}
-        {{ market_button(app, classes=(['paid'] if app.price else []),
+        {{ market_button(app, classes=(['paid'] if app.payment_required else []),
                          data_attrs={'manifest_url': app.manifest_url,
                                      'slug': app.slug}) }}
       {% endif %}

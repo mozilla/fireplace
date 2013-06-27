@@ -1,5 +1,5 @@
 {% macro market_button(app, classes, data_attrs) %}
-  {% set price = app.price_locale if app.price else _('Free') %}
+  {% set price = app.price_locale if app.payment_required else _('Free') %}
   {% set classes = classes or [] %}
   <button class="button product install {{ classes|join(' ') }} {{ app.device_types|join(' ') }}" {{ data_attrs|make_data_attrs }}>
     {{ _('Install') if app.user.installed or app.user.purchased else price }}

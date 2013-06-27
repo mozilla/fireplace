@@ -40,18 +40,14 @@ define('buttons',
     z.win.on('app_purchase_start', function(e, product) {
         setButton(getButton(product), gettext('Purchasing'), 'purchasing');
     }).on('app_purchase_success', function(e, product) {
-        var $button = getButton(product);
-
-        product['isPurchased'] = true;
-
-        setButton($button, gettext('Install'), 'purchased');
+        setButton(getButton(product), gettext('Install'), 'purchased');
     }).on('app_install_start', function(e, product) {
         var $button = getButton(product);
         setButton($button, '<span class="spin"></span>', 'installing');
 
         tracking.trackEvent(
             'Click to install app',
-            product.price ? 'paid' : 'free',
+            product.payment_required ? 'paid' : 'free',
             product.name + ':' + product.id,
             $('.button.product').index($button)
         );
@@ -80,7 +76,7 @@ define('buttons',
 
             tracking.trackEvent(
                 'Successful app install',
-                product.price ? 'paid' : 'free',
+                product.payment_required ? 'paid' : 'free',
                 product.name + ':' + product.id,
                 $('.button.product').index($button)
             );
