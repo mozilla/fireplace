@@ -69,6 +69,7 @@ define('helpers',
         api: require('urls').api.url,
         apiParams: require('urls').api.params,
         url: require('urls').reverse,
+        media: require('urls').media,
 
         _: make_safe(l10n.gettext),
         _plural: make_safe(l10n.ngettext),
@@ -84,7 +85,8 @@ define('helpers',
 
         REGIONS: require('settings').REGION_CHOICES_SLUG,
 
-        navigator: window.navigator
+        navigator: window.navigator,
+        language: window.navigator.l10n ? window.navigator.l10n.language : 'en-US'
     };
 
     // Put the helpers into the nunjucks global.

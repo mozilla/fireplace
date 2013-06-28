@@ -3,6 +3,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
 
     return _.defaults(settings_local, {
         init_module: 'marketplace',
+        default_locale: 'en-US',
         api_url: 'http://' + window.location.hostname,  // No trailing slash, please.
 
         simulate_nav_pay: false,

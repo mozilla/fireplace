@@ -157,6 +157,7 @@ define('builder',
                     if (request.__cached) {
                         has_cached_elements = true;
 
+                        // This will run synchronously.
                         request.done(function(data) {
                             context.ctx['response'] = data;
                             out = get_result(data, true);
@@ -222,6 +223,41 @@ define('builder',
                 }
 
                 return new SafeString('<div id="' + uid + '" class="placeholder">' + out + '</div>');
+            }
+        });
+
+        this.env.addExtension('fetch', {
+            run: function(context, signature, body) {
+                var url = signature.url;
+
+                var request = pool.get(url);
+                var uid = 'f_' + counter++;
+                var out = '';
+
+                if (request.__cached) {
+                    has_cached_elements = true;
+                    // This will run synchronously.
+                    request.done(function(data) {
+                        out = data;
+                    });
+                } else {
+                    var done = function(data) {
+                        document.getElementById(uid).innerHTML = data;
+                    };
+                    request.done(done).fail(function() {
+                        var fallback = signature.fallback;
+                        if (fallback && fallback !== url) {
+                            request = pool.get(fallback).done(done).fail(function() {
+                                done(error_template);
+                            });
+                        }
+                    });
+                }
+                if (!out) {
+                    out = body();
+                }
+
+                return new SafeString('<div id="' + uid + '" class="placeholder fetchblock">' + out + '</div>');
             }
         });
 

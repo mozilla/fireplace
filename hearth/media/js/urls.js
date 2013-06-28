@@ -119,6 +119,17 @@ define('urls',
         return api(endpoint, [], params);
     };
 
+    var media = function(path) {
+        var media_url = document.body.getAttribute('data-media') || settings.media_url;
+        if (media_url[media_url.length - 1] !== '/') {
+            media_url += '/';
+        }
+        if (path[0] === '/') {
+            path = path.substr(1);
+        }
+        return media_url + path;
+    }
+
     return {
         reverse: reverse,
         api: {
@@ -130,6 +141,7 @@ define('urls',
                 params: apiParams
             }
         },
+        media: media,
         _device: _device
     };
 });

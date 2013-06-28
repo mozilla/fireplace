@@ -31,6 +31,7 @@ if (!window.define) {
     var qs_lang = /[\?&]lang=([\w\-]+)/i.exec(window.location.search);
     var locale = get_locale((qs_lang && qs_lang[1]) || navigator.language);
     if (locale === 'en-US') {
+        window.navigator.l10n = {language: 'en-US'};
         return;
     }
 
@@ -45,7 +46,7 @@ if (!window.define) {
         function get(str, args, context) {
             context = context || navigator;
             var out;
-            if (context.l10n && str in context.l10n.strings) {
+            if (context.l10n && context.l10n.strings && str in context.l10n.strings) {
                 out = context.l10n.strings[str].body || str;
             } else {
                 out = str;
@@ -64,7 +65,7 @@ if (!window.define) {
             var n = args.n;
             var strings;
             var fallback = n === 1 ? str : plural;
-            if (context.l10n && str in (strings = context.l10n.strings)) {
+            if (context.l10n && context.l10n.strings && str in (strings = context.l10n.strings)) {
                 if (strings[str].plurals) {
                     // +true is 1 / +false is 0
                     var plid = +context.l10n.pluralize(n);
@@ -86,7 +87,7 @@ if (!window.define) {
             gettext: get,
             ngettext: nget,
             getDirection: function(context) {
-                var language = context ? context.language : navigator.language;
+                var language = context ? context.language : window.navigator.l10n.language;
                 if (language.indexOf('-') > -1) {
                     language = language.split('-')[0];
                 }

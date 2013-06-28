@@ -33,4 +33,24 @@ function defer_parser() {
 
 }
 
-module.exports.extensions = [new defer_parser()];
+function fetch_parser() {
+    this._name = 'fetch';
+    this.tags = ['fetch'];
+    this.parse = function(parser, nodes, tokens) {
+        var begun = parser.peekToken();
+        parser.skipSymbol('fetch');
+        parser.skip(tokens.TOKEN_WHITESPACE);
+        var args = parser.parseSignature();
+        parser.skip(tokens.TOKEN_WHITESPACE);
+        parser.advanceAfterBlockEnd(begun.value);
+
+        var body = parser.parseUntilBlocks('endfetch');
+
+        parser.advanceAfterBlockEnd();
+
+        return new nodes.CallExtension(this, 'run', args, [body]);
+    };
+
+}
+
+module.exports.extensions = [new defer_parser(), new fetch_parser()];
