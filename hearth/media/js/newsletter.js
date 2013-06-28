@@ -1,4 +1,4 @@
-define('newssignup',
+define('newsletter',
        ['capabilities', 'l10n', 'notification', 'requests',
         'storage', 'templates', 'underscore', 'urls', 'user', 'utils', 'z'],
     function(caps, l10n, n, requests, storage, nunjucks, _, urls, user, utils, z) {
@@ -14,7 +14,7 @@ define('newssignup',
     function init() {
         // Toggle the conditions below if you want to test on Desktop.
         //if (!user.logged_in()) return;
-        if (true || !user.logged_in() || !caps.firefoxOS || langs.indexOf(navigator.language) == -1) return;
+        if (!user.logged_in() || !caps.firefoxOS || langs.indexOf(navigator.language) == -1) return;
 
         var counter = +storage.getItem('newscounter');
         if (counter == 4) return;
@@ -26,7 +26,7 @@ define('newssignup',
         // Counter expires in 72 hours.
         if (storedTime) {
             storedTime = new Date(+storedTime);
-            expired = (now - storedTime) > 4320000; // 72 hours
+            expired = (now - storedTime) > 259200000; // 72 hours (1000 x 60 x 60 x 72)
         }
 
         // Increment counter if not expired otherwise save the time and set to 1.
@@ -47,7 +47,7 @@ define('newssignup',
     // Handle newsletter signup form submit.
     z.body.on('submit', '.news-signup-form', function(e) {
         e.preventDefault();
-        var $signup = z.page.find('.newssignup');
+        var $signup = $('main').find('.newsletter');
 
         var $this = $(this);
         var data = utils.getVars($this.serialize());
@@ -65,11 +65,11 @@ define('newssignup',
 
     function injectSignupForm() {
         var $signup;
-        z.page.prepend(
-            nunjucks.env.getTemplate('user/newssignup.html').render({email: user.get_setting('email')})
+        $('main').prepend(
+            nunjucks.env.getTemplate('user/newsletter.html').render({email: user.get_setting('email')})
         );
 
-        $signup = z.page.find('.newssignup');
+        $signup = $('.newsletter');
 
         $signup.find('.close').on('click', utils._pd(function(e) {
             $signup.hide();

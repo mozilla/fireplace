@@ -1,6 +1,6 @@
 define('views/homepage',
-    ['l10n', 'newssignup', 'underscore', 'urls'],
-    function(l10n, newssignup, _, urls) {
+    ['l10n', 'newsletter', 'underscore', 'urls'],
+    function(l10n, newsletter, _, urls) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -25,6 +25,6 @@ define('views/homepage',
             endpoint: urls.api.url('category', [''], params),
             category_name: gettext('All Categories'),
             sort: params.sort
-        }).done(newssignup.init);
+        }).done(newsletter.init);
     };
 });
