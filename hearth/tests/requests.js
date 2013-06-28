@@ -114,7 +114,7 @@ methods_to_test.forEach(function(v) {
             function(requests) {
                 requests._set_xhr(mock_xhr);
                 var def = requests[v]('foo/bar', data);
-                feq_(def.args, test_output[v]);
+                feq_(Array.prototype.slice.call(def.args, 0), test_output[v]);
                 def.done(function(data) {
                     eq_(data, 'sample data');
                     done();
