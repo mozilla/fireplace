@@ -44,11 +44,13 @@ define('helpers',
         if (!date) {
             return '';
         }
+        var orig_date = date;
         if (!(date instanceof Date)) {
             date = new Date(date);
         }
         var dateStr = date.toLocaleString();
         if (dateStr === 'Invalid Date') {
+            console.warn('Invalid date: ', orig_date);
             return '';
         } else {
             return dateStr;
