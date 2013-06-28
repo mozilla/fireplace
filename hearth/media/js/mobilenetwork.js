@@ -95,7 +95,6 @@ define('mobilenetwork',
         // Poland
         260: {
             2: 'deutsche_telekom',
-            21373417656: 'deutsche_telekom',
         },
 
         // Mexico
@@ -197,6 +196,10 @@ define('mobilenetwork',
         // and MNC (Mobile Network Code).
         mcc = +mcc || 0;
         mnc = +mnc || 0;
+        // Workaround for Polish SIMs (bug 876391, bug 880369).
+        if (mcc == 260 && mnc[0] == 2) {
+            mnc = 2;
+        }
         return {
             region: regions[mcc] || null,
             carrier: carriers[mcc] && carriers[mcc][mnc] || null
