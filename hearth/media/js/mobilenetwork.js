@@ -194,25 +194,27 @@ define('mobilenetwork',
     function getNetwork(mcc, mnc) {
         // Look up region and carrier from MCC (Mobile Country Code)
         // and MNC (Mobile Network Code).
-        mcc = +mcc || 0;
-        mnc = +mnc || 0;
         // Workaround for Polish SIMs (bug 876391, bug 880369).
-        if (mcc == 260 && mnc[0] == 2) {
+        mcc = mcc + '';
+        mnc = mnc + '';
+        if (mcc == '260' && mnc[0] == '2') {
             mnc = 2;
         }
         // Colombia.
-        if (mcc == 732 && mnc[0] == 1) {
+        if (mcc == '732' && mnc[0] == '1') {
             mnc = 123;
         }
         // Spain.
-        if (mcc == 214) {
-            if (mnc[0] == 5) {
+        if (mcc == '214') {
+            if (mnc[0] == '5') {
                 mnc = 5;
             }
-            if (mnc[0] == 7) {
-                mnc = 7;
+            if (mnc[0] == '7') {
+                mnc = '7';
             }
         }
+        mcc = +mcc || 0;
+        mnc = +mnc || 0;
         return {
             region: regions[mcc] || null,
             carrier: carriers[mcc] && carriers[mcc][mnc] || null
