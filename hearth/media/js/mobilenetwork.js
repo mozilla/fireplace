@@ -241,7 +241,8 @@ define('mobilenetwork',
          .done(function() {
             console.log('User changed region from', currentRegionName, 'to', newRegionName);
             user.update_settings({region: newRegion});
-            location.reload();
+            // window.location.reload() is weird on Firefox OS.
+            window.location = window.location.href;
          });
     }
 
