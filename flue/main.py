@@ -77,7 +77,7 @@ def login():
         'settings': {
             'display_name': email.split('@')[0],
             'email': email,
-            'region': 'usa',
+            'region': 'us',
         },
         'permissions': {}
     }
@@ -88,7 +88,7 @@ def settings():
     return {
         'display_name': 'Joe User',
         'email': request.args.get('email'),
-        'region': 'usa',
+        'region': 'us',
     }
 
 
