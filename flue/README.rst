@@ -58,8 +58,23 @@ To start Flue, run ::
     python main.py
 
 
-This defaults to `0.0.0.0:5000`
+This defaults to `0.0.0.0:5000`.
 
 To control the hostname and port you can use the following otions ::
 
     python flue/main.py --host 127.0.0.1 --port 9999
+
+
+Updating Flue
+-------------
+
+To update Flue ::
+
+    stackato group marketplace
+    stackato update
+
+You'll be asked to confirm the following ::
+
+    Create services to bind to 'flue' ?  [yN]: N
+
+Enter `N` (or hit enter) to proceed.
