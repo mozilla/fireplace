@@ -1,4 +1,4 @@
-(function(window, undefined) {
+(function(window, document, navigator, undefined) {
 
 var defined = {};
 var resolved = {};
@@ -57,4 +57,4 @@ if ('log' in defined) {
 var settings = require('settings');
 require(settings.init_module);
 
-})(window, void 0);
+})(window, document, navigator, void 0);
