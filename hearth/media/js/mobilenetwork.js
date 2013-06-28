@@ -254,12 +254,7 @@ define('mobilenetwork',
         var mcc = GET.mcc;
         var mnc = GET.mnc;
 
-        var carrier = user.get_setting('carrier');
-        // Hardcoded carrier should never get overridden.
-        if (settings.carrier && typeof settings.carrier === 'object') {
-            carrier = settings.carrier.slug;
-        }
-        carrier = GET.carrier || carrier || null;
+        var carrier = GET.carrier || user.get_setting('carrier') || null;
 
         try {
             // When Fireplace is served as a privileged packaged app (and not
@@ -289,9 +284,7 @@ define('mobilenetwork',
             // and MNC (Mobile Network Code).
             var network = getNetwork(mcc, mnc);
             region = network.region;
-            if (!carrier) {
-                carrier = network.carrier;
-            }
+            carrier = network.carrier;
         }
 
         var newSettings = {};
@@ -312,6 +305,11 @@ define('mobilenetwork',
         // If it turns out the region is null, when we get a response from an
         // API request, we look at the `API-Filter` header to determine the region
         // in which Zamboni geolocated the user.
+
+        // Hardcoded carrier should never get overridden.
+        if (settings.carrier && typeof settings.carrier === 'object') {
+            carrier = settings.carrier.slug;
+        }
 
         newSettings.carrier = carrier || null;
         newSettings.region = region || null;
