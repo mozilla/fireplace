@@ -20,13 +20,7 @@ test('requests.get', function(done, fail) {
             requests._set_xhr(mock_xhr);
             var def = requests.get('foo/bar');
             // Test that the URL isn't mangled before being sent to jQuery.
-            feq_(
-                def.args[0],
-                {
-                    url: 'foo/bar',
-                    type: 'GET'
-                }
-            );
+            feq_(def.args, ['GET', 'foo/bar']);
             def.done(function(data) {
                 eq_(data, 'sample data');
                 done();
@@ -107,10 +101,10 @@ test('requests.get nocache', function(done, fail) {
 var data = {foo: 'bar'};
 var methods_to_test = ['post', 'del', 'put', 'patch'];
 var test_output = {
-    post: {url: 'foo/bar', type: 'POST', data: data},
-    del: {url: 'foo/bar', type: 'DELETE'},
-    put: {url: 'foo/bar', type: 'PUT', data: data},
-    patch: {url: 'foo/bar', type: 'PATCH', data: data}
+    post: ['POST', 'foo/bar', data],
+    del: ['DELETE', 'foo/bar'],
+    put: ['PUT', 'foo/bar', data],
+    patch: ['PATCH', 'foo/bar', data]
 };
 
 methods_to_test.forEach(function(v) {
@@ -120,7 +114,7 @@ methods_to_test.forEach(function(v) {
             function(requests) {
                 requests._set_xhr(mock_xhr);
                 var def = requests[v]('foo/bar', data);
-                feq_(def.args[0], test_output[v]);
+                feq_(def.args, test_output[v]);
                 def.done(function(data) {
                     eq_(data, 'sample data');
                     done();

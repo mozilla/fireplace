@@ -62,7 +62,7 @@ define('requests',
 
     */
 
-    function _ajax(args) {
+    function _ajax(type, url, data) {
         var xhr = new XMLHttpRequest();
         var def = defer.Deferred();
 
@@ -87,17 +87,16 @@ define('requests',
         xhr.addEventListener('error', error, false);
 
         xhr.open(
-            args.type || 'GET',
-            args.url,
+            type,
+            url,
             true
             // Auth would go here, but let's not.
         );
         
         // TODO: Should we be smarter about this?
         // TODONT: nahhhh
-        var data = args.data;
         if (typeof data === 'object') {
-            data = utils.urlencode(args.data);
+            data = utils.urlencode(data);
         }
         if (data) {
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -119,10 +118,7 @@ define('requests',
 
     function _get(url, nocache) {
         console.log('GETing', url);
-        return _ajax({
-            url: url,
-            type: 'GET'
-        }).done(function(data, status, xhr) {
+        return _ajax('GET', url).done(function(data, status, xhr) {
             console.log('GOT', url);
             if (!nocache) {
                 cache.set(url, data);
@@ -156,39 +152,24 @@ define('requests',
 
     function del(url) {
         console.log('DELETing', url);
-        return _ajax({
-            url: url,
-            type: 'DELETE'
-        }).fail(handle_errors);
+        return _ajax('DELETE', url).fail(handle_errors);
     }
 
     function patch(url, data) {
         console.log('PATCHing', url);
-        return _ajax({
-            url: url,
-            type: 'PATCH',
-            data: data
-        }).fail(handle_errors);
+        return _ajax('PATCH', url, data).fail(handle_errors);
     }
 
     function post(url, data) {
         console.log('POSTing', url);
-        return _ajax({
-            url: url,
-            type: 'POST',
-            data: data
-        }).done(function(data) {
+        return _ajax('POST', url, data).done(function(data) {
             console.log('POSTed', url);
         }).fail(handle_errors);
     }
 
     function put(url, data) {
         console.log('PUTing', url);
-        return _ajax({
-            url: url,
-            type: 'PUT',
-            data: data
-        }).fail(handle_errors);
+        return _ajax('PUT', url, data).fail(handle_errors);
     }
 
     function Pool() {
