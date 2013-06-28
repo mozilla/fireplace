@@ -20,7 +20,8 @@ test('requests.get', function(done, fail) {
             requests._set_xhr(mock_xhr);
             var def = requests.get('foo/bar');
             // Test that the URL isn't mangled before being sent to jQuery.
-            feq_(def.args, ['GET', 'foo/bar']);
+            feq_(Array.prototype.slice.call(def.args, 0),
+                 ['GET', 'foo/bar']);
             def.done(function(data) {
                 eq_(data, 'sample data');
                 done();
