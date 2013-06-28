@@ -200,6 +200,19 @@ define('mobilenetwork',
         if (mcc == 260 && mnc[0] == 2) {
             mnc = 2;
         }
+        // Colombia.
+        if (mcc == 732 && mnc[0] == 1) {
+            mnc = 123;
+        }
+        // Spain.
+        if (mcc == 214) {
+            if (mnc[0] == 5) {
+                mnc = 5;
+            }
+            if (mnc[0] == 7) {
+                mnc = 7;
+            }
+        }
         return {
             region: regions[mcc] || null,
             carrier: carriers[mcc] && carriers[mcc][mnc] || null
