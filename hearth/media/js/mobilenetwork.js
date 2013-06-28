@@ -56,7 +56,8 @@ define('mobilenetwork',
             490: 'deutsche_telekom',
             580: 'deutsche_telekom',
             660: 'deutsche_telekom',
-            800: 'deutsche_telekom'
+            800: 'deutsche_telekom',
+            310260542718417: 'deutsche_telekom'
         },
 
         // United Kingdom
@@ -93,7 +94,8 @@ define('mobilenetwork',
 
         // Poland
         260: {
-            2: 'deutsche_telekom'
+            2: 'deutsche_telekom',
+            21373417656: 'deutsche_telekom',
         },
 
         // Mexico
