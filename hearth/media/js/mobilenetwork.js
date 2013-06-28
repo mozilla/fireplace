@@ -241,7 +241,7 @@ define('mobilenetwork',
          .done(function() {
             console.log('User changed region from', currentRegionName, 'to', newRegionName);
             user.update_settings({region: newRegion});
-            views.reload();
+            location.reload();
          });
     }
 
