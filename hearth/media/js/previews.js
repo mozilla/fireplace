@@ -19,32 +19,15 @@ define('previews',
     function populateTray() {
         // preview trays expect to immediately follow a .mkt-tile.
         var $tray = $(this);
-        var $tile = $tray.prev();
-        var singleShot = false;
-        if (!$tile.hasClass('mkt-tile') || $tray.find('.slider').length) {
+        if (!$tray.prev().hasClass('mkt-tile') ||
+            $tray.hasClass('single') ||
+            $tray.hasClass('init')) {
             return;
         }
-        var product = models('app').lookup($tile.data('slug'));
-        var previewsHTML = '';
-        if (!product || !product.previews) return;
-        _.each(product.previews, function(p) {
-            p.typeclass = p.filetype === 'video/webm' ? 'video' : 'img';
-            previewsHTML += nunjucks.env.getTemplate('detail/single_preview.html').render(p);
-        });
 
-        var dotHTML = '';
-        if (product.previews.length > 1) {
-            dotHTML = Array(product.previews.length + 1).join('<b class="dot"></b>');
-        } else {
-            $tray.addClass('single');
-            singleShot = true;
+        if ($tray.find('.slider').hasClass('init')) {
+            return;
         }
-        $tray.html(nunjucks.env.getTemplate('detail/preview_tray.html').render({
-            previews: previewsHTML,
-            dots: dotHTML
-        }));
-
-        if (singleShot) return;
 
         var numPreviews = $tray.find('li').length;
         var $content = $tray.find('.content');
@@ -56,6 +39,7 @@ define('previews',
             margin: '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px'
         });
 
+        $tray.addClass('init');
         var slider = Flipsnap(
             $tray.find('.content')[0],
             {distance: THUMB_PADDED}
@@ -107,7 +91,7 @@ define('previews',
     }).on('populatetray', function() {
         // TODO: Nuke this logging once we're sure trays work as intended.
         console.log('Populating trays');
-        $('.listing.expanded .mkt-tile + .tray:empty').each(populateTray);
+        $('.listing.expanded .mkt-tile + .tray').each(populateTray);
     });
 
 });
