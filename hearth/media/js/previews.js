@@ -25,10 +25,6 @@ define('previews',
             return;
         }
 
-        if ($tray.find('.slider').hasClass('init')) {
-            return;
-        }
-
         var numPreviews = $tray.find('li').length;
         var $content = $tray.find('.content');
 
