@@ -11,12 +11,14 @@ FIREPLACE = os.path.dirname(__file__)
 ROOT = os.path.dirname(FIREPLACE)
 
 
+@task
 def pre_update(ref):
     with lcd(FIREPLACE):
         local('git fetch')
         local('git reset --hard %s' % ref)
 
 
+@task
 def update():
     with lcd(FIREPLACE):
         local('npm install')
@@ -30,6 +32,7 @@ def _install_package(rpmbuild):
     rpmbuild.install_package()
 
 
+@task
 def deploy():
     with lcd(FIREPLACE):
         ref = local('git rev-parse HEAD', capture=True)
