@@ -2,11 +2,13 @@ import os
 
 from fabric.api import env, execute, lcd, local, parallel, roles, task
 from fabdeploytools.rpm import RPMBuild
+import fabdeploytools.envs
 
 import deploysettings as settings
 
 env.key_filename = settings.SSH_KEY
-
+fabdeploytools.envs.loadenv(os.path.join('/etc/deploytools/envs',
+                                         settings.CLUSTER))
 FIREPLACE = os.path.dirname(__file__)
 ROOT = os.path.dirname(FIREPLACE)
 
