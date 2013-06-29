@@ -121,7 +121,7 @@ def app(name, slug, **kwargs):
     else:
         data.update(price=None, price_locale='$0.00')
 
-    data[payment_required] = has_price
+    data['payment_required'] = has_price
 
     if slug == 'packaged':
         data['current_version']['version'] = '1.0'
