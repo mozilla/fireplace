@@ -104,7 +104,7 @@ define('apps',
             reasons.push(gettext('This app is not available for your platform.'));
         }
 
-        return product[COMPAT_REASONS] = reasons.length ? reasons : null;
+        return product[COMPAT_REASONS] = reasons.length ? reasons : undefined;
     }
 
     return {
