@@ -25,7 +25,7 @@ define('views/search',
     var expand = capabilities.widescreen();
     if ('expand-listings' in storage) {
         // If we've set this value in localStorage before, then use it.
-        expand = storage['expand-listings'] === 'true';
+        expand = storage.getItem('expand-listings') === 'true';
     }
 
     function setTrays(expanded) {

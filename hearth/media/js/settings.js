@@ -6,6 +6,8 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         default_locale: 'en-US',
         api_url: 'http://' + window.location.hostname,  // No trailing slash, please.
 
+        storage_version: '0',
+
         simulate_nav_pay: false,
 
         fragment_error_template: 'errors/fragment.html',
