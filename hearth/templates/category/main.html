@@ -40,6 +40,7 @@
     <header class="featured-header c">
       <nav class="tabs">
         <a{% if not sort %} class="active"{% endif %} href="{{ popular_url }}" data-preserve-scroll>{{ _('Popular') }}</a>
+        {# L10n: "New" should translate to mean "Recent". Choose the shortest (space constraints) #}
         <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}" data-preserve-scroll>{{ _('New') }}</a>
       </nav>
       <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
