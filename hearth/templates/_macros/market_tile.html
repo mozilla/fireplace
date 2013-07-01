@@ -59,12 +59,12 @@
         {% if not link %}</a>{% endif %}
       </div>
       {% if force_button or (app.current_version and not link) %}
-        {{ market_button(app, classes=(['paid'] if app.payment_required else []),
+        {{ market_button(app, classes=(['paid'] if app.payment_required),
                          data_attrs={'manifest_url': app.manifest_url,
                                      'slug': app.slug}) }}
       {% endif %}
     </div>
-    {% for notice in app.notices %}
+    {% for notice in app_incompat(app) %}
       <div class="bad-app">{{ notice }}</div>
     {% endfor %}
   </{{ tag }}>

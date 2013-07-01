@@ -1,8 +1,12 @@
 /*
     Provides the apps module, a wrapper around navigator.mozApps
 */
-define('apps', ['buckets', 'defer', 'underscore', 'utils'], function(buckets, defer, _, utils) {
+define('apps',
+    ['buckets', 'capabilities', 'defer', 'l10n', 'settings', 'underscore', 'utils'],
+    function(buckets, capabilities, defer, l10n, settings, _, utils) {
     'use strict';
+
+    var gettext = l10n.gettext;
 
     /*
 
@@ -77,5 +81,34 @@ define('apps', ['buckets', 'defer', 'underscore', 'utils'], function(buckets, de
         return def.promise();
     }
 
-    return {install: install};
+    /*
+    apps.incompat(app_object)
+
+    If the app is compatible, this function returns a falsey value.
+    If the app is incompatible, a list of reasons why (plaintext strings) is returned.
+    */
+
+    var COMPAT_REASONS = '__compat_reasons'
+    function incompat(product) {
+        if (COMPAT_REASONS in product) {
+            return product[COMPAT_REASONS];
+        }
+        var reasons = [];
+        var device = capabilities.device_type();
+        if (product.payment_required && !capabilities.navPay && !settings.simulate_nav_pay) {
+            reasons.push(gettext('Your device does not support payments.'));
+        }
+        if (!capabilities.webApps) {
+            reasons.push(gettext('Your browser or device is not web app compatible.'));
+        } else if (!_.contains(product.device_types, device)) {
+            reasons.push(gettext('This app is not available for your platform.'));
+        }
+
+        return product[COMPAT_REASONS] = reasons.length ? reasons : null;
+    }
+
+    return {
+        incompat: incompat,
+        install: install
+    };
 });

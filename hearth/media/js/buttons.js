@@ -86,20 +86,5 @@ define('buttons',
         setButton($button, gettext('Launch'), 'launch install');
     }).on('app_purchase_error app_install_error', function(e, installer, product, msg) {
         revertButton($('button.installing, button.purchasing'));
-    }).on('fragment_loaded loaded_more', function() {
-        if (!capabilities.webApps) {
-            $('.button.product').attr('disabled', true);
-        }
-        if (!capabilities.navPay && !settings.simulate_nav_pay) {
-            $('.button.product.paid').attr('disabled', true);
-        }
-
-        var device = capabilities.device_type();
-        $('.button.product:not([disabled])').each(function() {
-            var $this = $(this);
-            if (!$this.hasClass(device)) {
-                $this.attr('disabled', true).addClass('incompatible disabled');
-            }
-        });
     });
 });
