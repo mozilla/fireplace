@@ -38,8 +38,8 @@ define('user',
         token = null;
     }
 
-    function get_setting(setting) {
-        return settings[setting] || null;
+    function get_setting(setting, default_) {
+        return settings[setting] || default_;
     }
 
     function get_permission(setting) {
