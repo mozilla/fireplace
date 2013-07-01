@@ -37,6 +37,7 @@ define('views/debug',
             capabilities: capabilities,
             profile: buckets.get_profile(),
             recent_logs: recent_logs,
+            persistent_logs: log.persistent.all,
             filter: log.filter
         });
 

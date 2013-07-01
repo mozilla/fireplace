@@ -2,6 +2,7 @@ define('mobilenetwork',
        ['defer', 'l10n', 'log', 'notification', 'settings', 'user', 'utils', 'views'],
        function(defer, l10n, log, notification, settings, user, utils, views) {
     var console = log('mobilenetwork');
+    var persistent_console = log.persistent('mobilenetwork', 'change');
     var gettext = l10n.gettext;
 
     var regions = {
@@ -236,9 +237,9 @@ define('mobilenetwork',
              new_region: newRegionName});
 
         notification.confirmation({message: message}).fail(function() {
-            console.log('User declined to change region from', currentRegionName, 'to', newRegionName);
+            persistent_console.log('User cancelled region change:', currentRegionName, '→', newRegionName);
         }).done(function() {
-            console.log('User changed region from', currentRegionName, 'to', newRegionName);
+            persistent_console.log('User confirmed SIM region change:', currentRegionName, '→', newRegionName);
             user.update_settings({region: newRegion});
             // window.location.reload() is weird on Firefox OS.
             window.location = window.location.href;
@@ -284,6 +285,10 @@ define('mobilenetwork',
             // and MNC (Mobile Network Code).
             var network = getNetwork(mcc, mnc);
             region = network.region;
+
+            if (carrier !== network.carrier) {
+                persistent_console.log('Carrier changed by SIM:', carrier, '→', network.carrier);
+            }
             carrier = network.carrier;
         }
 
@@ -292,6 +297,7 @@ define('mobilenetwork',
         var lastRegion = user.get_setting('last_region');
 
         if (region && lastRegion != region) {
+            persistent_console.log('Detected new region from SIM:', region);
             if (lastRegion) {
                 confirmRegion(lastRegion, region);
             }

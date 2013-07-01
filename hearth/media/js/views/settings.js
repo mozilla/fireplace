@@ -1,6 +1,8 @@
 define('views/settings',
-    ['common/linefit', 'defer', 'jquery', 'l10n', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
-    function(linefit, defer, $, l10n, notification, requests, urls, user, utils, z) {
+    ['common/linefit', 'defer', 'jquery', 'l10n', 'log', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
+    function(linefit, defer, $, l10n, log, notification, requests, urls, user, utils, z) {
+
+    var persistent_console = log.persistent('mobilenetwork', 'change');
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -33,6 +35,12 @@ define('views/settings',
             return;
         }
         var data = utils.getVars($(this).serialize());
+
+        var current_region = user.get_setting('region');
+        if (current_region !== data.region) {
+            persistent_console.log('Manual region change:', current_region, '→', data.region);
+        }
+
         user.update_settings(data);
         requests.patch(urls.api.url('settings'), data)
                 .done(completion.resolve)

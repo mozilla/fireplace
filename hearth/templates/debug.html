@@ -63,5 +63,15 @@
         <li>{% for piece in entry %}{{ piece }} {% endfor %}</li>
       {% endfor %}
     </ol>
+
+    <h3>Persistent Logs</h3>
+    {% for log_type, logs in persistent_logs.items() %}
+      <h4>{{ log_type }}</h4>
+      <ol class="debug-log">
+        {% for entry in logs %}
+          <li>{% for piece in entry %}{{ piece }} {% endfor %}</li>
+        {% endfor %}
+      </ol>
+    {% endfor %}
   </div>
 </section>
