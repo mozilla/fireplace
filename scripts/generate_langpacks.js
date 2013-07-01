@@ -109,6 +109,8 @@ function parse(po_content) {
         }
     }
 
+    store_current();
+
     return {
         output: output,
         pluralizer: pluralizer
