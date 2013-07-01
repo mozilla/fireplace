@@ -1,6 +1,6 @@
 define('mobilenetwork',
        ['defer', 'l10n', 'log', 'notification', 'settings', 'user', 'utils', 'views'],
-       function('defer', l10n, log, notification, settings, user, utils, views) {
+       function(defer, l10n, log, notification, settings, user, utils, views) {
     var console = log('mobilenetwork');
     var gettext = l10n.gettext;
 
