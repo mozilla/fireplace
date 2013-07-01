@@ -35,6 +35,7 @@ define('views/settings',
             return;
         }
         var data = utils.getVars($(this).serialize());
+        delete data.email;
 
         var current_region = user.get_setting('region');
         if (current_region !== data.region) {
