@@ -1,6 +1,6 @@
 define('mobilenetwork',
-       ['l10n', 'log', 'notification', 'settings', 'user', 'utils', 'views'],
-       function(l10n, log, notification, settings, user, utils, views) {
+       ['defer', 'l10n', 'log', 'notification', 'settings', 'user', 'utils', 'views'],
+       function('defer', l10n, log, notification, settings, user, utils, views) {
     var console = log('mobilenetwork');
     var gettext = l10n.gettext;
 
@@ -234,16 +234,15 @@ define('mobilenetwork',
         var message = gettext('You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?',
             {current_region: currentRegionName,
              new_region: newRegionName});
-        $.when(notification.confirmation({message: message}))
-         .fail(function() {
+
+        notification.confirmation({message: message}).fail(function() {
             console.log('User declined to change region from', currentRegionName, 'to', newRegionName);
-         })
-         .done(function() {
+        }).done(function() {
             console.log('User changed region from', currentRegionName, 'to', newRegionName);
             user.update_settings({region: newRegion});
             // window.location.reload() is weird on Firefox OS.
             window.location = window.location.href;
-         });
+        });
     }
 
     function detectMobileNetwork(navigator, fake) {

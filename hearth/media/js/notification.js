@@ -1,4 +1,4 @@
-define('notification', ['jquery', 'templates', 'z'], function($, nunjucks, z) {
+define('notification', ['defer', 'jquery', 'templates', 'z'], function(defer, $, nunjucks, z) {
 
     var notificationDef;
     var notificationEl = $('<div id="notification" class="hidden">');
@@ -38,7 +38,7 @@ define('notification', ['jquery', 'templates', 'z'], function($, nunjucks, z) {
 
     function notification(opts) {
         var addedClasses = [];
-        notificationDef = $.Deferred();
+        notificationDef = defer.Deferred();
         notificationDef.always(notificationHide);
         notificationEl.attr('class', '');
         contentEl.text('');
@@ -74,7 +74,7 @@ define('notification', ['jquery', 'templates', 'z'], function($, nunjucks, z) {
     });
     z.body.append(notificationEl);
 
-    var confirmationDef = $.Deferred();
+    var confirmationDef = defer.Deferred();
     var cloakEl = $('.cloak');
     var confirmationEl = $('<div class="modal confirmation">');
 

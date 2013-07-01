@@ -5,10 +5,11 @@ var eq_ = a.eq_;
 var feq_ = a.feq_;
 var contains = a.contains;
 var mock = a.mock;
+var defer = require('defer');
 
 
 function mock_xhr(args) {
-    var def = $.Deferred();
+    var def = defer.Deferred();
     def.args = arguments;
     return def;
 }

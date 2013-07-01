@@ -1,8 +1,8 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 define('install',
-    ['apps', 'cache', 'capabilities', 'jquery', 'l10n', 'log', 'login', 'models', 'notification', 'payments/payments', 'requests', 'tracking', 'urls', 'user', 'z'],
-    function(apps, cache, caps, $, l10n, log, login, models, notification, payments, requests, tracking, urls, user, z) {
+    ['apps', 'cache', 'capabilities', 'defer', 'jquery', 'l10n', 'log', 'login', 'models', 'notification', 'payments/payments', 'requests', 'tracking', 'urls', 'user', 'z'],
+    function(apps, cache, caps, defer, $, l10n, log, login, models, notification, payments, requests, tracking, urls, user, z) {
     'use strict';
 
     var console = log('install');
@@ -50,9 +50,9 @@ define('install',
 
     function purchase(product) {
         z.win.trigger('app_purchase_start', product);
-        return $.when(payments.purchase(product))
-                .done(purchaseSuccess)
-                .fail(purchaseError);
+        return defer.when(payments.purchase(product))
+                    .done(purchaseSuccess)
+                    .fail(purchaseError);
     }
 
     function purchaseSuccess(product, receipt) {
@@ -91,12 +91,12 @@ define('install',
         z.win.trigger('app_install_start', product);
 
         function do_install() {
-            return $.when(apps.install(product, data))
-                    .done(installSuccess)
-                    .fail(installError);
+            return defer.when(apps.install(product, data))
+                        .done(installSuccess)
+                        .fail(installError);
         }
 
-        var def = $.Deferred();
+        var def = defer.Deferred();
         // When we have a sepapate API endpoint for free apps,
         // a paid app with a price of '0.00' should still hit the
         // API endpoint for receipt creation.

@@ -4,13 +4,10 @@ var assert = a.assert;
 var eq_ = a.eq_;
 var contains = a.contains;
 var mock = a.mock;
-
-function MockJQuery() {
-    this.Deferred = $.Deferred;
-}
+var defer = require('defer');
 
 function MockNavigator(no_package) {
-    var def = this.def = $.Deferred();
+    var def = this.def = defer.Deferred();
     function installer(url, data) {
         var robj = {
             result: null
@@ -41,7 +38,7 @@ function MockNavigator(no_package) {
 test('apps.install', function(done, fail) {
     mock(
         'apps',
-        {jquery: new MockJQuery()},
+        {defer: defer},
         function(apps) {
             var nav = new MockNavigator();
             var product = {
@@ -58,7 +55,7 @@ test('apps.install', function(done, fail) {
 test('apps.install delay', function(done, fail) {
     mock(
         'apps',
-        {jquery: new MockJQuery()},
+        {defer: defer},
         function(apps) {
             var nav = new MockNavigator();
             var product = {
@@ -79,7 +76,7 @@ test('apps.install delay', function(done, fail) {
 test('apps.install packaged', function(done, fail) {
     mock(
         'apps',
-        {jquery: new MockJQuery()},
+        {defer: defer},
         function(apps) {
             var nav = new MockNavigator();
             var product = {
@@ -95,7 +92,7 @@ test('apps.install packaged', function(done, fail) {
 test('apps.install unable', function(done, fail) {
     mock(
         'apps',
-        {jquery: new MockJQuery()},
+        {defer: defer},
         function(apps) {
             var nav = new MockNavigator();
             var product = {
@@ -112,7 +109,7 @@ test('apps.install unable', function(done, fail) {
 test('apps.install unable packaged', function(done, fail) {
     mock(
         'apps',
-        {jquery: new MockJQuery()},
+        {defer: defer},
         function(apps) {
             var nav = new MockNavigator(true);
             var product = {
@@ -129,7 +126,7 @@ test('apps.install unable packaged', function(done, fail) {
 test('apps.install fail', function(done, fail) {
     mock(
         'apps',
-        {jquery: new MockJQuery()},
+        {defer: defer},
         function(apps) {
             var nav = new MockNavigator();
             var product = {

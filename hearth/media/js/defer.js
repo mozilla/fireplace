@@ -1,3 +1,4 @@
 define('defer', ['jquery'], function($) {
-	return {Deferred: $.Deferred};
+    return {Deferred: $.Deferred,
+            when: $.when};
 });

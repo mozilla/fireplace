@@ -1,7 +1,7 @@
 /*
     Provides the apps module, a wrapper around navigator.mozApps
 */
-define('apps', ['buckets', 'jquery', 'underscore', 'utils'], function(buckets, $, _, utils) {
+define('apps', ['buckets', 'defer', 'underscore', 'utils'], function(buckets, defer, _, utils) {
     'use strict';
 
     /*
@@ -39,7 +39,7 @@ define('apps', ['buckets', 'jquery', 'underscore', 'utils'], function(buckets, $
             manifest_url = utils.urlparams(product.manifest_url, {feature_profile: buckets.get_profile()});
         }
 
-        var $def = $.Deferred();
+        var def = defer.Deferred();
         var mozApps = opt.navigator.mozApps;
 
         /* Try to install the app. */
@@ -54,14 +54,14 @@ define('apps', ['buckets', 'jquery', 'underscore', 'utils'], function(buckets, $
                     status = installRequest.result.installState;
                     if (status == 'installed') {
                         clearInterval(isInstalled);
-                        $def.resolve(installRequest.result, product);
+                        def.resolve(installRequest.result, product);
                     }
                     // TODO: What happens if there's an installation failure? Does this never end?
                 }, 100);
             };
             installRequest.onerror = function() {
                 // The JS shim still uses this.error instead of this.error.name.
-                $def.reject(installRequest.result, product, this.error.name || this.error);
+                def.reject(installRequest.result, product, this.error.name || this.error);
             };
         } else {
             var reason;
@@ -72,9 +72,9 @@ define('apps', ['buckets', 'jquery', 'underscore', 'utils'], function(buckets, $
             } else {
                 reason = 'Could not find platform support to install hosted app';
             }
-            $def.reject(null, product, reason);
+            def.reject(null, product, reason);
         }
-        return $def.promise();
+        return def.promise();
     }
 
     return {install: install};

@@ -1,6 +1,6 @@
 
 define('views/settings',
-    ['common/linefit', 'l10n', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
+    ['common/linefit', 'defer', 'l10n', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
     function(linefit, l10n, notification, requests, urls, user, utils, z) {
 
     var _pd = utils._pd;
@@ -20,7 +20,7 @@ define('views/settings',
 
     z.page.on('submit', 'form.account-settings', _pd(function(e) {
         e.stopPropagation();
-        var completion = $.Deferred();
+        var completion = defer.Deferred();
         completion.done(function() {
             update_settings();
             notify({message: gettext('Settings saved')});
