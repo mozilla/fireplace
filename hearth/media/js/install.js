@@ -97,11 +97,11 @@ define('install',
         }
 
         var def = defer.Deferred();
-        // When we have a sepapate API endpoint for free apps,
-        // a paid app with a price of '0.00' should still hit the
-        // API endpoint for receipt creation.
-        // See https://bugzilla.mozilla.org/show_bug.cgi?id=886568
-        requests.post(urls.api.url('record'), post_data).done(function(response) {
+        // NOTE: We don't want to check `payment_required` because
+        // even a paid app with a price of '0.00' should still hit the
+        // API endpoint for receipt creation (bug 886568).
+        requests.post(urls.api.url('record_' + (price == null ? 'free' : 'paid')),
+                      post_data).done(function(response) {
             if (response.error) {
                 $('#pay-error').show().find('div').text(response.error);
                 installError(null, product, 'Server returned error: ' + response.error);
