@@ -1,11 +1,14 @@
-define('log', [], function() {
+define('log', ['storage'], function(storage) {
 
     var slice = Array.prototype.slice;
     var filter;
     var logs;
     var all_logs = [];
 
-    var logger = function(type, tag) {
+    var raw_persistent_logs = storage.getItem('persistent_logs');
+    var persistent_logs = raw_persistent_logs ? JSON.parse(raw_persistent_logs) : {};
+
+    var logger = function(type, tag, onlog) {
 
         // Give nice log prefixes:
         // > [log] This is a nice message!
@@ -32,6 +35,9 @@ define('log', [], function() {
                     args = args.map(filter);
                     log_queue.push(args);
                     all_logs.push(args);
+                    if (onlog) {
+                        onlog(args);
+                    }
                 }
 
                 // TODO: Add colorification support here for browsers that support it.
@@ -77,12 +83,23 @@ define('log', [], function() {
             return data;
         }
         for (var i = 0, e; e = logger.unmentionables[i++];) {
-            if (data.indexOf(e) !== -1) {
-                data = data.replace(e, '---');
-            }
+            data = data.replace(e, '---');
         }
         return data;
     };
+
+    logger.persistent = function(type) {
+        var args = slice.call(arguments);
+        args[2] = function(log_args) {
+            if (!(type in persistent_logs)) {
+                persistent_logs[type] = [];
+            }
+            persistent_logs[type].push(log_args);
+            storage.setItem('persistent_logs', JSON.stringify(persistent_logs));
+        };
+        return logger.apply(this, args);
+    };
+    logger.persistent.all = persistent_logs;
 
     return logger;
 });
