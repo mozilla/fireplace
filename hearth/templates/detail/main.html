@@ -103,13 +103,14 @@
   {% defer (url=apiParams('reviews', {'app': slug}), id='ratings') %}
     <div class="reviews">
       <h3>{{ _('Reviews') }}</h3>
+      {% set has_second_button = this.user.can_rate or not user.logged_in() or this.user.has_rated %}
       {% if this.meta.total_count %}
         <ul class="ratings-placeholder-inner">
           {% for rat in this.objects.slice(0, 2) %}
             {{ rating(rat, detailpage=true) }}
           {% endfor %}
         </ul>
-        <div class="{{ 'split' if not this.user.developed else 'full' }}">
+        <div class="{{ 'split' if has_second_button else 'full' }}">
           <a class="button alt average-rating" href="{{ url('app/ratings', [slug]) }}">
             <span>
               {{ _plural('{n} Review', '{n} Reviews',
@@ -123,7 +124,7 @@
           {{ _('App not yet rated') }}
         </p>
       {% endif %}
-      {% if (this.user.can_rate or not user.logged_in()) or this.user.has_rated %}
+      {% if has_second_button %}
         <div class="{{ 'split' if this.objects.length else ' full' }}">
           {% if user.logged_in() and this.user.has_rated %}
             <a class="button write-review alt" id="edit-review" href="{{ url('app/ratings/edit', [slug]) }}"
