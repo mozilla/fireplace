@@ -131,6 +131,7 @@ define('requests',
             if ((!user.get_setting('region') || user.get_setting('region') == 'internet') &&
                 (filter_header = xhr.getResponseHeader('API-Filter'))) {
                 var region = utils.getVars(filter_header).region;
+                log.persistent('mobilenetwork', 'change').log('API overriding region:', region);
                 user.update_settings({region: region});
             }
         });
