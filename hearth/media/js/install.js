@@ -1,8 +1,8 @@
 // Hey there! I know how to install apps. Buttons are dumb now.
 
 define('install',
-    ['apps', 'cache', 'capabilities', 'defer', 'jquery', 'l10n', 'log', 'login', 'models', 'notification', 'payments/payments', 'requests', 'tracking', 'urls', 'user', 'z'],
-    function(apps, cache, caps, defer, $, l10n, log, login, models, notification, payments, requests, tracking, urls, user, z) {
+    ['apps', 'cache', 'capabilities', 'defer', 'jquery', 'l10n', 'log', 'login', 'models', 'notification', 'payments/payments', 'requests', 'tracking', 'urls', 'user', 'views', 'z'],
+    function(apps, cache, caps, defer, $, l10n, log, login, models, notification, payments, requests, tracking, urls, user, views, z) {
     'use strict';
 
     var console = log('install');
@@ -74,6 +74,13 @@ define('install',
 
         // Bust the cache
         cache.bust(urls.api.url('installed'));
+        cache.rewrite(function(key) {
+            return key === urls.api.params('reviews', {app: product.slug});
+        }, function(data) {
+            data.user.can_rate = true;
+            return data;
+        });
+        views.reload();
     }
 
     function purchaseError(product, msg) {
