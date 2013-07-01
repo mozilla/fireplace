@@ -1,7 +1,6 @@
-
 define('views/settings',
-    ['common/linefit', 'defer', 'l10n', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
-    function(linefit, l10n, notification, requests, urls, user, utils, z) {
+    ['common/linefit', 'defer', 'jquery', 'l10n', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
+    function(linefit, defer, $, l10n, notification, requests, urls, user, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
