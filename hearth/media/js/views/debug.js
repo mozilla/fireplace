@@ -16,6 +16,7 @@ define('views/debug',
         e.preventDefault();
         var data = {body: JSON.stringify({
             logs: log.all,
+            persistent_logs: log.persistent.all,
             capabilities: capabilities,
             profile: buckets.get_profile(),
             settings: settings,
