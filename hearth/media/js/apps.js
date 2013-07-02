@@ -86,11 +86,11 @@ define('apps',
 
     If the app is compatible, this function returns a falsey value.
     If the app is incompatible, a list of reasons why (plaintext strings) is returned.
-    
+
     If you don't want to use the cached values, run the following command in your console:
-    
+
         require('apps')._use_compat_cache(false);
-    
+
     */
 
     var COMPAT_REASONS = '__compat_reasons';
@@ -105,9 +105,9 @@ define('apps',
             reasons.push(gettext('Your device does not support payments.'));
         }
         if (!capabilities.webApps) {
-            reasons.push(gettext('Your browser or device is not web app compatible.'));
+            reasons.push(gettext('Your browser or device is not web-app compatible.'));
         } else if (!_.contains(product.device_types, device)) {
-            reasons.push(gettext('This app is not available for your platform.'));
+            reasons.push(gettext('This app is unavailable for your platform.'));
         }
 
         return product[COMPAT_REASONS] = reasons.length ? reasons : undefined;
