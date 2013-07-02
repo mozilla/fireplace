@@ -86,11 +86,17 @@ define('apps',
 
     If the app is compatible, this function returns a falsey value.
     If the app is incompatible, a list of reasons why (plaintext strings) is returned.
+    
+    If you don't want to use the cached values, run the following command in your console:
+    
+        require('apps')._use_compat_cache(false);
+    
     */
 
-    var COMPAT_REASONS = '__compat_reasons'
+    var COMPAT_REASONS = '__compat_reasons';
+    var use_compat_cache = true;
     function incompat(product) {
-        if (COMPAT_REASONS in product) {
+        if (use_compat_cache && COMPAT_REASONS in product) {
             return product[COMPAT_REASONS];
         }
         var reasons = [];
@@ -109,6 +115,7 @@ define('apps',
 
     return {
         incompat: incompat,
-        install: install
+        install: install,
+        _use_compat_cache: function(val) {use_compat_cache = val;}
     };
 });
