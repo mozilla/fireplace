@@ -245,7 +245,7 @@ def app_(slug):
     return defaults.app('Something something %s' % slug, slug)
 
 
-@app.route('/api/v1/receipts/record/', methods=['POST'])
+@app.route('/api/v1/installs/record/', methods=['POST'])
 def record_free():
     return {'error': False}
 
