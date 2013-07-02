@@ -78,7 +78,11 @@ define('requests',
 
             var data = xhr.responseText;
             if (xhr.getResponseHeader('Content-Type').split(';', 1)[0] === 'application/json') {
-                data = JSON.parse(data);
+                try {
+                    data = JSON.parse(data);
+                } catch(e) {
+                    // Oh well.
+                }
             }
 
             def.resolve(data, xhr.statusText, xhr);
@@ -92,7 +96,7 @@ define('requests',
             true
             // Auth would go here, but let's not.
         );
-        
+
         // TODO: Should we be smarter about this?
         // TODONT: nahhhh
         if (typeof data === 'object') {
