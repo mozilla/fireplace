@@ -22,7 +22,7 @@ define('install',
         z.apps[product.manifest_url].launch();
         tracking.trackEvent(
             'Launch app',
-            product.payment_required ? 'Paid' : 'Free',
+            product.receipt_required ? 'Paid' : 'Free',
             product.slug
         );
     });
@@ -30,7 +30,12 @@ define('install',
     var installHandler = _handler(startInstall);
 
     function startInstall(product) {
-        if (product.payment_required && !user.logged_in()) {
+        // TODO: Have the API possibly return this (bug 889501).
+        product.receipt_required = premium_type != 'free' && premium_type != 'free-inapp';
+
+        // If we have a premium app (even if it's '$0.00'), require the user
+        // to first log so we can record the purchase and generate a receipt.
+        if (product.receipt_required && !user.logged_in()) {
             console.log('Install suspended; user needs to log in');
             return login.login().done(function() {
                 startInstall(product);
@@ -41,7 +46,7 @@ define('install',
         }
 
         console.log('Starting app installation');
-        if (product.payment_required) {
+        if (product.receipt_required) {
             return purchase(product);
         } else {
             return install(product);
@@ -105,9 +110,9 @@ define('install',
 
         var def = defer.Deferred();
         // NOTE: We don't want to check `payment_required` because
-        // even a paid app with a price of '0.00' should still hit the
+        // even a paid app with a price of '$0.00' should still hit the
         // API endpoint for receipt creation (bug 886568).
-        requests.post(urls.api.url('record_' + (product.price == null ? 'free' : 'paid')),
+        requests.post(urls.api.url('record_' + (product.receipt_required ? 'paid' : 'free')),
                       post_data).done(function(response) {
             if (response.error) {
                 $('#pay-error').show().find('div').text(response.error);

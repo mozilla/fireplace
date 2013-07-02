@@ -47,7 +47,7 @@ define('buttons',
 
         tracking.trackEvent(
             'Click to install app',
-            product.payment_required ? 'paid' : 'free',
+            product.receipt_required ? 'paid' : 'free',
             product.name + ':' + product.id,
             $('.button.product').index($button)
         );
@@ -76,7 +76,7 @@ define('buttons',
 
             tracking.trackEvent(
                 'Successful app install',
-                product.payment_required ? 'paid' : 'free',
+                product.receipt_required ? 'paid' : 'free',
                 product.name + ':' + product.id,
                 $('.button.product').index($button)
             );
