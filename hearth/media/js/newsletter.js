@@ -14,7 +14,7 @@ define('newsletter',
     function init() {
         // Toggle the conditions below if you want to test on Desktop.
         //if (!user.logged_in()) return;
-        if (!user.logged_in() || langs.indexOf(navigator.language) == -1) return;
+        if (true || !user.logged_in() || langs.indexOf(navigator.language) == -1) return;
 
         var counter = +storage.getItem('newscounter');
         if (counter == 4) return;
