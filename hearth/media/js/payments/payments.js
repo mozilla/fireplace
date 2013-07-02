@@ -59,8 +59,11 @@ define('payments/payments',
     }
 
     function beginPurchase(product) {
-        if (!product || !product.payment_required) return;
         var $def = defer.Deferred();
+
+        if (!product || !product.payment_required) {
+            return $def.resolve(product);
+        }
 
         console.log('Initiating transaction');
 
