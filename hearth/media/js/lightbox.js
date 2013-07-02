@@ -106,10 +106,11 @@ define('lightbox',
         });
 
         // $section doesn't have its proper width until after a paint.
-        slider = Flipsnap($content[0]);
-        slider.element.addEventListener('fsmoveend', pauseVideos, false);
-
-        handles.attachHandles(slider, $section);
+        if ($content.length) {
+            slider = Flipsnap($content[0]);
+            slider.element.addEventListener('fsmoveend', pauseVideos, false);
+            handles.attachHandles(slider, $section);
+        }
     }
 
     function resize() {
