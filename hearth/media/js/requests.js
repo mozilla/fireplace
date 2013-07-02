@@ -82,6 +82,7 @@ define('requests',
                     data = JSON.parse(data);
                 } catch(e) {
                     // Oh well.
+                    data = {};
                 }
             }
 
