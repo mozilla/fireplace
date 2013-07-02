@@ -53,7 +53,7 @@ define('newsletter',
         var $signup = $('main').find('.newsletter');
 
         var $this = $(this);
-        var data = utils.getVars($this.serialize());
+        var data = {email: decodeURIComponent($this.serialize().split('=')[1])};
 
         $signup.addClass('loading').find('.processing, .spinner').css('display', 'block');
 
