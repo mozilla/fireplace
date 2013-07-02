@@ -1,7 +1,7 @@
 define('newsletter',
-       ['capabilities', 'l10n', 'notification', 'requests',
+       ['capabilities', 'l10n', 'notification', 'requests', 'settings',
         'storage', 'templates', 'underscore', 'urls', 'user', 'utils', 'z'],
-    function(caps, l10n, n, requests, storage, nunjucks, _, urls, user, utils, z) {
+    function(caps, l10n, n, requests, settings, storage, nunjucks, _, urls, user, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -13,9 +13,12 @@ define('newsletter',
     // Init newsletter signup checking system.
     function init() {
         // Toggle the conditions below if you want to test on Desktop.
-        //if (!user.logged_in()) return;
-        if (true || !user.logged_in() || langs.indexOf(navigator.language) == -1) return;
-
+        if (!settings.newsletter_enabled || !user.logged_in() ||
+            langs.indexOf(navigator.language) == -1) {
+            return;
+        }
+        // 72 hours (1000 x 60 x 60 x 72)
+        var timeDelta = 259200000;
         var counter = +storage.getItem('newscounter');
         if (counter == 4) return;
 
@@ -23,10 +26,10 @@ define('newsletter',
         var storedTime = storage.getItem('newstimestamp');
         var expired = true;
 
-        // Counter expires in 72 hours.
+        // Counter expires in timeDelta milliseconds.
         if (storedTime) {
             storedTime = new Date(+storedTime);
-            expired = (now - storedTime) > 259200000; // 72 hours (1000 x 60 x 60 x 72)
+            expired = (now - storedTime) > timeDelta;
         }
 
         // Increment counter if not expired otherwise save the time and set to 1.
