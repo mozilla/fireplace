@@ -51,7 +51,7 @@ define('views/settings',
     return function(builder) {
         builder.start('settings/main.html');
 
-        $('.linefit').linefit();
+        $('.linefit').linefit(2);
 
         builder.z('type', 'root settings');
         builder.z('reload_on_logout', true);

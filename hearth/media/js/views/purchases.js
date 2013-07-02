@@ -25,7 +25,7 @@ define('views/purchases', ['cache', 'l10n', 'common/linefit', 'urls', 'utils', '
     return function(builder, args) {
         builder.start('user/purchases.html');
 
-        $('.linefit').linefit();
+        $('.linefit').linefit(2);
 
         builder.z('type', 'root');
         builder.z('reload_on_login', true);

@@ -54,7 +54,7 @@ define('views/feedback',
         builder.start('settings/feedback.html').done(function() {
             $('.feedback').removeClass('modal');
             addFeedbackModal();
-            $('.linefit').linefit();
+            $('.linefit').linefit(2);
         });
 
         builder.z('type', 'root');

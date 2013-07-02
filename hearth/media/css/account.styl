@@ -19,27 +19,27 @@
 }
 
 .toggles {
+    display: table;
     list-style: none;
+    table-layout: fixed;
+    width: 100%;
     li {
-        float: left;
-        height: 24px;
-        margin: 7px 0;
+        display: table-cell;
+        padding: 0 10px;
+        text-align: left;
+        vertical-align: middle;
         width: (100% / 3);
         + li {
             border-left: 1px dotted $cement-gray;
             text-align: center;
         }
-        &:last-child {
+        &:last-of-type {
             text-align: right;
         }
     }
     a {
         color: $text;
-        display: block;
         font-weight: 500;
-        line-height: 40px;
-        margin: -7px 0;
-        padding: 0 10px;
         &.sel, &:active {
             color: $sailor-blue;
             font-weight: 500;
