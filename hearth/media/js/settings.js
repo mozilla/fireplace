@@ -17,7 +17,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         tracking_enabled: false,
         action_tracking_enabled: true,
         upsell_enabled: true,
-        newsletter_enabled: false,
+        newsletter_enabled: true,
 
         tracking_id: 'UA-36116321-6',
 
