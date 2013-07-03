@@ -16,7 +16,7 @@ define('views/app',
         $this.attr('data-toggle-text', $this.text());
         $this.text(newTxt);
         // Toggle description.
-        $this.closest('.blurbs').find('.collapsed').toggle();
+        $this.closest('.blurbs').find('.description-wrapper').addClass('toggled-once').toggleClass('truncated');
 
         tracking.trackEvent('App view interactions', 'click', 'Toggle description');
 
@@ -67,6 +67,16 @@ define('views/app',
             z.page.trigger('populatetray');
             overflow.init();
 
+            // Don't truncate descriptions if we are on widescreen or if the 
+            // description fits without overflowing. (on widescreen, we should 
+            // have the space and browsers all disagree on *Height values when
+            // there are columns involved anyway)
+            var wrapper = $('.description-wrapper');
+            if (caps.widescreen() || wrapper[0].scrollHeight <= wrapper.height()) {
+                wrapper.removeClass('truncated');
+            } else {
+                wrapper.next('.show-toggle').show();
+            }
             if (caps.widescreen() && !$('.report-abuse').length) {
                 z.page.append(
                     nunjucks.env.getTemplate('detail/abuse.html').render({slug: slug})

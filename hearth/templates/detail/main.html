@@ -58,12 +58,12 @@
 <section class="main blurbs prose infobox">
   <div>
     {% defer (url=endpoint, as='app', key=slug) %}
-      <p class="description" itemprop="description">
-        {{ this.description|nl2br }}
-        {% if this.description.length > 700 %}
-          <a href="#" class="show-toggle" data-toggle-text="{{ _('Less&hellip;') }}">{{ _('More&hellip;') }}</a>
-        {% endif %}
-      </p>
+      <div class="description-wrapper truncated">
+        <p class="description" itemprop="description">
+          {{ this.description|nl2br }}
+        </p>
+      </div>
+      <a href="#" class="show-toggle" data-toggle-text="{{ _('Less&hellip;') }}">{{ _('More&hellip;') }}</a>
 
       {% if this.is_packaged %}
         <h3>{{ _('Version') }}</h3>
