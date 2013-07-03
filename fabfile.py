@@ -17,6 +17,7 @@ ROOT = os.path.dirname(FIREPLACE)
 def pre_update(ref):
     with lcd(FIREPLACE):
         local('git fetch')
+        local('git fetch -t')
         local('git reset --hard %s' % ref)
 
 
