@@ -72,10 +72,11 @@ raw_includes: clean compile langpacks
 	echo "/* $(VERSION) */" > hearth/media/include.css
 	echo "/* $(VERSION) */" > hearth/media/include.js
 	cat amd/amd.js >> hearth/media/include.js
-	python build.py
+	node build.js
 
 includes: raw_includes
 	./node_modules/.bin/cleancss hearth/media/include.css > hearth/media/css/include.css
+	cleancss hearth/media/include.css > hearth/media/css/include.css
 	rm -f hearth/media/include.css
 	mv hearth/media/include.js hearth/media/js/
 	./node_modules/.bin/uglifyjs hearth/media/js/include.js -o hearth/media/js/include.js -m -c --screw-ie8
