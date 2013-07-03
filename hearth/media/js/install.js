@@ -80,7 +80,7 @@ define('install',
 
         // Bust the cache
         cache.bust(urls.api.url('installed'));
-        cache.rewrite(function(key) {
+        cache.attemptRewrite(function(key) {
             return key === urls.api.params('reviews', {app: product.slug});
         }, function(data) {
             data.user.can_rate = true;
