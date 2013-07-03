@@ -11,7 +11,7 @@ define('outgoing_links', ['capabilities', 'z'], function(capabilities, z) {
 
         // Hijack external links if we're within the app.
         if (capabilities.chromeless) {
-            $('a[rel=external], ' + outbound).attr('target', '_blank');
+            $('a[rel=external], a[href*="://"], ' + outbound).attr('target', '_blank');
         }
 
         $(outbound).each(function() {
