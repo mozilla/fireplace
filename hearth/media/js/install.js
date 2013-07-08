@@ -31,11 +31,14 @@ define('install',
 
     function startInstall(product) {
         // TODO: Have the API possibly return this (bug 889501).
-        // If the user has already purchased the app, don't generate
-        // another receipt; instead start app installation.
         product.receipt_required = (product.premium_type != 'free' &&
-                                    product.premium_type != 'free-inapp' &&
-                                    (!product.user || !product.user.purchased));
+                                    product.premium_type != 'free-inapp');
+
+        // If the user has already purchased the app, we do need to generate
+        // another receipt but we don't need to go through the purchase flow again.
+        if (product.user && product.user.purchased) {
+            product.payment_required = false;
+        }
 
         // If we have a premium app (even if it's '$0.00'), require the user
         // to first log so we can record the purchase and generate a receipt.
