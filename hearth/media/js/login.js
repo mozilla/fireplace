@@ -1,5 +1,5 @@
 define('login',
-    ['cache', 'capabilities', 'defer', 'jquery', 'log', 'models', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z', 'utils'],
+    ['cache', 'capabilities', 'defer', 'jquery', 'log', 'models', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z'],
     function(cache, capabilities, defer, $, log, models, notification, settings, _, urls, user, requests, z) {
 
     var console = log('login');
@@ -44,13 +44,12 @@ define('login',
         // Moved here from the onlogout callback for now until
         // https://github.com/mozilla/browserid/issues/3229
         // gets fixed.
-        if (z.context.reload_on_logout) {
-            console.log('Page requested reload on logout');
+        if (!z.context.dont_reload_on_login) {
             require('views').reload().done(function(){
                 signOutNotification();
             });
         } else {
-            signOutNotification();
+            console.log('Reload on logout aborted by current view');
         }
     });
 
@@ -111,24 +110,15 @@ define('login',
                 pending_logins = [];
             }
 
-            if (z.context.reload_on_login) {
-                console.log('Page requested reload on login');
+            if (!z.context.dont_reload_on_login) {
                 require('views').reload().done(function() {
                     resolve_pending();
                     signInNotification();
                 });
             } else {
-                console.log('Resolving outstanding login requests');
-                signInNotification();
-                resolve_pending();
+                console.log('Reload on login aborted by current view');
             }
 
-            var to = require('utils').getVars().to;
-            if (to && to[0] == '/') {
-                console.log('Navigating to post-login destination');
-                z.page.trigger('navigate', [to]);
-                return;
-            }
         }).fail(function(jqXHR, textStatus, error) {
             console.warn('Assertion verification failed!', textStatus, error);
 

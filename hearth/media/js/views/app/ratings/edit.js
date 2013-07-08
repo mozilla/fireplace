@@ -67,7 +67,6 @@ define('views/app/ratings/edit',
         });
 
         builder.z('type', 'leaf');
-        builder.z('reload_on_login', true);
         builder.z('parent', urls.reverse('app/ratings', [slug]));
         builder.z('title', gettext('Edit Review'));
     };

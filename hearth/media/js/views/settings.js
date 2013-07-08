@@ -54,7 +54,6 @@ define('views/settings',
         $('.linefit').linefit(2);
 
         builder.z('type', 'root settings');
-        builder.z('reload_on_logout', true);
         builder.z('title', gettext('Account Settings'));
     };
 });

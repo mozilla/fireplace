@@ -55,8 +55,6 @@ define('views/app',
         builder.start('detail/main.html', {slug: slug});
 
         builder.z('type', 'leaf');
-        builder.z('reload_on_login', true);
-        builder.z('reload_on_logout', true);
         builder.z('title', gettext('Loading...'));
         builder.z('pagetitle', gettext('App Details'));
 

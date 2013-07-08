@@ -39,7 +39,7 @@ def corsify(*args, **kwargs):
                 resp = make_response(json.dumps(resp, indent=2), 200)
             resp.headers['Access-Control-Allow-Origin'] = '*'
             resp.headers['Access-Control-Allow-Methods'] = ','.join(methods)
-            resp.headers['Access-Control-Allow-Headers'] = 'X-HTTP-METHOD-OVERRIDE'
+            resp.headers['Access-Control-Allow-Headers'] = 'API-Filter, X-HTTP-METHOD-OVERRIDE'
             resp.headers['Content-type'] = 'application/json'
             if LATENCY:
                 time.sleep(LATENCY)

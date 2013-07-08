@@ -102,7 +102,7 @@ function Suite(options) {
             // start the tests with a noop callback.
             if (!started) {
                 next_runner(function() {
-                    console.log('Initial navigation initiated.');
+                    console.log('Initial navigation initiated: ' + url);
                 });
             }
             // Tell casper to wait until `waiter` evaluates to a truthy return
@@ -185,6 +185,10 @@ function Suite(options) {
     this.viewport = function(w, h) {
         console.log('Setting viewport to ' + w + 'x' + h);
         return cobj.viewport(w, h);
+    };
+
+    this.inspect = function(selector) {
+        console.log(JSON.stringify(cobj.getElementInfo(selector)), null, ' ');
     };
 
 }

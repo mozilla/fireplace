@@ -52,6 +52,7 @@ define('views/tests', ['assert', 'requests'], function(assert, requests) {
         }
 
         builder.z('type', 'debug');
+        builder.z('dont_reload_on_login', true);
         builder.z('title', 'Unit Tests');
     };
 });

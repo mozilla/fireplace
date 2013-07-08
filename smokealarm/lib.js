@@ -8,9 +8,7 @@ function fake_login(suite) {
         z.page.trigger('reload_chrome');
         z.page.trigger('logged_in');
 
-        if (z.context.reload_on_login) {
-            require('views').reload();
-        }
+        require('views').reload();
     });
 }
 
