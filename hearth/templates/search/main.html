@@ -2,7 +2,7 @@
 {% include '_macros/more_button.html' %}
 
 <section id="search-results" class="main full c">
-  {% defer (url=apiParams('search', params), pluck='objects', as='app', paginate='ol.listing') %}
+  {% defer (url=apiParams('search', params), pluck='objects', as='app', paginate='ol.listing', id='searchresults') %}
     <header class="secondary-header c">
       <h2 class="linefit">
         {{ _plural('<b>{n}</b> Result', '<b>{n}</b> Results', n=response.meta.total_count) }}

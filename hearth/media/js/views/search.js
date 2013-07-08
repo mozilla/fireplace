@@ -131,13 +131,24 @@ define('views/search',
         }
 
         builder.z('type', 'search');
-        builder.z('search', params.full_q || params.q);
-        builder.z('title', params.q || params.full_q || gettext('Search Results'));
+        var query = params.full_q || params.q;
+        builder.z('search', query);
+        builder.z('title', query || gettext('Search Results'));
 
         builder.start(
             'search/main.html',
             {params: _.extend({}, params)}
-        );
+        ).done(function() {
+            var results = builder.results['searchresults'];
+            // When there are no results, tell GA (bug 890314)
+            if (!results.objects.length) {
+                tracking.trackEvent(
+                    'No results found',
+                    'Search',
+                    query
+                );
+            }
+        });
     };
 
 });
