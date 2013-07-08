@@ -8,31 +8,32 @@ define('payments/payments',
     var gettext = l10n.gettext;
 
     function waitForPayment($def, product, webpayJWT, contribStatusURL) {
-        console.log('Waiting for payment confirmation');
+        console.log('Waiting for payment confirmation for ', product.name);
         var checkFunc = function() {
-            console.log('Fetching payment status from API...');
+            console.log('Fetching payment status of ' + product.name + ' from API...');
             requests.get(settings.api_url + urls.api.sign(contribStatusURL)).done(function(result) {
-                console.log('Got payment status: ', result.status);
+                console.log('Got payment status: ', product.name, ':', result.status);
                 if (result.status == 'complete') {
                     console.log('Payment complete. Resolving deferreds...');
                     $def.resolve(product);
                 }
             }).fail(function(xhr, status, error) {
-                console.error('Error fetching payment status: ', status, error);
+                console.error('Error fetching payment status: ', product.name, status, error);
                 $def.reject(null, product, 'MKT_SERVER_ERROR');
             });
         };
         var checker = setInterval(checkFunc, 3000);
         var giveUp = setTimeout(function() {
-            console.error('Payment took too long to complete. Rejecting.');
+            console.error('Payment took too long to complete. Rejecting: ', product.name);
             $def.reject(null, product, 'MKT_INSTALL_ERROR');
         }, 60000);
 
         checkFunc();
 
         $def.always(function() {
-            clearTimeout(checker);
-            clearTimeout(giveUp);
+            console.log('Clearing payment timers for: ', product.name);
+            clearInterval(checker);
+            clearTiemout(giveUp);
         });
     }
 
