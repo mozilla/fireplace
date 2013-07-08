@@ -65,6 +65,9 @@ define('ratings',
                     return obj.resource_uri !== uri;
                 });
                 data.meta.total_count -= 1;
+                if (!data.user) {
+                    data.user = {};
+                }
                 data.user.has_rated = false;
                 return data;
             });
@@ -192,6 +195,9 @@ define('ratings',
             rewriter(app, function(data) {
                 data.objects.unshift(new_review);
                 data.meta.total_count += 1;
+                if (!data.user) {
+                    data.user = {};
+                }
                 data.user.has_rated = true;
                 return data;
             });
