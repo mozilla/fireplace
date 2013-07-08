@@ -1,53 +1,53 @@
 define('cat-dropdown',
     // We require `mobilenetwork` here to initialize carrier/region detection so that gets
     // set before we pass those values to the API to get the list of categories.
-    ['underscore', 'jquery', 'l10n', 'models', 'requests', 'templates', 'urls', 'z', 'mobilenetwork'],
-    function(_, $, l10n, models, requests, nunjucks, urls, z) {
+    ['underscore', 'jquery', 'keys', 'l10n', 'models', 'requests', 'templates', 'urls', 'z', 'mobilenetwork'],
+    function(_, $, keys, l10n, models, requests, nunjucks, urls, z) {
     'use strict';
 
     var gettext = l10n.gettext;
     var desktopWidth = 710;
 
-    var cat_models = models('category');
-    cat_models.cast({
+    var catModels = models('category');
+    catModels.cast({
         name: gettext('All Categories'),
         slug: 'all'
     });
 
-    var cat_dropdown = $('#cat-dropdown');
-    var cat_list = $('#cat-list');
+    var $catDropdown = $('#cat-dropdown');
+    var $catList = $('#cat-list');
+    var $catMenu = $('.cat-menu');
+    var $dropdown = $('.dropdown');
+    var $dropdownLink;
 
     // TODO: Detect when the user is offline and raise an error.
 
     // Do the request out here so it happens immediately when the app loads.
-    var category_req = requests.get(urls.api.url('categories'));
+    var categoryReq = requests.get(urls.api.url('categories'));
     // Store the categories in models.
-    category_req.done(function(data) {
+    categoryReq.done(function(data) {
+        /*global console */
         console.groupCollapsed('Casting categories to model cache...');
-        cat_models.cast(data.objects);
+        catModels.cast(data.objects);
         console.groupEnd();
     });
 
-    var $cat_menu = $('.cat-menu');
-    var $dropdown = $('.dropdown');
     function toggleMenu(e) {
         if (e) {
             e.preventDefault();
         }
-        $('.cat-icon').trigger('blur');
-        $cat_menu.toggleClass('hidden');
+        $catMenu.toggleClass('hidden');
         $dropdown.toggleClass('active');
     }
 
     function updateDropDown(catSlug, catTitle) {
-        var $dropDown = $('.dropdown a');
-        var oldCatSlug = $dropDown.data('catSlug');
+        var oldCatSlug = $dropdownLink.data('catSlug');
         if (oldCatSlug !== catSlug) {
-            category_req.then(function() {
-                var model = cat_models.lookup(catSlug);
+            categoryReq.then(function() {
+                var model = catModels.lookup(catSlug);
                 catTitle = catTitle || (model && model.name) || catSlug;
-                if (catTitle && catSlug && oldCatSlug) {
-                    $dropDown.text(catTitle)
+                if (catTitle && catSlug && oldCatSlug && $dropdownLink) {
+                    $dropdownLink.text(catTitle)
                              .removeClass('cat-' + oldCatSlug)
                              .addClass('cat-' + catSlug)
                              .data('catSlug', catSlug);
@@ -58,14 +58,14 @@ define('cat-dropdown',
 
     function updateCurrentCat(catSlug, $elm) {
         var currentClass = 'current';
-        $elm = $elm || $cat_menu.find('.cat-' + catSlug);
+        $elm = $elm || $catMenu.find('.cat-' + catSlug);
         if (!$elm.hasClass(currentClass)) {
-            $cat_menu.find('.' + currentClass).removeClass(currentClass);
+            $catMenu.find('.' + currentClass).removeClass(currentClass);
             $elm.addClass(currentClass);
         }
     }
 
-    function handleDropDownClicks(e) {
+    function handleCatClick(e) {
         e.preventDefault();
         var $target = $(e.target);
         var newCat = $target.data('catSlug');
@@ -73,13 +73,6 @@ define('cat-dropdown',
         toggleMenu();
         updateDropDown(newCat, catTitle);
         updateCurrentCat(newCat, $target);
-    }
-
-    function handleDropDownMousedowns(e) {
-        // When I press down on the mouse, add that cute little white checkmark.
-        e.preventDefault();
-        var $target = $(e.target);
-        updateCurrentCat($target.data('catSlug'), $target);
     }
 
     function dropDownRefresh(catSlug) {
@@ -106,32 +99,24 @@ define('cat-dropdown',
 
     function handleRenderDropdown() {
         // Render the dropdown itself.
-        cat_dropdown.html(
+        $catDropdown.html(
             nunjucks.env.getTemplate('cat_dropdown.html').render());
         handleResize();
         $dropdown = $('.dropdown');
+        $dropdownLink = $dropdown.find('a');
 
         // Fetch the category dropdown-data
-        category_req.done(function(data) {
-            cat_list.html(
+        categoryReq.done(function(data) {
+            $catList.html(
                 nunjucks.env.getTemplate('cat_list.html').render({categories: data.objects}));
-            $cat_menu = $('.cat-menu');
+            $catMenu = $('.cat-menu');
             handleCatsRendered();
         });
     }
-    /*
-        Simple Display toggler
-    */
-    function handleDropDownDisplay(){
-        $('.cat-menu').toggleClass('hidden');
-        $('.dropdown').toggleClass('active');
-    }
-    /*
-        Escape Key Handler
-    */
-    function handleDropDownDisplayByKey(event){
-        if (event.keyCode === 27) {
-            handleDropDownDisplay();
+
+    function handleDropDownDisplayByKey(e){
+        if (e.keyCode === keys.ESCAPE) {
+            toggleMenu(e);
         }
     }
 
@@ -140,11 +125,8 @@ define('cat-dropdown',
     }
 
     z.body.on('click', '.dropdown a', toggleMenu)
-          .on('mouseup', '.cat-menu a', handleDropDownClicks)
-          .on('mousedown', '.cat-menu a', handleDropDownMousedowns)
-          .on('blur', '#cat-list', handleDropDownDisplay)
-          .on('click', '#cat-list', handleDropDownDisplay)
-          .on('keydown', handleDropDownDisplayByKey);
+          .on('click', '.cat-menu a', handleCatClick)
+          .on('keydown', '#cat-dropdown, #cat-list', handleDropDownDisplayByKey);
     z.doc.on('saferesize', handleResize);
     z.page.on('build_start', handleBuildStart)
           .on('reload_chrome', handleRenderDropdown);
