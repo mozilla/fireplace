@@ -10,7 +10,7 @@ define('capabilities', [], function() {
         'debug_in_page': document.location.href.indexOf('dbginpage') >= 0,
         'console': window.console && typeof window.console.log === 'function',
         'replaceState': typeof history.replaceState === 'function',
-        'chromeless': window.locationbar && !window.locationbar.visible,
+        'chromeless': !!(window.locationbar && !window.locationbar.visible),
         'webApps': !!(navigator.mozApps && navigator.mozApps.install),
         'userAgent': navigator.userAgent,
         'widescreen': function() { return safeMatchMedia('(min-width: 710px)'); },

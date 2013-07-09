@@ -36,7 +36,6 @@ require.config({
             'cat-dropdown',
             'forms',
             'header',
-            'install',
             'l10n',
             'lightbox',
             'log',
@@ -89,16 +88,13 @@ require.config({
             if (!capabilities.webApps) {
                 return;
             }
-            z.apps = {};
-            z.state.mozApps = {};
             // Get list of installed apps and mark as such.
             var r = navigator.mozApps.getInstalled();
             r.onsuccess = function() {
+                var buttons = require('buttons');
+                z.apps = {};
                 _.each(r.result, function(val) {
-                    var url = val.manifestURL.split('?')[0];
-                    z.apps[url] = z.state.mozApps[url] = val;
-                    z.win.trigger('app_install_success',
-                                  [val, {'manifest_url': url}, false]);
+                    buttons.buttonInstalled(val.manifestURL.split('?')[0], val);
                 });
             };
         };
