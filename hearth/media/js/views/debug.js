@@ -1,12 +1,16 @@
 define('views/debug',
-    ['buckets', 'cache', 'capabilities', 'log', 'notification', 'requests', 'settings', 'storage', 'utils', 'z'],
-    function(buckets, cache, capabilities, log, notification, requests, settings, storage, utils, z) {
+    ['buckets', 'cache', 'capabilities', 'log', 'notification', 'requests', 'settings', 'utils', 'z'],
+    function(buckets, cache, capabilities, log, notification, requests, settings, utils, z) {
     'use strict';
 
     var label = $(document.getElementById('debug-status'));
     z.doc.on('click', '#clear-localstorage', function(e) {
-        storage.clear();
-        notification.notification({message: 'localStorage cleared', timeout: 1000});
+        if (localStorage) {
+            localStorage.clear();
+            notification.notification({message: 'localStorage cleared', timeout: 1000});
+        } else {
+            notification.notification({message: 'localStorage clear failed', timeout: 1000});
+        }
     }).on('click', '.cache-menu a', function(e) {
         e.preventDefault();
         var data = cache.get($(this).data('url'));
