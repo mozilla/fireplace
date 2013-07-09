@@ -16,7 +16,7 @@ define('views/app',
         $this.attr('data-toggle-text', $this.text());
         $this.text(newTxt);
         // Toggle description.
-        $this.closest('.blurbs').find('.description-wrapper').addClass('toggled-once').toggleClass('truncated');
+        $this.closest('.blurbs').find('.description-wrapper').toggleClass('truncated');
 
         tracking.trackEvent('App view interactions', 'click', 'Toggle description');
 
