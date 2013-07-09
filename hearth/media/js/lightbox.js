@@ -53,16 +53,22 @@ define('lightbox',
     z.win.on('keydown.lightboxDismiss', function(e) {
         switch (e.which) {
             case keys.ESCAPE:
-                e.preventDefault();
-                hideLightbox();
+                if ($lightbox.hasClass('show')) {
+                    e.preventDefault();
+                    hideLightbox();
+                }
                 break;
             case keys.LEFT:
-                e.preventDefault();
-                if (slider) slider.toPrev();
+                if (slider) {
+                    e.preventDefault();
+                    slider.toPrev();
+                }
                 break;
             case keys.RIGHT:
-                e.preventDefault();
-                if (slider) slider.toNext();
+                if (slider) {
+                    e.preventDefault();
+                    slider.toNext();
+                }
                 break;
         }
     });
