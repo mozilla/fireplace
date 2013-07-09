@@ -83,6 +83,10 @@ define('views/search',
         return query;
     }
 
+    function isSearchPage() {
+        return $('#search-results, #account-settings .listing').length;
+    }
+
     z.body.on('click', '.expand-toggle', _pd(function() {
         setTrays(expand = !expand);
 
@@ -110,11 +114,13 @@ define('views/search',
         var $q = $('#search-q');
         $q.val(z.context.search);
         // If this is a search results or "my apps" page.
-        if ($('#search-results').length || $('#account-settings .listing').length) {
+        if (isSearchPage()) {
             setTrays(expand);
         }
     }).on('reloaded_chrome', function() {
-        setTrays(expand);
+        if (isSearchPage()) {
+            setTrays(expand);
+        }
     }).on('loaded_more', function() {
         z.page.trigger('populatetray');
         // Update "Showing 1—{total}" text.
