@@ -33,7 +33,7 @@ define('payments/payments',
         $def.always(function() {
             console.log('Clearing payment timers for: ', product.name);
             clearInterval(checker);
-            clearTiemout(giveUp);
+            clearTimeout(giveUp);
         });
     }
 
