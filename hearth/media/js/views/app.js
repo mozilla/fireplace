@@ -67,15 +67,12 @@ define('views/app',
             z.page.trigger('populatetray');
             overflow.init();
 
-            // Don't truncate descriptions if we are on widescreen or if the 
-            // description fits without overflowing. (on widescreen, we should 
-            // have the space and browsers all disagree on *Height values when
-            // there are columns involved anyway)
+            // 'truncated' class is applied by default, remove it if it's not 
+            // needed.
             var wrapper = $('.description-wrapper');
-            if (caps.widescreen() || wrapper[0].scrollHeight <= wrapper.height()) {
+            if (wrapper.prop('scrollHeight') <= wrapper.prop('offsetHeight')) {
                 wrapper.removeClass('truncated');
-            } else {
-                wrapper.next('.show-toggle').show();
+                wrapper.next('.show-toggle').hide();
             }
             if (caps.widescreen() && !$('.report-abuse').length) {
                 z.page.append(

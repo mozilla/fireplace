@@ -76,7 +76,7 @@
 }
 
 .show-toggle {
-    display: none; /* toggled in js */
+    display: block;
     float: right;
     font-weight: bold;
     padding: 10px;
@@ -250,11 +250,23 @@
             line-height: 21px;
         }
     }
-    .description-wrapper {
+    .blurbs .description-wrapper {
+        text-columns(2, 24px);
+
         p.description {
             padding-top: 0;
         }
-        text-columns(2, 24px);
+        &.truncated {
+            max-height: none;
+            overflow: visible;
+
+            &:after {
+                content: none;
+            }
+        }
+    }
+    .show-toggle {
+        display: none;
     }
 
     .detail {
