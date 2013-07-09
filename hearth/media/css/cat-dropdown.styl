@@ -9,12 +9,32 @@
 $cat-icon-size-default = 28px;
 $cat-icon-size-desktop = 60px;
 
+// Mixin to handle hover/focus states of svg sprite.
+// One day if background-position-x/y works we can
+// factor a lot of this out.
+sprite-background-position($vertical-pos) {
+    &:before {
+        background-position: 50% $vertical-pos;
+    }
+    &:focus:before,
+    &:hover:before {
+        background-position: 100% $vertical-pos;
+    }
+    // Needed for the mobile screenwidth to have
+    // grey icons in the drop-down rather than blue.
+    &.cur-cat:focus:before,
+    &.cur-cat:hover:before,
+    &.cur-cat:not(.mobile):before {
+        background-position: 0 $vertical-pos;
+    }
+}
+
 .cat-icon,
 .cat-icon-a {
     &:before {
         // Default to 'all' icon
-        background: url(../img/pretty/cat-icons.svg) no-repeat 50% 94.8%;
-        background-size: $cat-icon-size-default;
+        background: url(../img/pretty/cats-sprite.svg) no-repeat 50% 94.8%;
+        background-size: 3*$cat-icon-size-default;
         content: '';
         display: inline-block;
         height: $cat-icon-size-default;
@@ -22,58 +42,58 @@ $cat-icon-size-desktop = 60px;
         vertical-align: middle;
         width: $cat-icon-size-default;
     }
-
-    &:focus:before, &:hover:before {
-        background-image: url(../img/pretty/cat-icons-white.svg);
-    }
+    sprite-background-position(94.8%);
 }
 
-.cat-entertainment:before,
-.cat-sports:before {
-    background-position: 50% 48.9%;
+.cat-entertainment,
+.cat-sports {
+    sprite-background-position(49.1%);
 }
-.cat-business:before {
-    background-position: 50% 42.5%;
+.cat-business {
+    sprite-background-position(42.5%);
 }
-.cat-games:before {
-    background-position: 50% -1%;
+.cat-games {
+    sprite-background-position(-1%);
 }
-.cat-music:before {
-    background-position: 50% 11.4%;
+.cat-music {
+    sprite-background-position(11.4%);
 }
-.cat-news-weather:before {
-    background-position: 50% 4.9%;
+.cat-news-weather {
+    sprite-background-position(4.9%);
 }
-.cat-productivity:before {
-    background-position: 50% 68.5%;
+.cat-productivity {
+    sprite-background-position(68.5%);
 }
-.cat-social:before {
-    background-position: 50% 75.4%;
+.cat-social {
+    sprite-background-position(75.4%);
 }
-.cat-travel:before {
-    background-position: 50% 88.2%;
+.cat-travel {
+    sprite-background-position(88.2%);
 }
-.cat-books:before,
-.cat-reference:before {
-    background-position: 50% 81.6%;
+.cat-books,
+.cat-reference {
+    sprite-background-position(81.6%);
 }
-.cat-education:before {
-    background-position: 50% 23.2%;
+.cat-education {
+    sprite-background-position(23.5%);
 }
-.cat-health-fitness:before {
-    background-position: 50% 17.9%;
+.cat-health-fitness {
+    sprite-background-position(17.9%);
 }
-.cat-lifestyle:before {
-    background-position: 50% 36.3%;
+.cat-lifestyle {
+    sprite-background-position(36.3%);
 }
-.cat-photo-video:before {
-    background-position: 50% 61.9%;
+.cat-photo-video {
+    sprite-background-position(61.9%);
 }
-.cat-utilities:before {
-    background-position: 50% 29.5%;
+.cat-utilities {
+    sprite-background-position(29.5%);
 }
-.cat-shopping:before {
-    background-position: 50% 55.6%;
+.cat-shopping {
+    sprite-background-position(55.6%);
+}
+.cat-maps-navigation {
+    sprite-background-position(100.5%);
 }
 
 .cat-movistar-es:before,
@@ -135,12 +155,6 @@ $cat-icon-size-desktop = 60px;
 
             &:focus, &:hover {
                 color: $sailor-blue;
-
-                // Dropdown category icon
-                &:before {
-                    // Cat icons are blue on dropdown hover.
-                    background-image: url(../img/pretty/cat-icons-blue.svg);
-                }
             }
             // Dropdown arrow
             &:after {
@@ -243,8 +257,7 @@ $cat-icon-size-desktop = 60px;
                 vertical-align: middle;
                 // Dropdown category icon
                 &:before {
-                    background-image: url(../img/pretty/cat-icons-blue.svg);
-                    background-size: $cat-icon-size-desktop auto;
+                    background-size: 3*$cat-icon-size-desktop auto;
                     float: left;
                     height: $cat-icon-size-desktop;
                     width: $cat-icon-size-desktop;

@@ -6,6 +6,7 @@ define('cat-dropdown',
     'use strict';
 
     var gettext = l10n.gettext;
+    var desktopWidth = 710;
 
     var cat_models = models('category');
     cat_models.cast({
@@ -107,6 +108,7 @@ define('cat-dropdown',
         // Render the dropdown itself.
         cat_dropdown.html(
             nunjucks.env.getTemplate('cat_dropdown.html').render());
+        handleResize();
         $dropdown = $('.dropdown');
 
         // Fetch the category dropdown-data
@@ -132,13 +134,18 @@ define('cat-dropdown',
             handleDropDownDisplay();
         }
     }
+
+    function handleResize() {
+        $('.dropdown a').toggleClass('mobile', z.win.width() <= desktopWidth);
+    }
+
     z.body.on('click', '.dropdown a', toggleMenu)
           .on('mouseup', '.cat-menu a', handleDropDownClicks)
           .on('mousedown', '.cat-menu a', handleDropDownMousedowns)
           .on('blur', '#cat-list', handleDropDownDisplay)
           .on('click', '#cat-list', handleDropDownDisplay)
           .on('keydown', handleDropDownDisplayByKey);
+    z.doc.on('saferesize', handleResize);
     z.page.on('build_start', handleBuildStart)
           .on('reload_chrome', handleRenderDropdown);
-
 });
