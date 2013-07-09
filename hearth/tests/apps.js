@@ -146,7 +146,7 @@ test('apps.incompat fine', function(done, fail) {
         'apps',
         {
             capabilities: {
-                device_type: function() {return 'foo'},
+                device_type: function() {return 'foo';},
                 webApps: true
             }
         },
@@ -168,7 +168,7 @@ test('apps.incompat caching', function(done, fail) {
         'apps',
         {
             capabilities: {
-                device_type: function() {return 'foo'},
+                device_type: function() {return 'foo';},
                 webApps: true
             }
         },
@@ -193,7 +193,7 @@ test('apps.incompat payments', function(done, fail) {
         'apps',
         {
             capabilities: {
-                device_type: function() {return 'foo'},
+                device_type: function() {return 'foo';},
                 webApps: true,
                 navPay: false
             },
@@ -219,8 +219,9 @@ test('apps.incompat webapps', function(done, fail) {
         'apps',
         {
             capabilities: {
-                device_type: function() {return 'foo'},
-                webApps: false
+                device_type: function() {return 'foo';},
+                webApps: false,
+                navPay: true
             }
         },
         function(apps) {
@@ -244,8 +245,9 @@ test('apps.incompat platform', function(done, fail) {
         'apps',
         {
             capabilities: {
-                device_type: function() {return 'foo'},
-                webApps: true
+                device_type: function() {return 'foo';},
+                webApps: true,
+                navPay: true
             }
         },
         function(apps) {
@@ -269,8 +271,9 @@ test('apps.incompat platform and webapps', function(done, fail) {
         'apps',
         {
             capabilities: {
-                device_type: function() {return 'foo'},
-                webApps: false
+                device_type: function() {return 'foo';},
+                webApps: false,
+                navPay: true
             }
         },
         function(apps) {
