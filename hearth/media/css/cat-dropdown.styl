@@ -102,8 +102,8 @@ sprite-background-position($vertical-pos) {
 .cat-movistar-co:hover:before,
 .cat-movistar-ve:before,
 .cat-movistar-ve:hover:before {
-    background-image: url(../img/carriers/movistar.svg) !important;
-    background-position: 0 40%;
+    background: url(../img/carriers/movistar.svg) 0 40% !important;
+    background-size: 100% 100% !important;
 }
 
 .cat-dt-pl:before,
@@ -111,6 +111,15 @@ sprite-background-position($vertical-pos) {
     background-image: url(../img/carriers/deutsche_telekom.svg) !important;
     background-size: 80% 80% !important;
     background-position: 40% 35%;
+}
+
+#cat-dropdown {
+    a[class*="cat-movistar-"]:before {
+        margin-right: 15px;
+    }
+    a[class*="cat-dt-"]:before {
+        margin-right: 0;
+    }
 }
 
 .dropdown a:after {
