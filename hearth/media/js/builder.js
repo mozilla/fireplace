@@ -207,7 +207,7 @@ define('builder',
 
                         trigger_fragment_loaded(signature.id || null);
 
-                    }).fail(function(xhr, text, error, code) {
+                    }).fail(function(xhr, text, code) {
                         if (!replace) {
                             var el = document.getElementById(uid);
                             if (!el) return;

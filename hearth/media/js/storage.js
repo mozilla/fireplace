@@ -13,7 +13,7 @@ define('storage', ['settings'], function(settings) {
     try {
         var ls = localStorage;
         return {
-            clear: ls.clear,
+            clear: function() {ls.clear();},
             getItem: prefix(ls.getItem),
             removeItem: prefix(ls.removeItem),
             setItem: prefix(ls.setItem)
