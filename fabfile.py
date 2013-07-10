@@ -1,5 +1,3 @@
-import os
-
 from fabric.api import env, lcd, local, task
 import fabdeploytools.envs
 from fabdeploytools import helpers
@@ -8,8 +6,7 @@ import deploysettings as settings
 
 env.key_filename = settings.SSH_KEY
 fabdeploytools.envs.loadenv(settings.CLUSTER)
-FIREPLACE = os.path.dirname(__file__)
-ROOT = os.path.dirname(FIREPLACE)
+ROOT, FIREPLACE = helpers.get_app_dirs(__file__)
 
 
 @task
@@ -33,7 +30,4 @@ def deploy():
                    env=settings.ENV,
                    cluster=settings.CLUSTER,
                    domain=settings.DOMAIN,
-                   root=ROOT,
-                   app_dir='fireplace',
-                   deploy_roles=['web'],
-                   package_dirs=['fireplace'])
+                   root=ROOT)
