@@ -188,7 +188,7 @@ define('builder',
                                 make_paginatable(injector, document.getElementById(uid), signature.paginate);
                             });
                         }
-                        return;
+                        return request;
                     }
 
                     request.done(function(data) {
