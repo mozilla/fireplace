@@ -111,7 +111,11 @@ app.all('/ping', function(req, res) {
         }
         function rmtemplates() {
             console.log('Removing raw templates and tests');
-            cpe('rm -rf hearth/templates hearth/tests', opts, zip);
+            cpe('rm -rf hearth/templates hearth/tests', opts, rmorigicons);
+        }
+        function rmorigicons() {
+            console.log('Removing original region icons');
+            cpe('rm -rf hearth/media/img/icons/regions/originals', opts, zip);
         }
         function zip() {
             console.log('Removing old package.zip');
