@@ -8,7 +8,7 @@ define('views/search',
 
     // Clear search field on 'cancel' search suggestions.
     $('#site-header').on('click', '.header-button.cancel', _pd(function() {
-        $('#site-search-suggestions').trigger('dismiss');
+        // $('#site-search-suggestions').trigger('dismiss');
         $('#search-q').val('');
 
     })).on('click', '.header-button, .search-clear', _pd(function(e) {

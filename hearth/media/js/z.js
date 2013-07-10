@@ -6,7 +6,6 @@ define('z', ['jquery'], function($) {
         container: $('main'),
         page: $('#page'),
         canInstallApps: true,
-        state: {},
         apps: {},
         flags: {},
         context: {}
