@@ -7,8 +7,7 @@ from fabdeploytools import helpers
 import deploysettings as settings
 
 env.key_filename = settings.SSH_KEY
-fabdeploytools.envs.loadenv(os.path.join('/etc/deploytools/envs',
-                                         settings.CLUSTER))
+fabdeploytools.envs.loadenv(settings.CLUSTER)
 FIREPLACE = os.path.dirname(__file__)
 ROOT = os.path.dirname(FIREPLACE)
 
