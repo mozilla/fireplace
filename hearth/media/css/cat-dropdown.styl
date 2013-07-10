@@ -7,7 +7,9 @@
 }
 
 $cat-icon-size-default = 28px;
-$cat-icon-size-desktop = 60px;
+// 61px not 60px to prevent next icon showing in nightly
+// see bug 891776.
+$cat-icon-size-desktop = 61px;
 
 // Mixin to handle hover/focus states of svg sprite.
 // One day if background-position-x/y works we can
