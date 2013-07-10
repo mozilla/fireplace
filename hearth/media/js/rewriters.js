@@ -41,6 +41,9 @@ define('rewriters',
         pagination(urls.api.unsigned.url('search')),
 
         // Category pagination rewriter
-        pagination(urls.api.unsigned.url('category'))
+        pagination(urls.api.unsigned.url('category')),
+
+        // My Apps pagination rewriter
+        pagination(urls.api.unsigned.url('installed'))
     ];
 });
