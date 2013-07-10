@@ -1,8 +1,8 @@
 import os
 
-from fabric.api import env, execute, lcd, local, parallel, roles, task
-from fabdeploytools.rpm import RPMBuild
+from fabric.api import env, lcd, local, task
 import fabdeploytools.envs
+from fabdeploytools import helpers
 
 import deploysettings as settings
 
@@ -29,24 +29,12 @@ def update():
 
 
 @task
-@roles('web')
-@parallel
-def _install_package(rpmbuild):
-    rpmbuild.install_package()
-
-
-@task
 def deploy():
-    with lcd(FIREPLACE):
-        ref = local('git rev-parse HEAD', capture=True)
-
-    rpmbuild = RPMBuild(name='fireplace',
-                        env=settings.ENV,
-                        ref=ref,
-                        cluster=settings.CLUSTER,
-                        domain=settings.DOMAIN)
-    rpmbuild.build_rpm(ROOT, ['fireplace'])
-
-    execute(_install_package, rpmbuild)
-
-    rpmbuild.clean()
+    helpers.deploy(name='fireplace',
+                   env=settings.ENV,
+                   cluster=settings.CLUSTER,
+                   domain=settings.DOMAIN,
+                   root=ROOT,
+                   app_dir='fireplace',
+                   deploy_roles=['web'],
+                   package_dirs=['fireplace'])
