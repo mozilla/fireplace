@@ -97,6 +97,8 @@ define('login',
         flush_caches();
 
         requests.post(urls.api.url('login'), data).done(function(data) {
+            var should_reload = !user.logged_in();
+            
             user.set_token(data.token, data.settings);
             user.update_permissions(data.permissions);
             console.log('Login succeeded, preparing the app');
@@ -110,7 +112,7 @@ define('login',
                 pending_logins = [];
             }
 
-            if (!z.context.dont_reload_on_login) {
+            if (should_reload && !z.context.dont_reload_on_login) {
                 require('views').reload().done(function() {
                     resolve_pending();
                     signInNotification();
