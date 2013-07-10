@@ -8,11 +8,8 @@ blacklist = [
     'settings_inferno.js',
     'settings_local.js',
     'settings_travis.js',
-    'stick.js',
-    'suggestions.js',
 
     'splash.styl.css',
-    'suggestions.styl.css',
 ]
 
 output = []
