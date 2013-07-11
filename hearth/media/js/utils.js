@@ -124,9 +124,27 @@ define('utils', ['jquery', 'underscore'], function($, _) {
                 .value();
     }
 
+    var osStrings = {
+        'windows': 'Windows',
+        'mac': 'Mac',
+        'linux': 'Linux',
+        'android': 'Android'
+    };
+    function browser() {
+        var os = {};
+        var platform = '';
+        for (var i in osStrings) {
+            if (navigator.userAgent.indexOf(osStrings[i]) !== -1) {
+                return i;
+            }
+        }
+        return 'other';
+    }
+
     return {
         '_pd': _pd,
         'baseurl': baseurl,
+        'browser': browser,
         'escape_': escape_,
         'fieldFocused': fieldFocused,
         'getVars': getVars,

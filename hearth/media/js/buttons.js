@@ -1,6 +1,6 @@
 define('buttons',
-    ['apps', 'browser', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'models', 'notification', 'payments/payments', 'requests', 'settings', 'tracking', 'urls', 'user', 'views', 'z'],
-    function(apps, browser, cache, caps, defer, l10n, log, models, notification, payments, requests, settings, tracking, urls, user, views, z) {
+    ['apps', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'login', 'models', 'notification', 'payments/payments', 'requests', 'settings', 'tracking', 'urls', 'user', 'utils', 'views', 'z'],
+    function(apps, cache, caps, defer, l10n, log, login, models, notification, payments, requests, settings, tracking, urls, user, utils, views, z) {
 
     var console = log('buttons');
 
@@ -179,6 +179,7 @@ define('buttons',
 
                 def.resolve(installer, product, $this);
             }).fail(function() {
+                console.log('App install deferred was rejected for ', product.name);
                 def.reject();
             });
         }
