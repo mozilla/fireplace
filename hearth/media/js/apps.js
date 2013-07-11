@@ -2,11 +2,13 @@
     Provides the apps module, a wrapper around navigator.mozApps
 */
 define('apps',
-    ['buckets', 'capabilities', 'defer', 'l10n', 'settings', 'underscore', 'utils'],
-    function(buckets, capabilities, defer, l10n, settings, _, utils) {
+    ['buckets', 'capabilities', 'defer', 'l10n', 'log', 'settings', 'underscore', 'utils'],
+    function(buckets, capabilities, defer, l10n, log, settings, _, utils) {
     'use strict';
 
     var gettext = l10n.gettext;
+
+    var console = log('apps');
 
     /*
 
@@ -35,33 +37,36 @@ define('apps',
     */
     function install(product, opt) {
         opt = opt || {};
-        _.defaults(opt, {'navigator': navigator,
-                         'data': {}});
-        opt.data.categories = product.categories;
         var manifest_url;
         if (product.manifest_url) {
             manifest_url = utils.urlparams(product.manifest_url, {feature_profile: buckets.get_profile()});
         }
 
         var def = defer.Deferred();
-        var mozApps = opt.navigator.mozApps;
+        var mozApps = (opt.navigator || window.navigator).mozApps;
 
-        /* Try to install the app. */
-        if (manifest_url && mozApps &&
-            (product.is_packaged ? mozApps.installPackage : mozApps.install)) {
+        var installer = product.is_packaged ? 'installPackage' : 'install';
+        console.log('Using `navigator.mozApps.' + installer + '` installer.')
 
-            var installRequest = (
-                mozApps[product.is_packaged ? 'installPackage' : 'install'](manifest_url, opt.data));
+        // Try to install the app.
+        if (manifest_url && mozApps && mozApps[installer]) {
+            var installRequest = mozApps[installer](manifest_url, opt.data || {});
             installRequest.onsuccess = function() {
+                console.log('App installation successful for', product.name);
                 var status;
                 var isInstalled = setInterval(function() {
                     status = installRequest.result.installState;
                     if (status == 'installed') {
+                        console.log('App reported as installed for', product.name);
                         clearInterval(isInstalled);
                         def.resolve(installRequest.result, product);
                     }
                     // TODO: What happens if there's an installation failure? Does this never end?
-                }, 100);
+                    // XXX: There won't ever be an install failure here. The installState will only ever
+                    // be "installed", "pending", or "updating" [1]
+                    //
+                    // [1] Source: DXR
+                }, 250);
             };
             installRequest.onerror = function() {
                 // The JS shim still uses this.error instead of this.error.name.
@@ -70,14 +75,20 @@ define('apps',
         } else {
             var reason;
             if (!manifest_url) {
-                reason = 'Could not find a manifest URL in the product object.';
+                def.reject('Could not find a manifest URL in the product object.');
             } else if (product.is_packaged) {
-                reason = 'Could not find platform support to install packaged app';
+                def.reject('Could not find platform support to install packaged app');
             } else {
-                reason = 'Could not find platform support to install hosted app';
+                def.reject('Could not find platform support to install hosted app');
             }
-            def.reject(null, product, reason);
         }
+
+        def.then(function() {
+            console.log('App installed successfully:', product.name);
+        }, function(error) {
+            console.error(error, product.name);
+        });
+
         return def.promise();
     }
 

@@ -35,6 +35,9 @@ define('buttons',
     });
 
     function install(product, $button) {
+        var product_name = product.name;
+        console.log('Install requested for', product_name);
+
         // If it's a paid app, ask the user to sign in first.
         if (product.payment_required && !user.logged_in()) {
             console.log('Install suspended; user needs to log in');
@@ -50,6 +53,7 @@ define('buttons',
 
         // If there isn't a user object on the app, add one.
         if (!product.user) {
+            console.warn('User data not available for', product_name);
             product.user = {
                 purchased: false,
                 installed: false,
@@ -77,9 +81,11 @@ define('buttons',
         if (product.payment_required) {
             // The app requires a payment.
 
-            console.log('Starting payment flow');
+            console.log('Starting payment flow for', product_name);
             setButton($this, gettext('Purchasing'), 'purchasing');
             payments.purchase(product).then(function() {
+                console.log('Purchase flow completed for', product_name);
+
                 // Update the button to say Install. It's going to get
                 // overwritten in a second, but this sets the old-text as well.
                 setButton($this, gettext('Install'), 'purchased');
@@ -102,13 +108,14 @@ define('buttons',
                 // Start the app's installation.
                 start_install()
             }, function() {
+                console.log('Purchase flow rejected for', product_name);
                 def.reject();
             });
 
         } else {
             // There's no payment required, just start install.
 
-            console.log('Starting app installation');
+            console.log('Starting app installation for', product_name);
             // Start the app's installation.
             start_install();
         }
@@ -119,7 +126,7 @@ define('buttons',
             tracking.trackEvent(
                 'Click to install app',
                 product.receipt_required ? 'paid' : 'free',
-                product.name + ':' + product.id,
+                product_name + ':' + product.id,
                 $('.button.product').index($this)
             );
 
@@ -130,6 +137,7 @@ define('buttons',
             // Reset button if it's been 30 seconds without user action.
             _timeout = setTimeout(function() {
                 if ($this.hasClass('spinning')) {
+                    console.warn('Spinner timeout for', product_name);
                     revertButton($this);
                 }
             }, 30000);
@@ -137,6 +145,7 @@ define('buttons',
             // If the app has already been installed by the user and we don't
             // need a receipt, just start the app install.
             if (product.user.installed || !product.receipt_required) {
+                console.log('Receipt not required (skipping record step) for', product_name);
                 return do_install();
             }
 
@@ -156,7 +165,7 @@ define('buttons',
                 
             }).fail(function() {
                 // Could not record/generate receipt!
-                console.error('Could not generate receipt');
+                console.error('Could not generate receipt or record install for', product_name);
                 def.reject();
             });
         }
@@ -195,11 +204,13 @@ define('buttons',
             tracking.trackEvent(
                 'Successful app install',
                 product.receipt_required ? 'paid' : 'free',
-                product.name + ':' + product.id,
+                product_name + ':' + product.id,
                 $('.button.product').index($button)
             );
 
             buttonInstalled(product.manifest_url, installer, $this);
+
+            console.log('Successful install for', product_name);
             
         }, function() {
             // L10n: The app's installation has failed, but the problem is temporary.
@@ -209,6 +220,7 @@ define('buttons',
 
             // If the purchase or installation fails, revert the button.
             revertButton($this);
+            console.log('Unsuccessful install for', product_name);
         });
 
         return def.promise();
