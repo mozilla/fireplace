@@ -1,6 +1,6 @@
 define('ratings',
-    ['cache', 'capabilities', 'forms', 'l10n', 'login', 'models', 'settings', 'templates', 'tracking', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
-    function(cache, capabilities, forms, l10n, login, models, settings, nunjucks, tracking, _, utils, urls, user, z) {
+    ['cache', 'capabilities', 'forms', 'jquery', 'l10n', 'login', 'models', 'settings', 'templates', 'tracking', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
+    function(cache, capabilities, forms, $, l10n, login, models, settings, nunjucks, tracking, _, utils, urls, user, z) {
     'use strict';
 
     var gettext = l10n.gettext;
