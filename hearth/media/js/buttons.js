@@ -1,6 +1,6 @@
 define('buttons',
-    ['browser', 'capabilities', 'format', 'l10n', 'log', 'settings', 'tracking', 'utils', 'z'],
-    function(browser, capabilities, format, l10n, log, settings, tracking, utils, z) {
+    ['browser', 'capabilities', 'format', 'l10n', 'log', 'settings', 'tracking', 'utils', 'views', 'z'],
+    function(browser, capabilities, format, l10n, log, settings, tracking, utils, views, z) {
 
     var console = log('buttons');
 
@@ -85,6 +85,6 @@ define('buttons',
         // L10n: "Launch" as in "Launch the app"
         setButton($button, gettext('Launch'), 'launch install');
     }).on('app_purchase_error app_install_error', function(e, installer, product, msg) {
-        revertButton($('button.installing, button.purchasing'));
+        views.reload();
     });
 });
