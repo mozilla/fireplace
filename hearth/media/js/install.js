@@ -36,6 +36,7 @@ define('install',
 
         // If the user has already purchased the app, we do need to generate
         // another receipt but we don't need to go through the purchase flow again.
+        console.log('For this app, user has this', JSON.stringify(product.user));
         if (product.user && product.user.purchased) {
             product.payment_required = false;
         }
@@ -45,6 +46,8 @@ define('install',
         if (product.receipt_required && !user.logged_in()) {
             console.log('Install suspended; user needs to log in');
             return login.login().done(function() {
+                // We're already reloading the views in login.js.
+                views.reload();
                 startInstall(product);
             }).fail(function(){
                 console.log('Install cancelled; login aborted');
