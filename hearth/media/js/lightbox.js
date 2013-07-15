@@ -41,6 +41,7 @@ define('lightbox',
         }
 
         // fade that bad boy in
+        z.body.addClass('overlayed');
         $lightbox.show();
         setTimeout(function() {
             slider.moveToPoint(which);
@@ -148,6 +149,7 @@ define('lightbox',
     }
 
     function hideLightbox() {
+        z.body.removeClass('overlayed');
         pauseVideos();
         $lightbox.removeClass('show');
         // We can't trust transitionend to fire in all cases.
