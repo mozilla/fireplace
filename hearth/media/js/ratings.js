@@ -56,7 +56,7 @@ define('ratings',
     function deleteReview(reviewEl, uri, app) {
         reviewEl.addClass('deleting');
         require('requests').del(settings.api_url + urls.api.sign(uri)).done(function() {
-            notify({message: gettext('Your review was deleted')});
+            notify({message: gettext('Review deleted')});
             reviewEl.remove();
 
             // Update the app's review listing.
