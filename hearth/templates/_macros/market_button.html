@@ -1,9 +1,17 @@
 {% macro market_button(app, classes, data_attrs) %}
-  {% set price = app.price_locale if app.price and app.price != '0.00' else _('Free') %}
+
+  {% if app.payment_required and not app.price %}
+    {% An app would otherwise cost money in another region but there is no tier in the user's region. %}
+    {# L10n: This app is unavailable for purchase. %}
+    {% set price = _('Unavailable') %}
+  {% else %}
+    {% set price = app.price_locale if app.price and app.price != '0.00' else _('Free') %}
+  {% endif %}
+
   {% set classes = classes or [] %}
   <button class="button product install {{ classes|join(' ') }} {{ 'incompatible' if app_incompat(app) }}"
-  		  {{ data_attrs|make_data_attrs }}
-  		  {{ 'disabled' if app_incompat(app) }}>
+          {{ data_attrs|make_data_attrs }}
+          {{ 'disabled' if app_incompat(app) }}>
     {{ _('Install') if app.user.installed or app.user.purchased else price }}
   </button>
 {% endmacro %}
