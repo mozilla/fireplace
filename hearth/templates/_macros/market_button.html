@@ -1,8 +1,8 @@
 {% macro market_button(app, classes, data_attrs) %}
 
   {% if app.payment_required and not app.price %}
-    {% An app would otherwise cost money in another region but there is no tier in the user's region. %}
-    {# L10n: This app is unavailable for purchase. %}
+    {# An app would otherwise cost money in another region but there is no tier in the user's region. #}
+    {# L10n: This app is unavailable for purchase. #}
     {% set price = _('Unavailable') %}
   {% else %}
     {% set price = app.price_locale if app.price and app.price != '0.00' else _('Free') %}
