@@ -195,7 +195,7 @@ define('buttons',
 
             // Show the box on how to run the app.
             var $installed = $('#installed');
-            var $how = $installed.find('.' + browser);
+            var $how = $installed.find('.' + utils.browser());
             if ($how.length) {
                 $installed.show();
                 $how.show();
