@@ -34,9 +34,9 @@
     <img class="icon" alt="" src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
     <div class="info">
       <h3 itemprop="name">{{ app.name }}</h3>
-      {% if app.current_version and app.current_version.developer_name %}
+      {% if app.listed_authors[0] %}
         {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
-        <div class="author lineclamp vital" itemprop="creator">{{ app.current_version.developer_name }}</div>
+        <div class="author lineclamp vital" itemprop="creator">{{ app.listed_authors[0].name }}</div>
       {% endif %}
       <div class="price vital">{{ app.price_locale if app.payment_required else _('Free') }}</div>
       <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
