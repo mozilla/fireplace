@@ -69,10 +69,7 @@ define('apps',
                 }, 250);
             };
             installRequest.onerror = function() {
-                var error = this.error.name || this.error;
-                console.log('App install error:', error);
-                // The JS shim still uses this.error instead of this.error.name.
-                def.reject(installRequest.result, error);
+                def.reject('App install error: ' + (this.error.name || this.error));
             };
         } else {
             var reason;
