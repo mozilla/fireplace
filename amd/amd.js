@@ -53,6 +53,10 @@ window.define = define;
 
 if ('log' in defined) {
     amd_console = require('log')('amd');
+    // TODO: Make this a little more robust.
+    window.onerror = function(message, url, lineNo) {
+        amd_console.error(message, url, lineNo);
+    };
 }
 var settings = require('settings');
 require(settings.init_module);
