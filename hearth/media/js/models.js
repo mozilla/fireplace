@@ -1,18 +1,11 @@
-define('models', ['defer', 'log', 'requests', 'underscore'], function(defer, log, requests, _) {
+define('models', ['defer', 'log', 'requests', 'settings', 'underscore'], function(defer, log, requests, settings, _) {
 
     var console = log('model');
 
     // {'type': {'<id>': object}}
     var data_store = {};
 
-    var prototypes = {
-        'app': 'slug',
-        'category': 'slug',
-
-        // Dummy prototypes to facilitate testing
-        'dummy': 'id',
-        'dummy2': 'id'
-    };
+    var prototypes = settings.model_prototypes;
 
     return function(type) {
         if (!(type in prototypes)) {

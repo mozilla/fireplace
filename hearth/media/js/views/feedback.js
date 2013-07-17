@@ -57,7 +57,7 @@ define('views/feedback',
             $('.linefit').linefit(2);
         });
 
-        builder.z('type', 'root');
+        builder.z('type', 'leaf');
         builder.z('title', gettext('Feedback'));
     };
 });

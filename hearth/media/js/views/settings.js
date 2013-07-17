@@ -53,7 +53,7 @@ define('views/settings',
 
         $('.linefit').linefit(2);
 
-        builder.z('type', 'root settings');
+        builder.z('type', 'leaf settings');
         builder.z('title', gettext('Account Settings'));
     };
 });

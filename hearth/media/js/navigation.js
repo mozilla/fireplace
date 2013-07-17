@@ -1,6 +1,6 @@
 define('navigation',
-    ['capabilities', 'l10n', 'log', 'notification', 'underscore', 'utils', 'views', 'z'],
-    function(capabilities, l10n, log, notification, _, utils, views, z) {
+    ['capabilities', 'l10n', 'log', 'notification', 'settings', 'underscore', 'utils', 'views', 'z'],
+    function(capabilities, l10n, log, notification, settings, _, utils, views, z) {
     'use strict';
 
     var console = log('nav');
@@ -9,7 +9,6 @@ define('navigation',
     var stack = [
         {path: '/', type: 'root'}
     ];
-    var param_whitelist = ['q', 'sort', 'cat'];
     var initialized = false;
 
     function extract_nav_url(url) {
@@ -28,7 +27,7 @@ define('navigation',
             return url;
         }
 
-        var used_params = _.pick(utils.getVars(url_parts[1]), param_whitelist);
+        var used_params = _.pick(utils.getVars(url_parts[1]), settings.param_whitelist);
         // If there are no query params after we filter, just return the path.
         if (!_.keys(used_params).length) {  // If there are no elements in the object...
             return url_parts[0];  // ...just return the path.
@@ -71,8 +70,8 @@ define('navigation',
         state.type = z.context.type;
         state.title = z.context.title;
 
+        var top = 0;
         if ((state.preserveScroll || popped) && state.scrollTop) {
-            console.log('Setting scroll: ', state.scrollTop);
             if (state.docHeight) {
                 // Preserve document min-height for scroll restoration.
                 z.body.css('min-height', state.docHeight);
@@ -81,11 +80,10 @@ define('navigation',
                     z.body.css('min-height', '');
                 });
             }
-            window.scrollTo(0, state.scrollTop);
-        } else {
-            console.log('Resetting scroll');
-            window.scrollTo(0, 0);
+            top = state.scrollTop;
         }
+        console.log('Setting scroll to', top);
+        window.scrollTo(0, top);
 
         // Clean the path's parameters.
         // /foo/bar?foo=bar&q=blah -> /foo/bar?q=blah
@@ -102,12 +100,9 @@ define('navigation',
         }
 
         // Are we home? clear any history.
-        if (state.type == 'root') {
+        if (state.type === 'root') {
             stack = [state];
-
-            // Also clear any search queries living in the search box.
-            // Bug 790009
-            $('#search-q').val('');
+            $('#search-q').val(''); // Bug 790009
         } else {
             // handle the back and forward buttons.
             if (popped && stack[0].path === state.path) {
@@ -140,10 +135,9 @@ define('navigation',
 
     }
 
-    z.body.on('click', '.site-header .back', utils._pd(function() {
-        console.log('← button pressed');
+    function back() {
         if (!canNavigate()) {
-            console.log('← button aborted; canNavigate is falsey.');
+            console.log('← aborted; canNavigate is falsey.');
             return;
         }
 
@@ -152,9 +146,9 @@ define('navigation',
             history.replaceState(stack[0], false, stack[0].path);
             navigate(stack[0].path, true, stack[0]);
         } else {
-            console.log('attempted nav.back at root!');
+            console.warn('attempted to go ← at root!');
         }
-    }));
+    }
 
     z.page.on('navigate divert', function(e, url, params, preserveScroll) {
         console.log('Received ' + e.type + ' event:', url);
@@ -203,19 +197,12 @@ define('navigation',
     function navigationFilter(el) {
         var href = el.getAttribute('href') || el.getAttribute('action'),
             $el = $(el);
-        return !href || href.substr(0, 4) == 'http' ||
+        return !href || href.substr(0, 4) === 'http' ||
                 href.substr(0, 7) === 'mailto:' ||
-                href.substr(0, 11) === 'javascript:' ||
                 href[0] === '#' ||
-                href.indexOf('/developers/') !== -1 ||
-                href.indexOf('/ecosystem/') !== -1 ||
-                href.indexOf('/lookup/') !== -1 ||
-                href.indexOf('/reviewers/') !== -1 ||
-                href.indexOf('/statistics/') !== -1 ||
                 href.indexOf('?modified=') !== -1 ||
-                el.getAttribute('target') === '_blank' ||
-                el.getAttribute('rel') === 'external' ||
-                $el.hasClass('post') || $el.hasClass('sync');
+                el.getAttribute('target') ||
+                el.getAttribute('rel') === 'external';
     }
 
     z.body.on('click', 'a', function(e) {
@@ -234,20 +221,26 @@ define('navigation',
         z.page.trigger('navigate', [href, $elm.data('params') || {path: href}, preserveScroll]);
 
     });
+
     z.win.on('popstate', function(e) {
+        if (!initialized) {
+            // Sometimes Chrome can get weird.
+            return;
+        }
         var state = e.originalEvent.state;
         if (state) {
             console.log('popstate navigate');
             navigate(state.path, true, state);
         }
     }).on('submit', 'form', function(e) {
-        console.error("We don't allow form submissions.");
+        console.error("Form submissions are not allowed.");
         return false;
     });
 
     return {
-        stack: function() {return stack;},
-        navigationFilter: navigationFilter
+        'back': back,
+        'stack': function() {return stack;},
+        'navigationFilter': navigationFilter
     };
 
 });

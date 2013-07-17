@@ -2,8 +2,8 @@
     Provides the apps module, a wrapper around navigator.mozApps
 */
 define('apps',
-    ['buckets', 'capabilities', 'defer', 'l10n', 'log', 'settings', 'underscore', 'utils'],
-    function(buckets, capabilities, defer, l10n, log, settings, _, utils) {
+    ['buckets', 'capabilities', 'defer', 'l10n', 'log', 'nunjucks', 'settings', 'underscore', 'utils'],
+    function(buckets, capabilities, defer, l10n, log, nunjucks, settings, _, utils) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -125,6 +125,7 @@ define('apps',
 
         return product[COMPAT_REASONS] = reasons.length ? reasons : undefined;
     }
+    nunjucks.require('globals').app_incompat = incompat;
 
     return {
         incompat: incompat,

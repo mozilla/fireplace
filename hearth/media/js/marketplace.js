@@ -46,21 +46,25 @@ require.config({
             'overlay',
             'previews',
             'ratings',
+            'requests',
             'settings',
             'storage',
             'templates',
             'tracking',
             'user',
+            'utils',
             'webactivities',
             'z'
         ],
     function(_) {
-        var console = require('log')('mkt');
+        var log = require('log');
+        var console = log('mkt');
         console.log('Dependencies resolved, starting init');
 
         var capabilities = require('capabilities');
         var nunjucks = require('templates');
         var settings = require('settings');
+        var user = require('user');
         var z = require('z');
 
         nunjucks.env.dev = true;
@@ -116,6 +120,12 @@ require.config({
             z.page.trigger('reloaded_chrome');
         }).trigger('reload_chrome');
 
+        z.body.on('click', '.site-header .back', function(e) {
+            e.preventDefault();
+            console.log('← button pressed');
+            require('navigation').back();
+        });
+
         window.addEventListener(
             'resize',
             _.debounce(function() {z.doc.trigger('saferesize');}, 200),
@@ -145,6 +155,16 @@ require.config({
                 clearTimeout(to);
             });
         })();
+
+        require('requests').on('success', function(_, xhr) {
+            var filter_header;
+            if ((!user.get_setting('region') || user.get_setting('region') == 'internet') &&
+                (filter_header = xhr.getResponseHeader('API-Filter'))) {
+                var region = require('utils').getVars(filter_header).region;
+                log.persistent('mobilenetwork', 'change').log('API overriding region:', region);
+                user.update_settings({region: region});
+            }
+        });
 
         console.log('Initialization complete');
     });

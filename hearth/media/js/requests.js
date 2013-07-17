@@ -1,6 +1,6 @@
 define('requests',
-    ['cache', 'defer', 'log', 'user', 'utils'],
-    function(cache, defer, log, user, utils) {
+    ['cache', 'defer', 'log', 'utils'],
+    function(cache, defer, log, utils) {
 
     var console = log('req');
 
@@ -60,7 +60,23 @@ define('requests',
     - abort()
       Aborts all requests in the pool. Rejects the pool's promise.
 
+    Hooks:
+
+    Define hooks like this:
+
+    requests.on('hookname', function(xhr) {})
+
     */
+
+    var hooks = {};
+    function callHooks(event, data) {
+        if (!(event in hooks)) {
+            return;
+        }
+        for (var i = 0, e; e = hooks[event][i++];) {
+            e.apply(e, data);
+        }
+    }
 
     function _ajax(type, url, data) {
         var xhr = new XMLHttpRequest();
@@ -86,17 +102,12 @@ define('requests',
                 }
             }
 
-            def.resolve(data, xhr.statusText, xhr);
+            def.resolve(data, xhr);
         }, false);
 
         xhr.addEventListener('error', error, false);
 
-        xhr.open(
-            type,
-            url,
-            true
-            // Auth would go here, but let's not.
-        );
+        xhr.open(type, url, true);
 
         // TODO: Should we be smarter about this?
         // TODONT: nahhhh
@@ -111,6 +122,17 @@ define('requests',
         return def.promise(xhr);
     }
 
+    function ajax() {
+        var def = _ajax.apply(this, arguments)
+        // then() returns a new promise, so don't return that.
+        def.then(function() {
+            callHooks('success', arguments);
+        }, function() {
+            callHooks('failure', arguments);
+        });
+        return def;
+    }
+
     function get(url, nocache) {
         if (cache.has(url) && !nocache) {
             console.log('GETing from cache', url);
@@ -123,21 +145,10 @@ define('requests',
 
     function _get(url, nocache) {
         console.log('GETing', url);
-        return _ajax('GET', url).done(function(data, status, xhr) {
+        return ajax('GET', url).done(function(data, xhr) {
             console.log('GOT', url);
             if (!nocache) {
                 cache.set(url, data);
-            }
-
-            if (!xhr) {
-                return;
-            }
-            var filter_header;
-            if ((!user.get_setting('region') || user.get_setting('region') == 'internet') &&
-                (filter_header = xhr.getResponseHeader('API-Filter'))) {
-                var region = utils.getVars(filter_header).region;
-                log.persistent('mobilenetwork', 'change').log('API overriding region:', region);
-                user.update_settings({region: region});
             }
         });
     }
@@ -158,24 +169,24 @@ define('requests',
 
     function del(url) {
         console.log('DELETing', url);
-        return _ajax('DELETE', url).fail(handle_errors);
+        return ajax('DELETE', url).fail(handle_errors);
     }
 
     function patch(url, data) {
         console.log('PATCHing', url);
-        return _ajax('PATCH', url, data).fail(handle_errors);
+        return ajax('PATCH', url, data).fail(handle_errors);
     }
 
     function post(url, data) {
         console.log('POSTing', url);
-        return _ajax('POST', url, data).done(function(data) {
+        return ajax('POST', url, data).done(function(data) {
             console.log('POSTed', url);
         }).fail(handle_errors);
     }
 
     function put(url, data) {
         console.log('PUTing', url);
-        return _ajax('PUT', url, data).fail(handle_errors);
+        return ajax('PUT', url, data).fail(handle_errors);
     }
 
     function Pool() {
@@ -247,6 +258,11 @@ define('requests',
         def.promise(this);
     }
 
+    function on(event, callback) {
+        (hooks[event] = hooks[event] || []).push(callback);
+        return {'on': on};  // For great chaining.
+    }
+
     return {
         get: get,
         post: post,
@@ -254,6 +270,7 @@ define('requests',
         put: put,
         patch: patch,
         pool: function() {return new Pool();},
+        on: on,
         // This is for testing purposes.
         _set_xhr: function(func) {_ajax = func;}
     };

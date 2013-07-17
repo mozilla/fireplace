@@ -27,7 +27,7 @@ define('views/purchases', ['cache', 'l10n', 'common/linefit', 'urls', 'utils', '
 
         $('.linefit').linefit(2);
 
-        builder.z('type', 'root');
+        builder.z('type', 'leaf');
         builder.z('title', gettext('My Apps'));
     };
 });

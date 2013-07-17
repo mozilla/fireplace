@@ -32,39 +32,6 @@ test('requests.get', function(done, fail) {
     );
 });
 
-test('requests.get region header', function(done, fail) {
-    mock(
-        'requests',
-        {
-            user: {
-                get_setting: function(setting) {
-                    eq_(setting, 'region');
-                    return null;
-                },
-                update_settings: function(settings) {
-                    assert('region' in settings);
-                    eq_(settings.region, 'bastania');
-                    done();
-                }
-            }
-        },
-        function(requests) {
-            requests._set_xhr(mock_xhr);
-            var def = requests.get('foo/bar');
-            def.resolve(
-                'foo',
-                200,
-                {
-                    getResponseHeader: function(header) {
-                        eq_(header, 'API-Filter');
-                        return 'foo=bar&region=bastania&zip=zap';
-                    }
-                }
-            );
-        }, fail
-    );
-});
-
 test('requests.get cached', function(done, fail) {
     mock(
         'requests', {},
@@ -97,6 +64,42 @@ test('requests.get nocache', function(done, fail) {
             assert(!('__cached' in uncached));
             done();
         }, fail
+    );
+});
+
+test('requests.get hook', function(done, fail) {
+    mock(
+        'requests', {},
+        function(requests) {
+            requests._set_xhr(mock_xhr);
+
+            requests.on('success', function(data) {
+                eq_(data, 'sample data');
+                done();
+            }).on('failure', fail);
+
+            var def = requests.get('foo/bar');
+            def.resolve('sample data');
+        },
+        fail
+    );
+});
+
+test('requests.get fail hook', function(done, fail) {
+    mock(
+        'requests', {},
+        function(requests) {
+            requests._set_xhr(mock_xhr);
+
+            requests.on('failure', function(data) {
+                eq_(data, 'bad data');
+                done();
+            }).on('success', fail);
+
+            var def = requests.get('foo/bar');
+            def.reject('bad data');
+        },
+        fail
     );
 });
 
