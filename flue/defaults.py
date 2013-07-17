@@ -27,6 +27,11 @@ def category(slug, name):
         'slug': slug,
     }
 
+AUTHORS = [
+    text('basta'),
+    text('cvan'),
+    text('Chris Van Halen')
+]
 
 MESSAGES = [
     ['be careful, cvan made it', 'loljk'],
@@ -76,11 +81,7 @@ def app(name, slug, **kwargs):
             128: '/media/img/icons/firefox-beta.png'
         },
         'previews': [_app_preview() for i in range(4)],
-        'listed_authors': [
-            {'name': text('basta')},
-            {'name': text('cvan')},
-            {'name': text('Chris Van Halen')}
-        ],
+        'author': random.choice(AUTHORS),
         'ratings': {
             'average': random.random() * 4 + 1,
             'count': int(random.random() * 500),
