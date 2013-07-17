@@ -2,7 +2,7 @@ define('rewriters',
     ['log', 'underscore', 'urls', 'utils'],
     function(log, _, urls, utils) {
 
-    var console = log('console');
+    var console = log('rewriters');
 
     function pagination(url) {
         return function(new_key, new_value, c) {
