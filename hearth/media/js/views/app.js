@@ -65,7 +65,7 @@ define('views/app',
             z.page.trigger('populatetray');
             overflow.init();
 
-            // 'truncated' class is applied by default, remove it if it's not 
+            // 'truncated' class is applied by default, remove it if it's not
             // needed.
             var wrapper = $('.description-wrapper');
             if (wrapper.prop('scrollHeight') <= wrapper.prop('offsetHeight')) {
@@ -80,7 +80,7 @@ define('views/app',
 
             tracking.setVar(6, 'App name', app.name, 3);
             tracking.setVar(7, 'App ID', app.id, 3);
-            tracking.setVar(8, 'App developer', app.listed_authors[0].name, 3);
+            tracking.setVar(8, 'App developer', app.author, 3);
             tracking.setVar(9, 'App view source', utils.getVars().src || 'direct', 3);
             tracking.setVar(10, 'App price', app.payment_required ? 'paid' : 'free', 3);
 
