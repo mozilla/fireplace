@@ -13,6 +13,7 @@ suite.run('/', function(test, waitFor) {
         assert.visible('.header-button.settings');  // Persona not visible at mobile width :O
         assert.visible('#search-q');
         assert.invisible('.expand-toggle');
+        assert.selectorDoesNotExist('.mkt-tile .tray');
 
         suite.capture('homepage.png');
     });

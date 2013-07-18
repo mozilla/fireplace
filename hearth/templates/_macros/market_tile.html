@@ -22,7 +22,7 @@
   </div>
 {% endmacro %}
 
-{% macro market_tile(app, link=False, src=None, classes=None, data_attrs=None) %}
+{% macro market_tile(app, link=False, src=None, classes=None, data_attrs=None, tray=True) %}
   {% set tag = 'a' if link else 'div' %}
   {% set classes = classes or [] %}
   <{{ tag }} class="product mkt-tile {{ classes|join(' ') }}"
@@ -66,7 +66,9 @@
       <div class="bad-app">{{ notice }}</div>
     {% endfor %}
   </{{ tag }}>
-  <div class="tray previews full {{ 'single' if len(app.previews) == 1 }}">
-    {{ preview_tray(app.previews) }}
-  </div>
+  {% if tray %}
+    <div class="tray previews full {{ 'single' if len(app.previews) == 1 }}">
+      {{ preview_tray(app.previews) }}
+    </div>
+  {% endif %}
 {% endmacro %}
