@@ -14,7 +14,9 @@ define('buttons',
 
     function revertButton($button, text) {
         $button.removeClass('purchasing installing error spinning');
-        $button.html(text || $button.data('old-text'));
+        text = text || $button.data('old-text');
+        $button.html(text);
+        console.log('Reverting button to:', text)
     }
 
     function _handler(func) {
@@ -43,8 +45,10 @@ define('buttons',
             console.log('Install suspended; user needs to log in');
             return login.login().done(function() {
                 // Once login completes, just call this function again with
-                // the same parameters.
-                install(product, $button);
+                // the same parameters, but re-fetch the button (since the
+                // button instance is not the same).
+                var new_button = get_button(product.manifest_url);
+                install(product, new_button);
             }).fail(function(){
                 console.log('Install cancelled; login aborted');
                 notification.notification({message: gettext('Payment cancelled')});
@@ -87,9 +91,9 @@ define('buttons',
             payments.purchase(product).then(function() {
                 console.log('Purchase flow completed for', product_name);
 
-                // Update the button to say Install. It's going to get
-                // overwritten in a second, but this sets the old-text as well.
+                // Update the button to say Install.
                 setButton($this, gettext('Install'), 'purchased');
+                $this.data('old-text', $this.html());  // Save the old text of the button.
 
                 // Update the cache to show that the app was purchased.
                 product.user.purchased = true;
@@ -231,10 +235,14 @@ define('buttons',
     z.page.on('click', '.product.launch', launchHandler)
           .on('click', '.button.product:not(.launch):not(.incompatible)', _handler(install));
 
+    function get_button(manifest_url) {
+        return $('.button[data-manifest_url="' + manifest_url.replace(/"/, '\\"') + '"]');
+    }
+
     function buttonInstalled(manifest_url, installer, $button) {
         // If the button wasn't passed, look it up.
         if (!$button || !$button.length) {
-            $button = $('.button[data-manifest_url="' + manifest_url.replace(/"/, '\\"') + '"]');
+            $button = get_button(manifest_url);
             if (!$button.length) {
                 return;
             }

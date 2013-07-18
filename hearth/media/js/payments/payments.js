@@ -55,6 +55,7 @@ define('payments/payments',
             setTimeout(function() {
                 console_mock.log('calling onsuccess()');
                 request.onsuccess();
+                //request.onerror.call({error: {name: 'DIALOG_CLOSED_BY_USER'}});
             }, 3000);
             return request;
         };
