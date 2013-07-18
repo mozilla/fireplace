@@ -49,7 +49,7 @@
   <ol class="container listing grid-if-desktop search-listing c">
     {% for result in this %}
       <li class="item result app c">
-        {{ market_tile(result, link=true, force_button=true, src=source + '-' + (sort or 'popular')) }}
+        {{ market_tile(result, link=true, src=source + '-' + (sort or 'popular')) }}
       </li>
     {% endfor %}
 

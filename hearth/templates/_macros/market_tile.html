@@ -22,7 +22,7 @@
   </div>
 {% endmacro %}
 
-{% macro market_tile(app, link=False, src=None, classes=None, data_attrs=None, force_button=False) %}
+{% macro market_tile(app, link=False, src=None, classes=None, data_attrs=None) %}
   {% set tag = 'a' if link else 'div' %}
   {% set classes = classes or [] %}
   <{{ tag }} class="product mkt-tile {{ classes|join(' ') }}"
@@ -58,11 +58,9 @@
         {% endif %}
         {% if not link %}</a>{% endif %}
       </div>
-      {% if force_button or (app.current_version and not link) %}
-        {{ market_button(app, classes=(['paid'] if app.payment_required),
-                         data_attrs={'manifest_url': app.manifest_url,
-                                     'slug': app.slug}) }}
-      {% endif %}
+      {{ market_button(app, classes=(['paid'] if app.payment_required),
+                       data_attrs={'manifest_url': app.manifest_url,
+                                   'slug': app.slug}) }}
     </div>
     {% for notice in app_incompat(app) %}
       <div class="bad-app">{{ notice }}</div>
