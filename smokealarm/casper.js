@@ -52,6 +52,7 @@ function Suite(options) {
     var asserts = 0;
 
     var cobj = casper;
+    cobj.setMaxListeners(50);
     // options = options || {};
     // options.verbose = true;
     // options.logLevel = 'debug';
@@ -116,7 +117,10 @@ function Suite(options) {
                         'captures/errors/timeout_' +
                         path_safe + '_' +
                         ((new Date()).getTime() / 1000 | 0) + '.png');
-                    throw new Error('waitFor timeout :(');
+                    // This will just echo an error. If tests depended on the wait
+                    // they will now fail.
+                    this.echo('waitFor condition timed out!', 'ERROR');
+                    this.echo('See screenshot in "captures/errors/" for details.', 'INFO');
                 },
                 5000
             );
