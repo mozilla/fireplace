@@ -106,9 +106,16 @@ define('apps',
     var COMPAT_REASONS = '__compat_reasons';
     var use_compat_cache = true;
     function incompat(product) {
+        // If the never_incompat setting is true, never disable the buttons.
+        if (settings.never_incompat) {
+            return;
+        }
+
+        // Cache incompatibility reasons.
         if (use_compat_cache && COMPAT_REASONS in product) {
             return product[COMPAT_REASONS];
         }
+
         var reasons = [];
         var device = capabilities.device_type();
         if (product.payment_required && !capabilities.navPay && !settings.simulate_nav_pay) {

@@ -38,6 +38,9 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         upsell_enabled: true,
         newsletter_enabled: true,
 
+        // Enabling this settings will mock compatibility with all apps.
+        never_incompat: false,
+
         // The GA tracking ID for this app.
         tracking_id: 'UA-36116321-6',
 
