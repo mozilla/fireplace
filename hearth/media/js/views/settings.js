@@ -55,5 +55,6 @@ define('views/settings',
 
         builder.z('type', 'leaf settings');
         builder.z('title', gettext('Account Settings'));
+        builder.z('parent', urls.reverse('homepage'));
     };
 });

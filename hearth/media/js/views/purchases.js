@@ -29,5 +29,6 @@ define('views/purchases', ['cache', 'l10n', 'common/linefit', 'urls', 'utils', '
 
         builder.z('type', 'leaf');
         builder.z('title', gettext('My Apps'));
+        builder.z('parent', urls.reverse('homepage'));
     };
 });
