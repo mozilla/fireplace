@@ -69,11 +69,7 @@ def app(name, slug, **kwargs):
         'manifest_url':
             'http://%s%s.testmanifest.com/manifest.webapp' %
             (ptext(1), random.randint(1, 50000)),  # Minifest if packaged
-        'current_version': {
-            'version': text('%d.0' % int(random.random() * 20)),
-            'release_notes': kwargs.get('release_notes', ptext()),
-            'developer_name': text('Me, myself and I')
-        },
+        'current_version': text('%d.0' % int(random.random() * 20)),
         'icons': {
             16: '/media/img/icons/firefox-beta.png',
             48: '/media/img/icons/firefox-beta.png',
@@ -125,7 +121,7 @@ def app(name, slug, **kwargs):
     data['payment_required'] = has_price
 
     if slug == 'packaged':
-        data['current_version']['version'] = '1.0'
+        data['current_version'] = '1.0'
 
     data.update(app_user_data(slug))
 

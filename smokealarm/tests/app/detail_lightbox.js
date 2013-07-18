@@ -7,16 +7,12 @@ suite.run('/', function(test, waitFor) {
     });
 
     test('Click on featured app', function() {
-        suite.press('#featured ol li a:first-child');
-    });
-
-    waitFor(function() {
-        return suite.exists('.reviews h3');
+        suite.press('#featured ol li a:last-child');
     });
 
     test('Test preview image exists and click it.', function(assert) {
-        assert.selectorExists('.slider li:first-child .screenshot');
-        suite.press('.slider li:first-child .screenshot');
+        assert.selectorExists('.slider li:first-child .screenshot img');
+        suite.press('.slider li:first-child .screenshot img');
     });
 
     waitFor(function() {
