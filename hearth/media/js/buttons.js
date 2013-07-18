@@ -82,6 +82,7 @@ define('buttons',
             // The app requires a payment.
 
             console.log('Starting payment flow for', product_name);
+            $this.data('old-text', $this.html());  // Save the old text of the button.
             setButton($this, gettext('Purchasing'), 'purchasing');
             payments.purchase(product).then(function() {
                 console.log('Purchase flow completed for', product_name);
