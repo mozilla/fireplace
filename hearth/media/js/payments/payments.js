@@ -7,15 +7,13 @@ define('payments/payments',
     var notify = notification.notification;
     var gettext = l10n.gettext;
 
-    var simulate_nav_pay = settings.simulate_nav_pay;
-
     function waitForPayment($def, product, webpayJWT, contribStatusURL) {
         console.log('Waiting for payment confirmation for ', product.name);
         var checkFunc = function() {
             console.log('Fetching payment status of ' + product.name + ' from API...');
             requests.get(settings.api_url + urls.api.sign(contribStatusURL)).done(function(result) {
                 console.log('Got payment status: ', product.name, ':', result.status);
-                if (result.status == 'complete' || simulate_nav_pay) {
+                if (result.status == 'complete' || settings.simulate_nav_pay) {
                     console.log('Payment complete. Resolving deferreds...');
                     $def.resolve(product);
                 }
@@ -39,7 +37,7 @@ define('payments/payments',
         });
     }
 
-    if (simulate_nav_pay && !caps.navPay) {
+    if (settings.simulate_nav_pay && !caps.navPay) {
         var console_mock = console.tagged('mock');
         navigator.mozPay = function(jwts) {
             var request = {
@@ -71,7 +69,7 @@ define('payments/payments',
 
         console.log('Initiating transaction');
 
-        if (caps.navPay || simulate_nav_pay) {
+        if (caps.navPay || settings.simulate_nav_pay) {
             requests.post(urls.api.url('prepare_nav_pay'), {app: product.slug}).done(function(result) {
                 console.log('Calling mozPay with JWT: ', result.webpayJWT);
                 var request = navigator.mozPay([result.webpayJWT]);
