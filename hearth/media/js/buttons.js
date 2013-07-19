@@ -148,7 +148,7 @@ define('buttons',
 
             // If the app has already been installed by the user and we don't
             // need a receipt, just start the app install.
-            if (product.user.installed || !product.receipt_required) {
+            if (product.user.installed && !product.receipt_required) {
                 console.log('Receipt not required (skipping record step) for', product_name);
                 return do_install();
             }
