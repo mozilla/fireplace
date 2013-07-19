@@ -69,7 +69,11 @@ define('apps',
                 }, 250);
             };
             installRequest.onerror = function() {
-                def.reject('App install error: ' + (this.error.name || this.error));
+                if (this.error.name === 'DENIED') {
+                    def.reject(gettext('Install cancelled.'));
+                } else {
+                    def.reject(gettext('App install error: {error}', {error: this.error.name || this.error}));
+                }
             };
         } else {
             var reason;

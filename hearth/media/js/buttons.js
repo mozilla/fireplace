@@ -194,11 +194,9 @@ define('buttons',
                 cache.bust(urls.api.url('installed'));
 
                 def.resolve(installer, product, $this);
-            }).fail(function() {
+            }).fail(function(error) {
                 // L10n: The app's was not installed because the installation was cancelled.
-                notification.notification({
-                    message: gettext('Install failed.')
-                });
+                notification.notification({message: error});
                 console.log('App install deferred was rejected for ', product.name);
                 def.reject();
             });
