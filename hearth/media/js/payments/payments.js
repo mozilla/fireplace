@@ -37,28 +37,25 @@ define('payments/payments',
         });
     }
 
-    if (settings.simulate_nav_pay && !caps.navPay) {
+    navigator.fakeMozPay = function(jwts) {
         var console_mock = console.tagged('mock');
-        navigator.mozPay = function(jwts) {
-            var request = {
-                onsuccess: function() {
-                    console_mock.warning('handler did not define request.onsuccess');
-                },
-                onerror: function() {
-                    console_mock.warning('handler did not define request.onerror');
-                }
-            };
-            console_mock.log('STUB navigator.mozPay received', jwts);
-            console_mock.log('calling onsuccess() in 3 seconds...');
-            setTimeout(function() {
-                console_mock.log('calling onsuccess()');
-                request.onsuccess();
-                //request.onerror.call({error: {name: 'DIALOG_CLOSED_BY_USER'}});
-            }, 3000);
-            return request;
+        var request = {
+            onsuccess: function() {
+                console_mock.warning('handler did not define request.onsuccess');
+            },
+            onerror: function() {
+                console_mock.warning('handler did not define request.onerror');
+            }
         };
-        console_mock.log('stubbed out navigator.mozPay()');
-    }
+        console_mock.log('STUB navigator.mozPay received', jwts);
+        console_mock.log('calling onsuccess() in 3 seconds...');
+        setTimeout(function() {
+            console_mock.log('calling onsuccess()');
+            request.onsuccess();
+            //request.onerror.call({error: {name: 'DIALOG_CLOSED_BY_USER'}});
+        }, 3000);
+        return request;
+    };
 
     function beginPurchase(product) {
         var $def = defer.Deferred();
@@ -72,7 +69,12 @@ define('payments/payments',
         if (caps.navPay || settings.simulate_nav_pay) {
             requests.post(urls.api.url('prepare_nav_pay'), {app: product.slug}).done(function(result) {
                 console.log('Calling mozPay with JWT: ', result.webpayJWT);
-                var request = navigator.mozPay([result.webpayJWT]);
+                var request;
+                if (caps.navPay && !settings.simulate_nav_pay) {
+                    request = navigator.mozPay([result.webpayJWT]);
+                } else {
+                    request = navigator.fakeMozPay([result.webpayJWT]);
+                }
                 request.onsuccess = function() {
                     console.log('navigator.mozPay success');
                     waitForPayment($def, product, result.webpayJWT, result.contribStatusURL);
