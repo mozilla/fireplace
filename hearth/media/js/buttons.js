@@ -106,15 +106,14 @@ define('buttons',
                     data.user.can_rate = true;
                     return data;
                 });
-                // Reload the view to reflect the changes.
-                views.reload().always(function() {
-                    // Re-fetch the button because we just lost the reference
-                    // to the one on the page.
-                    $this = get_button(product.manifest_url);
 
-                    // Start the app's installation.
-                    start_install()
-                });
+                def.always(function() {
+                    // Do a reload to show any reviews privilege changes for bug 838848.
+                    views.reload();
+                })
+
+                // Start the app's installation.
+                start_install();
 
             }, function() {
                 notification.notification({message: gettext('Payment cancelled.')});
