@@ -16,7 +16,6 @@ define('buttons',
         $button.removeClass('purchasing installing error spinning');
         text = text || $button.data('old-text');
         $button.html(text);
-        console.log('Reverting button to:', text)
     }
 
     function _handler(func) {
