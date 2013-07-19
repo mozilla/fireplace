@@ -12,6 +12,7 @@ define('lightbox',
     $lightbox.addClass('shots');
 
     function showLightbox() {
+        console.log('Opening lightbox');
 
         if (z.context.type === 'leaf') {
             tracking.trackEvent('App view interactions', 'click', 'Screenshot view');

@@ -16,11 +16,12 @@ suite.run('/', function(test, waitFor) {
     });
 
     waitFor(function() {
-        return suite.visible('#lightbox');
+        return suite.exists('#lightbox.show');
     });
 
     test('Test lightbox is opened', function(assert) {
-        assert.visible('#lightbox', 'Lightbox is visible');
+        assert.selectorExists('#lightbox.show', 'Lightbox is visible');
+        suite.capture('detail_lightbox.png');
         suite.back();
     });
 
