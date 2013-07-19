@@ -50,7 +50,7 @@ define('buttons',
                 install(product, new_button);
             }).fail(function(){
                 console.log('Install cancelled; login aborted');
-                notification.notification({message: gettext('Payment cancelled')});
+                notification.notification({message: gettext('Payment cancelled.')});
             });
         }
 
@@ -112,6 +112,8 @@ define('buttons',
                 // Start the app's installation.
                 start_install()
             }, function() {
+                notification.notification({message: gettext('Payment cancelled.')});
+
                 console.log('Purchase flow rejected for', product_name);
                 def.reject();
             });
@@ -168,6 +170,11 @@ define('buttons',
                 do_install({data: {'receipts': [response.receipt]}});
                 
             }).fail(function() {
+                // L10n: The app's installation has failed, but the problem is temporary.
+                notification.notification({
+                    message: gettext('Install failed. Please try again later.')
+                });
+
                 // Could not record/generate receipt!
                 console.error('Could not generate receipt or record install for', product_name);
                 def.reject();
@@ -183,6 +190,10 @@ define('buttons',
 
                 def.resolve(installer, product, $this);
             }).fail(function() {
+                // L10n: The app's was not installed because the installation was cancelled.
+                notification.notification({
+                    message: gettext('Install failed.')
+                });
                 console.log('App install deferred was rejected for ', product.name);
                 def.reject();
             });
@@ -218,11 +229,6 @@ define('buttons',
             console.log('Successful install for', product_name);
             
         }, function() {
-            // L10n: The app's installation has failed, but the problem is temporary.
-            notification.notification({
-                message: gettext('Install failed. Please try again later.')
-            });
-
             // If the purchase or installation fails, revert the button.
             revertButton($this);
             console.log('Unsuccessful install for', product_name);
