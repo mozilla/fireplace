@@ -195,8 +195,9 @@ define('buttons',
 
                 def.resolve(installer, product, $this);
             }).fail(function(error) {
-                // L10n: The app's was not installed because the installation was cancelled.
-                notification.notification({message: error});
+                if (error) {
+                    notification.notification({message: error});
+                }
                 console.log('App install deferred was rejected for ', product.name);
                 def.reject();
             });

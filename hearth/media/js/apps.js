@@ -70,7 +70,7 @@ define('apps',
             };
             installRequest.onerror = function() {
                 if (this.error.name === 'DENIED') {
-                    def.reject(gettext('Install cancelled.'));
+                    def.reject();  // Don't return a message when the user cancels install.
                 } else {
                     def.reject(gettext('App install error: {error}', {error: this.error.name || this.error}));
                 }
