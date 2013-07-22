@@ -47,6 +47,10 @@
         <dt>{{ cap[0] }}</dt>
         <dd>{{ cap[1] }}</dd>
       {% endfor %}
+      {% for k, v in screen.items() %}
+        <dt>window.screen.{{ k }}</dt>
+        <dd>{{ v }}</dd>
+      {% endfor %}
       <dt>Feature Profile</dt>
       <dd>{{ profile }}</dd>
     </dl>
