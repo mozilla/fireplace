@@ -11,7 +11,8 @@ define('payments/payments',
         console.log('Waiting for payment confirmation for ', product.name);
         var checkFunc = function() {
             console.log('Fetching payment status of ' + product.name + ' from API...');
-            requests.get(settings.api_url + urls.api.sign(contribStatusURL)).done(function(result) {
+            // The `true` passed to `requests.get` disables caching.
+            requests.get(settings.api_url + urls.api.sign(contribStatusURL), true).done(function(result) {
                 console.log('Got payment status: ', product.name, ':', result.status);
                 if (result.status == 'complete' || settings.simulate_nav_pay) {
                     console.log('Payment complete. Resolving deferreds...');
