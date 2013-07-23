@@ -1,13 +1,23 @@
 {
     "name": "Marketplace",
+    "launch_path": "/index.html",
+    "activities": {
+        "marketplace-search": {"href": "/index.html"},
+        "marketplace-category": {"href": "/index.html"},
+        "marketplace-app": {"href": "/index.html"},
+        "marketplace-app-rating": {"href": "/index.html"}
+    },
+    "default_locale": "en-US",
+    "description": "The Firefox Marketplace",
+    "developer": {
+        "url": "http://mozilla.org",
+        "name": "Mozilla"
+    },
     "icons": {
         "128": "/media/img/logos/128.png",
         "32": "/media/img/logos/32.png",
         "64": "/media/img/logos/64.png"
     },
-    "description": "The Firefox Marketplace",
-    "launch_path": "/index.html",
-    "default_locale": "en-US",
     "locales": {
         "cs": {},
         "de": {},
@@ -18,17 +28,11 @@
         "pl": {},
         "zh-TW": {}
     },
-    "developer": {
-        "url": "http://mozilla.org",
-        "name": "Mozilla"
-    },
     "orientation": ["portrait-primary"],
     "origin": "app://marketplace.firefox.com",
+    "permissions": {
+        "mobilenetwork": {"description": "To detect mobile carrier and regional information."}
+    },
     "type": "privileged",
-    "activities": {
-        "marketplace-search": {"href": "/index.html"},
-        "marketplace-category": {"href": "/index.html"},
-        "marketplace-app": {"href": "/index.html"},
-        "marketplace-app-rating": {"href": "/index.html"}
-    }
+    "version": "{version}"
 }
