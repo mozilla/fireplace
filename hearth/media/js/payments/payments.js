@@ -107,6 +107,12 @@ define('payments/payments',
                     $def.reject(null, product, 'MKT_CANCELLED');
                 };
             }).fail(function(xhr, status, error) {
+                if (error === 409) {
+                    console.warn('App already purchased (409 from API)');
+                    // This error code means the user has already purchased the app.
+                    $def.resolve(product);
+                    return;
+                }
                 console.error('Error fetching JWT from API: ', status, error);
                 // L10n: This error is raised when we are unable to fetch a JWT from the payments API.
                 notify({message: gettext('Error while communicating with server. Try again later.')});
@@ -114,7 +120,7 @@ define('payments/payments',
             });
 
         } else {
-            console.log('`navigator.mozPay` unavailable and mocking disabled. Cancelling.');
+            console.error('`navigator.mozPay` unavailable and mocking disabled. Cancelling.');
             // L10n: When a user tries to make a purchase from a device that does not support payments, this is the error.
             notify({message: gettext('Your device does not support purchases.')});
             $def.reject(null, product, 'MKT_CANCELLED');
