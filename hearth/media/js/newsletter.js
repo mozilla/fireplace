@@ -74,9 +74,12 @@ define('newsletter',
 
         $signup = $('.newsletter');
 
-        $signup.find('.close').on('click', utils._pd(function(e) {
+        function hideForm() {
             $signup.hide();
-        }));
+        }
+
+        $signup.find('.close').on('click', utils._pd(hideForm));
+        z.win.on('unloading', hideForm);
     }
 
     return {init: init};
