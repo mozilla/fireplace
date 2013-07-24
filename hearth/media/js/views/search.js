@@ -107,7 +107,7 @@ define('views/search',
             return;
         }
         $q.trigger('blur');
-        z.page.trigger('search', parsePotatoSearch({q: query}));
+        z.page.trigger('search', {q: query});
     });
 
     z.page.on('loaded', function() {
@@ -132,6 +132,8 @@ define('views/search',
     });
 
     return function(builder, args, params) {
+        params = parsePotatoSearch(params);
+
         if ('sort' in params && params.sort == 'relevancy') {
             delete params.sort;
         }
