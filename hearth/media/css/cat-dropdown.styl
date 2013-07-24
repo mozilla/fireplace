@@ -113,12 +113,29 @@ sprite-background-position($vertical-pos) {
     background-position: 40% 35% !important;
 }
 
+a[class*="cat-telenor-"]:before,
+a[class*="cat-telenor-"]:hover:before,
+a[class*="cat-telenor-"]:active:before {
+    background: url(../img/carriers/telenor.svg) 0 -26px;
+    background-size: 28px auto;
+}
+
+a[class*="cat-telenor-"]:hover:before,
+a[class*="cat-telenor-"]:active:before {
+    background-position: 0 -54px;
+}
+
 #cat-dropdown {
     a[class*="cat-movistar-"]:before {
         margin-right: 15px;
     }
     a[class*="cat-dt-"]:before {
         margin-right: 0;
+    }
+    a[class*="cat-telenor-"]:before,
+    a[class*="cat-telenor-"]:hover:before {
+        background: url(../img/carriers/telenor.svg) 0 1px no-repeat;
+        background-size: 28px auto;
     }
 }
 
@@ -302,6 +319,15 @@ sprite-background-position($vertical-pos) {
             li:nth-child(odd) {
                 border-right: 1px dashed $cement-gray;
             }
+        }
+    }
+
+    #cat-dropdown {
+        a[class*="cat-telenor-"]:before,
+        a[class*="cat-telenor-"]:hover:before {
+            background-position: 0 11px;
+            background-size: 50px auto;
+            margin: -5px 5px 0 0;
         }
     }
 }
