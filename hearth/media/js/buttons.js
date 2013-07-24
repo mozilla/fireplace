@@ -159,11 +159,24 @@ define('buttons',
                 return do_install();
             }
 
+            // This is the data needed to record the app's install.
+            var api_endpoint = urls.api.url('record_' + (product.receipt_required ? 'paid' : 'free'));
+            var post_data = {app: product.id, chromeless: +caps.chromeless};
+
+            // If we don't need a receipt to perform the installation...
+            if (!product.receipt_required) {
+                // Do the install immediately.
+                do_install().done(function() {
+                    // ...then record the installation.
+                    requests.post(api_endpoint, post_data);
+                    // We don't care if it fails or not because the user has
+                    // already installed the app.
+                });
+                return;
+            }
+
             // Let the API know we're installing.
-            return requests.post(
-                urls.api.url('record_' + (product.receipt_required ? 'paid' : 'free')),
-                {app: product.id, chromeless: +caps.chromeless}
-            ).done(function(response) {
+            requests.post(api_endpoint, post_data).done(function(response) {
                 // If the server returned an error, log it and reject the deferred.
                 if (response.error) {
                     console.log('Server returned error: ' + response.error);
@@ -186,7 +199,7 @@ define('buttons',
         }
 
         function do_install(data) {
-            apps.install(product, data || {}).done(function(installer) {
+            return apps.install(product, data || {}).done(function(installer) {
                 // Update the cache to show that the user installed the app.
                 product.user.installed = true;
                 // Bust the cache for the My Apps page.
