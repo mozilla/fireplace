@@ -1,6 +1,6 @@
 define('rewriters',
-    ['log', 'underscore', 'urls', 'utils'],
-    function(log, _, urls, utils) {
+    ['log', 'settings', 'underscore', 'urls', 'utils'],
+    function(log, settings, _, urls, utils) {
 
     var console = log('rewriters');
 
@@ -34,6 +34,10 @@ define('rewriters',
             // Tell cache.js that we don't want to store the new cache item.
             return null;
         };
+    }
+
+    if (!settings.cache_rewriting_enabled) {
+        return [];
     }
 
     return [

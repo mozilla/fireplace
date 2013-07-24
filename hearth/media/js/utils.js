@@ -145,6 +145,8 @@ define('utils', ['jquery', 'underscore'], function($, _) {
         '_pd': _pd,
         'baseurl': baseurl,
         'browser': browser,
+        'decodeURIComponent': decodeURIComponent,
+        'encodeURIComponent': encodeURIComponent,
         'escape_': escape_,
         'fieldFocused': fieldFocused,
         'getVars': getVars,

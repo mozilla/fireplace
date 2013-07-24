@@ -5,6 +5,8 @@ define('navigation',
 
     var console = log('nav');
 
+    var encodeURIComponent = utils.encodeURIComponent;
+
     var gettext = l10n.gettext;
     var stack = [
         {path: '/', type: 'root'}

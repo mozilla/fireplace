@@ -90,6 +90,7 @@ define('builder',
                 // visible page.
                 var url = el.getAttribute('data-url');
                 injector(url, el.parentNode, target).done(function() {
+                    console.log('Pagination completed');
                     fire(page, 'loaded_more');
                 }).fail(function() {
                     url += (url.indexOf('?') + 1 ? '&' : '?') + '_bust=' + (new Date()).getTime();
@@ -183,6 +184,11 @@ define('builder',
                                 // and aren't an array. :(
                             }
                         });
+
+                        if (replace) {
+                            parse_and_replace(out, replace);
+                        }
+
                         if (signature.paginate) {
                             pool.done(function() {
                                 make_paginatable(injector, document.getElementById(uid), signature.paginate);
