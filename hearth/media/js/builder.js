@@ -131,13 +131,13 @@ define('builder',
                             data = data[signature.pluck];
                         }
                         // `as` passes the data to the models for caching.
-                        if (!dont_cast && 'as' in signature) {
+                        if (data && !dont_cast && 'as' in signature) {
                             console.groupCollapsed('Casting ' + signature.as + 's to model cache...');
                             models(signature.as).cast(data);
                             console.groupEnd();
                         }
                         var content = '';
-                        if (empty && Array.isArray(data) && data.length === 0) {
+                        if (empty && (!data || Array.isArray(data) && data.length === 0)) {
                             content = empty();
                         } else {
                             context.ctx.this = data;
