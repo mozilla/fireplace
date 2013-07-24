@@ -87,6 +87,11 @@ define('requests',
         }
 
         xhr.addEventListener('load', function() {
+
+            if (xhr.getResponseHeader('API-Status') === 'Deprecated') {
+                callHooks('deprecated', [xhr]);
+            }
+
             var statusCode = xhr.status / 100 | 0;
             if (statusCode < 2 || statusCode > 3) {
                 return error();
@@ -123,12 +128,14 @@ define('requests',
     }
 
     function ajax() {
-        var def = _ajax.apply(this, arguments)
+        var def = _ajax.apply(this, arguments);
+        var type = arguments[0];
         // then() returns a new promise, so don't return that.
         def.then(function() {
             callHooks('success', arguments);
-        }, function() {
+        }, function(xhr, error, status) {
             callHooks('failure', arguments);
+            handle_errors(xhr, type, status);
         });
         return def;
     }
@@ -153,8 +160,8 @@ define('requests',
         });
     }
 
-    function handle_errors(xhr, status) {
-        console.log('Request failed: ', status);
+    function handle_errors(xhr, type, status) {
+        console.log('Request failed:', type, status);
         if (xhr.responseText) {
             try {
                 var data = JSON.parse(xhr.responseText);
@@ -169,24 +176,30 @@ define('requests',
 
     function del(url) {
         console.log('DELETing', url);
-        return ajax('DELETE', url).fail(handle_errors);
+        return ajax('DELETE', url).done(function() {
+            console.log('DELETEd', url);
+        });
     }
 
     function patch(url, data) {
         console.log('PATCHing', url);
-        return ajax('PATCH', url, data).fail(handle_errors);
+        return ajax('PATCH', url, data).done(function() {
+            console.log('PATCHed', url);
+        });
     }
 
     function post(url, data) {
         console.log('POSTing', url);
-        return ajax('POST', url, data).done(function(data) {
+        return ajax('POST', url, data).done(function() {
             console.log('POSTed', url);
-        }).fail(handle_errors);
+        });
     }
 
     function put(url, data) {
         console.log('PUTing', url);
-        return ajax('PUT', url, data).fail(handle_errors);
+        return ajax('PUT', url, data).done(function() {
+            console.log('PUT', url);
+        });
     }
 
     function Pool() {
