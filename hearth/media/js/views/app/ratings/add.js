@@ -15,19 +15,10 @@ define('views/app/ratings/add',
         if (textarea) {
             textarea.focus();
         }
-    }).on('loaded', function() {
-        if ($('.compose-review textarea').length && !caps.widescreen()) {
-            z.win.on('overflow', function(e) {
-                if (e.target == document.documentElement) {
-                    if (window.scrollTo) {
-                        window.scrollTo(0, 400);
-                    }
-                }
-            }, false);
-            z.win.on('unloading', function() {
-                z.win.off('overflow');
-                document.removeEventListener('overflow');
-            });
+        
+    }).on('focus', '.compose-review textarea', function() {
+        if (window.scrollTo && !caps.widescreen()) {
+            window.scrollTo(0, 200);
         }
     });
 
