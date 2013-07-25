@@ -1,7 +1,8 @@
 define('builder',
-    ['templates', 'models', 'requests', 'settings', 'z', 'nunjucks.compat'],
-    function(nunjucks, models, requests, settings, z) {
+    ['log', 'templates', 'models', 'requests', 'settings', 'z', 'nunjucks.compat'],
+    function(log, nunjucks, models, requests, settings, z) {
 
+    var console = log('builder');
     var SafeString = nunjucks.require('runtime').SafeString;
 
     var counter = 0;
@@ -47,10 +48,7 @@ define('builder',
 
     function extend(base, extension, defaults) {
         for (var i in extension) {
-            if (defaults && i in base) {
-                continue;
-            }
-            if (extension.hasOwnProperty(i)) {
+            if (!(defaults && i in base) && extension.hasOwnProperty(i)) {
                 base[i] = extension[i];
             }
         }
