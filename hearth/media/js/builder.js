@@ -156,10 +156,11 @@ define('builder',
                     if (request.__cached) {
                         has_cached_elements = true;
 
+                        var rendered;
                         // This will run synchronously.
                         request.done(function(data) {
                             context.ctx['response'] = data;
-                            out = get_result(data, true);
+                            rendered = get_result(data, true);
 
                             // Now update the response with the values from the model cache
                             // For details, see bug 870447
@@ -184,7 +185,9 @@ define('builder',
                         });
 
                         if (replace) {
-                            parse_and_replace(out, replace);
+                            parse_and_replace(rendered, replace);
+                        } else {
+                            out = rendered;
                         }
 
                         if (signature.paginate) {
