@@ -38,6 +38,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         upsell_enabled: true,
         newsletter_enabled: true,
         cache_rewriting_enabled: true,
+        potatolytics_enabled: false,
 
         // Enabling this settings will mock compatibility with all apps.
         never_incompat: false,
