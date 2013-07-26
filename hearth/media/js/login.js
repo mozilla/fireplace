@@ -4,14 +4,6 @@ define('login',
 
     var console = log('login');
 
-    function flush_caches() {
-        // We need to flush the global cache
-        var cat_url = urls.api.url('categories');
-        cache.purge(function(key) {return key != cat_url;});
-
-        models('app').purge();
-    }
-
     function signOutNotification() {
         notification.notification({message: gettext('You have been signed out')});
     }
@@ -33,8 +25,7 @@ define('login',
         e.preventDefault();
         user.clear_token();
         z.body.removeClass('logged-in');
-        z.page.trigger('reload_chrome');
-        flush_caches();
+        z.page.trigger('reload_chrome').trigger('before_logout');
 
         if (!capabilities.phantom) {
             console.log('Triggering Persona logout');
@@ -94,7 +85,7 @@ define('login',
             is_native: navigator.id._shimmed ? 0 : 1
         };
 
-        flush_caches();
+        z.page.trigger('before_login');
 
         requests.post(urls.api.url('login'), data).done(function(data) {
             var should_reload = !user.logged_in();

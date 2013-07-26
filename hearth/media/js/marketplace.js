@@ -32,6 +32,7 @@ require.config({
             'underscore',
             'helpers',  // Must come before mostly everything else.
             'buttons',
+            'cache',
             'capabilities',
             'cat-dropdown',
             'forms',
@@ -41,6 +42,7 @@ require.config({
             'log',
             'login',
             'mobilenetwork',
+            'models',
             'navigation',
             'outgoing_links',
             'overlay',
@@ -51,6 +53,7 @@ require.config({
             'storage',
             'templates',
             'tracking',
+            'urls',
             'user',
             'utils',
             'webactivities',
@@ -119,6 +122,12 @@ require.config({
             z.body.toggleClass('logged-in', require('user').logged_in());
             z.page.trigger('reloaded_chrome');
         }).trigger('reload_chrome');
+
+        z.page.on('before_login before_logout', function() {
+            var cat_url = require('urls').api.url('categories');
+            cache.purge(function(key) {return key != cat_url;});
+            require('models')('app').purge();
+        });
 
         z.body.on('click', '.site-header .back', function(e) {
             e.preventDefault();
