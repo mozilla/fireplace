@@ -106,8 +106,8 @@
     color: $text;
     display: table;
     margin-bottom: 15px;
-    &:last-child {
-        margin-bottom: 0;
+    &:only-child {
+        margin-bottom: 9px;  // -15px + 24px
     }
     .icon {
         border-radius: 5px;
@@ -289,6 +289,9 @@
         float: left;
         padding: 0 15px;
         width: 50%;
+        &:only-child {
+            margin-bottom: 24px;
+        }
     }
 
     .secondary-header .leading {
@@ -300,7 +303,6 @@
         padding: 15px;
         position: static;
     }
-
 }
 
 
