@@ -34,7 +34,16 @@ define('mobilenetwork',
         216: 'hu',
 
         // Germany
-        262: 'de'
+        262: 'de',
+
+        // Serbia
+        220: 'rs',
+
+        // Hungary
+        216: 'hu',
+
+        // Montenegro
+        297: 'me'
     };
 
     var carriers = {
@@ -189,6 +198,22 @@ define('mobilenetwork',
         // Uruguay
         748: {
             7: 'telefonica'
+        },
+
+        // Serbia
+        220: {
+            1: 'telenor',
+            2: 'telenor'
+        },
+
+        // Hungary
+        216: {
+            1: 'telenor'
+        },
+
+        // Montenegro
+        297: {
+            1: 'telenor'
         }
     };
 
