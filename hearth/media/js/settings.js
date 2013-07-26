@@ -59,6 +59,9 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             've': gettext('Venezuela')
         },
 
+        DEJUS: 'Department of Justice, Rating, Titles and Qualification',
+        DEJUS_URL: 'http://www.mj.gov.br/classificacao',
+
         // The Persona unverified issuer origin. Used by login.js.
         persona_unverified_issuer: 'login.persona.org',
 
