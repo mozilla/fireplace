@@ -14,7 +14,7 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
   <dt>Damper</dt>
   <dd>A node.js server that serves a browser-friendly version of Fireplace</dd>
 
-  <dt>Flue</dt>
+  <dt>[Flue](https://github.com/mozilla/flue)</dt>
   <dd>A mocked-out version of the Marketplace API.</dd>
 
   <dt>Hearth</dt>
@@ -53,7 +53,7 @@ If you plan on doing compilation (i.e.: you're Wil Clouser), you'll also need
 ### Flue
 
 Comprehensive Flue documentation can be found in
-[Flue's README](https://github.com/mozilla/fireplace/blob/master/flue/README.rst).
+[Flue's README](https://github.com/mozilla/flue/blob/master/README.md).
 
 
 ### Yule Log
