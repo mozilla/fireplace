@@ -14,7 +14,7 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
   <dt>Damper</dt>
   <dd>A node.js server that serves a browser-friendly version of Fireplace</dd>
 
-  <dt>[Flue](https://github.com/mozilla/flue)</dt>
+  <dt><a href="https://github.com/mozilla/flue">Flue</a></dt>
   <dd>A mocked-out version of the Marketplace API.</dd>
 
   <dt>Hearth</dt>
