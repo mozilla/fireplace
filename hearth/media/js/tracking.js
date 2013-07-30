@@ -44,7 +44,7 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
     var potato_iframe;
     function push(data) {
         if (!potato_initialized) {
-            window._gaq.push.apply(window._gaq.push, data);
+            window._gaq.push(data);
         } else {
             potato_iframe.contentWindow.postMessage(JSON.stringify(data), '*');
         }
