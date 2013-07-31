@@ -63,9 +63,14 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
             '(',
             setupTracking.toString(),
             ')("' + settings.tracking_id + '", "' + get_url() + '", "' + window.location.host + '");',
+            'var origin = "' + origin + '";',
             "window.addEventListener('message', function(e) {",
-            '   if (e.origin !== "' + origin + '") {return;}',
-            '   window._gaq.push(JSON.parse(e.data));',
+            '  if (e.origin !== origin) {',
+            '    window.console.error("[tracking] Message from bad origin:", e.origin, origin);',
+            '    return;',
+            '  }',
+            '  window._gaq.push(JSON.parse(e.data));',
+            '  e.source.postMessage("[potatolytics] Confirmation: " + e.data, e.origin);',
             '}, false);',
             '</script>'
         ].join('\n');
