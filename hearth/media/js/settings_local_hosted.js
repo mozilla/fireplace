@@ -5,6 +5,6 @@ define('settings_local', [], function() {
         api_url: origin,
         tracking_enabled: true,
         
-        potatolytics_enabled: true
+        potatolytics_enabled: false
     };
 });
