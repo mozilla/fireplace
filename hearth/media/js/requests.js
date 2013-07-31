@@ -64,7 +64,15 @@ define('requests',
 
     Define hooks like this:
 
-    requests.on('hookname', function(xhr) {})
+      requests.on('hookname', function(xhr) {})
+
+    Available hooks:
+    - success: Fired when a request is successful. Same arguments that would
+      be sent to the deferred of the request.
+    - failure: Fired when a request is unsuccessful. Same arguments that would
+      be sent to the deferred of the request.
+    - deprecated: Fired when a request is returned with an API-Status header of
+      "Deprecated".
 
     */
 

@@ -32,6 +32,9 @@ var routes = [
     {'pattern': '^/privacy-policy$', 'view_name': 'privacy'},
     {'pattern': '^/terms-of-use$', 'view_name': 'terms'},
 
+    {'pattern': '^/site/deprecated$', 'view_name': 'deprecated'},
+    {'pattern': '^/site/obsolete$', 'view_name': 'obsolete'},
+
     {'pattern': '^/tests$', 'view_name': 'tests'},
     {'pattern': '^/debug$', 'view_name': 'debug'}
 ];

@@ -33,7 +33,7 @@ define('views/debug',
         });
     });
 
-    return function debug_view(builder, args) {
+    return function(builder, args) {
         var recent_logs = log.get_recent(100);
 
         builder.start('debug.html', {

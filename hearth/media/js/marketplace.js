@@ -173,6 +173,10 @@ require.config({
                 log.persistent('mobilenetwork', 'change').log('API overriding region:', region);
                 user.update_settings({region: region});
             }
+        }).on('deprecated', function() {
+            // Divert the user to the deprecated view.
+            z.page.trigger('divert', [require('urls').reverse('deprecated')]);
+            throw new Error('Cancel navigation; deprecated client');
         });
 
         console.log('Initialization complete');
