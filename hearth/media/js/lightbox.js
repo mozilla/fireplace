@@ -90,7 +90,7 @@ define('lightbox',
 
             // let's fail elegantly when our images don't load.
             // videos on the other hand will always be injected.
-            if (p.type == 'video/webm') {
+            if (p.filetype == 'video/webm') {
                 // we can check for `HTMLMediaElement.NETWORK_NO_SOURCE` on the
                 // video's `networkState` property at some point.
                 var v = $('<video src="' + p.image_url + '" controls></video>');
