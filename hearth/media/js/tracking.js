@@ -20,7 +20,7 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
 
         window._gaq.push(['_setAccount', id]);
         if (domain) {
-            console.log('Setting tracking domain:', domain);
+            window.console.log('Setting tracking domain:', domain);
             window._gaq.push(['_setDomainName', domain]);
         }
         window._gaq.push([
@@ -36,7 +36,6 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
         ga.type = 'text/javascript';
         ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        console.log('Initializing Google Analytics');
         document.body.appendChild(ga);
     }
 
@@ -80,6 +79,7 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
         console.log('Setting up tracking without Potatolytics');
         setupTracking(settings.tracking_id, get_url());
     }
+    console.log('Tracking initialized');
 
     z.win.on('navigating', function(e, popped) {
         // Otherwise we'll track back button hits etc.
