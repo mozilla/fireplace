@@ -24,12 +24,21 @@ function parse(po_content) {
     var id = null;
     var last = null;
     var last_plural = null;
-    var current_obj = {};
+    var current_obj = {body: ''};
 
     function store_current() {
         if (id) {
             // Don't save a copy of the headers in the langpack.
             output[id] = current_obj;
+        } else {
+            // If there's no IDs, it's probably the headers. If there's a
+            // pluralizer up there, use it.
+            var parsed_headers = current_obj.body.split('\n');
+            parsed_headers.forEach(function(v) {
+                var plex_match = RE_PLURALIZER.exec(v);
+                if (!plex_match) return;
+                pluralizer = plex_match[1];
+            });
         }
         id = '';
         current_obj = {body: ''};
@@ -93,11 +102,7 @@ function parse(po_content) {
         }
 
         var line_val = JSON.parse(line);
-        var plex_match;
-        if (!id && last !== 'plurals' && (plex_match = RE_PLURALIZER.exec(line_val))) {
-            console.log('!!! Found pluralizer')
-            pluralizer = plex_match[1];
-        } else if (last === 'plurals') {
+        if (last === 'plurals') {
             console.log(' >> Appending plural: ', line_val);
             current_obj.plurals[last_plural] += line_val;
         } else if (last === 'id') {
