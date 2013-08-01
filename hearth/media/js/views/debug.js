@@ -7,6 +7,13 @@ define('views/debug',
     z.doc.on('click', '#clear-localstorage', function(e) {
         storage.clear();
         notification.notification({message: 'localStorage cleared', timeout: 1000});
+    }).on('click', '#clear-cookies', function(e) {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var e = cookies[i].indexOf('=');
+            var name = e > -1 ? cookies[i].substr(0, e) : c[i];
+            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        }
     }).on('click', '#nukecounter', function(e) {
         storage.removeItem('newscounter');
         notification.notification({message: 'newscounter reset', timeout: 1000});
