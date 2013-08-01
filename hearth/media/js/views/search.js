@@ -44,7 +44,7 @@ define('views/search',
         // This handles PotatoSearch queries:
         // https://github.com/mozilla/fireplace/wiki/QuickSearch-(PotatoSearch%E2%84%A2)
 
-        query = query || {};
+        query = query || {q: ''};
 
         // We keep track of the full query separately, since we don't want
         // to send it as `q` to the API.
@@ -52,6 +52,7 @@ define('views/search',
         query.q = [];
 
         query.full_q.split(' ').forEach(function(value) {
+            if (!value) return;
             if (value[0] === ':') {
                 value = value.slice(1);
                 if (value === 'packaged' || value === 'hosted') {
