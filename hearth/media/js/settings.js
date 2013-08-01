@@ -2,6 +2,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
     var gettext = l10n.gettext;
 
     return _.defaults(settings_local, {
+        app_name: 'fireplace',
         init_module: 'marketplace',
         default_locale: 'en-US',
         api_url: 'http://' + window.location.hostname,  // No trailing slash, please.
