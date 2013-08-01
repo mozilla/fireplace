@@ -14,6 +14,7 @@ define('views/debug',
             var name = e > -1 ? cookies[i].substr(0, e) : c[i];
             document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
         }
+        notification.notification({message: 'cookies cleared', timeout: 1000});
     }).on('click', '#nukecounter', function(e) {
         storage.removeItem('newscounter');
         notification.notification({message: 'newscounter reset', timeout: 1000});
