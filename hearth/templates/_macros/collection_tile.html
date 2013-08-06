@@ -1,0 +1,8 @@
+{% macro collection_tile(collection) %}
+  <section class="collection {{ collection.class }}" style="background-image: url({{ collection.icon }})">
+    <header>
+      <h2>{{ collection.name }}</h2>
+      <p class="owner">{{ collection.author }}</p>
+    </header>
+  </section>
+{% endmacro %}

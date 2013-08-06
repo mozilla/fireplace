@@ -1,0 +1,47 @@
+@import 'lib';
+
+.collection {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 160px auto;
+    min-height: 150px;
+    position: relative;
+    header {
+        bottom: 0;
+        height: 62px;
+        overflow: hidden;
+        padding: 4px 10px 15px;
+        position: absolute;
+        width: 100%;
+    }
+    h2 {
+        font-size: 19px;
+        font-weight: 300;
+        line-height: 30px;
+    }
+    .owner {
+        font-size: 12px;
+    }
+}
+
+getcolor($type = '', $r, $g, $b) {
+    if ($type == 'opaque') {
+        background-color: rgb($r, $g, $b);
+    } else {
+        background-color: rgba($r, $g, $b, .8);
+    }
+}
+
+// Define all the available styles here.
+
+// Blue theme.
+.blue {
+    getcolor('opaque', 0, 150, 221);
+    header {
+        border-top: 1px solid rgba(255,255,255,.25);
+        getcolor('', 0, 150, 221);
+    }
+    h2, .owner {
+        color: $white;
+    }
+}

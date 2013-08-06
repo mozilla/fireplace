@@ -1,3 +1,4 @@
+{% include '_macros/collection_tile.html' %}
 {% include '_macros/market_tile.html' %}
 {% include '_macros/more_button.html' %}
 
@@ -13,6 +14,13 @@
 
 {% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
 {% set search_url = search_url|urlparams(sort=sort) if sort == 'created' else search_url %}
+
+{% defer (url=endpoint|urlunparam(['sort'])) %}
+  {# We're interested in the first item only. #}
+  {% for collection in this.collections.values().slice(0, 1) %}
+    {{ collection_tile(collection) }}
+  {% endfor %}
+{% end %}
 
 {% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='app') %}
   <section id="featured" class="main category featured full c">
