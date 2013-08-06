@@ -10,10 +10,12 @@ define('views/category',
         params = params || {};
 
         var model = cat_models.lookup(category);
-        var name = (model && model.name) || category;
+        var name = model && model.name;
+        if (name) {
+            builder.z('title', name);
+        }
 
         builder.z('type', 'root');
-        builder.z('title', name);
         builder.z('show_cats', true);
         builder.z('cat', category);
 
@@ -23,11 +25,10 @@ define('views/category',
 
         builder.start('category/main.html', {
             category: category,
-            category_name: category,
             endpoint: urls.api.url('category', [category], params),
             sort: params.sort
         });
 
-        tracking.setVar(5, 'Category', name, 3);
+        tracking.setVar(5, 'Category', category, 3);
     };
 });
