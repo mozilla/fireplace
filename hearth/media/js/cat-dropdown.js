@@ -33,7 +33,7 @@ define('cat-dropdown',
         // If we're on a category page, set the page title to the category name.
         if (z.context.cat) {
             var cat = catModels.lookup(z.context.cat);
-            if (cat && cat !== 'all') {
+            if (cat && cat.slug !== 'all') {
                 require('builder').getLastBuilder().z('title', cat.name);
             }
         }
