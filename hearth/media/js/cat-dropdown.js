@@ -1,7 +1,7 @@
 define('cat-dropdown',
     // We require `mobilenetwork` here to initialize carrier/region detection so that gets
     // set before we pass those values to the API to get the list of categories.
-    ['underscore', 'jquery', 'keys', 'l10n', 'models', 'requests', 'templates', 'urls', 'z', 'mobilenetwork'],
+    ['underscore', 'jquery', 'keys', 'l10n', 'models', 'requests', 'templates', 'urls', 'z', 'builder', 'mobilenetwork'],
     function(_, $, keys, l10n, models, requests, nunjucks, urls, z) {
     'use strict';
 
@@ -30,6 +30,11 @@ define('cat-dropdown',
         console.groupCollapsed('Casting categories to model cache...');
         catModels.cast(data.objects);
         console.groupEnd();
+        // If we're on a category page, set the page title to the category name.
+        if (z.context.cat) {
+            var bobj = require('builder').getLastBuilder();
+            bobj.z('title', catModels.lookup(z.context.cat).name);
+        }
     });
 
     function toggleMenu(e) {
