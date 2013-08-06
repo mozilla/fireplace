@@ -23,7 +23,6 @@ define('views/homepage',
 
         builder.start('category/main.html', {
             endpoint: urls.api.url('category', [''], params),
-            category_name: gettext('All Categories'),
             sort: params.sort
         }).done(newsletter.init);
     };
