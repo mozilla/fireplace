@@ -2,6 +2,7 @@ import json
 import hashlib
 import hmac
 import os
+import sys
 import time
 import urllib
 import urllib2
@@ -13,7 +14,7 @@ from flask import Flask, make_response, redirect, render_template, request
 app = Flask("Ashes")
 
 SECRET = uuid.uuid4().hex
-DEBUG = False
+DEBUG = True
 
 import pymongo
 
@@ -32,8 +33,13 @@ if 'username' in mongodb['options']:
 else:
     mongouri = 'mongodb://{hostname}:{port}'
 mongouri = mongouri.format(**mongodb['options'])
-mongo = pymongo.Connection(mongouri)
-db = mongo.db
+
+try:
+    mongo = pymongo.Connection(mongouri)
+    db = mongo.db
+except Exception:
+    print "MongoDB not found"
+    sys.exit()
 
 
 def sslify(resp):
@@ -154,8 +160,6 @@ def post_report():
         if DEBUG:
             doc['message'] = str(e)
         return doc
-
-    data['cache'] = json.dumps(data['cache'])
 
     uid = data['uid'] = uuid.uuid4().hex[:5]
 
