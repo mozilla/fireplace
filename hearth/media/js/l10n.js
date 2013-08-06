@@ -2,7 +2,7 @@
 
 var languages = [
     'bg', 'ca', 'cs', 'de', 'en-US', 'es', 'eu', 'fr', 'ga-IE', 'hr', 'hu', 'it',
-    'ja', 'nl', 'pl', 'pt-BR', 'ru', 'sk', 'zh-TW', 'dbg'
+    'ja', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'zh-TW', 'dbg'
 ];
 
 var lang_expander = {
