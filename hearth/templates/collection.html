@@ -1,0 +1,28 @@
+{% include "_macros/collection_tile.html" %}
+{% include "_macros/market_tile.html" %}
+
+{% set endpoint=api('collection', [slug]) %}
+
+<section class="main">
+  {% defer (url=endpoint, id='collection') %}
+    {{ collection_tile(this) }}
+    {# TODO: JS handler for read more/less. #}
+    <p class="desc">{{ this.description|nl2br }}</p>
+  {% end %}
+  {% defer (url=endpoint, pluck='apps', as='app') %}
+    <ol class="container listing only-logged-in c">
+      {% for result in this %}
+        <li class="item result app c">
+          {{ market_tile(result, link=true, src='collection') }}
+        </li>
+      {% endfor %}
+    </ol>
+  {% placeholder %}
+    <p class="spinner alt spaced"></p>
+  {% except %}
+    <div class="detailed-error">
+      <h2>{{ _('Oh no!') }}</h2>
+      <p>{{ _('An internal server error occurred. Please try again later.') }}</p>
+    </div>
+  {% end %}
+</section>

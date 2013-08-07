@@ -18,7 +18,7 @@
 {% defer (url=endpoint|urlunparam(['sort'])) %}
   {# We're interested in the first item only. #}
   {% for collection in this.collections.values().slice(0, 1) %}
-    {{ collection_tile(collection) }}
+    {{ collection_tile(collection, link=true, src='home') }}
   {% endfor %}
 {% end %}
 

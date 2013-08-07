@@ -35,6 +35,9 @@ var routes = [
     {'pattern': '^/site/deprecated$', 'view_name': 'deprecated'},
     {'pattern': '^/site/obsolete$', 'view_name': 'obsolete'},
 
+    {'pattern': '^/collection/([^/<>"\']+)$', 'view_name': 'collection'},
+    {'pattern': '^/collection/([^/<>"\']+)/$', 'view_name': 'collection'},
+
     {'pattern': '^/tests$', 'view_name': 'tests'},
     {'pattern': '^/debug$', 'view_name': 'debug'}
 ];
