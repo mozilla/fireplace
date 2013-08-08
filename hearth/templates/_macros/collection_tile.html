@@ -1,6 +1,6 @@
 {% macro collection_tile(collection, link=false, src='') %}
   {% if link %}<a href="{{ url('collection', [collection.slug])|urlparams(src=src) }}">{% endif %}
-    <section class="collection main {{ collection.class }}" style="background-image: url({{ collection.icon }})">
+    <section class="collection main {{ collection.layout_type }}" style="background-image: url({{ collection.icon }})">
       <header>
         <h2>{{ collection.name }}</h2>
         <p class="owner">{{ collection.author }}</p>
