@@ -32,8 +32,7 @@
           <li><a class="flag post" data-action="report" href="#">{{ _('Report') }}</a></li>
         {% endif %}
       </ul>
-      {# TODO: Format dates with bug 867897. #}
-      <time itemprop="datePublished">{{ this.posted|datetime }}</time>
+      <time itemprop="datePublished">{{ this.created|datetime }}</time>
     {% endif %}
   </div>
 </li>

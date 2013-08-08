@@ -1,4 +1,4 @@
-define('tracking', ['log', 'settings', 'storage', 'z'], function(log, settings, storage, z) {
+define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
 
     var enabled = settings.tracking_enabled;
     var actions_enabled = settings.action_tracking_enabled;
@@ -36,15 +36,15 @@ define('tracking', ['log', 'settings', 'storage', 'z'], function(log, settings, 
         var ga = document.createElement('script');
         ga.type = 'text/javascript';
         ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/u/ga_debug.js';
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         document.body.appendChild(ga);
     }
 
     var potato_initialized = false;
     var potato_iframe;
-    function push(type, data) {
+    function push(data) {
         if (!potato_initialized) {
-            window._gaq.push([type].concat(data));
+            window._gaq.push(data);
         } else {
             potato_iframe.contentWindow.postMessage(JSON.stringify(data), '*');
         }
@@ -92,7 +92,7 @@ define('tracking', ['log', 'settings', 'storage', 'z'], function(log, settings, 
         if (!popped) {
             var url = get_url();
             console.log('Tracking page view', url);
-            push('_trackPageview', [url]);
+            push(['_trackPageview', url]);
         }
     });
 
@@ -104,7 +104,7 @@ define('tracking', ['log', 'settings', 'storage', 'z'], function(log, settings, 
             var i;
             while (i = page_vars.pop()) {
                 console.log('Cleaning up var ' + i);
-                push('_deleteCustomVar', [i]);
+                push(['_deleteCustomVar', i]);
             }
             console.groupEnd();
         }
@@ -129,10 +129,10 @@ define('tracking', ['log', 'settings', 'storage', 'z'], function(log, settings, 
             if (args[3] === 3 && page_vars.indexOf(args[0]) === -1) {
                 page_vars.push(args[0]);
             }
-            push('_setCustomVar', [args]);
+            push(['_setCustomVar'].concat(args));
         }),
         trackEvent: actionWrap(function() {
-            push('_trackEvent', Array.prototype.slice.call(arguments, 0));
+            push(['_trackEvent'].concat(Array.prototype.slice.call(arguments, 0)));
         })
     };
 
