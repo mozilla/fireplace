@@ -1,26 +1,8 @@
-define('views/purchases', ['cache', 'l10n', 'common/linefit', 'urls', 'utils', 'z'],
-    function(cache, l10n, linefit, urls, utils, z) {
+define('views/purchases', ['l10n', 'common/linefit', 'urls'],
+    function(l10n, linefit, urls) {
     'use strict';
 
     var gettext = l10n.gettext;
-
-    z.win.on('app_install_success', function(e, installer, product, installed_now) {
-        if (!installed_now) {
-            return;
-        }
-
-        var unsigned_url = urls.api.unsigned.url('installed');
-        cache.attemptRewrite(
-            function(key) {
-                return utils.baseurl(key) !== unsigned_url;
-            },
-            function(data) {
-                data.objects.push(product);  // TODO: convert this to use models
-                return data;
-            }
-        );
-
-    });
 
     return function(builder, args) {
         builder.start('user/purchases.html');

@@ -61,11 +61,6 @@ define('apps',
                         clearInterval(isInstalled);
                         def.resolve(installRequest.result, product);
                     }
-                    // TODO: What happens if there's an installation failure? Does this never end?
-                    // XXX: There won't ever be an install failure here. The installState will only ever
-                    // be "installed", "pending", or "updating" [1]
-                    //
-                    // [1] Source: DXR
                 }, 250);
             };
             installRequest.onerror = function() {

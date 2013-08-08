@@ -13,9 +13,6 @@ define('urls',
             // Strip the ^ and $ from the route pattern.
             var url = route.pattern.substring(1, route.pattern.length - 1);
 
-            // TODO: if we get significantly complex routes, it might make
-            // sense to _.memoize() or somehow cache the pre-formatted URLs.
-
             // Replace each matched group with a positional formatting placeholder.
             var i = 0;
             while (group_pattern.test(url)) {

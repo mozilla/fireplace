@@ -85,7 +85,6 @@ define('previews',
     z.page.on('dragstart dragover', function(e) {
         e.preventDefault();
     }).on('populatetray', function() {
-        // TODO: Nuke this logging once we're sure trays work as intended.
         console.log('Populating trays');
         $('.listing.expanded .mkt-tile + .tray').each(populateTray);
     });

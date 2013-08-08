@@ -34,13 +34,11 @@ function process(folder, output_file, locale_file, opts) {
 
             var doCompile = function() {
                 var src = fs.readFileSync(templates[i], 'utf-8');
-                var cinst = new compiler.Compiler(extensions);
-                // TODO: We probably won't need it, but preprocessing should
-                // be added here.
                 var parseTree = parser.parse(src, extensions);
                 if (opts.l10n) {
                     L10n.extract_template(src, parseTree, templates[i]);
                 }
+                var cinst = new compiler.Compiler(extensions);
                 cinst.compile(parseTree)
                 template_strings += cinst.getCode();
             };

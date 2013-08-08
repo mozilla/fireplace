@@ -149,6 +149,9 @@ require.config({
             z.page.trigger('loaded');
         }
 
+        // Set the tracking consumer page variable.
+        //require('tracking').setVar(3, 'Site section', 'Consumer', 3);
+
         // Debug page
         (function() {
             var to = false;

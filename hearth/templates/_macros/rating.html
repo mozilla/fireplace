@@ -33,7 +33,7 @@
         {% endif %}
       </ul>
       {# TODO: Format dates with bug 867897. #}
-      <time itemprop="datePublished">{{ this.posted|replace(' 00:00:00', '') }}</time>
+      <time itemprop="datePublished">{{ this.posted|datetime }}</time>
     {% endif %}
   </div>
 </li>

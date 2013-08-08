@@ -1,4 +1,4 @@
-define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
+define('tracking', ['log', 'settings', 'storage', 'z'], function(log, settings, storage, z) {
 
     var enabled = settings.tracking_enabled;
     var actions_enabled = settings.action_tracking_enabled;
@@ -23,6 +23,7 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
             window.console.log('Setting tracking domain:', domain);
             window._gaq.push(['_setDomainName', domain]);
         }
+        // TODO: Move this to marketplace.js
         window._gaq.push([
             '_setCustomVar',
             3,
@@ -35,15 +36,15 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
         var ga = document.createElement('script');
         ga.type = 'text/javascript';
         ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/u/ga_debug.js';
         document.body.appendChild(ga);
     }
 
     var potato_initialized = false;
     var potato_iframe;
-    function push(data) {
+    function push(type, data) {
         if (!potato_initialized) {
-            window._gaq.push(data);
+            window._gaq.push([type].concat(data));
         } else {
             potato_iframe.contentWindow.postMessage(JSON.stringify(data), '*');
         }
@@ -91,7 +92,7 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
         if (!popped) {
             var url = get_url();
             console.log('Tracking page view', url);
-            push(['_trackPageview', url]);
+            push('_trackPageview', [url]);
         }
     });
 
@@ -103,7 +104,7 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
             var i;
             while (i = page_vars.pop()) {
                 console.log('Cleaning up var ' + i);
-                push(['_deleteCustomVar', i]);
+                push('_deleteCustomVar', [i]);
             }
             console.groupEnd();
         }
@@ -128,10 +129,10 @@ define('tracking', ['log', 'settings', 'z'], function(log, settings, z) {
             if (args[3] === 3 && page_vars.indexOf(args[0]) === -1) {
                 page_vars.push(args[0]);
             }
-            push(['_setCustomVar'].concat(args));
+            push('_setCustomVar', [args]);
         }),
         trackEvent: actionWrap(function() {
-            push(['_trackEvent'].concat(Array.prototype.slice.call(arguments, 0)));
+            push('_trackEvent', Array.prototype.slice.call(arguments, 0));
         })
     };
 

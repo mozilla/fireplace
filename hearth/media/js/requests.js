@@ -122,8 +122,6 @@ define('requests',
 
         xhr.open(type, url, true);
 
-        // TODO: Should we be smarter about this?
-        // TODONT: nahhhh
         if (typeof data === 'object') {
             data = utils.urlencode(data);
         }
