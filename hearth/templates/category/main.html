@@ -20,6 +20,7 @@
   {% for collection in this.collections.values().slice(0, 1) %}
     {{ collection_tile(collection, link=true, src='home') }}
   {% endfor %}
+{% except %}
 {% end %}
 
 {% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='app') %}
