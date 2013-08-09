@@ -97,7 +97,7 @@ define('urls',
     };
 
     var media = function(path) {
-        var media_url = document.body.getAttribute('data-media') || settings.media_url;
+        var media_url = document.body.dataset.media || settings.media_url;
         if (media_url[media_url.length - 1] !== '/') {
             media_url += '/';
         }

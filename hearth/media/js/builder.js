@@ -86,7 +86,7 @@ define('builder',
                 // more button's parent. `target` is the selector to extract
                 // from the newly built HTML to inject into the currently
                 // visible page.
-                var url = el.getAttribute('data-url');
+                var url = el.dataset.url;
                 injector(url, el.parentNode, target).done(function() {
                     console.log('Pagination completed');
                     fire(page, 'loaded_more');

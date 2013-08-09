@@ -30,7 +30,7 @@ define('outgoing_links', ['capabilities', 'z'], function(capabilities, z) {
         }
     }).on('click', 'a[data-orig-href]', function() {
         var href = this.getAttribute('href');
-        this.setAttribute('href', this.getAttribute('data-orig-href'));
+        this.setAttribute('href', this.dataset.origHref);
         setTimeout(function() {
             // Put back the real destination:
             this.setAttribute('href', href);

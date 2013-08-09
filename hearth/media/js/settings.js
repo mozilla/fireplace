@@ -1,8 +1,7 @@
 define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, settings_local, _) {
     var gettext = l10n.gettext;
-    
-    var base_settings = JSON.parse(
-        document.body.getAttribute('data-settings') || '{}');
+
+    var base_settings = JSON.parse(document.body.dataset.settings || '{}');
     base_settings = _.defaults(base_settings, settings_local);
 
     return _.defaults(base_settings, {

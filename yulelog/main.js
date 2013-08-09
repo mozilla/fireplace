@@ -102,7 +102,7 @@
   var transName;
   var transBlocks = document.querySelectorAll('[data-l10n]');
   for (var i = 0; i < transBlocks.length; i++) {
-    transName = transBlocks[i].getAttribute('data-l10n');
+    transName = transBlocks[i].dataset.l10n;
     if (locale in translations[transName]) {
       transBlocks[i].innerHTML = translations[transName][locale];
     }

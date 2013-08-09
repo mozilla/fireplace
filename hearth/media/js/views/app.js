@@ -34,7 +34,7 @@ define('views/app',
             tracking.trackEvent(
                 'App view interaction',
                 'click',
-                this.parentNode.getAttribute('data-tracking')
+                this.parentNode.dataset.tracking
             );
         });
     }
