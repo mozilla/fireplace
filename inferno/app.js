@@ -9,6 +9,11 @@ var app = express();
 
 var client = new irc.Client('irc.mozilla.org', 'infernobot', {channels: ['#amo-bots']});
 
+if (!fs.existsSync('build')) {
+    fs.mkdir('build');
+}
+
+
 app.get('/', function(req, res){
     res.send(fs.readFileSync('templates/index.html') + '');
 });
@@ -28,6 +33,7 @@ app.get('/minifest', function(req, res){
 app.get('/minifest/:type', function(req, res){
     getMinifest(req.params.type, res);
 });
+
 
 function getETag(type, data, path) {
     var output = '';
