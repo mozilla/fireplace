@@ -8,7 +8,7 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
 ## Glossary
 
 <dl>
-  <dt>Ashes</dt>
+  <dt><a href="https://github.com/mozilla/flue">Ashes</a></dt>
   <dd>A secure debug information collection server</dd>
 
   <dt>Damper</dt>
