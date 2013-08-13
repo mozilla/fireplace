@@ -88,7 +88,7 @@ define('payments/payments',
                         case 'cancelled':
                         // Sent from the trusted-ui on cancellation.
                         case 'DIALOG_CLOSED_BY_USER':
-                            msg = gettext('Payment cancelled');
+                            msg = gettext('Payment cancelled.');
                             break;
                         default:
                             msg = gettext('Payment failed. Try again later.');
