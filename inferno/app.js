@@ -20,7 +20,7 @@ app.get('/', function(req, res){
 
 function getMinifest(type, res) {
     var manifest = JSON.parse(fs.readFileSync('build/fireplace-master/hearth/manifest.webapp'));
-    manifest['package_path'] = 'http://inferno.paas.allizom.org/package.zip?type=' + type;
+    manifest['package_path'] = 'https://inferno.paas.allizom.org/package.zip?type=' + type;
 
     res.set('Content-Type', 'application/x-web-app-manifest+json');
     res.set('ETag', '"' + getETag(type, null, 'build/package.zip') + '"');
@@ -67,6 +67,12 @@ app.get('/package.zip', function(req, res){
 });
 
 app.all('/ping', function(req, res) {
+    build(function() {
+        res.send("Fetched, thanks. We'll take it from here.");
+    });
+});
+
+function build(fetched_cb) {
 
     function cpe(command, options, callback) {
         function cb(error, stdout, stderr) {
@@ -95,7 +101,8 @@ app.all('/ping', function(req, res) {
     var opts = {cwd: 'build/fireplace-master/'};
     function compile() {
 
-        res.send("Fetched, thanks. We'll take it from here.");
+        if (fetched_cb)
+            fetched_cb();
 
         console.log('Installing deps');
         cpe('npm install', opts, damper);
@@ -137,10 +144,11 @@ app.all('/ping', function(req, res) {
     function finish() {
         console.log('Done');
         client.say('#amo-bots', "Fireplace was updated on inferno");
-        client.say('#amo-bots', "http://inferno.paas.allizom.org/");
+        client.say('#amo-bots', "https://inferno.paas.allizom.org/");
     }
-
-});
+}
 
 var port = process.env.VCAP_APP_PORT || 3000;
 app.listen(port);
+
+build();
