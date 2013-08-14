@@ -25,8 +25,7 @@ $(COMPILED_TEMPLATES): $(TEMPLATES)
 	node damper.js --compile stylus --path $<
 
 l10n: clean fastcompile
-	cd locale ; \
-	./omg_new_l10n.sh
+	./locale/omg_new_l10n.sh
 
 langpacks:
 	mkdir -p hearth/locales
