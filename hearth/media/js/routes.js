@@ -5,8 +5,7 @@ var dependencies;
 
 // Please leave quotes around keys! They're needed for Space Heater.
 var routes = [
-    {'pattern': '^/$', 'view_name': 'homepage'},
-    {'pattern': '^/(index|server).html$', 'view_name': 'homepage'},
+    {'pattern': '^/(index.html|server.html)?$', 'view_name': 'homepage'},
     {'pattern': '^/app/([^/<>"\']+)/ratings/add$', 'view_name': 'app/ratings/add'},
     {'pattern': '^/app/([^/<>"\']+)/ratings/edit$', 'view_name': 'app/ratings/edit'},
     {'pattern': '^/app/([^/<>"\']+)/ratings/([^/<>"\']+)$', 'view_name': 'app/ratings/rating'},
@@ -14,19 +13,15 @@ var routes = [
     {'pattern': '^/app/([^/<>"\']+)/abuse$', 'view_name': 'app/abuse'},
     {'pattern': '^/app/([^/<>"\']+)/privacy$', 'view_name': 'app/privacy'},
     {'pattern': '^/app/([^/<>"\']+)/receipt$', 'view_name': 'app/receipt'},
-    {'pattern': '^/app/([^/<>"\']+)$', 'view_name': 'app'},
-    {'pattern': '^/app/([^/<>"\']+)/$', 'view_name': 'app'},
-    {'pattern': '^/search$', 'view_name': 'search'},
-    {'pattern': '^/search/$', 'view_name': 'search'},
+    {'pattern': '^/app/([^/<>"\']+)/?$', 'view_name': 'app'},
+    {'pattern': '^/search/?$', 'view_name': 'search'},
     {'pattern': '^/category/([^/<>"\']+)$', 'view_name': 'category'},
     {'pattern': '^/category/([^/<>"\']+)/featured$', 'view_name': 'featured'},
     {'pattern': '^/settings$', 'view_name': 'settings'},
     {'pattern': '^/feedback$', 'view_name': 'feedback'},
     {'pattern': '^/purchases$', 'view_name': 'purchases'},
 
-    {'pattern': '^/partners/([^/<>"\']+)/([^/<>"\']+)/([^/<>"\']+)$',
-     'view_name': 'partners'},
-    {'pattern': '^/partners/([^/<>"\']+)/([^/<>"\']+)/([^/<>"\']+)/$',
+    {'pattern': '^/partners/([^/<>"\']+)/([^/<>"\']+)/([^/<>"\']+)/?$',
      'view_name': 'partners'},
 
     {'pattern': '^/privacy-policy$', 'view_name': 'privacy'},
@@ -35,8 +30,7 @@ var routes = [
     {'pattern': '^/site/deprecated$', 'view_name': 'deprecated'},
     {'pattern': '^/site/obsolete$', 'view_name': 'obsolete'},
 
-    {'pattern': '^/collection/([^/<>"\']+)$', 'view_name': 'collection'},
-    {'pattern': '^/collection/([^/<>"\']+)/$', 'view_name': 'collection'},
+    {'pattern': '^/collection/([^/<>"\']+)/?$', 'view_name': 'collection'},
 
     {'pattern': '^/tests$', 'view_name': 'tests'},
     {'pattern': '^/debug$', 'view_name': 'debug'}

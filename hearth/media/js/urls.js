@@ -3,6 +3,7 @@ define('urls',
     function(buckets, caps, format, api_endpoints, settings, _, user) {
 
     var group_pattern = /\(.+\)/;
+    var optional_pattern = /(\(.*\)|\[.*\]|.)\?/g;
     var reverse = function(view_name, args) {
         args = args || [];
         for (var i in routes) {
@@ -12,6 +13,10 @@ define('urls',
 
             // Strip the ^ and $ from the route pattern.
             var url = route.pattern.substring(1, route.pattern.length - 1);
+
+            if (url.indexOf('?') !== -1) {
+                url = url.replace(optional_pattern, '');
+            }
 
             // Replace each matched group with a positional formatting placeholder.
             var i = 0;
