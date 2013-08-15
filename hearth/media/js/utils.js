@@ -61,12 +61,12 @@ define('utils', ['jquery', 'underscore'], function($, _) {
         return url.split('?')[0];
     }
 
-    function encodeURIComponent() {
-        return window.encodeURIComponent.apply(this, arguments).replace(/%20/g, '+');
+    function encodeURIComponent(uri) {
+        return window.encodeURIComponent(uri).replace(/%20/g, '+');
     }
 
-    function decodeURIComponent() {
-        return window.decodeURIComponent.apply(this, arguments).replace(/\+/g, ' ');
+    function decodeURIComponent(uri) {
+        return window.decodeURIComponent(uri.replace(/\+/g, ' '));
     }
 
     function urlencode(kwargs) {
