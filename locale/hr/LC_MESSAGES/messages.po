@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-10T22:38:11.469Z\n"
+"POT-Creation-Date: 2013-08-15T20:40:54.907Z\n"
 "PO-Revision-Date: 2013-06-19 22:09+0100\n"
 "Last-Translator: Saša Teković <sasa@tekovic.com>\n"
 "Language-Team: none\n"
@@ -13,32 +13,36 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Fireplace L10n Tools 1.0\n"
 
-#: hearth/templates/_macros/market_button.html:1
-#: hearth/templates/_macros/market_tile.html:19
+#. This app is unavailable for purchase.
+#: hearth/templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr ""
+
+#: hearth/templates/_macros/market_button.html:7 hearth/templates/_macros/market_tile.html:40
 msgid "Free"
 msgstr "Besplatno"
 
-#: hearth/templates/_macros/market_button.html:4
+#: hearth/templates/_macros/market_button.html:14 hearth/media/js/buttons.js:94
 msgid "Install"
 msgstr "Instaliraj"
 
-#: hearth/templates/_macros/market_tile.html:27
+#: hearth/templates/_macros/market_tile.html:48
 msgid "({n})"
 msgstr "({n})"
 
-#: hearth/templates/_macros/market_tile.html:30
-#: hearth/templates/detail/main.html:110
+#: hearth/templates/_macros/market_tile.html:51 hearth/templates/detail/main.html:111
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} recenzija"
 msgstr[1] "{n} recenzije"
 msgstr[2] "{n} recenzija"
 
-#: hearth/templates/_macros/market_tile.html:34
+#. "(0)" means "0 reviews."
+#: hearth/templates/_macros/market_tile.html:55
 msgid "(0)"
 msgstr "(0)"
 
-#: hearth/templates/_macros/market_tile.html:35
+#: hearth/templates/_macros/market_tile.html:56
 msgid "Not yet rated"
 msgstr "Još nije ocijenjeno"
 
@@ -66,7 +70,7 @@ msgstr "Uredi"
 msgid "Delete"
 msgstr "Obriši"
 
-#: hearth/templates/_macros/rating.html:30
+#: hearth/templates/_macros/rating.html:31
 msgid "Report"
 msgstr "Prijavi"
 
@@ -74,41 +78,45 @@ msgstr "Prijavi"
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Ocijenjeno sa {stars} od {maxstars} zvijezdica"
 
-#: hearth/templates/cat_dropdown.html:1
-#: hearth/templates/cat_list.html:3
-#: hearth/media/js/cat-dropdown.js:12
-#: hearth/media/js/views/homepage.js:26
+#: hearth/templates/cat_dropdown.html:1 hearth/templates/cat_list.html:3 hearth/media/js/cat-dropdown.js:13
 msgid "All Categories"
 msgstr "Sve kategorije"
 
-#: hearth/templates/category/main.html:19
+#: hearth/templates/category/main.html:28
 msgid "Featured Apps"
 msgstr "Izdvojene aplikacije"
 
-#: hearth/templates/category/main.html:20
-#: hearth/templates/category/main.html:44
+#: hearth/templates/category/main.html:29 hearth/templates/category/main.html:54
 msgid "View All"
 msgstr "Prikaži sve"
 
-#: hearth/templates/category/main.html:41
+#: hearth/templates/category/main.html:50
 msgid "Popular"
 msgstr "Popularne"
 
-#: hearth/templates/category/main.html:42
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: hearth/templates/category/main.html:52
 msgid "New"
 msgstr "Nove"
 
-#: hearth/templates/category/main.html:63
+#: hearth/templates/category/main.html:73
 msgid "No apps in this category"
 msgstr "U ovoj kategoriji nema aplikacija"
 
-#: hearth/templates/category/main.html:68
-msgid "No apps in this category, try again later"
-msgstr "U ovoj kategoriji nema aplikacija, pokušajte ponovno kasnije"
+#: hearth/templates/category/main.html:78
+msgid "The category you requested does not exist."
+msgstr ""
 
-#: hearth/templates/confirmation.html:0
-#: hearth/templates/detail/abuse.html:6
-#: hearth/templates/settings/nav.html:12
+#: hearth/templates/category/main.html:80 hearth/templates/collection.html:24 hearth/templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr ""
+
+#: hearth/templates/collection.html:23 hearth/templates/detail/main.html:24 hearth/templates/detail/receipt.html:28 hearth/templates/errors/fragment.html:1 hearth/templates/not_found.html:2
+#: hearth/templates/user/purchases.html:38
+msgid "Oh no!"
+msgstr "O, ne!"
+
+#: hearth/templates/confirmation.html:0 hearth/templates/detail/abuse.html:6 hearth/templates/settings/nav.html:12
 msgid "Close"
 msgstr "Zatvori"
 
@@ -120,9 +128,20 @@ msgstr "Ne"
 msgid "Yes"
 msgstr "Da"
 
-#: hearth/templates/detail/abuse.html:5
-#: hearth/templates/detail/main.html:175
-#: hearth/media/js/views/app/abuse.js:33
+#. The Marketplace app is out-of-date and needs to be updated.
+#: hearth/templates/deprecated.html:2
+msgid "Out-of-Date Marketplace"
+msgstr ""
+
+#: hearth/templates/deprecated.html:3
+msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
+msgstr ""
+
+#: hearth/templates/deprecated.html:5 hearth/templates/obsolete.html:5
+msgid "Update Now"
+msgstr ""
+
+#: hearth/templates/detail/abuse.html:5 hearth/templates/detail/main.html:176 hearth/templates/detail/receipt.html:68 hearth/media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "Prijava zloporabe"
 
@@ -130,56 +149,60 @@ msgstr "Prijava zloporabe"
 msgid "Send Report"
 msgstr "Pošalji prijavu"
 
-#: hearth/templates/detail/main.html:33
+#: hearth/templates/detail/main.html:42
 msgid "Installed!"
 msgstr "Instalirano!"
 
-#: hearth/templates/detail/main.html:36
+#: hearth/templates/detail/main.html:45
 msgid "Launch this app from your <b>Applications</b> directory."
 msgstr "Pokrenite ovu aplikaciju iz direktorija <b>Aplikacije</b>."
 
-#: hearth/templates/detail/main.html:39
+#: hearth/templates/detail/main.html:48
 msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
 msgstr "Pokrenite ovu aplikaciju s <b>Windows radne površine</b> ili izbornika <b>Start &#9658; Svi programi</b>."
 
-#: hearth/templates/detail/main.html:42
+#: hearth/templates/detail/main.html:51
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Pokrenite ovu aplikaciju iz <b>dasha</b> ili <b>Izbornika aplikacija</b>."
 
-#: hearth/templates/detail/main.html:14
-#: hearth/templates/detail/main.html:15
-#: hearth/media/js/views/app.js:60
+#: hearth/templates/detail/main.html:14 hearth/templates/detail/main.html:15 hearth/templates/detail/receipt.html:18 hearth/templates/detail/receipt.html:19 hearth/media/js/views/app.js:58
+#: hearth/media/js/views/collection.js:16
 msgid "Loading..."
 msgstr "Učitavanje..."
 
-#: hearth/templates/detail/main.html:24
-#: hearth/templates/errors/fragment.html:1
-#: hearth/templates/not_found.html:2
-msgid "Oh no!"
-msgstr "O, ne!"
+#: hearth/templates/detail/main.html:26
+msgid "The app requested is not public."
+msgstr ""
 
-#: hearth/templates/detail/main.html:25
-#: hearth/templates/not_found.html:3
-msgid "The page you were looking for was not found."
-msgstr "Stranica koju ste tražili nije pronađena."
+#: hearth/templates/detail/main.html:28
+msgid "The app requested was not found."
+msgstr ""
 
-#: hearth/templates/detail/main.html:55
+#: hearth/templates/detail/main.html:30
+msgid "The app requested is not available for your region."
+msgstr ""
+
+#: hearth/templates/detail/main.html:31
+msgid "You may wish to contact the developer if you would like to see a version of this app for your region."
+msgstr ""
+
+#: hearth/templates/detail/main.html:33
+msgid "A server error occurred. Please try again later."
+msgstr ""
+
+#: hearth/templates/detail/main.html:65
 msgid "Less&hellip;"
 msgstr "Manje&hellip;"
 
-#: hearth/templates/detail/main.html:55
+#: hearth/templates/detail/main.html:65
 msgid "More&hellip;"
 msgstr "Više&hellip;"
 
-#: hearth/templates/detail/main.html:62
-msgid "Description"
-msgstr "Opis"
-
-#: hearth/templates/detail/main.html:66
+#: hearth/templates/detail/main.html:68
 msgid "Version"
 msgstr "Inačica"
 
-#: hearth/templates/detail/main.html:68
+#: hearth/templates/detail/main.html:70
 msgid "Latest version: {version}"
 msgstr "Najnovija inačica: {version}"
 
@@ -195,63 +218,52 @@ msgstr "Odobri / Odbaci"
 msgid "Review History"
 msgstr "Povijest recenzija"
 
-#: hearth/templates/detail/main.html:100
-#: hearth/templates/ratings/main.html:6
-#: hearth/media/js/views/app/ratings.js:17
+#: hearth/templates/detail/main.html:100 hearth/templates/ratings/main.html:6 hearth/media/js/views/app/ratings.js:16
 msgid "Reviews"
 msgstr "Recenzije"
 
-#: hearth/templates/detail/main.html:118
+#: hearth/templates/detail/main.html:119
 msgid "App not yet rated"
 msgstr "Aplikacija još nije ocijenjena"
 
-#: hearth/templates/detail/main.html:126
+#: hearth/templates/detail/main.html:127
 msgid "Edit Your Review"
 msgstr "Uredite vašu recenziju"
 
-#: hearth/templates/detail/main.html:130
-#: hearth/templates/ratings/main.html:17
-#: hearth/templates/ratings/write.html:2
-#: hearth/media/js/views/app/ratings/add.js:44
+#: hearth/templates/detail/main.html:131 hearth/templates/ratings/main.html:18 hearth/templates/ratings/write.html:2 hearth/media/js/views/app/ratings/add.js:40
 msgid "Write a Review"
 msgstr "Napišite recenziju"
 
-#: hearth/templates/detail/main.html:130
-#: hearth/templates/ratings/main.html:17
+#: hearth/templates/detail/main.html:131 hearth/templates/ratings/main.html:18
 msgid "Sign in to Review"
 msgstr "Prijavite se da biste mogli recenzirati"
 
-#: hearth/templates/detail/main.html:147
+#: hearth/templates/detail/main.html:148 hearth/templates/detail/receipt.html:40
 msgid "Support Email"
 msgstr "E-pošta podrške"
 
-#: hearth/templates/detail/main.html:153
+#: hearth/templates/detail/main.html:154 hearth/templates/detail/receipt.html:46
 msgid "Support Site"
 msgstr "Stranica podrške"
 
-#: hearth/templates/detail/main.html:158
+#: hearth/templates/detail/main.html:159 hearth/templates/detail/receipt.html:51
 msgid "Homepage"
 msgstr "Web stranica"
 
-#: hearth/templates/detail/main.html:164
-#: hearth/templates/detail/privacy.html:3
-#: hearth/templates/footer.html:29
-#: hearth/templates/privacy.html:2
-#: hearth/templates/settings/feedback.html:22
-#: hearth/media/js/views/app/privacy.js:10
-#: hearth/media/js/views/privacy.js:10
+#: hearth/templates/detail/main.html:165 hearth/templates/detail/privacy.html:3 hearth/templates/detail/receipt.html:57 hearth/templates/footer.html:33 hearth/templates/privacy.html:2
+#: hearth/templates/settings/feedback.html:22 hearth/templates/user/newsletter.html:10 hearth/media/js/views/app/privacy.js:10 hearth/media/js/views/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Politika privatnosti"
 
-#: hearth/templates/detail/main.html:170
+#: hearth/templates/detail/main.html:171 hearth/templates/detail/receipt.html:63
 msgid "Statistics"
 msgstr "Statistike"
 
-#: hearth/templates/detail/main.html:182
+#: hearth/templates/detail/main.html:187
 msgid "Premium version available"
 msgstr "Dostupna je premium inačica"
 
-#: hearth/templates/detail/main.html:199
+#: hearth/templates/detail/main.html:204
 msgid "Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
 msgstr "Ocijenio <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
 
@@ -262,6 +274,14 @@ msgstr "Povratak na aplikaciju"
 #: hearth/templates/detail/privacy.html:11
 msgid "Loading Privacy Policy..."
 msgstr "Učitavanje politike privatnosti..."
+
+#: hearth/templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr ""
+
+#: hearth/templates/detail/receipt.html:29 hearth/templates/not_found.html:3
+msgid "The page you were looking for was not found."
+msgstr "Stranica koju ste tražili nije pronađena."
 
 #: hearth/templates/errors/fragment.html:2
 msgid "An error occurred."
@@ -279,9 +299,7 @@ msgstr "Pokušajte ponovno"
 msgid "Featured"
 msgstr "Izvojeno"
 
-#: hearth/templates/featured.html:6
-#: hearth/templates/search/main.html:10
-#: hearth/templates/user/purchases.html:14
+#: hearth/templates/featured.html:6 hearth/templates/search/main.html:10 hearth/templates/user/purchases.html:14
 msgid "Expand"
 msgstr "Proširi"
 
@@ -297,11 +315,7 @@ msgstr "Razvijajte aplikacije"
 msgid "Developer Hub"
 msgstr "Središte razvijatelja"
 
-#: hearth/templates/footer.html:6
-#: hearth/templates/header.html:26
-#: hearth/templates/settings/nav.html:8
-#: hearth/templates/settings/nav.html:11
-#: hearth/media/js/views/feedback.js:62
+#: hearth/templates/footer.html:6 hearth/templates/header.html:26 hearth/templates/settings/nav.html:8 hearth/templates/settings/nav.html:11 hearth/media/js/views/feedback.js:61
 msgid "Feedback"
 msgstr "Povratne informacije"
 
@@ -309,27 +323,36 @@ msgstr "Povratne informacije"
 msgid "Support"
 msgstr "Podrška"
 
-#: hearth/templates/footer.html:13
-#: hearth/templates/settings/main.html:50
+#: hearth/templates/footer.html:12 hearth/templates/header.html:22 hearth/templates/settings/nav.html:7 hearth/templates/user/purchases.html:44 hearth/templates/user/purchases.html:11
+#: hearth/templates/user/purchases.html:31 hearth/media/js/views/purchases.js:13
+msgid "My Apps"
+msgstr "Moje aplikacije"
+
+#: hearth/templates/footer.html:14 hearth/templates/header.html:24
+msgid "My Submissions"
+msgstr "Moje prijave"
+
+#: hearth/templates/footer.html:17 hearth/templates/settings/main.html:50
 msgid "Reviewer Tools"
 msgstr "Alati za recenzente"
 
-#: hearth/templates/footer.html:16
+#: hearth/templates/footer.html:20
 msgid "Lookup Tool"
 msgstr "Alat pretraživanja"
 
-#: hearth/templates/footer.html:24
-msgid "Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike License v3.0</a> or any later version."
-msgstr "Sadržaj na ovoj stranici je licenciran pod <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike licencom v3.0</a> ili novijoj, osim ako nije drugačije <a href=\"{legal_url}\" target=\"_blank\">navedeno</a>."
+#: hearth/templates/footer.html:28
+msgid ""
+"Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
+"Alike License v3.0</a> or any later version."
+msgstr ""
+"Sadržaj na ovoj stranici je licenciran pod <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike licencom v3.0</a> ili novijoj, osim ako nije drugačije <a href="
+"\"{legal_url}\" target=\"_blank\">navedeno</a>."
 
-#: hearth/templates/footer.html:30
-#: hearth/templates/settings/feedback.html:27
-#: hearth/templates/terms.html:2
-#: hearth/media/js/views/terms.js:10
+#: hearth/templates/footer.html:34 hearth/templates/settings/feedback.html:27 hearth/templates/terms.html:2 hearth/media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Uvjeti korištenja"
 
-#: hearth/templates/footer.html:32
+#: hearth/templates/footer.html:36
 msgid "Report Trademark Abuse"
 msgstr "Prijavite zloporabu zaštitnog znaka"
 
@@ -337,8 +360,7 @@ msgstr "Prijavite zloporabu zaštitnog znaka"
 msgid "Back"
 msgstr "Natrag"
 
-#: hearth/templates/header.html:5
-#: hearth/templates/header.html:8
+#: hearth/templates/header.html:5 hearth/templates/header.html:8
 msgid "Search"
 msgstr "Traži"
 
@@ -354,21 +376,7 @@ msgstr "Postavke"
 msgid "Edit Account Settings"
 msgstr "Uredi postavke računa"
 
-#: hearth/templates/header.html:22
-#: hearth/templates/settings/nav.html:7
-#: hearth/templates/user/purchases.html:39
-#: hearth/templates/user/purchases.html:11
-#: hearth/templates/user/purchases.html:31
-#: hearth/media/js/views/purchases.js:30
-msgid "My Apps"
-msgstr "Moje aplikacije"
-
-#: hearth/templates/header.html:24
-msgid "My Submissions"
-msgstr "Moje prijave"
-
-#: hearth/templates/header.html:27
-#: hearth/templates/settings/main.html:47
+#: hearth/templates/header.html:27 hearth/templates/settings/main.html:47
 msgid "Sign Out"
 msgstr "Odjava"
 
@@ -376,39 +384,59 @@ msgstr "Odjava"
 msgid "Sign In"
 msgstr "Prijava"
 
-#: hearth/templates/ratings/edit.html:4
-#: hearth/templates/ratings/main.html:13
-#: hearth/media/js/views/app/ratings/edit.js:85
+#. The operating system is out-of-date and needs to be updated.
+#: hearth/templates/obsolete.html:2
+msgid "Firefox OS Update Required"
+msgstr ""
+
+#: hearth/templates/obsolete.html:3
+msgid "You're running an obsolete version of Firefox OS. Some apps in the Marketplace may fail to install or will malfunction. Please run a system update to continue enjoying the Marketplace."
+msgstr ""
+
+#: hearth/templates/obsolete.html:10
+msgid "I understand the risk and wish to continue"
+msgstr ""
+
+#: hearth/templates/partners.html:3
+msgid "Enjoy 3 months of Napster"
+msgstr ""
+
+#: hearth/templates/partners.html:4
+msgid "Download Napster"
+msgstr ""
+
+#: hearth/templates/ratings/edit.html:4 hearth/templates/ratings/main.html:14 hearth/media/js/views/app/ratings/edit.js:71
 msgid "Edit Review"
 msgstr "Uredi recenziju"
 
-#: hearth/templates/ratings/edit.html:8
-#: hearth/templates/ratings/write.html:7
+#: hearth/templates/ratings/edit.html:8 hearth/templates/ratings/write.html:7
 msgid "Rate:"
 msgstr "Ocijeni:"
 
-#: hearth/templates/ratings/edit.html:20
-#: hearth/templates/ratings/report.html:3
-#: hearth/templates/ratings/report.html:23
-#: hearth/templates/ratings/write.html:3
-#: hearth/templates/ratings/write.html:19
-#: hearth/templates/user/newssignup.html:12
+#: hearth/templates/ratings/edit.html:20 hearth/templates/ratings/report.html:3 hearth/templates/ratings/report.html:23 hearth/templates/ratings/write.html:3 hearth/templates/ratings/write.html:19
+#: hearth/templates/user/newsletter.html:13
 msgid "Cancel"
 msgstr "Otkaži"
 
-#: hearth/templates/ratings/edit.html:21
-#: hearth/templates/ratings/write.html:20
+#: hearth/templates/ratings/edit.html:21 hearth/templates/ratings/write.html:20
 msgid "Submit"
 msgstr "Pošalji"
 
-#: hearth/templates/ratings/edit.html:24
-#: hearth/templates/ratings/write.html:23
+#: hearth/templates/ratings/edit.html:24 hearth/templates/ratings/write.html:23
 msgid "Only logged in users may edit reviews."
 msgstr "Recenzije mogu uređivati samo prijavljeni korisnici."
 
-#: hearth/templates/ratings/main.html:34
+#: hearth/templates/ratings/main.html:36
 msgid "This app has no reviews."
 msgstr "Ova aplikacija nema recenzija."
+
+#: hearth/templates/ratings/rating.html:4 hearth/media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr ""
+
+#: hearth/templates/ratings/rating.html:16
+msgid "The review you requested does not exist."
+msgstr ""
 
 #: hearth/templates/ratings/report.html:2
 msgid "Please select a reason:"
@@ -433,8 +461,7 @@ msgstr[0] "<b>{n}</b> rezultat"
 msgstr[1] "<b>{n}</b> rezultata"
 msgstr[2] "<b>{n}</b> rezultata"
 
-#: hearth/templates/search/main.html:8
-#: hearth/templates/user/purchases.html:12
+#: hearth/templates/search/main.html:8 hearth/templates/user/purchases.html:12
 msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
 msgstr "Prikazan <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
 
@@ -454,8 +481,7 @@ msgstr "Pošalji"
 msgid "Get Help"
 msgstr "Potražite pomoć"
 
-#: hearth/templates/settings/main.html:2
-#: hearth/media/js/views/settings.js:50
+#: hearth/templates/settings/main.html:2 hearth/media/js/views/settings.js:57
 msgid "Account Settings"
 msgstr "Postavke računa"
 
@@ -483,27 +509,27 @@ msgstr "Prijava / Registracija"
 msgid "Account"
 msgstr "Račun"
 
-#: hearth/templates/user/newssignup.html:3
+#: hearth/templates/user/newsletter.html:3
 msgid "Get Firefox Marketplace news"
 msgstr "Primajte Firefox Marketplace novosti"
 
-#: hearth/templates/user/newssignup.html:8
+#: hearth/templates/user/newsletter.html:8
 msgid "Sign up"
 msgstr "Prijava"
 
-#: hearth/templates/user/newssignup.html:14
+#: hearth/templates/user/newsletter.html:15
 msgid "Signing up..."
 msgstr "Prijava..."
 
-#: hearth/templates/user/newssignup.html:17
+#: hearth/templates/user/newsletter.html:18
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "Uspješno ste pretplaćeni na Marketplace newsletter!"
 
-#: hearth/templates/user/purchases.html:44
+#: hearth/templates/user/purchases.html:49
 msgid "You must be signed in to view your apps."
 msgstr "Morate biti prijavljeni za pregled vaših aplikacija."
 
-#: hearth/templates/user/purchases.html:45
+#: hearth/templates/user/purchases.html:50
 msgid "Sign in / Sign up"
 msgstr "Prijava / Registracija"
 
@@ -511,98 +537,171 @@ msgstr "Prijava / Registracija"
 msgid "You have no apps"
 msgstr "Nemate aplikacija"
 
-#: hearth/media/js/buttons.js:34
+#: hearth/media/js/apps.js:70
+msgid "App install error: {error}"
+msgstr ""
+
+#: hearth/media/js/apps.js:121
+msgid "Your device does not support payments."
+msgstr ""
+
+#: hearth/media/js/apps.js:123
+msgid "This app is unavailable for purchase in your region."
+msgstr ""
+
+#: hearth/media/js/apps.js:127
+msgid "Your browser or device is not web-app compatible."
+msgstr ""
+
+#: hearth/media/js/apps.js:129
+msgid "This app is unavailable for your platform."
+msgstr ""
+
+#: hearth/media/js/buttons.js:53 hearth/media/js/buttons.js:119 hearth/media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Plaćanje otkazano."
+
+#. "Launch" as in "Launch the app"
+#: hearth/media/js/buttons.js:89
 msgid "Purchasing"
 msgstr "Kupnja u tijeku"
 
-#: hearth/media/js/buttons.js:40
-msgid "Purchased"
-msgstr "Kupljeno"
+#. The app's installation has failed, but the problem is temporary.
+#: hearth/media/js/buttons.js:192
+msgid "Install failed. Please try again later."
+msgstr "Instalacija nije uspjela. Molim pokušajte ponovno."
 
-#: hearth/media/js/buttons.js:78
+#: hearth/media/js/buttons.js:274
 msgid "Launch"
 msgstr "Pokreni"
 
-#: hearth/media/js/common/ratingwidget.js:33
+#. {n} is the number of stars
+#: hearth/media/js/common/ratingwidget.js:34
 msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n} zvjezdica"
 msgstr[1] "{n} zvjezdice"
 msgstr[2] "{n} zvjezdica"
 
-#: hearth/media/js/common/suggestions.js:326
-msgid "Category"
-msgstr "Kategorija"
-
-#: hearth/media/js/install.js:34
-#: hearth/media/js/payments/payments.js:81
-msgid "Payment cancelled."
-msgstr "Plaćanje otkazano."
-
-#: hearth/media/js/install.js:141
-msgid "Install failed. Please try again later."
-msgstr "Instalacija nije uspjela. Molim pokušajte ponovno."
-
-#: hearth/media/js/login.js:16
+#: hearth/media/js/login.js:8
 msgid "You have been signed out"
 msgstr "Odjavljeni ste"
 
-#: hearth/media/js/login.js:20
+#: hearth/media/js/login.js:12
 msgid "You have been signed in"
 msgstr "Prijavljeni ste"
 
-#: hearth/media/js/login.js:126
+#: hearth/media/js/login.js:120
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Prijava Personom nije uspjela. Možda nemate korisnički račun po tom adresom e-pošte?"
 
-#: hearth/media/js/login.js:131
+#: hearth/media/js/login.js:125
 msgid "Persona login failed. A server error was encountered."
 msgstr "Prijava Personom nije uspjela. Došlo je do greške na poslužitelju."
 
-#: hearth/media/js/mobilenetwork.js:208
+#: hearth/media/js/mobilenetwork.js:260
 msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
 msgstr "Trenutno pregledavate sadržaj za *{current_region}*. Želite li se prebaciti na *{new_region}*?"
 
-#: hearth/media/js/navigation.js:51
+#: hearth/media/js/navigation.js:52
 msgid "No internet connection"
 msgstr "Nema Internet veze"
 
-#: hearth/media/js/newssignup.js:62
+#: hearth/media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Došlo je do greške pri slanju vašeg zahtjeva za pretplatu na newsletter"
 
-#: hearth/media/js/payments/payments.js:84
+#: hearth/media/js/payments/payments.js:94
 msgid "Payment failed. Try again later."
 msgstr "Plaćanje nije uspjelo. Pokušajte ponovno kasnije."
 
-#: hearth/media/js/ratings.js:38
+#. This error is raised when we are unable to fetch a JWT from the payments API.
+#: hearth/media/js/payments/payments.js:115
+msgid "Error while communicating with server. Try again later."
+msgstr ""
+
+#: hearth/media/js/payments/payments.js:122
+msgid "Your device does not support purchases."
+msgstr ""
+
+#. The report is an abuse report for reviews
+#: hearth/media/js/ratings.js:39
 msgid "Sending report..."
 msgstr "Slanje izvještaja..."
 
-#: hearth/media/js/ratings.js:43
+#: hearth/media/js/ratings.js:44
 msgid "Review flagged"
 msgstr "Recenzija je označena"
 
-#: hearth/media/js/ratings.js:46
+#: hearth/media/js/ratings.js:48
 msgid "Report review operation failed"
 msgstr "Operacija prijave recenzije nije uspjela"
 
-#: hearth/media/js/ratings.js:57
-msgid "Your review was deleted"
-msgstr "Vaša je recenzija obrisana"
+#: hearth/media/js/ratings.js:59
+msgid "Review deleted"
+msgstr ""
 
-#: hearth/media/js/ratings.js:70
+#: hearth/media/js/ratings.js:89
 msgid "There was a problem deleting the review"
 msgstr "Došlo je do problema pri brisanju recenzije"
 
-#: hearth/media/js/ratings.js:183
+#: hearth/media/js/ratings.js:229
 msgid "Your review was posted"
 msgstr "Vaša recenzija je objavljena"
 
-#: hearth/media/js/ratings.js:197
+#: hearth/media/js/ratings.js:243
 msgid "Error while submitting review"
 msgstr "Greška pri objavi recenzije"
 
+#: hearth/media/js/settings.js:55
+msgid "Worldwide"
+msgstr ""
+
+#: hearth/media/js/settings.js:56
+msgid "Brazil"
+msgstr ""
+
+#: hearth/media/js/settings.js:57
+msgid "Colombia"
+msgstr ""
+
+#: hearth/media/js/settings.js:58
+msgid "Hungary"
+msgstr ""
+
+#: hearth/media/js/settings.js:59
+msgid "Montenegro"
+msgstr ""
+
+#: hearth/media/js/settings.js:60
+msgid "Poland"
+msgstr ""
+
+#: hearth/media/js/settings.js:61
+msgid "Serbia"
+msgstr ""
+
+#: hearth/media/js/settings.js:62
+msgid "Spain"
+msgstr ""
+
+#: hearth/media/js/settings.js:63
+msgid "United Kingdom"
+msgstr ""
+
+#: hearth/media/js/settings.js:64
+msgid "United States"
+msgstr ""
+
+#: hearth/media/js/settings.js:65
+msgid "Venezuela"
+msgstr ""
+
+#: hearth/media/js/settings.js:68
+msgid "Department of Justice, Rating, Titles and Qualification"
+msgstr ""
+
+#. {n} is the number of characters left.
 #: hearth/media/js/utils.js:25
 msgid "<b>{n}</b> character left."
 msgid_plural "<b>{n}</b> characters left."
@@ -626,9 +725,21 @@ msgstr "Recenzija je uspješno ažurirana"
 msgid "There was a problem updating your review"
 msgstr "Došlo je do problema pri ažuriranju vaše recenzije"
 
-#: hearth/media/js/views/app.js:61
+#: hearth/media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr ""
+
+#: hearth/media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr ""
+
+#: hearth/media/js/views/app.js:59
 msgid "App Details"
 msgstr "Detalji aplikacije"
+
+#: hearth/media/js/views/collection.js:17
+msgid "Collection Details"
+msgstr ""
 
 #: hearth/media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -638,19 +749,23 @@ msgstr "Povratna informacija je poslana. Hvala!"
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Došlo je do greške pri slanju vaše povratne informacije. Pokušajte ponovno kasnije."
 
+#. Page not found (404)
 #: hearth/media/js/views/not_found.js:9
 msgid "Not Found"
 msgstr "Nije pronađeno"
 
-#: hearth/media/js/views/search.js:135
+#: hearth/media/js/views/partners.js:28
+msgid "Partners | {partner}"
+msgstr ""
+
+#: hearth/media/js/views/search.js:145
 msgid "Search Results"
 msgstr "Rezultati pretraživanja"
 
-#: hearth/media/js/views/settings.js:25
+#: hearth/media/js/views/settings.js:27
 msgid "Settings saved"
 msgstr "Postavke spremljene"
 
-#: hearth/media/js/views/settings.js:27
+#: hearth/media/js/views/settings.js:29
 msgid "Settings could not be saved"
 msgstr "Postavke nije moguće spremiti"
-
