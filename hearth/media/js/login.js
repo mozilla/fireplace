@@ -51,8 +51,8 @@ define('login',
         pending_logins.push(def);
 
         var opt = {
-            termsOfService: '/terms-of-use',
-            privacyPolicy: '/privacy-policy',
+            // termsOfService: '/terms-of-use',
+            // privacyPolicy: '/privacy-policy',
             oncancel: function() {
                 console.log('Persona login cancelled');
                 z.page.trigger('login_cancel');
