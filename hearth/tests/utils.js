@@ -32,6 +32,7 @@ test('querystring', function(done) {
     feq_(utils.querystring('?a=b&c=d'), {a: 'b', c: 'd'});
     feq_(utils.querystring('asdfoobar?a=b&c=d'), {a: 'b', c: 'd'});
     feq_(utils.querystring('?a=b&a=d'), utils.getVars('a=b&a=d'));
+    feq_(utils.querystring('?a=foo%2Bbar'), {a: 'foo+bar'});  // bug 905536
     done();
 });
 
