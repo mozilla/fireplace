@@ -31,3 +31,17 @@ def deploy():
                    cluster=settings.CLUSTER,
                    domain=settings.DOMAIN,
                    root=ROOT)
+
+
+@task
+def pre_update_latest_tag():
+    current_tag_file = os.path.join(FIREPLACE, '.tag')
+    latest_tag = helpers.git_latest_tag(FIREPLACE)
+    with open(current_tag_file, 'r+') as f:
+        if f.read() == latest_tag:
+            print 'Environemnt is at %s' % latest_tag
+        else:
+            pre_update(latest_tag)
+            f.seek(0)
+            f.write(latest_tag)
+            f.truncate()
