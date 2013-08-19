@@ -1,3 +1,4 @@
+import os
 from fabric.api import env, lcd, local, task
 import fabdeploytools.envs
 from fabdeploytools import helpers
