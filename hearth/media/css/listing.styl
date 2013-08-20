@@ -477,12 +477,6 @@ grid-style() {
             // Span 3 columns.
             width: calc(unquote('300% - 20px'));
         }
-        // Render featured apps in multiples of three.
-        // U mad, Basta?
-        &:nth-last-child(-n+2):nth-child(3n+1),
-        &:nth-last-child(-n+1):nth-child(3n+2) {
-             display: none;
-        }
         // Show 3 at most (per UX).
         &:nth-child(3) ~ li {
             display: none;
