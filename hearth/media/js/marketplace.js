@@ -170,12 +170,14 @@ require.config({
 
         require('requests').on('success', function(_, xhr) {
             var filter_header;
-            if ((!user.get_setting('region') || user.get_setting('region') == 'internet') &&
-                (filter_header = xhr.getResponseHeader('API-Filter'))) {
-                var region = require('utils').getVars(filter_header).region;
-                log.persistent('mobilenetwork', 'change').log('API overriding region:', region);
-                user.update_settings({region: region});
-            }
+            try {
+                if ((!user.get_setting('region') || user.get_setting('region') == 'internet') &&
+                    (filter_header = xhr.getResponseHeader('API-Filter'))) {
+                    var region = require('utils').getVars(filter_header).region;
+                    log.persistent('mobilenetwork', 'change').log('API overriding region:', region);
+                    user.update_settings({region: region});
+                }
+            } catch(e) {}
         }).on('deprecated', function() {
             // Divert the user to the deprecated view.
             z.page.trigger('divert', [require('urls').reverse('deprecated')]);

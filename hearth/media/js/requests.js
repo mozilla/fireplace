@@ -96,9 +96,11 @@ define('requests',
 
         xhr.addEventListener('load', function() {
 
-            if (xhr.getResponseHeader('API-Status') === 'Deprecated') {
-                callHooks('deprecated', [xhr]);
-            }
+            try {
+                if (xhr.getResponseHeader('API-Status') === 'Deprecated') {
+                    callHooks('deprecated', [xhr]);
+                }
+            } catch(e) {}
 
             var statusCode = xhr.status / 100 | 0;
             if (statusCode < 2 || statusCode > 3) {
