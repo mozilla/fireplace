@@ -12,6 +12,7 @@ define('capabilities', [], function() {
         'replaceState': typeof history.replaceState === 'function',
         'chromeless': !!(window.locationbar && !window.locationbar.visible),
         'webApps': !!(navigator.mozApps && navigator.mozApps.install),
+        'packagedWebApps': !!(navigator.mozApps && navigator.mozApps.installPackage),
         'userAgent': navigator.userAgent,
         'widescreen': function() { return safeMatchMedia('(min-width: 710px)'); },
         'firefoxAndroid': navigator.userAgent.indexOf('Firefox') !== -1 && navigator.userAgent.indexOf('Android') !== -1,
