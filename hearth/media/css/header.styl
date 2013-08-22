@@ -5,9 +5,10 @@
 
 // usable on any header
 .header {
+    background: #fff;
     border-top: 1px solid $salt-flat-white;
+    border-bottom: 1px solid $seavan-salt-white;
     display-flex();
-    gradient-two-color(#fff, #e1e1e1);
     height: 48px;
     max-height: 48px;
     position: relative;
@@ -28,18 +29,9 @@
     }
 }
 
-.header, .secondary-header {
-    &:before {
-        // Because box-shadows can go suck it.
-        bottom: -10px;
-        content: "";
-        display: block;
-        gradientTop(unquote('rgba(33,40,46,.4) 2%, rgba(241,241,241,.2) 30%, rgba(241,241,241,0) 100%'));
-        height: 10px;
-        position: absolute;
-        width: 100%;
-        z-index: 1;
-    }
+[data-page-type~="detail"] .header {
+    // Make the border lighter since there's no secondary header on this page.
+    border-bottom-color: $salt-flat-white;
 }
 
 // # for the primary site header *only*. If you need to generalize a style in here, move it.
@@ -49,6 +41,9 @@
     text-align: center;
     top: 0;
     z-index: 20;
+    &:before {
+        display: none;
+    }
     > * {
         display: block;
     }
@@ -95,7 +90,7 @@
     cursor: pointer;
     position: absolute;
     right: -15px;
-    top: 68px;
+    top: 49px;
     width: 320px;
     z-index: 12;
     ul {
@@ -106,7 +101,7 @@
     li {
         position: relative;
         + li {
-            border-top: 1px dashed $cement-gray;
+            border-top: 1px solid $cloud-gray;
         }
         a {
             color: $cement-gray;
@@ -130,6 +125,7 @@
 .site-header .search {
     margin-right: 10px;
     position: relative;
+    top: -1px;
     transition(.3s all);
     width: 230px;
     label {
@@ -138,15 +134,15 @@
 }
 
 #search-q {
-    background: #fff;
-    border: 1px solid #d5d5d5;
-    border-color: $cement-gray #d5d5d5 #e0e0e0;
+    background: #f4f4f4 url(../img/pretty/search.svg) 8px 50% no-repeat;
+    border: 2px solid $cement-gray;
     border-radius: 10px;
-    color: $sailor-blue;
-    font: 15px/28px $open-stack;
+    color: $london-fog-gray;
+    font: 300 20px/28px $open-stack;
     height: 34px;
     outline: none;
-    padding: 2px 10px 1px;
+    padding: 2px 10px 1px 32px;
+    transition(unquote('.18s background-position, .2s border-color, .2s padding'));
     width: 100%;
     z-index: 2;
     &:-moz-placeholder {
@@ -158,13 +154,26 @@
     &::-webkit-input-placeholder {
         color: darken($cement-gray, 5%);
     }
+    ~ .search-clear {
+        transition(unquote('.3s opacity, .3s visibility'));
+    }
     &:invalid ~ .search-clear {
         // Hide the X icon when the search field is empty.
-        display: none;
+        opacity: 0;
+        visibility: hidden;
     }
     &:valid {
         // Pad for the X icon.
         padding-right: 34px;
+        ~ .search-clear {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    &:focus {
+        background-position: -18px 50%;
+        border-color: #72cfff;
+        padding-left: 10px;
     }
 }
 
@@ -257,6 +266,7 @@
     position: relative;
     h2, h3 {
         color: $london-fog-gray;
+        font-weight: 300;
         margin-bottom: -3px;
         max-width: calc(unquote('100% - 75px'));
         min-width: 70%;
@@ -265,9 +275,26 @@
     }
 }
 
+.category.featured {
+    position: relative;
+}
+
 .secondary-header {
     background: $salt-flat-white;
-    border-top: 1px solid #fff;
+    border-top: 1px solid $seavan-salt-white;
+    margin-top: -1px;
+    z-index: 19;
+    &:before {
+        // Because box-shadows can go suck it.
+        bottom: -2px;
+        content: "";
+        display: block;
+        gradientLinear(unquote('to top, rgba(15,15,15,0) 0%, rgba(15,15,15,.3) 100%'));
+        height: 2px;
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+    }
     .subtitle {
         color: $earl-gray;
         font-size: 20px;
@@ -281,15 +308,17 @@
 }
 
 .featured-header {
-    padding: 15px 10px 0;
-    h3, .view-all {
-        font-weight: 400;
+    padding: 5px 10px;
+    h3 {
+        font-size: 20px;
+        line-height: 20px;
     }
 }
 
-.gallery .featured-header {
-    border-top: 7px solid $flamin-hot-cheetos-orange;
+.featured .featured-header {
+    padding-top: 15px;
 }
+
 
 @media $narrower-than-desktop {
     .hide-on-mobile {
@@ -381,11 +410,34 @@
 
 main {
     padding-top: 48px;
+    &:before {
+        // This makes a sweet gradient below the header
+        // (which will appear when scrolling past the category drop-down menu).
+        content: '';
+        display: block;
+        gradientLinear(unquote('to top, rgba(15,15,15,0) 0%, rgba(15,15,15,.3) 100%'));
+        height: 2px;
+        top: 48px;
+        position: fixed;
+        width: 100%;
+        z-index: 18;
+    }
 }
 
 @media (min-width: 710px) {
+    .site-header {
+        border-top: 0;
+        border-bottom: 1px solid $cloud-gray;
+        &:before, &:after {
+            display: none;
+        }
+    }
+
     main {
-        padding: 96px 0 48px;  // 48px padding + 48px to offset header
+        padding: 86px 0 48px;  // 48px padding + 38px to offset header
+        &:before {
+            display: none;
+        }
     }
 }
 
@@ -398,22 +450,20 @@ main {
     }
 
     .header-button.settings {
-        background-position: 50% 10px;
-        background-size: 30px auto;
         right: 0;
         top: 0;
     }
 
     .act-tray,
     .act-tray .header-button.settings {
-        height: 48px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
     }
 
     .act-tray {
         margin-left: 15px;
         &.active .settings {
-            background-position: calc(unquote('50% + 30px')) 10px;
+            background-position: calc(unquote('50% + 35px')) 8px;
             height: 70px;
             margin-left: -60px;
             width: 110px;
@@ -422,18 +472,18 @@ main {
                 border-bottom-color: $grey-gardens-gray;
                 display: block;
                 position: absolute;
-                right: -13px;
-                top: 10px;
+                right: -18px;
+                top: 0;
             }
         }
     }
 
     .site-header {
-        height: 90px;
-        max-height: 90px;
+        height: 60px;
+        max-height: 60px;
         position: relative;
         > nav {
-            height: 90px;
+            height: 60px;
             margin: 0 auto;
             max-width: 1024px;
         }
@@ -446,7 +496,7 @@ main {
         }
         .wordmark {
             background-position: -5px 50%;
-            background-size: 245px auto;
+            background-size: auto 46px;
             max-width: 232px;
             width: 232px;
         }
@@ -477,19 +527,24 @@ main {
     }
 
     #search-q {
+        background-position: 10px 50%;
+        border-width: 1px;
         font-size: 18px;
         font-weight: 400;
-        height: 48px;
-        line-height: 48px;
-        padding: 6px 15px 4px;
+        height: 40px;
+        line-height: 40px;
+        padding: 6px 15px 4px 34px;
         &:valid {
             // Adjust width for padding for the X icon.
             padding-right: 42px;
         }
+        &:focus {
+            padding-right: 15px;
+        }
     }
 
     .search-clear {
-        top: 8px;
+        top: 4px;
     }
 
     // How does the header look for the various page "types"?
@@ -508,37 +563,11 @@ main {
     }
 }
 
-// ***************** Narrow Mobile (<= 671px)
-
-@media $narrower-than-desktop {
-    [data-page-type~=leaf],
-    [data-page-type~=root],
-    [data-page-type~=search] {
-        .site-header {
-            border-bottom: 1px solid darken($cement-gray, 5%);
-            &:before {
-                display: none;
-            }
-        }
-    }
-}
-
 // ***************** Wide Mobile (> 671px)
 
 @media $at-least-desktop {
-    .category.gallery {
-        border-top: 7px solid $flamin-hot-cheetos-orange;
-        .featured-header {
-            border-top: 0;
-        }
-    }
-    .secondary-header,
-    .featured-header {
-        h2, h3 {
-            color: $castle-skull-gray;
-        }
-    }
     .secondary-header {
+        background: none;
         border: 0;
         height: 48px;
         max-height: 48px;
@@ -551,7 +580,7 @@ main {
         }
     }
     .featured-header {
-        padding: 15px 15px 0;
+        padding: 15px 15px 5px;
     }
     .expand-toggle {
         top: 13px;

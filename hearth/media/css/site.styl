@@ -56,7 +56,7 @@ a {
 }
 
 body {
-    background: $salt-flat-white;
+    background: $seavan-salt-white;
     color: $castle-skull-gray;
     // min-height needed so ff b2g/android can scroll to 0 (bug 872622).
     min-height: 300px;
@@ -322,6 +322,7 @@ body {
 
     #footer,
     #directory-footer {
+        border-top: 1px solid $cloud-gray;
         padding: 48px 0;
         ul {
             list-style: none;
@@ -329,16 +330,17 @@ body {
     }
 
     #directory-footer {
-        border-top: 1px dashed #000;
-        font-size: 14px;
+        font-size: 15px;
         line-height: 18px;
         .links a {
+            font-weight: 300;
             margin-top: 8px;
             + a {
                 margin-top: 10px;
             }
         }
         .devhub {
+            font-weight: 500;
             width: 290px;
             // TODO: Get Michael to vectorize this as an SVG.
             &:before {
@@ -450,12 +452,12 @@ body {
     #footer {
         color: $note-gray;
         overflow: hidden;
-        padding: 30px 0;
+        padding: 20px 0;
         width: 100%;
         .pad {
             margin: 0 auto;
             padding: 0;
-            width: $desktop-ftr;
+            width: 1024px;
         }
         p, ul {
             border-left: 1px dotted $light-gray;

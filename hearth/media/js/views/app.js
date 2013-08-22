@@ -54,7 +54,7 @@ define('views/app',
         var slug = args[0];
         builder.start('detail/main.html', {slug: slug});
 
-        builder.z('type', 'leaf');
+        builder.z('type', 'leaf detail');
         builder.z('title', gettext('Loading...'));
         builder.z('pagetitle', gettext('App Details'));
 

@@ -3,23 +3,18 @@
 .infobox.blurbs {
     border-top: 0;
 }
-.support,
-.content-ratings-wrapper,
-.upsell-wrapper {
-    diagonal-lines();
-}
+
 .detail .support > div {
     // Necessary to not clobber desktop L+R
     padding-bottom: 24px;
     padding-top: 24px;
 }
-.blurbs,
-.reviews-wrapper,
-.support {
-    background-color: #fff;
-}
 
 .detail {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px $cement-gray;
+    margin: 10px;
     h3 {
         font-size: 15px;
         font-weight: 500;
@@ -96,7 +91,7 @@
 }
 
 .content-ratings-wrapper {
-    border-top: 1px dashed $london-fog-gray;
+    border-top: 1px solid $cloud-gray;
     h3 {
         padding-bottom: 24px;
     }
@@ -146,7 +141,6 @@
 }
 
 .actions {
-    diagonal-lines();
     > div {
         float: left;
         overflow: hidden;
@@ -160,6 +154,7 @@
 }
 
 .support {
+    border-radius: 0 0 10px 10px;
     ul {
         margin: 0;
         list-style: none;
@@ -181,13 +176,13 @@
 
 .upsell-wrapper {
     background: $salt-flat-white;
-    border-top: 1px dashed $london-fog-gray;
+    border-top: 1px solid $cloud-gray;
 }
 
 .upsell {
     background: #fff;
     border-radius: 5px;
-    border: 1px solid $seavan-salt-white;
+    border: 1px solid $cloud-gray;
     display: block;
     font-size: 0;
     margin: 10px;
@@ -271,7 +266,6 @@
 
     .detail {
         border-radius: 10px;
-        border: 1px solid $seavan-salt-white;
         margin: 0 auto;
         max-width: $desktop-content;
         overflow: hidden;
@@ -296,7 +290,6 @@
     }
 
     .secondary-header .leading {
-        diagonal-lines();
         font-size: 24px;
         gradient-two-color(#fff, #e1e1e1);
         line-height: 24px;
