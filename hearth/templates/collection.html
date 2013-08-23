@@ -6,8 +6,6 @@
 <section class="main">
   {% defer (url=endpoint, id='collection') %}
     {{ collection_tile(this) }}
-    {# TODO: JS handler for read more/less. #}
-    <p class="desc">{{ this.description|nl2br }}</p>
   {% end %}
   {% defer (url=endpoint, pluck='apps', as='app') %}
     <ol class="container listing only-logged-in c">

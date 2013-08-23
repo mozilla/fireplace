@@ -6,5 +6,7 @@
         <p class="owner">{{ collection.author }}</p>
       </header>
     </section>
+    {# TODO: JS handler for read more/less? Makes no sense on desktop. #}
+    <p class="desc">{{ collection.description|nl2br }}</p>
   {% if link %}</a>{% endif %}
 {% endmacro %}
