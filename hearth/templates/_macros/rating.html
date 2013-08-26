@@ -1,6 +1,6 @@
 {% include "_macros/stars.html" %}
 
-{% macro rating(this, detailpage=false) %}
+{% macro rating(this, detailpage=false, current_version=None) %}
 <li data-report-uri="{{ this.report_spam }}" data-rating="{{ this.rating }}"
     class="review{{ ' flagged' if this.is_flagged }} c"
     itemprop="review" itemscope itemtype="http://schema.org/Review">
@@ -9,8 +9,8 @@
     <span class="byline">
       {{ _('by {author}',
            author='<strong itemprop="author">' + escape(this.user.display_name) + '</strong>') }}
-      {% if this.version and not this.version.latest %}
-        {{ _('for previous version {version}', version=this.version.name) }}
+      {% if this.version and current_version and current_version != this.version.version %}
+        {{ _('for previous version {version}', version=this.version.version) }}
       {% endif %}
     </span>
     <div class="body" itemprop="reviewBody">
