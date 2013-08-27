@@ -23,7 +23,7 @@
     <div class="reviews reviews-listing">
       <ul class="ratings-placeholder-inner">
         {% for rat in this %}
-          {{ rating(rat) }}
+          {{ rating(rat, current_version=this.info.current_version) }}
         {% endfor %}
 
         {# Render the more button if there's another page of results #}

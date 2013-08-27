@@ -103,7 +103,7 @@
       {% if this.meta.total_count %}
         <ul class="ratings-placeholder-inner">
           {% for rat in this.objects.slice(0, 2) %}
-            {{ rating(rat, detailpage=true) }}
+            {{ rating(rat, detailpage=true, current_version=this.info.current_version) }}
           {% endfor %}
         </ul>
         <div class="{{ 'split' if has_second_button else 'full' }}">
