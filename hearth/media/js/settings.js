@@ -48,7 +48,10 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         never_incompat: false,
 
         // The GA tracking ID for this app.
-        tracking_id: 'UA-36116321-6',
+        ga_tracking_id: 'UA-36116321-6',
+        ua_tracking_id: 'UA-36116321-11',
+        tracking_section: 'Consumer',
+        tracking_section_index: 3,
 
         // A list of regions and their L10n mappings.
         REGION_CHOICES_SLUG: {

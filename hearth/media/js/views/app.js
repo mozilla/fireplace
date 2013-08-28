@@ -58,8 +58,8 @@ define('views/app',
         builder.z('title', gettext('Loading...'));
         builder.z('pagetitle', gettext('App Details'));
 
-        builder.onload('app-data', function() {
-            var app = builder.results['app-data'];
+        var sync = true;
+        builder.onload('app-data', function(app) {
             builder.z('title', app.name);
 
             z.page.trigger('populatetray');
@@ -78,11 +78,12 @@ define('views/app',
                 );
             }
 
-            tracking.setVar(6, 'App name', app.name, 3);
-            tracking.setVar(7, 'App ID', app.id, 3);
-            tracking.setVar(8, 'App developer', app.author, 3);
-            tracking.setVar(9, 'App view source', utils.getVars().src || 'direct', 3);
-            tracking.setVar(10, 'App price', app.payment_required ? 'paid' : 'free', 3);
+            if (!sync) return;
+            tracking.setPageVar(6, 'App name', app.name, 3);
+            tracking.setPageVar(7, 'App ID', app.id, 3);
+            tracking.setPageVar(8, 'App developer', app.author, 3);
+            tracking.setPageVar(9, 'App view source', utils.getVars().src || 'direct', 3);
+            tracking.setPageVar(10, 'App price', app.payment_required ? 'paid' : 'free', 3);
 
         }).onload('ratings', function() {
             var reviews = $('.detail .reviews li');
@@ -95,5 +96,6 @@ define('views/app',
                 }
             }
         });
+        sync = false;
     };
 });
