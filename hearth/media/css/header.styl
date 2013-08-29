@@ -29,11 +29,6 @@
     }
 }
 
-[data-page-type~="detail"] .header {
-    // Make the border lighter since there's no secondary header on this page.
-    border-bottom-color: $salt-flat-white;
-}
-
 // # for the primary site header *only*. If you need to generalize a style in here, move it.
 .site-header {
     display: block;
@@ -424,15 +419,21 @@ main {
     }
 }
 
+@media (max-width: 709px) {
+    [data-page-type~="detail"] .header {
+        // Make the border lighter since there's no secondary header on this page.
+        border-bottom-color: $salt-flat-white;
+    }
+}
+
 @media (min-width: 710px) {
     .site-header {
-        border-top: 0;
         border-bottom: 1px solid $cloud-gray;
+        border-top: 0;
         &:before, &:after {
             display: none;
         }
     }
-
     main {
         padding: 86px 0 48px;  // 48px padding + 38px to offset header
         &:before {
