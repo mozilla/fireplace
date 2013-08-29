@@ -107,14 +107,14 @@ define('mobilenetwork',
 
         // Poland
         260: {
-            2: 'deutsche_telekom',
+            2: 'deutsche_telekom'
         },
 
         // Greece
         202: {
             // This actually belongs to Vodafone, which DT owns
-            5: 'deutsche_telekom',
-        }
+            5: 'deutsche_telekom'
+        },
 
         // Mexico
         334: {
