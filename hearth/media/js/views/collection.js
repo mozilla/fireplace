@@ -1,4 +1,4 @@
-define('views/collection', ['l10n', 'models'], function(l10n, models) {
+define('views/collection', ['l10n', 'models', 'utils'], function(l10n, models, utils) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -9,7 +9,7 @@ define('views/collection', ['l10n', 'models'], function(l10n, models) {
         builder.start('collection.html', {slug: slug}).done(function() {
             var collection = builder.results['collection'];
             if (collection) {
-                builder.z('title', collection.name);
+                builder.z('title', utils.translate(collection.name));
             }
         });
 

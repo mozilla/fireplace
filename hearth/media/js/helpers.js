@@ -69,6 +69,15 @@ define('helpers',
         return obj.reduce(function(mem, num) {return mem + num;}, 0);
     };
 
+    // Credit to ngoke and potch.
+    filters.hex2rgba = function(hex, o) {
+        hex = parseInt(hex.substring(hex[0] == '#' ? 1 : 0), 16);
+        return 'rgba(' +
+            (hex >> 16) + ',' +
+            ((hex & 0x00FF00) >> 8) + ',' +
+            (hex & 0x0000FF) + ',' + o + ')';
+    }
+
     // Functions provided in the default context.
     var helpers = {
         api: require('urls').api.url,
