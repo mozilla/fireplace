@@ -19,6 +19,9 @@ define('helpers',
     filters.urlunparam = utils.urlunparam;
 
     safe_filter('nl2br', function(obj) {
+        if (typeof obj !== 'string') {
+            return obj;
+        }
         return obj.replace(/\n/g, '<br>');
     });
 
