@@ -60,13 +60,15 @@ define('login',
                 pending_logins = [];
             }
         };
+        if (settings.persona_unverified_issuer) {
+            // We always need to force a specific issuer because bridged IdPs don't work with verified/unverified.
+            // See bug 910938.
+            opt.experimental_forceIssuer = settings.persona_unverified_issuer;
+        }
         if (!navigator.id._shimmed) {
             // When on B2G (i.e. no shim), we don't require new accounts to verify their email
             // address. When on desktop, we do require verification.
-            _.extend(opt, {
-                experimental_forceIssuer: settings.persona_unverified_issuer || null,
-                experimental_allowUnverified: true
-            });
+            opt.experimental_allowUnverified = true;
         }
 
         if (!capabilities.phantom) {
@@ -89,7 +91,7 @@ define('login',
 
         requests.post(urls.api.url('login'), data).done(function(data) {
             var should_reload = !user.logged_in();
-            
+
             user.set_token(data.token, data.settings);
             user.update_permissions(data.permissions);
             console.log('Login succeeded, preparing the app');
