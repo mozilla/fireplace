@@ -28,7 +28,7 @@
                  data-href="{{ this.resource_uri }}"
                  data-app="{{ slug }}">{{ _('Delete') }}</a></li>
         {% endif %}
-        {% if not this.is_author %}
+        {% if not this.is_author and not this.has_flagged %}
           <li><a class="flag post" data-action="report" href="#">{{ _('Report') }}</a></li>
         {% endif %}
       </ul>
