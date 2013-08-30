@@ -22,7 +22,7 @@ suite.run('/', function(test, waitFor) {
         assert.selectorDoesNotExist('#featured');
         assert.selectorDoesNotExist('.search-listing li:nth-child(12)');
 
-        assert.hasText('#search-results h2', '24 Results');
+        assert.hasText('#search-results h2', '25 Results');
         assert.visible('.search-listing li a.mkt-tile');
         assert.visible('#search-results .expand-toggle');
 
@@ -38,7 +38,7 @@ suite.run('/', function(test, waitFor) {
         assert.URL(/\/search\?q=test/);
         suite.capture('search_loadedmore.png');
 
-        assert.hasText('#search-results h2', '24 Results');
+        assert.hasText('#search-results h2', '25 Results');
         assert.selectorExists('.search-listing li:nth-child(12)');
         assert.selectorDoesNotExist('.search-listing li:nth-child(22)');
 
@@ -57,7 +57,7 @@ suite.run('/', function(test, waitFor) {
         assert.URL(/\/search\?q=test/);
         suite.capture('search_loadedmore_cacherewriting.png');
 
-        assert.hasText('#search-results h2', '24 Results');
+        assert.hasText('#search-results h2', '25 Results');
         assert.selectorExists('.search-listing li:nth-child(12)');
         assert.selectorDoesNotExist('.search-listing li:nth-child(22)');
 
