@@ -36,29 +36,7 @@ define('helpers',
         return 'href="' + utils.escape_(obj) + '" target="_blank"';
     });
 
-    filters.translate = function(data, default_language, lang) {
-        if (typeof data === 'string') {
-            return data;
-        }
-        // TODO: Make this a setting somewhere.
-        default_language = default_language || 'en-US';
-        lang = lang || helpers.language;
-        if (lang in data) {
-            return data[lang];
-        }
-        var short_lang = lang.split('-')[0];
-        if (short_lang in data) {
-            return data[short_lang];
-        }
-        if (typeof default_language === 'string') {
-            return data[default_language];
-        } else if (typeof default_language === 'object' &&
-                   'default_language' in default_language) {
-            return data[default_language.default_language];
-        }
-        for (var x in data) { return data[x]; }
-        return '';
-    };
+    filters.translate = utils.translate;
 
     filters.numberfmt = function(num) {
         if (typeof num === 'number' && num.toLocaleString) {

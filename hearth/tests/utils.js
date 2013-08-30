@@ -99,4 +99,20 @@ test('datetime', function(done) {
     done();
 });
 
+test('translate', function(done) {
+    var dlobj = {'default_language': 'def_loc'};
+
+    eq_(filters.translate('foobar', dlobj, 'en-CA'), 'foobar');
+    eq_(filters.translate({'en-CA': 'foobar', 'en-US': 'us'}, dlobj, 'en-CA'),
+        'foobar');
+    eq_(filters.translate({'en': 'foobar', 'en-US': 'us'}, dlobj, 'en-CA'),
+        'foobar');
+    eq_(filters.translate({'blah': 'blah', 'bar': '1'}, 'bar', 'es-PD'), '1');
+    eq_(filters.translate({'blah': 'blah', 'def_loc': '2'}, dlobj, 'es-PD'), '2');
+    eq_(filters.translate({'blah': '3'}, dlobj, 'es-PD'), '3');
+    eq_(filters.translate({'foo': 'bar', 'en-US': '3'}, null, 'es-PD'), '3');
+    eq_(filters.translate({}, dlobj, 'es-PD'), '');
+    done();
+});
+
 })();

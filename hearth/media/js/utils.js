@@ -124,6 +124,31 @@ define('utils', ['jquery', 'underscore'], function($, _) {
                 .value();
     }
 
+    function translate(data, default_language, lang) {
+        if (typeof data === 'string') {
+            return data;
+        }
+        // TODO: Make this a setting somewhere.
+        default_language = default_language || 'en-US';
+        lang = lang || (window.navigator.l10n ? window.navigator.l10n.language : 'en-US');
+        if (lang in data) {
+            return data[lang];
+        }
+        var short_lang = lang.split('-')[0];
+        if (short_lang in data) {
+            return data[short_lang];
+        }
+        if (typeof default_language === 'string') {
+            return data[default_language];
+        } else if (typeof default_language === 'object' &&
+                   'default_language' in default_language &&
+                   default_language.default_language in data) {
+            return data[default_language.default_language];
+        }
+        for (var x in data) { return data[x]; }
+        return '';
+    }
+
     var osStrings = {
         'windows': 'Windows',
         'mac': 'Mac',
@@ -154,7 +179,8 @@ define('utils', ['jquery', 'underscore'], function($, _) {
         'querystring': querystring,
         'urlencode': urlencode,
         'urlparams': urlparams,
-        'urlunparam': urlunparam
+        'urlunparam': urlunparam,
+        'translate': translate
     };
 
 });
