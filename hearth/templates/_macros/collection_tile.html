@@ -1,10 +1,13 @@
 {% macro collection_tile(collection, link=false, src='') %}
   {% if link %}<a href="{{ url('collection', [collection.slug])|urlparams(src=src) }}">{% endif %}
-    <section class="collection main {{ collection.layout_type }}"
-      {% if collection.icon %}style="background-image: url({{ collection.icon }})"{% endif %}>
+    <section
+      class="collection main {{ collection.layout_type }}"
+      style="background-image:url({{ api('collection_image', [collection.slug])|urlunparam(['_user']) }})">
       <header
-        style="{% if collection.background_color %}background-color: {{ collection.background_color }};{% endif %}{% if collection.text_color %}color: {{ collection.text_color }};{% endif %}">
-        <h2 style="color: {{ collection.text_color }}">{{ collection.name|translate(collection) }}</h2>
+        style="{% if collection.background_color %}background-color:{{ collection.background_color }};{% endif %}{% if collection.text_color %}color:{{ collection.text_color }};{% endif %}">
+        <h2 style="color:{{ collection.text_color }}">
+          {{ collection.name|translate(collection) }}
+        </h2>
         <p class="owner">{{ collection.author }}</p>
       </header>
     </section>

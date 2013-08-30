@@ -4,12 +4,10 @@
 {% set endpoint=api('collection', [slug]) %}
 
 <section class="main">
-  {% defer (url=endpoint, id='collection') %}
+  {% defer (url=endpoint, id='collection', as='collection', key=slug) %}
     {{ collection_tile(this) }}
-  {% end %}
-  {% defer (url=endpoint, pluck='apps', as='app') %}
     <ol class="container listing only-logged-in c">
-      {% for result in this %}
+      {% for result in this.apps %}
         <li class="item result app c">
           {{ market_tile(result, link=true, src='collection') }}
         </li>
