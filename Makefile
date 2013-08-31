@@ -83,10 +83,9 @@ includes: raw_includes
 
 	# This generates a BUILD_ID for zamboni so that we can cachebust
 	# the assets on the CDN.
-	@ls ../zamboni/ && \
-		rm -f ../zamboni/build_fireplace.py && \
-		echo "#!/usr/bin/env python\n\nBUILD_ID = '"$(VERSION_INT)"'" > ../zamboni/build_fireplace.py
-	@echo "Created file: ../zamboni/build_$(REPO).py"
+	@rm -f hearth/media/build_fireplace.py && \
+		echo "#!/usr/bin/env python\n\nBUILD_ID = '"$(VERSION_INT)"'" > hearth/media/build_fireplace.py
+	@echo "Created file: hearth/media/build_$(REPO).py"
 
 
 lint:
