@@ -1,3 +1,4 @@
+REPO = "fireplace"
 UUID = "8af8c763-da9b-444d-a911-206f9e225b55"
 VERSION = `date "+%Y.%m.%d_%H.%M.%S"`
 VERSION_INT = $(shell date "+%Y%m%d%H%M%S")
@@ -79,6 +80,14 @@ includes: raw_includes
 	rm -f hearth/media/include.css
 	mv hearth/media/include.js hearth/media/js/
 	./node_modules/.bin/uglifyjs hearth/media/js/include.js -o hearth/media/js/include.js -m -c --screw-ie8
+
+	# This generates a BUILD_ID for zamboni so that we can cachebust
+	# the assets on the CDN.
+	@ls ../zamboni/ && \
+		rm -f ../zamboni/build_fireplace.py && \
+		echo "#!/usr/bin/env python\n\nBUILD_ID = '"$(VERSION_INT)"'" > ../zamboni/build_fireplace.py
+	@echo "Created file: ../zamboni/build_$(REPO).py"
+
 
 lint:
 	# You need closure-linter installed for this.
