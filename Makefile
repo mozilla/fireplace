@@ -81,8 +81,8 @@ includes: raw_includes
 	mv hearth/media/include.js hearth/media/js/
 	./node_modules/.bin/uglifyjs hearth/media/js/include.js -o hearth/media/js/include.js -m -c --screw-ie8
 
-	# This generates a BUILD_ID for zamboni so that we can cachebust
-	# the assets on the CDN.
+	@# This generates a BUILD_ID for zamboni so that we can cachebust
+	@# the assets on the CDN.
 	@rm -f hearth/media/build_fireplace.py && \
 		echo "#!/usr/bin/env python\n\nBUILD_ID = '"$(VERSION_INT)"'" > hearth/media/build_fireplace.py
 	@echo "Created file: hearth/media/build_$(REPO).py"
