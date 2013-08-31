@@ -340,7 +340,7 @@ define('mobilenetwork',
         }
 
         // Get region from settings saved to localStorage.
-        region = user.get_setting('region') || region;
+        region = GET.region || user.get_setting('region') || region;
 
         // If it turns out the region is null, when we get a response from an
         // API request, we look at the `API-Filter` header to determine the region
