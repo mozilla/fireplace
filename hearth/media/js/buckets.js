@@ -28,6 +28,17 @@ define('buckets', [], function() {
         }
     }
 
+    var has_gum = prefixed('getUserMedia');
+    if (has_gum && navigator.mozGetUserMedia) {
+        // Gecko 18's gum is a noop. FFFFFFFFFUUUUUUUUUUUUUU
+        try {
+            navigator.mozGetUserMedia(); // Should throw a TypeError.
+            has_gum = false;
+        } catch(e) {}
+    }
+
+    var has_audiocontext = !!(window.webkitAudioContext || window.AudioContext);
+
     var capabilities = [
         'mozApps' in navigator,
         'mozApps' in navigator && navigator.mozApps.installPackage,
@@ -56,19 +67,34 @@ define('buckets', [], function() {
         window.screen.width <= 540 && window.screen.height <= 960,  // qHD support
         !!aelem.canPlayType('audio/mpeg').replace(/^no$/, ''),  // mp3 support
         !!(window.Audio),  // Audio Data API
-        !!(window.webkitAudioContext || window.AudioContext),  // Web Audio API
+        has_audiocontext,  // Web Audio API
         !!velem.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/,''),  // H.264
         !!velem.canPlayType('video/webm; codecs="vp8"').replace(/^no$/,''),  // WebM
         !!prefixed('cancelFullScreen', document),  // Full Screen API
         !!prefixed('getGamepads', navigator),  // Gamepad API
-        !!(prefixed('persistentStorage') || window.StorageInfo)  // Quota Management API
+        !!(prefixed('persistentStorage') || window.StorageInfo),  // Quota Management API
+        // WebRTC:
+        has_gum && !prefixed('cameras', navigator),  // Can take photos
+        has_gum && has_audiocontext &&
+            !!((new (window.AudioContext || window.webkitAudioContext)()).createMediaStreamSource),  // Can record audio
+        has_gum && false,  // XXX: Google WebRTC issue 2088
+        'MediaStream' in window,
+        'DataChannel' in window,
+        prefixed('RTCPeerConnection'),
+        prefixed('SpeechSynthesisEvent'),  // WebSpeech Synthesis
+        prefixed('SpeechInputEvent'),  // WebSpeech Input
+        prefixed('requestPointerLock', document.documentElement),  // Pointer lock
+        prefixed('notification', navigator),  // TODO: window.webkitNotifications?
+        prefixed('alarms', navigator),  // Alarms
+        'mozSystem' in (new XMLHttpRequest()),  // mozSystemXHR
+        prefixed('TCPSocket', navigator)  // mozTCPSocket/mozTCPSocketServer
     ];
 
     var profile = parseInt(capabilities.map(function(x) {return !!x ? '1' : '0';}).join(''), 2).toString(16);
     // Add a count.
     profile += '.' + capabilities.length;
     // Add a version number.
-    profile += '.1';
+    profile += '.2';
 
     return {
         get_profile: function() {return profile;},
