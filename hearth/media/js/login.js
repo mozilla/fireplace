@@ -53,6 +53,7 @@ define('login',
         var opt = {
             // termsOfService: '/terms-of-use',
             // privacyPolicy: '/privacy-policy',
+            siteLogo: settings.persona_site_logo,
             oncancel: function() {
                 console.log('Persona login cancelled');
                 z.page.trigger('login_cancel');
