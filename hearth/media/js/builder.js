@@ -164,7 +164,7 @@ define('builder',
 
                             // Now update the response with the values from the model cache
                             // For details, see bug 870447
-                            if ('as' in signature) {
+                            if (data && 'as' in signature) {
                                 var resp = data;
                                 var plucked = 'pluck' in signature;
                                 var uncaster = models(signature.as).uncast;
