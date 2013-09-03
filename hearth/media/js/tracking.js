@@ -52,7 +52,7 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
         document.body.appendChild(ga);
     }
 
-    function setupUATracking(id, initial_url, clientID) {
+    function setupUATracking(id, initial_url, clientID, sect, sect_index) {
         window.GoogleAnalyticsObject = 'ga';
         window.ga = window.ga || function() {
             (window.ga.q = window.ga.q || []).push(arguments);
@@ -69,8 +69,8 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
             storage: 'none',  // Don't use cookies/localStorage.
             clientId: clientID
         });
-        if (settings.tracking_site_section) {
-            window.ga('set', 'dimension' + settings.tracking_section_index, settings.tracking_section);
+        if (sect) {
+            window.ga('set', 'dimension' + sect_index, sect);
         }
         window.ga('send', 'pageview', initial_url);
     }
@@ -106,7 +106,8 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
                 '<script>',
                 '(',
                 setupUATracking.toString(),
-                ')("' + settings.ua_tracking_id + '", "' + get_url() + '", "' + clientID + '");',
+                ')("' + settings.ua_tracking_id + '", "' + get_url() + '", "' + clientID + '", "' +
+                    settings.tracking_site_section + '", ' + settings.tracking_site_section_index + ');',
                 'var origin = "' + origin + '";',
                 "window.addEventListener('message', function(e) {",
                 '  if (e.origin !== origin) {',
@@ -114,7 +115,7 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
                 '    return;',
                 '  }',
                 '  window.ga.apply(window.ga, JSON.parse(e.data));',
-                '  e.source.postMessage("[potatolytics] Confirmation: " + e.data, e.origin);',
+                '  e.source.postMessage("[potatolytics][echo] " + e.data, e.origin);',
                 '}, false);',
                 '</script>'
             ].join('\n');
@@ -126,7 +127,8 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
             potato_initialized = true;
         } else {
             console.log('Setting up UA tracking without Potatolytics');
-            setupUATracking(settings.ua_tracking_id, get_url(), clientID);
+            setupUATracking(settings.ua_tracking_id, get_url(), clientID,
+                            settings.tracking_site_section, settings.tracking_site_section_index);
         }
     }
     console.log('Tracking initialized');
