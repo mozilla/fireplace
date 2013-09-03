@@ -172,6 +172,9 @@ define('builder',
                                 if (plucked) {
                                     resp = resp[signature.pluck];
                                 }
+                                if (!resp) {
+                                    return;
+                                }
                                 if (Array.isArray(resp)) {
                                     for (var i = 0; i < resp.length; i++) {
                                         resp[i] = uncaster(resp[i]);
