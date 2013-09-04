@@ -126,7 +126,6 @@ require.config({
         z.page.on('before_login before_logout', function() {
             var cat_url = require('urls').api.url('categories');
             require('cache').purge(function(key) {return key != cat_url;});
-            require('models')('app').purge();
         });
 
         z.body.on('click', '.site-header .back', function(e) {
