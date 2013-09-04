@@ -15,15 +15,23 @@ define('buckets', [], function() {
         if (!context) {
             context = window;
         }
-        if (property in context) {
-            return context[property];
+        try {
+            if (property in context) {
+                return context[property];
+            }
+        } catch(e) {
+            return false;
         }
         // Camel-case it.
         property = property[0].toUpperCase() + property.substr(1);
 
         for (var i = 0, e; e = prefixes[i++];) {
-            if (!!(context[e + property])) {
-                return context[e + property];
+            try {
+                if (!!(context[e + property])) {
+                    return context[e + property];
+                }
+            } catch(e) {
+                return false;
             }
         }
     }
