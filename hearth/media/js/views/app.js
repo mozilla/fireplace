@@ -60,7 +60,7 @@ define('views/app',
 
         var sync = true;
         builder.onload('app-data', function(app) {
-            builder.z('title', app.name);
+            builder.z('title', utils.translate(app.name));
 
             z.page.trigger('populatetray');
             overflow.init();

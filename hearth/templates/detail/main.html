@@ -60,7 +60,7 @@
     {% defer (url=endpoint, as='app', key=slug) %}
       <div class="description-wrapper truncated">
         <p class="description" itemprop="description">
-          {{ this.description|nl2br }}
+          {{ this.description|translate(this)|nl2br }}
         </p>
       </div>
       <a href="#" class="show-toggle" data-toggle-text="{{ _('Less&hellip;') }}">{{ _('More&hellip;') }}</a>

@@ -33,7 +33,7 @@
     {% if link %}itemscope itemtype="http://schema.org/SoftwareApplication"{% endif %}>
     <img class="icon" alt="" src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
     <div class="info">
-      <h3 itemprop="name">{{ app.name }}</h3>
+      <h3 itemprop="name">{{ app.name|translate(app) }}</h3>
       {% if app.author %}
         {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
         <div class="author lineclamp vital" itemprop="creator">{{ app.author }}</div>
