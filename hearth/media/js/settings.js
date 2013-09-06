@@ -4,6 +4,8 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
     var base_settings = JSON.parse(document.body.dataset.settings || '{}');
     base_settings = _.defaults(base_settings, settings_local);
 
+    var flags = JSON.parse(document.body.dataset.flags || '{}');
+
     return _.defaults(base_settings, {
         app_name: 'fireplace',
         init_module: 'marketplace',
@@ -44,6 +46,9 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         newsletter_enabled: true,
         cache_rewriting_enabled: true,
         potatolytics_enabled: false,
+
+        // Waffle flags/switches from the server.
+        flags: flags,
 
         // Enabling this settings will mock compatibility with all apps.
         never_incompat: false,
