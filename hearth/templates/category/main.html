@@ -27,18 +27,20 @@
 {% except %}
 {% end %}
 
-{% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='app') %}
-  <section id="featured" class="main category featured full c">
-    <header class="featured-header c">
-      <h3>{{ _('Featured Apps') }}</h3>
-      <a href="{{ featured_url }}" class="view-all">{{ _('View All') }}</a>
-    </header>
-    <ol class="grid c">
-      {% for result in this %}
-        <li>{{ market_tile(result, link=true, src='featured', tray=False) }}</li>
-      {% endfor %}
-    </ol>
-  </section>
+{% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection') %}
+  {% if this.length %}
+    <section id="featured" class="main category featured full c">
+      <header class="featured-header c">
+        <h3>{{ _('Featured Apps') }}</h3>
+        <a href="{{ featured_url }}" class="view-all">{{ _('View All') }}</a>
+      </header>
+      <ol class="grid c">
+        {% for result in this[0].apps %}
+          <li>{{ market_tile(result, link=true, src='featured', tray=False) }}</li>
+        {% endfor %}
+      </ol>
+    </section>
+  {% endif %}
 {% placeholder %}
 {# Placeholder is empty because this section is often empty, and we already
    have a placeholder for the Popular/New sections below. #}
