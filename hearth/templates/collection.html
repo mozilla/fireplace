@@ -6,13 +6,6 @@
 <section class="main">
   {% defer (url=endpoint, id='collection', as='collection', key=slug) %}
     {{ collection_tile(this) }}
-    <ol class="container listing only-logged-in c">
-      {% for result in this.apps %}
-        <li class="item result app c">
-          {{ market_tile(result, link=true, src='collection') }}
-        </li>
-      {% endfor %}
-    </ol>
   {% placeholder %}
     <p class="spinner alt spaced"></p>
   {% except %}
@@ -20,5 +13,18 @@
       <h2>{{ _('Oh no!') }}</h2>
       <p>{{ _('An internal server error occurred. Please try again later.') }}</p>
     </div>
+  {% end %}
+  {% defer (url=endpoint, id='apps', pluck='apps', as='app') %}
+    <ol class="container listing only-logged-in c">
+      {% for result in this.apps %}
+        <li class="item result app c">
+          {{ market_tile(result, link=true, src='collection') }}
+        </li>
+      {% endfor %}
+    </ol>
+  {% empty %}
+    {# L10n: Please do your best to capture the essence of Scooby Doo. #}
+    {{ _("Ruh roh! No apps here, Shaggy!") }}
+  {% except %}
   {% end %}
 </section>
