@@ -74,9 +74,9 @@ define('views/search',
                     // filtering on desktop.
                 } else if (value.indexOf('sort=') === 0) {
                     query.sort = value.slice(5);
-                } else if (value === ':popular') {
+                } else if (value === 'popular') {
                     query.sort = 'downloads';
-                } else if (value === ':new') {
+                } else if (value === 'new') {
                     query.sort = 'created';
                 } else if (value.indexOf('manifest=') === 0) {
                     query.manifest_url = value.slice(9);
