@@ -83,8 +83,6 @@ define('views/search',
                 } else if (value.indexOf('pro=') === 0) {
                     query.pro = value.slice(4);
                 }
-                // TODO: Add ":compatible" mode that triggers buchet
-                // filtering on desktop.
             } else {
                 // Include anything that's not a keyword in the `q` search term.
                 query.q.push(value);
@@ -123,6 +121,8 @@ define('views/search',
         } else if (query === ':debug') {
             z.page.trigger('navigate', urls.reverse('debug'));
             return;
+        } else if (query === ':' || query === ':help') {
+            window.location = 'https://github.com/mozilla/fireplace/wiki/QuickSearch-(PotatoSearch™)';
         }
         $q.trigger('blur');
         z.page.trigger('search', {q: query});
