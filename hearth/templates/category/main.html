@@ -19,9 +19,7 @@
   {% if this and this.length %}
     {# We're interested in the first item only. #}
     {% for collection in this.slice(0, 1) %}
-      {% if collection.is_public %}
-        {{ collection_tile(collection, link=true, src='home') }}
-      {% endif %}
+      {{ collection_tile(collection, link=true, src='home') }}
     {% endfor %}
   {% endif %}
 {% except %}
