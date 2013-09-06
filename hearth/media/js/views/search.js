@@ -65,9 +65,26 @@ define('views/search',
                     query.premium_types = 'premium-inapp';
                 } else if (value === 'premium-other' || value === 'paid-other') {
                     query.premium_types = 'premium-other';
-                } else if (value.indexOf('cat-') === 0) {
+                } else if (value.indexOf('cat=') === 0) {
                     query.cat = value.slice(4);
+                } else if (value === 'desktop' || value === 'mobile' ||
+                           value === 'tablet' || value === 'firefoxos') {
+                    query.device = value;
+                    // TODO: Add ":compatible" mode that triggers buchet
+                    // filtering on desktop.
+                } else if (value.indexOf('sort=') === 0) {
+                    query.sort = value.slice(5);
+                } else if (value === ':popular') {
+                    query.sort = 'downloads';
+                } else if (value === ':new') {
+                    query.sort = 'created';
+                } else if (value.indexOf('manifest=') === 0) {
+                    query.manifest_url = value.slice(9);
+                } else if (value.indexOf('pro=') === 0) {
+                    query.pro = value.slice(4);
                 }
+                // TODO: Add ":compatible" mode that triggers buchet
+                // filtering on desktop.
             } else {
                 // Include anything that's not a keyword in the `q` search term.
                 query.q.push(value);
