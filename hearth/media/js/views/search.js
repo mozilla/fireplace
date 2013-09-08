@@ -120,9 +120,12 @@ define('views/search',
             z.body.toggleClass('roll');
         } else if (query === ':debug') {
             z.page.trigger('navigate', urls.reverse('debug'));
+            $q.val('');
             return;
         } else if (query === ':' || query === ':help') {
-            window.location = 'https://github.com/mozilla/fireplace/wiki/QuickSearch-(PotatoSearch™)';
+            window.open('https://github.com/mozilla/fireplace/wiki/QuickSearch-(PotatoSearch™)');
+            $q.val('');
+            return;
         }
         $q.trigger('blur');
         z.page.trigger('search', {q: query});
