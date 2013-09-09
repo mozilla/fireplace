@@ -25,15 +25,16 @@
 {% except %}
 {% end %}
 
-{% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection') %}
-  {% if this.length %}
+{% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection' if settings.flags.rocketfuel else 'app') %}
+  {% set featured_apps = this.length and this[0].apps if settings.flags.rocketfuel else this %}
+  {% if featured_apps %}
     <section id="featured" class="main category featured full c">
       <header class="featured-header c">
         <h3>{{ _('Featured Apps') }}</h3>
         <a href="{{ featured_url }}" class="view-all">{{ _('View All') }}</a>
       </header>
       <ol class="grid c">
-        {% for result in this[0].apps %}
+        {% for result in featured_apps %}
           <li>{{ market_tile(result, link=true, src='featured', tray=False) }}</li>
         {% endfor %}
       </ol>
