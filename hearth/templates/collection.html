@@ -11,7 +11,7 @@
   {% except %}
     <div class="detailed-error">
       <h2>{{ _('Oh no!') }}</h2>
-      <p>{{ _('An internal server error occurred. Please try again later.') }}</p>
+      <p>{{ _('We could not load that collection. Please try again later.') }}</p>
     </div>
   {% end %}
   {% defer (url=endpoint, id='apps', pluck='apps', as='app') %}
