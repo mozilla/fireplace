@@ -38,7 +38,8 @@ if (!window.define) {
 
     // Cachebust the .js file for our CDN.
     var build_id = document.body.dataset.buildIdJs || +new Date();
-    document.write('<script src="/locales/' + locale + '.js?b=' + build_id + '"></script>');
+    var repo = document.body.dataset.repo;
+    document.write('<script src="/media/' + (repo ? repo + '/' : '') + 'locales/' + locale + '.js?b=' + build_id + '"></script>');
 
 } else {
     define('l10n', ['format'], function(format) {
