@@ -34,13 +34,5 @@ log: clean
 clean:
 	commonplace clean
 
-includes:
-	commonplace includes
-	@# This generates a BUILD_ID for zamboni so that we can cachebust
-	@# the assets on the CDN.
-	@rm -f hearth/media/build_$(REPO).py && \
-		echo "#!/usr/bin/env python\n\nBUILD_ID = '"$(VERSION_INT)"'" > /var/tmp/build_$(REPO).py
-	@echo "Created file: /var/tmp/build_$(REPO).py"
-
 deploy:
 	git fetch && git reset --hard origin/master && npm install && make includes

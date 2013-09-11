@@ -23,7 +23,7 @@ def update():
     with lcd(FIREPLACE):
         local('npm install')
         local('npm install -g commonplace')
-        local('make includes')
+        local('commonplace includes')
 
 
 @task
