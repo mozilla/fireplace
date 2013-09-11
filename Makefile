@@ -3,40 +3,11 @@ UUID = "8af8c763-da9b-444d-a911-206f9e225b55"
 VERSION = `date "+%Y.%m.%d_%H.%M.%S"`
 VERSION_INT = $(shell date "+%Y%m%d%H%M%S")
 TMP = _tmp
-TEMPLATES = $(wildcard \
-	hearth/templates/*.html \
-	public/templates/**/*.html \
-)
-STYL_FILES = $(wildcard \
-	hearth/media/css/*.styl \
-	public/media/css/**/*.styl \
-)
-CSS_FILES = $(STYL_FILES:.styl=.styl.css)
-COMPILED_TEMPLATES = hearth/templates.js
 
-compile: $(COMPILED_TEMPLATES) $(CSS_FILES)
+compile:
+	commonplace compile
 
-fastcompile:
-	node damper.js --compile
-
-$(COMPILED_TEMPLATES): $(TEMPLATES)
-	node damper.js --compile nunjucks
-
-%.styl.css: %.styl
-	node damper.js --compile stylus --path $<
-
-l10n: clean fastcompile
-	./locale/omg_new_l10n.sh
-
-langpacks:
-	mkdir -p hearth/media/locales
-	for po in `find locale -name "*.po"` ; do \
-		lang=`basename \`dirname \\\`dirname $$po\\\`\` | tr "_" "-"`; \
-		node scripts/generate_langpacks.js $$po $$lang; \
-		mv $$po.js hearth/media/locales/$$lang.js ; \
-	done
-
-test: clean fastcompile
+test: clean compile
 	cd smokealarm ; \
 	casperjs test tests
 
@@ -61,37 +32,15 @@ log: clean
 	@echo "Created file: yulelog_$(NAME)_$(VERSION_INT).zip"
 
 clean:
-	@rm -rf TMP \
-		$(CSS_FILES) \
-		$(COMPILED_TEMPLATES) \
-		hearth/locales/* \
-		hearth/media/locales/* \
-		hearth/media/css/include.css \
-		hearth/media/js/include.*
+	commonplace clean
 
-raw_includes: clean compile langpacks
-	echo "/* $(VERSION) */" > hearth/media/include.css
-	echo "/* $(VERSION) */" > hearth/media/include.js
-	cat amd/amd.js >> hearth/media/include.js
-	node build.js
-
-includes: raw_includes
-	./node_modules/.bin/cleancss hearth/media/include.css > hearth/media/css/include.css
-	cleancss hearth/media/include.css > hearth/media/css/include.css
-	rm -f hearth/media/include.css
-	mv hearth/media/include.js hearth/media/js/
-	./node_modules/.bin/uglifyjs hearth/media/js/include.js -o hearth/media/js/include.js -m -c --screw-ie8
-
+includes:
+	commonplace includes
 	@# This generates a BUILD_ID for zamboni so that we can cachebust
 	@# the assets on the CDN.
 	@rm -f hearth/media/build_$(REPO).py && \
 		echo "#!/usr/bin/env python\n\nBUILD_ID = '"$(VERSION_INT)"'" > /var/tmp/build_$(REPO).py
 	@echo "Created file: /var/tmp/build_$(REPO).py"
-
-
-lint:
-	# You need closure-linter installed for this.
-	gjslint --nojsdoc -r hearth/media/js/ -e lib
 
 deploy:
 	git fetch && git reset --hard origin/master && npm install && make includes

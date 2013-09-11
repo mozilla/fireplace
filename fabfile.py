@@ -22,6 +22,7 @@ def pre_update(ref):
 def update():
     with lcd(FIREPLACE):
         local('npm install')
+        local('npm install -g commonplace')
         local('make includes')
 
 
