@@ -403,8 +403,12 @@ def record():
 
 
 @app.route('/')
-@app.route('/<dummy>')
 def index(dummy=None):
+    with open('server.html') as file_:
+        return file_.read()
+        
+@app.route('/<dummy>')
+def dummy(dummy=None):
     with open('server.html') as file_:
         return file_.read()
 
