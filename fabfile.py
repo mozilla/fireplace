@@ -24,6 +24,7 @@ def update():
         local('npm install')
         local('npm install -g commonplace')
         local('commonplace includes')
+        local('commonplace langpacks')
 
 
 @task
