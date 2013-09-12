@@ -5,6 +5,9 @@ var languages = [
     'hu', 'it', 'ja', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'sr-Latn',
     'tr', 'zh-TW', 'dbg'
 ];
+if (document.body.dataset.languages) {
+    languages = JSON.parse(document.body.dataset.languages);
+}
 
 var lang_expander = {
     'en': 'en-US', 'ga': 'ga-IE',
