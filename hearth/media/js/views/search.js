@@ -66,22 +66,27 @@ define('views/search',
                 } else if (value === 'premium-other' || value === 'paid-other') {
                     query.premium_types = 'premium-other';
                 } else if (value.indexOf('cat=') === 0) {
-                    query.cat = value.slice(4);
+                    query.cat = value.split('=')[1];
                 } else if (value === 'desktop' || value === 'mobile' ||
                            value === 'tablet' || value === 'firefoxos') {
                     query.device = value;
                     // TODO: Add ":compatible" mode that triggers buchet
                     // filtering on desktop.
                 } else if (value.indexOf('sort=') === 0) {
-                    query.sort = value.slice(5);
+                    query.sort = value.split('=')[1];
                 } else if (value === 'popular') {
                     query.sort = 'downloads';
                 } else if (value === 'new') {
                     query.sort = 'created';
                 } else if (value.indexOf('manifest=') === 0) {
-                    query.manifest_url = value.slice(9);
+                    query.manifest_url = value.split('=', 1);
                 } else if (value.indexOf('pro=') === 0) {
-                    query.pro = value.slice(4);
+                    query.pro = value.split('=')[1];
+                } else if (value.indexOf('languages=') === 0 ||
+                           value.indexOf('language=') === 0 ||
+                           value.indexOf('langs=') === 0 ||
+                           value.indexOf('lang=') === 0) {
+                    query.languages = value.split('=')[1];
                 }
             } else {
                 // Include anything that's not a keyword in the `q` search term.
