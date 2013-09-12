@@ -47,6 +47,26 @@
 {% except %}
 {% end %}
 
+{% defer (url=endpoint|urlunparam(['sort']), pluck='operator', as='collection') %}
+  {% set apps = this.length and this[0].apps %}
+  {% if apps %}
+    <section id="operator" class="main operator operator-{{ this[0].slug }} category featured full c">
+      <header class="featured-header c">
+        <h3>{{ this[0].name|translate(this[0]) }}</h3>
+        <a href="{{ url('collection', [this[0].slug])|urlparams(src=src) }}" class="view-all">{{ _('View All') }}</a>
+      </header>
+      <ol class="grid c">
+        {% for result in apps %}
+          <li>{{ market_tile(result, link=true, src='featured', tray=False) }}</li>
+        {% endfor %}
+      </ol>
+    </section>
+  {% endif %}
+{% placeholder %}
+{% empty %}
+{% except %}
+{% end %}
+
 <section id="gallery" class="main category gallery full c">
 {% defer (url=endpoint, pluck='objects', as='app', paginate='ol.listing') %}
   {% set paginated = response.meta.total_count > response.meta.limit %}
