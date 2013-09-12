@@ -16,7 +16,7 @@
   {% end %}
   {% defer (url=endpoint, id='apps', pluck='apps', as='app') %}
     <ol class="container listing only-logged-in c">
-      {% for result in this.apps %}
+      {% for result in this %}
         <li class="item result app c">
           {{ market_tile(result, link=true, src='collection') }}
         </li>
