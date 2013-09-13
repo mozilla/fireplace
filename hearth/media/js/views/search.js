@@ -79,7 +79,7 @@ define('views/search',
                 } else if (value === 'new') {
                     query.sort = 'created';
                 } else if (value.indexOf('manifest=') === 0) {
-                    query.manifest_url = value.split('=', 1);
+                    query.manifest_url = value.split('=')[1];
                 } else if (value.indexOf('pro=') === 0) {
                     query.pro = value.split('=')[1];
                 } else if (value.indexOf('languages=') === 0 ||
