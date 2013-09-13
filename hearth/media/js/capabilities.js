@@ -19,7 +19,7 @@ define('capabilities', [], function() {
         'touch': !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch),
         'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance),
         'navPay': !!navigator.mozPay,
-        'webactivities': !!(window.setMessageHandler || window.mozSetMessageHandler),
+        'webactivities': !!(navigator.setMessageHandler || navigator.mozSetMessageHandler),
         'firefoxOS': navigator.mozApps && navigator.mozApps.installPackage &&
                      navigator.userAgent.indexOf('Android') === -1 &&
                      navigator.userAgent.indexOf('Mobile') !== -1,

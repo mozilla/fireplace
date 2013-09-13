@@ -21,7 +21,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
 
         // The list of query string parameters that are not stripped when
         // removing navigation loops.
-        param_whitelist: ['q', 'sort', 'cat'],
+        param_whitelist: ['q', 'sort', 'cat', 'src'],
 
         // The list of models and their primary key mapping. Used by caching.
         model_prototypes: {

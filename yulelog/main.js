@@ -1,5 +1,41 @@
 (function() {
 
+    function log() {
+        // `console.log` wrapper that prefixes log statements.
+        console.log('[yulelog]', Array.prototype.slice.call(arguments, 0).join(' '));
+    }
+
+    // No trailing slash, please.
+    // Note: our Makefile swaps this out when you supply `DOMAIN`
+    // when running `make log`.
+    var MKT_URL = 'https://marketplace.firefox.com';
+    log('MKT_URL:', MKT_URL);
+
+    var activitiesToSend = [];
+
+    function postMessage(msg) {
+        log('postMessaging to ' + MKT_URL + ': ' + JSON.stringify(msg));
+        document.querySelector('iframe').contentWindow.postMessage(msg, MKT_URL);
+    }
+
+    function sendActivities() {
+        log('Sending activities: ' + JSON.stringify(activitiesToSend))
+        if (!activitiesToSend.length) {
+            // The next time we try to append something to `activitiesToSend`,
+            // we'll have already called this function (`sendActivities`)
+            // so just postMessage the message (`msg`) immediately.
+            activitiesToSend = {
+                push: function(msg) {
+                    postMessage(msg);
+                }
+            };
+            return;
+        }
+        while (activitiesToSend.length) {
+            postMessage(activitiesToSend.pop());
+        }
+    }
+
     var qs = '';
     try {
         var conn = navigator.mozMobileConnection;
@@ -10,15 +46,15 @@
             // `lastKnownNetwork`: `{MCC}-{MNC}` (could be different network if roaming)
             var network = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
             qs = '?mcc=' + (network[0] || '') + '&mnc=' + (network[1] || '');
-            console.log('lastKnownNetwork', conn.lastKnownNetwork);
-            console.log('lastKnownHomeNetwork', conn.lastKnownHomeNetwork);
-            console.log('MCC: "' + network[0] + '"');
-            console.log('MNC: "' + network[1] + '"');
+            log('lastKnownNetwork', conn.lastKnownNetwork);
+            log('lastKnownHomeNetwork', conn.lastKnownHomeNetwork);
+            log('MCC: "' + network[0] + '"');
+            log('MNC: "' + network[1] + '"');
         }
     } catch(e) {
         // Fail gracefully if `navigator.mozMobileConnection` gives us problems.
     }
-    var iframeSrc = 'https://marketplace.firefox.com/' + qs;
+    var iframeSrc = MKT_URL + '/' + qs;
     var i = document.createElement('iframe');
     i.seamless = true;
     i.onerror = function() {
@@ -27,18 +63,40 @@
     i.src = iframeSrc;
     document.body.appendChild(i);
 
+    log('Activity support?', !!navigator.mozSetMessageHandler);
+    if (navigator.mozSetMessageHandler) {
+        navigator.mozSetMessageHandler('activity', function(req) {
+            log('Activity name:', req.source.name);
+            log('Activity data:', JSON.stringify(req.source.data));
+            activitiesToSend.push({name: req.source.name, data: req.source.data});
+        });
+    }
+
+    window.addEventListener('message', function(e) {
+        // Receive postMessage from the packaged app and do something with it.
+        log('Handled post message from ' + e.origin + ': ' + JSON.stringify(e.data));
+        if (e.origin !== MKT_URL) {
+            log('Ignored post message from ' + e.origin + ': ' + JSON.stringify(e.data));
+            return;
+        }
+        if (e.data === 'loaded') {
+            log('Preparing to send activities ...');
+            sendActivities();
+        }
+    }, false);
+
     // When refocussing the app, toggle the iframe based on `navigator.onLine`.
     window.addEventListener('focus', toggleOffline, false);
 
     function toggleOffline(init) {
-        console.log('Checking for network connection...')
+        log('Checking for network connection ...');
         if (navigator.onLine === false) {
             // Hide iframe.
-            console.log('Network connection not found; hiding iframe ...');
+            log('Network connection not found; hiding iframe ...');
             document.body.classList.add('offline');
         } else {
             // Show iframe.
-            console.log('Network connection found; showing iframe ...');
+            log('Network connection found; showing iframe ...');
             if (!init) {
                 // Reload the page to reload the iframe.
                 window.location.reload();

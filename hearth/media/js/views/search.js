@@ -175,6 +175,9 @@ define('views/search',
             {params: _.extend({}, params)}
         ).done(function() {
             var results = builder.results['searchresults'];
+            if (params.manifest_url && results.objects.length === 1) {
+                z.page.trigger('divert', [urls.reverse('app', [results.objects[0].slug]) + '?src=' + params.src]);
+            }
             // When there are no results, tell GA (bug 890314)
             if (!results.objects.length) {
                 tracking.trackEvent(
