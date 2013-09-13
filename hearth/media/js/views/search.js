@@ -78,7 +78,8 @@ define('views/search',
                     query.sort = 'downloads';
                 } else if (value === 'new') {
                     query.sort = 'created';
-                } else if (value.indexOf('manifest=') === 0) {
+                } else if (value.indexOf('manifest=') === 0 ||
+                           value.indexOf('manifest_url=') === 0) {
                     query.manifest_url = value.split('=')[1];
                 } else if (value.indexOf('pro=') === 0) {
                     query.pro = value.split('=')[1];
