@@ -1,5 +1,10 @@
 define('log', ['storage', 'utils'], function(storage, utils) {
 
+    if (!('groupCollapsed' in window.console)) {
+        window.console.groupCollapsed = window.console.group = window.console.log;
+        window.console.groupEnd = function() {};
+    }
+
     var slice = Array.prototype.slice;
     var filter;
     var logs;
@@ -42,7 +47,6 @@ define('log', ['storage', 'utils'], function(storage, utils) {
 
                 // TODO: Add colorification support here for browsers that support it.
                 // *cough cough* not firefox *cough*
-
                 console[log_level].apply(console, args);
             };
         }
