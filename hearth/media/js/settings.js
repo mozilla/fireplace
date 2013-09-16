@@ -64,6 +64,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'worldwide': gettext('Worldwide'),
             'br': gettext('Brazil'),
             'co': gettext('Colombia'),
+            'de': gettext('Germany'),
             'gr': gettext('Greece'),
             'hu': gettext('Hungary'),
             'mx': gettext('Mexico'),
