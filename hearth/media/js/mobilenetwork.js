@@ -125,7 +125,10 @@ define('mobilenetwork',
 
         // Hungary
         216: {
-            30: 'deutsche_telekom'
+            1: 'telenor',
+            30: 'deutsche_telekom',
+            // Actually Vodafone but treat like DT
+            70: 'deutsche_telekom'
         },
 
         // Germany
