@@ -45,8 +45,9 @@ define('common/ratingwidget', ['jquery'], function($) {
                 }
             }).on('mouseover', function(evt) {
                 var t = evt.target;
-                if (t.dataset.stars) {
-                    showStars(t.dataset.stars);
+                var stars;
+                if (stars = t.getAttribute('data-stars')) {
+                    showStars(stars);
                 }
             }).on('mouseout', function(evt) {
                 showStars(rating || 0);

@@ -5,8 +5,9 @@ var languages = [
     'hu', 'it', 'ja', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'sr-Latn',
     'tr', 'zh-TW', 'dbg'
 ];
-if (document.body.dataset.languages) {
-    languages = JSON.parse(document.body.dataset.languages);
+var body_langs;
+if (body_langs = document.body.getAttribute('data-languages')) {
+    languages = JSON.parse(body_langs);
 }
 
 var lang_expander = {
@@ -43,8 +44,8 @@ if (!window.define) {
     }
 
     // Cachebust the .js file for our CDN.
-    var build_id = document.body.dataset.buildIdJs || +new Date();
-    var repo = document.body.dataset.repo;
+    var build_id = document.body.getAttribute('data-buildIdJs') || +new Date();
+    var repo = document.body.getAttribute('data-repo');
     document.write('<script src="/media/' + (repo ? repo + '/' : '') + 'locales/' + locale + '.js?b=' + build_id + '"></script>');
 
 } else {
