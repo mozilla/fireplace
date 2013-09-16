@@ -42,9 +42,6 @@ define('mobilenetwork',
         // Serbia
         220: 'rs',
 
-        // Hungary
-        216: 'hu',
-
         // Montenegro
         297: 'me'
     };
@@ -216,11 +213,6 @@ define('mobilenetwork',
         220: {
             1: 'telenor',
             2: 'telenor'
-        },
-
-        // Hungary
-        216: {
-            1: 'telenor'
         },
 
         // Montenegro
