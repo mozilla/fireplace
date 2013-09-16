@@ -79,7 +79,11 @@ require.config({
 
         z.page.one('loaded', function() {
             console.log('Hiding splash screen');
-            $('#splash-overlay').addClass('hide');
+            var splash = $('#splash-overlay').addClass('hide');
+            // Remove the splash screen once it's visible.
+            setTimeout(function() {
+                splash.remove();
+            }, 1500);
         });
 
         // This lets you refresh within the app by holding down command + R.
