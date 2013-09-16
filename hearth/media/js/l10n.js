@@ -16,6 +16,9 @@ var lang_expander = {
 };
 
 if (!window.define) {
+    if (!('language' in navigator)) {
+        navigator.language = navigator.userLanguage || navigator.browserLanguage;
+    }
     function get_locale(locale) {
         if (languages.indexOf(locale) !== -1) {
             return locale;
