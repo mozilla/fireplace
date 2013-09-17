@@ -1,15 +1,15 @@
 {% include '_macros/market_tile.html' %}
 
 <section id="search-results" class="main full c">
-  {% defer (url=endpoint, pluck='featured', as='collection') %}
+  {% defer (url=endpoint, pluck='featured', as='collection' if settings.flags.rocketfuel else 'app') %}
     {% if this.length %}
-      {% set featured = this[0] %}
+      {% set featured_apps = this.length and this[0].apps if settings.flags.rocketfuel else this %}
       <header class="secondary-header c">
         <h2>{{ _('Featured') }}</h2>
         <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
       </header>
       <ol class="container listing search-listing c">
-        {% for result in featured.apps %}
+        {% for result in featured_apps %}
           <li class="item result app c">
             {{ market_tile(result, link=true, src='featured') }}
           </li>
