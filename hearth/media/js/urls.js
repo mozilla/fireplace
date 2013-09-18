@@ -1,6 +1,6 @@
 define('urls',
     ['buckets', 'capabilities', 'format', 'routes_api', 'settings', 'underscore', 'user', 'utils'],
-    function(buckets, caps, format, api_endpoints, settings, _, user) {
+    function(buckets, caps, format, api_endpoints, settings, _, user, utils) {
 
     var group_pattern = /\(.+\)/;
     var optional_pattern = /(\(.*\)|\[.*\]|.)\?/g;
@@ -81,7 +81,7 @@ define('urls',
                     delete args[k];
                 }
             });
-            return require('utils').urlparams(out, args);
+            return utils.urlparams(out, args);
         };
     }
 
@@ -92,7 +92,7 @@ define('urls',
         }
         var url = settings.api_url + format.format(api_endpoints[endpoint], args || []);
         if (params) {
-            return require('utils').urlparams(url, params);
+            return utils.urlparams(url, params);
         }
         return url;
     };

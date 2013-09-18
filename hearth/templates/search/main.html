@@ -2,7 +2,12 @@
 {% include '_macros/more_button.html' %}
 
 <section id="search-results" class="main full c">
-  {% defer (url=apiParams('search', params), pluck='objects', as='app', paginate='ol.listing', id='searchresults') %}
+  {% set api_url = apiParams('search', params) %}
+  {% if params.region %}
+    {# If the user entered PotatoSearch™ `:region=<region>` then update `region`. #}
+    {% set api_url = api_url|urlparams(region=params.region) %}
+  {% endif %}
+  {% defer (url=api_url, pluck='objects', as='app', paginate='ol.listing', id='searchresults') %}
     <header class="secondary-header c">
       <h2 class="linefit">
         {{ _plural('<b>{n}</b> Result', '<b>{n}</b> Results', n=response.meta.total_count) }}

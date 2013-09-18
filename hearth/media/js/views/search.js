@@ -88,6 +88,8 @@ define('views/search',
                            value.indexOf('langs=') === 0 ||
                            value.indexOf('lang=') === 0) {
                     query.languages = value.split('=')[1];
+                } else if (value.indexOf('region=') === 0) {
+                    query.region = value.split('=')[1];
                 }
             } else {
                 // Include anything that's not a keyword in the `q` search term.
