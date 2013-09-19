@@ -2,7 +2,6 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
 
     var enabled = settings.tracking_enabled;
     var actions_enabled = settings.action_tracking_enabled;
-    var track_query_string = settings.track_query_string || true;
 
     var console = log('tracking');
 
@@ -90,8 +89,7 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
     }
 
     function get_url() {
-        var url = window.location.pathname;
-        return track_query_string ? url + window.location.search : url;
+        return window.location.pathname + window.location.search;
     }
 
     if (settings.ga_tracking_id) {

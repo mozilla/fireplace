@@ -58,7 +58,6 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         ua_tracking_id: 'UA-36116321-11',
         tracking_section: 'Consumer',
         tracking_section_index: 3,
-        track_query_string: true,
 
         // A list of regions and their L10n mappings.
         REGION_CHOICES_SLUG: {
