@@ -50,8 +50,12 @@ noscript {
 a {
     text-decoration: none;
     color: $sailor-blue;
+
     &:hover {
         text-decoration: underline;
+    }
+    &:not([href]) {
+        cursor: pointer;
     }
 }
 
