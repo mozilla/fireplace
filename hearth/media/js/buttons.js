@@ -39,8 +39,13 @@ define('buttons',
         var product_name = product.name;
         console.log('Install requested for', product_name);
 
+        // TODO: Have the API possibly return this (bug 889501).
+        product.receipt_required = (product.premium_type != 'free' &&
+                                    product.premium_type != 'free-inapp' &&
+                                    !settings.simulate_nav_pay);
+
         // If it's a paid app, ask the user to sign in first.
-        if (product.payment_required && !user.logged_in()) {
+        if (product.receipt_required && !user.logged_in()) {
             console.log('Install suspended; user needs to log in');
             return login.login().done(function() {
                 // Once login completes, just call this function again with
@@ -69,11 +74,6 @@ define('buttons',
         // Create a reference to the button.
         var $this = $button || $(this);
         var _timeout;
-
-        // TODO: Have the API possibly return this (bug 889501).
-        product.receipt_required = (product.premium_type != 'free' &&
-                                    product.premium_type != 'free-inapp' &&
-                                    !settings.simulate_nav_pay);
 
         // If the user has already purchased the app, we do need to generate
         // another receipt but we don't need to go through the purchase flow again.
@@ -185,7 +185,7 @@ define('buttons',
                 }
 
                 do_install({data: {'receipts': [response.receipt]}});
-                
+
             }).fail(function() {
                 // L10n: The app's installation has failed, but the problem is temporary.
                 notification.notification({
@@ -243,7 +243,7 @@ define('buttons',
             buttonInstalled(product.manifest_url, installer, $this);
 
             console.log('Successful install for', product_name);
-            
+
         }, function() {
             // If the purchase or installation fails, revert the button.
             revertButton($this);
