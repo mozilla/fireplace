@@ -85,7 +85,7 @@ define('payments/payments',
                     console.error('`navigator.mozPay` error:', this.error.name);
                     switch (this.error.name) {
                         // Sent from webpay.
-                        case 'cancelled':
+                        case 'USER_CANCELLED':
                         // Sent from the trusted-ui on cancellation.
                         case 'DIALOG_CLOSED_BY_USER':
                             msg = gettext('Payment cancelled.');
