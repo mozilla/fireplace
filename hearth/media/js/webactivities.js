@@ -1,4 +1,4 @@
-define('webactivities', ['capabilities', 'log', 'urls', 'z'], function(capabilities, log, urls, z) {
+define('webactivities', ['capabilities', 'log', 'urls', 'utils', 'z'], function(capabilities, log, urls, utils, z) {
 
     // See https://github.com/mozilla/fireplace/wiki/Web-Activities
     //
@@ -6,7 +6,7 @@ define('webactivities', ['capabilities', 'log', 'urls', 'z'], function(capabilit
     //
     // new MozActivity({
     //     name: 'marketplace-app',
-    //     data: {manifest_url: 'http://littlealchemy.com/manifest.webapp'}
+    //     data: {manifest_url: 'http://littlealchemy.com/manifest.webapp', src: 'e.me'}
     // });
     //
     // new MozActivity({
@@ -19,28 +19,33 @@ define('webactivities', ['capabilities', 'log', 'urls', 'z'], function(capabilit
     function handleActivity(name, data) {
         console.log('Handled "' + name + '" activity: ' + JSON.stringify(data));
 
+        var src = data.src && utils.slugify(data.src) || 'activity-' + name;
+
         switch (name) {
             case 'marketplace-app':
                 // Load up an app detail page.
                 var slug = data.slug;
                 var manifest_url = data.manifest_url || data.manifest;
                 if (slug) {
-                    z.page.trigger('navigate', [urls.reverse('app', [slug]) + '?src=webactivities']);
+                    var url = urls.reverse('app', [slug]);
+                    z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
                 } else if (manifest_url) {
-                    z.page.trigger('search', {q: ':manifest=' + manifest_url, src: 'webactivities'});
+                    z.page.trigger('search', {q: ':manifest=' + manifest_url, src: src});
                 }
                 break;
             case 'marketplace-app-rating':
                 // Load up the page to leave a rating for the app.
-                z.page.trigger('navigate', [urls.reverse('app/ratings/add', [data.slug])]);
+                var url = urls.reverse('app/ratings/add', [data.slug]);
+                z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
                 break;
             case 'marketplace-category':
                 // Load up a category page.
-                z.page.trigger('navigate', [urls.reverse('category', [data.slug])]);
+                var url = urls.reverse('category', [data.slug]);
+                z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
                 break;
             case 'marketplace-search':
                 // Load up a search.
-                z.page.trigger('search', {q: data.query});
+                z.page.trigger('search', {q: data.query, src: src});
                 break;
         }
     }

@@ -22,6 +22,29 @@ test('escape_', function(done) {
     done();
 });
 
+test('slugify', function(done) {
+    eq_(utils.slugify(null), null);
+    eq_(utils.slugify(undefined), undefined);
+    eq_(utils.slugify(''), '');
+    eq_(utils.slugify(' '), '');
+    eq_(utils.slugify(' - '), '-');
+    eq_(utils.slugify('<b> & "\'<'), 'b-');
+    eq_(utils.slugify('42'), '42');
+    eq_(utils.slugify('4 & square™'), '4-square');
+
+    eq_(utils.slugify('xx x  - "#$@ x'), 'xx-x-x');
+    eq_(utils.slugify('Bän...g (bang)'), 'bng-bang');
+    eq_(utils.slugify('Ελληνικά'), '');
+    eq_(utils.slugify('    a '), 'a');
+    eq_(utils.slugify('tags/'), 'tags');
+    eq_(utils.slugify('holy_wars'), 'holy-wars');
+    eq_(utils.slugify('x荿'), 'x');
+    eq_(utils.slugify('ϧ΃蒬蓣'), '');
+    eq_(utils.slugify('¿x'), 'x');
+
+    done();
+});
+
 test('fieldFocused', function(done) {
     eq_(utils.fieldFocused({target: {nodeName: 'input'}}), true);
     eq_(utils.fieldFocused({target: {nodeName: 'bgsound'}}), false);
