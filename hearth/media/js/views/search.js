@@ -55,7 +55,8 @@ define('views/search',
             if (!value) return;
             if (value[0] === ':') {
                 value = value.slice(1);
-                if (value === 'packaged' || value === 'hosted') {
+                if (value === 'hosted' || value === 'packaged' ||
+                    value === 'privileged') {
                     query.app_type = value;
                 } else if (value === 'free' || value === 'free-inapp') {
                     query.premium_types = value;
