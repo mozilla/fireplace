@@ -6,6 +6,13 @@ define('views/search',
     var gettext = l10n.gettext;
     var ngettext = l10n.ngettext;
 
+    function append(existing_value, new_value) {
+        if (typeof existing_value === 'string' && existing_value !== '') {
+            return existing_value + ',' + new_value;
+        }
+        return new_value;
+    }
+
     // Clear search field on 'cancel' search suggestions.
     $('#site-header').on('click', '.header-button.cancel', _pd(function() {
         // $('#site-search-suggestions').trigger('dismiss');
@@ -57,24 +64,24 @@ define('views/search',
                 value = value.slice(1);
                 if (value === 'hosted' || value === 'packaged' ||
                     value === 'privileged') {
-                    query.app_type = value;
+                    query.app_types = append(query.app_types, value);
                 } else if (value === 'free' || value === 'free-inapp') {
-                    query.premium_types = value;
+                    query.premium_types = append(query.premium_types, value);
                 } else if (value === 'premium' || value === 'paid') {
-                    query.premium_types = 'premium';
+                    query.premium_types = append(query.premium_types, 'premium');
                 } else if (value === 'premium-inapp' || value === 'paid-inapp') {
-                    query.premium_types = 'premium-inapp';
+                    query.premium_types = append(query.premium_types, 'premium-inapp');
                 } else if (value === 'premium-other' || value === 'paid-other') {
-                    query.premium_types = 'premium-other';
+                    query.premium_types = append(query.premium_types, 'premium-other');
                 } else if (value.indexOf('cat=') === 0) {
                     query.cat = value.split('=')[1];
                 } else if (value === 'desktop' || value === 'mobile' ||
                            value === 'tablet' || value === 'firefoxos') {
-                    query.device = value;
+                    query.device = append(query.device, value);
                     // TODO: Add ":compatible" mode that triggers buchet
                     // filtering on desktop.
                 } else if (value.indexOf('sort=') === 0) {
-                    query.sort = value.split('=')[1];
+                    query.sort = append(query.sort, value.split('=')[1]);
                 } else if (value === 'popular') {
                     query.sort = 'downloads';
                 } else if (value === 'new') {
@@ -88,7 +95,7 @@ define('views/search',
                            value.indexOf('language=') === 0 ||
                            value.indexOf('langs=') === 0 ||
                            value.indexOf('lang=') === 0) {
-                    query.languages = value.split('=')[1];
+                    query.languages = append(query.languages, value.split('=')[1]);
                 } else if (value.indexOf('region=') === 0) {
                     query.region = value.split('=')[1];
                 }
@@ -162,7 +169,7 @@ define('views/search',
     });
 
     return function(builder, args, params) {
-        params = parsePotatoSearch(params);
+        params = parsePotatoSearch({q: params.q});
 
         if ('sort' in params && params.sort == 'relevancy') {
             delete params.sort;
