@@ -57,10 +57,12 @@ define('webactivities', ['capabilities', 'log', 'urls', 'utils', 'z'], function(
     }
 
     window.addEventListener('message', function(e) {
-        console.log('Received post message from ' + e.origin + ': ' + JSON.stringify(e.data));
         // Receive postMessage from the packaged app and do something with it.
         if (e.data && e.data.name && e.data.data) {
-            handleActivity(e.data.name, e.data.data);
+            console.log('Received post message from ' + e.origin + ': ' + JSON.stringify(e.data));
+            try {
+                handleActivity(e.data.name, e.data.data);
+            } catch(err) {}  // `handleActivity` can fail on bad data.
         }
     }, false);
 
