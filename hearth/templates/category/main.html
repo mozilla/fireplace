@@ -28,6 +28,9 @@
 {% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection' if settings.flags.rocketfuel else 'app') %}
   {% set featured_apps = this.length and this[0].apps if settings.flags.rocketfuel else this %}
   {% if featured_apps %}
+    {% if settings.flags.rocketfuel %}
+      {% set featured_url = url('collection', [this[0].slug])|urlparams(src=src) %}
+    {% endif %}
     <section id="featured" class="main category featured full c">
       <header class="featured-header c">
         <h3>{{ _('Featured Apps') }}</h3>
