@@ -169,7 +169,7 @@ define('views/search',
     });
 
     return function(builder, args, params) {
-        params = parsePotatoSearch({q: params.q});
+        params = parsePotatoSearch(_.extend({q: params.q}, params));
 
         if ('sort' in params && params.sort == 'relevancy') {
             delete params.sort;
