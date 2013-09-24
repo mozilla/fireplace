@@ -278,6 +278,8 @@ define('mobilenetwork',
     function detectMobileNetwork(navigator, fake) {
         navigator = navigator || window.navigator;
 
+        var newSettings = {};
+
         var region;
         var GET = utils.getVars();
         // Get mobile region and carrier information passed via querystring.
@@ -309,10 +311,17 @@ define('mobilenetwork',
             console.warn('Error accessing navigator.mozMobileConnection:', e);
         }
 
+        newSettings.true_carrier = GET.carrier;
+        newSettings.true_region = GET.region;
+
         if (mcc || mnc) {
             // Look up region and carrier from MCC (Mobile Country Code)
             // and MNC (Mobile Network Code).
             var network = getNetwork(mcc, mnc);
+
+            newSettings.true_carrier = network.carrier;
+            newSettings.true_region = network.region;
+
             region = network.region;
 
             if (carrier !== network.carrier) {
@@ -320,8 +329,6 @@ define('mobilenetwork',
             }
             carrier = network.carrier;
         }
-
-        var newSettings = {};
 
         var lastRegion = user.get_setting('last_region');
 
