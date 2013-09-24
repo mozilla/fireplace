@@ -17,9 +17,10 @@ test('model invalid type', function(done, fail) {
     }
 });
 
-test('model cast/lookup/purge', function(done) {
+test('model cast/lookup/purge', function(done, fail) {
     mock(
-        'models', {},
+        'models',
+        {settings: {model_prototypes: {'dummy': 'id', 'dummy2': 'id'}}},
         function(models) {
             var d1 = models('dummy');
             var d2 = models('dummy2');
@@ -49,13 +50,58 @@ test('model cast/lookup/purge', function(done) {
             eeq_(d2.lookup(2), undefined);
 
             done();
-        }
+        }, fail
     );
 });
 
-test('model cast/uncast', function(done) {
+test('model cast/lookup/delete', function(done, fail) {
     mock(
-        'models', {},
+        'models',
+        {settings: {model_prototypes: {'dummy': 'id'}}},
+        function(models) {
+            var d1 = models('dummy');
+            d1.cast({
+                id: 1,
+                val: 'foo'
+            });
+
+            eq_(d1.lookup(1).val, 'foo');
+            d1.del(2);
+            eq_(d1.lookup(1).val, 'foo');
+            d1.del(1);
+            eeq_(d1.lookup(1), undefined);
+
+            done();
+        }, fail
+    );
+});
+
+test('model cast/lookup/delete val', function(done, fail) {
+    mock(
+        'models',
+        {settings: {model_prototypes: {'dummy': 'id'}}},
+        function(models) {
+            var d1 = models('dummy');
+            d1.cast({
+                id: 1,
+                val: 'foo'
+            });
+
+            eq_(d1.lookup(1).val, 'foo');
+            d1.del('bar', 'val');
+            eq_(d1.lookup(1).val, 'foo');
+            d1.del('foo', 'val');
+            eeq_(d1.lookup(1), undefined);
+
+            done();
+        }, fail
+    );
+});
+
+test('model cast/uncast', function(done, fail) {
+    mock(
+        'models',
+        {settings: {model_prototypes: {'dummy': 'id'}}},
         function(models) {
             var d1 = models('dummy');
 
@@ -72,13 +118,14 @@ test('model cast/uncast', function(done) {
             eq_(d1.uncast(obj2).val, 'foo');
 
             done();
-        }
+        }, fail
     );
 });
 
-test('model cast/uncast lists', function(done) {
+test('model cast/uncast lists', function(done, fail) {
     mock(
-        'models', {},
+        'models',
+        {settings: {model_prototypes: {'dummy': 'id'}}},
         function(models) {
             var d1 = models('dummy');
 
@@ -109,14 +156,17 @@ test('model cast/uncast lists', function(done) {
             eq_(output[1].val, 'bar');
 
             done();
-        }
+        }, fail
     );
 });
 
-test('model get hit', function(done) {
+test('model get hit', function(done, fail) {
     mock(
         'models',
-        {requests: {get: function(x) {return 'surprise! ' + x;}}},
+        {
+            requests: {get: function(x) {return 'surprise! ' + x;}},
+            settings: {model_prototypes: {'dummy': 'id'}}
+        },
         function(models) {
             var d1 = models('dummy');
 
@@ -131,28 +181,34 @@ test('model get hit', function(done) {
                 eeq_(promise.__cached, true);
                 done();
             });
-        }
+        }, fail
     );
 });
 
-test('model get miss', function(done) {
+test('model get miss', function(done, fail) {
     mock(
         'models',
-        {requests: {get: function(x) {return 'surprise! ' + x;}}},
+        {
+            requests: {get: function(x) {return 'surprise! ' + x;}},
+            settings: {model_prototypes: {'dummy': 'id'}}
+        },
         function(models) {
             var d1 = models('dummy');
 
             eq_(d1.get('zip', 1), 'surprise! zip');
 
             done();
-        }
+        }, fail
     );
 });
 
-test('model get getter', function(done) {
+test('model get getter', function(done, fail) {
     mock(
         'models',
-        {requests: {get: function(x) {return "not the droids you're looking for";}}},
+        {
+            requests: {get: function(x) {return "not the droids you're looking for";}},
+            settings: {model_prototypes: {'dummy': 'id'}}
+        },
         function(models) {
             var d1 = models('dummy');
 
@@ -161,13 +217,14 @@ test('model get getter', function(done) {
             }), 'hooray! zip');
 
             done();
-        }
+        }, fail
     );
 });
 
-test('model lookup by', function(done) {
+test('model lookup by', function(done, fail) {
     mock(
-        'models', {},
+        'models',
+        {settings: {model_prototypes: {'dummy': 'id'}}},
         function(models) {
             var d1 = models('dummy');
 
@@ -186,13 +243,14 @@ test('model lookup by', function(done) {
             eq_(value.val, 'bar');
 
             done();
-        }
+        }, fail
     );
 });
 
-test('model lookup miss', function(done) {
+test('model lookup miss', function(done, fail) {
     mock(
-        'models', {},
+        'models',
+        {settings: {model_prototypes: {'dummy': 'id'}}},
         function(models) {
             var d1 = models('dummy');
 
@@ -205,13 +263,14 @@ test('model lookup miss', function(done) {
             eeq_(d1.lookup('not an id'), undefined);
 
             done();
-        }
+        }, fail
     );
 });
 
-test('model cast list', function(done) {
+test('model cast list', function(done, fail) {
     mock(
-        'models', {},
+        'models',
+        {settings: {model_prototypes: {'dummy': 'id'}}},
         function(models) {
             var d1 = models('dummy');
 
@@ -225,7 +284,7 @@ test('model cast list', function(done) {
             eq_(d1.lookup('abc').val, 2);
 
             done();
-        }
+        }, fail
     );
 });
 

@@ -125,13 +125,11 @@ define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
     }
 
     function getVars(qs, excl_undefined) {
-        if (typeof qs === 'undefined') {
-            qs = location.search;
-        }
+        if (!qs) qs = location.search;
+        if (!qs || qs === '?') return {};
         if (qs && qs[0] == '?') {
             qs = qs.substr(1);  // Filter off the leading ? if it's there.
         }
-        if (!qs) return {};
 
         return _.chain(qs.split('&'))  // ['a=b', 'c=d']
                 .map(function(c) {return c.split('=').map(decodeURIComponent);}) //  [['a', 'b'], ['c', 'd']]
@@ -187,8 +185,8 @@ define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
         '_pd': _pd,
         'baseurl': baseurl,
         'browser': browser,
-        'decodeURIComponent': decodeURIComponent,
         'encodeURIComponent': encodeURIComponent,
+        'decodeURIComponent': decodeURIComponent,
         'escape_': escape_,
         'fieldFocused': fieldFocused,
         'getVars': getVars,

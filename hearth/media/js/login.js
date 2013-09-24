@@ -1,6 +1,6 @@
 define('login',
-    ['capabilities', 'defer', 'jquery', 'log', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z'],
-    function(capabilities, defer, $, log, notification, settings, _, urls, user, requests, z) {
+    ['cache', 'capabilities', 'defer', 'jquery', 'log', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z'],
+    function(cache, capabilities, defer, $, log, notification, settings, _, urls, user, requests, z) {
 
     var console = log('login');
 
@@ -37,6 +37,7 @@ define('login',
         // gets fixed.
         if (!z.context.dont_reload_on_login) {
             require('views').reload().done(function(){
+                z.page.trigger('logged_out');
                 signOutNotification();
             });
         } else {
@@ -51,8 +52,8 @@ define('login',
         pending_logins.push(def);
 
         var opt = {
-            // termsOfService: '/terms-of-use',
-            // privacyPolicy: '/privacy-policy',
+            termsOfService: settings.persona_tos,
+            privacyPolicy: settings.persona_privacy,
             siteLogo: settings.persona_site_logo,
             oncancel: function() {
                 console.log('Persona login cancelled');

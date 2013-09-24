@@ -8,66 +8,94 @@ var mock = a.mock;
 
 var urls = require('urls');
 
-test('reverse', function(done) {
-    var reverse = urls.reverse;
-    eq_(reverse('homepage'), '/');
-    eq_(reverse('app', ['slug']), '/app/slug');
-    done();
+function mock_routes(routes, runner, fail) {
+    var temp = window.routes;
+    window.routes = routes;
+    try {
+        runner();
+    } catch(e) {
+        fail(e);
+    }
+    window.routes = temp;
+}
+
+test('reverse', function(done, fail) {
+    mock_routes([
+        {pattern: '^/$', view_name: 'homepage'},
+        {pattern: '^/app/(.+)$', view_name: 'app'}
+    ], function() {
+        var reverse = urls.reverse;
+        eq_(reverse('homepage'), '/');
+        eq_(reverse('app', ['slug']), '/app/slug');
+        done();
+    }, fail);
 });
 
 test('reverse missing args', function(done, fail) {
-    var reverse = urls.reverse;
-    try {
-        reverse('app', []);
-    } catch(e) {
-        return done();
-    }
-    fail('reverse() did not throw exception');
+    mock_routes([
+        {pattern: '^/$', view_name: 'homepage'},
+        {pattern: '^/app/(.+)$', view_name: 'app'}
+    ], function() {
+        var reverse = urls.reverse;
+        try {
+            reverse('app', []);
+        } catch(e) {
+            return done();
+        }
+        fail('reverse() did not throw exception');
+    }, fail);
 });
 
 test('reverse too many args', function(done, fail) {
-    var reverse = urls.reverse;
-    try {
-        reverse('app', ['foo', 'bar']);
-    } catch(e) {
-        return done();
-    }
-    fail('reverse() did not throw exception');
+    mock_routes([
+        {pattern: '^/$', view_name: 'homepage'},
+        {pattern: '^/app/(.+)$', view_name: 'app'}
+    ], function() {
+        var reverse = urls.reverse;
+        try {
+            reverse('app', ['foo', 'bar']);
+        } catch(e) {
+            return done();
+        }
+        fail('reverse() did not throw exception');
+    }, fail);
 });
 
-test('api url', function(done) {
+test('api url', function(done, fail) {
     mock(
         'urls',
         {
             capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
+            routes_api: {'homepage': '/foo/homepage'},
             settings: {api_url: 'api:'}
         }, function(urls) {
-            var search_url = urls.api.url('search');
-            eq_(search_url.substr(0, 24), 'api:/api/v1/apps/search/');
-            contains(search_url, 'dev=firefoxos');
-            // contains(search_url, 'scr=mobile');
-            // contains(search_url, 'tch=foo');
-            disincludes(search_url, 'carrier=');
+            var homepage_url = urls.api.url('homepage');
+            eq_(homepage_url.substr(0, 17), 'api:/foo/homepage');
+            contains(homepage_url, 'dev=firefoxos');
             done();
-        }
+        },
+        fail
     );
 });
 
-test('api url signage', function(done) {
+test('api url signage', function(done, fail) {
     mock(
         'urls',
         {
             capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
+            routes_api: {'homepage': '/foo/homepage'},
             settings: {api_url: 'api:'}
         }, function(urls) {
-            var search_url = urls.api.unsigned.url('search');
-            eq_(search_url, 'api:/api/v1/apps/search/');
-            eq_(urls.api.sign(search_url), urls.api.url('search'));
+            var homepage_url = urls.api.unsigned.url('homepage');
+            eq_(homepage_url, 'api:/foo/homepage');
+            eq_(urls.api.sign(homepage_url), urls.api.url('homepage'));
             done();
-        }
+        },
+        fail
     );
 });
 
+// TODO(commonplace): Deal with the next three tests (move them to mobilenetwork?)
 test('api hardcoded carrier', function(done) {
     mock(
         'urls',
@@ -139,17 +167,19 @@ test('api url blacklist', function(done, fail) {
     );
 });
 
-test('api url params', function(done) {
+test('api url params', function(done, fail) {
     mock(
         'urls',
         {
+            routes_api: {'homepage': '/foo/asdf'},
             settings: {api_url: 'api:'}
         }, function(urls) {
-            var search_url = urls.api.params('search', {q: 'poop'});
-            eq_(search_url.substr(0, 24), 'api:/api/v1/apps/search/');
-            contains(search_url, 'q=poop');
+            var homepage_url = urls.api.params('homepage', {q: 'poop'});
+            eq_(homepage_url.substr(0, 13), 'api:/foo/asdf');
+            contains(homepage_url, 'q=poop');
             done();
-        }
+        },
+        fail
     );
 });
 

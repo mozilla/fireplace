@@ -1,5 +1,5 @@
 define('z', ['jquery'], function($) {
-    var z = {
+    return {
         win: $(window),
         doc: $(document),
         body: $(document.body),
@@ -8,8 +8,7 @@ define('z', ['jquery'], function($) {
         canInstallApps: true,
         apps: {},
         flags: {},
-        context: {}
+        context: {},
+        spaceheater: !!document.body.getAttribute('data-spaceheater')
     };
-    z.spaceheater = z.body.data('spaceheater');
-    return z;
 });

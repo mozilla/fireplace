@@ -1,6 +1,6 @@
 define('urls',
     ['buckets', 'capabilities', 'format', 'routes_api', 'settings', 'underscore', 'user', 'utils'],
-    function(buckets, caps, format, api_endpoints, settings, _, user, utils) {
+    function(buckets, caps, format, api_endpoints, settings, _, user) {
 
     var group_pattern = /\(.+\)/;
     var optional_pattern = /(\(.*\)|\[.*\]|.)\?/g;
@@ -25,7 +25,7 @@ define('urls',
             }
 
             // Check that we got the right number of arguments.
-            if (args.length != i) {
+            if (args.length !== i) {
                 console.error('Expected ' + i + ' args, got ' + args.length);
                 throw new Error('Wrong number of arguments passed to reverse(). View: "' + view_name + '", Argument "' + args + '"');
             }
@@ -69,8 +69,6 @@ define('urls',
                 carrier: user.get_setting('carrier') || '',
                 true_region: user.get_setting('true_region') || '',
                 true_carrier: user.get_setting('true_carrier') || '',
-                //scr: caps.widescreen() ? 'wide' : 'mobile',
-                //tch: caps.touch,
                 dev: _dev(),
                 device: _device(),
                 pro: buckets.get_profile()
@@ -85,7 +83,7 @@ define('urls',
                     delete args[k];
                 }
             });
-            return utils.urlparams(out, args);
+            return require('utils').urlparams(out, args);
         };
     }
 
@@ -96,7 +94,7 @@ define('urls',
         }
         var url = settings.api_url + format.format(api_endpoints[endpoint], args || []);
         if (params) {
-            return utils.urlparams(url, params);
+            return require('utils').urlparams(url, params);
         }
         return url;
     };

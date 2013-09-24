@@ -64,6 +64,11 @@ define('navigation',
             return;
         }
 
+        if (!view[1] && initialized) {
+            window.location.href = href;
+            return;
+        }
+
         views.build(view[0], view[1], state.params);
         if (initialized) {
             z.win.trigger('navigating', [popped]);
@@ -202,11 +207,6 @@ define('navigation',
                 href.substr(0, 7) === 'mailto:' ||
                 href[0] === '#' ||
                 href.indexOf('?modified=') !== -1 ||
-                href.indexOf('/developers/') !== -1 ||
-                href.indexOf('/ecosystem/') !== -1 ||
-                href.indexOf('/lookup/') !== -1 ||
-                href.indexOf('/reviewers/') !== -1 ||
-                href.indexOf('/statistics/') !== -1 ||
                 el.getAttribute('target') ||
                 el.getAttribute('rel') === 'external';
     }

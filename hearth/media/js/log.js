@@ -47,6 +47,7 @@ define('log', ['storage', 'utils'], function(storage, utils) {
 
                 // TODO: Add colorification support here for browsers that support it.
                 // *cough cough* not firefox *cough*
+
                 console[log_level].apply(console, args);
             };
         }
