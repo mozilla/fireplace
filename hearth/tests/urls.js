@@ -122,6 +122,23 @@ test('api user-defined carrier+region (via SIM)', function(done) {
     );
 });
 
+test('api url blacklist', function(done, fail) {
+    mock(
+        'urls',
+        {
+            capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
+            routes_api: {'homepage': '/foo/homepage'},
+            settings: {api_url: 'api:', api_param_blacklist: ['region']}
+        }, function(urls) {
+            var homepage_url = urls.api.url('homepage');
+            eq_(homepage_url.substr(0, 17), 'api:/foo/homepage');
+            disincludes(homepage_url, 'region=');
+            done();
+        },
+        fail
+    );
+});
+
 test('api url params', function(done) {
     mock(
         'urls',

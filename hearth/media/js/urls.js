@@ -77,7 +77,9 @@ define('urls',
                 args._user = user.get_token();
             }
             Object.keys(args).forEach(function(k) {
-                if (!args[k]) {
+                if (!args[k] ||
+                    settings.api_param_blacklist &&
+                    settings.api_param_blacklist.indexOf(k) !== -1) {
                     delete args[k];
                 }
             });
