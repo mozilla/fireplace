@@ -64,7 +64,7 @@ define('views/search',
                 value = value.slice(1);
                 if (value === 'hosted' || value === 'packaged' ||
                     value === 'privileged') {
-                    query.app_types = append(query.app_types, value);
+                    query.app_type = append(query.app_type, value);
                 } else if (value === 'free' || value === 'free-inapp') {
                     query.premium_types = append(query.premium_types, value);
                 } else if (value === 'premium' || value === 'paid') {
