@@ -21,7 +21,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
 
         // The list of query string parameters that are not stripped when
         // removing navigation loops.
-        param_whitelist: ['q', 'sort', 'cat', 'src'],
+        param_whitelist: ['q', 'sort', 'cat'],
 
         // The list of query string parameters that are not replaced
         // reversing API URLs.
