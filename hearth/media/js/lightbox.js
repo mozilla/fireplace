@@ -79,13 +79,9 @@ define('lightbox',
         // clear out the existing content
         $content.empty();
 
-        // place in a pane for each image/video with a 'loading' placeholder
-        // and caption.
+        // place in a pane for each image/video with a 'loading' placeholder.
         _.each(previews, function(p) {
             var $el = $('<li class="loading"><span class="throbber">');
-            var $cap = $('<div class="caption">');
-            $cap.text(p.caption);
-            $el.append($cap);
             $content.append($el);
 
             // let's fail elegantly when our images don't load.
@@ -123,7 +119,6 @@ define('lightbox',
 
     function resize() {
         if (!slider) return;
-        $content.find('.caption');
         slider.distance = $section.width();
         slider.refresh();
     }

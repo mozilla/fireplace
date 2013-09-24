@@ -12,10 +12,11 @@
     position: fixed;
     text-align: center;
     top: 0;
+    transition: .5s opacity ease;
+    -webkit-transition: .5s opacity ease;
     width: 100%;
     z-index: 9000;
-    -moz-transition: .5s opacity ease;
-    -webkit-transition: .5s opacity ease;
+
     .close {
         background-position: center;
         color: transparent;
@@ -55,11 +56,13 @@
         padding: 0;
         white-space: nowrap;
         width: 100%;
+
         li {
             display: inline-block;
             height: 100%;
             position: relative;
             width: 100%;
+
             .throbber {
                 display: none;
             }
@@ -83,16 +86,6 @@
             }
         }
     }
-    .caption {
-        font-size: 18px;
-        padding: 0 15px;
-        position: absolute;
-        bottom: 30px;
-        left: 0;
-        width: 100%;
-        color: #000;
-        white-space: normal;
-    }
     img, video, .err {
         -moz-user-select: none;
         bottom: 0;
@@ -101,7 +94,6 @@
         margin: auto;
         max-height: 95%;
         max-width: 95%;
-        padding-bottom: 82px;
         position: absolute;
         right: 0;
         top: 0;
