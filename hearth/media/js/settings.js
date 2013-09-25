@@ -6,6 +6,10 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
 
     var flags = JSON.parse(document.body.getAttribute('data-flags') || '{}');
 
+    // When in "preview mode", don't send the feature profile to the API.
+    var param_blacklist = (
+        window.location.search || '').indexOf('preview=true') ? ['pro'] : null;
+
     return _.defaults(base_settings, {
         app_name: 'fireplace',
         init_module: 'marketplace',
@@ -25,7 +29,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
 
         // The list of query string parameters that are not replaced
         // reversing API URLs.
-        api_param_blacklist: null,
+        api_param_blacklist: param_blacklist,
 
         // The list of models and their primary key mapping. Used by caching.
         model_prototypes: {
