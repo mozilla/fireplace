@@ -1,4 +1,4 @@
-<section class="main infobox prose">
+<section class="main infobox prose" id="debug-page">
   <div>
     <style>
       dt {
@@ -7,6 +7,12 @@
       }
       dd {
         float: left;
+      }
+      #debug-page label {
+        font-size: 18px;
+      }
+      #debug-page select {
+        margin-left: 10px;
       }
     </style>
     <h2>Debug</h2>
@@ -24,6 +30,19 @@
 
     <p>
       <button class="button" id="nukecounter">Clear <code>newscounter</code></button>
+    </p>
+
+    <p>
+      <label>
+        Region
+        <select name="region" id="region">
+          {% set user_region = user.get_setting('region') %}
+          {% for code, region in settings.REGION_CHOICES_SLUG.items() %}
+            <option value="{{ code }}"{{ ' selected' if code == user_region }}>
+              {{ region }}</option>
+          {% endfor %}
+        </select>
+      </label>
     </p>
 
     <h3>Site Settings</h3>
