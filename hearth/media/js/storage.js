@@ -1,30 +1,38 @@
 define('storage', ['settings'], function(settings) {
-    // U MAD?
-    // OH I MAD
+    var fakeStorage = {};
 
-    function prefix(func) {
+    var ls;
+    try { ls = localStorage;}
+    catch(e) {}
+
+    function prefix(func, backup_func) {
         return function() {
             var args = Array.prototype.slice.call(arguments, 0);
             args[0] = settings.storage_version + '::' + args[0];
-            return func.apply(localStorage, args);
+            try {
+                return func.apply(ls, args);
+            } catch(e) {
+                return backup_func.apply(fakeStorage, args)
+            }
         }
     }
-
-    try {
-        var ls = localStorage;
-        return {
-            clear: function() {ls.clear();},
-            getItem: prefix(ls.getItem),
-            removeItem: prefix(ls.removeItem),
-            setItem: prefix(ls.setItem)
-        };
-    } catch(e) {
-        // TODO: Try saving this to a cookie or something?
-        return {
-            clear: function() {},
-            getItem: function() {},
-            removeItem: function() {},
-            setItem: function() {}
-        };
-    }
+    
+    return {
+        clear: function() {
+            try { ls.clear(); }
+            catch(e) { fakeStorage = {}; }
+        },
+        getItem: prefix(
+            ls.getItem,
+            function(key) { return this[key]; }
+        ),
+        removeItem: prefix(
+            ls.removeItem,
+            function(key) { delete this[key]; }
+        ),
+        setItem: prefix(
+            ls.setItem,
+            function(key, value) { this[key] = value; }
+        )
+    };
 });
