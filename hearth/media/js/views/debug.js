@@ -33,7 +33,8 @@ define('views/debug',
             persistent_logs: log.persistent.all,
             capabilities: capabilities,
             settings: settings,
-            report_version: 1.0
+            report_version: 1.0,
+            profile: buckets.get_profile()
         })};
         requests.post('https://ashes.paas.allizom.org/post_report', data).done(function(data) {
             notification.notification({
