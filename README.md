@@ -53,6 +53,10 @@ Docs can be found in
 
 ## Usage
 
+If you haven't already, make sure `hearth/media/js/settings_local.js`
+exists. You can copy from `settings_local.js.dist`. Some settings may need
+to be updated if you plan to run a custom local setup, including `api_url`.
+
 From the terminal, run the following command
 
 ```bash
