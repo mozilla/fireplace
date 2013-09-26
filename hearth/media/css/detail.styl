@@ -100,10 +100,7 @@
 .content-rating {
     color: $text;
     display: table;
-    margin-bottom: 15px;
-    &:only-child {
-        margin-bottom: 9px;  // -15px + 24px
-    }
+    margin-bottom: 12px;
     .icon {
         border-radius: 5px;
         background: $black;
@@ -276,7 +273,7 @@
 
     // At desktop width, let's float the content ratings.
     .content-ratings {
-        margin: 0 -15px 9px;  // 15px on the sides and 24px on the bottom.
+        margin: 0 -15px;
     }
 
     .content-rating {
@@ -284,9 +281,6 @@
         margin-bottom: 24px;
         padding: 0 15px;
         width: 50%;
-        &:only-child {
-            margin: 0;
-        }
     }
 
     .secondary-header .leading {
