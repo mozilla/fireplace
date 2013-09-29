@@ -1,4 +1,4 @@
-define('cache', ['log', 'rewriters'], function(log, rewriters) {
+define('cache', ['log', 'rewriters', 'storage'], function(log, rewriters, storage) {
 
     var console = log('cache');
 
@@ -42,13 +42,55 @@ define('cache', ['log', 'rewriters'], function(log, rewriters) {
         }
     }
 
+    var persistentCachePrefix = 'cache.persist::';
+    var persistent = {
+        // This uses localStorage for persistent storage of cache entries.
+        get: function(key) {
+            if (has(key)) {
+                return get(key);
+            } else if (key in storageKeys) {
+                var val = storage.getItem(persistentCachePrefix + key);
+                set(key, val);
+                return val;
+            }
+        },
+        set: function(key, val) {
+            storage.setItem(persistentCachePrefix + key, val);
+            set(key, val);
+        },
+        bust: function(key) {
+            if (key in storageKeys) {
+                storage.removeItem(persistentCachePrefix + key);
+            }
+            bust(key);
+        },
+        has: function(key) {
+            return storage.getItem(persistentCachePrefix + key);
+        },
+        purge: function() {
+            for (var i = 0; i < storage.length; i++) {
+                var key = storage.key(i);
+                if (key.indexOf(persistentCachePrefix) === 0) {
+                    storage.removeItem(persistentCachePrefix + key);
+                    bust(key.replace(persistentCachePrefix, ''));
+                }
+            }
+        }
+    };
+
     function rewrite(matcher, worker, limit) {
         var count = 0;
         console.log('Attempting cache rewrite');
         for (var key in cache) {
             if (matcher(key)) {
                 console.log('Matched cache rewrite pattern for key ', key);
-                cache[key] = worker(cache[key], key);
+                var rewrittenValue = worker(cache[key], key);
+                cache[key] = rewrittenValue;
+
+                // Update persistent cache if the key exists there.
+                if (persistent.has(key)) {
+                    persistent.set(key, rewrittenValue);
+                }
                 if (limit && ++count >= limit) {
                     console.log('Cache rewrite limit hit, exiting');
                     return;
@@ -65,6 +107,8 @@ define('cache', ['log', 'rewriters'], function(log, rewriters) {
         purge: purge,
 
         attemptRewrite: rewrite,
-        raw: cache
+        raw: cache,
+
+        persist: persistent
     };
 });

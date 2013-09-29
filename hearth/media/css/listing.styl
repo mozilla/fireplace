@@ -97,6 +97,7 @@ $triangle-size = 20px;
 }
 .mkt-tile + .tray {
     background: $salt-flat-white;
+    border-radius: 0 0 10px 10px;
     display: none;
     height: 230px;
     overflow: hidden;
@@ -210,20 +211,60 @@ $dot-size = 13px;
 
 .category {
     background: #fff;
+    box-shadow: 0 1px 1px $cement-gray;
     font-size: 15px;
     line-height: 16px;
     .view-all {
         display: block;
         float: right;
+        font-weight: 300;
         // Bigger click area.
-        margin: -10px -6px -6px;
+        margin: -10px -6px -3px;
         padding: 10px 6px 6px;
         position: relative;
         z-index: 1;
+        &:after {
+            content: " \00BB";
+        }
     }
-    &.featured {
-        diagonal-lines();
-        border-top-color: $sailor-blue;
+}
+
+.operator {
+    .featured-header h3 {
+        background-repeat: no-repeat;
+        background-size: 29px auto;
+        color: $grey-gardens-gray;
+        font-weight: 400;
+        padding-left: 40px;
+    }
+    &[class*="operator-dt-"],
+    &[class*="operator-deutsche_telekom-"] {
+        .featured-header h3 {
+            background-image: url(../img/carriers/deutsche_telekom.svg);
+            background-position: 0 27.75%;
+        }
+    }
+    &[class*="operator-movistar-"] {
+        .featured-header h3 {
+            background-image: url(../img/carriers/movistar.svg);
+            background-position: 0 0;
+        }
+    }
+    &[class*="operator-telenor-"] {
+        .featured-header h3 {
+            background-image: url(../img/carriers/telenor.svg);
+            background-position: 0 0;
+            background-size: 24px auto;
+            padding-left: 35px;
+        }
+    }
+    &[class*="operator-america_movil-"] {
+        .featured-header h3 {
+            background-image: url(../img/carriers/claro.png);
+            background-position: 0 0;
+            background-size: 18px auto;
+            padding-left: 30px;
+        }
     }
 }
 
@@ -285,52 +326,34 @@ grid-style() {
 }
 
 .tabs {
-    left: 0;
     position: absolute;
-    top: -7px;
+    top: 0;
     width: 100%;
     a {
-        color: $earl-gray;
-        display: block;
+        color: $london-fog-gray;
+        display: inline-block;
         ellipsis();
-        float: left;
         font-size: 15px;
+        font-weight: 300;
         height: 29px;
         line-height: 29px;
         margin-top: 7px;
-        min-width: 150px;
-        padding: 0 43px;
         position: relative;
         text-align: center;
         text-decoration: none;
+        text-shadow: 0 .5px 1px #fff;
         z-index: 2;
-        &.active {
-            color: #fff;
-            pointer-events: none;
-            &:before, &:after {
-                background: $salt-flat-white url(../img/pretty/tab.svg) no-repeat;
-                content: "";
-                display: block;
-                height: 36px;
-                left: 0;
-                position: absolute;
-                top: -7px;
-                // Width > 50% prevents a gap on ff android/b2g (872972).
-                width: 51%;
-                z-index: -1;
-            }
-            &:after {
-                // background-position not transform fixes ff android/b2g (872972).
-                background-position: 100% 0;
-                left: auto;
-                right: 0;
-            }
+        vertical-align: bottom;
+        &:hover {
+            border-bottom: 2px solid $seavan-salt-white;
         }
-        &:not(.active) {
-            text-shadow: 0 1px 0 #fff;
+        &.active {
+            border-bottom: 2px solid $flamin-hot-cheetos-orange;
+            font-weight: 500;
+            pointer-events: none;
         }
         + a {
-            margin-left: -50px;
+            margin-left: 30px;
         }
     }
 }
@@ -389,11 +412,10 @@ grid-style() {
     }
 
     .category {
-        border-radius: 0 0 10px 10px;
+        border-radius: 10px;
     }
 
     .featured {
-        border-top: 7px solid $sailor-blue;
         margin-bottom: 48px;
         // Show 7 at most on desktop.
         li:nth-child(7) ~ li {
@@ -406,8 +428,8 @@ grid-style() {
         grid-style();
         li.item {
             background: none;
-            border: 0;
             border-radius: 0;
+            box-shadow: none;
             margin: 0;
             .mkt-tile {
                 padding: 0;
@@ -430,10 +452,10 @@ grid-style() {
         padding: 0 5px;
         li {
             width: (100% / 7);
-            &:nth-child(8) {
+            &:nth-child(8),
+            &:nth-child(15) {
                 clear: both;
                 &:before {
-                    border-top: 1px dashed $london-fog-gray;
                     content: "";
                     display: block;
                     height: 0;
@@ -444,8 +466,8 @@ grid-style() {
                     width: calc(unquote('700% + 10px'));
                 }
             }
-            // Show 14 at most.
-            &:nth-child(14) ~ li {
+            // Show 21 at most.
+            &:nth-child(21) ~ li {
                 display: none;
             }
         }
@@ -464,11 +486,10 @@ grid-style() {
         display: none;
     }
     .gallery {
-        background: $salt-flat-white;
+        background: $seavan-salt-white;
     }
     .grid li {
         &:nth-child(4):before {
-            border-top: 1px dashed $london-fog-gray;
             content: "";
             display: block;
             height: 0;
@@ -477,12 +498,6 @@ grid-style() {
             // Span 3 columns.
             width: calc(unquote('300% - 20px'));
         }
-        // Render featured apps in multiples of three.
-        // U mad, Basta?
-        &:nth-last-child(-n+2):nth-child(3n+1),
-        &:nth-last-child(-n+1):nth-child(3n+2) {
-             display: none;
-        }
         // Show 3 at most (per UX).
         &:nth-child(3) ~ li {
             display: none;
@@ -490,12 +505,6 @@ grid-style() {
     }
     .tabs + .view-all {
         display: none;
-    }
-    .tabs a {
-        width: 50%;
-        + a {
-            margin-left: 0;
-        }
     }
 }
 
@@ -515,8 +524,8 @@ grid-style() {
     }
     li.item {
         background: #fff;
-        border: 1px solid $seavan-salt-white;
         border-radius: 5px;
+        box-shadow: 0 1px 1px $cement-gray;
         margin: 10px 10px 0;
         position: relative;
         &:hover {
@@ -614,7 +623,6 @@ ratings-sidebar() {
     }
     &.expanded .mkt-tile + .tray {
         &:before, &:after {
-            background: #fff;
             border-bottom: $triangle-size solid $salt-flat-white;
             bottom: 0;
             content: "";
@@ -635,13 +643,19 @@ ratings-sidebar() {
             right: -($triangle-size);
         }
     }
+
+    &.expanded .mkt-tile + .tray:before,
+    &.expanded .mkt-tile + .tray:after,
+    &.product-details .mkt-tile {
+        //background: #f4f4f4;
+        background: #fff;
+    }
+
     &.product-details {
-        &.expanded .mkt-tile + .tray:before,
-        &.expanded .mkt-tile + .tray:after,
+        background: #fff;
+        border-radius: 10px 10px 0 0;
         .mkt-tile {
-            diagonal-lines();
-        }
-        .mkt-tile {
+            border-radius: 10px 10px 0 0;
             ratings-sidebar();
             + .tray {
                 border-radius: 0;
@@ -651,6 +665,9 @@ ratings-sidebar() {
 }
 
 @media $at-least-desktop {
+    .mkt-tile + .tray {
+        border-radius: 0;
+    }
     .listing {
         &:not(.grid-if-desktop) .mkt-tile {
             ratings-sidebar();
@@ -693,10 +710,23 @@ ratings-sidebar() {
         .mkt-tile .rating .cnt {
             top: -2px;
         }
+        // The mocks call for some padding.
         &:not(:first-child) {
-            // Create 10px between Popular/New tabs.
-            padding-top: 14px;
+            padding-top: 8px;
         }
+    }
+    .tabs {
+        border-bottom: 1px solid $cloud-gray;
+        font-size: 13px;
+        position: static;
+        padding: 0 10px;
+    }
+    .category.gallery {
+        // On desktop we like a nice box-shadow.
+        box-shadow: none;
+    }
+    .category.gallery .featured-header {
+        padding: 5px 0;
     }
 }
 

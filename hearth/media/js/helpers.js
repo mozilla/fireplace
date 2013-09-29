@@ -15,23 +15,32 @@ define('helpers',
         filters[name] = make_safe(func);
     }
 
+    filters.extend = function(base, kwargs) {
+        delete kwargs.__keywords;
+        return _.extend(base, kwargs);
+    };
+
     filters.urlparams = utils.urlparams;
     filters.urlunparam = utils.urlunparam;
 
     safe_filter('nl2br', function(obj) {
+        if (typeof obj !== 'string') {
+            return obj;
+        }
         return obj.replace(/\n/g, '<br>');
     });
 
     safe_filter('make_data_attrs', function(obj) {
         return _.pairs(obj).map(function(pair) {
-                return 'data-' + utils.escape_(pair[0]) + '="' + utils.escape_(pair[1]) + '"';
-            }
-        ).join(' ');
+            return 'data-' + utils.escape_(pair[0]) + '="' + utils.escape_(pair[1]) + '"';
+        }).join(' ');
     });
 
     safe_filter('external_href', function(obj) {
         return 'href="' + utils.escape_(obj) + '" target="_blank"';
     });
+
+    filters.translate = utils.translate;
 
     filters.numberfmt = function(num) {
         if (typeof num === 'number' && num.toLocaleString) {
@@ -57,9 +66,36 @@ define('helpers',
         }
     };
 
+    filters.filter = function(list, kwargs) {
+        var output = [];
+        outer:
+        for (var i = 0; i < list.length; i++) {
+            var val = list[i];
+            inner:
+            for (prop in kwargs) {
+                if (!kwargs.hasOwnProperty(prop) || prop === '__keywords') continue inner;
+                if (!(prop in val)) continue outer;
+                if (Array.isArray(kwargs[prop]) ?
+                    kwargs[prop].indexOf(val[prop]) === -1 :
+                    val[prop] !== kwargs[prop]) continue outer;
+            }
+            output.push(val);
+        }
+        return output;
+    };
+
+    // Credit to ngoke and potch.
+    filters.hex2rgba = function(hex, o) {
+        hex = parseInt(hex.substring(hex[0] == '#' ? 1 : 0), 16);
+        return 'rgba(' +
+            (hex >> 16) + ',' +
+            ((hex & 0x00FF00) >> 8) + ',' +
+            (hex & 0x0000FF) + ',' + o + ')';
+    }
+
     safe_filter('stringify', JSON.stringify);
 
-    filters.format = format.format;
+    filters.format = require('format').format;
     filters.sum = function(obj) {
         return obj.reduce(function(mem, num) {return mem + num;}, 0);
     };
@@ -82,6 +118,10 @@ define('helpers',
         max: Math.max,
         min: Math.min,
         range: _.range,
+        identity: function(obj) {
+            if ('__keywords' in obj) delete obj.__keywords;
+            return obj;
+        },
 
         REGIONS: require('settings').REGION_CHOICES_SLUG,
 

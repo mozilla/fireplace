@@ -1,4 +1,4 @@
-define('notification', ['defer', 'jquery', 'templates', 'z'], function(defer, $, nunjucks, z) {
+define('notification', ['defer', 'helpers', 'jquery', 'templates', 'z'], function(defer, helpers, $, nunjucks, z) {
 
     var notificationDef;
     var notificationEl = $('<div id="notification" class="hidden">');
@@ -74,31 +74,41 @@ define('notification', ['defer', 'jquery', 'templates', 'z'], function(defer, $,
     });
     z.body.append(notificationEl);
 
-    var confirmationDef = defer.Deferred();
     var cloakEl = $('.cloak');
-    var confirmationEl = $('<div class="modal confirmation">');
-
-    function confirmationShow() {
-        cloakEl.addClass('show light');
-        confirmationEl.addClass('show');
-    }
-
     function confirmationHide() {
         cloakEl.removeClass('show light');
-        confirmationEl.removeClass('show');
     }
 
     function confirmation(opts) {
-        var addedClasses = [];
-        confirmationDef.always(confirmationHide);
+        var confirmationEl = $('<div class="modal confirmation show">');
+        confirmationEl.html(nunjucks.env.getTemplate('confirmation.html').render());
+        z.body.append(confirmationEl);
+        cloakEl.addClass('show light');
 
-        confirmationEl.attr('class', 'modal confirmation');
+        var confirmationDef = defer.Deferred();
+
+        confirmationEl.on('touchend click', '.yes', function(e) {
+            e.preventDefault();
+            confirmationDef.resolve();
+        }).on('touchend click', '.btn-cancel, .close', function(e) {
+            e.preventDefault();
+            confirmationDef.reject();
+        });
+
+        confirmationDef.always(function() {
+            confirmationEl.remove();
+            if (!$('.modal.confirmation').length) {
+                cloakEl.removeClass('show light');
+            }
+        });
+
         var contentEl = confirmationEl.find('.content');
         contentEl.text('');
 
         var message = opts.message;
         if (!message) return;
 
+        var addedClasses = [];
         if ('classes' in opts) {
             addedClasses = opts.classes.split(/\s+/);
         }
@@ -106,34 +116,18 @@ define('notification', ['defer', 'jquery', 'templates', 'z'], function(defer, $,
         if (opts.closable) {
             addedClasses.push('closable');
         }
-        if (opts.timeout) {
-            setTimeout(function() {confirmationDef.reject();}, opts.timeout);
-        }
 
         confirmationEl.addClass(addedClasses.join(' '));
 
         var fancyMessage = fancy(message);
-        if (fancyMessage == message) {
+        if (fancyMessage === message) {
             contentEl.text(message);
         } else {
             contentEl.html(fancyMessage);
         }
 
-        confirmationShow();
-
         return confirmationDef.promise();
     }
-
-    var content = nunjucks.env.getTemplate('confirmation.html').render();
-
-    confirmationEl.html(content).on('touchend click', function() {
-        confirmationHide();
-        confirmationDef.reject();
-    }).on('touchend click', '.yes', function() {
-        confirmationHide();
-        confirmationDef.resolve();
-    });
-    z.body.append(confirmationEl);
 
     z.win.on('notification', function(text) {
         notification({message: text});

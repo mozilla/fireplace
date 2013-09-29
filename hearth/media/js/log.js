@@ -1,5 +1,10 @@
 define('log', ['storage', 'utils'], function(storage, utils) {
 
+    if (!('groupCollapsed' in window.console)) {
+        window.console.groupCollapsed = window.console.group = window.console.log;
+        window.console.groupEnd = function() {};
+    }
+
     var slice = Array.prototype.slice;
     var filter;
     var logs;

@@ -18,6 +18,7 @@ suite.run('/app/can_rate', function(test, waitFor) {
     });
 
     test('Assert we are on rating add page', function(assert) {
+        suite.capture('asdf');
         assert.URL(/\/app\/can_rate\/ratings\/add/);
     });
 

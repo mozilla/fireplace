@@ -1,9 +1,8 @@
 @import 'lib';
 
 .collection {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 160px auto;
+    background: url(../img/pretty/collection_default.png) no-repeat center;
+    background-size: cover;
     min-height: 150px;
     position: relative;
     header {
@@ -12,10 +11,11 @@
         overflow: hidden;
         padding: 4px 10px 15px;
         position: absolute;
+        text-shadow: 0 0 1px rgba(0,0,0,.5);
         width: 100%;
     }
     h2 {
-        font-size: 19px;
+        font-size: 20px;
         font-weight: 300;
         line-height: 30px;
     }
@@ -23,7 +23,14 @@
         font-size: 12px;
     }
     + .desc {
+        display: none;
         padding: 20px 10px 10px;
+    }
+    .ghostlink {
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        z-index: 10;
     }
 }
 
@@ -38,13 +45,61 @@ getcolor($type = '', $r, $g, $b) {
 // Define all the available styles here.
 
 // Blue theme.
+$blue-theme-border = 1px solid rgba(255,255,255,.25);
 .blue {
     getcolor('opaque', 0, 150, 221);
     header {
-        border-top: 1px solid rgba(255,255,255,.25);
+        border-top: $blue-theme-border;
         getcolor('', 0, 150, 221);
     }
-    h2, .owner {
-        color: $white;
+    h2, header {
+        color: $salt-flat-white;
+    }
+}
+// Associated with above theme.
+@media $at-least-desktop {
+    header {
+        border-left: $blue-theme-border;
+    }
+    .collection + .desc {
+        border-top: $blue-theme-border;
+        color: $salt-flat-white;
+    }
+}
+
+// Global desktop stylez.
+@media $at-least-desktop {
+    .collection {
+        margin-bottom: 48px;
+        header {
+            border-top: 0;
+            padding: 80px 15px 15px;
+            right: 0;
+            width: 50%;
+        }
+        h2 {
+            font-size: 30px;
+        }
+        .owner {
+            font-size: 15px;
+            padding: 10px 0 20px;
+        }
+        h2, .owner {
+            padding-right: 15px;
+        }
+        + .desc {
+            display: block;
+            left: 50%;
+            margin-left: 15px;
+            padding: 20px 0;
+            pointer-events: none;
+            position: absolute;
+            top: 155px;
+            width: 315px;
+            z-index: 20;
+        }
+    }
+    .collection, .collection header {
+        min-height: 324px;
     }
 }

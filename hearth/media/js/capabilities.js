@@ -12,13 +12,14 @@ define('capabilities', [], function() {
         'replaceState': typeof history.replaceState === 'function',
         'chromeless': !!(window.locationbar && !window.locationbar.visible),
         'webApps': !!(navigator.mozApps && navigator.mozApps.install),
+        'packagedWebApps': !!(navigator.mozApps && navigator.mozApps.installPackage),
         'userAgent': navigator.userAgent,
         'widescreen': function() { return safeMatchMedia('(min-width: 710px)'); },
         'firefoxAndroid': navigator.userAgent.indexOf('Firefox') !== -1 && navigator.userAgent.indexOf('Android') !== -1,
         'touch': !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch),
         'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance),
         'navPay': !!navigator.mozPay,
-        'webactivities': !!(window.setMessageHandler || window.mozSetMessageHandler),
+        'webactivities': !!(navigator.setMessageHandler || navigator.mozSetMessageHandler),
         'firefoxOS': navigator.mozApps && navigator.mozApps.installPackage &&
                      navigator.userAgent.indexOf('Android') === -1 &&
                      navigator.userAgent.indexOf('Mobile') !== -1,

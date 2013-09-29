@@ -14,7 +14,7 @@ define('views/tests', ['assert', 'requests'], function(assert, requests) {
             }
         }
 
-        window.test = function(name, runner) {
+        window.test = function(name, runner, cleanup) {
             started++;
             is_done();
             setTimeout(function() {
@@ -25,12 +25,14 @@ define('views/tests', ['assert', 'requests'], function(assert, requests) {
                     $('#c_passed').text(passed);
                     infobox.find('span').text('Passed').css('background-color', 'lime');
                     is_done();
+                    if (cleanup) cleanup();
                 };
                 var has_failed = function(message) {
                     console.error(name, message);
                     failed++;
                     infobox.find('span').html('Failed<br>' + message).css('background-color', 'pink');
                     $('#c_failed').text(failed);
+                    if (cleanup) cleanup();
                 };
                 try {
                     console.log('Starting ' + name);

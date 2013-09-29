@@ -27,6 +27,9 @@ define('mobilenetwork',
         // Poland
         260: 'pl',
 
+        // Greece
+        202: 'gr',
+
         // Mexico
         334: 'mx',
 
@@ -38,9 +41,6 @@ define('mobilenetwork',
 
         // Serbia
         220: 'rs',
-
-        // Hungary
-        216: 'hu',
 
         // Montenegro
         297: 'me'
@@ -104,19 +104,28 @@ define('mobilenetwork',
 
         // Poland
         260: {
-            2: 'deutsche_telekom',
+            2: 'deutsche_telekom'
+        },
+
+        // Greece
+        202: {
+            // This actually belongs to Vodafone, which DT owns
+            5: 'deutsche_telekom'
         },
 
         // Mexico
         334: {
             2: 'america_movil',
             20: 'america_movil',
-            300: 'telefonica'
+            30: 'telefonica'
         },
 
         // Hungary
         216: {
-            30: 'deutsche_telekom'
+            1: 'telenor',
+            30: 'deutsche_telekom',
+            // Actually Vodafone but treat like DT
+            70: 'deutsche_telekom'
         },
 
         // Germany
@@ -206,11 +215,6 @@ define('mobilenetwork',
             2: 'telenor'
         },
 
-        // Hungary
-        216: {
-            1: 'telenor'
-        },
-
         // Montenegro
         297: {
             1: 'telenor'
@@ -274,6 +278,8 @@ define('mobilenetwork',
     function detectMobileNetwork(navigator, fake) {
         navigator = navigator || window.navigator;
 
+        var newSettings = {};
+
         var region;
         var GET = utils.getVars();
         // Get mobile region and carrier information passed via querystring.
@@ -305,10 +311,17 @@ define('mobilenetwork',
             console.warn('Error accessing navigator.mozMobileConnection:', e);
         }
 
+        newSettings.true_carrier = GET.carrier;
+        newSettings.true_region = GET.region;
+
         if (mcc || mnc) {
             // Look up region and carrier from MCC (Mobile Country Code)
             // and MNC (Mobile Network Code).
             var network = getNetwork(mcc, mnc);
+
+            newSettings.true_carrier = network.carrier;
+            newSettings.true_region = network.region;
+
             region = network.region;
 
             if (carrier !== network.carrier) {
@@ -316,8 +329,6 @@ define('mobilenetwork',
             }
             carrier = network.carrier;
         }
-
-        var newSettings = {};
 
         var lastRegion = user.get_setting('last_region');
 
@@ -331,7 +342,10 @@ define('mobilenetwork',
         }
 
         // Get region from settings saved to localStorage.
-        region = user.get_setting('region') || region;
+        if (GET.region === '')  // Ability to set region to worldwide from query params
+            region = '';
+        else
+            region = GET.region || user.get_setting('region') || region;
 
         // If it turns out the region is null, when we get a response from an
         // API request, we look at the `API-Filter` header to determine the region

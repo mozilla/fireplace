@@ -50,13 +50,17 @@ noscript {
 a {
     text-decoration: none;
     color: $sailor-blue;
+
     &:hover {
         text-decoration: underline;
+    }
+    &:not([href]) {
+        cursor: pointer;
     }
 }
 
 body {
-    background: $salt-flat-white;
+    background: $seavan-salt-white;
     color: $castle-skull-gray;
     // min-height needed so ff b2g/android can scroll to 0 (bug 872622).
     min-height: 300px;
@@ -204,7 +208,7 @@ body {
     > div {
         float: left;
         padding: 15px 10px;
-        width: 270px;
+        width: calc(unquote('100% - 35px'));
     }
     &.done {
         margin-top: -11px;
@@ -245,6 +249,7 @@ body {
         color: rgb(95,95,95);
         height: 27px;
         margin-right: 5px;
+        min-width: 188px;
     }
     button {
         height: 27px;
@@ -260,45 +265,6 @@ body {
         margin: 15px 10px 0 0;
         position: static;
         width: 25px;
-    }
-}
-
-.partner-napster {
-    diagonal-lines();
-    padding: 30px 10px;
-    text-align: center;
-    .logo {
-        background: url(../img/partners/napster.png) 50% 0 no-repeat;
-        background-size: 105px auto;
-        height: 105px;
-    }
-    p {
-        font-size: 30px;
-        font-weight: 600;
-        line-height: 32px;
-        margin: 15px 0 30px;
-    }
-    .button {
-        font-size: 20px;
-    }
-}
-
-@media $at-least-desktop {
-    .partner-napster {
-        border: 1px solid $seavan-salt-white;
-        border-radius: 5px;
-        padding: 45px 10px;
-        .logo {
-            background-size: 165px auto;
-            height: 165px;
-        }
-        p {
-            font-size: 40px;
-            line-height: 42px;
-        }
-        .button {
-            font-size: 30px;
-        }
     }
 }
 
@@ -322,6 +288,7 @@ body {
 
     #footer,
     #directory-footer {
+        border-top: 1px solid $cloud-gray;
         padding: 48px 0;
         ul {
             list-style: none;
@@ -329,16 +296,17 @@ body {
     }
 
     #directory-footer {
-        border-top: 1px dashed #000;
-        font-size: 14px;
+        font-size: 15px;
         line-height: 18px;
         .links a {
+            font-weight: 300;
             margin-top: 8px;
             + a {
                 margin-top: 10px;
             }
         }
         .devhub {
+            font-weight: 500;
             width: 290px;
             // TODO: Get Michael to vectorize this as an SVG.
             &:before {
@@ -407,6 +375,14 @@ body {
         background-image: url(../img/icons/regions/es.png);
     }
 
+    .region-gr {
+        background-image: url(../img/icons/regions/gr.png);
+    }
+
+    .region-mx {
+        background-image: url(../img/icons/regions/mx.png);
+    }
+
     .region-pl {
         background-image: url(../img/icons/regions/pl.png);
     }
@@ -435,6 +411,14 @@ body {
         background-image: url(../img/icons/regions/hu.png);
     }
 
+    .region-gr {
+        background-image: url(../img/icons/regions/gr.png);
+    }
+
+    .region-de {
+        background-image: url(../img/icons/regions/de.png);
+    }
+
     #footzilla {
         background: url(../img/logos/footzilla.png) 0 3px no-repeat;
         float: left;
@@ -450,12 +434,12 @@ body {
     #footer {
         color: $note-gray;
         overflow: hidden;
-        padding: 30px 0;
+        padding: 20px 0;
         width: 100%;
         .pad {
             margin: 0 auto;
             padding: 0;
-            width: $desktop-ftr;
+            width: 1024px;
         }
         p, ul {
             border-left: 1px dotted $light-gray;

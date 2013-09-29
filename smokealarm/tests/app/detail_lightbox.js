@@ -10,6 +10,10 @@ suite.run('/', function(test, waitFor) {
         suite.press('#featured ol li a:last-child');
     });
 
+    waitFor(function() {
+        return suite.exists('.slider li:first-child .screenshot img');
+    });
+
     test('Test preview image exists and click it.', function(assert) {
         assert.selectorExists('.slider li:first-child .screenshot img');
         suite.press('.slider li:first-child .screenshot img');

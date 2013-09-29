@@ -1,10 +1,14 @@
 {% macro collection_tile(collection, link=false, src='') %}
-  {% if link %}<a href="{{ url('collection', [collection.slug])|urlparams(src=src) }}">{% endif %}
-    <section class="collection main {{ collection.layout_type }}" style="background-image: url({{ collection.icon }})">
-      <header>
-        <h2>{{ collection.name }}</h2>
-        <p class="owner">{{ collection.author }}</p>
-      </header>
+    <section class="collection main {{ collection.layout_type or 'blue' }}"
+      style="background-image: url({{ collection.image }})">
+      {% if link %}<a class="ghostlink" href="{{ url('collection', [collection.slug])|urlparams(src=src) }}">{% endif %}
+        <header
+          style="{% if collection.background_color %}background-color: {{ collection.background_color|hex2rgba('.8') }};{% endif %}{% if collection.text_color %}color: {{ collection.text_color }};{% endif %}">
+          <h2 style="color: {{ collection.text_color }}">{{ collection.name|translate(collection) }}</h2>
+          <p class="owner">{{ collection.author }}</p>
+        </header>
+      {% if link %}</a>{% endif %}
     </section>
-  {% if link %}</a>{% endif %}
+    {# TODO: JS handler for read more/less? Makes no sense on desktop. #}
+    <p class="desc">{{ collection.description|translate(collection)|nl2br }}</p>
 {% endmacro %}

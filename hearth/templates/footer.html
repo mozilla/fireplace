@@ -12,13 +12,13 @@
       {{ REGIONS[user.get_setting('region', 'worldwide')] }}</a>
     <a href="{{ url('purchases') }}">{{ _('My Apps') }}</a>
     {% if user.get_permission('developer') %}
-      <a href="/developers/submissions">{{ _('My Submissions') }}</a>
+      <a href="/developers/submissions" rel="external">{{ _('My Submissions') }}</a>
     {% endif %}
     {% if user.get_permission('reviewer') %}
-      <a href="/reviewers/apps/queue/" class="only-logged-in">{{ _('Reviewer Tools') }}</a>
+      <a href="/reviewers/apps/queue/" rel="external" class="only-logged-in">{{ _('Reviewer Tools') }}</a>
     {% endif %}
     {% if user.get_permission('lookup') %}
-      <a href="/lookup/" class="only-logged-in">{{ _('Lookup Tool') }}</a>
+      <a href="/lookup/" rel="external" class="only-logged-in">{{ _('Lookup Tool') }}</a>
     {% endif %}
   </div>
 </div>

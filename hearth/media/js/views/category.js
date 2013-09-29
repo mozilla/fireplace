@@ -29,6 +29,6 @@ define('views/category',
             sort: params.sort
         });
 
-        tracking.setVar(5, 'Category', category, 3);
+        tracking.setPageVar(5, 'Category', category, 3);
     };
 });

@@ -1,15 +1,23 @@
-define('views/collection', ['l10n'], function(l10n) {
+define('views/collection', ['l10n', 'models', 'utils'], function(l10n, models, utils) {
     'use strict';
 
     var gettext = l10n.gettext;
+    var app_model = models('app');
 
     return function(builder, args) {
         var slug = args[0];
         builder.start('collection.html', {slug: slug}).done(function() {
             var collection = builder.results['collection'];
             if (collection) {
-                builder.z('title', collection.name);
+                builder.z('title', utils.translate(collection.name));
             }
+        });
+
+        builder.onload('collection', function(data) {
+            if (!data.apps) {
+                return;
+            }
+            data.apps.map(app_model.cast);
         });
 
         builder.z('type', 'leaf');

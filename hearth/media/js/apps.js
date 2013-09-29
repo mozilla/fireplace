@@ -123,7 +123,7 @@ define('apps',
             reasons.push(gettext('This app is unavailable for purchase in your region.'));
         }
 
-        if (!capabilities.webApps) {
+        if (!capabilities.webApps || (!capabilities.packagedWebApps && product.is_packaged)) {
             reasons.push(gettext('Your browser or device is not web-app compatible.'));
         } else if (!_.contains(product.device_types, device)) {
             reasons.push(gettext('This app is unavailable for your platform.'));

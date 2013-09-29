@@ -22,6 +22,29 @@ test('escape_', function(done) {
     done();
 });
 
+test('slugify', function(done) {
+    eq_(utils.slugify(null), null);
+    eq_(utils.slugify(undefined), undefined);
+    eq_(utils.slugify(''), '');
+    eq_(utils.slugify(' '), '');
+    eq_(utils.slugify(' - '), '-');
+    eq_(utils.slugify('<b> & "\'<'), 'b-');
+    eq_(utils.slugify('42'), '42');
+    eq_(utils.slugify('4 & square™'), '4-square');
+
+    eq_(utils.slugify('xx x  - "#$@ x'), 'xx-x-x');
+    eq_(utils.slugify('Bän...g (bang)'), 'bng-bang');
+    eq_(utils.slugify('Ελληνικά'), '');
+    eq_(utils.slugify('    a '), 'a');
+    eq_(utils.slugify('tags/'), 'tags');
+    eq_(utils.slugify('holy_wars'), 'holy-wars');
+    eq_(utils.slugify('x荿'), 'x');
+    eq_(utils.slugify('ϧ΃蒬蓣'), '');
+    eq_(utils.slugify('¿x'), 'x');
+
+    done();
+});
+
 test('fieldFocused', function(done) {
     eq_(utils.fieldFocused({target: {nodeName: 'input'}}), true);
     eq_(utils.fieldFocused({target: {nodeName: 'bgsound'}}), false);
@@ -96,6 +119,22 @@ test('datetime', function(done) {
     eq_(filters.datetime(undefined), '');
     eq_(filters.datetime(null), '');
     eq_(filters.datetime('junk'), '');
+    done();
+});
+
+test('translate', function(done) {
+    var dlobj = {'default_language': 'def_loc'};
+
+    eq_(filters.translate('foobar', dlobj, 'en-CA'), 'foobar');
+    eq_(filters.translate({'en-CA': 'foobar', 'en-US': 'us'}, dlobj, 'en-CA'),
+        'foobar');
+    eq_(filters.translate({'en': 'foobar', 'en-US': 'us'}, dlobj, 'en-CA'),
+        'foobar');
+    eq_(filters.translate({'blah': 'blah', 'bar': '1'}, 'bar', 'es-PD'), '1');
+    eq_(filters.translate({'blah': 'blah', 'def_loc': '2'}, dlobj, 'es-PD'), '2');
+    eq_(filters.translate({'blah': '3'}, dlobj, 'es-PD'), '3');
+    eq_(filters.translate({'foo': 'bar', 'en-US': '3'}, null, 'es-PD'), '3');
+    eq_(filters.translate({}, dlobj, 'es-PD'), '');
     done();
 });
 

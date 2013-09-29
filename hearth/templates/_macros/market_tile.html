@@ -1,22 +1,20 @@
 {% from "_macros/stars.html" import stars %}
 {% from "_macros/market_button.html" import market_button %}
 
-{% macro preview_tray(previews) %}
+{% macro preview_tray(app) %}
   <div class="slider shots">
     <ul class="content">
-      {% for preview in previews %}
+      {% for preview in app.previews %}
         <li itemscope itemtype="http://schema.org/ImageObject">
-          <meta itemprop="caption" content="{{ preview.caption }}">
-          <a class="screenshot thumbnail"
-             href="{{ preview.image_url }}" title="{{ preview.caption }}">
-            <img alt="{{ preview.caption }}" src="{{ preview.thumbnail_url }}" draggable="false" itemprop="contentURL">
+          <a class="screenshot thumbnail" href="{{ preview.image_url }}">
+            <img alt="{{ _('{app_name} .::. screenshot', app_name=app.name) }}" src="{{ preview.thumbnail_url }}" draggable="false" itemprop="contentURL">
           </a>
         </li>
       {% endfor %}
     </ul>
   </div>
   <div class="dots">
-    {% for preview in previews %}
+    {% for preview in app.previews %}
       <b class="dot"></b>
     {% endfor %}
   </div>
@@ -33,7 +31,7 @@
     {% if link %}itemscope itemtype="http://schema.org/SoftwareApplication"{% endif %}>
     <img class="icon" alt="" src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
     <div class="info">
-      <h3 itemprop="name">{{ app.name }}</h3>
+      <h3 itemprop="name">{{ app.name|translate(app) }}</h3>
       {% if app.author %}
         {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
         <div class="author lineclamp vital" itemprop="creator">{{ app.author }}</div>
@@ -68,7 +66,7 @@
   </{{ tag }}>
   {% if tray %}
     <div class="tray previews full {{ 'single' if len(app.previews) == 1 }}">
-      {{ preview_tray(app.previews) }}
+      {{ preview_tray(app) }}
     </div>
   {% endif %}
 {% endmacro %}

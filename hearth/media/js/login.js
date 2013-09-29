@@ -1,6 +1,6 @@
 define('login',
-    ['cache', 'capabilities', 'defer', 'jquery', 'log', 'models', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z'],
-    function(cache, capabilities, defer, $, log, models, notification, settings, _, urls, user, requests, z) {
+    ['cache', 'capabilities', 'defer', 'jquery', 'log', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z'],
+    function(cache, capabilities, defer, $, log, notification, settings, _, urls, user, requests, z) {
 
     var console = log('login');
 
@@ -37,6 +37,7 @@ define('login',
         // gets fixed.
         if (!z.context.dont_reload_on_login) {
             require('views').reload().done(function(){
+                z.page.trigger('logged_out');
                 signOutNotification();
             });
         } else {
@@ -51,8 +52,9 @@ define('login',
         pending_logins.push(def);
 
         var opt = {
-            // termsOfService: '/terms-of-use',
-            // privacyPolicy: '/privacy-policy',
+            termsOfService: settings.persona_tos,
+            privacyPolicy: settings.persona_privacy,
+            siteLogo: settings.persona_site_logo,
             oncancel: function() {
                 console.log('Persona login cancelled');
                 z.page.trigger('login_cancel');
@@ -60,13 +62,15 @@ define('login',
                 pending_logins = [];
             }
         };
+        if (settings.persona_unverified_issuer) {
+            // We always need to force a specific issuer because bridged IdPs don't work with verified/unverified.
+            // See bug 910938.
+            opt.experimental_forceIssuer = settings.persona_unverified_issuer;
+        }
         if (!navigator.id._shimmed) {
             // When on B2G (i.e. no shim), we don't require new accounts to verify their email
             // address. When on desktop, we do require verification.
-            _.extend(opt, {
-                experimental_forceIssuer: settings.persona_unverified_issuer || null,
-                experimental_allowUnverified: true
-            });
+            opt.experimental_allowUnverified = true;
         }
 
         if (!capabilities.phantom) {
@@ -89,7 +93,7 @@ define('login',
 
         requests.post(urls.api.url('login'), data).done(function(data) {
             var should_reload = !user.logged_in();
-            
+
             user.set_token(data.token, data.settings);
             user.update_permissions(data.permissions);
             console.log('Login succeeded, preparing the app');

@@ -86,6 +86,18 @@ define('requests',
         }
     }
 
+    function _is_obj(obj) {
+        return obj && obj.constructor === Object;
+    }
+
+    function _has_object_props(obj) {
+        for (var i in obj) {
+            if (obj.hasOwnProperty(i) && _is_obj(obj[i])) {
+                return true;
+            }
+        }
+    }
+
     function _ajax(type, url, data) {
         var xhr = new XMLHttpRequest();
         var def = defer.Deferred();
@@ -96,9 +108,11 @@ define('requests',
 
         xhr.addEventListener('load', function() {
 
-            if (xhr.getResponseHeader('API-Status') === 'Deprecated') {
-                callHooks('deprecated', [xhr]);
-            }
+            try {
+                if (xhr.getResponseHeader('API-Status') === 'Deprecated') {
+                    callHooks('deprecated', [xhr]);
+                }
+            } catch(e) {}
 
             var statusCode = xhr.status / 100 | 0;
             if (statusCode < 2 || statusCode > 3) {
@@ -122,11 +136,15 @@ define('requests',
 
         xhr.open(type, url, true);
 
-        if (typeof data === 'object') {
-            data = utils.urlencode(data);
-        }
+        var content_type = 'application/x-www-form-urlencoded';
         if (data) {
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            if (_is_obj(data) && !_has_object_props(data)) {
+                data = utils.urlencode(data);
+            } else {
+                data = JSON.stringify(data);
+                content_type = 'application/json';
+            }
+            xhr.setRequestHeader('Content-Type', content_type);
         }
         xhr.send(data || undefined);
 
@@ -146,22 +164,23 @@ define('requests',
         return def;
     }
 
-    function get(url, nocache) {
+    function get(url, nocache, persistent) {
         if (cache.has(url) && !nocache) {
             console.log('GETing from cache', url);
             return defer.Deferred()
                         .resolve(cache.get(url))
                         .promise({__cached: true});
         }
-        return _get.apply(this, arguments);
+        return _get.apply(this, arguments, persistent);
     }
 
-    function _get(url, nocache) {
+    function _get(url, nocache, persistent) {
         console.log('GETing', url);
         return ajax('GET', url).done(function(data, xhr) {
             console.log('GOT', url);
             if (!nocache) {
                 cache.set(url, data);
+                if (persistent) cache.persist.set(url, data);
             }
         });
     }

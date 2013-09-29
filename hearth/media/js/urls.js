@@ -25,7 +25,7 @@ define('urls',
             }
 
             // Check that we got the right number of arguments.
-            if (args.length != i) {
+            if (args.length !== i) {
                 console.error('Expected ' + i + ' args, got ' + args.length);
                 throw new Error('Wrong number of arguments passed to reverse(). View: "' + view_name + '", Argument "' + args + '"');
             }
@@ -67,8 +67,8 @@ define('urls',
                 lang: lang,
                 region: user.get_setting('region') || '',
                 carrier: user.get_setting('carrier') || '',
-                //scr: caps.widescreen() ? 'wide' : 'mobile',
-                //tch: caps.touch,
+                true_region: user.get_setting('true_region') || '',
+                true_carrier: user.get_setting('true_carrier') || '',
                 dev: _dev(),
                 device: _device(),
                 pro: buckets.get_profile()
@@ -77,7 +77,9 @@ define('urls',
                 args._user = user.get_token();
             }
             Object.keys(args).forEach(function(k) {
-                if (!args[k]) {
+                if (!args[k] ||
+                    settings.api_param_blacklist &&
+                    settings.api_param_blacklist.indexOf(k) !== -1) {
                     delete args[k];
                 }
             });
@@ -102,7 +104,7 @@ define('urls',
     };
 
     var media = function(path) {
-        var media_url = document.body.dataset.media || settings.media_url;
+        var media_url = document.body.getAttribute('data-media') || settings.media_url;
         if (media_url[media_url.length - 1] !== '/') {
             media_url += '/';
         }

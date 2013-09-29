@@ -1,9 +1,14 @@
 (function() {
 
 var languages = [
-    'bg', 'ca', 'cs', 'de', 'en-US', 'es', 'eu', 'fr', 'ga-IE', 'hr', 'hu', 'it',
-    'ja', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'zh-TW', 'dbg'
+    'bg', 'ca', 'cs', 'de', 'el', 'en-US', 'es', 'eu', 'fr', 'ga-IE', 'hr',
+    'hu', 'it', 'ja', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'sr-Latn',
+    'tr', 'zh-TW', 'dbg'
 ];
+var body_langs;
+if (body_langs = document.body.getAttribute('data-languages')) {
+    languages = JSON.parse(body_langs);
+}
 
 var lang_expander = {
     'en': 'en-US', 'ga': 'ga-IE',
@@ -11,23 +16,24 @@ var lang_expander = {
     'zh': 'zh-CN'
 };
 
-if (!window.define) {
-    function get_locale(locale) {
-        if (languages.indexOf(locale) !== -1) {
-            return locale;
-        }
-        locale = locale.split('-')[0];
-        if (languages.indexOf(locale) !== -1) {
-            return locale;
-        }
-        if (locale in lang_expander) {
-            locale = lang_expander[locale];
-            if (languages.indexOf(locale) !== -1) {
-                return locale;
-            }
-        }
-        return 'en-US';
+function get_locale(locale) {
+    if (languages.indexOf(locale) !== -1) {
+        return locale;
     }
+    locale = locale.split('-')[0];
+    if (languages.indexOf(locale) !== -1) {
+        return locale;
+    }
+    if (locale in lang_expander) {
+        locale = lang_expander[locale];
+        if (languages.indexOf(locale) !== -1) {
+            return locale;
+        }
+    }
+    return 'en-US';
+}
+
+if (!window.define) {
     var qs_lang = /[\?&]lang=([\w\-]+)/i.exec(window.location.search);
     var locale = get_locale((qs_lang && qs_lang[1]) || navigator.language);
     if (locale === 'en-US') {
@@ -36,8 +42,9 @@ if (!window.define) {
     }
 
     // Cachebust the .js file for our CDN.
-    var build_id = document.body.dataset.buildIdJs || +new Date();
-    document.write('<script src="/locales/' + locale + '.js?b=' + build_id + '"></script>');
+    var build_id = document.body.getAttribute('data-buildIdJs') || +new Date();
+    var repo = document.body.getAttribute('data-repo');
+    document.write('<script src="/media/' + (repo ? repo + '/' : '') + 'locales/' + locale + '.js?b=' + build_id + '"></script>');
 
 } else {
     define('l10n', ['format'], function(format) {
@@ -94,7 +101,9 @@ if (!window.define) {
                 // http://www.w3.org/International/questions/qa-scripts
                 // Arabic, Hebrew, Farsi, Pashto, Urdu
                 return rtlList.indexOf(language) >= 0 ? 'rtl' : 'ltr';
-            }
+            },
+            getLocale: get_locale,
+            languages: languages
         };
     });
 }

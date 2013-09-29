@@ -101,5 +101,17 @@ test('l10n.getDirection', function(done) {
     done();
 });
 
+test('l10n.getLocale', function(done) {
+    // Exact matches
+    eq_(eltenen.getLocale('en-US'), 'en-US');
+    // Shortened matches
+    eq_(eltenen.getLocale('de-DE'), 'de');
+    // Re-expanded matches
+    eq_(eltenen.getLocale('en-FOO'), 'en-US');
+    // Potato matches
+    eq_(eltenen.getLocale('potato-LOCALE'), 'en-US');
+    done();
+});
+
 
 })();

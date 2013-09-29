@@ -4,12 +4,17 @@
 {% set endpoint=api('collection', [slug]) %}
 
 <section class="main">
-  {% defer (url=endpoint, id='collection') %}
+  {% defer (url=endpoint, id='collection', as='collection', key=slug) %}
     {{ collection_tile(this) }}
-    {# TODO: JS handler for read more/less. #}
-    <p class="desc">{{ this.description|nl2br }}</p>
+  {% placeholder %}
+    <p class="spinner alt spaced"></p>
+  {% except %}
+    <div class="detailed-error">
+      <h2>{{ _('Oh no!') }}</h2>
+      <p>{{ _('We could not load that collection. Please try again later.') }}</p>
+    </div>
   {% end %}
-  {% defer (url=endpoint, pluck='apps', as='app') %}
+  {% defer (url=endpoint, id='apps', pluck='apps', as='app') %}
     <ol class="container listing only-logged-in c">
       {% for result in this %}
         <li class="item result app c">
@@ -17,12 +22,9 @@
         </li>
       {% endfor %}
     </ol>
-  {% placeholder %}
-    <p class="spinner alt spaced"></p>
+  {% empty %}
+    {# L10n: Please do your best to capture the essence of Scooby Doo. #}
+    {{ _("Ruh roh! No apps here, Shaggy!") }}
   {% except %}
-    <div class="detailed-error">
-      <h2>{{ _('Oh no!') }}</h2>
-      <p>{{ _('An internal server error occurred. Please try again later.') }}</p>
-    </div>
   {% end %}
 </section>

@@ -6,6 +6,7 @@ define('routes_api', [], function() {
         'categories': '/api/v1/apps/category/',
         // TODO: Replace with real API when ready.
         'collection': '/api/v1/rocketfuel/collections/{0}/',
+        'collection_image': '/api/v1/rocketfuel/collections/{0}/image/',
         'reviews': '/api/v1/apps/rating/',
         'review': '/api/v1/apps/rating/{0}/',
         'settings': '/api/v1/account/settings/mine/',

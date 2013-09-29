@@ -35,20 +35,9 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
 ## Installation
 
 ```bash
-npm install -d
+npm install
+npm install -g commonplace
 ```
-
-Our dependencies:
-
-- `nunjucks`: For templates
-- `stylus`: For stylesheets
-
-If you plan on doing compilation (i.e.: you're Wil Clouser), you'll also need
-
-- `clean-css`: For minifying CSS or whatever
-- `requirejs`: For warming up Spaceheater
-- `uglify-js`: For minifying JS and L10n string extraction
-
 
 ### Flue
 
@@ -62,28 +51,16 @@ Docs can be found in
 [Yule Log's README](https://github.com/mozilla/fireplace/blob/master/yulelog/README.md)
 
 
-### Getting node/npm
-
-
-#### OS X
-
-```bash
-brew install node
-```
-
-And make sure that `/usr/local/share/npm/bin` is in your `$PATH`, à la: ::
-
-```bash
-export PATH=/usr/local/share/npm/bin:$PATH
-```
-
-
 ## Usage
+
+If you haven't already, make sure `hearth/media/js/settings_local.js`
+exists. You can copy from `settings_local.js.dist`. Some settings may need
+to be updated if you plan to run a custom local setup, including `api_url`.
 
 From the terminal, run the following command
 
 ```bash
-node damper.js
+damper
 ```
 
 This will start a local server on 0.0.0.0:8675 by default.
@@ -91,7 +68,7 @@ This will start a local server on 0.0.0.0:8675 by default.
 To control the hostname and port you can use the following otions
 
 ```bash
-node damper.js --host 127.0.0.1 --port 8888
+damper --host 127.0.0.1 --port 8888
 ```
 
 In addition to an HTTP server, the damper will also run a Stylus watcher (to
@@ -105,20 +82,18 @@ docs](https://github.com/mozilla/fireplace/blob/master/flue/README.rst).
 ### Compiling
 
 To run the compilation process, which compiles templates, CSS, and locale
-files, run the damper with the `--compile` argument:
+files, run the following command:
 
 ```bash
-node damper.js --compile
+commonplace compile
 ```
-
-The damper will not start a local server in this case, but a `strings.po` file
-will be generated.
 
 
 ### Compiling Includes
 
 If you need to compile include files (i.e.: for Space Heater or a less HTTP-
-heavy version of the project), run `make includes`. This will generate two files:
+heavy version of the project), run `commonplace includes`. This will generate
+two files:
 
 ```
 hearth/media/js/include.js
@@ -135,25 +110,16 @@ and `define`---using any other non-browser globals will result in errors. I.e.:
 accessing `_` without requiring `'underscore'` will cause the code to fail. Also
 note that all modules must include a name as the first parameter.
 
-Note that you need the dev dependencies to run this compilation. You can get
-them by running `npm install -d`.
-
 
 ## Localizing
 
 A detailed guide to extracting strings and creating JS language packs can be
-found [on the wiki](https://github.com/mozilla/fireplace/wiki/L10n#extracting-strings).
+found [on the wiki](https://github.com/mozilla/commonplace/wiki/L10n#extracting-strings).
 
 
 ## The API
 
 [Read the docs.](http://firefox-marketplace-api.readthedocs.org/)
-
-
-## Bugs
-
-- If new templates or ``.styl`` files are added, they will not be recognized
-  until the damper is restarted. Deleted files may also cause problems.
 
 
 ## Tests

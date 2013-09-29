@@ -79,7 +79,11 @@ require.config({
 
         z.page.one('loaded', function() {
             console.log('Hiding splash screen');
-            $('#splash-overlay').addClass('hide');
+            var splash = $('#splash-overlay').addClass('hide');
+            // Remove the splash screen once it's visible.
+            setTimeout(function() {
+                splash.remove();
+            }, 1500);
         });
 
         // This lets you refresh within the app by holding down command + R.
@@ -126,7 +130,6 @@ require.config({
         z.page.on('before_login before_logout', function() {
             var cat_url = require('urls').api.url('categories');
             require('cache').purge(function(key) {return key != cat_url;});
-            require('models')('app').purge();
         });
 
         z.body.on('click', '.site-header .back', function(e) {
@@ -170,12 +173,14 @@ require.config({
 
         require('requests').on('success', function(_, xhr) {
             var filter_header;
-            if ((!user.get_setting('region') || user.get_setting('region') == 'internet') &&
-                (filter_header = xhr.getResponseHeader('API-Filter'))) {
-                var region = require('utils').getVars(filter_header).region;
-                log.persistent('mobilenetwork', 'change').log('API overriding region:', region);
-                user.update_settings({region: region});
-            }
+            try {
+                if ((!user.get_setting('region') || user.get_setting('region') == 'internet') &&
+                    (filter_header = xhr.getResponseHeader('API-Filter'))) {
+                    var region = require('utils').getVars(filter_header).region;
+                    log.persistent('mobilenetwork', 'change').log('API overriding region:', region);
+                    user.update_settings({region: region});
+                }
+            } catch(e) {}
         }).on('deprecated', function() {
             // Divert the user to the deprecated view.
             z.page.trigger('divert', [require('urls').reverse('deprecated')]);
