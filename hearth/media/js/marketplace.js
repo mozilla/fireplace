@@ -51,6 +51,7 @@ require.config({
             'urls',
             'user',
             'utils',
+            'views',
             'webactivities',
             'z'
         ],
@@ -110,7 +111,16 @@ require.config({
     
             z.page.on('loaded', get_installed);
             z.page.on('fragment_loaded loaded_more', get_installed_debounced);
-            document.addEventListener('visibilitychange', get_installed_debounced, false);
+            document.addEventListener(
+                'visibilitychange',
+                function() {
+                    if (document.hidden) {
+                        return;
+                    }
+                    require('views').reload();
+                },
+                false
+            );
         }
 
         // Do some last minute template compilation.
