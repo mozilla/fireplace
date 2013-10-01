@@ -16,11 +16,6 @@ require.config({
         'settings': ['settings_local', 'settings'],
         'stick': 'lib/stick',
         'format': 'lib/format'
-    },
-    shim: {
-        'flipsnap': {exports: 'Flipsnap'},
-        'jquery': {exports: 'jQuery'},
-        'underscore': {exports: '_'}
     }
 });
 
