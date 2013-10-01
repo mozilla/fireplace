@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-27T23:44:54.051Z\n"
-"PO-Revision-Date: 2013-08-24 21:33+0400\n"
+"POT-Creation-Date: 2013-09-12T16:47:38.539Z\n"
+"PO-Revision-Date: 2013-09-21 23:23+0400\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: none\n"
 "Language: ru-ru\n"
@@ -13,36 +13,29 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.5.7\n"
 
-#: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:13
+#: /templates/cat_list.html:3 /templates/cat_dropdown.html:1
+#: /media/js/cat-dropdown.js:13
 msgid "All Categories"
 msgstr "Все категории"
 
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Избранное"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Развернуть"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "Избранных приложений не найдено"
-
-#: /templates/collection.html:12 /templates/detail/main.html:24 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/receipt.html:28 /templates/user/purchases.html:38
+#: /templates/collection.html:12 /templates/not_found.html:2
+#: /templates/errors/fragment.html:1 /templates/detail/main.html:24
+#: /templates/detail/receipt.html:28 /templates/user/purchases.html:38
 msgid "Oh no!"
 msgstr "О нет!"
 
 #: /templates/collection.html:13
 msgid "We could not load that collection. Please try again later."
 msgstr ""
+"Мы не смогли загрузить ту подборку. Пожалуйста, повторите попытку позже."
 
 #. Please do your best to capture the essence of Scooby Doo.
 #: /templates/collection.html:26
 msgid "Ruh roh! No apps here, Shaggy!"
-msgstr ""
+msgstr "Ой-ё! Тут пусто, Шэгги!"
 
-#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
+#: /templates/confirmation.html:0 /templates/detail/abuse.html:6
+#: /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Закрыть"
 
@@ -54,6 +47,38 @@ msgstr "Нет"
 msgid "Yes"
 msgstr "Да"
 
+#. The Marketplace app is out-of-date and needs to be updated.
+#: /templates/deprecated.html:2
+msgid "Out-of-Date Marketplace"
+msgstr "Устаревший Магазин"
+
+#: /templates/deprecated.html:3
+msgid ""
+"The version of the Firefox Marketplace that you're using is no longer "
+"supported. You will need to perform an update before you can continue "
+"enjoying the Marketplace."
+msgstr ""
+"Используемая вами версия Магазина Firefox больше не поддерживается. Чтобы "
+"продолжить пользоваться Магазином вам необходимо сначала произвести его "
+"обновление."
+
+#: /templates/deprecated.html:5 /templates/obsolete.html:5
+msgid "Update Now"
+msgstr "Обновить сейчас"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Избранное"
+
+#: /templates/featured.html:8 /templates/search/main.html:10
+#: /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Развернуть"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "Избранных приложений не найдено"
+
 #: /templates/footer.html:2
 msgid "Develop Apps"
 msgstr "Разработка приложений"
@@ -62,7 +87,9 @@ msgstr "Разработка приложений"
 msgid "Developer Hub"
 msgstr "Центр разработчика"
 
-#: /templates/footer.html:6 /templates/header.html:26 /templates/settings/nav.html:8 /templates/settings/nav.html:11 /media/js/views/feedback.js:61
+#: /templates/footer.html:6 /templates/header.html:26
+#: /templates/settings/nav.html:8 /templates/settings/nav.html:11
+#: /media/js/views/feedback.js:61
 msgid "Feedback"
 msgstr "Отзывы"
 
@@ -70,7 +97,9 @@ msgstr "Отзывы"
 msgid "Support"
 msgstr "Поддержка"
 
-#: /templates/footer.html:12 /templates/header.html:22 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
+#: /templates/footer.html:12 /templates/header.html:22
+#: /templates/settings/nav.html:7 /templates/user/purchases.html:44
+#: /templates/user/purchases.html:11 /templates/user/purchases.html:31
 #: /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "Мои приложения"
@@ -89,18 +118,26 @@ msgstr "Инструмент поиска"
 
 #: /templates/footer.html:28
 msgid ""
-"Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
-"Alike License v3.0</a> or any later version."
+"Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, "
+"content on this site is licensed under the <a href=\"{cc_url}\" target="
+"\"_blank\">Creative Commons Attribution Share-Alike License v3.0</a> or any "
+"later version."
 msgstr ""
-"За исключением содержимого с <a href=\"{legal_url}\" target=\"_blank\">явно указанной</a> лицензией, содержимое этого сайта лицензировано на условиях <a href=\"{cc_url}\" target=\"_blank\">лицензии "
-"Creative Commons Атрибуция — С сохранением условий версии 3.0</a> или более поздней."
+"За исключением содержимого с <a href=\"{legal_url}\" target=\"_blank\">явно "
+"указанной</a> лицензией, содержимое этого сайта лицензировано на условиях <a "
+"href=\"{cc_url}\" target=\"_blank\">лицензии Creative Commons Атрибуция — С "
+"сохранением условий версии 3.0</a> или более поздней."
 
-#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
-#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
+#: /templates/footer.html:33 /templates/privacy.html:2
+#: /templates/detail/main.html:165 /templates/detail/privacy.html:3
+#: /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
+#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10
+#: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Политика приватности"
 
-#: /templates/footer.html:34 /templates/terms.html:2 /templates/settings/feedback.html:27 /media/js/views/terms.js:10
+#: /templates/footer.html:34 /templates/terms.html:2
+#: /templates/settings/feedback.html:27 /media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Условия использования"
 
@@ -137,54 +174,63 @@ msgid "Sign In"
 msgstr "Войти"
 
 #. The operating system is out-of-date and needs to be updated. #}
-#.   <h1>{{ _('Firefox OS Update Required') }}</h1>
-#.   <p>{{ _("You're running an obsolete version of Firefox OS. Some apps in the Marketplace may fail to install or will malfunction. Please run a system update to continue enjoying the Marketplace.") }}</p>
-#.   <div>
-#.     <button class="button system-update">{{ _('Update Now') }}</button>
-#.   </div>
-#.   <div>
-#.   	{# L10n: The user understands that some apps may malfunction if
-#.   	they keep using the Marketplace without running a system update.
+#. <h1>{{ _('Firefox OS Update Required') }}</h1>
+#. <p>{{ _("You're running an obsolete version of Firefox OS. Some apps in the Marketplace may fail to install or will malfunction. Please run a system update to continue enjoying the Marketplace.") }}</p>
+#. <div>
+#. <button class="button system-update">{{ _('Update Now') }}</button>
+#. </div>
+#. <div>
+#. {# L10n: The user understands that some apps may malfunction if
+#. they keep using the Marketplace without running a system update.
 #: /templates/obsolete.html:2
 msgid "Firefox OS Update Required"
 msgstr "Необходимо обновить Firefox OS"
 
 #: /templates/obsolete.html:3
-msgid "You're running an obsolete version of Firefox OS. Some apps in the Marketplace may fail to install or will malfunction. Please run a system update to continue enjoying the Marketplace."
+msgid ""
+"You're running an obsolete version of Firefox OS. Some apps in the "
+"Marketplace may fail to install or will malfunction. Please run a system "
+"update to continue enjoying the Marketplace."
 msgstr ""
-"Вы используете устаревшую версию Firefox OS. Некоторые приложения в Магазине могут не устанавливаться или некорректно работать. Пожалуйста, запустите обновление системы, чтобы продолжить "
-"пользоваться Магазином."
-
-#: /templates/obsolete.html:5 /templates/deprecated.html:5
-msgid "Update Now"
-msgstr "Обновить сейчас"
+"Вы используете устаревшую версию Firefox OS. Некоторые приложения в Магазине "
+"могут не устанавливаться или некорректно работать. Пожалуйста, запустите "
+"обновление системы, чтобы продолжить пользоваться Магазином."
 
 #: /templates/obsolete.html:10
 msgid "I understand the risk and wish to continue"
 msgstr "Я понимаю риск и хочу продолжить"
 
-#. The Marketplace app is out-of-date and needs to be updated.
-#: /templates/deprecated.html:2
-msgid "Out-of-Date Marketplace"
-msgstr "Устаревший Магазин"
+#: /templates/not_found.html:3 /templates/detail/receipt.html:29
+msgid "The page you were looking for was not found."
+msgstr "Страница, которую вы искали, не была найдена."
 
-#: /templates/deprecated.html:3
-msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
-msgstr "Используемая вами версия Магазина Firefox больше не поддерживается. Чтобы продолжить пользоваться Магазином вам необходимо сначала произвести его обновление."
+#: /templates/partners.html:3
+msgid "Enjoy 3 months of Napster"
+msgstr "Насладитесь 3 месяцами Napster"
 
-#: /templates/_macros/market_tile.html:9
-msgid "{app_name} .::. screenshot"
-msgstr ""
+#: /templates/partners.html:4
+msgid "Download Napster"
+msgstr "Загрузите Napster"
 
-#: /templates/_macros/market_tile.html:38 /templates/_macros/market_button.html:7
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Недоступно"
+
+#: /templates/_macros/market_button.html:7
+#: /templates/_macros/market_tile.html:40
 msgid "Free"
 msgstr "Бесплатно"
 
-#: /templates/_macros/market_tile.html:46
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
+msgid "Install"
+msgstr "Установить"
+
+#: /templates/_macros/market_tile.html:48
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:49 /templates/detail/main.html:111
+#: /templates/_macros/market_tile.html:51 /templates/detail/main.html:111
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} отзыв"
@@ -192,68 +238,17 @@ msgstr[1] "{n} отзыва"
 msgstr[2] "{n} отзывов"
 
 #. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:53
+#: /templates/_macros/market_tile.html:55
 msgid "(0)"
 msgstr "(0)"
 
-#: /templates/_macros/market_tile.html:54
+#: /templates/_macros/market_tile.html:56
 msgid "Not yet rated"
 msgstr "Пока не оценено"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Недоступно"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
-msgid "Install"
-msgstr "Установить"
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "Ещё"
-
-#: /templates/category/main.html:32
-msgid "Featured Apps"
-msgstr "Избранные приложения"
-
-#: /templates/category/main.html:33 /templates/category/main.html:55 /templates/category/main.html:79
-msgid "View All"
-msgstr "Просмотреть все"
-
-#: /templates/category/main.html:75
-msgid "Popular"
-msgstr "Популярное"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints) #}
-#.         <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}" data-preserve-scroll>{{ _('New') }}</a>
-#.       </nav>
-#.       <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
-#.     </header>
-#.   {% endif %}
-#.   <ol class="container listing grid-if-desktop search-listing c">
-#.     {% for result in this %}
-#.       <li class="item result app c">
-#.         {{ market_tile(result, link=true, src=source + '-' + (sort or 'popular'), tray=False) }}
-#.       </li>
-#.     {% endfor %}
-#.
-#.     {# Render the more button if there's another page of results
-#: /templates/category/main.html:77
-msgid "New"
-msgstr "Новое"
-
-#: /templates/category/main.html:98
-msgid "No apps in this category"
-msgstr "В этой категории нет приложений"
-
-#: /templates/category/main.html:103
-msgid "The category you requested does not exist."
-msgstr "Запрошенная вами категория не существует."
-
-#: /templates/category/main.html:105 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "Произошла внутренняя ошибка сервера. Пожалуйста, повторите попытку позже."
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -279,6 +274,74 @@ msgstr "Удалить"
 msgid "Report"
 msgstr "Сообщить"
 
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Оценено в {stars} из {maxstars} звёзд"
+
+#: /templates/category/main.html:32
+msgid "Featured Apps"
+msgstr "Избранные приложения"
+
+#: /templates/category/main.html:33 /templates/category/main.html:59
+msgid "View All"
+msgstr "Просмотреть все"
+
+#: /templates/category/main.html:55
+msgid "Popular"
+msgstr "Популярное"
+
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints) #}
+#. <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}" data-preserve-scroll>{{ _('New') }}</a>
+#. </nav>
+#. <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
+#. </header>
+#. {% endif %}
+#. <ol class="container listing grid-if-desktop search-listing c">
+#. {% for result in this %}
+#. <li class="item result app c">
+#. {{ market_tile(result, link=true, src=source + '-' + (sort or 'popular'), tray=False) }}
+#. </li>
+#. {% endfor %}
+#.
+#. {# Render the more button if there's another page of results
+#: /templates/category/main.html:57
+msgid "New"
+msgstr "Новое"
+
+#: /templates/category/main.html:78
+msgid "No apps in this category"
+msgstr "В этой категории нет приложений"
+
+#: /templates/category/main.html:83
+msgid "The category you requested does not exist."
+msgstr "Запрошенная вами категория не существует."
+
+#: /templates/category/main.html:85 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr ""
+"Произошла внутренняя ошибка сервера. Пожалуйста, повторите попытку позже."
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Произошла ошибка."
+
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Ошибка загрузки других"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Попробовать снова"
+
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:176
+#: /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "Сообщить о нарушении правил"
+
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "Отправить сообщение"
+
 #: /templates/detail/main.html:42
 msgid "Installed!"
 msgstr "Установлено!"
@@ -288,14 +351,24 @@ msgid "Launch this app from your <b>Applications</b> directory."
 msgstr "Запустите это приложение из вашего каталога <b>Приложения</b>."
 
 #: /templates/detail/main.html:48
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Запустите это приложение с вашего <b>Рабочего стола Windows</b> или из <b>Пуск &#9658; Все программы</b>."
+msgid ""
+"Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All "
+"Programs</b>."
+msgstr ""
+"Запустите это приложение с вашего <b>Рабочего стола Windows</b> или из "
+"<b>Пуск &#9658; Все программы</b>."
 
 #: /templates/detail/main.html:51
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Запустите это приложение из вашего <b>dash</b>, <b>Панели выбора приложений</b> или <b>Меню приложений</b>."
+msgid ""
+"Launch this app from your <b>dash</b>, <b>Application picker</b>, or "
+"<b>Applications menu</b>."
+msgstr ""
+"Запустите это приложение из вашего <b>dash</b>, <b>Панели выбора приложений</"
+"b> или <b>Меню приложений</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:24
+#: /templates/detail/main.html:14 /templates/detail/main.html:15
+#: /templates/detail/receipt.html:18 /templates/detail/receipt.html:19
+#: /media/js/views/app.js:58 /media/js/views/collection.js:24
 msgid "Loading..."
 msgstr "Загрузка..."
 
@@ -312,8 +385,12 @@ msgid "The app requested is not available for your region."
 msgstr "Запрошенное вами приложение не доступно в вашем регионе."
 
 #: /templates/detail/main.html:31
-msgid "You may wish to contact the developer if you would like to see a version of this app for your region."
-msgstr "Если вы хотели бы видеть версию этого приложения для вашего региона, вы можете связаться с разработчиком."
+msgid ""
+"You may wish to contact the developer if you would like to see a version of "
+"this app for your region."
+msgstr ""
+"Если вы хотели бы видеть версию этого приложения для вашего региона, вы "
+"можете связаться с разработчиком."
 
 #: /templates/detail/main.html:33
 msgid "A server error occurred. Please try again later."
@@ -347,7 +424,8 @@ msgstr "Одобрить / Отклонить"
 msgid "Review History"
 msgstr "История отзывов"
 
-#: /templates/detail/main.html:100 /templates/ratings/main.html:6 /media/js/views/app/ratings.js:16
+#: /templates/detail/main.html:100 /templates/ratings/main.html:6
+#: /media/js/views/app/ratings.js:16
 msgid "Reviews"
 msgstr "Отзывы"
 
@@ -359,7 +437,8 @@ msgstr "Приложение пока не оценено"
 msgid "Edit Your Review"
 msgstr "Редактировать ваш отзыв"
 
-#: /templates/detail/main.html:131 /templates/ratings/main.html:18 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
+#: /templates/detail/main.html:131 /templates/ratings/main.html:18
+#: /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
 msgid "Write a Review"
 msgstr "Написать отзыв"
 
@@ -383,29 +462,13 @@ msgstr "Домашняя страница"
 msgid "Statistics"
 msgstr "Статистика"
 
-#: /templates/detail/main.html:176 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "Сообщить о нарушении правил"
-
 #: /templates/detail/main.html:187
 msgid "Premium version available"
 msgstr "Доступна премиум-версия"
 
-#: /templates/detail/main.html:203
+#: /templates/detail/main.html:204
 msgid "Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
 msgstr "Рейтинг от <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
-
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "Отправить сообщение"
-
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "Страница, которую вы искали, не была найдена."
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Оценено в {stars} из {maxstars} звёзд"
 
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
@@ -415,78 +478,31 @@ msgstr "Вернуться к приложению"
 msgid "Loading Privacy Policy..."
 msgstr "Загрузка политики приватности..."
 
-#: /templates/search/main.html:15
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr "Спасибо за покупку"
+
+#: /templates/search/main.html:7
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
 msgstr[0] "<b>{n}</b> результат"
 msgstr[1] "<b>{n}</b> результата"
 msgstr[2] "<b>{n}</b> результатов"
 
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
+#: /templates/search/main.html:8 /templates/user/purchases.html:12
 msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
 msgstr "Показан <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
 
-#: /templates/search/main.html:36
+#: /templates/search/main.html:28
 msgid "No results found"
 msgstr "Результатов не найдено"
 
-#: /templates/search/main.html:41
+#: /templates/search/main.html:33
 msgid "No results found, try again later"
 msgstr "Результатов не найдено, повторите попытку позже"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Произошла ошибка."
-
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Ошибка загрузки других"
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Попробовать снова"
-
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr "Спасибо за покупку"
-
-#: /templates/settings/feedback.html:12
-msgid "Send"
-msgstr "Отправить"
-
-#: /templates/settings/feedback.html:18
-msgid "Get Help"
-msgstr "Получить помощь"
-
-#: /templates/settings/main.html:2 /media/js/views/settings.js:57
-msgid "Account Settings"
-msgstr "Параметры учётной записи"
-
-#: /templates/settings/main.html:11
-msgid "Email"
-msgstr "Адрес эл. почты"
-
-#: /templates/settings/main.html:20
-msgid "Display Name"
-msgstr "Отображаемое имя"
-
-#: /templates/settings/main.html:29
-msgid "Region"
-msgstr "Регион"
-
-#: /templates/settings/main.html:45
-msgid "Save Changes"
-msgstr "Сохранить изменения"
-
-#: /templates/settings/main.html:48
-msgid "Sign In / Sign Up"
-msgstr "Вход / Регистрация"
-
-#: /templates/settings/nav.html:6
-msgid "Account"
-msgstr "Учётная запись"
-
-#: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
+#: /templates/ratings/edit.html:4 /templates/ratings/main.html:14
+#: /media/js/views/app/ratings/edit.js:71
 msgid "Edit Review"
 msgstr "Изменить отзыв"
 
@@ -494,8 +510,9 @@ msgstr "Изменить отзыв"
 msgid "Rate:"
 msgstr "Оценка:"
 
-#: /templates/ratings/edit.html:20 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/user/newsletter.html:13 /templates/ratings/write.html:3
-#: /templates/ratings/write.html:19
+#: /templates/ratings/edit.html:20 /templates/ratings/report.html:3
+#: /templates/ratings/report.html:23 /templates/ratings/write.html:3
+#: /templates/ratings/write.html:19 /templates/user/newsletter.html:13
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -535,6 +552,42 @@ msgstr "Неприемлемые выражения/перебранка"
 msgid "Misplaced bug report or support request"
 msgstr "Неуместное сообщение об ошибке или запрос поддержки"
 
+#: /templates/settings/feedback.html:12
+msgid "Send"
+msgstr "Отправить"
+
+#: /templates/settings/feedback.html:18
+msgid "Get Help"
+msgstr "Получить помощь"
+
+#: /templates/settings/main.html:2 /media/js/views/settings.js:57
+msgid "Account Settings"
+msgstr "Параметры учётной записи"
+
+#: /templates/settings/main.html:11
+msgid "Email"
+msgstr "Адрес эл. почты"
+
+#: /templates/settings/main.html:20
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#: /templates/settings/main.html:29
+msgid "Region"
+msgstr "Регион"
+
+#: /templates/settings/main.html:45
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+#: /templates/settings/main.html:48
+msgid "Sign In / Sign Up"
+msgstr "Вход / Регистрация"
+
+#: /templates/settings/nav.html:6
+msgid "Account"
+msgstr "Учётная запись"
+
 #: /templates/user/newsletter.html:3
 msgid "Get Firefox Marketplace news"
 msgstr "Получайте новости Магазина Firefox"
@@ -563,7 +616,8 @@ msgstr "Вход / Регистрация"
 msgid "You have no apps"
 msgstr "У вас нет приложений"
 
-#: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
+#: /media/js/buttons.js:53 /media/js/buttons.js:119
+#: /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Платёж отменён."
 
@@ -601,10 +655,6 @@ msgstr "Ваш браузер или устройство не совмести�
 msgid "This app is unavailable for your platform."
 msgstr "Это приложение недоступно для вашей платформы."
 
-#: /media/js/mobilenetwork.js:264
-msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
-msgstr "Сейчас вы просматриваете содержимое для *{current_region}*. Вы хотели бы переключиться на *{new_region}*?"
-
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "Вы вышли из системы"
@@ -613,13 +663,25 @@ msgstr "Вы вышли из системы"
 msgid "You have been signed in"
 msgstr "Вы вошли в систему"
 
-#: /media/js/login.js:124
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Ошибка входа через Persona. Возможно у вас нет учетной записи для этого адреса эл. почты?"
+#: /media/js/login.js:123
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Ошибка входа через Persona. Возможно у вас нет учетной записи для этого "
+"адреса эл. почты?"
 
-#: /media/js/login.js:129
+#: /media/js/login.js:128
 msgid "Persona login failed. A server error was encountered."
 msgstr "Ошибка входа через Persona. Произошла ошибка сервера."
+
+#: /media/js/mobilenetwork.js:269
+msgid ""
+"You are currently browsing content for *{current_region}*. Would you like to "
+"switch to *{new_region}*?"
+msgstr ""
+"Сейчас вы просматриваете содержимое для *{current_region}*. Вы хотели бы "
+"переключиться на *{new_region}*?"
 
 #: /media/js/navigation.js:52
 msgid "No internet connection"
@@ -628,66 +690,6 @@ msgstr "Нет подключения к Интернету"
 #: /media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Ошибка при отправке запроса на подписку на новостную рассылку"
-
-#: /media/js/settings.js:72
-msgid "Worldwide"
-msgstr "По всему миру "
-
-#: /media/js/settings.js:73
-msgid "Brazil"
-msgstr "Бразилия"
-
-#: /media/js/settings.js:74
-msgid "Colombia"
-msgstr "Колумбия"
-
-#: /media/js/settings.js:75
-msgid "Germany"
-msgstr ""
-
-#: /media/js/settings.js:76
-msgid "Greece"
-msgstr ""
-
-#: /media/js/settings.js:77
-msgid "Hungary"
-msgstr "Венгрия"
-
-#: /media/js/settings.js:78
-msgid "Mexico"
-msgstr ""
-
-#: /media/js/settings.js:79
-msgid "Montenegro"
-msgstr "Черногория"
-
-#: /media/js/settings.js:80
-msgid "Poland"
-msgstr "Польша"
-
-#: /media/js/settings.js:81
-msgid "Serbia"
-msgstr "Сербия"
-
-#: /media/js/settings.js:82
-msgid "Spain"
-msgstr "Испания"
-
-#: /media/js/settings.js:83
-msgid "United Kingdom"
-msgstr "Великобритания"
-
-#: /media/js/settings.js:84
-msgid "United States"
-msgstr "США"
-
-#: /media/js/settings.js:85
-msgid "Venezuela"
-msgstr "Венесуэла"
-
-#: /media/js/settings.js:88
-msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr "Министерство юстиции, рейтинга, титулов и квалификации"
 
 #. The report is an abuse report for reviews
 #: /media/js/ratings.js:39
@@ -718,8 +720,64 @@ msgstr "Ваш отзыв был размещён"
 msgid "Error while submitting review"
 msgstr "Ошибка при отправке отзыва"
 
+#: /media/js/settings.js:64
+msgid "Worldwide"
+msgstr "По всему миру "
+
+#: /media/js/settings.js:65
+msgid "Brazil"
+msgstr "Бразилия"
+
+#: /media/js/settings.js:66
+msgid "Colombia"
+msgstr "Колумбия"
+
+#: /media/js/settings.js:67
+msgid "Greece"
+msgstr "Греция"
+
+#: /media/js/settings.js:68
+msgid "Hungary"
+msgstr "Венгрия"
+
+#: /media/js/settings.js:69
+msgid "Mexico"
+msgstr "Мексика"
+
+#: /media/js/settings.js:70
+msgid "Montenegro"
+msgstr "Черногория"
+
+#: /media/js/settings.js:71
+msgid "Poland"
+msgstr "Польша"
+
+#: /media/js/settings.js:72
+msgid "Serbia"
+msgstr "Сербия"
+
+#: /media/js/settings.js:73
+msgid "Spain"
+msgstr "Испания"
+
+#: /media/js/settings.js:74
+msgid "United Kingdom"
+msgstr "Великобритания"
+
+#: /media/js/settings.js:75
+msgid "United States"
+msgstr "США"
+
+#: /media/js/settings.js:76
+msgid "Venezuela"
+msgstr "Венесуэла"
+
+#: /media/js/settings.js:79
+msgid "Department of Justice, Rating, Titles and Qualification"
+msgstr "Министерство юстиции, рейтинга, титулов и квалификации"
+
 #. {n} is the number of characters left.
-#: /media/js/utils.js:28
+#: /media/js/utils.js:25
 msgid "<b>{n}</b> character left."
 msgid_plural "<b>{n}</b> characters left."
 msgstr[0] "остался <b>{n}</b> символ"
@@ -755,12 +813,25 @@ msgstr "Сведения о приложении"
 msgid "Collection Details"
 msgstr "Сведения о подборке"
 
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "Отзыв отправлен. Спасибо!"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr ""
+"При отправке вашего отзыва возникла проблема. Подождите и попробуйте снова."
+
 #. Page not found (404)
 #: /media/js/views/not_found.js:9
 msgid "Not Found"
 msgstr "Не найдено"
 
-#: /media/js/views/search.js:181
+#: /media/js/views/partners.js:28
+msgid "Partners | {partner}"
+msgstr "Партнеры | {partner}"
+
+#: /media/js/views/search.js:165
 msgid "Search Results"
 msgstr "Результаты поиска"
 
@@ -771,14 +842,6 @@ msgstr "Параметры сохранены"
 #: /media/js/views/settings.js:29
 msgid "Settings could not be saved"
 msgstr "Не удалось сохранить параметры"
-
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "Отзыв отправлен. Спасибо!"
-
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "При отправке вашего отзыва возникла проблема. Подождите и попробуйте снова."
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"
@@ -803,3 +866,4 @@ msgstr "Отзыв успешно обновлён"
 #: /media/js/views/app/ratings/edit.js:38
 msgid "There was a problem updating your review"
 msgstr "При обновлении вашего отзыва возникла проблема"
+
