@@ -115,7 +115,7 @@ require.config({
     
             z.page.on('loaded', get_installed);
             z.page.on('fragment_loaded loaded_more', get_installed_debounced);
-            z.doc.on('visibilitychange', get_installed_debounced);
+            document.addEventListener('visibilitychange', get_installed_debounced, false);
         }
 
         // Do some last minute template compilation.
