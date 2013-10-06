@@ -178,6 +178,12 @@ define('views/search',
                     data.unshift(base({name: 'Hatee-hatee-hatee-ho!', author: 'The Fox'}));
                     data.unshift(base({name: 'Wa-pa-pa-pa-pa-pa-pow!', author: 'The Fox'}));
                     data.unshift(base({name: 'Ring-ding-ding-ding-dingeringeding!', author: 'The Fox'}));
+                    break;
+                case 'hampster dance':
+                    data.forEach(function(v, k) {
+                        v.icons['64'] = urls.media('img/icons/eggs/h' + (k % 4 + 1) + '.gif');
+                    });
+                    break;
             }
             return data;
         };
@@ -194,6 +200,13 @@ define('views/search',
         var query = params.full_q || params.q;
         builder.z('search', query);
         builder.z('title', query || gettext('Search Results'));
+
+        var class_;
+        if (params.q === 'hampster dance') {
+            params.q = 'dance';
+            z.body.addClass('hampster');
+            (new Audio(urls.media('hampster.ogg'))).play();
+        }
 
         builder.start(
             'search/main.html',
