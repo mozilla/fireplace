@@ -184,6 +184,9 @@ define('views/search',
                         v.icons['64'] = urls.media('img/icons/eggs/h' + (k % 4 + 1) + '.gif');
                     });
                     break;
+                case 'rick fant rolled':
+                    data.forEach(function(v, k) { v.url = 'http://www.youtube.com/watch?v=oHg5SJYRHA0'; });
+                    break;
             }
             return data;
         };
@@ -201,7 +204,6 @@ define('views/search',
         builder.z('search', query);
         builder.z('title', query || gettext('Search Results'));
 
-        var class_;
         if (params.q === 'hampster dance') {
             params.q = 'dance';
             z.body.addClass('hampster');
