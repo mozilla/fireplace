@@ -168,6 +168,21 @@ define('views/search',
             'navigate', utils.urlparams(urls.reverse('search'), params));
     });
 
+    function processor(query) {
+        query = query ? query.toLowerCase() : '';
+        return function(data) {
+            switch (query) {
+                case 'what does the fox say?':
+                    var base = function(item) {return _.extend(item, {'icons': {'64': urls.media('img/logos/firefox-256.png')}});};
+                    data.unshift(base({name: 'Joff-tchoff-tchoffo-tchoffo-tchoff!', author: 'The Fox'}));
+                    data.unshift(base({name: 'Hatee-hatee-hatee-ho!', author: 'The Fox'}));
+                    data.unshift(base({name: 'Wa-pa-pa-pa-pa-pa-pow!', author: 'The Fox'}));
+                    data.unshift(base({name: 'Ring-ding-ding-ding-dingeringeding!', author: 'The Fox'}));
+            }
+            return data;
+        };
+    }
+
     return function(builder, args, params) {
         params = parsePotatoSearch(_.extend({q: params.q}, params));
 
@@ -182,7 +197,7 @@ define('views/search',
 
         builder.start(
             'search/main.html',
-            {params: _.extend({}, params)}
+            {params: _.extend({}, params), processor: processor(query)}
         ).done(function() {
             var results = builder.results['searchresults'];
             if (params.manifest_url && results.objects.length === 1) {

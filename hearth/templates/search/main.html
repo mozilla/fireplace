@@ -19,7 +19,7 @@
       <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
     </header>
     <ol class="container listing search-listing c">
-      {% for result in this %}
+      {% for result in processor(this) %}
         <li class="item result app c">
           {{ market_tile(result, link=true, src='search') }}
         </li>
