@@ -1,6 +1,6 @@
 define('views/app/abuse',
-       ['forms', 'l10n', 'notification', 'requests', 'urls', 'z'],
-       function(forms, l10n, notification, requests, urls, z) {
+       ['forms', 'l10n', 'notification', 'requests', 'urls', 'utils', 'z'],
+       function(forms, l10n, notification, requests, urls, utils, z) {
 
     var gettext = l10n.gettext;
     var notify = notification.notification;
@@ -10,7 +10,7 @@ define('views/app/abuse',
         // Submit report abuse form
         var $this = $(this);
         var slug = $this.find('input[name=app]').val();
-        var data = $this.serialize();
+        var data = utils.getVars($this.serialize());
 
         forms.toggleSubmitFormState($this);
 
