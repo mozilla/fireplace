@@ -206,7 +206,9 @@ define('mobilenetwork',
 
         // Uruguay
         748: {
-            7: 'telefonica'
+            7: 'telefonica',
+            // Claro.
+            10: 'america_movil',
         },
 
         // Serbia
