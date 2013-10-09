@@ -94,6 +94,7 @@ define('mobilenetwork',
 
         // Colombia
         732: {
+            102: 'telefonica',
             123: 'telefonica'
         },
 
@@ -116,8 +117,8 @@ define('mobilenetwork',
         // Mexico
         334: {
             2: 'america_movil',
-            20: 'america_movil',
-            30: 'telefonica'
+            3: 'telefonica',
+            20: 'america_movil'
         },
 
         // Hungary
