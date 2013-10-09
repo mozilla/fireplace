@@ -3,9 +3,9 @@ define('settings_local', [], function() {
         window.location.protocol + '//' + window.location.host);
     return {
         api_url: origin,
-        media_url: document.body.getAttribute('data-media') + 'fireplace/',
+        media_url: document.body.getAttribute('data-media'),
         tracking_enabled: true,
-        
+
         potatolytics_enabled: false
     };
 });

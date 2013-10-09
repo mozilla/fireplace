@@ -173,7 +173,7 @@ define('views/search',
         return function(data) {
             switch (query) {
                 case 'what does the fox say?':
-                    var base = function(item) {return _.extend(item, {'icons': {'64': urls.media('img/logos/firefox-256.png')}});};
+                    var base = function(item) {return _.extend(item, {'icons': {'64': urls.media('fireplace/img/logos/firefox-256.png')}});};
                     data.unshift(base({name: 'Joff-tchoff-tchoffo-tchoffo-tchoff!', author: 'The Fox'}));
                     data.unshift(base({name: 'Hatee-hatee-hatee-ho!', author: 'The Fox'}));
                     data.unshift(base({name: 'Wa-pa-pa-pa-pa-pa-pow!', author: 'The Fox'}));
@@ -181,7 +181,7 @@ define('views/search',
                     break;
                 case 'hampster dance':
                     data.forEach(function(v, k) {
-                        v.icons['64'] = urls.media('img/icons/eggs/h' + (k % 4 + 1) + '.gif');
+                        v.icons['64'] = urls.media('fireplace/img/icons/eggs/h' + (k % 4 + 1) + '.gif');
                     });
                     break;
                 case 'rick fant rolled':
@@ -206,8 +206,11 @@ define('views/search',
 
         if (params.q === 'hampster dance') {
             params.q = 'dance';
+            (new Audio(urls.media('fireplace/hampster.ogg'))).play();
             z.body.addClass('hampster');
-            (new Audio(urls.media('hampster.ogg'))).play();
+            z.win.one('navigating', function(e) {
+                z.body.removeClass('hampster');
+            });
         }
 
         builder.start(
