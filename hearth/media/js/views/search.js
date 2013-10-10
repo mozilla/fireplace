@@ -207,10 +207,6 @@ define('views/search',
         if (params.q === 'hampster dance') {
             params.q = 'dance';
             (new Audio(urls.media('fireplace/hampster.ogg'))).play();
-            z.body.addClass('hampster');
-            z.win.one('navigating', function(e) {
-                z.body.removeClass('hampster');
-            });
         }
 
         builder.start(
