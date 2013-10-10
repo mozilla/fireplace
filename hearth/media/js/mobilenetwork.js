@@ -202,7 +202,11 @@ define('mobilenetwork',
         // Argentina
         722: {
             10: 'telefonica',
-            70: 'telefonica'
+            70: 'telefonica',
+            // Claro
+            310: 'america_movil',
+            320: 'america_movil',
+            330: 'america_movil'
         },
 
         // Uruguay
