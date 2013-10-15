@@ -3,8 +3,8 @@
     <h2>{{ _('Terms of Use') }}</h2>
   </header>
   <article class="prose">
-    {% set url = '/docs/terms/' + language + '.html?20131014-2' %}
-    {% set fallback = '/docs/terms/' + settings.default_locale + '.html?20131014-2' %}
+    {% set url = '/docs/terms/' + language + '.html?20131014-3' %}
+    {% set fallback = '/docs/terms/' + settings.default_locale + '.html?20131014-3' %}
     {% fetch (url=media(url), fallback=media(fallback)) %}
       <p class="spinner spaced alt"></p>
     {% endfetch %}
