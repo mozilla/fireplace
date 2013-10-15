@@ -28,13 +28,20 @@ define('views/homepage',
         }).done(function() {
             var shelf = builder.results['shelf'].operator;
             var catElm = '<li><a class="cat-{0} cat-icon-a" data-cat-slug="{0}" href="{1}">{2}</a></li>';
+            var $collections = $('.collection.main');
             newsletter.init();
 
             if (operatorInjected || !shelf.length) return;
 
+            shelf = shelf[0];
+            if (shelf.can_be_hero && $collections.length === 2) {
+                $collections.eq(1).hide();
+            }
+
+            if (!shelf.apps.length) return;
+
             // This is safe: cat-dropdown is required by marketplace.js.
             require('cat-dropdown').catrequest.done(function() {
-                shelf = shelf[0];
                 var slug = shelf.slug;
                 var name = utils.translate(shelf.name);
                 var link = urls.reverse('collection', [slug]);
@@ -42,7 +49,6 @@ define('views/homepage',
 
                 // Inject op shelf to the category dropdown after "All Categories".
                 $(item).insertAfter($('.cat-menu [data-cat-slug="all"]').closest('li'));
-
                 operatorInjected = true;
             });
         });
