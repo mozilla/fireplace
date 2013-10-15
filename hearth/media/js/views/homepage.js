@@ -1,6 +1,6 @@
 define('views/homepage',
-    ['cat-dropdown', 'format', 'l10n', 'newsletter', 'underscore', 'urls', 'utils'],
-    function(cdd, format, l10n, newsletter, _, urls, utils) {
+    ['format', 'l10n', 'newsletter', 'underscore', 'urls', 'utils'],
+    function(format, l10n, newsletter, _, urls, utils) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -32,7 +32,8 @@ define('views/homepage',
 
             if (operatorInjected || !shelf.length) return;
 
-            cdd.catrequest.done(function() {
+            // This is safe: cat-dropdown is required by marketplace.js.
+            require('cat-dropdown').catrequest.done(function() {
                 shelf = shelf[0];
                 var slug = shelf.slug;
                 var name = utils.translate(shelf.name);
