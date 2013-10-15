@@ -70,6 +70,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // A list of regions and their L10n mappings.
         REGION_CHOICES_SLUG: {
             'worldwide': gettext('Worldwide'),
+            'ar': gettext('Argentina'),
             'br': gettext('Brazil'),
             'co': gettext('Colombia'),
             'de': gettext('Germany'),
@@ -83,6 +84,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'es': gettext('Spain'),
             'uk': gettext('United Kingdom'),
             'us': gettext('United States'),
+            'uy': gettext('Uruguay'),
             've': gettext('Venezuela')
         },
 
