@@ -29,6 +29,7 @@ require.config({
             'buttons',
             'cache',
             'capabilities',
+            'mobilenetwork',  // Must come before cat-dropdown (for amd.js)
             'cat-dropdown',
             'forms',
             'header',
@@ -36,7 +37,6 @@ require.config({
             'lightbox',
             'log',
             'login',
-            'mobilenetwork',
             'models',
             'navigation',
             'outgoing_links',
