@@ -1,9 +1,10 @@
 define('views/homepage',
-    ['l10n', 'newsletter', 'underscore', 'urls'],
-    function(l10n, newsletter, _, urls) {
+    ['cat-dropdown', 'format', 'l10n', 'newsletter', 'underscore', 'urls', 'utils'],
+    function(cdd, format, l10n, newsletter, _, urls, utils) {
     'use strict';
 
     var gettext = l10n.gettext;
+    var operatorInjected = false;
 
     return function(builder, args, params) {
         params = params || {};
@@ -24,6 +25,24 @@ define('views/homepage',
         builder.start('category/main.html', {
             endpoint: urls.api.url('category', [''], params),
             sort: params.sort
-        }).done(newsletter.init);
+        }).done(function() {
+            var shelf = builder.results['shelf'].operator;
+            var catElm = '<li><a class="cat-{0} cat-icon-a" data-cat-slug="{0}" href="{1}">{2}</a></li>';
+            newsletter.init();
+
+            if (operatorInjected || !shelf.length) return;
+
+            cdd.catrequest.done(function() {
+                shelf = shelf[0];
+                var slug = shelf.slug;
+                var name = utils.translate(shelf.name);
+                var link = urls.reverse('collection', [slug]);
+                var item = format.format(catElm, slug, link, name);
+
+                // Inject op shelf to the category dropdown.
+                $('menu.cat-menu').append(item);
+                operatorInjected = true;
+            });
+        });
     };
 });

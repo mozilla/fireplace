@@ -137,4 +137,6 @@ define('cat-dropdown',
     z.doc.on('saferesize', handleResize);
     z.page.on('build_start', handleBuildStart)
           .on('reload_chrome', handleRenderDropdown);
+
+    return {'catrequest': categoryReq};
 });
