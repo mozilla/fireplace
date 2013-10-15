@@ -27,7 +27,7 @@ define('buckets', [], function() {
 
         for (var i = 0, e; e = prefixes[i++];) {
             try {
-                if (!!(context[e + property])) {
+                if ((e + property) in context) {
                     return context[e + property];
                 }
             } catch(e) {
