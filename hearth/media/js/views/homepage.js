@@ -40,8 +40,9 @@ define('views/homepage',
                 var link = urls.reverse('collection', [slug]);
                 var item = format.format(catElm, slug, link, name);
 
-                // Inject op shelf to the category dropdown.
-                $('menu.cat-menu').append(item);
+                // Inject op shelf to the category dropdown after "All Categories".
+                $(item).insertAfter($('.cat-menu [data-cat-slug="all"]').closest('li'));
+
                 operatorInjected = true;
             });
         });
