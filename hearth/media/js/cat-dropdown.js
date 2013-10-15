@@ -1,7 +1,6 @@
+// Note that 'mobilenetwork' must be required immediately prior to 'cat-dropdown'.
 define('cat-dropdown',
-    // We require `mobilenetwork` here to initialize carrier/region detection so that gets
-    // set before we pass those values to the API to get the list of categories.
-    ['underscore', 'jquery', 'keys', 'l10n', 'models', 'requests', 'templates', 'urls', 'z', 'builder', 'mobilenetwork'],
+    ['underscore', 'jquery', 'keys', 'l10n', 'models', 'requests', 'templates', 'urls', 'z', 'builder'],
     function(_, $, keys, l10n, models, requests, nunjucks, urls, z) {
     'use strict';
 
