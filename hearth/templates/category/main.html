@@ -50,7 +50,7 @@
 {% defer (url=endpoint|urlunparam(['sort']), pluck='operator', id='shelf', as='collection') %}
   {% set apps = this.length and this[0].apps and this[0].can_be_hero %}
   {% if apps %}
-    <section id="operator" data-slug="{{ this[0].slug }}" class="main operator operator-{{ this[0].slug }} category featured full c">
+    <section id="operator" class="main operator operator-{{ this[0].slug }} category featured full c">
       <header class="featured-header c">
         <h3>{{ this[0].name|translate(this[0]) }}</h3>
         <a href="{{ url('collection', [this[0].slug])|urlparams(src=src) }}" class="view-all">{{ _('View All') }}</a>
