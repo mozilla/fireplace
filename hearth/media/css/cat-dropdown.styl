@@ -109,10 +109,10 @@ a[class*="cat-dt-"]:hover:before {
     background-position: 40% 35% !important;
 }
 
-a.cat-congstar:before,
-a.cat-congstar:hover:before {
-    background-image: url(../img/carriers/congstar.png) !important;
-    background-position: 0 27.75%;
+a[class*="cat-congstar-"]:before,
+a[class*="cat-congstar-"]:hover:before {
+    background: url(../img/carriers/congstar.png) !important;
+    background-size: 100% 100% !important;
 }
 
 a[class*="cat-telenor-"]:before,
@@ -148,7 +148,8 @@ a[class*="cat-vivo-"]:active:before {
 }
 
 #cat-dropdown {
-    a[class*="cat-movistar-"]:before {
+    a[class*="cat-movistar-"]:before,
+    a[class*="cat-congstar-"]:before {
         margin-right: 15px;
     }
     a[class*="cat-telenor-"]:before,
