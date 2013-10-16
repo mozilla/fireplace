@@ -43,7 +43,10 @@ define('mobilenetwork',
         220: 'rs',
 
         // Montenegro
-        297: 'me'
+        297: 'me',
+
+        // China
+        460: 'cn'
     };
 
     var carriers = {
@@ -225,6 +228,10 @@ define('mobilenetwork',
         // Montenegro
         297: {
             1: 'telenor'
+        },
+
+        // China
+        460: {
         }
     };
 
