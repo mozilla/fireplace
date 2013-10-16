@@ -34,7 +34,7 @@ define('views/homepage',
             if (operatorInjected || !shelf.length) return;
 
             shelf = shelf[0];
-            if (shelf.can_be_hero && $collections.length === 2) {
+            if (shelf.image && $collections.length === 2) {
                 $collections.eq(1).hide();
             }
 
