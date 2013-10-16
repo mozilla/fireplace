@@ -46,7 +46,10 @@ define('mobilenetwork',
         297: 'me',
 
         // China
-        460: 'cn'
+        460: 'cn',
+
+        // Japan
+        440: 'jp'
     };
 
     var carriers = {
@@ -232,6 +235,34 @@ define('mobilenetwork',
 
         // China
         460: {
+            1: 'china_unicom',
+            3: 'china_unicom',
+            6: 'china_unicom'
+        },
+
+        // Japan
+        440: {
+            7: 'kddi',
+            8: 'kddi',
+            49: 'kddi',
+            50: 'kddi',
+            51: 'kddi',
+            52: 'kddi',
+            53: 'kddi',
+            54: 'kddi',
+            55: 'kddi',
+            56: 'kddi',
+            70: 'kddi',
+            71: 'kddi',
+            72: 'kddi',
+            73: 'kddi',
+            74: 'kddi',
+            75: 'kddi',
+            76: 'kddi',
+            77: 'kddi',
+            79: 'kddi',
+            88: 'kddi',
+            89: 'kddi'
         }
     };
 
