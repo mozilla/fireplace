@@ -131,13 +131,9 @@ echo "$CHANGES"
 echo "-----------------------------------------------"
 
 # Uses sendmail so we can set a real From address
-#if confirm "Do you want to send that to $LOCALIZERS?"; then
-    #echo "$CHANGES" | /usr/lib/sendmail -t
-#fi
-
-#if confirm "Do you want to email Milos? :D"; then
-    #echo "$EMAIL_SUBJECT . Thanks!" | mail -s "$EMAIL_SUBJECT" milos@mozilla.com
-#fi
+if confirm "Do you want to send that to $LOCALIZERS?"; then
+    echo "$CHANGES" | /usr/lib/sendmail -t
+fi
 
 unset DOALLTHETHINGS
 echo "done."
