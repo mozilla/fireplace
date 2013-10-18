@@ -16,14 +16,14 @@
 {% set search_url = search_url|urlparams(sort=sort) if sort == 'created' else search_url %}
 
 {% defer (url=endpoint|urlunparam(['sort']), pluck='operator', id='shelf', as='collection') %}
-  {% if this.length and this[0].image %}
+  {% if this.length and this[0].apps.length and this[0].image %}
     {{ collection_tile(this[0], link=true, src='home') }}
   {% endif %}
 {% except %}
 {% end %}
 
 {% defer (url=endpoint|urlunparam(['sort']), pluck='collections', as='collection') %}
-  {% if this and this.length %}
+  {% if this and this.length and this.apps.length %}
     {# We're interested in the first item only. #}
     {% for collection in this.slice(0, 1) %}
       {{ collection_tile(collection, link=true, src='home') }}
@@ -32,9 +32,9 @@
 {% except %}
 {% end %}
 
-{% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection' if settings.flags.rocketfuel else 'app') %}
-  {% set featured_apps = this.length and this[0].apps if settings.flags.rocketfuel else this %}
-  {% if featured_apps %}
+{% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection') %}
+  {% set featured_apps = this.length and this[0].apps %}
+  {% if featured_apps and featured_apps.length %}
     <section id="featured" class="main category featured full c">
       <header class="featured-header c">
         <h3>{{ _('Featured Apps') }}</h3>
