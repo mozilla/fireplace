@@ -1,10 +1,15 @@
 define('views/homepage',
-    ['format', 'l10n', 'newsletter', 'underscore', 'urls', 'utils'],
-    function(format, l10n, newsletter, _, urls, utils) {
+    ['format', 'l10n', 'log', 'models', 'newsletter', 'underscore', 'urls', 'utils'],
+    function(format, l10n, log, models, newsletter, _, urls, utils) {
     'use strict';
 
     var gettext = l10n.gettext;
+    var console = log('homepage');
+
+    var app_models = models('app');
+
     var operatorInjected = false;
+    var catElm = '<li><a class="cat-{0} cat-icon-a" data-cat-slug="{0}" href="{1}">{2}</a></li>';
 
     return function(builder, args, params) {
         params = params || {};
@@ -24,28 +29,39 @@ define('views/homepage',
 
         builder.start('category/main.html', {
             endpoint: urls.api.url('category', [''], params),
-            sort: params.sort
+            sort: params.sort,
+            app_cast: app_models.cast
         }).done(function() {
             var shelf = builder.results['shelf'].operator;
-            var catElm = '<li><a class="cat-{0} cat-icon-a" data-cat-slug="{0}" href="{1}">{2}</a></li>';
             var $collections = $('.collection.main');
             newsletter.init();
 
-            if (operatorInjected || !shelf.length) return;
+            if (!shelf.length) {
+                console.log('OSC injection skipped; No shelf');
+                return;
+            }
 
             shelf = shelf[0];
             if (shelf.image && $collections.length === 2) {
                 $collections.eq(1).hide();
             }
 
+            if (operatorInjected) {
+                console.log('OSC injection skipped; Already injected');
+                return;
+            }
+
             if (!shelf.apps.length) return;
 
             // This is safe: cat-dropdown is required by marketplace.js.
             require('cat-dropdown').catrequest.done(function() {
-                var slug = shelf.slug;
-                var name = utils.translate(shelf.name);
-                var link = urls.reverse('collection', [slug]);
-                var item = format.format(catElm, slug, link, name);
+                console.log('Injecting operator shelf into cat dropdown');
+                var item = format.format(
+                    catElm,
+                    shelf.slug,
+                    urls.reverse('collection', [shelf.slug]),
+                    utils.translate(shelf.name)
+                );
 
                 // Inject op shelf to the category dropdown after "All Categories".
                 $(item).insertAfter($('.cat-menu [data-cat-slug="all"]').closest('li'));

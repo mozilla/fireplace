@@ -200,11 +200,7 @@
   {% if this.content_ratings %}
     <div class="content-ratings-wrapper main infobox c">
       <div>
-        <h3>
-          {{ _('Rating by the <a href="{dejus_url}" title="{dejus}">DEJUS</a>',
-               dejus_url=settings.DEJUS_URL,
-               dejus=settings.DEJUS) }}
-        </h3>
+        <h3>{{ _('Ratings') }}</h3>
         <div class="content-ratings">
           {% for rating in this.content_ratings.values() %}
             <div class="content-rating c">
