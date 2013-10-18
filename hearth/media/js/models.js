@@ -27,9 +27,9 @@ define('models', ['defer', 'log', 'requests', 'settings', 'underscore'], functio
             }
             if (_.isArray(data)) {
                 _.each(data, do_cast);
-                return;
+                return data;
             }
-            return do_cast(data);
+            return do_cast(data), data;
         };
 
         var uncast = function(object) {

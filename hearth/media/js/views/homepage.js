@@ -1,10 +1,12 @@
 define('views/homepage',
-    ['format', 'l10n', 'log', 'newsletter', 'underscore', 'urls', 'utils'],
-    function(format, l10n, log, newsletter, _, urls, utils) {
+    ['format', 'l10n', 'log', 'models', 'newsletter', 'underscore', 'urls', 'utils'],
+    function(format, l10n, log, models, newsletter, _, urls, utils) {
     'use strict';
 
     var gettext = l10n.gettext;
     var console = log('homepage');
+
+    var app_models = models('app');
 
     var operatorInjected = false;
     var catElm = '<li><a class="cat-{0} cat-icon-a" data-cat-slug="{0}" href="{1}">{2}</a></li>';
@@ -27,20 +29,26 @@ define('views/homepage',
 
         builder.start('category/main.html', {
             endpoint: urls.api.url('category', [''], params),
-            sort: params.sort
+            sort: params.sort,
+            app_cast: app_models.cast
         }).done(function() {
             var shelf = builder.results['shelf'].operator;
             var $collections = $('.collection.main');
             newsletter.init();
 
-            if (operatorInjected || !shelf.length) {
-                console.log('OSC injection skipped; Injected: ', operatorInjected);
+            if (!shelf.length) {
+                console.log('OSC injection skipped; No shelf');
                 return;
             }
 
             shelf = shelf[0];
             if (shelf.image && $collections.length === 2) {
                 $collections.eq(1).hide();
+            }
+
+            if (operatorInjected) {
+                console.log('OSC injection skipped; Already injected');
+                return;
             }
 
             if (!shelf.apps.length) return;
