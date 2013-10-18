@@ -23,11 +23,9 @@
 {% end %}
 
 {% defer (url=endpoint|urlunparam(['sort']), pluck='collections', as='collection') %}
-  {% if this and this.length and this.apps.length %}
+  {% if this and this.length and this[0].apps.length %}
     {# We're interested in the first item only. #}
-    {% for collection in this.slice(0, 1) %}
-      {{ collection_tile(collection, link=true, src='home') }}
-    {% endfor %}
+    {{ collection_tile(this[0], link=true, src='home') }}
   {% endif %}
 {% except %}
 {% end %}
