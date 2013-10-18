@@ -51,7 +51,7 @@ define('views/homepage',
                 var item = format.format(
                     catElm,
                     shelf.slug,
-                    urls.reverse('collection', [slug]),
+                    urls.reverse('collection', [shelf.slug]),
                     utils.translate(shelf.name)
                 );
 
