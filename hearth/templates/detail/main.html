@@ -204,7 +204,7 @@
         <div class="content-ratings">
           {% for rating in this.content_ratings.values() %}
             <div class="content-rating c">
-              <div class="icon icon-{{ rating.name }}" title="{{ rating.name }}">{{ rating.name }}</div>
+              <div class="icon icon-{{ rating.name|replace('+', '') }}" title="{{ rating.name }}">{{ rating.name }}</div>
               <p class="description">{{ rating.description }}</p>
             </div>
           {% endfor %}
