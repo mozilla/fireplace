@@ -43,7 +43,7 @@ define('views/homepage',
 
             shelf = shelf[0];
             if (shelf.image && $collections.length === 2) {
-                $collections.eq(1).hide();
+                $collections.eq(1).closest('.placeholder').hide();
             }
 
             if (operatorInjected) {
