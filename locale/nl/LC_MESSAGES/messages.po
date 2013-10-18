@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17T15:26:30.510Z\n"
+"POT-Creation-Date: 2013-10-18T23:38:43.995Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Fireplace L10n Tools 1.0\n"
 
-#: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:12
+#: /templates/cat_list.html:3 /templates/cat_dropdown.html:1 /media/js/cat-dropdown.js:12
 msgid "All Categories"
 msgstr "Alle categorieën"
 
@@ -22,7 +22,7 @@ msgstr "Alle categorieën"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Wroef! Geen apps hier, Shaggy!"
 
-#: /templates/collection.html:42 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/receipt.html:28 /templates/detail/main.html:24 /templates/user/purchases.html:38
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
 msgid "Oh no!"
 msgstr "Oh nee!"
 
@@ -108,7 +108,7 @@ msgstr ""
 "Tenzij anders <a href=\"{legal_url}\" target=\"_blank\">vermeld</a>, is op de inhoud van deze website de <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike License "
 "v3.0</a> of latere versie van toepassing."
 
-#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/receipt.html:57 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/settings/feedback.html:22
+#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
 #: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Privacybeleid"
@@ -163,13 +163,22 @@ msgstr ""
 msgid "I understand the risk and wish to continue"
 msgstr "Ik begrijp het risico en wil doorgaan"
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Niet beschikbaar"
+
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
+msgid "Free"
+msgstr "Gratis"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
+msgid "Install"
+msgstr "Installeren"
+
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
 msgstr ""
-
-#: /templates/_macros/market_tile.html:38 /templates/_macros/market_button.html:7
-msgid "Free"
-msgstr "Gratis"
 
 #: /templates/_macros/market_tile.html:46
 msgid "({n})"
@@ -189,15 +198,6 @@ msgstr "(0)"
 #: /templates/_macros/market_tile.html:54
 msgid "Not yet rated"
 msgstr "Nog niet gewaardeerd"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Niet beschikbaar"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
-msgid "Install"
-msgstr "Installeren"
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
@@ -227,86 +227,46 @@ msgstr "Verwijderen"
 msgid "Report"
 msgstr "Rapporteren"
 
-#: /templates/category/main.html:39
-msgid "Featured Apps"
-msgstr "Aanbevolen apps"
-
-#: /templates/category/main.html:40 /templates/category/main.html:66
-msgid "View All"
-msgstr "Alles bekijken"
-
-#: /templates/category/main.html:62
-msgid "Popular"
-msgstr "Populair"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:64
-msgid "New"
-msgstr "Nieuw"
-
-#: /templates/category/main.html:85
-msgid "No apps in this category"
-msgstr "Geen apps in deze categorie"
-
-#: /templates/category/main.html:90
-msgid "The category you requested does not exist."
-msgstr "De door u gevraagde categorie bestaat niet."
-
-#: /templates/category/main.html:92 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "Er is een interne severfout opgetreden. Probeer het later nog eens."
-
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Waardering {stars} van {maxstars} sterren"
 
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "De door u gezochte pagina is niet gevonden."
+#: /templates/category/main.html:37
+msgid "Featured Apps"
+msgstr "Aanbevolen apps"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Er is een fout opgetreden."
+#: /templates/category/main.html:38 /templates/category/main.html:64
+msgid "View All"
+msgstr "Alles bekijken"
 
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Fout bij laden van meer"
+#: /templates/category/main.html:60
+msgid "Popular"
+msgstr "Populair"
 
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Probeer het opnieuw"
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:62
+msgid "New"
+msgstr "Nieuw"
 
-#: /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /templates/detail/main.html:176 /media/js/views/app/abuse.js:34
+#: /templates/category/main.html:83
+msgid "No apps in this category"
+msgstr "Geen apps in deze categorie"
+
+#: /templates/category/main.html:88
+msgid "The category you requested does not exist."
+msgstr "De door u gevraagde categorie bestaat niet."
+
+#: /templates/category/main.html:90 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr "Er is een interne severfout opgetreden. Probeer het later nog eens."
+
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "Misbruik melden"
 
 #: /templates/detail/abuse.html:15
 msgid "Send Report"
 msgstr "Rapport versturen"
-
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr "Bedankt voor uw aankoop"
-
-#: /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /templates/detail/main.html:14 /templates/detail/main.html:15 /media/js/views/app.js:58 /media/js/views/collection.js:30
-msgid "Loading..."
-msgstr "Laden…"
-
-#: /templates/detail/receipt.html:40 /templates/detail/main.html:148
-msgid "Support Email"
-msgstr "E-mailadres voor ondersteuning"
-
-#: /templates/detail/receipt.html:46 /templates/detail/main.html:154
-msgid "Support Site"
-msgstr "Ondersteuningswebsite"
-
-#: /templates/detail/receipt.html:51 /templates/detail/main.html:159
-msgid "Homepage"
-msgstr "Startpagina"
-
-#: /templates/detail/receipt.html:63 /templates/detail/main.html:171
-msgid "Statistics"
-msgstr "Statistieken"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -323,6 +283,10 @@ msgstr "Start deze app vanaf uw <b>Windows-bureaublad</b> of <b>Start &#9658; Al
 #: /templates/detail/main.html:51
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Start deze app vanaf uw <b>dashboard</b>, <b>Toepassingskiezer</b> of <b>menu Toepassingen</b>."
+
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:30
+msgid "Loading..."
+msgstr "Laden…"
 
 #: /templates/detail/main.html:26
 msgid "The app requested is not public."
@@ -392,13 +356,29 @@ msgstr "Een beoordeling schrijven"
 msgid "Sign in to Review"
 msgstr "Meld u aan om te beoordelen"
 
+#: /templates/detail/main.html:148 /templates/detail/receipt.html:40
+msgid "Support Email"
+msgstr "E-mailadres voor ondersteuning"
+
+#: /templates/detail/main.html:154 /templates/detail/receipt.html:46
+msgid "Support Site"
+msgstr "Ondersteuningswebsite"
+
+#: /templates/detail/main.html:159 /templates/detail/receipt.html:51
+msgid "Homepage"
+msgstr "Startpagina"
+
+#: /templates/detail/main.html:171 /templates/detail/receipt.html:63
+msgid "Statistics"
+msgstr "Statistieken"
+
 #: /templates/detail/main.html:187
 msgid "Premium version available"
 msgstr "Premiumversie beschikbaar"
 
-#: /templates/detail/main.html:203
-msgid "Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
-msgstr "Waardering door de <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
+#: /templates/detail/main.html:202
+msgid "Ratings"
+msgstr ""
 
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
@@ -408,30 +388,25 @@ msgstr "Terug naar app"
 msgid "Loading Privacy Policy..."
 msgstr "Privacybeleid laden…"
 
-#: /templates/ratings/main.html:14 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:71
-msgid "Edit Review"
-msgstr "Beoordeling bewerken"
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr "Bedankt voor uw aankoop"
 
-#: /templates/ratings/main.html:36
-msgid "This app has no reviews."
-msgstr "Deze app heeft geen beoordelingen."
+#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "De door u gezochte pagina is niet gevonden."
 
-#: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
-msgid "Rate:"
-msgstr "Waardering:"
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Er is een fout opgetreden."
 
-#: /templates/ratings/edit.html:20 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
-#: /templates/user/newsletter.html:13
-msgid "Cancel"
-msgstr "Annuleren"
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Fout bij laden van meer"
 
-#: /templates/ratings/edit.html:21 /templates/ratings/write.html:20
-msgid "Submit"
-msgstr "Indienen"
-
-#: /templates/ratings/edit.html:24 /templates/ratings/write.html:23
-msgid "Only logged in users may edit reviews."
-msgstr "Alleen aangemelde gebruikers mogen beoordelingen bewerken."
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Probeer het opnieuw"
 
 #: /templates/search/main.html:15
 msgid "<b>{n}</b> Result"
@@ -450,6 +425,31 @@ msgstr "Geen resultaten gevonden"
 #: /templates/search/main.html:41
 msgid "No results found, try again later"
 msgstr "Geen resultaten gevonden, probeer het later nog eens"
+
+#: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
+msgid "Edit Review"
+msgstr "Beoordeling bewerken"
+
+#: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "Waardering:"
+
+#: /templates/ratings/edit.html:20 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: /templates/ratings/edit.html:21 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Indienen"
+
+#: /templates/ratings/edit.html:24 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "Alleen aangemelde gebruikers mogen beoordelingen bewerken."
+
+#: /templates/ratings/main.html:36
+msgid "This app has no reviews."
+msgstr "Deze app heeft geen beoordelingen."
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
@@ -559,10 +559,6 @@ msgstr "Uw browser of apparaat is niet compatibel met webapps."
 msgid "This app is unavailable for your platform."
 msgstr "Deze app is niet beschikbaar voor uw platform."
 
-#: /media/js/mobilenetwork.js:309
-msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
-msgstr "U bekijkt momenteel inhoud voor *{current_region}*. Wilt u wisselen naar *{new_region}*? "
-
 #: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Betaling geannuleerd."
@@ -581,10 +577,6 @@ msgstr "Installatie mislukt. Probeer het later nog eens."
 msgid "Launch"
 msgstr "Starten"
 
-#: /media/js/newsletter.js:65
-msgid "There was an error submitting your newsletter sign up request"
-msgstr "Er is een fout opgetreden bij het indienen van uw inschrijving voor de nieuwsbrief"
-
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "U bent afgemeld"
@@ -600,6 +592,47 @@ msgstr "Aanmelden met Persona mislukt. Hebt u wellicht geen account met dat e-ma
 #: /media/js/login.js:129
 msgid "Persona login failed. A server error was encountered."
 msgstr "Aanmelden met Persona mislukt. Er is een serverfout opgetreden."
+
+#: /media/js/mobilenetwork.js:309
+msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
+msgstr "U bekijkt momenteel inhoud voor *{current_region}*. Wilt u wisselen naar *{new_region}*? "
+
+#: /media/js/navigation.js:52
+msgid "No internet connection"
+msgstr "Geen internetverbinding"
+
+#: /media/js/newsletter.js:65
+msgid "There was an error submitting your newsletter sign up request"
+msgstr "Er is een fout opgetreden bij het indienen van uw inschrijving voor de nieuwsbrief"
+
+#. The report is an abuse report for reviews
+#: /media/js/ratings.js:39
+msgid "Sending report..."
+msgstr "Rapport verzenden…"
+
+#: /media/js/ratings.js:44
+msgid "Review flagged"
+msgstr "Beoordeling gelabeld"
+
+#: /media/js/ratings.js:48
+msgid "Report review operation failed"
+msgstr "Rapportage beoordeling mislukt"
+
+#: /media/js/ratings.js:59
+msgid "Review deleted"
+msgstr "Beoordeling verwijderd"
+
+#: /media/js/ratings.js:89
+msgid "There was a problem deleting the review"
+msgstr "Er is een probleem opgetreden bij verwijderen van de beoordeling"
+
+#: /media/js/ratings.js:229
+msgid "Your review was posted"
+msgstr "Uw beoordeling is geplaatst"
+
+#: /media/js/ratings.js:243
+msgid "Error while submitting review"
+msgstr "Fout bij indienen beoordeling"
 
 #: /media/js/settings.js:72
 msgid "Worldwide"
@@ -676,39 +709,6 @@ msgstr "Venezuela"
 #: /media/js/settings.js:92
 msgid "Department of Justice, Rating, Titles and Qualification"
 msgstr "Ministerie van Justitie, Waardering, Titels en Kwalificatie"
-
-#: /media/js/navigation.js:52
-msgid "No internet connection"
-msgstr "Geen internetverbinding"
-
-#. The report is an abuse report for reviews
-#: /media/js/ratings.js:39
-msgid "Sending report..."
-msgstr "Rapport verzenden…"
-
-#: /media/js/ratings.js:44
-msgid "Review flagged"
-msgstr "Beoordeling gelabeld"
-
-#: /media/js/ratings.js:48
-msgid "Report review operation failed"
-msgstr "Rapportage beoordeling mislukt"
-
-#: /media/js/ratings.js:59
-msgid "Review deleted"
-msgstr "Beoordeling verwijderd"
-
-#: /media/js/ratings.js:89
-msgid "There was a problem deleting the review"
-msgstr "Er is een probleem opgetreden bij verwijderen van de beoordeling"
-
-#: /media/js/ratings.js:229
-msgid "Your review was posted"
-msgstr "Uw beoordeling is geplaatst"
-
-#: /media/js/ratings.js:243
-msgid "Error while submitting review"
-msgstr "Fout bij indienen beoordeling"
 
 #. {n} is the number of characters left.
 #: /media/js/utils.js:28

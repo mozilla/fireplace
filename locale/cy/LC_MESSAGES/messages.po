@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17T15:26:30.510Z\n"
+"POT-Creation-Date: 2013-10-18T23:38:43.995Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);Content-Type: text/plain; charset=UTF-8\n"
 "X-Generator: Fireplace L10n Tools 1.0\n"
 
-#: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:12
+#: /templates/cat_list.html:3 /templates/cat_dropdown.html:1 /media/js/cat-dropdown.js:12
 msgid "All Categories"
 msgstr ""
 
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr ""
 
-#: /templates/collection.html:42 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/receipt.html:28 /templates/detail/main.html:24 /templates/user/purchases.html:38
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
 msgid "Oh no!"
 msgstr ""
 
@@ -106,7 +106,7 @@ msgid ""
 "Alike License v3.0</a> or any later version."
 msgstr ""
 
-#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/receipt.html:57 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/settings/feedback.html:22
+#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
 #: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr ""
@@ -160,12 +160,21 @@ msgstr ""
 msgid "I understand the risk and wish to continue"
 msgstr ""
 
-#: /templates/_macros/market_tile.html:9
-msgid "{app_name} .::. screenshot"
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
 msgstr ""
 
-#: /templates/_macros/market_tile.html:38 /templates/_macros/market_button.html:7
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
 msgid "Free"
+msgstr ""
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
+msgid "Install"
+msgstr ""
+
+#: /templates/_macros/market_tile.html:9
+msgid "{app_name} .::. screenshot"
 msgstr ""
 
 #: /templates/_macros/market_tile.html:46
@@ -185,15 +194,6 @@ msgstr ""
 
 #: /templates/_macros/market_tile.html:54
 msgid "Not yet rated"
-msgstr ""
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr ""
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
-msgid "Install"
 msgstr ""
 
 #: /templates/_macros/more_button.html:2
@@ -224,85 +224,45 @@ msgstr ""
 msgid "Report"
 msgstr ""
 
-#: /templates/category/main.html:39
-msgid "Featured Apps"
-msgstr ""
-
-#: /templates/category/main.html:40 /templates/category/main.html:66
-msgid "View All"
-msgstr ""
-
-#: /templates/category/main.html:62
-msgid "Popular"
-msgstr ""
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:64
-msgid "New"
-msgstr ""
-
-#: /templates/category/main.html:85
-msgid "No apps in this category"
-msgstr ""
-
-#: /templates/category/main.html:90
-msgid "The category you requested does not exist."
-msgstr ""
-
-#: /templates/category/main.html:92 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr ""
-
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr ""
 
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
+#: /templates/category/main.html:37
+msgid "Featured Apps"
 msgstr ""
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
+#: /templates/category/main.html:38 /templates/category/main.html:64
+msgid "View All"
 msgstr ""
 
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
+#: /templates/category/main.html:60
+msgid "Popular"
 msgstr ""
 
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:62
+msgid "New"
 msgstr ""
 
-#: /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /templates/detail/main.html:176 /media/js/views/app/abuse.js:34
+#: /templates/category/main.html:83
+msgid "No apps in this category"
+msgstr ""
+
+#: /templates/category/main.html:88
+msgid "The category you requested does not exist."
+msgstr ""
+
+#: /templates/category/main.html:90 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr ""
+
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr ""
 
 #: /templates/detail/abuse.html:15
 msgid "Send Report"
-msgstr ""
-
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr ""
-
-#: /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /templates/detail/main.html:14 /templates/detail/main.html:15 /media/js/views/app.js:58 /media/js/views/collection.js:30
-msgid "Loading..."
-msgstr ""
-
-#: /templates/detail/receipt.html:40 /templates/detail/main.html:148
-msgid "Support Email"
-msgstr ""
-
-#: /templates/detail/receipt.html:46 /templates/detail/main.html:154
-msgid "Support Site"
-msgstr ""
-
-#: /templates/detail/receipt.html:51 /templates/detail/main.html:159
-msgid "Homepage"
-msgstr ""
-
-#: /templates/detail/receipt.html:63 /templates/detail/main.html:171
-msgid "Statistics"
 msgstr ""
 
 #: /templates/detail/main.html:42
@@ -319,6 +279,10 @@ msgstr ""
 
 #: /templates/detail/main.html:51
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr ""
+
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:30
+msgid "Loading..."
 msgstr ""
 
 #: /templates/detail/main.html:26
@@ -389,12 +353,28 @@ msgstr ""
 msgid "Sign in to Review"
 msgstr ""
 
+#: /templates/detail/main.html:148 /templates/detail/receipt.html:40
+msgid "Support Email"
+msgstr ""
+
+#: /templates/detail/main.html:154 /templates/detail/receipt.html:46
+msgid "Support Site"
+msgstr ""
+
+#: /templates/detail/main.html:159 /templates/detail/receipt.html:51
+msgid "Homepage"
+msgstr ""
+
+#: /templates/detail/main.html:171 /templates/detail/receipt.html:63
+msgid "Statistics"
+msgstr ""
+
 #: /templates/detail/main.html:187
 msgid "Premium version available"
 msgstr ""
 
-#: /templates/detail/main.html:203
-msgid "Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
+#: /templates/detail/main.html:202
+msgid "Ratings"
 msgstr ""
 
 #: /templates/detail/privacy.html:5
@@ -405,12 +385,46 @@ msgstr ""
 msgid "Loading Privacy Policy..."
 msgstr ""
 
-#: /templates/ratings/main.html:14 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:71
-msgid "Edit Review"
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
 msgstr ""
 
-#: /templates/ratings/main.html:36
-msgid "This app has no reviews."
+#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr ""
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr ""
+
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr ""
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr ""
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr ""
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr ""
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr ""
+
+#: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
+msgid "Edit Review"
 msgstr ""
 
 #: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
@@ -430,22 +444,8 @@ msgstr ""
 msgid "Only logged in users may edit reviews."
 msgstr ""
 
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] ""
-msgstr[1] ""
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr ""
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr ""
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
+#: /templates/ratings/main.html:36
+msgid "This app has no reviews."
 msgstr ""
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
@@ -556,10 +556,6 @@ msgstr ""
 msgid "This app is unavailable for your platform."
 msgstr ""
 
-#: /media/js/mobilenetwork.js:309
-msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
-msgstr ""
-
 #: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr ""
@@ -578,10 +574,6 @@ msgstr ""
 msgid "Launch"
 msgstr ""
 
-#: /media/js/newsletter.js:65
-msgid "There was an error submitting your newsletter sign up request"
-msgstr ""
-
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr ""
@@ -596,6 +588,47 @@ msgstr ""
 
 #: /media/js/login.js:129
 msgid "Persona login failed. A server error was encountered."
+msgstr ""
+
+#: /media/js/mobilenetwork.js:309
+msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
+msgstr ""
+
+#: /media/js/navigation.js:52
+msgid "No internet connection"
+msgstr ""
+
+#: /media/js/newsletter.js:65
+msgid "There was an error submitting your newsletter sign up request"
+msgstr ""
+
+#. The report is an abuse report for reviews
+#: /media/js/ratings.js:39
+msgid "Sending report..."
+msgstr ""
+
+#: /media/js/ratings.js:44
+msgid "Review flagged"
+msgstr ""
+
+#: /media/js/ratings.js:48
+msgid "Report review operation failed"
+msgstr ""
+
+#: /media/js/ratings.js:59
+msgid "Review deleted"
+msgstr ""
+
+#: /media/js/ratings.js:89
+msgid "There was a problem deleting the review"
+msgstr ""
+
+#: /media/js/ratings.js:229
+msgid "Your review was posted"
+msgstr ""
+
+#: /media/js/ratings.js:243
+msgid "Error while submitting review"
 msgstr ""
 
 #: /media/js/settings.js:72
@@ -672,39 +705,6 @@ msgstr ""
 
 #: /media/js/settings.js:92
 msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr ""
-
-#: /media/js/navigation.js:52
-msgid "No internet connection"
-msgstr ""
-
-#. The report is an abuse report for reviews
-#: /media/js/ratings.js:39
-msgid "Sending report..."
-msgstr ""
-
-#: /media/js/ratings.js:44
-msgid "Review flagged"
-msgstr ""
-
-#: /media/js/ratings.js:48
-msgid "Report review operation failed"
-msgstr ""
-
-#: /media/js/ratings.js:59
-msgid "Review deleted"
-msgstr ""
-
-#: /media/js/ratings.js:89
-msgid "There was a problem deleting the review"
-msgstr ""
-
-#: /media/js/ratings.js:229
-msgid "Your review was posted"
-msgstr ""
-
-#: /media/js/ratings.js:243
-msgid "Error while submitting review"
 msgstr ""
 
 #. {n} is the number of characters left.

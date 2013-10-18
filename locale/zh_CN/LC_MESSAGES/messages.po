@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17T15:26:30.510Z\n"
+"POT-Creation-Date: 2013-10-18T23:38:43.995Z\n"
 "PO-Revision-Date: 2013-10-18 00:11+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1382055064.0\n"
 
-#: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:12
+#: /templates/cat_list.html:3 /templates/cat_dropdown.html:1 /media/js/cat-dropdown.js:12
 msgid "All Categories"
 msgstr "所有类别"
 
@@ -23,7 +23,7 @@ msgstr "所有类别"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "啊噢，这里没有任何应用！"
 
-#: /templates/collection.html:42 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/receipt.html:28 /templates/detail/main.html:24 /templates/user/purchases.html:38
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
 msgid "Oh no!"
 msgstr "噢不！"
 
@@ -107,7 +107,7 @@ msgid ""
 "Alike License v3.0</a> or any later version."
 msgstr "除特别<a href=\"{legal_url}\" target=\"_blank\">标注</a>以外，本站内容均遵循 <a href=\"{cc_url}\" target=\"_blank\">署名-相同方式共享 3.0</a> 或更新版本的许可协议。"
 
-#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/receipt.html:57 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/settings/feedback.html:22
+#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
 #: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "隐私条款"
@@ -161,13 +161,22 @@ msgstr "您正在运行的 Firefox OS 已过期。这将可能导致某些应用
 msgid "I understand the risk and wish to continue"
 msgstr "我已充分了解可能的风险，并仍想继续"
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "不可用"
+
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
+msgid "Free"
+msgstr "免费版"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
+msgid "Install"
+msgstr "安装"
+
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
 msgstr "{app_name} .::. 截图"
-
-#: /templates/_macros/market_tile.html:38 /templates/_macros/market_button.html:7
-msgid "Free"
-msgstr "免费版"
 
 #: /templates/_macros/market_tile.html:46
 msgid "({n})"
@@ -186,15 +195,6 @@ msgstr "(0)"
 #: /templates/_macros/market_tile.html:54
 msgid "Not yet rated"
 msgstr "尚未评分"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "不可用"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
-msgid "Install"
-msgstr "安装"
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
@@ -224,86 +224,46 @@ msgstr "删除"
 msgid "Report"
 msgstr "报告"
 
-#: /templates/category/main.html:39
-msgid "Featured Apps"
-msgstr "精选应用"
-
-#: /templates/category/main.html:40 /templates/category/main.html:66
-msgid "View All"
-msgstr "显示全部"
-
-#: /templates/category/main.html:62
-msgid "Popular"
-msgstr "热门"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:64
-msgid "New"
-msgstr "新"
-
-#: /templates/category/main.html:85
-msgid "No apps in this category"
-msgstr "此类别下无应用"
-
-#: /templates/category/main.html:90
-msgid "The category you requested does not exist."
-msgstr "您请求的类别不存在。"
-
-#: /templates/category/main.html:92 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "内部服务器出错，请稍后再试。"
-
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "评{stars}星（满分{maxstars}星）"
 
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "找不到您想开启的页面。"
+#: /templates/category/main.html:37
+msgid "Featured Apps"
+msgstr "精选应用"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "出错了。"
+#: /templates/category/main.html:38 /templates/category/main.html:64
+msgid "View All"
+msgstr "显示全部"
 
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "错误地加载过多"
+#: /templates/category/main.html:60
+msgid "Popular"
+msgstr "热门"
 
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "重试"
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:62
+msgid "New"
+msgstr "新"
 
-#: /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /templates/detail/main.html:176 /media/js/views/app/abuse.js:34
+#: /templates/category/main.html:83
+msgid "No apps in this category"
+msgstr "此类别下无应用"
+
+#: /templates/category/main.html:88
+msgid "The category you requested does not exist."
+msgstr "您请求的类别不存在。"
+
+#: /templates/category/main.html:90 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr "内部服务器出错，请稍后再试。"
+
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "报告滥用"
 
 #: /templates/detail/abuse.html:15
 msgid "Send Report"
 msgstr "发送报告"
-
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr "感谢您的购买"
-
-#: /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /templates/detail/main.html:14 /templates/detail/main.html:15 /media/js/views/app.js:58 /media/js/views/collection.js:30
-msgid "Loading..."
-msgstr "正在加载..."
-
-#: /templates/detail/receipt.html:40 /templates/detail/main.html:148
-msgid "Support Email"
-msgstr "用户支持邮箱"
-
-#: /templates/detail/receipt.html:46 /templates/detail/main.html:154
-msgid "Support Site"
-msgstr "用户支持网站"
-
-#: /templates/detail/receipt.html:51 /templates/detail/main.html:159
-msgid "Homepage"
-msgstr "主页"
-
-#: /templates/detail/receipt.html:63 /templates/detail/main.html:171
-msgid "Statistics"
-msgstr "统计数据"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -320,6 +280,10 @@ msgstr "从您的 <b>Windows桌面</b> 或 <b>开始菜单 &#9658; 所有程序<
 #: /templates/detail/main.html:51
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "从你的<b>仪表板</b>、<b>应用程序选择器</b>或者<b>应用程序菜单</b>中启动这个应用。"
+
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:30
+msgid "Loading..."
+msgstr "正在加载..."
 
 #: /templates/detail/main.html:26
 msgid "The app requested is not public."
@@ -389,13 +353,29 @@ msgstr "写评论"
 msgid "Sign in to Review"
 msgstr "登录以评论"
 
+#: /templates/detail/main.html:148 /templates/detail/receipt.html:40
+msgid "Support Email"
+msgstr "用户支持邮箱"
+
+#: /templates/detail/main.html:154 /templates/detail/receipt.html:46
+msgid "Support Site"
+msgstr "用户支持网站"
+
+#: /templates/detail/main.html:159 /templates/detail/receipt.html:51
+msgid "Homepage"
+msgstr "主页"
+
+#: /templates/detail/main.html:171 /templates/detail/receipt.html:63
+msgid "Statistics"
+msgstr "统计数据"
+
 #: /templates/detail/main.html:187
 msgid "Premium version available"
 msgstr "另有付费版"
 
-#: /templates/detail/main.html:203
-msgid "Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
-msgstr "由 <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a> 评分"
+#: /templates/detail/main.html:202
+msgid "Ratings"
+msgstr ""
 
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
@@ -405,13 +385,46 @@ msgstr "返回应用"
 msgid "Loading Privacy Policy..."
 msgstr "正在加载隐私权政策..."
 
-#: /templates/ratings/main.html:14 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:71
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr "感谢您的购买"
+
+#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "找不到您想开启的页面。"
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "出错了。"
+
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "错误地加载过多"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "重试"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b>条结果"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "显示<b>1</b>&ndash;<b class=\"total-results\">{total}</b>笔交易"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "找不到结果"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "未找到结果，请稍后再试"
+
+#: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
 msgid "Edit Review"
 msgstr "编辑评论"
-
-#: /templates/ratings/main.html:36
-msgid "This app has no reviews."
-msgstr "此应用尚无评论。"
 
 #: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
 msgid "Rate:"
@@ -430,22 +443,9 @@ msgstr "提交"
 msgid "Only logged in users may edit reviews."
 msgstr "仅已登录的用户可编辑评论。"
 
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b>条结果"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "显示<b>1</b>&ndash;<b class=\"total-results\">{total}</b>笔交易"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "找不到结果"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "未找到结果，请稍后再试"
+#: /templates/ratings/main.html:36
+msgid "This app has no reviews."
+msgstr "此应用尚无评论。"
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
@@ -555,10 +555,6 @@ msgstr "您的浏览器或设备不兼容网络应用。"
 msgid "This app is unavailable for your platform."
 msgstr "此应用无法在您的系统平台上运行。"
 
-#: /media/js/mobilenetwork.js:309
-msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
-msgstr "您目前正在浏览 {cu_rrentregion} 地区的内容。想要切换到 {newregion} 地区吗？"
-
 #: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "付款已取消。"
@@ -577,10 +573,6 @@ msgstr "安装失败。请稍后重试。"
 msgid "Launch"
 msgstr "启动"
 
-#: /media/js/newsletter.js:65
-msgid "There was an error submitting your newsletter sign up request"
-msgstr "订阅快讯时出错。"
-
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "您已登出"
@@ -596,6 +588,47 @@ msgstr "用 Persona 登录失败。或许您没有用此电子邮件地址注册
 #: /media/js/login.js:129
 msgid "Persona login failed. A server error was encountered."
 msgstr "用 Persona 登录失败。服务器遇到了错误。"
+
+#: /media/js/mobilenetwork.js:309
+msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
+msgstr "您目前正在浏览 {cu_rrentregion} 地区的内容。想要切换到 {newregion} 地区吗？"
+
+#: /media/js/navigation.js:52
+msgid "No internet connection"
+msgstr "没有互联网连接"
+
+#: /media/js/newsletter.js:65
+msgid "There was an error submitting your newsletter sign up request"
+msgstr "订阅快讯时出错。"
+
+#. The report is an abuse report for reviews
+#: /media/js/ratings.js:39
+msgid "Sending report..."
+msgstr "正在发送报告..."
+
+#: /media/js/ratings.js:44
+msgid "Review flagged"
+msgstr "已标记的评论。"
+
+#: /media/js/ratings.js:48
+msgid "Report review operation failed"
+msgstr "已失败的报告审查操作"
+
+#: /media/js/ratings.js:59
+msgid "Review deleted"
+msgstr "评论已删除"
+
+#: /media/js/ratings.js:89
+msgid "There was a problem deleting the review"
+msgstr "删除评论时出错"
+
+#: /media/js/ratings.js:229
+msgid "Your review was posted"
+msgstr "您的评论已发表"
+
+#: /media/js/ratings.js:243
+msgid "Error while submitting review"
+msgstr "提交评论时出错"
 
 #: /media/js/settings.js:72
 msgid "Worldwide"
@@ -672,39 +705,6 @@ msgstr "委内瑞拉"
 #: /media/js/settings.js:92
 msgid "Department of Justice, Rating, Titles and Qualification"
 msgstr "审批、评级、命名和资格审定部门"
-
-#: /media/js/navigation.js:52
-msgid "No internet connection"
-msgstr "没有互联网连接"
-
-#. The report is an abuse report for reviews
-#: /media/js/ratings.js:39
-msgid "Sending report..."
-msgstr "正在发送报告..."
-
-#: /media/js/ratings.js:44
-msgid "Review flagged"
-msgstr "已标记的评论。"
-
-#: /media/js/ratings.js:48
-msgid "Report review operation failed"
-msgstr "已失败的报告审查操作"
-
-#: /media/js/ratings.js:59
-msgid "Review deleted"
-msgstr "评论已删除"
-
-#: /media/js/ratings.js:89
-msgid "There was a problem deleting the review"
-msgstr "删除评论时出错"
-
-#: /media/js/ratings.js:229
-msgid "Your review was posted"
-msgstr "您的评论已发表"
-
-#: /media/js/ratings.js:243
-msgid "Error while submitting review"
-msgstr "提交评论时出错"
 
 #. {n} is the number of characters left.
 #: /media/js/utils.js:28

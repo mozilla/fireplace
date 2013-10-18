@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17T15:26:30.510Z\n"
+"POT-Creation-Date: 2013-10-18T23:38:43.995Z\n"
 "PO-Revision-Date: 2013-10-16 09:13+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: gialloporpora <gialloporpora@yahoo.it>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1381914823.0\n"
 
-#: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:12
+#: /templates/cat_list.html:3 /templates/cat_dropdown.html:1 /media/js/cat-dropdown.js:12
 msgid "All Categories"
 msgstr "Tutte le categorie"
 
@@ -24,7 +24,7 @@ msgstr "Tutte le categorie"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Oops! Spiacenti, nessuna app qui."
 
-#: /templates/collection.html:42 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/receipt.html:28 /templates/detail/main.html:24 /templates/user/purchases.html:38
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
 msgid "Oh no!"
 msgstr "Accidenti!"
 
@@ -110,7 +110,7 @@ msgstr ""
 "Eccetto dove diversamente <a href=\"{legal_url}\" target=\"_blank\">indicato</a>, i contenuti di questo sito sono distribuiti sotto licenza <a href=\"{cc_url}\" target=\"_blank\">Creative Commons "
 "Attribuzione - Condividi allo stesso modo versione 3.0</a> o successive."
 
-#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/receipt.html:57 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/settings/feedback.html:22
+#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
 #: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Informativa sulla privacy"
@@ -166,13 +166,22 @@ msgstr ""
 msgid "I understand the risk and wish to continue"
 msgstr "Sono consapevole dei rischi e scelgo di procedere"
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Non disponibile"
+
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
+msgid "Free"
+msgstr "Gratuita"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
+msgid "Install"
+msgstr "Installa"
+
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
 msgstr "{app_name} .::. screenshot"
-
-#: /templates/_macros/market_tile.html:38 /templates/_macros/market_button.html:7
-msgid "Free"
-msgstr "Gratuita"
 
 #: /templates/_macros/market_tile.html:46
 msgid "({n})"
@@ -192,15 +201,6 @@ msgstr "(0)"
 #: /templates/_macros/market_tile.html:54
 msgid "Not yet rated"
 msgstr "Ancora nessun voto"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Non disponibile"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
-msgid "Install"
-msgstr "Installa"
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
@@ -230,86 +230,46 @@ msgstr "Elimina"
 msgid "Report"
 msgstr "Segnala"
 
-#: /templates/category/main.html:39
-msgid "Featured Apps"
-msgstr "App consigliate"
-
-#: /templates/category/main.html:40 /templates/category/main.html:66
-msgid "View All"
-msgstr "Mostra tutto"
-
-#: /templates/category/main.html:62
-msgid "Popular"
-msgstr "Popolari"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:64
-msgid "New"
-msgstr "Novità"
-
-#: /templates/category/main.html:85
-msgid "No apps in this category"
-msgstr "Nessuna app in questa categoria"
-
-#: /templates/category/main.html:90
-msgid "The category you requested does not exist."
-msgstr "La categoria richiesta non esiste."
-
-#: /templates/category/main.html:92 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "Si è verificato un errore interno del server. Riprova più tardi."
-
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Assegnate {stars} su {maxstars} stelle"
 
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "Non è stato possibile trovare la pagina che stavi cercando."
+#: /templates/category/main.html:37
+msgid "Featured Apps"
+msgstr "App consigliate"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Si è verificato un errore."
+#: /templates/category/main.html:38 /templates/category/main.html:64
+msgid "View All"
+msgstr "Mostra tutto"
 
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Errore durante il caricamento di contenuti extra"
+#: /templates/category/main.html:60
+msgid "Popular"
+msgstr "Popolari"
 
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Riprova"
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:62
+msgid "New"
+msgstr "Novità"
 
-#: /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /templates/detail/main.html:176 /media/js/views/app/abuse.js:34
+#: /templates/category/main.html:83
+msgid "No apps in this category"
+msgstr "Nessuna app in questa categoria"
+
+#: /templates/category/main.html:88
+msgid "The category you requested does not exist."
+msgstr "La categoria richiesta non esiste."
+
+#: /templates/category/main.html:90 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr "Si è verificato un errore interno del server. Riprova più tardi."
+
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "Segnala abuso"
 
 #: /templates/detail/abuse.html:15
 msgid "Send Report"
 msgstr "Invia segnalazione"
-
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr "Grazie per il tuo acquisto"
-
-#: /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /templates/detail/main.html:14 /templates/detail/main.html:15 /media/js/views/app.js:58 /media/js/views/collection.js:30
-msgid "Loading..."
-msgstr "Caricamento in corso…"
-
-#: /templates/detail/receipt.html:40 /templates/detail/main.html:148
-msgid "Support Email"
-msgstr "Email per il supporto"
-
-#: /templates/detail/receipt.html:46 /templates/detail/main.html:154
-msgid "Support Site"
-msgstr "Sito di supporto"
-
-#: /templates/detail/receipt.html:51 /templates/detail/main.html:159
-msgid "Homepage"
-msgstr "Homepage"
-
-#: /templates/detail/receipt.html:63 /templates/detail/main.html:171
-msgid "Statistics"
-msgstr "Statistiche"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -326,6 +286,10 @@ msgstr "Avvia quest'app dal <b>desktop di Windows</b> o dal menu <b>Start &#9658
 #: /templates/detail/main.html:51
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Avvia questa app dal <b>Dash</b>, da <b>Application picker</b>, o dal <b>menu Applicazioni</b>."
+
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:30
+msgid "Loading..."
+msgstr "Caricamento in corso…"
 
 #: /templates/detail/main.html:26
 msgid "The app requested is not public."
@@ -395,13 +359,29 @@ msgstr "Scrivi una recensione"
 msgid "Sign in to Review"
 msgstr "Accedi per commentare"
 
+#: /templates/detail/main.html:148 /templates/detail/receipt.html:40
+msgid "Support Email"
+msgstr "Email per il supporto"
+
+#: /templates/detail/main.html:154 /templates/detail/receipt.html:46
+msgid "Support Site"
+msgstr "Sito di supporto"
+
+#: /templates/detail/main.html:159 /templates/detail/receipt.html:51
+msgid "Homepage"
+msgstr "Homepage"
+
+#: /templates/detail/main.html:171 /templates/detail/receipt.html:63
+msgid "Statistics"
+msgstr "Statistiche"
+
 #: /templates/detail/main.html:187
 msgid "Premium version available"
 msgstr "È disponibile la versione Premium"
 
-#: /templates/detail/main.html:203
-msgid "Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
-msgstr "Valutazione <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
+#: /templates/detail/main.html:202
+msgid "Ratings"
+msgstr ""
 
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
@@ -411,30 +391,25 @@ msgstr "Ritorna all'app"
 msgid "Loading Privacy Policy..."
 msgstr "Caricamento dell'informativa sulla privacy in corso…"
 
-#: /templates/ratings/main.html:14 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:71
-msgid "Edit Review"
-msgstr "Modifica commento"
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr "Grazie per il tuo acquisto"
 
-#: /templates/ratings/main.html:36
-msgid "This app has no reviews."
-msgstr "Questa app non ha ricevuto nessun commento."
+#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "Non è stato possibile trovare la pagina che stavi cercando."
 
-#: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
-msgid "Rate:"
-msgstr "Valutazione:"
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Si è verificato un errore."
 
-#: /templates/ratings/edit.html:20 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
-#: /templates/user/newsletter.html:13
-msgid "Cancel"
-msgstr "Annulla"
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Errore durante il caricamento di contenuti extra"
 
-#: /templates/ratings/edit.html:21 /templates/ratings/write.html:20
-msgid "Submit"
-msgstr "Invia"
-
-#: /templates/ratings/edit.html:24 /templates/ratings/write.html:23
-msgid "Only logged in users may edit reviews."
-msgstr "Solo gli utenti registrati possono modificare i propri commenti."
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Riprova"
 
 #: /templates/search/main.html:15
 msgid "<b>{n}</b> Result"
@@ -453,6 +428,31 @@ msgstr "Nessun risultato trovato"
 #: /templates/search/main.html:41
 msgid "No results found, try again later"
 msgstr "Nessun risultato trovato. Riprova più tardi."
+
+#: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
+msgid "Edit Review"
+msgstr "Modifica commento"
+
+#: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "Valutazione:"
+
+#: /templates/ratings/edit.html:20 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "Annulla"
+
+#: /templates/ratings/edit.html:21 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Invia"
+
+#: /templates/ratings/edit.html:24 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "Solo gli utenti registrati possono modificare i propri commenti."
+
+#: /templates/ratings/main.html:36
+msgid "This app has no reviews."
+msgstr "Questa app non ha ricevuto nessun commento."
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
@@ -562,10 +562,6 @@ msgstr "Il browser o il dispositivo in uso non sono compatibili con le app web."
 msgid "This app is unavailable for your platform."
 msgstr "Questa app non è disponibile per la piattaforma in uso."
 
-#: /media/js/mobilenetwork.js:309
-msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
-msgstr "Attualmente stai esplorando il sito alla ricerca di contenuti in  *{current_region}*. Vuoi passare ai contenuti in *{new_region}*?"
-
 #: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Pagamento annullato."
@@ -584,10 +580,6 @@ msgstr "Installazione non riuscita. Riprova più tardi."
 msgid "Launch"
 msgstr "Avvia"
 
-#: /media/js/newsletter.js:65
-msgid "There was an error submitting your newsletter sign up request"
-msgstr "Si è verificato un errore durante l'elaborazione della richiesta di iscrizione alla newsletter"
-
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "Hai effettuato la disconnessione"
@@ -603,6 +595,47 @@ msgstr "Non è riuscita l'identificazione tramite Persona. Sei sicuro di avere u
 #: /media/js/login.js:129
 msgid "Persona login failed. A server error was encountered."
 msgstr "Identificazione tramite Persona non riuscita. Si è verificato un errore col server."
+
+#: /media/js/mobilenetwork.js:309
+msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
+msgstr "Attualmente stai esplorando il sito alla ricerca di contenuti in  *{current_region}*. Vuoi passare ai contenuti in *{new_region}*?"
+
+#: /media/js/navigation.js:52
+msgid "No internet connection"
+msgstr "Connessione a Internet non disponibile"
+
+#: /media/js/newsletter.js:65
+msgid "There was an error submitting your newsletter sign up request"
+msgstr "Si è verificato un errore durante l'elaborazione della richiesta di iscrizione alla newsletter"
+
+#. The report is an abuse report for reviews
+#: /media/js/ratings.js:39
+msgid "Sending report..."
+msgstr "Invio segnalazione in corso…"
+
+#: /media/js/ratings.js:44
+msgid "Review flagged"
+msgstr "Commento segnalato ai moderatori"
+
+#: /media/js/ratings.js:48
+msgid "Report review operation failed"
+msgstr "Invio della segnalazione per questo commento non riuscita"
+
+#: /media/js/ratings.js:59
+msgid "Review deleted"
+msgstr "Recensione eliminata"
+
+#: /media/js/ratings.js:89
+msgid "There was a problem deleting the review"
+msgstr "Si è verificato un problema durante l'eliminazione del commento"
+
+#: /media/js/ratings.js:229
+msgid "Your review was posted"
+msgstr "Il commento è stato pubblicato"
+
+#: /media/js/ratings.js:243
+msgid "Error while submitting review"
+msgstr "Si è verificato un errore durante l'inserimento del commento"
 
 #: /media/js/settings.js:72
 msgid "Worldwide"
@@ -679,39 +712,6 @@ msgstr "Venezuela"
 #: /media/js/settings.js:92
 msgid "Department of Justice, Rating, Titles and Qualification"
 msgstr "Dipartimento di giustizia, visti censura, titoli e classificazioni"
-
-#: /media/js/navigation.js:52
-msgid "No internet connection"
-msgstr "Connessione a Internet non disponibile"
-
-#. The report is an abuse report for reviews
-#: /media/js/ratings.js:39
-msgid "Sending report..."
-msgstr "Invio segnalazione in corso…"
-
-#: /media/js/ratings.js:44
-msgid "Review flagged"
-msgstr "Commento segnalato ai moderatori"
-
-#: /media/js/ratings.js:48
-msgid "Report review operation failed"
-msgstr "Invio della segnalazione per questo commento non riuscita"
-
-#: /media/js/ratings.js:59
-msgid "Review deleted"
-msgstr "Recensione eliminata"
-
-#: /media/js/ratings.js:89
-msgid "There was a problem deleting the review"
-msgstr "Si è verificato un problema durante l'eliminazione del commento"
-
-#: /media/js/ratings.js:229
-msgid "Your review was posted"
-msgstr "Il commento è stato pubblicato"
-
-#: /media/js/ratings.js:243
-msgid "Error while submitting review"
-msgstr "Si è verificato un errore durante l'inserimento del commento"
 
 #. {n} is the number of characters left.
 #: /media/js/utils.js:28

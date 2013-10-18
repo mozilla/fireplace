@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-17T15:26:30.510Z\n"
+"POT-Creation-Date: 2013-10-18T23:38:43.995Z\n"
 "PO-Revision-Date: 2013-07-25 21:12+0200\n"
 "Last-Translator: Toni Hermoso Pulido <toniher@softcatala.org>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Virtaal 0.7.0\n"
 
-#: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:12
+#: /templates/cat_list.html:3 /templates/cat_dropdown.html:1 /media/js/cat-dropdown.js:12
 msgid "All Categories"
 msgstr "Totes les categories"
 
@@ -23,7 +23,7 @@ msgstr "Totes les categories"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr ""
 
-#: /templates/collection.html:42 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/receipt.html:28 /templates/detail/main.html:24 /templates/user/purchases.html:38
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
 msgid "Oh no!"
 msgstr "Oh, no!"
 
@@ -109,7 +109,7 @@ msgstr ""
 "Excepte si <a href=\"{legal_url}\" target=\"_blank\">es diu</a> el contrari, el contingut del lloc es troba sota una llicència <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Atribució "
 "CompartirIgual v3.0</a> o posterior."
 
-#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/receipt.html:57 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/settings/feedback.html:22
+#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
 #: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Política de privadesa"
@@ -163,13 +163,22 @@ msgstr ""
 msgid "I understand the risk and wish to continue"
 msgstr ""
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr ""
+
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
+msgid "Free"
+msgstr "Gratuïta"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
+msgid "Install"
+msgstr "Instal·la"
+
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
 msgstr ""
-
-#: /templates/_macros/market_tile.html:38 /templates/_macros/market_button.html:7
-msgid "Free"
-msgstr "Gratuïta"
 
 #: /templates/_macros/market_tile.html:46
 msgid "({n})"
@@ -189,15 +198,6 @@ msgstr "(0)"
 #: /templates/_macros/market_tile.html:54
 msgid "Not yet rated"
 msgstr "Encara no s'ha valorat"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr ""
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
-msgid "Install"
-msgstr "Instal·la"
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
@@ -227,86 +227,46 @@ msgstr "Suprimeix"
 msgid "Report"
 msgstr "Informa"
 
-#: /templates/category/main.html:39
-msgid "Featured Apps"
-msgstr "Aplicacions destacades"
-
-#: /templates/category/main.html:40 /templates/category/main.html:66
-msgid "View All"
-msgstr "Mostra-les totes"
-
-#: /templates/category/main.html:62
-msgid "Popular"
-msgstr "Populars"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:64
-msgid "New"
-msgstr "Noves"
-
-#: /templates/category/main.html:85
-msgid "No apps in this category"
-msgstr "No hi ha aplicacions en la categoria"
-
-#: /templates/category/main.html:90
-msgid "The category you requested does not exist."
-msgstr ""
-
-#: /templates/category/main.html:92 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr ""
-
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Puntuat amb {stars} de {maxstars} estrelles"
 
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "No s'ha trobat la pàgina que cercàveu!"
+#: /templates/category/main.html:37
+msgid "Featured Apps"
+msgstr "Aplicacions destacades"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "S'ha produït un error."
+#: /templates/category/main.html:38 /templates/category/main.html:64
+msgid "View All"
+msgstr "Mostra-les totes"
 
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Error en carregar més"
+#: /templates/category/main.html:60
+msgid "Popular"
+msgstr "Populars"
 
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Torna-ho a provar"
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:62
+msgid "New"
+msgstr "Noves"
 
-#: /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /templates/detail/main.html:176 /media/js/views/app/abuse.js:34
+#: /templates/category/main.html:83
+msgid "No apps in this category"
+msgstr "No hi ha aplicacions en la categoria"
+
+#: /templates/category/main.html:88
+msgid "The category you requested does not exist."
+msgstr ""
+
+#: /templates/category/main.html:90 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr ""
+
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "Informa d'un abús"
 
 #: /templates/detail/abuse.html:15
 msgid "Send Report"
 msgstr "Envia l'informe"
-
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr ""
-
-#: /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /templates/detail/main.html:14 /templates/detail/main.html:15 /media/js/views/app.js:58 /media/js/views/collection.js:30
-msgid "Loading..."
-msgstr "S'està carregant..."
-
-#: /templates/detail/receipt.html:40 /templates/detail/main.html:148
-msgid "Support Email"
-msgstr "Adreça electrònica de suport"
-
-#: /templates/detail/receipt.html:46 /templates/detail/main.html:154
-msgid "Support Site"
-msgstr "Lloc web de suport"
-
-#: /templates/detail/receipt.html:51 /templates/detail/main.html:159
-msgid "Homepage"
-msgstr "Pàgina d'inici"
-
-#: /templates/detail/receipt.html:63 /templates/detail/main.html:171
-msgid "Statistics"
-msgstr "Estadístiques"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -323,6 +283,10 @@ msgstr "Executeu l'aplicació de l'<b>escriptori del Windows</b> o des d'<b>Inic
 #: /templates/detail/main.html:51
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Executeu l'aplicació des del <b>plafó</b>, el <b>selector d'aplicacions</b> o el <b>menú d'aplicacions</b>."
+
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:30
+msgid "Loading..."
+msgstr "S'està carregant..."
 
 #: /templates/detail/main.html:26
 msgid "The app requested is not public."
@@ -392,13 +356,29 @@ msgstr "Escriviu una valoració"
 msgid "Sign in to Review"
 msgstr "Inicieu una sessió per a valorar"
 
+#: /templates/detail/main.html:148 /templates/detail/receipt.html:40
+msgid "Support Email"
+msgstr "Adreça electrònica de suport"
+
+#: /templates/detail/main.html:154 /templates/detail/receipt.html:46
+msgid "Support Site"
+msgstr "Lloc web de suport"
+
+#: /templates/detail/main.html:159 /templates/detail/receipt.html:51
+msgid "Homepage"
+msgstr "Pàgina d'inici"
+
+#: /templates/detail/main.html:171 /templates/detail/receipt.html:63
+msgid "Statistics"
+msgstr "Estadístiques"
+
 #: /templates/detail/main.html:187
 msgid "Premium version available"
 msgstr "Versió Premium disponible"
 
-#: /templates/detail/main.html:203
-msgid "Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
-msgstr "Puntuació del <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
+#: /templates/detail/main.html:202
+msgid "Ratings"
+msgstr ""
 
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
@@ -408,30 +388,25 @@ msgstr "Torna a l'aplicació"
 msgid "Loading Privacy Policy..."
 msgstr "S'està carregant la política de privadesa..."
 
-#: /templates/ratings/main.html:14 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:71
-msgid "Edit Review"
-msgstr "Edita la valoraciño"
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr ""
 
-#: /templates/ratings/main.html:36
-msgid "This app has no reviews."
-msgstr "L'aplicació no te valoracions."
+#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "No s'ha trobat la pàgina que cercàveu!"
 
-#: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
-msgid "Rate:"
-msgstr "Puntuació:"
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "S'ha produït un error."
 
-#: /templates/ratings/edit.html:20 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
-#: /templates/user/newsletter.html:13
-msgid "Cancel"
-msgstr "Cancel·la"
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Error en carregar més"
 
-#: /templates/ratings/edit.html:21 /templates/ratings/write.html:20
-msgid "Submit"
-msgstr "Envia"
-
-#: /templates/ratings/edit.html:24 /templates/ratings/write.html:23
-msgid "Only logged in users may edit reviews."
-msgstr "Només els usuaris que han iniciat una sessió poden editar les valoracions."
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Torna-ho a provar"
 
 #: /templates/search/main.html:15
 msgid "<b>{n}</b> Result"
@@ -450,6 +425,31 @@ msgstr "No s'ha trobat cap resultat"
 #: /templates/search/main.html:41
 msgid "No results found, try again later"
 msgstr "No s'ha trobat cap resultat, torneu-ho a provar"
+
+#: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
+msgid "Edit Review"
+msgstr "Edita la valoraciño"
+
+#: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "Puntuació:"
+
+#: /templates/ratings/edit.html:20 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: /templates/ratings/edit.html:21 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Envia"
+
+#: /templates/ratings/edit.html:24 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "Només els usuaris que han iniciat una sessió poden editar les valoracions."
+
+#: /templates/ratings/main.html:36
+msgid "This app has no reviews."
+msgstr "L'aplicació no te valoracions."
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
@@ -559,10 +559,6 @@ msgstr ""
 msgid "This app is unavailable for your platform."
 msgstr ""
 
-#: /media/js/mobilenetwork.js:309
-msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
-msgstr "Ara mateix esteu navegant contingut per a *{current_region}*. Voleu canviar a *{new_region}*?"
-
 #: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "S'ha cancel·lat el pagament."
@@ -581,10 +577,6 @@ msgstr "La instal·lació ha fallat. Proveu-ho més endavant."
 msgid "Launch"
 msgstr "Executa"
 
-#: /media/js/newsletter.js:65
-msgid "There was an error submitting your newsletter sign up request"
-msgstr "S'ha produït un error en enviar la sol·licitud de registre al full informatiu"
-
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "Heu finalitzat la sessió"
@@ -600,6 +592,47 @@ msgstr "L'inici de sessió amb Persona ha fallat. Potser no teniu un compte amb 
 #: /media/js/login.js:129
 msgid "Persona login failed. A server error was encountered."
 msgstr "L'inici de sessió amb Persona ha fallat. S'ha produït un error amb el servidor."
+
+#: /media/js/mobilenetwork.js:309
+msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
+msgstr "Ara mateix esteu navegant contingut per a *{current_region}*. Voleu canviar a *{new_region}*?"
+
+#: /media/js/navigation.js:52
+msgid "No internet connection"
+msgstr "No hi ha connexió a Internet"
+
+#: /media/js/newsletter.js:65
+msgid "There was an error submitting your newsletter sign up request"
+msgstr "S'ha produït un error en enviar la sol·licitud de registre al full informatiu"
+
+#. The report is an abuse report for reviews
+#: /media/js/ratings.js:39
+msgid "Sending report..."
+msgstr "S'està enviant l'informe..."
+
+#: /media/js/ratings.js:44
+msgid "Review flagged"
+msgstr "S'ha senyalat la valoració"
+
+#: /media/js/ratings.js:48
+msgid "Report review operation failed"
+msgstr "Informa que l'operació de valoració ha fallat"
+
+#: /media/js/ratings.js:59
+msgid "Review deleted"
+msgstr ""
+
+#: /media/js/ratings.js:89
+msgid "There was a problem deleting the review"
+msgstr "S'ha produït un problema en suprimir la vostra valoració"
+
+#: /media/js/ratings.js:229
+msgid "Your review was posted"
+msgstr "S'ha publicat la vostra valoració"
+
+#: /media/js/ratings.js:243
+msgid "Error while submitting review"
+msgstr "S'ha produït un error en enviar la valoració"
 
 #: /media/js/settings.js:72
 msgid "Worldwide"
@@ -676,39 +709,6 @@ msgstr ""
 #: /media/js/settings.js:92
 msgid "Department of Justice, Rating, Titles and Qualification"
 msgstr ""
-
-#: /media/js/navigation.js:52
-msgid "No internet connection"
-msgstr "No hi ha connexió a Internet"
-
-#. The report is an abuse report for reviews
-#: /media/js/ratings.js:39
-msgid "Sending report..."
-msgstr "S'està enviant l'informe..."
-
-#: /media/js/ratings.js:44
-msgid "Review flagged"
-msgstr "S'ha senyalat la valoració"
-
-#: /media/js/ratings.js:48
-msgid "Report review operation failed"
-msgstr "Informa que l'operació de valoració ha fallat"
-
-#: /media/js/ratings.js:59
-msgid "Review deleted"
-msgstr ""
-
-#: /media/js/ratings.js:89
-msgid "There was a problem deleting the review"
-msgstr "S'ha produït un problema en suprimir la vostra valoració"
-
-#: /media/js/ratings.js:229
-msgid "Your review was posted"
-msgstr "S'ha publicat la vostra valoració"
-
-#: /media/js/ratings.js:243
-msgid "Error while submitting review"
-msgstr "S'ha produït un error en enviar la valoració"
 
 #. {n} is the number of characters left.
 #: /media/js/utils.js:28
