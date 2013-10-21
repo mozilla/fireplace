@@ -13,7 +13,7 @@ if (body_langs = document.body.getAttribute('data-languages')) {
 var lang_expander = {
     'en': 'en-US', 'ga': 'ga-IE',
     'pt': 'pt-BR', 'sv': 'sv-SE',
-    'zh': 'zh-CN'
+    'zh': 'zh-CN', 'sr': 'sr-Latn'
 };
 
 function get_locale(locale) {
