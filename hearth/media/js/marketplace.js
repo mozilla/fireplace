@@ -61,10 +61,19 @@ require.config({
         console.log('Dependencies resolved, starting init');
 
         var capabilities = require('capabilities');
+        var format = require('format');
         var nunjucks = require('templates');
         var settings = require('settings');
         var user = require('user');
         var z = require('z');
+
+        // Jank hack because Persona doesn't allow scripts in the doc iframe.
+        // Please just delete it when they don't do that anymore.
+        var doc_langs = ['el', 'en-US', 'es', 'pl', 'pt-BR'];
+        var doc_lang = doc_langs.indexOf(navigator.l10n.language) >= 0 ? navigator.l10n.language : 'en-US';
+        var doc_location = require('urls').media('/docs/{type}/' + doc_lang + '.html?20131014-4');
+        settings.persona_tos = format.format(doc_location, {type: 'terms'});
+        settings.persona_privacy = format.format(doc_location, {type: 'privacy'});
 
         nunjucks.env.dev = true;
 
