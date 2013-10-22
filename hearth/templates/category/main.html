@@ -23,7 +23,7 @@
 {% end %}
 
 {% defer (url=endpoint|urlunparam(['sort']), pluck='collections', as='collection') %}
-  {% if this and this.length and this[0].apps.length %}
+  {% if this and this.length and this[0].apps.length and this[0].image %}
     {# We're interested in the first item only. #}
     {{ collection_tile(this[0], link=true, src='home') }}
   {% endif %}
