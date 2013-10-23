@@ -25,7 +25,6 @@ var routes = [
     {'pattern': '^/terms-of-use$', 'view_name': 'terms'},
 
     {'pattern': '^/site/deprecated$', 'view_name': 'deprecated'},
-    {'pattern': '^/site/obsolete$', 'view_name': 'obsolete'},
 
     {'pattern': '^/collection/([^/<>"\']+)/?$', 'view_name': 'collection'},
 
