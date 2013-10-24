@@ -4,7 +4,6 @@ define('views/search',
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
-    var ngettext = l10n.ngettext;
 
     function append(existing_value, new_value) {
         if (typeof existing_value === 'string' && existing_value !== '') {
@@ -18,11 +17,8 @@ define('views/search',
         // $('#site-search-suggestions').trigger('dismiss');
         $('#search-q').val('');
 
-    })).on('click', '.header-button, .search-clear', _pd(function(e) {
-        var $this = $(this),
-            $btns = $('.header-button');
-
-        if ($this.hasClass('search-clear')) {
+    })).on('click', '.header-button, .search-clear', _pd(function() {
+        if ($(this).hasClass('search-clear')) {
             $('#search-q').val('').trigger('focus');
         }
     }));
@@ -59,7 +55,7 @@ define('views/search',
         query.q = [];
 
         query.full_q.split(' ').forEach(function(value) {
-            if (!value) return;
+            if (!value) {return;}
             if (value[0] === ':') {
                 value = value.slice(1);
                 if (value === 'hosted' || value === 'packaged' ||
@@ -160,7 +156,7 @@ define('views/search',
         }
     }).on('loaded_more', function() {
         z.page.trigger('populatetray');
-        // Update "Showing 1—{total}" text.
+        // Update "Showing 1-{total}" text.
         z.page.find('.total-results').text(z.page.find('.item.app').length);
     }).on('search', function(e, params) {
         e.preventDefault();
@@ -185,7 +181,7 @@ define('views/search',
                     });
                     break;
                 case 'rick fant rolled':
-                    data.forEach(function(v, k) { v.url = 'http://www.youtube.com/watch?v=oHg5SJYRHA0'; });
+                    data.forEach(function(v) { v.url = 'http://www.youtube.com/watch?v=oHg5SJYRHA0'; });
                     break;
             }
             return data;
@@ -195,7 +191,7 @@ define('views/search',
     return function(builder, args, params) {
         params = parsePotatoSearch(_.extend({q: params.q}, params));
 
-        if ('sort' in params && params.sort == 'relevancy') {
+        if ('sort' in params && params.sort === 'relevancy') {
             delete params.sort;
         }
 
@@ -213,7 +209,7 @@ define('views/search',
             'search/main.html',
             {params: _.extend({}, params), processor: processor(query)}
         ).done(function() {
-            var results = builder.results['searchresults'];
+            var results = builder.results.searchresults;
             if (params.manifest_url && results.objects.length === 1) {
                 z.page.trigger('divert', [urls.reverse('app', [results.objects[0].slug]) + '?src=' + params.src]);
             }
