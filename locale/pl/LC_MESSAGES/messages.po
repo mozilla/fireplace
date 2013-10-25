@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18T23:49:40.764Z\n"
+"POT-Creation-Date: 2013-10-25T20:52:55.910Z\n"
 "PO-Revision-Date: 2013-09-29 08:53+0200\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <team@aviary.pl>\n"
@@ -17,19 +17,6 @@ msgstr ""
 #: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:12
 msgid "All Categories"
 msgstr "Wszystkie kategorie"
-
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr "Hmm, tu nie ma aplikacji!"
-
-#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
-msgid "Oh no!"
-msgstr "O nie!"
-
-#: /templates/collection.html:43
-msgid "We could not load that collection. Please try again later."
-msgstr "Nie można wczytać tej kolekcji. Spróbuj ponownie później."
 
 #: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
@@ -52,9 +39,22 @@ msgstr "Nieaktualny Marketplace"
 msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
 msgstr "Używana wersja Firefox Marketplace nie jest dłużej wspierana. Należy dokonać aktualizacji, by kontynuować używanie Marketplace."
 
-#: /templates/deprecated.html:5 /templates/obsolete.html:5
+#: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Zaktualizuj teraz"
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/collection.html:33
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr "Hmm, tu nie ma aplikacji!"
+
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/errors/404.html:2 /templates/detail/receipt.html:28 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+msgid "Oh no!"
+msgstr "O nie!"
+
+#: /templates/collection.html:43
+msgid "We could not load that collection. Please try again later."
+msgstr "Nie można wczytać tej kolekcji. Spróbuj ponownie później."
 
 #: /templates/featured.html:7
 msgid "Featured"
@@ -84,7 +84,7 @@ msgstr "Opinie"
 msgid "Support"
 msgstr "Pomoc"
 
-#: /templates/footer.html:12 /templates/header.html:22 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
+#: /templates/footer.html:12 /templates/header.html:22 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31 /templates/settings/nav.html:7
 #: /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "Moje aplikacje"
@@ -150,89 +150,6 @@ msgstr "Wyloguj"
 msgid "Sign In"
 msgstr "Zaloguj"
 
-#. The operating system is out-of-date and needs to be updated.
-#: /templates/obsolete.html:2
-msgid "Firefox OS Update Required"
-msgstr "Wymagana aktualizacja Firefox OS"
-
-#: /templates/obsolete.html:3
-msgid "You're running an obsolete version of Firefox OS. Some apps in the Marketplace may fail to install or will malfunction. Please run a system update to continue enjoying the Marketplace."
-msgstr ""
-"Używasz przestarzałej wersji Firefox OS. Niektóre aplikacje z Marketplace mogą się nie zainstalować lub działać nieprawidłowo. Uruchom aktualizację systemu, by móc dalej korzystać z Marketplace."
-
-#: /templates/obsolete.html:10
-msgid "I understand the risk and wish to continue"
-msgstr "Rozumiem ryzyko i chcę kontynuować"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Niedostępne"
-
-#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
-msgid "Free"
-msgstr "Bezpłatne"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
-msgid "Install"
-msgstr "Zainstaluj"
-
-#: /templates/_macros/market_tile.html:9
-msgid "{app_name} .::. screenshot"
-msgstr "{app_name} .::. obrazek"
-
-#: /templates/_macros/market_tile.html:46
-msgid "({n})"
-msgstr "({n})"
-
-#: /templates/_macros/market_tile.html:49 /templates/detail/main.html:111
-msgid "{n} Review"
-msgid_plural "{n} Reviews"
-msgstr[0] "{n} opinia"
-msgstr[1] "{n} opinie"
-msgstr[2] "{n} opinii"
-
-#. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:53
-msgid "(0)"
-msgstr "(0)"
-
-#: /templates/_macros/market_tile.html:54
-msgid "Not yet rated"
-msgstr "Brak ocen"
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "Więcej"
-
-#: /templates/_macros/rating.html:9
-msgid "by {author}"
-msgstr "przez: {author}"
-
-#: /templates/_macros/rating.html:12
-msgid "for previous version {version}"
-msgstr "dla poprzedniej wersji {version}"
-
-#: /templates/_macros/rating.html:21
-msgid "Flagged for review"
-msgstr "Oznaczono do sprawdzenia"
-
-#: /templates/_macros/rating.html:25
-msgid "Edit"
-msgstr "Edytuj"
-
-#: /templates/_macros/rating.html:28
-msgid "Delete"
-msgstr "Usuń"
-
-#: /templates/_macros/rating.html:31
-msgid "Report"
-msgstr "Zgłoś"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Oceniono jako {stars}/{maxstars}"
-
 #: /templates/category/main.html:37
 msgid "Featured Apps"
 msgstr "Polecane aplikacje"
@@ -262,6 +179,47 @@ msgstr "Żądana kategoria nie istnieje."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Wystąpił wewnętrzny błąd serwera. Spróbuj ponownie później"
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Niedostępne"
+
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
+msgid "Free"
+msgstr "Bezpłatne"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
+msgid "Install"
+msgstr "Zainstaluj"
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "Więcej"
+
+#: /templates/_macros/market_tile.html:9
+msgid "{app_name} .::. screenshot"
+msgstr "{app_name} .::. obrazek"
+
+#: /templates/_macros/market_tile.html:46
+msgid "({n})"
+msgstr "({n})"
+
+#: /templates/_macros/market_tile.html:49 /templates/detail/main.html:111
+msgid "{n} Review"
+msgid_plural "{n} Reviews"
+msgstr[0] "{n} opinia"
+msgstr[1] "{n} opinie"
+msgstr[2] "{n} opinii"
+
+#. "(0)" means "0 reviews."
+#: /templates/_macros/market_tile.html:53
+msgid "(0)"
+msgstr "(0)"
+
+#: /templates/_macros/market_tile.html:54
+msgid "Not yet rated"
+msgstr "Brak ocen"
+
 #: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "Zgłoś nadużycie"
@@ -269,6 +227,30 @@ msgstr "Zgłoś nadużycie"
 #: /templates/detail/abuse.html:15
 msgid "Send Report"
 msgstr "Wyślij zgłoszenie"
+
+#: /templates/_macros/rating.html:9
+msgid "by {author}"
+msgstr "przez: {author}"
+
+#: /templates/_macros/rating.html:12
+msgid "for previous version {version}"
+msgstr "dla poprzedniej wersji {version}"
+
+#: /templates/_macros/rating.html:21
+msgid "Flagged for review"
+msgstr "Oznaczono do sprawdzenia"
+
+#: /templates/_macros/rating.html:25
+msgid "Edit"
+msgstr "Edytuj"
+
+#: /templates/_macros/rating.html:28
+msgid "Delete"
+msgstr "Usuń"
+
+#: /templates/_macros/rating.html:31
+msgid "Report"
+msgstr "Zgłoś"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -382,6 +364,10 @@ msgstr "Dostępna wersja płatna"
 msgid "Ratings"
 msgstr ""
 
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Oceniono jako {stars}/{maxstars}"
+
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
 msgstr "Wróć do aplikacji"
@@ -390,44 +376,13 @@ msgstr "Wróć do aplikacji"
 msgid "Loading Privacy Policy..."
 msgstr "Wczytywanie polityki prywatności…"
 
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr "Dziękujemy za zakup"
-
-#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
 msgid "The page you were looking for was not found."
 msgstr "Nie znaleziono poszukiwanej strony."
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Wystąpił błąd."
-
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Nie udało się pobrać więcej"
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Spróbuj ponownie"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> wynik"
-msgstr[1] "<b>{n}</b> wyniki"
-msgstr[2] "<b>{n}</b> wyników"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Wyświetlane <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Nic nie znaleziono"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Brak wyników, spróbuj ponownie później"
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr "Dziękujemy za zakup"
 
 #: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
 msgid "Edit Review"
@@ -454,6 +409,18 @@ msgstr "Tylko zalogowani użytkownicy mogą edytować opinie."
 msgid "This app has no reviews."
 msgstr "Ta aplikacja nie ma opinii."
 
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Nie udało się pobrać więcej"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Spróbuj ponownie"
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Wystąpił błąd."
+
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Ocena aplikacji"
@@ -461,6 +428,25 @@ msgstr "Ocena aplikacji"
 #: /templates/ratings/rating.html:16
 msgid "The review you requested does not exist."
 msgstr "Żądana ocena nie istnieje"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> wynik"
+msgstr[1] "<b>{n}</b> wyniki"
+msgstr[2] "<b>{n}</b> wyników"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Wyświetlane <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Nic nie znaleziono"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Brak wyników, spróbuj ponownie później"
 
 #: /templates/ratings/report.html:2
 msgid "Please select a reason:"
@@ -510,6 +496,18 @@ msgstr "Zapisz zmiany"
 msgid "Sign In / Sign Up"
 msgstr "Logowanie / Rejestracja"
 
+#: /templates/user/purchases.html:49
+msgid "You must be signed in to view your apps."
+msgstr "Musisz się zalogować, by wyświetlić swoje aplikacje."
+
+#: /templates/user/purchases.html:50
+msgid "Sign in / Sign up"
+msgstr "Logowanie / Rejestracja"
+
+#: /templates/user/purchases.html:34
+msgid "You have no apps"
+msgstr "Nie masz aplikacji"
+
 #: /templates/settings/nav.html:6
 msgid "Account"
 msgstr "Konto"
@@ -530,17 +528,23 @@ msgstr "Zamawianie…"
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "Zamówienie newslettera Marketplace powiodło się!"
 
-#: /templates/user/purchases.html:49
-msgid "You must be signed in to view your apps."
-msgstr "Musisz się zalogować, by wyświetlić swoje aplikacje."
+#: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Anulowano płatność."
 
-#: /templates/user/purchases.html:50
-msgid "Sign in / Sign up"
-msgstr "Logowanie / Rejestracja"
+#. "Launch" as in "Launch the app"
+#: /media/js/buttons.js:89
+msgid "Purchasing"
+msgstr "Zakup"
 
-#: /templates/user/purchases.html:34
-msgid "You have no apps"
-msgstr "Nie masz aplikacji"
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/buttons.js:192
+msgid "Install failed. Please try again later."
+msgstr "Instalacja nie powiodła się. Spróbuj ponownie później."
+
+#: /media/js/buttons.js:274
+msgid "Launch"
+msgstr "Uruchom"
 
 #: /media/js/apps.js:70
 msgid "App install error: {error}"
@@ -562,24 +566,6 @@ msgstr "Twoja przeglądarka lub urządzenie nie są kompatybilne z aplikacjami s
 msgid "This app is unavailable for your platform."
 msgstr "Ta aplikacja nie jest dostępna dla twojego systemu."
 
-#: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Anulowano płatność."
-
-#. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:89
-msgid "Purchasing"
-msgstr "Zakup"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:192
-msgid "Install failed. Please try again later."
-msgstr "Instalacja nie powiodła się. Spróbuj ponownie później."
-
-#: /media/js/buttons.js:274
-msgid "Launch"
-msgstr "Uruchom"
-
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "Wylogowano"
@@ -596,7 +582,7 @@ msgstr "Logowanie Persona nie powiodło się. Być może nie masz konta dla tego
 msgid "Persona login failed. A server error was encountered."
 msgstr "Logowanie Persona nie powiodło się. Wystąpił błąd serwera."
 
-#: /media/js/mobilenetwork.js:309
+#: /media/js/mobilenetwork.js:306
 msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
 msgstr "Obecnie przeglądasz zawartość dla regionu *{current_region}*. Czy chcesz zmienić region na: *{new_region}*?"
 
@@ -763,7 +749,7 @@ msgstr "Wystąpił problem z przesłaniem opinii. Spróbuj ponownie później."
 msgid "Not Found"
 msgstr "Nie znaleziono"
 
-#: /media/js/views/search.js:205
+#: /media/js/views/search.js:201
 msgid "Search Results"
 msgstr "Wyniki wyszukiwania"
 

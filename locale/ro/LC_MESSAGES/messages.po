@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18T23:49:40.764Z\n"
+"POT-Creation-Date: 2013-10-25T20:52:55.910Z\n"
 "PO-Revision-Date: 2013-07-29 12:37+0200\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Română\n"
@@ -16,19 +16,6 @@ msgstr ""
 #: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:12
 msgid "All Categories"
 msgstr "Toate categoriile"
-
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr ""
-
-#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
-msgid "Oh no!"
-msgstr "O, nu!"
-
-#: /templates/collection.html:43
-msgid "We could not load that collection. Please try again later."
-msgstr ""
 
 #: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
@@ -51,8 +38,21 @@ msgstr ""
 msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
 msgstr ""
 
-#: /templates/deprecated.html:5 /templates/obsolete.html:5
+#: /templates/deprecated.html:5
 msgid "Update Now"
+msgstr ""
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/collection.html:33
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr ""
+
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/errors/404.html:2 /templates/detail/receipt.html:28 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+msgid "Oh no!"
+msgstr "O, nu!"
+
+#: /templates/collection.html:43
+msgid "We could not load that collection. Please try again later."
 msgstr ""
 
 #: /templates/featured.html:7
@@ -83,7 +83,7 @@ msgstr "Opinii"
 msgid "Support"
 msgstr "Asistență"
 
-#: /templates/footer.html:12 /templates/header.html:22 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
+#: /templates/footer.html:12 /templates/header.html:22 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31 /templates/settings/nav.html:7
 #: /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "Aplicațiile mele"
@@ -149,88 +149,6 @@ msgstr "Deconectare"
 msgid "Sign In"
 msgstr "Autentificare"
 
-#. The operating system is out-of-date and needs to be updated.
-#: /templates/obsolete.html:2
-msgid "Firefox OS Update Required"
-msgstr ""
-
-#: /templates/obsolete.html:3
-msgid "You're running an obsolete version of Firefox OS. Some apps in the Marketplace may fail to install or will malfunction. Please run a system update to continue enjoying the Marketplace."
-msgstr ""
-
-#: /templates/obsolete.html:10
-msgid "I understand the risk and wish to continue"
-msgstr ""
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr ""
-
-#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
-msgid "Free"
-msgstr "Gratuit"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
-msgid "Install"
-msgstr "Instalează"
-
-#: /templates/_macros/market_tile.html:9
-msgid "{app_name} .::. screenshot"
-msgstr ""
-
-#: /templates/_macros/market_tile.html:46
-msgid "({n})"
-msgstr "({n})"
-
-#: /templates/_macros/market_tile.html:49 /templates/detail/main.html:111
-msgid "{n} Review"
-msgid_plural "{n} Reviews"
-msgstr[0] "{n} recenzie"
-msgstr[1] "{n} recenzii"
-msgstr[2] "{n} de recenzii"
-
-#. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:53
-msgid "(0)"
-msgstr "(0)"
-
-#: /templates/_macros/market_tile.html:54
-msgid "Not yet rated"
-msgstr "Neevaluat încă"
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "Mai multe"
-
-#: /templates/_macros/rating.html:9
-msgid "by {author}"
-msgstr "de {author}"
-
-#: /templates/_macros/rating.html:12
-msgid "for previous version {version}"
-msgstr "pentru versiunea precedentă {version}"
-
-#: /templates/_macros/rating.html:21
-msgid "Flagged for review"
-msgstr "Marcat pentru revizuire"
-
-#: /templates/_macros/rating.html:25
-msgid "Edit"
-msgstr "Editează"
-
-#: /templates/_macros/rating.html:28
-msgid "Delete"
-msgstr "Șterge"
-
-#: /templates/_macros/rating.html:31
-msgid "Report"
-msgstr "Raportează"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Evaluat cu {stars} din {maxstars} stele"
-
 #: /templates/category/main.html:37
 msgid "Featured Apps"
 msgstr "Aplicații deosebite"
@@ -260,6 +178,47 @@ msgstr ""
 msgid "An internal server error occurred. Please try again later."
 msgstr ""
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr ""
+
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
+msgid "Free"
+msgstr "Gratuit"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
+msgid "Install"
+msgstr "Instalează"
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "Mai multe"
+
+#: /templates/_macros/market_tile.html:9
+msgid "{app_name} .::. screenshot"
+msgstr ""
+
+#: /templates/_macros/market_tile.html:46
+msgid "({n})"
+msgstr "({n})"
+
+#: /templates/_macros/market_tile.html:49 /templates/detail/main.html:111
+msgid "{n} Review"
+msgid_plural "{n} Reviews"
+msgstr[0] "{n} recenzie"
+msgstr[1] "{n} recenzii"
+msgstr[2] "{n} de recenzii"
+
+#. "(0)" means "0 reviews."
+#: /templates/_macros/market_tile.html:53
+msgid "(0)"
+msgstr "(0)"
+
+#: /templates/_macros/market_tile.html:54
+msgid "Not yet rated"
+msgstr "Neevaluat încă"
+
 #: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "Reclamă abuz"
@@ -267,6 +226,30 @@ msgstr "Reclamă abuz"
 #: /templates/detail/abuse.html:15
 msgid "Send Report"
 msgstr "Trimite raport"
+
+#: /templates/_macros/rating.html:9
+msgid "by {author}"
+msgstr "de {author}"
+
+#: /templates/_macros/rating.html:12
+msgid "for previous version {version}"
+msgstr "pentru versiunea precedentă {version}"
+
+#: /templates/_macros/rating.html:21
+msgid "Flagged for review"
+msgstr "Marcat pentru revizuire"
+
+#: /templates/_macros/rating.html:25
+msgid "Edit"
+msgstr "Editează"
+
+#: /templates/_macros/rating.html:28
+msgid "Delete"
+msgstr "Șterge"
+
+#: /templates/_macros/rating.html:31
+msgid "Report"
+msgstr "Raportează"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -380,6 +363,10 @@ msgstr "Versiune Premium disponibilă"
 msgid "Ratings"
 msgstr ""
 
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Evaluat cu {stars} din {maxstars} stele"
+
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
 msgstr "Înapoi la aplicație"
@@ -388,44 +375,13 @@ msgstr "Înapoi la aplicație"
 msgid "Loading Privacy Policy..."
 msgstr "Se încarcă politica de confidențialitate..."
 
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr ""
-
-#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
 msgid "The page you were looking for was not found."
 msgstr "Pagina căutată nu a fost găsită."
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "A intervenit o eroare"
-
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Eroare la încărcare"
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Reîncearcă"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> rezultat"
-msgstr[1] "<b>{n}</b> rezultate"
-msgstr[2] "<b>{n}</b> de rezultate"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Se afișează <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Niciun rezultat găsit"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Niciun rezultat găsit, reîncearcă mai târziu"
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr ""
 
 #: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
 msgid "Edit Review"
@@ -452,6 +408,18 @@ msgstr "Doar utilizatorii autentificați pot edita recenziile."
 msgid "This app has no reviews."
 msgstr "Această aplicație nu are recenzii."
 
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Eroare la încărcare"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Reîncearcă"
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "A intervenit o eroare"
+
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr ""
@@ -459,6 +427,25 @@ msgstr ""
 #: /templates/ratings/rating.html:16
 msgid "The review you requested does not exist."
 msgstr ""
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> rezultat"
+msgstr[1] "<b>{n}</b> rezultate"
+msgstr[2] "<b>{n}</b> de rezultate"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Se afișează <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Niciun rezultat găsit"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Niciun rezultat găsit, reîncearcă mai târziu"
 
 #: /templates/ratings/report.html:2
 msgid "Please select a reason:"
@@ -508,6 +495,18 @@ msgstr "Salvează schimbările"
 msgid "Sign In / Sign Up"
 msgstr "Autentificare / Înregistrare"
 
+#: /templates/user/purchases.html:49
+msgid "You must be signed in to view your apps."
+msgstr "Trebuie să fii autentificat să vezi aplicațiile tale."
+
+#: /templates/user/purchases.html:50
+msgid "Sign in / Sign up"
+msgstr "Autentificare / Înregistrare"
+
+#: /templates/user/purchases.html:34
+msgid "You have no apps"
+msgstr "Nu ai nicio aplicație"
+
 #: /templates/settings/nav.html:6
 msgid "Account"
 msgstr "Cont"
@@ -528,17 +527,23 @@ msgstr "Se înregistrează..."
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "Te-ai înregistrat cu succes pentru buletinul informativ Marketplace!"
 
-#: /templates/user/purchases.html:49
-msgid "You must be signed in to view your apps."
-msgstr "Trebuie să fii autentificat să vezi aplicațiile tale."
+#: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Plată anulată."
 
-#: /templates/user/purchases.html:50
-msgid "Sign in / Sign up"
-msgstr "Autentificare / Înregistrare"
+#. "Launch" as in "Launch the app"
+#: /media/js/buttons.js:89
+msgid "Purchasing"
+msgstr "Se achiziționează"
 
-#: /templates/user/purchases.html:34
-msgid "You have no apps"
-msgstr "Nu ai nicio aplicație"
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/buttons.js:192
+msgid "Install failed. Please try again later."
+msgstr "Instalare eșuată. Te rugăm reîncearcă mai târziu"
+
+#: /media/js/buttons.js:274
+msgid "Launch"
+msgstr "Lansează"
 
 #: /media/js/apps.js:70
 msgid "App install error: {error}"
@@ -560,24 +565,6 @@ msgstr ""
 msgid "This app is unavailable for your platform."
 msgstr ""
 
-#: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Plată anulată."
-
-#. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:89
-msgid "Purchasing"
-msgstr "Se achiziționează"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:192
-msgid "Install failed. Please try again later."
-msgstr "Instalare eșuată. Te rugăm reîncearcă mai târziu"
-
-#: /media/js/buttons.js:274
-msgid "Launch"
-msgstr "Lansează"
-
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "Ai fost deconectat"
@@ -594,7 +581,7 @@ msgstr "Autentificare Persona eșuată. Poate că nu ai un cont sub acea adresă
 msgid "Persona login failed. A server error was encountered."
 msgstr "Autentificare Persona eșuată. O eroare la server a intervenit."
 
-#: /media/js/mobilenetwork.js:309
+#: /media/js/mobilenetwork.js:306
 msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
 msgstr "Navighezi în prezent conținut pentru *{current_region}*. Dorești să comuți la *{new_region}*?"
 
@@ -761,7 +748,7 @@ msgstr "A apărut o problemă la trimiterea opiniei tale. Reîncearcă mai târz
 msgid "Not Found"
 msgstr "Negăsit"
 
-#: /media/js/views/search.js:205
+#: /media/js/views/search.js:201
 msgid "Search Results"
 msgstr "Caută rezultate"
 

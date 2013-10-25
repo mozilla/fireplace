@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-18T23:49:40.764Z\n"
+"POT-Creation-Date: 2013-10-25T20:52:55.910Z\n"
 "PO-Revision-Date: 2013-08-14 03:17+0100\n"
 "Last-Translator: Milos <themilossh@gmail.com>\n"
 "Language-Team: none\n"
@@ -16,19 +16,6 @@ msgstr ""
 #: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:12
 msgid "All Categories"
 msgstr "Све категорије"
-
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr "Ав, ав! Шеги, овде нема апликација!"
-
-#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
-msgid "Oh no!"
-msgstr "Ох, не!"
-
-#: /templates/collection.html:43
-msgid "We could not load that collection. Please try again later."
-msgstr "Нисмо могли да учитамо тај скуп. Молимо покушајте касније  "
 
 #: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
@@ -51,9 +38,22 @@ msgstr "Marketplace је неажуриран"
 msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
 msgstr "Верзија Firefox Marketplace-а коју користите није више подржана. Мораћете да извршите доградњу пре него што можете да наставите са уживањем у Marketplace-у."
 
-#: /templates/deprecated.html:5 /templates/obsolete.html:5
+#: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Доградите сада"
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/collection.html:33
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr "Ав, ав! Шеги, овде нема апликација!"
+
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/errors/404.html:2 /templates/detail/receipt.html:28 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+msgid "Oh no!"
+msgstr "Ох, не!"
+
+#: /templates/collection.html:43
+msgid "We could not load that collection. Please try again later."
+msgstr "Нисмо могли да учитамо тај скуп. Молимо покушајте касније  "
 
 #: /templates/featured.html:7
 msgid "Featured"
@@ -83,7 +83,7 @@ msgstr "Критика"
 msgid "Support"
 msgstr "Подршка"
 
-#: /templates/footer.html:12 /templates/header.html:22 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
+#: /templates/footer.html:12 /templates/header.html:22 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31 /templates/settings/nav.html:7
 #: /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "Моје апликације"
@@ -149,90 +149,6 @@ msgstr "Одјавите се"
 msgid "Sign In"
 msgstr "Пријавите се"
 
-#. The operating system is out-of-date and needs to be updated.
-#: /templates/obsolete.html:2
-msgid "Firefox OS Update Required"
-msgstr "Неопходна је доградња за Firefox OS"
-
-#: /templates/obsolete.html:3
-msgid "You're running an obsolete version of Firefox OS. Some apps in the Marketplace may fail to install or will malfunction. Please run a system update to continue enjoying the Marketplace."
-msgstr ""
-"Ви користите застарелу верзију Firefox Os-а. Неке апликације у Matkeplace-у можда нећете моћи да инсталирате или неће радити како треба. Молимо Вас, урадите доградњу система како би наставили да "
-"уживате у Marketplace-у"
-
-#: /templates/obsolete.html:10
-msgid "I understand the risk and wish to continue"
-msgstr "Свестан сам ризика и желим да наставим"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Недоступна"
-
-#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
-msgid "Free"
-msgstr "Бесплатно"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
-msgid "Install"
-msgstr "Инсталирај"
-
-#: /templates/_macros/market_tile.html:9
-msgid "{app_name} .::. screenshot"
-msgstr "{app_name} .::. снимак екрана "
-
-#: /templates/_macros/market_tile.html:46
-msgid "({n})"
-msgstr "{n}"
-
-#: /templates/_macros/market_tile.html:49 /templates/detail/main.html:111
-msgid "{n} Review"
-msgid_plural "{n} Reviews"
-msgstr[0] "{n} преглед"
-msgstr[1] "{n} прегледа"
-msgstr[2] "{n} прегледа"
-
-#. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:53
-msgid "(0)"
-msgstr "(0)"
-
-#: /templates/_macros/market_tile.html:54
-msgid "Not yet rated"
-msgstr "Није оцењена"
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "Још"
-
-#: /templates/_macros/rating.html:9
-msgid "by {author}"
-msgstr "од корисника {author}"
-
-#: /templates/_macros/rating.html:12
-msgid "for previous version {version}"
-msgstr "за претходну верзију {version}"
-
-#: /templates/_macros/rating.html:21
-msgid "Flagged for review"
-msgstr "Означено за преглед"
-
-#: /templates/_macros/rating.html:25
-msgid "Edit"
-msgstr "Измени"
-
-#: /templates/_macros/rating.html:28
-msgid "Delete"
-msgstr "Обриши"
-
-#: /templates/_macros/rating.html:31
-msgid "Report"
-msgstr "Пријави"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Оцењено са {stars} од {maxstars} звездица"
-
 #: /templates/category/main.html:37
 msgid "Featured Apps"
 msgstr "Истакнуте"
@@ -262,6 +178,47 @@ msgstr "Категорија коју сте затражили не посто�
 msgid "An internal server error occurred. Please try again later."
 msgstr "Догодила се грешка на серверу. Молимо Вас покушајте касније"
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Недоступна"
+
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
+msgid "Free"
+msgstr "Бесплатно"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
+msgid "Install"
+msgstr "Инсталирај"
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "Још"
+
+#: /templates/_macros/market_tile.html:9
+msgid "{app_name} .::. screenshot"
+msgstr "{app_name} .::. снимак екрана "
+
+#: /templates/_macros/market_tile.html:46
+msgid "({n})"
+msgstr "{n}"
+
+#: /templates/_macros/market_tile.html:49 /templates/detail/main.html:111
+msgid "{n} Review"
+msgid_plural "{n} Reviews"
+msgstr[0] "{n} преглед"
+msgstr[1] "{n} прегледа"
+msgstr[2] "{n} прегледа"
+
+#. "(0)" means "0 reviews."
+#: /templates/_macros/market_tile.html:53
+msgid "(0)"
+msgstr "(0)"
+
+#: /templates/_macros/market_tile.html:54
+msgid "Not yet rated"
+msgstr "Није оцењена"
+
 #: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "Пријави злоупотребу"
@@ -269,6 +226,30 @@ msgstr "Пријави злоупотребу"
 #: /templates/detail/abuse.html:15
 msgid "Send Report"
 msgstr "Пошаљи извештај"
+
+#: /templates/_macros/rating.html:9
+msgid "by {author}"
+msgstr "од корисника {author}"
+
+#: /templates/_macros/rating.html:12
+msgid "for previous version {version}"
+msgstr "за претходну верзију {version}"
+
+#: /templates/_macros/rating.html:21
+msgid "Flagged for review"
+msgstr "Означено за преглед"
+
+#: /templates/_macros/rating.html:25
+msgid "Edit"
+msgstr "Измени"
+
+#: /templates/_macros/rating.html:28
+msgid "Delete"
+msgstr "Обриши"
+
+#: /templates/_macros/rating.html:31
+msgid "Report"
+msgstr "Пријави"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -382,6 +363,10 @@ msgstr "Специјална верзија је доступна"
 msgid "Ratings"
 msgstr ""
 
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Оцењено са {stars} од {maxstars} звездица"
+
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
 msgstr "Назад на апликацију"
@@ -390,44 +375,13 @@ msgstr "Назад на апликацију"
 msgid "Loading Privacy Policy..."
 msgstr "Учитавање полисе о приватности…"
 
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr "Хвала на куповини"
-
-#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
 msgid "The page you were looking for was not found."
 msgstr "Страница коју сте тражили није нађена!"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Дошло је до грешке"
-
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Грешка при учитавању"
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Покушај поново"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> резултат"
-msgstr[1] "<b>{n}</b> резултатa"
-msgstr[2] "<b>{n}</b> резултатa"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Приказујем <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Нема резултата"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Нема резултата - покушајте касније"
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr "Хвала на куповини"
 
 #: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
 msgid "Edit Review"
@@ -454,6 +408,18 @@ msgstr "Само пријављени корисници могу мењати �
 msgid "This app has no reviews."
 msgstr "Ова апликација нема рецензија."
 
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Грешка при учитавању"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Покушај поново"
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Дошло је до грешке"
+
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Рецензија апликације"
@@ -461,6 +427,25 @@ msgstr "Рецензија апликације"
 #: /templates/ratings/rating.html:16
 msgid "The review you requested does not exist."
 msgstr "Рецензија коју сте затражили не постоји."
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> резултат"
+msgstr[1] "<b>{n}</b> резултатa"
+msgstr[2] "<b>{n}</b> резултатa"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Приказујем <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Нема резултата"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Нема резултата - покушајте касније"
 
 #: /templates/ratings/report.html:2
 msgid "Please select a reason:"
@@ -510,6 +495,18 @@ msgstr "Запамти измене"
 msgid "Sign In / Sign Up"
 msgstr "Пријавите се / Региструјте се"
 
+#: /templates/user/purchases.html:49
+msgid "You must be signed in to view your apps."
+msgstr "Морате бити пријављени да бисте прегледали своје апликације."
+
+#: /templates/user/purchases.html:50
+msgid "Sign in / Sign up"
+msgstr "Пријавите се"
+
+#: /templates/user/purchases.html:34
+msgid "You have no apps"
+msgstr "Немате апликација"
+
 #: /templates/settings/nav.html:6
 msgid "Account"
 msgstr "Налог"
@@ -530,17 +527,23 @@ msgstr "Пријављивање у току…"
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "Успешно сте се пријавили за билтен Firefox Marketplace-а!"
 
-#: /templates/user/purchases.html:49
-msgid "You must be signed in to view your apps."
-msgstr "Морате бити пријављени да бисте прегледали своје апликације."
+#: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Плаћање је отказано."
 
-#: /templates/user/purchases.html:50
-msgid "Sign in / Sign up"
-msgstr "Пријавите се"
+#. "Launch" as in "Launch the app"
+#: /media/js/buttons.js:89
+msgid "Purchasing"
+msgstr "Куповина"
 
-#: /templates/user/purchases.html:34
-msgid "You have no apps"
-msgstr "Немате апликација"
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/buttons.js:192
+msgid "Install failed. Please try again later."
+msgstr "Инсталација није успешна. Молимо покушајте касније."
+
+#: /media/js/buttons.js:274
+msgid "Launch"
+msgstr "Покрени"
 
 #: /media/js/apps.js:70
 msgid "App install error: {error}"
@@ -562,24 +565,6 @@ msgstr "Ваш прегледач или уређај није компатиб�
 msgid "This app is unavailable for your platform."
 msgstr "Ова апликација није доступна за Вашу платформу"
 
-#: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Плаћање је отказано."
-
-#. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:89
-msgid "Purchasing"
-msgstr "Куповина"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:192
-msgid "Install failed. Please try again later."
-msgstr "Инсталација није успешна. Молимо покушајте касније."
-
-#: /media/js/buttons.js:274
-msgid "Launch"
-msgstr "Покрени"
-
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "Одјављени сте"
@@ -596,7 +581,7 @@ msgstr "Пријава преко система Persona није успешна
 msgid "Persona login failed. A server error was encountered."
 msgstr "Пријава преко система Persona није успешна. Дошло је до грешке на серверу."
 
-#: /media/js/mobilenetwork.js:309
+#: /media/js/mobilenetwork.js:306
 msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
 msgstr "Тренутно прегледате садржај за регион: *{current_region}*. Да ли бисте желели да се пребаците на регион: *{new_region}*?"
 
@@ -763,7 +748,7 @@ msgstr "Дошло је до проблема при слању повратни
 msgid "Not Found"
 msgstr "Није нађено"
 
-#: /media/js/views/search.js:205
+#: /media/js/views/search.js:201
 msgid "Search Results"
 msgstr "Резултат претраге"
 
