@@ -4,6 +4,7 @@ define('views/category',
     'use strict';
 
     var cat_models = models('category');
+    var app_models = models('app');
 
     return function(builder, args, params) {
         var category = args[0];
@@ -26,7 +27,8 @@ define('views/category',
         builder.start('category/main.html', {
             category: category,
             endpoint: urls.api.url('category', [category], params),
-            sort: params.sort
+            sort: params.sort,
+            app_cast: app_models.cast
         });
 
         tracking.setPageVar(5, 'Category', category, 3);

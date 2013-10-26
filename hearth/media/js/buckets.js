@@ -27,7 +27,7 @@ define('buckets', [], function() {
 
         for (var i = 0, e; e = prefixes[i++];) {
             try {
-                if (!!(context[e + property])) {
+                if ((e + property) in context) {
                     return context[e + property];
                 }
             } catch(e) {
@@ -36,7 +36,7 @@ define('buckets', [], function() {
         }
     }
 
-    var has_gum = prefixed('getUserMedia');
+    var has_gum = prefixed('getUserMedia', navigator);
     if (has_gum && navigator.mozGetUserMedia) {
         // Gecko 18's gum is a noop. FFFFFFFFFUUUUUUUUUUUUUU
         try {
@@ -95,14 +95,15 @@ define('buckets', [], function() {
         prefixed('notification', navigator),  // TODO: window.webkitNotifications?
         prefixed('alarms', navigator),  // Alarms
         'mozSystem' in (new XMLHttpRequest()),  // mozSystemXHR
-        prefixed('TCPSocket', navigator)  // mozTCPSocket/mozTCPSocketServer
+        prefixed('TCPSocket', navigator),  // mozTCPSocket/mozTCPSocketServer
+        prefixed('mozInputMethod', navigator)
     ];
 
     var profile = parseInt(capabilities.map(function(x) {return !!x ? '1' : '0';}).join(''), 2).toString(16);
     // Add a count.
     profile += '.' + capabilities.length;
     // Add a version number.
-    profile += '.2';
+    profile += '.3';
 
     return {
         get_profile: function() {return profile;},

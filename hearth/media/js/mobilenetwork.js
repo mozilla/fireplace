@@ -1,6 +1,6 @@
 define('mobilenetwork',
-       ['defer', 'l10n', 'log', 'notification', 'settings', 'user', 'utils', 'views'],
-       function(defer, l10n, log, notification, settings, user, utils, views) {
+       ['defer', 'l10n', 'log', 'notification', 'settings', 'user', 'utils'],
+       function(defer, l10n, log, notification, settings, user, utils) {
     var console = log('mobilenetwork');
     var persistent_console = log.persistent('mobilenetwork', 'change');
     var gettext = l10n.gettext;
@@ -43,7 +43,13 @@ define('mobilenetwork',
         220: 'rs',
 
         // Montenegro
-        297: 'me'
+        297: 'me',
+
+        // China
+        460: 'cn',
+
+        // Japan
+        440: 'jp'
     };
 
     var carriers = {
@@ -94,6 +100,7 @@ define('mobilenetwork',
 
         // Colombia
         732: {
+            102: 'telefonica',
             123: 'telefonica'
         },
 
@@ -116,8 +123,8 @@ define('mobilenetwork',
         // Mexico
         334: {
             2: 'america_movil',
-            20: 'america_movil',
-            30: 'telefonica'
+            3: 'telefonica',
+            20: 'america_movil'
         },
 
         // Hungary
@@ -142,12 +149,9 @@ define('mobilenetwork',
         },
 
         // Czech Republic
-        232: {
-            2: 'telefonica'
-        },
-
         // Austria
         232: {
+            2: 'telefonica',
             8: 'telefonica'
         },
 
@@ -201,12 +205,18 @@ define('mobilenetwork',
         // Argentina
         722: {
             10: 'telefonica',
-            70: 'telefonica'
+            70: 'telefonica',
+            // Claro
+            310: 'america_movil',
+            320: 'america_movil',
+            330: 'america_movil'
         },
 
         // Uruguay
         748: {
-            7: 'telefonica'
+            7: 'telefonica',
+            // Claro.
+            10: 'america_movil',
         },
 
         // Serbia
@@ -218,6 +228,38 @@ define('mobilenetwork',
         // Montenegro
         297: {
             1: 'telenor'
+        },
+
+        // China
+        460: {
+            1: 'china_unicom',
+            3: 'china_unicom',
+            6: 'china_unicom'
+        },
+
+        // Japan
+        440: {
+            7: 'kddi',
+            8: 'kddi',
+            49: 'kddi',
+            50: 'kddi',
+            51: 'kddi',
+            52: 'kddi',
+            53: 'kddi',
+            54: 'kddi',
+            55: 'kddi',
+            56: 'kddi',
+            70: 'kddi',
+            71: 'kddi',
+            72: 'kddi',
+            73: 'kddi',
+            74: 'kddi',
+            75: 'kddi',
+            76: 'kddi',
+            77: 'kddi',
+            79: 'kddi',
+            88: 'kddi',
+            89: 'kddi'
         }
     };
 
@@ -230,19 +272,19 @@ define('mobilenetwork',
         mnc = (+mnc || 0) + '';
 
         // Workaround for Polish SIMs (bug 876391, bug 880369).
-        if (mcc == '260' && mnc[0] == '2') {
+        if (mcc === '260' && mnc[0] === '2') {
             mnc = 2;
         }
         // Colombia.
-        if (mcc == '732' && mnc[0] == '1') {
+        if (mcc === '732' && mnc[0] === '1') {
             mnc = 123;
         }
         // Spain.
-        if (mcc == '214') {
-            if (mnc[0] == '5') {
+        if (mcc === '214') {
+            if (mnc[0] === '5') {
                 mnc = 5;
             }
-            if (mnc[0] == '7') {
+            if (mnc[0] === '7') {
                 mnc = '7';
             }
         }
@@ -297,9 +339,9 @@ define('mobilenetwork',
                 // `MNC`: Mobile Network Code
                 // `lastKnownHomeNetwork`: `{MCC}-{MNC}` (SIM's origin)
                 // `lastKnownNetwork`: `{MCC}-{MNC}` (could be different network if roaming)
-                var network = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
-                mcc = network[0];
-                mnc = network[1];
+                var lastNetwork = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
+                mcc = lastNetwork[0];
+                mnc = lastNetwork[1];
                 console.log('lastKnownNetwork', conn.lastKnownNetwork);
                 console.log('lastKnownHomeNetwork', conn.lastKnownHomeNetwork);
                 console.log('MCC = ' + mcc + ', MNC = ' + mnc);
@@ -332,7 +374,7 @@ define('mobilenetwork',
 
         var lastRegion = user.get_setting('last_region');
 
-        if (region && lastRegion != region) {
+        if (region && lastRegion !== region) {
             persistent_console.log('Detected new region from SIM:', region);
             if (lastRegion) {
                 confirmRegion(lastRegion, region);
@@ -342,10 +384,11 @@ define('mobilenetwork',
         }
 
         // Get region from settings saved to localStorage.
-        if (GET.region === '')  // Ability to set region to worldwide from query params
+        if (GET.region === '') {  // Ability to set region to worldwide from query params
             region = '';
-        else
+        } else {
             region = GET.region || user.get_setting('region') || region;
+        }
 
         // If it turns out the region is null, when we get a response from an
         // API request, we look at the `API-Filter` header to determine the region

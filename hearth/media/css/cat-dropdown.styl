@@ -109,6 +109,12 @@ a[class*="cat-dt-"]:hover:before {
     background-position: 40% 35% !important;
 }
 
+a[class*="cat-congstar-"]:before,
+a[class*="cat-congstar-"]:hover:before {
+    background: url(../img/carriers/congstar.png) !important;
+    background-size: 100% 100% !important;
+}
+
 a[class*="cat-telenor-"]:before,
 a[class*="cat-telenor-"]:hover:before,
 a[class*="cat-telenor-"]:active:before {
@@ -121,14 +127,49 @@ a[class*="cat-telenor-"]:active:before {
     background-position: 0 -54px;
 }
 
+a[class*="cat-am-"]:before,
+a[class*="cat-am-"]:hover:before,
+a[class*="cat-am-"]:active:before,
+a[class*="cat-america_movil-"]:before,
+a[class*="cat-america_movil-"]:hover:before,
+a[class*="cat-america_movil-"]:active:before {
+    background: url(../img/carriers/claro.png) 0 50% no-repeat;
+    background-size: 28px auto;
+}
+
+a[class="cat-telefonica-br"]:before,
+a[class="cat-telefonica-br"]:hover:before,
+a[class="cat-telefonica-br"]:active:before,
+a[class*="cat-vivo-"]:before,
+a[class*="cat-vivo-"]:hover:before,
+a[class*="cat-vivo-"]:active:before {
+    background: url(../img/carriers/vivo.png) 0 50% no-repeat;
+    background-size: 26px auto;
+}
+
 #cat-dropdown {
-    a[class*="cat-movistar-"]:before {
+    a[class*="cat-movistar-"]:before,
+    a[class*="cat-congstar-"]:before {
         margin-right: 15px;
     }
     a[class*="cat-telenor-"]:before,
     a[class*="cat-telenor-"]:hover:before {
         background: url(../img/carriers/telenor.svg) 0 1px no-repeat;
         background-size: 28px auto;
+    }
+    a[class*="cat-am-"]:before,
+    a[class*="cat-am-"]:hover:before,
+    a[class*="cat-america_movil-"]:before,
+    a[class*="cat-america_movil-"]:hover:before {
+        background-size: 28px auto;
+        background-position: 0 50%;
+    }
+    a[class="cat-telefonica-br"]:before,
+    a[class="cat-telefonica-br"]:hover:before,
+    a[class*="cat-vivo-"]:before,
+    a[class*="cat-vivo-"]:hover:before {
+        background-size: 26px auto;
+        background-position: 0 50%;
     }
 }
 
@@ -345,6 +386,20 @@ a[class*="cat-telenor-"]:active:before {
         a[class*="cat-telenor-"]:hover:before {
             background-position: 0 11px;
             background-size: 50px auto;
+            margin: -5px 5px 0 0;
+        }
+        a[class*="cat-am-"]:before,
+        a[class*="cat-am-"]:hover:before,
+        a[class*="cat-america_movil-"]:before,
+        a[class*="cat-america_movil-"]:hover:before {
+            background-size: 45px auto;
+        }
+        a[class="cat-telefonica-br"]:before,
+        a[class="cat-telefonica-br"]:hover:before,
+        a[class*="cat-vivo-"]:before,
+        a[class*="cat-vivo-"]:hover:before {
+            background-position: 0 11px;
+            background-size: 45px auto;
             margin: -5px 5px 0 0;
         }
     }

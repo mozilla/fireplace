@@ -19,21 +19,18 @@
     }
 
     function sendActivities() {
-        log('Sending activities: ' + JSON.stringify(activitiesToSend))
-        if (!activitiesToSend.length) {
-            // The next time we try to append something to `activitiesToSend`,
-            // we'll have already called this function (`sendActivities`)
-            // so just postMessage the message (`msg`) immediately.
-            activitiesToSend = {
-                push: function(msg) {
-                    postMessage(msg);
-                }
-            };
-            return;
-        }
+        log('Sending activities: ' + JSON.stringify(activitiesToSend));
         while (activitiesToSend.length) {
             postMessage(activitiesToSend.pop());
         }
+        // The next time we try to append something to `activitiesToSend`,
+        // we'll have already called this function (`sendActivities`)
+        // so just postMessage the message (`msg`) immediately.
+        activitiesToSend = {
+            push: function(msg) {
+                postMessage(msg);
+            }
+        };
     }
 
     var qs = '';

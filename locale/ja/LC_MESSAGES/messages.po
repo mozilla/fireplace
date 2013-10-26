@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-27T23:44:54.051Z\n"
+"POT-Creation-Date: 2013-10-25T20:52:55.910Z\n"
 "PO-Revision-Date: 2013-06-26 17:00+0900\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -13,34 +13,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Fireplace L10n Tools 1.0\n"
 
-#: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:13
+#: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:12
 msgid "All Categories"
 msgstr "すべてのカテゴリ"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "おすすめ"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "折りたたむ / 開く"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "おすすめのアプリはありません"
-
-#: /templates/collection.html:12 /templates/detail/main.html:24 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/receipt.html:28 /templates/user/purchases.html:38
-msgid "Oh no!"
-msgstr "Not Found"
-
-#: /templates/collection.html:13
-msgid "We could not load that collection. Please try again later."
-msgstr ""
-
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:26
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr ""
 
 #: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
@@ -53,6 +28,44 @@ msgstr "いいえ"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "はい"
+
+#. The Marketplace app is out-of-date and needs to be updated.
+#: /templates/deprecated.html:2
+msgid "Out-of-Date Marketplace"
+msgstr ""
+
+#: /templates/deprecated.html:3
+msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
+msgstr ""
+
+#: /templates/deprecated.html:5
+msgid "Update Now"
+msgstr ""
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/collection.html:33
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr ""
+
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/errors/404.html:2 /templates/detail/receipt.html:28 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+msgid "Oh no!"
+msgstr "Not Found"
+
+#: /templates/collection.html:43
+msgid "We could not load that collection. Please try again later."
+msgstr ""
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "おすすめ"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "折りたたむ / 開く"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "おすすめのアプリはありません"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -70,7 +83,7 @@ msgstr "フィードバック"
 msgid "Support"
 msgstr "サポート"
 
-#: /templates/footer.html:12 /templates/header.html:22 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
+#: /templates/footer.html:12 /templates/header.html:22 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31 /templates/settings/nav.html:7
 #: /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "自分のアプリ"
@@ -136,47 +149,55 @@ msgstr "ログアウト"
 msgid "Sign In"
 msgstr "ログイン"
 
-#. The operating system is out-of-date and needs to be updated. #}
-#.   <h1>{{ _('Firefox OS Update Required') }}</h1>
-#.   <p>{{ _("You're running an obsolete version of Firefox OS. Some apps in the Marketplace may fail to install or will malfunction. Please run a system update to continue enjoying the Marketplace.") }}</p>
-#.   <div>
-#.     <button class="button system-update">{{ _('Update Now') }}</button>
-#.   </div>
-#.   <div>
-#.   	{# L10n: The user understands that some apps may malfunction if
-#.   	they keep using the Marketplace without running a system update.
-#: /templates/obsolete.html:2
-msgid "Firefox OS Update Required"
+#: /templates/category/main.html:37
+msgid "Featured Apps"
+msgstr "おすすめのアプリ"
+
+#: /templates/category/main.html:38 /templates/category/main.html:64
+msgid "View All"
+msgstr "すべて見る"
+
+#: /templates/category/main.html:60
+msgid "Popular"
+msgstr "人気"
+
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:62
+msgid "New"
+msgstr "新着"
+
+#: /templates/category/main.html:83
+msgid "No apps in this category"
+msgstr "このカテゴリのアプリはありません"
+
+#: /templates/category/main.html:88
+msgid "The category you requested does not exist."
 msgstr ""
 
-#: /templates/obsolete.html:3
-msgid "You're running an obsolete version of Firefox OS. Some apps in the Marketplace may fail to install or will malfunction. Please run a system update to continue enjoying the Marketplace."
+#: /templates/category/main.html:90 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
 msgstr ""
 
-#: /templates/obsolete.html:5 /templates/deprecated.html:5
-msgid "Update Now"
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
 msgstr ""
 
-#: /templates/obsolete.html:10
-msgid "I understand the risk and wish to continue"
-msgstr ""
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
+msgid "Free"
+msgstr "無料"
 
-#. The Marketplace app is out-of-date and needs to be updated.
-#: /templates/deprecated.html:2
-msgid "Out-of-Date Marketplace"
-msgstr ""
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
+msgid "Install"
+msgstr "インストール"
 
-#: /templates/deprecated.html:3
-msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
-msgstr ""
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "もっと見る"
 
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
 msgstr ""
-
-#: /templates/_macros/market_tile.html:38 /templates/_macros/market_button.html:7
-msgid "Free"
-msgstr "無料"
 
 #: /templates/_macros/market_tile.html:46
 msgid "({n})"
@@ -197,60 +218,13 @@ msgstr "(0)"
 msgid "Not yet rated"
 msgstr "まだ評価されていません"
 
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr ""
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "不正報告"
 
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
-msgid "Install"
-msgstr "インストール"
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "もっと見る"
-
-#: /templates/category/main.html:32
-msgid "Featured Apps"
-msgstr "おすすめのアプリ"
-
-#: /templates/category/main.html:33 /templates/category/main.html:55 /templates/category/main.html:79
-msgid "View All"
-msgstr "すべて見る"
-
-#: /templates/category/main.html:75
-msgid "Popular"
-msgstr "人気"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints) #}
-#.         <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}" data-preserve-scroll>{{ _('New') }}</a>
-#.       </nav>
-#.       <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
-#.     </header>
-#.   {% endif %}
-#.   <ol class="container listing grid-if-desktop search-listing c">
-#.     {% for result in this %}
-#.       <li class="item result app c">
-#.         {{ market_tile(result, link=true, src=source + '-' + (sort or 'popular'), tray=False) }}
-#.       </li>
-#.     {% endfor %}
-#.
-#.     {# Render the more button if there's another page of results
-#: /templates/category/main.html:77
-msgid "New"
-msgstr "新着"
-
-#: /templates/category/main.html:98
-msgid "No apps in this category"
-msgstr "このカテゴリのアプリはありません"
-
-#: /templates/category/main.html:103
-msgid "The category you requested does not exist."
-msgstr ""
-
-#: /templates/category/main.html:105 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr ""
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "報告を送信"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -292,7 +266,7 @@ msgstr "このアプリは Windows の <b>デスクトップ</b> か <b>スタ�
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "このアプリは、<b>ダッシュ</b>、<b>アプリケーションピッカー</b> もしくは <b>アプリケーションメニュー</b> から起動できます。"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:24
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:30
 msgid "Loading..."
 msgstr "読み込み中..."
 
@@ -380,25 +354,13 @@ msgstr "ホームページ"
 msgid "Statistics"
 msgstr "統計"
 
-#: /templates/detail/main.html:176 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "不正報告"
-
 #: /templates/detail/main.html:187
 msgid "Premium version available"
 msgstr "プレミアム版があります"
 
-#: /templates/detail/main.html:203
-msgid "Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
-msgstr "<a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a> による評価"
-
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "報告を送信"
-
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "お探しのページは見つかりませんでした。"
+#: /templates/detail/main.html:202
+msgid "Ratings"
+msgstr ""
 
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
@@ -411,6 +373,59 @@ msgstr "アプリへ戻る"
 #: /templates/detail/privacy.html:11
 msgid "Loading Privacy Policy..."
 msgstr "プライバシーポリシーを読み込んでいます..."
+
+#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
+msgid "The page you were looking for was not found."
+msgstr "お探しのページは見つかりませんでした。"
+
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr ""
+
+#: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
+msgid "Edit Review"
+msgstr "レビューを編集"
+
+#: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "評価:"
+
+#: /templates/ratings/edit.html:20 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: /templates/ratings/edit.html:21 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "送信"
+
+#: /templates/ratings/edit.html:24 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "レビューを編集できるのはログイン済みユーザだけです。"
+
+#: /templates/ratings/main.html:36
+msgid "This app has no reviews."
+msgstr "このアプリのレビューはまだ書かれていません。"
+
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "読み込み中に問題が発生しました"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "再読み込み"
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "問題が発生しました。"
+
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr ""
+
+#: /templates/ratings/rating.html:16
+msgid "The review you requested does not exist."
+msgstr ""
 
 #: /templates/search/main.html:15
 msgid "<b>{n}</b> Result"
@@ -430,21 +445,21 @@ msgstr "該当するアプリはありません"
 msgid "No results found, try again later"
 msgstr "該当するアプリはありません。また後日見てください"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "問題が発生しました。"
+#: /templates/ratings/report.html:2
+msgid "Please select a reason:"
+msgstr "理由を選択してください:"
 
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "読み込み中に問題が発生しました"
+#: /templates/ratings/report.html:8
+msgid "Spam or otherwise non-review content"
+msgstr "スパムもしくはレビューと無関係の内容"
 
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "再読み込み"
+#: /templates/ratings/report.html:13
+msgid "Inappropriate language/dialog"
+msgstr "不適切な言葉や会話"
 
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr ""
+#: /templates/ratings/report.html:18
+msgid "Misplaced bug report or support request"
+msgstr "場違いのバグ報告もしくはサポート依頼"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -478,58 +493,21 @@ msgstr "変更を保存"
 msgid "Sign In / Sign Up"
 msgstr "ログイン / ユーザ登録"
 
+#: /templates/user/purchases.html:49
+msgid "You must be signed in to view your apps."
+msgstr "自分のアプリを見るにはログインしてください。"
+
+#: /templates/user/purchases.html:50
+msgid "Sign in / Sign up"
+msgstr "ログイン / ユーザ登録"
+
+#: /templates/user/purchases.html:34
+msgid "You have no apps"
+msgstr "まだインストールしたアプリはありません"
+
 #: /templates/settings/nav.html:6
 msgid "Account"
 msgstr "アカウント"
-
-#: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
-msgid "Edit Review"
-msgstr "レビューを編集"
-
-#: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
-msgid "Rate:"
-msgstr "評価:"
-
-#: /templates/ratings/edit.html:20 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/user/newsletter.html:13 /templates/ratings/write.html:3
-#: /templates/ratings/write.html:19
-msgid "Cancel"
-msgstr "キャンセル"
-
-#: /templates/ratings/edit.html:21 /templates/ratings/write.html:20
-msgid "Submit"
-msgstr "送信"
-
-#: /templates/ratings/edit.html:24 /templates/ratings/write.html:23
-msgid "Only logged in users may edit reviews."
-msgstr "レビューを編集できるのはログイン済みユーザだけです。"
-
-#: /templates/ratings/main.html:36
-msgid "This app has no reviews."
-msgstr "このアプリのレビューはまだ書かれていません。"
-
-#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr ""
-
-#: /templates/ratings/rating.html:16
-msgid "The review you requested does not exist."
-msgstr ""
-
-#: /templates/ratings/report.html:2
-msgid "Please select a reason:"
-msgstr "理由を選択してください:"
-
-#: /templates/ratings/report.html:8
-msgid "Spam or otherwise non-review content"
-msgstr "スパムもしくはレビューと無関係の内容"
-
-#: /templates/ratings/report.html:13
-msgid "Inappropriate language/dialog"
-msgstr "不適切な言葉や会話"
-
-#: /templates/ratings/report.html:18
-msgid "Misplaced bug report or support request"
-msgstr "場違いのバグ報告もしくはサポート依頼"
 
 #: /templates/user/newsletter.html:3
 msgid "Get Firefox Marketplace news"
@@ -546,18 +524,6 @@ msgstr "購読を申し込んでいます..."
 #: /templates/user/newsletter.html:18
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "Marketplace ニュースレターの購読申し込みが完了しました。"
-
-#: /templates/user/purchases.html:49
-msgid "You must be signed in to view your apps."
-msgstr "自分のアプリを見るにはログインしてください。"
-
-#: /templates/user/purchases.html:50
-msgid "Sign in / Sign up"
-msgstr "ログイン / ユーザ登録"
-
-#: /templates/user/purchases.html:34
-msgid "You have no apps"
-msgstr "まだインストールしたアプリはありません"
 
 #: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
@@ -597,10 +563,6 @@ msgstr ""
 msgid "This app is unavailable for your platform."
 msgstr ""
 
-#: /media/js/mobilenetwork.js:264
-msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
-msgstr "{current_region} 向けのコンテンツを表示しています。{new_region} 向けに切り替えますか？"
-
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "ログアウトしました"
@@ -617,6 +579,10 @@ msgstr "Persona のログインに失敗しました。入力されたメール�
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona のログインに失敗しました。サーバエラーが発生しました。"
 
+#: /media/js/mobilenetwork.js:306
+msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
+msgstr "{current_region} 向けのコンテンツを表示しています。{new_region} 向けに切り替えますか？"
+
 #: /media/js/navigation.js:52
 msgid "No internet connection"
 msgstr "インターネット未接続"
@@ -624,66 +590,6 @@ msgstr "インターネット未接続"
 #: /media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "ニュースレターの購読申し込み中に問題が発生しました"
-
-#: /media/js/settings.js:72
-msgid "Worldwide"
-msgstr ""
-
-#: /media/js/settings.js:73
-msgid "Brazil"
-msgstr ""
-
-#: /media/js/settings.js:74
-msgid "Colombia"
-msgstr ""
-
-#: /media/js/settings.js:75
-msgid "Germany"
-msgstr ""
-
-#: /media/js/settings.js:76
-msgid "Greece"
-msgstr ""
-
-#: /media/js/settings.js:77
-msgid "Hungary"
-msgstr ""
-
-#: /media/js/settings.js:78
-msgid "Mexico"
-msgstr ""
-
-#: /media/js/settings.js:79
-msgid "Montenegro"
-msgstr ""
-
-#: /media/js/settings.js:80
-msgid "Poland"
-msgstr ""
-
-#: /media/js/settings.js:81
-msgid "Serbia"
-msgstr ""
-
-#: /media/js/settings.js:82
-msgid "Spain"
-msgstr ""
-
-#: /media/js/settings.js:83
-msgid "United Kingdom"
-msgstr ""
-
-#: /media/js/settings.js:84
-msgid "United States"
-msgstr ""
-
-#: /media/js/settings.js:85
-msgid "Venezuela"
-msgstr ""
-
-#: /media/js/settings.js:88
-msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr ""
 
 #. The report is an abuse report for reviews
 #: /media/js/ratings.js:39
@@ -713,6 +619,82 @@ msgstr "レビューが投稿されました"
 #: /media/js/ratings.js:243
 msgid "Error while submitting review"
 msgstr "レビューの投稿中に問題が発生しました"
+
+#: /media/js/settings.js:72
+msgid "Worldwide"
+msgstr ""
+
+#: /media/js/settings.js:73
+msgid "Argentina"
+msgstr ""
+
+#: /media/js/settings.js:74
+msgid "Brazil"
+msgstr ""
+
+#: /media/js/settings.js:75
+msgid "China"
+msgstr ""
+
+#: /media/js/settings.js:76
+msgid "Colombia"
+msgstr ""
+
+#: /media/js/settings.js:77
+msgid "Germany"
+msgstr ""
+
+#: /media/js/settings.js:78
+msgid "Greece"
+msgstr ""
+
+#: /media/js/settings.js:79
+msgid "Hungary"
+msgstr ""
+
+#: /media/js/settings.js:80
+msgid "Mexico"
+msgstr ""
+
+#: /media/js/settings.js:81
+msgid "Montenegro"
+msgstr ""
+
+#: /media/js/settings.js:82
+msgid "Peru"
+msgstr ""
+
+#: /media/js/settings.js:83
+msgid "Poland"
+msgstr ""
+
+#: /media/js/settings.js:84
+msgid "Serbia"
+msgstr ""
+
+#: /media/js/settings.js:85
+msgid "Spain"
+msgstr ""
+
+#: /media/js/settings.js:86
+msgid "United Kingdom"
+msgstr ""
+
+#: /media/js/settings.js:87
+msgid "United States"
+msgstr ""
+
+#: /media/js/settings.js:88
+msgid "Uruguay"
+msgstr ""
+
+#: /media/js/settings.js:89
+msgid "Venezuela"
+msgstr ""
+
+#: /media/js/settings.js:92
+msgid "Department of Justice, Rating, Titles and Qualification"
+msgstr ""
 
 #. {n} is the number of characters left.
 #: /media/js/utils.js:28
@@ -745,16 +727,24 @@ msgstr ""
 msgid "App Details"
 msgstr "アプリの詳細"
 
-#: /media/js/views/collection.js:25
+#: /media/js/views/collection.js:31
 msgid "Collection Details"
 msgstr ""
+
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "フィードバックが送信されました。ありがとうございます。"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "フィードバックの送信中に問題が発生しました。また後で試してください。"
 
 #. Page not found (404)
 #: /media/js/views/not_found.js:9
 msgid "Not Found"
 msgstr "Not Found"
 
-#: /media/js/views/search.js:181
+#: /media/js/views/search.js:201
 msgid "Search Results"
 msgstr "検索結果"
 
@@ -765,14 +755,6 @@ msgstr "設定が保存されました"
 #: /media/js/views/settings.js:29
 msgid "Settings could not be saved"
 msgstr "設定を保存できませんでした"
-
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "フィードバックが送信されました。ありがとうございます。"
-
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "フィードバックの送信中に問題が発生しました。また後で試してください。"
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"

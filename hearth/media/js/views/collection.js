@@ -1,4 +1,4 @@
-define('views/collection', ['l10n', 'models', 'utils'], function(l10n, models, utils) {
+define('views/collection', ['l10n', 'models', 'utils', 'z'], function(l10n, models, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -17,9 +17,15 @@ define('views/collection', ['l10n', 'models', 'utils'], function(l10n, models, u
             if (!data.apps) {
                 return;
             }
+            if (data['collection_type'] === 2) {
+                builder.z('show_cats', true);
+                builder.z('cat', data['slug']);
+                z.page.trigger('build_start');
+            }
             data.apps.map(app_model.cast);
         });
 
+        builder.z('show_cats', false);
         builder.z('type', 'leaf');
         builder.z('title', gettext('Loading...'));
         builder.z('pagetitle', gettext('Collection Details'));

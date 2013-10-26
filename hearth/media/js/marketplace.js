@@ -16,11 +16,6 @@ require.config({
         'settings': ['settings_local', 'settings'],
         'stick': 'lib/stick',
         'format': 'lib/format'
-    },
-    shim: {
-        'flipsnap': {exports: 'Flipsnap'},
-        'jquery': {exports: 'jQuery'},
-        'underscore': {exports: '_'}
     }
 });
 
@@ -34,6 +29,7 @@ require.config({
             'buttons',
             'cache',
             'capabilities',
+            'mobilenetwork',  // Must come before cat-dropdown (for amd.js)
             'cat-dropdown',
             'forms',
             'header',
@@ -41,7 +37,6 @@ require.config({
             'lightbox',
             'log',
             'login',
-            'mobilenetwork',
             'models',
             'navigation',
             'outgoing_links',
@@ -56,6 +51,7 @@ require.config({
             'urls',
             'user',
             'utils',
+            'views',
             'webactivities',
             'z'
         ],
@@ -65,10 +61,19 @@ require.config({
         console.log('Dependencies resolved, starting init');
 
         var capabilities = require('capabilities');
+        var format = require('format');
         var nunjucks = require('templates');
         var settings = require('settings');
         var user = require('user');
         var z = require('z');
+
+        // Jank hack because Persona doesn't allow scripts in the doc iframe.
+        // Please just delete it when they don't do that anymore.
+        var doc_langs = ['el', 'en-US', 'es', 'pl', 'pt-BR'];
+        var doc_lang = doc_langs.indexOf(navigator.l10n.language) >= 0 ? navigator.l10n.language : 'en-US';
+        var doc_location = require('urls').media('/docs/{type}/' + doc_lang + '.html?20131014-4');
+        settings.persona_tos = format.format(doc_location, {type: 'terms'});
+        settings.persona_privacy = format.format(doc_location, {type: 'privacy'});
 
         nunjucks.env.dev = true;
 
@@ -96,7 +101,8 @@ require.config({
         }
 
         var get_installed = function() {
-            if (!capabilities.webApps) {
+            // Don't getInstalled if the page isn't visible.
+            if (document.hidden) {
                 return;
             }
             // Get list of installed apps and mark as such.
@@ -109,10 +115,22 @@ require.config({
                 });
             };
         };
-        var get_installed_debounced = _.debounce(get_installed, 2000, true);  // Immediate so there's no delay.
-
-        z.page.on('loaded', get_installed);
-        z.page.on('fragment_loaded loaded_more', get_installed_debounced);
+        if (capabilities.webApps) {
+            var get_installed_debounced = _.debounce(get_installed, 2000, true);  // Immediate so there's no delay.
+    
+            z.page.on('loaded', get_installed);
+            z.page.on('fragment_loaded loaded_more', get_installed_debounced);
+            document.addEventListener(
+                'visibilitychange',
+                function() {
+                    if (document.hidden) {
+                        return;
+                    }
+                    require('views').reload();
+                },
+                false
+            );
+        }
 
         // Do some last minute template compilation.
         z.page.on('reload_chrome', function() {

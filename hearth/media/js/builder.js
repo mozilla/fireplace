@@ -46,15 +46,6 @@ define('builder',
         return e;
     }
 
-    function extend(base, extension, defaults) {
-        for (var i in extension) {
-            if (!(defaults && i in base) && extension.hasOwnProperty(i)) {
-                base[i] = extension[i];
-            }
-        }
-        return base;
-    }
-
     function Builder() {
         var env = this.env = new nunjucks.Environment([], {autoescape: true});
         env.dev = nunjucks.env.dev;
@@ -79,7 +70,7 @@ define('builder',
                 return;
             }
 
-            el.addEventListener('click', function(e) {
+            el.addEventListener('click', function() {
                 el.classList.add('hide');
                 el.parentNode.classList.remove('pagination-error');
                 // Call the injector to load the next page's URL into the
@@ -159,7 +150,7 @@ define('builder',
                         var rendered;
                         // This will run synchronously.
                         request.done(function(data) {
-                            context.ctx['response'] = data;
+                            context.ctx.response = data;
                             rendered = get_result(data, true);
 
                             // Now update the response with the values from the model cache
@@ -180,7 +171,7 @@ define('builder',
                                         resp[i] = uncaster(resp[i]);
                                     }
                                 } else if (plucked) {
-                                    data[signature.pluck] = uncaster(resp[i]);
+                                    data[signature.pluck] = uncaster(resp);
                                 }
                                 // We can't do this for requests which have no pluck
                                 // and aren't an array. :(
@@ -203,8 +194,10 @@ define('builder',
 
                     request.done(function(data) {
                         var el = document.getElementById(uid);
-                        if (!el) return;
-                        context.ctx['response'] = data;
+                        if (!el) {
+                            return;
+                        }
+                        context.ctx.response = data;
                         var content = get_result(data);
                         if (replace) {
                             parse_and_replace(content, replace);
@@ -217,11 +210,14 @@ define('builder',
 
                         trigger_fragment_loaded(signature.id || null);
 
-                    }).fail(function(xhr, text, code) {
+                    }).fail(function(xhr, text, code, response) {
                         if (!replace) {
                             var el = document.getElementById(uid);
-                            if (!el) return;
-                            context.ctx['error'] = code;
+                            if (!el) {
+                                return;
+                            }
+                            context.ctx.response = response;
+                            context.ctx.error = code;
                             el.innerHTML = except ? except() : error_template;
                         }
                     });

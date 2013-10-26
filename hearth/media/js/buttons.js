@@ -40,8 +40,8 @@ define('buttons',
         console.log('Install requested for', product_name);
 
         // TODO: Have the API possibly return this (bug 889501).
-        product.receipt_required = (product.premium_type != 'free' &&
-                                    product.premium_type != 'free-inapp' &&
+        product.receipt_required = (product.premium_type !== 'free' &&
+                                    product.premium_type !== 'free-inapp' &&
                                     !settings.simulate_nav_pay);
 
         // If it's a paid app, ask the user to sign in first.
@@ -110,7 +110,7 @@ define('buttons',
                 def.always(function() {
                     // Do a reload to show any reviews privilege changes for bug 838848.
                     views.reload();
-                })
+                });
 
                 // Start the app's installation.
                 start_install();

@@ -15,19 +15,24 @@
 {% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
 {% set search_url = search_url|urlparams(sort=sort) if sort == 'created' else search_url %}
 
-{% defer (url=endpoint|urlunparam(['sort']), pluck='collections', as='collection') %}
-  {% if this and this.length %}
-    {# We're interested in the first item only. #}
-    {% for collection in this.slice(0, 1) %}
-      {{ collection_tile(collection, link=true, src='home') }}
-    {% endfor %}
+{% defer (url=endpoint|urlunparam(['sort']), pluck='operator', id='shelf', as='collection') %}
+  {% if this.length and this[0].apps.length and this[0].image %}
+    {{ collection_tile(this[0], link=true, src='home') }}
   {% endif %}
 {% except %}
 {% end %}
 
-{% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection' if settings.flags.rocketfuel else 'app') %}
-  {% set featured_apps = this.length and this[0].apps if settings.flags.rocketfuel else this %}
-  {% if featured_apps %}
+{% defer (url=endpoint|urlunparam(['sort']), pluck='collections', as='collection') %}
+  {% if this and this.length and this[0].apps.length and this[0].image %}
+    {# We're interested in the first item only. #}
+    {{ collection_tile(this[0], link=true, src='home') }}
+  {% endif %}
+{% except %}
+{% end %}
+
+{% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection') %}
+  {% set featured_apps = this.length and this[0].apps %}
+  {% if featured_apps and featured_apps.length %}
     <section id="featured" class="main category featured full c">
       <header class="featured-header c">
         <h3>{{ _('Featured Apps') }}</h3>
@@ -35,7 +40,7 @@
       </header>
       <ol class="grid c">
         {% for result in featured_apps %}
-          <li>{{ market_tile(result, link=true, src='featured', tray=False) }}</li>
+          <li>{{ market_tile(app_cast(result), link=true, src='featured', tray=False) }}</li>
         {% endfor %}
       </ol>
     </section>
@@ -43,26 +48,6 @@
 {% placeholder %}
 {# Placeholder is empty because this section is often empty, and we already
    have a placeholder for the Popular/New sections below. #}
-{% empty %}
-{% except %}
-{% end %}
-
-{% defer (url=endpoint|urlunparam(['sort']), pluck='operator', as='collection') %}
-  {% set apps = this.length and this[0].apps %}
-  {% if apps %}
-    <section id="operator" class="main operator operator-{{ this[0].slug }} category featured full c">
-      <header class="featured-header c">
-        <h3>{{ this[0].name|translate(this[0]) }}</h3>
-        <a href="{{ url('collection', [this[0].slug])|urlparams(src=src) }}" class="view-all">{{ _('View All') }}</a>
-      </header>
-      <ol class="grid c">
-        {% for result in apps %}
-          <li>{{ market_tile(result, link=true, src='featured', tray=False) }}</li>
-        {% endfor %}
-      </ol>
-    </section>
-  {% endif %}
-{% placeholder %}
 {% empty %}
 {% except %}
 {% end %}

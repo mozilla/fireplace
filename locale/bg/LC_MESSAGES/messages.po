@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-27T23:44:54.051Z\n"
+"POT-Creation-Date: 2013-10-25T20:52:55.910Z\n"
 "PO-Revision-Date: 2013-07-27 13:46+0200\n"
 "Last-Translator: Mihail Chilyashev <m@chilyashev.com>\n"
 "Language-Team: Bulgarian (bg)\n"
@@ -13,34 +13,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:13
+#: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:12
 msgid "All Categories"
 msgstr "Всички категории"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Препоръчан"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Разгъни"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "Няма препоръчани приложения"
-
-#: /templates/collection.html:12 /templates/detail/main.html:24 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/receipt.html:28 /templates/user/purchases.html:38
-msgid "Oh no!"
-msgstr "О, не!"
-
-#: /templates/collection.html:13
-msgid "We could not load that collection. Please try again later."
-msgstr ""
-
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:26
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr ""
 
 #: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
@@ -53,6 +28,44 @@ msgstr "Не"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Да"
+
+#. The Marketplace app is out-of-date and needs to be updated.
+#: /templates/deprecated.html:2
+msgid "Out-of-Date Marketplace"
+msgstr "Остарял Marketplace"
+
+#: /templates/deprecated.html:3
+msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
+msgstr "Версията на Firefox Marketplace, която използвате вече не се поддържа. Ще трябва да направите ъпдейт преди да продължите да се наслаждавате на Marketplace."
+
+#: /templates/deprecated.html:5
+msgid "Update Now"
+msgstr "Обнови сега"
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/collection.html:33
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr "Опа! Тук няма приложения!"
+
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/errors/404.html:2 /templates/detail/receipt.html:28 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+msgid "Oh no!"
+msgstr "О, не!"
+
+#: /templates/collection.html:43
+msgid "We could not load that collection. Please try again later."
+msgstr "Не можахме да тази колекция. Моля, опитайте отново по-късно."
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Препоръчан"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Разгъни"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "Няма препоръчани приложения"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -70,7 +83,7 @@ msgstr "Обратна връзка"
 msgid "Support"
 msgstr "Поддръжка"
 
-#: /templates/footer.html:12 /templates/header.html:22 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
+#: /templates/footer.html:12 /templates/header.html:22 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31 /templates/settings/nav.html:7
 #: /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "Моите приложения"
@@ -136,49 +149,55 @@ msgstr "Изход"
 msgid "Sign In"
 msgstr "Вход"
 
-#. The operating system is out-of-date and needs to be updated. #}
-#.   <h1>{{ _('Firefox OS Update Required') }}</h1>
-#.   <p>{{ _("You're running an obsolete version of Firefox OS. Some apps in the Marketplace may fail to install or will malfunction. Please run a system update to continue enjoying the Marketplace.") }}</p>
-#.   <div>
-#.     <button class="button system-update">{{ _('Update Now') }}</button>
-#.   </div>
-#.   <div>
-#.   	{# L10n: The user understands that some apps may malfunction if
-#.   	they keep using the Marketplace without running a system update.
-#: /templates/obsolete.html:2
-msgid "Firefox OS Update Required"
-msgstr "Нужен е ъпдейт на Firefox OS"
+#: /templates/category/main.html:37
+msgid "Featured Apps"
+msgstr "Препоръчани приложения"
 
-#: /templates/obsolete.html:3
-msgid "You're running an obsolete version of Firefox OS. Some apps in the Marketplace may fail to install or will malfunction. Please run a system update to continue enjoying the Marketplace."
-msgstr ""
-"Изполвате остаряла версия на Firefox OS. Някои приложения в Marketplace може да не се инсталират или да не работят правилно. Моля, актуализирайте системата си, за да продължите да се наслаждавате "
-"на Marketplace."
+#: /templates/category/main.html:38 /templates/category/main.html:64
+msgid "View All"
+msgstr "Виж всички"
 
-#: /templates/obsolete.html:5 /templates/deprecated.html:5
-msgid "Update Now"
-msgstr "Обнови сега"
+#: /templates/category/main.html:60
+msgid "Popular"
+msgstr "Известни"
 
-#: /templates/obsolete.html:10
-msgid "I understand the risk and wish to continue"
-msgstr "Разбирам риска и искам да продължа"
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:62
+msgid "New"
+msgstr "Нови"
 
-#. The Marketplace app is out-of-date and needs to be updated.
-#: /templates/deprecated.html:2
-msgid "Out-of-Date Marketplace"
-msgstr "Остарял Marketplace"
+#: /templates/category/main.html:83
+msgid "No apps in this category"
+msgstr "В тази категория няма приложения"
 
-#: /templates/deprecated.html:3
-msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
-msgstr "Версията на Firefox Marketplace, която използвате вече не се поддържа. Ще трябва да направите ъпдейт преди да продължите да се наслаждавате на Marketplace."
+#: /templates/category/main.html:88
+msgid "The category you requested does not exist."
+msgstr "Категорията, която поискахте, не съществува."
+
+#: /templates/category/main.html:90 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr "Възникна вътрешна грешка. Моля, опитайте по-късно."
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Неналично"
+
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:38
+msgid "Free"
+msgstr "Безплатно"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
+msgid "Install"
+msgstr "Инсталиране"
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "Още"
 
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
-msgstr ""
-
-#: /templates/_macros/market_tile.html:38 /templates/_macros/market_button.html:7
-msgid "Free"
-msgstr "Безплатно"
+msgstr "{app_name} .::. снимка"
 
 #: /templates/_macros/market_tile.html:46
 msgid "({n})"
@@ -199,60 +218,13 @@ msgstr "(0)"
 msgid "Not yet rated"
 msgstr "Все още неоценен"
 
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Неналично"
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "Докладвай злоупотреба"
 
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
-msgid "Install"
-msgstr "Инсталиране"
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "Още"
-
-#: /templates/category/main.html:32
-msgid "Featured Apps"
-msgstr "Препоръчани приложения"
-
-#: /templates/category/main.html:33 /templates/category/main.html:55 /templates/category/main.html:79
-msgid "View All"
-msgstr "Виж всички"
-
-#: /templates/category/main.html:75
-msgid "Popular"
-msgstr "Известни"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints) #}
-#.         <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}" data-preserve-scroll>{{ _('New') }}</a>
-#.       </nav>
-#.       <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
-#.     </header>
-#.   {% endif %}
-#.   <ol class="container listing grid-if-desktop search-listing c">
-#.     {% for result in this %}
-#.       <li class="item result app c">
-#.         {{ market_tile(result, link=true, src=source + '-' + (sort or 'popular'), tray=False) }}
-#.       </li>
-#.     {% endfor %}
-#.
-#.     {# Render the more button if there's another page of results
-#: /templates/category/main.html:77
-msgid "New"
-msgstr "Нови"
-
-#: /templates/category/main.html:98
-msgid "No apps in this category"
-msgstr "В тази категория няма приложения"
-
-#: /templates/category/main.html:103
-msgid "The category you requested does not exist."
-msgstr "Категорията, която поискахте, не съществува."
-
-#: /templates/category/main.html:105 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "Възникна вътрешна грешка. Моля, опитайте по-късно."
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "Изпрати доклад"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -294,7 +266,7 @@ msgstr "Стартирайте това приложение от вашия <b>
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Стартирайте това приложение от вашето <b>табло</b>, <b></b> или <b>меню Приложения</b>"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:24
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:30
 msgid "Loading..."
 msgstr "Зареждане..."
 
@@ -382,25 +354,13 @@ msgstr "Начална страница"
 msgid "Statistics"
 msgstr "Статистики"
 
-#: /templates/detail/main.html:176 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "Докладвай злоупотреба"
-
 #: /templates/detail/main.html:187
 msgid "Premium version available"
 msgstr "Налична е премиум версия"
 
-#: /templates/detail/main.html:203
-msgid "Rating by the <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
-msgstr "Оценка от <a href=\"{dejus_url}\" title=\"{dejus}\">DEJUS</a>"
-
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "Изпрати доклад"
-
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "Страницата, която търсите не бе намерена."
+#: /templates/detail/main.html:202
+msgid "Ratings"
+msgstr ""
 
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
@@ -413,6 +373,59 @@ msgstr "Обратно към приложението"
 #: /templates/detail/privacy.html:11
 msgid "Loading Privacy Policy..."
 msgstr "Зареждане на декларацията за поверителност"
+
+#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
+msgid "The page you were looking for was not found."
+msgstr "Страницата, която търсите не бе намерена."
+
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr "Благодарим за покупката ви"
+
+#: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
+msgid "Edit Review"
+msgstr "Редактирай отзива"
+
+#: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "Оценка:"
+
+#: /templates/ratings/edit.html:20 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "Отказ"
+
+#: /templates/ratings/edit.html:21 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Прати"
+
+#: /templates/ratings/edit.html:24 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "Само влезли потребители могат да редактират отзиви."
+
+#: /templates/ratings/main.html:36
+msgid "This app has no reviews."
+msgstr "Това приложение няма отзиви"
+
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Грешка при зареждането"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Опитай отново"
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Възникна грешна"
+
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "Мнение за приложението"
+
+#: /templates/ratings/rating.html:16
+msgid "The review you requested does not exist."
+msgstr "Мнението, което търсите, не съществува."
 
 #: /templates/search/main.html:15
 msgid "<b>{n}</b> Result"
@@ -432,21 +445,21 @@ msgstr "Няма намерени резултати"
 msgid "No results found, try again later"
 msgstr "Няма намерени резултати, моля опитайте по-късно"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Възникна грешна"
+#: /templates/ratings/report.html:2
+msgid "Please select a reason:"
+msgstr "Моля, изберете причина:"
 
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Грешка при зареждането"
+#: /templates/ratings/report.html:8
+msgid "Spam or otherwise non-review content"
+msgstr "Спам или друго незначимо съдържание"
 
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Опитай отново"
+#: /templates/ratings/report.html:13
+msgid "Inappropriate language/dialog"
+msgstr "Неуместен език/диалог"
 
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr "Благодарим за покупката ви"
+#: /templates/ratings/report.html:18
+msgid "Misplaced bug report or support request"
+msgstr "Неуместен доклад за проблем или заявка за поддръжка"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -480,58 +493,21 @@ msgstr "Запази промените"
 msgid "Sign In / Sign Up"
 msgstr "Вход / Регистрация"
 
+#: /templates/user/purchases.html:49
+msgid "You must be signed in to view your apps."
+msgstr "Трябва да влезете, за да виждате своите приложения"
+
+#: /templates/user/purchases.html:50
+msgid "Sign in / Sign up"
+msgstr "Вход / Регистрация"
+
+#: /templates/user/purchases.html:34
+msgid "You have no apps"
+msgstr "Вие нямате приложения"
+
 #: /templates/settings/nav.html:6
 msgid "Account"
 msgstr "Акаунт"
-
-#: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
-msgid "Edit Review"
-msgstr "Редактирай отзива"
-
-#: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
-msgid "Rate:"
-msgstr "Оценка:"
-
-#: /templates/ratings/edit.html:20 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/user/newsletter.html:13 /templates/ratings/write.html:3
-#: /templates/ratings/write.html:19
-msgid "Cancel"
-msgstr "Отказ"
-
-#: /templates/ratings/edit.html:21 /templates/ratings/write.html:20
-msgid "Submit"
-msgstr "Прати"
-
-#: /templates/ratings/edit.html:24 /templates/ratings/write.html:23
-msgid "Only logged in users may edit reviews."
-msgstr "Само влезли потребители могат да редактират отзиви."
-
-#: /templates/ratings/main.html:36
-msgid "This app has no reviews."
-msgstr "Това приложение няма отзиви"
-
-#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "Мнение за приложението"
-
-#: /templates/ratings/rating.html:16
-msgid "The review you requested does not exist."
-msgstr "Мнението, което търсите, не съществува."
-
-#: /templates/ratings/report.html:2
-msgid "Please select a reason:"
-msgstr "Моля, изберете причина:"
-
-#: /templates/ratings/report.html:8
-msgid "Spam or otherwise non-review content"
-msgstr "Спам или друго незначимо съдържание"
-
-#: /templates/ratings/report.html:13
-msgid "Inappropriate language/dialog"
-msgstr "Неуместен език/диалог"
-
-#: /templates/ratings/report.html:18
-msgid "Misplaced bug report or support request"
-msgstr "Неуместен доклад за проблем или заявка за поддръжка"
 
 #: /templates/user/newsletter.html:3
 msgid "Get Firefox Marketplace news"
@@ -548,18 +524,6 @@ msgstr "Записване..."
 #: /templates/user/newsletter.html:18
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "Вие успешно се записахте за бюлетина на Marketplace!"
-
-#: /templates/user/purchases.html:49
-msgid "You must be signed in to view your apps."
-msgstr "Трябва да влезете, за да виждате своите приложения"
-
-#: /templates/user/purchases.html:50
-msgid "Sign in / Sign up"
-msgstr "Вход / Регистрация"
-
-#: /templates/user/purchases.html:34
-msgid "You have no apps"
-msgstr "Вие нямате приложения"
 
 #: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
@@ -599,10 +563,6 @@ msgstr "Вашият браузър или устройство не е съвм
 msgid "This app is unavailable for your platform."
 msgstr "Това приложение не е достъпно за вашата платформа."
 
-#: /media/js/mobilenetwork.js:264
-msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
-msgstr "В момента разглеждате съдържане за *{current_region}*. Желаете ли да превключите към *{new_region}*?"
-
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "Вие излязохте"
@@ -619,6 +579,10 @@ msgstr "Влизането в Persona се провали. Може би ням�
 msgid "Persona login failed. A server error was encountered."
 msgstr "Влизането в Persona се провали. Възникна сървърна грешка"
 
+#: /media/js/mobilenetwork.js:306
+msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
+msgstr "В момента разглеждате съдържане за *{current_region}*. Желаете ли да превключите към *{new_region}*?"
+
 #: /media/js/navigation.js:52
 msgid "No internet connection"
 msgstr "Няма връзка с интернет"
@@ -626,66 +590,6 @@ msgstr "Няма връзка с интернет"
 #: /media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Възникна грешка при пращането на заявката ви за бюлетина"
-
-#: /media/js/settings.js:72
-msgid "Worldwide"
-msgstr "В целия свят"
-
-#: /media/js/settings.js:73
-msgid "Brazil"
-msgstr "Бразилия"
-
-#: /media/js/settings.js:74
-msgid "Colombia"
-msgstr "Колумбия"
-
-#: /media/js/settings.js:75
-msgid "Germany"
-msgstr ""
-
-#: /media/js/settings.js:76
-msgid "Greece"
-msgstr ""
-
-#: /media/js/settings.js:77
-msgid "Hungary"
-msgstr "Унгария"
-
-#: /media/js/settings.js:78
-msgid "Mexico"
-msgstr ""
-
-#: /media/js/settings.js:79
-msgid "Montenegro"
-msgstr "Монтенегро"
-
-#: /media/js/settings.js:80
-msgid "Poland"
-msgstr "Полша"
-
-#: /media/js/settings.js:81
-msgid "Serbia"
-msgstr "Сърбия"
-
-#: /media/js/settings.js:82
-msgid "Spain"
-msgstr "Испания"
-
-#: /media/js/settings.js:83
-msgid "United Kingdom"
-msgstr "Обединено кралство"
-
-#: /media/js/settings.js:84
-msgid "United States"
-msgstr "Съединени щати"
-
-#: /media/js/settings.js:85
-msgid "Venezuela"
-msgstr "Венецуела"
-
-#: /media/js/settings.js:88
-msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr "Отдел за правосъдие, рейтинг, титли и квалификация"
 
 #. The report is an abuse report for reviews
 #: /media/js/ratings.js:39
@@ -715,6 +619,82 @@ msgstr "Отзивът ви е изпратен"
 #: /media/js/ratings.js:243
 msgid "Error while submitting review"
 msgstr "Грешка при пращане на отзива"
+
+#: /media/js/settings.js:72
+msgid "Worldwide"
+msgstr "В целия свят"
+
+#: /media/js/settings.js:73
+msgid "Argentina"
+msgstr ""
+
+#: /media/js/settings.js:74
+msgid "Brazil"
+msgstr "Бразилия"
+
+#: /media/js/settings.js:75
+msgid "China"
+msgstr ""
+
+#: /media/js/settings.js:76
+msgid "Colombia"
+msgstr "Колумбия"
+
+#: /media/js/settings.js:77
+msgid "Germany"
+msgstr "Германия"
+
+#: /media/js/settings.js:78
+msgid "Greece"
+msgstr "Гърция"
+
+#: /media/js/settings.js:79
+msgid "Hungary"
+msgstr "Унгария"
+
+#: /media/js/settings.js:80
+msgid "Mexico"
+msgstr "Мексико"
+
+#: /media/js/settings.js:81
+msgid "Montenegro"
+msgstr "Монтенегро"
+
+#: /media/js/settings.js:82
+msgid "Peru"
+msgstr ""
+
+#: /media/js/settings.js:83
+msgid "Poland"
+msgstr "Полша"
+
+#: /media/js/settings.js:84
+msgid "Serbia"
+msgstr "Сърбия"
+
+#: /media/js/settings.js:85
+msgid "Spain"
+msgstr "Испания"
+
+#: /media/js/settings.js:86
+msgid "United Kingdom"
+msgstr "Обединено кралство"
+
+#: /media/js/settings.js:87
+msgid "United States"
+msgstr "Съединени щати"
+
+#: /media/js/settings.js:88
+msgid "Uruguay"
+msgstr ""
+
+#: /media/js/settings.js:89
+msgid "Venezuela"
+msgstr "Венецуела"
+
+#: /media/js/settings.js:92
+msgid "Department of Justice, Rating, Titles and Qualification"
+msgstr "Отдел за правосъдие, рейтинг, титли и квалификация"
 
 #. {n} is the number of characters left.
 #: /media/js/utils.js:28
@@ -747,16 +727,24 @@ msgstr "Устройството ви не поддържа покупки."
 msgid "App Details"
 msgstr "Детайли на приложението"
 
-#: /media/js/views/collection.js:25
+#: /media/js/views/collection.js:31
 msgid "Collection Details"
 msgstr "Детайли за колекцията"
+
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "Отзивът изпратен. Благодаря!"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "Възникна проблем с пращането на вашия отзив. Опитайте отново по-късно"
 
 #. Page not found (404)
 #: /media/js/views/not_found.js:9
 msgid "Not Found"
 msgstr "Не е намерено"
 
-#: /media/js/views/search.js:181
+#: /media/js/views/search.js:201
 msgid "Search Results"
 msgstr "Резултати от търсенето"
 
@@ -767,14 +755,6 @@ msgstr "Настройките запазени"
 #: /media/js/views/settings.js:29
 msgid "Settings could not be saved"
 msgstr "Настройките не можаха да бъдат запазени"
-
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "Отзивът изпратен. Благодаря!"
-
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "Възникна проблем с пращането на вашия отзив. Опитайте отново по-късно"
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"

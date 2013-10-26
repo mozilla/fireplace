@@ -4,7 +4,6 @@ define('views/search',
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
-    var ngettext = l10n.ngettext;
 
     function append(existing_value, new_value) {
         if (typeof existing_value === 'string' && existing_value !== '') {
@@ -18,11 +17,8 @@ define('views/search',
         // $('#site-search-suggestions').trigger('dismiss');
         $('#search-q').val('');
 
-    })).on('click', '.header-button, .search-clear', _pd(function(e) {
-        var $this = $(this),
-            $btns = $('.header-button');
-
-        if ($this.hasClass('search-clear')) {
+    })).on('click', '.header-button, .search-clear', _pd(function() {
+        if ($(this).hasClass('search-clear')) {
             $('#search-q').val('').trigger('focus');
         }
     }));
@@ -59,7 +55,7 @@ define('views/search',
         query.q = [];
 
         query.full_q.split(' ').forEach(function(value) {
-            if (!value) return;
+            if (!value) {return;}
             if (value[0] === ':') {
                 value = value.slice(1);
                 if (value === 'hosted' || value === 'packaged' ||
@@ -160,7 +156,7 @@ define('views/search',
         }
     }).on('loaded_more', function() {
         z.page.trigger('populatetray');
-        // Update "Showing 1—{total}" text.
+        // Update "Showing 1-{total}" text.
         z.page.find('.total-results').text(z.page.find('.item.app').length);
     }).on('search', function(e, params) {
         e.preventDefault();
@@ -168,10 +164,34 @@ define('views/search',
             'navigate', utils.urlparams(urls.reverse('search'), params));
     });
 
+    function processor(query) {
+        query = query ? query.toLowerCase() : '';
+        return function(data) {
+            switch (query) {
+                case 'what does the fox say?':
+                    var base = function(item) {return _.extend(item, {'icons': {'64': urls.media('fireplace/img/logos/firefox-256.png')}});};
+                    data.unshift(base({name: 'Joff-tchoff-tchoffo-tchoffo-tchoff!', author: 'The Fox'}));
+                    data.unshift(base({name: 'Hatee-hatee-hatee-ho!', author: 'The Fox'}));
+                    data.unshift(base({name: 'Wa-pa-pa-pa-pa-pa-pow!', author: 'The Fox'}));
+                    data.unshift(base({name: 'Ring-ding-ding-ding-dingeringeding!', author: 'The Fox'}));
+                    break;
+                case 'hampster dance':
+                    data.forEach(function(v, k) {
+                        v.icons['64'] = urls.media('fireplace/img/icons/eggs/h' + (k % 4 + 1) + '.gif');
+                    });
+                    break;
+                case 'rick fant rolled':
+                    data.forEach(function(v) { v.url = 'http://www.youtube.com/watch?v=oHg5SJYRHA0'; });
+                    break;
+            }
+            return data;
+        };
+    }
+
     return function(builder, args, params) {
         params = parsePotatoSearch(_.extend({q: params.q}, params));
 
-        if ('sort' in params && params.sort == 'relevancy') {
+        if ('sort' in params && params.sort === 'relevancy') {
             delete params.sort;
         }
 
@@ -180,11 +200,16 @@ define('views/search',
         builder.z('search', query);
         builder.z('title', query || gettext('Search Results'));
 
+        if (params.q === 'hampster dance') {
+            params.q = 'dance';
+            (new Audio(urls.media('fireplace/hampster.ogg'))).play();
+        }
+
         builder.start(
             'search/main.html',
-            {params: _.extend({}, params)}
+            {params: _.extend({}, params), processor: processor(query)}
         ).done(function() {
-            var results = builder.results['searchresults'];
+            var results = builder.results.searchresults;
             if (params.manifest_url && results.objects.length === 1) {
                 z.page.trigger('divert', [urls.reverse('app', [results.objects[0].slug]) + '?src=' + params.src]);
             }
