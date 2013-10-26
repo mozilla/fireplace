@@ -27,23 +27,23 @@ define('nunjucks.compat', ['nunjucks'], function(nunjucks) {
             if (index === undefined) {
                 return obj.pop();
             }
-            if (index >= obj.length || index < 0) {
+            if (index >= this.length || index < 0) {
                 throw new Error('KeyError');
             }
-            return obj.splice(index, 1);
+            return this.splice(index, 1);
         },
         remove: function(element) {
-            for (var i = 0; i < obj.length; i++) {
-                if (obj[i] == element) {
-                    return obj.splice(i, 1);
+            for (var i = 0; i < this.length; i++) {
+                if (this[i] == element) {
+                    return this.splice(i, 1);
                 }
             }
             throw new Error('ValueError');
         },
         count: function(element) {
             var count = 0;
-            for (var i = 0; i < obj.length; i++) {
-                if (obj[i] == element) {
+            for (var i = 0; i < this.length; i++) {
+                if (this[i] == element) {
                     count++;
                 }
             }
@@ -51,82 +51,82 @@ define('nunjucks.compat', ['nunjucks'], function(nunjucks) {
         },
         index: function(element) {
             var i;
-            if ((i = obj.indexOf(element)) == -1) {
+            if ((i = this.indexOf(element)) == -1) {
                 throw new Error('ValueError');
             }
             return i;
         },
         find: function(element) {
-            return obj.indexOf(element);
+            return this.indexOf(element);
         },
         insert: function(index, elem) {
-            return obj.splice(index, 0, elem);
+            return this.splice(index, 0, elem);
         }
     };
     var OBJECT_MEMBERS = {
         items: function() {
             var ret = [];
-            for(var k in obj) {
-                ret.push([k, obj[k]]);
+            for(var k in this) {
+                ret.push([k, this[k]]);
             }
             return ret;
         },
         values: function() {
             var ret = [];
-            for(var k in obj) {
-                ret.push(obj[k]);
+            for(var k in this) {
+                ret.push(this[k]);
             }
             return ret;
         },
         keys: function() {
             var ret = [];
-            for(var k in obj) {
+            for(var k in this) {
                 ret.push(k);
             }
             return ret;
         },
         get: function(key, def) {
-            var output = obj[key];
+            var output = this[key];
             if (output === undefined) {
                 output = def;
             }
             return output;
         },
         has_key: function(key) {
-            return obj.hasOwnProperty(key);
+            return this.hasOwnProperty(key);
         },
         pop: function(key, def) {
-            var output = obj[key];
+            var output = this[key];
             if (output === undefined && def !== undefined) {
                 output = def;
             } else if (output === undefined) {
                 throw new Error('KeyError');
             } else {
-                delete obj[key];
+                delete this[key];
             }
             return output;
         },
         popitem: function() {
-            for (var k in obj) {
+            for (var k in this) {
                 // Return the first object pair.
-                var val = obj[k];
-                delete obj[k];
+                var val = this[k];
+                delete this[k];
                 return [k, val];
             }
             throw new Error('KeyError');
         },
         setdefault: function(key, def) {
-            if (key in obj) {
-                return obj[key];
+            if (key in this) {
+                return this[key];
             }
             if (def === undefined) {
                 def = null;
             }
-            return obj[key] = def;
+            return this[key] = def;
         },
         update: function(kwargs) {
             for (var k in kwargs) {
-                obj[k] = kwargs[k];
+                this[k] = kwargs[k];
             }
             return null;  // Always returns None
         }
@@ -140,11 +140,11 @@ define('nunjucks.compat', ['nunjucks'], function(nunjucks) {
         // If the object is an object, return any of the methods that Python would
         // otherwise provide.
         if (lib.isArray(obj) && ARRAY_MEMBERS.hasOwnProperty(val)) {
-            return ARRAY_MEMBERS[val];
+            return ARRAY_MEMBERS[val].bind(obj);
         }
 
         if (lib.isObject(obj) && OBJECT_MEMBERS.hasOwnProperty(val)) {
-            return OBJECT_MEMBERS[val];
+            return OBJECT_MEMBERS[val].bind(obj);
         }
 
         return orig_memberLookup.apply(this, arguments);
