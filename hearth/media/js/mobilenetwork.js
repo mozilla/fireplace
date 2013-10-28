@@ -39,6 +39,9 @@ define('mobilenetwork',
         // Germany
         262: 'de',
 
+        // Uruguay
+        748: 'uy',
+
         // Serbia
         220: 'rs',
 
