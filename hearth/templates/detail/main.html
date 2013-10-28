@@ -197,12 +197,13 @@
 {% end %}
 
 {% defer (url=endpoint, as='app', key=slug) %}
-  {% if this.content_ratings %}
+  {% set ratings = this.content_ratings[user.get_setting('region')].values() %}
+  {% if ratings.length %}
     <div class="content-ratings-wrapper main infobox c">
       <div>
         <h3>{{ _('Ratings') }}</h3>
         <div class="content-ratings">
-          {% for rating in this.content_ratings.values() %}
+          {% for rating in ratings %}
             <div class="content-rating c">
               <div class="icon icon-{{ rating.name|replace('+', '') }}" title="{{ rating.name }}">{{ rating.name }}</div>
               <p class="description">{{ rating.description }}</p>
