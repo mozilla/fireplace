@@ -356,6 +356,10 @@ fatten() {
     padding: 0 32px;
 }
 
+glow($glowColor, $glowSize) {
+    box-shadow: 0 0 $glowSize 0 $glowColor; 
+}
+
 alt-btn-hover-focus() {
     gradient-two-color(darken(#fff, 10%), darken($seavan-salt-white, 10%));
 }
