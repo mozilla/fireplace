@@ -197,7 +197,12 @@
 {% end %}
 
 {% defer (url=endpoint, as='app', key=slug) %}
-  {% set ratings = this.content_ratings[user.get_setting('region')].values() %}
+  {% if this.content_ratings[user.get_setting('region')] %}
+    {% set ratings = this.content_ratings[user.get_setting('region')].values() %}
+  {% else %}
+    {# Try to fall back to generic ratings body if region has no rating. #}
+    {% set ratings = this.content_ratings['generic'].values() %}
+  {% endif %}
   {% if ratings.length %}
     <div class="content-ratings-wrapper main infobox c">
       <div>
