@@ -141,6 +141,15 @@ require.config({
             $('#site-footer').html(
                 nunjucks.env.getTemplate('footer.html').render(context));
 
+            if (!navigator.mozApps &&
+                !require('storage').getItem('hide_incompatibility_banner')) {
+                console.log('Adding incompatibility banner');
+                $('#incompatibility-banner').html(
+                    nunjucks.env.getTemplate(
+                        'incompatible.html').render(context));
+                z.body.toggleClass('show-incompatibility-banner');
+            }
+
             z.body.toggleClass('logged-in', require('user').logged_in());
             z.page.trigger('reloaded_chrome');
         }).trigger('reload_chrome');
@@ -154,6 +163,13 @@ require.config({
             e.preventDefault();
             console.log('← button pressed');
             require('navigation').back();
+        });
+
+        z.body.on('click', '#incompatibility-banner .close', function(e) {
+            e.preventDefault();
+            console.log('Hiding incompatibility banner');
+            z.body.toggleClass('show-incompatibility-banner');
+            require('storage').setItem('hide_incompatibility_banner', true);
         });
 
         window.addEventListener(
