@@ -210,7 +210,14 @@
         <div class="content-ratings">
           {% for rating in ratings %}
             <div class="content-rating c">
-              <div class="icon icon-{{ rating.name|replace('+', '') }}" title="{{ rating.name }}">{{ rating.name }}</div>
+              {# rating.body (e.g. CLASSIND, GENERIC, ESRB, PEGI, USK #}
+              {# rating.name (e.g. 0+, 3+, 7+, 13+, 18+) #}
+              <div class="icon icon-body-{{ rating.body|lower }} icon-age-{{ rating.name|replace('+', '') }}"
+                   title="{{ rating.name }}">
+                <span class="icon-content hidden">
+                  {{ rating.name }}
+                </span>
+              </div>
               <p class="description">{{ rating.description }}</p>
             </div>
           {% endfor %}
