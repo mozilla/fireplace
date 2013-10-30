@@ -16,7 +16,8 @@ $triangle-size = 20px;
         display: block;
     }
     .info h3,
-    .author {
+    .subdetail {
+        /* subdetail contains .author and .content-rating. */
         ellipsis();
     }
 }
@@ -33,10 +34,12 @@ $triangle-size = 20px;
 
 .mkt-tile {
     .rating {
+        clear: left;
         color: $sailor-blue;
         display: block;
         font-size: 12px;
         position: relative;
+
         a {
             text-decoration: none;
             &:hover .cnt {
@@ -57,9 +60,9 @@ $triangle-size = 20px;
     min-height: 64px;
     padding: 15px 10px 15px 84px;
     h3 {
-        font-size: 15px;
+        font-size: 20px;
         font-weight: 400;
-        line-height: 20px;
+        line-height: 18px;
         margin: -4px 0 -7px;
         padding-bottom: 10px;
     }
@@ -69,13 +72,16 @@ $triangle-size = 20px;
         top: 15px;
         left: 10px;
     }
-    .author {
+    .subdetail {
         color: $earl-gray;
         font-size: 12px;
-        line-height: 14px;
+        line-height: 15px;
         max-height: 28px;
-        margin-bottom: -2px;
-        padding-bottom: 8px;
+
+        &.content-rating {
+            margin-bottom: -2px;
+            padding-bottom: 8px;
+        }
     }
     .button {
         height: 24px;
@@ -245,7 +251,7 @@ grid-style() {
         vertical-align: top;
         width: (100% / 3);
     }
-    .author, .button, .cnt {
+    .subdetail, .button, .cnt {
         display: none;
     }
     .mkt-tile {
@@ -400,7 +406,7 @@ grid-style() {
                 }
             }
         }
-        .author, .bad-app, .button, .loadmore {
+        .subdetail, .bad-app, .button, .loadmore {
             display: none;
         }
         .price {
@@ -544,7 +550,7 @@ ratings-sidebar() {
         line-height: 30px;
         max-width: 100%;
     }
-    .author {
+    .subdetail {
         font-size: 15px;
         line-height: 18px;
     }
@@ -564,9 +570,11 @@ ratings-sidebar() {
     .mkt-tile {
         padding: 15px 10px;
         position: relative;
+
         .icon {
             float: left;
             margin-right: 15px;
+            padding-bottom: 70px;
             position: static;
             width: 64px;
         }
@@ -654,11 +662,11 @@ ratings-sidebar() {
                     background-image: none;
                 }
                 h3 {
-                    font-size: 40px;
-                    line-height: 42px;
+                    font-size: 34px;
+                    line-height: 34px;
                 }
-                .author {
-                    line-height: 15px;
+                .subdetail {
+                    line-height: 20px;
                 }
             }
         }
