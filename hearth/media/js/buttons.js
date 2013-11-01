@@ -248,6 +248,14 @@ define('buttons',
             // If the purchase or installation fails, revert the button.
             revertButton($this);
             console.log('Unsuccessful install for', product_name);
+
+            // Track that the install failed.
+            tracking.trackEvent(
+                'App failed to install',
+                product.receipt_required ? 'paid' : 'free',
+                product_name + ':' + product.id,
+                $('.button.product').index($button)
+            );
         });
 
         return def.promise();
