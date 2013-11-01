@@ -5,6 +5,8 @@ define('mobilenetwork',
     var persistent_console = log.persistent('mobilenetwork', 'change');
     var gettext = l10n.gettext;
 
+    var REGIONS = settings.REGION_CHOICES_SLUG;
+
     var regions = {
         // United States
         310: 'us',
@@ -304,8 +306,8 @@ define('mobilenetwork',
 
     function confirmRegion(currentRegion, newRegion) {
         // Ask user to switch to the new region we detected from the SIM card.
-        var currentRegionName = settings.REGION_CHOICES_SLUG[currentRegion];
-        var newRegionName = settings.REGION_CHOICES_SLUG[newRegion];
+        var currentRegionName = REGIONS[currentRegion];
+        var newRegionName = REGIONS[newRegion];
         var message = gettext('You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?',
             {current_region: currentRegionName,
              new_region: newRegionName});
@@ -390,7 +392,7 @@ define('mobilenetwork',
         if (GET.region === '') {  // Ability to set region to worldwide from query params
             region = '';
         } else {
-            region = GET.region || user.get_setting('region') || region;
+            region = (GET.region in REGIONS && GET.region) || user.get_setting('region') || region;
         }
 
         // If it turns out the region is null, when we get a response from an
