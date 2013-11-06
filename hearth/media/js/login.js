@@ -67,10 +67,13 @@ define('login',
             // See bug 910938.
             opt.experimental_forceIssuer = settings.persona_unverified_issuer;
         }
-        if (!navigator.id._shimmed) {
-            // When on B2G (i.e. no shim), we don't require new accounts to verify their email
-            // address. When on desktop, we do require verification.
+        if (capabilities.mobileLogin) {
+            // On mobile we don't require new accounts to verify their email.
+            // On desktop, we do.
             opt.experimental_allowUnverified = true;
+            console.log('Allowing unverified emails');
+        } else {
+            console.log('Not allowing unverified emails');
         }
 
         if (!capabilities.phantom) {
@@ -86,7 +89,7 @@ define('login',
         var data = {
             assertion: assertion,
             audience: window.location.protocol + '//' + window.location.host,
-            is_native: navigator.id._shimmed ? 0 : 1
+            is_mobile: capabilities.mobileLogin
         };
 
         z.page.trigger('before_login');
