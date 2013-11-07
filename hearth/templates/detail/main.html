@@ -212,8 +212,7 @@
             <div class="content-rating c">
               {# rating.body (e.g. CLASSIND, GENERIC, ESRB, PEGI, USK #}
               {# rating.name (e.g. 0+, 3+, 7+, 13+, 18+) #}
-              <div class="icon icon-body-{{ rating.body|lower }} icon-age-{{ rating.name|replace('+', '') }}"
-                   title="{{ rating.name }}">
+              <div class="icon icon-body-{{ rating.body_slug }} icon-age-{{ rating.slug }}" title="{{ rating.name }}">
                 <span class="icon-content hidden">
                   {{ rating.name }}
                 </span>
