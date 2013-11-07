@@ -117,7 +117,7 @@ require.config({
         };
         if (capabilities.webApps) {
             var get_installed_debounced = _.debounce(get_installed, 2000, true);  // Immediate so there's no delay.
-    
+
             z.page.on('loaded', get_installed);
             z.page.on('fragment_loaded loaded_more', get_installed_debounced);
             document.addEventListener(
@@ -147,7 +147,7 @@ require.config({
                 $('#incompatibility-banner').html(
                     nunjucks.env.getTemplate(
                         'incompatible.html').render(context));
-                z.body.toggleClass('show-incompatibility-banner');
+                z.body.addClass('show-incompatibility-banner');
             }
 
             z.body.toggleClass('logged-in', require('user').logged_in());
@@ -168,7 +168,7 @@ require.config({
         z.body.on('click', '#incompatibility-banner .close', function(e) {
             e.preventDefault();
             console.log('Hiding incompatibility banner');
-            z.body.toggleClass('show-incompatibility-banner');
+            z.body.removeClass('show-incompatibility-banner');
             require('storage').setItem('hide_incompatibility_banner', true);
         });
 
