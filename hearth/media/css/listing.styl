@@ -32,33 +32,31 @@ $triangle-size = 20px;
 // name + icon + price + rating in a vertical listview.
 // also used as standalone "card" on detail pages.
 
-.mkt-tile {
-    .rating {
-        clear: left;
-        color: $sailor-blue;
-        display: block;
-        font-size: 12px;
-        position: relative;
+.mkt-tile .rating {
+    color: $sailor-blue;
+    display: block;
+    font-size: 12px;
+    position: relative;
 
-        a {
-            text-decoration: none;
-            &:hover .cnt {
-                text-decoration: underline;
-            }
+    a {
+        text-decoration: none;
+        &:hover .cnt {
+            text-decoration: underline;
         }
-        .cnt {
-            position: relative;
-            top: -2px;
-        }
-        &.unrated, &.unrated a {
-            color: $earl-gray;
-        }
+    }
+    .cnt {
+        position: relative;
+        top: -2px;
+    }
+    &.unrated, &.unrated a {
+        color: $earl-gray;
     }
 }
 
 .listing .mkt-tile {
     min-height: 64px;
     padding: 15px 10px 15px 84px;
+
     h3 {
         font-size: 20px;
         font-weight: 400;
