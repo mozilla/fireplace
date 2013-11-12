@@ -55,7 +55,7 @@ require.config({
             'webactivities',
             'z'
         ],
-    function(_) {
+    function(_, helpers) {
         var log = require('log');
         var console = log('mkt');
         console.log('Dependencies resolved, starting init');
@@ -66,6 +66,8 @@ require.config({
         var settings = require('settings');
         var user = require('user');
         var z = require('z');
+
+        helpers.REGIONS = settings.REGION_CHOICES_SLUG;
 
         // Jank hack because Persona doesn't allow scripts in the doc iframe.
         // Please just delete it when they don't do that anymore.
