@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-25T20:52:55.910Z\n"
+"POT-Creation-Date: 2013-11-12T23:28:29.263Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,27 @@ msgstr ""
 msgid "All Categories"
 msgstr "Ȧŀŀ Ƈȧŧḗɠǿřīḗş"
 
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/collection.html:33
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr "Řŭħ řǿħ! Ƞǿ ȧƥƥş ħḗřḗ, Şħȧɠɠẏ!"
+
+#: /templates/collection.html:42
+#: /templates/detail/main.html:24
+#: /templates/detail/receipt.html:28
+#: /templates/errors/404.html:2
+#: /templates/errors/fragment.html:1
+#: /templates/user/purchases.html:38
+msgid "Oh no!"
+msgstr "Ǿħ ƞǿ!"
+
+#: /templates/collection.html:43
+msgid "We could not load that collection. Please try again later."
+msgstr "Ẇḗ ƈǿŭŀḓ ƞǿŧ ŀǿȧḓ ŧħȧŧ ƈǿŀŀḗƈŧīǿƞ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
+
 #: /templates/confirmation.html:0
+#: /templates/incompatible.html:3
+#: /templates/incompatible.html:3
 #: /templates/detail/abuse.html:6
 #: /templates/settings/nav.html:12
 msgid "Close"
@@ -49,24 +69,6 @@ msgstr ""
 msgid "Update Now"
 msgstr "Ŭƥḓȧŧḗ Ƞǿẇ"
 
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr "Řŭħ řǿħ! Ƞǿ ȧƥƥş ħḗřḗ, Şħȧɠɠẏ!"
-
-#: /templates/collection.html:42
-#: /templates/detail/main.html:24
-#: /templates/errors/404.html:2
-#: /templates/detail/receipt.html:28
-#: /templates/errors/fragment.html:1
-#: /templates/user/purchases.html:38
-msgid "Oh no!"
-msgstr "Ǿħ ƞǿ!"
-
-#: /templates/collection.html:43
-msgid "We could not load that collection. Please try again later."
-msgstr "Ẇḗ ƈǿŭŀḓ ƞǿŧ ŀǿȧḓ ŧħȧŧ ƈǿŀŀḗƈŧīǿƞ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
-
 #: /templates/featured.html:7
 msgid "Featured"
 msgstr "Ƒḗȧŧŭřḗḓ"
@@ -80,6 +82,14 @@ msgstr "Ḗẋƥȧƞḓ"
 #: /templates/featured.html:22
 msgid "No featured apps found"
 msgstr "Ƞǿ ƒḗȧŧŭřḗḓ ȧƥƥş ƒǿŭƞḓ"
+
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Ẏǿŭ ḿŭşŧ ŭşḗ Ƒīřḗƒǿẋ ŧǿ īƞşŧȧŀŀ Ƒīřḗƒǿẋ ȧƥƥş."
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr "Ḓǿẇƞŀǿȧḓ."
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -103,10 +113,10 @@ msgstr "Şŭƥƥǿřŧ"
 
 #: /templates/footer.html:12
 #: /templates/header.html:22
+#: /templates/settings/nav.html:7
 #: /templates/user/purchases.html:44
 #: /templates/user/purchases.html:11
 #: /templates/user/purchases.html:31
-#: /templates/settings/nav.html:7
 #: /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "Ḿẏ Ȧƥƥş"
@@ -188,46 +198,43 @@ msgstr "Şīɠƞ Ǿŭŧ"
 msgid "Sign In"
 msgstr "Şīɠƞ Īƞ"
 
-#: /templates/category/main.html:37
-msgid "Featured Apps"
-msgstr "Ƒḗȧŧŭřḗḓ Ȧƥƥş"
+#: /templates/_macros/market_tile.html:9
+msgid "{app_name} .::. screenshot"
+msgstr "{ȧƥƥ_ƞȧḿḗ} .::. şƈřḗḗƞşħǿŧ"
 
-#: /templates/category/main.html:38
-#: /templates/category/main.html:64
-msgid "View All"
-msgstr "Ṽīḗẇ Ȧŀŀ"
+#: /templates/_macros/market_tile.html:41
+msgid "{rating_body}: {rating}"
+msgstr "{řȧŧīƞɠ_ƀǿḓẏ}: {řȧŧīƞɠ}"
 
-#: /templates/category/main.html:60
-msgid "Popular"
-msgstr "Ƥǿƥŭŀȧř"
+#: /templates/_macros/market_tile.html:46
+#: /templates/_macros/market_button.html:7
+msgid "Free"
+msgstr "Ƒřḗḗ"
 
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:62
-msgid "New"
-msgstr "Ƞḗẇ"
+#: /templates/_macros/market_tile.html:54
+msgid "({n})"
+msgstr "({ƞ})"
 
-#: /templates/category/main.html:83
-msgid "No apps in this category"
-msgstr "Ƞǿ ȧƥƥş īƞ ŧħīş ƈȧŧḗɠǿřẏ"
+#: /templates/_macros/market_tile.html:57
+#: /templates/detail/main.html:111
+msgid "{n} Review"
+msgid_plural "{n} Reviews"
+msgstr[0] "{ƞ} Řḗṽīḗẇ"
+msgstr[1] "{ƞ} Řḗṽīḗẇş"
 
-#: /templates/category/main.html:88
-msgid "The category you requested does not exist."
-msgstr "Ŧħḗ ƈȧŧḗɠǿřẏ ẏǿŭ řḗɋŭḗşŧḗḓ ḓǿḗş ƞǿŧ ḗẋīşŧ."
+#. "(0)" means "0 reviews."
+#: /templates/_macros/market_tile.html:61
+msgid "(0)"
+msgstr "(0)"
 
-#: /templates/category/main.html:90
-#: /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "Ȧƞ īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř ǿƈƈŭřřḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
+#: /templates/_macros/market_tile.html:62
+msgid "Not yet rated"
+msgstr "Ƞǿŧ ẏḗŧ řȧŧḗḓ"
 
 #. This app is unavailable for purchase.
 #: /templates/_macros/market_button.html:5
 msgid "Unavailable"
 msgstr "Ŭƞȧṽȧīŀȧƀŀḗ"
-
-#: /templates/_macros/market_button.html:7
-#: /templates/_macros/market_tile.html:38
-msgid "Free"
-msgstr "Ƒřḗḗ"
 
 #: /templates/_macros/market_button.html:14
 #: /media/js/buttons.js:94
@@ -237,41 +244,6 @@ msgstr "Īƞşŧȧŀŀ"
 #: /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "Ḿǿřḗ"
-
-#: /templates/_macros/market_tile.html:9
-msgid "{app_name} .::. screenshot"
-msgstr "{ȧƥƥ_ƞȧḿḗ} .::. şƈřḗḗƞşħǿŧ"
-
-#: /templates/_macros/market_tile.html:46
-msgid "({n})"
-msgstr "({ƞ})"
-
-#: /templates/_macros/market_tile.html:49
-#: /templates/detail/main.html:111
-msgid "{n} Review"
-msgid_plural "{n} Reviews"
-msgstr[0] "{ƞ} Řḗṽīḗẇ"
-msgstr[1] "{ƞ} Řḗṽīḗẇş"
-
-#. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:53
-msgid "(0)"
-msgstr "(0)"
-
-#: /templates/_macros/market_tile.html:54
-msgid "Not yet rated"
-msgstr "Ƞǿŧ ẏḗŧ řȧŧḗḓ"
-
-#: /templates/detail/abuse.html:5
-#: /templates/detail/main.html:176
-#: /templates/detail/receipt.html:68
-#: /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "Řḗƥǿřŧ Ȧƀŭşḗ"
-
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "Şḗƞḓ Řḗƥǿřŧ"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -296,6 +268,10 @@ msgstr "Ḓḗŀḗŧḗ"
 #: /templates/_macros/rating.html:31
 msgid "Report"
 msgstr "Řḗƥǿřŧ"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Řȧŧḗḓ {şŧȧřş} ǿŭŧ ǿƒ {ḿȧẋşŧȧřş} şŧȧřş"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -422,17 +398,55 @@ msgstr "Ħǿḿḗƥȧɠḗ"
 msgid "Statistics"
 msgstr "Şŧȧŧīşŧīƈş"
 
+#: /templates/detail/main.html:176
+#: /templates/detail/abuse.html:5
+#: /templates/detail/receipt.html:68
+#: /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "Řḗƥǿřŧ Ȧƀŭşḗ"
+
 #: /templates/detail/main.html:187
 msgid "Premium version available"
 msgstr "Ƥřḗḿīŭḿ ṽḗřşīǿƞ ȧṽȧīŀȧƀŀḗ"
 
-#: /templates/detail/main.html:202
+#: /templates/detail/main.html:208
 msgid "Ratings"
 msgstr "Řȧŧīƞɠş"
 
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Řȧŧḗḓ {şŧȧřş} ǿŭŧ ǿƒ {ḿȧẋşŧȧřş} şŧȧřş"
+#: /templates/category/main.html:37
+msgid "Featured Apps"
+msgstr "Ƒḗȧŧŭřḗḓ Ȧƥƥş"
+
+#: /templates/category/main.html:38
+#: /templates/category/main.html:64
+msgid "View All"
+msgstr "Ṽīḗẇ Ȧŀŀ"
+
+#: /templates/category/main.html:60
+msgid "Popular"
+msgstr "Ƥǿƥŭŀȧř"
+
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:62
+msgid "New"
+msgstr "Ƞḗẇ"
+
+#: /templates/category/main.html:83
+msgid "No apps in this category"
+msgstr "Ƞǿ ȧƥƥş īƞ ŧħīş ƈȧŧḗɠǿřẏ"
+
+#: /templates/category/main.html:88
+msgid "The category you requested does not exist."
+msgstr "Ŧħḗ ƈȧŧḗɠǿřẏ ẏǿŭ řḗɋŭḗşŧḗḓ ḓǿḗş ƞǿŧ ḗẋīşŧ."
+
+#: /templates/category/main.html:90
+#: /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr "Ȧƞ īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř ǿƈƈŭřřḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
+
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "Şḗƞḓ Řḗƥǿřŧ"
 
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
@@ -442,48 +456,18 @@ msgstr "Ɓȧƈķ ŧǿ ȧƥƥ"
 msgid "Loading Privacy Policy..."
 msgstr "Ŀǿȧḓīƞɠ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ..."
 
-#: /templates/errors/404.html:3
-#: /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "Ŧħḗ ƥȧɠḗ ẏǿŭ ẇḗřḗ ŀǿǿķīƞɠ ƒǿř ẇȧş ƞǿŧ ƒǿŭƞḓ."
-
 #: /templates/detail/receipt.html:8
 msgid "Thank you for purchasing"
 msgstr "Ŧħȧƞķ ẏǿŭ ƒǿř ƥŭřƈħȧşīƞɠ"
 
-#: /templates/ratings/edit.html:4
-#: /templates/ratings/main.html:14
-#: /media/js/views/app/ratings/edit.js:71
-msgid "Edit Review"
-msgstr "Ḗḓīŧ Řḗṽīḗẇ"
+#: /templates/detail/receipt.html:29
+#: /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "Ŧħḗ ƥȧɠḗ ẏǿŭ ẇḗřḗ ŀǿǿķīƞɠ ƒǿř ẇȧş ƞǿŧ ƒǿŭƞḓ."
 
-#: /templates/ratings/edit.html:8
-#: /templates/ratings/write.html:7
-msgid "Rate:"
-msgstr "Řȧŧḗ:"
-
-#: /templates/ratings/edit.html:20
-#: /templates/ratings/report.html:3
-#: /templates/ratings/report.html:23
-#: /templates/ratings/write.html:3
-#: /templates/ratings/write.html:19
-#: /templates/user/newsletter.html:13
-msgid "Cancel"
-msgstr "Ƈȧƞƈḗŀ"
-
-#: /templates/ratings/edit.html:21
-#: /templates/ratings/write.html:20
-msgid "Submit"
-msgstr "Şŭƀḿīŧ"
-
-#: /templates/ratings/edit.html:24
-#: /templates/ratings/write.html:23
-msgid "Only logged in users may edit reviews."
-msgstr "Ǿƞŀẏ ŀǿɠɠḗḓ īƞ ŭşḗřş ḿȧẏ ḗḓīŧ řḗṽīḗẇş."
-
-#: /templates/ratings/main.html:36
-msgid "This app has no reviews."
-msgstr "Ŧħīş ȧƥƥ ħȧş ƞǿ řḗṽīḗẇş."
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Ȧƞ ḗřřǿř ǿƈƈŭřřḗḓ."
 
 #: /templates/errors/pagination.html:1
 msgid "Error loading more"
@@ -492,19 +476,6 @@ msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ḿǿřḗ"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Ŧřẏ Ȧɠȧīƞ"
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Ȧƞ ḗřřǿř ǿƈƈŭřřḗḓ."
-
-#: /templates/ratings/rating.html:4
-#: /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "Ȧƥƥ Řḗṽīḗẇ"
-
-#: /templates/ratings/rating.html:16
-msgid "The review you requested does not exist."
-msgstr "Ŧħḗ řḗṽīḗẇ ẏǿŭ řḗɋŭḗşŧḗḓ ḓǿḗş ƞǿŧ ḗẋīşŧ."
 
 #: /templates/search/main.html:15
 msgid "<b>{n}</b> Result"
@@ -524,6 +495,49 @@ msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ"
 #: /templates/search/main.html:41
 msgid "No results found, try again later"
 msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ, ŧřẏ ȧɠȧīƞ ŀȧŧḗř"
+
+#: /templates/ratings/edit.html:4
+#: /templates/ratings/main.html:14
+#: /media/js/views/app/ratings/edit.js:71
+msgid "Edit Review"
+msgstr "Ḗḓīŧ Řḗṽīḗẇ"
+
+#: /templates/ratings/edit.html:8
+#: /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "Řȧŧḗ:"
+
+#: /templates/ratings/edit.html:20
+#: /templates/ratings/write.html:3
+#: /templates/ratings/write.html:19
+#: /templates/ratings/report.html:3
+#: /templates/ratings/report.html:23
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "Ƈȧƞƈḗŀ"
+
+#: /templates/ratings/edit.html:21
+#: /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Şŭƀḿīŧ"
+
+#: /templates/ratings/edit.html:24
+#: /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "Ǿƞŀẏ ŀǿɠɠḗḓ īƞ ŭşḗřş ḿȧẏ ḗḓīŧ řḗṽīḗẇş."
+
+#: /templates/ratings/main.html:36
+msgid "This app has no reviews."
+msgstr "Ŧħīş ȧƥƥ ħȧş ƞǿ řḗṽīḗẇş."
+
+#: /templates/ratings/rating.html:4
+#: /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "Ȧƥƥ Řḗṽīḗẇ"
+
+#: /templates/ratings/rating.html:16
+msgid "The review you requested does not exist."
+msgstr "Ŧħḗ řḗṽīḗẇ ẏǿŭ řḗɋŭḗşŧḗḓ ḓǿḗş ƞǿŧ ḗẋīşŧ."
 
 #: /templates/ratings/report.html:2
 msgid "Please select a reason:"
@@ -574,18 +588,6 @@ msgstr "Şȧṽḗ Ƈħȧƞɠḗş"
 msgid "Sign In / Sign Up"
 msgstr "Şīɠƞ Īƞ / Şīɠƞ Ŭƥ"
 
-#: /templates/user/purchases.html:49
-msgid "You must be signed in to view your apps."
-msgstr "Ẏǿŭ ḿŭşŧ ƀḗ şīɠƞḗḓ īƞ ŧǿ ṽīḗẇ ẏǿŭř ȧƥƥş."
-
-#: /templates/user/purchases.html:50
-msgid "Sign in / Sign up"
-msgstr "Şīɠƞ īƞ / Şīɠƞ ŭƥ"
-
-#: /templates/user/purchases.html:34
-msgid "You have no apps"
-msgstr "Ẏǿŭ ħȧṽḗ ƞǿ ȧƥƥş"
-
 #: /templates/settings/nav.html:6
 msgid "Account"
 msgstr "Ȧƈƈǿŭƞŧ"
@@ -606,6 +608,18 @@ msgstr "Şīɠƞīƞɠ ŭƥ..."
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "Ẏǿŭ ẇḗřḗ şŭƈƈḗşşƒŭŀŀẏ şīɠƞḗḓ ŭƥ ƒǿř ŧħḗ Ḿȧřķḗŧƥŀȧƈḗ ƞḗẇşŀḗŧŧḗř!"
 
+#: /templates/user/purchases.html:49
+msgid "You must be signed in to view your apps."
+msgstr "Ẏǿŭ ḿŭşŧ ƀḗ şīɠƞḗḓ īƞ ŧǿ ṽīḗẇ ẏǿŭř ȧƥƥş."
+
+#: /templates/user/purchases.html:50
+msgid "Sign in / Sign up"
+msgstr "Şīɠƞ īƞ / Şīɠƞ ŭƥ"
+
+#: /templates/user/purchases.html:34
+msgid "You have no apps"
+msgstr "Ẏǿŭ ħȧṽḗ ƞǿ ȧƥƥş"
+
 #: /media/js/buttons.js:58
 #: /media/js/buttons.js:119
 #: /media/js/payments/payments.js:91
@@ -622,27 +636,27 @@ msgstr "Ƥŭřƈħȧşīƞɠ"
 msgid "Install failed. Please try again later."
 msgstr "Īƞşŧȧŀŀ ƒȧīŀḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
 
-#: /media/js/buttons.js:274
+#: /media/js/buttons.js:282
 msgid "Launch"
 msgstr "Ŀȧŭƞƈħ"
 
-#: /media/js/apps.js:70
+#: /media/js/apps.js:76
 msgid "App install error: {error}"
 msgstr "Ȧƥƥ īƞşŧȧŀŀ ḗřřǿř: {ḗřřǿř}"
 
-#: /media/js/apps.js:121
+#: /media/js/apps.js:127
 msgid "Your device does not support payments."
 msgstr "Ẏǿŭř ḓḗṽīƈḗ ḓǿḗş ƞǿŧ şŭƥƥǿřŧ ƥȧẏḿḗƞŧş."
 
-#: /media/js/apps.js:123
+#: /media/js/apps.js:129
 msgid "This app is unavailable for purchase in your region."
 msgstr "Ŧħīş ȧƥƥ īş ŭƞȧṽȧīŀȧƀŀḗ ƒǿř ƥŭřƈħȧşḗ īƞ ẏǿŭř řḗɠīǿƞ."
 
-#: /media/js/apps.js:127
+#: /media/js/apps.js:133
 msgid "Your browser or device is not web-app compatible."
 msgstr "Ẏǿŭř ƀřǿẇşḗř ǿř ḓḗṽīƈḗ īş ƞǿŧ ẇḗƀ-ȧƥƥ ƈǿḿƥȧŧīƀŀḗ."
 
-#: /media/js/apps.js:129
+#: /media/js/apps.js:135
 msgid "This app is unavailable for your platform."
 msgstr "Ŧħīş ȧƥƥ īş ŭƞȧṽȧīŀȧƀŀḗ ƒǿř ẏǿŭř ƥŀȧŧƒǿřḿ."
 
@@ -654,58 +668,72 @@ msgstr "Ẏǿŭ ħȧṽḗ ƀḗḗƞ şīɠƞḗḓ ǿŭŧ"
 msgid "You have been signed in"
 msgstr "Ẏǿŭ ħȧṽḗ ƀḗḗƞ şīɠƞḗḓ īƞ"
 
-#: /media/js/login.js:124
+#: /media/js/login.js:127
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr ""
 "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ḿȧẏƀḗ ẏǿŭ ḓǿƞ'ŧ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ ŭƞḓḗř ŧħȧŧ ḗḿȧīŀ "
 "ȧḓḓřḗşş?"
 
-#: /media/js/login.js:129
+#: /media/js/login.js:132
 msgid "Persona login failed. A server error was encountered."
 msgstr "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ȧ şḗřṽḗř ḗřřǿř ẇȧş ḗƞƈǿŭƞŧḗřḗḓ."
 
-#: /media/js/mobilenetwork.js:306
+#: /media/js/mobilenetwork.js:311
 msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
 msgstr ""
 "Ẏǿŭ ȧřḗ ƈŭřřḗƞŧŀẏ ƀřǿẇşīƞɠ ƈǿƞŧḗƞŧ ƒǿř *{ƈŭřřḗƞŧ_řḗɠīǿƞ}*. Ẇǿŭŀḓ ẏǿŭ ŀīķḗ ŧǿ "
 "şẇīŧƈħ ŧǿ *{ƞḗẇ_řḗɠīǿƞ}*?"
 
-#: /media/js/navigation.js:52
-msgid "No internet connection"
-msgstr "Ƞǿ īƞŧḗřƞḗŧ ƈǿƞƞḗƈŧīǿƞ"
+#. The report is an abuse report for reviews
+#: /media/js/ratings.js:41
+msgid "Sending report..."
+msgstr "Şḗƞḓīƞɠ řḗƥǿřŧ..."
+
+#: /media/js/ratings.js:46
+msgid "Review flagged"
+msgstr "Řḗṽīḗẇ ƒŀȧɠɠḗḓ"
+
+#: /media/js/ratings.js:50
+msgid "Report review operation failed"
+msgstr "Řḗƥǿřŧ řḗṽīḗẇ ǿƥḗřȧŧīǿƞ ƒȧīŀḗḓ"
+
+#: /media/js/ratings.js:61
+msgid "Review deleted"
+msgstr "Řḗṽīḗẇ ḓḗŀḗŧḗḓ"
+
+#: /media/js/ratings.js:91
+msgid "There was a problem deleting the review"
+msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ḓḗŀḗŧīƞɠ ŧħḗ řḗṽīḗẇ"
+
+#: /media/js/ratings.js:231
+msgid "Your review was posted"
+msgstr "Ẏǿŭř řḗṽīḗẇ ẇȧş ƥǿşŧḗḓ"
+
+#: /media/js/ratings.js:245
+msgid "Error while submitting review"
+msgstr "Ḗřřǿř ẇħīŀḗ şŭƀḿīŧŧīƞɠ řḗṽīḗẇ"
 
 #: /media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř şŭƀḿīŧŧīƞɠ ẏǿŭř ƞḗẇşŀḗŧŧḗř şīɠƞ ŭƥ řḗɋŭḗşŧ"
 
-#. The report is an abuse report for reviews
-#: /media/js/ratings.js:39
-msgid "Sending report..."
-msgstr "Şḗƞḓīƞɠ řḗƥǿřŧ..."
+#: /media/js/navigation.js:52
+msgid "No internet connection"
+msgstr "Ƞǿ īƞŧḗřƞḗŧ ƈǿƞƞḗƈŧīǿƞ"
 
-#: /media/js/ratings.js:44
-msgid "Review flagged"
-msgstr "Řḗṽīḗẇ ƒŀȧɠɠḗḓ"
+#. {n} is the number of characters left.
+#: /media/js/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] "<b>{ƞ}</b> ƈħȧřȧƈŧḗř ŀḗƒŧ."
+msgstr[1] "<b>{ƞ}</b> ƈħȧřȧƈŧḗřş ŀḗƒŧ."
 
-#: /media/js/ratings.js:48
-msgid "Report review operation failed"
-msgstr "Řḗƥǿřŧ řḗṽīḗẇ ǿƥḗřȧŧīǿƞ ƒȧīŀḗḓ"
-
-#: /media/js/ratings.js:59
-msgid "Review deleted"
-msgstr "Řḗṽīḗẇ ḓḗŀḗŧḗḓ"
-
-#: /media/js/ratings.js:89
-msgid "There was a problem deleting the review"
-msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ḓḗŀḗŧīƞɠ ŧħḗ řḗṽīḗẇ"
-
-#: /media/js/ratings.js:229
-msgid "Your review was posted"
-msgstr "Ẏǿŭř řḗṽīḗẇ ẇȧş ƥǿşŧḗḓ"
-
-#: /media/js/ratings.js:243
-msgid "Error while submitting review"
-msgstr "Ḗřřǿř ẇħīŀḗ şŭƀḿīŧŧīƞɠ řḗṽīḗẇ"
+#. {n} is the number of stars
+#: /media/js/common/ratingwidget.js:34
+msgid "{n} star"
+msgid_plural "{n} stars"
+msgstr[0] "{ƞ} şŧȧř"
+msgstr[1] "{ƞ} şŧȧřş"
 
 #: /media/js/settings.js:72
 msgid "Worldwide"
@@ -783,20 +811,6 @@ msgstr "Ṽḗƞḗzŭḗŀȧ"
 msgid "Department of Justice, Rating, Titles and Qualification"
 msgstr "Ḓḗƥȧřŧḿḗƞŧ ǿƒ Ĵŭşŧīƈḗ, Řȧŧīƞɠ, Ŧīŧŀḗş ȧƞḓ Ɋŭȧŀīƒīƈȧŧīǿƞ"
 
-#. {n} is the number of characters left.
-#: /media/js/utils.js:28
-msgid "<b>{n}</b> character left."
-msgid_plural "<b>{n}</b> characters left."
-msgstr[0] "<b>{ƞ}</b> ƈħȧřȧƈŧḗř ŀḗƒŧ."
-msgstr[1] "<b>{ƞ}</b> ƈħȧřȧƈŧḗřş ŀḗƒŧ."
-
-#. {n} is the number of stars
-#: /media/js/common/ratingwidget.js:34
-msgid "{n} star"
-msgid_plural "{n} stars"
-msgstr[0] "{ƞ} şŧȧř"
-msgstr[1] "{ƞ} şŧȧřş"
-
 #: /media/js/payments/payments.js:94
 msgid "Payment failed. Try again later."
 msgstr "Ƥȧẏḿḗƞŧ ƒȧīŀḗḓ. Ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
@@ -831,10 +845,6 @@ msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ şŭƀḿīŧŧīƞɠ ẏǿŭř
 msgid "Not Found"
 msgstr "Ƞǿŧ Ƒǿŭƞḓ"
 
-#: /media/js/views/search.js:201
-msgid "Search Results"
-msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
-
 #: /media/js/views/settings.js:27
 msgid "Settings saved"
 msgstr "Şḗŧŧīƞɠş şȧṽḗḓ"
@@ -850,6 +860,10 @@ msgstr "Ȧƀŭşḗ řḗƥǿřŧḗḓ"
 #: /media/js/views/app/abuse.js:22
 msgid "Error while submitting report"
 msgstr "Ḗřřǿř ẇħīŀḗ şŭƀḿīŧŧīƞɠ řḗƥǿřŧ"
+
+#: /media/js/views/search.js:201
+msgid "Search Results"
+msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
 
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"
