@@ -5,6 +5,8 @@ define('ratings',
 
     var gettext = l10n.gettext;
     var notify = require('notification').notification;
+    
+    var open_rating = false;
 
     function rewriter(app, rewriter) {
         var unsigned_url = urls.api.unsigned.url('reviews');
@@ -93,16 +95,16 @@ define('ratings',
     function loginToRate() {
         login.login().fail(function() {
             // Clear flag for open rating modal on cancel/fail of login.
-            z.flags.open_rating = false;
+            open_rating = false;
         });
 
         // Set a flag to know that we expect the modal to open
         // this prevents opening later if login was cancelled
         // as this flag is cleared in that case.
-        z.flags.open_rating = true;
+        open_rating = true;
         z.page.one('loaded', function(){
-            if (z.flags.open_rating){
-                z.flags.open_rating = false;
+            if (open_rating){
+                open_rating = false;
                 var $reviewButton = $('.write-review');
                 if ($reviewButton.attr('id') == 'edit-review') {
                     // load the edit view.
