@@ -1,6 +1,7 @@
-{% defer (url=apiParams('reviews', app=slug, user='mine'), id='main') %}
-  {% set obj = this.objects[0] %}
-  <div class="main compose-review">
+{% defer (url=endpoint, id='main') %}
+  {# Pass `this` through `normalize()`, which is defined in the view. #}
+  {% set obj = normalize(this) %}
+  <div class="main compose-review" data-slug="{{ slug }}">
     <header class="secondary-header">
       <h2>{{ _('Edit Review') }}</h2>
     </header>

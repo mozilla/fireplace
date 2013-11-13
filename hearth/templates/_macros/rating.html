@@ -22,8 +22,10 @@
           <li class="flagged">{{ _('Flagged for review') }}</li>
         {% endif %}
         {% if this.is_author or user.get_permission('reviewer') %}
-          <li><a class="edit"
-                 href="{{ url('app/ratings/edit', [slug]) }}">{{ _('Edit') }}</a></li>
+          <li><a class="edit" data-action="edit"
+                 href="{{ url('app/ratings/edit', [slug]) }}"
+                 {# HACK: This extracts the ID from the resource_uri since the API returns no ID. #}
+                 data-review-id="{{ this.resource_uri.split('/')[5] }}">{{ _('Edit') }}</a></li>
           <li><a class="delete post" data-action="delete" href="#"
                  data-href="{{ this.resource_uri }}"
                  data-app="{{ slug }}">{{ _('Delete') }}</a></li>
