@@ -4,7 +4,6 @@ define('routes_api', [], function() {
         'app/privacy': '/api/v1/apps/app/{0}/privacy/',
         'category': '/api/v1/fireplace/search/featured/?cat={0}',
         'categories': '/api/v1/apps/category/',
-        // TODO: Replace with real API when ready.
         'collection': '/api/v1/rocketfuel/collections/{0}/',
         'collection_image': '/api/v1/rocketfuel/collections/{0}/image/',
         'reviews': '/api/v1/apps/rating/',
