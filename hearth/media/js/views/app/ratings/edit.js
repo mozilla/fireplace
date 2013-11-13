@@ -5,7 +5,6 @@ define('views/app/ratings/edit',
     var gettext = l10n.gettext;
     var notify = notification.notification;
     var forms = require('forms');
-    var caps = require('capabilities');
 
     z.page.on('submit', '.edit-review-form', function(e) {
         e.preventDefault();
