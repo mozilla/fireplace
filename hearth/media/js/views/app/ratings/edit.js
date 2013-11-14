@@ -78,7 +78,7 @@ define('views/app/ratings/edit',
         // If we hit the API and find out that there's no review for the user,
         // just bump them over to the Write a Review page.
         builder.onload('main', function(data) {
-            if (data.meta.total_count === 0) {
+            if (data.meta && data.meta.total_count === 0) {
                 z.page.trigger('divert', urls.reverse('app/ratings/add', [slug]));
             }
         });
