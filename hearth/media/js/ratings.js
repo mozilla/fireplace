@@ -172,7 +172,10 @@ define('ratings',
                 var view = utils.urlparams($this.attr('href'), {review: $this.data('review-id')});
                 z.page.trigger('navigate', view);
                 break;
+            default:
+                return;
         }
+        e.stopPropagation();  // Don't let the default handler fire if an action was matched.
     })).on('click', '.write-review', addReview)
     .on('loaded', function() {
         // Hijack <select> with stars.
