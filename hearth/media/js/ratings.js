@@ -169,7 +169,7 @@ define('ratings',
                 flagReview($review);
                 break;
             case 'edit':
-                var view = utils.urlparams(this.href, {review: $this.data('review-id')});
+                var view = utils.urlparams($this.attr('href'), {review: $this.data('review-id')});
                 z.page.trigger('navigate', view);
                 break;
         }
