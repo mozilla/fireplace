@@ -36,12 +36,19 @@
         {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
         <div class="author lineclamp vital subdetail" itemprop="creator">{{ app.author }}</div>
       {% endif %}
-      {% set content_ratings = app.content_ratings[user.get_setting('region')].values() %}
-      {% if content_ratings.length %}
+      {% set content_rating = app.content_ratings.ratings[user.get_setting('region')] or
+                              app.content_ratings.ratings['generic'] %}
+      {% if content_rating %}
         <div class="content-rating lineclamp vital subdetail" itemprop="content-rating">
-          {{ _('{rating_body}: {rating}',
-               rating_body=content_ratings[0].body,
-               rating=content_ratings[0].name) }}
+          {% if content_rating.body_label != 'generic' %}
+            {# L10n: the IARC rating body/system followed by a name/description of the rating (e.g. "ESRB: Everyone" or "PEGI: For ages 3+"). #}
+            {{ _('{rating_body}: {rating}',
+                 rating_body=content_rating.body,
+                 rating=content_rating.rating) }}
+          {% else %}
+            {# Don't show "Generic:" as the body since that doesn't mean much. #}
+            {{ content_rating.rating }}
+          {% endif %}
         </div>
       {% endif %}
       <div class="price vital">{{ app.price_locale if app.payment_required else _('Free') }}</div>
