@@ -64,7 +64,7 @@ define('views/app/ratings/edit',
         var endpoint;
         if (review_id && user.get_permission('reviewer')) {
             // Allow exact review lookups for admins.
-            endpoint = urls.api.params('review', [review_id]);
+            endpoint = urls.api.url('review', [review_id]);
         } else {
             // Otherwise the user is limited to their own review for the app.
             endpoint = urls.api.params('reviews', {app: slug, user: 'mine'});
