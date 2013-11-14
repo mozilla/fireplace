@@ -134,7 +134,7 @@ define('ratings',
 
         if (capabilities.widescreen()) {
             // For now, edits go through to the view.
-            if  (this.id === 'edit-review') {
+            if (this.id === 'edit-review') {
                 return;
             }
 
@@ -167,6 +167,10 @@ define('ratings',
                 break;
             case 'report':
                 flagReview($review);
+                break;
+            case 'edit':
+                var view = utils.urlparams(this.href, {review: $this.data('review-id')});
+                z.page.trigger('navigate', view);
                 break;
         }
     })).on('click', '.write-review', addReview)
