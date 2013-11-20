@@ -15,7 +15,8 @@ require.config({
         'templates': '../../templates',
         'settings': ['settings_local', 'settings'],
         'stick': 'lib/stick',
-        'format': 'lib/format'
+        'format': 'lib/format',
+        'textoverflowclamp': 'lib/textoverflowclamp'
     }
 });
 

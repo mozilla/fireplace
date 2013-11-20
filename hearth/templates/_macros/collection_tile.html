@@ -1,5 +1,5 @@
 {% macro collection_tile(collection, link=false, src='') %}
-    <section class="collection main {{ collection.layout_type or 'blue' }}"
+    <section class="collection main blue"
       style="background-image: url({{ collection.image }})">
       {% if link %}<a class="ghostlink" href="{{ url('collection', [collection.slug])|urlparams(src=src) }}">{% endif %}
         <header

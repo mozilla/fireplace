@@ -1,6 +1,6 @@
 define('views/homepage',
-    ['format', 'l10n', 'log', 'models', 'newsletter', 'underscore', 'urls', 'utils'],
-    function(format, l10n, log, models, newsletter, _, urls, utils) {
+    ['format', 'l10n', 'log', 'models', 'newsletter', 'textoverflowclamp', 'underscore', 'urls', 'utils'],
+    function(format, l10n, log, models, newsletter, clamper, _, urls, utils) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -50,6 +50,8 @@ define('views/homepage',
                 console.log('OSC injection skipped; Already injected');
                 return;
             }
+
+            clamper.clamp($('.collection + .desc'), 7);
 
             if (!shelf.apps.length) return;
 
