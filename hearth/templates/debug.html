@@ -45,6 +45,18 @@
       </label>
     </p>
 
+    <p>
+      <label>
+        Carrier
+        <select name="carrier" id="carrier">
+          {% set user_carrier = user.get_setting('carrier') %}
+          {% for carrier in carriers %}
+            <option{{ ' selected' if carrier == user_carrier }}>{{ carrier }}</option>
+          {% endfor %}
+        </select>
+      </label>
+    </p>
+
     <h3>Site Settings</h3>
 
     <dl class="site-settings c">

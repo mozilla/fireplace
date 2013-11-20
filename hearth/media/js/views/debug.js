@@ -58,12 +58,22 @@ define('views/debug',
         user.update_settings({region: val});
         z.page.trigger('reload_chrome');
         notification.notification({message: 'Region updated to ' + settings.REGION_CHOICES_SLUG[val]});
+    }).on('change', '#debug-page select[name=carrier]', function(e) {
+        var val = $(this).val();
+        var current_carrier = user.get_setting('carrier');
+        if (current_carrier !== val) {
+            persistent_console.log('Manual carrier change:', current_carrier, '→', val);
+        }
+        user.update_settings({carrier: val});
+        z.page.trigger('reload_chrome');
+        notification.notification({message: 'Carrier updated to ' + val});
     });
 
     return function(builder, args) {
         var recent_logs = log.get_recent(100);
 
         builder.start('debug.html', {
+            carriers: require('mobilenetwork').carriers,
             cache: cache.raw,
             capabilities: capabilities,
             profile: buckets.get_profile(),
