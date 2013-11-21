@@ -154,7 +154,7 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
             var i;
             while (i = ga_page_vars.pop()) {
                 console.log('Cleaning up var ' + i);
-                push(['_deleteCustomVar', i]);
+                ga_push(['_deleteCustomVar', i]);
             }
             console.groupEnd();
         }
