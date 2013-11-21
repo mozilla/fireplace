@@ -57,7 +57,28 @@ define('mobilenetwork',
         440: 'jp'
     };
 
-    var carriers = {
+    var carriers = [
+        'america_movil',
+        'carrierless',
+        'china_unicom',
+        'deutsche_telekom',
+        'etisalat',
+        'hutchinson_three_group',
+        'kddi',
+        'kt',
+        'megafon',
+        'qtel',
+        'singtel',
+        'smart',
+        'sprint',
+        'telecom_italia_group',
+        'telefonica',
+        'telenor',
+        'tmn',
+        'vimpelcom'
+    ];
+
+    var carriersRegions = {
         // United States
         310: {
             26: 'deutsche_telekom',
@@ -300,7 +321,7 @@ define('mobilenetwork',
 
         return {
             region: regions[mcc] || null,
-            carrier: carriers[mcc] && carriers[mcc][mnc] || null
+            carrier: carriersRegions[mcc] && carriersRegions[mcc][mnc] || null
         };
     }
 
@@ -358,16 +379,16 @@ define('mobilenetwork',
             console.warn('Error accessing navigator.mozMobileConnection:', e);
         }
 
-        newSettings.true_carrier = GET.carrier;
-        newSettings.true_region = GET.region;
+        newSettings.sim_carrier = GET.carrier;
+        newSettings.sim_region = GET.region;
 
         if (mcc || mnc) {
             // Look up region and carrier from MCC (Mobile Country Code)
             // and MNC (Mobile Network Code).
             var network = getNetwork(mcc, mnc);
 
-            newSettings.true_carrier = network.carrier;
-            newSettings.true_region = network.region;
+            newSettings.sim_carrier = network.carrier;
+            newSettings.sim_region = network.region;
 
             region = network.region;
 
@@ -413,6 +434,7 @@ define('mobilenetwork',
     detectMobileNetwork(navigator);
 
     return {
+        carriers: carriers,
         detectMobileNetwork: detectMobileNetwork,
         getNetwork: getNetwork
     };
