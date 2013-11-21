@@ -33,9 +33,11 @@ $triangle-size = 20px;
 // also used as standalone "card" on detail pages.
 
 .mkt-tile .rating {
+    clear: left;
     color: $sailor-blue;
     display: block;
     font-size: 12px;
+    padding: 8px 0;
     position: relative;
 
     a {
@@ -73,7 +75,7 @@ $triangle-size = 20px;
     .subdetail {
         color: $earl-gray;
         font-size: 12px;
-        line-height: 15px;
+        line-height: 18px;
         max-height: 28px;
 
         &.content-rating {
@@ -107,6 +109,7 @@ $triangle-size = 20px;
     overflow: hidden;
     padding: 21px 0 0;
     position: relative;
+
     &.single {
         // No dots so make it smaller. Leave 15px from bottom of screenshot to bottom of tray.
         height: 201px;
@@ -530,8 +533,11 @@ grid-style() {
 ratings-sidebar() {
     // These rules get applied on mobile detail page and desktop category listing pages.
     .rating {
+        bottom: 2px;
         clear: left;
-        padding: 8px 0 10px;
+        padding: 10px 0 10px;
+        position: relative;
+
         .cnt {
             display: inline-block;
             // To line up with app name.
@@ -543,13 +549,13 @@ ratings-sidebar() {
         }
     }
     h3 {
-        font-size: 30px;
+        font-size: 20px;
         font-weight: 300;
-        line-height: 30px;
+        line-height: 18px;
         max-width: 100%;
     }
     .subdetail {
-        font-size: 15px;
+        font-size: 12px;
         line-height: 18px;
     }
 }
@@ -659,10 +665,11 @@ ratings-sidebar() {
                     background-image: none;
                 }
                 h3 {
-                    font-size: 34px;
-                    line-height: 34px;
+                    font-size: 22px;
+                    line-height: 22px;
                 }
                 .subdetail {
+                    font-size: 13px;
                     line-height: 20px;
                 }
             }
