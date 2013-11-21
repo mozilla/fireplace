@@ -144,6 +144,7 @@ ellipsis() {
 
 // Image replacement.
 hidetext() {
+    color: transparent;  // For IE.
     overflow: hidden;
     text-indent: 101%;
     white-space: nowrap;
@@ -290,6 +291,7 @@ display-flex() {
     display: -webkit-box;
     display: flex;
     display: -ms-flex;
+    display: -ms-flexbox;
     display: -moz-flex;
     display: -webkit-flex;
 }
@@ -316,6 +318,7 @@ flex-line() {
 
 flex-center() {
     -ms-box-align: center;
+    -ms-flex-align: center;
     -moz-box-align: center;
     -webkit-box-align: center;
     align-self: center;
