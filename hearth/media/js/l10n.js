@@ -35,7 +35,7 @@ function get_locale(locale) {
 
 if (!window.define) {
     var qs_lang = /[\?&]lang=([\w\-]+)/i.exec(window.location.search);
-    var locale = get_locale((qs_lang && qs_lang[1]) || navigator.language);
+    var locale = get_locale((qs_lang && qs_lang[1]) || navigator.language || navigator.userLanguage);
     if (locale === 'en-US') {
         window.navigator.l10n = {language: 'en-US'};
         return;
