@@ -165,7 +165,12 @@ define('views/search',
     }).on('search', function(e, params) {
         e.preventDefault();
         return z.page.trigger(
-            'navigate', utils.urlparams(urls.reverse('search'), params));
+            'navigate',
+            [
+                utils.urlparams(urls.reverse('search'), params),
+                {search_query: params.q}
+            ]
+        );
     });
 
     function processor(query) {
