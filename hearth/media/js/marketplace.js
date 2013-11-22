@@ -203,7 +203,12 @@ require.config({
                 }, 3000);
             }).on('touchend mouseup', '.wordmark', function(e) {
                 console.log('debug hold released...', e.type);
+                if (to) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
                 clearTimeout(to);
+                to = false;
             });
         })();
 
