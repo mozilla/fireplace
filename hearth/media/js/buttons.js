@@ -111,7 +111,7 @@ define('buttons',
             console.log('Starting payment flow for', product_name);
             $this.data('old-text', $this.html());  // Save the old text of the button.
             setButton($this, gettext('Purchasing'), 'purchasing');
-            require('payments').purchase(product).then(function() {
+            require('payments/payments').purchase(product).then(function() {
                 console.log('Purchase flow completed for', product_name);
 
                 // Update the button to say Install.
