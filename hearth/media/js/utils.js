@@ -1,6 +1,6 @@
 define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
 
-    var gettext = l10n.gettext;
+    var ngettext = l10n.ngettext;
 
     _.extend(String.prototype, {
         strip: function(str) {
@@ -60,8 +60,8 @@ define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
         return value;
     }
 
+    var tags = /input|keygen|meter|option|output|progress|select|textarea/i;
     function fieldFocused(e) {
-        var tags = /input|keygen|meter|option|output|progress|select|textarea/i;
         return tags.test(e.target.nodeName);
     }
 
@@ -87,6 +87,9 @@ define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
     }
 
     function urlencode(kwargs) {
+        if (typeof kwargs === 'string') {
+            return encodeURIComponent(kwargs);
+        }
         var params = [];
         if ('__keywords' in kwargs) {
             delete kwargs.__keywords;

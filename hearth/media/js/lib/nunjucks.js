@@ -1,3 +1,5 @@
+// Browser bundle of nunjucks 1.0.0 (slim, only works with precompiled templates)
+
 (function() {
 var modules = {};
 (function() {
@@ -5,7 +7,11 @@ var modules = {};
 // A simple class system, more documentation to come
 
 function extend(cls, name, props) {
-    var prototype = Object.create(cls.prototype);
+    // This does that same thing as Object.create, but with support for IE8
+    var F = function() {};
+    F.prototype = cls.prototype;
+    var prototype = new F();
+
     var fnTest = /xyz/.test(function(){ xyz; }) ? /\bparent\b/ : /.*/;
     props = props || {};
 
@@ -37,7 +43,7 @@ function extend(cls, name, props) {
 
     prototype.typename = name;
 
-    var new_cls = function() { 
+    var new_cls = function() {
         if(prototype.init) {
             prototype.init.apply(this, arguments);
         }
@@ -57,7 +63,7 @@ function extend(cls, name, props) {
     return new_cls;
 }
 
-modules['object'] = extend(Object, "Object", {});
+modules.object = extend(Object, "Object", {});
 })();
 (function() {
 var ArrayProto = Array.prototype;
@@ -75,7 +81,7 @@ var lookupEscape = function(ch) {
     return escapeMap[ch];
 };
 
-var exports = modules['lib'] = {};
+var exports = modules.lib = {};
 
 exports.withPrettyErrors = function(path, withInternals, func) {
     try {
@@ -96,7 +102,7 @@ exports.withPrettyErrors = function(path, withInternals, func) {
 
         throw e;
     }
-}
+};
 
 exports.TemplateError = function(message, lineno, colno) {
     var err = this;
@@ -110,7 +116,7 @@ exports.TemplateError = function(message, lineno, colno) {
         }
     }
 
-    err.name = "Template render error";
+    err.name = 'Template render error';
     err.message = message;
     err.lineno = lineno;
     err.colno = colno;
@@ -213,7 +219,7 @@ exports.repeat = function(char_, n) {
 };
 
 exports.each = function(obj, func, context) {
-    if(obj == null) {
+    if(obj === null) {
         return;
     }
 
@@ -229,7 +235,7 @@ exports.each = function(obj, func, context) {
 
 exports.map = function(obj, func) {
     var results = [];
-    if(obj == null) {
+    if(obj === null) {
         return results;
     }
 
@@ -247,11 +253,122 @@ exports.map = function(obj, func) {
 
     return results;
 };
+
+exports.asyncParallel = function(funcs, done) {
+    var count = funcs.length,
+        result = new Array(count),
+        current = 0;
+
+    var makeNext = function(i) {
+        return function(res) {
+            result[i] = res;
+            current += 1;
+
+            if (current === count) {
+                done(result);
+            }
+        };
+    };
+
+    for (var i = 0; i < count; i++) {
+        funcs[i](makeNext(i));
+    }
+};
+
+exports.asyncIter = function(arr, iter, cb) {
+    var i = -1;
+
+    function next() {
+        i++;
+
+        if(i < arr.length) {
+            iter(arr[i], i, next, cb);
+        }
+        else {
+            cb();
+        }
+    }
+
+    next();
+};
+
+exports.asyncFor = function(obj, iter, cb) {
+    var keys = exports.keys(obj);
+    var len = keys.length;
+    var i = -1;
+
+    function next() {
+        i++;
+        var k = keys[i];
+
+        if(i < len) {
+            iter(k, obj[k], i, len, next);
+        }
+        else {
+            cb();
+        }
+    }
+
+    next();
+};
+
+if(!Array.prototype.indexOf) {
+    Array.prototype.indexOf = function(array, searchElement /*, fromIndex */) {
+        if (array === null) {
+            throw new TypeError();
+        }
+        var t = Object(array);
+        var len = t.length >>> 0;
+        if (len === 0) {
+            return -1;
+        }
+        var n = 0;
+        if (arguments.length > 2) {
+            n = Number(arguments[2]);
+            if (n != n) { // shortcut for verifying if it's NaN
+                n = 0;
+            } else if (n !== 0 && n !== Infinity && n !== -Infinity) {
+                n = (n > 0 || -1) * Math.floor(Math.abs(n));
+            }
+        }
+        if (n >= len) {
+            return -1;
+        }
+        var k = n >= 0 ? n : Math.max(len - Math.abs(n), 0);
+        for (; k < len; k++) {
+            if (k in t && t[k] === searchElement) {
+                return k;
+            }
+        }
+        return -1;
+    };
+}
+
+if(!Array.prototype.map) {
+    Array.prototype.map = function() {
+        throw new Error("map is unimplemented for this js engine");
+    };
+}
+
+exports.keys = function(obj) {
+    if(Object.prototype.keys) {
+        return obj.keys();
+    }
+    else {
+        var keys = [];
+        for(var k in obj) {
+            if(obj.hasOwnProperty(k)) {
+                keys.push(k);
+            }
+        }
+        return keys;
+    }
+};
 })();
 (function() {
 
-var lib = modules["lib"];
-var Object = modules["object"];
+var lib = modules.lib;
+var Object = modules.object;
 
 // Frames keep track of scoping both at compile-time and run-time so
 // we know how to access variables. Block tags can introduce special
@@ -312,13 +429,14 @@ function makeMacro(argNames, kwargNames, func) {
         var args;
         var kwargs = getKeywordArgs(arguments);
 
+        var i;
         if(argCount > argNames.length) {
             args = Array.prototype.slice.call(arguments, 0, argNames.length);
 
             // Positional arguments that should be passed in as
             // keyword arguments (essentially default values)
             var vals = Array.prototype.slice.call(arguments, args.length, argCount);
-            for(var i=0; i<vals.length; i++) {
+            for(i=0; i<vals.length; i++) {
                 if(i < kwargNames.length) {
                     kwargs[kwargNames[i]] = vals[i];
                 }
@@ -329,7 +447,7 @@ function makeMacro(argNames, kwargNames, func) {
         else if(argCount < argNames.length) {
             args = Array.prototype.slice.call(arguments, 0, argCount);
 
-            for(var i=argCount; i<argNames.length; i++) {
+            for(i=argCount; i<argNames.length; i++) {
                 var arg = argNames[i];
 
                 // Keyword arguments that should be passed as
@@ -404,7 +522,7 @@ function SafeString(val) {
     ];
 
     for(var i=0; i<methods.length; i++) {
-        this[methods[i]] = proxyStr(val[methods[i]]);
+        this[methods[i]] = markSafe(val[methods[i]]);
     }
 }
 
@@ -415,15 +533,26 @@ function copySafeness(dest, target) {
     return target.toString();
 }
 
-function proxyStr(func) {
-    return function() {
-        var ret = func.apply(this, arguments);
+function markSafe(val) {
+    var type = typeof val;
 
-        if(typeof ret == 'string') {
-            return new SafeString(ret);
-        }
-        return ret;
-    };
+    if(type === 'string') {
+        return new SafeString(val);
+    }
+    else if(type !== 'function') {
+        return val;
+    }
+    else {
+        return function() {
+            var ret = val.apply(this, arguments);
+
+            if(typeof ret === 'string') {
+                return new SafeString(ret);
+            }
+
+            return ret;
+        };
+    }
 }
 
 function suppressValue(val, autoescape) {
@@ -445,7 +574,7 @@ function memberLookup(obj, val) {
         };
     }
 
-    return suppressValue(obj[val]);
+    return obj[val];
 }
 
 function callWrap(obj, name, args) {
@@ -460,22 +589,97 @@ function callWrap(obj, name, args) {
 }
 
 function contextOrFrameLookup(context, frame, name) {
-    var val = context.lookup(name);
+    var val = frame.lookup(name);
     return (val !== undefined && val !== null) ?
         val :
-        frame.lookup(name);
+        context.lookup(name);
 }
 
 function handleError(error, lineno, colno) {
     if(error.lineno) {
-        throw error;
+        return error;
     }
     else {
-        throw new lib.TemplateError(error, lineno, colno);
+        return new lib.TemplateError(error, lineno, colno);
     }
 }
 
-modules['runtime'] = {
+function asyncEach(arr, dimen, iter, cb) {
+    if(lib.isArray(arr)) {
+        var len = arr.length;
+
+        lib.asyncIter(arr, function(item, i, next) {
+            switch(dimen) {
+            case 1: iter(item, i, len, next); break;
+            case 2: iter(item[0], item[1], i, len, next); break;
+            case 3: iter(item[0], item[1], item[2], i, len, next); break;
+            default:
+                item.push(i, next);
+                iter.apply(this, item);
+            }
+        }, cb);
+    }
+    else {
+        lib.asyncFor(arr, function(key, val, i, len, next) {
+            iter(key, val, i, len, next);
+        }, cb);
+    }
+}
+
+function asyncAll(arr, dimen, func, cb) {
+    var finished = 0;
+    var len;
+    var outputArr;
+
+    function done(i, output) {
+        finished++;
+        outputArr[i] = output;
+
+        if(finished == len) {
+            cb(null, outputArr.join(''));
+        }
+    }
+
+    if(lib.isArray(arr)) {
+        len = arr.length;
+        outputArr = new Array(len);
+
+        if(len === 0) {
+            cb(null, '');
+        }
+        else {
+            for(var i=0; i<arr.length; i++) {
+                var item = arr[i];
+
+                switch(dimen) {
+                case 1: func(item, i, len, done); break;
+                case 2: func(item[0], item[1], i, len, done); break;
+                case 3: func(item[0], item[1], item[2], i, len, done); break;
+                default:
+                    item.push(i, done);
+                    func.apply(this, item);
+                }
+            }
+        }
+    }
+    else {
+        var keys = lib.keys(arr);
+        len = keys.length;
+        outputArr = new Array(len);
+
+        if(len === 0) {
+            cb(null, '');
+        }
+        else {
+            for(var i=0; i<keys.length; i++) {
+                var k = keys[i];
+                func(k, arr[k], i, len, done);
+            }
+        }
+    }
+}
+
+modules.runtime = {
     Frame: Frame,
     makeMacro: makeMacro,
     makeKeywordArgs: makeKeywordArgs,
@@ -486,14 +690,18 @@ modules['runtime'] = {
     callWrap: callWrap,
     handleError: handleError,
     isArray: lib.isArray,
+    keys: lib.keys,
     SafeString: SafeString,
-    copySafeness: copySafeness
+    copySafeness: copySafeness,
+    markSafe: markSafe,
+    asyncEach: asyncEach,
+    asyncAll: asyncAll
 };
 })();
 (function() {
 
-var lib = modules["lib"];
-var r = modules["runtime"];
+var lib = modules.lib;
+var r = modules.runtime;
 
 var filters = {
     abs: function(n) {
@@ -515,7 +723,7 @@ var filters = {
 
         if(tmp.length) {
             if(fill_with) {
-                for(var i=tmp.length; i<linecount; i++) {
+                for(i=tmp.length; i<linecount; i++) {
                     tmp.push(fill_with);
                 }
             }
@@ -528,7 +736,7 @@ var filters = {
 
     capitalize: function(str) {
         var ret = str.toLowerCase();
-        return r.copySafeness(str, ret[0].toUpperCase() + ret.slice(1));
+        return r.copySafeness(str, ret.charAt(0).toUpperCase() + ret.slice(1));
     },
 
     center: function(str, width) {
@@ -569,7 +777,7 @@ var filters = {
                 "dictsort filter: You can only sort by either key or value");
         }
 
-        array.sort(function(t1, t2) { 
+        array.sort(function(t1, t2) {
             var a = t1[si];
             var b = t2[si];
 
@@ -587,18 +795,16 @@ var filters = {
 
         return array;
     },
-    
+
     escape: function(str) {
-        if(typeof str == 'string' || 
+        if(typeof str == 'string' ||
            str instanceof r.SafeString) {
             return lib.escape(str);
         }
         return str;
     },
 
-    safe: function(str) {
-        return new r.SafeString(str);
-    },
+    safe: r.markSafe,
 
     first: function(arr) {
         return arr[0];
@@ -615,7 +821,7 @@ var filters = {
         var sp = lib.repeat(' ', width);
 
         for(var i=0; i<lines.length; i++) {
-            if(i == 0 && !indentfirst) {
+            if(i === 0 && !indentfirst) {
                 res += lines[i] + '\n';
             }
             else {
@@ -677,12 +883,7 @@ var filters = {
     },
 
     random: function(arr) {
-        var i = Math.floor(Math.random() * arr.length);
-        if(i == arr.length) {
-            i--;
-        }
-
-        return arr[i];
+        return arr[Math.floor(Math.random() * arr.length)];
     },
 
     replace: function(str, old, new_, maxCount) {
@@ -783,7 +984,7 @@ var filters = {
                 x = x.toLowerCase();
                 y = y.toLowerCase();
             }
-               
+
             if(x < y) {
                 return reverse ? 1 : -1;
             }
@@ -840,6 +1041,52 @@ var filters = {
         return str.toUpperCase();
     },
 
+    urlize: function(str, length, nofollow) {
+        if (isNaN(length)) length = Infinity;
+
+        var noFollowAttr = (nofollow === true ? ' rel="nofollow"' : '');
+
+        // For the jinja regexp, see
+        // https://github.com/mitsuhiko/jinja2/blob/f15b814dcba6aa12bc74d1f7d0c881d55f7126be/jinja2/utils.py#L20-L23
+        var puncRE = /^(?:\(|<|&lt;)?(.*?)(?:\.|,|\)|\n|&gt;)?$/;
+        // from http://blog.gerv.net/2011/05/html5_email_address_regexp/
+        var emailRE = /^[\w.!#$%&'*+\-\/=?\^`{|}~]+@[a-z\d\-]+(\.[a-z\d\-]+)+$/i;
+        var httpHttpsRE = /^https?:\/\/.*$/;
+        var wwwRE = /^www\./;
+        var tldRE = /\.(?:org|net|com)(?:\:|\/|$)/;
+
+        var words = str.split(/\s+/).filter(function(word) {
+          // If the word has no length, bail. This can happen for str with
+          // trailing whitespace.
+          return word && word.length;
+        }).map(function(word) {
+          var matches = word.match(puncRE);
+
+          var possibleUrl = matches && matches[1] || word;
+
+          // url that starts with http or https
+          if (httpHttpsRE.test(possibleUrl))
+            return '<a href="' + possibleUrl + '"' + noFollowAttr + '>' + possibleUrl.substr(0, length) + '</a>';
+
+          // url that starts with www.
+          if (wwwRE.test(possibleUrl))
+            return '<a href="http://' + possibleUrl + '"' + noFollowAttr + '>' + possibleUrl.substr(0, length) + '</a>';
+
+          // an email address of the form username@domain.tld
+          if (emailRE.test(possibleUrl))
+            return '<a href="mailto:' + possibleUrl + '">' + possibleUrl + '</a>';
+
+          // url that ends in .com, .org or .net that is not an email address
+          if (tldRE.test(possibleUrl))
+            return '<a href="http://' + possibleUrl + '"' + noFollowAttr + '>' + possibleUrl.substr(0, length) + '</a>';
+
+          return possibleUrl;
+
+        });
+
+        return words.join(' ');
+    },
+
     wordcount: function(str) {
         return str.match(/\w+/g).length;
     },
@@ -859,7 +1106,7 @@ var filters = {
 filters.d = filters['default'];
 filters.e = filters.escape;
 
-modules['filters'] = filters;
+modules.filters = filters;
 })();
 (function() {
 
@@ -915,9 +1162,6 @@ var globals = {
         return arr;
     },
 
-    // lipsum: function(n, html, min, max) {
-    // },
-
     cycler: function() {
         return cycler(Array.prototype.slice.call(arguments));
     },
@@ -925,22 +1169,19 @@ var globals = {
     joiner: function(sep) {
         return joiner(sep);
     }
-}
+};
 
-modules['globals'] = globals;
+modules.globals = globals;
 })();
 (function() {
-var lib = modules["lib"];
-var Object = modules["object"];
-var lexer = modules["lexer"];
-var compiler = modules["compiler"];
-var builtin_filters = modules["filters"];
-var builtin_loaders = modules["loaders"];
-var runtime = modules["runtime"];
-var globals = modules["globals"];
+var lib = modules.lib;
+var Obj = modules.object;
+var builtin_filters = modules.filters;
+var runtime = modules.runtime;
+var globals = modules.globals;
 var Frame = runtime.Frame;
 
-var Environment = Object.extend({
+var Environment = Obj.extend({
     init: function(loaders, opts) {
         // The dev flag determines the trace that'll be shown on errors.
         // If set to true, returns the full trace from the error point,
@@ -957,27 +1198,14 @@ var Environment = Object.extend({
         // defaults to false
         this.autoesc = !!opts.autoescape;
 
-        if(!loaders) {
-            // The filesystem loader is only available client-side
-            if(builtin_loaders.FileSystemLoader) {
-                this.loaders = [new builtin_loaders.FileSystemLoader()];
-            }
-            else {
-                this.loaders = [new builtin_loaders.HttpLoader('/views')];
-            }
-        }
-        else {
-            this.loaders = lib.isArray(loaders) ? loaders : [loaders];
-        }
-
-        if(opts.tags) {
-            lexer.setTags(opts.tags);
-        }
-
-        this.filters = builtin_filters;
-        this.cache = {};
+        this.filters = {};
+        this.asyncFilters = [];
         this.extensions = {};
         this.extensionsList = [];
+
+        for(var name in builtin_filters) {
+            this.addFilter(name, builtin_filters[name]);
+        }
     },
 
     addExtension: function(name, extension) {
@@ -990,8 +1218,13 @@ var Environment = Object.extend({
         return this.extensions[name];
     },
 
-    addFilter: function(name, func) {
-        this.filters[name] = func;
+    addFilter: function(name, func, async) {
+        var wrapped = func;
+
+        if(async) {
+            this.asyncFilters.push(name);
+        }
+        this.filters[name] = wrapped;
     },
 
     getFilter: function(name) {
@@ -1001,116 +1234,68 @@ var Environment = Object.extend({
         return this.filters[name];
     },
 
-    getTemplate: function(name, eagerCompile) {
-        if (name && name.raw) {
+    getTemplate: function(name, cb) {
+        if(name && name.raw) {
             // this fixes autoescape for templates referenced in symbols
             name = name.raw;
         }
-        var info = null;
-        var tmpl = this.cache[name];
-        var upToDate;
 
         if(typeof name !== 'string') {
             throw new Error('template names must be a string: ' + name);
         }
 
-        if(!tmpl || !tmpl.isUpToDate()) {
-            for(var i=0; i<this.loaders.length; i++) {
-                if((info = this.loaders[i].getSource(name))) {
-                    break;
-                }
-            }
-
-            if(!info) {
-                throw new Error('template not found: ' + name);
-            }
-
-            this.cache[name] = new Template(info.src,
-                                            this,
-                                            info.path,
-                                            info.upToDate,
-                                            eagerCompile);
-        }
-
-        return this.cache[name];
-    },
-
-    registerPrecompiled: function(templates) {
-        for(var name in templates) {
-            this.cache[name] = new Template({ type: 'code',
-                                              obj: templates[name] },
-                                            this,
-                                            name,
-                                            function() { return true; },
-                                            true);
-        }
-    },
-
-    express: function(app) {
-        var env = this;
-
-        if(app.render) {
-            // Express >2.5.11
-            app.render = function(name, ctx, k) {
-                var context = {};
-
-                if(lib.isFunction(ctx)) {
-                    k = ctx;
-                    ctx = {};
-                }
-
-                context = lib.extend(context, this.locals);
-
-                if(ctx._locals) {
-                    context = lib.extend(context, ctx._locals);
-                }
-
-                context = lib.extend(context, ctx);
-
-                var res = env.render(name, context);
-                k(null, res);
+        var tmpl = this.cache[name];
+        if (!tmpl.render) {
+            tmpl.env = this;
+            tmpl.render = function(ctx, cb) {
+                return this.env.render(name, ctx, cb);
             };
         }
-        else {
-            // Express <2.5.11
-            var http = modules["http"];
-            var res = http.ServerResponse.prototype;
 
-            res._render = function(name, ctx, k) {
-                var app = this.app;
-                var context = {};
-
-                if(this._locals) {
-                    context = lib.extend(context, this._locals);
-                }
-
-                if(ctx) {
-                    context = lib.extend(context, ctx);
-
-                    if(ctx.locals) {
-                        context = lib.extend(context, ctx.locals);
-                    }
-                }
-
-                context = lib.extend(context, app._locals);
-                var str = env.render(name, context);
-
-                if(k) {
-                    k(null, str);
-                }
-                else {
-                    this.send(str);
-                }
-            };
+        if(tmpl) {
+            if(cb) {
+                cb.call(this, null, tmpl);
+            }
+            else {
+                return tmpl;
+            }
+        } else {
+            throw new Error('Template not available: "' + name + '"');
         }
     },
 
-    render: function(name, ctx) {
-        return this.getTemplate(name).render(ctx);
+    render: function(name, ctx, cb) {
+        if(lib.isFunction(ctx)) {
+            cb = ctx;
+            ctx = null;
+        }
+
+        // We support a synchronous API to make it easier to migrate
+        // existing code to async. This works because if you don't do
+        // anything async work, the whole thing is actually run
+        // synchronously.
+        var syncResult = null;
+
+        this.getTemplate(name, function(err, tmpl) {
+            if(err && cb) {
+                cb(err);
+            }
+            else if(err) {
+                throw err;
+            }
+            else {
+                tmpl.root(this, new Context(ctx), new Frame(), runtime, cb || function(err, res) {
+                    if(err) { throw err; }
+                    syncResult = res;
+                });
+            }
+        });
+
+        return syncResult;
     }
 });
 
-var Context = Object.extend({
+var Context = Obj.extend({
     init: function(ctx, blocks) {
         this.ctx = ctx;
         this.blocks = {};
@@ -1153,18 +1338,16 @@ var Context = Object.extend({
         return this.blocks[name][0];
     },
 
-    getSuper: function(env, name, block, frame, runtime) {
+    getSuper: function(env, name, block, frame, runtime, cb) {
         var idx = (this.blocks[name] || []).indexOf(block);
         var blk = this.blocks[name][idx + 1];
         var context = this;
 
-        return function() {
-            if(idx == -1 || !blk) {
-                throw new Error('no super block available for "' + name + '"');
-            }
+        if(idx == -1 || !blk) {
+            throw new Error('no super block available for "' + name + '"');
+        }
 
-            return blk(env, context, frame, runtime);
-        };
+        blk(env, context, frame, runtime, cb);
     },
 
     addExport: function(name) {
@@ -1181,158 +1364,47 @@ var Context = Object.extend({
     }
 });
 
-var Template = Object.extend({
-    init: function (src, env, path, upToDate, eagerCompile) {
-        this.env = env || new Environment();
-
-        if(lib.isObject(src)) {
-            switch(src.type) {
-            case 'code': this.tmplProps = src.obj; break;
-            case 'string': this.tmplStr = src.obj; break;
-            }
-        }
-        else if(lib.isString(src)) {
-            this.tmplStr = src;
-        }
-        else {
-            throw new Error("src must be a string or an object describing " +
-                            "the source");
-        }
-
-        this.path = path;
-        this.upToDate = upToDate || function() { return false; };
-
-        if(eagerCompile) {
-            var _this = this;
-            lib.withPrettyErrors(this.path,
-                                 this.env.dev,
-                                 function() { _this._compile(); });
-        }
-        else {
-            this.compiled = false;
-        }
-    },
-
-    render: function(ctx, frame) {
-        var self = this;
-
-        var render = function() {
-            if(!self.compiled) {
-                self._compile();
-            }
-
-            var context = new Context(ctx || {}, self.blocks);
-
-            return self.rootRenderFunc(self.env,
-                context,
-                frame || new Frame(),
-                runtime);
-        };
-
-        return lib.withPrettyErrors(this.path, this.env.dev, render);
-    },
-
-    isUpToDate: function() {
-        return this.upToDate();
-    },
-
-    getExported: function() {
-        if(!this.compiled) {
-            this._compile();
-        }
-
-        // Run the rootRenderFunc to populate the context with exported vars
-        var context = new Context({}, this.blocks);
-        this.rootRenderFunc(this.env,
-                            context,
-                            new Frame(),
-                            runtime);
-        return context.getExported();
-    },
-
-    _compile: function() {
-        var props;
-
-        if(this.tmplProps) {
-            props = this.tmplProps;
-        }
-        else {
-            var source = compiler.compile(this.tmplStr, this.env.extensionsList, this.path);
-            var func = new Function(source);
-            props = func();
-        }
-
-        this.blocks = this._getBlocks(props);
-        this.rootRenderFunc = props.root;
-        this.compiled = true;
-    },
-
-    _getBlocks: function(props) {
-        var blocks = {};
-
-        for(var k in props) {
-            if(k.slice(0, 2) == 'b_') {
-                blocks[k.slice(2)] = props[k];
-            }
-        }
-
-        return blocks;
-    }
-});
-
-// var fs = modules["fs"];
-// var src = fs.readFileSync('test.html', 'utf-8');
-// var src = '{% macro foo(x) %}{{ x }}{% endmacro %}{{ foo("<>") }}';
-// var env = new Environment(null, { autoescape: true, dev: true });
-
-// env.addFilter('bar', function(x) {
-//     return runtime.copySafeness(x, x.substring(3, 1) + x.substring(0, 2));
-// });
-
-// //env.addExtension('testExtension', new testExtension());
-// console.log(compiler.compile(src));
-
-// var tmpl = new Template(src, env);
-// console.log("OUTPUT ---");
-// console.log(tmpl.render({ bar: '<>&' }));
-
-modules['environment'] = {
-    Environment: Environment,
-    Template: Template
-};
+modules.environment = {Environment: Environment};
 })();
 var nunjucks;
 
-var env = modules["environment"];
-var compiler = modules["compiler"];
-var parser = modules["parser"];
-var lexer = modules["lexer"];
-var runtime = modules["runtime"];
-var loaders = modules["loaders"];
+var lib = modules.lib;
+var env = modules.environment;
+var runtime = modules.runtime;
 
 nunjucks = {};
 nunjucks.Environment = env.Environment;
-nunjucks.Template = env.Template;
 
-// loaders is not available when using precompiled templates
-if(loaders) {
-    if(loaders.FileSystemLoader) {
-        nunjucks.FileSystemLoader = loaders.FileSystemLoader;
-    }
-    else {
-        nunjucks.HttpLoader = loaders.HttpLoader;
-    }
-}
-
-nunjucks.compiler = compiler;
-nunjucks.parser = parser;
-nunjucks.lexer = lexer;
 nunjucks.runtime = runtime;
+
+// A single instance of an environment, since this is so commonly used
+
+var e;
+nunjucks.configure = function(templatesPath, opts) {
+    opts = opts || {};
+    if(lib.isObject(templatesPath)) {
+        opts = templatesPath;
+        templatesPath = null;
+    }
+
+    var noWatch = 'watch' in opts ? !opts.watch : false;
+    e = new env.Environment(null, opts);
+
+    return e;
+};
+
+nunjucks.render = function(name, ctx, cb) {
+    if(!e) {
+        nunjucks.configure();
+    }
+
+    return e.render(name, ctx, cb);
+};
 
 nunjucks.require = function(name) { return modules[name]; };
 
 if(typeof define === 'function' && define.amd) {
-    define('nunjucks', function() { return nunjucks; });
+    define(function() { return nunjucks; });
 }
 else {
     window.nunjucks = nunjucks;

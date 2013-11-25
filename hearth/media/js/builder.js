@@ -15,7 +15,7 @@ define('builder',
     }
 
     function render(template, context, env) {
-        return (env || nunjucks.env).getTemplate(template).render(context || {});
+        return (env || nunjucks.env).render(template, context || {});
     }
 
     var error_template = render(settings.fragment_error_template);
@@ -49,7 +49,7 @@ define('builder',
     function Builder() {
         var env = this.env = new nunjucks.Environment([], {autoescape: true});
         env.dev = nunjucks.env.dev;
-        env.registerPrecompiled(nunjucks.templates);
+        env.cache = nunjucks.templates;
 
         // For retrieving AJAX results from the view.
         var result_map = this.results = {};
