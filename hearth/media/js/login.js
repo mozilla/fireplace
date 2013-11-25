@@ -27,7 +27,7 @@ define('login',
         z.body.removeClass('logged-in');
         z.page.trigger('reload_chrome').trigger('before_logout');
 
-        if (!capabilities.phantom) {
+        if (!capabilities.phantom && capabilities.persona) {
             console.log('Triggering Persona logout');
             navigator.id.logout();
         }
@@ -76,7 +76,7 @@ define('login',
             console.log('Not allowing unverified emails');
         }
 
-        if (!capabilities.phantom) {
+        if (!capabilities.phantom && capabilities.persona) {
             console.log('Requesting login from Persona');
             navigator.id.request(opt);
         }
@@ -147,7 +147,7 @@ define('login',
         console.log('No previous user detected');
     }
 
-    if (!capabilities.phantom) {
+    if (!capabilities.phantom && capabilities.persona) {
         console.log('Calling navigator.id.watch');
         navigator.id.watch({
             loggedInUser: email,
