@@ -80,27 +80,9 @@ define('mobilenetwork',
 
     var carriersRegions = {
         // United States
-        310: {
-            26: 'deutsche_telekom',
-            160: 'deutsche_telekom',
-            170: 'deutsche_telekom',
-            200: 'deutsche_telekom',
-            210: 'deutsche_telekom',
-            220: 'deutsche_telekom',
-            230: 'deutsche_telekom',
-            240: 'deutsche_telekom',
-            250: 'deutsche_telekom',
-            260: 'deutsche_telekom',
-            270: 'deutsche_telekom',
-            280: 'deutsche_telekom',
-            290: 'deutsche_telekom',
-            330: 'deutsche_telekom',
-            490: 'deutsche_telekom',
-            580: 'deutsche_telekom',
-            660: 'deutsche_telekom',
-            800: 'deutsche_telekom',
-            310260542718417: 'deutsche_telekom'
-        },
+        // 26, 160, 170, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290
+        // 330, 490, 580, 660, 800, 310...
+        310: 'deutsche_telekom',
 
         // United Kingdom
         235: {
@@ -111,24 +93,16 @@ define('mobilenetwork',
         },
 
         // Brazil
-        724: {
-            6: 'telefonica',
-            10: 'telefonica',
-            11: 'telefonica',
-            23: 'telefonica'
-        },
+        // 6, 10, 11, 23
+        724: 'telefonica',
 
         // Spain
-        214: {
-            5: 'telefonica',
-            7: 'telefonica'
-        },
+        // 5, 7
+        214: 'telefonica',
 
         // Colombia
-        732: {
-            102: 'telefonica',
-            123: 'telefonica'
-        },
+        // 102, 123
+        732: 'telefonica',
 
         // Venezuela
         734: {
@@ -162,10 +136,8 @@ define('mobilenetwork',
         },
 
         // Germany
-        262: {
-            1: 'deutsche_telekom',
-            6: 'deutsche_telekom'
-        },
+        // 1, 6
+        262: 'deutsche_telekom',
 
         // Slovakia
         231: {
@@ -176,10 +148,8 @@ define('mobilenetwork',
 
         // Czech Republic
         // Austria
-        232: {
-            2: 'telefonica',
-            8: 'telefonica'
-        },
+        // 2, 8
+        232: 'telefonica',
 
         // Guatemala
         704: {
@@ -246,10 +216,8 @@ define('mobilenetwork',
         },
 
         // Serbia
-        220: {
-            1: 'telenor',
-            2: 'telenor'
-        },
+        // 1, 2
+        220: 'telenor',
 
         // Montenegro
         297: {
@@ -257,36 +225,13 @@ define('mobilenetwork',
         },
 
         // China
-        460: {
-            1: 'china_unicom',
-            3: 'china_unicom',
-            6: 'china_unicom'
-        },
+        // 1, 3, 6
+        460: 'china_unicom',
 
         // Japan
-        440: {
-            7: 'kddi',
-            8: 'kddi',
-            49: 'kddi',
-            50: 'kddi',
-            51: 'kddi',
-            52: 'kddi',
-            53: 'kddi',
-            54: 'kddi',
-            55: 'kddi',
-            56: 'kddi',
-            70: 'kddi',
-            71: 'kddi',
-            72: 'kddi',
-            73: 'kddi',
-            74: 'kddi',
-            75: 'kddi',
-            76: 'kddi',
-            77: 'kddi',
-            79: 'kddi',
-            88: 'kddi',
-            89: 'kddi'
-        }
+        // 7, 8, 49, 50, 51, 52, 53, 54, 55, 56, 70, 71, 72, 73, 74, 75, 76,
+        // 77, 79, 88, 89
+        440: 'kddi',
     };
 
     function getNetwork(mcc, mnc) {
@@ -319,9 +264,17 @@ define('mobilenetwork',
         mcc = +mcc || 0;
         mnc = +mnc || 0;
 
+        var carrier = carriersRegions[mcc];
+
+        // If it's a string, the carrier is the same for every MNC.
+        // If it's an object, the carrier is different based on the MNC.
+        if (typeof carrier === 'object') {
+            carrier = carrier[mnc];
+        }
+
         return {
             region: regions[mcc] || null,
-            carrier: carriersRegions[mcc] && carriersRegions[mcc][mnc] || null
+            carrier: carrier || null
         };
     }
 
