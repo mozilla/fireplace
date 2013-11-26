@@ -1,9 +1,7 @@
 define('views/debug',
-    ['buckets', 'cache', 'capabilities', 'log', 'notification', 'requests', 'settings', 'storage', 'user', 'utils', 'z'],
-    function(buckets, cache, capabilities, log, notification, requests, settings, storage, user, utils, z) {
+    ['buckets', 'cache', 'capabilities', 'log', 'notification', 'requests', 'settings', 'storage', 'utils', 'z'],
+    function(buckets, cache, capabilities, log, notification, requests, settings, storage, utils, z) {
     'use strict';
-
-    var persistent_console = log.persistent('mobilenetwork', 'change');
 
     var label = $(document.getElementById('debug-status'));
     z.doc.on('click', '#clear-localstorage', function(e) {

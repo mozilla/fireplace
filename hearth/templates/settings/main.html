@@ -27,16 +27,23 @@
 
     <div class="simple-field c">
       <div class="form-label">
-        <label>{{ _('Region') }}</label>
+        <label for="region">{{ _('Region') }}</label>
       </div>
       <div class="form-col">
-        <span class="region region-{{ user.get_setting('region', 'worldwide') }}">
-          {{ REGIONS[user.get_setting('region', 'worldwide')] }}</span>
+        <div class="pretty-select">
+          <select name="region" id="region">
+            {% set user_region = user.get_setting('region') %}
+            {% for code, region in settings.REGION_CHOICES_SLUG.items() %}
+              <option value="{{ code }}"{{ ' selected' if code == user_region }}>
+                {{ region }}</option>
+            {% endfor %}
+          </select>
+        </div>
       </div>
     </div>
 
     <footer>
-      <p class="only-logged-in"><button type="submit" class="button">{{ _('Save Changes') }}</button></p>
+      <p><button type="submit" class="button">{{ _('Save Changes') }}</button></p>
       <p class="extras">
         <a href="#" class="button alt logout only-logged-in">{{ _('Sign Out') }}</a>
         <a href="#" class="button alt persona only-logged-out">{{ _('Sign In / Sign Up') }}</a>
