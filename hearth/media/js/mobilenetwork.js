@@ -362,7 +362,7 @@ define('mobilenetwork',
             newSettings.last_region = region;
         }
 
-        // Get region from settings saved in memory (in the `settings` object).
+        // Get region from settings saved to localStorage.
         if (GET.region === '') {  // Ability to set region to worldwide from query params
             region = '';
         } else {

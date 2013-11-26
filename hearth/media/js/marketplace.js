@@ -215,8 +215,6 @@ require.config({
         require('requests').on('success', function(_, xhr) {
             var filter_header;
             try {
-                // If the SIM didn't provide us with region info,
-                // use geolocation data from the API.
                 if ((!user.get_setting('region') || user.get_setting('region') == 'internet') &&
                     (filter_header = xhr.getResponseHeader('API-Filter'))) {
                     var region = require('utils').getVars(filter_header).region;
