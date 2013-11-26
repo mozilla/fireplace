@@ -366,7 +366,7 @@ define('mobilenetwork',
         if (GET.region === '') {  // Ability to set region to worldwide from query params
             region = '';
         } else {
-            region = (GET.region in REGIONS && GET.region) || user.get_setting('region') || region;
+            region = (GET.region in REGIONS && GET.region) || region || user.get_setting('region');
         }
 
         // If it turns out the region is null, when we get a response from an
