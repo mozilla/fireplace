@@ -104,7 +104,7 @@ define('helpers',
     var user = require('user');
     var userobj = {
         get_setting: user.get_setting,
-        get_setting: function() {
+        get_settings: function() {
             return _.clone(user.get_settings());
         },
         // We don't expose `get_settings` because it's a direct reference.
