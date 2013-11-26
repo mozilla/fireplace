@@ -5,7 +5,7 @@ define('ratings',
 
     var gettext = l10n.gettext;
     var notify = require('notification').notification;
-    
+
     var open_rating = false;
 
     function rewriter(app, rewriter) {
@@ -29,7 +29,7 @@ define('ratings',
 
         if (!$modal.length) {
             z.page.append(
-                nunjucks.env.getTemplate('ratings/report.html').render()
+                nunjucks.env.render('ratings/report.html')
             );
             $modal = $('.report-spam');
         }
@@ -144,7 +144,7 @@ define('ratings',
             var $ratingModal = $('.compose-review.modal');
             if (!$ratingModal.length) {
                 z.page.append(
-                    nunjucks.env.getTemplate('ratings/write.html').render({slug: $this.data('app')})
+                    nunjucks.env.render('ratings/write.html', {slug: $this.data('app')})
                 );
                 $ratingModal = $('.compose-review.modal');
             }

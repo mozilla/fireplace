@@ -30,7 +30,7 @@ define('views/app/receipt',
         builder.onload('app-data', function() {
             if (caps.widescreen() && !$('.report-abuse').length) {
                 z.page.append(
-                    nunjucks.env.getTemplate('detail/abuse.html').render({slug: slug})
+                    nunjucks.env.render('detail/abuse.html', {slug: slug})
                 );
             }
         });

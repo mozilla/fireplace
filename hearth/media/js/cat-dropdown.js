@@ -105,8 +105,7 @@ define('cat-dropdown',
 
     function handleRenderDropdown() {
         // Render the dropdown itself.
-        $catDropdown.html(
-            nunjucks.env.getTemplate('cat_dropdown.html').render());
+        $catDropdown.html(nunjucks.env.render('cat_dropdown.html'));
         handleResize();
         $dropdown = $('.dropdown');
         $dropdownLink = $dropdown.find('a');
@@ -114,7 +113,7 @@ define('cat-dropdown',
         // Fetch the category dropdown-data
         categoryReq.done(function(data) {
             $catList.html(
-                nunjucks.env.getTemplate('cat_list.html').render({categories: data.objects}));
+                nunjucks.env.render('cat_list.html', {categories: data.objects}));
             $catMenu = $('.cat-menu');
             handleCatsRendered();
         });

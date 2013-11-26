@@ -56,7 +56,7 @@ require.config({
             'webactivities',
             'z'
         ],
-    function(_, helpers) {
+    function(_) {
         var log = require('log');
         var console = log('mkt');
         console.log('Dependencies resolved, starting init');
@@ -68,7 +68,7 @@ require.config({
         var user = require('user');
         var z = require('z');
 
-        helpers.REGIONS = settings.REGION_CHOICES_SLUG;
+        require('nunjucks').require('globals').REGIONS = settings.REGION_CHOICES_SLUG;
 
         // Jank hack because Persona doesn't allow scripts in the doc iframe.
         // Please just delete it when they don't do that anymore.
@@ -140,16 +140,15 @@ require.config({
             console.log('Reloading chrome');
             var context = {z: z};
             $('#site-header').html(
-                nunjucks.env.getTemplate('header.html').render(context));
+                nunjucks.env.render('header.html', context));
             $('#site-footer').html(
-                nunjucks.env.getTemplate('footer.html').render(context));
+                nunjucks.env.render('footer.html', context));
 
             if (!navigator.mozApps &&
                 !require('storage').getItem('hide_incompatibility_banner')) {
                 console.log('Adding incompatibility banner');
                 $('#incompatibility-banner').html(
-                    nunjucks.env.getTemplate(
-                        'incompatible.html').render(context));
+                    nunjucks.env.render('incompatible.html', context));
                 z.body.addClass('show-incompatibility-banner');
             }
 

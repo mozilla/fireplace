@@ -1245,12 +1245,16 @@ var Environment = Obj.extend({
         }
 
         var tmpl = this.cache[name];
-        if (!tmpl.render) {
-            tmpl.env = this;
-            tmpl.render = function(ctx, cb) {
-                return this.env.render(name, ctx || {}, cb);
-            };
-        }
+        var env = this;
+        tmpl.render = function(ctx, frame, cb) {
+            return this.root(env, new Context(ctx), frame, runtime, cb);
+        };
+        tmpl.getExported = function(cb) {
+            var ctx = new Context({});
+            this.root(env, ctx, new Frame(), runtime, function() {
+                cb(null, ctx.getExported());
+            });
+        };
 
         if(tmpl) {
             if(cb) {

@@ -81,7 +81,7 @@ define('notification', ['defer', 'helpers', 'jquery', 'templates', 'z'], functio
 
     function confirmation(opts) {
         var confirmationEl = $('<div class="modal confirmation show">');
-        confirmationEl.html(nunjucks.env.getTemplate('confirmation.html').render());
+        confirmationEl.html(nunjucks.env.render('confirmation.html'));
         z.body.append(confirmationEl);
         cloakEl.addClass('show light');
 
