@@ -4,78 +4,6 @@ define('requests',
 
     var console = log('req');
 
-    /*
-    Methods:
-
-    - get(url)
-      Makes a GET request to the specified URL.
-
-      Returns a promise object similar to the one returned by jQuery AJAX
-      methods. If the response to the request is cached, the returned
-      promise will have a property `__cached` set to `true`.
-
-      If you do not want your request intentionally cached, use `_get`
-      (which has an identical prototype) instead.
-
-    - post|put|patch(url, body)
-      Makes a POST/PUT/PATCH request to the specified URL with the given body.
-
-      Returns a promise object similar to the one returned by jQuery AJAX
-      methods. These requests are never intentionally cached.
-
-    - del(url)
-      Makes a DELETE request to the specified URL.
-
-      Returns a promise object similar to the one returned by jQuery AJAX
-      methods. These requests are never intentionally cached.
-
-    - pool()
-      Creates a new request pool and returns the request pool.
-
-      Returns a request pool object. All request pool objects are promises
-      which complete when all requests in the pool have completed.
-
-
-    Request Pool Methods:
-
-    - get(url)
-      Functionally similar to the root `get()` method.
-
-      If a GET request to that URL has already been made, that request's
-      promise is returned instead.
-
-      The initiated request is added to the pool. The request will block the
-      pool's promise from resolving or rejecting.
-
-    - post|put|patch(url, body)
-      Functionally similar to the root counterparts with pool support.
-
-    - del(url)
-      Functionally similar to the root `del()` method with pool support.
-
-    - finish()
-      Closes the pool. If no requests have been made
-      at this point, the pool's promise will resolve.
-
-    - abort()
-      Aborts all requests in the pool. Rejects the pool's promise.
-
-    Hooks:
-
-    Define hooks like this:
-
-      requests.on('hookname', function(xhr) {})
-
-    Available hooks:
-    - success: Fired when a request is successful. Same arguments that would
-      be sent to the deferred of the request.
-    - failure: Fired when a request is unsuccessful. Same arguments that would
-      be sent to the deferred of the request.
-    - deprecated: Fired when a request is returned with an API-Status header of
-      "Deprecated".
-
-    */
-
     var hooks = {};
     function callHooks(event, data) {
         if (!(event in hooks)) {
@@ -102,12 +30,24 @@ define('requests',
         var xhr = new XMLHttpRequest();
         var def = defer.Deferred();
 
+        function response(xhr) {
+            var data = xhr.responseText;
+            if ((xhr.getResponseHeader('Content-Type') || '').split(';', 1)[0] === 'application/json') {
+                try {
+                    return JSON.parse(data);
+                } catch(e) {
+                    // Oh well.
+                    return {};
+                }
+            }
+            return data || null;
+        }
+
         function error() {
-            def.reject(xhr, xhr.statusText, xhr.status);
+            def.reject(xhr, xhr.statusText, xhr.status, response(xhr));
         }
 
         xhr.addEventListener('load', function() {
-
             try {
                 if (xhr.getResponseHeader('API-Status') === 'Deprecated') {
                     callHooks('deprecated', [xhr]);
@@ -119,17 +59,7 @@ define('requests',
                 return error();
             }
 
-            var data = xhr.responseText;
-            if (xhr.getResponseHeader('Content-Type').split(';', 1)[0] === 'application/json') {
-                try {
-                    data = JSON.parse(data);
-                } catch(e) {
-                    // Oh well.
-                    data = {};
-                }
-            }
-
-            def.resolve(data, xhr);
+            def.resolve(response(xhr), xhr);
         }, false);
 
         xhr.addEventListener('error', error, false);
@@ -140,9 +70,12 @@ define('requests',
         if (data) {
             if (_is_obj(data) && !_has_object_props(data)) {
                 data = utils.urlencode(data);
-            } else {
+            } else if (!(data instanceof RawData)) {
                 data = JSON.stringify(data);
                 content_type = 'application/json';
+            } else {
+                data = data.toString();
+                content_type = 'text/plain';
             }
             xhr.setRequestHeader('Content-Type', content_type);
         }
@@ -165,10 +98,17 @@ define('requests',
     }
 
     function get(url, nocache, persistent) {
+        var cached;
         if (cache.has(url) && !nocache) {
             console.log('GETing from cache', url);
+            cached = cache.get(url);
+        } else if (cache.persist.has(url) && persistent && !nocache) {
+            console.log('GETing from persistent cache', url);
+            cached = cache.persist.get(url);
+        }
+        if (cached) {
             return defer.Deferred()
-                        .resolve(cache.get(url))
+                        .resolve(cached)
                         .promise({__cached: true});
         }
         return _get.apply(this, arguments, persistent);
@@ -301,6 +241,13 @@ define('requests',
         return {'on': on};  // For great chaining.
     }
 
+    function RawData(data) {
+        this.data = data;
+        this.toString = function() {
+            return this.data;
+        };
+    }
+
     return {
         get: get,
         post: post,
@@ -309,6 +256,7 @@ define('requests',
         patch: patch,
         pool: function() {return new Pool();},
         on: on,
+        RawData: RawData,
         // This is for testing purposes.
         _set_xhr: function(func) {_ajax = func;}
     };

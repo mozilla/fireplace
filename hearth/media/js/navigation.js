@@ -136,7 +136,7 @@ define('navigation',
     }
 
     z.page.on('navigate divert', function(e, url, params, preserveScroll) {
-        console.log('Received ' + e.type + ' event:', url, params);
+        console.log('Received ' + e.type + ' event:', url);
         if (!url) {return;}
 
         var divert = e.type === 'divert';

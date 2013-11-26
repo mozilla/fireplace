@@ -100,6 +100,15 @@ define('helpers',
         return obj.reduce(function(mem, num) {return mem + num;}, 0);
     };
 
+    // The exposed user object should know nothing of tokens.
+    var user = require('user');
+    var userobj = {
+        get_setting: user.get_setting,
+        // We don't expose `get_settings` because it's a direct reference.
+        get_permission: user.get_permission,
+        logged_in: user.logged_in
+    };
+
     // Functions provided in the default context.
     var helpers = {
         api: require('urls').api.url,
@@ -111,7 +120,7 @@ define('helpers',
         _plural: make_safe(l10n.ngettext),
         format: require('format').format,
         settings: require('settings'),
-        user: require('user'),
+        user: userobj,
 
         escape: utils.escape_,
         len: function(x) {return x.length;},
@@ -123,10 +132,9 @@ define('helpers',
             return obj;
         },
 
-        REGIONS: require('settings').REGION_CHOICES_SLUG,
-
         navigator: window.navigator,
         screen: window.screen,
+        // TODO: Pull the default value from settings.
         language: window.navigator.l10n ? window.navigator.l10n.language : 'en-US'
     };
 
