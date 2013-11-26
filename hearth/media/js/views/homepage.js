@@ -1,6 +1,6 @@
 define('views/homepage',
     ['format', 'l10n', 'log', 'models', 'newsletter', 'textoverflowclamp', 'underscore', 'urls', 'utils'],
-    function(format, l10n, log, models, newsletter, clamper, _, urls, utils) {
+    function(format, l10n, log, models, newsletter, clamp, _, urls, utils) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -51,7 +51,7 @@ define('views/homepage',
                 return;
             }
 
-            clamper.clamp($('.collection + .desc'), 7);
+            clamp(document.querySelector('.collection + .desc'), 7);
 
             if (!shelf.apps.length) return;
 

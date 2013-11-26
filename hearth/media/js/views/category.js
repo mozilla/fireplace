@@ -1,6 +1,6 @@
 define('views/category',
     ['models', 'textoverflowclamp', 'tracking', 'underscore', 'urls', 'utils', 'z'],
-    function(models, clamper, tracking, _, urls, utils, z) {
+    function(models, clamp, tracking, _, urls, utils, z) {
     'use strict';
 
     var cat_models = models('category');
@@ -30,7 +30,7 @@ define('views/category',
             sort: params.sort,
             app_cast: app_models.cast
         }).done(function() {
-            clamper.clamp($('.collection + .desc'), 7);
+            clamp(document.querySelector('.collection + .desc'), 7);
         });
 
         tracking.setPageVar(5, 'Category', category, 3);

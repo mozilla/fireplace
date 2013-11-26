@@ -1,6 +1,6 @@
 define('views/collection',
        ['l10n', 'models', 'textoverflowclamp', 'utils', 'z'],
-       function(l10n, models, clamper, utils, z) {
+       function(l10n, models, clamp, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -19,7 +19,10 @@ define('views/collection',
             if (!data.apps) {
                 return;
             }
-            clamper.clamp($('.collection + .desc'), 7);
+
+            // Give him the clamps!
+            clamp(document.querySelector('.collection + .desc'), 7);
+
             if (data['collection_type'] === 2) {
                 builder.z('show_cats', true);
                 builder.z('cat', data['slug']);
