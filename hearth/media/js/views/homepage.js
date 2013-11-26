@@ -36,6 +36,8 @@ define('views/homepage',
             var $collections = $('.collection.main');
             newsletter.init();
 
+            clamp(document.querySelector('.collection + .desc'), 7);
+
             if (!shelf.length) {
                 console.log('OSC injection skipped; No shelf');
                 return;
@@ -50,8 +52,6 @@ define('views/homepage',
                 console.log('OSC injection skipped; Already injected');
                 return;
             }
-
-            clamp(document.querySelector('.collection + .desc'), 7);
 
             if (!shelf.apps.length) return;
 
