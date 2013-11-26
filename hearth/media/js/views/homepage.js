@@ -55,6 +55,13 @@ define('views/homepage',
 
             if (!shelf.apps.length) return;
 
+            // TODO: Remove this when things are different.
+            // This lets the category for the OSC have a name and not just a slug.
+            models('category').cast({
+                name: shelf.name,
+                slug: shelf.slug
+            });
+
             // This is safe: cat-dropdown is required by marketplace.js.
             require('cat-dropdown').catrequest.done(function() {
                 console.log('Injecting operator shelf into cat dropdown');
