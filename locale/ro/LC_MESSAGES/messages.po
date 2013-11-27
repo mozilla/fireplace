@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-12T23:28:29.263Z\n"
+"POT-Creation-Date: 2013-11-27T15:59:43.630Z\n"
 "PO-Revision-Date: 2013-07-29 12:37+0200\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Română\n"
@@ -55,6 +55,23 @@ msgstr ""
 msgid "Update Now"
 msgstr ""
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr ""
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr ""
+
+#: /templates/privacy.html:2 /templates/footer.html:33 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
+#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
+msgid "Privacy Policy"
+msgstr "Politica de confidențialitate"
+
+#: /templates/terms.html:2 /templates/footer.html:34 /templates/settings/feedback.html:27 /media/js/views/terms.js:10
+msgid "Terms of Use"
+msgstr "Termenii de utilizare"
+
 #: /templates/featured.html:7
 msgid "Featured"
 msgstr "Deosebite"
@@ -66,14 +83,6 @@ msgstr "Extinde"
 #: /templates/featured.html:22
 msgid "No featured apps found"
 msgstr "Nicio aplicație deosebită găsită"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr ""
-
-#: /templates/incompatible.html:2
-msgid "Download."
-msgstr ""
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -100,7 +109,7 @@ msgstr "Aplicațiile mele"
 msgid "My Submissions"
 msgstr "Trimiterile mele"
 
-#: /templates/footer.html:17 /templates/settings/main.html:50
+#: /templates/footer.html:17 /templates/settings/main.html:43
 msgid "Reviewer Tools"
 msgstr "Unelte pentru recenzenți"
 
@@ -115,15 +124,6 @@ msgid ""
 msgstr ""
 "Cu excepția cazurilor unde se <a href=\"{legal_url}\" target=\"_blank\">menționează</a>, altfel, conținutul din acest sait este licențiat sub licența <a href=\"{cc_url}\" target=\"_blank\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> sau orice altă versiune mai nouă."
-
-#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
-#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
-msgid "Privacy Policy"
-msgstr "Politica de confidențialitate"
-
-#: /templates/footer.html:34 /templates/terms.html:2 /templates/settings/feedback.html:27 /media/js/views/terms.js:10
-msgid "Terms of Use"
-msgstr "Termenii de utilizare"
 
 #: /templates/footer.html:36
 msgid "Report Trademark Abuse"
@@ -149,7 +149,7 @@ msgstr "Setări"
 msgid "Edit Account Settings"
 msgstr "Editează setările contului"
 
-#: /templates/header.html:27 /templates/settings/main.html:47
+#: /templates/header.html:27 /templates/settings/main.html:40
 msgid "Sign Out"
 msgstr "Deconectare"
 
@@ -161,46 +161,33 @@ msgstr "Autentificare"
 msgid "{app_name} .::. screenshot"
 msgstr ""
 
-#: /templates/_macros/market_tile.html:41
+#. the IARC rating body/system followed by a name/description of the rating (e.g. "ESRB: Everyone" or "PEGI: For ages 3+").
+#: /templates/_macros/market_tile.html:44
 msgid "{rating_body}: {rating}"
 msgstr ""
 
-#: /templates/_macros/market_tile.html:46 /templates/_macros/market_button.html:7
+#: /templates/_macros/market_tile.html:53 /templates/_macros/market_button.html:7
 msgid "Free"
 msgstr "Gratuit"
 
-#: /templates/_macros/market_tile.html:54
+#: /templates/_macros/market_tile.html:61
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:57 /templates/detail/main.html:111
+#: /templates/_macros/market_tile.html:64 /templates/detail/main.html:111
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} recenzie"
 msgstr[1] "{n} recenzii"
 msgstr[2] "{n} de recenzii"
 
-#. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:61
+#: /templates/_macros/market_tile.html:68
 msgid "(0)"
 msgstr "(0)"
 
-#: /templates/_macros/market_tile.html:62
+#: /templates/_macros/market_tile.html:69
 msgid "Not yet rated"
 msgstr "Neevaluat încă"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr ""
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:94
-msgid "Install"
-msgstr "Instalează"
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "Mai multe"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -214,21 +201,26 @@ msgstr "pentru versiunea precedentă {version}"
 msgid "Flagged for review"
 msgstr "Marcat pentru revizuire"
 
-#: /templates/_macros/rating.html:25
+#: /templates/_macros/rating.html:27
 msgid "Edit"
 msgstr "Editează"
 
-#: /templates/_macros/rating.html:28
+#: /templates/_macros/rating.html:30
 msgid "Delete"
 msgstr "Șterge"
 
-#: /templates/_macros/rating.html:31
+#: /templates/_macros/rating.html:33
 msgid "Report"
 msgstr "Raportează"
 
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Evaluat cu {stars} din {maxstars} stele"
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr ""
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:118
+msgid "Install"
+msgstr "Instalează"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -246,7 +238,7 @@ msgstr "Lansează această aplicație <b>de pe desktopul Windows</b> sau <b>Star
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Lansează această aplicație din <b>bord</b>, <b>selectorul de aplicații</b> sau <b>meniul de aplicații</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:30
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Se încarcă..."
 
@@ -342,9 +334,21 @@ msgstr "Reclamă abuz"
 msgid "Premium version available"
 msgstr "Versiune Premium disponibilă"
 
-#: /templates/detail/main.html:208
-msgid "Ratings"
+#: /templates/detail/main.html:204
+msgid "Content Rating"
 msgstr ""
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "Mai multe"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Evaluat cu {stars} din {maxstars} stele"
+
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "Trimite raport"
 
 #: /templates/category/main.html:37
 msgid "Featured Apps"
@@ -375,10 +379,6 @@ msgstr ""
 msgid "An internal server error occurred. Please try again later."
 msgstr ""
 
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "Trimite raport"
-
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
 msgstr "Înapoi la aplicație"
@@ -395,6 +395,27 @@ msgstr ""
 msgid "The page you were looking for was not found."
 msgstr "Pagina căutată nu a fost găsită."
 
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
+msgid "Edit Review"
+msgstr "Editează recenzia"
+
+#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "Evaluare:"
+
+#: /templates/ratings/edit.html:21 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/report.html:3 /templates/ratings/report.html:23
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "Renunță"
+
+#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Trimite"
+
+#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "Doar utilizatorii autentificați pot edita recenziile."
+
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
 msgstr "A intervenit o eroare"
@@ -407,46 +428,6 @@ msgstr "Eroare la încărcare"
 msgid "Try Again"
 msgstr "Reîncearcă"
 
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> rezultat"
-msgstr[1] "<b>{n}</b> rezultate"
-msgstr[2] "<b>{n}</b> de rezultate"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Se afișează <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Niciun rezultat găsit"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Niciun rezultat găsit, reîncearcă mai târziu"
-
-#: /templates/ratings/edit.html:4 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:71
-msgid "Edit Review"
-msgstr "Editează recenzia"
-
-#: /templates/ratings/edit.html:8 /templates/ratings/write.html:7
-msgid "Rate:"
-msgstr "Evaluare:"
-
-#: /templates/ratings/edit.html:20 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/report.html:3 /templates/ratings/report.html:23
-#: /templates/user/newsletter.html:13
-msgid "Cancel"
-msgstr "Renunță"
-
-#: /templates/ratings/edit.html:21 /templates/ratings/write.html:20
-msgid "Submit"
-msgstr "Trimite"
-
-#: /templates/ratings/edit.html:24 /templates/ratings/write.html:23
-msgid "Only logged in users may edit reviews."
-msgstr "Doar utilizatorii autentificați pot edita recenziile."
-
 #: /templates/ratings/main.html:36
 msgid "This app has no reviews."
 msgstr "Această aplicație nu are recenzii."
@@ -458,6 +439,30 @@ msgstr ""
 #: /templates/ratings/rating.html:16
 msgid "The review you requested does not exist."
 msgstr ""
+
+#: /templates/settings/main.html:2 /media/js/views/settings.js:47
+msgid "Account Settings"
+msgstr "Setările contului"
+
+#: /templates/settings/main.html:11
+msgid "Email"
+msgstr "Adresă de e-mail"
+
+#: /templates/settings/main.html:20
+msgid "Display Name"
+msgstr "Numele afișat"
+
+#: /templates/settings/main.html:29
+msgid "Region"
+msgstr "Regiune"
+
+#: /templates/settings/main.html:38
+msgid "Save Changes"
+msgstr "Salvează schimbările"
+
+#: /templates/settings/main.html:41
+msgid "Sign In / Sign Up"
+msgstr "Autentificare / Înregistrare"
 
 #: /templates/ratings/report.html:2
 msgid "Please select a reason:"
@@ -483,33 +488,40 @@ msgstr "Trimite"
 msgid "Get Help"
 msgstr "Obține ajutor"
 
-#: /templates/settings/main.html:2 /media/js/views/settings.js:57
-msgid "Account Settings"
-msgstr "Setările contului"
-
-#: /templates/settings/main.html:11
-msgid "Email"
-msgstr "Adresă de e-mail"
-
-#: /templates/settings/main.html:20
-msgid "Display Name"
-msgstr "Numele afișat"
-
-#: /templates/settings/main.html:29
-msgid "Region"
-msgstr "Regiune"
-
-#: /templates/settings/main.html:45
-msgid "Save Changes"
-msgstr "Salvează schimbările"
-
-#: /templates/settings/main.html:48
-msgid "Sign In / Sign Up"
-msgstr "Autentificare / Înregistrare"
-
 #: /templates/settings/nav.html:6
 msgid "Account"
 msgstr "Cont"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> rezultat"
+msgstr[1] "<b>{n}</b> rezultate"
+msgstr[2] "<b>{n}</b> de rezultate"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Se afișează <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Niciun rezultat găsit"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Niciun rezultat găsit, reîncearcă mai târziu"
+
+#: /templates/user/purchases.html:49
+msgid "You must be signed in to view your apps."
+msgstr "Trebuie să fii autentificat să vezi aplicațiile tale."
+
+#: /templates/user/purchases.html:50
+msgid "Sign in / Sign up"
+msgstr "Autentificare / Înregistrare"
+
+#: /templates/user/purchases.html:34
+msgid "You have no apps"
+msgstr "Nu ai nicio aplicație"
 
 #: /templates/user/newsletter.html:3
 msgid "Get Firefox Marketplace news"
@@ -526,36 +538,6 @@ msgstr "Se înregistrează..."
 #: /templates/user/newsletter.html:18
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "Te-ai înregistrat cu succes pentru buletinul informativ Marketplace!"
-
-#: /templates/user/purchases.html:49
-msgid "You must be signed in to view your apps."
-msgstr "Trebuie să fii autentificat să vezi aplicațiile tale."
-
-#: /templates/user/purchases.html:50
-msgid "Sign in / Sign up"
-msgstr "Autentificare / Înregistrare"
-
-#: /templates/user/purchases.html:34
-msgid "You have no apps"
-msgstr "Nu ai nicio aplicație"
-
-#: /media/js/buttons.js:58 /media/js/buttons.js:119 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Plată anulată."
-
-#. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:89
-msgid "Purchasing"
-msgstr "Se achiziționează"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:192
-msgid "Install failed. Please try again later."
-msgstr "Instalare eșuată. Te rugăm reîncearcă mai târziu"
-
-#: /media/js/buttons.js:282
-msgid "Launch"
-msgstr "Lansează"
 
 #: /media/js/apps.js:76
 msgid "App install error: {error}"
@@ -577,6 +559,24 @@ msgstr ""
 msgid "This app is unavailable for your platform."
 msgstr ""
 
+#: /media/js/buttons.js:82 /media/js/buttons.js:143 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Plată anulată."
+
+#. "Launch" as in "Launch the app"
+#: /media/js/buttons.js:113
+msgid "Purchasing"
+msgstr "Se achiziționează"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/buttons.js:219
+msgid "Install failed. Please try again later."
+msgstr "Instalare eșuată. Te rugăm reîncearcă mai târziu"
+
+#: /media/js/buttons.js:309
+msgid "Launch"
+msgstr "Lansează"
+
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "Ai fost deconectat"
@@ -593,9 +593,17 @@ msgstr "Autentificare Persona eșuată. Poate că nu ai un cont sub acea adresă
 msgid "Persona login failed. A server error was encountered."
 msgstr "Autentificare Persona eșuată. O eroare la server a intervenit."
 
-#: /media/js/mobilenetwork.js:311
+#: /media/js/mobilenetwork.js:285
 msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
 msgstr "Navighezi în prezent conținut pentru *{current_region}*. Dorești să comuți la *{new_region}*?"
+
+#: /media/js/navigation.js:31
+msgid "No internet connection"
+msgstr "Nicio conexiune la internet"
+
+#: /media/js/newsletter.js:65
+msgid "There was an error submitting your newsletter sign up request"
+msgstr "A apărut o problemă la trimiterea cererii de abonare la buletinul informativ"
 
 #. The report is an abuse report for reviews
 #: /media/js/ratings.js:41
@@ -618,21 +626,13 @@ msgstr ""
 msgid "There was a problem deleting the review"
 msgstr "A apărut o problemă la ștergerea recenziei"
 
-#: /media/js/ratings.js:231
+#: /media/js/ratings.js:238
 msgid "Your review was posted"
 msgstr "Recenzia ta a fost postată"
 
-#: /media/js/ratings.js:245
+#: /media/js/ratings.js:252
 msgid "Error while submitting review"
 msgstr "Eroare la trimiterea recenziei"
-
-#: /media/js/newsletter.js:65
-msgid "There was an error submitting your newsletter sign up request"
-msgstr "A apărut o problemă la trimiterea cererii de abonare la buletinul informativ"
-
-#: /media/js/navigation.js:52
-msgid "No internet connection"
-msgstr "Nicio conexiune la internet"
 
 #. {n} is the number of characters left.
 #: /media/js/utils.js:28
@@ -641,14 +641,6 @@ msgid_plural "<b>{n}</b> characters left."
 msgstr[0] "<b>{n}</b> caracter rămas."
 msgstr[1] "<b>{n}</b> caractere rămase."
 msgstr[2] "<b>{n}</b> de caractere rămase."
-
-#. {n} is the number of stars
-#: /media/js/common/ratingwidget.js:34
-msgid "{n} star"
-msgid_plural "{n} stars"
-msgstr[0] "{n} stea"
-msgstr[1] "{n} stele"
-msgstr[2] "{n} de stele"
 
 #: /media/js/settings.js:72
 msgid "Worldwide"
@@ -726,6 +718,22 @@ msgstr ""
 msgid "Department of Justice, Rating, Titles and Qualification"
 msgstr ""
 
+#. {n} is the number of stars
+#: /media/js/common/ratingwidget.js:34
+msgid "{n} star"
+msgid_plural "{n} stars"
+msgstr[0] "{n} stea"
+msgstr[1] "{n} stele"
+msgstr[2] "{n} de stele"
+
+#: /media/js/views/app.js:59
+msgid "App Details"
+msgstr "Detalii aplicație"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr ""
+
 #: /media/js/payments/payments.js:94
 msgid "Payment failed. Try again later."
 msgstr "Plată eșuată. Reîncearcă mai târziu."
@@ -737,14 +745,6 @@ msgstr ""
 
 #: /media/js/payments/payments.js:122
 msgid "Your device does not support purchases."
-msgstr ""
-
-#: /media/js/views/app.js:59
-msgid "App Details"
-msgstr "Detalii aplicație"
-
-#: /media/js/views/collection.js:31
-msgid "Collection Details"
 msgstr ""
 
 #: /media/js/views/feedback.js:23
@@ -760,13 +760,17 @@ msgstr "A apărut o problemă la trimiterea opiniei tale. Reîncearcă mai târz
 msgid "Not Found"
 msgstr "Negăsit"
 
-#: /media/js/views/settings.js:27
+#: /media/js/views/settings.js:34
 msgid "Settings saved"
 msgstr "Setări salvate"
 
-#: /media/js/views/settings.js:29
+#: /media/js/views/settings.js:36
 msgid "Settings could not be saved"
 msgstr "Setările nu au putut fi salvate"
+
+#: /media/js/views/search.js:210
+msgid "Search Results"
+msgstr "Caută rezultate"
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"
@@ -776,10 +780,6 @@ msgstr "Abuz raportat"
 msgid "Error while submitting report"
 msgstr "Eroare la trimiterea raportării"
 
-#: /media/js/views/search.js:201
-msgid "Search Results"
-msgstr "Caută rezultate"
-
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"
 msgstr ""
@@ -788,10 +788,10 @@ msgstr ""
 msgid "Receipt"
 msgstr ""
 
-#: /media/js/views/app/ratings/edit.js:23
+#: /media/js/views/app/ratings/edit.js:22
 msgid "Review updated successfully"
 msgstr "Recenzie actualizată cu succes"
 
-#: /media/js/views/app/ratings/edit.js:38
+#: /media/js/views/app/ratings/edit.js:37
 msgid "There was a problem updating your review"
 msgstr "A apărut o problemă la actualizarea recenziei tale"
