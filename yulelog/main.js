@@ -33,25 +33,82 @@
         };
     }
 
-    var qs = '';
-    try {
-        var conn = navigator.mozMobileConnection;
-        if (conn) {
-            // `MCC`: Mobile Country Code
-            // `MNC`: Mobile Network Code
-            // `lastKnownHomeNetwork`: `{MCC}-{MNC}` (SIM's origin)
-            // `lastKnownNetwork`: `{MCC}-{MNC}` (could be different network if roaming)
-            var network = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
-            qs = '?mcc=' + (network[0] || '') + '&mnc=' + (network[1] || '');
-            log('lastKnownNetwork', conn.lastKnownNetwork);
-            log('lastKnownHomeNetwork', conn.lastKnownHomeNetwork);
-            log('MCC: "' + network[0] + '"');
-            log('MNC: "' + network[1] + '"');
+    function buildQS() {
+        var qs = '';
+
+        try {
+            // navigator.mozMobileConnections is the new API.
+            // navigator.mozMobileConnection is the legacy API.
+            var conn = navigator.mozMobileConnections;
+            if (conn) {
+                log('navigator.mozMobileConnections available');
+                /*
+                    Example format:
+
+                    [
+                        {
+                            data: {
+                                network: {
+                                    mcc: '260',
+                                    mnc: '02'
+                                }
+                            }
+                        },
+                        {
+                            data: {
+                                network: {
+                                    mcc: '734',
+                                    mnc: '04'
+                                }
+                            }
+                        }
+                    ]
+
+                */
+                conn = navigator.mozMobileConnections;
+                var mccs = [];
+                var connData;
+                for (var i = 0; i < conn.length; i++) {
+                    log('navigator.mozMobileConnections[' + i + ']:', conn[i]);
+                    connData = conn[i].data;
+                    if (connData && connData.network) {
+                        mccs.push({mcc: connData.network.mcc,
+                                   mnc: connData.network.mnc});
+                    }
+                }
+                mccs = JSON.stringify(mccs);
+                qs = '?mccs=' + mccs;
+                log('MCCs: ' + mccs);
+            } else {
+                log('navigator.mozMobileConnections unavailable');
+
+                // Yes. This should be assignment not comparison.
+                if (conn = navigator.mozMobileConnection) {
+                    log('navigator.mozMobileConnection available');
+                    // `MCC`: Mobile Country Code
+                    // `MNC`: Mobile Network Code
+                    // `lastKnownHomeNetwork`: `{MCC}-{MNC}` (SIM's origin)
+                    // `lastKnownNetwork`: `{MCC}-{MNC}` (could be different network if roaming)
+                    var network = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
+                    qs = '?mcc=' + (network[0] || '') + '&mnc=' + (network[1] || '');
+                    log('navigator.mozMobileConnection.lastKnownNetwork:',
+                        conn.lastKnownNetwork);
+                    log('navigator.mozMobileConnection.lastKnownHomeNetwork:',
+                        conn.lastKnownHomeNetwork);
+                    log('MCC: "' + network[0] + '", MNC: "' + network[1] + '"');
+                } else {
+                    log('navigator.mozMobileConnection unavailable');
+                }
+            }
+        } catch(e) {
+            // Fail gracefully if `navigator.mozMobileConnection(s)`
+            // gives us problems.
         }
-    } catch(e) {
-        // Fail gracefully if `navigator.mozMobileConnection` gives us problems.
+
+        return qs;
     }
-    var iframeSrc = MKT_URL + '/' + qs;
+
+    var iframeSrc = MKT_URL + '/' + buildQS();
     var i = document.createElement('iframe');
     i.seamless = true;
     i.onerror = function() {
