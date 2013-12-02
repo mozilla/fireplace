@@ -53,9 +53,9 @@ Docs can be found in
 
 ## Usage
 
-If you haven't already, make sure `hearth/media/js/settings_local.js`
-exists. You can copy from `settings_local.js.dist`. Some settings may need
-to be updated if you plan to run a custom local setup, including `api_url`.
+If you haven't already, run `commonplace init` to install local settings
+files. Some settings (`media/js/settings_local.js`) may need to be updated
+if you plan to run a local setup, including `api_url`.
 
 From the terminal, run the following command
 
@@ -63,17 +63,10 @@ From the terminal, run the following command
 damper
 ```
 
-This will start a local server on 0.0.0.0:8675 by default.
+This will start a local server and filesystem watcher on 0.0.0.0:8675 by
+default.
 
-To control the hostname and port you can use the following otions
-
-```bash
-damper --host 127.0.0.1 --port 8888
-```
-
-In addition to an HTTP server, the damper will also run a Stylus watcher (to
-recompile CSS as it's edited) and a template watcher (to recompile templates
-as they're edited).
+For more options, read the [damper documentation](https://github.com/mozilla/commonplace/wiki/Damper).
 
 For instructions on running Flue (the mock API server), please see the [Flue
 docs](https://github.com/mozilla/fireplace/blob/master/flue/README.rst).
