@@ -1,6 +1,6 @@
 define('views/app',
-    ['capabilities', 'l10n', 'tracking', 'utils', 'underscore', 'z', 'templates', 'overflow'],
-    function(caps, l10n, tracking, utils, _, z, nunjucks, overflow) {
+    ['capabilities', 'l10n', 'tracking', 'utils', 'z', 'overflow'],
+    function(caps, l10n, tracking, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -54,6 +54,12 @@ define('views/app',
         var slug = args[0];
         builder.start('detail/main.html', {slug: slug});
 
+        // This is fine; tracking_helpers depends on:
+        // navigation > views > views/app
+        // This prevents a dependency loop, but all deps should have been
+        // resolved by the time this executes.
+        require('tracking_helpers').track_search_term(true);
+
         builder.z('type', 'leaf detail');
         builder.z('title', gettext('Loading...'));
         builder.z('pagetitle', gettext('App Details'));
@@ -63,7 +69,7 @@ define('views/app',
             builder.z('title', utils.translate(app.name));
 
             z.page.trigger('populatetray');
-            overflow.init();
+            require('overflow').init();
 
             // 'truncated' class is applied by default, remove it if it's not
             // needed.
@@ -74,7 +80,7 @@ define('views/app',
             }
             if (caps.widescreen() && !$('.report-abuse').length) {
                 z.page.append(
-                    nunjucks.env.render('detail/abuse.html', {slug: slug})
+                    require('templates').env.render('detail/abuse.html', {slug: slug})
                 );
             }
 

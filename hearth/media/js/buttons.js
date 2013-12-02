@@ -1,7 +1,7 @@
 define('buttons',
     ['apps', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'login',
-     'models', 'navigation', 'notification', 'payments/payments', 'requests',
-     'settings', 'tracking', 'urls', 'user', 'utils', 'views', 'z'],
+     'models', 'notification', 'payments/payments', 'requests', 'settings',
+     'tracking', 'tracking_helpers', 'urls', 'user', 'utils', 'views', 'z'],
     function() {
 
     var apps = require('apps');
@@ -45,19 +45,6 @@ define('buttons',
             product.slug
         );
     });
-
-    function track_search_term() {
-        var nav_stack = require('navigation').stack();
-        for (var i = 0, item; item = nav_stack[i++];) {
-            if (!item.params || !item.params.search_query) {
-                continue;
-            }
-            console.log('Found search in nav stack, tracking search term:', item.params.search_query);
-            tracking.setVar(13, 'Search query', item.params.search_query);
-            return;
-        }
-        console.log('No associated search term to track.');
-    }
 
     function install(product, $button) {
         var product_name = product.name;
@@ -157,7 +144,7 @@ define('buttons',
         function start_install() {
 
             // Track the search term used to find this app, if applicable.
-            track_search_term();
+            require('tracking_helpers').track_search_term();
 
             // Track that an install was started.
             tracking.trackEvent(
