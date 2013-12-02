@@ -16,7 +16,8 @@ $triangle-size = 20px;
         display: block;
     }
     .info h3,
-    .author {
+    .subdetail {
+        /* subdetail contains .author and .content-rating. */
         ellipsis();
     }
 }
@@ -31,35 +32,37 @@ $triangle-size = 20px;
 // name + icon + price + rating in a vertical listview.
 // also used as standalone "card" on detail pages.
 
-.mkt-tile {
-    .rating {
-        color: $sailor-blue;
-        display: block;
-        font-size: 12px;
+.mkt-tile .rating {
+    clear: left;
+    color: $sailor-blue;
+    display: block;
+    font-size: 12px;
+    padding: 8px 0;
+    position: relative;
+
+    a {
+        text-decoration: none;
+        &:hover .cnt {
+            text-decoration: underline;
+        }
+    }
+    .cnt {
         position: relative;
-        a {
-            text-decoration: none;
-            &:hover .cnt {
-                text-decoration: underline;
-            }
-        }
-        .cnt {
-            position: relative;
-            top: -2px;
-        }
-        &.unrated, &.unrated a {
-            color: $earl-gray;
-        }
+        top: -2px;
+    }
+    &.unrated, &.unrated a {
+        color: $earl-gray;
     }
 }
 
 .listing .mkt-tile {
     min-height: 64px;
     padding: 15px 10px 15px 84px;
+
     h3 {
-        font-size: 15px;
+        font-size: 20px;
         font-weight: 400;
-        line-height: 20px;
+        line-height: 18px;
         margin: -4px 0 -7px;
         padding-bottom: 10px;
     }
@@ -69,13 +72,16 @@ $triangle-size = 20px;
         top: 15px;
         left: 10px;
     }
-    .author {
+    .subdetail {
         color: $earl-gray;
         font-size: 12px;
-        line-height: 14px;
+        line-height: 18px;
         max-height: 28px;
-        margin-bottom: -2px;
-        padding-bottom: 8px;
+
+        &.content-rating {
+            margin-bottom: -2px;
+            padding-bottom: 8px;
+        }
     }
     .button {
         height: 24px;
@@ -103,6 +109,7 @@ $triangle-size = 20px;
     overflow: hidden;
     padding: 21px 0 0;
     position: relative;
+
     &.single {
         // No dots so make it smaller. Leave 15px from bottom of screenshot to bottom of tray.
         height: 201px;
@@ -245,7 +252,7 @@ grid-style() {
         vertical-align: top;
         width: (100% / 3);
     }
-    .author, .button, .cnt {
+    .subdetail, .button, .cnt {
         display: none;
     }
     .mkt-tile {
@@ -273,6 +280,9 @@ grid-style() {
             color: $sailor-blue;
             font-weight: 400;
             margin-bottom: 2px;
+        }
+        .rating {
+            padding: 0;
         }
     }
 }
@@ -400,7 +410,7 @@ grid-style() {
                 }
             }
         }
-        .author, .bad-app, .button, .loadmore {
+        .subdetail, .bad-app, .button, .loadmore {
             display: none;
         }
         .price {
@@ -526,8 +536,11 @@ grid-style() {
 ratings-sidebar() {
     // These rules get applied on mobile detail page and desktop category listing pages.
     .rating {
+        bottom: 2px;
         clear: left;
-        padding: 8px 0 10px;
+        padding: 10px 0 10px;
+        position: relative;
+
         .cnt {
             display: inline-block;
             // To line up with app name.
@@ -539,13 +552,13 @@ ratings-sidebar() {
         }
     }
     h3 {
-        font-size: 30px;
+        font-size: 20px;
         font-weight: 300;
-        line-height: 30px;
+        line-height: 18px;
         max-width: 100%;
     }
-    .author {
-        font-size: 15px;
+    .subdetail {
+        font-size: 12px;
         line-height: 18px;
     }
 }
@@ -564,6 +577,7 @@ ratings-sidebar() {
     .mkt-tile {
         padding: 15px 10px;
         position: relative;
+
         .icon {
             float: left;
             margin-right: 15px;
@@ -654,11 +668,12 @@ ratings-sidebar() {
                     background-image: none;
                 }
                 h3 {
-                    font-size: 40px;
-                    line-height: 42px;
+                    font-size: 26px;
+                    line-height: 26px;
                 }
-                .author {
-                    line-height: 15px;
+                .subdetail {
+                    font-size: 15px;
+                    line-height: 20px;
                 }
             }
         }

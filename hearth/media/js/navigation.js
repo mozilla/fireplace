@@ -5,8 +5,6 @@ define('navigation',
 
     var console = log('nav');
 
-    var encodeURIComponent = utils.encodeURIComponent;
-
     var gettext = l10n.gettext;
     var stack = [
         {path: '/', type: 'root'}
@@ -23,28 +21,9 @@ define('navigation',
             return url;
         }
 
-        var url_parts = url.split('?');
-        // If there's nothing after the `?`, return the original URL.
-        if (!url_parts[1]) {
-            return url;
-        }
-
-        var used_params = _.pick(utils.getVars(url_parts[1]), settings.param_whitelist);
-        // If there are no query params after we filter, just return the path.
-        if (!_.keys(used_params).length) {  // If there are no elements in the object...
-            return url_parts[0];  // ...just return the path.
-        }
-
-        return url_parts[0] + '?' + (
-            _.pairs(used_params)
-            .sort(function(a, b) {return a[0] < b[0];})
-            .map(function(pair) {
-                if (typeof pair[1] === 'undefined')
-                    return encodeURIComponent(pair[0]);
-                else
-                    return encodeURIComponent(pair[0]) + '=' +
-                           encodeURIComponent(pair[1]);
-            }).join('&'));
+        var used_params = _.pick(utils.querystring(url), settings.param_whitelist);
+        // We can't use urlparams() because that only extends, not replaces.
+        return utils.baseurl(url) + '?' + utils.urlencode(used_params);
     }
 
     function canNavigate() {
@@ -56,7 +35,7 @@ define('navigation',
     }
 
     function navigate(href, popped, state) {
-        if (!state) return;
+        if (!state) {return;}
 
         console.log('Navigation started: ', href);
         var view = views.match(href);
@@ -129,7 +108,7 @@ define('navigation',
                     // behind the current page in the stack.
                     stack.splice(1, parent - 1);
                     console.log('Closing navigation loop to parent (1 to ' + (parent - 1) + ')');
-                } else if (parent == -1) {
+                } else if (parent === -1) {
                     // The parent isn't in the stack. Splice it in just below
                     // where the value we just pushed in is.
                     stack.splice(1, 0, {path: z.context.parent});
@@ -158,7 +137,7 @@ define('navigation',
 
     z.page.on('navigate divert', function(e, url, params, preserveScroll) {
         console.log('Received ' + e.type + ' event:', url);
-        if (!url) return;
+        if (!url) {return;}
 
         var divert = e.type === 'divert';
         var newState = {
@@ -201,8 +180,7 @@ define('navigation',
     });
 
     function navigationFilter(el) {
-        var href = el.getAttribute('href') || el.getAttribute('action'),
-            $el = $(el);
+        var href = el.getAttribute('href') || el.getAttribute('action');
         return !href || href.substr(0, 4) === 'http' ||
                 href.substr(0, 7) === 'mailto:' ||
                 href[0] === '#' ||
@@ -217,8 +195,8 @@ define('navigation',
         var preserveScrollData = $elm.data('preserveScroll');
         // Handle both data-preserve-scroll and data-preserve-scroll="true"
         var preserveScroll = typeof preserveScrollData !== 'undefined' && preserveScrollData !== false;
-        if (e.metaKey || e.ctrlKey || e.button !== 0) return;
-        if (navigationFilter(this)) return;
+        if (e.metaKey || e.ctrlKey || e.button !== 0) {return;}
+        if (navigationFilter(this)) {return;}
 
         // We don't use _pd because we don't want to prevent default for the
         // above situations.
@@ -238,7 +216,7 @@ define('navigation',
             console.log('popstate navigate');
             navigate(state.path, true, state);
         }
-    }).on('submit', 'form', function(e) {
+    }).on('submit', 'form', function() {
         console.error("Form submissions are not allowed.");
         return false;
     });

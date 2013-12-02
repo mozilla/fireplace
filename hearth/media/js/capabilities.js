@@ -26,6 +26,12 @@ define('capabilities', [], function() {
         'phantom': navigator.userAgent.match(/Phantom/)  // Don't use this if you can help it.
     };
 
+    static_caps.persona = !!navigator.id && !static_caps.phantom;
+
+    // True if the login should inherit mobile behaviors such as allowUnverified.
+    // The _shimmed check is for B2G where identity is native (not shimmed).
+    static_caps.mobileLogin = static_caps.persona && (!navigator.id._shimmed || static_caps.firefoxAndroid);
+
     static_caps.device_type = function() {
         if (static_caps.firefoxOS) {
             return 'firefoxos';

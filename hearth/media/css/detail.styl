@@ -15,6 +15,7 @@
     border-radius: 10px;
     box-shadow: 0 1px 1px $cement-gray;
     margin: 10px;
+
     h3 {
         font-size: 15px;
         font-weight: 500;
@@ -26,6 +27,7 @@
     clear: both;
     color: $dark-gray;
     line-height: 22px;
+
     > div {
         padding: 24px 10px;
     }
@@ -92,50 +94,200 @@
 
 .content-ratings-wrapper {
     border-top: 1px solid $cloud-gray;
+
     h3 {
         padding-bottom: 24px;
     }
-}
-
-.content-rating {
-    color: $text;
-    display: table;
-    margin-bottom: 12px;
     .icon {
+        background-repeat: no-repeat;
         border-radius: 5px;
-        background: $black;
-        color: $white;
-        float: left;
-        font: 600 32px/64px $open-stack;
+        display: inline-block;
         height: 64px;
         margin-right: 15px;
         text-align: center;
         vertical-align: middle;
         width: 64px;
     }
-    .icon-L,
-    .icon-0 {
-        background: $box-green;
+}
+
+.content-ratings {
+    float: left;
+    max-width: 45%;
+}
+
+.content-ratings .content-rating {
+    color: $text;
+    display: table;
+    margin-bottom: 12px;
+
+    .icon {
+        float: left;
+        margin-bottom: 5px;
     }
-    .icon-10 {
-        background: $box-blue;
+    .icon-body-esrb {
+        height: 90px;
+        width: 58px;
+
+        &.icon-age-0 {
+            background-image: url('../img/icons/ratings/ESRB_e.png');
+        }
+        &.icon-age-10 {
+            background-image: url('../img/icons/ratings/ESRB_e10.png');
+        }
+        &.icon-age-13 {
+            background-image: url('../img/icons/ratings/ESRB_t.png');
+        }
+        &.icon-age-17 {
+            background-image: url('../img/icons/ratings/ESRB_m.png');
+        }
+        &.icon-age-18 {
+            background-image: url('../img/icons/ratings/ESRB_ao.png');
+        }
     }
-    .icon-12,
-    .icon-13 {
-        background: $box-yellow;
+    .icon-body-generic, .icon-body-classind {
+        background: $black;
+        color: $white;
+        float: left;
+        font: 600 32px/64px $open-stack;
+
+        .icon-content {
+            display: inline;
+        }
+        &.icon-age-L,
+        &.icon-age-0,
+        &.icon-age-3 {
+            background: $box-green;
+        }
+        &.icon-age-7,
+        &.icon-age-10 {
+            background: $box-blue;
+        }
+        &.icon-age-12,
+        &.icon-age-13 {
+            background: $box-yellow;
+        }
+        &.icon-age-14 {
+            background: $box-orange;
+        }
+        &.icon-age-16 {
+            background: $box-red;
+        }
+        &.icon-age-18 {
+            background: #000;
+        }
     }
-    .icon-14 {
-        background: $box-orange;
+    .icon-body-usk {
+        border-radius: 8px;
+        height: 68px;
+        width: 68px;
+
+        &.icon-age-0 {
+            background-image: url('../img/icons/ratings/USK_0.png');
+        }
+        &.icon-age-6 {
+            background-image: url('../img/icons/ratings/USK_6.png');
+        }
+        &.icon-age-12 {
+            background-image: url('../img/icons/ratings/USK_12.png');
+        }
+        &.icon-age-16 {
+            background-image: url('../img/icons/ratings/USK_16.png');
+        }
+        &.icon-age-18 {
+            background-image: url('../img/icons/ratings/USK_18.png');
+        }
     }
-    .icon-16 {
-        background: $box-red;
+    .icon-body-pegi {
+        border-radius: 1px;
+        height: 73px;
+        width: 60px;
+
+        &.icon-age-3 {
+            background-image: url('../img/icons/ratings/pegi_3.png');
+        }
+        &.icon-age-7 {
+            background-image: url('../img/icons/ratings/pegi_7.png');
+        }
+        &.icon-age-12 {
+            background-image: url('../img/icons/ratings/pegi_12.png');
+        }
+        &.icon-age-16 {
+            background-image: url('../img/icons/ratings/pegi_16.png');
+        }
+        &.icon-age-18 {
+            background-image: url('../img/icons/ratings/pegi_18.png');
+        }
     }
     .description {
-        display: table-cell;
+        color: $earl-gray;
+        display: inline-block;
+        float: left;
         font-weight: 400;
         margin: 0;
-        vertical-align: middle;
-        width: 100%;
+    }
+}
+
+.content-descriptors {
+    border-left: 1px solid $faint-gray;
+    float: right;
+    margin-bottom: 10px;
+    max-width: 55%;
+    padding-left: 20px;
+
+    .icon {
+        display: inline-block;
+        margin-right: 0;
+
+        &.pegi-discrimination {
+            background-image: url('../img/icons/ratings/descriptors/pegi_discrimination.png');
+        }
+        &.pegi-drugs {
+            background-image: url('../img/icons/ratings/descriptors/pegi_drugs.png');
+        }
+        &.pegi-scary {
+            background-image: url('../img/icons/ratings/descriptors/pegi_fear.png');
+        }
+        &.pegi-gambling {
+            background-image: url('../img/icons/ratings/descriptors/pegi_gambling.png');
+        }
+        &.pegi-lang {
+            background-image: url('../img/icons/ratings/descriptors/pegi_language.png');
+        }
+        &.pegi-nudity {
+            background-image: url('../img/icons/ratings/descriptors/pegi_nudity.png');
+        }
+        &.pegi-online {
+            background-image: url('../img/icons/ratings/descriptors/pegi_online.png');
+        }
+        &.pegi-sex {
+            background-image: url('../img/icons/ratings/descriptors/pegi_sex.png');
+        }
+        &.pegi-violence {
+            background-image: url('../img/icons/ratings/descriptors/pegi_violence.png');
+        }
+    }
+}
+
+.interactive-elements {
+    border-left: 1px solid $faint-gray;
+    float: right;
+    margin-bottom: 10px;
+    max-width: 55%;
+    padding-left: 20px;
+
+    .icon {
+        display: inline-block;
+        margin-right: 0;
+
+        &.shares-info {
+            background-image: url('../img/icons/ratings/interactives/ESRB_shares-info_small.png');
+        }
+        &.shares-location {
+            background-image: url('../img/icons/ratings/interactives/ESRB_shares-location_small.png');
+        }
+        &.users-interact {
+            background-image: url('../img/icons/ratings/interactives/ESRB_users-interact_small.png');
+        }
     }
 }
 
@@ -276,13 +428,16 @@
     // At desktop width, let's float the content ratings.
     .content-ratings {
         margin: 0 -15px;
-    }
 
-    .content-rating {
-        float: left;
-        margin-bottom: 24px;
-        padding: 0 15px;
-        width: 50%;
+        .content-rating {
+            float: left;
+            margin-bottom: 24px;
+            padding: 0 15px;
+
+            .icon {
+                margin-bottom: 0;
+            }
+        }
     }
 
     .secondary-header .leading {

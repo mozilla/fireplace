@@ -69,7 +69,7 @@ define('newsletter',
     function injectSignupForm() {
         var $signup;
         $('main').prepend(
-            nunjucks.env.getTemplate('user/newsletter.html').render({email: user.get_setting('email')})
+            nunjucks.env.render('user/newsletter.html', {email: user.get_setting('email')})
         );
 
         $signup = $('.newsletter');

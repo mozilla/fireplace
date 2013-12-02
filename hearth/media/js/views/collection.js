@@ -1,4 +1,6 @@
-define('views/collection', ['l10n', 'models', 'utils', 'z'], function(l10n, models, utils, z) {
+define('views/collection',
+       ['jquery', 'l10n', 'models', 'textoverflowclamp', 'utils', 'z'],
+       function($, l10n, models, clamp, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -17,9 +19,19 @@ define('views/collection', ['l10n', 'models', 'utils', 'z'], function(l10n, mode
             if (!data.apps) {
                 return;
             }
+
+            // Give him the clamps!
+            clamp(document.querySelector('.collection + .desc'), 7);
+
             if (data['collection_type'] === 2) {
                 builder.z('show_cats', true);
-                builder.z('cat', data['slug']);
+                builder.z('cat', data.slug);
+                // TODO: Remove this when OSCs aren't in the category list.
+                models('category').cast({
+                    name: data.name,
+                    slug: data.slug
+                });
+                $('#cat-dropdown .cat-' + data.slug).text(utils.translate(data.name));
                 z.page.trigger('build_start');
             }
             data.apps.map(app_model.cast);

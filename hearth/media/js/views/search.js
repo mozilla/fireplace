@@ -94,6 +94,10 @@ define('views/search',
                     query.languages = append(query.languages, value.split('=')[1]);
                 } else if (value.indexOf('region=') === 0) {
                     query.region = value.split('=')[1];
+                } else if (value.indexOf('offline') === 0) {
+                    query.offline = 'True';
+                } else if (value.indexOf('online') === 0) {
+                    query.offline = 'False';
                 }
             } else {
                 // Include anything that's not a keyword in the `q` search term.
@@ -161,7 +165,12 @@ define('views/search',
     }).on('search', function(e, params) {
         e.preventDefault();
         return z.page.trigger(
-            'navigate', utils.urlparams(urls.reverse('search'), params));
+            'navigate',
+            [
+                utils.urlparams(urls.reverse('search'), params),
+                {search_query: params.q}
+            ]
+        );
     });
 
     function processor(query) {

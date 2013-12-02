@@ -1,6 +1,6 @@
 define('login',
-    ['cache', 'capabilities', 'defer', 'jquery', 'log', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z'],
-    function(cache, capabilities, defer, $, log, notification, settings, _, urls, user, requests, z) {
+    ['capabilities', 'defer', 'jquery', 'log', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z'],
+    function(capabilities, defer, $, log, notification, settings, _, urls, user, requests, z) {
 
     var console = log('login');
 
@@ -27,7 +27,7 @@ define('login',
         z.body.removeClass('logged-in');
         z.page.trigger('reload_chrome').trigger('before_logout');
 
-        if (!capabilities.phantom) {
+        if (capabilities.persona) {
             console.log('Triggering Persona logout');
             navigator.id.logout();
         }
@@ -67,13 +67,16 @@ define('login',
             // See bug 910938.
             opt.experimental_forceIssuer = settings.persona_unverified_issuer;
         }
-        if (!navigator.id._shimmed) {
-            // When on B2G (i.e. no shim), we don't require new accounts to verify their email
-            // address. When on desktop, we do require verification.
+        if (capabilities.mobileLogin) {
+            // On mobile we don't require new accounts to verify their email.
+            // On desktop, we do.
             opt.experimental_allowUnverified = true;
+            console.log('Allowing unverified emails');
+        } else {
+            console.log('Not allowing unverified emails');
         }
 
-        if (!capabilities.phantom) {
+        if (capabilities.persona) {
             console.log('Requesting login from Persona');
             navigator.id.request(opt);
         }
@@ -86,7 +89,7 @@ define('login',
         var data = {
             assertion: assertion,
             audience: window.location.protocol + '//' + window.location.host,
-            is_native: navigator.id._shimmed ? 0 : 1
+            is_mobile: capabilities.mobileLogin
         };
 
         z.page.trigger('before_login');
@@ -144,7 +147,7 @@ define('login',
         console.log('No previous user detected');
     }
 
-    if (!capabilities.phantom) {
+    if (capabilities.persona) {
         console.log('Calling navigator.id.watch');
         navigator.id.watch({
             loggedInUser: email,

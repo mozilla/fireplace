@@ -5,7 +5,6 @@ define('views/app/ratings/edit',
     var gettext = l10n.gettext;
     var notify = notification.notification;
     var forms = require('forms');
-    var caps = require('capabilities');
 
     z.page.on('submit', '.edit-review-form', function(e) {
         e.preventDefault();
@@ -43,6 +42,13 @@ define('views/app/ratings/edit',
         z.page.trigger('navigate', urls.reverse('app', [slug]));
     });
 
+    function normalize(inbound) {
+        // This function normalizes the inbound API response. If we get a
+        // single review vs. a list containing a single review, this will
+        // return the expected version.
+        return inbound.objects ? inbound.objects[0] : inbound;
+    }
+
     return function(builder, args) {
         var slug = args[0];
 
@@ -54,14 +60,25 @@ define('views/app/ratings/edit',
             return;
         }
 
-        builder.start('ratings/edit.html', {'slug': slug}).done(function() {
-            $('.compose-review').attr('data-slug', slug);
-        });
+        var review_id = utils.getVars().review;
+        var endpoint;
+        if (review_id && user.get_permission('reviewer')) {
+            // Allow exact review lookups for admins.
+            endpoint = urls.api.url('review', [review_id]);
+        } else {
+            // Otherwise the user is limited to their own review for the app.
+            endpoint = urls.api.params('reviews', {app: slug, user: 'mine'});
+        }
+
+        builder.start(
+            'ratings/edit.html',
+            {'slug': slug, 'endpoint': endpoint, 'normalize': normalize}
+        );
 
         // If we hit the API and find out that there's no review for the user,
         // just bump them over to the Write a Review page.
         builder.onload('main', function(data) {
-            if (data.meta.total_count === 0) {
+            if (data.meta && data.meta.total_count === 0) {
                 z.page.trigger('divert', urls.reverse('app/ratings/add', [slug]));
             }
         });

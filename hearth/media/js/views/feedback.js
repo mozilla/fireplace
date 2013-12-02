@@ -33,7 +33,7 @@ define('views/feedback',
     function addFeedbackModal() {
         if (!caps.widescreen()) return;
         if (!$('.main.feedback:not(.modal)').length && !$('.feedback.modal').length) {
-            z.page.append(nunjucks.env.getTemplate('settings/feedback.html').render());
+            z.page.append(nunjucks.env.render('settings/feedback.html'));
         }
         z.body.trigger('decloak');
     }

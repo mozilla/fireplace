@@ -196,19 +196,44 @@
 {% except %}
 {% end %}
 
-{% defer (url=endpoint, as='app', key=slug) %}
-  {% if this.content_ratings %}
+{% defer (url=endpoint, as='app', key=slug, pluck='content_ratings') %}
+  {% set content_rating = this.ratings[user.get_setting('region')] or
+                          this.ratings['generic'] %}
+  {% if content_rating %}
     <div class="content-ratings-wrapper main infobox c">
       <div>
-        <h3>{{ _('Ratings') }}</h3>
+        <h3>{{ _('Content Rating') }}</h3>
         <div class="content-ratings">
-          {% for rating in this.content_ratings.values() %}
-            <div class="content-rating c">
-              <div class="icon icon-{{ rating.name|replace('+', '') }}" title="{{ rating.name }}">{{ rating.name }}</div>
-              <p class="description">{{ rating.description }}</p>
+          <div class="content-rating c">
+            {# content_rating.body (e.g. CLASSIND, GENERIC, ESRB, PEGI, USK #}
+            {# content_rating.name (e.g. 0+, 3+, 7+, 13+, 18+) #}
+            <div class="icon icon-body-{{ content_rating.body_label }} icon-age-{{ content_rating.rating_label }}"
+                 title="{{ content_rating.rating }}">
+              <span class="icon-content hidden">
+                {# Purely used to build the CLASSIND icon. rating_label will
+                   be the age (as a number) followed by a plus-sign
+                   (e.g. "18+"). Should not be localized. #}
+                {{ content_rating.rating_label }}&plus;
+              </span>
             </div>
-          {% endfor %}
+            <p class="description">{{ content_rating.rating }}</p>
+          </div>
         </div>
+        {% if content_rating.body_label == 'pegi' and this.descriptors %}
+          <div class="content-descriptors">
+            {% for descriptor in this.descriptors %}
+              {% if descriptor.ratings_body == 'pegi' %}
+                <img class="icon {{ descriptor.label }}" title="{{ descriptor.name }}">
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% elif this.interactive_elements %}
+          <div class="interactive-elements">
+            {% for interactive in this.interactive_elements %}
+              <img class="icon {{ interactive.label }}" title="{{ interactive.name }}">
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
     </div>
   {% endif %}

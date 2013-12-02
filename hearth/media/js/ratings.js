@@ -6,6 +6,8 @@ define('ratings',
     var gettext = l10n.gettext;
     var notify = require('notification').notification;
 
+    var open_rating = false;
+
     function rewriter(app, rewriter) {
         var unsigned_url = urls.api.unsigned.url('reviews');
         cache.attemptRewrite(
@@ -27,7 +29,7 @@ define('ratings',
 
         if (!$modal.length) {
             z.page.append(
-                nunjucks.env.getTemplate('ratings/report.html').render()
+                nunjucks.env.render('ratings/report.html')
             );
             $modal = $('.report-spam');
         }
@@ -93,16 +95,16 @@ define('ratings',
     function loginToRate() {
         login.login().fail(function() {
             // Clear flag for open rating modal on cancel/fail of login.
-            z.flags.open_rating = false;
+            open_rating = false;
         });
 
         // Set a flag to know that we expect the modal to open
         // this prevents opening later if login was cancelled
         // as this flag is cleared in that case.
-        z.flags.open_rating = true;
+        open_rating = true;
         z.page.one('loaded', function(){
-            if (z.flags.open_rating){
-                z.flags.open_rating = false;
+            if (open_rating){
+                open_rating = false;
                 var $reviewButton = $('.write-review');
                 if ($reviewButton.attr('id') == 'edit-review') {
                     // load the edit view.
@@ -132,7 +134,7 @@ define('ratings',
 
         if (capabilities.widescreen()) {
             // For now, edits go through to the view.
-            if  (this.id === 'edit-review') {
+            if (this.id === 'edit-review') {
                 return;
             }
 
@@ -142,7 +144,7 @@ define('ratings',
             var $ratingModal = $('.compose-review.modal');
             if (!$ratingModal.length) {
                 z.page.append(
-                    nunjucks.env.getTemplate('ratings/write.html').render({slug: $this.data('app')})
+                    nunjucks.env.render('ratings/write.html', {slug: $this.data('app')})
                 );
                 $ratingModal = $('.compose-review.modal');
             }
@@ -166,7 +168,14 @@ define('ratings',
             case 'report':
                 flagReview($review);
                 break;
+            case 'edit':
+                var view = utils.urlparams($this.attr('href'), {review: $this.data('review-id')});
+                z.page.trigger('navigate', view);
+                break;
+            default:
+                return;
         }
+        e.stopPropagation();  // Don't let the default handler fire if an action was matched.
     })).on('click', '.write-review', addReview)
     .on('loaded', function() {
         // Hijack <select> with stars.

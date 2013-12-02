@@ -37,6 +37,7 @@ define('apps',
     */
     function install(product, opt) {
         opt = opt || {};
+        opt.data = opt.data || {};
         var manifest_url;
         if (product.manifest_url) {
             manifest_url = utils.urlparams(product.manifest_url, {feature_profile: buckets.get_profile()});
@@ -46,11 +47,16 @@ define('apps',
         var mozApps = (opt.navigator || window.navigator).mozApps;
 
         var installer = product.is_packaged ? 'installPackage' : 'install';
-        console.log('Using `navigator.mozApps.' + installer + '` installer.')
+        console.log('Using `navigator.mozApps.' + installer + '` installer.');
+
+        // Copy app categories to the installer.
+        if (!('categories' in opt.data)) {
+            opt.data.categories = product.categories;
+        }
 
         // Try to install the app.
         if (manifest_url && mozApps && mozApps[installer]) {
-            var installRequest = mozApps[installer](manifest_url, opt.data || {});
+            var installRequest = mozApps[installer](manifest_url, opt.data);
             installRequest.onsuccess = function() {
                 console.log('App installation successful for', product.name);
                 var status;

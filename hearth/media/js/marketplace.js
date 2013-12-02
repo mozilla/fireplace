@@ -15,7 +15,8 @@ require.config({
         'templates': '../../templates',
         'settings': ['settings_local', 'settings'],
         'stick': 'lib/stick',
-        'format': 'lib/format'
+        'format': 'lib/format',
+        'textoverflowclamp': 'lib/textoverflowclamp'
     }
 });
 
@@ -67,9 +68,11 @@ require.config({
         var user = require('user');
         var z = require('z');
 
+        require('nunjucks').require('globals').REGIONS = settings.REGION_CHOICES_SLUG;
+
         // Jank hack because Persona doesn't allow scripts in the doc iframe.
         // Please just delete it when they don't do that anymore.
-        var doc_langs = ['el', 'en-US', 'es', 'pl', 'pt-BR'];
+        var doc_langs = ['el', 'en-US', 'es', 'pl', 'pt-BR', 'de'];
         var doc_lang = doc_langs.indexOf(navigator.l10n.language) >= 0 ? navigator.l10n.language : 'en-US';
         var doc_location = require('urls').media('/docs/{type}/' + doc_lang + '.html?20131014-4');
         settings.persona_tos = format.format(doc_location, {type: 'terms'});
@@ -117,7 +120,7 @@ require.config({
         };
         if (capabilities.webApps) {
             var get_installed_debounced = _.debounce(get_installed, 2000, true);  // Immediate so there's no delay.
-    
+
             z.page.on('loaded', get_installed);
             z.page.on('fragment_loaded loaded_more', get_installed_debounced);
             document.addEventListener(
@@ -137,9 +140,17 @@ require.config({
             console.log('Reloading chrome');
             var context = {z: z};
             $('#site-header').html(
-                nunjucks.env.getTemplate('header.html').render(context));
+                nunjucks.env.render('header.html', context));
             $('#site-footer').html(
-                nunjucks.env.getTemplate('footer.html').render(context));
+                nunjucks.env.render('footer.html', context));
+
+            if (!navigator.mozApps &&
+                !require('storage').getItem('hide_incompatibility_banner')) {
+                console.log('Adding incompatibility banner');
+                $('#incompatibility-banner').html(
+                    nunjucks.env.render('incompatible.html', context));
+                z.body.addClass('show-incompatibility-banner');
+            }
 
             z.body.toggleClass('logged-in', require('user').logged_in());
             z.page.trigger('reloaded_chrome');
@@ -154,6 +165,13 @@ require.config({
             e.preventDefault();
             console.log('← button pressed');
             require('navigation').back();
+        });
+
+        z.body.on('click', '#incompatibility-banner .close', function(e) {
+            e.preventDefault();
+            console.log('Hiding incompatibility banner');
+            z.body.removeClass('show-incompatibility-banner');
+            require('storage').setItem('hide_incompatibility_banner', true);
         });
 
         window.addEventListener(
@@ -185,7 +203,12 @@ require.config({
                 }, 3000);
             }).on('touchend mouseup', '.wordmark', function(e) {
                 console.log('debug hold released...', e.type);
+                if (to) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
                 clearTimeout(to);
+                to = false;
             });
         })();
 

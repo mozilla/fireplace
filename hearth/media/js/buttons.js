@@ -1,11 +1,22 @@
 define('buttons',
-    ['apps', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'login', 'models', 'notification', 'payments/payments', 'requests', 'settings', 'tracking', 'urls', 'user', 'utils', 'views', 'z'],
-    function(apps, cache, caps, defer, l10n, log, login, models, notification, payments, requests, settings, tracking, urls, user, utils, views, z) {
+    ['apps', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'login',
+     'models', 'navigation', 'notification', 'payments/payments', 'requests',
+     'settings', 'tracking', 'urls', 'user', 'utils', 'views', 'z'],
+    function() {
 
-    var console = log('buttons');
+    var apps = require('apps');
+    var cache = require('cache');
+    var notification = require('notification');
+    var requests = require('requests');
+    var tracking = require('tracking');
+    var urls = require('urls');
+    var user = require('user');
+    var z = require('z');
 
-    var apps_model = models('app');
-    var gettext = l10n.gettext;
+    var console = require('log')('buttons');
+
+    var apps_model = require('models')('app');
+    var gettext = require('l10n').gettext;
 
     function setButton($button, text, cls) {
         revertButton($button, text);
@@ -35,6 +46,19 @@ define('buttons',
         );
     });
 
+    function track_search_term() {
+        var nav_stack = require('navigation').stack();
+        for (var i = 0, item; item = nav_stack[i++];) {
+            if (!item.params || !item.params.search_query) {
+                continue;
+            }
+            console.log('Found search in nav stack, tracking search term:', item.params.search_query);
+            tracking.setVar(13, 'Search query', item.params.search_query);
+            return;
+        }
+        console.log('No associated search term to track.');
+    }
+
     function install(product, $button) {
         var product_name = product.name;
         console.log('Install requested for', product_name);
@@ -42,12 +66,12 @@ define('buttons',
         // TODO: Have the API possibly return this (bug 889501).
         product.receipt_required = (product.premium_type !== 'free' &&
                                     product.premium_type !== 'free-inapp' &&
-                                    !settings.simulate_nav_pay);
+                                    !require('settings').simulate_nav_pay);
 
         // If it's a paid app, ask the user to sign in first.
         if (product.receipt_required && !user.logged_in()) {
             console.log('Install suspended; user needs to log in');
-            return login.login().done(function() {
+            return require('login').login().done(function() {
                 // Once login completes, just call this function again with
                 // the same parameters, but re-fetch the button (since the
                 // button instance is not the same).
@@ -70,7 +94,7 @@ define('buttons',
         }
 
         // Create a master deferred for the button action.
-        var def = defer.Deferred();
+        var def = require('defer').Deferred();
         // Create a reference to the button.
         var $this = $button || $(this);
         var _timeout;
@@ -87,7 +111,7 @@ define('buttons',
             console.log('Starting payment flow for', product_name);
             $this.data('old-text', $this.html());  // Save the old text of the button.
             setButton($this, gettext('Purchasing'), 'purchasing');
-            payments.purchase(product).then(function() {
+            require('payments/payments').purchase(product).then(function() {
                 console.log('Purchase flow completed for', product_name);
 
                 // Update the button to say Install.
@@ -109,7 +133,7 @@ define('buttons',
 
                 def.always(function() {
                     // Do a reload to show any reviews privilege changes for bug 838848.
-                    views.reload();
+                    require('views').reload();
                 });
 
                 // Start the app's installation.
@@ -131,6 +155,9 @@ define('buttons',
         }
 
         function start_install() {
+
+            // Track the search term used to find this app, if applicable.
+            track_search_term();
 
             // Track that an install was started.
             tracking.trackEvent(
@@ -161,7 +188,7 @@ define('buttons',
 
             // This is the data needed to record the app's install.
             var api_endpoint = urls.api.url('record_' + (product.receipt_required ? 'paid' : 'free'));
-            var post_data = {app: product.id, chromeless: +caps.chromeless};
+            var post_data = {app: product.id, chromeless: +require('capabilities').chromeless};
 
             // If we don't need a receipt to perform the installation...
             if (!product.receipt_required) {
@@ -226,7 +253,7 @@ define('buttons',
 
             // Show the box on how to run the app.
             var $installed = $('#installed');
-            var $how = $installed.find('.' + utils.browser());
+            var $how = $installed.find('.' + require('utils').browser());
             if ($how.length) {
                 $installed.show();
                 $how.show();
@@ -248,6 +275,14 @@ define('buttons',
             // If the purchase or installation fails, revert the button.
             revertButton($this);
             console.log('Unsuccessful install for', product_name);
+
+            // Track that the install failed.
+            tracking.trackEvent(
+                'App failed to install',
+                product.receipt_required ? 'paid' : 'free',
+                product_name + ':' + product.id,
+                $('.button.product').index($button)
+            );
         });
 
         return def.promise();

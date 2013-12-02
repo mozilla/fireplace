@@ -154,19 +154,15 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
             var i;
             while (i = ga_page_vars.pop()) {
                 console.log('Cleaning up var ' + i);
-                push(['_deleteCustomVar', i]);
+                ga_push(['_deleteCustomVar', i]);
             }
             console.groupEnd();
         }
     });
 
     function actionWrap(func) {
-        return function() {
-            if (!actions_enabled) {
-                return;
-            }
-            func.apply(this, arguments);
-        };
+        if (!actions_enabled) return function() {};
+        return func;
     }
 
     return {
@@ -179,7 +175,7 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
         setPageVar: actionWrap(function(index, name, value) {
             ga_page_vars.push(index);
             ga_push(['_setCustomVar', index, name, value, 3]);
-            ga_page_vars['dimension' + index] = value;
+            ua_page_vars['dimension' + index] = value;
         }),
         trackEvent: actionWrap(function() {
             var args = Array.prototype.slice.call(arguments, 0);

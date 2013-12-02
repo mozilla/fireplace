@@ -2,8 +2,8 @@
 
 var languages = [
     'bg', 'ca', 'cs', 'de', 'el', 'en-US', 'es', 'eu', 'fr', 'ga-IE', 'hr',
-    'hu', 'it', 'ja', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'sr-Latn',
-    'tr', 'zh-TW', 'dbg'
+    'hu', 'it', 'ja', 'mk', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr',
+    'sr-Latn', 'tr', 'zh-TW', 'dbg'
 ];
 var body_langs;
 if (body_langs = document.body.getAttribute('data-languages')) {
@@ -35,7 +35,7 @@ function get_locale(locale) {
 
 if (!window.define) {
     var qs_lang = /[\?&]lang=([\w\-]+)/i.exec(window.location.search);
-    var locale = get_locale((qs_lang && qs_lang[1]) || navigator.language);
+    var locale = get_locale((qs_lang && qs_lang[1]) || navigator.language || navigator.userLanguage);
     if (locale === 'en-US') {
         window.navigator.l10n = {language: 'en-US'};
         return;

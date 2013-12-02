@@ -1,6 +1,6 @@
 define('views/homepage',
-    ['format', 'l10n', 'log', 'models', 'newsletter', 'underscore', 'urls', 'utils'],
-    function(format, l10n, log, models, newsletter, _, urls, utils) {
+    ['format', 'jquery', 'l10n', 'log', 'models', 'newsletter', 'textoverflowclamp', 'underscore', 'urls', 'utils'],
+    function(format, $, l10n, log, models, newsletter, clamp, _, urls, utils) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -36,6 +36,8 @@ define('views/homepage',
             var $collections = $('.collection.main');
             newsletter.init();
 
+            clamp(document.querySelector('.collection + .desc'), 7);
+
             if (!shelf.length) {
                 console.log('OSC injection skipped; No shelf');
                 return;
@@ -52,6 +54,13 @@ define('views/homepage',
             }
 
             if (!shelf.apps.length) return;
+
+            // TODO: Remove this when things are different.
+            // This lets the category for the OSC have a name and not just a slug.
+            models('category').cast({
+                name: shelf.name,
+                slug: shelf.slug
+            });
 
             // This is safe: cat-dropdown is required by marketplace.js.
             require('cat-dropdown').catrequest.done(function() {
