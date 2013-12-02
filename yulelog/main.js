@@ -65,7 +65,6 @@
                     ]
 
                 */
-                conn = navigator.mozMobileConnections;
                 var mccs = [];
                 var connData;
                 for (var i = 0; i < conn.length; i++) {
