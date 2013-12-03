@@ -22,7 +22,14 @@ test('no MCC, no MNC', function(done) {
 test('yes MCC, no MNC', function(done, fail) {
     var network = mobilenetwork.getNetwork('214', '');
     eq_(network.region, 'es');
-    eq_(network.carrier, null);
+    eq_(network.carrier, 'telefonica');  // Because Telefonica is the only carrier in Spain.
+    done();
+});
+
+test('yes MCC, no MNC, not exclusive', function(done, fail) {
+    var network = mobilenetwork.getNetwork('334', '');
+    eq_(network.region, 'mx');
+    eq_(network.carrier, null);  // Because there are multiple carriers in Mexico.
     done();
 });
 
@@ -42,56 +49,42 @@ test('yes MCC, yes MNC', function(done, fail) {
 
 test('no carrier+region', function(done) {
     user.clear_settings();
-    eq_(user.get_setting('carrier'), null);
-    eq_(user.get_setting('region'), null);
+    eq_(user.get_setting('carrier_sim'), null);
+    eq_(user.get_setting('region_sim'), null);
 
     var navigator_ = {mozMobileConnection: null};
     mobilenetwork.detectMobileNetwork(navigator_);
 
-    eq_(user.get_setting('carrier'), null);
-    eq_(user.get_setting('region'), null);
+    eq_(user.get_setting('carrier_sim'), null);
+    eq_(user.get_setting('region_sim'), null);
 
     done();
 });
 
 test('carrier+region for Telefónica España SIM via querystring', function(done, fail) {
-    var failed = false;
-    function update_settings(data) {
-        try {
-            eq_(data.carrier, 'telefonica');
-            eq_(data.region, 'es');
-        } catch(e) {
-            fail(e);
-            failed = true;
-        }
-    }
+    var updated = false;
     mock(
         'mobilenetwork',
         {
-            notification: {},
-            views: {reload: function() {}},
-            login: {login: function() {}},
             user: {
                 get_setting: function() { return null; },
                 get_settings: function() { return {}; },
-                logged_in: function() { return false; },
-                set_token: function() {},
-                update_permissions: function() {},
-                update_settings: update_settings
+                update_settings: function(data) {
+                    assert('region_sim' in data);
+                    assert('carrier_sim' in data);
+                    eq_(data.region_sim, 'es');
+                    eq_(data.carrier_sim, 'telefonica');
+                    updated = true;
+                }
             },
             utils: {
-                _pd: utils._pd,
-                getVars: function() { return {mcc: '214', mnc: '005'}; },
-                urlencode: utils.urlencode,
-                urlparams: utils.urlparams
+                getVars: function() { return {mcc: '214', mnc: '005'}; }
             }
         }, function(mobilenetwork) {
-            user.clear_settings();
-            mobilenetwork.detectMobileNetwork({}, true);
-            if (!failed) {
-                done();
-            }
-        }
+            mobilenetwork.detectMobileNetwork({});
+            (updated ? done : fail)();
+        },
+        fail
     );
 });
 
@@ -101,20 +94,8 @@ test('carrier+region for Telefónica España SIM via navigator.mozMobileConnecti
     var navigator_ = {mozMobileConnection: {lastKnownNetwork: '214-005'}};
     mobilenetwork.detectMobileNetwork(navigator_);
 
-    eq_(user.get_setting('carrier'), 'telefonica');
-    eq_(user.get_setting('region'), 'es');
-
-    done();
-});
-
-test('region for unknown España SIM via navigator.mozMobileConnection', function(done) {
-    user.clear_settings();
-
-    var navigator_ = {mozMobileConnection: {lastKnownNetwork: '214-999'}};
-    mobilenetwork.detectMobileNetwork(navigator_);
-
-    eq_(user.get_setting('carrier'), null);
-    eq_(user.get_setting('region'), 'es');
+    eq_(user.get_setting('carrier_sim'), 'telefonica');
+    eq_(user.get_setting('region_sim'), 'es');
 
     done();
 });

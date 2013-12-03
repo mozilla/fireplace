@@ -40,7 +40,7 @@ define('views/debug',
             capabilities: capabilities,
             settings: settings,
             report_version: 1.0,
-            profile: buckets.get_profile()
+            profile: buckets.profile
         })};
         requests.post('https://ashes.paas.allizom.org/post_report', data).done(function(data) {
             notification.notification({
@@ -51,20 +51,21 @@ define('views/debug',
 
     }).on('change', '#debug-page select[name=region]', function(e) {
         var val = $(this).val();
-        var current_region = user.get_setting('region');
+        var current_region = user.get_setting('region_override');
         if (current_region !== val) {
-            persistent_console.log('Manual region change:', current_region, '→', val);
+            persistent_console.log('Manual region override change:', current_region, '→', val);
         }
-        user.update_settings({region: val});
+        user.update_settings({region_override: val});
         z.page.trigger('reload_chrome');
-        notification.notification({message: 'Region updated to ' + settings.REGION_CHOICES_SLUG[val]});
+        notification.notification({message: 'Region updated to ' + (settings.REGION_CHOICES_SLUG[val] || '---')});
+
     }).on('change', '#debug-page select[name=carrier]', function(e) {
         var val = $(this).val();
-        var current_carrier = user.get_setting('carrier');
+        var current_carrier = user.get_setting('carrier_override');
         if (current_carrier !== val) {
-            persistent_console.log('Manual carrier change:', current_carrier, '→', val);
+            persistent_console.log('Manual carrier override change:', current_carrier, '→', val);
         }
-        user.update_settings({carrier: val});
+        user.update_settings({carrier_override: val});
         z.page.trigger('reload_chrome');
         notification.notification({message: 'Carrier updated to ' + val});
     });
@@ -76,7 +77,7 @@ define('views/debug',
             carriers: require('mobilenetwork').carriers,
             cache: cache.raw,
             capabilities: capabilities,
-            profile: buckets.get_profile(),
+            profile: buckets.profile,
             recent_logs: recent_logs,
             persistent_logs: log.persistent.all,
             filter: log.filter

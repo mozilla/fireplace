@@ -95,48 +95,34 @@ test('api url signage', function(done, fail) {
     );
 });
 
-// TODO(commonplace): Deal with the next three tests (move them to mobilenetwork?)
-test('api hardcoded carrier', function(done) {
+test('api user-defined carrier (via SIM)', function(done, fail) {
     mock(
         'urls',
         {
             capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
-            settings: {api_url: 'api:', carrier: {slug: 'bastacom'}},
-            user: {logged_in: function() {}, get_setting: function(x) { return x == 'carrier' && 'bastacom'; }}
-        }, function(urls) {
-            contains(urls.api.url('search'), 'carrier=bastacom');
-            done();
-        }
-    );
-});
-
-test('api user-defined carrier (via SIM)', function(done) {
-    mock(
-        'urls',
-        {
-            capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
-            settings: {api_url: 'api:', carrier: {slug: 'bastacom'}},
-            user: {logged_in: function() {}, get_setting: function(x) { return x == 'carrier' && 'seavanaquaticcorp'; }}
+            user: {logged_in: function() {}, get_setting: function(x) {
+                return x == 'carrier_sim' && 'seavanaquaticcorp';
+            }}
         }, function(urls) {
             contains(urls.api.url('search'), 'carrier=seavanaquaticcorp');
             done();
-        }
+        },
+        fail
     );
 });
 
-test('api user-defined carrier+region (via SIM)', function(done) {
+test('api user-defined carrier+region (via SIM)', function(done, fail) {
     mock(
         'urls',
         {
             capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
-            settings: {api_url: 'api:', carrier: {slug: 'bastacom'}},
             user: {
                 logged_in: function() {},
                 get_setting: function(x) {
                     switch(x) {
-                        case 'carrier':
+                        case 'carrier_sim':
                             return 'seavanaquaticcorp';
-                        case 'region':
+                        case 'region_sim':
                             return 'underwater';
                     }
                 }
@@ -146,7 +132,8 @@ test('api user-defined carrier+region (via SIM)', function(done) {
             contains(url, 'carrier=seavanaquaticcorp');
             contains(url, 'region=underwater');
             done();
-        }
+        },
+        fail
     );
 });
 

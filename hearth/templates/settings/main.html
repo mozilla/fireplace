@@ -30,8 +30,8 @@
         <label>{{ _('Region') }}</label>
       </div>
       <div class="form-col">
-        <span class="region region-{{ user.get_setting('region', 'worldwide') }}">
-          {{ REGIONS[user.get_setting('region', 'worldwide')] }}</span>
+        <span class="region region-{{ user_helpers.region('worldwide') }}">
+          {{ REGIONS[user_helpers.region('worldwide')] }}</span>
       </div>
     </div>
 

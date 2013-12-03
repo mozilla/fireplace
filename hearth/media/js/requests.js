@@ -84,14 +84,13 @@ define('requests',
         return def.promise(xhr);
     }
 
-    function ajax() {
-        var def = _ajax.apply(this, arguments);
-        var type = arguments[0];
+    function ajax(type, url, data) {
+        var def = _ajax(type, url, data);
         // then() returns a new promise, so don't return that.
-        def.then(function() {
-            callHooks('success', arguments);
-        }, function(xhr, error, status) {
-            callHooks('failure', arguments);
+        def.then(function(resp, xhr) {
+            callHooks('success', [resp, xhr, type, url, data]);
+        }, function(xhr, error, status, resp) {
+            callHooks('failure', [xhr, error, status, resp, type, url, data]);
             handle_errors(xhr, type, status);
         });
         return def;

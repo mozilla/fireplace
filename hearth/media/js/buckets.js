@@ -106,8 +106,8 @@ define('buckets', [], function() {
     profile += '.3';
 
     return {
-        get_profile: function() {return profile;},
-        capabilities: capabilities
+        capabilities: capabilities,
+        profile: profile
     };
 
 });
