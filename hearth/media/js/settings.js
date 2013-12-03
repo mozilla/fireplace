@@ -169,6 +169,15 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
                 'shares-location': '/media/img/icons/ratings/interactives/ESRB_shares-location.png',
                 'users-interact': '/media/img/icons/ratings/interactives/ESRB_users-interact.png',
             }
+        },
+
+        iarc_detail_links: {
+            // TODO: replace classind link with one the IARC will give us.
+            // TODO: link to a detail page for generic content ratings (MDN?).
+            classind: 'http://portal.mj.gov.br/classificacao/data/Pages/MJ6BC270E8PTBRNN.htm',
+            esrb: 'http://www.esrb.org/ratings/ratings_guide.jsp',
+            pegi: 'http://www.pegi.info/en/index/id/33/',
+            usk: 'http://www.usk.de/pruefverfahren/alterskennzeichen/',
         }
     });
 });
