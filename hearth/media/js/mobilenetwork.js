@@ -1,6 +1,6 @@
 define('mobilenetwork',
-       ['defer', 'l10n', 'log', 'notification', 'settings', 'user', 'utils'],
-       function(defer, l10n, log, notification, settings, user, utils) {
+       ['defer', 'l10n', 'log', 'settings', 'user', 'utils'],
+       function(defer, l10n, log, settings, user, utils) {
     var console = log('mobilenetwork');
     var persistent_console = log.persistent('mobilenetwork', 'change');
     var gettext = l10n.gettext;
@@ -280,31 +280,12 @@ define('mobilenetwork',
         };
     }
 
-    function confirmRegion(currentRegion, newRegion) {
-        // Ask user to switch to the new region we detected from the SIM card.
-        var currentRegionName = REGIONS[currentRegion];
-        var newRegionName = REGIONS[newRegion];
-        var message = gettext('You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?',
-            {current_region: currentRegionName,
-             new_region: newRegionName});
-
-        notification.confirmation({message: message}).fail(function() {
-            persistent_console.log('User cancelled region change:', currentRegionName, '→', newRegionName);
-        }).done(function() {
-            persistent_console.log('User confirmed SIM region change:', currentRegionName, '→', newRegionName);
-            user.update_settings({region: newRegion});
-            // window.location.reload() is weird on Firefox OS.
-            window.location = window.location.href;
-        });
-    }
-
-    function detectMobileNetwork(navigator, fake) {
-        var consoleFunc = console.tagged('detectMobileNetwork');
+    function detectMobileNetwork(navigator) {
+        var consoleTagged = console.tagged('detectMobileNetwork');
         navigator = navigator || window.navigator;
 
         var newSettings = {};
 
-        var region;
         var GET = utils.getVars();
         // Get mobile region and carrier information passed via querystring.
         var mcc = GET.mcc;
@@ -315,6 +296,7 @@ define('mobilenetwork',
         } catch(e) {
         }
 
+        var region;
         var carrier = GET.carrier || user.get_setting('carrier') || null;
 
         try {
@@ -324,26 +306,21 @@ define('mobilenetwork',
             // When Fireplace is served as a privileged packaged app (and not
             // served via Yulelog) our JS will have direct access to this API.
             // Assignment not comparison below.
+            var conn;
             if (conn = navigator.mozMobileConnections) {
-                consoleFunc.log('navigator.mozMobileConnections available');
+                consoleTagged.log('navigator.mozMobileConnections available');
                 /*
                     Example format:
 
                     [
                         {
                             data: {
-                                network: {
-                                    mcc: '260',
-                                    mnc: '02'
-                                }
+                                network: {mcc: '260', mnc: '02'}
                             }
                         },
                         {
                             data: {
-                                network: {
-                                    mcc: '734',
-                                    mnc: '04'
-                                }
+                                network: {mcc: '734', mnc: '04'}
                             }
                         }
                     ]
@@ -351,7 +328,7 @@ define('mobilenetwork',
                 */
 
                 if (mccs.length) {
-                    consoleFunc.log('Using hardcoded MCCs:', JSON.stringify(mccs));
+                    consoleTagged.log('Using hardcoded MCCs:', JSON.stringify(mccs));
                 } else {
                     // If we haven't hardcoded a MCC...
                     mccs = [];
@@ -364,108 +341,64 @@ define('mobilenetwork',
                                        mnc: connData.network.mnc});
                         }
                     }
-                    consoleFunc.log('Using SIM MCCs:', JSON.stringify(mccs));
+                    consoleTagged.log('Using SIM MCCs:', JSON.stringify(mccs));
                 }
+            } else if (conn = navigator.mozMobileConnection) {
+                consoleTagged.log('navigator.mozMobileConnection available');
+                // `MCC`: Mobile Country Code
+                // `MNC`: Mobile Network Code
+                // `lastKnownHomeNetwork`: `{MCC}-{MNC}` (SIM's origin)
+                // `lastKnownNetwork`: `{MCC}-{MNC}` (could be different network if roaming)
+                var lastNetwork = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
+                mcc = lastNetwork[0];
+                mnc = lastNetwork[1];
+                consoleTagged.log('navigator.mozMobileConnection.lastKnownNetwork:',
+                    conn.lastKnownNetwork);
+                consoleTagged.log('navigator.mozMobileConnection.lastKnownHomeNetwork:',
+                    conn.lastKnownHomeNetwork);
+                consoleTagged.log('MCC:', mcc, ', MNC:', mnc);
             } else {
-                consoleFunc.log('navigator.mozMobileConnections unavailable');
-
-                var conn = navigator.mozMobileConnection;
-                if (conn) {
-                    consoleFunc.log('navigator.mozMobileConnection available');
-                    // `MCC`: Mobile Country Code
-                    // `MNC`: Mobile Network Code
-                    // `lastKnownHomeNetwork`: `{MCC}-{MNC}` (SIM's origin)
-                    // `lastKnownNetwork`: `{MCC}-{MNC}` (could be different network if roaming)
-                    var lastNetwork = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
-                    mcc = lastNetwork[0];
-                    mnc = lastNetwork[1];
-                    consoleFunc.log('navigator.mozMobileConnection.lastKnownNetwork:',
-                        conn.lastKnownNetwork);
-                    consoleFunc.log('navigator.mozMobileConnection.lastKnownHomeNetwork:',
-                        conn.lastKnownHomeNetwork);
-                    consoleFunc.log('MCC:', mcc, ', MNC:', mnc);
-                } else {
-                    consoleFunc.log('navigator.mozMobileConnection unavailable');
-                }
+                consoleTagged.log('navigator.mozMobileConnection unavailable');
             }
         } catch(e) {
             // Fail gracefully if `navigator.mozMobileConnection(s)`
             // gives us problems.
-            consoleFunc.warn('Error accessing navigator.mozMobileConnection:', e);
+            consoleTagged.warn('Error accessing navigator.mozMobileConnection:', e);
         }
 
-        newSettings.sim_carrier = GET.carrier;
-        newSettings.sim_region = GET.region;
+        newSettings.carrier_sim = null;
+        newSettings.region_sim = null;
 
-        if (mcc || mnc) {
+        function setFromSIMPair(mcc, mnc, source) {
             // Look up region and carrier from MCC (Mobile Country Code)
             // and MNC (Mobile Network Code).
             var network = getNetwork(mcc, mnc);
 
-            region = newSettings.sim_region = network.region;
-            carrier = newSettings.sim_carrier = network.carrier;
-
             if (carrier !== network.carrier) {
                 persistent_console.log(
-                    'Carrier changed by SIM:', carrier, '→', network.carrier);
+                    'Carrier changed by ' + source + ':', carrier, '→', network.carrier);
             }
+
+            region = newSettings.region_sim = network.region;
+            carrier = newSettings.carrier_sim = network.carrier;
+
+            return region;
+        }
+
+        if (mcc || mnc) {
+            setFromSIMPair(mcc, mnc, 'SIM');
         }
 
         if (mccs.length) {
             var pair;
             for (var i = 0; i < mccs.length; i++) {
                 pair = mccs[i];
-                consoleFunc.log('mccs[' + i + ']:', pair);
-
-                // Look up region and carrier from MCC (Mobile Country Code)
-                // and MNC (Mobile Network Code).
-                network = getNetwork(pair.mcc, pair.mnc);
-
-                region = newSettings.sim_region = network.region;
-                carrier = newSettings.sim_carrier = network.carrier;
-
-                if (carrier !== network.carrier) {
-                    persistent_console.log(
-                        'Carrier changed by SIM:', carrier,
-                        '→', network.carrier);
-                }
-
-                // If there's a region, stop looking.
-                if (region) {
+                consoleTagged.log('mccs[' + i + ']:', pair);
+                if (setFromSIMPair(pair.mcc, pair.mnc, 'dual SIM')) {
                     break;
                 }
             }
         }
-
-        var lastRegion = user.get_setting('last_region');
-
-        if (region && lastRegion !== region) {
-            persistent_console.log('Detected new region from SIM:', region);
-            if (lastRegion) {
-                confirmRegion(lastRegion, region);
-            }
-            // Update the last region we detected from the SIM.
-            newSettings.last_region = region;
-        }
-
-        // Get region from settings saved to localStorage.
-        if (GET.region === '') {  // Ability to set region to worldwide from query params
-            region = '';
-        } else {
-            region = (GET.region in REGIONS && GET.region) || region || user.get_setting('region');
-        }
-
-        // If it turns out the region is null, when we get a response from an
-        // API request, we look at the `API-Filter` header to determine the region
-        // in which Zamboni geolocated the user.
-
-        // Hardcoded carrier should never get overridden.
-        if (settings.carrier && typeof settings.carrier === 'object') {
-            carrier = settings.carrier.slug;
-        }
-
-        newSettings.carrier = carrier || null;
-        newSettings.region = region || null;
 
         user.update_settings(newSettings);
     }

@@ -40,7 +40,7 @@ define('apps',
         opt.data = opt.data || {};
         var manifest_url;
         if (product.manifest_url) {
-            manifest_url = utils.urlparams(product.manifest_url, {feature_profile: buckets.get_profile()});
+            manifest_url = utils.urlparams(product.manifest_url, {feature_profile: buckets.profile});
         }
 
         var def = defer.Deferred();

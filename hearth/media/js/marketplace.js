@@ -51,6 +51,7 @@ require.config({
             'tracking',
             'urls',
             'user',
+            'user_helpers',
             'utils',
             'views',
             'webactivities',
@@ -68,7 +69,9 @@ require.config({
         var user = require('user');
         var z = require('z');
 
-        require('nunjucks').require('globals').REGIONS = settings.REGION_CHOICES_SLUG;
+        var nunjucks_globals = require('nunjucks').require('globals');
+        nunjucks_globals.REGIONS = settings.REGION_CHOICES_SLUG;
+        nunjucks_globals.user_helpers = require('user_helpers');
 
         // Jank hack because Persona doesn't allow scripts in the doc iframe.
         // Please just delete it when they don't do that anymore.
@@ -212,14 +215,14 @@ require.config({
             });
         })();
 
-        require('requests').on('success', function(_, xhr) {
+        require('requests').on('success', function(_, xhr, type, url) {
             var filter_header;
             try {
-                if ((!user.get_setting('region') || user.get_setting('region') == 'internet') &&
-                    (filter_header = xhr.getResponseHeader('API-Filter'))) {
+                if (filter_header = xhr.getResponseHeader('API-Filter') &&
+                    url.indexOf('region=') === -1) {
                     var region = require('utils').getVars(filter_header).region;
                     log.persistent('mobilenetwork', 'change').log('API overriding region:', region);
-                    user.update_settings({region: region});
+                    require('user_helpers').set_region_geoip(region);
                 }
             } catch(e) {}
         }).on('deprecated', function() {

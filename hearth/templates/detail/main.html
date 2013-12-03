@@ -197,7 +197,7 @@
 {% end %}
 
 {% defer (url=endpoint, as='app', key=slug, pluck='content_ratings') %}
-  {% set content_rating = this.ratings[user.get_setting('region')] or
+  {% set content_rating = this.ratings[user_helpers.region()] or
                           this.ratings['generic'] %}
   {% if content_rating %}
     <div class="content-ratings-wrapper main infobox c">
