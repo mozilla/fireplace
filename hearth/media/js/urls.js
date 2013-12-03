@@ -1,6 +1,7 @@
 define('urls',
-    ['buckets', 'capabilities', 'format', 'routes_api', 'settings', 'underscore', 'user', 'utils'],
-    function(buckets, caps, format, api_endpoints, settings, _, user) {
+    ['buckets', 'format', 'routes_api', 'routes_api_args', 'settings',
+     'user', 'utils'],
+    function(buckets, format, api_endpoints, api_args, settings, user) {
 
     var group_pattern = /\(.+\)/;
     var optional_pattern = /(\(.*\)|\[.*\]|.)\?/g;
@@ -36,53 +37,19 @@ define('urls',
         console.error('Could not find the view "' + view_name + '".');
     };
 
-    function _dev() {
-        if (caps.firefoxOS) {
-            return 'firefoxos';
-        } else if (caps.firefoxAndroid) {
-            return 'android';
-        }
-    }
-
-    function _device() {
-        // TODO: Deprecate this. (This was a quick fix for bug 875495 until buchets land.)
-        if (caps.firefoxOS) {
-            return 'firefoxos';
-        } else if (caps.firefoxAndroid) {
-            if (caps.widescreen()) {
-                return 'tablet';
-            }
-            return 'mobile';
-        }
-    }
-
     function _userArgs(func) {
         return function() {
             var out = func.apply(this, arguments);
-            var lang = navigator.language;
-            if (navigator.l10n && navigator.l10n.language) {
-                lang = navigator.l10n.language;
-            }
-            var args = {
-                lang: lang,
-                region: user.get_setting('region') || '',
-                carrier: user.get_setting('carrier') || '',
-                true_region: user.get_setting('true_region') || '',
-                true_carrier: user.get_setting('true_carrier') || '',
-                dev: _dev(),
-                device: _device(),
-                pro: buckets.get_profile()
-            };
+            var args = api_args();
             if (user.logged_in()) {
                 args._user = user.get_token();
             }
-            Object.keys(args).forEach(function(k) {
-                if (!args[k] ||
-                    settings.api_param_blacklist &&
-                    settings.api_param_blacklist.indexOf(k) !== -1) {
-                    delete args[k];
+            var blacklist = settings.api_param_blacklist || [];
+            for (var key in args) {
+                if (!args[key] || blacklist.indexOf(key) !== -1) {
+                    delete args[key];
                 }
-            });
+            }
             return require('utils').urlparams(out, args);
         };
     }
@@ -119,13 +86,12 @@ define('urls',
         api: {
             url: _userArgs(api),
             params: _userArgs(apiParams),
-            sign: _userArgs(_.identity),
+            sign: _userArgs(function(url) {return url;}),
             unsigned: {
                 url: api,
                 params: apiParams
             }
         },
-        media: media,
-        _device: _device
+        media: media
     };
 });
