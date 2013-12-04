@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-27T15:59:43.630Z\n"
+"POT-Creation-Date: 2013-12-04T17:08:09.612Z\n"
 "PO-Revision-Date: 2013-10-28 21:47+0000\n"
 "Last-Translator: Gábor <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -56,23 +56,6 @@ msgstr "Ez a Firefox Marketplace már nem támogatott. Ha továbbra is használn
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Frissítés"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr ""
-
-#: /templates/incompatible.html:2
-msgid "Download."
-msgstr ""
-
-#: /templates/privacy.html:2 /templates/footer.html:33 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
-#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
-msgid "Privacy Policy"
-msgstr "Adatvédelmi irányelvek"
-
-#: /templates/terms.html:2 /templates/footer.html:34 /templates/settings/feedback.html:27 /media/js/views/terms.js:10
-msgid "Terms of Use"
-msgstr "Felhasználási feltételek"
 
 #: /templates/featured.html:7
 msgid "Featured"
@@ -127,6 +110,15 @@ msgstr ""
 "Kivéve, ahol másként nincs <a href=\"{legal_url}\" target=\"_blank\">említve</a>, az oldalon található tartalom <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike "
 "License v3.0 </a> vagy annál frissebb verzió alatt kerül kiadásra."
 
+#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
+#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
+msgid "Privacy Policy"
+msgstr "Adatvédelmi irányelvek"
+
+#: /templates/footer.html:34 /templates/terms.html:2 /templates/settings/feedback.html:27 /media/js/views/terms.js:10
+msgid "Terms of Use"
+msgstr "Felhasználási feltételek"
+
 #: /templates/footer.html:36
 msgid "Report Trademark Abuse"
 msgstr "Védjeggyel való visszaélés jelentése"
@@ -159,6 +151,14 @@ msgstr "Kijelentkezés"
 msgid "Sign In"
 msgstr "Bejelentkezés"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr ""
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr ""
+
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
 msgstr "{app_name} .::. képernyőkép"
@@ -190,6 +190,19 @@ msgstr "(0)"
 msgid "Not yet rated"
 msgstr "Még nem értékelt"
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Nem érhető el"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105
+msgid "Install"
+msgstr "Telepítés"
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "Több"
+
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
 msgstr "{author} készítette"
@@ -214,14 +227,46 @@ msgstr "Törlés"
 msgid "Report"
 msgstr "Jelentés"
 
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Nem érhető el"
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Értékelés: {stars} / {maxstars}"
 
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:118
-msgid "Install"
-msgstr "Telepítés"
+#: /templates/category/main.html:37
+msgid "Featured Apps"
+msgstr "Kiemelt appok"
+
+#: /templates/category/main.html:38 /templates/category/main.html:64
+msgid "View All"
+msgstr "Összes megjelenítése"
+
+#: /templates/category/main.html:60
+msgid "Popular"
+msgstr "Népszerű"
+
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:62
+msgid "New"
+msgstr "Új"
+
+#: /templates/category/main.html:83
+msgid "No apps in this category"
+msgstr "Nincs app ebben a kategóriában"
+
+#: /templates/category/main.html:88
+msgid "The category you requested does not exist."
+msgstr "A kért kategória nem létezik."
+
+#: /templates/category/main.html:90 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr "Belső kiszolgálóhiba történt. Próbálja meg újra."
+
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "Visszaélés jelentése"
+
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "Jelentés küldése"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -239,7 +284,7 @@ msgstr "Az app elindítható a <b>Windows asztaláról</b> vagy a <b>Start &#965
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Az app elindítható <b>helyből</b>, az <b>Alkalmazásválasztóból</b>, vagy az <b>Alkalmazások menüből</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:64 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Betöltés…"
 
@@ -327,10 +372,6 @@ msgstr "Honlap"
 msgid "Statistics"
 msgstr "Statisztika"
 
-#: /templates/detail/main.html:176 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "Visszaélés jelentése"
-
 #: /templates/detail/main.html:187
 msgid "Premium version available"
 msgstr "Prémium verzió is elérhető"
@@ -338,47 +379,6 @@ msgstr "Prémium verzió is elérhető"
 #: /templates/detail/main.html:204
 msgid "Content Rating"
 msgstr ""
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "Több"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Értékelés: {stars} / {maxstars}"
-
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "Jelentés küldése"
-
-#: /templates/category/main.html:37
-msgid "Featured Apps"
-msgstr "Kiemelt appok"
-
-#: /templates/category/main.html:38 /templates/category/main.html:64
-msgid "View All"
-msgstr "Összes megjelenítése"
-
-#: /templates/category/main.html:60
-msgid "Popular"
-msgstr "Népszerű"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:62
-msgid "New"
-msgstr "Új"
-
-#: /templates/category/main.html:83
-msgid "No apps in this category"
-msgstr "Nincs app ebben a kategóriában"
-
-#: /templates/category/main.html:88
-msgid "The category you requested does not exist."
-msgstr "A kért kategória nem létezik."
-
-#: /templates/category/main.html:90 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "Belső kiszolgálóhiba történt. Próbálja meg újra."
 
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
@@ -396,27 +396,6 @@ msgstr "Köszönjük a vásárlást"
 msgid "The page you were looking for was not found."
 msgstr "A keresett oldal nem található."
 
-#: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
-msgid "Edit Review"
-msgstr "Értékelés szerkesztése"
-
-#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
-msgid "Rate:"
-msgstr "Értékelés:"
-
-#: /templates/ratings/edit.html:21 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/report.html:3 /templates/ratings/report.html:23
-#: /templates/user/newsletter.html:13
-msgid "Cancel"
-msgstr "Mégse"
-
-#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
-msgid "Submit"
-msgstr "Elküldés"
-
-#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
-msgid "Only logged in users may edit reviews."
-msgstr "Csak bejelentkezett felhasználók szerkeszthetik az értékeléseket."
-
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
 msgstr "Hiba történt."
@@ -429,6 +408,45 @@ msgstr "Hiba történt a továbbiak betöltése közben"
 msgid "Try Again"
 msgstr "Próbálja újra"
 
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> találat"
+msgstr[1] "<b>{n}</b> találat"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "<b>1</b>&ndash;<b class=\"total-results\">{total}</b> megjelenítése"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Nincs találat"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Nincs találat, próbálja újra később"
+
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
+msgid "Edit Review"
+msgstr "Értékelés szerkesztése"
+
+#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "Értékelés:"
+
+#: /templates/ratings/edit.html:21 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "Mégse"
+
+#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Elküldés"
+
+#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "Csak bejelentkezett felhasználók szerkeszthetik az értékeléseket."
+
 #: /templates/ratings/main.html:36
 msgid "This app has no reviews."
 msgstr "Az apphoz nincs értékelés."
@@ -440,30 +458,6 @@ msgstr "App értékelés"
 #: /templates/ratings/rating.html:16
 msgid "The review you requested does not exist."
 msgstr "Ez az értékelés nem létezik."
-
-#: /templates/settings/main.html:2 /media/js/views/settings.js:47
-msgid "Account Settings"
-msgstr "Fiók beállításai"
-
-#: /templates/settings/main.html:11
-msgid "Email"
-msgstr "E-mail"
-
-#: /templates/settings/main.html:20
-msgid "Display Name"
-msgstr "Megjelenő név"
-
-#: /templates/settings/main.html:29
-msgid "Region"
-msgstr "Régió"
-
-#: /templates/settings/main.html:38
-msgid "Save Changes"
-msgstr "Változások mentése"
-
-#: /templates/settings/main.html:41
-msgid "Sign In / Sign Up"
-msgstr "Bejelentkezés / Regisztráció"
 
 #: /templates/ratings/report.html:2
 msgid "Please select a reason:"
@@ -489,39 +483,33 @@ msgstr "Küldés"
 msgid "Get Help"
 msgstr "Segítség"
 
+#: /templates/settings/main.html:2 /media/js/views/settings.js:47
+msgid "Account Settings"
+msgstr "Fiók beállításai"
+
+#: /templates/settings/main.html:11
+msgid "Email"
+msgstr "E-mail"
+
+#: /templates/settings/main.html:20
+msgid "Display Name"
+msgstr "Megjelenő név"
+
+#: /templates/settings/main.html:29
+msgid "Region"
+msgstr "Régió"
+
+#: /templates/settings/main.html:38
+msgid "Save Changes"
+msgstr "Változások mentése"
+
+#: /templates/settings/main.html:41
+msgid "Sign In / Sign Up"
+msgstr "Bejelentkezés / Regisztráció"
+
 #: /templates/settings/nav.html:6
 msgid "Account"
 msgstr "Felhasználói fiók"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> találat"
-msgstr[1] "<b>{n}</b> találat"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "<b>1</b>&ndash;<b class=\"total-results\">{total}</b> megjelenítése"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Nincs találat"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Nincs találat, próbálja újra később"
-
-#: /templates/user/purchases.html:49
-msgid "You must be signed in to view your apps."
-msgstr "Be kell jelentkezni a saját appok megtekintéséhez."
-
-#: /templates/user/purchases.html:50
-msgid "Sign in / Sign up"
-msgstr "Bejelentkezés / Regisztráció"
-
-#: /templates/user/purchases.html:34
-msgid "You have no apps"
-msgstr "Nincsenek saját appok"
 
 #: /templates/user/newsletter.html:3
 msgid "Get Firefox Marketplace news"
@@ -538,6 +526,18 @@ msgstr "Regisztráció..."
 #: /templates/user/newsletter.html:18
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "Sikeresen feliratkozott a Marketplace hírlevélre!"
+
+#: /templates/user/purchases.html:49
+msgid "You must be signed in to view your apps."
+msgstr "Be kell jelentkezni a saját appok megtekintéséhez."
+
+#: /templates/user/purchases.html:50
+msgid "Sign in / Sign up"
+msgstr "Bejelentkezés / Regisztráció"
+
+#: /templates/user/purchases.html:34
+msgid "You have no apps"
+msgstr "Nincsenek saját appok"
 
 #: /media/js/apps.js:76
 msgid "App install error: {error}"
@@ -559,21 +559,21 @@ msgstr "A böngésző vagy az eszköz nem web-app kompatibilis."
 msgid "This app is unavailable for your platform."
 msgstr "Ez az app nem érhető el erre a platformra."
 
-#: /media/js/buttons.js:82 /media/js/buttons.js:143 /media/js/payments/payments.js:91
+#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Fizetés törölve."
 
 #. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:113
+#: /media/js/buttons.js:100
 msgid "Purchasing"
 msgstr "Vásárlás"
 
 #. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:219
+#: /media/js/buttons.js:206
 msgid "Install failed. Please try again later."
 msgstr "A telepítés sikertelen. Próbálja meg később."
 
-#: /media/js/buttons.js:309
+#: /media/js/buttons.js:296
 msgid "Launch"
 msgstr "Indítás"
 
@@ -592,10 +592,6 @@ msgstr "Sikertelen Persona bejelentkezés. Lehet, hogy nem rendelkezik felhaszn�
 #: /media/js/login.js:132
 msgid "Persona login failed. A server error was encountered."
 msgstr "Nem sikerült bejelentkezni a Personába. Hiba történt a szerveren."
-
-#: /media/js/mobilenetwork.js:285
-msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
-msgstr "Jelenleg *{current_region}* régióban nézelődik. Át akar váltani a(z) *{new_region}* régióra?"
 
 #: /media/js/navigation.js:31
 msgid "No internet connection"
@@ -634,13 +630,6 @@ msgstr "Az értékelés beküldve"
 msgid "Error while submitting review"
 msgstr "Hiba történt az értékelés beküldésekor"
 
-#. {n} is the number of characters left.
-#: /media/js/utils.js:28
-msgid "<b>{n}</b> character left."
-msgid_plural "<b>{n}</b> characters left."
-msgstr[0] "<b>{n}</b> karakter maradt."
-msgstr[1] "<b>{n}</b> karakter maradt."
-
 #: /media/js/settings.js:72
 msgid "Worldwide"
 msgstr "Mindenhol"
@@ -674,48 +663,55 @@ msgid "Hungary"
 msgstr "Magyarország"
 
 #: /media/js/settings.js:80
+msgid "Italy"
+msgstr ""
+
+#: /media/js/settings.js:81
 msgid "Mexico"
 msgstr "Mexikó"
 
-#: /media/js/settings.js:81
+#: /media/js/settings.js:82
 msgid "Montenegro"
 msgstr "Montenegró"
 
-#: /media/js/settings.js:82
+#: /media/js/settings.js:83
 msgid "Peru"
 msgstr "Peru"
 
-#: /media/js/settings.js:83
+#: /media/js/settings.js:84
 msgid "Poland"
 msgstr "Lengyelország"
 
-#: /media/js/settings.js:84
+#: /media/js/settings.js:85
 msgid "Serbia"
 msgstr "Szerbia"
 
-#: /media/js/settings.js:85
+#: /media/js/settings.js:86
 msgid "Spain"
 msgstr "Spanyolország"
 
-#: /media/js/settings.js:86
+#: /media/js/settings.js:87
 msgid "United Kingdom"
 msgstr "Egyesült Királyság"
 
-#: /media/js/settings.js:87
+#: /media/js/settings.js:88
 msgid "United States"
 msgstr "Egyesült Államok"
 
-#: /media/js/settings.js:88
+#: /media/js/settings.js:89
 msgid "Uruguay"
 msgstr "Uruguay"
 
-#: /media/js/settings.js:89
+#: /media/js/settings.js:90
 msgid "Venezuela"
 msgstr "Venezuela"
 
-#: /media/js/settings.js:92
-msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr "Igazságügyi Minisztérium, Értékelés, Cím és besorolás"
+#. {n} is the number of characters left.
+#: /media/js/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] "<b>{n}</b> karakter maradt."
+msgstr[1] "<b>{n}</b> karakter maradt."
 
 #. {n} is the number of stars
 #: /media/js/common/ratingwidget.js:34
@@ -723,14 +719,6 @@ msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n} csillag"
 msgstr[1] "{n} csillag"
-
-#: /media/js/views/app.js:59
-msgid "App Details"
-msgstr "App részletei"
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Gyűjtemény adatai"
 
 #: /media/js/payments/payments.js:94
 msgid "Payment failed. Try again later."
@@ -745,6 +733,14 @@ msgstr "Hiba történt a kiszolgálóval történő kommunikáció során. Prób
 msgid "Your device does not support purchases."
 msgstr "Az eszköz nem támogatja a vásárlást."
 
+#: /media/js/views/app.js:65
+msgid "App Details"
+msgstr "App részletei"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Gyűjtemény adatai"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "A visszajelzés elküldve. Köszönjük!"
@@ -758,6 +754,10 @@ msgstr "Hiba történt a visszajelzés küldésekor. Próbálja meg később."
 msgid "Not Found"
 msgstr "Nem található"
 
+#: /media/js/views/search.js:210
+msgid "Search Results"
+msgstr "Találatok"
+
 #: /media/js/views/settings.js:34
 msgid "Settings saved"
 msgstr "Beállítások elmentve"
@@ -765,10 +765,6 @@ msgstr "Beállítások elmentve"
 #: /media/js/views/settings.js:36
 msgid "Settings could not be saved"
 msgstr "A beállítások nincsenek elmentve"
-
-#: /media/js/views/search.js:210
-msgid "Search Results"
-msgstr "Találatok"
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"
