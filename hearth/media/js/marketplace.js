@@ -25,6 +25,7 @@ require.config({
     define(
         'marketplace',
         [
+            'jquery',
             'underscore',
             'helpers',  // Must come before mostly everything else.
             'buttons',
@@ -62,6 +63,7 @@ require.config({
         var console = log('mkt');
         console.log('Dependencies resolved, starting init');
 
+        var $ = require('jquery');
         var capabilities = require('capabilities');
         var format = require('format');
         var nunjucks = require('templates');
