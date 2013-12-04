@@ -81,7 +81,7 @@ define('views/search',
                 } else if (value === 'popular') {
                     query.sort = 'downloads';
                 } else if (value === 'new') {
-                    query.sort = 'created';
+                    query.sort = 'reviewed';
                 } else if (value.indexOf('manifest=') === 0 ||
                            value.indexOf('manifest_url=') === 0) {
                     query.manifest_url = value.split('=')[1];
