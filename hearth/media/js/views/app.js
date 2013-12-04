@@ -16,7 +16,7 @@ define('views/app',
         $this.attr('data-toggle-text', $this.text());
         $this.text(newTxt);
         // Toggle description.
-        $this.closest('.blurbs').find('.description-wrapper').toggleClass('truncated');
+        $this.prev('.truncated-wrapper').toggleClass('truncated');
 
         tracking.trackEvent('App view interactions', 'click', 'Toggle description');
 
@@ -73,11 +73,12 @@ define('views/app',
 
             // 'truncated' class is applied by default, remove it if it's not
             // needed.
-            var wrapper = $('.description-wrapper');
-            if (wrapper.prop('scrollHeight') <= wrapper.prop('offsetHeight')) {
-                wrapper.removeClass('truncated');
-                wrapper.next('.show-toggle').hide();
-            }
+            $('.truncated-wrapper').each(function() {
+                var $this = $(this);
+                if ($this.prop('scrollHeight') <= $this.prop('offsetHeight')) {
+                    $this.removeClass('truncated').next('.show-toggle').hide();
+                }
+            });
             if (caps.widescreen() && !$('.report-abuse').length) {
                 z.page.append(
                     require('templates').env.render('detail/abuse.html', {slug: slug})
