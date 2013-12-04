@@ -196,27 +196,6 @@ require.config({
         // Set the tracking consumer page variable.
         //require('tracking').setVar(3, 'Site section', 'Consumer', 3);
 
-        // Debug page
-        (function() {
-            var to = false;
-            $('.wordmark').on('touchstart mousedown', function(e) {
-                console.log('hold for debug...', e.type);
-                clearTimeout(to);
-                to = setTimeout(function() {
-                    console.log('navigating to debug...');
-                    z.page.trigger('navigate', ['/debug']);
-                }, 3000);
-            }).on('touchend mouseup click', function(e) {
-                console.log('debug hold released...', e.type);
-                if (to) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
-                clearTimeout(to);
-                to = false;
-            });
-        })();
-
         require('requests').on('success', function(_, xhr, type, url) {
             var filter_header;
             try {
