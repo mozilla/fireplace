@@ -25,8 +25,8 @@ require.config({
     define(
         'marketplace',
         [
-            'jquery',
             'underscore',
+            'jquery',
             'helpers',  // Must come before mostly everything else.
             'buttons',
             'cache',
