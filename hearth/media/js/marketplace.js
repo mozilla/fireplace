@@ -14,7 +14,6 @@ require.config({
         'nunjucks.compat': 'lib/nunjucks.compat',
         'templates': '../../templates',
         'settings': ['settings_local', 'settings'],
-        'stick': 'lib/stick',
         'format': 'lib/format',
         'textoverflowclamp': 'lib/textoverflowclamp'
     }
@@ -57,8 +56,7 @@ define(
         'z'
     ],
 function(_) {
-    var log = require('log');
-    var console = log('mkt');
+    var console = require('log')('mkt');
     console.log('Dependencies resolved, starting init');
 
     var $ = require('jquery');
@@ -66,7 +64,6 @@ function(_) {
     var format = require('format');
     var nunjucks = require('templates');
     var settings = require('settings');
-    var user = require('user');
     var z = require('z');
 
     var nunjucks_globals = require('nunjucks').require('globals');
@@ -81,20 +78,13 @@ function(_) {
     settings.persona_tos = format.format(doc_location, {type: 'terms'});
     settings.persona_privacy = format.format(doc_location, {type: 'privacy'});
 
-    nunjucks.env.dev = true;
-
     z.body.addClass('html-' + require('l10n').getDirection());
-    if (settings.body_classes) {
-        z.body.addClass(settings.body_classes);
-    }
 
     z.page.one('loaded', function() {
         console.log('Hiding splash screen');
+        // Remove the splash screen once it's hidden.
         var splash = $('#splash-overlay').addClass('hide');
-        // Remove the splash screen once it's visible.
-        setTimeout(function() {
-            splash.remove();
-        }, 1500);
+        setTimeout(splash.remove.bind(splash), 1500);
     });
 
     // This lets you refresh within the app by holding down command + R.
@@ -151,7 +141,7 @@ function(_) {
             !require('storage').getItem('hide_incompatibility_banner')) {
             console.log('Adding incompatibility banner');
             $('#incompatibility-banner').html(
-                nunjucks.env.render('incompatible.html', context));
+                nunjucks.env.render('incompatible.html'));
             z.body.addClass('show-incompatibility-banner');
         }
 
