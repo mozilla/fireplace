@@ -187,7 +187,7 @@ function(_) {
     require('requests').on('success', function(_, xhr, type, url) {
         var filter_header;
         try {
-            if (filter_header = xhr.getResponseHeader('API-Filter') &&
+            if ((filter_header = xhr.getResponseHeader('API-Filter')) &&
                 url.indexOf('region=') === -1) {
                 var region = require('utils').getVars(filter_header).region;
                 log.persistent('mobilenetwork', 'change').log('API overriding region:', region);
