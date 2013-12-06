@@ -84,7 +84,9 @@ function(_) {
         console.log('Hiding splash screen');
         // Remove the splash screen once it's hidden.
         var splash = $('#splash-overlay').addClass('hide');
-        setTimeout(splash.remove.bind(splash), 1500);
+        setTimeout(function() {
+            splash.remove()
+        }, 1500);
     });
 
     // This lets you refresh within the app by holding down command + R.
