@@ -85,7 +85,7 @@ function(_) {
         // Remove the splash screen once it's hidden.
         var splash = $('#splash-overlay').addClass('hide');
         setTimeout(function() {
-            splash.remove()
+            splash.remove();
         }, 1500);
     });
 
