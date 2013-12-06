@@ -96,7 +96,7 @@ define('assert', ['underscore'], function(_) {
                 // If it's an array, convert it to an array-like object.
                 // Require.js freaks out when you give it an array, but this
                 // should work in (almost) all circumstances.
-                x[1] = _.extend({}, x[1])
+                x[1] = _.extend({}, x[1]);
             }
 
             return x;

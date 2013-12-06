@@ -78,11 +78,15 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
     var potato_initialized = false;
     var potato_iframe;
     function ga_push(data) {
-        window._gaq && window._gaq.push(data);
+        if (window._gaq) {
+            window._gaq.push(data);
+        }
     }
     function ua_push() {
         if (!potato_initialized) {
-            window.ga && window.ga.apply(this, Array.prototype.slice.call(arguments, 0));
+            if (window.ga) {
+                window.ga.apply(this, Array.prototype.slice.call(arguments, 0));
+            }
         } else {
             potato_iframe.contentWindow.postMessage(JSON.stringify(arguments), '*');
         }
@@ -180,7 +184,7 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
         trackEvent: actionWrap(function() {
             var args = Array.prototype.slice.call(arguments, 0);
             ga_push(['_trackEvent'].concat(args));
-            ua_push.apply(this, ['send', 'event'].concat(args))
+            ua_push.apply(this, ['send', 'event'].concat(args));
         })
     };
 

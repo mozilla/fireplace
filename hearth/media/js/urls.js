@@ -20,14 +20,14 @@ define('urls',
             }
 
             // Replace each matched group with a positional formatting placeholder.
-            var i = 0;
+            var pos = 0;
             while (group_pattern.test(url)) {
-                url = url.replace(group_pattern, '{' + i++ + '}');
+                url = url.replace(group_pattern, '{' + pos++ + '}');
             }
 
             // Check that we got the right number of arguments.
-            if (args.length !== i) {
-                console.error('Expected ' + i + ' args, got ' + args.length);
+            if (args.length !== pos) {
+                console.error('Expected ' + pos + ' args, got ' + args.length);
                 throw new Error('Wrong number of arguments passed to reverse(). View: "' + view_name + '", Argument "' + args + '"');
             }
 
@@ -54,7 +54,7 @@ define('urls',
         };
     }
 
-    var api = function(endpoint, args, params) {
+    function api(endpoint, args, params) {
         if (!(endpoint in api_endpoints)) {
             console.error('Invalid API endpoint: ' + endpoint);
             return '';
@@ -64,13 +64,13 @@ define('urls',
             return require('utils').urlparams(url, params);
         }
         return url;
-    };
+    }
 
-    var apiParams = function(endpoint, params) {
+    function apiParams(endpoint, params) {
         return api(endpoint, [], params);
-    };
+    }
 
-    var media = function(path) {
+    function media(path) {
         var media_url = settings.media_url;
         if (media_url[media_url.length - 1] !== '/') {
             media_url += '/';

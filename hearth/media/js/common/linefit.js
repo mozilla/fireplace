@@ -11,7 +11,7 @@ define('common/linefit', ['jquery'], function($) {
                 nb_rects = span.getClientRects().length;
             while (nb_rects > lines && fs > min_font_size) {
                 // Repeatedly shrink the text by 0.5px until all the text fits.
-                fs -= .5;
+                fs -= 0.5;
                 $span.css('font-size', fs);
                 nb_rects = span.getClientRects().length;
             }

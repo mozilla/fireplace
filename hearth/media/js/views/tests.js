@@ -48,9 +48,7 @@ define('views/tests', ['assert', 'requests'], function(assert, requests) {
         var scripts = document.querySelectorAll('#page script');
         for (var i = 0; i < scripts.length; i++) {
             var script = scripts[i];
-            requests.get(script.getAttribute('src'), true).done(function(data) {
-                eval(data);
-            });
+            requests.get(script.getAttribute('src'), true).done(eval);
         }
 
         builder.z('type', 'debug');

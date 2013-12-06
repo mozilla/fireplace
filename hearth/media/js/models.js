@@ -19,7 +19,7 @@ define('models', ['defer', 'log', 'requests', 'settings', 'underscore'], functio
 
         var key = prototypes[type];
 
-        var cast = function(data) {
+        function cast(data) {
             function do_cast(data) {
                 var keyed_value = data[key];
                 data_store[type][keyed_value] = data;
@@ -30,9 +30,9 @@ define('models', ['defer', 'log', 'requests', 'settings', 'underscore'], functio
                 return data;
             }
             return do_cast(data), data;
-        };
+        }
 
-        var uncast = function(object) {
+        function uncast(object) {
             function do_uncast(object) {
                 return data_store[type][object[key]];
             }
@@ -40,9 +40,9 @@ define('models', ['defer', 'log', 'requests', 'settings', 'underscore'], functio
                 return object.map(do_uncast);
             }
             return do_uncast(object);
-        };
+        }
 
-        var get = function(url, keyed_value, getter) {
+        function get(url, keyed_value, getter) {
             getter = getter || requests.get;
 
             if (keyed_value) {
@@ -58,9 +58,9 @@ define('models', ['defer', 'log', 'requests', 'settings', 'underscore'], functio
             }
 
             return getter(url);
-        };
+        }
 
-        var lookup = function(keyed_value, by) {
+        function lookup(keyed_value, by) {
             if (by) {
                 for (var key in data_store[type]) {
                     var item = data_store[type][key];
@@ -76,13 +76,13 @@ define('models', ['defer', 'log', 'requests', 'settings', 'underscore'], functio
             }
 
             console.log(type + ' cache miss for key ' + keyed_value);
-        };
+        }
 
-        var purge = function() {
+        function purge() {
             data_store[type] = [];
-        };
+        }
 
-        var del = function(keyed_value, by) {
+        function del(keyed_value, by) {
             if (by) {
                 var instance = lookup(keyed_value, by);
                 if (!instance) {

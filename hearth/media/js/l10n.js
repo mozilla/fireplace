@@ -44,7 +44,9 @@ if (!window.define) {
     // Cachebust the .js file for our CDN.
     var build_id = document.body.getAttribute('data-buildIdJs') || +new Date();
     var repo = document.body.getAttribute('data-repo');
+    /* jshint ignore:start */
     document.write('<script src="/media/' + (repo ? repo + '/' : '') + 'locales/' + locale + '.js?b=' + build_id + '"></script>');
+    /* jshint ignore:end */
 
 } else {
     define('l10n', ['format'], function(format) {

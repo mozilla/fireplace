@@ -233,7 +233,7 @@ test('requests.pool finish', function(done, fail) {
             var timing = fail;
             var timing_closure = function() {
                 timing();
-            }
+            };
 
             var pool = requests.pool();
             pool.done(timing_closure);
@@ -253,7 +253,7 @@ test('requests.pool finish resolution', function(done, fail) {
             var timing = fail;
             var timing_closure = function() {
                 timing();
-            }
+            };
 
             var pool = requests.pool();
             pool.done(timing_closure);

@@ -299,6 +299,7 @@ define('mobilenetwork',
         var region;
         var carrier = GET.carrier || user.get_setting('carrier') || null;
 
+        var i;
         try {
             // navigator.mozMobileConnections is the new API.
             // navigator.mozMobileConnection is the legacy API.
@@ -333,7 +334,7 @@ define('mobilenetwork',
                     // If we haven't hardcoded a MCC...
                     mccs = [];
                     var connData;
-                    for (var i = 0; i < conn.length; i++) {
+                    for (i = 0; i < conn.length; i++) {
                         console.log('navigator.mozMobileConnections[' + i + ']:', conn[i]);
                         connData = conn[i].data;
                         if (connData && connData.network) {
@@ -391,7 +392,7 @@ define('mobilenetwork',
 
         if (mccs.length) {
             var pair;
-            for (var i = 0; i < mccs.length; i++) {
+            for (i = 0; i < mccs.length; i++) {
                 pair = mccs[i];
                 consoleTagged.log('mccs[' + i + ']:', pair);
                 if (setFromSIMPair(pair.mcc, pair.mnc, 'dual SIM')) {

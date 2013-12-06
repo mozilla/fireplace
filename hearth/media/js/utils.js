@@ -38,14 +38,6 @@ define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
         });
     }
 
-    function escape_(s) {
-        if (s === undefined) {
-            return;
-        }
-        return s.replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;')
-                .replace(/'/g, '&#39;').replace(/"/g, '&#34;');
-    }
-
     function slugify(s, limit) {
         if (typeof s !== 'string') {
             return s;
@@ -190,7 +182,7 @@ define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
         'browser': browser,
         'encodeURIComponent': encodeURIComponent,
         'decodeURIComponent': decodeURIComponent,
-        'escape_': escape_,
+        'escape_': _.escape,
         'fieldFocused': fieldFocused,
         'getVars': getVars,
         'initCharCount': initCharCount,

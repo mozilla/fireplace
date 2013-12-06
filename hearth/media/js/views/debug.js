@@ -10,7 +10,7 @@ define('views/debug',
         storage.clear();
         notification.notification({message: 'localStorage cleared', timeout: 1000});
 
-    }).on('click', '#clear-cookies', function(e) {
+    }).on('click', '#clear-cookies', function() {
         var cookies = document.cookie.split(';');
         for (var i = 0; i < cookies.length; i++) {
             var e = cookies[i].indexOf('=');
