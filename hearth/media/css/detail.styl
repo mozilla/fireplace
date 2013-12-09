@@ -31,17 +31,6 @@
     > div {
         padding: 24px 10px;
     }
-    .description:only-child {
-        padding-bottom: 0;
-    }
-    .description + div > {
-        h3:first-child {
-            padding-top: 0;
-        }
-        :last-child {
-            padding-bottom: 0;
-        }
-    }
     blockquote {
         background: $faint-gray;
         border-left: 2px solid $light-gray;
@@ -49,7 +38,7 @@
         margin: 0;
         padding: 5px 10px;
     }
-    .description-wrapper {
+    .truncated-wrapper {
         padding: 0;
 
         &.truncated {
@@ -72,11 +61,19 @@
     }
 }
 
+section.releasenotes {
+    border-bottom: 1px solid $cloud-gray;
+
+    .truncated-wrapper.truncated {
+        max-height: 7.5em;
+    }
+}
+
 .show-toggle {
     display: block;
-    float: right;
     font-weight: bold;
     padding: 10px;
+    text-align: right;
     text-transform: lowercase;
     &:before {
         content: "(";
@@ -402,13 +399,13 @@
         p.description {
             padding-top: 0;
         }
-        &.truncated {
-            max-height: none;
-            overflow: visible;
+    }
+    section.blurbs .truncated-wrapper.truncated {
+        max-height: none;
+        overflow: visible;
 
-            &:after {
-                content: none;
-            }
+        &:after {
+            content: none;
         }
     }
     .show-toggle {

@@ -55,10 +55,29 @@
 </section>
 <div id="purchased-message"></div>
 
+{% defer (url=endpoint, as='app', key=slug) %}
+  {% if this.release_notes %}
+    <section class="main blurbs prose infobox releasenotes">
+      <div>
+        <h3>{{ _('Updates') }}</h3>
+        <div class="truncated-wrapper truncated">
+          <p class="releasenotes">
+            {{ this.release_notes|translate(this)|nl2br }}
+          </p>
+        </div>
+        <a href="#" class="show-toggle" data-toggle-text="{{ _('Less&hellip;') }}">{{ _('More&hellip;') }}</a>
+      </div>
+    </section>
+  {% endif %}
+{# No placeholder, the block below already supplies one #}
+{% except %}
+{% end %}
+
 <section class="main blurbs prose infobox">
   <div>
     {% defer (url=endpoint, as='app', key=slug) %}
-      <div class="description-wrapper truncated">
+      <h3>{{ _('Description') }}</h3>
+      <div class="truncated-wrapper description-wrapper truncated">
         <p class="description" itemprop="description">
           {{ this.description|translate(this)|nl2br }}
         </p>
