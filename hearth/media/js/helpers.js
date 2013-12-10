@@ -107,7 +107,6 @@ define('helpers',
         get_settings: function() {
             return _.clone(user.get_settings());
         },
-        // We don't expose `get_settings` because it's a direct reference.
         get_permission: user.get_permission,
         logged_in: user.logged_in
     };

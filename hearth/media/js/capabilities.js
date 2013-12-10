@@ -23,6 +23,7 @@ define('capabilities', [], function() {
         'firefoxOS': navigator.mozApps && navigator.mozApps.installPackage &&
                      navigator.userAgent.indexOf('Android') === -1 &&
                      navigator.userAgent.indexOf('Mobile') !== -1,
+        'persona': !!navigator.id,
         'phantom': navigator.userAgent.match(/Phantom/)  // Don't use this if you can help it.
     };
 

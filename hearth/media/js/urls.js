@@ -1,7 +1,6 @@
 define('urls',
-    ['buckets', 'format', 'routes_api', 'routes_api_args', 'settings',
-     'user', 'utils'],
-    function(buckets, format, api_endpoints, api_args, settings, user) {
+    ['format', 'routes_api', 'routes_api_args', 'settings', 'user', 'utils'],
+    function(format, api_endpoints, api_args, settings, user) {
 
     var group_pattern = /\(.+\)/;
     var optional_pattern = /(\(.*\)|\[.*\]|.)\?/g;
