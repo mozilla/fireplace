@@ -185,9 +185,9 @@
           {{ _('Privacy Policy') }}</a>
         </li>
       {% endif %}
-      {% if this.public_stats %}
+      {% if this.public_stats or this.user.developed %}
         <li class="statistics" data-tracking="Statistics">
-          <a class="button alt view-stats" rel="external" href="{{ url('app', [slug]) }}/statistics">
+          <a class="button alt view-stats" rel="external" href="/statistics/app/{{ slug }}">
           {{ _('Statistics') }}</a>
         </li>
       {% endif %}
