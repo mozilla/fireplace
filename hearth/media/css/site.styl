@@ -138,24 +138,15 @@ body {
     }
 }
 
-#site-footer {
-    display: none;
-}
-
-.only-logged-in {
-    display: none;
-}
-
-.only-logged-out {
-    display: block;
-}
-
-.logged-in .only-logged-in {
-    display: block;
-}
-
+#site-footer,
+.only-logged-in,
 .logged-in .only-logged-out {
     display: none;
+}
+
+.only-logged-out,
+.logged-in .only-logged-in {
+    display: block;
 }
 
 .spinner {
@@ -529,16 +520,4 @@ body {
     > * {
         margin-bottom: 20px;
     }
-}
-
-// Hidden element used by textoverflowclamp.js
-.msr {
-    position: absolute;
-    visibility: hidden;
-    white-space: pre;
-}
-.clamped {
-    display: block;
-    ellipsis();
-    width: 100%;
 }
