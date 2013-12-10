@@ -192,7 +192,7 @@ function(_) {
             if ((filter_header = xhr.getResponseHeader('API-Filter')) &&
                 url.indexOf('region=') === -1) {
                 var region = require('utils').getVars(filter_header).region;
-                log.persistent('mobilenetwork', 'change').log('API overriding region:', region);
+                require('log').persistent('mobilenetwork', 'change').log('API overriding region:', region);
                 require('user_helpers').set_region_geoip(region);
                 // Trigger a chrome reload to reflect the region change.
                 z.page.trigger('reload_chrome');
