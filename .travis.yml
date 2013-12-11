@@ -23,4 +23,5 @@ before_script:
   - "cd casperjs && git checkout 1.0.2 && cd .."  # Use Homebrew's version of casper
 script:
   - "commonplace lint"  # Lint the repo first!
+  - "commonplace langpacks"  # Generate langpacks; will catch PO file errors.
   - "cd smokealarm && DISPLAY=:99.0 ../casperjs/bin/casperjs test tests"
