@@ -224,37 +224,59 @@
   {% set content_rating = this.ratings[user_helpers.region()] or
                           this.ratings['generic'] %}
   {% if content_rating %}
+    {% set rating_body = content_rating.body_label %}
+
     <div class="content-ratings-wrapper main infobox c">
       <div>
         <h3>{{ _('Content Rating') }}</h3>
         <div class="content-ratings">
           <div class="content-rating c">
-            {# content_rating.body (e.g. CLASSIND, GENERIC, ESRB, PEGI, USK #}
-            {# content_rating.name (e.g. 0+, 3+, 7+, 13+, 18+) #}
-            <div class="icon icon-body-{{ content_rating.body_label }} icon-age-{{ content_rating.rating_label }}"
+            {# Content rating. #}
+            <img src="{{ settings.iarc_icons.ratings[rating_body][content_rating.rating_label] }}"
+                 class="icon icon-body-{{ rating_body }}"
                  title="{{ content_rating.rating }}">
-              <span class="icon-content hidden">
-                {# Purely used to build the CLASSIND icon. rating_label will
-                   be the age (as a number) followed by a plus-sign
-                   (e.g. "18+"). Should not be localized. #}
-                {{ content_rating.rating_label }}&plus;
-              </span>
-            </div>
-            <p class="description">{{ content_rating.rating }}</p>
+
+            {# Content descriptors as a list of text.
+               Only shown if there are not any descriptor icons (i.e. non-PEGI bodies). #}
+            {% if not settings.iarc_icons.descriptors[rating_body] %}
+              <ul class="content-descriptors-text">
+                {% for descriptor in this.descriptors[rating_body] %}
+                  {# Don't show "No Descriptors". #}
+                  {% if descriptor.label != 'no-descs' %}
+                    <li>{{ descriptor.name }}</li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% else %}
+              {# If not showing descriptor text, show the rating name to fill in space. #}
+              <span class="description">{{ content_rating.rating }}</span>
+            {% endif %}
           </div>
         </div>
-        {% if content_rating.body_label == 'pegi' and this.descriptors %}
-          <div class="content-descriptors">
-            {% for descriptor in this.descriptors %}
-              {% if descriptor.ratings_body == 'pegi' %}
-                <img class="icon {{ descriptor.label }}" title="{{ descriptor.name }}">
+
+        {% set desc_icons = settings.iarc_icons.descriptors[rating_body] %}
+        {% if desc_icons %}
+          {# Content descriptors as a grid of icons.
+             Only shown if there are descriptor icons (i.e. PEGI-only). #}
+          <div class="content-descriptors-icons">
+            {% for descriptor in this.descriptors[rating_body] %}
+              {% set icon_src = desc_icons[descriptor.label] %}
+              {% if icon_src %}
+                <img src="{{ icon_src }}" class="icon" title="{{ descriptor.name }}">
               {% endif %}
             {% endfor %}
           </div>
+
         {% elif this.interactive_elements %}
+         {# Interactive elements as a row of icons.
+            Only shown if there are no descriptor icons (i.e. non-PEGI bodies). #}
+         {% set interactive_icons = settings.iarc_icons.interactive_elements %}
           <div class="interactive-elements">
             {% for interactive in this.interactive_elements %}
-              <img class="icon {{ interactive.label }}" title="{{ interactive.name }}">
+              {% set icon_src = interactive_icons[interactive.label] %}
+              {% if icon_src %}
+                <img src="{{ icon_src }}" class="icon" title="{{ interactive.name }}">
+              {% endif %}
             {% endfor %}
           </div>
         {% endif %}

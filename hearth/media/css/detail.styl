@@ -103,20 +103,18 @@ section.releasenotes {
         padding-bottom: 24px;
     }
     .icon {
-        background-repeat: no-repeat;
         border-radius: 5px;
         display: inline-block;
-        height: 64px;
-        margin-right: 15px;
+        height: auto;
+        margin-right: 10px;
         text-align: center;
         vertical-align: middle;
-        width: 64px;
+        width: 48px;
     }
 }
 
 .content-ratings {
     float: left;
-    max-width: 45%;
 }
 
 .content-ratings .content-rating {
@@ -128,170 +126,45 @@ section.releasenotes {
         float: left;
         margin-bottom: 5px;
     }
-    .icon-body-esrb {
-        height: 90px;
-        width: 58px;
-
-        &.icon-age-0 {
-            background-image: url('../img/icons/ratings/ESRB_e.png');
-        }
-        &.icon-age-10 {
-            background-image: url('../img/icons/ratings/ESRB_e10.png');
-        }
-        &.icon-age-13 {
-            background-image: url('../img/icons/ratings/ESRB_t.png');
-        }
-        &.icon-age-17 {
-            background-image: url('../img/icons/ratings/ESRB_m.png');
-        }
-        &.icon-age-18 {
-            background-image: url('../img/icons/ratings/ESRB_ao.png');
-        }
-    }
-    .icon-body-generic, .icon-body-classind {
-        background: $black;
-        color: $white;
-        float: left;
-        font: 600 32px/64px $open-stack;
-
-        .icon-content {
-            display: inline;
-        }
-        &.icon-age-L,
-        &.icon-age-0,
-        &.icon-age-3 {
-            background: $box-green;
-        }
-        &.icon-age-7,
-        &.icon-age-10 {
-            background: $box-blue;
-        }
-        &.icon-age-12,
-        &.icon-age-13 {
-            background: $box-yellow;
-        }
-        &.icon-age-14 {
-            background: $box-orange;
-        }
-        &.icon-age-16 {
-            background: $box-red;
-        }
-        &.icon-age-18 {
-            background: #000;
-        }
+    .icon-body-pegi {
+        border-radius: 1px;
     }
     .icon-body-usk {
         border-radius: 8px;
-        height: 68px;
-        width: 68px;
-
-        &.icon-age-0 {
-            background-image: url('../img/icons/ratings/USK_0.png');
-        }
-        &.icon-age-6 {
-            background-image: url('../img/icons/ratings/USK_6.png');
-        }
-        &.icon-age-12 {
-            background-image: url('../img/icons/ratings/USK_12.png');
-        }
-        &.icon-age-16 {
-            background-image: url('../img/icons/ratings/USK_16.png');
-        }
-        &.icon-age-18 {
-            background-image: url('../img/icons/ratings/USK_18.png');
-        }
-    }
-    .icon-body-pegi {
-        border-radius: 1px;
-        height: 73px;
-        width: 60px;
-
-        &.icon-age-3 {
-            background-image: url('../img/icons/ratings/pegi_3.png');
-        }
-        &.icon-age-7 {
-            background-image: url('../img/icons/ratings/pegi_7.png');
-        }
-        &.icon-age-12 {
-            background-image: url('../img/icons/ratings/pegi_12.png');
-        }
-        &.icon-age-16 {
-            background-image: url('../img/icons/ratings/pegi_16.png');
-        }
-        &.icon-age-18 {
-            background-image: url('../img/icons/ratings/pegi_18.png');
-        }
-    }
-    .description {
-        color: $earl-gray;
-        display: inline-block;
-        float: left;
-        font-weight: 400;
-        margin: 0;
     }
 }
 
-.content-descriptors {
-    border-left: 1px solid $faint-gray;
-    float: right;
-    margin-bottom: 10px;
-    max-width: 55%;
-    padding-left: 20px;
-
-    .icon {
-        display: inline-block;
-        margin-right: 0;
-
-        &.pegi-discrimination {
-            background-image: url('../img/icons/ratings/descriptors/pegi_discrimination.png');
-        }
-        &.pegi-drugs {
-            background-image: url('../img/icons/ratings/descriptors/pegi_drugs.png');
-        }
-        &.pegi-scary {
-            background-image: url('../img/icons/ratings/descriptors/pegi_fear.png');
-        }
-        &.pegi-gambling {
-            background-image: url('../img/icons/ratings/descriptors/pegi_gambling.png');
-        }
-        &.pegi-lang {
-            background-image: url('../img/icons/ratings/descriptors/pegi_language.png');
-        }
-        &.pegi-nudity {
-            background-image: url('../img/icons/ratings/descriptors/pegi_nudity.png');
-        }
-        &.pegi-online {
-            background-image: url('../img/icons/ratings/descriptors/pegi_online.png');
-        }
-        &.pegi-sex {
-            background-image: url('../img/icons/ratings/descriptors/pegi_sex.png');
-        }
-        &.pegi-violence {
-            background-image: url('../img/icons/ratings/descriptors/pegi_violence.png');
-        }
-    }
+.content-descriptors-text {
+    float: left;
 }
 
+.content-descriptors-text li, span.description {
+    clear: left;
+    color: $earl-gray;
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0;
+}
+.content-descriptors-icons {
+    max-width: 65%;
+}
 .interactive-elements {
+    max-width: 45%;
+}
+
+.content-descriptors-icons, .interactive-elements {
     border-left: 1px solid $faint-gray;
     float: right;
-    margin-bottom: 10px;
-    max-width: 55%;
-    padding-left: 20px;
+    left: 12px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    position: relative;
 
     .icon {
         display: inline-block;
-        margin-right: 0;
-
-        &.shares-info {
-            background-image: url('../img/icons/ratings/interactives/ESRB_shares-info_small.png');
-        }
-        &.shares-location {
-            background-image: url('../img/icons/ratings/interactives/ESRB_shares-location_small.png');
-        }
-        &.users-interact {
-            background-image: url('../img/icons/ratings/interactives/ESRB_users-interact_small.png');
-        }
+        margin: 0 4px 8px 0;
     }
 }
 
@@ -429,18 +302,34 @@ section.releasenotes {
         }
     }
 
-    // At desktop width, let's float the content ratings.
-    .content-ratings {
-        margin: 0 -15px;
+    .content-ratings-wrapper {
+        padding-bottom: 10px;
 
-        .content-rating {
-            float: left;
-            margin-bottom: 24px;
-            padding: 0 15px;
+        .icon {
+            height: auto;
+            width: 64px;
+        }
+        .content-rating .icon {
+            margin-right: 15px;
+        }
+        .interactive-elements, .content-descriptors {
+            left: 5px;
+        }
+        .content-descriptors-icons {
+            left: 27px;
+        }
+        .interactive-elements, .content-descriptors-icons {
+            padding-left: 20px;
 
             .icon {
-                margin-bottom: 0;
+                margin: 0 10px 10px 0;
             }
+        }
+        .description {
+            clear: none;
+        }
+        ul.content-descriptors-text li, .description {
+            font-size: 15px;
         }
     }
 

@@ -104,6 +104,71 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
 
         // The hardcoded carrier. This is expected to be falsey or an object
         // in the form {name: 'foo', slug: 'bar'}
-        carrier: null
+        carrier: null,
+
+        // Map IARC stuff to their icons. Wow, much icons.
+        iarc_icons: {
+            ratings: {
+                'classind': {
+                    'L': '/media/img/icons/ratings/CLASSIND_L.png',
+                    '10': '/media/img/icons/ratings/CLASSIND_10.png',
+                    '12': '/media/img/icons/ratings/CLASSIND_12.png',
+                    '14': '/media/img/icons/ratings/CLASSIND_14.png',
+                    '16': '/media/img/icons/ratings/CLASSIND_16.png',
+                    '18': '/media/img/icons/ratings/CLASSIND_18.png',
+                },
+                'esrb': {
+                    '0': '/media/img/icons/ratings/ESRB_e.png',
+                    '10': '/media/img/icons/ratings/ESRB_e10.png',
+                    '13': '/media/img/icons/ratings/ESRB_t.png',
+                    '17': '/media/img/icons/ratings/ESRB_m.png',
+                    '18': '/media/img/icons/ratings/ESRB_ao.png',
+                },
+                'generic': {
+                    '3': '/media/img/icons/ratings/generic_3.png',
+                    '7': '/media/img/icons/ratings/generic_7.png',
+                    '12': '/media/img/icons/ratings/generic_12.png',
+                    '16': '/media/img/icons/ratings/generic_16.png',
+                    '18': '/media/img/icons/ratings/generic_18.png',
+                },
+                'pegi': {
+                    '3': '/media/img/icons/ratings/pegi_3.png',
+                    '7': '/media/img/icons/ratings/pegi_7.png',
+                    '12': '/media/img/icons/ratings/pegi_12.png',
+                    '16': '/media/img/icons/ratings/pegi_16.png',
+                    '18': '/media/img/icons/ratings/pegi_18.png',
+                },
+                'usk': {
+                    '0': '/media/img/icons/ratings/USK_0.png',
+                    '6': '/media/img/icons/ratings/USK_6.png',
+                    '12': '/media/img/icons/ratings/USK_12.png',
+                    '16': '/media/img/icons/ratings/USK_16.png',
+                    '18': '/media/img/icons/ratings/USK_18.png',
+                }
+            },
+            descriptors: {
+                'pegi': {
+                    'discrimination': '/media/img/icons/ratings/descriptors/pegi_discrimination.png',
+                    'drugs': '/media/img/icons/ratings/descriptors/pegi_drugs.png',
+                    'gambling': '/media/img/icons/ratings/descriptors/pegi_gambling.png',
+                    'lang': '/media/img/icons/ratings/descriptors/pegi_language.png',
+                    'nudity': '/media/img/icons/ratings/descriptors/pegi_nudity.png',
+                    'online': '/media/img/icons/ratings/descriptors/pegi_online.png',
+                    'scary': '/media/img/icons/ratings/descriptors/pegi_fear.png',
+                    'sex': '/media/img/icons/ratings/descriptors/pegi_sex.png',
+                    'violence': '/media/img/icons/ratings/descriptors/pegi_violence.png',
+
+                    'digital-purchases': '/media/img/icons/ratings/descriptors/pegi_inapp_purchase_option.png',
+                    'shares-info': '/media/img/icons/ratings/descriptors/pegi_personal_data_sharing.png',
+                    'shares-location': '/media/img/icons/ratings/descriptors/pegi_location_data_sharing.png',
+                    'users-interact': '/media/img/icons/ratings/descriptors/pegi_social_interaction_functionality.png',
+                }
+            },
+            interactive_elements: {
+                'shares-info': '/media/img/icons/ratings/interactives/ESRB_shares-info.png',
+                'shares-location': '/media/img/icons/ratings/interactives/ESRB_shares-location.png',
+                'users-interact': '/media/img/icons/ratings/interactives/ESRB_users-interact.png',
+            }
+        }
     });
 });
