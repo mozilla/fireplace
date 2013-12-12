@@ -227,7 +227,7 @@
     {% set rating_body = content_rating.body_label %}
 
     <div class="content-ratings-wrapper main infobox c">
-      <div>
+      <div class="infobox-wrapper c">
         <h3>{{ _('Content Rating') }}</h3>
         <div class="content-ratings">
           <div class="content-rating c">
@@ -279,6 +279,14 @@
               {% endif %}
             {% endfor %}
           </div>
+        {% endif %}
+      </div>
+
+      <div class="full">
+        {% set rating_detail_link = settings.iarc_detail_links[content_rating.body_label] %}
+        {% if rating_detail_link %}
+          <a href="{{ rating_detail_link }}" class="button alt" target="_blank">
+            {{ _('Content Rating Details') }}</a>
         {% endif %}
       </div>
     </div>
