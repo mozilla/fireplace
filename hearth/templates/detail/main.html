@@ -239,7 +239,7 @@
             {# Content descriptors as a list of text.
                Only shown if there are not any descriptor icons (i.e. non-PEGI bodies). #}
             {% if not settings.iarc_icons.descriptors[rating_body] %}
-              <ul class="content-descriptors-text">
+              <ul class="content-descriptors text">
                 {% for descriptor in this.descriptors[rating_body] %}
                   {# Don't show "No Descriptors". #}
                   {% if descriptor.label != 'no-descs' %}
@@ -258,7 +258,7 @@
         {% if desc_icons %}
           {# Content descriptors as a grid of icons.
              Only shown if there are descriptor icons (i.e. PEGI-only). #}
-          <div class="content-descriptors-icons">
+          <div class="content-descriptors icons">
             {% for descriptor in this.descriptors[rating_body] %}
               {% set icon_src = desc_icons[descriptor.label] %}
               {% if icon_src %}
@@ -268,14 +268,18 @@
           </div>
 
         {% elif this.interactive_elements %}
-         {# Interactive elements as a row of icons.
-            Only shown if there are no descriptor icons (i.e. non-PEGI bodies). #}
-         {% set interactive_icons = settings.iarc_icons.interactive_elements %}
-          <div class="interactive-elements">
+         {% set interactive_icons = settings.iarc_icons.interactive_elements[rating_body] %}
+          <div class="interactive-elements {{ 'icons' if interactive_icons else 'text' }}">
             {% for interactive in this.interactive_elements %}
-              {% set icon_src = interactive_icons[interactive.label] %}
-              {% if icon_src %}
-                <img src="{{ icon_src }}" class="icon" title="{{ interactive.name }}">
+              {% if interactive_icons %}
+                {# Interactive elements as a row of icons (ESRB only). #}
+                {% set icon_src = interactive_icons[interactive.label] %}
+                {% if icon_src %}
+                  <img src="{{ icon_src }}" class="icon" title="{{ interactive.name }}">
+                {% endif %}
+              {% else %}
+                {# Interactive elements as a column of text (non-PEGI/ESRB bodies). #}
+                <p>{{ interactive.name }}</p>
               {% endif %}
             {% endfor %}
           </div>
