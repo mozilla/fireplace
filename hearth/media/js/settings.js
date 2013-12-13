@@ -87,7 +87,8 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'uk': gettext('United Kingdom'),
             'us': gettext('United States'),
             'uy': gettext('Uruguay'),
-            've': gettext('Venezuela')
+            've': gettext('Venezuela'),
+            'None': gettext('No region in search')
         },
 
         // A data URI of the Marketplace logo (shown when logging in via Persona).
