@@ -42,38 +42,17 @@
             var conn = navigator.mozMobileConnections;
             if (conn) {
                 log('navigator.mozMobileConnections available');
-                /*
-                    Example format:
-
-                    [
-                        {
-                            data: {
-                                network: {
-                                    mcc: '260',
-                                    mnc: '02'
-                                }
-                            }
-                        },
-                        {
-                            data: {
-                                network: {
-                                    mcc: '734',
-                                    mnc: '04'
-                                }
-                            }
-                        }
-                    ]
-
-                */
                 var mccs = [];
                 var connData;
+                var network;
                 for (var i = 0; i < conn.length; i++) {
-                    log('navigator.mozMobileConnections[' + i + ']:', conn[i]);
-                    connData = conn[i].data;
-                    if (connData && connData.network) {
-                        mccs.push({mcc: connData.network.mcc,
-                                   mnc: connData.network.mnc});
-                    }
+                    connData = conn[i];
+                    network = (connData.lastKnownHomeNetwork || connData.lastKnownNetwork || '-').split('-');
+                    log('navigator.mozMobileConnections[' + i + '].lastKnownNetwork:',
+                        connData.lastKnownNetwork);
+                    log('navigator.mozMobileConnections[' + i + '].lastKnownHomeNetwork:',
+                        conn.lastKnownHomeNetwork);
+                    mccs.push({mcc: connData[0], mnc: connData[1]});
                 }
                 mccs = JSON.stringify(mccs);
                 qs = '?mccs=' + mccs;

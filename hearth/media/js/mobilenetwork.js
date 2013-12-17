@@ -310,37 +310,21 @@ define('mobilenetwork',
             var conn;
             if (conn = navigator.mozMobileConnections) {
                 consoleTagged.log('navigator.mozMobileConnections available');
-                /*
-                    Example format:
-
-                    [
-                        {
-                            data: {
-                                network: {mcc: '260', mnc: '02'}
-                            }
-                        },
-                        {
-                            data: {
-                                network: {mcc: '734', mnc: '04'}
-                            }
-                        }
-                    ]
-
-                */
-
                 if (mccs.length) {
                     consoleTagged.log('Using hardcoded MCCs:', JSON.stringify(mccs));
                 } else {
                     // If we haven't hardcoded a MCC...
                     mccs = [];
                     var connData;
+                    var network;
                     for (i = 0; i < conn.length; i++) {
-                        console.log('navigator.mozMobileConnections[' + i + ']:', conn[i]);
-                        connData = conn[i].data;
-                        if (connData && connData.network) {
-                            mccs.push({mcc: connData.network.mcc,
-                                       mnc: connData.network.mnc});
-                        }
+                        connData = conn[i];
+                        network = (connData.lastKnownHomeNetwork || connData.lastKnownNetwork || '-').split('-');
+                        consoleTagged.log('navigator.mozMobileConnections[' + i + '].lastKnownNetwork:',
+                                          connData.lastKnownNetwork);
+                        consoleTagged.log('navigator.mozMobileConnections[' + i + '].lastKnownHomeNetwork:',
+                                          conn.lastKnownHomeNetwork);
+                        mccs.push({mcc: connData[0], mnc: connData[1]});
                     }
                     consoleTagged.log('Using SIM MCCs:', JSON.stringify(mccs));
                 }
