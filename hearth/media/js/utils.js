@@ -135,6 +135,9 @@ define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
     }
 
     function translate(data, default_language, lang) {
+        if (!data) {
+            return '';
+        }
         if (typeof data === 'string') {
             return data;
         }
