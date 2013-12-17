@@ -58,7 +58,7 @@
 {% defer (url=endpoint, as='app', key=slug) %}
   {% if this.banner_regions and this.banner_message and this.banner_regions.indexOf(user_helpers.region()) != -1 %}
     <section class="main infobox regionbanner">
-      <div> {{ this.banner_message|translate(this) }} </div>
+      <div> {{ this.banner_message|translate(this)|safe }} </div>
     </section>
   {% endif %}
   {% if this.release_notes %}
