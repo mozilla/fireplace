@@ -40,6 +40,9 @@ define('apps',
         opt.data = opt.data || {};
         var manifest_url;
         if (product.manifest_url) {
+            manifest_url = product.manifest_url;
+        }
+        if (manifest_url && product.is_packaged) {
             manifest_url = utils.urlparams(product.manifest_url, {feature_profile: buckets.profile});
         }
 
