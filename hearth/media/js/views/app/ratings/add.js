@@ -4,7 +4,7 @@ define('views/app/ratings/add',
 
     var gettext = l10n.gettext;
 
-    z.page.on('click', '.compose-review .cancel', function(e) {
+    z.page.on('click', '.add-review-form .cancel', function(e) {
         e.preventDefault();
         var slug = $(this).closest('.add-review-form').attr('data-app');
         z.page.trigger('navigate', urls.reverse('app', [slug]));
