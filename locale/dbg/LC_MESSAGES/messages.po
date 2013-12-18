@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-04T17:08:09.612Z\n"
+"POT-Creation-Date: 2013-12-18T17:32:14.065Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,7 +137,7 @@ msgstr ""
 
 #: /templates/footer.html:33
 #: /templates/privacy.html:2
-#: /templates/detail/main.html:165
+#: /templates/detail/main.html:189
 #: /templates/detail/privacy.html:3
 #: /templates/detail/receipt.html:57
 #: /templates/settings/feedback.html:22
@@ -198,6 +198,21 @@ msgstr "Ẏǿŭ ḿŭşŧ ŭşḗ Ƒīřḗƒǿẋ ŧǿ īƞşŧȧŀŀ Ƒīřḗ
 msgid "Download."
 msgstr "Ḓǿẇƞŀǿȧḓ."
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Ŭƞȧṽȧīŀȧƀŀḗ"
+
+#: /templates/_macros/market_button.html:7
+#: /templates/_macros/market_tile.html:53
+msgid "Free"
+msgstr "Ƒřḗḗ"
+
+#: /templates/_macros/market_button.html:14
+#: /media/js/buttons.js:105
+msgid "Install"
+msgstr "Īƞşŧȧŀŀ"
+
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
 msgstr "{ȧƥƥ_ƞȧḿḗ} .::. şƈřḗḗƞşħǿŧ"
@@ -207,17 +222,12 @@ msgstr "{ȧƥƥ_ƞȧḿḗ} .::. şƈřḗḗƞşħǿŧ"
 msgid "{rating_body}: {rating}"
 msgstr "{řȧŧīƞɠ_ƀǿḓẏ}: {řȧŧīƞɠ}"
 
-#: /templates/_macros/market_tile.html:53
-#: /templates/_macros/market_button.html:7
-msgid "Free"
-msgstr "Ƒřḗḗ"
-
 #: /templates/_macros/market_tile.html:61
 msgid "({n})"
 msgstr "({ƞ})"
 
 #: /templates/_macros/market_tile.html:64
-#: /templates/detail/main.html:111
+#: /templates/detail/main.html:135
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{ƞ} Řḗṽīḗẇ"
@@ -230,16 +240,6 @@ msgstr "(0)"
 #: /templates/_macros/market_tile.html:69
 msgid "Not yet rated"
 msgstr "Ƞǿŧ ẏḗŧ řȧŧḗḓ"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Ŭƞȧṽȧīŀȧƀŀḗ"
-
-#: /templates/_macros/market_button.html:14
-#: /media/js/buttons.js:105
-msgid "Install"
-msgstr "Īƞşŧȧŀŀ"
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
@@ -305,7 +305,7 @@ msgid "An internal server error occurred. Please try again later."
 msgstr "Ȧƞ īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř ǿƈƈŭřřḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
 
 #: /templates/detail/abuse.html:5
-#: /templates/detail/main.html:176
+#: /templates/detail/main.html:200
 #: /templates/detail/receipt.html:68
 #: /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
@@ -366,87 +366,101 @@ msgstr ""
 msgid "A server error occurred. Please try again later."
 msgstr "Ȧ şḗřṽḗř ḗřřǿř ǿƈƈŭřřḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
 
-#: /templates/detail/main.html:65
+#: /templates/detail/main.html:66
+msgid "Updates"
+msgstr "Ŭƥḓȧŧḗş"
+
+#: /templates/detail/main.html:72
+#: /templates/detail/main.html:89
 msgid "Less&hellip;"
 msgstr "Ŀḗşş&hellip;"
 
-#: /templates/detail/main.html:65
+#: /templates/detail/main.html:72
+#: /templates/detail/main.html:89
 msgid "More&hellip;"
 msgstr "Ḿǿřḗ&hellip;"
 
-#: /templates/detail/main.html:68
+#: /templates/detail/main.html:83
+msgid "Description"
+msgstr "Ḓḗşƈřīƥŧīǿƞ"
+
+#: /templates/detail/main.html:92
 msgid "Version"
 msgstr "Ṽḗřşīǿƞ"
 
-#: /templates/detail/main.html:70
+#: /templates/detail/main.html:94
 msgid "Latest version: {version}"
 msgstr "Ŀȧŧḗşŧ ṽḗřşīǿƞ: {ṽḗřşīǿƞ}"
 
-#: /templates/detail/main.html:86
+#: /templates/detail/main.html:110
 msgid "Edit Listing"
 msgstr "Ḗḓīŧ Ŀīşŧīƞɠ"
 
-#: /templates/detail/main.html:89
+#: /templates/detail/main.html:113
 msgid "Approve / Reject"
 msgstr "Ȧƥƥřǿṽḗ / Řḗĵḗƈŧ"
 
-#: /templates/detail/main.html:89
+#: /templates/detail/main.html:113
 msgid "Review History"
 msgstr "Řḗṽīḗẇ Ħīşŧǿřẏ"
 
-#: /templates/detail/main.html:100
+#: /templates/detail/main.html:124
 #: /templates/ratings/main.html:6
 #: /media/js/views/app/ratings.js:16
 msgid "Reviews"
 msgstr "Řḗṽīḗẇş"
 
-#: /templates/detail/main.html:119
+#: /templates/detail/main.html:143
 msgid "App not yet rated"
 msgstr "Ȧƥƥ ƞǿŧ ẏḗŧ řȧŧḗḓ"
 
-#: /templates/detail/main.html:127
+#: /templates/detail/main.html:151
 msgid "Edit Your Review"
 msgstr "Ḗḓīŧ Ẏǿŭř Řḗṽīḗẇ"
 
-#: /templates/detail/main.html:131
+#: /templates/detail/main.html:155
 #: /templates/ratings/main.html:18
 #: /templates/ratings/write.html:2
 #: /media/js/views/app/ratings/add.js:40
 msgid "Write a Review"
 msgstr "Ẇřīŧḗ ȧ Řḗṽīḗẇ"
 
-#: /templates/detail/main.html:131
+#: /templates/detail/main.html:155
 #: /templates/ratings/main.html:18
 msgid "Sign in to Review"
 msgstr "Şīɠƞ īƞ ŧǿ Řḗṽīḗẇ"
 
-#: /templates/detail/main.html:148
+#: /templates/detail/main.html:172
 #: /templates/detail/receipt.html:40
 msgid "Support Email"
 msgstr "Şŭƥƥǿřŧ Ḗḿȧīŀ"
 
-#: /templates/detail/main.html:154
+#: /templates/detail/main.html:178
 #: /templates/detail/receipt.html:46
 msgid "Support Site"
 msgstr "Şŭƥƥǿřŧ Şīŧḗ"
 
-#: /templates/detail/main.html:159
+#: /templates/detail/main.html:183
 #: /templates/detail/receipt.html:51
 msgid "Homepage"
 msgstr "Ħǿḿḗƥȧɠḗ"
 
-#: /templates/detail/main.html:171
+#: /templates/detail/main.html:195
 #: /templates/detail/receipt.html:63
 msgid "Statistics"
 msgstr "Şŧȧŧīşŧīƈş"
 
-#: /templates/detail/main.html:187
+#: /templates/detail/main.html:211
 msgid "Premium version available"
 msgstr "Ƥřḗḿīŭḿ ṽḗřşīǿƞ ȧṽȧīŀȧƀŀḗ"
 
-#: /templates/detail/main.html:204
+#: /templates/detail/main.html:230
 msgid "Content Rating"
 msgstr "Ƈǿƞŧḗƞŧ Řȧŧīƞɠ"
+
+#: /templates/detail/main.html:288
+msgid "Content Rating Details"
+msgstr "Ƈǿƞŧḗƞŧ Řȧŧīƞɠ Ḓḗŧȧīŀş"
 
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
@@ -476,25 +490,6 @@ msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ḿǿřḗ"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Ŧřẏ Ȧɠȧīƞ"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{ƞ}</b> Řḗşŭŀŧ"
-msgstr[1] "<b>{ƞ}</b> Řḗşŭŀŧş"
-
-#: /templates/search/main.html:16
-#: /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Şħǿẇīƞɠ <b>1</b>&ndash;<b class=\"total-results\">{ŧǿŧȧŀ}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ, ŧřẏ ȧɠȧīƞ ŀȧŧḗř"
 
 #: /templates/ratings/edit.html:5
 #: /templates/ratings/main.html:14
@@ -554,6 +549,25 @@ msgstr "Īƞȧƥƥřǿƥřīȧŧḗ ŀȧƞɠŭȧɠḗ/dialog"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Ḿīşƥŀȧƈḗḓ ƀŭɠ řḗƥǿřŧ ǿř şŭƥƥǿřŧ řḗɋŭḗşŧ"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{ƞ}</b> Řḗşŭŀŧ"
+msgstr[1] "<b>{ƞ}</b> Řḗşŭŀŧş"
+
+#: /templates/search/main.html:16
+#: /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Şħǿẇīƞɠ <b>1</b>&ndash;<b class=\"total-results\">{ŧǿŧȧŀ}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ, ŧřẏ ȧɠȧīƞ ŀȧŧḗř"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -620,23 +634,23 @@ msgstr "Şīɠƞ īƞ / Şīɠƞ ŭƥ"
 msgid "You have no apps"
 msgstr "Ẏǿŭ ħȧṽḗ ƞǿ ȧƥƥş"
 
-#: /media/js/apps.js:76
+#: /media/js/apps.js:79
 msgid "App install error: {error}"
 msgstr "Ȧƥƥ īƞşŧȧŀŀ ḗřřǿř: {ḗřřǿř}"
 
-#: /media/js/apps.js:127
+#: /media/js/apps.js:130
 msgid "Your device does not support payments."
 msgstr "Ẏǿŭř ḓḗṽīƈḗ ḓǿḗş ƞǿŧ şŭƥƥǿřŧ ƥȧẏḿḗƞŧş."
 
-#: /media/js/apps.js:129
+#: /media/js/apps.js:132
 msgid "This app is unavailable for purchase in your region."
 msgstr "Ŧħīş ȧƥƥ īş ŭƞȧṽȧīŀȧƀŀḗ ƒǿř ƥŭřƈħȧşḗ īƞ ẏǿŭř řḗɠīǿƞ."
 
-#: /media/js/apps.js:133
+#: /media/js/apps.js:136
 msgid "Your browser or device is not web-app compatible."
 msgstr "Ẏǿŭř ƀřǿẇşḗř ǿř ḓḗṽīƈḗ īş ƞǿŧ ẇḗƀ-ȧƥƥ ƈǿḿƥȧŧīƀŀḗ."
 
-#: /media/js/apps.js:135
+#: /media/js/apps.js:138
 msgid "This app is unavailable for your platform."
 msgstr "Ŧħīş ȧƥƥ īş ŭƞȧṽȧīŀȧƀŀḗ ƒǿř ẏǿŭř ƥŀȧŧƒǿřḿ."
 
@@ -687,23 +701,23 @@ msgid "There was an error submitting your newsletter sign up request"
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř şŭƀḿīŧŧīƞɠ ẏǿŭř ƞḗẇşŀḗŧŧḗř şīɠƞ ŭƥ řḗɋŭḗşŧ"
 
 #. The report is an abuse report for reviews
-#: /media/js/ratings.js:41
+#: /media/js/ratings.js:40
 msgid "Sending report..."
 msgstr "Şḗƞḓīƞɠ řḗƥǿřŧ..."
 
-#: /media/js/ratings.js:46
+#: /media/js/ratings.js:45
 msgid "Review flagged"
 msgstr "Řḗṽīḗẇ ƒŀȧɠɠḗḓ"
 
-#: /media/js/ratings.js:50
+#: /media/js/ratings.js:49
 msgid "Report review operation failed"
 msgstr "Řḗƥǿřŧ řḗṽīḗẇ ǿƥḗřȧŧīǿƞ ƒȧīŀḗḓ"
 
-#: /media/js/ratings.js:61
+#: /media/js/ratings.js:60
 msgid "Review deleted"
 msgstr "Řḗṽīḗẇ ḓḗŀḗŧḗḓ"
 
-#: /media/js/ratings.js:91
+#: /media/js/ratings.js:90
 msgid "There was a problem deleting the review"
 msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ḓḗŀḗŧīƞɠ ŧħḗ řḗṽīḗẇ"
 
@@ -790,6 +804,10 @@ msgstr "Ŭřŭɠŭȧẏ"
 #: /media/js/settings.js:90
 msgid "Venezuela"
 msgstr "Ṽḗƞḗzŭḗŀȧ"
+
+#: /media/js/settings.js:91
+msgid "No region in search"
+msgstr "Ƞǿ řḗɠīǿƞ īƞ şḗȧřƈħ"
 
 #. {n} is the number of characters left.
 #: /media/js/utils.js:28

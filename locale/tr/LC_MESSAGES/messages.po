@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-04T17:08:09.612Z\n"
+"POT-Creation-Date: 2013-12-18T17:32:14.065Z\n"
 "PO-Revision-Date: 2013-12-07 13:24+0000\n"
 "Last-Translator: Mert Salih <mail@mertskaplan.com>\n"
 "Language-Team: none\n"
@@ -109,7 +109,7 @@ msgstr ""
 "Aksi <a href=\"{legal_url}\" target=\"_blank\">belirtilmedikçe</a>, bu sitedeki içerikler <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike Lisansı v3.0</a> veya daha "
 "üst bir sürümle lisanslanmıştır."
 
-#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
+#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:189 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
 #: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Gizlilik ilkeleri"
@@ -158,6 +158,19 @@ msgstr "Firefox uygulamalarını yüklemek için Firefox kullanmalısınız."
 msgid "Download."
 msgstr "İndir."
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Kullanılamaz"
+
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:53
+msgid "Free"
+msgstr "Ücretsiz"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105
+msgid "Install"
+msgstr "Yükle"
+
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
 msgstr "{app_name} .::. ekran görüntüsü"
@@ -167,15 +180,11 @@ msgstr "{app_name} .::. ekran görüntüsü"
 msgid "{rating_body}: {rating}"
 msgstr "{rating_body}: {rating}"
 
-#: /templates/_macros/market_tile.html:53 /templates/_macros/market_button.html:7
-msgid "Free"
-msgstr "Ücretsiz"
-
 #: /templates/_macros/market_tile.html:61
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:64 /templates/detail/main.html:111
+#: /templates/_macros/market_tile.html:64 /templates/detail/main.html:135
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} inceleme"
@@ -188,15 +197,6 @@ msgstr "(0)"
 #: /templates/_macros/market_tile.html:69
 msgid "Not yet rated"
 msgstr "Henüz puan verilmemiş"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Kullanılamaz"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105
-msgid "Install"
-msgstr "Yükle"
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
@@ -259,7 +259,7 @@ msgstr "İstediğiniz kategori mevcut değil."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Bir iç sunucu hatası oluştu. Lütfen sonra tekrar deneyin."
 
-#: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:200 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "Suistimal bildir"
 
@@ -301,85 +301,95 @@ msgstr "İstenilen uygulama bölgeniz için kullanılabilir değil."
 
 #: /templates/detail/main.html:31
 msgid "You may wish to contact the developer if you would like to see a version of this app for your region."
-msgstr ""
-"Bu uygulamanın bölgenize uygun bir sürümünü görmek istiyorsanız "
-"geliştiricisiyle iletişime geçebilirsiniz."
+msgstr "Bu uygulamanın bölgenize uygun bir sürümünü görmek istiyorsanız geliştiricisiyle iletişime geçebilirsiniz."
 
 #: /templates/detail/main.html:33
 msgid "A server error occurred. Please try again later."
 msgstr "Sunucu hatası oluştu. Lütfen sonra tekrar deneyin."
 
-#: /templates/detail/main.html:65
+#: /templates/detail/main.html:66
+msgid "Updates"
+msgstr ""
+
+#: /templates/detail/main.html:72 /templates/detail/main.html:89
 msgid "Less&hellip;"
 msgstr "Daha az&hellip;"
 
-#: /templates/detail/main.html:65
+#: /templates/detail/main.html:72 /templates/detail/main.html:89
 msgid "More&hellip;"
 msgstr "Daha fazla&hellip;"
 
-#: /templates/detail/main.html:68
+#: /templates/detail/main.html:83
+msgid "Description"
+msgstr ""
+
+#: /templates/detail/main.html:92
 msgid "Version"
 msgstr "Sürüm"
 
-#: /templates/detail/main.html:70
+#: /templates/detail/main.html:94
 msgid "Latest version: {version}"
 msgstr "Son sürüm: {version}"
 
-#: /templates/detail/main.html:86
+#: /templates/detail/main.html:110
 msgid "Edit Listing"
 msgstr "Listelemeyi düzenle"
 
-#: /templates/detail/main.html:89
+#: /templates/detail/main.html:113
 msgid "Approve / Reject"
 msgstr "Onayla / reddet"
 
-#: /templates/detail/main.html:89
+#: /templates/detail/main.html:113
 msgid "Review History"
 msgstr "İnceleme geçmişi"
 
-#: /templates/detail/main.html:100 /templates/ratings/main.html:6 /media/js/views/app/ratings.js:16
+#: /templates/detail/main.html:124 /templates/ratings/main.html:6 /media/js/views/app/ratings.js:16
 msgid "Reviews"
 msgstr "İncelemeler"
 
-#: /templates/detail/main.html:119
+#: /templates/detail/main.html:143
 msgid "App not yet rated"
 msgstr "Uygulama henüz puanlanmamış"
 
-#: /templates/detail/main.html:127
+#: /templates/detail/main.html:151
 msgid "Edit Your Review"
 msgstr "İncelemenizi düzenleyin"
 
-#: /templates/detail/main.html:131 /templates/ratings/main.html:18 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
+#: /templates/detail/main.html:155 /templates/ratings/main.html:18 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
 msgid "Write a Review"
 msgstr "İnceleme yazın"
 
-#: /templates/detail/main.html:131 /templates/ratings/main.html:18
+#: /templates/detail/main.html:155 /templates/ratings/main.html:18
 msgid "Sign in to Review"
 msgstr "İnceleme yazmak için oturum açın"
 
-#: /templates/detail/main.html:148 /templates/detail/receipt.html:40
+#: /templates/detail/main.html:172 /templates/detail/receipt.html:40
 msgid "Support Email"
 msgstr "Destek e-postası"
 
-#: /templates/detail/main.html:154 /templates/detail/receipt.html:46
+#: /templates/detail/main.html:178 /templates/detail/receipt.html:46
 msgid "Support Site"
 msgstr "Destek sitesi"
 
-#: /templates/detail/main.html:159 /templates/detail/receipt.html:51
+#: /templates/detail/main.html:183 /templates/detail/receipt.html:51
 msgid "Homepage"
 msgstr "Web sitesi"
 
-#: /templates/detail/main.html:171 /templates/detail/receipt.html:63
+#: /templates/detail/main.html:195 /templates/detail/receipt.html:63
 msgid "Statistics"
 msgstr "İstatistikler"
 
-#: /templates/detail/main.html:187
+#: /templates/detail/main.html:211
 msgid "Premium version available"
 msgstr "Ücretli sürümü mevcut"
 
-#: /templates/detail/main.html:204
+#: /templates/detail/main.html:230
 msgid "Content Rating"
 msgstr "İçerik uygunluğu"
+
+#: /templates/detail/main.html:288
+msgid "Content Rating Details"
+msgstr ""
 
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
@@ -408,24 +418,6 @@ msgstr "Devamı yüklenirken hata oluştu"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Tekrar dene"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> sonuç"
-msgstr[1] "<b>{n}</b> sonuç"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "<b>1</b>&ndash;<b class=\"total-results\">{total}</b> arası gösteriliyor"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Sonuç bulunamadı"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Sonuç bulunamadı. Daha sonra tekrar deneyin."
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
 msgid "Edit Review"
@@ -475,6 +467,24 @@ msgstr "Uygunsuz dil"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "İnceleme olarak yazılmış hata raporu veya destek talebi"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> sonuç"
+msgstr[1] "<b>{n}</b> sonuç"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "<b>1</b>&ndash;<b class=\"total-results\">{total}</b> arası gösteriliyor"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Sonuç bulunamadı"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Sonuç bulunamadı. Daha sonra tekrar deneyin."
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -540,23 +550,23 @@ msgstr "Oturum aç / Kaydol"
 msgid "You have no apps"
 msgstr "Hiç uygulamanız yok"
 
-#: /media/js/apps.js:76
+#: /media/js/apps.js:79
 msgid "App install error: {error}"
 msgstr "Uygulama kurulum hatası: {error}"
 
-#: /media/js/apps.js:127
+#: /media/js/apps.js:130
 msgid "Your device does not support payments."
 msgstr "Cihazınız ödemeleri desteklemiyor."
 
-#: /media/js/apps.js:129
+#: /media/js/apps.js:132
 msgid "This app is unavailable for purchase in your region."
 msgstr "Bu uygulama bölgenizde satın alınamıyor."
 
-#: /media/js/apps.js:133
+#: /media/js/apps.js:136
 msgid "Your browser or device is not web-app compatible."
 msgstr "Tarayıcınız vaya cihazınız web uygulaması ile uyumlu değil."
 
-#: /media/js/apps.js:135
+#: /media/js/apps.js:138
 msgid "This app is unavailable for your platform."
 msgstr "Bu uygulama platformunuzda kullanılamaz."
 
@@ -603,23 +613,23 @@ msgid "There was an error submitting your newsletter sign up request"
 msgstr "Bülten kaydı istediğiniz gönderilirken bir hata oluştu"
 
 #. The report is an abuse report for reviews
-#: /media/js/ratings.js:41
+#: /media/js/ratings.js:40
 msgid "Sending report..."
 msgstr "Rapor gönderiliyor..."
 
-#: /media/js/ratings.js:46
+#: /media/js/ratings.js:45
 msgid "Review flagged"
 msgstr "İnceleme işaretlendi"
 
-#: /media/js/ratings.js:50
+#: /media/js/ratings.js:49
 msgid "Report review operation failed"
 msgstr "İnceleme bildirme işlemi başarısız oldu"
 
-#: /media/js/ratings.js:61
+#: /media/js/ratings.js:60
 msgid "Review deleted"
 msgstr "İnceleme silindi"
 
-#: /media/js/ratings.js:91
+#: /media/js/ratings.js:90
 msgid "There was a problem deleting the review"
 msgstr "İnceleme silinirken bir sorun oluştu"
 
@@ -706,6 +716,10 @@ msgstr "Uruguay"
 #: /media/js/settings.js:90
 msgid "Venezuela"
 msgstr "Venezuela"
+
+#: /media/js/settings.js:91
+msgid "No region in search"
+msgstr ""
 
 #. {n} is the number of characters left.
 #: /media/js/utils.js:28

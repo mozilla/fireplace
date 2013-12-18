@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-04T17:08:09.612Z\n"
+"POT-Creation-Date: 2013-12-18T17:32:14.065Z\n"
 "PO-Revision-Date: 2013-06-20 00:37+0200\n"
 "Last-Translator: Maddi Agiriano <mae20@hotmail.com>\n"
 "Language-Team: 89578-OEM-7332157-00211\n"
@@ -109,7 +109,7 @@ msgstr ""
 "Besterik <a href=\"{legal_url}\" target=\"_blank\">adierazi</a> ezean, gune honetako edukia  <a href=\"{cc_url}\" target=\"_blank\">Creative Commonsen Aitortu-PartekatuBerdin v3.0</a> edo beste "
 "edozein bertsio berriagoren lizentziapean dago."
 
-#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
+#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:189 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
 #: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Pribatutasun-politika"
@@ -158,6 +158,19 @@ msgstr ""
 msgid "Download."
 msgstr ""
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr ""
+
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:53
+msgid "Free"
+msgstr "Doan"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105
+msgid "Install"
+msgstr "Instalatu"
+
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
 msgstr ""
@@ -167,15 +180,11 @@ msgstr ""
 msgid "{rating_body}: {rating}"
 msgstr ""
 
-#: /templates/_macros/market_tile.html:53 /templates/_macros/market_button.html:7
-msgid "Free"
-msgstr "Doan"
-
 #: /templates/_macros/market_tile.html:61
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:64 /templates/detail/main.html:111
+#: /templates/_macros/market_tile.html:64 /templates/detail/main.html:135
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "Balorazio bat"
@@ -188,15 +197,6 @@ msgstr "(0)"
 #: /templates/_macros/market_tile.html:69
 msgid "Not yet rated"
 msgstr "Oraindik baloratu gabe"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr ""
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105
-msgid "Install"
-msgstr "Instalatu"
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
@@ -259,7 +259,7 @@ msgstr ""
 msgid "An internal server error occurred. Please try again later."
 msgstr ""
 
-#: /templates/detail/abuse.html:5 /templates/detail/main.html:176 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:200 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "Eman erabilera okerren berri"
 
@@ -307,76 +307,88 @@ msgstr ""
 msgid "A server error occurred. Please try again later."
 msgstr ""
 
-#: /templates/detail/main.html:65
+#: /templates/detail/main.html:66
+msgid "Updates"
+msgstr ""
+
+#: /templates/detail/main.html:72 /templates/detail/main.html:89
 msgid "Less&hellip;"
 msgstr "Gutxiago&hellip;"
 
-#: /templates/detail/main.html:65
+#: /templates/detail/main.html:72 /templates/detail/main.html:89
 msgid "More&hellip;"
 msgstr "Gehiago&hellip;"
 
-#: /templates/detail/main.html:68
+#: /templates/detail/main.html:83
+msgid "Description"
+msgstr ""
+
+#: /templates/detail/main.html:92
 msgid "Version"
 msgstr "Bertsioa"
 
-#: /templates/detail/main.html:70
+#: /templates/detail/main.html:94
 msgid "Latest version: {version}"
 msgstr "Azken bertsioa: {version}"
 
-#: /templates/detail/main.html:86
+#: /templates/detail/main.html:110
 msgid "Edit Listing"
 msgstr "Zerrendak editatu"
 
-#: /templates/detail/main.html:89
+#: /templates/detail/main.html:113
 msgid "Approve / Reject"
 msgstr "Onartu / Baztertu"
 
-#: /templates/detail/main.html:89
+#: /templates/detail/main.html:113
 msgid "Review History"
 msgstr "Balorazioen historia"
 
-#: /templates/detail/main.html:100 /templates/ratings/main.html:6 /media/js/views/app/ratings.js:16
+#: /templates/detail/main.html:124 /templates/ratings/main.html:6 /media/js/views/app/ratings.js:16
 msgid "Reviews"
 msgstr "Balorazioak"
 
-#: /templates/detail/main.html:119
+#: /templates/detail/main.html:143
 msgid "App not yet rated"
 msgstr "Aplikazio hori oraindik baloratu gabe dago "
 
-#: /templates/detail/main.html:127
+#: /templates/detail/main.html:151
 msgid "Edit Your Review"
 msgstr "Zure balorazioa editatu"
 
-#: /templates/detail/main.html:131 /templates/ratings/main.html:18 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
+#: /templates/detail/main.html:155 /templates/ratings/main.html:18 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
 msgid "Write a Review"
 msgstr "Balorazio bat idatzi"
 
-#: /templates/detail/main.html:131 /templates/ratings/main.html:18
+#: /templates/detail/main.html:155 /templates/ratings/main.html:18
 msgid "Sign in to Review"
 msgstr "Hasi saioa baloratzeko"
 
-#: /templates/detail/main.html:148 /templates/detail/receipt.html:40
+#: /templates/detail/main.html:172 /templates/detail/receipt.html:40
 msgid "Support Email"
 msgstr "Laguntzarako posta elektronikoa"
 
-#: /templates/detail/main.html:154 /templates/detail/receipt.html:46
+#: /templates/detail/main.html:178 /templates/detail/receipt.html:46
 msgid "Support Site"
 msgstr "Laguntzarako gunea"
 
-#: /templates/detail/main.html:159 /templates/detail/receipt.html:51
+#: /templates/detail/main.html:183 /templates/detail/receipt.html:51
 msgid "Homepage"
 msgstr "Hasierako orria"
 
-#: /templates/detail/main.html:171 /templates/detail/receipt.html:63
+#: /templates/detail/main.html:195 /templates/detail/receipt.html:63
 msgid "Statistics"
 msgstr "Estatistikak"
 
-#: /templates/detail/main.html:187
+#: /templates/detail/main.html:211
 msgid "Premium version available"
 msgstr "Premium bertsioa eskuragarri dago"
 
-#: /templates/detail/main.html:204
+#: /templates/detail/main.html:230
 msgid "Content Rating"
+msgstr ""
+
+#: /templates/detail/main.html:288
+msgid "Content Rating Details"
 msgstr ""
 
 #: /templates/detail/privacy.html:5
@@ -406,24 +418,6 @@ msgstr ""
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr ""
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "Emaitza <b>bat</b>"
-msgstr[1] "<b>{n}</b> emaitza"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "<b>1</b>&ndash;<b class=\"total-results\">{total}</b> bistaratzen"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Ez da emaitzarik aurkitu"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Ez da emaitzarik aurkitu, saiatu berriro geroago"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
 msgid "Edit Review"
@@ -473,6 +467,24 @@ msgstr "Hizkera/elkarrizketa desegokia"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Programa-errorearen txostena edo laguntza-eskarera lekuz kanpo dago"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "Emaitza <b>bat</b>"
+msgstr[1] "<b>{n}</b> emaitza"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "<b>1</b>&ndash;<b class=\"total-results\">{total}</b> bistaratzen"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Ez da emaitzarik aurkitu"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Ez da emaitzarik aurkitu, saiatu berriro geroago"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -538,23 +550,23 @@ msgstr "Hasi saioa / Eman izena"
 msgid "You have no apps"
 msgstr "Ez duzu aplikaziorik"
 
-#: /media/js/apps.js:76
+#: /media/js/apps.js:79
 msgid "App install error: {error}"
 msgstr ""
 
-#: /media/js/apps.js:127
+#: /media/js/apps.js:130
 msgid "Your device does not support payments."
 msgstr ""
 
-#: /media/js/apps.js:129
+#: /media/js/apps.js:132
 msgid "This app is unavailable for purchase in your region."
 msgstr ""
 
-#: /media/js/apps.js:133
+#: /media/js/apps.js:136
 msgid "Your browser or device is not web-app compatible."
 msgstr ""
 
-#: /media/js/apps.js:135
+#: /media/js/apps.js:138
 msgid "This app is unavailable for your platform."
 msgstr ""
 
@@ -601,23 +613,23 @@ msgid "There was an error submitting your newsletter sign up request"
 msgstr ""
 
 #. The report is an abuse report for reviews
-#: /media/js/ratings.js:41
+#: /media/js/ratings.js:40
 msgid "Sending report..."
 msgstr "Txostena bidaltzen..."
 
-#: /media/js/ratings.js:46
+#: /media/js/ratings.js:45
 msgid "Review flagged"
 msgstr "Balorazioa markatuta"
 
-#: /media/js/ratings.js:50
+#: /media/js/ratings.js:49
 msgid "Report review operation failed"
 msgstr "Huts egin du balorazioa bidaltzean"
 
-#: /media/js/ratings.js:61
+#: /media/js/ratings.js:60
 msgid "Review deleted"
 msgstr ""
 
-#: /media/js/ratings.js:91
+#: /media/js/ratings.js:90
 msgid "There was a problem deleting the review"
 msgstr "Arazo bat egon da balorazioa ezabatzean"
 
@@ -703,6 +715,10 @@ msgstr ""
 
 #: /media/js/settings.js:90
 msgid "Venezuela"
+msgstr ""
+
+#: /media/js/settings.js:91
+msgid "No region in search"
 msgstr ""
 
 #. {n} is the number of characters left.
