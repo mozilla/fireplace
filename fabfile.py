@@ -9,6 +9,7 @@ import deploysettings as settings
 env.key_filename = settings.SSH_KEY
 fabdeploytools.envs.loadenv(settings.CLUSTER)
 ROOT, FIREPLACE = helpers.get_app_dirs(__file__)
+COMMONPLACE = '%s/node_modules/commonplace/bin/commonplace' % FIREPLACE
 
 
 @task
@@ -24,9 +25,8 @@ def update():
     with lcd(FIREPLACE):
         local('npm install')
         local('npm install --force commonplace@0.2.4')
-        local('commonplace includes')
-        local('commonplace langpacks')
-
+        local('%s includes' % COMMONPLACE)
+        local('%s langpacks' % COMMONPLACE)
 
 @task
 def deploy():
