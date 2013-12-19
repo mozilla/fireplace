@@ -111,7 +111,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         iarc_icons: {
             ratings: {
                 'classind': {
-                    'L': '/media/img/icons/ratings/CLASSIND_L.png',
+                    '0': '/media/img/icons/ratings/CLASSIND_L.png',
                     '10': '/media/img/icons/ratings/CLASSIND_10.png',
                     '12': '/media/img/icons/ratings/CLASSIND_12.png',
                     '14': '/media/img/icons/ratings/CLASSIND_14.png',
