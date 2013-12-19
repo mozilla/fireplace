@@ -141,6 +141,7 @@ function(_) {
             nunjucks.env.render('footer.html', context));
 
         if (!navigator.mozApps &&
+            !navigator.userAgent.match(/googlebot/i) &&
             !require('storage').getItem('hide_incompatibility_banner')) {
             console.log('Adding incompatibility banner');
             $('#incompatibility-banner').html(
