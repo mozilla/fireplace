@@ -166,9 +166,14 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
                 }
             },
             interactive_elements: {
-                'shares-info': '/media/img/icons/ratings/interactives/ESRB_shares-info.png',
-                'shares-location': '/media/img/icons/ratings/interactives/ESRB_shares-location.png',
-                'users-interact': '/media/img/icons/ratings/interactives/ESRB_users-interact.png',
+                // Only show the ESRB-branded interactive Elements icons for ESRB.
+                'esrb': {
+                    'shares-info': '/media/img/icons/ratings/interactives/ESRB_shares-info.png',
+                    'shares-location': '/media/img/icons/ratings/interactives/ESRB_shares-location.png',
+                    'users-interact': '/media/img/icons/ratings/interactives/ESRB_users-interact.png',
+                },
+                // CLASSIND doesn't want to show Interactive Elements as part of their rating.
+                'classind': {},
             }
         },
 
