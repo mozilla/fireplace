@@ -14,7 +14,7 @@ define('routes_api_args',
     return function() {
         return {
             lang: (navigator.l10n && navigator.l10n.language) || navigator.language || navigator.userLanguage,
-            region: user_helpers.region(),
+            region: user_helpers.region(undefined, true),
             carrier: user_helpers.carrier(),
             dev: _dev,
             device: _device,
