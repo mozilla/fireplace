@@ -1,0 +1,77 @@
+{% defer (url=endpoint, as='app', key=slug, pluck='content_ratings') %}
+  {% set content_rating = this.ratings[user_helpers.region()] or
+                          this.ratings['generic'] %}
+  {% if content_rating %}
+    {% set rating_body = content_rating.body_label %}
+
+    <div class="content-ratings-wrapper main infobox c">
+      <div class="infobox-wrapper c">
+        <h3>{{ _('Content Rating') }}</h3>
+        <div class="content-ratings">
+          <div class="content-rating c">
+            {# Content rating. #}
+            <img src="{{ settings.iarc_icons.ratings[rating_body][content_rating.rating_label] }}"
+                 class="icon icon-body-{{ rating_body }}"
+                 title="{{ content_rating.rating }}">
+
+            {# Content descriptors as a list of text.
+               Only shown if there are not any descriptor icons (i.e. non-PEGI bodies). #}
+            {% if not settings.iarc_icons.descriptors[rating_body] %}
+              <ul class="content-descriptors text">
+                {% for descriptor in this.descriptors[rating_body] %}
+                  {# Don't show "No Descriptors". #}
+                  {% if descriptor.label != 'no-descs' %}
+                    <li>{{ descriptor.name }}</li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% else %}
+              {# If not showing descriptor text, show the rating name to fill in space. #}
+              <span class="description">{{ content_rating.rating }}</span>
+            {% endif %}
+          </div>
+        </div>
+
+        {% set desc_icons = settings.iarc_icons.descriptors[rating_body] %}
+        {% if desc_icons %}
+          {# Content descriptors as a grid of icons.
+             Only shown if there are descriptor icons (i.e. PEGI-only). #}
+          <div class="content-descriptors icons">
+            {% for descriptor in this.descriptors[rating_body] %}
+              {% set icon_src = desc_icons[descriptor.label] %}
+              {% if icon_src %}
+                <img src="{{ icon_src }}" class="icon" title="{{ descriptor.name }}">
+              {% endif %}
+            {% endfor %}
+          </div>
+
+        {% elif this.interactive_elements %}
+         {% set interactive_icons = settings.iarc_icons.interactive_elements[rating_body] %}
+          <div class="interactive-elements {{ 'icons' if interactive_icons else 'text' }}">
+            {% for interactive in this.interactive_elements %}
+              {% if interactive_icons %}
+                {# Interactive elements as a row of icons (ESRB only). #}
+                {% set icon_src = interactive_icons[interactive.label] %}
+                {% if icon_src %}
+                  <img src="{{ icon_src }}" class="icon" title="{{ interactive.name }}">
+                {% endif %}
+              {% else %}
+                {# Interactive elements as a column of text (non-PEGI/ESRB bodies). #}
+                <p>{{ interactive.name }}</p>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="full">
+        {% set rating_detail_link = settings.iarc_detail_links[content_rating.body_label] %}
+        {% if rating_detail_link %}
+          <a href="{{ rating_detail_link }}" class="button alt" target="_blank">
+            {{ _('Content Rating Details') }}</a>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% except %}
+{% end %}
