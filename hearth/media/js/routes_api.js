@@ -1,11 +1,11 @@
 define('routes_api', [], function() {
     return {
-        'app': '/api/v1/fireplace/app/{0}/',
-        'app/privacy': '/api/v1/apps/app/{0}/privacy/',
-        'category': '/api/v1/fireplace/search/featured/?cat={0}',
-        'categories': '/api/v1/apps/category/',
-        'collection': '/api/v1/rocketfuel/collections/{0}/',
-        'collection_image': '/api/v1/rocketfuel/collections/{0}/image/',
+        'app': '/api/v1/fireplace/app/{0}/?cache=1&vary=0',
+        'app/privacy': '/api/v1/apps/app/{0}/privacy/?cache=1&vary=0',
+        'category': '/api/v1/fireplace/search/featured/?cat={0}&cache=1&vary=0',
+        'categories': '/api/v1/apps/category/?cache=1&vary=0',
+        'collection': '/api/v1/rocketfuel/collections/{0}/?cache=1&vary=0',
+        'collection_image': '/api/v1/rocketfuel/collections/{0}/image/?cache=1&vary=0',
         'reviews': '/api/v1/apps/rating/',
         'review': '/api/v1/apps/rating/{0}/',
         'settings': '/api/v1/account/settings/mine/',
@@ -15,7 +15,7 @@ define('routes_api', [], function() {
         'record_free': '/api/v1/installs/record/',
         'record_paid': '/api/v1/receipts/install/',
         'app_abuse': '/api/v1/abuse/app/',
-        'search': '/api/v1/apps/search/',
+        'search': '/api/v1/apps/search/?cache=1&vary=0',
         'feedback': '/api/v1/account/feedback/',
 
         'prepare_nav_pay': '/api/v1/webpay/prepare/',
