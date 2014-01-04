@@ -10,13 +10,13 @@
         <div class="content-ratings">
           <div class="content-rating c">
             {# Content rating. #}
-            <img src="{{ settings.iarc_icons.ratings[rating_body][content_rating.rating_label] }}"
+            <img src="{{ iarc.rating_icons[rating_body][content_rating.rating_label] }}"
                  class="icon icon-body-{{ rating_body }}"
                  title="{{ content_rating.rating }}">
 
             {# Content descriptors as a list of text.
                Only shown if there are not any descriptor icons (i.e. non-PEGI bodies). #}
-            {% if not settings.iarc_icons.descriptors[rating_body] %}
+            {% if not iarc.descriptor_icons[rating_body] %}
               <ul class="content-descriptors text">
                 {% for descriptor in this.descriptors[rating_body] %}
                   {# Don't show "No Descriptors". #}
@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        {% set desc_icons = settings.iarc_icons.descriptors[rating_body] %}
+        {% set desc_icons = iarc.descriptor_icons[rating_body] %}
         {% if desc_icons %}
           {# Content descriptors as a grid of icons.
              Only shown if there are descriptor icons (i.e. PEGI-only). #}
@@ -46,7 +46,7 @@
           </div>
 
         {% elif this.interactive_elements %}
-         {% set interactive_icons = settings.iarc_icons.interactive_elements[rating_body] %}
+         {% set interactive_icons = iarc.interactive_icons[rating_body] %}
           <div class="interactive-elements {{ 'icons' if interactive_icons else 'text' }}">
             {% for interactive in this.interactive_elements %}
               {% if interactive_icons %}
@@ -65,7 +65,7 @@
       </div>
 
       <div class="full">
-        {% set rating_detail_link = settings.iarc_detail_links[content_rating.body_label] %}
+        {% set rating_detail_link = iarc.detail_links[content_rating.body_label] %}
         {% if rating_detail_link %}
           <a href="{{ rating_detail_link }}" class="button alt" target="_blank">
             {{ _('Content Rating Details') }}</a>
