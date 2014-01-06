@@ -1,4 +1,5 @@
-define('user_helpers', ['settings', 'user', 'utils'], function(settings, user, utils) {
+define('user_helpers', ['settings', 'user', 'utils'],
+       function(settings, user, utils) {
 
     var initialArgs = utils.getVars();
 

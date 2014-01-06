@@ -1,6 +1,6 @@
 define('mobilenetwork',
-       ['defer', 'l10n', 'log', 'settings', 'user', 'utils'],
-       function(defer, l10n, log, settings, user, utils) {
+       ['defer', 'l10n', 'log', 'settings', 'tracking', 'user', 'utils'],
+       function(defer, l10n, log, settings, tracking, user, utils) {
     var console = log('mobilenetwork');
     var persistent_console = log.persistent('mobilenetwork', 'change');
     var gettext = l10n.gettext;
@@ -386,6 +386,9 @@ define('mobilenetwork',
         }
 
         user.update_settings(newSettings);
+
+        // Send the changed region to GA/UA.
+        tracking.setVar(11, 'region', region);
     }
 
     detectMobileNetwork(navigator);
