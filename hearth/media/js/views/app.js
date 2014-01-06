@@ -1,6 +1,6 @@
 define('views/app',
-    ['capabilities', 'l10n', 'tracking', 'utils', 'z', 'overflow'],
-    function(caps, l10n, tracking, utils, z) {
+    ['capabilities', 'content-ratings', 'l10n', 'settings', 'tracking', 'utils', 'z', 'overflow'],
+    function(caps, iarc, l10n, settings, tracking, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -52,7 +52,10 @@ define('views/app',
 
     return function(builder, args) {
         var slug = args[0];
-        builder.start('detail/main.html', {slug: slug});
+        builder.start('detail/main.html', {
+            iarc: iarc,
+            slug: slug
+        });
 
         // This is fine; tracking_helpers depends on:
         // navigation > views > views/app

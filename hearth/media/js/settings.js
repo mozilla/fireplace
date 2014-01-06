@@ -10,10 +10,6 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
     var param_blacklist = (
         window.location.search || '').indexOf('preview=true') ? ['pro'] : null;
 
-    function _rating_pth(pth) {
-        return '/media/img/icons/ratings/' + pth;
-    }
-
     return _.defaults(base_settings, {
         app_name: 'fireplace',
         init_module: 'marketplace',
@@ -110,85 +106,5 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // The hardcoded carrier. This is expected to be falsey or an object
         // in the form {name: 'foo', slug: 'bar'}
         carrier: null,
-
-        // Map IARC stuff to their icons. Wow, much icons.
-        iarc_icons: {
-            ratings: {
-                'classind': {
-                    '0': _rating_pth('CLASSIND_L.png'),
-                    '10': _rating_pth('CLASSIND_10.png'),
-                    '12': _rating_pth('CLASSIND_12.png'),
-                    '14': _rating_pth('CLASSIND_14.png'),
-                    '16': _rating_pth('CLASSIND_16.png'),
-                    '18': _rating_pth('CLASSIND_18.png'),
-                },
-                'esrb': {
-                    '0': _rating_pth('ESRB_e.png'),
-                    '10': _rating_pth('ESRB_e10.png'),
-                    '13': _rating_pth('ESRB_t.png'),
-                    '17': _rating_pth('ESRB_m.png'),
-                    '18': _rating_pth('ESRB_ao.png'),
-                },
-                'generic': {
-                    '3': _rating_pth('generic_3.png'),
-                    '7': _rating_pth('generic_7.png'),
-                    '12': _rating_pth('generic_12.png'),
-                    '16': _rating_pth('generic_16.png'),
-                    '18': _rating_pth('generic_18.png'),
-                },
-                'pegi': {
-                    '3': _rating_pth('pegi_3.png'),
-                    '7': _rating_pth('pegi_7.png'),
-                    '12': _rating_pth('pegi_12.png'),
-                    '16': _rating_pth('pegi_16.png'),
-                    '18': _rating_pth('pegi_18.png'),
-                },
-                'usk': {
-                    '0': _rating_pth('USK_0.png'),
-                    '6': _rating_pth('USK_6.png'),
-                    '12': _rating_pth('USK_12.png'),
-                    '16': _rating_pth('USK_16.png'),
-                    '18': _rating_pth('USK_18.png'),
-                    'rating-refused': _rating_pth('USK_RR.png'),
-                }
-            },
-            descriptors: {
-                'pegi': {
-                    'discrimination': _rating_pth('descriptors/pegi_discrimination.png'),
-                    'drugs': _rating_pth('descriptors/pegi_drugs.png'),
-                    'gambling': _rating_pth('descriptors/pegi_gambling.png'),
-                    'lang': _rating_pth('descriptors/pegi_language.png'),
-                    'nudity': _rating_pth('descriptors/pegi_nudity.png'),
-                    'online': _rating_pth('descriptors/pegi_online.png'),
-                    'scary': _rating_pth('descriptors/pegi_fear.png'),
-                    'sex': _rating_pth('descriptors/pegi_sex.png'),
-                    'violence': _rating_pth('descriptors/pegi_violence.png'),
-
-                    'digital-purchases': _rating_pth('descriptors/pegi_inapp_purchase_option.png'),
-                    'shares-info': _rating_pth('descriptors/pegi_personal_data_sharing.png'),
-                    'shares-location': _rating_pth('descriptors/pegi_location_data_sharing.png'),
-                    'users-interact': _rating_pth('descriptors/pegi_social_interaction_functionality.png'),
-                }
-            },
-            interactive_elements: {
-                // Only show the ESRB-branded interactive Elements icons for ESRB.
-                'esrb': {
-                    'shares-info': _rating_pth('interactives/ESRB_shares-info.png'),
-                    'shares-location': _rating_pth('interactives/ESRB_shares-location.png'),
-                    'users-interact': _rating_pth('interactives/ESRB_users-interact.png'),
-                },
-                // CLASSIND doesn't want to show Interactive Elements as part of their rating.
-                'classind': {},
-            }
-        },
-
-        iarc_detail_links: {
-            // TODO: replace classind link with one the IARC will give us.
-            // TODO: link to a detail page for generic content ratings (MDN?).
-            classind: 'http://portal.mj.gov.br/classificacao/data/Pages/MJ6BC270E8PTBRNN.htm',
-            esrb: 'http://www.esrb.org/ratings/ratings_guide.jsp',
-            pegi: 'http://www.pegi.info/en/index/id/33/',
-            usk: 'http://www.usk.de/pruefverfahren/alterskennzeichen/',
-        }
     });
 });
