@@ -68,6 +68,7 @@ define('content-ratings', ['urls'], function(urls) {
     var interactive_icons = {
         // Only show the ESRB-branded interactive Elements icons for ESRB.
         'esrb': {
+            'digital-purchases': _rating_path('interactives/ESRB_digital-purchases.png'),
             'shares-info': _rating_path('interactives/ESRB_shares-info.png'),
             'shares-location': _rating_path('interactives/ESRB_shares-location.png'),
             'users-interact': _rating_path('interactives/ESRB_users-interact.png'),
