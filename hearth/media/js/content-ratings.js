@@ -2,7 +2,7 @@ define('content-ratings', ['urls'], function(urls) {
     'use strict';
 
     function _rating_path(path) {
-        return urls.media('img/icons/ratings/' + path);
+        return urls.media('fireplace/img/icons/ratings/' + path);
     }
 
     // Map IARC stuff to their icons. Wow, much icons.
