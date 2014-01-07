@@ -28,6 +28,7 @@ define('content-ratings', ['urls'], function(urls) {
             '12': _rating_path('generic_12.png'),
             '16': _rating_path('generic_16.png'),
             '18': _rating_path('generic_18.png'),
+            'pending': _rating_path('generic_rp.png'),
         },
         'pegi': {
             '3': _rating_path('pegi_3.png'),
