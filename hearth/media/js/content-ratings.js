@@ -96,6 +96,7 @@ define('content-ratings', ['urls'], function(urls) {
             '17': _rating_path('esrb_m_spa.png'),
             '18': _rating_path('esrb_ao_spa.png'),
         };
+        delete interactive_icons.esrb;  // TODO: add Spanish interactive icons.
     }
 
     return {
