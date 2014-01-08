@@ -421,85 +421,10 @@ body {
     text-overflow: normal;
 }
 
-.region-worldwide {
-    background-image: url(../img/icons/regions/worldwide.png);
-}
-
-.region-br {
-    background-image: url(../img/icons/regions/br.png);
-}
-
-.region-co {
-    background-image: url(../img/icons/regions/co.png);
-}
-
-.region-es {
-    background-image: url(../img/icons/regions/es.png);
-}
-
-.region-gr {
-    background-image: url(../img/icons/regions/gr.png);
-}
-
-.region-mx {
-    background-image: url(../img/icons/regions/mx.png);
-}
-
-.region-pl {
-    background-image: url(../img/icons/regions/pl.png);
-}
-
-.region-uk {
-    background-image: url(../img/icons/regions/uk.png);
-}
-
-.region-us {
-    background-image: url(../img/icons/regions/us.png);
-}
-
-.region-ve {
-    background-image: url(../img/icons/regions/ve.png);
-}
-
-.region-rs {
-    background-image: url(../img/icons/regions/rs.png);
-}
-
-.region-me {
-    background-image: url(../img/icons/regions/me.png);
-}
-
-.region-hu {
-    background-image: url(../img/icons/regions/hu.png);
-}
-
-.region-gr {
-    background-image: url(../img/icons/regions/gr.png);
-}
-
-.region-de {
-    background-image: url(../img/icons/regions/de.png);
-}
-
-.region-ar {
-    background-image: url(../img/icons/regions/ar.png);
-}
-
-.region-uy {
-    background-image: url(../img/icons/regions/uy.png);
-}
-
-.region-pe {
-    background-image: url(../img/icons/regions/pe.png);
-}
-
-.region-cn {
-    background-image: url(../img/icons/regions/cn.png);
-}
-
-.region-it {
-    background-image: url(../img/icons/regions/it.png);
-}
+for region in ar br cl cn co de es gr gr hu it me mx pe pl rs uk us uy ve worldwide
+    .region-{region} {
+        background-image: url(unquote('../img/icons/regions/' + region + '.png'));
+    }
 
 @media $retina {
     .spinner {

@@ -2,7 +2,7 @@ define('content-ratings', ['urls'], function(urls) {
     'use strict';
 
     function _rating_path(path) {
-        return urls.media('img/icons/ratings/' + path);
+        return urls.media('fireplace/img/icons/ratings/' + path);
     }
 
     // Map IARC stuff to their icons. Wow, much icons.
@@ -28,6 +28,7 @@ define('content-ratings', ['urls'], function(urls) {
             '12': _rating_path('generic_12.png'),
             '16': _rating_path('generic_16.png'),
             '18': _rating_path('generic_18.png'),
+            'pending': _rating_path('generic_rp.png'),
         },
         'pegi': {
             '3': _rating_path('pegi_3.png'),
@@ -68,6 +69,7 @@ define('content-ratings', ['urls'], function(urls) {
     var interactive_icons = {
         // Only show the ESRB-branded interactive Elements icons for ESRB.
         'esrb': {
+            'digital-purchases': _rating_path('interactives/ESRB_digital-purchases.png'),
             'shares-info': _rating_path('interactives/ESRB_shares-info.png'),
             'shares-location': _rating_path('interactives/ESRB_shares-location.png'),
             'users-interact': _rating_path('interactives/ESRB_users-interact.png'),
