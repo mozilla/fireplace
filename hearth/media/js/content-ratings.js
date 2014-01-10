@@ -79,10 +79,9 @@ define('content-ratings', ['urls'], function(urls) {
     };
 
     var detail_links = {
-        // TODO: replace classind link with one the IARC will give us.
-        // TODO: link to a detail page for generic content ratings (MDN?).
-        'classind': 'http://portal.mj.gov.br/classificacao/data/Pages/MJ6BC270E8PTBRNN.htm',
+        'classind': 'www.culturadigital.br/classind',
         'esrb': 'http://www.esrb.org/ratings/ratings_guide.jsp',
+        'generic': 'https://www.globalratings.com/ratings_guide.aspx',
         'pegi': 'http://www.pegi.info/en/index/id/33/',
         'usk': 'http://www.usk.de/pruefverfahren/alterskennzeichen/',
     };
