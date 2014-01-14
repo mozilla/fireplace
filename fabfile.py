@@ -24,7 +24,7 @@ def pre_update(ref):
 def update():
     with lcd(FIREPLACE):
         local('npm install')
-        local('npm install --force commonplace@0.2.4')
+        local('npm install --force commonplace@0.2.6')
         local('%s includes' % COMMONPLACE)
         local('%s langpacks' % COMMONPLACE)
 
