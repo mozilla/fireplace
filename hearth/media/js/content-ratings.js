@@ -79,7 +79,7 @@ define('content-ratings', ['urls'], function(urls) {
     };
 
     var detail_links = {
-        'classind': 'www.culturadigital.br/classind',
+        'classind': 'http://www.culturadigital.br/classind',
         'esrb': 'http://www.esrb.org/ratings/ratings_guide.jsp',
         'generic': 'https://www.globalratings.com/ratings_guide.aspx',
         'pegi': 'http://www.pegi.info/en/index/id/33/',
