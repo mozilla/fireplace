@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-08T17:43:17.975Z\n"
+"POT-Creation-Date: 2014-01-15T17:08:38.342Z\n"
 "PO-Revision-Date: 2014-01-08 18:26+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: gialloporpora <gialloporpora@yahoo.it>\n"
@@ -24,13 +24,25 @@ msgstr "Tutte le categorie"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Oops! Spiacenti, nessuna app qui."
 
-#: /templates/collection.html:42 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/user/purchases.html:38
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
 msgid "Oh no!"
 msgstr "Accidenti!"
 
 #: /templates/collection.html:43
 msgid "We could not load that collection. Please try again later."
 msgstr "Non è stato possibile caricare la raccolta. Riprova più tardi."
+
+#: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
+msgid "Close"
+msgstr "Chiudi"
+
+#: /templates/confirmation.html:3
+msgid "No"
+msgstr "No"
+
+#: /templates/confirmation.html:4
+msgid "Yes"
+msgstr "Si"
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -45,18 +57,6 @@ msgstr "La versione di Firefox Marketplace in uso non è più supportata. Per co
 msgid "Update Now"
 msgstr "Aggiorna ora"
 
-#: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
-msgid "Close"
-msgstr "Chiudi"
-
-#: /templates/confirmation.html:3
-msgid "No"
-msgstr "No"
-
-#: /templates/confirmation.html:4
-msgid "Yes"
-msgstr "Si"
-
 #: /templates/featured.html:7
 msgid "Featured"
 msgstr "Consigliata"
@@ -69,47 +69,6 @@ msgstr "Espandi"
 msgid "No featured apps found"
 msgstr "Non è stata trovata nessuna app consigliata"
 
-#: /templates/header.html:1
-msgid "Back"
-msgstr "Indietro"
-
-#: /templates/header.html:5 /templates/header.html:8
-msgid "Search"
-msgstr "Cerca"
-
-#: /templates/header.html:10
-msgid "Clear"
-msgstr "Cancella"
-
-#: /templates/header.html:14
-msgid "Settings"
-msgstr "Impostazioni"
-
-#: /templates/header.html:20
-msgid "Edit Account Settings"
-msgstr "Modifica impostazioni account"
-
-#: /templates/header.html:22 /templates/footer.html:12 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
-#: /media/js/views/purchases.js:13
-msgid "My Apps"
-msgstr "Le mie app"
-
-#: /templates/header.html:24 /templates/footer.html:14
-msgid "My Submissions"
-msgstr "Le mie app"
-
-#: /templates/header.html:26 /templates/footer.html:6 /templates/settings/nav.html:8 /templates/settings/nav.html:11 /media/js/views/feedback.js:61
-msgid "Feedback"
-msgstr "Feedback"
-
-#: /templates/header.html:27 /templates/settings/main.html:40
-msgid "Sign Out"
-msgstr "Esci"
-
-#: /templates/header.html:31
-msgid "Sign In"
-msgstr "Accedi"
-
 #: /templates/footer.html:2
 msgid "Develop Apps"
 msgstr "Sviluppare app"
@@ -118,9 +77,22 @@ msgstr "Sviluppare app"
 msgid "Developer Hub"
 msgstr "Centro di sviluppo"
 
+#: /templates/footer.html:6 /templates/header.html:26 /templates/settings/nav.html:8 /templates/settings/nav.html:11 /media/js/views/feedback.js:61
+msgid "Feedback"
+msgstr "Feedback"
+
 #: /templates/footer.html:7
 msgid "Support"
 msgstr "Supporto"
+
+#: /templates/footer.html:12 /templates/header.html:22 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
+#: /media/js/views/purchases.js:13
+msgid "My Apps"
+msgstr "Le mie app"
+
+#: /templates/footer.html:14 /templates/header.html:24
+msgid "My Submissions"
+msgstr "Le mie app"
 
 #: /templates/footer.html:17 /templates/settings/main.html:43
 msgid "Reviewer Tools"
@@ -150,6 +122,34 @@ msgstr "Termini d'uso"
 #: /templates/footer.html:36
 msgid "Report Trademark Abuse"
 msgstr "Segnala abusi dei marchi registrati"
+
+#: /templates/header.html:1
+msgid "Back"
+msgstr "Indietro"
+
+#: /templates/header.html:5 /templates/header.html:8
+msgid "Search"
+msgstr "Cerca"
+
+#: /templates/header.html:10
+msgid "Clear"
+msgstr "Cancella"
+
+#: /templates/header.html:14
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: /templates/header.html:20
+msgid "Edit Account Settings"
+msgstr "Modifica impostazioni account"
+
+#: /templates/header.html:27 /templates/settings/main.html:40
+msgid "Sign Out"
+msgstr "Esci"
+
+#: /templates/header.html:31
+msgid "Sign In"
+msgstr "Accedi"
 
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
@@ -203,6 +203,34 @@ msgstr "Ancora nessun voto"
 msgid "More"
 msgstr "Altro"
 
+#: /templates/_macros/rating.html:9
+msgid "by {author}"
+msgstr "di {author}"
+
+#: /templates/_macros/rating.html:12
+msgid "for previous version {version}"
+msgstr "Per la versione {version}"
+
+#: /templates/_macros/rating.html:21
+msgid "Flagged for review"
+msgstr "Segnalato ai moderatori"
+
+#: /templates/_macros/rating.html:27
+msgid "Edit"
+msgstr "Modifica"
+
+#: /templates/_macros/rating.html:30
+msgid "Delete"
+msgstr "Elimina"
+
+#: /templates/_macros/rating.html:33
+msgid "Report"
+msgstr "Segnala"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Assegnate {stars} su {maxstars} stelle"
+
 #: /templates/category/main.html:37
 msgid "Featured Apps"
 msgstr "App consigliate"
@@ -232,41 +260,21 @@ msgstr "La categoria richiesta non esiste."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Si è verificato un errore interno del server. Riprova più tardi."
 
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Assegnate {stars} su {maxstars} stelle"
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:200 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "Segnala abuso"
 
-#: /templates/_macros/rating.html:9
-msgid "by {author}"
-msgstr "di {author}"
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "Invia segnalazione"
 
-#: /templates/_macros/rating.html:12
-msgid "for previous version {version}"
-msgstr "Per la versione {version}"
+#: /templates/detail/content_ratings.html:7
+msgid "Content Rating"
+msgstr "Classificazione del contenuto"
 
-#: /templates/_macros/rating.html:21
-msgid "Flagged for review"
-msgstr "Segnalato ai moderatori"
-
-#: /templates/_macros/rating.html:27
-msgid "Edit"
-msgstr "Modifica"
-
-#: /templates/_macros/rating.html:30
-msgid "Delete"
-msgstr "Elimina"
-
-#: /templates/_macros/rating.html:33
-msgid "Report"
-msgstr "Segnala"
-
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "Non è stato possibile trovare la pagina che stavi cercando."
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Si è verificato un errore."
+#: /templates/detail/content_ratings.html:69
+msgid "Content Rating Details"
+msgstr "Dettagli relativi alla classificazione del contenuto"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -380,33 +388,9 @@ msgstr "Homepage"
 msgid "Statistics"
 msgstr "Statistiche"
 
-#: /templates/detail/main.html:200 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "Segnala abuso"
-
 #: /templates/detail/main.html:211
 msgid "Premium version available"
 msgstr "È disponibile la versione Premium"
-
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Errore durante il caricamento di contenuti extra"
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Riprova"
-
-#: /templates/detail/content_ratings.html:7
-msgid "Content Rating"
-msgstr "Classificazione del contenuto"
-
-#: /templates/detail/content_ratings.html:69
-msgid "Content Rating Details"
-msgstr "Dettagli relativi alla classificazione del contenuto"
-
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "Invia segnalazione"
 
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
@@ -419,6 +403,22 @@ msgstr "Caricamento dell'informativa sulla privacy in corso…"
 #: /templates/detail/receipt.html:8
 msgid "Thank you for purchasing"
 msgstr "Grazie per il tuo acquisto"
+
+#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "Non è stato possibile trovare la pagina che stavi cercando."
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Si è verificato un errore."
+
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Errore durante il caricamento di contenuti extra"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Riprova"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
 msgid "Edit Review"
@@ -551,24 +551,6 @@ msgstr "Accedi o registrati"
 msgid "You have no apps"
 msgstr "Non hai acquistato nessuna app"
 
-#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Pagamento annullato."
-
-#. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:100
-msgid "Purchasing"
-msgstr "Acquisto in corso…"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:206
-msgid "Install failed. Please try again later."
-msgstr "Installazione non riuscita. Riprova più tardi."
-
-#: /media/js/buttons.js:296
-msgid "Launch"
-msgstr "Avvia"
-
 #: /media/js/apps.js:79
 msgid "App install error: {error}"
 msgstr "Errore di installazione dell'app: {error}"
@@ -588,6 +570,24 @@ msgstr "Il browser o il dispositivo in uso non sono compatibili con le app web."
 #: /media/js/apps.js:138
 msgid "This app is unavailable for your platform."
 msgstr "Questa app non è disponibile per la piattaforma in uso."
+
+#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Pagamento annullato."
+
+#. "Launch" as in "Launch the app"
+#: /media/js/buttons.js:100
+msgid "Purchasing"
+msgstr "Acquisto in corso…"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/buttons.js:206
+msgid "Install failed. Please try again later."
+msgstr "Installazione non riuscita. Riprova più tardi."
+
+#: /media/js/buttons.js:296
+msgid "Launch"
+msgstr "Avvia"
 
 #: /media/js/login.js:8
 msgid "You have been signed out"
@@ -613,9 +613,38 @@ msgstr "Connessione a Internet non disponibile"
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Si è verificato un errore durante l'elaborazione della richiesta di iscrizione alla newsletter"
 
+#. The report is an abuse report for reviews
+#: /media/js/ratings.js:40
+msgid "Sending report..."
+msgstr "Invio segnalazione in corso…"
+
+#: /media/js/ratings.js:45
+msgid "Review flagged"
+msgstr "Commento segnalato ai moderatori"
+
+#: /media/js/ratings.js:49
+msgid "Report review operation failed"
+msgstr "Invio della segnalazione per questo commento non riuscita"
+
+#: /media/js/ratings.js:60
+msgid "Review deleted"
+msgstr "Recensione eliminata"
+
+#: /media/js/ratings.js:90
+msgid "There was a problem deleting the review"
+msgstr "Si è verificato un problema durante l'eliminazione del commento"
+
+#: /media/js/ratings.js:238
+msgid "Your review was posted"
+msgstr "Il commento è stato pubblicato"
+
+#: /media/js/ratings.js:252
+msgid "Error while submitting review"
+msgstr "Si è verificato un errore durante l'inserimento del commento"
+
 #: /media/js/settings.js:72
-msgid "Worldwide"
-msgstr "Internazionale"
+msgid "Rest of World"
+msgstr ""
 
 #: /media/js/settings.js:73
 msgid "Argentina"
@@ -697,35 +726,6 @@ msgstr "Venezuela"
 msgid "No region in search"
 msgstr "Nessuna regione nella ricerca"
 
-#. The report is an abuse report for reviews
-#: /media/js/ratings.js:40
-msgid "Sending report..."
-msgstr "Invio segnalazione in corso…"
-
-#: /media/js/ratings.js:45
-msgid "Review flagged"
-msgstr "Commento segnalato ai moderatori"
-
-#: /media/js/ratings.js:49
-msgid "Report review operation failed"
-msgstr "Invio della segnalazione per questo commento non riuscita"
-
-#: /media/js/ratings.js:60
-msgid "Review deleted"
-msgstr "Recensione eliminata"
-
-#: /media/js/ratings.js:90
-msgid "There was a problem deleting the review"
-msgstr "Si è verificato un problema durante l'eliminazione del commento"
-
-#: /media/js/ratings.js:238
-msgid "Your review was posted"
-msgstr "Il commento è stato pubblicato"
-
-#: /media/js/ratings.js:252
-msgid "Error while submitting review"
-msgstr "Si è verificato un errore durante l'inserimento del commento"
-
 #. {n} is the number of characters left.
 #: /media/js/utils.js:28
 msgid "<b>{n}</b> character left."
@@ -786,14 +786,6 @@ msgstr "Le impostazioni sono state salvate"
 msgid "Settings could not be saved"
 msgstr "Impossibile salvare le impostazioni"
 
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "Accedi per visualizzare la ricevuta"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "Ricevuta"
-
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"
 msgstr "L'abuso è stato segnalato"
@@ -801,6 +793,14 @@ msgstr "L'abuso è stato segnalato"
 #: /media/js/views/app/abuse.js:22
 msgid "Error while submitting report"
 msgstr "Si è verificato un errore durante l'invio della segnalazione"
+
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "Accedi per visualizzare la ricevuta"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "Ricevuta"
 
 #: /media/js/views/app/ratings/edit.js:22
 msgid "Review updated successfully"

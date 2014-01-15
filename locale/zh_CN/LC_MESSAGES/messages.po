@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-08T17:43:17.975Z\n"
+"POT-Creation-Date: 2014-01-15T17:08:38.342Z\n"
 "PO-Revision-Date: 2013-12-19 15:32+0000\n"
 "Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -23,13 +23,25 @@ msgstr "所有类别"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "啊噢，这里没有任何应用！"
 
-#: /templates/collection.html:42 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/user/purchases.html:38
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
 msgid "Oh no!"
 msgstr "噢不！"
 
 #: /templates/collection.html:43
 msgid "We could not load that collection. Please try again later."
 msgstr "加载此收藏集失败。请稍后再试。"
+
+#: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
+msgid "Close"
+msgstr "关闭"
+
+#: /templates/confirmation.html:3
+msgid "No"
+msgstr "否"
+
+#: /templates/confirmation.html:4
+msgid "Yes"
+msgstr "是"
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -44,18 +56,6 @@ msgstr "您正在使用的此版本火狐应用市场已不再受支持。在继
 msgid "Update Now"
 msgstr "立即更新"
 
-#: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
-msgid "Close"
-msgstr "关闭"
-
-#: /templates/confirmation.html:3
-msgid "No"
-msgstr "否"
-
-#: /templates/confirmation.html:4
-msgid "Yes"
-msgstr "是"
-
 #: /templates/featured.html:7
 msgid "Featured"
 msgstr "精选"
@@ -68,47 +68,6 @@ msgstr "展开"
 msgid "No featured apps found"
 msgstr "找不到精选应用"
 
-#: /templates/header.html:1
-msgid "Back"
-msgstr "上一页"
-
-#: /templates/header.html:5 /templates/header.html:8
-msgid "Search"
-msgstr "检索"
-
-#: /templates/header.html:10
-msgid "Clear"
-msgstr "清空"
-
-#: /templates/header.html:14
-msgid "Settings"
-msgstr "设置"
-
-#: /templates/header.html:20
-msgid "Edit Account Settings"
-msgstr "编辑帐户设置"
-
-#: /templates/header.html:22 /templates/footer.html:12 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
-#: /media/js/views/purchases.js:13
-msgid "My Apps"
-msgstr "我的应用"
-
-#: /templates/header.html:24 /templates/footer.html:14
-msgid "My Submissions"
-msgstr "我的提交"
-
-#: /templates/header.html:26 /templates/footer.html:6 /templates/settings/nav.html:8 /templates/settings/nav.html:11 /media/js/views/feedback.js:61
-msgid "Feedback"
-msgstr "反馈"
-
-#: /templates/header.html:27 /templates/settings/main.html:40
-msgid "Sign Out"
-msgstr "退出"
-
-#: /templates/header.html:31
-msgid "Sign In"
-msgstr "登录"
-
 #: /templates/footer.html:2
 msgid "Develop Apps"
 msgstr "开发应用"
@@ -117,9 +76,22 @@ msgstr "开发应用"
 msgid "Developer Hub"
 msgstr "开发者中心"
 
+#: /templates/footer.html:6 /templates/header.html:26 /templates/settings/nav.html:8 /templates/settings/nav.html:11 /media/js/views/feedback.js:61
+msgid "Feedback"
+msgstr "反馈"
+
 #: /templates/footer.html:7
 msgid "Support"
 msgstr "支持"
+
+#: /templates/footer.html:12 /templates/header.html:22 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
+#: /media/js/views/purchases.js:13
+msgid "My Apps"
+msgstr "我的应用"
+
+#: /templates/footer.html:14 /templates/header.html:24
+msgid "My Submissions"
+msgstr "我的提交"
 
 #: /templates/footer.html:17 /templates/settings/main.html:43
 msgid "Reviewer Tools"
@@ -147,6 +119,34 @@ msgstr "使用条款"
 #: /templates/footer.html:36
 msgid "Report Trademark Abuse"
 msgstr "报告商标侵权。"
+
+#: /templates/header.html:1
+msgid "Back"
+msgstr "上一页"
+
+#: /templates/header.html:5 /templates/header.html:8
+msgid "Search"
+msgstr "检索"
+
+#: /templates/header.html:10
+msgid "Clear"
+msgstr "清空"
+
+#: /templates/header.html:14
+msgid "Settings"
+msgstr "设置"
+
+#: /templates/header.html:20
+msgid "Edit Account Settings"
+msgstr "编辑帐户设置"
+
+#: /templates/header.html:27 /templates/settings/main.html:40
+msgid "Sign Out"
+msgstr "退出"
+
+#: /templates/header.html:31
+msgid "Sign In"
+msgstr "登录"
 
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
@@ -199,6 +199,34 @@ msgstr "尚未评分"
 msgid "More"
 msgstr "更多"
 
+#: /templates/_macros/rating.html:9
+msgid "by {author}"
+msgstr "作者：{author}"
+
+#: /templates/_macros/rating.html:12
+msgid "for previous version {version}"
+msgstr "以前的版本 {version}"
+
+#: /templates/_macros/rating.html:21
+msgid "Flagged for review"
+msgstr "已标记评论"
+
+#: /templates/_macros/rating.html:27
+msgid "Edit"
+msgstr "编辑"
+
+#: /templates/_macros/rating.html:30
+msgid "Delete"
+msgstr "删除"
+
+#: /templates/_macros/rating.html:33
+msgid "Report"
+msgstr "报告"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "评{stars}星（满分{maxstars}星）"
+
 #: /templates/category/main.html:37
 msgid "Featured Apps"
 msgstr "精选应用"
@@ -228,41 +256,21 @@ msgstr "您请求的类别不存在。"
 msgid "An internal server error occurred. Please try again later."
 msgstr "内部服务器出错，请稍后再试。"
 
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "评{stars}星（满分{maxstars}星）"
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:200 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "报告滥用"
 
-#: /templates/_macros/rating.html:9
-msgid "by {author}"
-msgstr "作者：{author}"
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "发送报告"
 
-#: /templates/_macros/rating.html:12
-msgid "for previous version {version}"
-msgstr "以前的版本 {version}"
+#: /templates/detail/content_ratings.html:7
+msgid "Content Rating"
+msgstr "内容评级"
 
-#: /templates/_macros/rating.html:21
-msgid "Flagged for review"
-msgstr "已标记评论"
-
-#: /templates/_macros/rating.html:27
-msgid "Edit"
-msgstr "编辑"
-
-#: /templates/_macros/rating.html:30
-msgid "Delete"
-msgstr "删除"
-
-#: /templates/_macros/rating.html:33
-msgid "Report"
-msgstr "报告"
-
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "找不到您想开启的页面。"
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "出错了。"
+#: /templates/detail/content_ratings.html:69
+msgid "Content Rating Details"
+msgstr "内容评级详情"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -376,33 +384,9 @@ msgstr "主页"
 msgid "Statistics"
 msgstr "统计数据"
 
-#: /templates/detail/main.html:200 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "报告滥用"
-
 #: /templates/detail/main.html:211
 msgid "Premium version available"
 msgstr "另有付费版"
-
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "错误地加载过多"
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "重试"
-
-#: /templates/detail/content_ratings.html:7
-msgid "Content Rating"
-msgstr "内容评级"
-
-#: /templates/detail/content_ratings.html:69
-msgid "Content Rating Details"
-msgstr "内容评级详情"
-
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "发送报告"
 
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
@@ -415,6 +399,22 @@ msgstr "正在加载隐私权政策..."
 #: /templates/detail/receipt.html:8
 msgid "Thank you for purchasing"
 msgstr "感谢您的购买"
+
+#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "找不到您想开启的页面。"
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "出错了。"
+
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "错误地加载过多"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "重试"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
 msgid "Edit Review"
@@ -546,24 +546,6 @@ msgstr "登录 / 注册"
 msgid "You have no apps"
 msgstr "您尚无应用"
 
-#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "付款已取消。"
-
-#. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:100
-msgid "Purchasing"
-msgstr "正在购买"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:206
-msgid "Install failed. Please try again later."
-msgstr "安装失败。请稍后重试。"
-
-#: /media/js/buttons.js:296
-msgid "Launch"
-msgstr "启动"
-
 #: /media/js/apps.js:79
 msgid "App install error: {error}"
 msgstr "应用安装出错：{error}"
@@ -583,6 +565,24 @@ msgstr "您的浏览器或设备不兼容网络应用。"
 #: /media/js/apps.js:138
 msgid "This app is unavailable for your platform."
 msgstr "此应用无法在您的系统平台上运行。"
+
+#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "付款已取消。"
+
+#. "Launch" as in "Launch the app"
+#: /media/js/buttons.js:100
+msgid "Purchasing"
+msgstr "正在购买"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/buttons.js:206
+msgid "Install failed. Please try again later."
+msgstr "安装失败。请稍后重试。"
+
+#: /media/js/buttons.js:296
+msgid "Launch"
+msgstr "启动"
 
 #: /media/js/login.js:8
 msgid "You have been signed out"
@@ -608,9 +608,38 @@ msgstr "没有互联网连接"
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "订阅快讯时出错。"
 
+#. The report is an abuse report for reviews
+#: /media/js/ratings.js:40
+msgid "Sending report..."
+msgstr "正在发送报告..."
+
+#: /media/js/ratings.js:45
+msgid "Review flagged"
+msgstr "已标记的评论。"
+
+#: /media/js/ratings.js:49
+msgid "Report review operation failed"
+msgstr "已失败的报告审查操作"
+
+#: /media/js/ratings.js:60
+msgid "Review deleted"
+msgstr "评论已删除"
+
+#: /media/js/ratings.js:90
+msgid "There was a problem deleting the review"
+msgstr "删除评论时出错"
+
+#: /media/js/ratings.js:238
+msgid "Your review was posted"
+msgstr "您的评论已发表"
+
+#: /media/js/ratings.js:252
+msgid "Error while submitting review"
+msgstr "提交评论时出错"
+
 #: /media/js/settings.js:72
-msgid "Worldwide"
-msgstr "全世界"
+msgid "Rest of World"
+msgstr ""
 
 #: /media/js/settings.js:73
 msgid "Argentina"
@@ -692,35 +721,6 @@ msgstr "委内瑞拉"
 msgid "No region in search"
 msgstr "搜索时不限区域"
 
-#. The report is an abuse report for reviews
-#: /media/js/ratings.js:40
-msgid "Sending report..."
-msgstr "正在发送报告..."
-
-#: /media/js/ratings.js:45
-msgid "Review flagged"
-msgstr "已标记的评论。"
-
-#: /media/js/ratings.js:49
-msgid "Report review operation failed"
-msgstr "已失败的报告审查操作"
-
-#: /media/js/ratings.js:60
-msgid "Review deleted"
-msgstr "评论已删除"
-
-#: /media/js/ratings.js:90
-msgid "There was a problem deleting the review"
-msgstr "删除评论时出错"
-
-#: /media/js/ratings.js:238
-msgid "Your review was posted"
-msgstr "您的评论已发表"
-
-#: /media/js/ratings.js:252
-msgid "Error while submitting review"
-msgstr "提交评论时出错"
-
 #. {n} is the number of characters left.
 #: /media/js/utils.js:28
 msgid "<b>{n}</b> character left."
@@ -779,14 +779,6 @@ msgstr "设置已保存。"
 msgid "Settings could not be saved"
 msgstr "设置无法保存"
 
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "请登录以查看交易记录"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "收据"
-
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"
 msgstr "已报告的滥用行为"
@@ -794,6 +786,14 @@ msgstr "已报告的滥用行为"
 #: /media/js/views/app/abuse.js:22
 msgid "Error while submitting report"
 msgstr "提交报告时出错"
+
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "请登录以查看交易记录"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "收据"
 
 #: /media/js/views/app/ratings/edit.js:22
 msgid "Review updated successfully"
