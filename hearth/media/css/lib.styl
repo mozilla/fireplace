@@ -72,11 +72,7 @@ $btn-b-dark = #267CC2;
 $btn-b-lite = saturate(spin($btn-b, 4), 4%);
 
 // Font Stacks
-// TODO: When the Firefox OS devices have a version of "Feura Sans" that actually has as many weights
-// as does FeuraSansWeb then use "Feura Sans." Until then, always load the `font-face`.
-// TODO(cvan): File a bug against Firefox that it shouldn't download unused `font-face`s that are
-// fallbacks.
-$open-stack = FeuraSansWeb, "Open Sans", "Helvetica Neue", Arial, sans-serif;
+$open-stack = "Fira Sans", "Helvetica Neue", Arial, sans-serif;
 
 // Retina
 $retina = unquote('screen and (-webkit-min-device-pixel-ratio: 2), screen and (min--moz-device-pixel-ratio: 2), screen and (min-device-pixel-ratio: 2)');
@@ -360,7 +356,7 @@ fatten() {
 }
 
 glow($glowColor, $glowSize) {
-    box-shadow: 0 0 $glowSize 0 $glowColor; 
+    box-shadow: 0 0 $glowSize 0 $glowColor;
 }
 
 alt-btn-hover-focus() {
