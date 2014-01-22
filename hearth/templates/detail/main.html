@@ -207,7 +207,7 @@
   <section class="main upsell-wrapper c">
     <div>
       <a class="upsell" href="{{ url('app', [this.upsell.app_slug])|urlparams(src='mkt-detail-upsell') }}">
-        <img class="icon" src="{{ upsell.icon_url }}">
+        <img class="icon" src="{{ this.upsell.icon_url }}">
         <div>
           <span class="avail">{{ _('Premium version available') }}</span>
           <span class="name">{{ this.upsell.name }}</span>
