@@ -90,7 +90,7 @@ define('views/app',
 
             if (!sync) return;
             tracking.setPageVar(6, 'App name', app.name, 3);
-            tracking.setPageVar(7, 'App ID', app.id, 3);
+            tracking.setPageVar(7, 'App ID', app.id.toString(), 3);
             tracking.setPageVar(8, 'App developer', app.author, 3);
             tracking.setPageVar(9, 'App view source', utils.getVars().src || 'direct', 3);
             tracking.setPageVar(10, 'App price', app.payment_required ? 'paid' : 'free', 3);
