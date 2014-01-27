@@ -33,6 +33,7 @@ define(
         'cat-dropdown',
         'forms',
         'header',
+        'image-deferrer',
         'l10n',
         'lightbox',
         'log',
