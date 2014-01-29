@@ -28,6 +28,7 @@ define(
         'buttons',
         'cache',
         'capabilities',
+        'consumer_info',
         'mobilenetwork',  // Must come before cat-dropdown (for amd.js)
         'cat-dropdown',
         'forms',
@@ -177,30 +178,19 @@ function(_) {
         false
     );
 
-    // Perform initial navigation.
-    console.log('Triggering initial navigation');
-    if (!z.spaceheater) {
-        z.page.trigger('navigate', [window.location.pathname + window.location.search]);
-    } else {
-        z.page.trigger('loaded');
-    }
+    require('consumer_info').done(function() {
+        console.log('Triggering initial navigation');
+        if (!z.spaceheater) {
+            z.page.trigger('navigate', [window.location.pathname + window.location.search]);
+        } else {
+            z.page.trigger('loaded');
+        }
+    });
 
     // Set the tracking consumer page variable.
     //require('tracking').setVar(3, 'Site section', 'Consumer', 3);
 
-    require('requests').on('success', function(_, xhr, type, url) {
-        var filter_header;
-        try {
-            if ((filter_header = xhr.getResponseHeader('API-Filter')) &&
-                url.indexOf('region=') === -1) {
-                var region = require('utils').getVars(filter_header).region;
-                require('log').persistent('mobilenetwork', 'change').log('API overriding region:', region);
-                require('user_helpers').set_region_geoip(region);
-                // Trigger a chrome reload to reflect the region change.
-                z.page.trigger('reload_chrome');
-            }
-        } catch(e) {}
-    }).on('deprecated', function() {
+    require('requests').on('deprecated', function() {
         // Divert the user to the deprecated view.
         z.page.trigger('divert', [require('urls').reverse('deprecated')]);
         throw new Error('Cancel navigation; deprecated client');

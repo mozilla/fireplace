@@ -17,6 +17,7 @@ define('routes_api', [], function() {
         'app_abuse': '/api/v1/abuse/app/',
         'search': '/api/v1/apps/search/?cache=1&vary=0',
         'feedback': '/api/v1/account/feedback/',
+        'consumer_info': '/api/v1/fireplace/consumer-info/',
 
         'prepare_nav_pay': '/api/v1/webpay/prepare/',
         'payments_status': '/api/v1/webpay/status/{0}/'
