@@ -45,7 +45,7 @@ $grain = #394C58;
 
 // New design.
 $flamin-hot-cheetos-orange = #ff9500;
-$sailor-blue = #0096dc;
+$sailor-blue = #0099d0;
 $castle-skull-gray = #333;
 $grey-gardens-gray = #4d4d4d;
 $london-fog-gray = #5f5f5f;
@@ -148,8 +148,12 @@ hidetext() {
 
 animation($animation) {
     -webkit-animation: $animation;
-    -moz-animation: $animation;
     animation: $animation;
+}
+
+animation-delay($delay) {
+    -webkit-animation-delay: $delay;
+    animation-delay: $delay;
 }
 
 gradientLinear($gradient) {
@@ -321,6 +325,12 @@ flex-center() {
     -ms-align-self: center;
     -moz-align-self: center;
     -webkit-align-self: center;
+}
+
+flex-vertical-center() {
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 flex($flex) {
