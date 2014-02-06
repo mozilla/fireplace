@@ -22,7 +22,7 @@
     <section class="main">
       {{ collection_tile(this) }}
       {% if this.apps %}
-        <ol class="container listing only-logged-in c">
+        <ol class="container listing c">
           {% for result in this.apps %}
             <li class="item result app c">
               {{ market_tile(result, link=true, src='collection') }}
