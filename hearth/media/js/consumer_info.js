@@ -1,5 +1,6 @@
-define(['user_helpers', 'mobilenetwork', 'urls', 'requests', 'defer', 'log'],
-        function(user_helpers, mobilenetwork, urls, requests, defer, log) {
+define('consumer_info',
+       ['user_helpers', 'mobilenetwork', 'urls', 'requests', 'defer', 'log'],
+       function(user_helpers, mobilenetwork, urls, requests, defer, log) {
     var logger = log('consumer_info');
     mobilenetwork.detectMobileNetwork();
     if (!user_helpers.region(undefined, true)) {
