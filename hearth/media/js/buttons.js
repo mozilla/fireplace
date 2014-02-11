@@ -296,8 +296,36 @@ define('buttons',
         setButton($button, gettext('Launch'), 'launch install');
     }
 
+    function revertUninstalled() {
+        /* If an app was uninstalled, revert state of install buttons from
+           "Launch" to "Install". */
+
+        // Get installed apps to know which apps may have been uninstalled.
+        var r = navigator.mozApps.getInstalled();
+        r.onsuccess = function() {
+            // Build an array of manifests that match the button's data-manifest.
+            var installed = [];
+            _.each(r.result, function(val) {
+                installed.push(require('utils').baseurl(val.manifestURL));
+            });
+
+            $('.button.product').each(function(i, button) {
+                var $button = $(button);
+                // For each install button, check if its respective app is installed.
+                if (installed.indexOf($button.data('manifest_url')) === -1) {
+                    // If it is no longer installed, revert button.
+                    if ($button.hasClass('launch')) {
+                        revertButton($button, gettext('Install'));
+                    }
+                    $button.removeClass('launch');
+                }
+            });
+        };
+    }
+
     return {
         buttonInstalled: buttonInstalled,
-        install: install
+        install: install,
+        revertUninstalled: revertUninstalled,
     };
 });

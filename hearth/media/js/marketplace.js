@@ -109,27 +109,26 @@ function(_) {
         var r = navigator.mozApps.getInstalled();
         r.onsuccess = function() {
             var buttons = require('buttons');
+
             z.apps = {};
             _.each(r.result, function(val) {
-                buttons.buttonInstalled(val.manifestURL.split('?')[0], val);
+                buttons.buttonInstalled(
+                    require('utils').baseurl(val.manifestURL), val);
             });
         };
     };
     if (capabilities.webApps) {
-        var get_installed_debounced = _.debounce(get_installed, 2000, true);  // Immediate so there's no delay.
-
         z.page.on('loaded', get_installed);
-        z.page.on('fragment_loaded loaded_more', get_installed_debounced);
-        document.addEventListener(
-            'visibilitychange',
-            function() {
-                if (document.hidden) {
-                    return;
-                }
-                require('views').reload();
-            },
-            false
-        );
+        z.page.on('fragment_loaded loaded_more',
+                  _.debounce(get_installed, 2000, true));  // No delay.
+        document.addEventListener('visibilitychange', function() {
+            // Check if apps were uninstalled since switching from Marketplace,
+            // and refresh Install buttons if any were.
+            if (document.hidden) {
+                return;
+            }
+            require('buttons').revertUninstalled();
+        }, false);
     }
 
     // Do some last minute template compilation.
