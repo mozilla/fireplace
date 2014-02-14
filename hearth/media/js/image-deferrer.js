@@ -8,7 +8,6 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
     var PLACEHOLDER_SRC = urls.media('fireplace/img/pretty/rocket.png');
     new Image().src = PLACEHOLDER_SRC;  // Preload placeholder image.
 
-
     function getXYPos(elem) {
         /*
             Return X/Y position of an element within the page (recursive).
@@ -71,17 +70,18 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
                           images will load AFTER user scrolls (screenshots).
         */
         var loadTimeout;
-        var $screenshots;
-        var screenshotsAlreadyLoaded = [];
+        var $images;
+        var imagesAlreadyLoaded = [];
+        var _srcsAlreadyLoaded = [];  // Keep track of images already loaded.
         var selector;
 
         var scrollListener = function(e) {
-            if (!$screenshots) {
+            if (!$images) {
                return;
             }
             loadImages();
         };
-        if (debounceMs !== undefined) {
+        if (debounceMs) {
             scrollListener = _.debounce(scrollListener, debounceMs || 200);
         } else {
             scrollListener = _.throttle(scrollListener, throttleMs || 100);
@@ -91,49 +91,60 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
         z.doc.on('scroll', scrollListener);
 
         function loadImages() {
-            // Calculate viewport loading boundaries.
-            var pageOffset = getScrollOffsets().y;
-            var viewportHeight = $(window).height();
-            var viewportMin = pageOffset - viewportHeight ;  // 1 viewport back.
-            viewportMin = viewportMin < 0 ? 0 : viewportMin;
-            var viewportMax = pageOffset + viewportHeight * 2;  // 1 viewport ahead.
+            // Calculate viewport loading boundaries (vertical).
+            var yOffset = getScrollOffsets().y;
+            var viewportHeight = z.win.height();
+            var minY = yOffset - viewportHeight * .5;  // .5 viewport(s) back.
+            minY = minY < 0 ? 0 : minY;
+            var maxY = yOffset + viewportHeight * 1.5;  // 1.5 viewport(s) ahead.
 
             // If images are within viewport loading boundaries, load it.
-            var screenshotsNotLoaded = [];
-            $screenshots.each(function(i, screenshot) {
-                var y = getXYPos(screenshot).y;
+            var imagesNotLoaded = [];
+            $images.each(function(i, img) {
+                var y = getXYPos(img).y;
 
-                if (y > viewportMin && y < viewportMax) {
-                    screenshot.onload = function() {
-                        screenshot.classList.remove('deferred');  // Remove placeholder.
+                if (y > minY && y < maxY) {
+                    // Load image via clone + replace. It's slower, but it
+                    // looks visually smoother than changing the image's
+                    // class/src in place.
+                    imagesAlreadyLoaded.push(img);
+
+                    var replace = img.cloneNode(false);
+                    replace.classList.remove('deferred');
+                    replace.onload = function() {
+                        // Once the replace has loaded, swap and fade in.
+                        img.parentNode.replaceChild(replace, img);
+                        setTimeout(function() {
+                            replace.style.opacity = 1;  // Fade in.
+                        }, 50);
+
+                        // Keep track of what img have already been deferred.
+                        _srcsAlreadyLoaded.push(replace.src);
                     };
-                    // Load image.
-                    screenshot.src = screenshot.getAttribute('data-src');
-                    screenshotsAlreadyLoaded.push(screenshot);
+                    replace.src = replace.getAttribute('data-src');
+                    replace.style.opacity = 0.5;
                 } else {
-                    screenshotsNotLoaded.push(screenshot);
+                    imagesNotLoaded.push(img);
                 }
             });
 
            // Don't loop over already loaded images.
-           $screenshots = $(screenshotsNotLoaded);
+           $images = $(imagesNotLoaded);
         }
 
-        var setImages = function($images) {
+        var setImages = function($newImages) {
             /* Sets the deferrer's set of images to loop over and render. */
-            selector = $images.selector;
+            selector = $newImages.selector;
 
-            if (screenshotsAlreadyLoaded.length) {
+            if (imagesAlreadyLoaded.length) {
                 // If we already loaded images, don't put them in the pool to
                 // load again. Do a set difference between image sets.
-                $screenshots = $($.map($images, function(image) {
-                    return screenshotsAlreadyLoaded.indexOf(image) === -1;
-                }));
+                $images = $newImages.filter(function(i) {
+                    return imagesAlreadyLoaded.indexOf($images[i]) === -1;
+                });
             } else {
-                $screenshots = $images;
+                $images = $newImages;
             }
-
-            $screenshots.attr('src', PLACEHOLDER_SRC);
 
             // Render images within or near the viewport.
             setTimeout(function() {
@@ -148,15 +159,21 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
 
         var clear = function() {
             /* Used when page is rebuilt on visibility change. */
-            screenshotsAlreadyLoaded = [];
+            imagesAlreadyLoaded = [];
             refresh();
         };
         z.win.on('unloading', clear);
+
+
+        var getSrcsAlreadyLoaded = function() {
+            return _srcsAlreadyLoaded;
+        };
 
         return {
             clear: clear,
             refresh: refresh,
             setImages: setImages,
+            getSrcsAlreadyLoaded: getSrcsAlreadyLoaded
         };
     }
 

@@ -1,11 +1,9 @@
 define('views/search',
-    ['capabilities', 'image-deferrer', 'l10n', 'storage', 'tracking', 'underscore', 'urls', 'utils', 'z'],
-    function(capabilities, ImageDeferrer, l10n, storage, tracking, _, urls, utils, z) {
+    ['capabilities', 'l10n', 'storage', 'tracking', 'underscore', 'urls', 'utils', 'z'],
+    function(capabilities, l10n, storage, tracking, _, urls, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
-    var iconDeferrer = ImageDeferrer.Deferrer(100);
-    var screenshotDeferrer = ImageDeferrer.Deferrer(null, 200);
 
     function append(existing_value, new_value) {
         if (typeof existing_value === 'string' && existing_value !== '') {
@@ -161,8 +159,6 @@ define('views/search',
         // If this is a search results or "my apps" page.
         if (isSearchPage()) {
             setTrays(expand);
-            iconDeferrer.setImages($('.mkt-tile .icon'));
-            screenshotDeferrer.setImages($('.screenshot img'));
         }
     }).on('reloaded_chrome', function() {
         if (isSearchPage()) {
@@ -172,9 +168,6 @@ define('views/search',
         z.page.trigger('populatetray');
         // Update "Showing 1-{total}" text.
         z.page.find('.total-results').text(z.page.find('.item.app').length);
-
-        screenshotDeferrer.refresh();
-        iconDeferrer.refresh();
     }).on('search', function(e, params) {
         e.preventDefault();
         return z.page.trigger(
