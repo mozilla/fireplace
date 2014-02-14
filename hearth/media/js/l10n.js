@@ -1,7 +1,7 @@
 (function() {
 
 var languages = [
-    'bg', 'ca', 'cs', 'de', 'el', 'en-US', 'es', 'eu', 'fr', 'ga-IE', 'hr',
+    'bg', 'bn-BD', 'ca', 'cs', 'de', 'el', 'en-US', 'es', 'eu', 'fr', 'ga-IE', 'hr',
     'hu', 'it', 'ja', 'mk', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr',
     'sr-Latn', 'tr', 'zh-TW', 'dbg'
 ];
