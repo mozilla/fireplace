@@ -61,6 +61,16 @@ test('reverse too many args', function(done, fail) {
     }, fail);
 });
 
+test('reverse multiple args', function(done, fail) {
+    mock_routes([
+        {pattern: '^/apps/([0-9]+)/reviews/([0-9]+)$', view_name: 'two_args'},
+    ], function() {
+        var reversed = urls.reverse('two_args', [10, 20]);
+        eq_('/apps/10/reviews/20', reversed);
+        done();
+    }, fail);
+});
+
 test('api url', function(done, fail) {
     mock(
         'urls',
