@@ -122,10 +122,16 @@ function(_) {
         z.page.on('fragment_loaded loaded_more',
                   _.debounce(get_installed, 2000, true));  // No delay.
         document.addEventListener('visibilitychange', function() {
-            // Check if apps were uninstalled since switching from Marketplace,
-            // and refresh Install buttons if any were.
             if (document.hidden) {
                 return;
+            }
+            // We switched away from Marketplace, and now we are back and
+            // visible. The user might have installed/uninstalled apps during
+            // that time, so refresh the list of installed/purchased/developed
+            // apps, and check if apps were uninstalled since switching away,
+            // refreshing Install buttons if any were.
+            if (require('user').logged_in()) {
+                require('consumer_info').fetch(true);
             }
             require('buttons').revertUninstalled();
         }, false);
@@ -177,7 +183,7 @@ function(_) {
         false
     );
 
-    require('consumer_info').done(function() {
+    require('consumer_info').promise.done(function() {
         console.log('Triggering initial navigation');
         if (!z.spaceheater) {
             z.page.trigger('navigate', [window.location.pathname + window.location.search]);

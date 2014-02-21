@@ -88,7 +88,7 @@ define('buttons',
 
         // If the user has already purchased the app, we do need to generate
         // another receipt but we don't need to go through the purchase flow again.
-        if (product.user.purchased) {
+        if (user.has_purchased(product.id)) {
             product.payment_required = false;
         }
 
@@ -106,7 +106,7 @@ define('buttons',
                 $this.data('old-text', $this.html());  // Save the old text of the button.
 
                 // Update the cache to show that the app was purchased.
-                product.user.purchased = true;
+                user.update_purchased(product.id);
 
                 // Bust the cache for the My Apps page.
                 cache.bust(urls.api.url('installed'));
@@ -168,7 +168,7 @@ define('buttons',
 
             // If the app has already been installed by the user and we don't
             // need a receipt, just start the app install.
-            if (product.user.installed && !product.receipt_required) {
+            if (user.has_installed(product.id) && !product.receipt_required) {
                 console.log('Receipt not required (skipping record step) for', product_name);
                 return do_install();
             }
@@ -215,7 +215,7 @@ define('buttons',
         function do_install(data) {
             return apps.install(product, data || {}).done(function(installer) {
                 // Update the cache to show that the user installed the app.
-                product.user.installed = true;
+                user.update_install(product.id);
                 // Bust the cache for the My Apps page.
                 cache.bust(urls.api.url('installed'));
 

@@ -22,7 +22,7 @@ define('cat-dropdown',
     // TODO: Detect when the user is offline and raise an error.
 
     // Do the request out here so it happens immediately when the app loads.
-    var categoryReq = consumer_info.then(function() {
+    var categoryReq = consumer_info.promise.then(function() {
         return requests.get(urls.api.url('categories'));
     });
     // Store the categories in models.

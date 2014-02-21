@@ -1,13 +1,16 @@
 var suite = require('./kasperle').suite();
+var lib = require('./lib');
 
-suite.run('/app/developer', function(test, waitFor) {
+suite.run('/app/developed', function(test, waitFor) {
 
     waitFor(function() {
         return suite.exists('#splash-overlay.hide');
     });
 
     test('Detail page tests for apps as a developer', function(assert) {
-        assert.URL(/\/app\/developer/);
+        lib.fake_login(suite);
+
+        assert.URL(/\/app\/developed/);
         suite.capture('detail_developer.png');
 
         assert.invisible('.expand-toggle');
