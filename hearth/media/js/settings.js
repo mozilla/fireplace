@@ -8,7 +8,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
 
     // When in "preview mode", don't send the feature profile to the API.
     var param_blacklist = (
-        window.location.search || '').indexOf('preview=true') ? ['pro'] : null;
+        window.location.search || '').indexOf('preview=true') > 0 ? ['pro'] : null;
 
     return _.defaults(base_settings, {
         app_name: 'fireplace',
