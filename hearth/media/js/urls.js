@@ -2,7 +2,7 @@ define('urls',
     ['format', 'routes_api', 'routes_api_args', 'settings', 'user', 'utils'],
     function(format, api_endpoints, api_args, settings, user) {
 
-    var group_pattern = /\(.+\)/;
+    var group_pattern = /\([^\)]+\)/;
     var optional_pattern = /(\(.*\)|\[.*\]|.)\?/g;
     var reverse = function(view_name, args) {
         args = args || [];
