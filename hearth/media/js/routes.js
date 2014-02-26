@@ -29,7 +29,8 @@ var routes = [
     {'pattern': '^/collection/([^/<>"\']+)/?$', 'view_name': 'collection'},
 
     {'pattern': '^/tests$', 'view_name': 'tests'},
-    {'pattern': '^/debug$', 'view_name': 'debug'}
+    {'pattern': '^/debug$', 'view_name': 'debug'},
+    {'pattern': '^/credits$', 'view_name': 'credits'}
 ];
 
 dependencies = routes.map(function(i) {return 'views/' + i.view_name;});
