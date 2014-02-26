@@ -104,7 +104,7 @@
 </section>
 
 {% defer (url=endpoint, as='app', key=slug) %}
-  {% if this.user.developed or user.get_permission('reviewer') %}
+  {% if user.has_developed(this.id) or user.get_permission('reviewer') %}
     <section class="main actions infobox">
       <div>
         <p class="split"><a href="/developers/app/{{ slug }}/edit" class="button manage" rel="external">
@@ -190,7 +190,7 @@
           {{ _('Privacy Policy') }}</a>
         </li>
       {% endif %}
-      {% if this.public_stats or this.user.developed %}
+      {% if this.public_stats or user.has_developed(this.id) %}
         <li class="statistics" data-tracking="Statistics">
           <a class="button alt view-stats" rel="external" href="/statistics/app/{{ slug }}">
           {{ _('Statistics') }}</a>
