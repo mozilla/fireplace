@@ -12,23 +12,15 @@
     transition(unquote('.3s opacity ease-out'));
     width: 100%;
     z-index: 101;
-    &:not(.hide) .throbber {
-        background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAEfklEQVRIib3Wa2wUVRQH8AHEAiICJgRJ2W7fj91Cl93ug+22S7u7pRADwYj6oTFRP2AMLwnEiNg1xg9ghARjQiOkCrizc2fm3pldbBCJq+ycc6bFiERjYjBBQQ0+Y1R8RHD9QJFHC2mx6z85H+bemfvLSe69GUkaRWYf7J9Rns7f71SsneVpOFwuw9lyGc6WyXC2LA0fOVLWgfmytbFUzgdGs95N45Rzzsq01VepQKFSgUKFAoWKNBTKh8o5VA7ZulCWgnPzU9bx0hSsvWWwSoFktYKFKgUKVUNo5QhomQwXHTKcd8jWGUfKQocMrHTv4dlj664vN7OGwYkahoVqhoXL8NVoxdVoagR0J5s6VvCDWoaFmqGqVq7AFWk4XZG2djlT1gannI86U8dWOmTocchW2iFbZ+anrCOlB/LRMXVZy+B4LYMLNQz/vgxf6hZOVMljXGyU4NY6Ff6oZ/hnHYO/ahS8WMuwUKNActwxSZKkCmY5Ghj8Uq/i+ToGv1+BrYeLAkqSJLkUeMXF8Kd6FX5uYPhrHcPfalV4pnggy01vYPBdA8MfXAx+HMI/Lhp4Cc0vdat4zq3BN24Vvm1Q8XuXgg8VFXUza3Ojil82qvCVW4OvXRp8WlRQkiSpUYXtCzQ6vUDDz90qfOFW4dX/AcV9C1U8tVDFU40afubWYF0RmAnXPDVpaDTp9Mm/peET404mkxOvR1/0aHTSo9HJJp0+XKjRmqKjHg2f9ej0vkfD4006Di7ScMc4kxMkxiZdi+rQ7dERPRqCV0NrEaf+cSWTyYnRZO62a8a8zGpZpON7Po7venV6x8fxqFeFxHiZ3t7eyd7e3snXDWan+Tge9el0pFnHwz5O/T6O+8ZFZGxStC83ZRgqSZLk1WGTT6c3mzlm/RyNgE6an9N/vewnRFlueojhVBdjtw+bXcBhjp+j0cxJ93NkAU5yQOD+oE7hW+KSyYnLD+Vnxdjbd92bzU7r2t1fMuJ7zRqt9nNUggLfCHB8PcTtfQFu7wlyWjUWr2t3f8kyNjg3wWFOVORmJva/dUe0Lzflhh8EOWwNcnwtKGhvgNt7Qjq93CLopYigLYsFNN0Mi/blpsRNa95yTvXLdChbxgbnLj+UnxVluek3Rb292WlBQT2XwZBBO1sEbW8R9HxE2NsiAje0CkhEBPrbdSiLcapfkrFc7QYuTmQG2jsF+jszg65EZqC8Uz92TyfD2WHTunPYOR0JDgl7fVjYu8KGvSPM6YUWQT1tBj0dMXFz1LTXtwt6vN2gx+LC7o5laHUsY6+IZ7EjYVAgwcHdJaAyblrzOvjA3SPu3BtlsYBEi6CeiGE/FxH2tlbDfqpV2JuWGLQuatKajgw+Ghd2d4dBD3SIgZUxg2JLswOhmIGNnSZWJTjMGXYpjCZNIjczwmFFG6cn2wRtaTNoY5ugtVGT1sRMfCQu7O6EaT8YM2lVp4lL4yaFuwy7oeugPWPM2PWp2t1f0qrZ1RGdwm3cji/htCom7PtiGXtFhzEQiZuWL8YsR4jhqH6y/wGjN55P0DKcoQAAAABJRU5ErkJggg==") no-repeat center;
-        display: block;
-        position: fixed;
-        top: 30%;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 33px;
-        height: 33px;
-        animation(unquote('.9s spin infinite steps(30)'));
-    }
+
     &.hide {
         opacity: 0;
         pointer-events: none;
         z-index: 0;
+
+        .throbber {
+            display: none;
+        }
     }
 }
 
@@ -38,15 +30,42 @@
     }
 }
 
-@-webkit-keyframes spin {
-    from { -webkit-transform: rotate(0turn); }
-    to { -webkit-transform: rotate(1turn); }
+.throbber {
+    position: absolute;
+    text-align: center;
+    top: 45%;
+    width: 100%;
+
+    > b {
+        animation(unquote('bouncedelay 1.4s infinite ease-in-out'));
+        // Prevent first frame from flickering when animation starts.
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        background-color: #2babc6;
+        border-radius: 18px;
+        display: inline-block;
+        height: 18px;
+        margin: 0 5px;
+        width: 18px;
+
+        &:first-child {
+            -webkit-animation-delay: -.3s;
+            animation-delay: -.3s;
+
+            + .bounce {
+                -webkit-animation-delay: -.15s;
+                animation-delay: -.15s;
+            }
+        }
+    }
 }
-@-moz-keyframes spin {
-    from { -moz-transform: rotate(0turn); }
-    to { -moz-transform: rotate(1turn); }
+
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(.15); }
+  40% { -webkit-transform: scale(1); }
 }
-@keyframes spin {
-    from { transform: rotate(0turn); }
-    to { transform: rotate(1turn); }
+
+@keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(.15); transform: scale(.15); }
+  40% { -webkit-transform: scale(1); transform: scale(1); }
 }
