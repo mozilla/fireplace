@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-19T17:05:28.739Z\n"
+"POT-Creation-Date: 2014-02-26T17:04:53.674Z\n"
 "PO-Revision-Date: 2014-01-16 05:08+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: MozTW <petercpg@mail.moztw.org>\n"
@@ -19,6 +19,19 @@ msgstr ""
 msgid "All Categories"
 msgstr "所有分類"
 
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/collection.html:33
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr "喔喔，這裡沒有應用程式！"
+
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+msgid "Oh no!"
+msgstr "喔不！"
+
+#: /templates/collection.html:43
+msgid "We could not load that collection. Please try again later."
+msgstr "我們無法載入收藏集，請稍後再試一次。"
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "關閉"
@@ -30,19 +43,6 @@ msgstr "否"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "是"
-
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr "喔喔，這裡沒有應用程式！"
-
-#: /templates/collection.html:42 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/user/purchases.html:38
-msgid "Oh no!"
-msgstr "喔不！"
-
-#: /templates/collection.html:43
-msgid "We could not load that collection. Please try again later."
-msgstr "我們無法載入收藏集，請稍後再試一次。"
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -69,47 +69,6 @@ msgstr "展開"
 msgid "No featured apps found"
 msgstr "找不到精選應用程式"
 
-#: /templates/header.html:1
-msgid "Back"
-msgstr "上一頁"
-
-#: /templates/header.html:5 /templates/header.html:8
-msgid "Search"
-msgstr "搜尋"
-
-#: /templates/header.html:10
-msgid "Clear"
-msgstr "清除"
-
-#: /templates/header.html:14
-msgid "Settings"
-msgstr "選項"
-
-#: /templates/header.html:20
-msgid "Edit Account Settings"
-msgstr "編輯帳戶設定"
-
-#: /templates/header.html:22 /templates/footer.html:12 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
-#: /media/js/views/purchases.js:13
-msgid "My Apps"
-msgstr "我的應用程式"
-
-#: /templates/header.html:24 /templates/footer.html:14
-msgid "My Submissions"
-msgstr "我的提交"
-
-#: /templates/header.html:26 /templates/footer.html:6 /templates/settings/nav.html:8 /templates/settings/nav.html:11 /media/js/views/feedback.js:61
-msgid "Feedback"
-msgstr "意見回饋"
-
-#: /templates/header.html:27 /templates/settings/main.html:40
-msgid "Sign Out"
-msgstr "登出"
-
-#: /templates/header.html:31
-msgid "Sign In"
-msgstr "登入"
-
 #: /templates/footer.html:2
 msgid "Develop Apps"
 msgstr "開發應用程式"
@@ -118,9 +77,22 @@ msgstr "開發應用程式"
 msgid "Developer Hub"
 msgstr "開發者交流中心"
 
+#: /templates/footer.html:6 /templates/header.html:26 /templates/settings/nav.html:8 /templates/settings/nav.html:11 /media/js/views/feedback.js:61
+msgid "Feedback"
+msgstr "意見回饋"
+
 #: /templates/footer.html:7
 msgid "Support"
 msgstr "支援"
+
+#: /templates/footer.html:12 /templates/header.html:22 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
+#: /media/js/views/purchases.js:13
+msgid "My Apps"
+msgstr "我的應用程式"
+
+#: /templates/footer.html:14 /templates/header.html:24
+msgid "My Submissions"
+msgstr "我的提交"
 
 #: /templates/footer.html:17 /templates/settings/main.html:43
 msgid "Reviewer Tools"
@@ -149,6 +121,34 @@ msgstr "使用條款"
 msgid "Report Trademark Abuse"
 msgstr "回報商標濫用"
 
+#: /templates/header.html:1
+msgid "Back"
+msgstr "上一頁"
+
+#: /templates/header.html:5 /templates/header.html:8
+msgid "Search"
+msgstr "搜尋"
+
+#: /templates/header.html:10
+msgid "Clear"
+msgstr "清除"
+
+#: /templates/header.html:14
+msgid "Settings"
+msgstr "選項"
+
+#: /templates/header.html:20
+msgid "Edit Account Settings"
+msgstr "編輯帳戶設定"
+
+#: /templates/header.html:27 /templates/settings/main.html:40
+msgid "Sign Out"
+msgstr "登出"
+
+#: /templates/header.html:31
+msgid "Sign In"
+msgstr "登入"
+
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
 msgstr "您必須使用 Firefox 才能安裝 Firefox 應用程式。"
@@ -156,19 +156,6 @@ msgstr "您必須使用 Firefox 才能安裝 Firefox 應用程式。"
 #: /templates/incompatible.html:2
 msgid "Download."
 msgstr "下載。"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "無法購買"
-
-#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:53
-msgid "Free"
-msgstr "免費"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
-msgid "Install"
-msgstr "安裝"
 
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
@@ -178,6 +165,10 @@ msgstr "{app_name} .::. 畫面擷圖"
 #: /templates/_macros/market_tile.html:44
 msgid "{rating_body}: {rating}"
 msgstr "{rating_body}: {rating}"
+
+#: /templates/_macros/market_tile.html:53 /templates/_macros/market_button.html:7
+msgid "Free"
+msgstr "免費"
 
 #: /templates/_macros/market_tile.html:61
 msgid "({n})"
@@ -195,10 +186,6 @@ msgstr "(0)"
 #: /templates/_macros/market_tile.html:69
 msgid "Not yet rated"
 msgstr "未評分"
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "更多資訊"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -224,9 +211,22 @@ msgstr "刪除"
 msgid "Report"
 msgstr "回報"
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "無法購買"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
+msgid "Install"
+msgstr "安裝"
+
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "得到 {stars}／{maxstars} 顆星"
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "更多資訊"
 
 #: /templates/category/main.html:37
 msgid "Featured Apps"
@@ -256,22 +256,6 @@ msgstr "您所請求的分類不存在。"
 #: /templates/category/main.html:91 /templates/user/purchases.html:39
 msgid "An internal server error occurred. Please try again later."
 msgstr "發生伺服器內部錯誤，請稍後再試。"
-
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "找不到您想開啟的頁面。"
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "發生錯誤。"
-
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "載入更多資料時發生錯誤"
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "重試"
 
 #: /templates/detail/abuse.html:5 /templates/detail/main.html:200 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
@@ -409,6 +393,10 @@ msgstr "有收費版本可購買"
 msgid "Thank you for purchasing"
 msgstr "感謝您的購買"
 
+#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "找不到您想開啟的頁面。"
+
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
 msgstr "回到應用程式"
@@ -416,6 +404,35 @@ msgstr "回到應用程式"
 #: /templates/detail/privacy.html:11
 msgid "Loading Privacy Policy..."
 msgstr "正在載入隱私權保護政策…"
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "發生錯誤。"
+
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "載入更多資料時發生錯誤"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "重試"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> 筆結果"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "顯示 <b>1</b>&ndash;<b class=\"total-results\">{total}</b> 筆"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "找不到結果"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "找不到結果，請稍後重試"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
 msgid "Edit Review"
@@ -465,23 +482,6 @@ msgstr "不適當的語言或對話"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "發錯地方的臭蟲回報或技術支援請求"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> 筆結果"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "顯示 <b>1</b>&ndash;<b class=\"total-results\">{total}</b> 筆"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "找不到結果"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "找不到結果，請稍後重試"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -547,24 +547,6 @@ msgstr "登入 / 註冊"
 msgid "You have no apps"
 msgstr "您沒有應用程式"
 
-#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "付款已取消。"
-
-#. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:100
-msgid "Purchasing"
-msgstr "購買中"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:206
-msgid "Install failed. Please try again later."
-msgstr "安裝失敗，請稍後再試一次。"
-
-#: /media/js/buttons.js:296
-msgid "Launch"
-msgstr "執行"
-
 #: /media/js/apps.js:79
 msgid "App install error: {error}"
 msgstr "應用程式安裝失敗: {error}"
@@ -585,6 +567,24 @@ msgstr "您的瀏覽器或裝置與網頁應用程式不相容。"
 msgid "This app is unavailable for your platform."
 msgstr "您的平台無法使用此應用程式。"
 
+#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "付款已取消。"
+
+#. "Launch" as in "Launch the app"
+#: /media/js/buttons.js:100
+msgid "Purchasing"
+msgstr "購買中"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/buttons.js:206
+msgid "Install failed. Please try again later."
+msgstr "安裝失敗，請稍後再試一次。"
+
+#: /media/js/buttons.js:296
+msgid "Launch"
+msgstr "執行"
+
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "您已經登出。"
@@ -593,15 +593,15 @@ msgstr "您已經登出。"
 msgid "You have been signed in"
 msgstr "您已經登入。"
 
-#: /media/js/login.js:127
+#: /media/js/login.js:128
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona 登入失敗，也許您沒有使用該電子郵件地址的帳號？"
 
-#: /media/js/login.js:132
+#: /media/js/login.js:133
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona 登入失敗，伺服器發生錯誤。"
 
-#: /media/js/navigation.js:31
+#: /media/js/navigation.js:32
 msgid "No internet connection"
 msgstr "沒有網際網路連線"
 

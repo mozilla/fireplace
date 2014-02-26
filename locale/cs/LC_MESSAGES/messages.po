@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Marketplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-19T17:05:28.739Z\n"
+"POT-Creation-Date: 2014-02-26T17:04:53.674Z\n"
 "PO-Revision-Date: 2014-01-16 08:20+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Czech <info@mozilla.cz>\n"
@@ -18,6 +18,19 @@ msgstr ""
 msgid "All Categories"
 msgstr "Všechny kategorie"
 
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/collection.html:33
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr "Ale ne! Zde není žádná aplikace!"
+
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+msgid "Oh no!"
+msgstr "Ale ne!"
+
+#: /templates/collection.html:43
+msgid "We could not load that collection. Please try again later."
+msgstr "Nepodařilo se načíst sbírku. Zkuste to znovu později."
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Zavřít"
@@ -29,19 +42,6 @@ msgstr "Ne"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Ano"
-
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr "Ale ne! Zde není žádná aplikace!"
-
-#: /templates/collection.html:42 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/user/purchases.html:38
-msgid "Oh no!"
-msgstr "Ale ne!"
-
-#: /templates/collection.html:43
-msgid "We could not load that collection. Please try again later."
-msgstr "Nepodařilo se načíst sbírku. Zkuste to znovu později."
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -68,47 +68,6 @@ msgstr "Rozšířit"
 msgid "No featured apps found"
 msgstr "Nebyly nalezeny žádné propagované aplikace"
 
-#: /templates/header.html:1
-msgid "Back"
-msgstr "Zpět"
-
-#: /templates/header.html:5 /templates/header.html:8
-msgid "Search"
-msgstr "Vyhledávání"
-
-#: /templates/header.html:10
-msgid "Clear"
-msgstr "Vymazat"
-
-#: /templates/header.html:14
-msgid "Settings"
-msgstr "Nastavení"
-
-#: /templates/header.html:20
-msgid "Edit Account Settings"
-msgstr "Úprava nastavení účtu"
-
-#: /templates/header.html:22 /templates/footer.html:12 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
-#: /media/js/views/purchases.js:13
-msgid "My Apps"
-msgstr "Mé aplikace"
-
-#: /templates/header.html:24 /templates/footer.html:14
-msgid "My Submissions"
-msgstr "Mé příspěvky"
-
-#: /templates/header.html:26 /templates/footer.html:6 /templates/settings/nav.html:8 /templates/settings/nav.html:11 /media/js/views/feedback.js:61
-msgid "Feedback"
-msgstr "Reakce"
-
-#: /templates/header.html:27 /templates/settings/main.html:40
-msgid "Sign Out"
-msgstr "Odhlášení"
-
-#: /templates/header.html:31
-msgid "Sign In"
-msgstr "Přihlášení"
-
 #: /templates/footer.html:2
 msgid "Develop Apps"
 msgstr "Vývoj aplikací"
@@ -117,9 +76,22 @@ msgstr "Vývoj aplikací"
 msgid "Developer Hub"
 msgstr "Pro vývojáře"
 
+#: /templates/footer.html:6 /templates/header.html:26 /templates/settings/nav.html:8 /templates/settings/nav.html:11 /media/js/views/feedback.js:61
+msgid "Feedback"
+msgstr "Reakce"
+
 #: /templates/footer.html:7
 msgid "Support"
 msgstr "Podpora"
+
+#: /templates/footer.html:12 /templates/header.html:22 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
+#: /media/js/views/purchases.js:13
+msgid "My Apps"
+msgstr "Mé aplikace"
+
+#: /templates/footer.html:14 /templates/header.html:24
+msgid "My Submissions"
+msgstr "Mé příspěvky"
 
 #: /templates/footer.html:17 /templates/settings/main.html:43
 msgid "Reviewer Tools"
@@ -150,6 +122,34 @@ msgstr "Podmínky použití"
 msgid "Report Trademark Abuse"
 msgstr "Nahlášení zneužití ochranné známky"
 
+#: /templates/header.html:1
+msgid "Back"
+msgstr "Zpět"
+
+#: /templates/header.html:5 /templates/header.html:8
+msgid "Search"
+msgstr "Vyhledávání"
+
+#: /templates/header.html:10
+msgid "Clear"
+msgstr "Vymazat"
+
+#: /templates/header.html:14
+msgid "Settings"
+msgstr "Nastavení"
+
+#: /templates/header.html:20
+msgid "Edit Account Settings"
+msgstr "Úprava nastavení účtu"
+
+#: /templates/header.html:27 /templates/settings/main.html:40
+msgid "Sign Out"
+msgstr "Odhlášení"
+
+#: /templates/header.html:31
+msgid "Sign In"
+msgstr "Přihlášení"
+
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
 msgstr "Pro instalaci aplikací musíte používat Firefox."
@@ -157,19 +157,6 @@ msgstr "Pro instalaci aplikací musíte používat Firefox."
 #: /templates/incompatible.html:2
 msgid "Download."
 msgstr "Stáhnout."
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Není dostupné"
-
-#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:53
-msgid "Free"
-msgstr "Zdarma"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
-msgid "Install"
-msgstr "Instalovat"
 
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
@@ -179,6 +166,10 @@ msgstr "{app_name} .::. náhled"
 #: /templates/_macros/market_tile.html:44
 msgid "{rating_body}: {rating}"
 msgstr "{rating_body}: {rating}"
+
+#: /templates/_macros/market_tile.html:53 /templates/_macros/market_button.html:7
+msgid "Free"
+msgstr "Zdarma"
 
 #: /templates/_macros/market_tile.html:61
 msgid "({n})"
@@ -198,10 +189,6 @@ msgstr "(0)"
 #: /templates/_macros/market_tile.html:69
 msgid "Not yet rated"
 msgstr "Dosud nehodnocena"
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "Více"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -227,9 +214,22 @@ msgstr "Smazat"
 msgid "Report"
 msgstr "Hlášení"
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Není dostupné"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
+msgid "Install"
+msgstr "Instalovat"
+
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Hodnocení {stars} z {maxstars} hvězdiček"
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "Více"
 
 #: /templates/category/main.html:37
 msgid "Featured Apps"
@@ -259,22 +259,6 @@ msgstr "Kategorie, kterou hledáte, není dostupná."
 #: /templates/category/main.html:91 /templates/user/purchases.html:39
 msgid "An internal server error occurred. Please try again later."
 msgstr "Nastala interní chyba serveru. Zkuste to znovu později."
-
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "Stránka, kterou hledáte, nebyla nalezena."
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Nastala chyba"
-
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Chyba při načítání"
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Zkusit znovu"
 
 #: /templates/detail/abuse.html:5 /templates/detail/main.html:200 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
@@ -412,6 +396,10 @@ msgstr "K dispozici je placená verze"
 msgid "Thank you for purchasing"
 msgstr "Děkujeme za nákup"
 
+#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "Stránka, kterou hledáte, nebyla nalezena."
+
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
 msgstr "Zpět na aplikaci"
@@ -419,6 +407,37 @@ msgstr "Zpět na aplikaci"
 #: /templates/detail/privacy.html:11
 msgid "Loading Privacy Policy..."
 msgstr "Probíhá načítání zásad ochrany soukromí..."
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Nastala chyba"
+
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Chyba při načítání"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Zkusit znovu"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> výsledek"
+msgstr[1] "<b>{n}</b> výsledky"
+msgstr[2] "<b>{n}</b> výsledků"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Zobrazeno <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Nebyly nalezeny žádné výsledky"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Nebyly nalezeny žádné výsledky. Zkuste to znovu později."
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
 msgid "Edit Review"
@@ -468,25 +487,6 @@ msgstr "Nevhodný jazyk/chování"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Nevhodné oznámení chyby nebo žádost o podporu"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> výsledek"
-msgstr[1] "<b>{n}</b> výsledky"
-msgstr[2] "<b>{n}</b> výsledků"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Zobrazeno <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Nebyly nalezeny žádné výsledky"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Nebyly nalezeny žádné výsledky. Zkuste to znovu později."
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -552,24 +552,6 @@ msgstr "Přihlášení / Registrace"
 msgid "You have no apps"
 msgstr "Nemáte žádné aplikace"
 
-#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Platba byla zrušena."
-
-#. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:100
-msgid "Purchasing"
-msgstr "Probíhá zakoupení"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:206
-msgid "Install failed. Please try again later."
-msgstr "Instalace selhala. Zkuste to prosím znovu později."
-
-#: /media/js/buttons.js:296
-msgid "Launch"
-msgstr "Spuštění"
-
 #: /media/js/apps.js:79
 msgid "App install error: {error}"
 msgstr "Chyba při instalaci aplikace: {error}"
@@ -590,6 +572,24 @@ msgstr "Váš prohlížeč nebo zařízení nepodporuji webové aplikace."
 msgid "This app is unavailable for your platform."
 msgstr "Aplikace není dostupná pro vaši platformu."
 
+#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Platba byla zrušena."
+
+#. "Launch" as in "Launch the app"
+#: /media/js/buttons.js:100
+msgid "Purchasing"
+msgstr "Probíhá zakoupení"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/buttons.js:206
+msgid "Install failed. Please try again later."
+msgstr "Instalace selhala. Zkuste to prosím znovu později."
+
+#: /media/js/buttons.js:296
+msgid "Launch"
+msgstr "Spuštění"
+
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "Byl(a) jste odhlášen(a)"
@@ -598,15 +598,15 @@ msgstr "Byl(a) jste odhlášen(a)"
 msgid "You have been signed in"
 msgstr "Byl(a) jste přihlášen(a)"
 
-#: /media/js/login.js:127
+#: /media/js/login.js:128
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Přihlášení pomocí Persona selhalo. Možná nemáte účet pod touto e-mailovou adresou?"
 
-#: /media/js/login.js:132
+#: /media/js/login.js:133
 msgid "Persona login failed. A server error was encountered."
 msgstr "Přihlášení pomocí Persona selhalo. Vyskytla se chyba na serveru."
 
-#: /media/js/navigation.js:31
+#: /media/js/navigation.js:32
 msgid "No internet connection"
 msgstr "Žádné připojení k Internetu"
 

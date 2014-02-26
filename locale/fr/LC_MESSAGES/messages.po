@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-19T17:05:28.739Z\n"
+"POT-Creation-Date: 2014-02-26T17:04:53.674Z\n"
 "PO-Revision-Date: 2014-02-09 18:44+0000\n"
 "Last-Translator: Théo <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -21,6 +21,19 @@ msgstr ""
 msgid "All Categories"
 msgstr "Toutes les catégories"
 
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/collection.html:33
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr "Aucune application ici, désolé !"
+
+#: /templates/collection.html:42 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+msgid "Oh no!"
+msgstr "Oh non !"
+
+#: /templates/collection.html:43
+msgid "We could not load that collection. Please try again later."
+msgstr "Nous n'avons pas pu charger cette collection. Merci de réessayer plus tard."
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Fermer"
@@ -32,19 +45,6 @@ msgstr "Non"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Oui"
-
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr "Aucune application ici, désolé !"
-
-#: /templates/collection.html:42 /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/detail/main.html:24 /templates/detail/receipt.html:28 /templates/user/purchases.html:38
-msgid "Oh no!"
-msgstr "Oh non !"
-
-#: /templates/collection.html:43
-msgid "We could not load that collection. Please try again later."
-msgstr "Nous n'avons pas pu charger cette collection. Merci de réessayer plus tard."
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -71,47 +71,6 @@ msgstr "Déplier"
 msgid "No featured apps found"
 msgstr "Pas d'application en vedette trouvée"
 
-#: /templates/header.html:1
-msgid "Back"
-msgstr "Retour"
-
-#: /templates/header.html:5 /templates/header.html:8
-msgid "Search"
-msgstr "Rechercher"
-
-#: /templates/header.html:10
-msgid "Clear"
-msgstr "Effacer"
-
-#: /templates/header.html:14
-msgid "Settings"
-msgstr "Paramètres"
-
-#: /templates/header.html:20
-msgid "Edit Account Settings"
-msgstr "Modifier mes paramètres"
-
-#: /templates/header.html:22 /templates/footer.html:12 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
-#: /media/js/views/purchases.js:13
-msgid "My Apps"
-msgstr "Mes applis"
-
-#: /templates/header.html:24 /templates/footer.html:14
-msgid "My Submissions"
-msgstr "Mes propositions"
-
-#: /templates/header.html:26 /templates/footer.html:6 /templates/settings/nav.html:8 /templates/settings/nav.html:11 /media/js/views/feedback.js:61
-msgid "Feedback"
-msgstr "Réagir"
-
-#: /templates/header.html:27 /templates/settings/main.html:40
-msgid "Sign Out"
-msgstr "Déconnexion"
-
-#: /templates/header.html:31
-msgid "Sign In"
-msgstr "Connexion"
-
 #: /templates/footer.html:2
 msgid "Develop Apps"
 msgstr "Développer des applications"
@@ -120,9 +79,22 @@ msgstr "Développer des applications"
 msgid "Developer Hub"
 msgstr "Pôle développeur"
 
+#: /templates/footer.html:6 /templates/header.html:26 /templates/settings/nav.html:8 /templates/settings/nav.html:11 /media/js/views/feedback.js:61
+msgid "Feedback"
+msgstr "Réagir"
+
 #: /templates/footer.html:7
 msgid "Support"
 msgstr "Assistance"
+
+#: /templates/footer.html:12 /templates/header.html:22 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
+#: /media/js/views/purchases.js:13
+msgid "My Apps"
+msgstr "Mes applis"
+
+#: /templates/footer.html:14 /templates/header.html:24
+msgid "My Submissions"
+msgstr "Mes propositions"
 
 #: /templates/footer.html:17 /templates/settings/main.html:43
 msgid "Reviewer Tools"
@@ -153,6 +125,34 @@ msgstr "Conditions d'utilisation"
 msgid "Report Trademark Abuse"
 msgstr "Signaler un abus de marque déposée"
 
+#: /templates/header.html:1
+msgid "Back"
+msgstr "Retour"
+
+#: /templates/header.html:5 /templates/header.html:8
+msgid "Search"
+msgstr "Rechercher"
+
+#: /templates/header.html:10
+msgid "Clear"
+msgstr "Effacer"
+
+#: /templates/header.html:14
+msgid "Settings"
+msgstr "Paramètres"
+
+#: /templates/header.html:20
+msgid "Edit Account Settings"
+msgstr "Modifier mes paramètres"
+
+#: /templates/header.html:27 /templates/settings/main.html:40
+msgid "Sign Out"
+msgstr "Déconnexion"
+
+#: /templates/header.html:31
+msgid "Sign In"
+msgstr "Connexion"
+
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
 msgstr "Vous devez utiliser Firefox pour installer des applications Firefox."
@@ -160,19 +160,6 @@ msgstr "Vous devez utiliser Firefox pour installer des applications Firefox."
 #: /templates/incompatible.html:2
 msgid "Download."
 msgstr "Télécharger."
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Indisponible"
-
-#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:53
-msgid "Free"
-msgstr "Gratuit"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
-msgid "Install"
-msgstr "Installer"
 
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
@@ -182,6 +169,10 @@ msgstr "{app_name} .::. capture d'écran"
 #: /templates/_macros/market_tile.html:44
 msgid "{rating_body}: {rating}"
 msgstr "{rating_body} : {rating}"
+
+#: /templates/_macros/market_tile.html:53 /templates/_macros/market_button.html:7
+msgid "Free"
+msgstr "Gratuit"
 
 #: /templates/_macros/market_tile.html:61
 msgid "({n})"
@@ -200,10 +191,6 @@ msgstr "(0)"
 #: /templates/_macros/market_tile.html:69
 msgid "Not yet rated"
 msgstr "Pas encore noté"
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "Plus"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -229,9 +216,22 @@ msgstr "Supprimer"
 msgid "Report"
 msgstr "Notifier"
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Indisponible"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
+msgid "Install"
+msgstr "Installer"
+
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Noté {stars} sur {maxstars} étoiles"
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "Plus"
 
 #: /templates/category/main.html:37
 msgid "Featured Apps"
@@ -261,22 +261,6 @@ msgstr "La catégorie demandée n'existe pas."
 #: /templates/category/main.html:91 /templates/user/purchases.html:39
 msgid "An internal server error occurred. Please try again later."
 msgstr "Une erreur interne est survenue sur le serveur. Merci de réessayer plus tard."
-
-#: /templates/errors/404.html:3 /templates/detail/receipt.html:29
-msgid "The page you were looking for was not found."
-msgstr "La page que vous avez demandé n'a pas été trouvée."
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Une erreur est survenue."
-
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Erreur pendant le chargement"
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Réessayez"
 
 #: /templates/detail/abuse.html:5 /templates/detail/main.html:200 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
@@ -414,6 +398,10 @@ msgstr "Version premium disponible"
 msgid "Thank you for purchasing"
 msgstr "Merci de votre achat"
 
+#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "La page que vous avez demandé n'a pas été trouvée."
+
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
 msgstr "Retourner à l'application"
@@ -421,6 +409,36 @@ msgstr "Retourner à l'application"
 #: /templates/detail/privacy.html:11
 msgid "Loading Privacy Policy..."
 msgstr "Chargement de la politique de confidentialité..."
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Une erreur est survenue."
+
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Erreur pendant le chargement"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Réessayez"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> résultat"
+msgstr[1] "<b>{n}</b> résultats"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Affichage <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Pas de résultat trouvé"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Pas de résultat trouvé, essayez plus tard"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
 msgid "Edit Review"
@@ -470,24 +488,6 @@ msgstr "Langage inapproprié"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Rapport de bug ou demande de support"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> résultat"
-msgstr[1] "<b>{n}</b> résultats"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Affichage <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Pas de résultat trouvé"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Pas de résultat trouvé, essayez plus tard"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -553,24 +553,6 @@ msgstr "Connexion/Inscription"
 msgid "You have no apps"
 msgstr "Vous n'avez aucune application"
 
-#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Paiement annulé."
-
-#. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:100
-msgid "Purchasing"
-msgstr "Achat en cours"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:206
-msgid "Install failed. Please try again later."
-msgstr "Installation échouée. Merci de réessayer plus tard."
-
-#: /media/js/buttons.js:296
-msgid "Launch"
-msgstr "Lancer"
-
 #: /media/js/apps.js:79
 msgid "App install error: {error}"
 msgstr "Erreur à l'installation : {error}"
@@ -591,6 +573,24 @@ msgstr "Votre navigateur ou périphérique n'est pas compatible avec les applica
 msgid "This app is unavailable for your platform."
 msgstr "Cette application n'est pas disponible pour votre plateforme."
 
+#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Paiement annulé."
+
+#. "Launch" as in "Launch the app"
+#: /media/js/buttons.js:100
+msgid "Purchasing"
+msgstr "Achat en cours"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/buttons.js:206
+msgid "Install failed. Please try again later."
+msgstr "Installation échouée. Merci de réessayer plus tard."
+
+#: /media/js/buttons.js:296
+msgid "Launch"
+msgstr "Lancer"
+
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "Vous êtes déconnecté."
@@ -599,15 +599,15 @@ msgstr "Vous êtes déconnecté."
 msgid "You have been signed in"
 msgstr "Vous êtes connecté."
 
-#: /media/js/login.js:127
+#: /media/js/login.js:128
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "La connexion Persona a échoué. Peut-être que vous n'avez pas de compte associé à cette adresse de courriel ?"
 
-#: /media/js/login.js:132
+#: /media/js/login.js:133
 msgid "Persona login failed. A server error was encountered."
 msgstr "La connexion Persona a échoué. Une erreur serveur est survenue."
 
-#: /media/js/navigation.js:31
+#: /media/js/navigation.js:32
 msgid "No internet connection"
 msgstr "Pas de connexion Internet."
 
