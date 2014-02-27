@@ -15,8 +15,10 @@ require.config({
         'templates': '../../templates',
         'settings': ['settings_local', 'settings'],
         'format': 'lib/format',
-        'textoverflowclamp': 'lib/textoverflowclamp'
-    }
+        'textoverflowclamp': 'lib/textoverflowclamp',
+
+        'hammerjs': 'hammer',
+    },
 });
 
 define(
@@ -34,13 +36,13 @@ define(
         'cat-dropdown',
         'content-ratings',
         'forms',
-        'header',
         'image-deferrer',
         'l10n',
         'lightbox',
         'log',
         'login',
         'models',
+        'navbar',
         'navigation',
         'outgoing_links',
         'overlay',

@@ -289,8 +289,7 @@
 
 // On hover the settings gear icon should turn blue.
 // On the Account Settings page the gear should also turn blue.
-.act-tray.active .header-button.settings,
-[data-page-type~=settings] .header-button.settings {
+.act-tray.active .header-button.settings {
     background-image: url(../img/pretty/settings_gear_active.svg);
 }
 
@@ -648,7 +647,8 @@ main {
             width: auto;
         }
     }
-    [data-page-type~=root] {
+    [data-page-type~=root],
+    [data-page-type~=settings] {
         .site-header {
             .site, .wordmark {
                 width: 35px;
@@ -660,7 +660,7 @@ main {
     }
     [data-page-type~=search],
     [data-page-type~=leaf] {
-        .flex-span, .act-tray {
+        .flex-span {
             display: none;
         }
     }

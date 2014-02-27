@@ -1,0 +1,168 @@
+// Styles for the mobile navbar.
+@import 'lib';
+
+@media $narrower-than-desktop {
+    // New feed navigation (mobile only).
+    #cat-dropdown,
+    #cat-list {
+        display: none;
+    }
+    header .act-tray {
+        display: none;
+    }
+    body[data-page-type~=settings] {
+        .back {
+            display: none;
+        }
+        .site {
+            display: block;
+            width: 35px;
+        }
+    }
+    body[data-page-type~=leaf] {
+        .site-nav {
+            // Slide up and down.
+            bottom: 50px;
+            margin-bottom: -40px;
+        }
+    }
+    .site-nav {
+        bottom: 0;
+        overflow: hidden;
+        position: relative;
+        transition(bottom .5s, margin-bottom .5s);
+
+        // act-tray is link to Settings tabs (e.g., Settings, Purchases).
+        // mkt-tray is link to Marketplace tabs (e.g., Home, New, Popular).
+        .act-tray,
+        .mkt-tray {
+            background-color: $cloud-gray;
+            border: 1px solid $cement-gray;
+            height: 41px;
+            transition(right .4s);
+            width: 45px;
+            z-index: 2;
+
+            &.active {
+                right: 0;
+                transition(right .2s .6s);
+            }
+        }
+        .act-tray {
+            border-radius: 0 20px 20px 0;
+            bottom: 2px;
+            position: relative;
+            right: 50px;
+
+            &.active a.settings {
+                background-image: url(../img/pretty/settings_gear.svg);  // Don't highlight.
+            }
+            a.settings {
+                height: 30px;
+                top: 5px;
+            }
+        }
+        .mkt-tray {
+            border-radius: 20px 0 0 20px;
+            bottom: 0;
+            position: absolute;
+            right: -50px;
+
+            a.back-to-marketplace {
+                background: url(../img/pretty/list_view.svg) 50% 50% no-repeat;
+                background-size: 24px auto;
+                display: block;
+                height: 40px;
+                left: 2px;
+                position: absolute;
+                width: 40px;
+            }
+        }
+
+        ul.navbar {
+            disable-user-select();
+            display: inline-block;
+            height: auto;
+            opacity: 1;
+            padding: 8px 0;
+            position: absolute;
+            top: 0;
+            transition(unquote('right .5s ease-out, left .3s ease-in'));
+            width: 100%;
+
+            // Toggle navbars.
+            &.nav-mkt {
+                right: -100%;
+
+                &.active {
+                    right: -70px;
+
+                    // Sliding navbar.
+                    &[data-tab="homepage"] {
+                        right: -70px;
+                    }
+                    &[data-tab="new"] {
+                        right: -18px;
+                    }
+                    &[data-tab="popular"] {
+                        right: 25px;
+                    }
+                    &[data-tab="categories"] {
+                        right: 90px;
+                    }
+                    &[data-tab="collections"] {
+                        right: 165px;
+                    }
+                }
+            }
+            &.nav-settings {
+                right: 100%;
+
+                &.active {
+                    right: 0;
+
+                    // Sliding navbar.
+                    &[data-tab="settings"] {
+                        right: 0px;
+                    }
+                    &[data-tab="purchases"] {
+                        right: 60px;
+                    }
+                    &[data-tab="help"] {
+                        right: 128px;
+                    }
+                    &[data-tab="feedback"] {
+                        right: 175px;
+                    }
+                }
+            }
+            li {
+                bottom: 8px;
+                display: inline-block;
+                font-size: 12px;
+                padding: 11px 8px 8px;
+                position: relative;
+
+                &.active a {
+                    border-bottom: 2px solid $flamin-hot-cheetos-orange;
+                    padding-bottom: 6px;
+                }
+                a {
+                    color: $medium-gray;
+                }
+            }
+        }
+        .account-links {
+            display: none;
+        }
+    }
+}
+
+@media $at-least-desktop {
+    .site-nav {
+        display: none;
+    }
+    [data-page-type~=settings] .header-button.settings {
+        background-image: url(../img/pretty/settings_gear_active.svg);
+    }
+}

@@ -1,6 +1,9 @@
+{% include "_macros/act_tray.html" %}
+
 <nav role="navigation">
   <a href="#" id="nav-back" class="header-button icon back" title="{{ _('Back') }}"><b>{{ _('Back') }}</b></a>
   <h1 class="site"><a href="{{ url('homepage') }}"><span class="wordmark">Firefox Marketplace</span></a></h1>
+
   <span class="flex-shift"></span>
   <form novalidate method="GET" id="search" class="search" action="{{ url('search') }}">
     <label for="search-q">{{ _('Search') }}</label>
@@ -11,23 +14,7 @@
     <a href="#" class="close search-clear" title="{{ _('Clear') }}">{{ _('Clear') }}</a>
   </form>
   <span class="flex-span"></span>
-  <div class="act-tray">
-    <a href="{{ url('settings') }}" class="header-button icon settings" title="{{ _('Settings') }}"></a>
-    <div class="account-links only-logged-in">
-      <ul>
-        <li>
-          <a href="{{ url('settings') }}">
-            <b>{{ user.get_setting('email') }}</b>
-            {{ _('Edit Account Settings') }}</a>
-        </li>
-        <li><a href="{{ url('purchases') }}">{{ _('My Apps') }}</a></li>
-        {% if user.get_permission('developer') %}
-          <li><a href="/developers/submissions">{{ _('My Submissions') }}</a></li>
-        {% endif %}
-        <li><a class="submit-feedback" href="#">{{ _('Feedback') }}</a></li>
-        <li><a href="#" class="logout">{{ _('Sign Out') }}</a></li>
-      </ul>
-    </div>
-  </div>
+
+  {{ act_tray(false) }}
   <a href="#" class="header-button persona">{{ _('Sign In') }}</a>
 </nav>

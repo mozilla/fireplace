@@ -4,7 +4,6 @@
   </header>
 
   {% set current_page = 'settings' %}
-  {% include 'settings/nav.html' %}
 
   <form class="form-grid account-settings"{{ ' novalidate' if not user.logged_in() }}>
     <div class="simple-field c only-logged-in">

@@ -3,7 +3,6 @@
 
 <section class="main account purchases c" id="account-settings">
   {% set current_page = 'purchases' %}
-  {% include 'settings/nav.html' %}
 
   {% if user.logged_in() %}
     {% defer (url=api('installed'), pluck='objects', as='app', paginate='ol.listing') %}

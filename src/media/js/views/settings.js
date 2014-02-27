@@ -43,7 +43,7 @@ define('views/settings',
 
         $('.linefit').linefit(2);
 
-        builder.z('type', 'leaf settings');
+        builder.z('type', 'settings');
         builder.z('title', gettext('Account Settings'));
         builder.z('parent', urls.reverse('homepage'));
     };

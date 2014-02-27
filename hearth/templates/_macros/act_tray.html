@@ -1,0 +1,20 @@
+{% macro act_tray(mobile, is_settings) %}
+  <div class="act-tray{% if mobile %} mobile{% endif%}{% if mobile and not is_settings %} active{% endif %}">
+    <a{% if not mobile %} href="{{ url('settings') }}"{% endif %} class="header-button icon settings" title="{{ _('Settings') }}"></a>
+    <div class="account-links only-logged-in">
+      <ul>
+        <li>
+          <a href="{{ url('settings') }}">
+            <b>{{ user.get_setting('email') }}</b>
+            {{ _('Edit Account Settings') }}</a>
+        </li>
+        <li><a href="{{ url('purchases') }}">{{ _('My Apps') }}</a></li>
+        {% if user.get_permission('developer') %}
+          <li><a href="/developers/submissions">{{ _('My Submissions') }}</a></li>
+        {% endif %}
+        <li><a class="submit-feedback" href="#">{{ _('Feedback') }}</a></li>
+        <li><a href="#" class="logout">{{ _('Sign Out') }}</a></li>
+      </ul>
+    </div>
+  </div>
+{% endmacro %}
