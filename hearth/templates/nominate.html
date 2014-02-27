@@ -1,0 +1,78 @@
+<section class="nominate nominate-masthead island main">
+  <h1>{{ _('Nominate apps to be featured on Firefox Marketplace!') }}</h1>
+</section>
+
+<section class="nominate nominate-blurb island main">
+ <p>
+    {{ _('Are you the developer or fan of an awesome app or collection of ' +
+         'apps on the Firefox Marketplace? Submit your nominations, and you may see them in a ' +
+         'featured spot.') }}
+  </p>
+  <p class="help">
+    {{ _('Learn more about ' +
+         '<a href="{wiki_url}">how apps are featured</a>.',
+         wiki_url='https://wiki.mozilla.org/Marketplace/FeaturedApps') }}
+  </p>
+</section>
+
+<section class="nominate nominate-success infobox island main prose">
+  <p><b>{{ _('Thanks for submitting your nomination.') }}</b></p>
+  <p class="tell-your-friends">{{ _('Tell your friends!') }}</p>
+  <a href="https://twitter.com/intent/tweet?button_hashtag=FaveApps&amp;text=I%20nominated%20an%20app%20for%20featuring%20on%20%23firefoxmarketplace!" class="twitter-hashtag-button" data-related="FirefoxApps" data-url="https://marketplace.firefox.com/nominate">{{ _('Tweet #FaveApps') }}</a>
+  <p><a class="button nominate-another alt">{{ _('Submit another nomination') }}</a></p>
+</section>
+
+<form class="nominate-form form-grid">
+  <section class="nominate island main infobox prose">
+    <div class="req">
+      <h3>{{ _('In which regions would you like to see the app(s) featured?') }}</h3>
+      <div class="regions">
+        {% set user_region = user.get_setting('region_override') %}
+        {% for code, region in REGIONS.items() %}
+          {% if code != 'None' %}
+            <label><input type="checkbox" name="entry.829647127" value="{{ code }}"{{ ' checked' if code == user_region }}>
+              <span class="region region-{{ code }}">{{ region }}</span></label>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <label>
+      <h3>{{ _('Select a category for the apps you are nominating') }}</h3>
+      {% defer (url=api('categories'), pluck='objects', as='category') %}
+        <select name="entry.596690778">
+          <option value=""></option>
+          {% for cat in this %}
+            <option value="{{ cat.slug }}">{{ cat.name }}</option>
+          {% endfor %}
+        </select>
+      {% end %}
+    </label>
+
+    <label class="req">
+      <h3>{{ _('Paste links to the app detail pages') }}</h3>
+      <textarea name="entry.966868101" required placeholder="https://marketplace.firefox.com/app/example-app"></textarea>
+    </label>
+
+    <label>
+      <h3>{{ _('Tell us why these apps should be featured') }}</h3>
+      <textarea name="entry.915897930"></textarea>
+    </label>
+
+    {% if not user.logged_in() %}
+      <label class="req">
+        <h3>{{ _('Your name') }}</h3>
+        <input type="text" name="entry.1146212836" class="name" required placeholder="{{ _('Your name' )}}">
+      </label>
+      <label class="req">
+        <h3>{{ _('Your email address') }}</h3>
+        <input type="email" name="entry.903244083" required placeholder="email@domain.com">
+      </label>
+    {% endif %}
+
+    <p>
+      <input type="hidden" name="submit" value="submit">
+      <button class="button" type="submit">{{ _('Submit') }}</button>
+    </p>
+  </section>
+</form>

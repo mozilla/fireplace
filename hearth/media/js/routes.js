@@ -17,13 +17,13 @@ var routes = [
     {'pattern': '^/search/?$', 'view_name': 'search'},
     {'pattern': '^/category/([^/<>"\']+)$', 'view_name': 'category'},
     {'pattern': '^/category/([^/<>"\']+)/featured$', 'view_name': 'featured'},
+    {'pattern': '^/nominate$', 'view_name': 'nominate'},
     {'pattern': '^/settings$', 'view_name': 'settings'},
     {'pattern': '^/feedback$', 'view_name': 'feedback'},
     {'pattern': '^/purchases$', 'view_name': 'purchases'},
 
     {'pattern': '^/privacy-policy$', 'view_name': 'privacy'},
     {'pattern': '^/terms-of-use$', 'view_name': 'terms'},
-
     {'pattern': '^/site/deprecated$', 'view_name': 'deprecated'},
 
     {'pattern': '^/collection/([^/<>"\']+)/?$', 'view_name': 'collection'},

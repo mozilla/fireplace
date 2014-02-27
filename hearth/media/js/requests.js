@@ -70,12 +70,16 @@ define('requests',
         if (data) {
             if (_is_obj(data) && !_has_object_props(data)) {
                 data = utils.urlencode(data);
-            } else if (!(data instanceof RawData)) {
-                data = JSON.stringify(data);
-                content_type = 'application/json';
-            } else {
+            }
+            if (data instanceof RawData) {
                 data = data.toString();
                 content_type = 'text/plain';
+            } else if (data instanceof URLEncodedData) {
+                // application/x-www-form-urlencoded
+                data = data.toString();
+            } else {
+                data = JSON.stringify(data);
+                content_type = 'application/json';
             }
             xhr.setRequestHeader('Content-Type', content_type);
         }
@@ -247,6 +251,13 @@ define('requests',
         };
     }
 
+    function URLEncodedData(data) {
+        this.data = data;
+        this.toString = function() {
+            return this.data;
+        };
+    }
+
     return {
         get: get,
         post: post,
@@ -256,6 +267,7 @@ define('requests',
         pool: function() {return new Pool();},
         on: on,
         RawData: RawData,
+        URLEncodedData: URLEncodedData,
         // This is for testing purposes.
         _set_xhr: function(func) {_ajax = func;}
     };
