@@ -43,14 +43,27 @@ define('urls',
             if (user.logged_in()) {
                 args._user = user.get_token();
             }
-            var blacklist = settings.api_param_blacklist || [];
-            for (var key in args) {
-                if (!args[key] || blacklist.indexOf(key) !== -1) {
-                    delete args[key];
-                }
-            }
+            _removeBlacklistedParams(args);
             return require('utils').urlparams(out, args);
         };
+    }
+
+    function _anonymousArgs(func) {
+        return function() {
+            var out = func.apply(this, arguments);
+            var args = api_args();
+            _removeBlacklistedParams(args);
+            return require('utils').urlparams(out, args);
+        };
+    }
+
+    function _removeBlacklistedParams(args) {
+        var blacklist = settings.api_param_blacklist || [];
+        for (var key in args) {
+            if (!args[key] || blacklist.indexOf(key) !== -1) {
+                delete args[key];
+            }
+        }
     }
 
     function api(endpoint, args, params) {
@@ -86,7 +99,12 @@ define('urls',
             url: _userArgs(api),
             params: _userArgs(apiParams),
             sign: _userArgs(function(url) {return url;}),
+            unsign: _anonymousArgs(function(url) {return url;}),
             unsigned: {
+                url: _anonymousArgs(api),
+                params: _anonymousArgs(apiParams)
+            },
+            base: {
                 url: api,
                 params: apiParams
             }

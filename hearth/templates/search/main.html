@@ -2,7 +2,7 @@
 {% include '_macros/more_button.html' %}
 
 <section id="search-results" class="main full c">
-  {% set api_url = apiParams('search', params) %}
+  {% set api_url = anonApiParams('search', params) %}
   {% if params.region %}
     {# If the user entered PotatoSearch™ `:region=<region>` then update `region`. #}
     {% set api_url = api_url|urlparams(region=params.region) %}
