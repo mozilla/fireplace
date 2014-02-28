@@ -34,7 +34,7 @@ define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
             $cc.closest('form')
                .find('#' + $cc.data('for'))
                // Note 'input' event is need for FF android see (bug 976262)
-               .on('input keyup blur', _.throttle(function() {countChars(this, $cc);}, 250))
+               .on('input blur', _.throttle(function() {countChars(this, $cc);}, 250))
                .trigger('blur');
         });
     }
