@@ -22,4 +22,14 @@ suite.run('/app/can_rate', function(test, waitFor) {
         assert.URL(/\/app\/can_rate\/ratings\/add/);
     });
 
+    test('Check char count works + submit is enabled', function(assert) {
+        assert.visible('.char-count b');
+        assert.hasText('.char-count b', '150');
+        suite.fill('.add-review-form', {'body': 'test'});
+        assert.hasText('.char-count b', '146');
+        assert.selectorExists('.add-review-form button[type="submit"][disabled]');
+        suite.press('.stars input[value="3"]');
+        assert.selectorExists('.add-review-form button[type="submit"]:not([disabled])');
+    });
+
 });
