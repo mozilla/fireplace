@@ -1,12 +1,103 @@
 @import 'lib';
 
+.account-settings {
+    background: #fff;
+    width: 100%;
+
+    .button {
+        width: 100%;
+    }
+    footer {
+        font-size: 0;
+    }
+    p {
+        font-size: 15px;
+        vertical-align: top;
+        width: 50%;
+    }
+    input {
+        alt-btn-shadow();
+        border-radius: 3px;
+        border: 1px solid $primer-gray;
+        box-shadow: 0 1px 0 #fff, 0 1px 1px $seavan-salt-white inset;
+        color: $london-fog-gray;
+        font: 400 15px/28px $open-stack;
+        height: 48px;
+        padding: 10px 12px;
+        text-decoration: none;
+        width: 100%;
+    }
+    .pretty-select,
+    .pretty-select select {
+        cursor: pointer;
+    }
+    .pretty-select {
+        gradient-two-color(#fff, $seavan-salt-white);
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+        &:before {
+            dropdown();
+            z-index: 2;
+        }
+        &:after {
+            // Hide the native `<select>` arrow so we can overlay our
+            // dropdown arrow in `:before`.
+            border-left: 1px solid $cement-gray;
+            box-shadow: 0 1px 0 #fff, 0 1px 1px $seavan-salt-white inset;
+            content: "";
+            display: block;
+            gradient-two-color(#fff, $seavan-salt-white);
+            height: 100%;
+            pointer-events: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 45px;
+            z-index: 1;
+        }
+        &:hover, &:active {
+            &:before {
+                background-image: url(../img/pretty/dropdown_active.svg);
+            }
+        }
+        select {
+            -moz-padding-start: 10px;
+            appearance-none();
+            background: none;
+            border: 0;
+            padding: 10px 12px;
+        }
+    }
+    label {
+        margin-bottom: 5px;
+    }
+    .simple-field {
+        padding: 10px 10px 0;
+    }
+    footer {
+        border-top: 1px solid $cloud-gray;
+        clear: both;
+        margin-top: 10px;
+        p {
+            border-bottom: 1px solid $cloud-gray;
+            padding: 10px;
+        }
+    }
+    .extras {
+        display: inline-block;
+        background: $seavan-salt-white;
+        border: 0;
+    }
+    .reviewer-tools {
+        margin-top: 15px;
+    }
+}
+
 @media $narrower-than-desktop {
     article.extras {
-        background: none;
-        border: 0;
-        padding: 0;
-        margin: 0;
         .notice {
+            background: #fff;
             border-bottom: 1px solid $cloud-gray;
             padding: 15px 10px;
         }
@@ -15,17 +106,18 @@
             margin: 10px;
         }
     }
+    .account-settings p {
+        width: 100%;
+    }
 }
 
 .toggles {
     display: table;
-    list-style: none;
     table-layout: fixed;
     width: 100%;
     li {
         display: table-cell;
         padding: 0 10px;
-        text-align: left;
         vertical-align: middle;
         width: (100% / 3);
         + li {
@@ -39,25 +131,51 @@
     a {
         color: $text;
         font-weight: 500;
+        text-decoration: none;
         &.sel, &:active {
             color: $sailor-blue;
-            font-weight: 500;
-        }
-        &:hover {
-            text-decoration: none;
         }
     }
 }
 
-// Does not work with $desktop.
 @media $at-least-desktop {
-    .toggles {
+    .toggles,
+    .account div.secondary-header {
         display: none;
     }
-    #account-settings div.secondary-header {
+    .extras {
+        background: #fff;
+        .notice {
+            padding: 0 0 15px;
+        }
+    }
+
+    .account-settings {
+        border-radius: 10px;
+        box-shadow: 0 1px 1px $cement-gray;
+        float: left;
+        margin-top: 30px;
+        padding: 3px 5px 8px;  // On desktop we want 18px above and below.
+        position: relative;
+        .simple-field {
+            float: left;
+            padding: 15px 10px 10px;
+            width: 50%;
+        }
+        footer, footer p {
+            border: 0;
+        }
+        footer {
+            padding-top: 5px;
+        }
+        .extras {
+            background: none;
+        }
+    }
+    .only-logged-in.button.reviewer-tools {
         display: none;
     }
-    article.extras .notice {
-        padding: 0 0 15px;
+    footer .extras .button.reviewer-tools {
+        display: none;
     }
 }

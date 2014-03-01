@@ -7,10 +7,12 @@ suite.run('/tests', function(test, waitFor) {
     });
 
     test('Unit tests', function(assert) {
-        assert.equal(suite.getText('#c_failed'), '0',
-                     'Assert no failures');
-        assert.equal(suite.getText('#c_started'),
-                     suite.getText('#c_passed'),
-                     'Assert all tests ended');
+        var startedCount = suite.getText('#c_started');
+        var passedCount = suite.getText('#c_passed');
+        assert.equal(suite.getText('#c_failed'), '0', 'Assert no failures');
+        assert.equal(startedCount, passedCount, 'Assert all tests ended');
+        if (startedCount != passedCount) {
+            suite.capture('unittest-failures.png');
+        }
     });
 });

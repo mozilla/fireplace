@@ -1,7 +1,7 @@
 var suite = require('./kasperle').suite();
 var lib = require('./lib');
 
-suite.run('/app/developer', function(test, waitFor) {
+suite.run('/app/developed', function(test, waitFor) {
 
     waitFor(function() {
         return suite.exists('#splash-overlay.hide');
@@ -15,7 +15,7 @@ suite.run('/app/developer', function(test, waitFor) {
             require('views').reload();
         });
 
-        assert.URL(/\/app\/developer/);
+        assert.URL(/\/app\/developed/);
         suite.capture('detail_owner.png');
 
         assert.invisible('.expand-toggle');

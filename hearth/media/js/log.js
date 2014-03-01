@@ -63,8 +63,8 @@ define('log', ['storage', 'utils'], function(storage, utils) {
 
             // Have log('payments') but want log('payments', 'mock')?
             // log('payments').tagged('mock') gives you the latter.
-            tagged: function(tag) {
-                return logger(type, tag);
+            tagged: function(newTag) {
+                return logger(type, tag + '][' + newTag, onlog);
             }
         };
     };

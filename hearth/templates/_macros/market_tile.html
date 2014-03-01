@@ -36,8 +36,8 @@
         {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
         <div class="author lineclamp vital subdetail" itemprop="creator">{{ app.author }}</div>
       {% endif %}
-      {% set content_rating = app.content_ratings.ratings[user.get_setting('region')] or
-                              app.content_ratings.ratings['generic'] %}
+      {% set rating_body = app.content_ratings.regions[user_helpers.region()] or 'generic' %}
+      {% set content_rating = app.content_ratings.ratings[rating_body] %}
       {% if content_rating %}
         <div class="content-rating lineclamp vital subdetail" itemprop="content-rating">
           {% if content_rating.body_label != 'generic' %}

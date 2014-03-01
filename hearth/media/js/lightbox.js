@@ -29,7 +29,7 @@ define('lightbox',
         var $tray = $this.closest('.tray');
         var $tile = $tray.prev();
 
-        // we get the screenshots from the associated tile. No tile? bail.
+        // We get the screenshots from the associated tile. No tile? bail.
         if (!$tile.hasClass('mkt-tile')) return;
 
         var product = models('app').lookup($tile.data('slug'));
@@ -41,7 +41,11 @@ define('lightbox',
             renderPreviews();
         }
 
-        // fade that bad boy in
+        // Set an anchor so the back button closes the lightbox instead of
+        // navigating.
+        window.location.hash = 'lightbox';
+
+        // Fade that bad boy in.
         z.body.addClass('overlayed');
         $lightbox.show();
         setTimeout(function() {
@@ -51,7 +55,7 @@ define('lightbox',
         }, 0);
     }
 
-    // set up key bindings
+    // Set up key bindings.
     z.win.on('keydown.lightboxDismiss', function(e) {
         switch (e.which) {
             case keys.ESCAPE:
@@ -76,18 +80,18 @@ define('lightbox',
     });
 
     function renderPreviews() {
-        // clear out the existing content
+        // Clear out the existing content.
         $content.empty();
 
-        // place in a pane for each image/video with a 'loading' placeholder.
+        // Place in a pane for each image/video with a 'loading' placeholder.
         _.each(previews, function(p) {
             var $el = $('<li class="loading"><span class="throbber">');
             $content.append($el);
 
-            // let's fail elegantly when our images don't load.
-            // videos on the other hand will always be injected.
+            // Let's fail elegantly when our images don't load.
+            // Videos on the other hand will always be injected.
             if (p.filetype == 'video/webm') {
-                // we can check for `HTMLMediaElement.NETWORK_NO_SOURCE` on the
+                // We can check for `HTMLMediaElement.NETWORK_NO_SOURCE` on the
                 // video's `networkState` property at some point.
                 var v = $('<video src="' + p.image_url + '" controls></video>');
                 $el.removeClass('loading');
@@ -104,7 +108,7 @@ define('lightbox',
                     $el.append('<b class="err">&#x26A0;</b>');
                 };
 
-                // attempt to load the image.
+                // Attempt to load the image.
                 i.src = p.image_url;
             }
         });
@@ -158,15 +162,20 @@ define('lightbox',
             slider.destroy();
             slider = null;
         }
+
+        // Remove the hash addition from the history.
+        if (location.hash == '#lightbox') {
+            history.back();
+        }
     }
 
-    // we need to adjust the scroll distances on resize.
+    // We need to adjust the scroll distances on resize.
     z.win.on('resize', _.debounce(resize, 200));
 
-    // if a tray thumbnail is clicked, load up our lightbox.
+    // If a tray thumbnail is clicked, load up our lightbox.
     z.page.on('click', '.tray ul a', utils._pd(showLightbox));
 
-    // dismiss the lighbox when we click outside it or on the close button.
+    // Dismiss the lighbox when we click outside it or on the close button.
     $lightbox.on('click', function(e) {
         if ($(e.target).is('#lightbox')) {
             hideLightbox();

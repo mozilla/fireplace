@@ -84,14 +84,13 @@ define('requests',
         return def.promise(xhr);
     }
 
-    function ajax() {
-        var def = _ajax.apply(this, arguments);
-        var type = arguments[0];
+    function ajax(type, url, data) {
+        var def = _ajax(type, url, data);
         // then() returns a new promise, so don't return that.
-        def.then(function() {
-            callHooks('success', arguments);
-        }, function(xhr, error, status) {
-            callHooks('failure', arguments);
+        def.then(function(resp, xhr) {
+            callHooks('success', [resp, xhr, type, url, data]);
+        }, function(xhr, error, status, resp) {
+            callHooks('failure', [xhr, error, status, resp, type, url, data]);
             handle_errors(xhr, type, status);
         });
         return def;
@@ -176,6 +175,7 @@ define('requests',
         var initiated = 0;
         var marked_to_finish = false;
         var closed = false;
+        var failed = false;
 
         function finish() {
             if (closed) {
@@ -186,11 +186,7 @@ define('requests',
                 closed = true;
 
                 // Resolve the deferred whenevs.
-                if (window.setImmediate) {
-                    setImmediate(def.resolve);
-                } else {
-                    setTimeout(def.resolve, 0);
-                }
+                setTimeout(failed ? def.reject : def.resolve, 0);
             }
         }
 
@@ -203,6 +199,9 @@ define('requests',
             var req = func.apply(this, args);
             initiated++;
             requests.push(req);
+            req.fail(function() {
+                failed = true;
+            });
             req.always(function() {
                 initiated--;
                 finish();

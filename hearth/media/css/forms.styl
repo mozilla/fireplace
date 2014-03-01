@@ -52,22 +52,18 @@ input[placeholder] {
     }
 }
 
-form {
-    input[type=email], input[type=text], textarea {
-        border-radius: 2px;
-        border: 1px solid $light-gray;
-        padding: 5px;
-        &[disabled], &[readonly] {
-            background: $seavan-salt-white;
-            color: $earl-gray;
-            cursor: not-allowed;
-        }
+input[type=email], input[type=text], textarea {
+    border-radius: 2px;
+    border: 1px solid $light-gray;
+    padding: 5px;
+    &[disabled], &[readonly] {
+        background: $seavan-salt-white;
+        color: $earl-gray;
+        cursor: not-allowed;
     }
-    input[type=email], input[type=text], textarea {
-        &:focus {
-            border-color: $sailor-blue;
-            box-shadow: 0 0 8px $sailor-blue;
-        }
+    &:focus {
+        border-color: $sailor-blue;
+        box-shadow: 0 0 8px $sailor-blue;
     }
 }
 
@@ -75,145 +71,6 @@ textarea {
     display: block;
     overflow: auto;
     vertical-align: top;
-}
-
-.form-grid {
-    background: #fff;
-    width: 100%;
-    input[type=email],
-    input[type=text],
-    .pretty-select,
-    select {
-        height: 48px;
-        width: 100%;
-    }
-    input[type=email],
-    input[type=text],
-    .pretty-select {
-        alt-btn-shadow();
-        border-radius: 3px;
-        border: 1px solid $primer-gray;
-        box-shadow: 0 1px 0 #fff, 0 1px 1px $seavan-salt-white inset;
-        color: $london-fog-gray;
-        font: 400 15px/28px $open-stack;
-        height: 48px;
-        padding: 10px 12px;
-        text-decoration: none;
-    }
-    .pretty-select,
-    .pretty-select select {
-        cursor: pointer;
-    }
-    .pretty-select {
-        gradient-two-color(#fff, $seavan-salt-white);
-        padding: 0;
-        overflow: hidden;
-        position: relative;
-        &:before {
-            dropdown();
-            z-index: 2;
-        }
-        &:after {
-            // Hide the native `<select>` arrow so we can overlay our
-            // dropdown arrow in `:before`.
-            border-left: 1px solid $cement-gray;
-            box-shadow: 0 1px 0 #fff, 0 1px 1px $seavan-salt-white inset;
-            content: "";
-            display: block;
-            gradient-two-color(#fff, $seavan-salt-white);
-            height: 100%;
-            pointer-events: none;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 45px;
-            z-index: 1;
-        }
-        &:hover, &:active {
-            &:before {
-                background-image: url(../img/pretty/dropdown_active.svg);
-            }
-        }
-        select {
-            -moz-padding-start: 10px;
-            appearance-none();
-            background: none;
-            border: 0;
-            padding: 10px 12px;
-        }
-    }
-    label {
-        margin-bottom: 5px;
-    }
-    .simple-field {
-        padding: 10px 10px 0;
-    }
-    footer {
-        border-top: 1px solid $cloud-gray;
-        margin-top: 10px;
-        p {
-            border-bottom: 1px solid $cloud-gray;
-            padding: 10px;
-        }
-        .extras {
-            background: $seavan-salt-white;
-            border: 0;
-        }
-        .reviewer-tools {
-            margin-top: 15px;
-        }
-        button {
-            width: 100%;
-        }
-    }
-}
-
-@media $at-least-desktop {
-    .form-grid {
-        border-radius: 10px;
-        box-shadow: 0 1px 1px $cement-gray;
-        float: left;
-        margin-top: 30px;
-        padding: 3px 5px 8px;  // On desktop we want 18px above and below.
-        position: relative;
-        .simple-field {
-            float: left;
-            padding: 15px 10px 10px;
-            width: 50%;
-        }
-        footer {
-            position: absolute;
-            top: -90px;
-            right: -10px;
-            z-index: 19;
-
-            p {
-                float: left;
-            }
-            // Show only "Save Changes" and "Sign Out" buttons on tablet and larger.
-            a:nth-child(2) ~ a {
-                display: none;
-            }
-        }
-        footer, footer p {
-            border: 0;
-        }
-    }
-    #account-settings .secondary-header h2 {
-        // To accomodate the floated "Sign in" button.
-        max-width: calc(unquote('100% - 330px'));
-    }
-    .reviewer-tools {
-        display: none;
-    }
-}
-
-@media (min-width: 1024px) {
-    .form-grid {
-        .extras {
-            display: none;
-        }
-    }
 }
 
 // Because specificity
@@ -225,4 +82,8 @@ textarea {
 .only-logged-out.button,
 .logged-in .only-logged-in.button {
     display: block;
+}
+
+.logged-in .only-logged-in.inline {
+    display: inline-block;
 }

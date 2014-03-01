@@ -32,7 +32,7 @@ define('views/homepage',
             sort: params.sort,
             app_cast: app_models.cast
         }).done(function() {
-            var shelf = builder.results['shelf'].operator;
+            var shelf = builder.results.shelf.operator;
             var $collections = $('.collection.main');
             newsletter.init();
 

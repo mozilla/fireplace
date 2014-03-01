@@ -1,9 +1,10 @@
 define('views/app',
-    ['capabilities', 'l10n', 'tracking', 'utils', 'underscore', 'z', 'templates', 'overflow'],
-    function(caps, l10n, tracking, utils, _, z, nunjucks, overflow) {
+    ['capabilities', 'content-ratings', 'l10n', 'log', 'settings', 'tracking', 'utils', 'z', 'overflow'],
+    function(caps, iarc, l10n, log, settings, tracking, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
+    var console = log('app');
 
     z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
         // Show/hide scary content-rating disclaimers to developers.
@@ -16,7 +17,7 @@ define('views/app',
         $this.attr('data-toggle-text', $this.text());
         $this.text(newTxt);
         // Toggle description.
-        $this.closest('.blurbs').find('.description-wrapper').toggleClass('truncated');
+        $this.prev('.truncated-wrapper').toggleClass('truncated');
 
         tracking.trackEvent('App view interactions', 'click', 'Toggle description');
 
@@ -52,7 +53,16 @@ define('views/app',
 
     return function(builder, args) {
         var slug = args[0];
-        builder.start('detail/main.html', {slug: slug});
+        builder.start('detail/main.html', {
+            iarc: iarc,
+            slug: slug
+        });
+
+        // This is fine; tracking_helpers depends on:
+        // navigation > views > views/app
+        // This prevents a dependency loop, but all deps should have been
+        // resolved by the time this executes.
+        require('tracking_helpers').track_search_term(true);
 
         builder.z('type', 'leaf detail');
         builder.z('title', gettext('Loading...'));
@@ -63,27 +73,33 @@ define('views/app',
             builder.z('title', utils.translate(app.name));
 
             z.page.trigger('populatetray');
-            overflow.init();
+            require('overflow').init();
 
             // 'truncated' class is applied by default, remove it if it's not
             // needed.
-            var wrapper = $('.description-wrapper');
-            if (wrapper.prop('scrollHeight') <= wrapper.prop('offsetHeight')) {
-                wrapper.removeClass('truncated');
-                wrapper.next('.show-toggle').hide();
-            }
+            $('.truncated-wrapper').each(function() {
+                var $this = $(this);
+                if ($this.prop('scrollHeight') <= $this.prop('offsetHeight')) {
+                    $this.removeClass('truncated').next('.show-toggle').hide();
+                }
+            });
             if (caps.widescreen() && !$('.report-abuse').length) {
                 z.page.append(
-                    nunjucks.env.render('detail/abuse.html', {slug: slug})
+                    require('templates').env.render('detail/abuse.html', {slug: slug})
                 );
             }
 
             if (!sync) return;
-            tracking.setPageVar(6, 'App name', app.name, 3);
-            tracking.setPageVar(7, 'App ID', app.id, 3);
-            tracking.setPageVar(8, 'App developer', app.author, 3);
-            tracking.setPageVar(9, 'App view source', utils.getVars().src || 'direct', 3);
-            tracking.setPageVar(10, 'App price', app.payment_required ? 'paid' : 'free', 3);
+
+            if (app) {
+                tracking.setPageVar(6, 'App name', app.name, 3);
+                tracking.setPageVar(7, 'App ID', app.id + '', 3);
+                tracking.setPageVar(8, 'App developer', app.author, 3);
+                tracking.setPageVar(9, 'App view source', utils.getVars().src || 'direct', 3);
+                tracking.setPageVar(10, 'App price', app.payment_required ? 'paid' : 'free', 3);
+            } else {
+                console.warn('app object is falsey and is not being tracked');
+            }
 
         }).onload('ratings', function() {
             var reviews = $('.detail .reviews li');

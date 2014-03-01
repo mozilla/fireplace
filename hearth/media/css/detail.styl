@@ -21,6 +21,16 @@
         font-weight: 500;
         line-height: 18px;
     }
+    .install {
+        bottom: 15px;
+    }
+}
+
+.regionbanner {
+    background: url(../img/pretty/alert.svg) 12px 50% no-repeat #82C80A;
+    background-size: 48px;
+    color: #fff;
+    padding-left: 60px;
 }
 
 .blurbs {
@@ -31,17 +41,6 @@
     > div {
         padding: 24px 10px;
     }
-    .description:only-child {
-        padding-bottom: 0;
-    }
-    .description + div > {
-        h3:first-child {
-            padding-top: 0;
-        }
-        :last-child {
-            padding-bottom: 0;
-        }
-    }
     blockquote {
         background: $faint-gray;
         border-left: 2px solid $light-gray;
@@ -49,7 +48,7 @@
         margin: 0;
         padding: 5px 10px;
     }
-    .description-wrapper {
+    .truncated-wrapper {
         padding: 0;
 
         &.truncated {
@@ -72,11 +71,19 @@
     }
 }
 
+section.releasenotes {
+    border-bottom: 1px solid $cloud-gray;
+
+    .truncated-wrapper.truncated {
+        max-height: 7.5em;
+    }
+}
+
 .show-toggle {
     display: block;
-    float: right;
     font-weight: bold;
     padding: 10px;
+    text-align: right;
     text-transform: lowercase;
     &:before {
         content: "(";
@@ -90,205 +97,6 @@
 
 .collapsed {
     display: none;
-}
-
-.content-ratings-wrapper {
-    border-top: 1px solid $cloud-gray;
-
-    h3 {
-        padding-bottom: 24px;
-    }
-    .icon {
-        background-repeat: no-repeat;
-        border-radius: 5px;
-        display: inline-block;
-        height: 64px;
-        margin-right: 15px;
-        text-align: center;
-        vertical-align: middle;
-        width: 64px;
-    }
-}
-
-.content-ratings {
-    float: left;
-    max-width: 45%;
-}
-
-.content-ratings .content-rating {
-    color: $text;
-    display: table;
-    margin-bottom: 12px;
-
-    .icon {
-        float: left;
-        margin-bottom: 5px;
-    }
-    .icon-body-esrb {
-        height: 90px;
-        width: 58px;
-
-        &.icon-age-0 {
-            background-image: url('../img/icons/ratings/ESRB_e.png');
-        }
-        &.icon-age-10 {
-            background-image: url('../img/icons/ratings/ESRB_e10.png');
-        }
-        &.icon-age-13 {
-            background-image: url('../img/icons/ratings/ESRB_t.png');
-        }
-        &.icon-age-17 {
-            background-image: url('../img/icons/ratings/ESRB_m.png');
-        }
-        &.icon-age-18 {
-            background-image: url('../img/icons/ratings/ESRB_ao.png');
-        }
-    }
-    .icon-body-generic, .icon-body-classind {
-        background: $black;
-        color: $white;
-        float: left;
-        font: 600 32px/64px $open-stack;
-
-        .icon-content {
-            display: inline;
-        }
-        &.icon-age-L,
-        &.icon-age-0,
-        &.icon-age-3 {
-            background: $box-green;
-        }
-        &.icon-age-7,
-        &.icon-age-10 {
-            background: $box-blue;
-        }
-        &.icon-age-12,
-        &.icon-age-13 {
-            background: $box-yellow;
-        }
-        &.icon-age-14 {
-            background: $box-orange;
-        }
-        &.icon-age-16 {
-            background: $box-red;
-        }
-        &.icon-age-18 {
-            background: #000;
-        }
-    }
-    .icon-body-usk {
-        border-radius: 8px;
-        height: 68px;
-        width: 68px;
-
-        &.icon-age-0 {
-            background-image: url('../img/icons/ratings/USK_0.png');
-        }
-        &.icon-age-6 {
-            background-image: url('../img/icons/ratings/USK_6.png');
-        }
-        &.icon-age-12 {
-            background-image: url('../img/icons/ratings/USK_12.png');
-        }
-        &.icon-age-16 {
-            background-image: url('../img/icons/ratings/USK_16.png');
-        }
-        &.icon-age-18 {
-            background-image: url('../img/icons/ratings/USK_18.png');
-        }
-    }
-    .icon-body-pegi {
-        border-radius: 1px;
-        height: 73px;
-        width: 60px;
-
-        &.icon-age-3 {
-            background-image: url('../img/icons/ratings/pegi_3.png');
-        }
-        &.icon-age-7 {
-            background-image: url('../img/icons/ratings/pegi_7.png');
-        }
-        &.icon-age-12 {
-            background-image: url('../img/icons/ratings/pegi_12.png');
-        }
-        &.icon-age-16 {
-            background-image: url('../img/icons/ratings/pegi_16.png');
-        }
-        &.icon-age-18 {
-            background-image: url('../img/icons/ratings/pegi_18.png');
-        }
-    }
-    .description {
-        color: $earl-gray;
-        display: inline-block;
-        float: left;
-        font-weight: 400;
-        margin: 0;
-    }
-}
-
-.content-descriptors {
-    border-left: 1px solid $faint-gray;
-    float: right;
-    margin-bottom: 10px;
-    max-width: 55%;
-    padding-left: 20px;
-
-    .icon {
-        display: inline-block;
-        margin-right: 0;
-
-        &.pegi-discrimination {
-            background-image: url('../img/icons/ratings/descriptors/pegi_discrimination.png');
-        }
-        &.pegi-drugs {
-            background-image: url('../img/icons/ratings/descriptors/pegi_drugs.png');
-        }
-        &.pegi-scary {
-            background-image: url('../img/icons/ratings/descriptors/pegi_fear.png');
-        }
-        &.pegi-gambling {
-            background-image: url('../img/icons/ratings/descriptors/pegi_gambling.png');
-        }
-        &.pegi-lang {
-            background-image: url('../img/icons/ratings/descriptors/pegi_language.png');
-        }
-        &.pegi-nudity {
-            background-image: url('../img/icons/ratings/descriptors/pegi_nudity.png');
-        }
-        &.pegi-online {
-            background-image: url('../img/icons/ratings/descriptors/pegi_online.png');
-        }
-        &.pegi-sex {
-            background-image: url('../img/icons/ratings/descriptors/pegi_sex.png');
-        }
-        &.pegi-violence {
-            background-image: url('../img/icons/ratings/descriptors/pegi_violence.png');
-        }
-    }
-}
-
-.interactive-elements {
-    border-left: 1px solid $faint-gray;
-    float: right;
-    margin-bottom: 10px;
-    max-width: 55%;
-    padding-left: 20px;
-
-    .icon {
-        display: inline-block;
-        margin-right: 0;
-
-        &.shares-info {
-            background-image: url('../img/icons/ratings/interactives/ESRB_shares-info_small.png');
-        }
-        &.shares-location {
-            background-image: url('../img/icons/ratings/interactives/ESRB_shares-location_small.png');
-        }
-        &.users-interact {
-            background-image: url('../img/icons/ratings/interactives/ESRB_users-interact_small.png');
-        }
-    }
 }
 
 .actions {
@@ -402,13 +210,13 @@
         p.description {
             padding-top: 0;
         }
-        &.truncated {
-            max-height: none;
-            overflow: visible;
+    }
+    section.blurbs .truncated-wrapper.truncated {
+        max-height: none;
+        overflow: visible;
 
-            &:after {
-                content: none;
-            }
+        &:after {
+            content: none;
         }
     }
     .show-toggle {
@@ -424,22 +232,6 @@
             font-weight: 500;
         }
     }
-
-    // At desktop width, let's float the content ratings.
-    .content-ratings {
-        margin: 0 -15px;
-
-        .content-rating {
-            float: left;
-            margin-bottom: 24px;
-            padding: 0 15px;
-
-            .icon {
-                margin-bottom: 0;
-            }
-        }
-    }
-
     .secondary-header .leading {
         font-size: 24px;
         gradient-two-color(#fff, #e1e1e1);

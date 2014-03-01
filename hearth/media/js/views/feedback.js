@@ -12,7 +12,7 @@ define('views/feedback',
         var data = utils.getVars($this.serialize());
         data.chromeless = caps.chromeless ? 'Yes' : 'No';
         data.from_url = window.location.pathname;
-        data.profile = buckets.get_profile();
+        data.profile = buckets.profile;
 
         forms.toggleSubmitFormState($this);
 

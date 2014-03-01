@@ -1,14 +1,13 @@
 define('ratings',
     ['cache', 'capabilities', 'forms', 'jquery', 'l10n', 'login', 'models', 'settings', 'templates', 'tracking', 'underscore', 'utils', 'urls', 'user', 'z', 'requests', 'notification', 'common/ratingwidget'],
     function(cache, capabilities, forms, $, l10n, login, models, settings, nunjucks, tracking, _, utils, urls, user, z) {
-    'use strict';
 
     var gettext = l10n.gettext;
     var notify = require('notification').notification;
 
     var open_rating = false;
 
-    function rewriter(app, rewriter) {
+    function rewriter(app, processor) {
         var unsigned_url = urls.api.unsigned.url('reviews');
         cache.attemptRewrite(
             function(key) {
@@ -20,7 +19,7 @@ define('ratings',
                     return true;
                 }
             },
-            rewriter
+            processor
         );
     }
 
@@ -211,11 +210,12 @@ define('ratings',
                 return data;
             });
 
+            var new_rating = parseInt(data.rating, 10);
+
             // Update the app model.
             var app_model;
             if (app_model = models('app').lookup(app)) {
                 var num_ratings = app_model.ratings.count;
-                var new_rating = parseInt(data.rating, 10);
                 if (!num_ratings) {
                     app_model.ratings.average = new_rating;
                 } else {

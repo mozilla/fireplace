@@ -65,7 +65,7 @@ function Suite(options) {
         });
     });
 
-    this.run = function(url, callback) {
+    this.run = function(url, runTests) {
 
         if (_this.casperSkip) {
             console.log('Skipping...');
@@ -89,16 +89,15 @@ function Suite(options) {
             };
             started = true;
         };
-
-        console.log('Queueing test case.');
-        callback(function(name, callback) {
+        var test = function(name, callback) {
             next_runner(function(response) {
                 console.log('RUNNING :: ' + name);
                 var asserter = new assert(this);
                 callback(asserter, response);
                 asserts += asserter.asserts;
             });
-        }, function(waiter, callback) {
+        };
+        var waitFor = function (waitCondition, waitCompletedCallback) {
             // If we're waiting for something and the tests haven't started,
             // start the tests with a noop callback.
             if (!started) {
@@ -106,25 +105,30 @@ function Suite(options) {
                     console.log('Initial navigation initiated: ' + url);
                 });
             }
-            // Tell casper to wait until `waiter` evaluates to a truthy return
-            // value.
-            cobj.waitFor(
-                waiter,
-                callback || function() {console.log('Wait condition met.');},
-                function() {
-                    var path_safe = url.replace(/\//g, '_');
-                    cobj.capture(
-                        'captures/errors/timeout_' +
-                        path_safe + '_' +
-                        ((new Date()).getTime() / 1000 | 0) + '.png');
-                    // This will just echo an error. If tests depended on the wait
-                    // they will now fail.
-                    this.echo('waitFor condition timed out!', 'ERROR');
-                    this.echo('See screenshot in "captures/errors/" for details.', 'INFO');
-                },
-                5000
-            );
-        });
+            waitCompletedCallback = waitCompletedCallback || function() {
+                console.log('Wait condition met.');
+            };
+            var captureScreenshot = function() {
+                var pathSafe = url.replace(/\//g, '_');
+                var filePath = 'captures/errors/timeout_' + pathSafe + '_' +
+                               ((new Date()).getTime() / 1000 | 0) + '.png'
+                cobj.capture(filePath);
+                // This will just echo an error. If tests depended on the wait
+                // they will now fail.
+                this.echo('waitFor condition timed out!', 'ERROR');
+                this.echo('See screenshot "' + filePath + '" for details.',
+                          'INFO');
+            };
+            // Tell casper to wait until `waitCondition` evaluates to a truthy
+            // return value.
+            cobj.waitFor(waitCondition,
+                         waitCompletedCallback,
+                         captureScreenshot,
+                         5000);
+        }
+
+        console.log('Queueing test case.');
+        runTests(test, waitFor);
 
         console.log('Running tests...');
         cobj.run(function() {

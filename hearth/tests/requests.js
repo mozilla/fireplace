@@ -21,14 +21,16 @@ test('requests.get', function(done, fail) {
             requests._set_xhr(mock_xhr);
             var def = requests.get('foo/bar');
             // Test that the URL isn't mangled before being sent to jQuery.
-            feq_(Array.prototype.slice.call(def.args, 0),
-                 ['GET', 'foo/bar']);
+            eq_(def.args[0], 'GET');
+            eq_(def.args[1], 'foo/bar');
+            eq_(def.args[2], null);
             def.done(function(data) {
                 eq_(data, 'sample data');
                 done();
             }).fail(fail);
             def.resolve('sample data');
-        }
+        },
+        fail
     );
 });
 
@@ -107,7 +109,7 @@ var data = {foo: 'bar'};
 var methods_to_test = ['post', 'del', 'put', 'patch'];
 var test_output = {
     post: ['POST', 'foo/bar', data],
-    del: ['DELETE', 'foo/bar'],
+    del: ['DELETE', 'foo/bar', null],
     put: ['PUT', 'foo/bar', data],
     patch: ['PATCH', 'foo/bar', data]
 };
@@ -119,7 +121,9 @@ methods_to_test.forEach(function(v) {
             function(requests) {
                 requests._set_xhr(mock_xhr);
                 var def = requests[v]('foo/bar', data);
-                feq_(Array.prototype.slice.call(def.args, 0), test_output[v]);
+                eq_(def.args[0], test_output[v][0]);
+                eq_(def.args[1], test_output[v][1]);
+                eq_(def.args[2], test_output[v][2]);
                 def.done(function(data) {
                     eq_(data, 'sample data');
                     done();
@@ -229,7 +233,7 @@ test('requests.pool finish', function(done, fail) {
             var timing = fail;
             var timing_closure = function() {
                 timing();
-            }
+            };
 
             var pool = requests.pool();
             pool.done(timing_closure);
@@ -249,7 +253,7 @@ test('requests.pool finish resolution', function(done, fail) {
             var timing = fail;
             var timing_closure = function() {
                 timing();
-            }
+            };
 
             var pool = requests.pool();
             pool.done(timing_closure);

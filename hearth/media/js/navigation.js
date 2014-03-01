@@ -10,6 +10,7 @@ define('navigation',
         {path: '/', type: 'root'}
     ];
     var initialized = false;
+    var scrollTimer;
 
     function extract_nav_url(url) {
         // This function returns the URL that we should use for navigation.
@@ -68,8 +69,16 @@ define('navigation',
             }
             top = state.scrollTop;
         }
-        console.log('Setting scroll to', top);
-        window.scrollTo(0, top);
+
+        // Introduce small delay to ensure content
+        // is ready to scroll. (Bug 976466)
+        if (scrollTimer) {
+            window.clearTimeout(scrollTimer);
+        }
+        scrollTimer = window.setTimeout(function() {
+            console.log('Setting scroll to', top);
+            window.scrollTo(0, top);
+        }, 250);
 
         // Clean the path's parameters.
         // /foo/bar?foo=bar&q=blah -> /foo/bar?q=blah

@@ -10,10 +10,10 @@
 {% set category_url = url('category', [category]) if category else url('homepage') %}
 
 {% set popular_url = category_url|urlparams(src='category-popular') %}
-{% set new_url = category_url|urlparams(sort='created', src='category-new') %}
+{% set new_url = category_url|urlparams(sort='reviewed', src='category-new') %}
 
 {% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
-{% set search_url = search_url|urlparams(sort=sort) if sort == 'created' else search_url %}
+{% set search_url = search_url|urlparams(sort=sort) if sort == 'reviewed' else search_url %}
 
 {% defer (url=endpoint|urlunparam(['sort']), pluck='operator', id='shelf', as='collection') %}
   {% if this.length and this[0].apps.length and this[0].image %}
@@ -43,6 +43,7 @@
           <li>{{ market_tile(app_cast(result), link=true, src='featured', tray=False) }}</li>
         {% endfor %}
       </ol>
+      <a href="{{ featured_url }}" class="view-all-mbl">{{ _('View All') }}</a>
     </section>
   {% endif %}
 {% placeholder %}
@@ -60,7 +61,7 @@
       <nav class="tabs">
         <a{% if not sort %} class="active"{% endif %} href="{{ popular_url }}" data-preserve-scroll>{{ _('Popular') }}</a>
         {# L10n: "New" should translate to mean "Recent". Choose the shortest (space constraints) #}
-        <a{% if sort == 'created' %} class="active"{% endif %} href="{{ new_url }}" data-preserve-scroll>{{ _('New') }}</a>
+        <a{% if sort == 'reviewed' %} class="active"{% endif %} href="{{ new_url }}" data-preserve-scroll>{{ _('New') }}</a>
       </nav>
       <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
     </header>

@@ -18,7 +18,7 @@ test('_pd', function(done) {
 });
 
 test('escape_', function(done) {
-    eq_(utils.escape_('<b> & "\'<'), '&lt;b&gt; &amp; &#34;&#39;&lt;');
+    eq_(utils.escape_('<b> & "\'<'), '&lt;b&gt; &amp; &quot;&#x27;&lt;');
     done();
 });
 

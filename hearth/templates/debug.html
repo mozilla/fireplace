@@ -34,10 +34,11 @@
 
     <p>
       <label>
-        Region
+        Region Override
         <select name="region" id="region">
-          {% set user_region = user.get_setting('region') %}
-          {% for code, region in settings.REGION_CHOICES_SLUG.items() %}
+          {% set user_region = user.get_setting('region_override') %}
+          <option value=""{{ ' selected' if not user_region }}>---</option>
+          {% for code, region in REGIONS.items() %}
             <option value="{{ code }}"{{ ' selected' if code == user_region }}>
               {{ region }}</option>
           {% endfor %}
@@ -47,9 +48,10 @@
 
     <p>
       <label>
-        Carrier
+        Carrier Override
         <select name="carrier" id="carrier">
-          {% set user_carrier = user.get_setting('carrier') %}
+          {% set user_carrier = user.get_setting('carrier_override') %}
+          <option value=""{{ ' selected' if not user_carrier }}>---</option>
           {% for carrier in carriers %}
             <option{{ ' selected' if carrier == user_carrier }}>{{ carrier }}</option>
           {% endfor %}
@@ -62,7 +64,7 @@
     <dl class="site-settings c">
       {% for setting in settings.items() %}
         <dt>{{ setting[0] }}</dt>
-        <dd>{{ setting[1] or '––' }}</dd>
+        <dd>{{ '—— truncated ——' if setting[0] == 'persona_site_logo' else setting[1] or '——' }}</dd>
       {% endfor %}
     </dl>
 

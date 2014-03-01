@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-27T15:59:43.630Z\n"
+"POT-Creation-Date: 2014-02-26T17:04:53.674Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -54,23 +54,6 @@ msgstr "Η έκδοση του Firefox Marketplace που χρησιμοποιε
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Ενημέρωση τώρα"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr ""
-
-#: /templates/incompatible.html:2
-msgid "Download."
-msgstr ""
-
-#: /templates/privacy.html:2 /templates/footer.html:33 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
-#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
-msgid "Privacy Policy"
-msgstr "Πολιτική απορρήτου"
-
-#: /templates/terms.html:2 /templates/footer.html:34 /templates/settings/feedback.html:27 /media/js/views/terms.js:10
-msgid "Terms of Use"
-msgstr "Όροι χρήσης"
 
 #: /templates/featured.html:7
 msgid "Featured"
@@ -125,6 +108,15 @@ msgstr ""
 "Εκτός από όπου <a href=\"{legal_url}\" target=\"_blank\">σημειώνεται</a> διαφορετικά, το περιεχόμενο αυτού του ιστότοπου υπόκειται στους όρους της άδειας <a href=\"{cc_url}\" target=\"_blank"
 "\">Creative Commons Attribution Share-Alike License v3.0</a> ή νεότερης έκδοσης."
 
+#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:189 /templates/detail/receipt.html:57 /templates/detail/privacy.html:3 /templates/settings/feedback.html:22
+#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
+msgid "Privacy Policy"
+msgstr "Πολιτική απορρήτου"
+
+#: /templates/footer.html:34 /templates/terms.html:2 /templates/settings/feedback.html:27 /media/js/views/terms.js:10
+msgid "Terms of Use"
+msgstr "Όροι χρήσης"
+
 #: /templates/footer.html:36
 msgid "Report Trademark Abuse"
 msgstr "Αναφορά κατάχρησης επωνυμίας"
@@ -157,6 +149,14 @@ msgstr "Αποσύνδεση"
 msgid "Sign In"
 msgstr "Σύνδεση"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr ""
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr ""
+
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
 msgstr "{app_name} .::. στιγμιότυπο"
@@ -174,7 +174,7 @@ msgstr "Δωρεάν"
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:64 /templates/detail/main.html:111
+#: /templates/_macros/market_tile.html:64 /templates/detail/main.html:135
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} κριτική"
@@ -217,9 +217,62 @@ msgstr "Αναφορά"
 msgid "Unavailable"
 msgstr "Μη διαθέσιμο"
 
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:118
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
 msgid "Install"
 msgstr "Εγκατάσταση"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Βαθμολογήθηκε με {stars} αστέρια από μέγιστο {maxstars}"
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "Περισσότερα"
+
+#: /templates/category/main.html:37
+msgid "Featured Apps"
+msgstr "Προβεβλημένες εφαρμογές"
+
+#: /templates/category/main.html:38 /templates/category/main.html:45 /templates/category/main.html:65
+msgid "View All"
+msgstr "Προβολή όλων"
+
+#: /templates/category/main.html:61
+msgid "Popular"
+msgstr "Δημοφιλείς"
+
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:63
+msgid "New"
+msgstr "Νέες"
+
+#: /templates/category/main.html:84
+msgid "No apps in this category"
+msgstr "Καμία εφαρμογή σε αυτή την κατηγορία"
+
+#: /templates/category/main.html:89
+msgid "The category you requested does not exist."
+msgstr "Η κατηγορία που ζητήσατε δεν υπάρχει."
+
+#: /templates/category/main.html:91 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr "Παρουσιάστηκε ένα σφάλμα διακομιστή. Παρακαλώ προσπαθήστε ξανά αργότερα."
+
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:200 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "Αναφορά κατάχρησης"
+
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "Αποστολή αναφοράς"
+
+#: /templates/detail/content_ratings.html:7
+msgid "Content Rating"
+msgstr ""
+
+#: /templates/detail/content_ratings.html:72
+msgid "Content Rating Details"
+msgstr ""
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -237,7 +290,7 @@ msgstr "Εκκίνηση της εφαρμογής από την <b> επιφά�
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Εκκίνηση της εφαρμογής από την <b>dash</b>, <b>Επιλογή εφαρμογών</b>, ή το <b>Μενού Εφαρμογών</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Φόρτωση..."
 
@@ -261,130 +314,81 @@ msgstr "Ίσως θέλετε να επικοινωνήσετε με τον πρ
 msgid "A server error occurred. Please try again later."
 msgstr "Παρουσιάστηκε σφάλμα διακομιστή. Παρακαλώ προσπαθήστε ξανά αργότερα."
 
-#: /templates/detail/main.html:65
+#: /templates/detail/main.html:66
+msgid "Updates"
+msgstr ""
+
+#: /templates/detail/main.html:72 /templates/detail/main.html:89
 msgid "Less&hellip;"
 msgstr "Λιγότερα&hellip;"
 
-#: /templates/detail/main.html:65
+#: /templates/detail/main.html:72 /templates/detail/main.html:89
 msgid "More&hellip;"
 msgstr "Περισσότερα&hellip;"
 
-#: /templates/detail/main.html:68
+#: /templates/detail/main.html:83
+msgid "Description"
+msgstr ""
+
+#: /templates/detail/main.html:92
 msgid "Version"
 msgstr "Έκδοση"
 
-#: /templates/detail/main.html:70
+#: /templates/detail/main.html:94
 msgid "Latest version: {version}"
 msgstr "Τελευταία έκδοση: {version}"
 
-#: /templates/detail/main.html:86
+#: /templates/detail/main.html:110
 msgid "Edit Listing"
 msgstr "Επεξεργασία καταχωρήσεων"
 
-#: /templates/detail/main.html:89
+#: /templates/detail/main.html:113
 msgid "Approve / Reject"
 msgstr "Έγκριση / Απόρριψη"
 
-#: /templates/detail/main.html:89
+#: /templates/detail/main.html:113
 msgid "Review History"
 msgstr "Ιστορικό κριτικών"
 
-#: /templates/detail/main.html:100 /templates/ratings/main.html:6 /media/js/views/app/ratings.js:16
+#: /templates/detail/main.html:124 /templates/ratings/main.html:6 /media/js/views/app/ratings.js:16
 msgid "Reviews"
 msgstr "Κριτικές"
 
-#: /templates/detail/main.html:119
+#: /templates/detail/main.html:143
 msgid "App not yet rated"
 msgstr "Η εφαρμογή δεν έχει αξιολογηθεί"
 
-#: /templates/detail/main.html:127
+#: /templates/detail/main.html:151
 msgid "Edit Your Review"
 msgstr "Επεξεργασία της κριτικής σας"
 
-#: /templates/detail/main.html:131 /templates/ratings/main.html:18 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
+#: /templates/detail/main.html:155 /templates/ratings/main.html:18 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
 msgid "Write a Review"
 msgstr "Γράψτε μια κριτική"
 
-#: /templates/detail/main.html:131 /templates/ratings/main.html:18
+#: /templates/detail/main.html:155 /templates/ratings/main.html:18
 msgid "Sign in to Review"
 msgstr "Συνδεθείτε για αξιολόγηση"
 
-#: /templates/detail/main.html:148 /templates/detail/receipt.html:40
+#: /templates/detail/main.html:172 /templates/detail/receipt.html:40
 msgid "Support Email"
 msgstr "Email υποστήριξης"
 
-#: /templates/detail/main.html:154 /templates/detail/receipt.html:46
+#: /templates/detail/main.html:178 /templates/detail/receipt.html:46
 msgid "Support Site"
 msgstr "Σελίδα υποστήριξης"
 
-#: /templates/detail/main.html:159 /templates/detail/receipt.html:51
+#: /templates/detail/main.html:183 /templates/detail/receipt.html:51
 msgid "Homepage"
 msgstr "Αρχική σελίδα"
 
-#: /templates/detail/main.html:171 /templates/detail/receipt.html:63
+#: /templates/detail/main.html:195 /templates/detail/receipt.html:63
 msgid "Statistics"
 msgstr "Στατιστικά"
 
-#: /templates/detail/main.html:176 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "Αναφορά κατάχρησης"
-
-#: /templates/detail/main.html:187
+#: /templates/detail/main.html:211
 msgid "Premium version available"
 msgstr "Βασική έκδοση διαθέσιμη"
-
-#: /templates/detail/main.html:204
-msgid "Content Rating"
-msgstr ""
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "Περισσότερα"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Βαθμολογήθηκε με {stars} αστέρια από μέγιστο {maxstars}"
-
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "Αποστολή αναφοράς"
-
-#: /templates/category/main.html:37
-msgid "Featured Apps"
-msgstr "Προβεβλημένες εφαρμογές"
-
-#: /templates/category/main.html:38 /templates/category/main.html:64
-msgid "View All"
-msgstr "Προβολή όλων"
-
-#: /templates/category/main.html:60
-msgid "Popular"
-msgstr "Δημοφιλείς"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:62
-msgid "New"
-msgstr "Νέες"
-
-#: /templates/category/main.html:83
-msgid "No apps in this category"
-msgstr "Καμία εφαρμογή σε αυτή την κατηγορία"
-
-#: /templates/category/main.html:88
-msgid "The category you requested does not exist."
-msgstr "Η κατηγορία που ζητήσατε δεν υπάρχει."
-
-#: /templates/category/main.html:90 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "Παρουσιάστηκε ένα σφάλμα διακομιστή. Παρακαλώ προσπαθήστε ξανά αργότερα."
-
-#: /templates/detail/privacy.html:5
-msgid "Back to app"
-msgstr "Πίσω στην εφαρμογή"
-
-#: /templates/detail/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Φόρτωση πολιτικής απορρήτου..."
 
 #: /templates/detail/receipt.html:8
 msgid "Thank you for purchasing"
@@ -394,26 +398,13 @@ msgstr "Σας ευχαριστούμε για την αγορά"
 msgid "The page you were looking for was not found."
 msgstr "Η σελίδα που ζητήσατε δε βρέθηκε."
 
-#: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
-msgid "Edit Review"
-msgstr "Επεξεργασία κριτικής"
+#: /templates/detail/privacy.html:5
+msgid "Back to app"
+msgstr "Πίσω στην εφαρμογή"
 
-#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
-msgid "Rate:"
-msgstr "Αξιολόγηση:"
-
-#: /templates/ratings/edit.html:21 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/report.html:3 /templates/ratings/report.html:23
-#: /templates/user/newsletter.html:13
-msgid "Cancel"
-msgstr "Ακύρωση"
-
-#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
-msgid "Submit"
-msgstr "Υποβολή"
-
-#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
-msgid "Only logged in users may edit reviews."
-msgstr "Μόνο συνδεδεμένοι χρήστες μπορούν να επεξεργαστούν κριτικές."
+#: /templates/detail/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Φόρτωση πολιτικής απορρήτου..."
 
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
@@ -427,6 +418,45 @@ msgstr "Σφάλμα κατά τη φόρτωση περισσότερων"
 msgid "Try Again"
 msgstr "Δοκιμάστε ξανά"
 
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> αποτέλεσμα"
+msgstr[1] "<b>{n}</b> αποτελέσματα"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Προβολή <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Δε βρέθηκαν αποτελέσματα"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Δε βρέθηκαν αποτελέσματα, προσπαθήστε ξανά αργότερα"
+
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
+msgid "Edit Review"
+msgstr "Επεξεργασία κριτικής"
+
+#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "Αξιολόγηση:"
+
+#: /templates/ratings/edit.html:21 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Υποβολή"
+
+#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "Μόνο συνδεδεμένοι χρήστες μπορούν να επεξεργαστούν κριτικές."
+
 #: /templates/ratings/main.html:36
 msgid "This app has no reviews."
 msgstr "Αυτή η εφαρμογή δεν έχει κριτικές."
@@ -438,30 +468,6 @@ msgstr "Αξιολόγηση εφαρμογής"
 #: /templates/ratings/rating.html:16
 msgid "The review you requested does not exist."
 msgstr "Η κριτική που ζητήσατε δεν υπάρχει."
-
-#: /templates/settings/main.html:2 /media/js/views/settings.js:47
-msgid "Account Settings"
-msgstr "Ρυθμίσεις λογαριασμού"
-
-#: /templates/settings/main.html:11
-msgid "Email"
-msgstr "Email"
-
-#: /templates/settings/main.html:20
-msgid "Display Name"
-msgstr "Προβολή ονόματος"
-
-#: /templates/settings/main.html:29
-msgid "Region"
-msgstr "Χώρα"
-
-#: /templates/settings/main.html:38
-msgid "Save Changes"
-msgstr "Αποθήκευση αλλαγών"
-
-#: /templates/settings/main.html:41
-msgid "Sign In / Sign Up"
-msgstr "Σύνδεση / Εγγραφή"
 
 #: /templates/ratings/report.html:2
 msgid "Please select a reason:"
@@ -487,39 +493,33 @@ msgstr "Αποστολή"
 msgid "Get Help"
 msgstr "Ζητείστε βοήθεια"
 
+#: /templates/settings/main.html:2 /media/js/views/settings.js:47
+msgid "Account Settings"
+msgstr "Ρυθμίσεις λογαριασμού"
+
+#: /templates/settings/main.html:11
+msgid "Email"
+msgstr "Email"
+
+#: /templates/settings/main.html:20
+msgid "Display Name"
+msgstr "Προβολή ονόματος"
+
+#: /templates/settings/main.html:29
+msgid "Region"
+msgstr "Χώρα"
+
+#: /templates/settings/main.html:38
+msgid "Save Changes"
+msgstr "Αποθήκευση αλλαγών"
+
+#: /templates/settings/main.html:41
+msgid "Sign In / Sign Up"
+msgstr "Σύνδεση / Εγγραφή"
+
 #: /templates/settings/nav.html:6
 msgid "Account"
 msgstr "Λογαριασμός"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> αποτέλεσμα"
-msgstr[1] "<b>{n}</b> αποτελέσματα"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Προβολή <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Δε βρέθηκαν αποτελέσματα"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Δε βρέθηκαν αποτελέσματα, προσπαθήστε ξανά αργότερα"
-
-#: /templates/user/purchases.html:49
-msgid "You must be signed in to view your apps."
-msgstr "Πρέπει να συνδεθείτε για να δείτε τις εφαρμογές σας."
-
-#: /templates/user/purchases.html:50
-msgid "Sign in / Sign up"
-msgstr "Σύνδεση / Εγγραφή"
-
-#: /templates/user/purchases.html:34
-msgid "You have no apps"
-msgstr "Δεν έχετε εφαρμογές"
 
 #: /templates/user/newsletter.html:3
 msgid "Get Firefox Marketplace news"
@@ -537,41 +537,53 @@ msgstr "Εγγραφή..."
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "Εγγραφήκατε επιτυχώς στο ενημερωτικό δελτίο του Firefox Marketplace!"
 
-#: /media/js/apps.js:76
+#: /templates/user/purchases.html:49
+msgid "You must be signed in to view your apps."
+msgstr "Πρέπει να συνδεθείτε για να δείτε τις εφαρμογές σας."
+
+#: /templates/user/purchases.html:50
+msgid "Sign in / Sign up"
+msgstr "Σύνδεση / Εγγραφή"
+
+#: /templates/user/purchases.html:34
+msgid "You have no apps"
+msgstr "Δεν έχετε εφαρμογές"
+
+#: /media/js/apps.js:79
 msgid "App install error: {error}"
 msgstr "Σφάλμα εγκατάστασης εφαρμογής: {error}"
 
-#: /media/js/apps.js:127
+#: /media/js/apps.js:130
 msgid "Your device does not support payments."
 msgstr "Η συσκευή σας δεν υποστηρίζει πληρωμές."
 
-#: /media/js/apps.js:129
+#: /media/js/apps.js:132
 msgid "This app is unavailable for purchase in your region."
 msgstr "Η εφαρμογή δεν είναι διαθέσιμη για αγορά στην περιοχή σας."
 
-#: /media/js/apps.js:133
+#: /media/js/apps.js:136
 msgid "Your browser or device is not web-app compatible."
 msgstr "Ο περιηγητής ή η συσκευή σας δεν είναι συμβατά."
 
-#: /media/js/apps.js:135
+#: /media/js/apps.js:138
 msgid "This app is unavailable for your platform."
 msgstr "Αυτή η εφαρμογή δεν είναι διαθέσιμη για το σύστημα σας."
 
-#: /media/js/buttons.js:82 /media/js/buttons.js:143 /media/js/payments/payments.js:91
+#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Η πληρωμή ακυρώθηκε."
 
 #. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:113
+#: /media/js/buttons.js:100
 msgid "Purchasing"
 msgstr "Αγορά"
 
 #. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:219
+#: /media/js/buttons.js:206
 msgid "Install failed. Please try again later."
 msgstr "Η εγκατάσταση απέτυχε. Δοκιμάστε ξανά αργότερα."
 
-#: /media/js/buttons.js:309
+#: /media/js/buttons.js:296
 msgid "Launch"
 msgstr "Εκκίνηση"
 
@@ -583,19 +595,15 @@ msgstr "Έχετε αποσυνδεθεί."
 msgid "You have been signed in"
 msgstr "Έχετε συνδεθεί."
 
-#: /media/js/login.js:127
+#: /media/js/login.js:128
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Η σύνδεση Persona απέτυχε. Μήπως δεν έχετε λογαριασμό με αυτή τη διεύθυνση email;"
 
-#: /media/js/login.js:132
+#: /media/js/login.js:133
 msgid "Persona login failed. A server error was encountered."
 msgstr "Η σύνδεση Persona απέτυχε. Παρουσιάστηκε κάποιο σφάλμα διακομιστή."
 
-#: /media/js/mobilenetwork.js:285
-msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
-msgstr "Αυτή τη στιγμή προβάλλετε περιεχόμενο για *{current_region}*. Θέλετε να μεταβείτε σε *{new_region}*;"
-
-#: /media/js/navigation.js:31
+#: /media/js/navigation.js:32
 msgid "No internet connection"
 msgstr "Χωρίς σύνδεση στο διαδίκτυο"
 
@@ -604,23 +612,23 @@ msgid "There was an error submitting your newsletter sign up request"
 msgstr "Υπήρξε κάποιο σφάλμα κατά την υποβολή της αίτησης εγγραφής σας στο ενημερωτικό δελτίο"
 
 #. The report is an abuse report for reviews
-#: /media/js/ratings.js:41
+#: /media/js/ratings.js:40
 msgid "Sending report..."
 msgstr "Αποστολή αναφοράς..."
 
-#: /media/js/ratings.js:46
+#: /media/js/ratings.js:45
 msgid "Review flagged"
 msgstr "Η κριτική επισημάνθηκε"
 
-#: /media/js/ratings.js:50
+#: /media/js/ratings.js:49
 msgid "Report review operation failed"
 msgstr "Η λειτουργία της αναφοράς κριτικής απέτυχε"
 
-#: /media/js/ratings.js:61
+#: /media/js/ratings.js:60
 msgid "Review deleted"
 msgstr "Η κριτική διαγράφηκε"
 
-#: /media/js/ratings.js:91
+#: /media/js/ratings.js:90
 msgid "There was a problem deleting the review"
 msgstr "Υπήρξε κάποιο πρόβλημα με τη διαγραφή της κριτικής"
 
@@ -632,16 +640,9 @@ msgstr "Η κριτική σας δημοσιεύθηκε"
 msgid "Error while submitting review"
 msgstr "Σφάλμα κατά την υποβολή αξιολόγησης"
 
-#. {n} is the number of characters left.
-#: /media/js/utils.js:28
-msgid "<b>{n}</b> character left."
-msgid_plural "<b>{n}</b> characters left."
-msgstr[0] "<b>{n}</b> χαρακτήρας απέμεινε."
-msgstr[1] "<b>{n}</b> χαρακτήρες απέμειναν."
-
 #: /media/js/settings.js:72
-msgid "Worldwide"
-msgstr "Παγκόσμια"
+msgid "Rest of World"
+msgstr ""
 
 #: /media/js/settings.js:73
 msgid "Argentina"
@@ -652,68 +653,83 @@ msgid "Brazil"
 msgstr "Βραζιλία"
 
 #: /media/js/settings.js:75
+msgid "Chile"
+msgstr ""
+
+#: /media/js/settings.js:76
 msgid "China"
 msgstr "Κίνα"
 
-#: /media/js/settings.js:76
+#: /media/js/settings.js:77
 msgid "Colombia"
 msgstr "Κολομβία"
 
-#: /media/js/settings.js:77
+#: /media/js/settings.js:78
 msgid "Germany"
 msgstr "Γερμανία"
 
-#: /media/js/settings.js:78
+#: /media/js/settings.js:79
 msgid "Greece"
 msgstr "Ελλάδα"
 
-#: /media/js/settings.js:79
+#: /media/js/settings.js:80
 msgid "Hungary"
 msgstr "Ουγγαρία"
 
-#: /media/js/settings.js:80
+#: /media/js/settings.js:81
+msgid "Italy"
+msgstr ""
+
+#: /media/js/settings.js:82
 msgid "Mexico"
 msgstr "Μεξικό"
 
-#: /media/js/settings.js:81
+#: /media/js/settings.js:83
 msgid "Montenegro"
 msgstr "Μοντενέγρο"
 
-#: /media/js/settings.js:82
+#: /media/js/settings.js:84
 msgid "Peru"
 msgstr "Περού"
 
-#: /media/js/settings.js:83
+#: /media/js/settings.js:85
 msgid "Poland"
 msgstr "Πολωνία"
 
-#: /media/js/settings.js:84
+#: /media/js/settings.js:86
 msgid "Serbia"
 msgstr "Σερβία"
 
-#: /media/js/settings.js:85
+#: /media/js/settings.js:87
 msgid "Spain"
 msgstr "Ισπανία"
 
-#: /media/js/settings.js:86
+#: /media/js/settings.js:88
 msgid "United Kingdom"
 msgstr "Ηνωμένο Βασίλειο"
 
-#: /media/js/settings.js:87
+#: /media/js/settings.js:89
 msgid "United States"
 msgstr "Ηνωμένες Πολιτείες"
 
-#: /media/js/settings.js:88
+#: /media/js/settings.js:90
 msgid "Uruguay"
 msgstr "Ουρουγουάη"
 
-#: /media/js/settings.js:89
+#: /media/js/settings.js:91
 msgid "Venezuela"
 msgstr "Βενεζουέλα"
 
 #: /media/js/settings.js:92
-msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr "Τμήμα Δικαιοσύνης, Αξιολόγησης, Τίτλων και Ικανοτήτων"
+msgid "No region in search"
+msgstr ""
+
+#. {n} is the number of characters left.
+#: /media/js/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] "<b>{n}</b> χαρακτήρας απέμεινε."
+msgstr[1] "<b>{n}</b> χαρακτήρες απέμειναν."
 
 #. {n} is the number of stars
 #: /media/js/common/ratingwidget.js:34
@@ -721,14 +737,6 @@ msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n} αστέρι"
 msgstr[1] "{n} αστέρια"
-
-#: /media/js/views/app.js:59
-msgid "App Details"
-msgstr "Λεπτομέρειες εφαρμογής"
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Λεπτομέρειες συλλογής"
 
 #: /media/js/payments/payments.js:94
 msgid "Payment failed. Try again later."
@@ -743,6 +751,14 @@ msgstr "Σφάλμα επικοινωνίας με τον διακομιστή. 
 msgid "Your device does not support purchases."
 msgstr "Η συσκευή σας δεν υποστηρίζει πληρωμές."
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Λεπτομέρειες εφαρμογής"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Λεπτομέρειες συλλογής"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Η αναφορά υποβλήθηκε. Ευχαριστούμε!"
@@ -756,6 +772,10 @@ msgstr "Υπήρξε κάποιο πρόβλημα κατά την υποβολ�
 msgid "Not Found"
 msgstr "Δε βρέθηκε"
 
+#: /media/js/views/search.js:210
+msgid "Search Results"
+msgstr "Αποτελέσματα αναζήτησης"
+
 #: /media/js/views/settings.js:34
 msgid "Settings saved"
 msgstr "Οι ρυθμίσεις αποθηκεύτηκαν"
@@ -763,10 +783,6 @@ msgstr "Οι ρυθμίσεις αποθηκεύτηκαν"
 #: /media/js/views/settings.js:36
 msgid "Settings could not be saved"
 msgstr "Δεν ήταν δυνατή η αποθήκευση των ρυθμίσεων"
-
-#: /media/js/views/search.js:210
-msgid "Search Results"
-msgstr "Αποτελέσματα αναζήτησης"
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"

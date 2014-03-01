@@ -1,7 +1,7 @@
 // Note that 'mobilenetwork' must be required immediately prior to 'cat-dropdown'.
 define('cat-dropdown',
-    ['underscore', 'jquery', 'keys', 'l10n', 'models', 'requests', 'templates', 'urls', 'z', 'builder'],
-    function(_, $, keys, l10n, models, requests, nunjucks, urls, z) {
+    ['builder', 'consumer_info', 'jquery', 'keys', 'l10n', 'models', 'requests', 'templates', 'underscore', 'urls', 'z'],
+    function(builder, consumer_info, $, keys, l10n, models, requests, nunjucks, _, urls, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -22,7 +22,9 @@ define('cat-dropdown',
     // TODO: Detect when the user is offline and raise an error.
 
     // Do the request out here so it happens immediately when the app loads.
-    var categoryReq = requests.get(urls.api.url('categories'));
+    var categoryReq = consumer_info.promise.then(function() {
+        return requests.get(urls.api.url('categories'));
+    });
     // Store the categories in models.
     categoryReq.done(function(data) {
         /*global console */

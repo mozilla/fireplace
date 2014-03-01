@@ -222,16 +222,30 @@ $dot-size = 13px;
     font-size: 15px;
     line-height: 16px;
     .view-all {
-        display: block;
-        float: right;
+        display: none;
+    }
+    .view-all-mbl {
+        border-bottom: 1px solid $link;
+        display: inline-block;
+        font-size: 14px;
         font-weight: 300;
-        // Bigger click area.
-        margin: -10px -6px -3px;
-        padding: 10px 6px 6px;
-        position: relative;
-        z-index: 1;
+        margin: 0 auto 10px 50%;
+        padding: 2px 25px;
+        text-align: center;
+        transform: translate(-50%, 0);
+        &:before, &:after {
+            border-left: 1px solid $link;
+            bottom: 0;
+            content: "";
+            height: 5px;
+            position: absolute;
+            width: 0;
+        }
+        &:before {
+            left: 0;
+        }
         &:after {
-            content: " \00BB";
+            right: 0;
         }
     }
 }
@@ -384,6 +398,22 @@ grid-style() {
 
     .category {
         border-radius: 10px;
+        .view-all-mbl {
+            display: none;
+        }
+        .view-all {
+            display: block;
+            float: right;
+            font-weight: 300;
+            // Bigger click area.
+            margin: -10px -6px -3px;
+            padding: 10px 6px 6px;
+            position: relative;
+            z-index: 1;
+            &:after {
+                content: " \00BB";
+            }
+        }
     }
 
     .featured {
@@ -594,7 +624,7 @@ ratings-sidebar() {
         }
     }
     .install {
-        bottom: 15px;
+        bottom: 10px;
         position: absolute;
         right: 10px;
     }

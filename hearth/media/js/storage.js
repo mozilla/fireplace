@@ -12,11 +12,11 @@ define('storage', ['settings'], function(settings) {
             try {
                 return func.apply(ls, args);
             } catch(e) {
-                return backup_func.apply(fakeStorage, args)
+                return backup_func.apply(fakeStorage, args);
             }
-        }
+        };
     }
-    
+
     return {
         clear: function() {
             try { ls.clear(); }

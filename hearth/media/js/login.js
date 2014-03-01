@@ -99,6 +99,7 @@ define('login',
 
             user.set_token(data.token, data.settings);
             user.update_permissions(data.permissions);
+            user.update_apps(data.apps);
             console.log('Login succeeded, preparing the app');
 
             z.body.addClass('logged-in');

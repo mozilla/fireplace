@@ -42,8 +42,8 @@ test('model cast/lookup/purge', function(done, fail) {
             eq_(d2.lookup(1).val, 'bar');
             eq_(d2.lookup(2).val, 'abc');
 
-            d1.purge()
-            d2.purge()
+            d1.purge();
+            d2.purge();
 
             eeq_(d1.lookup(1), undefined);
             eeq_(d2.lookup(1), undefined);

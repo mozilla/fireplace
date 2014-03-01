@@ -81,7 +81,7 @@ define('views/search',
                 } else if (value === 'popular') {
                     query.sort = 'downloads';
                 } else if (value === 'new') {
-                    query.sort = 'created';
+                    query.sort = 'reviewed';
                 } else if (value.indexOf('manifest=') === 0 ||
                            value.indexOf('manifest_url=') === 0) {
                     query.manifest_url = value.split('=')[1];
@@ -178,11 +178,11 @@ define('views/search',
         return function(data) {
             switch (query) {
                 case 'what does the fox say?':
-                    var base = function(item) {return _.extend(item, {'icons': {'64': urls.media('fireplace/img/logos/firefox-256.png')}});};
-                    data.unshift(base({name: 'Joff-tchoff-tchoffo-tchoffo-tchoff!', author: 'The Fox'}));
-                    data.unshift(base({name: 'Hatee-hatee-hatee-ho!', author: 'The Fox'}));
-                    data.unshift(base({name: 'Wa-pa-pa-pa-pa-pa-pow!', author: 'The Fox'}));
-                    data.unshift(base({name: 'Ring-ding-ding-ding-dingeringeding!', author: 'The Fox'}));
+                    var base = function(item) {return _.extend(item, {author: 'The Fox', 'previews':[], 'icons': {'64': urls.media('fireplace/img/logos/firefox-256.png')}});};
+                    data.unshift(base({name: 'Joff-tchoff-tchoffo-tchoffo-tchoff!'}));
+                    data.unshift(base({name: 'Hatee-hatee-hatee-ho!'}));
+                    data.unshift(base({name: 'Wa-pa-pa-pa-pa-pa-pow!'}));
+                    data.unshift(base({name: 'Ring-ding-ding-ding-dingeringeding!'}));
                     break;
                 case 'hampster dance':
                     data.forEach(function(v, k) {

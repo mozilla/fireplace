@@ -55,10 +55,34 @@
 </section>
 <div id="purchased-message"></div>
 
+{% defer (url=endpoint, as='app', key=slug) %}
+  {% if this.banner_regions and this.banner_message and this.banner_regions.indexOf(user_helpers.region()) != -1 %}
+    <section class="main infobox regionbanner">
+      <div> {{ this.banner_message|translate(this)|safe }} </div>
+    </section>
+  {% endif %}
+  {% if this.release_notes %}
+    <section class="main blurbs prose infobox releasenotes">
+      <div>
+        <h3>{{ _('Updates') }}</h3>
+        <div class="truncated-wrapper truncated">
+          <p class="releasenotes">
+            {{ this.release_notes|translate(this)|nl2br }}
+          </p>
+        </div>
+        <a href="#" class="show-toggle" data-toggle-text="{{ _('Less&hellip;') }}">{{ _('More&hellip;') }}</a>
+      </div>
+    </section>
+  {% endif %}
+{# No placeholder, the block below already supplies one #}
+{% except %}
+{% end %}
+
 <section class="main blurbs prose infobox">
   <div>
     {% defer (url=endpoint, as='app', key=slug) %}
-      <div class="description-wrapper truncated">
+      <h3>{{ _('Description') }}</h3>
+      <div class="truncated-wrapper description-wrapper truncated">
         <p class="description" itemprop="description">
           {{ this.description|translate(this)|nl2br }}
         </p>
@@ -80,7 +104,7 @@
 </section>
 
 {% defer (url=endpoint, as='app', key=slug) %}
-  {% if this.user.developed or user.get_permission('reviewer') %}
+  {% if user.has_developed(this.id) or user.get_permission('reviewer') %}
     <section class="main actions infobox">
       <div>
         <p class="split"><a href="/developers/app/{{ slug }}/edit" class="button manage" rel="external">
@@ -166,9 +190,9 @@
           {{ _('Privacy Policy') }}</a>
         </li>
       {% endif %}
-      {% if this.public_stats %}
+      {% if this.public_stats or user.has_developed(this.id) %}
         <li class="statistics" data-tracking="Statistics">
-          <a class="button alt view-stats" rel="external" href="{{ url('app', [slug]) }}/statistics">
+          <a class="button alt view-stats" rel="external" href="/statistics/app/{{ slug }}">
           {{ _('Statistics') }}</a>
         </li>
       {% endif %}
@@ -183,7 +207,7 @@
   <section class="main upsell-wrapper c">
     <div>
       <a class="upsell" href="{{ url('app', [this.upsell.app_slug])|urlparams(src='mkt-detail-upsell') }}">
-        <img class="icon" src="{{ upsell.icon_url }}">
+        <img class="icon" src="{{ this.upsell.icon_url }}">
         <div>
           <span class="avail">{{ _('Premium version available') }}</span>
           <span class="name">{{ this.upsell.name }}</span>
@@ -196,48 +220,6 @@
 {% except %}
 {% end %}
 
-{% defer (url=endpoint, as='app', key=slug, pluck='content_ratings') %}
-  {% set content_rating = this.ratings[user.get_setting('region')] or
-                          this.ratings['generic'] %}
-  {% if content_rating %}
-    <div class="content-ratings-wrapper main infobox c">
-      <div>
-        <h3>{{ _('Content Rating') }}</h3>
-        <div class="content-ratings">
-          <div class="content-rating c">
-            {# content_rating.body (e.g. CLASSIND, GENERIC, ESRB, PEGI, USK #}
-            {# content_rating.name (e.g. 0+, 3+, 7+, 13+, 18+) #}
-            <div class="icon icon-body-{{ content_rating.body_label }} icon-age-{{ content_rating.rating_label }}"
-                 title="{{ content_rating.rating }}">
-              <span class="icon-content hidden">
-                {# Purely used to build the CLASSIND icon. rating_label will
-                   be the age (as a number) followed by a plus-sign
-                   (e.g. "18+"). Should not be localized. #}
-                {{ content_rating.rating_label }}&plus;
-              </span>
-            </div>
-            <p class="description">{{ content_rating.rating }}</p>
-          </div>
-        </div>
-        {% if content_rating.body_label == 'pegi' and this.descriptors %}
-          <div class="content-descriptors">
-            {% for descriptor in this.descriptors %}
-              {% if descriptor.ratings_body == 'pegi' %}
-                <img class="icon {{ descriptor.label }}" title="{{ descriptor.name }}">
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% elif this.interactive_elements %}
-          <div class="interactive-elements">
-            {% for interactive in this.interactive_elements %}
-              <img class="icon {{ interactive.label }}" title="{{ interactive.name }}">
-            {% endfor %}
-          </div>
-        {% endif %}
-      </div>
-    </div>
-  {% endif %}
-{% except %}
-{% end %}
+{% include "detail/content_ratings.html" %}
 
 </div>

@@ -17,7 +17,7 @@ var basic_context = new MockNavigator(
      formatted: {body: 'zip {zap}'},
      sing: {plurals: ['zero {n}', 'one {n}']},
      sing2: {plurals: ['zero {n} {asdf}', 'one {n} {asdf}']}},
-    function(n) {return !!(n - 1);}
+    function(n) {return n - 1 !== 0;}
 );
 
 test('l10n.gettext', function(done) {

@@ -8,8 +8,8 @@
     <a href="https://support.mozilla.org/products/firefox-os/marketplace" target="_blank">{{ _('Support') }}</a>
   </div>
   <div class="language group links">
-    <a href="{{ url('settings') }}" class="region region-{{ user.get_setting('region', 'worldwide') }}">
-      {{ REGIONS[user.get_setting('region', 'worldwide')] }}</a>
+    <a href="{{ url('settings') }}" class="region region-{{ user_helpers.region('restofworld') }}">
+      {{ REGIONS[user_helpers.region('restofworld')] }}</a>
     <a href="{{ url('purchases') }}">{{ _('My Apps') }}</a>
     {% if user.get_permission('developer') %}
       <a href="/developers/submissions" rel="external">{{ _('My Submissions') }}</a>

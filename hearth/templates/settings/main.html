@@ -30,13 +30,13 @@
         <label>{{ _('Region') }}</label>
       </div>
       <div class="form-col">
-        <span class="region region-{{ user.get_setting('region', 'worldwide') }}">
-          {{ REGIONS[user.get_setting('region', 'worldwide')] }}</span>
+        <span class="region region-{{ user_helpers.region('restofworld') }}">
+          {{ REGIONS[user_helpers.region('restofworld')] }}</span>
       </div>
     </div>
 
     <footer>
-      <p class="only-logged-in"><button type="submit" class="button">{{ _('Save Changes') }}</button></p>
+      <p class="only-logged-in inline"><button type="submit" class="button">{{ _('Save Changes') }}</button></p>
       <p class="extras">
         <a href="#" class="button alt logout only-logged-in">{{ _('Sign Out') }}</a>
         <a href="#" class="button alt persona only-logged-out">{{ _('Sign In / Sign Up') }}</a>

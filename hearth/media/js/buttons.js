@@ -1,7 +1,7 @@
 define('buttons',
     ['apps', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'login',
-     'models', 'navigation', 'notification', 'payments/payments', 'requests',
-     'settings', 'tracking', 'urls', 'user', 'utils', 'views', 'z'],
+     'models', 'notification', 'payments/payments', 'requests', 'settings',
+     'tracking', 'tracking_helpers', 'urls', 'user', 'utils', 'views', 'z'],
     function() {
 
     var apps = require('apps');
@@ -46,19 +46,6 @@ define('buttons',
         );
     });
 
-    function track_search_term() {
-        var nav_stack = require('navigation').stack();
-        for (var i = 0, item; item = nav_stack[i++];) {
-            if (!item.params || !item.params.search_query) {
-                continue;
-            }
-            console.log('Found search in nav stack, tracking search term:', item.params.search_query);
-            tracking.setVar(13, 'Search query', item.params.search_query);
-            return;
-        }
-        console.log('No associated search term to track.');
-    }
-
     function install(product, $button) {
         var product_name = product.name;
         console.log('Install requested for', product_name);
@@ -101,7 +88,7 @@ define('buttons',
 
         // If the user has already purchased the app, we do need to generate
         // another receipt but we don't need to go through the purchase flow again.
-        if (product.user.purchased) {
+        if (user.has_purchased(product.id)) {
             product.payment_required = false;
         }
 
@@ -119,7 +106,7 @@ define('buttons',
                 $this.data('old-text', $this.html());  // Save the old text of the button.
 
                 // Update the cache to show that the app was purchased.
-                product.user.purchased = true;
+                user.update_purchased(product.id);
 
                 // Bust the cache for the My Apps page.
                 cache.bust(urls.api.url('installed'));
@@ -157,7 +144,7 @@ define('buttons',
         function start_install() {
 
             // Track the search term used to find this app, if applicable.
-            track_search_term();
+            require('tracking_helpers').track_search_term();
 
             // Track that an install was started.
             tracking.trackEvent(
@@ -181,7 +168,7 @@ define('buttons',
 
             // If the app has already been installed by the user and we don't
             // need a receipt, just start the app install.
-            if (product.user.installed && !product.receipt_required) {
+            if (user.has_installed(product.id) && !product.receipt_required) {
                 console.log('Receipt not required (skipping record step) for', product_name);
                 return do_install();
             }
@@ -228,7 +215,7 @@ define('buttons',
         function do_install(data) {
             return apps.install(product, data || {}).done(function(installer) {
                 // Update the cache to show that the user installed the app.
-                product.user.installed = true;
+                user.update_install(product.id);
                 // Bust the cache for the My Apps page.
                 cache.bust(urls.api.url('installed'));
 
@@ -309,8 +296,36 @@ define('buttons',
         setButton($button, gettext('Launch'), 'launch install');
     }
 
+    function revertUninstalled() {
+        /* If an app was uninstalled, revert state of install buttons from
+           "Launch" to "Install". */
+
+        // Get installed apps to know which apps may have been uninstalled.
+        var r = navigator.mozApps.getInstalled();
+        r.onsuccess = function() {
+            // Build an array of manifests that match the button's data-manifest.
+            var installed = [];
+            _.each(r.result, function(val) {
+                installed.push(require('utils').baseurl(val.manifestURL));
+            });
+
+            $('.button.product').each(function(i, button) {
+                var $button = $(button);
+                // For each install button, check if its respective app is installed.
+                if (installed.indexOf($button.data('manifest_url')) === -1) {
+                    // If it is no longer installed, revert button.
+                    if ($button.hasClass('launch')) {
+                        revertButton($button, gettext('Install'));
+                    }
+                    $button.removeClass('launch');
+                }
+            });
+        };
+    }
+
     return {
         buttonInstalled: buttonInstalled,
-        install: install
+        install: install,
+        revertUninstalled: revertUninstalled,
     };
 });

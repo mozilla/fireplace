@@ -20,6 +20,7 @@ define('webactivities', ['capabilities', 'log', 'urls', 'utils', 'z'], function(
         console.log('Handled "' + name + '" activity: ' + JSON.stringify(data));
 
         var src = data.src && utils.slugify(data.src) || 'activity-' + name;
+        var url;
 
         switch (name) {
             case 'marketplace-app':
@@ -27,7 +28,7 @@ define('webactivities', ['capabilities', 'log', 'urls', 'utils', 'z'], function(
                 var slug = data.slug;
                 var manifest_url = data.manifest_url || data.manifest;
                 if (slug) {
-                    var url = urls.reverse('app', [slug]);
+                    url = urls.reverse('app', [slug]);
                     z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
                 } else if (manifest_url) {
                     z.page.trigger('search', {q: ':manifest=' + manifest_url, src: src});
@@ -35,12 +36,12 @@ define('webactivities', ['capabilities', 'log', 'urls', 'utils', 'z'], function(
                 break;
             case 'marketplace-app-rating':
                 // Load up the page to leave a rating for the app.
-                var url = urls.reverse('app/ratings/add', [data.slug]);
+                url = urls.reverse('app/ratings/add', [data.slug]);
                 z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
                 break;
             case 'marketplace-category':
                 // Load up a category page.
-                var url = urls.reverse('category', [data.slug]);
+                url = urls.reverse('category', [data.slug]);
                 z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
                 break;
             case 'marketplace-search':

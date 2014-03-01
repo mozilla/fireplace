@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-27T15:59:43.630Z\n"
-"PO-Revision-Date: 2013-11-27 12:12-0500\n"
+"POT-Creation-Date: 2014-02-26T17:04:53.674Z\n"
+"PO-Revision-Date: 2014-01-15 12:56-0500\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -55,23 +55,6 @@ msgstr "お使いの Firefox Marketplace のバージョンは古く、対応が
 msgid "Update Now"
 msgstr "今すぐ更新"
 
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Firefox アプリをインストールするには Firefox を使ってください。"
-
-#: /templates/incompatible.html:2
-msgid "Download."
-msgstr "ダウンロード"
-
-#: /templates/privacy.html:2 /templates/footer.html:33 /templates/detail/main.html:165 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
-#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
-msgid "Privacy Policy"
-msgstr "プライバシーポリシー"
-
-#: /templates/terms.html:2 /templates/footer.html:34 /templates/settings/feedback.html:27 /media/js/views/terms.js:10
-msgid "Terms of Use"
-msgstr "利用規約"
-
 #: /templates/featured.html:7
 msgid "Featured"
 msgstr "おすすめ"
@@ -122,12 +105,21 @@ msgid ""
 "Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
 "Alike License v3.0</a> or any later version."
 msgstr ""
-"<a href=\"{legal_url}\" target=\"_blank\">特段の記載</a> がない限り、当サイト上のコンテンツは <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike License v3.0</a> または"
-"それ以降のバージョンで公開されています。"
+"特に <a href=\"%(legal_url)s\" target=\"_blank\">記載</a> のない限り、当サイト上のコンテンツは <a href=\"%(cc_url)s\">Creative Commons 表示-継承ライセンス v3.0</a> もしくはそれ以降のバージョンのライ"
+"センスで公開されています。"
+
+#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:189 /templates/detail/receipt.html:57 /templates/detail/privacy.html:3 /templates/settings/feedback.html:22
+#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
+msgid "Privacy Policy"
+msgstr "プライバシーポリシー"
+
+#: /templates/footer.html:34 /templates/terms.html:2 /templates/settings/feedback.html:27 /media/js/views/terms.js:10
+msgid "Terms of Use"
+msgstr "利用規約"
 
 #: /templates/footer.html:36
 msgid "Report Trademark Abuse"
-msgstr "商標不正使用の報告"
+msgstr "商標不正使用報告"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -157,6 +149,14 @@ msgstr "ログアウト"
 msgid "Sign In"
 msgstr "ログイン"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Firefox アプリをインストールするには Firefox を使ってください。"
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr "ダウンロード"
+
 #: /templates/_macros/market_tile.html:9
 msgid "{app_name} .::. screenshot"
 msgstr "{app_name} .::. スクリーンショット"
@@ -174,7 +174,7 @@ msgstr "無料"
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:64 /templates/detail/main.html:111
+#: /templates/_macros/market_tile.html:64 /templates/detail/main.html:135
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} 件のレビュー"
@@ -217,9 +217,62 @@ msgstr "報告"
 msgid "Unavailable"
 msgstr "購入不可"
 
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:118
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
 msgid "Install"
 msgstr "インストール"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "評価: {maxstars} つ星のうち {stars}"
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "もっと見る"
+
+#: /templates/category/main.html:37
+msgid "Featured Apps"
+msgstr "おすすめのアプリ"
+
+#: /templates/category/main.html:38 /templates/category/main.html:45 /templates/category/main.html:65
+msgid "View All"
+msgstr "すべて見る"
+
+#: /templates/category/main.html:61
+msgid "Popular"
+msgstr "人気"
+
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:63
+msgid "New"
+msgstr "新着"
+
+#: /templates/category/main.html:84
+msgid "No apps in this category"
+msgstr "このカテゴリのアプリはありません"
+
+#: /templates/category/main.html:89
+msgid "The category you requested does not exist."
+msgstr "リクエストされたカテゴリは存在しません。"
+
+#: /templates/category/main.html:91 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr "内部サーバエラーが発生しました。また後で試してください。"
+
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:200 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "不正報告"
+
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "報告を送信"
+
+#: /templates/detail/content_ratings.html:7
+msgid "Content Rating"
+msgstr "コンテンツレーティング"
+
+#: /templates/detail/content_ratings.html:72
+msgid "Content Rating Details"
+msgstr "コンテンツレーティングの詳細"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -237,7 +290,7 @@ msgstr "このアプリは Windows の <b>デスクトップ</b> か <b>スタ�
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "このアプリは、<b>ダッシュ</b>、<b>アプリケーションピッカー</b> もしくは <b>アプリケーションメニュー</b> から起動できます。"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:58 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "読み込み中..."
 
@@ -261,130 +314,81 @@ msgstr "このアプリをあなたがお住まいの地域でも使いたい場
 msgid "A server error occurred. Please try again later."
 msgstr "サーバエラーが発生しました。また後で試してください。"
 
-#: /templates/detail/main.html:65
+#: /templates/detail/main.html:66
+msgid "Updates"
+msgstr "更新"
+
+#: /templates/detail/main.html:72 /templates/detail/main.html:89
 msgid "Less&hellip;"
 msgstr "折りたたむ..."
 
-#: /templates/detail/main.html:65
+#: /templates/detail/main.html:72 /templates/detail/main.html:89
 msgid "More&hellip;"
 msgstr "もっと見る..."
 
-#: /templates/detail/main.html:68
+#: /templates/detail/main.html:83
+msgid "Description"
+msgstr "説明"
+
+#: /templates/detail/main.html:92
 msgid "Version"
 msgstr "バージョン"
 
-#: /templates/detail/main.html:70
+#: /templates/detail/main.html:94
 msgid "Latest version: {version}"
 msgstr "最新バージョン: {version}"
 
-#: /templates/detail/main.html:86
+#: /templates/detail/main.html:110
 msgid "Edit Listing"
 msgstr "公開ページを編集"
 
-#: /templates/detail/main.html:89
+#: /templates/detail/main.html:113
 msgid "Approve / Reject"
 msgstr "承認 / 却下"
 
-#: /templates/detail/main.html:89
+#: /templates/detail/main.html:113
 msgid "Review History"
 msgstr "レビュー履歴"
 
-#: /templates/detail/main.html:100 /templates/ratings/main.html:6 /media/js/views/app/ratings.js:16
+#: /templates/detail/main.html:124 /templates/ratings/main.html:6 /media/js/views/app/ratings.js:16
 msgid "Reviews"
 msgstr "レビュー"
 
-#: /templates/detail/main.html:119
+#: /templates/detail/main.html:143
 msgid "App not yet rated"
 msgstr "アプリはまだ評価されていません"
 
-#: /templates/detail/main.html:127
+#: /templates/detail/main.html:151
 msgid "Edit Your Review"
 msgstr "自分のレビューを編集"
 
-#: /templates/detail/main.html:131 /templates/ratings/main.html:18 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
+#: /templates/detail/main.html:155 /templates/ratings/main.html:18 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
 msgid "Write a Review"
 msgstr "レビューを書く"
 
-#: /templates/detail/main.html:131 /templates/ratings/main.html:18
+#: /templates/detail/main.html:155 /templates/ratings/main.html:18
 msgid "Sign in to Review"
 msgstr "レビューするにはログインしてください"
 
-#: /templates/detail/main.html:148 /templates/detail/receipt.html:40
+#: /templates/detail/main.html:172 /templates/detail/receipt.html:40
 msgid "Support Email"
 msgstr "メールでの問い合わせ"
 
-#: /templates/detail/main.html:154 /templates/detail/receipt.html:46
+#: /templates/detail/main.html:178 /templates/detail/receipt.html:46
 msgid "Support Site"
 msgstr "サポートサイト"
 
-#: /templates/detail/main.html:159 /templates/detail/receipt.html:51
+#: /templates/detail/main.html:183 /templates/detail/receipt.html:51
 msgid "Homepage"
 msgstr "ホームページ"
 
-#: /templates/detail/main.html:171 /templates/detail/receipt.html:63
+#: /templates/detail/main.html:195 /templates/detail/receipt.html:63
 msgid "Statistics"
 msgstr "統計"
 
-#: /templates/detail/main.html:176 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "不正報告"
-
-#: /templates/detail/main.html:187
+#: /templates/detail/main.html:211
 msgid "Premium version available"
-msgstr "プレミアム版があります"
-
-#: /templates/detail/main.html:204
-msgid "Content Rating"
-msgstr "コンテンツ評価"
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "もっと見る"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "評価: {maxstars} つ星のうち {stars}"
-
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "報告を送信"
-
-#: /templates/category/main.html:37
-msgid "Featured Apps"
-msgstr "おすすめのアプリ"
-
-#: /templates/category/main.html:38 /templates/category/main.html:64
-msgid "View All"
-msgstr "すべて見る"
-
-#: /templates/category/main.html:60
-msgid "Popular"
-msgstr "人気"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:62
-msgid "New"
-msgstr "新着"
-
-#: /templates/category/main.html:83
-msgid "No apps in this category"
-msgstr "このカテゴリのアプリはありません"
-
-#: /templates/category/main.html:88
-msgid "The category you requested does not exist."
-msgstr "リクエストされたカテゴリは存在しません。"
-
-#: /templates/category/main.html:90 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "内部サーバエラーが発生しました。また後で試してください。"
-
-#: /templates/detail/privacy.html:5
-msgid "Back to app"
-msgstr "アプリへ戻る"
-
-#: /templates/detail/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "プライバシーポリシーを読み込んでいます..."
+msgstr "有料版があります"
 
 #: /templates/detail/receipt.html:8
 msgid "Thank you for purchasing"
@@ -394,26 +398,13 @@ msgstr "お買い上げありがとうございます"
 msgid "The page you were looking for was not found."
 msgstr "お探しのページは見つかりませんでした。"
 
-#: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
-msgid "Edit Review"
-msgstr "レビューを編集"
+#: /templates/detail/privacy.html:5
+msgid "Back to app"
+msgstr "アプリへ戻る"
 
-#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
-msgid "Rate:"
-msgstr "評価:"
-
-#: /templates/ratings/edit.html:21 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/report.html:3 /templates/ratings/report.html:23
-#: /templates/user/newsletter.html:13
-msgid "Cancel"
-msgstr "キャンセル"
-
-#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
-msgid "Submit"
-msgstr "送信"
-
-#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
-msgid "Only logged in users may edit reviews."
-msgstr "レビューを編集できるのはログイン済みユーザだけです。"
+#: /templates/detail/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "プライバシーポリシーを読み込んでいます..."
 
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
@@ -427,6 +418,45 @@ msgstr "読み込み中に問題が発生しました"
 msgid "Try Again"
 msgstr "再読み込み"
 
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> 件の結果"
+msgstr[1] "<b>{n}</b> 件の結果"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "<b>1</b> 件から <b class=\"total-results\">{total}</b> 件までを表示しています"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "該当するアプリはありません"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "該当するアプリはありません。また後日見てください"
+
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
+msgid "Edit Review"
+msgstr "レビューを編集"
+
+#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "評価:"
+
+#: /templates/ratings/edit.html:21 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "送信"
+
+#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "レビューを編集できるのはログイン済みユーザだけです。"
+
 #: /templates/ratings/main.html:36
 msgid "This app has no reviews."
 msgstr "このアプリのレビューはまだ書かれていません。"
@@ -438,30 +468,6 @@ msgstr "アプリのレビュー"
 #: /templates/ratings/rating.html:16
 msgid "The review you requested does not exist."
 msgstr "リクエストされたレビューは存在しません。"
-
-#: /templates/settings/main.html:2 /media/js/views/settings.js:47
-msgid "Account Settings"
-msgstr "アカウント設定"
-
-#: /templates/settings/main.html:11
-msgid "Email"
-msgstr "メール"
-
-#: /templates/settings/main.html:20
-msgid "Display Name"
-msgstr "表示名"
-
-#: /templates/settings/main.html:29
-msgid "Region"
-msgstr "地域"
-
-#: /templates/settings/main.html:38
-msgid "Save Changes"
-msgstr "変更を保存"
-
-#: /templates/settings/main.html:41
-msgid "Sign In / Sign Up"
-msgstr "ログイン / ユーザ登録"
 
 #: /templates/ratings/report.html:2
 msgid "Please select a reason:"
@@ -487,39 +493,33 @@ msgstr "送信"
 msgid "Get Help"
 msgstr "サポート"
 
+#: /templates/settings/main.html:2 /media/js/views/settings.js:47
+msgid "Account Settings"
+msgstr "アカウント設定"
+
+#: /templates/settings/main.html:11
+msgid "Email"
+msgstr "メール"
+
+#: /templates/settings/main.html:20
+msgid "Display Name"
+msgstr "表示名"
+
+#: /templates/settings/main.html:29
+msgid "Region"
+msgstr "地域"
+
+#: /templates/settings/main.html:38
+msgid "Save Changes"
+msgstr "変更を保存"
+
+#: /templates/settings/main.html:41
+msgid "Sign In / Sign Up"
+msgstr "ログイン / ユーザ登録"
+
 #: /templates/settings/nav.html:6
 msgid "Account"
 msgstr "アカウント"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> 件の結果"
-msgstr[1] "<b>{n}</b> 件の結果"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "<b>1</b> 件から <b class=\"total-results\">{total}</b> 件までを表示しています"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "該当するアプリはありません"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "該当するアプリはありません。また後日見てください"
-
-#: /templates/user/purchases.html:49
-msgid "You must be signed in to view your apps."
-msgstr "自分のアプリを見るにはログインしてください。"
-
-#: /templates/user/purchases.html:50
-msgid "Sign in / Sign up"
-msgstr "ログイン / ユーザ登録"
-
-#: /templates/user/purchases.html:34
-msgid "You have no apps"
-msgstr "まだインストールしたアプリはありません"
 
 #: /templates/user/newsletter.html:3
 msgid "Get Firefox Marketplace news"
@@ -537,41 +537,53 @@ msgstr "購読を申し込んでいます..."
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "Marketplace ニュースレターの購読申し込みが完了しました。"
 
-#: /media/js/apps.js:76
+#: /templates/user/purchases.html:49
+msgid "You must be signed in to view your apps."
+msgstr "自分のアプリを見るにはログインしてください。"
+
+#: /templates/user/purchases.html:50
+msgid "Sign in / Sign up"
+msgstr "ログイン / ユーザ登録"
+
+#: /templates/user/purchases.html:34
+msgid "You have no apps"
+msgstr "まだインストールしたアプリはありません"
+
+#: /media/js/apps.js:79
 msgid "App install error: {error}"
 msgstr "アプリのインストールエラー: {error}"
 
-#: /media/js/apps.js:127
+#: /media/js/apps.js:130
 msgid "Your device does not support payments."
 msgstr "あなたの端末はアプリの購入に対応していません。"
 
-#: /media/js/apps.js:129
+#: /media/js/apps.js:132
 msgid "This app is unavailable for purchase in your region."
 msgstr "このアプリはあなたがお住まいの地域では購入できません。"
 
-#: /media/js/apps.js:133
+#: /media/js/apps.js:136
 msgid "Your browser or device is not web-app compatible."
 msgstr "あなたのブラウザもしくは端末はアプリに対応していません。"
 
-#: /media/js/apps.js:135
+#: /media/js/apps.js:138
 msgid "This app is unavailable for your platform."
 msgstr "このアプリはお使いの OS には対応していません。"
 
-#: /media/js/buttons.js:82 /media/js/buttons.js:143 /media/js/payments/payments.js:91
+#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "支払いがキャンセルされました"
 
 #. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:113
+#: /media/js/buttons.js:100
 msgid "Purchasing"
 msgstr "購入中"
 
 #. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:219
+#: /media/js/buttons.js:206
 msgid "Install failed. Please try again later."
 msgstr "インストールに失敗しました。また後で試してください。"
 
-#: /media/js/buttons.js:309
+#: /media/js/buttons.js:296
 msgid "Launch"
 msgstr "起動"
 
@@ -583,19 +595,15 @@ msgstr "ログアウトしました"
 msgid "You have been signed in"
 msgstr "ログインしました"
 
-#: /media/js/login.js:127
+#: /media/js/login.js:128
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona のログインに失敗しました。入力されたメールアドレスのアカウントは存在しない可能性があります。"
 
-#: /media/js/login.js:132
+#: /media/js/login.js:133
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona のログインに失敗しました。サーバエラーが発生しました。"
 
-#: /media/js/mobilenetwork.js:285
-msgid "You are currently browsing content for *{current_region}*. Would you like to switch to *{new_region}*?"
-msgstr "{current_region} 向けのコンテンツを表示しています。{new_region} 向けに切り替えますか？"
-
-#: /media/js/navigation.js:31
+#: /media/js/navigation.js:32
 msgid "No internet connection"
 msgstr "インターネット未接続"
 
@@ -604,23 +612,23 @@ msgid "There was an error submitting your newsletter sign up request"
 msgstr "ニュースレターの購読申し込み中に問題が発生しました"
 
 #. The report is an abuse report for reviews
-#: /media/js/ratings.js:41
+#: /media/js/ratings.js:40
 msgid "Sending report..."
 msgstr "レポートを送信中..."
 
-#: /media/js/ratings.js:46
+#: /media/js/ratings.js:45
 msgid "Review flagged"
 msgstr "レビューが報告されました"
 
-#: /media/js/ratings.js:50
+#: /media/js/ratings.js:49
 msgid "Report review operation failed"
 msgstr "レビューの報告中に問題が発生しました"
 
-#: /media/js/ratings.js:61
+#: /media/js/ratings.js:60
 msgid "Review deleted"
 msgstr "レビューは削除されました"
 
-#: /media/js/ratings.js:91
+#: /media/js/ratings.js:90
 msgid "There was a problem deleting the review"
 msgstr "レビューの編集中に問題が発生しました"
 
@@ -632,16 +640,9 @@ msgstr "レビューが投稿されました"
 msgid "Error while submitting review"
 msgstr "レビューの投稿中に問題が発生しました"
 
-#. {n} is the number of characters left.
-#: /media/js/utils.js:28
-msgid "<b>{n}</b> character left."
-msgid_plural "<b>{n}</b> characters left."
-msgstr[0] "残り <b>{n}</b> 文字"
-msgstr[1] "残り <b>{n}</b> 文字"
-
 #: /media/js/settings.js:72
-msgid "Worldwide"
-msgstr "全世界"
+msgid "Rest of World"
+msgstr "その他の地域"
 
 #: /media/js/settings.js:73
 msgid "Argentina"
@@ -652,68 +653,83 @@ msgid "Brazil"
 msgstr "ブラジル"
 
 #: /media/js/settings.js:75
+msgid "Chile"
+msgstr "チリ"
+
+#: /media/js/settings.js:76
 msgid "China"
 msgstr "中国"
 
-#: /media/js/settings.js:76
+#: /media/js/settings.js:77
 msgid "Colombia"
 msgstr "コロンビア"
 
-#: /media/js/settings.js:77
+#: /media/js/settings.js:78
 msgid "Germany"
 msgstr "ドイツ"
 
-#: /media/js/settings.js:78
+#: /media/js/settings.js:79
 msgid "Greece"
 msgstr "ギリシャ"
 
-#: /media/js/settings.js:79
+#: /media/js/settings.js:80
 msgid "Hungary"
 msgstr "ハンガリー"
 
-#: /media/js/settings.js:80
+#: /media/js/settings.js:81
+msgid "Italy"
+msgstr "イタリア"
+
+#: /media/js/settings.js:82
 msgid "Mexico"
 msgstr "メキシコ"
 
-#: /media/js/settings.js:81
+#: /media/js/settings.js:83
 msgid "Montenegro"
 msgstr "モンテネグロ"
 
-#: /media/js/settings.js:82
+#: /media/js/settings.js:84
 msgid "Peru"
 msgstr "ペルー"
 
-#: /media/js/settings.js:83
+#: /media/js/settings.js:85
 msgid "Poland"
 msgstr "ポーランド"
 
-#: /media/js/settings.js:84
+#: /media/js/settings.js:86
 msgid "Serbia"
 msgstr "セルビア"
 
-#: /media/js/settings.js:85
+#: /media/js/settings.js:87
 msgid "Spain"
 msgstr "スペイン"
 
-#: /media/js/settings.js:86
+#: /media/js/settings.js:88
 msgid "United Kingdom"
 msgstr "イギリス"
 
-#: /media/js/settings.js:87
+#: /media/js/settings.js:89
 msgid "United States"
 msgstr "アメリカ"
 
-#: /media/js/settings.js:88
+#: /media/js/settings.js:90
 msgid "Uruguay"
 msgstr "ウルグアイ"
 
-#: /media/js/settings.js:89
+#: /media/js/settings.js:91
 msgid "Venezuela"
 msgstr "ベネズエラ"
 
 #: /media/js/settings.js:92
-msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr "Department of Justice, Rating, Titles and Qualification"
+msgid "No region in search"
+msgstr "検索対象地域が指定されていません"
+
+#. {n} is the number of characters left.
+#: /media/js/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] "残り <b>{n}</b> 文字"
+msgstr[1] "残り <b>{n}</b> 文字"
 
 #. {n} is the number of stars
 #: /media/js/common/ratingwidget.js:34
@@ -721,14 +737,6 @@ msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "星 {n} つ"
 msgstr[1] "星 {n} つ"
-
-#: /media/js/views/app.js:59
-msgid "App Details"
-msgstr "アプリの詳細"
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "コレクションの詳細"
 
 #: /media/js/payments/payments.js:94
 msgid "Payment failed. Try again later."
@@ -743,6 +751,14 @@ msgstr "サーバとの通信中にエラーが発生しました。また後で
 msgid "Your device does not support purchases."
 msgstr "あなたの端末は購入に対応していません。"
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "アプリの詳細"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "コレクションの詳細"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "フィードバックが送信されました。ありがとうございます。"
@@ -756,6 +772,10 @@ msgstr "フィードバックの送信中に問題が発生しました。また
 msgid "Not Found"
 msgstr "Not Found"
 
+#: /media/js/views/search.js:210
+msgid "Search Results"
+msgstr "検索結果"
+
 #: /media/js/views/settings.js:34
 msgid "Settings saved"
 msgstr "設定が保存されました"
@@ -763,10 +783,6 @@ msgstr "設定が保存されました"
 #: /media/js/views/settings.js:36
 msgid "Settings could not be saved"
 msgstr "設定を保存できませんでした"
-
-#: /media/js/views/search.js:210
-msgid "Search Results"
-msgstr "検索結果"
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"

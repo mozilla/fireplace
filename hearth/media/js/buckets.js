@@ -1,11 +1,12 @@
 define('buckets', [], function() {
 
+    function noop() {return '';}
+
     var aelem = document.createElement('audio');
     var velem = document.createElement('video');
 
     // Compatibilty with PhantomJS, which doesn't implement canPlayType
     if (!('canPlayType' in aelem)) {
-        function noop() {return '';};
         velem = aelem = {canPlayType: noop};
     }
 
@@ -30,7 +31,7 @@ define('buckets', [], function() {
                 if ((e + property) in context) {
                     return context[e + property];
                 }
-            } catch(e) {
+            } catch(err) {
                 return false;
             }
         }
@@ -45,21 +46,22 @@ define('buckets', [], function() {
         } catch(e) {}
     }
 
-    var has_audiocontext = !!(window.webkitAudioContext || window.AudioContext);
+    var audiocontext = window.webkitAudioContext || window.AudioContext;
+    var has_audiocontext = !!(audiocontext);
 
     var capabilities = [
         'mozApps' in navigator,
         'mozApps' in navigator && navigator.mozApps.installPackage,
         'mozPay' in navigator,
         // FF 18 and earlier throw an exception on this key
-        (function() {try{return !!window.MozActivity} catch(e) {return false;}})(),
+        (function() {try{return !!window.MozActivity;} catch(e) {return false;}})(),
         'ondevicelight' in window,
         'ArchiveReader' in window,
         'battery' in navigator,
         'mozBluetooth' in navigator,
         'mozContacts' in navigator,
         'getDeviceStorage' in navigator,
-        (function() { try{return window.mozIndexedDB || window.indexedDB} catch(e) {return false}})(),
+        (function() { try{return window.mozIndexedDB || window.indexedDB;} catch(e) {return false;}})(),
         'geolocation' in navigator && 'getCurrentPosition' in navigator.geolocation,
         'addIdleObserver' in navigator && 'removeIdleObserver' in navigator,
         'mozConnection' in navigator && (navigator.mozConnection.metered === true || navigator.mozConnection.metered === false),
@@ -84,7 +86,7 @@ define('buckets', [], function() {
         // WebRTC:
         has_gum && !prefixed('cameras', navigator),  // Can take photos
         has_gum && has_audiocontext &&
-            !!((new (window.AudioContext || window.webkitAudioContext)()).createMediaStreamSource),  // Can record audio
+            !!((new audiocontext()).createMediaStreamSource),  // Can record audio
         has_gum && false,  // XXX: Google WebRTC issue 2088
         'MediaStream' in window,
         'DataChannel' in window,
@@ -96,18 +98,19 @@ define('buckets', [], function() {
         prefixed('alarms', navigator),  // Alarms
         'mozSystem' in (new XMLHttpRequest()),  // mozSystemXHR
         prefixed('TCPSocket', navigator),  // mozTCPSocket/mozTCPSocketServer
-        prefixed('mozInputMethod', navigator)
+        prefixed('mozInputMethod', navigator),
+        prefixed('mozMobileConnections', navigator)
     ];
 
     var profile = parseInt(capabilities.map(function(x) {return !!x ? '1' : '0';}).join(''), 2).toString(16);
     // Add a count.
     profile += '.' + capabilities.length;
     // Add a version number.
-    profile += '.3';
+    profile += '.4';
 
     return {
-        get_profile: function() {return profile;},
-        capabilities: capabilities
+        capabilities: capabilities,
+        profile: profile
     };
 
 });

@@ -9,7 +9,7 @@ define('views/collection',
     return function(builder, args) {
         var slug = args[0];
         builder.start('collection.html', {slug: slug}).done(function() {
-            var collection = builder.results['collection'];
+            var collection = builder.results.collection;
             if (collection) {
                 builder.z('title', utils.translate(collection.name));
             }
@@ -23,7 +23,7 @@ define('views/collection',
             // Give him the clamps!
             clamp(document.querySelector('.collection + .desc'), 7);
 
-            if (data['collection_type'] === 2) {
+            if (data.collection_type === 2) {
                 builder.z('show_cats', true);
                 builder.z('cat', data.slug);
                 // TODO: Remove this when OSCs aren't in the category list.
