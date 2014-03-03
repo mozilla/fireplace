@@ -1,0 +1,12 @@
+{% defer (url=apiParams('categories', ordering='-modified'), pluck='objects') %}
+  <section class="category-index main">
+      {% for cat in this %}
+        <a class="cat-{{ cat.slug }} cat-icon cur-cat" data-cat-slug="{{ cat.slug }}"
+           href="{{ url('category', [cat.slug]) }}">
+          <p>{{ cat.name }}</p>
+        </a>
+      {% endfor %}
+  </section>
+  {% placeholder %}
+  <div class="spinner alt"></div>
+{% end %}

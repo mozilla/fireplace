@@ -1,0 +1,40 @@
+// Styles for the categories index page.
+@import 'lib';
+
+.category-index {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+
+    a.cat-icon.cur-cat {
+        background-color: $faint-gray;
+        border: 1px solid $light-gray;
+        border-radius: 65px;
+        color: $bg-gray;
+        display: inline-block;
+        height: 50px;
+        margin: 0 28px 60px;
+        position: relative;
+        vertical-align: middle;
+        width: 50px;
+
+        &:before {
+            background-size: 90px;
+            height: 30px;
+            left: 5px;
+            position: relative;
+            top: unquote('calc(50% - 15px)');
+            width: 30px;
+        }
+        p {
+            color: $gray;
+            font-size: 11px;
+            position: relative;
+            right: 40%;
+            text-align: center;
+            text-transform: uppercase;
+            top: 25px;
+            width: 180%;
+        }
+    }
+}
