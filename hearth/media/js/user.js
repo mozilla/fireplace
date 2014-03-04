@@ -43,6 +43,12 @@ define('user',
             save_settings();
             permissions = {};
             save_permissions();
+            apps = {
+                'installed': [],
+                'purchased': [],
+                'developed': []
+            };
+            save_apps();
         }
         token = null;
     }
