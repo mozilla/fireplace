@@ -1,5 +1,7 @@
 (function() {
 
+// This is a little misleading.  If you're using the Marketplace this is likely
+// overridden below with body_langs.  See bug 892741 for details.
 var languages = [
     'bg', 'bn-BD', 'ca', 'cs', 'de', 'el', 'en-US', 'es', 'eu', 'fr', 'ga-IE', 'hr',
     'hu', 'it', 'ja', 'mk', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr',
