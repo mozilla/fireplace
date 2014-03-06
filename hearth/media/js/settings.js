@@ -10,6 +10,10 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
     var param_blacklist = (
         window.location.search || '').indexOf('preview=true') > 0 ? ['pro'] : null;
 
+    // Temporary while we figure out how to fix feature detection, blacklist
+    // 'pro' even when not in "preview mode". see bug 980124 and bug 979932
+    param_blacklist = ['pro'];
+
     return _.defaults(base_settings, {
         app_name: 'fireplace',
         init_module: 'marketplace',
