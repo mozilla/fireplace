@@ -1,0 +1,46 @@
+<style>
+  table, td, th {
+      border: 1px solid black;
+      padding: 0.2em;
+  }
+
+  thead tr {
+      background: #333;
+      color: white;
+  }
+
+  .present {
+      background: green;
+  }
+
+  .absent {
+      background: red;
+  }
+</style>
+{% defer (url=endpoint, id='features') %}
+  <section id="features" class="debug main features full c">
+    {% set features = this %}
+    <table>
+      <thead>
+        <tr>
+          <th>Slug</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Detected</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for slug, feature in features %}
+        <tr class="{{ "present" if feature.present else "absent" }}">
+          <td>{{ slug }}</td>
+          <td>{{ feature.name }}</td>
+          <td>{{ feature.description }}</td>
+          <td>{{ "Yes" if feature.present else "No" }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% placeholder %}
+  <p class="spinner spaced alt"></p>
+{% end %}
