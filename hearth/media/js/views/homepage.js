@@ -28,7 +28,7 @@ define('views/homepage',
         }
 
         builder.start('category/main.html', {
-            endpoint: urls.api.url('category', [''], params),
+            endpoint: urls.api.unsigned.url('category', [''], params),
             sort: params.sort,
             app_cast: app_models.cast
         }).done(function() {

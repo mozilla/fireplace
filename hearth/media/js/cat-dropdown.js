@@ -23,7 +23,7 @@ define('cat-dropdown',
 
     // Do the request out here so it happens immediately when the app loads.
     var categoryReq = consumer_info.promise.then(function() {
-        return requests.get(urls.api.url('categories'));
+        return requests.get(urls.api.unsigned.url('categories'));
     });
     // Store the categories in models.
     categoryReq.done(function(data) {

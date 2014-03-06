@@ -94,11 +94,25 @@ test('api url signage', function(done, fail) {
         {
             capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
             routes_api: {'homepage': '/foo/homepage'},
-            settings: {api_url: 'api:'}
+            settings: {api_url: 'api:'},
+            user: {
+                logged_in: function() { return true; },
+                get_setting: function(x) {},
+                get_token: function() { return 'mytoken';}
+            }
         }, function(urls) {
-            var homepage_url = urls.api.unsigned.url('homepage');
+            var homepage_url, homepage_base_url = urls.api.base.url('homepage');
+
+            homepage_url = homepage_base_url;
             eq_(homepage_url, 'api:/foo/homepage');
-            eq_(urls.api.sign(homepage_url), urls.api.url('homepage'));
+
+            homepage_url = urls.api.url('homepage');
+            eq_(homepage_url, urls.api.sign(homepage_base_url));
+            contains(homepage_url, '_user=mytoken');
+
+            homepage_url = urls.api.unsigned.url('homepage');
+            eq_(homepage_url, urls.api.unsign(homepage_base_url));
+            disincludes(homepage_url, '_user=mytoken');
             done();
         },
         fail

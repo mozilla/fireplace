@@ -118,6 +118,7 @@ define('helpers',
     var helpers = {
         api: require('urls').api.url,
         apiParams: require('urls').api.params,
+        anonApiParams: require('urls').api.unsigned.params,
         url: require('urls').reverse,
         media: require('urls').media,
 
