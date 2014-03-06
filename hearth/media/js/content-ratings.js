@@ -83,7 +83,7 @@ define('content-ratings', ['urls'], function(urls) {
         'esrb': 'http://www.esrb.org/ratings/ratings_guide.jsp',
         'generic': 'https://www.globalratings.com/ratings_guide.aspx',
         'pegi': 'http://www.pegi.info/en/index/id/33/',
-        'usk': 'http://www.usk.de/pruefverfahren/alterskennzeichen/',
+        'usk': 'http://www.usk.de/iarc0/',
     };
 
     // Language icons.
