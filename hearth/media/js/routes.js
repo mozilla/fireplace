@@ -30,6 +30,7 @@ var routes = [
 
     {'pattern': '^/tests$', 'view_name': 'tests'},
     {'pattern': '^/debug$', 'view_name': 'debug'},
+    {'pattern': '^/debug/features$', 'view_name': 'debug_features'},
     {'pattern': '^/credits$', 'view_name': 'credits'}
 ];
 
