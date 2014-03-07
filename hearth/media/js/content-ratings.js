@@ -1,8 +1,11 @@
-define('content-ratings', ['urls'], function(urls) {
+define('content-ratings', ['urls', 'utils', 'z'], function(urls, utils, z) {
     'use strict';
 
     function _rating_path(path) {
-        return urls.media('fireplace/img/icons/ratings/' + path);
+        return utils.urlparams(
+            urls.media('fireplace/img/icons/ratings/' + path),
+            {'build': z.body.data('build-id-js') || '0'}
+        );
     }
 
     // Map IARC stuff to their icons. Wow, much icons.
