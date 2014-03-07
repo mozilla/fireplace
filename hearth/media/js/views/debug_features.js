@@ -11,6 +11,7 @@ define('views/debug_features',
 
         builder.start('debug_features.html', {
             endpoint: urls.api.unsigned.url('features', [], params),
+            profile: buckets.profile
         });
     };
 });

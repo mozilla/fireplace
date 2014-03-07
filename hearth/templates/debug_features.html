@@ -1,14 +1,4 @@
 <style>
-  table, td, th {
-      border: 1px solid black;
-      padding: 0.2em;
-  }
-
-  thead tr {
-      background: #333;
-      color: white;
-  }
-
   .present {
       background: green;
   }
@@ -16,30 +6,27 @@
   .absent {
       background: red;
   }
+
+  dd, dt {
+      padding: 0.1em;
+  }
+
+  dd {
+      margin-left: 0.5em;
+  }
 </style>
 {% defer (url=endpoint, id='features') %}
   <section id="features" class="debug main features full c">
+    <h2>Feature profile information</h2>
+    <p> Profile string: <strong>{{ profile }}</strong> </p>
     {% set features = this %}
-    <table>
-      <thead>
-        <tr>
-          <th>Slug</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Detected</th>
-        </tr>
-      </thead>
-      <tbody>
+    <dl class="c">
       {% for slug, feature in features %}
-        <tr class="{{ "present" if feature.present else "absent" }}">
-          <td>{{ slug }}</td>
-          <td>{{ feature.name }}</td>
-          <td>{{ feature.description }}</td>
-          <td>{{ "Yes" if feature.present else "No" }}</td>
-        </tr>
+        {% set klass = "present" if feature.present else "absent" %}
+        <dt class="{{ klass }}">{{ feature.name }} ({{ slug }})</dd>
+        <dd>{{ feature.description }}</dd>
       {% endfor %}
-      </tbody>
-    </table>
+    </dl>
   </section>
 {% placeholder %}
   <p class="spinner spaced alt"></p>
