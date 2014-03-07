@@ -21,7 +21,7 @@
     <p> Profile string: <strong>{{ profile }}</strong> </p>
     {% set features = this %}
     <dl class="c">
-      {% for slug, feature in features %}
+      {% for slug, feature in features|dictsort %}
         {% set klass = "present" if feature.present else "absent" %}
         <dt class="{{ klass }}">{{ feature.name }} ({{ slug }})</dd>
         <dd>{{ feature.description }}</dd>
