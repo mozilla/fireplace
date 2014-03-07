@@ -13,7 +13,7 @@
 <ul class="navbar nav-mkt{% if not is_settings %} active{% endif %}" data-tab="{{ active_tab_mkt }}">
   {# Tab name must match route name. #}
   {{ navtab('homepage', _('Home'), url('homepage'), active_tab_mkt) }}
-  {{ navtab('new', _('New'), '#', active_tab_mkt) }}
+  {{ navtab('new', _('New'), url('new'), active_tab_mkt) }}
   {{ navtab('popular', _('Popular'), '#', active_tab_mkt) }}
   {{ navtab('categories', _('Categories'), url('categories'), active_tab_mkt) }}
   {{ navtab('collections', _('Collections'), '#', active_tab_mkt) }}

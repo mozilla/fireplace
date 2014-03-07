@@ -1,0 +1,41 @@
+{% include '_macros/collection_tile.html' %}
+{% include '_macros/market_tile.html' %}
+{% include '_macros/more_button.html' %}
+
+{% set search_url = api('search')|urlparams(sort=sort) if sort else api('search') %}
+
+<section id="app-list" class="main app-list c">
+  <div class="island">
+    <h3>{{ title }}</h3>
+
+    {% defer (url=search_url, pluck='objects', as='app', paginate='ol.listing') %}
+      <ol class="container listing grid-if-desktop search-listing c">
+
+        {% for result in this %}
+          <li class="item result app c">
+            {{ market_tile(result, link=true, src=source + '-' + (sort or 'popular'), tray=False) }}
+          </li>
+        {% endfor %}
+
+        {# Render the more button if there's another page of results #}
+        {% if response.meta.next %}
+          {{ more_button(response.meta.next) }}
+        {% endif %}
+      </ol>
+    {% placeholder %}
+      <p class="spinner padded alt"></p>
+    {% empty %}
+      <p class="no-results">
+        {{ _('No apps found') }}
+      </p>
+    {% except %}
+      <p class="no-results">
+        {% if error == 400 or error == 404 %}
+          {{ _('No apps found.') }}
+        {% elif error == 500 %}
+          {{ _('An internal server error occurred. Please try again later.') }}
+        {% endif %}
+      </p>
+    {% end %}
+  </div>
+</section>

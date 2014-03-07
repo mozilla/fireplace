@@ -1,0 +1,97 @@
+@import "lib";
+
+.app-list {
+    counter-reset: app-counter;
+
+    .island {
+        background: $white;
+        border-radius: 10px;
+        box-shadow: 0 2px 1px 0 $cement-gray;
+        margin: 10px 10px 0;
+        width: unquote('calc(100% - 20px)');
+
+        > h3 {
+            color: $london-fog-gray;
+            font-size: 20px;
+            font-weight: 300;
+            padding: 25px 10px 10px;
+        }
+    }
+    .container .item {
+        box-shadow: none;
+        display: list-item;
+        margin: 0 0 0 30px;
+
+        &:before {
+            content: counter(app-counter, decimal) ".";
+            counter-increment: app-counter;
+            display: inline;
+            font-size: 15px;
+            left: -20px;
+            line-height: 20px;
+            position: absolute;
+            top: 15px;
+        }
+        .icon {
+            margin: 0 10px 10px 0;
+        }
+        h3 {
+            padding: 2px 0 7px 0;
+        }
+        .author {
+            max-height: 35px;
+            max-width: 95px;
+        }
+        .content-rating {
+            display: none;
+        }
+        .rating {
+            clear: none;
+            float: left;
+            margin-top: 3px;
+            padding: 0;
+
+            .cnt {
+                display: none;
+            }
+        }
+    }
+    .loadmore {
+        /* TODO: apply this loadmore button style site-wide. */
+        bottom: -65px;
+        padding: 15px 0;
+        position: absolute;
+        width: unquote('calc(100% - 20px)');
+
+        button {
+            background: $earl-gray;
+            border: 0;
+            box-shadow: 0 1px 1px 0 $london-fog-gray;
+            color: $white;
+
+            &:hover {
+                background: $earl-gray;
+                color: $white;
+            }
+        }
+    }
+    .mkt-tile .button {
+        /* TODO: apply this install button style site-wide. */
+        background: $sailor-blue;
+        border: 0;
+        border-radius: 7px;
+        bottom: 26px;
+        box-shadow: 0 1px 1px 0 $cement-gray;
+        height: 28px;
+        min-width: 70px;
+        width: 70px;
+
+        &:not([disabled]):hover {
+            color: $white;
+        }
+        &[disabled] {
+            background: $seavan-salt-white;
+        }
+
+    }
+}
