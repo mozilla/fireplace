@@ -95,3 +95,25 @@
 
     }
 }
+
+@media $at-least-desktop {
+    .app-list {
+        .container .item {
+            display: inline-block;
+
+            &:before {
+                display: none;
+            }
+
+            h3 {
+                padding-bottom: 2px;
+            }
+            .icon {
+                margin-bottom: 0;
+            }
+            .rating {
+                margin-top: 0;
+            }
+        }
+    }
+}
