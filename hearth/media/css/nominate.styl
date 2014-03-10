@@ -1,0 +1,221 @@
+@import 'lib';
+
+$blue = #1e1e9c;
+
+.nominate-masthead.island {
+    background: $blue url(../img/ballot.png) 99% 140% no-repeat;
+    background-size: 180px auto;
+    border-radius: 10px 10px 0 0;
+    box-shadow: none;
+    min-height: 220px;
+    padding: 18px;
+    position: relative;
+
+    h1 {
+        bottom: 18px;
+        color: #fff;
+        font-size: 32px;
+        font-weight: 300;
+        line-height: 36px;
+        position: absolute;
+        text-shadow: 1px 1px rgba(0,0,0,.5);
+        width: 45%;
+    }
+}
+
+.button.nominate-another {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 15px;
+
+    &:before {
+        content: "\2714\00a0\00a0\00a0";  // ✔
+        font-size: 12px;
+    }
+}
+
+.nominate-blurb.island {
+    background: none;
+    border-radius: 0 0 10px 10px;
+    border-top: 1px solid rgba(0,0,0,.5);
+    margin-top: -2px;
+    position: relative;
+    z-index: 1;
+
+    p {
+        background: #eef9fd;
+        line-height: 20px;
+        padding: 15px 18px 0;
+
+        &.help {
+            border-radius: 0 0 10px 10px;
+            color: $earl-gray;
+            font-size: 11px;
+            padding: 5px 18px 10px;
+        }
+    }
+}
+
+.nominate-success,
+.nominate-form {
+    margin-top: 48px;
+}
+
+.nominate-success {
+    display: none;
+    b {
+        color: $castle-skull-gray;
+        font-weight: 600;
+    }
+}
+
+p.tell-your-friends {
+    margin-bottom: 10px;
+}
+
+.nominate-form {
+    .req {
+        h3:after {
+            color: $red;
+            content: " *";
+        }
+    }
+
+    .island {
+        padding: 24px 18px;
+
+        > label {
+            margin-top: 24px;
+        }
+    }
+
+    .regions {
+        text-columns(3, 24px);
+
+        label {
+            &:hover {
+                color: #000;
+            }
+
+            + label {
+                margin-top: 2px;
+            }
+        }
+
+        .region {
+            background-size: 12px auto;
+            background-position: 3px 5px;
+            font-size: 14px;
+            line-height: 16px;
+            padding-left: 20px;
+        }
+    }
+
+    h2 {
+        color: $flamin-hot-cheetos-orange;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 22px;
+
+        + p {
+            color: $earl-gray;
+            margin-top: 5px;
+        }
+    }
+
+    h3 {
+        color: $castle-skull-gray;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16px;
+        margin: 24px 0 8px;
+    }
+
+    .infobox > div {
+        padding: 0;
+    }
+
+    input[type=email],
+    input[type=url],
+    select,
+    textarea {
+        display: block;
+    }
+
+    input[type=url],
+    textarea {
+        width: 100%;
+    }
+
+    select {
+        min-width: 25%;
+    }
+
+    input[type=email],
+    input.name {
+        min-width: 50%;
+    }
+
+    textarea {
+        min-height: 100px;
+    }
+
+    footer {
+        margin-top: 36px;
+    }
+}
+
+@media $narrower-than-desktop {
+    .nominate.island,
+    .nominate-blurb.island p.help {
+        border-radius: 0;
+    }
+
+    .nominate-masthead.island {
+        background-position: 97% 50%;
+        background-size: 50px auto;
+        min-height: 0;
+        padding: 18px;
+
+        h1 {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 20px;
+            position: static;
+            width: 70%;
+        }
+    }
+
+    .nominate-success,
+    .nominate-form {
+        margin: 0;
+    }
+
+    .nominate-form {
+        .island {
+            border: 0;
+            box-shadow: none;
+        }
+
+        .regions {
+            text-columns(2, 24px);
+
+            label + label {
+                margin-top: 8px;
+            }
+        }
+
+        button,
+        input[type=email],
+        input.name,
+        select {
+            min-width: 100%;
+        }
+
+        footer {
+            background: #fff;
+            margin: 0;
+            padding: 0 18px 18px;
+        }
+    }
+}

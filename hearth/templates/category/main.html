@@ -33,7 +33,7 @@
 {% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection') %}
   {% set featured_apps = this.length and this[0].apps %}
   {% if featured_apps and featured_apps.length %}
-    <section id="featured" class="main category featured full c">
+    <section id="featured" class="island main category featured full c">
       <header class="featured-header c">
         <h3>{{ _('Featured Apps') }}</h3>
         <a href="{{ featured_url }}" class="view-all">{{ _('View All') }}</a>
@@ -53,7 +53,7 @@
 {% except %}
 {% end %}
 
-<section id="gallery" class="main category gallery full c">
+<section id="gallery" class="island main category gallery full c">
 {% defer (url=endpoint, pluck='objects', as='app', paginate='ol.listing') %}
   {% set paginated = response.meta.total_count > response.meta.limit %}
   {% if paginated %}
