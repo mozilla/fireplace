@@ -28,9 +28,10 @@ def update():
         local('%s includes' % COMMONPLACE)
         local('%s langpacks' % COMMONPLACE)
 
+
 @task
 def deploy():
-    helpers.deploy(name='fireplace',
+    helpers.deploy(name=settings.PROJECT_NAME,
                    env=settings.ENV,
                    cluster=settings.CLUSTER,
                    domain=settings.DOMAIN,
