@@ -1,6 +1,6 @@
-define('views/new',
-    ['format', 'l10n', 'log', 'models', 'underscore', 'urls', 'utils'],
-    function(format, l10n, log, models, _, urls, utils) {
+define('views/popular',
+    ['l10n', 'log', 'models', 'underscore', 'urls', 'utils'],
+    function(l10n, log, models, _, urls, utils) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -9,15 +9,14 @@ define('views/new',
     var app_models = models('app');
 
     return function(builder, args, params) {
-        var title = gettext('Fresh and New Apps');
+        var title = gettext('Popular All Time');
 
         builder.z('type', 'root');
         builder.z('title', title);
 
         builder.start('app_list.html', {
             app_cast: app_models.cast,
-            sort: 'reviewed',
-            source: 'new',
+            source: 'popular',
             title: title
         });
     };
