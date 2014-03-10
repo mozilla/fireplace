@@ -15,7 +15,7 @@ button, input {
     line-height: normal;
 }
 
-button, input[type=button], input[type=reset], input[type=submit] {
+label, button, input[type=button], input[type=submit] {
     cursor: pointer;
 }
 
@@ -52,7 +52,7 @@ input[placeholder] {
     }
 }
 
-input[type=email], input[type=text], textarea {
+input[type=email], input[type=text], input[type=url], select, textarea {
     border-radius: 2px;
     border: 1px solid $light-gray;
     padding: 5px;
@@ -65,6 +65,10 @@ input[type=email], input[type=text], textarea {
         border-color: $sailor-blue;
         box-shadow: 0 0 8px $sailor-blue;
     }
+}
+
+select {
+    padding: 0;
 }
 
 textarea {
