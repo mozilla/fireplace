@@ -1,6 +1,6 @@
 define('views/nominate',
-    ['forms', 'jquery', 'l10n', 'notification', 'requests', 'user', 'views', 'z'],
-    function (forms, $, l10n, notification, requests, user, views, z) {
+    ['forms', 'jquery', 'l10n', 'notification', 'requests', 'user', 'z'],
+    function (forms, $, l10n, notification, requests, user, z) {
 
     'use strict';
 
