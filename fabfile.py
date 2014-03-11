@@ -32,6 +32,7 @@ def update():
 @task
 def deploy():
     helpers.deploy(name=settings.PROJECT_NAME,
+                   app_dir='fireplace',
                    env=settings.ENV,
                    cluster=settings.CLUSTER,
                    domain=settings.DOMAIN,
