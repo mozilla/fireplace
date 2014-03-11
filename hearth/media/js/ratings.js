@@ -8,10 +8,10 @@ define('ratings',
     var open_rating = false;
 
     function rewriter(app, processor) {
-        var unsigned_url = urls.api.unsigned.url('reviews');
+        var base_url = urls.api.base.url('reviews');
         cache.attemptRewrite(
             function(key) {
-                if (utils.baseurl(key) !== unsigned_url) {
+                if (utils.baseurl(key) !== base_url) {
                     return;
                 }
                 var kwargs = utils.querystring(key);
