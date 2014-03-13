@@ -15,7 +15,7 @@ define('routes_api', [], function() {
         'record_free': '/api/v1/installs/record/',
         'record_paid': '/api/v1/receipts/install/',
         'app_abuse': '/api/v1/abuse/app/',
-        'search': '/api/v1/apps/search/?cache=1&vary=0',
+        'search': '/api/v1/fireplace/search/?cache=1&vary=0',
         'feedback': '/api/v1/account/feedback/',
         'consumer_info': '/api/v1/fireplace/consumer-info/',
         'features': '/api/v1/apps/features/',
