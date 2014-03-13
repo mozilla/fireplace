@@ -1,14 +1,35 @@
 define('views/debug',
-    ['buckets', 'cache', 'capabilities', 'log', 'notification', 'requests', 'settings', 'storage', 'user', 'utils', 'z'],
-    function(buckets, cache, capabilities, log, notification, requests, settings, storage, user, utils, z) {
+    ['buckets', 'cache', 'capabilities', 'log', 'models', 'notification', 'requests', 'settings', 'storage', 'user', 'utils', 'z'],
+    function(buckets, cache, capabilities, log, models, notification, requests, settings, storage, user, utils, z) {
     'use strict';
 
-    var persistent_console = log.persistent('mobilenetwork', 'change');
+    var persistent_console_debug = log.persistent('debug', 'change');
+    var persistent_console_network = log.persistent('mobilenetwork', 'change');
 
     var label = $(document.getElementById('debug-status'));
     z.doc.on('click', '#clear-localstorage', function(e) {
         storage.clear();
         notification.notification({message: 'localStorage cleared', timeout: 1000});
+
+    }).on('click', '#enable-offline-cache', function() {
+        storage.removeItem('offline_cache_disabled');
+        persistent_console_debug.log('Offline cache enabled:', new Date());
+        require('views').reload();
+        notification.notification({message: 'Offline cache enabled', timeout: 1000});
+
+    }).on('click', '#disable-offline-cache', function() {
+        storage.setItem('offline_cache_disabled', '1');
+        persistent_console_debug.log('Offline cache disabled:', new Date());
+        require('views').reload();
+        notification.notification({message: 'Offline cache disabled', timeout: 1000});
+
+    }).on('click', '#clear-offline-cache', function() {
+        cache.flush();
+        // This actually flushes all model caches.
+        models('app').flush();
+        persistent_console_debug.log('Offline cache cleared:', new Date());
+        notification.notification({message: 'Offline cache cleared', timeout: 1000});
+        window.location.reload();
 
     }).on('click', '#clear-cookies', function() {
         var cookies = document.cookie.split(';');
@@ -53,7 +74,7 @@ define('views/debug',
         var val = $(this).val();
         var current_region = user.get_setting('region_override');
         if (current_region !== val) {
-            persistent_console.log('Manual region override change:', current_region, '→', val);
+            persistent_console_network.log('Manual region override change:', current_region, '→', val);
         }
         user.update_settings({region_override: val});
         z.page.trigger('reload_chrome');
@@ -63,7 +84,7 @@ define('views/debug',
         var val = $(this).val();
         var current_carrier = user.get_setting('carrier_override');
         if (current_carrier !== val) {
-            persistent_console.log('Manual carrier override change:', current_carrier, '→', val);
+            persistent_console_network.log('Manual carrier override change:', current_carrier, '→', val);
         }
         user.update_settings({carrier_override: val});
         z.page.trigger('reload_chrome');
@@ -80,7 +101,8 @@ define('views/debug',
             profile: buckets.profile,
             recent_logs: recent_logs,
             persistent_logs: log.persistent.all,
-            filter: log.filter
+            filter: log.filter,
+            request_cache: JSON.parse(storage.getItem('request_cache') || '{}')
         });
 
         builder.z('type', 'leaf debug');

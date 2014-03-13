@@ -58,11 +58,22 @@ define(
         'z'
     ],
 function(_) {
+    var capabilities = require('capabilities');
+    if (!capabilities.performance) {
+        // Polyfill `performance.now` for PhantomJS.
+        // (And don't even bother with `Date.now` because IE.)
+        window.performance = {
+            now: function() {
+                return +new Date();
+            }
+        };
+    }
+    var start_time = performance.now();
+
     var console = require('log')('mkt');
     console.log('Dependencies resolved, starting init');
 
     var $ = require('jquery');
-    var capabilities = require('capabilities');
     var format = require('format');
     var nunjucks = require('templates');
     var settings = require('settings');
@@ -85,7 +96,7 @@ function(_) {
     z.body.addClass('html-' + require('l10n').getDirection());
 
     z.page.one('loaded', function() {
-        console.log('Hiding splash screen');
+        console.log('Hiding splash screen (' + ((performance.now() - start_time) / 1000).toFixed(6) + 's)');
         // Remove the splash screen once it's hidden.
         var splash = $('#splash-overlay').addClass('hide');
         z.body.removeClass('overlayed');

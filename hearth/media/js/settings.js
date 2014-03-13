@@ -19,6 +19,14 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         base_settings.cdn_url = media_url.protocol + '//' + media_url.hostname;
     }
 
+    function offline_cache_enabled() {
+        var storage = require('storage');
+        if (storage.getItem('offline_cache_disabled') || require('capabilities').phantom) {
+            return false;
+        }
+        return window.location.search.indexOf('cache=false') === -1;
+    }
+
     return _.defaults(base_settings, {
         app_name: 'fireplace',
         init_module: 'marketplace',
@@ -58,6 +66,18 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'dummy': 'id',
             'dummy2': 'id'
         },
+
+        // These are the only URLs that should be cached
+        // (key: URL; value: TTL [time to live] in seconds).
+        // Keep in mind that the cache is always refreshed asynchronously;
+        // these TTLs apply to only when the app is first launched.
+        offline_cache_whitelist: {
+            '/api/v1/fireplace/consumer-info/': 60 * 60 * 6,  // 6 hours
+            '/api/v1/fireplace/search/featured/': 60 * 60 * 24,  // 1 day
+            '/api/v1/apps/category/': 60 * 60 * 24 * 7  // 1 week
+        },
+        offline_cache_enabled: offline_cache_enabled,
+        offline_cache_limit: 1024 * 1024 * 4,  // 4 MB
 
         // Error template paths. Used by builder.js.
         fragment_error_template: 'errors/fragment.html',

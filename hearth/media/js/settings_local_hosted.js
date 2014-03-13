@@ -1,11 +1,7 @@
-define('settings_local', [], function() {
-    var origin = window.location.origin || (
-        window.location.protocol + '//' + window.location.host);
+define('settings_local', [], function(settings_base, _) {
+    // Override settings here!
     return {
-        api_url: origin,
-        media_url: document.body.getAttribute('data-media'),
-        tracking_enabled: true,
-
-        potatolytics_enabled: false
+        api_url: 'https://marketplace-dev.allizom.org',
+        media_url: ' https://marketplace-dev-cdn.allizom.org/media',
     };
 });
