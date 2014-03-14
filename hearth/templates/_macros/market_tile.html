@@ -7,7 +7,8 @@
       {% for preview in app.previews %}
         <li itemscope itemtype="http://schema.org/ImageObject">
           <a class="screenshot thumbnail" href="{{ preview.image_url }}">
-            <img alt="{{ _('{app_name} .::. screenshot', app_name=app.name) }}" src="{{ preview.thumbnail_url }}" draggable="false" itemprop="contentURL">
+            {# Thinking about changing that `data-src` to `src`? Don't! (bug 983346) #}
+            <img alt="{{ _('{app_name} .::. screenshot', app_name=app.name) }}" data-src="{{ preview.thumbnail_url }}" draggable="false" itemprop="contentURL">
           </a>
         </li>
       {% endfor %}

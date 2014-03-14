@@ -23,12 +23,12 @@ define('views/search',
         }
     }));
 
-    // Default to the graphical view at desktop widths and traditional
-    // list view at lesser widths.
-    var expand = capabilities.widescreen();
-    if ('expand-listings' in storage) {
-        // If we've set this value in localStorage before, then use it.
-        expand = storage.getItem('expand-listings') === 'true';
+    // If we've set this value in localStorage before, then always use it.
+    var expand = !!storage.getItem('expand-listings');
+    if (expand === null) {
+        // Default to the graphical view at desktop widths and traditional
+        // list view at lesser widths.
+        expand = capabilities.widescreen();
     }
 
     function setTrays(expanded) {
@@ -37,9 +37,13 @@ define('views/search',
         }
         $('ol.listing').toggleClass('expanded', expanded);
         $('.expand-toggle').toggleClass('active', expand);
-        storage.setItem('expand-listings', expanded);
+        storage.setItem('expand-listings', expanded ? '1' : '');
         if (expanded) {
             z.page.trigger('populatetray');
+            // Set the `src` for hidden images so they get loaded.
+            $('img[data-src]:not([src])').each(function () {
+                this.src = $(this).data('src');
+            });
         }
     }
 
