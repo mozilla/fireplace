@@ -230,8 +230,29 @@ define('navigation',
         return false;
     });
 
+    function modal(name) {
+        console.log('Opening modal', name);
+        stack[0].scrollTop = window.pageYOffset;
+        stack[0].docHeight = z.doc.height();
+        history.replaceState(stack[0], false, stack[0].path);
+        history.pushState(null, name, '#' + name);
+        var path = window.location.href + '#' + name;
+        stack.unshift({path: path, type: 'modal', name: name});
+    }
+
+    function closeModal(name) {
+        if (stack[0].type === 'modal' && stack[0].name === name) {
+            console.log('Closing modal', name);
+            back();
+        } else {
+            console.log('Attempted to close modal', name, 'that was not open');
+        }
+    }
+
     return {
         'back': back,
+        'modal': modal,
+        'closeModal': closeModal,
         'stack': function() {return stack;},
         'navigationFilter': navigationFilter
     };
