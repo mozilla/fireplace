@@ -27,7 +27,7 @@ define('login',
         z.body.removeClass('logged-in');
         z.page.trigger('reload_chrome').trigger('before_logout');
 
-        if (capabilities.persona) {
+        if (capabilities.persona()) {
             console.log('Triggering Persona logout');
             navigator.id.logout();
         }
@@ -67,7 +67,7 @@ define('login',
             // See bug 910938.
             opt.experimental_forceIssuer = settings.persona_unverified_issuer;
         }
-        if (capabilities.mobileLogin) {
+        if (capabilities.mobileLogin()) {
             // On mobile we don't require new accounts to verify their email.
             // On desktop, we do.
             opt.experimental_allowUnverified = true;
@@ -76,10 +76,13 @@ define('login',
             console.log('Not allowing unverified emails');
         }
 
-        if (capabilities.persona) {
-            console.log('Requesting login from Persona');
-            navigator.id.request(opt);
-        }
+        persona_loaded.done(function() {
+            if (capabilities.persona()) {
+                console.log('Requesting login from Persona');
+                navigator.id.request(opt);
+            }
+        });
+
         return def.promise();
     }
 
@@ -89,7 +92,7 @@ define('login',
         var data = {
             assertion: assertion,
             audience: window.location.protocol + '//' + window.location.host,
-            is_mobile: capabilities.mobileLogin
+            is_mobile: capabilities.mobileLogin()
         };
 
         z.page.trigger('before_login');
@@ -141,24 +144,54 @@ define('login',
         });
     }
 
-    var email = user.get_setting('email') || '';
-    if (email) {
-        console.log('Detected user', email);
-    } else {
-        console.log('No previous user detected');
-    }
+    var persona_def = defer.Deferred();
+    var persona_loaded = persona_def.promise();
 
-    if (capabilities.persona) {
-        console.log('Calling navigator.id.watch');
-        navigator.id.watch({
-            loggedInUser: email,
-            onlogin: gotVerifiedEmail,
-            onlogout: function() {
-                z.body.removeClass('logged-in');
-                z.page.trigger('reload_chrome').trigger('logout');
-            }
+    var persona_loading_start = +(new Date());
+    var persona_loading_time = 0;
+    var persona_step = 25;  // 25 milliseconds
+    var persona_timeout = persona_loading_start + settings.persona_timeout;
+
+    var persona_interval = setInterval(function() {
+        persona_loading_time += +(new Date()) - persona_loading_start;
+        if (capabilities.persona()) {
+            console.log('Persona loaded (' + persona_loading_time / 1000 + 's)');
+            persona_def.resolve();
+            clearInterval(persona_interval);
+        } else if (persona_loading_time >= persona_timeout) {
+            console.error('Persona timeout (' + persona_loading_time / 1000 + 's)');
+            persona_def.reject();
+            clearInterval(persona_interval);
+        }
+    }, persona_step);
+
+    persona_loaded.done(function() {
+        // This lets us change the cursor for the "Sign in" link.
+        z.body.addClass('persona-loaded');
+
+        var email = user.get_setting('email') || '';
+        if (email) {
+            console.log('Detected user', email);
+        } else {
+            console.log('No previous user detected');
+        }
+
+        if (capabilities.persona()) {
+            console.log('Calling navigator.id.watch');
+            navigator.id.watch({
+                loggedInUser: email,
+                onlogin: gotVerifiedEmail,
+                onlogout: function() {
+                    z.body.removeClass('logged-in');
+                    z.page.trigger('reload_chrome').trigger('logout');
+                }
+            });
+        }
+    }).fail(function() {
+        notification.notification({
+            message: gettext('Persona cannot be reached. Try again later.')
         });
-    }
+    });
 
     return {login: startLogin};
 });
