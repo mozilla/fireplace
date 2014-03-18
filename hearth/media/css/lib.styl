@@ -328,6 +328,11 @@ flex-center() {
 }
 
 flex-vertical-center() {
+    // old way
+    display-flex();
+    flex-center();
+
+    // new way
     align-items: center;
     display: flex;
     justify-content: center;
