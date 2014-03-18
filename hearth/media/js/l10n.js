@@ -3,9 +3,9 @@
 // This is a little misleading.  If you're using the Marketplace this is likely
 // overridden below with body_langs.  See bug 892741 for details.
 var languages = [
-    'bg', 'bn-BD', 'ca', 'cs', 'de', 'el', 'en-US', 'es', 'eu', 'fr', 'ga-IE', 'hr',
-    'hu', 'it', 'ja', 'mk', 'nl', 'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sr',
-    'sr-Latn', 'tr', 'zh-TW', 'dbg'
+    'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu', 'fr',
+    'ga-IE', 'hr', 'hu', 'it', 'ja', 'ko', 'mk', 'nb-NO', 'nl', 'pl', 'pt-BR',
+    'ro', 'ru', 'sk', 'sq', 'sr', 'sr-Latn', 'tr', 'zh-CN', 'zh-TW', 'dbg'
 ];
 var body_langs;
 if (body_langs = document.body.getAttribute('data-languages')) {
