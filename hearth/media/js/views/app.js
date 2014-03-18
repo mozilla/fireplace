@@ -70,6 +70,11 @@ define('views/app',
 
         var sync = true;
         builder.onload('app-data', function(app) {
+            // Set the `src` for hidden images so they get loaded.
+            $('img[data-src]:not([src])').each(function () {
+                this.src = $(this).data('src');
+            });
+
             builder.z('title', utils.translate(app.name));
 
             z.page.trigger('populatetray');
