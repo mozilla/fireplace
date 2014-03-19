@@ -1,6 +1,6 @@
 define('views/nominate',
-    ['forms', 'jquery', 'l10n', 'notification', 'user', 'z'],
-    function (forms, $, l10n, notification, user, z) {
+    ['categories', 'forms', 'jquery', 'l10n', 'notification', 'user', 'z'],
+    function (categories, forms, $, l10n, notification, user, z) {
 
     'use strict';
 
@@ -108,7 +108,7 @@ define('views/nominate',
     });
 
     return function (builder) {
-        builder.start('nominate.html');
+        builder.start('nominate.html', {'categories': categories});
         builder.z('type', 'leaf');
         builder.z('title', gettext('Nominate apps'));
     };

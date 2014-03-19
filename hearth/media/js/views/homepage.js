@@ -62,20 +62,17 @@ define('views/homepage',
                 slug: shelf.slug
             });
 
-            // This is safe: cat-dropdown is required by marketplace.js.
-            require('cat-dropdown').catrequest.done(function() {
-                console.log('Injecting operator shelf into cat dropdown');
-                var item = format.format(
-                    catElm,
-                    shelf.slug,
-                    urls.reverse('collection', [shelf.slug]),
-                    utils.translate(shelf.name)
-                );
+            console.log('Injecting operator shelf into cat dropdown');
+            var item = format.format(
+                catElm,
+                shelf.slug,
+                urls.reverse('collection', [shelf.slug]),
+                utils.translate(shelf.name)
+            );
 
-                // Inject op shelf to the category dropdown after "All Categories".
-                $(item).insertAfter($('.cat-menu [data-cat-slug="all"]').closest('li'));
-                operatorInjected = true;
-            });
+            // Inject op shelf to the category dropdown after "All Categories".
+            $(item).insertAfter($('.cat-menu [data-cat-slug="all"]').closest('li'));
+            operatorInjected = true;
         });
     };
 });
