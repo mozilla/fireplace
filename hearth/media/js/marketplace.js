@@ -86,6 +86,7 @@ function(_) {
         console.log('Hiding splash screen');
         // Remove the splash screen once it's hidden.
         var splash = $('#splash-overlay').addClass('hide');
+        z.body.removeClass('overlayed');
         setTimeout(function() {
             splash.remove();
         }, 1500);
