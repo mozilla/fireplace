@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26T17:04:53.674Z\n"
+"POT-Creation-Date: 2014-03-19T16:34:30.429Z\n"
 "PO-Revision-Date: 2014-01-15 17:23+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: German (de) <coce@nurfuerspam.de>\n"
@@ -42,6 +42,10 @@ msgstr "Nein"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Ja"
+
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr ""
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -109,7 +113,7 @@ msgstr ""
 "Sofern nicht anders <a href=\"{legal_url}\" target=\"_blank\">vermerkt</a>, steht der Inhalt dieser Seite unter der <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike "
 "License v3.0</a> oder einer späteren Version."
 
-#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:189 /templates/detail/receipt.html:57 /templates/detail/privacy.html:3 /templates/settings/feedback.html:22
+#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:189 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
 #: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
@@ -158,36 +162,109 @@ msgstr "Sie müssen Firefox verwenden, um Firefox-Apps zu installieren."
 msgid "Download."
 msgstr "Herunterladen."
 
-#: /templates/_macros/market_tile.html:9
+#: /templates/nominate.html:1
+msgid "Nominate apps to be featured on Firefox Marketplace!"
+msgstr ""
+
+#: /templates/nominate.html:6
+msgid "Are you the developer or fan of an awesome app or collection of apps on Firefox Marketplace? Submit your nominations, and you may see them in a featured spot."
+msgstr ""
+
+#: /templates/nominate.html:9
+msgid "Learn more about <a href=\"{wiki_url}\">how apps are featured</a>."
+msgstr ""
+
+#: /templates/nominate.html:15
+msgid "Thanks for submitting your nomination."
+msgstr ""
+
+#: /templates/nominate.html:16
+msgid "Tell your friends!"
+msgstr ""
+
+#: /templates/nominate.html:17
+msgid "Tweet #FaveApps"
+msgstr ""
+
+#: /templates/nominate.html:18
+msgid "Submit another nomination"
+msgstr ""
+
+#: /templates/nominate.html:24
+msgid "Tell us which Marketplace apps you'd like to nominate for featuring"
+msgstr ""
+
+#: /templates/nominate.html:25
+msgid "Name of apps or Marketplace URLs"
+msgstr ""
+
+#: /templates/nominate.html:29
+msgid "Select a category for these apps"
+msgstr ""
+
+#: /templates/nominate.html:41
+msgid "In which regions would you like to see these apps featured?"
+msgstr ""
+
+#: /templates/nominate.html:54
+msgid "Tell us why these apps should be featured"
+msgstr ""
+
+#: /templates/nominate.html:60 /templates/nominate.html:61
+msgid "Your name"
+msgstr ""
+
+#: /templates/nominate.html:64
+msgid "Your email address"
+msgstr ""
+
+#: /templates/nominate.html:71 /templates/ratings/edit.html:22 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Absenden"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Nicht verfügbar"
+
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:54
+msgid "Free"
+msgstr "Kostenlos"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
+msgid "Install"
+msgstr "Installieren"
+
+#: /templates/_macros/market_tile.html:10
 msgid "{app_name} .::. screenshot"
 msgstr "{app_name} .::. Screenshot"
 
 #. the IARC rating body/system followed by a name/description of the rating (e.g. "ESRB: Everyone" or "PEGI: For ages 3+").
-#: /templates/_macros/market_tile.html:44
+#: /templates/_macros/market_tile.html:45
 msgid "{rating_body}: {rating}"
 msgstr "{rating_body}: {rating}"
 
-#: /templates/_macros/market_tile.html:53 /templates/_macros/market_button.html:7
-msgid "Free"
-msgstr "Kostenlos"
-
-#: /templates/_macros/market_tile.html:61
+#: /templates/_macros/market_tile.html:62
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:64 /templates/detail/main.html:135
+#: /templates/_macros/market_tile.html:65 /templates/detail/main.html:135
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} Bewertung"
 msgstr[1] "{n} Bewertungen"
 
-#: /templates/_macros/market_tile.html:68
+#: /templates/_macros/market_tile.html:69
 msgid "(0)"
 msgstr "(0)"
 
-#: /templates/_macros/market_tile.html:69
+#: /templates/_macros/market_tile.html:70
 msgid "Not yet rated"
 msgstr "Noch nicht bewertet"
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "Weitere"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -213,22 +290,9 @@ msgstr "Löschen"
 msgid "Report"
 msgstr "Bericht"
 
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Nicht verfügbar"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
-msgid "Install"
-msgstr "Installieren"
-
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Bewertung: {stars} von {maxstars} Sternen"
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "Weitere"
 
 #: /templates/category/main.html:37
 msgid "Featured Apps"
@@ -391,14 +455,6 @@ msgstr "Statistiken"
 msgid "Premium version available"
 msgstr "Premium-Version verfügbar"
 
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr "Danke für Ihren Kauf"
-
-#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
-msgid "The page you were looking for was not found."
-msgstr "Die Seite, die Sie suchen, wurde nicht gefunden."
-
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
 msgstr "Zurück zur App"
@@ -406,6 +462,14 @@ msgstr "Zurück zur App"
 #: /templates/detail/privacy.html:11
 msgid "Loading Privacy Policy..."
 msgstr "Datenschutzerklärung wird geladen…"
+
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr "Danke für Ihren Kauf"
+
+#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "Die Seite, die Sie suchen, wurde nicht gefunden."
 
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
@@ -419,24 +483,6 @@ msgstr "Beim Laden weiterer Informationen ist ein Fehler aufgetreten"
 msgid "Try Again"
 msgstr "Versuchen Sie es erneut"
 
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Ergebnis"
-msgstr[1] "<b>{n}</b> Ergebnisse"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Angezeigt wird <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Keine Ergebnisse gefunden"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Keine Ergebnisse gefunden, versuchen Sie es später erneut"
-
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
 msgid "Edit Review"
 msgstr "Bewertung bearbeiten"
@@ -449,10 +495,6 @@ msgstr "Bewertung:"
 #: /templates/user/newsletter.html:13
 msgid "Cancel"
 msgstr "Abbrechen"
-
-#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
-msgid "Submit"
-msgstr "Absenden"
 
 #: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
 msgid "Only logged in users may edit reviews."
@@ -485,6 +527,24 @@ msgstr "Unpassende Wortwahl"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Unpassender Fehlerbericht, oder Unterstützungs-Anfrage"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Ergebnis"
+msgstr[1] "<b>{n}</b> Ergebnisse"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Angezeigt wird <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Keine Ergebnisse gefunden"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Keine Ergebnisse gefunden, versuchen Sie es später erneut"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -641,87 +701,87 @@ msgstr "Ihre Bewertung wurde veröffentlicht"
 msgid "Error while submitting review"
 msgstr "Beim Absenden der Bewertung ist ein Fehler aufgetreten"
 
-#: /media/js/settings.js:72
+#: /media/js/settings.js:76
 msgid "Rest of World"
 msgstr "Rest der Welt"
 
-#: /media/js/settings.js:73
+#: /media/js/settings.js:77
 msgid "Argentina"
 msgstr "Argentinien"
 
-#: /media/js/settings.js:74
+#: /media/js/settings.js:78
 msgid "Brazil"
 msgstr "Brasilien"
 
-#: /media/js/settings.js:75
+#: /media/js/settings.js:79
 msgid "Chile"
 msgstr "Chile"
 
-#: /media/js/settings.js:76
+#: /media/js/settings.js:80
 msgid "China"
 msgstr "China"
 
-#: /media/js/settings.js:77
+#: /media/js/settings.js:81
 msgid "Colombia"
 msgstr "Kolumbien"
 
-#: /media/js/settings.js:78
+#: /media/js/settings.js:82
 msgid "Germany"
 msgstr "Deutschland"
 
-#: /media/js/settings.js:79
+#: /media/js/settings.js:83
 msgid "Greece"
 msgstr "Griechenland"
 
-#: /media/js/settings.js:80
+#: /media/js/settings.js:84
 msgid "Hungary"
 msgstr "Ungarn"
 
-#: /media/js/settings.js:81
+#: /media/js/settings.js:85
 msgid "Italy"
 msgstr "Italien"
 
-#: /media/js/settings.js:82
+#: /media/js/settings.js:86
 msgid "Mexico"
 msgstr "Mexiko"
 
-#: /media/js/settings.js:83
+#: /media/js/settings.js:87
 msgid "Montenegro"
 msgstr "Montenegro"
 
-#: /media/js/settings.js:84
+#: /media/js/settings.js:88
 msgid "Peru"
 msgstr "Peru"
 
-#: /media/js/settings.js:85
+#: /media/js/settings.js:89
 msgid "Poland"
 msgstr "Polen"
 
-#: /media/js/settings.js:86
+#: /media/js/settings.js:90
 msgid "Serbia"
 msgstr "Serbien"
 
-#: /media/js/settings.js:87
+#: /media/js/settings.js:91
 msgid "Spain"
 msgstr "Spanien"
 
-#: /media/js/settings.js:88
+#: /media/js/settings.js:92
 msgid "United Kingdom"
 msgstr "Vereinigtes Königreich"
 
-#: /media/js/settings.js:89
+#: /media/js/settings.js:93
 msgid "United States"
 msgstr "Vereinigte Staaten"
 
-#: /media/js/settings.js:90
+#: /media/js/settings.js:94
 msgid "Uruguay"
 msgstr "Uruguay"
 
-#: /media/js/settings.js:91
+#: /media/js/settings.js:95
 msgid "Venezuela"
 msgstr "Venezuela"
 
-#: /media/js/settings.js:92
+#: /media/js/settings.js:96
 msgid "No region in search"
 msgstr "Keine Region in Suche"
 
@@ -768,12 +828,16 @@ msgstr "Rückmeldung abgesendet. Vielen Dank!"
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Beim Übermitteln Ihrer Rückmeldung ist ein Fehler aufgetreten. Bitte versuchen Sie es in Kürze erneut."
 
+#: /media/js/views/nominate.js:113
+msgid "Nominate apps"
+msgstr ""
+
 #. Page not found (404)
 #: /media/js/views/not_found.js:9
 msgid "Not Found"
 msgstr "Nicht gefunden"
 
-#: /media/js/views/search.js:210
+#: /media/js/views/search.js:214
 msgid "Search Results"
 msgstr "Suchergebnisse"
 

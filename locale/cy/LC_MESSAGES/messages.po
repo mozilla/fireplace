@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26T17:04:53.674Z\n"
+"POT-Creation-Date: 2014-03-19T16:34:30.429Z\n"
 "PO-Revision-Date: 2014-03-15 19:41+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != "
-"11) ? 2 : 3 ;\n"
+"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3 ;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1394912509.0\n"
 
@@ -44,6 +43,10 @@ msgstr "Na"
 msgid "Yes"
 msgstr "Iawn"
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr ""
+
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
 msgid "Out-of-Date Marketplace"
@@ -51,10 +54,7 @@ msgstr "Hen Marketplace"
 
 #: /templates/deprecated.html:3
 msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
-msgstr ""
-"Nid yw'r fersiwn o'r Firefox Marketplace rydych yn ei ddefnyddio yn cael ei "
-"gynnal bellach. Rhaid i chi ei ddiweddaru cyn eich bod yn gallu parhau i "
-"ddefnyddio'r Marketplace."
+msgstr "Nid yw'r fersiwn o'r Firefox Marketplace rydych yn ei ddefnyddio yn cael ei gynnal bellach. Rhaid i chi ei ddiweddaru cyn eich bod yn gallu parhau i ddefnyddio'r Marketplace."
 
 #: /templates/deprecated.html:5
 msgid "Update Now"
@@ -110,12 +110,10 @@ msgid ""
 "Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
 "Alike License v3.0</a> or any later version."
 msgstr ""
-"Ar wahân i lle fydd yn cael ei <a href=\"{legal_url}\" "
-"target=\"_blank\">nodi</a>, mae cynnwys ar y wefan hon wedi ei drwyddedu o dan "
-"drwydded <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution "
-"Share-Alike License v3.0</a> neu unrhyw fersiwn diweddarach."
+"Ar wahân i lle fydd yn cael ei <a href=\"{legal_url}\" target=\"_blank\">nodi</a>, mae cynnwys ar y wefan hon wedi ei drwyddedu o dan drwydded <a href=\"{cc_url}\" target=\"_blank\">Creative "
+"Commons Attribution Share-Alike License v3.0</a> neu unrhyw fersiwn diweddarach."
 
-#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:189 /templates/detail/receipt.html:57 /templates/detail/privacy.html:3 /templates/settings/feedback.html:22
+#: /templates/footer.html:33 /templates/privacy.html:2 /templates/detail/main.html:189 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:22
 #: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Polisi Preifatrwydd"
@@ -164,24 +162,93 @@ msgstr "Rhaid defnyddio Firefox i osod apiau Firefox."
 msgid "Download."
 msgstr "Llwyth i Lawr."
 
-#: /templates/_macros/market_tile.html:9
+#: /templates/nominate.html:1
+msgid "Nominate apps to be featured on Firefox Marketplace!"
+msgstr ""
+
+#: /templates/nominate.html:6
+msgid "Are you the developer or fan of an awesome app or collection of apps on Firefox Marketplace? Submit your nominations, and you may see them in a featured spot."
+msgstr ""
+
+#: /templates/nominate.html:9
+msgid "Learn more about <a href=\"{wiki_url}\">how apps are featured</a>."
+msgstr ""
+
+#: /templates/nominate.html:15
+msgid "Thanks for submitting your nomination."
+msgstr ""
+
+#: /templates/nominate.html:16
+msgid "Tell your friends!"
+msgstr ""
+
+#: /templates/nominate.html:17
+msgid "Tweet #FaveApps"
+msgstr ""
+
+#: /templates/nominate.html:18
+msgid "Submit another nomination"
+msgstr ""
+
+#: /templates/nominate.html:24
+msgid "Tell us which Marketplace apps you'd like to nominate for featuring"
+msgstr ""
+
+#: /templates/nominate.html:25
+msgid "Name of apps or Marketplace URLs"
+msgstr ""
+
+#: /templates/nominate.html:29
+msgid "Select a category for these apps"
+msgstr ""
+
+#: /templates/nominate.html:41
+msgid "In which regions would you like to see these apps featured?"
+msgstr ""
+
+#: /templates/nominate.html:54
+msgid "Tell us why these apps should be featured"
+msgstr ""
+
+#: /templates/nominate.html:60 /templates/nominate.html:61
+msgid "Your name"
+msgstr ""
+
+#: /templates/nominate.html:64
+msgid "Your email address"
+msgstr ""
+
+#: /templates/nominate.html:71 /templates/ratings/edit.html:22 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Cyflwyno"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:5
+msgid "Unavailable"
+msgstr "Dim ar gael"
+
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:54
+msgid "Free"
+msgstr "Am Ddim"
+
+#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
+msgid "Install"
+msgstr "Gosod"
+
+#: /templates/_macros/market_tile.html:10
 msgid "{app_name} .::. screenshot"
 msgstr "{app_name} .::. llun sgrin"
 
 #. the IARC rating body/system followed by a name/description of the rating (e.g. "ESRB: Everyone" or "PEGI: For ages 3+").
-#: /templates/_macros/market_tile.html:44
+#: /templates/_macros/market_tile.html:45
 msgid "{rating_body}: {rating}"
 msgstr "{rating_body}: {rating}"
 
-#: /templates/_macros/market_tile.html:53 /templates/_macros/market_button.html:7
-msgid "Free"
-msgstr "Am Ddim"
-
-#: /templates/_macros/market_tile.html:61
+#: /templates/_macros/market_tile.html:62
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:64 /templates/detail/main.html:135
+#: /templates/_macros/market_tile.html:65 /templates/detail/main.html:135
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} Adolygiad"
@@ -189,13 +256,17 @@ msgstr[1] "{n} Adolygiad"
 msgstr[2] "{n} Adolygiad"
 msgstr[3] "{n} Adolygiad"
 
-#: /templates/_macros/market_tile.html:68
+#: /templates/_macros/market_tile.html:69
 msgid "(0)"
 msgstr "(0)"
 
-#: /templates/_macros/market_tile.html:69
+#: /templates/_macros/market_tile.html:70
 msgid "Not yet rated"
 msgstr "Heb eu graddio"
+
+#: /templates/_macros/more_button.html:2
+msgid "More"
+msgstr "Rhagor"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -221,22 +292,9 @@ msgstr "Dileu"
 msgid "Report"
 msgstr "Adrodd"
 
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
-msgid "Unavailable"
-msgstr "Dim ar gael"
-
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
-msgid "Install"
-msgstr "Gosod"
-
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Graddiwyd {stars} allan o {maxstars} seren"
-
-#: /templates/_macros/more_button.html:2
-msgid "More"
-msgstr "Rhagor"
 
 #: /templates/category/main.html:37
 msgid "Featured Apps"
@@ -293,15 +351,11 @@ msgstr "Cychwynnwch yr ap hwn o'ch cyfeiriadur <b>Rhaglenni</b>."
 
 #: /templates/detail/main.html:48
 msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr ""
-"Cychwynnwch yr ap hwn o'ch <b>bwrdd gwaith Windows</b> neu <b>Cychwyn "
-"&#9658; Pob Rhaglen</b>."
+msgstr "Cychwynnwch yr ap hwn o'ch <b>bwrdd gwaith Windows</b> neu <b>Cychwyn &#9658; Pob Rhaglen</b>."
 
 #: /templates/detail/main.html:51
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr ""
-"Cychwynnwch yr ap hwn o'ch <b>bwrdd gwaith</b>, <b>Dewisydd rhaglenni</b> "
-"neu <b>Ddewislen rhaglenni</b>."
+msgstr "Cychwynnwch yr ap hwn o'ch <b>bwrdd gwaith</b>, <b>Dewisydd rhaglenni</b> neu <b>Ddewislen rhaglenni</b>."
 
 #: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
@@ -321,9 +375,7 @@ msgstr "Nid yw'r ap gofynnwyd amdano ar gael yn eich ardal chi."
 
 #: /templates/detail/main.html:31
 msgid "You may wish to contact the developer if you would like to see a version of this app for your region."
-msgstr ""
-"Efallai yr hoffech chi gysylltu â'r datblygwr os hoffech weld fersiwn o'r ap "
-"ar gyfer eich ardal."
+msgstr "Efallai yr hoffech chi gysylltu â'r datblygwr os hoffech weld fersiwn o'r ap ar gyfer eich ardal."
 
 #: /templates/detail/main.html:33
 msgid "A server error occurred. Please try again later."
@@ -405,14 +457,6 @@ msgstr "Ystadegau"
 msgid "Premium version available"
 msgstr "Fersiwn talu ar gael"
 
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr "Diolch am brynu"
-
-#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
-msgid "The page you were looking for was not found."
-msgstr "Heb ganfod y dudalen roeddech yn chwilio amdani."
-
 #: /templates/detail/privacy.html:5
 msgid "Back to app"
 msgstr "Nôl i'r ap"
@@ -420,6 +464,14 @@ msgstr "Nôl i'r ap"
 #: /templates/detail/privacy.html:11
 msgid "Loading Privacy Policy..."
 msgstr "Llwytho Polisi Preifatrwydd..."
+
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr "Diolch am brynu"
+
+#: /templates/detail/receipt.html:29 /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "Heb ganfod y dudalen roeddech yn chwilio amdani."
 
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
@@ -433,26 +485,6 @@ msgstr "Gwall wrth llwytho rhagor"
 msgid "Try Again"
 msgstr "Ceisiwch Eto"
 
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Canlyniad"
-msgstr[1] "<b>{n}</b> Canlyniad"
-msgstr[2] "<b>{n}</b> Canlyniad"
-msgstr[3] "<b>{n}</b> Canlyniad"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Dangos <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Heb ganfod canlyniadau"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Heb ganfod canlyniadau, ceisiwch eto"
-
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
 msgid "Edit Review"
 msgstr "Golygu Adolygiad"
@@ -465,10 +497,6 @@ msgstr "Graddio:"
 #: /templates/user/newsletter.html:13
 msgid "Cancel"
 msgstr "Diddymu"
-
-#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
-msgid "Submit"
-msgstr "Cyflwyno"
 
 #: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
 msgid "Only logged in users may edit reviews."
@@ -501,6 +529,26 @@ msgstr "Iaith/deialog anaddas"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Cais adroddiad gwall coll neu gefnogaeth"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Canlyniad"
+msgstr[1] "<b>{n}</b> Canlyniad"
+msgstr[2] "<b>{n}</b> Canlyniad"
+msgstr[3] "<b>{n}</b> Canlyniad"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Dangos <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Heb ganfod canlyniadau"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Heb ganfod canlyniadau, ceisiwch eto"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -552,8 +600,7 @@ msgstr "Mewngofnodi..."
 
 #: /templates/user/newsletter.html:18
 msgid "You were successfully signed up for the Marketplace newsletter!"
-msgstr ""
-"Rydych wedi cael eich cofrestru i dderbyn llythyr newyddion y Marketplace!"
+msgstr "Rydych wedi cael eich cofrestru i dderbyn llythyr newyddion y Marketplace!"
 
 #: /templates/user/purchases.html:49
 msgid "You must be signed in to view your apps."
@@ -615,9 +662,7 @@ msgstr "Rydych wedi eich mewngofnodi"
 
 #: /media/js/login.js:128
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-"Methodd mewngofnodi Persona. Efallai nad oes gennych gyfrif o dan y "
-"cyfeiriad e-bost hwnnw?"
+msgstr "Methodd mewngofnodi Persona. Efallai nad oes gennych gyfrif o dan y cyfeiriad e-bost hwnnw?"
 
 #: /media/js/login.js:133
 msgid "Persona login failed. A server error was encountered."
@@ -660,87 +705,87 @@ msgstr "Mae eich adolygiad wedi ei gofnodi"
 msgid "Error while submitting review"
 msgstr "Gwall wrth gyflwyno adolygiad"
 
-#: /media/js/settings.js:72
+#: /media/js/settings.js:76
 msgid "Rest of World"
 msgstr "Gweddill y Byd"
 
-#: /media/js/settings.js:73
+#: /media/js/settings.js:77
 msgid "Argentina"
 msgstr "Yr Ariannin"
 
-#: /media/js/settings.js:74
+#: /media/js/settings.js:78
 msgid "Brazil"
 msgstr "Brasil"
 
-#: /media/js/settings.js:75
+#: /media/js/settings.js:79
 msgid "Chile"
 msgstr "Chile"
 
-#: /media/js/settings.js:76
+#: /media/js/settings.js:80
 msgid "China"
 msgstr "China"
 
-#: /media/js/settings.js:77
+#: /media/js/settings.js:81
 msgid "Colombia"
 msgstr "Colombia"
 
-#: /media/js/settings.js:78
+#: /media/js/settings.js:82
 msgid "Germany"
 msgstr "Yr Almaen"
 
-#: /media/js/settings.js:79
+#: /media/js/settings.js:83
 msgid "Greece"
 msgstr "Gwlad Groeg"
 
-#: /media/js/settings.js:80
+#: /media/js/settings.js:84
 msgid "Hungary"
 msgstr "Hwngari"
 
-#: /media/js/settings.js:81
+#: /media/js/settings.js:85
 msgid "Italy"
 msgstr "Yr Eidal"
 
-#: /media/js/settings.js:82
+#: /media/js/settings.js:86
 msgid "Mexico"
 msgstr "Mecsico"
 
-#: /media/js/settings.js:83
+#: /media/js/settings.js:87
 msgid "Montenegro"
 msgstr "Montenegro"
 
-#: /media/js/settings.js:84
+#: /media/js/settings.js:88
 msgid "Peru"
 msgstr "Periw"
 
-#: /media/js/settings.js:85
+#: /media/js/settings.js:89
 msgid "Poland"
 msgstr "Gwlad Pwyl"
 
-#: /media/js/settings.js:86
+#: /media/js/settings.js:90
 msgid "Serbia"
 msgstr "Serbia"
 
-#: /media/js/settings.js:87
+#: /media/js/settings.js:91
 msgid "Spain"
 msgstr "Sbaen"
 
-#: /media/js/settings.js:88
+#: /media/js/settings.js:92
 msgid "United Kingdom"
 msgstr "Y Deyrnas Unedig"
 
-#: /media/js/settings.js:89
+#: /media/js/settings.js:93
 msgid "United States"
 msgstr "Yr Unol Daleithiau"
 
-#: /media/js/settings.js:90
+#: /media/js/settings.js:94
 msgid "Uruguay"
 msgstr "Uruguay"
 
-#: /media/js/settings.js:91
+#: /media/js/settings.js:95
 msgid "Venezuela"
 msgstr "Venezuela"
 
-#: /media/js/settings.js:92
+#: /media/js/settings.js:96
 msgid "No region in search"
 msgstr "Dim ardal yn y chwilio"
 
@@ -791,12 +836,16 @@ msgstr "Cyflwynwyd yr adborth. Diolch!"
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Bu anhawster wrth gyflwyno eich adborth. Ceisiwch eto."
 
+#: /media/js/views/nominate.js:113
+msgid "Nominate apps"
+msgstr ""
+
 #. Page not found (404)
 #: /media/js/views/not_found.js:9
 msgid "Not Found"
 msgstr "Heb Ganfod"
 
-#: /media/js/views/search.js:210
+#: /media/js/views/search.js:214
 msgid "Search Results"
 msgstr "Canlyniadau Chwilio"
 
