@@ -33,7 +33,9 @@
       <select name="entry.596690778">
         <option value=""></option>
         {% for cat in categories %}
-          <option value="{{ cat.slug }}">{{ cat.name }}</option>
+          {% if cat.slug != 'all' %}
+            <option value="{{ cat.slug }}">{{ cat.name }}</option>
+          {% endif %}
         {% endfor %}
       </select>
     </label>
