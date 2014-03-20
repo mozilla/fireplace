@@ -150,7 +150,6 @@ define('login',
     var persona_loading_start = +(new Date());
     var persona_loading_time = 0;
     var persona_step = 25;  // 25 milliseconds
-    var persona_timeout = persona_loading_start + settings.persona_timeout;
 
     var persona_interval = setInterval(function() {
         persona_loading_time = +(new Date()) - persona_loading_start;
@@ -158,7 +157,7 @@ define('login',
             console.log('Persona loaded (' + persona_loading_time / 1000 + 's)');
             persona_def.resolve();
             clearInterval(persona_interval);
-        } else if (persona_loading_time >= persona_timeout) {
+        } else if (persona_loading_time >= settings.persona_timeout) {
             console.error('Persona timeout (' + persona_loading_time / 1000 + 's)');
             persona_def.reject();
             clearInterval(persona_interval);
