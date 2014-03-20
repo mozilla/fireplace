@@ -1,5 +1,9 @@
-define('content-ratings', ['urls', 'utils', 'z'], function(urls, utils, z) {
+define('content-ratings', ['format', 'l10n', 'urls', 'utils', 'z'],
+    function(format, l10n, urls, utils, z) {
     'use strict';
+
+    format = format.format;
+    var gettext = l10n.gettext;
 
     function _rating_path(path) {
         return utils.urlparams(
@@ -89,6 +93,168 @@ define('content-ratings', ['urls', 'utils', 'z'], function(urls, utils, z) {
         'usk': 'http://www.usk.de/iarc0/',
     };
 
+    // L10n: For ages {0} and higher. (de) `ab {0} Jahren`.
+    var RATING_NAME = gettext('For ages {0}+');
+    var names = {
+        bodies: {
+            'classind': 'CLASSIND',
+            'esrb': 'ESRB',
+             // L10n: the generic ratings body.
+            'generic': gettext('Generic'),
+            'pegi': 'PEGI',
+            'usk': 'USK',
+        },
+        descriptors: {
+            classind: {
+                // L10n: (es) `Atos Crim\xEDnosos`.
+                'criminal_acts': gettext('Criminal Acts'),
+                // L10n: (es) `Drogas`.
+                'drugs': gettext('Drugs'),
+                // L10n: (es) `Drogas Il\xEDcitas`.
+                'drugs_illegal': gettext('Illegal Drugs'),
+                // L10n: (es) `Drogas L\xEDcitas`.
+                'drugs_legal': gettext('Legal Drugs'),
+                // L10n: (es) `Linguagem Impr\xF3pria`.
+                'lang': gettext('Inappropriate Language'),
+                // L10n: A descriptor is an element describing the app's content. (es) `N\xE3o inadequa\xE7\xF5es`.
+                'no_descs': gettext('No Descriptors'),
+                // L10n: (es) `Nudez`.
+                'nudity': gettext('Nudity'),
+                // L10n: (es) `Sexo`.
+                'sex': gettext('Sex'),
+                // L10n: (es) `Sexo Expl\xEDcito`.
+                'sex_explicit': gettext('Explicit Sex'),
+                // L10n: (es) `Conte\xFAdo Impactante`.
+                'shocking': gettext('Impacting Content'),
+                // L10n: (es) `Viol\xEAncia`.
+                'violence': gettext('Violence'),
+                // L10n: (es) `Viol\xEAncia Extrema`.
+                'violence_extreme': gettext('Extreme Violence'),
+            },
+            esrb: {
+                'alcohol_ref': gettext('Alcohol Reference'),
+                'alcohol_tobacco_ref': gettext('Alcohol and Tobacco Reference'),
+                'alcohol_tobacco_use': gettext('Use of Alcohol and Tobacco'),
+                'alcohol_use': gettext('Use of Alcohol'),
+                'blood': gettext('Blood'),
+                'blood_gore': gettext('Blood and Gore'),
+                'comic_mischief': gettext('Comic Mischief'),
+                'crime': gettext('Crime'),
+                'crime_instruct': gettext('Criminal Instruction'),
+                'crude_humor': gettext('Crude Humor'),
+                'drug_alcohol_ref': gettext('Drug and Alcohol Reference'),
+                'drug_alcohol_tobacco_ref': gettext('Drug, Alcohol, and Tobacco Reference'),
+                'drug_alcohol_tobacco_use': gettext('Use of Drug, Alcohol, and Tobacco'),
+                'drug_alcohol_use': gettext('Use of Drug and Alcohol'),
+                'drug_ref': gettext('Drug Reference'),
+                'drug_tobacco_ref': gettext('Drug and Tobacco Reference'),
+                'drug_tobacco_use': gettext('Use of Drug and Tobacco'),
+                'drug_use': gettext('Use of Drugs'),
+                'fantasy_violence': gettext('Fantasy Violence'),
+                'hate_speech': gettext('Hate Speech'),
+                'intense_violence': gettext('Intense Violence'),
+                // L10n: `Language` as in foul language.
+                'lang': gettext('Language'),
+                'mild_blood': gettext('Mild Blood'),
+                'mild_fantasy_violence': gettext('Mild Fantasy Violence'),
+                'mild_lang': gettext('Mild Language'),
+                'mild_violence': gettext('Mild Violence'),
+                'no_descs': gettext('No Descriptors'),
+                'nudity': gettext('Nudity'),
+                'partial_nudity': gettext('Partial Nudity'),
+                'real_gambling': gettext('Real Gambling'),
+                'scary': gettext('Scary Themes'),
+                'sex_content': gettext('Sexual Content'),
+                'sex_themes': gettext('Sexual Themes'),
+                'sim_gambling': gettext('Simulated Gambling'),
+                'strong_lang': gettext('Strong Language'),
+                'strong_sex_content': gettext('Strong Sexual Content'),
+                'suggestive': gettext('Suggestive Themes'),
+                'tobacco_ref': gettext('Tobacco Reference'),
+                'tobacco_use': gettext('Use of Tobacco'),
+                'violence': gettext('Violence'),
+                'violence_ref': gettext('Violence References'),
+            },
+            generic: {
+                'discrimination': gettext('Discrimination'),
+                'drugs': gettext('Drugs'),
+                'gambling': gettext('Gambling'),
+                // L10n: `Language` as in foul language.
+                'lang': gettext('Language'),
+                'no_descs': gettext('No Descriptors'),
+                'online': gettext('Online'),
+                'scary': gettext('Fear'),
+                // L10n: `Sex` as in sexual, not as in gender.
+                'sex_content': gettext('Sex'),
+                'violence': gettext('Violence'),
+            },
+            pegi: {
+                'discrimination': gettext('Discrimination'),
+                'drugs': gettext('Drugs'),
+                'gambling': gettext('Gambling'),
+                // L10n: `Language` as in foul language.
+                'lang': gettext('Language'),
+                'no_descs': gettext('No Descriptors'),
+                'online': gettext('Online'),
+                'scary': gettext('Fear'),
+                // L10n: `Sex` as in sexual, not as in gender.
+                'sex_content': gettext('Sex'),
+                'violence': gettext('Violence'),
+
+                'users_interact': gettext('Social Interaction Functionality'),
+                'shares_info': gettext('Personal Data Sharing'),
+                'digital_purchases': gettext('In-app Purchase Option'),
+                'shares_location': gettext('Location Data Sharing'),
+            },
+            usk: {
+                // L10n: (de) `Diskriminierung `.
+                'discrimination': gettext('Discrimination'),
+                // L10n: (de) `Drogen`.
+                'drugs': gettext('Drugs'),
+                // L10n: (de) `Explizite Sprache`.
+                'lang': gettext('Explicit Language'),
+                'no_descs': gettext('No Descriptors'),
+                // L10n: (de) `\xC4ngstigende Inhalte`.
+                'scary': gettext('Frightening Content'),
+                // L10n: (de) `Erotik/Sexuelle Inhalte`.
+                'sex_content': gettext('Sexual Content'),
+                // L10n: (de) `Gewalt`.
+                'violence': gettext('Violence'),
+            }
+        },
+        interactives: {
+            'digital-purchases': gettext('Digital Purchases'),
+            'shares-info': gettext('Shares Info'),
+            'shares-location': gettext('Shares Location'),
+            'users-interact': gettext('Users Interact'),
+        },
+        ratings: {
+            generic: {
+                '0': gettext('For all ages'),
+                '3': format(RATING_NAME, 3),
+                '6': format(RATING_NAME, 6),
+                '7': format(RATING_NAME, 7),
+                '10': format(RATING_NAME, 10),
+                '12': format(RATING_NAME, 12),
+                '14': format(RATING_NAME, 14),
+                '16': format(RATING_NAME, 16),
+                '18': format(RATING_NAME, 18),
+                'pending': gettext('Rating Pending'),
+                'rating-refused': gettext('Rating Refused')
+            },
+            esrb: {
+                '0': gettext('Everyone'),
+                '10': gettext('Everyone 10+'),
+                '13': gettext('Teen'),
+                '17': gettext('Mature 17+'),
+                '18': gettext('Adults Only 18+')
+            },
+        },
+    };
+    names.ratings.classind = names.ratings.generic;
+    names.ratings.pegi = names.ratings.generic;
+    names.ratings.usk = names.ratings.generic;
+
     // Language icons.
     if (window.navigator.l10n.language == 'es') {
         rating_icons.esrb = {
@@ -104,6 +270,7 @@ define('content-ratings', ['urls', 'utils', 'z'], function(urls, utils, z) {
     return {
         descriptor_icons: descriptor_icons,
         detail_links: detail_links,
+        names: names,
         interactive_icons: interactive_icons,
         rating_icons: rating_icons,
     };
