@@ -153,7 +153,7 @@ define('login',
     var persona_timeout = persona_loading_start + settings.persona_timeout;
 
     var persona_interval = setInterval(function() {
-        persona_loading_time += +(new Date()) - persona_loading_start;
+        persona_loading_time = +(new Date()) - persona_loading_start;
         if (capabilities.persona()) {
             console.log('Persona loaded (' + persona_loading_time / 1000 + 's)');
             persona_def.resolve();
