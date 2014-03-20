@@ -1,6 +1,6 @@
 define('views/search',
-    ['capabilities', 'l10n', 'storage', 'tracking', 'underscore', 'urls', 'utils', 'z'],
-    function(capabilities, l10n, storage, tracking, _, urls, utils, z) {
+    ['capabilities', 'content-ratings', 'l10n', 'storage', 'tracking', 'underscore', 'urls', 'utils', 'z'],
+    function(capabilities, iarc, l10n, storage, tracking, _, urls, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -220,10 +220,11 @@ define('views/search',
             (new Audio(urls.media('fireplace/hampster.ogg'))).play();
         }
 
-        builder.start(
-            'search/main.html',
-            {params: _.extend({}, params), processor: processor(query)}
-        ).done(function() {
+        builder.start('search/main.html', {
+            iarc: iarc,
+            params: _.extend({}, params),
+            processor: processor(query)
+        }).done(function() {
             var results = builder.results.searchresults;
             if (params.manifest_url && results.objects.length === 1) {
                 z.page.trigger('divert', [urls.reverse('app', [results.objects[0].slug]) + '?src=' + params.src]);
