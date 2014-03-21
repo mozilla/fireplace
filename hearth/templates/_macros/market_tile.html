@@ -51,11 +51,11 @@
           {% if content_rating.body != 'generic' %}
             {# L10n: the IARC rating body/system followed by a name/description of the rating (e.g. "ESRB: Everyone" or "PEGI: For ages 3+"). #}
             {{ _('{rating_body}: {rating}',
-                 rating_body=iarc.names.bodies[app.content_ratings.body],
-                 rating=iarc.names.ratings[app.content_ratings.body][app.content_ratings.rating]) }}
+                 rating_body=iarc_names.bodies[app.content_ratings.body],
+                 rating=iarc_names.ratings[app.content_ratings.body][app.content_ratings.rating]) }}
           {% else %}
             {# Don't show "Generic:" as the body since that doesn't mean much. #}
-            {{ iarc.names.ratings[app.content_ratings.body][app.content_ratings.rating] }}
+            {{ iarc_names.ratings[app.content_ratings.body][app.content_ratings.rating] }}
           {% endif %}
         </div>
       {% endif %}

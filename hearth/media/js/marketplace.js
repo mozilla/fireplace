@@ -31,6 +31,7 @@ define(
         'consumer_info',
         'mobilenetwork',  // Must come before cat-dropdown (for amd.js)
         'cat-dropdown',
+        'content-ratings',
         'forms',
         'header',
         'image-deferrer',
@@ -71,6 +72,7 @@ function(_) {
     var nunjucks_globals = require('nunjucks').require('globals');
     nunjucks_globals.REGIONS = settings.REGION_CHOICES_SLUG;
     nunjucks_globals.user_helpers = require('user_helpers');
+    nunjucks_globals.iarc_names = require('content-ratings').names;
 
     // Jank hack because Persona doesn't allow scripts in the doc iframe.
     // Please just delete it when they don't do that anymore.

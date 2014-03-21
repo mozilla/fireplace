@@ -1,6 +1,6 @@
 define('views/search',
-    ['capabilities', 'content-ratings', 'l10n', 'storage', 'tracking', 'underscore', 'urls', 'utils', 'z'],
-    function(capabilities, iarc, l10n, storage, tracking, _, urls, utils, z) {
+    ['capabilities', 'l10n', 'storage', 'tracking', 'underscore', 'urls', 'utils', 'z'],
+    function(capabilities, l10n, storage, tracking, _, urls, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -221,7 +221,6 @@ define('views/search',
         }
 
         builder.start('search/main.html', {
-            iarc: iarc,
             params: _.extend({}, params),
             processor: processor(query)
         }).done(function() {

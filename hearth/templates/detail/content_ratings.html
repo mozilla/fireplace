@@ -8,8 +8,8 @@
             {# Content rating. #}
             <img src="{{ iarc.rating_icons[this.body][this.rating] }}"
                  class="icon icon-body-{{ this.body }}"
-                 title="{{ iarc.names.ratings[this.body][this.rating] }}"
-                 alt="{{ iarc.names.ratings[this.body][this.rating] }}">
+                 title="{{ iarc_names.ratings[this.body][this.rating] }}"
+                 alt="{{ iarc_names.ratings[this.body][this.rating] }}">
           </div>
 
           {# Content descriptors as a list of text.
@@ -19,13 +19,13 @@
               {% for descriptor in this.descriptors[this.body] %}
                 {# Don't show "No Descriptors". #}
                 {% if descriptor != 'no-descs' %}
-                  <li>{{ iarc.names.descriptors[this.body][descriptor] }}</li>
+                  <li>{{ iarc_names.descriptors[this.body][descriptor] }}</li>
                 {% endif %}
               {% endfor %}
             </ul>
           {% else %}
             {# If not showing descriptor text, show the rating name to fill in space. #}
-            <span class="rating-description">{{ iarc.names.ratings[this.body][this.rating] }}</span>
+            <span class="rating-description">{{ iarc_names.ratings[this.body][this.rating] }}</span>
           {% endif %}
         </div>
 
@@ -39,7 +39,7 @@
                 {% set icon_src = desc_icons[descriptor] %}
                 {% if icon_src %}
                   <img src="{{ icon_src }}" class="icon"
-                       title="{{ iarc.names.descriptors[this.body][descriptor] }}"
+                       title="{{ iarc_names.descriptors[this.body][descriptor] }}"
                        alt="{{ names.descriptors[this.body][descriptor] }}">
                 {% endif %}
               {% endfor %}
@@ -54,12 +54,12 @@
                   {% set icon_src = interactive_icons[interactive] %}
                   {% if icon_src %}
                     <img src="{{ icon_src }}" class="icon"
-                         title="{{ iarc.names.interactives[interactive] }}"
+                         title="{{ iarc_names.interactives[interactive] }}"
                          alt="{{ names.interactives[interactive] }}">
                   {% endif %}
                 {% else %}
                   {# Interactive elements as a column of text (non-PEGI/ESRB bodies). #}
-                  <p>{{ iarc.names.interactives[interactive] }}</p>
+                  <p>{{ iarc_names.interactives[interactive] }}</p>
                 {% endif %}
               {% endfor %}
             </div>
