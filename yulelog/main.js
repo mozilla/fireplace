@@ -55,7 +55,7 @@
                     mccs.push({mcc: connData[0], mnc: connData[1]});
                 }
                 mccs = JSON.stringify(mccs);
-                qs = '?mccs=' + mccs;
+                qs.push('mccs=' + mccs);
                 log('MCCs: ' + mccs);
             } else {
                 log('navigator.mozMobileConnections unavailable');
@@ -68,7 +68,8 @@
                     // `lastKnownHomeNetwork`: `{MCC}-{MNC}` (SIM's origin)
                     // `lastKnownNetwork`: `{MCC}-{MNC}` (could be different network if roaming)
                     var network = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
-                    qs = '?mcc=' + (network[0] || '') + '&mnc=' + (network[1] || '');
+                    qs.push('mcc=' + (network[0] || ''));
+                    qs.push('mnc=' + (network[1] || ''));
                     log('navigator.mozMobileConnection.lastKnownNetwork:',
                         conn.lastKnownNetwork);
                     log('navigator.mozMobileConnection.lastKnownHomeNetwork:',
@@ -83,10 +84,14 @@
             // gives us problems.
         }
 
-        return qs;
+        if ('id' in navigator) {
+            qs.push('nativepersona=true');
+        }
+
+        return qs.join('&');
     }
 
-    var iframeSrc = MKT_URL + '/' + buildQS();
+    var iframeSrc = MKT_URL + '/?' + buildQS();
     var i = document.createElement('iframe');
     i.seamless = true;
     i.onerror = function() {
