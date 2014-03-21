@@ -1,6 +1,6 @@
 define('views/app',
-    ['capabilities', 'l10n', 'log', 'settings', 'tracking', 'utils', 'z', 'overflow'],
-    function(caps, l10n, log, settings, tracking, utils, z) {
+    ['capabilities', 'content-ratings', 'l10n', 'log', 'settings', 'tracking', 'utils', 'z', 'overflow'],
+    function(caps, iarc, l10n, log, settings, tracking, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -54,6 +54,7 @@ define('views/app',
     return function(builder, args) {
         var slug = args[0];
         builder.start('detail/main.html', {
+            iarc: iarc,
             slug: slug
         });
 
