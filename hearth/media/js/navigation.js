@@ -222,8 +222,13 @@ define('navigation',
         }
         var state = e.originalEvent.state;
         if (state) {
-            console.log('popstate navigate');
-            navigate(state.path, true, state);
+            if (state.closeModalName) {
+                console.log('popstate closing modal');
+                cleanupModal(state.closeModalName);
+            } else {
+                console.log('popstate navigate');
+                navigate(state.path, true, state);
+            }
         }
     }).on('submit', 'form', function() {
         console.error("Form submissions are not allowed.");
@@ -232,18 +237,23 @@ define('navigation',
 
     function modal(name) {
         console.log('Opening modal', name);
-        stack[0].scrollTop = window.pageYOffset;
-        stack[0].docHeight = z.doc.height();
+        stack[0].closeModalName = name;
         history.replaceState(stack[0], false, stack[0].path);
         history.pushState(null, name, '#' + name);
         var path = window.location.href + '#' + name;
         stack.unshift({path: path, type: 'modal', name: name});
     }
 
+    function cleanupModal(name) {
+        stack.shift();
+        delete stack[0].closeModalName;
+        z.win.trigger('closeModal', name);
+    }
+
     function closeModal(name) {
         if (stack[0].type === 'modal' && stack[0].name === name) {
             console.log('Closing modal', name);
-            back();
+            history.back();
         } else {
             console.log('Attempted to close modal', name, 'that was not open');
         }

@@ -147,6 +147,11 @@ define('lightbox',
     }
 
     function hideLightbox() {
+        navigation.closeModal('lightbox');
+        closeLightbox();
+    }
+
+    function closeLightbox() {
         z.body.removeClass('overlayed');
         pauseVideos();
         $lightbox.removeClass('show');
@@ -160,8 +165,6 @@ define('lightbox',
             slider.destroy();
             slider = null;
         }
-
-        navigation.closeModal('lightbox');
     }
 
     // We need to adjust the scroll distances on resize.
@@ -183,5 +186,10 @@ define('lightbox',
 
     // Hide screenshot overlay on back button hit.
     z.win.on('navigating', hideLightbox);
+    z.win.on('closeModal', function (e, modalName) {
+        if (modalName === 'lightbox') {
+            closeLightbox();
+        }
+    });
 
 });
