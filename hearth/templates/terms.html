@@ -2,9 +2,9 @@
   <header class="secondary-header c">
     <h2>{{ _('Terms of Use') }}</h2>
   </header>
-  <article class="prose">
-    {% set url = '/docs/terms/' + language + '.html?20140227' %}
-    {% set fallback = '/docs/terms/' + settings.default_locale + '.html?20140227' %}
+  <article class="island prose">
+    {% set url = '/docs/terms/' + language + '.html?20140321' %}
+    {% set fallback = '/docs/terms/' + settings.default_locale + '.html?20140321' %}
     {% fetch (url=media(url), fallback=media(fallback)) %}
       <p class="spinner spaced alt"></p>
     {% endfetch %}

@@ -105,6 +105,9 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // The Persona unverified issuer origin. Used by login.js.
         persona_unverified_issuer: 'login.persona.org',
 
+        // How long to wait before giving up on loading Persona's include.js.
+        persona_timeout: 30000,  // 30 seconds
+
         // The string to suffix page titles with. Used by builder.js.
         title_suffix: 'Firefox Marketplace',
 

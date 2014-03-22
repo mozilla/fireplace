@@ -31,8 +31,10 @@ define(
         'consumer_info',
         'mobilenetwork',  // Must come before cat-dropdown (for amd.js)
         'cat-dropdown',
+        'content-ratings',
         'forms',
         'header',
+        'image-deferrer',
         'l10n',
         'lightbox',
         'log',
@@ -70,13 +72,14 @@ function(_) {
     var nunjucks_globals = require('nunjucks').require('globals');
     nunjucks_globals.REGIONS = settings.REGION_CHOICES_SLUG;
     nunjucks_globals.user_helpers = require('user_helpers');
+    nunjucks_globals.iarc_names = require('content-ratings').names;
 
     // Jank hack because Persona doesn't allow scripts in the doc iframe.
     // Please just delete it when they don't do that anymore.
     // Note: If this list changes - please change it in webpay too or let #payments know.
-    var doc_langs = ['de', 'el', 'en-US', 'es', 'hu', 'it', 'pl', 'pt-BR', 'sr'];
+    var doc_langs = ['cs', 'de', 'el', 'en-US', 'es', 'hr', 'hu', 'it', 'pl', 'pt-BR', 'sr', 'zh-CN'];
     var doc_lang = doc_langs.indexOf(navigator.l10n.language) >= 0 ? navigator.l10n.language : 'en-US';
-    var doc_location = require('urls').media('/docs/{type}/' + doc_lang + '.html?20140227');
+    var doc_location = require('urls').media('/docs/{type}/' + doc_lang + '.html?20140321');
     settings.persona_tos = format.format(doc_location, {type: 'terms'});
     settings.persona_privacy = format.format(doc_location, {type: 'privacy'});
 
@@ -201,6 +204,30 @@ function(_) {
         z.page.trigger('divert', [require('urls').reverse('deprecated')]);
         throw new Error('Cancel navigation; deprecated client');
     });
+
+    var ImageDeferrer = require('image-deferrer');
+    var iconDeferrer = ImageDeferrer.Deferrer(100, null);
+    var screenshotDeferrer = ImageDeferrer.Deferrer(null, 200);
+    z.page.one('loaded', function() {
+        iconDeferrer.setImages($('.icon.deferred'));
+        screenshotDeferrer.setImages($('.screenshot img.deferred'));
+    }).on('loaded loaded_more', function() {
+        iconDeferrer.refresh();
+        screenshotDeferrer.refresh();
+    });
+    nunjucks_globals.imgAlreadyDeferred = function(src) {
+        /*
+            If an image already has been loaded, we use this helper in case the
+            view is triggered to be rebuilt. When pages are rebuilt, we don't
+            mark images to be deferred if they have already been loaded.
+            This fixes images flashing back to the placeholder image when
+            switching between the New and Popular tabs on the home page.
+        */
+        var iconsLoaded = iconDeferrer.getSrcsAlreadyLoaded();
+        var screenshotsLoaded = screenshotDeferrer.getSrcsAlreadyLoaded();
+        var loaded = iconsLoaded.concat(screenshotsLoaded);
+        return loaded.indexOf(src) !== -1;
+    };
 
     console.log('Initialization complete');
 });

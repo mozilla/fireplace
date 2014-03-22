@@ -131,6 +131,8 @@ define('views/search',
             'click',
             expand ? 'Expanded view' : 'List view'
         );
+
+        z.doc.trigger('scroll');  // For defer image loading.
     })).on('submit', 'form#search', function(e) {
         e.stopPropagation();
         e.preventDefault();
@@ -218,10 +220,10 @@ define('views/search',
             (new Audio(urls.media('fireplace/hampster.ogg'))).play();
         }
 
-        builder.start(
-            'search/main.html',
-            {params: _.extend({}, params), processor: processor(query)}
-        ).done(function() {
+        builder.start('search/main.html', {
+            params: _.extend({}, params),
+            processor: processor(query)
+        }).done(function() {
             var results = builder.results.searchresults;
             if (params.manifest_url && results.objects.length === 1) {
                 z.page.trigger('divert', [urls.reverse('app', [results.objects[0].slug]) + '?src=' + params.src]);

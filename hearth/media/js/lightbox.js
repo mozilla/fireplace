@@ -1,6 +1,6 @@
 define('lightbox',
-    ['keys', 'models', 'utils', 'shothandles', 'tracking', 'underscore', 'z'],
-    function(keys, models, utils, handles, tracking, _, z) {
+    ['keys', 'models', 'navigation', 'utils', 'shothandles', 'tracking', 'underscore', 'z'],
+    function(keys, models, navigation, utils, handles, tracking, _, z) {
 
     var $lightbox = $(document.getElementById('lightbox'));
     var $section = $lightbox.find('section');
@@ -41,9 +41,7 @@ define('lightbox',
             renderPreviews();
         }
 
-        // Set an anchor so the back button closes the lightbox instead of
-        // navigating.
-        window.location.hash = 'lightbox';
+        navigation.modal('lightbox');
 
         // Fade that bad boy in.
         z.body.addClass('overlayed');
@@ -163,10 +161,7 @@ define('lightbox',
             slider = null;
         }
 
-        // Remove the hash addition from the history.
-        if (location.hash == '#lightbox') {
-            history.back();
-        }
+        navigation.closeModal('lightbox');
     }
 
     // We need to adjust the scroll distances on resize.
