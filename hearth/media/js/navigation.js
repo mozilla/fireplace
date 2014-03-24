@@ -22,9 +22,10 @@ define('navigation',
             return url;
         }
 
-        var used_params = _.pick(utils.querystring(url), settings.param_whitelist);
         // We can't use urlparams() because that only extends, not replaces.
-        return utils.baseurl(url) + '?' + utils.urlencode(used_params);
+        var used_params = _.pick(utils.querystring(url), settings.param_whitelist);
+        var queryParams = utils.urlencode(used_params);
+        return utils.baseurl(url) + (queryParams.length ? '?' + queryParams : '');
     }
 
     function canNavigate() {
@@ -254,7 +255,8 @@ define('navigation',
         'modal': modal,
         'closeModal': closeModal,
         'stack': function() {return stack;},
-        'navigationFilter': navigationFilter
+        'navigationFilter': navigationFilter,
+        'extract_nav_url': extract_nav_url
     };
 
 });
