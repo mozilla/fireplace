@@ -108,6 +108,9 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // How long to wait before giving up on loading Persona's include.js.
         persona_timeout: 30000,  // 30 seconds
 
+        // URL to Persona's include.js.
+        persona_shim_url: 'https://login.persona.org/include.js',
+
         // The string to suffix page titles with. Used by builder.js.
         title_suffix: 'Firefox Marketplace',
 
