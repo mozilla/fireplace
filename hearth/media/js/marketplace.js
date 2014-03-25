@@ -209,7 +209,7 @@ function(_) {
     var iconDeferrer = ImageDeferrer.Deferrer(100, null);
     var screenshotDeferrer = ImageDeferrer.Deferrer(null, 200);
     z.page.one('loaded', function() {
-        iconDeferrer.setImages($('.icon.deferred'));
+        iconDeferrer.setImages($('.mkt-tile .icon.deferred'));
         screenshotDeferrer.setImages($('.screenshot img.deferred'));
     }).on('loaded loaded_more', function() {
         iconDeferrer.refresh();

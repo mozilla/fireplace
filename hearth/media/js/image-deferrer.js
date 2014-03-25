@@ -5,6 +5,9 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
        imageDeferrer = require('image-deferrer').ImageDeferrer(null, 200);
        imageDeferrer.setImages($('img.deferred.defer-us'));
     */
+    var PLACEHOLDER_SRC = urls.media('fireplace/img/pretty/rocket.png');
+    new Image().src = PLACEHOLDER_SRC;  // Preload placeholder image.
+
     function getXYPos(elem) {
         /*
             Return X/Y position of an element within the page (recursive).
@@ -91,7 +94,7 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
             // Calculate viewport loading boundaries (vertical).
             var yOffset = getScrollOffsets().y;
             var viewportHeight = z.win.height();
-            var minY = yOffset - viewportHeight * 0.5;  // 0.5 viewport(s) back.
+            var minY = yOffset - viewportHeight * .5;  // .5 viewport(s) back.
             minY = minY < 0 ? 0 : minY;
             var maxY = yOffset + viewportHeight * 1.5;  // 1.5 viewport(s) ahead.
 
@@ -144,7 +147,10 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
             }
 
             // Render images within or near the viewport.
-            scrollListener();
+            setTimeout(function() {
+                // Let the placeholder image load first.
+                z.doc.trigger('scroll');
+            });
         };
 
         var refresh = function() {
