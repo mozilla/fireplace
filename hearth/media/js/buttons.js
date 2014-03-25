@@ -47,9 +47,52 @@ define('buttons',
     });
 
     function install(product, $button) {
-        var product_name = product.name;
-        console.log('Install requested for', product_name);
 
+        var $this = $button || $(this);
+
+        // If it's a paid app, ask the user to sign in first.
+        if (!user.logged_in()) {
+            console.log('Install suspended; user needs to log in');
+            return require('login').login().done(function() {
+                // Once login completes, just call this function again with
+                // the same parameters, but re-fetch the button (since the
+                // button instance is not the same).
+                var new_button = get_button(product.manifest_url);
+                install(product, new_button);
+            }).fail(function(){
+                console.log('Install cancelled; login aborted');
+            });
+        }
+
+        // Make the button a spinner.
+        $this.data('old-text', $this.html())
+             .html('<span class="spin"></span>')
+             .addClass('spinning');
+        // Reset button if it's been 30 seconds without user action.
+        var _timeout = setTimeout(function() {
+            if ($this.hasClass('spinning')) {
+                console.warn('Spinner timeout for', product_name);
+                revertButton($this);
+            }
+        }, 30000);
+
+        console.log('Send user hash (' + user.hash + ') and app id (' + product.id + ') to recommendation API');
+
+        // This is the data needed to record the app's install.
+        var api_endpoint = 'http://localhost/api/recommend/';
+        var post_data = {
+            user: user.hash,
+            app: product.id
+        };
+
+        requests.post(api_endpoint, post_data);
+
+        // Clear the spinner timeout if one was set.
+        if (_timeout) {
+            clearTimeout(_timeout);
+        }
+
+/*
         // TODO: Have the API possibly return this (bug 889501).
         product.receipt_required = (product.premium_type !== 'free' &&
                                     product.premium_type !== 'free-inapp' &&
@@ -140,6 +183,7 @@ define('buttons',
             // Start the app's installation.
             start_install();
         }
+*/
 
         function start_install() {
 
@@ -229,6 +273,7 @@ define('buttons',
             });
         }
 
+/*
         // After everything has completed...
         def.then(function(installer) {
             // On install success, carry out post-install logic.
@@ -273,6 +318,7 @@ define('buttons',
         });
 
         return def.promise();
+*/
     }
 
     z.page.on('click', '.product.launch', launchHandler)
