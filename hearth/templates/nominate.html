@@ -28,14 +28,14 @@
 
     <label>
       <h3>{{ _('Select a category for these apps') }}</h3>
-      {% defer (url=api('categories'), pluck='objects', as='category') %}
-        <select name="entry.596690778">
-          <option value=""></option>
-          {% for cat in this %}
+      <select name="entry.596690778">
+        <option value=""></option>
+        {% for cat in categories %}
+          {% if cat.slug != 'all' %}
             <option value="{{ cat.slug }}">{{ cat.name }}</option>
-          {% endfor %}
-        </select>
-      {% end %}
+          {% endif %}
+        {% endfor %}
+      </select>
     </label>
 
     <div>

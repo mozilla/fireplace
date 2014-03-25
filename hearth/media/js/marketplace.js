@@ -164,8 +164,7 @@ function(_) {
     }).trigger('reload_chrome');
 
     z.page.on('before_login before_logout', function() {
-        var cat_url = require('urls').api.unsigned.url('categories');
-        require('cache').purge(function(key) {return key != cat_url;});
+        require('cache').purge();
     });
 
     z.body.on('click', '.site-header .back', function(e) {
