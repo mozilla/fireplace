@@ -138,7 +138,7 @@ define('apps',
             reasons.push(gettext('This app is unavailable for your platform.'));
         }
 
-        return product[COMPAT_REASONS] == reasons.length ? reasons : undefined;
+        return product[COMPAT_REASONS] = reasons.length ? reasons : undefined;
     }
     nunjucks.require('globals').app_incompat = incompat;
 
