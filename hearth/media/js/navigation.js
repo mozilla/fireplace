@@ -10,7 +10,6 @@ define('navigation',
         {path: '/', type: 'root'}
     ];
     var initialized = false;
-    var scrollTimer;
 
     function extract_nav_url(url) {
         // This function returns the URL that we should use for navigation.
@@ -60,26 +59,18 @@ define('navigation',
 
         var top = 0;
         if ((state.preserveScroll || popped) && state.scrollTop) {
-            if (state.docHeight) {
-                // Preserve document min-height for scroll restoration.
-                z.body.css('min-height', state.docHeight);
-                z.page.one('loaded', function() {
-                    // Remove specified min-height.
-                    z.body.css('min-height', '');
-                });
-            }
+            // Preserve document min-height for scroll preservation
+            // (e.g. when scroll pos should not change).
+            z.body.css('min-height', state.docHeight);
+            z.page.one('loaded', function() {
+                // Remove specified min-height.
+                z.body.css('min-height', '');
+            });
             top = state.scrollTop;
         }
 
-        // Introduce small delay to ensure content
-        // is ready to scroll. (Bug 976466)
-        if (scrollTimer) {
-            window.clearTimeout(scrollTimer);
-        }
-        scrollTimer = window.setTimeout(function() {
-            console.log('Setting scroll to', top);
-            window.scrollTo(0, top);
-        }, 250);
+        console.log('Setting scroll immediately to ', top);
+        window.scrollTo(0, top);
 
         // Clean the path's parameters.
         // /foo/bar?foo=bar&q=blah -> /foo/bar?q=blah
