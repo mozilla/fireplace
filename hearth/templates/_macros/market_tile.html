@@ -7,7 +7,7 @@
       {% for preview in app.previews %}
         <li itemscope itemtype="http://schema.org/ImageObject">
           <a class="screenshot thumbnail" href="{{ preview.image_url }}">
-            {% if not imgAlreadyDeferred(preview.thumbnail_url) %}
+            {% if src != 'detail' and not imgAlreadyDeferred(preview.thumbnail_url) %}
               {# Defer image loading. Don't change data-src to src. #}
               <img class="deferred" src="{{ media('fireplace/img/pretty/rocket.png') }}" alt="{{ _('{app_name} screenshot', app_name=app.name) }}" data-src="{{ preview.thumbnail_url }}" draggable="false" itemprop="contentURL">
             {% else %}
@@ -34,7 +34,7 @@
     data-slug="{{ app.slug }}"
     data-id="{{ app.id }}"
     {% if link %}itemscope itemtype="http://schema.org/SoftwareApplication"{% endif %}>
-    {% if not imgAlreadyDeferred(app.icons['64']) %}
+    {% if src != 'detail' and not imgAlreadyDeferred(app.icons['64']) %}
       {# Defer image loading. #}
       <img class="icon deferred" src="{{ media('fireplace/img/pretty/rocket.png') }}" alt="" data-src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
     {% else %}
