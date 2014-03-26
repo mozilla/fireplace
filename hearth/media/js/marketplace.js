@@ -34,7 +34,6 @@ define(
         'content-ratings',
         'forms',
         'header',
-        'image-deferrer',
         'l10n',
         'lightbox',
         'log',
@@ -164,8 +163,7 @@ function(_) {
     }).trigger('reload_chrome');
 
     z.page.on('before_login before_logout', function() {
-        var cat_url = require('urls').api.unsigned.url('categories');
-        require('cache').purge(function(key) {return key != cat_url;});
+        require('cache').purge();
     });
 
     z.body.on('click', '.site-header .back', function(e) {
@@ -204,30 +202,6 @@ function(_) {
         z.page.trigger('divert', [require('urls').reverse('deprecated')]);
         throw new Error('Cancel navigation; deprecated client');
     });
-
-    var ImageDeferrer = require('image-deferrer');
-    var iconDeferrer = ImageDeferrer.Deferrer(100, null);
-    var screenshotDeferrer = ImageDeferrer.Deferrer(null, 200);
-    z.page.one('loaded', function() {
-        iconDeferrer.setImages($('.icon.deferred'));
-        screenshotDeferrer.setImages($('.screenshot img.deferred'));
-    }).on('loaded loaded_more', function() {
-        iconDeferrer.refresh();
-        screenshotDeferrer.refresh();
-    });
-    nunjucks_globals.imgAlreadyDeferred = function(src) {
-        /*
-            If an image already has been loaded, we use this helper in case the
-            view is triggered to be rebuilt. When pages are rebuilt, we don't
-            mark images to be deferred if they have already been loaded.
-            This fixes images flashing back to the placeholder image when
-            switching between the New and Popular tabs on the home page.
-        */
-        var iconsLoaded = iconDeferrer.getSrcsAlreadyLoaded();
-        var screenshotsLoaded = screenshotDeferrer.getSrcsAlreadyLoaded();
-        var loaded = iconsLoaded.concat(screenshotsLoaded);
-        return loaded.indexOf(src) !== -1;
-    };
 
     console.log('Initialization complete');
 });

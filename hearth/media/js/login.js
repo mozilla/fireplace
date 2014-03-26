@@ -1,6 +1,6 @@
 define('login',
-    ['capabilities', 'defer', 'jquery', 'log', 'notification', 'settings', 'underscore', 'urls', 'user', 'requests', 'z'],
-    function(capabilities, defer, $, log, notification, settings, _, urls, user, requests, z) {
+    ['capabilities', 'defer', 'jquery', 'log', 'notification', 'settings', 'underscore', 'urls', 'user', 'utils', 'requests', 'z'],
+    function(capabilities, defer, $, log, notification, settings, _, urls, user, utils, requests, z) {
 
     var console = log('login');
 
@@ -150,6 +150,19 @@ define('login',
     var persona_loading_start = +(new Date());
     var persona_loading_time = 0;
     var persona_step = 25;  // 25 milliseconds
+
+    var GET = utils.getVars();
+
+    var persona_shim_included = $('script[src="' + settings.persona_shim_url + '"]').length;
+
+    // If for some reason Zamboni got `?nativepersona=true` but we actually
+    // don't have native Persona, then let's inject a script to load the shim.
+    if (!persona_shim_included && !capabilities.persona()) {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = settings.persona_shim_url;
+        document.body.appendChild(s);
+    }
 
     var persona_interval = setInterval(function() {
         persona_loading_time = +(new Date()) - persona_loading_start;

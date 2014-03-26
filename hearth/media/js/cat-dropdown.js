@@ -1,44 +1,19 @@
 // Note that 'mobilenetwork' must be required immediately prior to 'cat-dropdown'.
 define('cat-dropdown',
-    ['builder', 'consumer_info', 'jquery', 'keys', 'l10n', 'models', 'requests', 'templates', 'underscore', 'urls', 'z'],
-    function(builder, consumer_info, $, keys, l10n, models, requests, nunjucks, _, urls, z) {
+    ['builder', 'categories', 'consumer_info', 'jquery', 'keys', 'l10n', 'models', 'requests', 'templates', 'underscore', 'urls', 'z'],
+    function(builder, categories, consumer_info, $, keys, l10n, models, requests, nunjucks, _, urls, z) {
     'use strict';
 
     var gettext = l10n.gettext;
     var desktopWidth = 710;
-
-    var catModels = models('category');
-    catModels.cast({
-        name: gettext('All Categories'),
-        slug: 'all'
-    });
-
     var $catDropdown = $('#cat-dropdown');
     var $catList = $('#cat-list');
     var $catMenu = $('.cat-menu');
     var $dropdown = $('.dropdown');
     var $dropdownLink;
+    var catModels = models('category');
 
     // TODO: Detect when the user is offline and raise an error.
-
-    // Do the request out here so it happens immediately when the app loads.
-    var categoryReq = consumer_info.promise.then(function() {
-        return requests.get(urls.api.unsigned.url('categories'));
-    });
-    // Store the categories in models.
-    categoryReq.done(function(data) {
-        /*global console */
-        console.groupCollapsed('Casting categories to model cache...');
-        catModels.cast(data.objects);
-        console.groupEnd();
-        // If we're on a category page, set the page title to the category name.
-        if (z.context.cat) {
-            var cat = catModels.lookup(z.context.cat);
-            if (cat && cat.slug !== 'all') {
-                require('builder').getLastBuilder().z('title', cat.name);
-            }
-        }
-    });
 
     function toggleMenu(e) {
         if (e) {
@@ -51,16 +26,14 @@ define('cat-dropdown',
     function updateDropDown(catSlug, catTitle) {
         var oldCatSlug = $dropdownLink.data('catSlug');
         if (oldCatSlug !== catSlug) {
-            categoryReq.then(function() {
-                var model = catModels.lookup(catSlug);
-                catTitle = catTitle || (model && model.name) || catSlug;
-                if (catTitle && catSlug && oldCatSlug && $dropdownLink) {
-                    $dropdownLink.text(catTitle)
-                             .removeClass('cat-' + oldCatSlug)
-                             .addClass('cat-' + catSlug)
-                             .data('catSlug', catSlug);
-                }
-            });
+            var model = catModels.lookup(catSlug);
+            catTitle = catTitle || (model && model.name) || catSlug;
+            if (catTitle && catSlug && oldCatSlug && $dropdownLink) {
+                $dropdownLink.text(catTitle)
+                         .removeClass('cat-' + oldCatSlug)
+                         .addClass('cat-' + catSlug)
+                         .data('catSlug', catSlug);
+            }
         }
     }
 
@@ -112,13 +85,9 @@ define('cat-dropdown',
         $dropdown = $('.dropdown');
         $dropdownLink = $dropdown.find('a');
 
-        // Fetch the category dropdown-data
-        categoryReq.done(function(data) {
-            $catList.html(
-                nunjucks.env.render('cat_list.html', {categories: data.objects}));
-            $catMenu = $('.cat-menu');
-            handleCatsRendered();
-        });
+        $catList.html(nunjucks.env.render('cat_list.html', {categories: categories}));
+        $catMenu = $('.cat-menu');
+        handleCatsRendered();
     }
 
     function handleDropDownDisplayByKey(e){
@@ -137,6 +106,4 @@ define('cat-dropdown',
     z.doc.on('saferesize', handleResize);
     z.page.on('build_start', handleBuildStart)
           .on('reload_chrome', handleRenderDropdown);
-
-    return {'catrequest': categoryReq};
 });

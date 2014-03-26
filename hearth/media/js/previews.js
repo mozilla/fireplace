@@ -87,6 +87,13 @@ define('previews',
     }).on('populatetray', function() {
         console.log('Populating trays');
         $('.listing.expanded .mkt-tile + .tray').each(populateTray);
+
+        if ($('ol.listing.expanded, .detail').length) {
+            // Set the `src` for hidden images so they get loaded.
+            $('img[data-src]:not([src])').each(function () {
+                this.src = $(this).data('src');
+            });
+        }
     });
 
 });
