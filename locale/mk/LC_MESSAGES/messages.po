@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19T16:34:30.429Z\n"
+"POT-Creation-Date: 2014-03-26T16:13:05.410Z\n"
 "PO-Revision-Date: 2013-12-28 11:42+0000\n"
 "Last-Translator: Goce <goce.mitevski@gmail.com>\n"
 "Language-Team: none\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1388230957.0\n"
 
-#: /templates/cat_dropdown.html:1 /templates/cat_list.html:3 /media/js/cat-dropdown.js:12
+#: /templates/cat_dropdown.html:1 /media/js/categories.js:7
 msgid "All Categories"
 msgstr "Сите категории"
 
@@ -227,7 +227,7 @@ msgstr "Достави"
 msgid "Unavailable"
 msgstr "Недостапна"
 
-#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:54
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:52
 msgid "Free"
 msgstr "Бесплатнa"
 
@@ -240,25 +240,25 @@ msgid "{app_name} .::. screenshot"
 msgstr "{app_name} .::. слика"
 
 #. the IARC rating body/system followed by a name/description of the rating (e.g. "ESRB: Everyone" or "PEGI: For ages 3+").
-#: /templates/_macros/market_tile.html:45
+#: /templates/_macros/market_tile.html:43
 msgid "{rating_body}: {rating}"
 msgstr "{rating_body}: {rating}"
 
-#: /templates/_macros/market_tile.html:62
+#: /templates/_macros/market_tile.html:60
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:65 /templates/detail/main.html:135
+#: /templates/_macros/market_tile.html:63 /templates/detail/main.html:135
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} мислење"
 msgstr[1] "{n} мислења"
 
-#: /templates/_macros/market_tile.html:69
+#: /templates/_macros/market_tile.html:67
 msgid "(0)"
 msgstr "нема"
 
-#: /templates/_macros/market_tile.html:70
+#: /templates/_macros/market_tile.html:68
 msgid "Not yet rated"
 msgstr "Сѐ уште неоценетa"
 
@@ -331,11 +331,11 @@ msgstr "Злоупотреба"
 msgid "Send Report"
 msgstr "Испрати извештај"
 
-#: /templates/detail/content_ratings.html:7
+#: /templates/detail/content_ratings.html:4
 msgid "Content Rating"
 msgstr "Оценување на содржина"
 
-#: /templates/detail/content_ratings.html:72
+#: /templates/detail/content_ratings.html:73
 msgid "Content Rating Details"
 msgstr "Детали за оценките на содржината"
 
@@ -648,6 +648,375 @@ msgstr "Инсталирањето не успеа. Ве молиме обиде
 msgid "Launch"
 msgstr "Стартувај"
 
+#: /media/js/categories.js:8
+msgid "Games"
+msgstr "Игри"
+
+#: /media/js/categories.js:9
+msgid "Books"
+msgstr "Книги"
+
+#: /media/js/categories.js:10
+msgid "Business"
+msgstr "Бизнис"
+
+#: /media/js/categories.js:11
+msgid "Education"
+msgstr "Образование"
+
+#: /media/js/categories.js:12
+msgid "Entertainment"
+msgstr "Забава"
+
+#: /media/js/categories.js:13
+msgid "Health & Fitness"
+msgstr "Здравје и фитнес"
+
+#: /media/js/categories.js:14
+msgid "Lifestyle"
+msgstr "Стил на живот"
+
+#: /media/js/categories.js:15
+msgid "Maps & Navigation"
+msgstr "Мапи и ориентација"
+
+#: /media/js/categories.js:16
+msgid "Music"
+msgstr "Музика"
+
+#: /media/js/categories.js:17
+msgid "News & Weather"
+msgstr "Вести и временска прогноза"
+
+#: /media/js/categories.js:18
+msgid "Photo & Video"
+msgstr "Фотографија и видео"
+
+#: /media/js/categories.js:19
+msgid "Productivity"
+msgstr "Продуктивност"
+
+#: /media/js/categories.js:20
+msgid "Reference"
+msgstr "Толкувачи"
+
+#: /media/js/categories.js:21
+msgid "Shopping"
+msgstr "Пазарување"
+
+#: /media/js/categories.js:22
+msgid "Social"
+msgstr "Социјализација"
+
+#: /media/js/categories.js:23
+msgid "Sports"
+msgstr "Спортови"
+
+#: /media/js/categories.js:24
+msgid "Travel"
+msgstr "Патување"
+
+#: /media/js/categories.js:25
+msgid "Utilities"
+msgstr "Алатки"
+
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:97
+msgid "For ages {0}+"
+msgstr ""
+
+#: /media/js/content-ratings.js:103
+msgid "Generic"
+msgstr ""
+
+#: /media/js/content-ratings.js:110
+msgid "Criminal Acts"
+msgstr ""
+
+#: /media/js/content-ratings.js:112 /media/js/content-ratings.js:180 /media/js/content-ratings.js:193 /media/js/content-ratings.js:213
+msgid "Drugs"
+msgstr ""
+
+#: /media/js/content-ratings.js:114
+msgid "Illegal Drugs"
+msgstr ""
+
+#: /media/js/content-ratings.js:116
+msgid "Legal Drugs"
+msgstr ""
+
+#: /media/js/content-ratings.js:118
+msgid "Inappropriate Language"
+msgstr ""
+
+#: /media/js/content-ratings.js:120 /media/js/content-ratings.js:162 /media/js/content-ratings.js:184 /media/js/content-ratings.js:197 /media/js/content-ratings.js:216
+msgid "No Descriptors"
+msgstr ""
+
+#: /media/js/content-ratings.js:122 /media/js/content-ratings.js:163
+msgid "Nudity"
+msgstr ""
+
+#: /media/js/content-ratings.js:124 /media/js/content-ratings.js:188 /media/js/content-ratings.js:201
+msgid "Sex"
+msgstr ""
+
+#: /media/js/content-ratings.js:126
+msgid "Explicit Sex"
+msgstr ""
+
+#: /media/js/content-ratings.js:128
+msgid "Impacting Content"
+msgstr ""
+
+#: /media/js/content-ratings.js:130 /media/js/content-ratings.js:175 /media/js/content-ratings.js:189 /media/js/content-ratings.js:202 /media/js/content-ratings.js:222
+msgid "Violence"
+msgstr ""
+
+#: /media/js/content-ratings.js:132
+msgid "Extreme Violence"
+msgstr ""
+
+#: /media/js/content-ratings.js:135
+msgid "Alcohol Reference"
+msgstr ""
+
+#: /media/js/content-ratings.js:136
+msgid "Alcohol and Tobacco Reference"
+msgstr ""
+
+#: /media/js/content-ratings.js:137
+msgid "Use of Alcohol and Tobacco"
+msgstr ""
+
+#: /media/js/content-ratings.js:138
+msgid "Use of Alcohol"
+msgstr ""
+
+#: /media/js/content-ratings.js:139
+msgid "Blood"
+msgstr ""
+
+#: /media/js/content-ratings.js:140
+msgid "Blood and Gore"
+msgstr ""
+
+#: /media/js/content-ratings.js:141
+msgid "Comic Mischief"
+msgstr ""
+
+#: /media/js/content-ratings.js:142
+msgid "Crime"
+msgstr ""
+
+#: /media/js/content-ratings.js:143
+msgid "Criminal Instruction"
+msgstr ""
+
+#: /media/js/content-ratings.js:144
+msgid "Crude Humor"
+msgstr ""
+
+#: /media/js/content-ratings.js:145
+msgid "Drug and Alcohol Reference"
+msgstr ""
+
+#: /media/js/content-ratings.js:146
+msgid "Drug, Alcohol, and Tobacco Reference"
+msgstr ""
+
+#: /media/js/content-ratings.js:147
+msgid "Use of Drug, Alcohol, and Tobacco"
+msgstr ""
+
+#: /media/js/content-ratings.js:148
+msgid "Use of Drug and Alcohol"
+msgstr ""
+
+#: /media/js/content-ratings.js:149
+msgid "Drug Reference"
+msgstr ""
+
+#: /media/js/content-ratings.js:150
+msgid "Drug and Tobacco Reference"
+msgstr ""
+
+#: /media/js/content-ratings.js:151
+msgid "Use of Drug and Tobacco"
+msgstr ""
+
+#: /media/js/content-ratings.js:152
+msgid "Use of Drugs"
+msgstr ""
+
+#: /media/js/content-ratings.js:153
+msgid "Fantasy Violence"
+msgstr ""
+
+#: /media/js/content-ratings.js:154
+msgid "Hate Speech"
+msgstr ""
+
+#: /media/js/content-ratings.js:155
+msgid "Intense Violence"
+msgstr ""
+
+#: /media/js/content-ratings.js:157 /media/js/content-ratings.js:183 /media/js/content-ratings.js:196
+msgid "Language"
+msgstr ""
+
+#: /media/js/content-ratings.js:158
+msgid "Mild Blood"
+msgstr ""
+
+#: /media/js/content-ratings.js:159
+msgid "Mild Fantasy Violence"
+msgstr ""
+
+#: /media/js/content-ratings.js:160
+msgid "Mild Language"
+msgstr ""
+
+#: /media/js/content-ratings.js:161
+msgid "Mild Violence"
+msgstr ""
+
+#: /media/js/content-ratings.js:164
+msgid "Partial Nudity"
+msgstr ""
+
+#: /media/js/content-ratings.js:165
+msgid "Real Gambling"
+msgstr ""
+
+#: /media/js/content-ratings.js:166
+msgid "Scary Themes"
+msgstr ""
+
+#: /media/js/content-ratings.js:167 /media/js/content-ratings.js:220
+msgid "Sexual Content"
+msgstr ""
+
+#: /media/js/content-ratings.js:168
+msgid "Sexual Themes"
+msgstr ""
+
+#: /media/js/content-ratings.js:169
+msgid "Simulated Gambling"
+msgstr ""
+
+#: /media/js/content-ratings.js:170
+msgid "Strong Language"
+msgstr ""
+
+#: /media/js/content-ratings.js:171
+msgid "Strong Sexual Content"
+msgstr ""
+
+#: /media/js/content-ratings.js:172
+msgid "Suggestive Themes"
+msgstr ""
+
+#: /media/js/content-ratings.js:173
+msgid "Tobacco Reference"
+msgstr ""
+
+#: /media/js/content-ratings.js:174
+msgid "Use of Tobacco"
+msgstr ""
+
+#: /media/js/content-ratings.js:176
+msgid "Violence References"
+msgstr ""
+
+#: /media/js/content-ratings.js:179 /media/js/content-ratings.js:192 /media/js/content-ratings.js:211
+msgid "Discrimination"
+msgstr ""
+
+#: /media/js/content-ratings.js:181 /media/js/content-ratings.js:194
+msgid "Gambling"
+msgstr ""
+
+#: /media/js/content-ratings.js:185 /media/js/content-ratings.js:198
+msgid "Online"
+msgstr ""
+
+#: /media/js/content-ratings.js:186 /media/js/content-ratings.js:199
+msgid "Fear"
+msgstr ""
+
+#: /media/js/content-ratings.js:204
+msgid "Social Interaction Functionality"
+msgstr ""
+
+#: /media/js/content-ratings.js:205
+msgid "Personal Data Sharing"
+msgstr ""
+
+#: /media/js/content-ratings.js:206
+msgid "In-app Purchase Option"
+msgstr ""
+
+#: /media/js/content-ratings.js:207
+msgid "Location Data Sharing"
+msgstr ""
+
+#: /media/js/content-ratings.js:215
+msgid "Explicit Language"
+msgstr ""
+
+#: /media/js/content-ratings.js:218
+msgid "Frightening Content"
+msgstr ""
+
+#: /media/js/content-ratings.js:226
+msgid "Digital Purchases"
+msgstr ""
+
+#: /media/js/content-ratings.js:227
+msgid "Shares Info"
+msgstr ""
+
+#: /media/js/content-ratings.js:228
+msgid "Shares Location"
+msgstr ""
+
+#: /media/js/content-ratings.js:229
+msgid "Users Interact"
+msgstr ""
+
+#: /media/js/content-ratings.js:233
+msgid "For all ages"
+msgstr ""
+
+#: /media/js/content-ratings.js:242
+msgid "Rating Pending"
+msgstr ""
+
+#: /media/js/content-ratings.js:243
+msgid "Rating Refused"
+msgstr ""
+
+#: /media/js/content-ratings.js:246
+msgid "Everyone"
+msgstr ""
+
+#: /media/js/content-ratings.js:247
+msgid "Everyone 10+"
+msgstr ""
+
+#: /media/js/content-ratings.js:248
+msgid "Teen"
+msgstr ""
+
+#: /media/js/content-ratings.js:249
+msgid "Mature 17+"
+msgstr ""
+
+#: /media/js/content-ratings.js:250
+msgid "Adults Only 18+"
+msgstr ""
+
 #: /media/js/login.js:8
 msgid "You have been signed out"
 msgstr "Се одјавивте"
@@ -656,15 +1025,19 @@ msgstr "Се одјавивте"
 msgid "You have been signed in"
 msgstr "Се најавивте"
 
-#: /media/js/login.js:128
+#: /media/js/login.js:131
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Најавувањето со Persona не успеа. Можеби немате профил за оваа адреса за е-пошта?"
 
-#: /media/js/login.js:133
+#: /media/js/login.js:136
 msgid "Persona login failed. A server error was encountered."
 msgstr "Најавувањето со Persona не успеа. Се случи серверска грешка."
 
-#: /media/js/navigation.js:32
+#: /media/js/login.js:204
+msgid "Persona cannot be reached. Try again later."
+msgstr ""
+
+#: /media/js/navigation.js:33
 msgid "No internet connection"
 msgstr "Не сте поврзани на Интернет"
 
@@ -828,7 +1201,7 @@ msgstr "Повратните информации се поднесени. Ви 
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Имаше проблем при поднесувањето на Вашите повратни информации. Обидете се повторно наскоро."
 
-#: /media/js/views/nominate.js:113
+#: /media/js/views/nominate.js:114
 msgid "Nominate apps"
 msgstr ""
 
@@ -872,75 +1245,3 @@ msgstr "Мислењето е успешно ажурирано"
 #: /media/js/views/app/ratings/edit.js:37
 msgid "There was a problem updating your review"
 msgstr "Имаше проблем при ажурирањето на Вашето мислење"
-
-#: /media/js/categories.js
-msgid "Maps & Navigation"
-msgstr "Мапи и ориентација"
-
-#: /media/js/categories.js
-msgid "Lifestyle"
-msgstr "Стил на живот"
-
-#: /media/js/categories.js
-msgid "Reference"
-msgstr "Толкувачи"
-
-#: /media/js/categories.js
-msgid "Business"
-msgstr "Бизнис"
-
-#: /media/js/categories.js
-msgid "Entertainment"
-msgstr "Забава"
-
-#: /media/js/categories.js
-msgid "Shopping"
-msgstr "Пазарување"
-
-#: /media/js/categories.js
-msgid "Photo & Video"
-msgstr "Фотографија и видео"
-
-#: /media/js/categories.js
-msgid "Travel"
-msgstr "Патување"
-
-#: /media/js/categories.js
-msgid "Productivity"
-msgstr "Продуктивност"
-
-#: /media/js/categories.js
-msgid "Utilities"
-msgstr "Алатки"
-
-#: /media/js/categories.js
-msgid "Sports"
-msgstr "Спортови"
-
-#: /media/js/categories.js
-msgid "Books"
-msgstr "Книги"
-
-#: /media/js/categories.js
-msgid "Games"
-msgstr "Игри"
-
-#: /media/js/categories.js
-msgid "Health & Fitness"
-msgstr "Здравје и фитнес"
-
-#: /media/js/categories.js
-msgid "Music"
-msgstr "Музика"
-
-#: /media/js/categories.js
-msgid "Education"
-msgstr "Образование"
-
-#: /media/js/categories.js
-msgid "News & Weather"
-msgstr "Вести и временска прогноза"
-
-#: /media/js/categories.js
-msgid "Social"
-msgstr "Социјализација"
