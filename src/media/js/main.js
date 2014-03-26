@@ -36,6 +36,7 @@ define(
         'cat-dropdown',
         'content-ratings',
         'forms',
+        'header',
         'image-deferrer',
         'l10n',
         'lightbox',

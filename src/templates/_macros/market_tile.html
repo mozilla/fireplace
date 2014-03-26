@@ -1,7 +1,7 @@
 {% from "_macros/stars.html" import stars %}
 {% from "_macros/market_button.html" import market_button %}
 
-{% macro preview_tray(app, src) %}
+{% macro preview_tray(app) %}
   <div class="slider shots">
     <ul class="content">
       {% for preview in app.previews %}
@@ -87,7 +87,7 @@
   </{{ tag }}>
   {% if tray and len(app.previews) %}
     <div class="tray previews full {{ 'single' if len(app.previews) == 1 }}">
-      {{ preview_tray(app, src) }}
+      {{ preview_tray(app) }}
     </div>
   {% endif %}
 {% endmacro %}
