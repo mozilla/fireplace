@@ -34,7 +34,7 @@
     }
 
     function buildQS() {
-        var qs = '';
+        var qs = [];
 
         try {
             // navigator.mozMobileConnections is the new API.
