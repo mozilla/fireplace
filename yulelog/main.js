@@ -40,11 +40,11 @@
             // navigator.mozMobileConnections is the new API.
             // navigator.mozMobileConnection is the legacy API.
             var conn = navigator.mozMobileConnections;
+            var network;
             if (conn) {
                 log('navigator.mozMobileConnections available');
                 var mccs = [];
                 var connData;
-                var network;
                 for (var i = 0; i < conn.length; i++) {
                     connData = conn[i];
                     network = (connData.lastKnownHomeNetwork || connData.lastKnownNetwork || '-').split('-');
@@ -52,7 +52,7 @@
                         connData.lastKnownNetwork);
                     log('navigator.mozMobileConnections[' + i + '].lastKnownHomeNetwork:',
                         conn.lastKnownHomeNetwork);
-                    mccs.push({mcc: connData[0], mnc: connData[1]});
+                    mccs.push({mcc: network[0], mnc: network[1]});
                 }
                 mccs = JSON.stringify(mccs);
                 qs.push('mccs=' + mccs);
@@ -67,7 +67,7 @@
                     // `MNC`: Mobile Network Code
                     // `lastKnownHomeNetwork`: `{MCC}-{MNC}` (SIM's origin)
                     // `lastKnownNetwork`: `{MCC}-{MNC}` (could be different network if roaming)
-                    var network = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
+                    network = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
                     qs.push('mcc=' + (network[0] || ''));
                     qs.push('mnc=' + (network[1] || ''));
                     log('navigator.mozMobileConnection.lastKnownNetwork:',
