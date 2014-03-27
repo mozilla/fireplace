@@ -324,7 +324,7 @@ define('mobilenetwork',
                                           connData.lastKnownNetwork);
                         consoleTagged.log('navigator.mozMobileConnections[' + i + '].lastKnownHomeNetwork:',
                                           conn.lastKnownHomeNetwork);
-                        mccs.push({mcc: connData[0], mnc: connData[1]});
+                        mccs.push({mcc: network[0], mnc: network[1]});
                     }
                     consoleTagged.log('Using SIM MCCs:', JSON.stringify(mccs));
                 }
