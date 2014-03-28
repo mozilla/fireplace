@@ -14,6 +14,11 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
     // 'pro' even when not in "preview mode". see bug 980124 and bug 979932
     param_blacklist = ['pro'];
 
+    if ('media_url' in base_settings) {
+        var media_url = new URL(base_settings.media_url);
+        base_settings.cdn_url = media_url.protocol + '//' + media_url.hostname;
+    }
+
     return _.defaults(base_settings, {
         app_name: 'fireplace',
         init_module: 'marketplace',
@@ -34,6 +39,14 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // The list of query string parameters that are not replaced
         // reversing API URLs.
         api_param_blacklist: param_blacklist,
+
+        // These are the only API endpoints that should be served from the CDN
+        // (key: URL; value: max-age in seconds).
+        api_cdn_whitelist: {
+            '/api/v1/fireplace/search/': 60 * 3,  // 3 minutes
+            '/api/v1/fireplace/search/featured/': 60 * 3,  // 3 minutes
+            '/api/v1/apps/category/': 60 * 60,  // 1 hour
+        },
 
         // The list of models and their primary key mapping. Used by caching.
         model_prototypes: {

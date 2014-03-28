@@ -1,6 +1,6 @@
 define('urls',
     ['format', 'routes_api', 'routes_api_args', 'settings', 'user', 'utils'],
-    function(format, api_endpoints, api_args, settings, user) {
+    function(format, api_endpoints, api_args, settings, user, utils) {
 
     var group_pattern = /\([^\)]+\)/;
     var optional_pattern = /(\(.*\)|\[.*\]|.)\?/g;
@@ -44,7 +44,7 @@ define('urls',
                 args._user = user.get_token();
             }
             _removeBlacklistedParams(args);
-            return require('utils').urlparams(out, args);
+            return utils.urlparams(out, args);
         };
     }
 
@@ -53,7 +53,7 @@ define('urls',
             var out = func.apply(this, arguments);
             var args = api_args();
             _removeBlacklistedParams(args);
-            return require('utils').urlparams(out, args);
+            return utils.urlparams(out, args);
         };
     }
 
@@ -71,9 +71,18 @@ define('urls',
             console.error('Invalid API endpoint: ' + endpoint);
             return '';
         }
-        var url = settings.api_url + format.format(api_endpoints[endpoint], args || []);
+
+        var host = settings.api_url;
+        var path = format.format(api_endpoints[endpoint], args || []);
+
+        // Use CDN for a whitelisted set of unsigned API endpoints.
+        if (utils.baseurl(path) in settings.api_cdn_whitelist) {
+            host = settings.cdn_url;
+        }
+
+        var url = host + path;
         if (params) {
-            return require('utils').urlparams(url, params);
+            return utils.urlparams(url, params);
         }
         return url;
     }
