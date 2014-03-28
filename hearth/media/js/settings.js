@@ -1,4 +1,4 @@
-define('settings', ['l10n', 'settings_local', 'underscore', 'utils'], function(l10n, settings_local, _, utils) {
+define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, settings_local, _) {
     var gettext = l10n.gettext;
 
     var base_settings = JSON.parse(document.body.getAttribute('data-settings') || '{}');
@@ -15,7 +15,9 @@ define('settings', ['l10n', 'settings_local', 'underscore', 'utils'], function(l
     param_blacklist = ['pro'];
 
     if ('media_url' in base_settings) {
-        base_settings.cdn_url = utils.urlparse(base_settings.media_url).origin;
+        var a = document.createElement('a');
+        a.href = base_settings.media_url;
+        base_settings.cdn_url = a.origin;
     }
 
     function offline_cache_enabled() {
