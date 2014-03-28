@@ -1,7 +1,11 @@
-define('settings_local', [], function(settings_base, _) {
-    // Override settings here!
+define('settings_local', [], function() {
+    var origin = window.location.origin || (
+        window.location.protocol + '//' + window.location.host);
     return {
-        api_url: 'https://marketplace-dev.allizom.org',
-        media_url: ' https://marketplace-dev-cdn.allizom.org/media',
+        api_url: origin,
+        media_url: document.body.getAttribute('data-media'),
+        tracking_enabled: true,
+
+        potatolytics_enabled: false
     };
 });
