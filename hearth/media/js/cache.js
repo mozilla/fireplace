@@ -1,6 +1,6 @@
 define('cache',
-    ['log', 'rewriters', 'settings', 'storage', 'user', 'z'],
-    function(log, rewriters, settings, storage, user, z) {
+    ['log', 'rewriters', 'settings', 'storage', 'user', 'utils', 'z'],
+    function(log, rewriters, settings, storage, user, utils, z) {
 
     var console = log('cache');
 
@@ -17,7 +17,7 @@ define('cache',
 
     function get_ttl(url) {
         // Returns TTL for an API URL in microseconds.
-        var path = new URL(url).pathname;
+        var path = utils.urlparse(url).pathname;
         if (path in settings.offline_cache_whitelist) {
             // Convert from seconds to microseconds.
             return settings.offline_cache_whitelist[path] * 1000;

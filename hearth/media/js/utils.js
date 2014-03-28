@@ -180,6 +180,13 @@ define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
         return 'other';
     }
 
+    var a = document.createElement('a');
+
+    function urlparse(url) {
+        a.href = url;
+        return a;
+    }
+
     return {
         '_pd': _pd,
         'baseurl': baseurl,
@@ -194,6 +201,7 @@ define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
         'slugify': slugify,
         'urlencode': urlencode,
         'urlparams': urlparams,
+        'urlparse': urlparse,
         'urlunparam': urlunparam,
         'translate': translate
     };
