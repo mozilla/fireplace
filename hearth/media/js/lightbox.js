@@ -184,8 +184,6 @@ define('lightbox',
     });
     $lightbox.find('.close').on('click', utils._pd(hideLightbox));
 
-    // Hide screenshot overlay on back button hit.
-    z.win.on('navigating', hideLightbox);
     z.win.on('closeModal', function (e, modalName) {
         if (modalName === 'lightbox') {
             closeLightbox();
