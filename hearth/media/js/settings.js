@@ -14,6 +14,20 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
     // 'pro' even when not in "preview mode". see bug 980124 and bug 979932
     param_blacklist = ['pro'];
 
+    if ('media_url' in base_settings) {
+        var a = document.createElement('a');
+        a.href = base_settings.media_url;
+        base_settings.cdn_url = a.origin;
+    }
+
+    function offline_cache_enabled() {
+        var storage = require('storage');
+        if (storage.getItem('offline_cache_disabled') || require('capabilities').phantom) {
+            return false;
+        }
+        return window.location.search.indexOf('cache=false') === -1;
+    }
+
     return _.defaults(base_settings, {
         app_name: 'fireplace',
         init_module: 'marketplace',
@@ -35,6 +49,14 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // reversing API URLs.
         api_param_blacklist: param_blacklist,
 
+        // These are the only API endpoints that should be served from the CDN
+        // (key: URL; value: max-age in seconds).
+        api_cdn_whitelist: {
+            '/api/v1/fireplace/search/': 60 * 3,  // 3 minutes
+            '/api/v1/fireplace/search/featured/': 60 * 3,  // 3 minutes
+            '/api/v1/apps/category/': 60 * 60,  // 1 hour
+        },
+
         // The list of models and their primary key mapping. Used by caching.
         model_prototypes: {
             'app': 'slug',
@@ -45,6 +67,18 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'dummy': 'id',
             'dummy2': 'id'
         },
+
+        // These are the only URLs that should be cached
+        // (key: URL; value: TTL [time to live] in seconds).
+        // Keep in mind that the cache is always refreshed asynchronously;
+        // these TTLs apply to only when the app is first launched.
+        offline_cache_whitelist: {
+            '/api/v1/fireplace/consumer-info/': 60 * 60 * 6,  // 6 hours
+            '/api/v1/fireplace/search/featured/': 60 * 60 * 24,  // 1 day
+            '/api/v1/apps/category/': 60 * 60 * 24 * 7  // 1 week
+        },
+        offline_cache_enabled: offline_cache_enabled,
+        offline_cache_limit: 1024 * 1024 * 4,  // 4 MB
 
         // Error template paths. Used by builder.js.
         fragment_error_template: 'errors/fragment.html',

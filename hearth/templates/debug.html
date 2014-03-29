@@ -24,6 +24,20 @@
       <button class="button" id="clear-localstorage">Clear <code>localStorage</code></button>
     </p>
 
+    {% if settings.offline_cache_enabled() %}
+      <p>
+        <button class="button" id="disable-offline-cache">Disable offline cache</button>
+      </p>
+    {% else %}
+      <p>
+        <button class="button" id="enable-offline-cache">Enable offline cache</button>
+      </p>
+    {% endif %}
+
+    <p>
+      <button class="button" id="clear-offline-cache">Clear offline cache</button>
+    </p>
+
     <p>
       <button class="button" id="clear-cookies">Clear cookies</button>
     </p>
@@ -118,5 +132,15 @@
         {% endfor %}
       </ol>
     {% endfor %}
+
+    <h3>Offline Cache</h3>
+    <ol>
+      {% for url, response in request_cache.items() %}
+        <li>{{ url }}</li>
+      {% endfor %}
+    </ol>
+    <pre>
+      {{ request_cache|stringify(null, 2) }}
+    </pre>
   </div>
 </section>

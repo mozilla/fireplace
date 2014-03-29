@@ -20,7 +20,12 @@ test('model invalid type', function(done, fail) {
 test('model cast/lookup/purge', function(done, fail) {
     mock(
         'models',
-        {settings: {model_prototypes: {'dummy': 'id', 'dummy2': 'id'}}},
+        {
+            settings: {
+                offline_cache_enabled: function () { return false; },
+                model_prototypes: {'dummy': 'id', 'dummy2': 'id'}
+            }
+        },
         function(models) {
             var d1 = models('dummy');
             var d2 = models('dummy2');
@@ -57,7 +62,12 @@ test('model cast/lookup/purge', function(done, fail) {
 test('model cast/lookup/delete', function(done, fail) {
     mock(
         'models',
-        {settings: {model_prototypes: {'dummy': 'id'}}},
+        {
+            settings: {
+                offline_cache_enabled: function () { return false; },
+                model_prototypes: {'dummy': 'id'}
+            }
+        },
         function(models) {
             var d1 = models('dummy');
             d1.cast({
@@ -79,7 +89,12 @@ test('model cast/lookup/delete', function(done, fail) {
 test('model cast/lookup/delete val', function(done, fail) {
     mock(
         'models',
-        {settings: {model_prototypes: {'dummy': 'id'}}},
+        {
+            settings: {
+                offline_cache_enabled: function () { return false; },
+                model_prototypes: {'dummy': 'id'}
+            }
+        },
         function(models) {
             var d1 = models('dummy');
             d1.cast({
@@ -101,7 +116,12 @@ test('model cast/lookup/delete val', function(done, fail) {
 test('model cast/uncast', function(done, fail) {
     mock(
         'models',
-        {settings: {model_prototypes: {'dummy': 'id'}}},
+        {
+            settings: {
+                offline_cache_enabled: function () { return false; },
+                model_prototypes: {'dummy': 'id'}
+            }
+        },
         function(models) {
             var d1 = models('dummy');
 
@@ -125,7 +145,12 @@ test('model cast/uncast', function(done, fail) {
 test('model cast/uncast lists', function(done, fail) {
     mock(
         'models',
-        {settings: {model_prototypes: {'dummy': 'id'}}},
+        {
+            settings: {
+                offline_cache_enabled: function () { return false; },
+                model_prototypes: {'dummy': 'id'}
+            }
+        },
         function(models) {
             var d1 = models('dummy');
 
@@ -165,7 +190,10 @@ test('model get hit', function(done, fail) {
         'models',
         {
             requests: {get: function(x) {return 'surprise! ' + x;}},
-            settings: {model_prototypes: {'dummy': 'id'}}
+            settings: {
+                offline_cache_enabled: function () { return false; },
+                model_prototypes: {'dummy': 'id'}
+            }
         },
         function(models) {
             var d1 = models('dummy');
@@ -190,7 +218,10 @@ test('model get miss', function(done, fail) {
         'models',
         {
             requests: {get: function(x) {return 'surprise! ' + x;}},
-            settings: {model_prototypes: {'dummy': 'id'}}
+            settings: {
+                offline_cache_enabled: function () { return false; },
+                model_prototypes: {'dummy': 'id'}
+            }
         },
         function(models) {
             var d1 = models('dummy');
@@ -207,7 +238,10 @@ test('model get getter', function(done, fail) {
         'models',
         {
             requests: {get: function(x) {return "not the droids you're looking for";}},
-            settings: {model_prototypes: {'dummy': 'id'}}
+            settings: {
+                offline_cache_enabled: function () { return false; },
+                model_prototypes: {'dummy': 'id'}
+            }
         },
         function(models) {
             var d1 = models('dummy');
@@ -224,7 +258,12 @@ test('model get getter', function(done, fail) {
 test('model lookup by', function(done, fail) {
     mock(
         'models',
-        {settings: {model_prototypes: {'dummy': 'id'}}},
+        {
+            settings: {
+                offline_cache_enabled: function () { return false; },
+                model_prototypes: {'dummy': 'id'}
+            }
+        },
         function(models) {
             var d1 = models('dummy');
 
@@ -250,7 +289,12 @@ test('model lookup by', function(done, fail) {
 test('model lookup miss', function(done, fail) {
     mock(
         'models',
-        {settings: {model_prototypes: {'dummy': 'id'}}},
+        {
+            settings: {
+                offline_cache_enabled: function () { return false; },
+                model_prototypes: {'dummy': 'id'}
+            }
+        },
         function(models) {
             var d1 = models('dummy');
 
@@ -270,7 +314,12 @@ test('model lookup miss', function(done, fail) {
 test('model cast list', function(done, fail) {
     mock(
         'models',
-        {settings: {model_prototypes: {'dummy': 'id'}}},
+        {
+            settings: {
+                offline_cache_enabled: function () { return false; },
+                model_prototypes: {'dummy': 'id'}
+            }
+        },
         function(models) {
             var d1 = models('dummy');
 

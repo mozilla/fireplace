@@ -4,6 +4,7 @@ var _ = require('underscore');
 var assert = a.assert;
 var eq_ = a.eq_;
 var eeq_ = a.eeq_;
+var feq_ = a.feq_;
 var mock = a.mock;
 
 var cache = require('cache');
@@ -67,7 +68,11 @@ test('cache purge', function(done) {
 test('cache purge filter', function(done) {
     mock(
         'cache',
-        {},
+        {
+            settings: {
+                offline_cache_enabled: function () { return false; }
+            }
+        },
         function(cache) {
             var key = 'test2:';
             var str = 'poop';
@@ -238,6 +243,106 @@ test('cache deep rewrite on set', function(done) {
 
             eq_(cache.get('foo:deep'), 'asdfbar');
             eq_(cache.get('fart:deep'), 'asdfzap');
+            done();
+        }
+    );
+});
+
+test('cache get_ttl', function(done) {
+    mock(
+        'cache',
+        {
+            settings: {
+                offline_cache_enabled: function () { return true; },
+                offline_cache_whitelist: {
+                    '/api/v1/fireplace/consumer-info/': 60 * 60,  // 1 hour in seconds
+                    '/api/v1/fireplace/search/featured/': 60 * 60 * 6,  // 6 hours
+                    '/api/v1/apps/category/': 60 * 60 * 24  // 1 day
+                }
+            }
+        },
+        function (cache) {
+            eq_(cache.get_ttl('https://omg.org/api/v1/fireplace/consumer-info/'),
+                60 * 60 * 1000);  // 1 hour in microseconds
+            eq_(cache.get_ttl('https://omg.org/api/v1/apps/category/'),
+                60 * 60 * 24 * 1000);  // 1 hour in microseconds
+            eq_(cache.get_ttl('https://omg.org/api/v1/swag/yolo/foreva/'), null);
+            done();
+        }
+    );
+});
+
+test('cache flush_signed', function(done) {
+    mock(
+        'user',
+        {},
+        function (user) {
+            user.set_token('SwaggasaurusRex');
+
+            var data = 'ratchet data';
+
+            var signed_url = 'https://omg.org/api/v1/app/yolo/?_user=SwaggasaurusRex';
+            cache.set(signed_url, data);
+            eq_(cache.get(signed_url), data);
+
+            var unsigned_url = 'https://omg.org/api/v1/app/swag/';
+            cache.set(unsigned_url, data);
+            eq_(cache.get(unsigned_url), data);
+
+            feq_(Object.keys(cache.cache).sort(), [unsigned_url, signed_url]);
+
+            // Calling this should clear all cache keys whose URLs contain
+            // `_user=<token>`.
+            cache.flush_signed();
+
+            feq_(Object.keys(cache.cache), [unsigned_url]);
+
+            done();
+        }
+    );
+});
+
+test('cache flush_expired', function(done) {
+    mock(
+        'cache',
+        {
+            settings: {
+                offline_cache_enabled: function () { return true; },
+                offline_cache_whitelist: {
+                    '/api/v1/fireplace/consumer-info/': 60 * 60,  // 1 hour in seconds
+                    '/api/v1/fireplace/search/featured/': 60 * 60 * 6,  // 6 hours
+                    '/api/v1/apps/category/': 60 * 60 * 24  // 1 day
+                }
+            }
+        },
+        function (cache) {
+            // Both were just added and unexpired ...
+            cache.set('https://omg.org/api/v1/fireplace/consumer-info/', {
+                '__time': +new Date()
+            });
+            cache.set('https://omg.org/api/v1/fireplace/search/featured/', {
+                '__time': +new Date()
+            });
+            cache.flush_expired();
+            assert(cache.has('https://omg.org/api/v1/fireplace/consumer-info/'));
+            assert(cache.has('https://omg.org/api/v1/fireplace/search/featured/'));
+
+            // Neither has expired ...
+            cache.set('https://omg.org/api/v1/fireplace/consumer-info/', {
+                '__time': +new Date() - (60 * 59 * 1000)  // 59 min ago in microseconds
+            });
+            cache.flush_expired();
+            assert(cache.has('https://omg.org/api/v1/fireplace/consumer-info/'));
+            assert(cache.has('https://omg.org/api/v1/fireplace/search/featured/'));
+
+            // One has expired!
+            cache.set('https://omg.org/api/v1/fireplace/consumer-info/', {
+                '__time': +new Date() - (60 * 65 * 1000)  // 1 hr 5 min ago in microseconds
+            });
+            cache.flush_expired();
+            assert(!cache.has('https://omg.org/api/v1/fireplace/consumer-info/'));
+            assert(cache.has('https://omg.org/api/v1/fireplace/search/featured/'));
+
             done();
         }
     );
