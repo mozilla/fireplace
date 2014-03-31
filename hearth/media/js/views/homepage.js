@@ -8,7 +8,6 @@ define('views/homepage',
 
     var app_models = models('app');
 
-    var operatorInjected = false;
     var catElm = '<li><a class="cat-{0} cat-icon-a" data-cat-slug="{0}" href="{1}">{2}</a></li>';
 
     return function(builder, args, params) {
@@ -48,12 +47,12 @@ define('views/homepage',
                 $collections.eq(1).closest('.placeholder').hide();
             }
 
-            if (operatorInjected) {
+            if (!shelf.apps.length) return;
+
+            if ($('.cat-menu [data-cat-slug="' + shelf.slug + '"]').length) {
                 console.log('OSC injection skipped; Already injected');
                 return;
             }
-
-            if (!shelf.apps.length) return;
 
             // TODO: Remove this when things are different.
             // This lets the category for the OSC have a name and not just a slug.
@@ -72,7 +71,6 @@ define('views/homepage',
 
             // Inject op shelf to the category dropdown after "All Categories".
             $(item).insertAfter($('.cat-menu [data-cat-slug="all"]').closest('li'));
-            operatorInjected = true;
         });
     };
 });
