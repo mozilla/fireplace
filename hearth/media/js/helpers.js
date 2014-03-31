@@ -127,6 +127,7 @@ define('helpers',
         _plural: make_safe(l10n.ngettext),
         format: require('format').format,
         settings: require('settings'),
+        capabilities: require('capabilities'),
         user: userobj,
 
         escape: utils.escape_,
