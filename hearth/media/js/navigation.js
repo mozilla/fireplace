@@ -59,13 +59,15 @@ define('navigation',
 
         var top = 0;
         if ((state.preserveScroll || popped) && state.scrollTop) {
-            // Preserve document min-height for scroll preservation
-            // (e.g. when scroll pos should not change).
-            z.body.css('min-height', state.docHeight);
-            z.page.one('loaded', function() {
-                // Remove specified min-height.
-                z.body.css('min-height', '');
-            });
+            if (state.docHeight) {
+                // Preserve document min-height for scroll preservation
+                // (e.g. when scroll pos should not change).
+                z.body.css('min-height', state.docHeight);
+                z.page.one('loaded', function() {
+                    // Remove specified min-height.
+                    z.body.css('min-height', '');
+                });
+            }
             top = state.scrollTop;
         }
 
