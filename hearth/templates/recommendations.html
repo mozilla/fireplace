@@ -1,0 +1,23 @@
+{% include '_macros/market_tile.html' %}
+{% set recommendations_url = url('homepage') %}
+
+{% defer (url=endpoint|urlunparam(['sort'])) %}
+  {% set recommended_apps = this.objects or [] %}
+  {% if recommended_apps.length %}
+    <section id="featured" class="island main category gallery full c">
+      <header class="featured-header c">
+        <h3>{{ _('Recommended Apps') }}</h3>
+      </header>
+      <ol class="grid c">
+        {% for result in recommended_apps %}
+          <li>{{ market_tile(app_cast(result), link=true, tray=False) }}</li>
+        {% endfor %}
+      </ol>
+    </section>
+  {% endif %}
+{% placeholder %}
+{# Placeholder is empty because this section is often empty, and we already
+   have a placeholder for the Popular/New sections below. #}
+{% empty %}
+{% except %}
+{% end %}
