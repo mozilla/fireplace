@@ -81,7 +81,7 @@ define('buttons',
         // This is the data needed to record the app's install.
         var api_endpoint = 'http://10.22.113.20/api/v2/user-items/' + user.hash + '/';
         var post_data = {
-            item_to_acquire: product.id
+            item_to_acquire: product.id.toString()
         };
 
         requests.post(api_endpoint, post_data);
