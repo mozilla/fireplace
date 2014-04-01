@@ -117,6 +117,7 @@ define('helpers',
     // Functions provided in the default context.
     var helpers = {
         api: require('urls').api.url,
+        apiHost: require('urls').api.host,
         apiParams: require('urls').api.params,
         anonApi: require('urls').api.unsigned.url,
         anonApiParams: require('urls').api.unsigned.params,
