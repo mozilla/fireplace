@@ -131,6 +131,8 @@ define('views/search',
             'click',
             expand ? 'Expanded view' : 'List view'
         );
+
+        z.doc.trigger('scroll');  // For defer image loading.
     })).on('submit', 'form#search', function(e) {
         e.stopPropagation();
         e.preventDefault();

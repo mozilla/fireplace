@@ -6,8 +6,9 @@
         <div class="content-ratings-left">
           <div class="content-rating c">
             {# Content rating. #}
-            <img src="{{ iarc.rating_icons[this.body][this.rating] }}"
-                 class="icon icon-body-{{ this.body }}"
+            <img data-src="{{ iarc.rating_icons[this.body][this.rating] }}"
+                 class="icon icon-body-{{ this.body }} deferred"
+                 src="{{ media('fireplace/img/pretty/rocket.png') }}"
                  title="{{ iarc_names.ratings[this.body][this.rating] }}"
                  alt="{{ iarc_names.ratings[this.body][this.rating] }}">
           </div>
@@ -38,7 +39,8 @@
               {% for descriptor in this.descriptors[this.body] %}
                 {% set icon_src = desc_icons[descriptor] %}
                 {% if icon_src %}
-                  <img src="{{ icon_src }}" class="icon"
+                  <img data-src="{{ icon_src }}" class="icon deferred"
+                       src="{{ media('fireplace/img/pretty/rocket.png') }}"
                        title="{{ iarc_names.descriptors[this.body][descriptor] }}"
                        alt="{{ names.descriptors[this.body][descriptor] }}">
                 {% endif %}
@@ -53,7 +55,8 @@
                   {# Interactive elements as a row of icons (ESRB only). #}
                   {% set icon_src = interactive_icons[interactive] %}
                   {% if icon_src %}
-                    <img src="{{ icon_src }}" class="icon"
+                    <img data-src="{{ icon_src }}" class="icon deferred"
+                         src="{{ media('fireplace/img/pretty/rocket.png') }}"
                          title="{{ iarc_names.interactives[interactive] }}"
                          alt="{{ names.interactives[interactive] }}">
                   {% endif %}

@@ -1,14 +1,18 @@
 {% from "_macros/stars.html" import stars %}
 {% from "_macros/market_button.html" import market_button %}
 
-{% macro preview_tray(app) %}
+{% macro preview_tray(app, src) %}
   <div class="slider shots">
     <ul class="content">
       {% for preview in app.previews %}
         <li itemscope itemtype="http://schema.org/ImageObject">
           <a class="screenshot thumbnail" href="{{ preview.image_url }}">
-            {# Thinking about changing that `data-src` to `src`? Don't! (bug 983346) #}
-            <img alt="{{ _('{app_name} .::. screenshot', app_name=app.name) }}" data-src="{{ preview.thumbnail_url }}" draggable="false" itemprop="contentURL">
+            {% if not imgAlreadyDeferred(preview.thumbnail_url) %}
+              {# Defer image loading. Don't change data-src to src. #}
+              <img class="deferred" src="{{ media('fireplace/img/pretty/rocket.png') }}" alt="{{ _('{app_name} screenshot', app_name=app.name) }}" data-src="{{ preview.thumbnail_url }}" draggable="false" itemprop="contentURL">
+            {% else %}
+              <img alt="{{ _('{app_name} screenshot', app_name=app.name) }}" src="{{ preview.thumbnail_url }}" draggable="false" itemprop="contentURL">
+            {% endif %}
           </a>
         </li>
       {% endfor %}
@@ -30,7 +34,12 @@
     data-slug="{{ app.slug }}"
     data-id="{{ app.id }}"
     {% if link %}itemscope itemtype="http://schema.org/SoftwareApplication"{% endif %}>
-    <img class="icon" alt="" src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
+    {% if not imgAlreadyDeferred(app.icons['64']) %}
+      {# Defer image loading. #}
+      <img class="icon deferred" src="{{ media('fireplace/img/pretty/rocket.png') }}" alt="" data-src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
+    {% else %}
+      <img class="icon" alt="" src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
+    {% endif %}
     <div class="info">
       <h3 itemprop="name">{{ app.name|translate(app) }}</h3>
       {% if app.author %}
@@ -80,7 +89,7 @@
   </{{ tag }}>
   {% if tray and len(app.previews) %}
     <div class="tray previews full {{ 'single' if len(app.previews) == 1 }}">
-      {{ preview_tray(app) }}
+      {{ preview_tray(app, src) }}
     </div>
   {% endif %}
 {% endmacro %}
