@@ -28,13 +28,25 @@ var routes = [
 
     {'pattern': '^/collection/([^/<>"\']+)/?$', 'view_name': 'collection'},
 
-    {'pattern': '^/tests$', 'view_name': 'tests'},
     {'pattern': '^/debug$', 'view_name': 'debug'},
     {'pattern': '^/debug/features$', 'view_name': 'debug_features'},
     {'pattern': '^/credits$', 'view_name': 'credits'}
 ];
 
-dependencies = routes.map(function(i) {return 'views/' + i.view_name;});
+// Only `require.js` has `window.require.defined`, so we can use this to
+// sniff for whether we're using the minified bundle or not. (In production
+// we use commonplace's `amd.js`.)
+if (window.require.hasOwnProperty('defined')) {
+    // The minified JS bundle doesn't need some dev-specific JS views.
+    // Those go here.
+    routes = routes.concat([
+        {'pattern': '^/tests$', 'view_name': 'tests'}
+    ]);
+}
+
+dependencies = routes.map(function(i) {
+    return 'views/' + i.view_name;
+});
 /* /dtrace */
 window.routes = routes;
 
