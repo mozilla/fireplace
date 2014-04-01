@@ -26,9 +26,7 @@ define('views/search',
     // If we've set this value in localStorage before, then always use it.
     var expand = !!storage.getItem('expand-listings');
     if (expand === null) {
-        // Default to the graphical view at desktop widths and traditional
-        // list view at lesser widths.
-        expand = capabilities.widescreen();
+        expand = false;
     }
 
     function setTrays(expanded) {

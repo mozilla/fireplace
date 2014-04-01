@@ -9,9 +9,7 @@
   {% endif %}
 
   {% set classes = classes or [] %}
-  <button class="button product install {{ classes|join(' ') }} {{ 'incompatible' if app_incompat(app) }}"
-          {{ data_attrs|make_data_attrs }}
-          {{ 'disabled' if app_incompat(app) }}>
-    {{ _('Install') if user.has_installed(app.id) or user.has_purchased(app.id) else price }}
+  <button class="button product install {{ classes|join(' ') }}" {{ data_attrs|make_data_attrs }}>
+    {{ _('I am interested') }}
   </button>
 {% endmacro %}

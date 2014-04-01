@@ -14,6 +14,13 @@
         {% endfor %}
       </ol>
     </section>
+  {% else %}
+    {% if user.logged_in() %}
+      <p class="no-results">No recommendations found.</p>
+      <p class="no-results">Pick some apps by clicking "Next" below.</p>
+    {% else %}
+      <a href="#" class="persona">{{ _('Sign In') }}</a>
+    {% endif %}
   {% endif %}
 {% placeholder %}
 {# Placeholder is empty because this section is often empty, and we already
@@ -21,3 +28,13 @@
 {% empty %}
 {% except %}
 {% end %}
+
+
+{% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
+{% set search_url = search_url|urlparams(sort='random', q=' ', limit=1000) %}
+
+{% if user.logged_in() %}
+<div id="directory-footer" class="main full c">
+  <a class="button" href="{{ search_url }}">{{ _('Next') }}</a>
+</div>
+{% endif %}

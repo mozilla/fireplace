@@ -1,9 +1,3 @@
-{% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
-{% set search_url = search_url|urlparams(sort='random', q=' ', limit=1000) %}
-
-<div id="directory-footer" class="main full c">
-  <a class="button alt devhub" href="{{ search_url }}">{{ _('Install Apps') }}</a>
-</div>
 <!--
 <div id="directory-footer" class="main full c">
   <div class="group">
