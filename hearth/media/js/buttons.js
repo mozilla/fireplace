@@ -79,10 +79,9 @@ define('buttons',
         console.log('Send user hash (' + user.hash + ') and app id (' + product.id + ') to recommendation API');
 
         // This is the data needed to record the app's install.
-        var api_endpoint = 'http://localhost/api/recommend/';
+        var api_endpoint = 'http://10.22.113.20/api/v2/user-items/' + user.hash + '/';
         var post_data = {
-            user: user.hash,
-            app: product.id
+            item_to_acquire: product.id
         };
 
         requests.post(api_endpoint, post_data);

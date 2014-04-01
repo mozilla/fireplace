@@ -27,7 +27,7 @@ define('views/homepage',
         }
 
         builder.start('recommendations.html', {
-            endpoint: urls.api.unsigned.url('recommendations', params),
+            endpoint: urls.api.url('recommendations', params),
             sort: params.sort,
             app_cast: app_models.cast
         }).done(function() {
