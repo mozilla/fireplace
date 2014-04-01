@@ -1,4 +1,4 @@
-{% defer (url=endpoint, as='app', key=slug, pluck='content_ratings') %}
+{% defer (url=endpoint, pluck='content_ratings') %}
   {% if this.rating %}
     <div class="content-ratings-wrapper main infobox c {{ this.body }}">
       <div class="infobox-wrapper c">
