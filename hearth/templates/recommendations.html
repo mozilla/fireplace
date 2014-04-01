@@ -4,7 +4,7 @@
 {% defer (url=endpoint|urlunparam(['sort'])) %}
   {% set recommended_apps = this.objects or [] %}
   {% if recommended_apps.length %}
-    <section id="featured" class="island main category gallery full c">
+    <section id="featured" class="island main gallery full c">
       <header class="featured-header c">
         <h3>{{ _('Recommended Apps') }}</h3>
       </header>
