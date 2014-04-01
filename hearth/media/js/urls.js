@@ -72,15 +72,9 @@ define('urls',
             return '';
         }
 
-        var host = settings.api_url;
         var path = format.format(api_endpoints[endpoint], args || []);
+        var url = apiHost(path) + path;
 
-        // Use CDN for a whitelisted set of unsigned API endpoints.
-        if (utils.baseurl(path) in settings.api_cdn_whitelist) {
-            host = settings.cdn_url;
-        }
-
-        var url = host + path;
         if (params) {
             return utils.urlparams(url, params);
         }
@@ -89,6 +83,16 @@ define('urls',
 
     function apiParams(endpoint, params) {
         return api(endpoint, [], params);
+    }
+
+    function apiHost(path) {
+        // If the API URL is already reversed, then here's where we determine
+        // whether that URL gets served from the API or CDN.
+        var host = settings.api_url;
+        if (utils.baseurl(path) in settings.api_cdn_whitelist) {
+            host = settings.cdn_url;
+        }
+        return host;
     }
 
     function media(path) {
@@ -106,6 +110,7 @@ define('urls',
         reverse: reverse,
         api: {
             url: _userArgs(api),
+            host: apiHost,
             params: _userArgs(apiParams),
             sign: _userArgs(function(url) {return url;}),
             unsign: _anonymousArgs(function(url) {return url;}),
@@ -115,6 +120,7 @@ define('urls',
             },
             base: {
                 url: api,
+                host: apiHost,
                 params: apiParams
             }
         },
