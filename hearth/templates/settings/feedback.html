@@ -15,8 +15,12 @@
     </form>
     <ul class="support-list">
       <li>
-        <a href="https://support.mozilla.org/products/firefox-os/marketplace" class="button alt" target="_blank">
-          {{ _('Get Help') }}</a>
+        {% if capabilities.firefoxOS %}
+          <a href="https://support.mozilla.org/products/firefox-os/marketplace" class="button alt" target="_blank">{{ _('Get Help') }}</a>
+        {% elif capabilities.firefoxAndroid %}
+          <a href="https://support.mozilla.org/kb/install-android-apps-using-marketplace" class="button alt" target="_blank">{{ _('Get Help') }}</a>
+        {% endif %}
+
       </li>
       <li>
         <a href="{{ url('privacy') }}" class="button alt">

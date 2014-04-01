@@ -5,7 +5,11 @@
   <div class="group links">
     <a href="/developers/">{{ _('Developer Hub') }}</a>
     <a href="#" class="submit-feedback">{{ _('Feedback') }}</a>
-    <a href="https://support.mozilla.org/products/firefox-os/marketplace" target="_blank">{{ _('Support') }}</a>
+    {% if capabilities.firefoxOS %}
+      <a href="https://support.mozilla.org/products/firefox-os/marketplace" target="_blank">{{ _('Support') }}</a>
+    {% elif capabilities.firefoxAndroid %}
+      <a href="https://support.mozilla.org/kb/install-android-apps-using-marketplace" target="_blank">{{ _('Support') }}</a>
+    {% endif %}
   </div>
   <div class="language group links">
     <a href="{{ url('settings') }}" class="region region-{{ user_helpers.region('restofworld') }}">
