@@ -1,7 +1,7 @@
 define('buttons',
     ['apps', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'login',
      'models', 'notification', 'payments/payments', 'requests', 'settings',
-     'tracking', 'tracking_helpers', 'urls', 'user', 'utils', 'views', 'z'],
+     'tracking', 'tracking_helpers', 'urls', 'user', 'utils', 'views', 'z', 'storage'],
     function() {
 
     var apps = require('apps');
@@ -12,6 +12,7 @@ define('buttons',
     var urls = require('urls');
     var user = require('user');
     var z = require('z');
+    var storage = require('storage');
 
     var console = require('log')('buttons');
     var notify = require('notification').notification;
@@ -86,6 +87,10 @@ define('buttons',
         ).done(function(resp) {
             $this.html('Recorded');
             $this.addClass('disabled');
+            // Add to apps clicked list.
+            var apps = JSON.parse(storage.getItem('apps_clicked') || '[]');
+            apps.push(product.id);
+            storage.setItem('apps_clicked', JSON.stringify(apps));
         }).fail(function(resp) {
             revertButton($this);
             notify({message: 'Error while recording app install'});

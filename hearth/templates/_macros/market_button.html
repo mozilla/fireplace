@@ -1,4 +1,4 @@
-{% macro market_button(app, classes, data_attrs) %}
+{% macro market_button(app, classes, data_attrs, apps_list) %}
 
   {% if app.payment_required and not app.price %}
     {# An app would otherwise cost money in another region but there is no tier in the user's region. #}
@@ -9,7 +9,14 @@
   {% endif %}
 
   {% set classes = classes or [] %}
-  <button class="button product install {{ classes|join(' ') }}" {{ data_attrs|make_data_attrs }}>
-    {{ _('I am interested') }}
-  </button>
+  {% set disabled = apps_list.indexOf(app.id) != -1 %}
+  {% if disabled %}
+    <button class="button product install disabled {{ classes|join(' ') }}" {{ data_attrs|make_data_attrs }}>
+      {{ _('Recorded') }}
+    </button>
+  {% else %}
+    <button class="button product install {{ classes|join(' ') }}" {{ data_attrs|make_data_attrs }}>
+      {{ _('I am interested') }}
+    </button>
+  {% endif %}
 {% endmacro %}

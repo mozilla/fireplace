@@ -220,6 +220,7 @@ define('views/search',
 
         builder.start('search/main.html', {
             params: _.extend({}, params),
+            apps_list: JSON.parse(storage.getItem('apps_clicked') || '[]'),
             processor: processor(query)
         }).done(function() {
             var results = builder.results.searchresults;
