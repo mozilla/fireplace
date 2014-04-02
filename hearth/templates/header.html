@@ -7,6 +7,7 @@
     <a href="{{ url('settings') }}" class="header-button icon settings" title="{{ _('Settings') }}"></a>
     <div class="account-links only-logged-in">
       <ul>
+        {#
         <li>
           <a href="{{ url('settings') }}">
             <b>{{ user.get_setting('email') }}</b>
@@ -17,6 +18,7 @@
           <li><a href="/developers/submissions">{{ _('My Submissions') }}</a></li>
         {% endif %}
         <li><a class="submit-feedback" href="#">{{ _('Feedback') }}</a></li>
+        #}
         <li><a href="#" class="logout">{{ _('Sign Out') }}</a></li>
       </ul>
     </div>
