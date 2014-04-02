@@ -21,8 +21,6 @@ define('consumer_info',
             var consumerInfoRequest = requests.get(urls.api.url('consumer_info'));
             consumerInfoRequest.then(function(consumerInfo) {
                 logger.log('Consumer info retrieved.' + (force ? ' (forced)' : ''));
-                user.id = consumerInfo.user_id;
-                user.hash = consumerInfo.user_hash;
                 user_helpers.set_region_geoip(consumerInfo.region);
                 if (user.logged_in() && consumerInfo.apps !== undefined) {
                     user.update_apps(consumerInfo.apps);

@@ -14,6 +14,7 @@ define('buttons',
     var z = require('z');
 
     var console = require('log')('buttons');
+    var notify = require('notification').notification;
 
     var apps_model = require('models')('app');
     var gettext = require('l10n').gettext;
@@ -68,27 +69,32 @@ define('buttons',
         $this.data('old-text', $this.html())
              .html('<span class="spin"></span>')
              .addClass('spinning');
-        // Reset button if it's been 30 seconds without user action.
+        // Reset button if it's been 15 seconds without user action.
         var _timeout = setTimeout(function() {
             if ($this.hasClass('spinning')) {
-                console.warn('Spinner timeout for', product_name);
+                console.warn('Spinner timeout for', product.id);
                 revertButton($this);
             }
-        }, 30000);
-
-        console.log('Send user hash (' + user.hash + ') and app id (' + product.id + ') to recommendation API');
+        }, 15000);
 
         // This is the data needed to record the app's install.
-        var api_endpoint = 'http://10.22.113.20/api/v2/user-items/' + user.hash + '/';
         var post_data = {
-            item_to_acquire: product.id.toString()
+            app_id: product.id.toString()
         };
-
-        requests.post(api_endpoint, post_data);
+        requests.post(
+            urls.api.url('rec_installed'), post_data
+        ).done(function(resp) {
+            $this.html('Recorded');
+            $this.addClass('disabled');
+        }).fail(function(resp) {
+            revertButton($this);
+            notify({message: 'Error while recording app install'});
+        });
 
         // Clear the spinner timeout if one was set.
         if (_timeout) {
             clearTimeout(_timeout);
+            delete _timeout;
         }
 
 /*
