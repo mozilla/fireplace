@@ -1,6 +1,6 @@
 define('views/search',
-    ['capabilities', 'l10n', 'storage', 'tracking', 'underscore', 'urls', 'utils', 'z'],
-    function(capabilities, l10n, storage, tracking, _, urls, utils, z) {
+    ['cache', 'capabilities', 'l10n', 'storage', 'tracking', 'underscore', 'urls', 'utils', 'z'],
+    function(cache, capabilities, l10n, storage, tracking, _, urls, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -226,6 +226,8 @@ define('views/search',
             if (params.manifest_url && results.objects.length === 1) {
                 z.page.trigger('divert', [urls.reverse('app', [results.objects[0].slug]) + '?src=' + params.src]);
             }
+            // Bust the cache of the recommendations so when we go back it's refreshed automatically.
+            cache.bust(urls.api.url('recommendations'));
             // When there are no results, tell GA (bug 890314)
             if (!results.objects.length) {
                 tracking.trackEvent(
