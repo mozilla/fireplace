@@ -14,12 +14,6 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
     // 'pro' even when not in "preview mode". see bug 980124 and bug 979932
     param_blacklist = ['pro'];
 
-    if ('media_url' in base_settings) {
-        var a = document.createElement('a');
-        a.href = base_settings.media_url;
-        base_settings.cdn_url = a.origin;
-    }
-
     function offline_cache_enabled() {
         var storage = require('storage');
         if (storage.getItem('offline_cache_disabled') || require('capabilities').phantom) {
