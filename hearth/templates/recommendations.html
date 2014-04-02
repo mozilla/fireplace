@@ -1,33 +1,33 @@
 {% include '_macros/market_tile.html' %}
 {% set recommendations_url = url('homepage') %}
 
-{% defer (url=endpoint|urlunparam(['sort'])) %}
-  {% set recommended_apps = this.objects or [] %}
-  {% if recommended_apps.length %}
-    <section id="featured" class="island main gallery full c">
-      <header class="featured-header c">
-        <h3>{{ _('Recommended Apps') }}</h3>
-      </header>
-      <ol class="grid c">
-        {% for result in recommended_apps %}
-          <li>{{ market_tile(app_cast(result), link=true, tray=False) }}</li>
-        {% endfor %}
-      </ol>
-    </section>
-  {% else %}
-    {% if user.logged_in() %}
-      <p class="no-results">No recommendations found.</p>
-      <p class="no-results">Pick some apps by clicking "Next" below.</p>
+{% if user.logged_in() %}
+  {% defer (url=endpoint|urlunparam(['sort'])) %}
+    {% set recommended_apps = this.objects or [] %}
+    {% if recommended_apps.length %}
+      <section id="featured" class="island main gallery full c">
+        <header class="featured-header c">
+          <h3>{{ _('Recommended Apps') }}</h3>
+        </header>
+        <ol class="grid c">
+          {% for result in recommended_apps %}
+            <li>{{ market_tile(app_cast(result), link=true, tray=False) }}</li>
+          {% endfor %}
+        </ol>
+      </section>
     {% else %}
-      <a href="#" class="persona">{{ _('Sign In') }}</a>
+        <p class="no-results">No recommendations found.</p>
+        <p class="no-results">Pick some apps by clicking "Next" below.</p>
     {% endif %}
-  {% endif %}
-{% placeholder %}
-{# Placeholder is empty because this section is often empty, and we already
-   have a placeholder for the Popular/New sections below. #}
-{% empty %}
-{% except %}
-{% end %}
+  {% placeholder %}
+  {# Placeholder is empty because this section is often empty, and we already
+     have a placeholder for the Popular/New sections below. #}
+  {% empty %}
+  {% except %}
+  {% end %}
+{% else %}
+  <p class="no-results">Please sign in</p>
+{% endif %}
 
 
 {% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
