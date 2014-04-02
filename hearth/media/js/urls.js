@@ -1,14 +1,19 @@
 define('urls',
-    ['format', 'routes_api', 'routes_api_args', 'settings', 'user', 'utils'],
-    function(format, api_endpoints, api_args, settings, user, utils) {
+    ['format', 'log', 'routes_api', 'routes_api_args', 'settings', 'user', 'utils'],
+    function(format, log, api_endpoints, api_args, settings, user, utils) {
+
+    var console = log('urls');
 
     // The CDN URL is the same as the media URL but without the `/media/` path.
     if ('media_url' in settings) {
         var a = document.createElement('a');
         a.href = settings.media_url;
-        settings.cdn_url = a.origin;
+        settings.cdn_url = a.protocol + '//' + a.host;
+        console.log('Using settings.media_url: ' + settings.media_url);
+        console.log('Changed settings.cdn_url: ' + settings.cdn_url);
     } else {
         settings.cdn_url = settings.api_url;
+        console.log('Changed settings.cdn_url to settings.api_url: ' + settings.api_url);
     }
 
     var group_pattern = /\([^\)]+\)/;
