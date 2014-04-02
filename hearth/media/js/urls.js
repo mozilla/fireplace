@@ -2,6 +2,15 @@ define('urls',
     ['format', 'routes_api', 'routes_api_args', 'settings', 'user', 'utils'],
     function(format, api_endpoints, api_args, settings, user, utils) {
 
+    // The CDN URL is the same as the media URL but without the `/media/` path.
+    if ('media_url' in settings) {
+        var a = document.createElement('a');
+        a.href = settings.media_url;
+        settings.cdn_url = a.origin;
+    } else {
+        settings.cdn_url = settings.api_url;
+    }
+
     var group_pattern = /\([^\)]+\)/;
     var optional_pattern = /(\(.*\)|\[.*\]|.)\?/g;
     var reverse = function(view_name, args) {
