@@ -94,13 +94,6 @@ function(_) {
     settings.persona_tos = format.format(doc_location, {type: 'terms'});
     settings.persona_privacy = format.format(doc_location, {type: 'privacy'});
 
-    // The CDN URL is the same as the media URL but without the `/media/` path.
-    if ('media_url' in settings) {
-        var a = document.createElement('a');
-        a.href = settings.media_url;
-        settings.cdn_url = a.origin;
-    }
-
     z.body.addClass('html-' + require('l10n').getDirection());
 
     z.page.one('loaded', function() {
