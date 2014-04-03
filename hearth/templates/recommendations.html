@@ -25,12 +25,12 @@
   {% except %}
   {% end %}
 {% else %}
-  <p class="no-results">Please sign in</p>
+  <p class="no-results">Please <a href="#" class="persona">sign in</a></p>
 {% endif %}
 
 
 {% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
-{% set search_url = search_url|urlparams(sort='random', q=' ', limit=250) %}
+{% set search_url = search_url|urlparams(sort='popularity', q=' ', limit=250, offset=100) %}
 
 {% if user.logged_in() %}
 <div id="directory-footer" class="main full c">
