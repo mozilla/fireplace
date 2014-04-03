@@ -61,8 +61,7 @@ define('navigation',
         var top = 0;
         if ((state.preserveScroll || popped) && state.scrollTop) {
             if (state.docHeight) {
-                // Preserve document min-height for scroll preservation
-                // (e.g. when scroll pos should not change).
+                // Preserve document min-height for scroll restoration.
                 z.body.css('min-height', state.docHeight);
                 z.page.one('loaded', function() {
                     // Remove specified min-height.
@@ -72,20 +71,15 @@ define('navigation',
             top = state.scrollTop;
         }
 
-        // For android a small delay is required.
-        if (capabilities.firefoxAndroid) {
-            if (scrollTimer) {
-                window.clearTimeout(scrollTimer);
-            }
-            scrollTimer = window.setTimeout(function() {
-                console.log('Setting scroll to', top);
-                window.scrollTo(0, top);
-            }, 250);
-        // For everything else we scroll immediately.
-        } else {
-            console.log('Setting scroll immediately to ', top);
-            window.scrollTo(0, top);
+        // Introduce small delay to ensure content
+        // is ready to scroll. (Bug 976466)
+        if (scrollTimer) {
+            window.clearTimeout(scrollTimer);
         }
+        scrollTimer = window.setTimeout(function() {
+            console.log('Setting scroll to', top);
+            window.scrollTo(0, top);
+        }, 250);
 
         // Clean the path's parameters.
         // /foo/bar?foo=bar&q=blah -> /foo/bar?q=blah
