@@ -10,7 +10,6 @@ define('navigation',
         {path: '/', type: 'root'}
     ];
     var initialized = false;
-    var scrollTimer;
 
     function extract_nav_url(url) {
         // This function returns the URL that we should use for navigation.
@@ -72,20 +71,8 @@ define('navigation',
             top = state.scrollTop;
         }
 
-        // For android a small delay is required.
-        if (capabilities.firefoxAndroid) {
-            if (scrollTimer) {
-                window.clearTimeout(scrollTimer);
-            }
-            scrollTimer = window.setTimeout(function() {
-                console.log('Setting scroll to', top);
-                window.scrollTo(0, top);
-            }, 250);
-        // For everything else we scroll immediately.
-        } else {
-            console.log('Setting scroll immediately to ', top);
-            window.scrollTo(0, top);
-        }
+        console.log('Setting scroll immediately to ', top);
+        window.scrollTo(0, top);
 
         // Clean the path's parameters.
         // /foo/bar?foo=bar&q=blah -> /foo/bar?q=blah
