@@ -91,6 +91,7 @@ define('buttons',
             var apps = JSON.parse(storage.getItem('apps_clicked') || '[]');
             apps.push(product.id);
             storage.setItem('apps_clicked', JSON.stringify(apps));
+            $('#counter').text(apps.length + ' apps selected');
         }).fail(function(resp) {
             revertButton($this);
             notify({message: 'Error while recording app install'});
