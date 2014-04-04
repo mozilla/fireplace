@@ -230,6 +230,7 @@ define('content-ratings', ['format', 'l10n', 'urls', 'utils', 'z'],
         },
         ratings: {
             generic: {
+                // L10n: (de) ab 0 Jahren.
                 '0': gettext('For all ages'),
                 '3': format(RATING_NAME, 3),
                 '6': format(RATING_NAME, 6),
