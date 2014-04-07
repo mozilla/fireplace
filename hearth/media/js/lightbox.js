@@ -131,21 +131,6 @@ define('lightbox',
         });
     }
 
-    // Horrible hack to work around trays repainting upon lightbox dismissal.
-    // This affects FF only.
-    function ghettoFresh() {
-        // z-index should be between 10, 15 (9 is also OK).
-        var z = ~~(Math.random() * 5 + 10);
-        var $mainSlider = $('.product-details .slider .content');
-
-        // Make sure the new value is always different to force a repaint.
-        if (parseInt($mainSlider.css('z-index'), 10) === z) z--;
-
-        setTimeout(function() {
-            $mainSlider.css({'z-index': z});
-        }, 100);
-    }
-
     function hideLightbox() {
         navigation.closeModal('lightbox');
         closeLightbox();
@@ -159,7 +144,6 @@ define('lightbox',
         setTimeout(function() {
             $lightbox.hide();
         }, 500);
-        ghettoFresh();
         if (slider && slider.element) {
             slider.element.removeEventListener('fsmoveend', pauseVideos);
             slider.destroy();
