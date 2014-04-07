@@ -4,7 +4,6 @@ define('routes_api', [], function() {
         'app/privacy': '/api/v1/apps/app/{0}/privacy/?cache=1&vary=0',
         'category': '/api/v1/fireplace/search/featured/?cat={0}&cache=1&vary=0',
         'collection': '/api/v1/rocketfuel/collections/{0}/?cache=1&vary=0',
-        'collection_image': '/api/v1/rocketfuel/collections/{0}/image/?cache=1&vary=0',
         'reviews': '/api/v1/apps/rating/',
         'review': '/api/v1/apps/rating/{0}/',
         'settings': '/api/v1/account/settings/mine/',
