@@ -15,9 +15,9 @@
 
           {# Content descriptors as a list of text.
              Only shown if there are not any descriptor icons (i.e. non-PEGI bodies). #}
-          {% if this.descriptors[this.body] and not iarc.descriptor_icons[this.body] %}
+          {% if this.descriptors and not iarc.descriptor_icons[this.body] %}
             <ul class="content-descriptors text">
-              {% for descriptor in this.descriptors[this.body] %}
+              {% for descriptor in this.descriptors %}
                 {# Don't show "No Descriptors". #}
                 {% if descriptor != 'no-descs' %}
                   <li>{{ iarc_names.descriptors[this.body][descriptor] }}</li>
