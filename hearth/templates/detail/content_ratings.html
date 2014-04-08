@@ -36,7 +36,7 @@
             {# Content descriptors as a grid of icons.
                Only shown if there are descriptor icons (i.e. PEGI-only). #}
             <div class="content-descriptors icons">
-              {% for descriptor in this.descriptors[this.body] %}
+              {% for descriptor in this.descriptors %}
                 {% set icon_src = desc_icons[descriptor] %}
                 {% if icon_src %}
                   <img data-src="{{ icon_src }}" class="icon deferred"
