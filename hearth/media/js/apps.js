@@ -61,37 +61,16 @@ define('apps',
         if (manifest_url && mozApps && mozApps[installer]) {
             var installRequest = mozApps[installer](manifest_url, opt.data);
             installRequest.onsuccess = function() {
-                console.log('App installation success flow for', product.name);
-                var app = this.result;
-
-                // mozApps.installPackage might be going away so we'll check this boolean.
-                if (product.is_packaged) {
-                    // 'ondownloadsuccess' and 'ondownloaderror' are undocumented so
-                    // we'll rely on the power of prayer.
-                    app.ondownloadapplied = function() {
-                        console.log('Packaged app download success reached');
-                        app.ondownloadapplied = null;
-                        app.ondownloaderror = null;
-                        var isInstalled = setInterval(function() {
-                            if (installRequest.result.installState == 'installed') {
-                                console.log('App reported as installed for', product.name);
-                                clearInterval(isInstalled);
-                                def.resolve(installRequest.result, product);
-                            }
-                        }, 250);
-                    };
-                    app.ondownloaderror = function() {
-                        def.reject(gettext('App download did not complete'));
-                    };
-                } else {
-                    var isInstalled = setInterval(function() {
-                        if (installRequest.result.installState == 'installed') {
-                            console.log('App reported as installed for', product.name);
-                            clearInterval(isInstalled);
-                            def.resolve(installRequest.result, product);
-                        }
-                    }, 250);
-                }
+                console.log('App installation successful for', product.name);
+                var status;
+                var isInstalled = setInterval(function() {
+                    status = installRequest.result.installState;
+                    if (status == 'installed') {
+                        console.log('App reported as installed for', product.name);
+                        clearInterval(isInstalled);
+                        def.resolve(installRequest.result, product);
+                    }
+                }, 250);
             };
             installRequest.onerror = function() {
                 if (this.error.name === 'DENIED') {
