@@ -116,8 +116,6 @@ define('content-ratings', ['format', 'l10n', 'urls', 'utils', 'z'],
                 'drugs-legal': gettext('Legal Drugs'),
                 // L10n: (es) `Linguagem Impr\xF3pria`.
                 'lang': gettext('Inappropriate Language'),
-                // L10n: A descriptor is an element describing the app's content. (es) `N\xE3o inadequa\xE7\xF5es`.
-                'no-descs': gettext('No Descriptors'),
                 // L10n: (es) `Nudez`.
                 'nudity': gettext('Nudity'),
                 // L10n: (es) `Sexo`.
@@ -159,7 +157,6 @@ define('content-ratings', ['format', 'l10n', 'urls', 'utils', 'z'],
                 'mild-fantasy-violence': gettext('Mild Fantasy Violence'),
                 'mild-lang': gettext('Mild Language'),
                 'mild-violence': gettext('Mild Violence'),
-                'no-descs': gettext('No Descriptors'),
                 'nudity': gettext('Nudity'),
                 'partial-nudity': gettext('Partial Nudity'),
                 'real-gambling': gettext('Real Gambling'),
@@ -181,7 +178,6 @@ define('content-ratings', ['format', 'l10n', 'urls', 'utils', 'z'],
                 'gambling': gettext('Gambling'),
                 // L10n: `Language` as in foul language.
                 'lang': gettext('Language'),
-                'no-descs': gettext('No Descriptors'),
                 'online': gettext('Online'),
                 'scary': gettext('Fear'),
                 // L10n: `Sex` as in sexual, not as in gender.
@@ -194,7 +190,6 @@ define('content-ratings', ['format', 'l10n', 'urls', 'utils', 'z'],
                 'gambling': gettext('Gambling'),
                 // L10n: `Language` as in foul language.
                 'lang': gettext('Language'),
-                'no-descs': gettext('No Descriptors'),
                 'online': gettext('Online'),
                 'scary': gettext('Fear'),
                 // L10n: `Sex` as in sexual, not as in gender.
@@ -213,7 +208,6 @@ define('content-ratings', ['format', 'l10n', 'urls', 'utils', 'z'],
                 'drugs': gettext('Drugs'),
                 // L10n: (de) `Explizite Sprache`.
                 'lang': gettext('Explicit Language'),
-                'no-descs': gettext('No Descriptors'),
                 // L10n: (de) `\xC4ngstigende Inhalte`.
                 'scary': gettext('Frightening Content'),
                 // L10n: (de) `Erotik/Sexuelle Inhalte`.
