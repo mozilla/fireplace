@@ -18,10 +18,7 @@
           {% if this.descriptors and not iarc.descriptor_icons[this.body] %}
             <ul class="content-descriptors text">
               {% for descriptor in this.descriptors %}
-                {# Don't show "No Descriptors". #}
-                {% if descriptor != 'no-descs' %}
-                  <li>{{ iarc_names.descriptors[this.body][descriptor] }}</li>
-                {% endif %}
+                <li>{{ iarc_names.descriptors[this.body][descriptor] }}</li>
               {% endfor %}
             </ul>
           {% else %}
