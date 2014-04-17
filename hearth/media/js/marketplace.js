@@ -59,6 +59,12 @@ define(
         'z'
     ],
 function(_) {
+    // Use Native Persona, if it's available.
+    if ('mozId' in navigator) {
+        console.log('Native Persona is available');
+        navigator.id = navigator.mozId;
+    }
+
     var capabilities = require('capabilities');
     if (!capabilities.performance) {
         // Polyfill `performance.now` for PhantomJS.
