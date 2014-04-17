@@ -48,7 +48,14 @@ Comprehensive Flue documentation can be found in
 ### Yule Log
 
 Docs can be found in
-[Yule Log's README](https://github.com/mozilla/fireplace/blob/master/yulelog/README.md)
+[Yule Log's README](https://github.com/mozilla/fireplace/blob/master/yulelog/README.md) and on the [Wiki](https://github.com/mozilla/fireplace/wiki/Creating-a-new-Yulelog-package).
+
+
+### Packaged App
+
+Docs can be found on the [Wiki](https://github.com/mozilla/fireplace/wiki/Creating-a-new-Packaged-App-version).
+
+Please note that any file that belongs in the package must get added to `package/files.txt`.
 
 
 ## Usage

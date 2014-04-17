@@ -5,7 +5,7 @@ var dependencies;
 
 // Please leave quotes around keys! They're needed for Space Heater.
 var routes = [
-    {'pattern': '^/(index.html|server.html)?$', 'view_name': 'homepage'},
+    {'pattern': '^/(app.html|index.html|server.html)?$', 'view_name': 'homepage'},
     {'pattern': '^/app/([^/<>"\']+)/ratings/add$', 'view_name': 'app/ratings/add'},
     {'pattern': '^/app/([^/<>"\']+)/ratings/edit$', 'view_name': 'app/ratings/edit'},
     {'pattern': '^/app/([^/<>"\']+)/ratings/([^/<>"\']+)$', 'view_name': 'app/ratings/rating'},

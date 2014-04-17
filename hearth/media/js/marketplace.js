@@ -102,6 +102,9 @@ function(_) {
     settings.persona_privacy = format.format(doc_location, {type: 'privacy'});
 
     z.body.addClass('html-' + require('l10n').getDirection());
+    if (settings.body_classes) {
+        z.body.addClass(settings.body_classes);
+    }
 
     z.page.one('loaded', function() {
         console.log('Hiding splash screen (' + ((performance.now() - start_time) / 1000).toFixed(6) + 's)');
