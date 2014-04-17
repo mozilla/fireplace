@@ -66,12 +66,13 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
         document.body.appendChild(ua);
 
         window.ga('create', id, {
-            storage: 'none',  // Don't use cookies/localStorage.
-            clientId: clientID
+            storage: 'none',
+            clientId: clientID,
         });
         if (sect) {
             window.ga('set', 'dimension' + sect_index, sect);
         }
+        window.ga('set', 'checkProtocolTask', function(){});
         window.ga('send', 'pageview', initial_url);
     }
 
@@ -111,7 +112,7 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
                 '(',
                 setupUATracking.toString(),
                 ')("' + settings.ua_tracking_id + '", "' + get_url() + '", "' + clientID + '", "' +
-                    settings.tracking_site_section + '", ' + settings.tracking_site_section_index + ');',
+                    settings.tracking_section + '", ' + settings.tracking_section_index + ');',
                 'var origin = "' + origin + '";',
                 "window.addEventListener('message', function(e) {",
                 '  if (e.origin !== origin) {',
