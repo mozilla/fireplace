@@ -59,8 +59,10 @@ define(
         'z'
     ],
 function(_) {
+    var console = require('log')('mkt');
+
     // Use Native Persona, if it's available.
-    if ('mozId' in navigator) {
+    if ('mozId' in navigator && navigator.mozId !== null) {
         console.log('Native Persona is available');
         navigator.id = navigator.mozId;
     }
@@ -77,7 +79,6 @@ function(_) {
     }
     var start_time = performance.now();
 
-    var console = require('log')('mkt');
     console.log('Dependencies resolved, starting init');
 
     var $ = require('jquery');
