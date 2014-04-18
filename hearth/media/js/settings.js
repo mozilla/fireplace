@@ -112,7 +112,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'sv': gettext('El Salvador'),
             'de': gettext('Germany'),
             'gr': gettext('Greece'),
-            'gt': getttext('Guatemala'),
+            'gt': gettext('Guatemala'),
             'hu': gettext('Hungary'),
             'it': gettext('Italy'),
             'mx': gettext('Mexico'),
