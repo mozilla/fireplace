@@ -59,7 +59,15 @@ define(
         'z'
     ],
 function(_) {
+    var console = require('log')('mkt');
     var capabilities = require('capabilities');
+
+    // Use Native Persona, if it's available.
+    if (capabilities.firefoxOS && 'mozId' in navigator && navigator.mozId !== null) {
+        console.log('Native Persona is available');
+        navigator.id = navigator.mozId;
+    }
+
     if (!capabilities.performance) {
         // Polyfill `performance.now` for PhantomJS.
         // (And don't even bother with `Date.now` because IE.)
@@ -71,7 +79,6 @@ function(_) {
     }
     var start_time = performance.now();
 
-    var console = require('log')('mkt');
     console.log('Dependencies resolved, starting init');
 
     var $ = require('jquery');
