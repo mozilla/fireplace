@@ -202,7 +202,7 @@ test('api url CDN whitelist', function(done, fail) {
                     '/api/v1/fireplace/search/': 60,  // 1 minute
                     '/api/v1/fireplace/search/featured/': 60 * 2,  // 2 minutes
                 },
-                cdn_url: 'http://cdn.so.fast.omg.org'
+                media_url: 'http://cdn.so.fast.omg.org'
             }
         }, function(urls) {
             var homepage_url = urls.api.url('homepage');

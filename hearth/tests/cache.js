@@ -274,11 +274,15 @@ test('cache get_ttl', function(done) {
 
 test('cache flush_signed', function(done) {
     mock(
-        'user',
-        {},
-        function (user) {
-            user.set_token('SwaggasaurusRex');
-
+        'cache',
+        {
+            user: {
+                logged_in: function() { return true; },
+                get_setting: function(x) {},
+                get_token: function() { return 'SwaggasaurusRex';}
+            }
+        },
+        function (cache) {
             var data = 'ratchet data';
 
             var signed_url = 'https://omg.org/api/v1/app/yolo/?_user=SwaggasaurusRex';
