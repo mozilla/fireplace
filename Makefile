@@ -28,7 +28,7 @@ package: clean
 	@cp -r hearth TMP/hearth
 
 	@mv TMP/hearth/media/js/settings_package_$(SERVER).js TMP/hearth/media/js/settings_local_package.js
-	@rm -rf TMP/hearth/media/js/settings_package_*.js
+	@rm -rf TMP/hearth/media/js/{settings_local_hosted.js,settings_package_*.js}
 
 	@pushd TMP && commonplace includes && popd
 	@pushd TMP && commonplace langpacks && popd
