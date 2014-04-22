@@ -23,7 +23,8 @@
     &:hover, &:focus, &:active {
         color: darken($white, 10%);
     }
-    &:active {
+    // To override specifity of selector in `site.styl` (bug 980646 / bug 969187).
+    &:not([disabled]):active {
         btn-shadow-active();
         border: 1px solid darken(#1793e5, 10%);
     }

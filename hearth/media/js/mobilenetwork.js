@@ -1,6 +1,6 @@
 define('mobilenetwork',
-       ['defer', 'l10n', 'log', 'settings', 'tracking', 'user', 'utils'],
-       function(defer, l10n, log, settings, tracking, user, utils) {
+       ['l10n', 'log', 'settings', 'tracking', 'user', 'utils'],
+       function(l10n, log, settings, tracking, user, utils) {
     var console = log('mobilenetwork');
     var persistent_console = log.persistent('mobilenetwork', 'change');
     var gettext = l10n.gettext;

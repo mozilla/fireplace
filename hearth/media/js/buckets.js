@@ -39,7 +39,7 @@ define('buckets', [], function() {
 
     var has_gum = prefixed('getUserMedia', navigator);
     if (has_gum && navigator.mozGetUserMedia) {
-        // Gecko 18's gum is a noop. FFFFFFFFFUUUUUUUUUUUUUU
+        // Gecko 18's gum is a noop.
         try {
             navigator.mozGetUserMedia(); // Should throw a TypeError.
             has_gum = false;

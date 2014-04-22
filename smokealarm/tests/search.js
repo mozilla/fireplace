@@ -20,9 +20,11 @@ suite.run('/', function(test, waitFor) {
 
         assert.visible('#search-q');
         assert.selectorDoesNotExist('#featured');
-        assert.selectorDoesNotExist('.search-listing li:nth-child(12)');
+        // There should be 26 elements in the listing: 25 items + "load more".
+        assert.selectorExists('.search-listing li:nth-child(26)');
+        assert.selectorDoesNotExist('.search-listing li:nth-child(27)');
 
-        assert.hasText('#search-results h2', '25 Results');
+        assert.hasText('#search-results h2', '42 Results');
         assert.visible('.search-listing li a.mkt-tile');
         assert.visible('#search-results .expand-toggle');
 
@@ -31,16 +33,17 @@ suite.run('/', function(test, waitFor) {
     });
 
     waitFor(function() {
-        return suite.exists('.search-listing li:nth-child(12)');
+        return suite.exists('.search-listing li:nth-child(26)');
     });
 
     test('Test that more apps were loaded', function(assert) {
         assert.URL(/\/search\?q=test/);
         suite.capture('search_loadedmore.png');
 
-        assert.hasText('#search-results h2', '25 Results');
-        assert.selectorExists('.search-listing li:nth-child(12)');
-        assert.selectorDoesNotExist('.search-listing li:nth-child(22)');
+        assert.hasText('#search-results h2', '42 Results');
+        // There should be 42 elements in the listing: 42 items and that's it.
+        assert.selectorExists('.search-listing li:nth-child(42)');
+        assert.selectorDoesNotExist('.search-listing li:nth-child(43)');
 
         suite.press('.header-button.back');
     });
@@ -50,16 +53,18 @@ suite.run('/', function(test, waitFor) {
     });
 
     waitFor(function() {
-        return suite.exists('.search-listing li:nth-child(12)');
+        return suite.exists('.search-listing li:nth-child(26)');
     });
 
     test('Test that more apps were loaded', function(assert) {
         assert.URL(/\/search\?q=test/);
         suite.capture('search_loadedmore_cacherewriting.png');
 
-        assert.hasText('#search-results h2', '25 Results');
-        assert.selectorExists('.search-listing li:nth-child(12)');
-        assert.selectorDoesNotExist('.search-listing li:nth-child(22)');
+        assert.hasText('#search-results h2', '42 Results');
+        // Thanks to cache rewriting, we should have loaded everything we have,
+        // that is, the complete list of 42 items.
+        assert.selectorExists('.search-listing li:nth-child(42)');
+        assert.selectorDoesNotExist('.search-listing li:nth-child(43)');
 
         suite.press('.search-listing li a.mkt-tile:first-child');
     });
