@@ -1,34 +1,49 @@
 {
-    "name": "Marketplace",
-    "launch_path": "/index.html",
-    "activities": {
-        "marketplace-search": {"href": "/index.html"},
-        "marketplace-category": {"href": "/index.html"},
-        "marketplace-app": {"href": "/index.html"},
-        "marketplace-app-rating": {"href": "/index.html"}
-    },
-    "default_locale": "en-US",
-    "description": "The Firefox Marketplace",
-    "developer": {
-        "url": "http://mozilla.org",
-        "name": "Mozilla"
-    },
-    "icons": {
-        "128": "/media/img/logos/128.png",
-        "32": "/media/img/logos/32.png",
-        "64": "/media/img/logos/64.png"
-    },
-    "locales": {
-        "cs": {},
-        "de": {},
-        "es": {},
-        "fr": {},
-        "ga-IE": {},
-        "it": {},
-        "pl": {},
-        "zh-TW": {}
-    },
-    "orientation": ["portrait-primary"],
-    "origin": "app://marketplace.firefox.com",
-    "version": "{version}"
+  "activities": {
+    "marketplace-search": {"href": "/app.html"},
+    "marketplace-category": {"href": "/app.html"},
+    "marketplace-app": {"href": "/app.html"},
+    "marketplace-app-rating": {"href": "/app.html"}
+  },
+  "default_locale": "en-US",
+  "description": "Firefox Marketplace",
+  "developer": {
+    "name": "Mozilla",
+    "url": "http://mozilla.org"
+  },
+  "icons": {
+    "60": "/app-icons/60.png",
+    "90": "/app-icons/90.png",
+    "120": "/app-icons/120.png",
+    "128": "/app-icons/128.png"
+  },
+  "launch_path": "/app.html",
+  "locales": {
+    "bg": {},
+    "ca": {},
+    "cs": {},
+    "de": {},
+    "el": {},
+    "en-US": {},
+    "es": {},
+    "eu": {},
+    "fr": {},
+    "ga-IE": {},
+    "hr": {},
+    "hu": {},
+    "it": {},
+    "pl": {},
+    "tr": {},
+    "zh-TW": {}
+  },
+  "name": "Marketplace",
+  "orientation": ["portrait-primary"],
+  "origin": "app://packaged.marketplace.firefox.com",
+  "permissions": {
+    "mobilenetwork": {
+      "description": "To detect mobile carrier and regional information."
+    }
+  },
+  "type": "privileged",
+  "version": "{fireplace_package_version}"
 }
