@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09T16:17:52.721Z\n"
+"POT-Creation-Date: 2014-04-23T16:16:52.431Z\n"
 "PO-Revision-Date: 2014-04-09 12:30-0500\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -314,6 +314,26 @@ msgstr "リクエストされたカテゴリは存在しません。"
 msgid "An internal server error occurred. Please try again later."
 msgstr "内部サーバエラーが発生しました。また後で試してください。"
 
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+msgid "Oh no!"
+msgstr "Not Found"
+
+#: /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "お探しのページは見つかりませんでした。"
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "問題が発生しました。"
+
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "読み込み中に問題が発生しました"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "再読み込み"
+
 #: /templates/detail/abuse.html:5 /templates/detail/main.html:200 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "不正報告"
@@ -326,7 +346,7 @@ msgstr "報告を送信"
 msgid "Content Rating"
 msgstr "コンテンツレーティング"
 
-#: /templates/detail/content_ratings.html:76
+#: /templates/detail/content_ratings.html:73
 msgid "Content Rating Details"
 msgstr "コンテンツレーティングの詳細"
 
@@ -438,26 +458,6 @@ msgstr "プライバシーポリシーを読み込んでいます..."
 msgid "Thank you for purchasing"
 msgstr "お買い上げありがとうございます"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
-msgid "Oh no!"
-msgstr "Not Found"
-
-#: /templates/errors/404.html:3
-msgid "The page you were looking for was not found."
-msgstr "お探しのページは見つかりませんでした。"
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "問題が発生しました。"
-
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "読み込み中に問題が発生しました"
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "再読み込み"
-
 #: /templates/search/main.html:15
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
@@ -476,7 +476,7 @@ msgstr "該当するアプリはありません"
 msgid "No results found, try again later"
 msgstr "該当するアプリはありません。また後日見に来てください"
 
-#: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:88
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "レビューを編集"
 
@@ -700,7 +700,7 @@ msgstr "一般"
 msgid "Criminal Acts"
 msgstr "犯罪行為"
 
-#: /media/js/content-ratings.js:112 /media/js/content-ratings.js:180 /media/js/content-ratings.js:193 /media/js/content-ratings.js:213
+#: /media/js/content-ratings.js:112 /media/js/content-ratings.js:177 /media/js/content-ratings.js:189 /media/js/content-ratings.js:208
 msgid "Drugs"
 msgstr "薬物"
 
@@ -716,271 +716,267 @@ msgstr "合法薬物"
 msgid "Inappropriate Language"
 msgstr "不適切な言葉遣い"
 
-#: /media/js/content-ratings.js:120 /media/js/content-ratings.js:162 /media/js/content-ratings.js:184 /media/js/content-ratings.js:197 /media/js/content-ratings.js:216
-msgid "No Descriptors"
-msgstr "記述子なし"
-
-#: /media/js/content-ratings.js:122 /media/js/content-ratings.js:163
+#: /media/js/content-ratings.js:120 /media/js/content-ratings.js:160
 msgid "Nudity"
 msgstr "ヌード"
 
-#: /media/js/content-ratings.js:124 /media/js/content-ratings.js:188 /media/js/content-ratings.js:201
+#: /media/js/content-ratings.js:122 /media/js/content-ratings.js:184 /media/js/content-ratings.js:196
 msgid "Sex"
 msgstr "性描写"
 
-#: /media/js/content-ratings.js:126
+#: /media/js/content-ratings.js:124
 msgid "Explicit Sex"
 msgstr "露骨な性描写"
 
-#: /media/js/content-ratings.js:128
+#: /media/js/content-ratings.js:126
 msgid "Impacting Content"
 msgstr "衝撃的な内容"
 
-#: /media/js/content-ratings.js:130 /media/js/content-ratings.js:175 /media/js/content-ratings.js:189 /media/js/content-ratings.js:202 /media/js/content-ratings.js:222
+#: /media/js/content-ratings.js:128 /media/js/content-ratings.js:172 /media/js/content-ratings.js:185 /media/js/content-ratings.js:197 /media/js/content-ratings.js:216
 msgid "Violence"
 msgstr "暴力"
 
-#: /media/js/content-ratings.js:132
+#: /media/js/content-ratings.js:130
 msgid "Extreme Violence"
 msgstr "過激な暴力"
 
-#: /media/js/content-ratings.js:135
+#: /media/js/content-ratings.js:133
 msgid "Alcohol Reference"
 msgstr "アルコールの描写"
 
-#: /media/js/content-ratings.js:136
+#: /media/js/content-ratings.js:134
 msgid "Alcohol and Tobacco Reference"
 msgstr "アルコールとタバコの描写"
 
-#: /media/js/content-ratings.js:137
+#: /media/js/content-ratings.js:135
 msgid "Use of Alcohol and Tobacco"
 msgstr "アルコールとタバコの使用"
 
-#: /media/js/content-ratings.js:138
+#: /media/js/content-ratings.js:136
 msgid "Use of Alcohol"
 msgstr "アルコールの使用"
 
-#: /media/js/content-ratings.js:139
+#: /media/js/content-ratings.js:137
 msgid "Blood"
 msgstr "流血"
 
-#: /media/js/content-ratings.js:140
+#: /media/js/content-ratings.js:138
 msgid "Blood and Gore"
 msgstr "流血と残虐行為"
 
-#: /media/js/content-ratings.js:141
+#: /media/js/content-ratings.js:139
 msgid "Comic Mischief"
 msgstr "きわどいユーモア"
 
-#: /media/js/content-ratings.js:142
+#: /media/js/content-ratings.js:140
 msgid "Crime"
 msgstr "犯罪"
 
-#: /media/js/content-ratings.js:143
+#: /media/js/content-ratings.js:141
 msgid "Criminal Instruction"
 msgstr "犯罪行為の奨励"
 
-#: /media/js/content-ratings.js:144
+#: /media/js/content-ratings.js:142
 msgid "Crude Humor"
 msgstr "下品なユーモア"
 
-#: /media/js/content-ratings.js:145
+#: /media/js/content-ratings.js:143
 msgid "Drug and Alcohol Reference"
 msgstr "薬物とアルコールの描写"
 
-#: /media/js/content-ratings.js:146
+#: /media/js/content-ratings.js:144
 msgid "Drug, Alcohol, and Tobacco Reference"
 msgstr "薬物、アルコール、タバコの描写"
 
-#: /media/js/content-ratings.js:147
+#: /media/js/content-ratings.js:145
 msgid "Use of Drug, Alcohol, and Tobacco"
 msgstr "薬物、アルコール、タバコの使用"
 
-#: /media/js/content-ratings.js:148
+#: /media/js/content-ratings.js:146
 msgid "Use of Drug and Alcohol"
 msgstr "薬物とアルコールの使用"
 
-#: /media/js/content-ratings.js:149
+#: /media/js/content-ratings.js:147
 msgid "Drug Reference"
 msgstr "薬物の描写"
 
-#: /media/js/content-ratings.js:150
+#: /media/js/content-ratings.js:148
 msgid "Drug and Tobacco Reference"
 msgstr "薬物とタバコの描写"
 
-#: /media/js/content-ratings.js:151
+#: /media/js/content-ratings.js:149
 msgid "Use of Drug and Tobacco"
 msgstr "薬物とタバコの使用"
 
-#: /media/js/content-ratings.js:152
+#: /media/js/content-ratings.js:150
 msgid "Use of Drugs"
 msgstr "薬物の使用"
 
-#: /media/js/content-ratings.js:153
+#: /media/js/content-ratings.js:151
 msgid "Fantasy Violence"
 msgstr "空想暴力"
 
-#: /media/js/content-ratings.js:154
+#: /media/js/content-ratings.js:152
 msgid "Hate Speech"
 msgstr "ヘイトスピーチ"
 
-#: /media/js/content-ratings.js:155
+#: /media/js/content-ratings.js:153
 msgid "Intense Violence"
 msgstr "激しい暴力"
 
-#: /media/js/content-ratings.js:157 /media/js/content-ratings.js:183 /media/js/content-ratings.js:196
+#: /media/js/content-ratings.js:155 /media/js/content-ratings.js:180 /media/js/content-ratings.js:192
 msgid "Language"
 msgstr "汚い言葉遣い"
 
-#: /media/js/content-ratings.js:158
+#: /media/js/content-ratings.js:156
 msgid "Mild Blood"
 msgstr "軽度の流血"
 
-#: /media/js/content-ratings.js:159
+#: /media/js/content-ratings.js:157
 msgid "Mild Fantasy Violence"
 msgstr "軽度の空想暴力"
 
-#: /media/js/content-ratings.js:160
+#: /media/js/content-ratings.js:158
 msgid "Mild Language"
 msgstr "軽度の汚い言葉遣い"
 
-#: /media/js/content-ratings.js:161
+#: /media/js/content-ratings.js:159
 msgid "Mild Violence"
 msgstr "軽度の暴力"
 
-#: /media/js/content-ratings.js:164
+#: /media/js/content-ratings.js:161
 msgid "Partial Nudity"
 msgstr "部分的なヌード"
 
-#: /media/js/content-ratings.js:165
+#: /media/js/content-ratings.js:162
 msgid "Real Gambling"
 msgstr "実在するギャンブル"
 
-#: /media/js/content-ratings.js:166
+#: /media/js/content-ratings.js:163
 msgid "Scary Themes"
 msgstr "恐ろしいテーマ"
 
-#: /media/js/content-ratings.js:167 /media/js/content-ratings.js:220
+#: /media/js/content-ratings.js:164 /media/js/content-ratings.js:214
 msgid "Sexual Content"
 msgstr "性的な内容"
 
-#: /media/js/content-ratings.js:168
+#: /media/js/content-ratings.js:165
 msgid "Sexual Themes"
 msgstr "性的なテーマ"
 
-#: /media/js/content-ratings.js:169
+#: /media/js/content-ratings.js:166
 msgid "Simulated Gambling"
 msgstr "疑似ギャンブル"
 
-#: /media/js/content-ratings.js:170
+#: /media/js/content-ratings.js:167
 msgid "Strong Language"
 msgstr "激しく汚い言葉遣い"
 
-#: /media/js/content-ratings.js:171
+#: /media/js/content-ratings.js:168
 msgid "Strong Sexual Content"
 msgstr "激しく性的な内容"
 
-#: /media/js/content-ratings.js:172
+#: /media/js/content-ratings.js:169
 msgid "Suggestive Themes"
 msgstr "挑発的なテーマ"
 
-#: /media/js/content-ratings.js:173
+#: /media/js/content-ratings.js:170
 msgid "Tobacco Reference"
 msgstr "タバコの描写"
 
-#: /media/js/content-ratings.js:174
+#: /media/js/content-ratings.js:171
 msgid "Use of Tobacco"
 msgstr "タバコの使用"
 
-#: /media/js/content-ratings.js:176
+#: /media/js/content-ratings.js:173
 msgid "Violence References"
 msgstr "暴力の描写"
 
-#: /media/js/content-ratings.js:179 /media/js/content-ratings.js:192 /media/js/content-ratings.js:211
+#: /media/js/content-ratings.js:176 /media/js/content-ratings.js:188 /media/js/content-ratings.js:206
 msgid "Discrimination"
 msgstr "差別"
 
-#: /media/js/content-ratings.js:181 /media/js/content-ratings.js:194
+#: /media/js/content-ratings.js:178 /media/js/content-ratings.js:190
 msgid "Gambling"
 msgstr "ギャンブル"
 
-#: /media/js/content-ratings.js:185 /media/js/content-ratings.js:198
+#: /media/js/content-ratings.js:181 /media/js/content-ratings.js:193
 msgid "Online"
 msgstr "オンライン"
 
-#: /media/js/content-ratings.js:186 /media/js/content-ratings.js:199
+#: /media/js/content-ratings.js:182 /media/js/content-ratings.js:194
 msgid "Fear"
 msgstr "恐怖"
 
-#: /media/js/content-ratings.js:204
+#: /media/js/content-ratings.js:199
 msgid "Social Interaction Functionality"
 msgstr "ソーシャル交流機能"
 
-#: /media/js/content-ratings.js:205
+#: /media/js/content-ratings.js:200
 msgid "Personal Data Sharing"
 msgstr "個人データ共有"
 
-#: /media/js/content-ratings.js:206
+#: /media/js/content-ratings.js:201
 msgid "In-app Purchase Option"
 msgstr "アプリ内課金の選択肢"
 
-#: /media/js/content-ratings.js:207
+#: /media/js/content-ratings.js:202
 msgid "Location Data Sharing"
 msgstr "位置情報データ共有"
 
-#: /media/js/content-ratings.js:215
+#: /media/js/content-ratings.js:210
 msgid "Explicit Language"
 msgstr "ひわいな言葉遣い"
 
-#: /media/js/content-ratings.js:218
+#: /media/js/content-ratings.js:212
 msgid "Frightening Content"
 msgstr "恐ろしい内容"
 
-#: /media/js/content-ratings.js:226
+#: /media/js/content-ratings.js:220
 msgid "Digital Purchases"
 msgstr "デジタル購入"
 
-#: /media/js/content-ratings.js:227
+#: /media/js/content-ratings.js:221
 msgid "Shares Info"
 msgstr "情報共有"
 
-#: /media/js/content-ratings.js:228
+#: /media/js/content-ratings.js:222
 msgid "Shares Location"
 msgstr "位置情報共有"
 
-#: /media/js/content-ratings.js:229
+#: /media/js/content-ratings.js:223
 msgid "Users Interact"
 msgstr "ユーザ交流"
 
-#: /media/js/content-ratings.js:234
+#: /media/js/content-ratings.js:228
 msgid "For all ages"
 msgstr "全年齢対象"
 
-#: /media/js/content-ratings.js:243
+#: /media/js/content-ratings.js:237
 msgid "Rating Pending"
 msgstr "レーティング検討中"
 
-#: /media/js/content-ratings.js:244
+#: /media/js/content-ratings.js:238
 msgid "Rating Refused"
 msgstr "レーティング拒否"
 
-#: /media/js/content-ratings.js:247
+#: /media/js/content-ratings.js:241
 msgid "Everyone"
 msgstr "全年齢"
 
-#: /media/js/content-ratings.js:248
+#: /media/js/content-ratings.js:242
 msgid "Everyone 10+"
 msgstr "10 歳以上"
 
-#: /media/js/content-ratings.js:249
+#: /media/js/content-ratings.js:243
 msgid "Teen"
 msgstr "13 歳から 19 歳"
 
-#: /media/js/content-ratings.js:250
+#: /media/js/content-ratings.js:244
 msgid "Mature 17+"
 msgstr "17 歳以上"
 
-#: /media/js/content-ratings.js:251
+#: /media/js/content-ratings.js:245
 msgid "Adults Only 18+"
 msgstr "成人向け、18 歳以上"
 
@@ -1041,87 +1037,111 @@ msgstr "レビューが投稿されました"
 msgid "Error while submitting review"
 msgstr "レビューの投稿中に問題が発生しました"
 
-#: /media/js/settings.js:104
+#: /media/js/settings.js:106
 msgid "Rest of World"
 msgstr "その他の地域"
 
-#: /media/js/settings.js:105
+#: /media/js/settings.js:107
 msgid "Argentina"
 msgstr "アルゼンチン"
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:108
 msgid "Brazil"
 msgstr "ブラジル"
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:109
 msgid "Chile"
 msgstr "チリ"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:110
 msgid "China"
 msgstr "中国"
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:111
 msgid "Colombia"
 msgstr "コロンビア"
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:112
+msgid "Costa Rica"
+msgstr ""
+
+#: /media/js/settings.js:113
+msgid "Ecuador"
+msgstr ""
+
+#: /media/js/settings.js:114
+msgid "El Salvador"
+msgstr ""
+
+#: /media/js/settings.js:115
 msgid "Germany"
 msgstr "ドイツ"
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:116
 msgid "Greece"
 msgstr "ギリシャ"
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:117
+msgid "Guatemala"
+msgstr ""
+
+#: /media/js/settings.js:118
 msgid "Hungary"
 msgstr "ハンガリー"
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:119
 msgid "Italy"
 msgstr "イタリア"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:120
 msgid "Mexico"
 msgstr "メキシコ"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:121
 msgid "Montenegro"
 msgstr "モンテネグロ"
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:122
+msgid "Nicaragua"
+msgstr ""
+
+#: /media/js/settings.js:123
+msgid "Panama"
+msgstr ""
+
+#: /media/js/settings.js:124
 msgid "Peru"
 msgstr "ペルー"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:125
 msgid "Poland"
 msgstr "ポーランド"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:126
 msgid "Serbia"
 msgstr "セルビア"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:127
 msgid "Spain"
 msgstr "スペイン"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:128
 msgid "United Kingdom"
 msgstr "イギリス"
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:129
 msgid "United States"
 msgstr "アメリカ"
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:130
 msgid "Uruguay"
 msgstr "ウルグアイ"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:131
 msgid "Venezuela"
 msgstr "ベネズエラ"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:132
 msgid "No region in search"
 msgstr "検索対象地域が指定されていません"
 
@@ -1205,10 +1225,10 @@ msgstr "レシートを表示するにはログインしてください"
 msgid "Receipt"
 msgstr "レシート"
 
-#: /media/js/views/app/ratings/edit.js:22
+#: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
 msgstr "レビューが更新されました"
 
-#: /media/js/views/app/ratings/edit.js:37
+#: /media/js/views/app/ratings/edit.js:35
 msgid "There was a problem updating your review"
 msgstr "レビューの更新中に問題が発生しました"

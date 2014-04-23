@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09T16:17:52.721Z\n"
+"POT-Creation-Date: 2014-04-23T16:16:52.431Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -365,6 +365,28 @@ msgstr "Ŧħḗ ƈȧŧḗɠǿřẏ ẏǿŭ řḗɋŭḗşŧḗḓ ḓǿḗş ƞ�
 msgid "An internal server error occurred. Please try again later."
 msgstr "Ȧƞ īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř ǿƈƈŭřřḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
 
+#: /templates/errors/404.html:2
+#: /templates/errors/fragment.html:1
+#: /templates/user/purchases.html:38
+msgid "Oh no!"
+msgstr "Ǿħ ƞǿ!"
+
+#: /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "Ŧħḗ ƥȧɠḗ ẏǿŭ ẇḗřḗ ŀǿǿķīƞɠ ƒǿř ẇȧş ƞǿŧ ƒǿŭƞḓ."
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Ȧƞ ḗřřǿř ǿƈƈŭřřḗḓ."
+
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ḿǿřḗ"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Ŧřẏ Ȧɠȧīƞ"
+
 #: /templates/detail/abuse.html:5
 #: /templates/detail/main.html:200
 #: /templates/detail/receipt.html:68
@@ -380,7 +402,7 @@ msgstr "Şḗƞḓ Řḗƥǿřŧ"
 msgid "Content Rating"
 msgstr "Ƈǿƞŧḗƞŧ Řȧŧīƞɠ"
 
-#: /templates/detail/content_ratings.html:76
+#: /templates/detail/content_ratings.html:73
 msgid "Content Rating Details"
 msgstr "Ƈǿƞŧḗƞŧ Řȧŧīƞɠ Ḓḗŧȧīŀş"
 
@@ -513,28 +535,6 @@ msgstr "Ŀǿȧḓīƞɠ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ..."
 msgid "Thank you for purchasing"
 msgstr "Ŧħȧƞķ ẏǿŭ ƒǿř ƥŭřƈħȧşīƞɠ"
 
-#: /templates/errors/404.html:2
-#: /templates/errors/fragment.html:1
-#: /templates/user/purchases.html:38
-msgid "Oh no!"
-msgstr "Ǿħ ƞǿ!"
-
-#: /templates/errors/404.html:3
-msgid "The page you were looking for was not found."
-msgstr "Ŧħḗ ƥȧɠḗ ẏǿŭ ẇḗřḗ ŀǿǿķīƞɠ ƒǿř ẇȧş ƞǿŧ ƒǿŭƞḓ."
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Ȧƞ ḗřřǿř ǿƈƈŭřřḗḓ."
-
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ḿǿřḗ"
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Ŧřẏ Ȧɠȧīƞ"
-
 #: /templates/search/main.html:15
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
@@ -556,7 +556,7 @@ msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ, ŧřẏ ȧɠȧīƞ ŀȧŧḗř"
 
 #: /templates/ratings/edit.html:5
 #: /templates/ratings/main.html:14
-#: /media/js/views/app/ratings/edit.js:88
+#: /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "Ḗḓīŧ Řḗṽīḗẇ"
 
@@ -792,9 +792,9 @@ msgid "Criminal Acts"
 msgstr "Ƈřīḿīƞȧŀ Ȧƈŧş"
 
 #: /media/js/content-ratings.js:112
-#: /media/js/content-ratings.js:180
-#: /media/js/content-ratings.js:193
-#: /media/js/content-ratings.js:213
+#: /media/js/content-ratings.js:177
+#: /media/js/content-ratings.js:189
+#: /media/js/content-ratings.js:208
 msgid "Drugs"
 msgstr "Ḓřŭɠş"
 
@@ -811,289 +811,281 @@ msgid "Inappropriate Language"
 msgstr "Īƞȧƥƥřǿƥřīȧŧḗ Ŀȧƞɠŭȧɠḗ"
 
 #: /media/js/content-ratings.js:120
-#: /media/js/content-ratings.js:162
-#: /media/js/content-ratings.js:184
-#: /media/js/content-ratings.js:197
-#: /media/js/content-ratings.js:216
-msgid "No Descriptors"
-msgstr "Ƞǿ Ḓḗşƈřīƥŧǿřş"
-
-#: /media/js/content-ratings.js:122
-#: /media/js/content-ratings.js:163
+#: /media/js/content-ratings.js:160
 msgid "Nudity"
 msgstr "Ƞŭḓīŧẏ"
 
-#: /media/js/content-ratings.js:124
-#: /media/js/content-ratings.js:188
-#: /media/js/content-ratings.js:201
+#: /media/js/content-ratings.js:122
+#: /media/js/content-ratings.js:184
+#: /media/js/content-ratings.js:196
 msgid "Sex"
 msgstr "Şḗẋ"
 
-#: /media/js/content-ratings.js:126
+#: /media/js/content-ratings.js:124
 msgid "Explicit Sex"
 msgstr "Ḗẋƥŀīƈīŧ Şḗẋ"
 
-#: /media/js/content-ratings.js:128
+#: /media/js/content-ratings.js:126
 msgid "Impacting Content"
 msgstr "Īḿƥȧƈŧīƞɠ Ƈǿƞŧḗƞŧ"
 
-#: /media/js/content-ratings.js:130
-#: /media/js/content-ratings.js:175
-#: /media/js/content-ratings.js:189
-#: /media/js/content-ratings.js:202
-#: /media/js/content-ratings.js:222
+#: /media/js/content-ratings.js:128
+#: /media/js/content-ratings.js:172
+#: /media/js/content-ratings.js:185
+#: /media/js/content-ratings.js:197
+#: /media/js/content-ratings.js:216
 msgid "Violence"
 msgstr "Ṽīǿŀḗƞƈḗ"
 
-#: /media/js/content-ratings.js:132
+#: /media/js/content-ratings.js:130
 msgid "Extreme Violence"
 msgstr "Ḗẋŧřḗḿḗ Ṽīǿŀḗƞƈḗ"
 
-#: /media/js/content-ratings.js:135
+#: /media/js/content-ratings.js:133
 msgid "Alcohol Reference"
 msgstr "Ȧŀƈǿħǿŀ Řḗƒḗřḗƞƈḗ"
 
-#: /media/js/content-ratings.js:136
+#: /media/js/content-ratings.js:134
 msgid "Alcohol and Tobacco Reference"
 msgstr "Ȧŀƈǿħǿŀ ȧƞḓ Ŧǿƀȧƈƈǿ Řḗƒḗřḗƞƈḗ"
 
-#: /media/js/content-ratings.js:137
+#: /media/js/content-ratings.js:135
 msgid "Use of Alcohol and Tobacco"
 msgstr "Ŭşḗ ǿƒ Ȧŀƈǿħǿŀ ȧƞḓ Ŧǿƀȧƈƈǿ"
 
-#: /media/js/content-ratings.js:138
+#: /media/js/content-ratings.js:136
 msgid "Use of Alcohol"
 msgstr "Ŭşḗ ǿƒ Ȧŀƈǿħǿŀ"
 
-#: /media/js/content-ratings.js:139
+#: /media/js/content-ratings.js:137
 msgid "Blood"
 msgstr "Ɓŀǿǿḓ"
 
-#: /media/js/content-ratings.js:140
+#: /media/js/content-ratings.js:138
 msgid "Blood and Gore"
 msgstr "Ɓŀǿǿḓ ȧƞḓ Ɠǿřḗ"
 
-#: /media/js/content-ratings.js:141
+#: /media/js/content-ratings.js:139
 msgid "Comic Mischief"
 msgstr "Ƈǿḿīƈ Ḿīşƈħīḗƒ"
 
-#: /media/js/content-ratings.js:142
+#: /media/js/content-ratings.js:140
 msgid "Crime"
 msgstr "Ƈřīḿḗ"
 
-#: /media/js/content-ratings.js:143
+#: /media/js/content-ratings.js:141
 msgid "Criminal Instruction"
 msgstr "Ƈřīḿīƞȧŀ Īƞşŧřŭƈŧīǿƞ"
 
-#: /media/js/content-ratings.js:144
+#: /media/js/content-ratings.js:142
 msgid "Crude Humor"
 msgstr "Ƈřŭḓḗ Ħŭḿǿř"
 
-#: /media/js/content-ratings.js:145
+#: /media/js/content-ratings.js:143
 msgid "Drug and Alcohol Reference"
 msgstr "Ḓřŭɠ ȧƞḓ Ȧŀƈǿħǿŀ Řḗƒḗřḗƞƈḗ"
 
-#: /media/js/content-ratings.js:146
+#: /media/js/content-ratings.js:144
 msgid "Drug, Alcohol, and Tobacco Reference"
 msgstr "Ḓřŭɠ, Ȧŀƈǿħǿŀ, ȧƞḓ Ŧǿƀȧƈƈǿ Řḗƒḗřḗƞƈḗ"
 
-#: /media/js/content-ratings.js:147
+#: /media/js/content-ratings.js:145
 msgid "Use of Drug, Alcohol, and Tobacco"
 msgstr "Ŭşḗ ǿƒ Ḓřŭɠ, Ȧŀƈǿħǿŀ, ȧƞḓ Ŧǿƀȧƈƈǿ"
 
-#: /media/js/content-ratings.js:148
+#: /media/js/content-ratings.js:146
 msgid "Use of Drug and Alcohol"
 msgstr "Ŭşḗ ǿƒ Ḓřŭɠ ȧƞḓ Ȧŀƈǿħǿŀ"
 
-#: /media/js/content-ratings.js:149
+#: /media/js/content-ratings.js:147
 msgid "Drug Reference"
 msgstr "Ḓřŭɠ Řḗƒḗřḗƞƈḗ"
 
-#: /media/js/content-ratings.js:150
+#: /media/js/content-ratings.js:148
 msgid "Drug and Tobacco Reference"
 msgstr "Ḓřŭɠ ȧƞḓ Ŧǿƀȧƈƈǿ Řḗƒḗřḗƞƈḗ"
 
-#: /media/js/content-ratings.js:151
+#: /media/js/content-ratings.js:149
 msgid "Use of Drug and Tobacco"
 msgstr "Ŭşḗ ǿƒ Ḓřŭɠ ȧƞḓ Ŧǿƀȧƈƈǿ"
 
-#: /media/js/content-ratings.js:152
+#: /media/js/content-ratings.js:150
 msgid "Use of Drugs"
 msgstr "Ŭşḗ ǿƒ Ḓřŭɠş"
 
-#: /media/js/content-ratings.js:153
+#: /media/js/content-ratings.js:151
 msgid "Fantasy Violence"
 msgstr "Ƒȧƞŧȧşẏ Ṽīǿŀḗƞƈḗ"
 
-#: /media/js/content-ratings.js:154
+#: /media/js/content-ratings.js:152
 msgid "Hate Speech"
 msgstr "Ħȧŧḗ Şƥḗḗƈħ"
 
-#: /media/js/content-ratings.js:155
+#: /media/js/content-ratings.js:153
 msgid "Intense Violence"
 msgstr "Īƞŧḗƞşḗ Ṽīǿŀḗƞƈḗ"
 
-#: /media/js/content-ratings.js:157
-#: /media/js/content-ratings.js:183
-#: /media/js/content-ratings.js:196
+#: /media/js/content-ratings.js:155
+#: /media/js/content-ratings.js:180
+#: /media/js/content-ratings.js:192
 msgid "Language"
 msgstr "Ŀȧƞɠŭȧɠḗ"
 
-#: /media/js/content-ratings.js:158
+#: /media/js/content-ratings.js:156
 msgid "Mild Blood"
 msgstr "Ḿīŀḓ Ɓŀǿǿḓ"
 
-#: /media/js/content-ratings.js:159
+#: /media/js/content-ratings.js:157
 msgid "Mild Fantasy Violence"
 msgstr "Ḿīŀḓ Ƒȧƞŧȧşẏ Ṽīǿŀḗƞƈḗ"
 
-#: /media/js/content-ratings.js:160
+#: /media/js/content-ratings.js:158
 msgid "Mild Language"
 msgstr "Ḿīŀḓ Ŀȧƞɠŭȧɠḗ"
 
-#: /media/js/content-ratings.js:161
+#: /media/js/content-ratings.js:159
 msgid "Mild Violence"
 msgstr "Ḿīŀḓ Ṽīǿŀḗƞƈḗ"
 
-#: /media/js/content-ratings.js:164
+#: /media/js/content-ratings.js:161
 msgid "Partial Nudity"
 msgstr "Ƥȧřŧīȧŀ Ƞŭḓīŧẏ"
 
-#: /media/js/content-ratings.js:165
+#: /media/js/content-ratings.js:162
 msgid "Real Gambling"
 msgstr "Řḗȧŀ Ɠȧḿƀŀīƞɠ"
 
-#: /media/js/content-ratings.js:166
+#: /media/js/content-ratings.js:163
 msgid "Scary Themes"
 msgstr "Şƈȧřẏ Ŧħḗḿḗş"
 
-#: /media/js/content-ratings.js:167
-#: /media/js/content-ratings.js:220
+#: /media/js/content-ratings.js:164
+#: /media/js/content-ratings.js:214
 msgid "Sexual Content"
 msgstr "Şḗẋŭȧŀ Ƈǿƞŧḗƞŧ"
 
-#: /media/js/content-ratings.js:168
+#: /media/js/content-ratings.js:165
 msgid "Sexual Themes"
 msgstr "Şḗẋŭȧŀ Ŧħḗḿḗş"
 
-#: /media/js/content-ratings.js:169
+#: /media/js/content-ratings.js:166
 msgid "Simulated Gambling"
 msgstr "Şīḿŭŀȧŧḗḓ Ɠȧḿƀŀīƞɠ"
 
-#: /media/js/content-ratings.js:170
+#: /media/js/content-ratings.js:167
 msgid "Strong Language"
 msgstr "Şŧřǿƞɠ Ŀȧƞɠŭȧɠḗ"
 
-#: /media/js/content-ratings.js:171
+#: /media/js/content-ratings.js:168
 msgid "Strong Sexual Content"
 msgstr "Şŧřǿƞɠ Şḗẋŭȧŀ Ƈǿƞŧḗƞŧ"
 
-#: /media/js/content-ratings.js:172
+#: /media/js/content-ratings.js:169
 msgid "Suggestive Themes"
 msgstr "Şŭɠɠḗşŧīṽḗ Ŧħḗḿḗş"
 
-#: /media/js/content-ratings.js:173
+#: /media/js/content-ratings.js:170
 msgid "Tobacco Reference"
 msgstr "Ŧǿƀȧƈƈǿ Řḗƒḗřḗƞƈḗ"
 
-#: /media/js/content-ratings.js:174
+#: /media/js/content-ratings.js:171
 msgid "Use of Tobacco"
 msgstr "Ŭşḗ ǿƒ Ŧǿƀȧƈƈǿ"
 
-#: /media/js/content-ratings.js:176
+#: /media/js/content-ratings.js:173
 msgid "Violence References"
 msgstr "Ṽīǿŀḗƞƈḗ Řḗƒḗřḗƞƈḗş"
 
-#: /media/js/content-ratings.js:179
-#: /media/js/content-ratings.js:192
-#: /media/js/content-ratings.js:211
+#: /media/js/content-ratings.js:176
+#: /media/js/content-ratings.js:188
+#: /media/js/content-ratings.js:206
 msgid "Discrimination"
 msgstr "Ḓīşƈřīḿīƞȧŧīǿƞ"
 
-#: /media/js/content-ratings.js:181
-#: /media/js/content-ratings.js:194
+#: /media/js/content-ratings.js:178
+#: /media/js/content-ratings.js:190
 msgid "Gambling"
 msgstr "Ɠȧḿƀŀīƞɠ"
 
-#: /media/js/content-ratings.js:185
-#: /media/js/content-ratings.js:198
+#: /media/js/content-ratings.js:181
+#: /media/js/content-ratings.js:193
 msgid "Online"
 msgstr "Ǿƞŀīƞḗ"
 
-#: /media/js/content-ratings.js:186
-#: /media/js/content-ratings.js:199
+#: /media/js/content-ratings.js:182
+#: /media/js/content-ratings.js:194
 msgid "Fear"
 msgstr "Ƒḗȧř"
 
-#: /media/js/content-ratings.js:204
+#: /media/js/content-ratings.js:199
 msgid "Social Interaction Functionality"
 msgstr "Şǿƈīȧŀ Īƞŧḗřȧƈŧīǿƞ Ƒŭƞƈŧīǿƞȧŀīŧẏ"
 
-#: /media/js/content-ratings.js:205
+#: /media/js/content-ratings.js:200
 msgid "Personal Data Sharing"
 msgstr "Ƥḗřşǿƞȧŀ Ḓȧŧȧ Şħȧřīƞɠ"
 
-#: /media/js/content-ratings.js:206
+#: /media/js/content-ratings.js:201
 msgid "In-app Purchase Option"
 msgstr "Īƞ-ȧƥƥ Ƥŭřƈħȧşḗ Ǿƥŧīǿƞ"
 
-#: /media/js/content-ratings.js:207
+#: /media/js/content-ratings.js:202
 msgid "Location Data Sharing"
 msgstr "Ŀǿƈȧŧīǿƞ Ḓȧŧȧ Şħȧřīƞɠ"
 
-#: /media/js/content-ratings.js:215
+#: /media/js/content-ratings.js:210
 msgid "Explicit Language"
 msgstr "Ḗẋƥŀīƈīŧ Ŀȧƞɠŭȧɠḗ"
 
-#: /media/js/content-ratings.js:218
+#: /media/js/content-ratings.js:212
 msgid "Frightening Content"
 msgstr "Ƒřīɠħŧḗƞīƞɠ Ƈǿƞŧḗƞŧ"
 
-#: /media/js/content-ratings.js:226
+#: /media/js/content-ratings.js:220
 msgid "Digital Purchases"
 msgstr "Ḓīɠīŧȧŀ Ƥŭřƈħȧşḗş"
 
-#: /media/js/content-ratings.js:227
+#: /media/js/content-ratings.js:221
 msgid "Shares Info"
 msgstr "Şħȧřḗş Īƞƒǿ"
 
-#: /media/js/content-ratings.js:228
+#: /media/js/content-ratings.js:222
 msgid "Shares Location"
 msgstr "Şħȧřḗş Ŀǿƈȧŧīǿƞ"
 
-#: /media/js/content-ratings.js:229
+#: /media/js/content-ratings.js:223
 msgid "Users Interact"
 msgstr "Ŭşḗřş Īƞŧḗřȧƈŧ"
 
-#: /media/js/content-ratings.js:234
+#: /media/js/content-ratings.js:228
 msgid "For all ages"
 msgstr "Ƒǿř ȧŀŀ ȧɠḗş"
 
-#: /media/js/content-ratings.js:243
+#: /media/js/content-ratings.js:237
 msgid "Rating Pending"
 msgstr "Řȧŧīƞɠ Ƥḗƞḓīƞɠ"
 
-#: /media/js/content-ratings.js:244
+#: /media/js/content-ratings.js:238
 msgid "Rating Refused"
 msgstr "Řȧŧīƞɠ Řḗƒŭşḗḓ"
 
-#: /media/js/content-ratings.js:247
+#: /media/js/content-ratings.js:241
 msgid "Everyone"
 msgstr "Ḗṽḗřẏǿƞḗ"
 
-#: /media/js/content-ratings.js:248
+#: /media/js/content-ratings.js:242
 msgid "Everyone 10+"
 msgstr "Ḗṽḗřẏǿƞḗ 10+"
 
-#: /media/js/content-ratings.js:249
+#: /media/js/content-ratings.js:243
 msgid "Teen"
 msgstr "Ŧḗḗƞ"
 
-#: /media/js/content-ratings.js:250
+#: /media/js/content-ratings.js:244
 msgid "Mature 17+"
 msgstr "Ḿȧŧŭřḗ 17+"
 
-#: /media/js/content-ratings.js:251
+#: /media/js/content-ratings.js:245
 msgid "Adults Only 18+"
 msgstr "Ȧḓŭŀŧş Ǿƞŀẏ 18+"
 
@@ -1156,87 +1148,111 @@ msgstr "Ẏǿŭř řḗṽīḗẇ ẇȧş ƥǿşŧḗḓ"
 msgid "Error while submitting review"
 msgstr "Ḗřřǿř ẇħīŀḗ şŭƀḿīŧŧīƞɠ řḗṽīḗẇ"
 
-#: /media/js/settings.js:104
+#: /media/js/settings.js:106
 msgid "Rest of World"
 msgstr "Řḗşŧ ǿƒ Ẇǿřŀḓ"
 
-#: /media/js/settings.js:105
+#: /media/js/settings.js:107
 msgid "Argentina"
 msgstr "Ȧřɠḗƞŧīƞȧ"
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:108
 msgid "Brazil"
 msgstr "Ɓřȧzīŀ"
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:109
 msgid "Chile"
 msgstr "Ƈħīŀḗ"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:110
 msgid "China"
 msgstr "Ƈħīƞȧ"
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:111
 msgid "Colombia"
 msgstr "Ƈǿŀǿḿƀīȧ"
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:112
+msgid "Costa Rica"
+msgstr "Ƈǿşŧȧ Řīƈȧ"
+
+#: /media/js/settings.js:113
+msgid "Ecuador"
+msgstr "Ḗƈŭȧḓǿř"
+
+#: /media/js/settings.js:114
+msgid "El Salvador"
+msgstr "Ḗŀ Şȧŀṽȧḓǿř"
+
+#: /media/js/settings.js:115
 msgid "Germany"
 msgstr "Ɠḗřḿȧƞẏ"
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:116
 msgid "Greece"
 msgstr "Ɠřḗḗƈḗ"
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:117
+msgid "Guatemala"
+msgstr "Ɠŭȧŧḗḿȧŀȧ"
+
+#: /media/js/settings.js:118
 msgid "Hungary"
 msgstr "Ħŭƞɠȧřẏ"
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:119
 msgid "Italy"
 msgstr "Īŧȧŀẏ"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:120
 msgid "Mexico"
 msgstr "Ḿḗẋīƈǿ"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:121
 msgid "Montenegro"
 msgstr "Ḿǿƞŧḗƞḗɠřǿ"
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:122
+msgid "Nicaragua"
+msgstr "Ƞīƈȧřȧɠŭȧ"
+
+#: /media/js/settings.js:123
+msgid "Panama"
+msgstr "Ƥȧƞȧḿȧ"
+
+#: /media/js/settings.js:124
 msgid "Peru"
 msgstr "Ƥḗřŭ"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:125
 msgid "Poland"
 msgstr "Ƥǿŀȧƞḓ"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:126
 msgid "Serbia"
 msgstr "Şḗřƀīȧ"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:127
 msgid "Spain"
 msgstr "Şƥȧīƞ"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:128
 msgid "United Kingdom"
 msgstr "Ŭƞīŧḗḓ Ķīƞɠḓǿḿ"
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:129
 msgid "United States"
 msgstr "Ŭƞīŧḗḓ Şŧȧŧḗş"
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:130
 msgid "Uruguay"
 msgstr "Ŭřŭɠŭȧẏ"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:131
 msgid "Venezuela"
 msgstr "Ṽḗƞḗzŭḗŀȧ"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:132
 msgid "No region in search"
 msgstr "Ƞǿ řḗɠīǿƞ īƞ şḗȧřƈħ"
 
@@ -1320,10 +1336,10 @@ msgstr "Ƥŀḗȧşḗ şīɠƞ īƞ ŧǿ ṽīḗẇ ŧħḗ řḗƈḗīƥŧ"
 msgid "Receipt"
 msgstr "Řḗƈḗīƥŧ"
 
-#: /media/js/views/app/ratings/edit.js:22
+#: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
 msgstr "Řḗṽīḗẇ ŭƥḓȧŧḗḓ şŭƈƈḗşşƒŭŀŀẏ"
 
-#: /media/js/views/app/ratings/edit.js:37
+#: /media/js/views/app/ratings/edit.js:35
 msgid "There was a problem updating your review"
 msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ŭƥḓȧŧīƞɠ ẏǿŭř řḗṽīḗẇ"
