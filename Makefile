@@ -3,6 +3,7 @@ UUID = "8af8c763-da9b-444d-a911-206f9e225b55"
 VERSION = `date "+%Y.%m.%d_%H.%M.%S"`
 VERSION_INT = $(shell date "+%Y%m%d%H%M%S")
 TMP = _tmp
+SHELL = /bin/bash
 
 # This is what Yulelog's iframe src points to.
 DOMAIN?=marketplace.firefox.com
