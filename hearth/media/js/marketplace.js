@@ -207,7 +207,7 @@ function(_) {
     z.page.one('loaded', function() {
         iconDeferrer.setImages($('.icon.deferred'));
         screenshotDeferrer.setImages($('.screenshot img.deferred'));
-    }).on('loaded loaded_more navigate', function() {
+    }).on('loaded loaded_more navigate fragment_loaded', function() {
         iconDeferrer.refresh();
         screenshotDeferrer.refresh();
     });
