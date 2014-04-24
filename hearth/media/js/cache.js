@@ -118,7 +118,7 @@ define('cache',
         for (var i = 0, rw; rw = rewriters[i++];) {
             var output = rw(key, value, cache);
             if (output === null) {
-                return;
+                break;
             } else if (output) {
                 value = output;
             }
