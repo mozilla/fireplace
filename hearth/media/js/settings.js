@@ -95,9 +95,8 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // Enabling this settings will mock compatibility with all apps.
         never_incompat: false,
 
-        // The GA tracking ID for this app.
-        ga_tracking_id: 'UA-36116321-6',
-        ua_tracking_id: 'UA-36116321-11',
+        // The UA tracking ID for this app.
+        ua_tracking_id: 'UA-36116321-6',
         tracking_section: 'Consumer',
         tracking_section_index: 3,
 
