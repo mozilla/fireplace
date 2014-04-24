@@ -110,7 +110,7 @@ function(_) {
         console.log('Hiding splash screen (' + ((performance.now() - start_time) / 1000).toFixed(6) + 's)');
         // Remove the splash screen once it's hidden.
         var splash = $('#splash-overlay').addClass('hide');
-        z.body.removeClass('overlayed');
+        z.body.removeClass('overlayed').addClass('loaded');
         setTimeout(function() {
             splash.remove();
         }, 1500);
