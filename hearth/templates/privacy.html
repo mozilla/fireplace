@@ -3,8 +3,8 @@
     <h2>{{ _('Privacy Policy') }}</h2>
   </header>
   <article class="island prose">
-    {% set url = '/docs/privacy/' + language + '.html?20140408' %}
-    {% set fallback = '/docs/privacy/' + settings.default_locale + '.html?20140408' %}
+    {% set url = '/docs/privacy/' + language + '.html?20140425' %}
+    {% set fallback = '/docs/privacy/' + settings.default_locale + '.html?20140425' %}
     {% fetch (url=media(url), fallback=media(fallback)) %}
       <p class="spinner spaced alt"></p>
     {% endfetch %}
