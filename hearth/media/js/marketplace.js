@@ -110,7 +110,7 @@ function(_) {
         console.log('Hiding splash screen (' + ((performance.now() - start_time) / 1000).toFixed(6) + 's)');
         // Remove the splash screen once it's hidden.
         var splash = $('#splash-overlay').addClass('hide');
-        z.body.removeClass('overlayed');
+        z.body.removeClass('overlayed').addClass('loaded');
         setTimeout(function() {
             splash.remove();
         }, 1500);
@@ -207,7 +207,7 @@ function(_) {
     z.page.one('loaded', function() {
         iconDeferrer.setImages($('.icon.deferred'));
         screenshotDeferrer.setImages($('.screenshot img.deferred'));
-    }).on('loaded loaded_more navigate', function() {
+    }).on('loaded loaded_more navigate fragment_loaded', function() {
         iconDeferrer.refresh();
         screenshotDeferrer.refresh();
     });
