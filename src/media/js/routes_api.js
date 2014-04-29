@@ -10,6 +10,7 @@ define('routes_api', [], function() {
         'settings': '/api/v2/account/settings/mine/',
         'installed': '/api/v2/account/installed/mine/',
         'login': '/api/v2/account/login/',
+        'logout': '/api/v2/account/logout/',
         'newsletter': '/api/v2/account/newsletter/',
         'record_free': '/api/v2/installs/record/',
         'record_paid': '/api/v2/receipts/install/',
