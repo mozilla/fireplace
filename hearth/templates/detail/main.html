@@ -78,9 +78,9 @@
 {% except %}
 {% end %}
 
+{% defer (url=endpoint, as='app', key=slug) %}
 <section class="main blurbs prose infobox">
   <div>
-    {% defer (url=endpoint, as='app', key=slug) %}
       <h3>{{ _('Description') }}</h3>
       <div class="truncated-wrapper description-wrapper truncated">
         <p class="description" itemprop="description">
@@ -96,12 +96,14 @@
                version=this.current_version) }}
         </div>
       {% endif %}
-    {% placeholder %}
-      <p class="spinner alt"></p>
-    {% except %}
-    {% end %}
   </div>
 </section>
+{% placeholder %}
+<section class="main blurbs prose infobox">
+  <p class="spinner alt"></p>
+</section>
+{% except %}
+{% end %}
 
 {% defer (url=endpoint, as='app', key=slug) %}
   {% if user.has_developed(this.id) or user.get_permission('reviewer') %}
