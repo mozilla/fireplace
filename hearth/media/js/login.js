@@ -23,27 +23,32 @@ define('login',
 
     }).on('click', '.logout', function(e) {
         e.preventDefault();
-        cache.flush_signed();
-        user.clear_token();
-        z.body.removeClass('logged-in');
-        z.page.trigger('reload_chrome').trigger('before_logout');
 
-        if (capabilities.persona()) {
-            console.log('Triggering Persona logout');
-            navigator.id.logout();
-        }
+        requests.del(urls.api.url('logout')).done(function() {
+            cache.flush_signed();
+            user.clear_token();
+            z.body.removeClass('logged-in');
+            z.page.trigger('reload_chrome').trigger('before_logout');
 
-        // Moved here from the onlogout callback for now until
-        // https://github.com/mozilla/browserid/issues/3229
-        // gets fixed.
-        if (!z.context.dont_reload_on_login) {
-            require('views').reload().done(function(){
-                z.page.trigger('logged_out');
-                signOutNotification();
-            });
-        } else {
-            console.log('Reload on logout aborted by current view');
-        }
+            if (capabilities.persona()) {
+                console.log('Triggering Persona logout');
+                navigator.id.logout();
+            }
+
+            // Moved here from the onlogout callback for now until
+            // https://github.com/mozilla/browserid/issues/3229
+            // gets fixed.
+            if (!z.context.dont_reload_on_login) {
+                require('views').reload().done(function(){
+                    z.page.trigger('logged_out');
+                    signOutNotification();
+                });
+            } else {
+                console.log('Reload on logout aborted by current view');
+            }
+        }).fail(function() {
+            notification.notification({message: gettext('Error signing out')});
+        });
     });
 
     var pending_logins = [];

@@ -17,6 +17,14 @@ define('storage', ['settings'], function(settings) {
         };
     }
 
+    // Expose storage version (which is prefixed to every key).
+    // For instance, used in Zamboni login.js.
+    try {
+        ls.setItem('latestStorageVersion', settings.storage_version);
+    } catch(e) {
+        fakeStorage.latestStorageVersion = settings.storage_version;
+    }
+
     return {
         clear: function() {
             try { ls.clear(); }

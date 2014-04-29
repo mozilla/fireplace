@@ -16,17 +16,17 @@ define('user',
     var save_to_ls = !capabilities.phantom;
 
     if (save_to_ls) {
+        // Try to initialize items from localStorage.
         token = storage.getItem('user');
-        log.unmention(token);
         settings = JSON.parse(storage.getItem('settings') || '{}');
         permissions = JSON.parse(storage.getItem('permissions') || '{}');
+
         var _stored = storage.getItem('user_apps');
         if (_stored) {
             apps = JSON.parse(_stored);
         }
-    }
 
-    if (save_to_ls) {
+        log.unmention(token);
         save_settings();
     }
 
