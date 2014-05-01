@@ -102,6 +102,8 @@ define('views/search',
                     query.offline = 'True';
                 } else if (value.indexOf('online') === 0) {
                     query.offline = 'False';
+                } else if (value.indexOf('tarako') === 0) {
+                    query.tag = 'tarako';
                 }
             } else {
                 // Include anything that's not a keyword in the `q` search term.
