@@ -106,28 +106,18 @@ define('content-ratings', ['format', 'l10n', 'urls', 'utils', 'z'],
         },
         descriptors: {
             classind: {
-                // L10n: (es) `Atos Crim\xEDnosos`.
-                'criminal-acts': gettext('Criminal Acts'),
-                // L10n: (es) `Drogas`.
-                'drugs': gettext('Drugs'),
-                // L10n: (es) `Drogas Il\xEDcitas`.
-                'drugs-illegal': gettext('Illegal Drugs'),
-                // L10n: (es) `Drogas L\xEDcitas`.
-                'drugs-legal': gettext('Legal Drugs'),
-                // L10n: (es) `Linguagem Impr\xF3pria`.
-                'lang': gettext('Inappropriate Language'),
-                // L10n: (es) `Nudez`.
-                'nudity': gettext('Nudity'),
-                // L10n: (es) `Sexo`.
-                'sex': gettext('Sex'),
-                // L10n: (es) `Sexo Expl\xEDcito`.
-                'sex-explicit': gettext('Explicit Sex'),
-                // L10n: (es) `Conte\xFAdo Impactante`.
-                'shocking': gettext('Impacting Content'),
-                // L10n: (es) `Viol\xEAncia`.
-                'violence': gettext('Violence'),
-                // L10n: (es) `Viol\xEAncia Extrema`.
-                'violence-extreme': gettext('Extreme Violence'),
+                // Portuguese.
+                'criminal-acts': 'Atos Crim\xEDnosos',
+                'drugs': 'Drogas',
+                'drugs-illegal': 'Drogas Il\xEDcitas',
+                'drugs-legal': 'Drogas L\xEDcitas',
+                'lang': 'Linguagem Impr\xF3pria',
+                'nudity': 'Nudez',
+                'sex': 'Sexo',
+                'sex-explicit': 'Sexo Expl\xEDcito',
+                'shocking': 'Conte\xFAdo Impactante',
+                'violence': 'Viol\xEAncia',
+                'violence-extreme': 'Viol\xEAncia Extrema',
             },
             esrb: {
                 'alcohol-ref': gettext('Alcohol Reference'),
@@ -202,18 +192,13 @@ define('content-ratings', ['format', 'l10n', 'urls', 'utils', 'z'],
                 'shares-location': gettext('Location Data Sharing'),
             },
             usk: {
-                // L10n: (de) `Diskriminierung `.
-                'discrimination': gettext('Discrimination'),
-                // L10n: (de) `Drogen`.
-                'drugs': gettext('Drugs'),
-                // L10n: (de) `Explizite Sprache`.
-                'lang': gettext('Explicit Language'),
-                // L10n: (de) `\xC4ngstigende Inhalte`.
-                'scary': gettext('Frightening Content'),
-                // L10n: (de) `Erotik/Sexuelle Inhalte`.
-                'sex-content': gettext('Sexual Content'),
-                // L10n: (de) `Gewalt`.
-                'violence': gettext('Violence'),
+                // German.
+                'discrimination': 'Diskriminierung',
+                'drugs': 'Drogen',
+                'lang': 'Explizite Sprache',
+                'scary': '\xC4ngstigende Inhalte',
+                'sex-content': 'Erotik/Sexuelle Inhalte',
+                'violence': 'Gewalt',
             }
         },
         interactives: {
