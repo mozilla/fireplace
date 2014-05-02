@@ -65,7 +65,7 @@ function(_) {
     // Use Native Persona, if it's available.
     if (capabilities.firefoxOS && 'mozId' in navigator && navigator.mozId !== null) {
         console.log('Native Persona is available');
-        navigator.id = navigator.mozId;
+        window.navigator.id = navigator.id = navigator.mozId;
     }
 
     if (!capabilities.performance) {
