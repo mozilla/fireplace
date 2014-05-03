@@ -145,6 +145,17 @@ the subset of keys found in
 make test
 ```
 
-## Local Development With Nginx
+## Local Development
+
+The packaging section above will explain how to build a package from your local
+source. If you want to install a hosted version of your local Fireplace you
+can do so. It won't have all the same privileges as the packaged app but it
+can let you test device-specific things like payments.
+
+To install as a hosted app, start the damper server (see Usage), and
+use this manifest:
+[http://0.0.0.0:8675/hosted-manifest.webapp](http://0.0.0.0:8675/hosted-manifest.webapp).
+
+### Setting up a virtual host with Nginx
 
 See [Using Fireplace with Zamboni](https://github.com/mozilla/fireplace/wiki/Using-Fireplace-with-Zamboni)
