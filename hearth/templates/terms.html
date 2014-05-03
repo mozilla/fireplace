@@ -5,7 +5,7 @@
   <article class="island prose">
     {% set url = '/docs/terms/' + language + '.html?20140425' %}
     {% set fallback = '/docs/terms/' + settings.default_locale + '.html?20140425' %}
-    {% fetch (url=media(url), fallback=media(fallback)) %}
+    {% fetch (url=media(url), fallback=media(fallback), filters=['rewriteCdnUrls']) %}
       <p class="spinner spaced alt"></p>
     {% endfetch %}
   </article>

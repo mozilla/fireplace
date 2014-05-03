@@ -248,6 +248,11 @@ define('builder',
                     });
                 } else {
                     var done = function(data) {
+                        if (signature.filters){
+                            signature.filters.forEach(function(filterName){
+                                data = env.filters[filterName](data);
+                            });
+                        }
                         document.getElementById(uid).innerHTML = data;
                     };
                     request.done(done).fail(function() {
