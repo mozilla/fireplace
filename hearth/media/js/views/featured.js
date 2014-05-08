@@ -11,7 +11,7 @@ define('views/featured', ['urls', 'z'], function(urls, z) {
         }
 
         builder.z('type', 'search');
-        builder.z('search', params.name || category);
+        builder.z('search', params.name);
         builder.z('title', params.name || category);
 
         builder.start('featured.html', {
