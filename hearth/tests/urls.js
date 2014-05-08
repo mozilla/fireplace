@@ -125,48 +125,6 @@ test('api url signage', function(done, fail) {
     );
 });
 
-test('api user-defined carrier (via SIM)', function(done, fail) {
-    mock(
-        'urls',
-        {
-            capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
-            user: {logged_in: function() {}, get_setting: function(x) {
-                return x == 'carrier_sim' && 'seavanaquaticcorp';
-            }}
-        }, function(urls) {
-            contains(urls.api.url('search'), 'carrier=seavanaquaticcorp');
-            done();
-        },
-        fail
-    );
-});
-
-test('api user-defined carrier+region (via SIM)', function(done, fail) {
-    mock(
-        'urls',
-        {
-            capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
-            user: {
-                logged_in: function() {},
-                get_setting: function(x) {
-                    switch(x) {
-                        case 'carrier_sim':
-                            return 'seavanaquaticcorp';
-                        case 'region_sim':
-                            return 'underwater';
-                    }
-                }
-            }
-        }, function(urls) {
-            var url = urls.api.url('search');
-            contains(url, 'carrier=seavanaquaticcorp');
-            contains(url, 'region=underwater');
-            done();
-        },
-        fail
-    );
-});
-
 test('api url blacklist', function(done, fail) {
     mock(
         'urls',
