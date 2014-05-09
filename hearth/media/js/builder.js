@@ -186,7 +186,9 @@ define('builder',
 
                         if (signature.paginate) {
                             pool.done(function() {
-                                make_paginatable(injector, document.getElementById(uid), signature.paginate);
+                                setTimeout(function() {
+                                    make_paginatable(injector, document.getElementById(uid), signature.paginate);
+                                });
                             });
                         }
                         return request;
@@ -248,8 +250,8 @@ define('builder',
                     });
                 } else {
                     var done = function(data) {
-                        if (signature.filters){
-                            signature.filters.forEach(function(filterName){
+                        if (signature.filters) {
+                            signature.filters.forEach(function(filterName) {
                                 data = env.filters[filterName](data);
                             });
                         }

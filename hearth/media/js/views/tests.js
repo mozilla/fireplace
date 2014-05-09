@@ -18,7 +18,7 @@ define('views/tests', ['assert', 'requests'], function(assert, requests) {
             started++;
             is_done();
             setTimeout(function() {
-                var infobox = $('<li><b>' + name + '</b> <span>Running...</span></li>');
+                var infobox = $('<li><span style="background-color: gray">Running</span> <b>' + name + '</b></li>');
                 $('ol.tests').append(infobox);
                 var completion = function() {
                     passed++;
