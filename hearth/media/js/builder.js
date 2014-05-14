@@ -175,6 +175,11 @@ define('builder',
                                 }
                                 // We can't do this for requests which have no pluck
                                 // and aren't an array. :(
+
+                                // Update the model cache in the background (bug 995288).
+                                pool.get(url).done(function(data) {
+                                    models(signature.as).cast(data);
+                                });
                             }
                         });
 

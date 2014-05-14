@@ -140,13 +140,13 @@ define('cache',
             if (has(key)) {
                 return get(key);
             } else {
-                var val = storage.getItem(persistentCachePrefix + key);
+                var val = JSON.parse(storage.getItem(persistentCachePrefix + key));
                 set(key, val);
                 return val;
             }
         },
         set: function(key, val) {
-            storage.setItem(persistentCachePrefix + key, val);
+            storage.setItem(persistentCachePrefix + key, JSON.stringify(val));
             set(key, val);
         },
         bust: function(key) {
