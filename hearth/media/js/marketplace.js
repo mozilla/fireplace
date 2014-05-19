@@ -98,7 +98,7 @@ function(_) {
     // Note: If this list changes - please change it in webpay too or let #payments know.
     var doc_langs = ['cs', 'de', 'el', 'en-US', 'es', 'hr', 'hu', 'it', 'pl', 'pt-BR', 'sr', 'zh-CN'];
     var doc_lang = doc_langs.indexOf(navigator.l10n.language) >= 0 ? navigator.l10n.language : 'en-US';
-    var doc_location = require('urls').media('/docs/{type}/' + doc_lang + '.html?20140514');
+    var doc_location = require('urls').media('/docs/{type}/' + doc_lang + '.html?20140519');
     settings.persona_tos = format.format(doc_location, {type: 'terms'});
     settings.persona_privacy = format.format(doc_location, {type: 'privacy'});
 
