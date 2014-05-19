@@ -33,3 +33,56 @@ D=document.getElementsByTagName("base")[0]))B=w.head=D.parentNode;l.onError=func
 !V?(O=!0,g.attachEvent("onreadystatechange",b.onScriptLoad)):(g.addEventListener("load",b.onScriptLoad,!1),g.addEventListener("error",b.onScriptError,!1)),g.src=d,K=g,D?B.insertBefore(g,D):B.appendChild(g),K=null,g;$&&(importScripts(d),b.completeLoad(c))};z&&M(document.getElementsByTagName("script"),function(b){B||(B=b.parentNode);if(s=b.getAttribute("data-main"))return q.baseUrl||(H=s.split("/"),ba=H.pop(),ca=H.length?H.join("/")+"/":"./",q.baseUrl=ca,s=ba),s=s.replace(aa,""),q.deps=q.deps?q.deps.concat(s):
 [s],!0});define=function(b,c,d){var i,g;"string"!==typeof b&&(d=c,c=b,b=null);J(c)||(d=c,c=[]);!c.length&&I(d)&&d.length&&(d.toString().replace(ia,"").replace(ja,function(b,d){c.push(d)}),c=(1===d.length?["require"]:["require","exports","module"]).concat(c));if(O){if(!(i=K))P&&"interactive"===P.readyState||M(document.getElementsByTagName("script"),function(b){if("interactive"===b.readyState)return P=b}),i=P;i&&(b||(b=i.getAttribute("data-requiremodule")),g=C[i.getAttribute("data-requirecontext")])}(g?
 g.defQueue:R).push([b,c,d])};define.amd={jQuery:!0};l.exec=function(b){return eval(b)};l(q)}})(this);
+
+(function() {
+    var commonplace_modules = [
+        'assert',
+        'buckets',
+        'builder',
+        'cache',
+        'capabilities',
+        'defer',
+        'forms',
+        'helpers',
+        'log',
+        'login',
+        'models',
+        'navigation',
+        'notification',
+        'requests',
+        'storage',
+        'urls',
+        'user',
+        'utils',
+        'z',
+    ]
+    var commonplace_views = [
+        'not_found',
+        'debug',
+        'hello_world',
+        'tests',
+    ]
+
+    var config = {
+        enforceDefine: true,
+        paths: {
+            'format': 'lib/format',
+            'jquery': 'lib/jquery-2.0.2',
+            'nunjucks': 'lib/nunjucks',
+            'nunjucks.compat': 'lib/nunjucks.compat',
+            'settings': ['settings_local', 'settings'],
+            'templates': '../../templates',
+            'underscore': 'lib/underscore',
+        }
+    };
+    for (var i = 0; i < commonplace_modules.length; i++) {
+        var module = commonplace_modules[i];
+        config.paths[module] = 'commonplace/' + module;
+    }
+    for (var i = 0; i < commonplace_views.length; i++) {
+        var view = commonplace_views[i];
+        config.paths['views/' + view] = 'views/commonplace/' + view;
+    }
+
+    require.config(config);
+})();
