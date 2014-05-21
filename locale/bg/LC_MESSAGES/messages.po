@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07T16:18:12.979Z\n"
+"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
 "PO-Revision-Date: 2013-07-27 13:46+0200\n"
 "Last-Translator: Mihail Chilyashev <m@chilyashev.com>\n"
 "Language-Team: Bulgarian (bg)\n"
@@ -348,7 +348,7 @@ msgstr "Стартирайте това приложение от вашия <b>
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Стартирайте това приложение от вашето <b>табло</b>, <b></b> или <b>меню Приложения</b>"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
 msgid "Loading..."
 msgstr "Зареждане..."
 
@@ -946,34 +946,6 @@ msgstr ""
 msgid "Adults Only 18+"
 msgstr ""
 
-#: /media/js/login.js:8
-msgid "You have been signed out"
-msgstr "Вие излязохте"
-
-#: /media/js/login.js:12
-msgid "You have been signed in"
-msgstr "Вие влязохте"
-
-#: /media/js/login.js:50
-msgid "Error signing out"
-msgstr ""
-
-#: /media/js/login.js:137
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Влизането в Persona се провали. Може би нямате акант с този имейл адрес?"
-
-#: /media/js/login.js:142
-msgid "Persona login failed. A server error was encountered."
-msgstr "Влизането в Persona се провали. Възникна сървърна грешка"
-
-#: /media/js/login.js:210
-msgid "Persona cannot be reached. Try again later."
-msgstr ""
-
-#: /media/js/navigation.js:33
-msgid "No internet connection"
-msgstr "Няма връзка с интернет"
-
 #: /media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Възникна грешка при пращането на заявката ви за бюлетина"
@@ -1115,19 +1087,47 @@ msgstr "Венецуела"
 msgid "No region in search"
 msgstr "Няма регион в търсенето"
 
-#. {n} is the number of characters left.
-#: /media/js/utils.js:28
-msgid "<b>{n}</b> character left."
-msgid_plural "<b>{n}</b> characters left."
-msgstr[0] "остава <b>{n}</b> знак."
-msgstr[1] "остават <b>{n}</b> знака"
-
 #. {n} is the number of stars
 #: /media/js/common/ratingwidget.js:34
 msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n} звезда"
 msgstr[1] "{n} звезди"
+
+#: /media/js/commonplace/login.js:8
+msgid "You have been signed out"
+msgstr "Вие излязохте"
+
+#: /media/js/commonplace/login.js:12
+msgid "You have been signed in"
+msgstr "Вие влязохте"
+
+#: /media/js/commonplace/login.js:50
+msgid "Error signing out"
+msgstr ""
+
+#: /media/js/commonplace/login.js:137
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Влизането в Persona се провали. Може би нямате акант с този имейл адрес?"
+
+#: /media/js/commonplace/login.js:142
+msgid "Persona login failed. A server error was encountered."
+msgstr "Влизането в Persona се провали. Възникна сървърна грешка"
+
+#: /media/js/commonplace/login.js:210
+msgid "Persona cannot be reached. Try again later."
+msgstr ""
+
+#: /media/js/commonplace/navigation.js:33
+msgid "No internet connection"
+msgstr "Няма връзка с интернет"
+
+#. {n} is the number of characters left.
+#: /media/js/commonplace/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] "остава <b>{n}</b> знак."
+msgstr[1] "остават <b>{n}</b> знака"
 
 #: /media/js/payments/payments.js:94
 msgid "Payment failed. Try again later."
@@ -1142,14 +1142,6 @@ msgstr "Грешка при комуникацията със сървъра. М
 msgid "Your device does not support purchases."
 msgstr "Устройството ви не поддържа покупки."
 
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "Детайли на приложението"
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Детайли за колекцията"
-
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Отзивът изпратен. Благодаря!"
@@ -1158,14 +1150,17 @@ msgstr "Отзивът изпратен. Благодаря!"
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Възникна проблем с пращането на вашия отзив. Опитайте отново по-късно"
 
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Детайли за колекцията"
+
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Детайли на приложението"
+
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
 msgstr ""
-
-#. Page not found (404)
-#: /media/js/views/not_found.js:9
-msgid "Not Found"
-msgstr "Не е намерено"
 
 #: /media/js/views/search.js:218
 msgid "Search Results"
@@ -1186,6 +1181,15 @@ msgstr "Злоупотребата докладвана"
 #: /media/js/views/app/abuse.js:22
 msgid "Error while submitting report"
 msgstr "Грешка при пращането на доклада"
+
+#: /media/js/views/commonplace/hello_world.js:9
+msgid "Hello World!"
+msgstr ""
+
+#. Page not found (404)
+#: /media/js/views/commonplace/not_found.js:9
+msgid "Not Found"
+msgstr "Не е намерено"
 
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"

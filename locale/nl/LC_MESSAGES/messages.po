@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07T16:18:12.979Z\n"
+"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
 "PO-Revision-Date: 2014-05-01 22:16+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: none\n"
@@ -349,7 +349,7 @@ msgstr "Start deze app vanaf uw <b>Windows-bureaublad</b> of <b>Start &#9658; Al
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Start deze app vanaf uw <b>dashboard</b>, <b>Toepassingskiezer</b> of <b>menu Toepassingen</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
 msgid "Loading..."
 msgstr "Laden…"
 
@@ -947,34 +947,6 @@ msgstr "17 jaar en ouder"
 msgid "Adults Only 18+"
 msgstr "Alleen volwassenen 18+"
 
-#: /media/js/login.js:8
-msgid "You have been signed out"
-msgstr "U bent afgemeld"
-
-#: /media/js/login.js:12
-msgid "You have been signed in"
-msgstr "U bent aangemeld"
-
-#: /media/js/login.js:50
-msgid "Error signing out"
-msgstr "Fout bij afmelden"
-
-#: /media/js/login.js:137
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Aanmelden met Persona mislukt. Wellicht hebt u geen account met dat e-mailadres?"
-
-#: /media/js/login.js:142
-msgid "Persona login failed. A server error was encountered."
-msgstr "Aanmelden met Persona mislukt. Er is een serverfout opgetreden."
-
-#: /media/js/login.js:210
-msgid "Persona cannot be reached. Try again later."
-msgstr "Persona is niet bereikbaar. Probeer het later nog eens."
-
-#: /media/js/navigation.js:33
-msgid "No internet connection"
-msgstr "Geen internetverbinding"
-
 #: /media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Er is een fout opgetreden bij het indienen van uw inschrijvingsverzoek voor de nieuwsbrief"
@@ -1116,19 +1088,47 @@ msgstr "Venezuela"
 msgid "No region in search"
 msgstr "Geen regio in zoekopdracht"
 
-#. {n} is the number of characters left.
-#: /media/js/utils.js:28
-msgid "<b>{n}</b> character left."
-msgid_plural "<b>{n}</b> characters left."
-msgstr[0] "<b>{n}</b> teken resterend."
-msgstr[1] "<b>{n}</b> tekens resterend."
-
 #. {n} is the number of stars
 #: /media/js/common/ratingwidget.js:34
 msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n} ster"
 msgstr[1] "{n} sterren"
+
+#: /media/js/commonplace/login.js:8
+msgid "You have been signed out"
+msgstr "U bent afgemeld"
+
+#: /media/js/commonplace/login.js:12
+msgid "You have been signed in"
+msgstr "U bent aangemeld"
+
+#: /media/js/commonplace/login.js:50
+msgid "Error signing out"
+msgstr "Fout bij afmelden"
+
+#: /media/js/commonplace/login.js:137
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Aanmelden met Persona mislukt. Wellicht hebt u geen account met dat e-mailadres?"
+
+#: /media/js/commonplace/login.js:142
+msgid "Persona login failed. A server error was encountered."
+msgstr "Aanmelden met Persona mislukt. Er is een serverfout opgetreden."
+
+#: /media/js/commonplace/login.js:210
+msgid "Persona cannot be reached. Try again later."
+msgstr "Persona is niet bereikbaar. Probeer het later nog eens."
+
+#: /media/js/commonplace/navigation.js:33
+msgid "No internet connection"
+msgstr "Geen internetverbinding"
+
+#. {n} is the number of characters left.
+#: /media/js/commonplace/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] "<b>{n}</b> teken resterend."
+msgstr[1] "<b>{n}</b> tekens resterend."
 
 #: /media/js/payments/payments.js:94
 msgid "Payment failed. Try again later."
@@ -1143,14 +1143,6 @@ msgstr "Fout tijdens communicatie met server. Probeer het later nog eens."
 msgid "Your device does not support purchases."
 msgstr "Uw apparaat ondersteunt geen betalingen."
 
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "App-details"
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Collectiedetails"
-
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Feedback ingediend. Bedankt!"
@@ -1159,14 +1151,17 @@ msgstr "Feedback ingediend. Bedankt!"
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Er is een probleem opgetreden bij het indienen van uw feedback. Probeer het binnenkort nog eens."
 
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Collectiedetails"
+
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "App-details"
+
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
 msgstr "Apps nomineren"
-
-#. Page not found (404)
-#: /media/js/views/not_found.js:9
-msgid "Not Found"
-msgstr "Niet gevonden"
 
 #: /media/js/views/search.js:218
 msgid "Search Results"
@@ -1187,6 +1182,15 @@ msgstr "Misbruik gemeld"
 #: /media/js/views/app/abuse.js:22
 msgid "Error while submitting report"
 msgstr "Fout bij indienen van rapport"
+
+#: /media/js/views/commonplace/hello_world.js:9
+msgid "Hello World!"
+msgstr ""
+
+#. Page not found (404)
+#: /media/js/views/commonplace/not_found.js:9
+msgid "Not Found"
+msgstr "Niet gevonden"
 
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"

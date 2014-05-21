@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Marketplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07T16:18:12.979Z\n"
+"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
 "PO-Revision-Date: 2014-04-25 05:22+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Czech <info@mozilla.cz>\n"
@@ -350,7 +350,7 @@ msgstr "Spusťte aplikaci z <b>Plochy Windows</b> či <b>Start &#9658; Všechny 
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Spusťte aplikaci z vašeho <b>Dash</b>, <b>Application picker</b> nebo <b>nabídky Applications</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
 msgid "Loading..."
 msgstr "Načítání..."
 
@@ -949,34 +949,6 @@ msgstr "Dospělý 17+"
 msgid "Adults Only 18+"
 msgstr "Dospělý pouze 18+"
 
-#: /media/js/login.js:8
-msgid "You have been signed out"
-msgstr "Byl(a) jste odhlášen(a)"
-
-#: /media/js/login.js:12
-msgid "You have been signed in"
-msgstr "Byl(a) jste přihlášen(a)"
-
-#: /media/js/login.js:50
-msgid "Error signing out"
-msgstr ""
-
-#: /media/js/login.js:137
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Přihlášení pomocí Persona selhalo. Možná nemáte účet pod touto e-mailovou adresou?"
-
-#: /media/js/login.js:142
-msgid "Persona login failed. A server error was encountered."
-msgstr "Přihlášení pomocí Persona selhalo. Vyskytla se chyba na serveru."
-
-#: /media/js/login.js:210
-msgid "Persona cannot be reached. Try again later."
-msgstr "Personu se nepodařilo kontaktovat. Zkuste to prosím později."
-
-#: /media/js/navigation.js:33
-msgid "No internet connection"
-msgstr "Žádné připojení k Internetu"
-
 #: /media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Při přihlašování odběru našeho zpravodaje nastala chyba"
@@ -1118,14 +1090,6 @@ msgstr "Venezuela"
 msgid "No region in search"
 msgstr "U vyhledávání nebyl zvolen region"
 
-#. {n} is the number of characters left.
-#: /media/js/utils.js:28
-msgid "<b>{n}</b> character left."
-msgid_plural "<b>{n}</b> characters left."
-msgstr[0] "Zbývá <b>{n}</b> znak."
-msgstr[1] "Zbývají <b>{n}</b> znaky."
-msgstr[2] "Zbývá <b>{n}</b> znaků."
-
 #. {n} is the number of stars
 #: /media/js/common/ratingwidget.js:34
 msgid "{n} star"
@@ -1133,6 +1097,42 @@ msgid_plural "{n} stars"
 msgstr[0] "{n} hvězdička"
 msgstr[1] "{n} hvězdičky"
 msgstr[2] "{n} hvězdiček"
+
+#: /media/js/commonplace/login.js:8
+msgid "You have been signed out"
+msgstr "Byl(a) jste odhlášen(a)"
+
+#: /media/js/commonplace/login.js:12
+msgid "You have been signed in"
+msgstr "Byl(a) jste přihlášen(a)"
+
+#: /media/js/commonplace/login.js:50
+msgid "Error signing out"
+msgstr ""
+
+#: /media/js/commonplace/login.js:137
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Přihlášení pomocí Persona selhalo. Možná nemáte účet pod touto e-mailovou adresou?"
+
+#: /media/js/commonplace/login.js:142
+msgid "Persona login failed. A server error was encountered."
+msgstr "Přihlášení pomocí Persona selhalo. Vyskytla se chyba na serveru."
+
+#: /media/js/commonplace/login.js:210
+msgid "Persona cannot be reached. Try again later."
+msgstr "Personu se nepodařilo kontaktovat. Zkuste to prosím později."
+
+#: /media/js/commonplace/navigation.js:33
+msgid "No internet connection"
+msgstr "Žádné připojení k Internetu"
+
+#. {n} is the number of characters left.
+#: /media/js/commonplace/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] "Zbývá <b>{n}</b> znak."
+msgstr[1] "Zbývají <b>{n}</b> znaky."
+msgstr[2] "Zbývá <b>{n}</b> znaků."
 
 #: /media/js/payments/payments.js:94
 msgid "Payment failed. Try again later."
@@ -1147,14 +1147,6 @@ msgstr "Chyba při komunikaci se serverem. Zkuste to znovu později."
 msgid "Your device does not support purchases."
 msgstr "Vaše zařízení nepodporuje platby."
 
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "Detaily o aplikaci"
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Detaily sbírky"
-
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Reakce byla odeslána. Děkujeme!"
@@ -1163,14 +1155,17 @@ msgstr "Reakce byla odeslána. Děkujeme!"
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Při odeslání vaší reakce nastala chyba. Zkuste to brzy znovu."
 
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Detaily sbírky"
+
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Detaily o aplikaci"
+
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
 msgstr "Nominované aplikace"
-
-#. Page not found (404)
-#: /media/js/views/not_found.js:9
-msgid "Not Found"
-msgstr "Nebylo nalezeno"
 
 #: /media/js/views/search.js:218
 msgid "Search Results"
@@ -1191,6 +1186,15 @@ msgstr "Zneužití nahlášeno"
 #: /media/js/views/app/abuse.js:22
 msgid "Error while submitting report"
 msgstr "Při odesílání reportu nastala chyba"
+
+#: /media/js/views/commonplace/hello_world.js:9
+msgid "Hello World!"
+msgstr ""
+
+#. Page not found (404)
+#: /media/js/views/commonplace/not_found.js:9
+msgid "Not Found"
+msgstr "Nebylo nalezeno"
 
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"
