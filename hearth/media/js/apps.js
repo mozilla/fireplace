@@ -71,6 +71,11 @@ define('apps',
                         def.resolve(installRequest.result, product);
                     }
                 }, 250);
+
+                installRequest.result.ondownloaderror = function(e) {
+                    clearInterval(isInstalled);
+                    def.reject(gettext('App install error: {error}', {error: e.application.downloadError.name}));
+                };
             };
             installRequest.onerror = function() {
                 if (this.error.name === 'DENIED') {
