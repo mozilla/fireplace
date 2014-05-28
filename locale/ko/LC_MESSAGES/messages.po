@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2014-05-12 07:36+0000\n"
 "Last-Translator: Channy <channy@mozilla.or.kr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,10 @@ msgstr "모든 카테고리"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "앱이 하나도 없습니다!"
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "제작진"
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "닫기"
@@ -34,10 +38,6 @@ msgstr "아니오"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "예"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "제작진"
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -51,18 +51,6 @@ msgstr "현재 사용중인 Firefox Marketplace의 버전은 더이상 지원되
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "지금 업데이트"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "추천"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "확장"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "추천 앱이 없음"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -117,6 +105,18 @@ msgstr "이용 약관"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "등록 상표 오용 신고"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "추천"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "확장"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "추천 앱이 없음"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -348,7 +348,7 @@ msgstr "<b>윈도우즈 데스크탑</b>이나 <b>시작 &#9658; 모든 프로�
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "<b>대시</b>나 <b>어플리케이션 피커</b>, <b>어플리케이션 메뉴</b>에서 앱을 실행하세요."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "로딩중"
 
@@ -578,26 +578,6 @@ msgstr "로그인 / 로그아웃"
 msgid "You have no apps"
 msgstr "앱이 없음"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "앱 설치 오류: {error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "사용하고 있는 기기가 지불을 지원하지 않습니다."
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "현재 지역에서 이 앱을 구매할 수 없습니다."
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "사용하는 브라우저나 기기가 웹앱호환이 아닙니다."
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "사용하는 플랫폼에서 이 앱을 사용할 수 없습니다."
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "지불이 취소되었습니다."
@@ -687,6 +667,26 @@ msgstr "여행"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "유틸리티"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "앱 설치 오류: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "사용하고 있는 기기가 지불을 지원하지 않습니다."
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "현재 지역에서 이 앱을 구매할 수 없습니다."
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "사용하는 브라우저나 기기가 웹앱호환이 아닙니다."
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "사용하는 플랫폼에서 이 앱을 사용할 수 없습니다."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1139,6 +1139,14 @@ msgstr "서버와 통신하는 중에 오류가 발생하였씁니다. 나중에
 msgid "Your device does not support purchases."
 msgstr "사용하고 있는 기기가 구매를 지원하지 않습니다."
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "앱 상세"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "콜렉션 상세"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "사용자 의견이 전성되었습니다. 감사합니다!"
@@ -1146,14 +1154,6 @@ msgstr "사용자 의견이 전성되었습니다. 감사합니다!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "사용자 의견을 보내는 중에 오류가 발생하였씁니다. 나중에 다시 시도해 주세요."
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "콜렉션 상세"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "앱 상세"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1179,6 +1179,14 @@ msgstr "오용이 신고됨"
 msgid "Error while submitting report"
 msgstr "리포트 보내는 도중에 오류 발생"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "영수증을 보기 위해서 로그인 해 주세요"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "영수증"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr ""
@@ -1187,14 +1195,6 @@ msgstr ""
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "없음"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "영수증을 보기 위해서 로그인 해 주세요"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "영수증"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

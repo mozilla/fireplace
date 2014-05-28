@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2013-07-29 12:37+0200\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Română\n"
@@ -22,6 +22,10 @@ msgstr "Toate categoriile"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr ""
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr ""
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Închide"
@@ -33,10 +37,6 @@ msgstr "Nu"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Da"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr ""
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -50,18 +50,6 @@ msgstr ""
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr ""
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Deosebite"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Extinde"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "Nicio aplicație deosebită găsită"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -116,6 +104,18 @@ msgstr "Termenii de utilizare"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "Reclamă abuzul unei mărci comerciale"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Deosebite"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Extinde"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "Nicio aplicație deosebită găsită"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -349,7 +349,7 @@ msgstr "Lansează această aplicație <b>de pe desktopul Windows</b> sau <b>Star
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Lansează această aplicație din <b>bord</b>, <b>selectorul de aplicații</b> sau <b>meniul de aplicații</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Se încarcă..."
 
@@ -581,26 +581,6 @@ msgstr "Autentificare / Înregistrare"
 msgid "You have no apps"
 msgstr "Nu ai nicio aplicație"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr ""
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr ""
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr ""
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr ""
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr ""
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Plată anulată."
@@ -689,6 +669,26 @@ msgstr ""
 
 #: /media/js/categories.js:25
 msgid "Utilities"
+msgstr ""
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr ""
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr ""
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr ""
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr ""
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
 msgstr ""
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
@@ -1146,6 +1146,14 @@ msgstr ""
 msgid "Your device does not support purchases."
 msgstr ""
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Detalii aplicație"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr ""
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Opinie trimisă. Mulțumim!"
@@ -1153,14 +1161,6 @@ msgstr "Opinie trimisă. Mulțumim!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "A apărut o problemă la trimiterea opiniei tale. Reîncearcă mai târziu."
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr ""
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "Detalii aplicație"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1186,6 +1186,14 @@ msgstr "Abuz raportat"
 msgid "Error while submitting report"
 msgstr "Eroare la trimiterea raportării"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr ""
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr ""
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr ""
@@ -1194,14 +1202,6 @@ msgstr ""
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "Negăsit"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr ""
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr ""
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

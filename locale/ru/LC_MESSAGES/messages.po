@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2014-05-22 13:38+0000\n"
 "Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: none\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1400765928.0\n"
 
@@ -23,6 +22,10 @@ msgstr "Все категории"
 #: /templates/collection.html:33
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Ой-ё! Тут пусто, Шэгги!"
+
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "Авторы"
 
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
@@ -36,10 +39,6 @@ msgstr "Нет"
 msgid "Yes"
 msgstr "Да"
 
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "Авторы"
-
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
 msgid "Out-of-Date Marketplace"
@@ -52,18 +51,6 @@ msgstr "Используемая вами версия Firefox Marketplace бо�
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Обновить сейчас"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Избранное"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Развернуть"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "Избранных приложений не найдено"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -118,6 +105,18 @@ msgstr "Условия использования"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "Сообщить о злоупотреблении торговой маркой"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Избранное"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Развернуть"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "Избранных приложений не найдено"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -351,7 +350,7 @@ msgstr "Запустите это приложение с вашего <b>Раб
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Запустите это приложение из вашего <b>dash</b>, <b>Панели выбора приложений</b> или <b>Меню приложений</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Загрузка..."
 
@@ -583,26 +582,6 @@ msgstr "Вход / Регистрация"
 msgid "You have no apps"
 msgstr "У вас нет приложений"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "Ошибка установки приложения: {error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "Ваше устройство не поддерживает покупки."
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "Это приложение недоступно для покупки в вашем регионе."
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "Ваш браузер или устройство не совместимо с веб-приложениями."
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "Это приложение недоступно для вашей платформы."
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Платёж отменён."
@@ -692,6 +671,26 @@ msgstr "Путешествия"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "Утилиты"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "Ошибка установки приложения: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "Ваше устройство не поддерживает покупки."
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "Это приложение недоступно для покупки в вашем регионе."
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "Ваш браузер или устройство не совместимо с веб-приложениями."
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "Это приложение недоступно для вашей платформы."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1148,6 +1147,14 @@ msgstr "Ошибка при связи с сервером. Повторите �
 msgid "Your device does not support purchases."
 msgstr "Ваше устройство не поддерживает покупки."
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Сведения о приложении"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Сведения о подборке"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Отзыв отправлен. Спасибо!"
@@ -1155,14 +1162,6 @@ msgstr "Отзыв отправлен. Спасибо!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "При отправке вашего отзыва возникла проблема. Подождите и попробуйте снова."
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Сведения о подборке"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "Сведения о приложении"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1188,6 +1187,14 @@ msgstr "О нарушении правил сообщено"
 msgid "Error while submitting report"
 msgstr "Ошибка при отправке сообщения"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "Пожалуйста, войдите, чтобы просмотреть чек"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "Чек"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr "Привет, мир!"
@@ -1196,14 +1203,6 @@ msgstr "Привет, мир!"
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "Не найдено"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "Пожалуйста, войдите, чтобы просмотреть чек"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "Чек"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

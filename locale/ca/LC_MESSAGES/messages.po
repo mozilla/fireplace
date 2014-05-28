@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2014-01-31 15:38+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -24,6 +24,10 @@ msgstr "Totes les categories"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "No hi ha cap aplicació aquí."
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr ""
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Tanca"
@@ -35,10 +39,6 @@ msgstr "No"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Sí"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr ""
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -52,18 +52,6 @@ msgstr "La versió del Firefox Marketplace que utilitzeu ja no està mantinguda.
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Actualitza ara"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Destacada"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Amplia"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "No s'han trobat aplicacions destacades"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -118,6 +106,18 @@ msgstr "Termes d'ús"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "Informa d'un abús de marca"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Destacada"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Amplia"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "No s'han trobat aplicacions destacades"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -350,7 +350,7 @@ msgstr "Executeu l'aplicació de l'<b>escriptori del Windows</b> o des d'<b>Inic
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Executeu l'aplicació des del <b>plafó</b>, el <b>selector d'aplicacions</b> o el <b>menú d'aplicacions</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "S'està carregant..."
 
@@ -581,26 +581,6 @@ msgstr "Inicia una sessió / Registre"
 msgid "You have no apps"
 msgstr "No teniu cap aplicació"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "Error d'instal·lació de l'aplicació: {error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "El vostre dispositiu no admet pagaments."
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "L'aplicació no és disponible per a la compra en la vostra regió."
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "El vostre navegador o dispositiu no és compatible amb les aplicacions web."
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "L'aplicació no és disponible per a la vostra plataforma."
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "S'ha cancel·lat el pagament."
@@ -690,6 +670,26 @@ msgstr "Viatge"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "Utilitats"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "Error d'instal·lació de l'aplicació: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "El vostre dispositiu no admet pagaments."
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "L'aplicació no és disponible per a la compra en la vostra regió."
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "El vostre navegador o dispositiu no és compatible amb les aplicacions web."
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "L'aplicació no és disponible per a la vostra plataforma."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1144,6 +1144,14 @@ msgstr "S'ha produït un error en comunicar amb el servidor. Torneu-ho a provar 
 msgid "Your device does not support purchases."
 msgstr "El vostre dispositiu no admet compres."
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Detalls de l'aplicació"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Detalls de la col·lecció"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "S'ha tramès l'opinió. Gràcies!"
@@ -1151,14 +1159,6 @@ msgstr "S'ha tramès l'opinió. Gràcies!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "S'ha produït un problema en enviar la vostra opinió. Proveu-ho una altra vegada aviat."
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Detalls de la col·lecció"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "Detalls de l'aplicació"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1184,6 +1184,14 @@ msgstr "S'ha informat d'un abús"
 msgid "Error while submitting report"
 msgstr "S'ha produït un error en enviar l'informe"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "Inicieu una sessió per veure el rebut"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "Rebut"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr ""
@@ -1192,14 +1200,6 @@ msgstr ""
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "No s'ha trobat"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "Inicieu una sessió per veure el rebut"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "Rebut"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2014-05-04 15:07+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -23,6 +23,10 @@ msgstr "Todas las categorías"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "¡Ruh, roh! ¡Aquí no hay aplicaciones, Shaggy!"
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "Créditos"
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Cerrar"
@@ -34,10 +38,6 @@ msgstr "No"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Sí"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "Créditos"
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -51,18 +51,6 @@ msgstr "La versión de Firefox Marketplace que usas ya no es compatible. Tienes 
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Actualizar"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Destacadas"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Ampliar"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "No se encontró ninguna aplicación destacada"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -117,6 +105,18 @@ msgstr "Condiciones de uso"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "Informar sobre infracción de marca"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Destacadas"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Ampliar"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "No se encontró ninguna aplicación destacada"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -349,7 +349,7 @@ msgstr "Lanzar esta aplicación desde tu <b>escritorio de Windows</b> o <b>Inici
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Lanzar esta aplicación desde tu <b>barra</b>, <b>selector de aplicaciones</b>, o <b>menú de aplicaciones</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Cargando..."
 
@@ -580,26 +580,6 @@ msgstr "Identificarse / Registrarse"
 msgid "You have no apps"
 msgstr "No tienes ninguna aplicación"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "Error en instalación de aplicación: {error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "Tu dispositivo no admite pagos."
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "Esta aplicación no está disponible para su adquisición en tu país."
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "Tu navegador o dispositivo no es compatible con aplicaciones web."
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "Esta aplicación no está disponible para tu plataforma."
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Pago cancelado."
@@ -689,6 +669,26 @@ msgstr "Viajes"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "Utilidades"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "Error en instalación de aplicación: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "Tu dispositivo no admite pagos."
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "Esta aplicación no está disponible para su adquisición en tu país."
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "Tu navegador o dispositivo no es compatible con aplicaciones web."
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "Esta aplicación no está disponible para tu plataforma."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1143,6 +1143,14 @@ msgstr "Error al establecer comunicación con el servidor. Inténtalo de nuevo p
 msgid "Your device does not support purchases."
 msgstr "Tu dispositivo no admite compras."
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Detalles de la aplicación"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Detalles de la colección"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Opinión enviada. ¡Gracias!"
@@ -1150,14 +1158,6 @@ msgstr "Opinión enviada. ¡Gracias!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Se produjo un error al enviar tu opinión. Inténtalo de nuevo pasados unos minutos."
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Detalles de la colección"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "Detalles de la aplicación"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1183,6 +1183,14 @@ msgstr "Informe de uso indebido enviado"
 msgid "Error while submitting report"
 msgstr "Error al enviar el informe"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "Identifícate para ver el recibo"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "Recibo"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr ""
@@ -1191,14 +1199,6 @@ msgstr ""
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "No pudo encontrarse"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "Identifícate para ver el recibo"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "Recibo"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

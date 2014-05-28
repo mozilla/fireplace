@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Marketplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2014-05-23 07:56+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Czech <info@mozilla.cz>\n"
@@ -23,6 +23,10 @@ msgstr "Všechny kategorie"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Ale ne! Zde není žádná aplikace!"
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "Poděkování"
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Zavřít"
@@ -34,10 +38,6 @@ msgstr "Ne"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Ano"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "Poděkování"
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -51,18 +51,6 @@ msgstr "Verze Firefox Marketplace, kterou používáte, již není podporována.
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Aktualizovat"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Propagovaná"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Rozšířit"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "Nebyly nalezeny žádné propagované aplikace"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -117,6 +105,18 @@ msgstr "Podmínky použití"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "Nahlášení zneužití ochranné známky"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Propagovaná"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Rozšířit"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "Nebyly nalezeny žádné propagované aplikace"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -350,7 +350,7 @@ msgstr "Spusťte aplikaci z <b>Plochy Windows</b> či <b>Start &#9658; Všechny 
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Spusťte aplikaci z vašeho <b>Dash</b>, <b>Application picker</b> nebo <b>nabídky Applications</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Načítání..."
 
@@ -582,26 +582,6 @@ msgstr "Přihlášení / Registrace"
 msgid "You have no apps"
 msgstr "Nemáte žádné aplikace"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "Chyba při instalaci aplikace: {error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "Vaše zařízení nepodporuje platby."
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "Aplikaci nelze koupit ve vašem regionu."
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "Váš prohlížeč nebo zařízení nepodporuji webové aplikace."
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "Aplikace není dostupná pro vaši platformu."
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Platba byla zrušena."
@@ -691,6 +671,26 @@ msgstr "Cestování"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "Nástroje"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "Chyba při instalaci aplikace: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "Vaše zařízení nepodporuje platby."
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "Aplikaci nelze koupit ve vašem regionu."
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "Váš prohlížeč nebo zařízení nepodporuji webové aplikace."
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "Aplikace není dostupná pro vaši platformu."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1147,6 +1147,14 @@ msgstr "Chyba při komunikaci se serverem. Zkuste to znovu později."
 msgid "Your device does not support purchases."
 msgstr "Vaše zařízení nepodporuje platby."
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Detaily o aplikaci"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Detaily sbírky"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Reakce byla odeslána. Děkujeme!"
@@ -1154,14 +1162,6 @@ msgstr "Reakce byla odeslána. Děkujeme!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Při odeslání vaší reakce nastala chyba. Zkuste to brzy znovu."
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Detaily sbírky"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "Detaily o aplikaci"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1187,6 +1187,14 @@ msgstr "Zneužití nahlášeno"
 msgid "Error while submitting report"
 msgstr "Při odesílání reportu nastala chyba"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "Pro zobrazení stvrzenky se prosím přihlaste"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "Stvrzenka"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr "Ahoj světe!"
@@ -1195,14 +1203,6 @@ msgstr "Ahoj světe!"
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "Nebylo nalezeno"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "Pro zobrazení stvrzenky se prosím přihlaste"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "Stvrzenka"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

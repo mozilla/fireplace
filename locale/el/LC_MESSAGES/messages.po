@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -22,6 +22,10 @@ msgstr "Όλες οι κατηγορίες"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Ω! Δεν υπάρχουν εφαρμογές εδώ, κρίμα!"
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr ""
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Κλείσιμο"
@@ -33,10 +37,6 @@ msgstr "Όχι"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Ναι"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr ""
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -50,18 +50,6 @@ msgstr "Η έκδοση του Firefox Marketplace που χρησιμοποιε
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Ενημέρωση τώρα"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Προβεβλημένες"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Επέκταση"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "Δε βρέθηκε καμία προβεβλημένη εφαρμογή"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -116,6 +104,18 @@ msgstr "Όροι χρήσης"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "Αναφορά κατάχρησης επωνυμίας"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Προβεβλημένες"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Επέκταση"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "Δε βρέθηκε καμία προβεβλημένη εφαρμογή"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -348,7 +348,7 @@ msgstr "Εκκίνηση της εφαρμογής από την <b> επιφά�
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Εκκίνηση της εφαρμογής από την <b>dash</b>, <b>Επιλογή εφαρμογών</b>, ή το <b>Μενού Εφαρμογών</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Φόρτωση..."
 
@@ -579,26 +579,6 @@ msgstr "Σύνδεση / Εγγραφή"
 msgid "You have no apps"
 msgstr "Δεν έχετε εφαρμογές"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "Σφάλμα εγκατάστασης εφαρμογής: {error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "Η συσκευή σας δεν υποστηρίζει πληρωμές."
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "Η εφαρμογή δεν είναι διαθέσιμη για αγορά στην περιοχή σας."
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "Ο περιηγητής ή η συσκευή σας δεν είναι συμβατά."
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "Αυτή η εφαρμογή δεν είναι διαθέσιμη για το σύστημα σας."
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Η πληρωμή ακυρώθηκε."
@@ -688,6 +668,26 @@ msgstr "Ταξίδια"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "Βοηθήματα"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "Σφάλμα εγκατάστασης εφαρμογής: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "Η συσκευή σας δεν υποστηρίζει πληρωμές."
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "Η εφαρμογή δεν είναι διαθέσιμη για αγορά στην περιοχή σας."
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "Ο περιηγητής ή η συσκευή σας δεν είναι συμβατά."
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "Αυτή η εφαρμογή δεν είναι διαθέσιμη για το σύστημα σας."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1142,6 +1142,14 @@ msgstr "Σφάλμα επικοινωνίας με τον διακομιστή. 
 msgid "Your device does not support purchases."
 msgstr "Η συσκευή σας δεν υποστηρίζει πληρωμές."
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Λεπτομέρειες εφαρμογής"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Λεπτομέρειες συλλογής"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Η αναφορά υποβλήθηκε. Ευχαριστούμε!"
@@ -1149,14 +1157,6 @@ msgstr "Η αναφορά υποβλήθηκε. Ευχαριστούμε!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Υπήρξε κάποιο πρόβλημα κατά την υποβολή της αναφοράς σας. Δοκιμάστε ξανά σύντομα."
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Λεπτομέρειες συλλογής"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "Λεπτομέρειες εφαρμογής"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1182,6 +1182,14 @@ msgstr "Αναφέρθηκε κατάχρηση"
 msgid "Error while submitting report"
 msgstr "Σφάλμα κατά την υποβολή αναφοράς"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "Παρακαλώ συνδεθείτε για να δείτε την απόδειξη"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "Απόδειξη"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr ""
@@ -1190,14 +1198,6 @@ msgstr ""
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "Δε βρέθηκε"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "Παρακαλώ συνδεθείτε για να δείτε την απόδειξη"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "Απόδειξη"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

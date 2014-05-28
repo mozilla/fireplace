@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2014-02-27 09:05+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,6 +24,10 @@ msgstr "Alle kategorier"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Å nei! Ingen apper her!"
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr ""
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Lukk"
@@ -35,10 +39,6 @@ msgstr "Nei"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Ja"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr ""
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -52,18 +52,6 @@ msgstr "Denne versjonen av Firefox Marketplace støttes ikke lenger. Den må opp
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Oppdater nå"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Fremhevet"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Utvid"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "Ingen fremhevede apper funnet"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -118,6 +106,18 @@ msgstr "Vilkår for bruk"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "Rapporter varemerkemisbruk"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Fremhevet"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Utvid"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "Ingen fremhevede apper funnet"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -351,7 +351,7 @@ msgstr "Start denne appen fra <b>Windows-skrivebordet</b> eller <b>Start &#9658;
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Start denne appen fra <b>dashbordet</b>, <b>Programvelger</b> eller <b>Programmenyen</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Laster …"
 
@@ -586,27 +586,6 @@ msgstr "Logg inn / Registrer deg"
 msgid "You have no apps"
 msgstr "Du har ingen apper"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "Appinstalleringsfeil: {error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "Enheten støtter ikke betalinger."
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "Denne appen kan ikke kjøpes i ditt område."
-
-# Web-app eller nett-app?
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "Nettleseren eller enheten er ikke webapp kompatibel."
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "Denne appen er ikke tilgjengelig på din plattform."
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Betaling avbrutt."
@@ -696,6 +675,27 @@ msgstr ""
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr ""
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "Appinstalleringsfeil: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "Enheten støtter ikke betalinger."
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "Denne appen kan ikke kjøpes i ditt område."
+
+# Web-app eller nett-app?
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "Nettleseren eller enheten er ikke webapp kompatibel."
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "Denne appen er ikke tilgjengelig på din plattform."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1151,6 +1151,14 @@ msgstr "Feil under kommunikasjon med serveren. Prøv igjen senere."
 msgid "Your device does not support purchases."
 msgstr "Enheten din støtter ikke kjøp."
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "App-detaljer"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Samlingsdetaljer"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Tilbakemelding sendt. Takk!"
@@ -1158,14 +1166,6 @@ msgstr "Tilbakemelding sendt. Takk!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Klarte ikke sende tilbakemeldingen. Prøv igjen snart."
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Samlingsdetaljer"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "App-detaljer"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1192,6 +1192,14 @@ msgstr "Misbruk rapportert"
 msgid "Error while submitting report"
 msgstr "Feil ved innsending av rapport"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "Logg inn for å vise kvitteringen"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "Kvittering"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr ""
@@ -1200,14 +1208,6 @@ msgstr ""
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "Ikke funnet"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "Logg inn for å vise kvitteringen"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "Kvittering"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

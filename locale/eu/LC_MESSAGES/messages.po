@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2014-05-26 22:20+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: 89578-OEM-7332157-00211\n"
@@ -24,6 +24,10 @@ msgstr "Kategoria guztiak"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Ruh roh! Hemen ez dago aplikaziorik, Shaggy!"
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "Kredituak"
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Itxi"
@@ -35,10 +39,6 @@ msgstr "Ez"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Bai"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "Kredituak"
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -52,18 +52,6 @@ msgstr "Darabilzun Firefox Marketplace bertsioa dagoeneko ez da onartzen. Market
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Eguneratu orain"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Nabarmendutakoak"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Zabaldu"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "Ez da aurkitu nabarmendutako aplikaziorik"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -118,6 +106,18 @@ msgstr "Erabiltzeko baldintzak"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "Eman markaren erabilera okerraren berri"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Nabarmendutakoak"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Zabaldu"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "Ez da aurkitu nabarmendutako aplikaziorik"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -350,7 +350,7 @@ msgstr "Abiarazi aplikazio hau <b>Windows-eko mahaigainetik</b> edo <b>Hasi &#96
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Abiarazi aplikazio hau <b>atrakagarri</b>tik, <b>Aplikazio-hautatzailetik</b> edo <b>Aplikazioen menutik</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Kargatzen..."
 
@@ -581,26 +581,6 @@ msgstr "Hasi saioa / Eman izena"
 msgid "You have no apps"
 msgstr "Ez duzu aplikaziorik"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "Errorea aplikazioa instalatzean: {error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "Zure gailuak ez ditu ordainketak onartzen."
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "Aplikazio hau ezin da erosi zure herrialdean."
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "Zure nabigatzaile edo gailua ez da web-aplikazioekin bateragarria."
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "Aplikazio hau ez dago zure plataformarentzat eskuragarri."
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Ordainketa bertan behera utzita."
@@ -690,6 +670,26 @@ msgstr "Bidaiak"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "Tresnak"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "Errorea aplikazioa instalatzean: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "Zure gailuak ez ditu ordainketak onartzen."
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "Aplikazio hau ezin da erosi zure herrialdean."
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "Zure nabigatzaile edo gailua ez da web-aplikazioekin bateragarria."
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "Aplikazio hau ez dago zure plataformarentzat eskuragarri."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1144,6 +1144,14 @@ msgstr "Errorea zerbitzariarekin komunikatzean. Saiatu berriro geroago."
 msgid "Your device does not support purchases."
 msgstr "Zure gailuak ez ditu erosketak onartzen."
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Aplikazioaren xehetasunak"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Bildumaren xehetasunak"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Iritzia bidalita. Eskerrik asko!"
@@ -1151,14 +1159,6 @@ msgstr "Iritzia bidalita. Eskerrik asko!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Arazo bat egon da iritzia bidaltzean. Saiatu berriro geroago."
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Bildumaren xehetasunak"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "Aplikazioaren xehetasunak"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1184,6 +1184,14 @@ msgstr "Erabilera okerraren berri eman da"
 msgid "Error while submitting report"
 msgstr "Errorea txostena bidaltzean"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "Hasi saioa ordainagiria ikusteko"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "Ordainagiria"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr "Kaixo mundua!"
@@ -1192,14 +1200,6 @@ msgstr "Kaixo mundua!"
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "Ez da aurkitu"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "Hasi saioa ordainagiria ikusteko"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "Ordainagiria"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2014-03-29 10:38+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,10 @@ msgstr "সকল বিষয়শ্রেণী"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "আহ হা! এখানে কোন এ্যাপ নেই, ঝামেলা!"
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "স্বীকৃতি "
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "বন্ধ"
@@ -34,10 +38,6 @@ msgstr "না"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "হ্যাঁ"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "স্বীকৃতি "
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -51,18 +51,6 @@ msgstr "আপনি ফায়ারফক্স মার্কেটপ্ল�
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "এখন হালনাগাদ করুন"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "বৈশিষ্ট্যপূর্ণ"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "সম্প্রাসারণ"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "কোন বৈশিস্ট্যপূর্ন এপস পাওয়া যায়নি"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -117,6 +105,18 @@ msgstr "ব্যবহারের শর্তাবলী"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "ট্রেডমার্কের অপব্যবহার সম্পর্কে জানিয়ে দিন"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "বৈশিষ্ট্যপূর্ণ"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "সম্প্রাসারণ"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "কোন বৈশিস্ট্যপূর্ন এপস পাওয়া যায়নি"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -349,7 +349,7 @@ msgstr "এই অ্যাপটি আপনার <b>উইন্ডোজ �
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "এই এপটি আপনার <b>ড্যাশ</b>, <b>এপ্লিকেশন পিকার</b>, কিংবা <b>এপ্লিকেশন মেনু</b> থেকে চালু করুন।"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "লোডিং..."
 
@@ -580,26 +580,6 @@ msgstr "সাইন ইন / সাইন আপ"
 msgid "You have no apps"
 msgstr "আপনার কোন এপ নেই"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "অ্যাপ ইন্সটল ত্রুটি: {error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "আপনার ডিভাইস পেমেন্ট সমর্থন করে না।"
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "আপনার অঞ্চলে এই অ্যাপটি ক্রয়ের জন্য অবমুক্ত নয়।"
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "আপনার ব্রাউজার অথবা ডিভাইস ওয়েব-অ্যাপ সমর্থন করে না।"
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "এই অ্যাপটি আপনার প্লাটফর্মের জন্য অবমুক্ত নয়।"
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "লেনদেন বাতিল করা হয়েছে।"
@@ -689,6 +669,26 @@ msgstr "ভ্রমণ"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "হাতিয়ার"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "অ্যাপ ইন্সটল ত্রুটি: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "আপনার ডিভাইস পেমেন্ট সমর্থন করে না।"
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "আপনার অঞ্চলে এই অ্যাপটি ক্রয়ের জন্য অবমুক্ত নয়।"
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "আপনার ব্রাউজার অথবা ডিভাইস ওয়েব-অ্যাপ সমর্থন করে না।"
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "এই অ্যাপটি আপনার প্লাটফর্মের জন্য অবমুক্ত নয়।"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1143,6 +1143,14 @@ msgstr "সার্ভার এর সাথে যোগাযোগ কর�
 msgid "Your device does not support purchases."
 msgstr "আপনার ডিভাইস দিয়ে ক্রয় করা যাবেনা।"
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "অ্যাপের বিস্তারিত"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "সংগ্রহের বিবরন"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "পর্যালোচনা জমা দেওয়া হয়েছে। ধন্যবাদ!"
@@ -1150,14 +1158,6 @@ msgstr "পর্যালোচনা জমা দেওয়া হয়েছে
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "আপনার মতামত জমা দেওয়ার সময় একটি সমস্যা হয়েছে। শীঘ্রই আবার চেষ্টা করুন।"
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "সংগ্রহের বিবরন"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "অ্যাপের বিস্তারিত"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1183,6 +1183,14 @@ msgstr "অপব্যবহারের অভিযোগ গৃহীত হ
 msgid "Error while submitting report"
 msgstr "অভিযোগ পাঠানোর সময় সমস্যা হয়েছে"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "রিসিপ্ট দেখতে সাইন ইন করুন"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "রিসিপ্ট"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr ""
@@ -1191,14 +1199,6 @@ msgstr ""
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "পাওয়া যায়নি"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "রিসিপ্ট দেখতে সাইন ইন করুন"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "রিসিপ্ট"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

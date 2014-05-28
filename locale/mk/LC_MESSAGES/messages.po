@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2014-04-05 14:46+0000\n"
 "Last-Translator: Goce <goce.mitevski@gmail.com>\n"
 "Language-Team: none\n"
@@ -23,6 +23,10 @@ msgstr "Сите категории"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Уф! Оф! Нема апликации овде!"
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "Заслуги"
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Затвори"
@@ -34,10 +38,6 @@ msgstr "Не"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Да"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "Заслуги"
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -51,18 +51,6 @@ msgstr "Верзијата на Пазарот на Firefox што ја кори
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Надгради сега"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Издвоени"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Прошири"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "Не беа пронајдени издвоени апликации"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -117,6 +105,18 @@ msgstr "Услови на употреба"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "Пријавете злоупотреба на трговска марка"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Издвоени"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Прошири"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "Не беа пронајдени издвоени апликации"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -349,7 +349,7 @@ msgstr "Стартувајте ја оваа апликација од <b>раб
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Стартувајте ја оваа апликација од Вашата <b>табла</b>, преку <b>Одбирачот на Апликации</b> или од <b>менито Апликации</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Се вчитува..."
 
@@ -580,26 +580,6 @@ msgstr "Најава / Регистрација"
 msgid "You have no apps"
 msgstr "Немате апликации"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "Грешка при инсталирање на апликација: {error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "Вашиот уред не поддржува плаќање."
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "Оваа апликација не е достапна за продажба во Вашата област."
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "Вашиот прелистувач или уред не е компатибилен со веб-апликации."
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "Оваа апликација не е достапна на Вашата платформа."
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Плаќањето е откажано."
@@ -689,6 +669,26 @@ msgstr "Патување"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "Алатки"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "Грешка при инсталирање на апликација: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "Вашиот уред не поддржува плаќање."
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "Оваа апликација не е достапна за продажба во Вашата област."
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "Вашиот прелистувач или уред не е компатибилен со веб-апликации."
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "Оваа апликација не е достапна на Вашата платформа."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1143,6 +1143,14 @@ msgstr "Грешка при комуникацијата со серверот. 
 msgid "Your device does not support purchases."
 msgstr "Вашиот уред не поддржува купување."
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Детали за апликација"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Детали на збирка"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Повратните информации се поднесени. Ви благодариме!"
@@ -1150,14 +1158,6 @@ msgstr "Повратните информации се поднесени. Ви 
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Имаше проблем при поднесувањето на Вашите повратни информации. Обидете се повторно наскоро."
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Детали на збирка"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "Детали за апликација"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1183,6 +1183,14 @@ msgstr "Злоупотребата е пријавена"
 msgid "Error while submitting report"
 msgstr "Грешка при испраќањето на извештајот"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "Ве молиме најавете се за да ја видите потврдата"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "Потврда"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr ""
@@ -1191,14 +1199,6 @@ msgstr ""
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "Не постои"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "Ве молиме најавете се за да ја видите потврдата"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "Потврда"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2014-05-22 08:17+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -23,6 +23,10 @@ msgstr "所有类别"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "啊噢，这里没有任何应用！"
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "贡献者"
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "关闭"
@@ -34,10 +38,6 @@ msgstr "否"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "是"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "贡献者"
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -51,18 +51,6 @@ msgstr "您正在使用的此版本火狐应用市场已不再受支持。在继
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "立即更新"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "精选"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "展开"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "找不到精选应用"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -115,6 +103,18 @@ msgstr "使用条款"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "报告商标侵权。"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "精选"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "展开"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "找不到精选应用"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -346,7 +346,7 @@ msgstr "从您的 <b>Windows桌面</b> 或 <b>开始菜单 &#9658; 所有程序<
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "从你的<b>仪表板</b>、<b>应用程序选择器</b>或者<b>应用程序菜单</b>中启动这个应用。"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "正在加载..."
 
@@ -576,26 +576,6 @@ msgstr "登录 / 注册"
 msgid "You have no apps"
 msgstr "您尚无应用"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "应用安装出错：{error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "您的设备不支持付款。"
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "此应用在您的地区暂时无法购买。"
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "您的浏览器或设备不兼容网络应用。"
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "此应用无法在您的系统平台上运行。"
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "付款已取消。"
@@ -685,6 +665,26 @@ msgstr "旅行"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "工具"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "应用安装出错：{error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "您的设备不支持付款。"
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "此应用在您的地区暂时无法购买。"
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "您的浏览器或设备不兼容网络应用。"
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "此应用无法在您的系统平台上运行。"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1137,6 +1137,14 @@ msgstr "与服务器通信时出错。请稍后再试。"
 msgid "Your device does not support purchases."
 msgstr "您的设备不支持购买。"
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "应用明细"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "收藏集详情"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "反馈已提交。感谢您的支持！"
@@ -1144,14 +1152,6 @@ msgstr "反馈已提交。感谢您的支持！"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "在提交您的反馈时出错。请稍后再试。"
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "收藏集详情"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "应用明细"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1177,6 +1177,14 @@ msgstr "已报告的滥用行为"
 msgid "Error while submitting report"
 msgstr "提交报告时出错"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "请登录以查看交易记录"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "收据"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr "Hello World!"
@@ -1185,14 +1193,6 @@ msgstr "Hello World!"
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "未找到"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "请登录以查看交易记录"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "收据"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

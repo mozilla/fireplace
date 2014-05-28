@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2014-05-15 01:35+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,10 @@ msgstr "Krejt Kategoritë"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Aha! S'ka zbatime këtu, Shagi!"
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "Kredite"
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Mbylle"
@@ -34,10 +38,6 @@ msgstr "Jo"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Po"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "Kredite"
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -51,18 +51,6 @@ msgstr "Versioni i Firefox Marketplace-it që po përdorni nuk mbulohet më. Do 
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Përditësojeni Tani"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Të zgjedhura"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Zgjeroje"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "S'u gjetën zbatime të zgjedhura"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -117,6 +105,18 @@ msgstr "Kushte Përdorimi"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "Njoftoni Dhunim Shenjash Tregtare"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Të zgjedhura"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Zgjeroje"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "S'u gjetën zbatime të zgjedhura"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -349,7 +349,7 @@ msgstr "Niseni këtë zbatim nga <b>desktopi juaj Windows</b> ose nga <b>Start &
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Niseni këtë zbatim nga <b>pulti</b> juaj, <b>zgjedhësi i Zbatimit</b>, ose <b>menuja e Zbatimeve</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Po ngarkohet..."
 
@@ -580,26 +580,6 @@ msgstr "Hyni / Regjistrohuni"
 msgid "You have no apps"
 msgstr "Nuk keni zbatime"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "Gabim instalimi zbatimi: {error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "Pajisja juaj nuk i mbulon pagesat."
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "Ky zbatim nuk mund të blihet që nga rajoni juaj."
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "Shfletuesi ose pajisja juaj nuk është e përputhshme me zbatimet web."
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "Ky zbatim nuk është i passhëm për platformën tuaj."
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Pagimi u anulua."
@@ -689,6 +669,26 @@ msgstr "Udhëtim"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "Të dobishme"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "Gabim instalimi zbatimi: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "Pajisja juaj nuk i mbulon pagesat."
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "Ky zbatim nuk mund të blihet që nga rajoni juaj."
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "Shfletuesi ose pajisja juaj nuk është e përputhshme me zbatimet web."
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "Ky zbatim nuk është i passhëm për platformën tuaj."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1143,6 +1143,14 @@ msgstr "Gabim gjatë komunikimit me shërbyesin. Ju lutemi, riprovoni më vonë.
 msgid "Your device does not support purchases."
 msgstr "Pajisja juaj nuk mbulon blerjet."
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Hollësi Zbatimi"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Hollësi Koleksioni"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Përshtypjet u parashtruan. Faleminderit!"
@@ -1150,14 +1158,6 @@ msgstr "Përshtypjet u parashtruan. Faleminderit!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Pati një problem gjatë parashtrimit të përshtypjeve tuaja. Riprovoni së shpejti."
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Hollësi Koleksioni"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "Hollësi Zbatimi"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1183,6 +1183,14 @@ msgstr "Dhunimi u raportua"
 msgid "Error while submitting report"
 msgstr "Gabim gjatë parashtrimit të raportit"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "Ju lutemi, bëni hyrjen që të shihni dëftesën"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "Dëftesë"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr ""
@@ -1191,14 +1199,6 @@ msgstr ""
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "Nuk u Gjet"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "Ju lutemi, bëni hyrjen që të shihni dëftesën"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "Dëftesë"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

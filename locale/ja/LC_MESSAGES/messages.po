@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21T16:42:46.846Z\n"
+"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
 "PO-Revision-Date: 2014-05-21 13:13-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -22,6 +22,10 @@ msgstr "すべてのカテゴリ"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "お探しのアプリは見つかりませんでした。"
 
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "クレジット"
+
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "閉じる"
@@ -33,10 +37,6 @@ msgstr "いいえ"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "はい"
-
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "クレジット"
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -50,18 +50,6 @@ msgstr "お使いの Firefox Marketplace のバージョンは古く、対応が
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "今すぐ更新"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "おすすめ"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "折りたたむ / 開く"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "おすすめのアプリはありません"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -116,6 +104,18 @@ msgstr "利用規約"
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "商標不正使用報告"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "おすすめ"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "折りたたむ / 開く"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "おすすめのアプリはありません"
 
 #: /templates/header.html:1
 msgid "Back"
@@ -348,7 +348,7 @@ msgstr "このアプリは Windows の <b>デスクトップ</b> か <b>スタ�
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "このアプリは、<b>ダッシュ</b>、<b>アプリケーションピッカー</b> もしくは <b>アプリケーションメニュー</b> から起動できます。"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "読み込み中..."
 
@@ -579,26 +579,6 @@ msgstr "ログイン / ユーザ登録"
 msgid "You have no apps"
 msgstr "まだインストールしたアプリはありません"
 
-#: /media/js/apps.js:79
-msgid "App install error: {error}"
-msgstr "アプリのインストールエラー: {error}"
-
-#: /media/js/apps.js:130
-msgid "Your device does not support payments."
-msgstr "あなたの端末は決済に対応していません。"
-
-#: /media/js/apps.js:132
-msgid "This app is unavailable for purchase in your region."
-msgstr "このアプリはあなたがお住まいの地域では購入できません。"
-
-#: /media/js/apps.js:136
-msgid "Your browser or device is not web-app compatible."
-msgstr "あなたのブラウザもしくは端末は Web アプリに対応していません。"
-
-#: /media/js/apps.js:138
-msgid "This app is unavailable for your platform."
-msgstr "このアプリはお使いの OS には対応していません。"
-
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "決済がキャンセルされました"
@@ -688,6 +668,26 @@ msgstr "旅行"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "ユーティリティ"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "アプリのインストールエラー: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "あなたの端末は決済に対応していません。"
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "このアプリはあなたがお住まいの地域では購入できません。"
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "あなたのブラウザもしくは端末は Web アプリに対応していません。"
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "このアプリはお使いの OS には対応していません。"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -1142,6 +1142,14 @@ msgstr "サーバとの通信中にエラーが発生しました。また後で
 msgid "Your device does not support purchases."
 msgstr "あなたの端末は購入に対応していません。"
 
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "アプリの詳細"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "コレクションの詳細"
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "フィードバックが送信されました。ありがとうございます。"
@@ -1149,14 +1157,6 @@ msgstr "フィードバックが送信されました。ありがとうござい
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "フィードバックの送信中に問題が発生しました。また後で試してください。"
-
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "コレクションの詳細"
-
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "アプリの詳細"
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
@@ -1182,6 +1182,14 @@ msgstr "不正報告が送信されました"
 msgid "Error while submitting report"
 msgstr "レポートの送信中に問題が発生しました"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "レシートを表示するにはログインしてください"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "レシート"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr "こんにちは世界！"
@@ -1190,14 +1198,6 @@ msgstr "こんにちは世界！"
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "ページが見つかりません"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "レシートを表示するにはログインしてください"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "レシート"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
