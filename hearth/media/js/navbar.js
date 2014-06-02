@@ -136,7 +136,7 @@ define('navbar', ['jquery', 'jquery.hammer', 'log', 'navigation', 'nunjucks', 's
                 is_settings: z.body.attr('data-page-type').indexOf('settings') !== -1,
                 z: z,
             })
-        );
+        ).addClass('secondary-header');
     }
 
     // Render navbar.
