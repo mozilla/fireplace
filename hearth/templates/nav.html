@@ -9,14 +9,13 @@
 {# Actions drop-down (desktop) or settings toggle (mobile). #}
 {{ act_tray(true, is_settings) }}
 
-{# Navigation tabs (Home, New, Popular, Categories, Collections). #}
+{# Navigation tabs (Home, New, Popular, Categories). #}
 <ul class="navbar nav-mkt{% if not is_settings %} active{% endif %}" data-tab="{{ active_tab_mkt }}">
   {# Tab name must match route name. #}
   {{ navtab('homepage', _('Home'), url('homepage'), active_tab_mkt) }}
   {{ navtab('new', _('New'), url('new'), active_tab_mkt) }}
   {{ navtab('popular', _('Popular'), url('popular'), active_tab_mkt) }}
   {{ navtab('categories', _('Categories'), url('categories'), active_tab_mkt) }}
-  {{ navtab('collections', _('Collections'), '#', active_tab_mkt) }}
 </ul>
 
 {# Settings tabs (My Account, My Apps, Help, Feedback). #}
