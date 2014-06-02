@@ -203,17 +203,29 @@ $dot-size = 13px;
     }
 }
 
+.additional-info,
 .bad-app,
 .shots .next,
 .shots .prev {
     display: none;
 }
 
-.product-details .bad-app {
-    color: $maroon;
-    display: block;
-    font-size: 11px;
-    line-height: 12px;
+.product-details {
+    .additional-info {
+        background: $salt-flat-white;
+        display: block;
+        font-size: 12px;
+        line-height: 18px;
+        margin: 20px 0 10px;
+        padding: 6px 10px;
+    }
+
+    .bad-app {
+        color: $maroon;
+        display: block;
+        font-size: 11px;
+        line-height: 12px;
+    }
 }
 
 .island {
@@ -594,7 +606,6 @@ ratings-sidebar() {
     // These rules get applied on mobile detail page and desktop category listing pages.
     .rating {
         bottom: 2px;
-        clear: left;
         padding: 10px 0 10px;
         position: relative;
 
@@ -632,7 +643,7 @@ ratings-sidebar() {
         padding-top: 8px;
     }
     .mkt-tile {
-        padding: 15px 10px;
+        padding: 15px 10px 10px 10px;
         position: relative;
 
         .icon {
@@ -651,9 +662,8 @@ ratings-sidebar() {
         }
     }
     .install {
-        bottom: 10px;
-        position: absolute;
-        right: 10px;
+        clear: left;
+        float: right;
     }
     &.expanded .mkt-tile + .tray {
         &:before, &:after {
