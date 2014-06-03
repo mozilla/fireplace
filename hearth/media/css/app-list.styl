@@ -1,22 +1,13 @@
 @import "lib";
 
 .app-list {
-    .island {
-        background: $white;
-        border-radius: 10px;
-        box-shadow: 0 2px 1px 0 $cement-gray;
-        margin: 10px 10px 0;
-        width: unquote('calc(100% - 20px)');
-
-        > h3 {
-            color: $london-fog-gray;
-            font-size: 20px;
-            font-weight: 300;
-            padding: 25px 10px 10px 8px;
-        }
+    > h3 {
+        color: $london-fog-gray;
+        font-size: 20px;
+        font-weight: 300;
+        padding: 25px 10px 10px 8px;
     }
     .container .item {
-        box-shadow: none;
         display: list-item;
 
         .icon {
@@ -43,12 +34,13 @@
             }
         }
         .mkt-tile {
-            padding: 15px 0;
+            padding: 15px 10px 5px;
         }
     }
     .loadmore {
-        /* TODO: apply this loadmore button style site-wide. */
+        // TODO: apply this loadmore button style site-wide.
         bottom: -65px;
+        left: 10px;
         padding: 15px 0;
         position: absolute;
         width: unquote('calc(100% - 20px)');
@@ -66,15 +58,13 @@
         }
     }
     .mkt-tile .button {
-        /* TODO: apply this install button style site-wide. */
+        // TODO: apply this install button style site-wide.
         background: $sailor-blue;
         border: 0;
         border-radius: 5px;
-        bottom: 26px;
-        box-shadow: 0 1px 1px 0 $cement-gray;
+        bottom: 15px;
+        box-shadow: none;
         height: 28px;
-        min-width: 70px;
-        width: 70px;
 
         &:not([disabled]):hover {
             color: $white;
