@@ -1,8 +1,6 @@
 @import "lib";
 
 .app-list {
-    counter-reset: app-counter;
-
     .island {
         background: $white;
         border-radius: 10px;
@@ -14,24 +12,13 @@
             color: $london-fog-gray;
             font-size: 20px;
             font-weight: 300;
-            padding: 25px 10px 10px;
+            padding: 25px 10px 10px 8px;
         }
     }
     .container .item {
         box-shadow: none;
         display: list-item;
-        margin: 0 0 0 30px;
 
-        &:before {
-            content: counter(app-counter, decimal) ".";
-            counter-increment: app-counter;
-            display: inline;
-            font-size: 15px;
-            left: -20px;
-            line-height: 20px;
-            position: absolute;
-            top: 15px;
-        }
         .icon {
             margin: 0 10px 10px 0;
         }
@@ -54,6 +41,9 @@
             .cnt {
                 display: none;
             }
+        }
+        .mkt-tile {
+            padding: 15px 0;
         }
     }
     .loadmore {
@@ -100,10 +90,6 @@
     .app-list {
         .container .item {
             display: inline-block;
-
-            &:before {
-                display: none;
-            }
 
             h3 {
                 padding-bottom: 2px;
