@@ -6,6 +6,7 @@
   <header class="secondary-header c">
     <h2>{{ _('Reviews') }}</h2>
   </header>
+  <a href="{{ url('app', [slug]) }}" class="back-to-app">{{ _('Back to app') }}</a>
   {% defer (url=apiParams('reviews', {'app': slug}), pluck='objects', id='ratings', paginate='.ratings-placeholder-inner') %}
     <p id="add-review" class="primary-button">
       {% if (response.user.can_rate or not user.logged_in()) or response.user.has_rated %}
