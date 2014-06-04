@@ -59,7 +59,7 @@ suite.run('/', function(test, waitFor) {
     });
 
     waitFor(function() {
-        return suite.exists('.account-settings .persona');
+        return suite.visible('.account-settings .only-logged-out');
     });
 
     test('Tests that we were logged out', function(assert) {
