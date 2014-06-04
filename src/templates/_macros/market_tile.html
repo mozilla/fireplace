@@ -25,7 +25,7 @@
   </div>
 {% endmacro %}
 
-{% macro market_tile(app, link=False, src=None, classes=None, data_attrs=None, tray=True) %}
+{% macro market_tile(app, link=False, src=None, classes=None, data_attrs=None, tray=True, feed_app=False, feed_extras={}) %}
   {% set tag = 'a' if link and app.slug else 'div' %}
   {% set classes = classes or [] %}
   <{{ tag }} class="product mkt-tile {{ classes|join(' ') }}"
@@ -57,7 +57,7 @@
       {{ market_button(app, data_attrs={'manifest_url': app.manifest_url,
                                         'slug': app.slug}) if app.slug }}
       <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-        {% if not link %}
+        {% if not (link or feed_app) %}
           <a href="{{ url('app/ratings', [app.slug]) }}" class="rating_link">
         {% endif %}
         {{ stars(app.ratings.average) }}
@@ -73,7 +73,7 @@
           <span class="cnt short">{{ _('(0)') }}</span>
           <span class="cnt long">{{ _('Not yet reviewed') }}</span>
         {% endif %}
-        {% if not link %}</a>{% endif %}
+        {% if not (link or feed_app) %}</a>{% endif %}
       </div>
     </div>
     {% for notice in app_incompat(app) %}
@@ -82,6 +82,25 @@
     {% if app.is_offline %}
       <div class="additional-info">
         {{ _('Works offline') }}
+      </div>
+    {% endif %}
+    {% if feed_app %}
+      <div class="tile-footer {{ feed_extras.type }}">
+        {% if feed_extras.type == 'description' %}
+          <p class="desc">{{ feed_extras.description }}</p>
+        {% elif feed_extras.type == 'quote' %}
+          <p class="stars large white stars-{{ feed_extras.quote_rating }}">{{ feed_extras.quote_rating }}</p>
+          <blockquote><p>{{ feed_extras.quote_text }}</p></blockquote>
+          <p class="quote-source">
+            {{ _('- {attribution}')|format(
+                 {attribution: feed_extras.quote_source}) }}
+          </p>
+        {% elif feed_extras.type == 'preview' %}
+          {% if feed_extras.description %}
+            <p class="desc">{{ feed_extras.description }}</p>
+          {% endif %}
+          <img src="{{ feed_extras.image }}">
+        {% endif %}
       </div>
     {% endif %}
   </{{ tag }}>

@@ -180,6 +180,9 @@ select[name=rating] {
 
 .stars {
     background: url(../img/pretty/stars_small.svg) no-repeat;
+    &.white {
+        background: url(../img/pretty/stars_small_white.svg) no-repeat;
+    }
     display: inline-block;
     hidetext();
     margin-right: 4px;
@@ -215,6 +218,12 @@ tinyStars() {
     tinyStars();
     .rating .cnt {
         top: -2px;
+    }
+}
+
+.feed {
+    .info {
+        tinyStars();
     }
 }
 

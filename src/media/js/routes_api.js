@@ -19,6 +19,7 @@ define('routes_api', [], function() {
         'feedback': '/api/v2/account/feedback/',
         'consumer_info': '/api/v2/fireplace/consumer-info/',
         'features': '/api/v2/apps/features/',
+        'feed-items': '/api/v2/feed/items/',
 
         'prepare_nav_pay': '/api/v2/webpay/prepare/',
         'payments_status': '/api/v2/webpay/status/{0}/'

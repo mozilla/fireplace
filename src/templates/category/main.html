@@ -1,4 +1,4 @@
-{% include '_macros/collection_tile.html' %}
+{% include '_macros/feed_item.html' %}
 {% include '_macros/market_tile.html' %}
 {% include '_macros/more_button.html' %}
 
@@ -15,19 +15,12 @@
 {% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
 {% set search_url = search_url|urlparams(sort=sort) if sort == 'reviewed' else search_url %}
 
-{% defer (url=endpoint|urlunparam(['sort']), pluck='operator', id='shelf', as='collection') %}
-  {% if this.length and this[0].apps.length and this[0].image %}
-    {{ collection_tile(this[0], link=true, src='home') }}
-  {% endif %}
-{% except %}
-{% end %}
-
-{% defer (url=endpoint|urlunparam(['sort']), pluck='collections', as='collection') %}
-  {% if this and this.length and this[0].apps.length and this[0].image %}
-    {# We're interested in the first item only. #}
-    {{ collection_tile(this[0], link=true, src='home') }}
-  {% endif %}
-{% except %}
+{% defer (url=api('feed-items')) %}
+  <ul class="feed">
+    {% for item in this.objects %}
+      <li>{{ feed_item(item) }}</li>
+    {% endfor %}
+  </ul>
 {% end %}
 
 {% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection') %}

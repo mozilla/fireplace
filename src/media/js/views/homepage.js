@@ -30,47 +30,6 @@ define('views/homepage',
             endpoint: urls.api.unsigned.url('category', [''], params),
             sort: params.sort,
             app_cast: app_models.cast
-        }).done(function() {
-            var shelf = builder.results.shelf.operator;
-            var $collections = $('.collection.main');
-            newsletter.init();
-
-            clamp(document.querySelector('.collection + .desc'), 7);
-
-            if (!shelf.length) {
-                console.log('OSC injection skipped; No shelf');
-                return;
-            }
-
-            shelf = shelf[0];
-            if (shelf.image && $collections.length === 2) {
-                $collections.eq(1).closest('.placeholder').hide();
-            }
-
-            if (!shelf.apps.length) return;
-
-            if ($('.cat-menu [data-cat-slug="' + shelf.slug + '"]').length) {
-                console.log('OSC injection skipped; Already injected');
-                return;
-            }
-
-            // TODO: Remove this when things are different.
-            // This lets the category for the OSC have a name and not just a slug.
-            models('category').cast({
-                name: shelf.name,
-                slug: shelf.slug
-            });
-
-            console.log('Injecting operator shelf into cat dropdown');
-            var item = format.format(
-                catElm,
-                shelf.slug,
-                urls.reverse('collection', [shelf.slug]),
-                utils.translate(shelf.name)
-            );
-
-            // Inject op shelf to the category dropdown after "All Categories".
-            $(item).insertAfter($('.cat-menu [data-cat-slug="all"]').closest('li'));
         });
     };
 });
