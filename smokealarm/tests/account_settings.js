@@ -58,6 +58,10 @@ suite.run('/', function(test, waitFor) {
         suite.press('.logout');
     });
 
+    waitFor(function() {
+        return suite.exists('.account-settings .persona');
+    });
+
     test('Tests that we were logged out', function(assert) {
         assert.URL(/\/settings/);
 
