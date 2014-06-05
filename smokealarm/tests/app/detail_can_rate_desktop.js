@@ -34,7 +34,8 @@ suite.run('/app/can_rate', function(test, waitFor) {
     });
 
     waitFor(function() {
-        return suite.exists('#add-review');
+        // Wait for something indicating logout is done.
+        return suite.visible('.header-button.persona');
     });
 
     test('Assert sign-in to review', function(assert) {
