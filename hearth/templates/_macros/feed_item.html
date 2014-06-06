@@ -27,7 +27,8 @@
         <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
         <div class="info">
           <h1>{{ item.name }}</h1>
-          <p class="author">{{ _('by') }} {{ item.author }}</p>
+          <p class="author">{{ _('by {attribution}')|format(
+                 {attribution: item.author}) }}</p>
         </div>
         {% if not shelf %}
           <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
@@ -46,7 +47,7 @@
           <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
           <div class="info">
             <h1>{{ item.app.name }}</h1>
-            <p class="author">{{ _('by') }} {{ item.app.author }}</p>
+            <p class="author">{{ _('by {attribution}')|format({attribution: item.app.author}) }}</p>
           </div>
           <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
         </section>
