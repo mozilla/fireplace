@@ -23,7 +23,8 @@
   {% if obj.item_type == 'brand' %}
     {% set item = obj.brand %}
     <section class="feedbrand feed-{{ item.layout }} mkt-tile c">
-      <img src="" class="brand">
+      {# TODO: `src` based on the brand `item.type`. Nuke inline style. #}
+      <img src="" class="brand" style="background-color: green">
       <div class="info">
         <h1>{{ feed.get_brand_name(item) }}</h1>
       </div>
