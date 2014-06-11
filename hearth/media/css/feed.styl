@@ -3,6 +3,7 @@
 $txtcolour = #797979;
 $baby-blue = #4cb1ff;
 
+// Main container for feed elements on the homepage.
 .feed {
     list-style-type: none;
     margin: 0 auto;
@@ -64,6 +65,7 @@ $baby-blue = #4cb1ff;
                 background: $seavan-salt-white;
             }
         }
+        // For feed item type == 'quote'.
         blockquote {
             line-height: 23px;
             margin: 0;
@@ -128,6 +130,96 @@ $baby-blue = #4cb1ff;
     }
 }
 
+// Editorial brands.
+.feedbrand {
+    background-color: #fff;
+
+    // TODO: Nuke this once we have images.
+    img {
+        background-color: $baby-blue;
+        height: 60px;
+        width: 60px;
+    }
+    h1 {
+        color: $txtcolour;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 22px;
+        padding: 5px 0 0;
+    }
+    .app-list {
+        clear: both;
+        list-style-type: none;
+        padding-top: 18px;
+
+        img {
+            margin-bottom: 8px;
+        }
+    }
+    h2 {
+        color: $txtcolour;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 18px;
+    }
+    li {
+        position: relative;
+
+        a:hover {
+            text-decoration: none;
+        }
+    }
+    // Editorial brand grid layout.
+    &.feed-grid {
+        li {
+            float: left;
+            height: 120px;
+            margin: 0 20px 0 0;
+            width: 80px;
+
+            &:nth-child(3n) {
+                margin-right: 0;
+            }
+        }
+        a .info {
+            margin-left: 0;
+        }
+        .author, .stars {
+            display: none;
+        }
+        .button, .button[disabled] {
+            background: transparent;
+            color: $baby-blue;
+            cursor: pointer;
+            height: 20px;
+            line-height: 20px;
+            margin: -20px 0 0;
+            padding: 0;
+            position: static;
+            text-align: left;
+            width: auto;
+        }
+        .app-list .button:hover {
+            color: $baby-blue;
+        }
+    }
+    // Editorial brand list layout.
+    &.feed-list {
+        a {
+            color: $txtcolour;
+            position: relative;
+        }
+        h2 {
+            padding: 4px 0 0;
+        }
+        .button {
+            top: 35px;
+            right: 0;
+        }
+    }
+}
+
+// Colored or image background feed tiles.
 .feeditem {
     border-radius: 5px;
     height: 142px;
