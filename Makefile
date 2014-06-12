@@ -1,5 +1,5 @@
 REPO = "fireplace"
-UUID = "8af8c763-da9b-444d-a911-206f9e225b55"
+UUID = "e6a59937-29e4-456a-b636-b69afa8693b4"
 VERSION = `date "+%Y.%m.%d_%H.%M.%S"`
 VERSION_INT = $(shell date "+%Y%m%d%H%M%S")
 TMP = _tmp
@@ -25,26 +25,30 @@ test: clean compile
 # Fireplace (real packaged app)
 package: clean
 	@rm -rf TMP
+	@rm -rf hearth/downloads/icons/*
+	@rm -rf hearth/downloads/screenshots/*
+	@rm -rf hearth/downloads/thumbnails/*
 	@mkdir -p TMP
+	@commonplace langpacks
 	@cp -r hearth TMP/hearth
 
 	@mv TMP/hearth/media/js/settings_package_$(SERVER).js TMP/hearth/media/js/settings_local_package.js
 	@rm -rf TMP/hearth/media/js/{settings_local_hosted.js,settings_package_*.js}
 
 	@pushd TMP && commonplace includes && popd
-	@pushd TMP && commonplace langpacks && popd
 
 	@# We have to have a temp file to work around a bug in Mac's version of sed :(
 	@sed -i'.bak' -e 's/"Marketplace"/"$(NAME)"/g' TMP/hearth/manifest.webapp
 	@sed -i'.bak' -e 's/marketplace\.firefox\.com/$(DOMAIN)/g' TMP/hearth/manifest.webapp
-	@sed -i'.bak' -e 's/{fireplace_package_version}/$(VERSION_INT)/g' TMP/hearth/{manifest.webapp,media/js/include.js}
+	@sed -i'.bak' -e 's/{launch_path}/app.html/g' TMP/hearth/manifest.webapp
+	@sed -i'.bak' -e 's/{fireplace_package_version}/$(VERSION_INT)/g' TMP/hearth/{manifest.webapp,media/js/include.js,app.html}
 
 	@rm -rf package/archives/latest_$(SERVER)
 	@mkdir -p package/archives/latest_$(SERVER)
 	@rm -f package/archives/latest_$(SERVER).zip
 
 	@pushd TMP/hearth && \
-		cat ../../package/files.txt | zip -9 -r ../../package/archives/$(NAME)_$(SERVER)_$(VERSION_INT).zip -@ && \
+		cat ../../package/files.txt | sed '/^#/ d' | zip -9 -r ../../package/archives/$(NAME)_$(SERVER)_$(VERSION_INT).zip -@ && \
 		popd
 	@echo "Created package: package/archives/$(NAME)_$(SERVER)_$(VERSION_INT).zip"
 	@cp package/archives/$(NAME)_$(SERVER)_$(VERSION_INT).zip package/archives/latest_$(SERVER).zip
@@ -77,7 +81,7 @@ serve_package_dev:
 
 
 submit_package:
-	@open 'https://'$(DOMAIN)'/developers/app/marketplace-package/status#upload-new-version'
+	@open 'https://'$(DOMAIN)'/developers/app/marketplace/status#upload-new-version'
 submit_package_prod:
 	make submit_package
 submit_package_stage:
@@ -87,7 +91,7 @@ submit_package_dev:
 
 
 approve_package:
-	@open 'https://'$(DOMAIN)'/reviewers/apps/review/marketplace-package#review-actions'
+	@open 'https://'$(DOMAIN)'/reviewers/apps/review/marketplace#review-actions'
 approve_package_prod:
 	make approve_package
 approve_package_stage:
