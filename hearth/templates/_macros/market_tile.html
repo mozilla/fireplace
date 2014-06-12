@@ -58,6 +58,8 @@
             {{ iarc_names.ratings[app.content_ratings.body][app.content_ratings.rating] }}
           {% endif %}
         </div>
+      {% else %}
+        <div class="content-rating lineclamp vital subdetail">{{ _('Not yet rated') }}</div>
       {% endif %}
       <div class="price vital">{{ app.price_locale if app.payment_required else _('Free') }}</div>
       {{ market_button(app, classes=(['paid'] if app.payment_required),
@@ -78,7 +80,7 @@
         {% else %}
           {# L10n: "(0)" means "0 reviews." #}
           <span class="cnt short">{{ _('(0)') }}</span>
-          <span class="cnt long">{{ _('Not yet rated') }}</span>
+          <span class="cnt long">{{ _('Not yet reviewed') }}</span>
         {% endif %}
         {% if not link %}</a>{% endif %}
       </div>
