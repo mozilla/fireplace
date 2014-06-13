@@ -91,14 +91,53 @@
         return qs.join('&');
     }
 
-    var iframeSrc = MKT_URL + '/?' + buildQS();
-    var i = document.createElement('iframe');
-    i.seamless = true;
-    i.onerror = function() {
-        document.body.classList.add('offline');
-    };
-    i.src = iframeSrc;
-    document.body.appendChild(i);
+    // The iframe src is served over https, which means that if the system date
+    // is too far behind, the user will just end up seeing a certificate error.
+    // We check against an hardcoded year corresponding to the current certificate
+    // creation date, and display an error message if necessary.
+    function isSystemDateIncorrect() {
+        log('Checking for system date ...');
+        var rval = new Date().getFullYear() < 2014;
+        if (rval) {
+            log('System date appears to be incorrect!');
+        } else {
+            log('System date appears to be OK.');
+        }
+        return rval;
+    }
+
+    if (isSystemDateIncorrect()) {
+        document.body.classList.add('dateerror');
+
+        document.querySelector('.try-again').addEventListener('click', function() {
+            if (!isSystemDateIncorrect()) {
+                window.location.reload();
+            }
+        }, false);
+    } else {
+        buildIframe();
+
+        // When refocussing the app, toggle the iframe based on `navigator.onLine`.
+        window.addEventListener('focus', toggleOffline, false);
+
+        toggleOffline(true);
+
+        document.querySelector('.try-again').addEventListener('click', function() {
+            toggleOffline();
+        }, false);
+    }
+
+    function buildIframe() {
+        // Add the iframe with the actual Marketplace to the document.
+        var iframeSrc = MKT_URL + '/?' + buildQS();
+        var i = document.createElement('iframe');
+        i.seamless = true;
+        i.onerror = function() {
+            document.body.classList.add('offline');
+        };
+        i.src = iframeSrc;
+        document.body.appendChild(i);
+    }
 
     log('Activity support?', !!navigator.mozSetMessageHandler);
     if (navigator.mozSetMessageHandler) {
@@ -122,9 +161,6 @@
         }
     }, false);
 
-    // When refocussing the app, toggle the iframe based on `navigator.onLine`.
-    window.addEventListener('focus', toggleOffline, false);
-
     function toggleOffline(init) {
         log('Checking for network connection ...');
         if (navigator.onLine === false) {
@@ -140,12 +176,6 @@
             }
         }
     }
-
-    toggleOffline(true);
-
-    document.querySelector('.try-again').addEventListener('click', function(e) {
-        toggleOffline();
-    }, false);
 
     var languages = ['cs', 'de', 'en-US', 'es', 'fr', 'ga-IE', 'it', 'pl', 'pt-BR'];
 
@@ -198,7 +228,7 @@
     var transBlocks = document.querySelectorAll('[data-l10n]');
     for (var i = 0; i < transBlocks.length; i++) {
         transName = transBlocks[i].dataset.l10n;
-        if (locale in translations[transName]) {
+        if (transName in translations && locale in translations[transName]) {
             transBlocks[i].innerHTML = translations[transName][locale];
         }
     }

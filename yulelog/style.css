@@ -13,7 +13,7 @@ body {
   overflow: hidden;
 }
 
-.offline {
+.offline, .dateerror {
   background: #f1f1f1;
   color: #333;
 }
@@ -28,18 +28,27 @@ iframe {
   width: 100%;
 }
 
-.offline-screen,
-.offline iframe {
+.global-error-screen,
+.offline-error-screen,
+.date-error-screen,
+.offline iframe,
+.dateerror iframe {
   display: none;
 }
 
-.offline .offline-screen {
+.offline .global-error-screen,
+.dateerror .global-error-screen {
   display: table;
   height: 100%;
   width: 100%;
 }
 
-.offline-screen > div {
+.offline .offline-error-screen,
+.dateerror .date-error-screen {
+  display: block;
+}
+
+.global-error-screen > div {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
@@ -53,9 +62,9 @@ iframe {
   width: 100%;
 }
 
-.offline-message {
+.error-message {
   font-weight: 600;
-  margin: 15px auto;
+  margin: 25px auto;
   width: 80%;
 }
 
