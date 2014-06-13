@@ -17,87 +17,94 @@
   </a>
 {% endmacro %}
 
-{% macro feed_item(obj) %}
+{% macro feed_brand(feed_item) %}
+  {% set brand = feed_item.brand %}
 
-  {# --== Editorial Brands ==-- #}
-  {% if obj.item_type == 'brand' %}
-    {% set item = obj.brand %}
-    <section class="feedbrand feed-{{ item.layout }} mkt-tile c">
-      {# TODO: `src` based on the brand `item.type`. Nuke inline style. #}
-      <img src="" class="brand" style="background-color: green">
+  <section class="feedbrand feed-{{ brand.layout }} mkt-tile c">
+    {# TODO: `src` based on the brand `brand.type`. Nuke inline style. #}
+    <img src="" class="brand" style="background-color: green">
+    <div class="info">
+      <h1>{{ feed.get_brand_name(brand) }}</h1>
+    </div>
+    <ul class="app-list">
+      {% for app in brand.apps %}
+        <li>{{ mini_tile(app) }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endmacro %}
+
+{% macro feed_collection(feed_item) %}
+  {% set coll = feed_item.collection %}
+  {% set color = coll.background_color %}
+  {% set shelf = True if coll.type == 'shelf' else False %}
+
+  <a href="{{ obj.resource_url }}" class="fanchor">
+    <section class="feeditem{{ ' shelf' if shelf }}
+                    {{ 'mega' if coll.description and not shelf }}
+                    {{ 'full' if not shelf }}"
+                    {% if not coll.description or not coll.background_image %}
+                      style="background-color: {{ color|hex2rgba('.4') }}"
+                    {% elif coll.background_image %}
+                      style="background-image: url({{ coll.background_image }})"
+                   {% endif %}>
+      {% if not shelf %}
+        <ul class="app-icons">
+          {% for app in coll.apps %}
+            <li><img src="{{ app.icons[64] }}" alt="{{ app.name }}"></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
       <div class="info">
-        <h1>{{ feed.get_brand_name(item) }}</h1>
+        <h1>{{ coll.name }}</h1>
+        <p class="author">{{ coll.author }}</p>
       </div>
-      <ul class="app-list">
-        {% for app in item.apps %}
-          <li>{{ mini_tile(app) }}</li>
-        {% endfor %}
-      </ul>
+      {% if not shelf %}
+        <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
+      {% endif %}
+      <div class="desc">{{ coll.description }}</div>
     </section>
-  {# --== Collection Types (collection, operator shelf) ==-- #}
-  {% elif obj.item_type == 'collection' %}
-    {% set item = obj.collection %}
-    {% set color = item.background_color %}
-    {% set shelf = True if item.collection_type == 'shelf' else False %}
-    <a href="{{ obj.resource_url }}" class="fanchor">
-      <section class="feeditem{{ ' shelf' if shelf }}
-                      {{ 'mega' if item.description and not shelf }}
-                      {{ 'full' if not shelf }}"
-                      {% if not item.description or not item.background_image %}
-                        style="background-color: {{ color|hex2rgba('.4') }}"
-                      {% else %}
-                        {% if item.background_image %}
-                          style="background-image: url({{ item.background_image }})"
-                        {% endif %}
-                     {% endif %}>
-        {% if not shelf %}
+  </a>
+{% endmacro %}
+
+{% macro feed_app(feed_item) %}
+  {% set feed_app = feed_item.app %}
+  {% set color = feed_app.background_color %}
+
+  <a href="{{ obj.resource_url }}" class="fanchor">
+    {% if indexOf([feed.FEEDAPP_ICON, feed.FEEDAPP_IMAGE], feed_app.type) != -1 %}
+      <section class="feeditem"
+               {% if not item.description or not item.background_image %}
+                 style="background-color: {{ color|hex2rgba('.4') }}"
+               {% elif item.background_image %}
+                 style="background-image: url({{ item.background_image }})"
+               {% endif %}>
+        {% if feed_app.type == feed.FEEDAPP_ICON %}
           <ul class="app-icons">
-            {% for appitem in item.apps %}
-              <li><img src="{{ appitem.icons[64] }}" alt="{{ appitem.name }}"></li>
-            {% endfor %}
+            <li><img src="{{ feed_app.app.icons[64] }}" alt="{{ feed_app.app.name }}"></li>
           </ul>
         {% endif %}
         <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
         <div class="info">
-          <h1>{{ item.name }}</h1>
-          <p class="author">{{ item.author }}</p>
-        </div>
-        {% if not shelf %}
-          <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
-        {% endif %}
-        <div class="desc">{{ item.description }}</div>
-      </section>
-    </a>
-  {# --== FeedApp Types ==-- #}
-  {% elif obj.item_type == 'app' %}
-    <a href="{{ obj.resource_url }}" class="fanchor">
-    {% set item = obj.app %}
-    {% set color = item.background_color %}
-    {% if item.type == 'icon' or item.type == 'image' %}
-      <section class="feeditem" {% if not item.description or not item.background_image %}style="background-color: {{ color|hex2rgba('.4') }}"{% elif item.background_image %}style="background-image: url({{ item.background_image }})"{% endif %}>
-        {% if item.type == 'icon' %}
-          <ul class="app-icons">
-            <li><img src="{{ item.app.icons[64] }}" alt="{{ item.app.name }}"></li>
-          </ul>
-        {% endif %}
-        <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
-        <div class="info">
-          <h1>{{ item.app.name }}</h1>
-          <p class="author">{{ item.app.author }}</p>
+          <h1>{{ feed_app.app.name }}</h1>
+          <p class="author">{{ feed_app.app.author }}</p>
         </div>
         <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
       </section>
-    {% elif item.type %}
-      {% set extras = {
-        type: item.type,
-        image: item.preview.image_url,
-        description: item.description,
-        quote_text: item.pullquote_text,
-        quote_rating: item.pullquote_rating,
-        quote_source: item.pullquote_attribute
-      } %}
-        {{ market_tile(item.app, tray=False, classes=['feed-app'], feed_app=True, feed_extras=extras) }}
+    {% elif feed_app.type %}
+      {{ market_tile(feed_app.app, tray=False, classes=['feed-app'],
+                     feed_app=True, feed_extras=feed_app|feed_app_extras) }}
     {% endif %}
-    </a>
+  </a>
+{% endmacro %}
+
+{% macro feed_item(obj) %}
+  {% if obj.item_type == 'app' %}
+    {{ feed_app(obj) }}
+  {% elif obj.item_type == 'brand' %}
+    {{ feed_brand(obj) }}
+  {% elif obj.item_type == 'collection' %}
+    {{ feed_collection(obj) }}
   {% endif %}
 {% endmacro %}
