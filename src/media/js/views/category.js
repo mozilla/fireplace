@@ -24,7 +24,7 @@ define('views/category',
             delete params.src;
         }
 
-        builder.start('category/main.html', {
+        builder.start('category.html', {
             category: category,
             endpoint: urls.api.unsigned.url('category', [category], params),
             sort: params.sort,

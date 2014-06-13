@@ -1,0 +1,23 @@
+{% include '_macros/feed_item.html' %}
+{% include '_macros/market_tile.html' %}
+{% include '_macros/more_button.html' %}
+
+{% set source = 'all' %}
+
+{% defer (url=api('feed-items')) %}
+  <ul class="feed">
+    {% for item in this.objects %}
+      <li>{{ feed_item(item) }}</li>
+    {% endfor %}
+  </ul>
+{% placeholder %}
+  <p class="spinner padded alt"></p>
+{% except %}
+  <p class="no-results">
+    {% if error == 400 or error == 404 %}
+      {{ _('The category you requested does not exist.') }}
+    {% elif error == 500 %}
+      {{ _('An internal server error occurred. Please try again later.') }}
+    {% endif %}
+  </p>
+{% end %}
