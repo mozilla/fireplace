@@ -35,6 +35,10 @@ def update():
     with lcd(FIREPLACE):
         local('npm install')
         local('npm install --force commonplace@0.3.2')
+
+        if settings.ZAMBONI_DIR:
+            build_package()
+
         local('commonplace includes')
         local('commonplace langpacks')
 
@@ -42,8 +46,8 @@ def update():
 @task
 def deploy():
     if settings.ZAMBONI_DIR:
-        build_package()
         upload_package()
+
     helpers.deploy(name=settings.PROJECT_NAME,
                    app_dir='fireplace',
                    env=settings.ENV,
