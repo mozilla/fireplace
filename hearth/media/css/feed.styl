@@ -10,9 +10,6 @@ $baby-blue = #4cb1ff;
     padding: 10px 0;
     width: 300px;
 
-    .content-rating, .rating .cnt, .price {
-        display: none;
-    }
     .mkt-tile {
         background-color: #fff;
         border-radius: 5px;
@@ -44,26 +41,6 @@ $baby-blue = #4cb1ff;
         }
         .rating {
             padding: 5px 0;
-        }
-        .button {
-            background: $baby-blue;
-            border-radius: 5px;
-            border: 0;
-            box-shadow: none;
-            font-size: 12px;
-            height: 25px;
-            line-height: 25px;
-            padding: 0;
-            position: absolute;
-            right: 10px;
-            top: 54px;
-
-            &:not([disabled]):hover {
-                color: $white;
-            }
-            &[disabled] {
-                background: $seavan-salt-white;
-            }
         }
         // For feed item type == 'quote'.
         blockquote {
@@ -219,8 +196,10 @@ $baby-blue = #4cb1ff;
 
 // Colored or image background feed tiles.
 .feeditem {
+    background-size: cover;
     border-radius: 5px;
     height: 142px;
+    margin: 0 auto;
     margin-bottom: 15px;
     overflow: hidden;
     position: relative;
@@ -327,5 +306,45 @@ $baby-blue = #4cb1ff;
         .desc, .author {
             display: none;
         }
+    }
+}
+
+// Listing detail pages.
+.feed-listing-detail {
+    .feeditem {
+        border-radius: 0;
+        width: 100%
+    }
+}
+
+
+.feed,
+.feed-listing-detail {
+    .content-rating,
+    .rating .cnt,
+    .price {
+        display: none;
+    }
+}
+
+// Upstream later.
+.mkt-tile .button {
+    background: $baby-blue;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: none;
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    padding: 0;
+    position: absolute;
+    right: 10px;
+    top: 54px;
+
+    &:not([disabled]):hover {
+        color: $white;
+    }
+    &[disabled] {
+        background: $seavan-salt-white;
     }
 }

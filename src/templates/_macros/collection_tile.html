@@ -1,6 +1,6 @@
 {% macro collection_tile(collection, link=false, src='') %}
     <section class="collection main blue"
-      style="background-image: url({{ collection.image }})">
+      style="background-image: url({{ collection.background_image }})">
       {% if link %}<a class="ghostlink" href="{{ url('collection', [collection.slug])|urlparams(src=src) }}">{% endif %}
         <header
           style="{% if collection.background_color %}background-color: {{ collection.background_color|hex2rgba('.8') }};{% endif %}{% if collection.text_color %}color: {{ collection.text_color }};{% endif %}">

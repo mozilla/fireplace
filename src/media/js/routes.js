@@ -31,6 +31,9 @@ var routes = [
 
     {'pattern': '^/collection/([^/<>"\']+)/?$', 'view_name': 'collection'},
 
+    // Feed.
+    {'pattern': '^/feed/collection/([^/<>"\']+)/?$', 'view_name': 'feed_collection'},
+
     {'pattern': '^/debug$', 'view_name': 'debug'},
     {'pattern': '^/debug/features$', 'view_name': 'debug_features'},
     {'pattern': '^/credits$', 'view_name': 'credits'},
