@@ -40,9 +40,12 @@
         </div>
         <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
       </section>
-    {% elif feed_app.type %}
-      {{ market_tile(feed_app.app, tray=False, classes=['feed-app'],
-                     feed_app=True, feed_extras=feed_app|feed_app_extras) }}
+    {% else %}
+      {{ market_tile(feed_app.app,
+                     classes=['feed-app'],
+                     feed_app=feed_app,
+                     tray=False,
+                     rating_link=False) }}
     {% endif %}
   </a>
 {% endmacro %}

@@ -8,7 +8,7 @@
 <div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication">
 <section class="main product-details listing expanded c">
   {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
-    {{ market_tile(this, src='detail') }}
+    {{ market_tile(this, src='detail', rating_link=True) }}
   {% placeholder %}
     <div class="product mkt-tile">
       <div class="info">
