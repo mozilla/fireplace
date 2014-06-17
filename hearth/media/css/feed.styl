@@ -1,11 +1,11 @@
 @import 'lib';
 
-$mobile-tile-width: 300px;
-$horizontal-tile-padding: 10px;
-$vertical-tile-padding: 15px;
-$vertical-margin: 18px;
-$vertical-text-margin: 10px;
-$vertical-tile-margin: 10px;
+$mobile-tile-width = 300px;
+$horizontal-tile-padding = 10px;
+$vertical-tile-padding = 15px;
+$vertical-margin = 18px;
+$vertical-text-margin = 10px;
+$vertical-tile-margin = 10px;
 
 // Main container for feed elements on the homepage.
 .feed {
@@ -20,7 +20,7 @@ $vertical-tile-margin: 10px;
         box-shadow: 0 1px 1px $cement-gray;
         color: $hungry-text;
         margin-bottom: $vertical-tile-margin;
-        padding: $tile-padding $horizontal-tile-padding;
+        padding: $vertical-tile-padding $horizontal-tile-padding;
         position: relative;
 
         img {
@@ -389,6 +389,28 @@ $vertical-tile-margin: 10px;
         }
         &.mega.full .desc {
             top: 155px;
+        }
+    }
+}
+
+.app-list {
+    .loadmore {
+        bottom: -65px;
+        left: 10px;
+        padding: 15px 0;
+        position: absolute;
+        width: unquote('calc(100% - 20px)');
+
+        button {
+            background: $earl-gray;
+            border: 0;
+            box-shadow: 0 1px 1px 0 $london-fog-gray;
+            color: $white;
+
+            &:hover {
+                background: $earl-gray;
+                color: $white;
+            }
         }
     }
 }
