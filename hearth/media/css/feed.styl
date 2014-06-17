@@ -1,8 +1,5 @@
 @import 'lib';
 
-$breezy-blue = #4cb1ff;
-$text = #797979;
-
 $mobile-tile-width: 300px;
 $horizontal-tile-padding: 10px;
 $vertical-tile-padding: 15px;
@@ -21,7 +18,7 @@ $vertical-tile-margin: 10px;
         background-color: #fff;
         border-radius: 5px;
         box-shadow: 0 1px 1px $cement-gray;
-        color: $text;
+        color: $hungry-text;
         margin-bottom: $vertical-tile-margin;
         padding: $tile-padding $horizontal-tile-padding;
         position: relative;
@@ -51,7 +48,7 @@ $vertical-tile-margin: 10px;
             margin-top: -2px;
         }
         h3 {
-            color: $text;
+            color: $hungry-text;
             font-weight: 500;
             padding: $vertical-text-margin 0 0;
         }
@@ -119,7 +116,7 @@ $vertical-tile-margin: 10px;
         }
         .desc {
             background-color: #fff;
-            color: $text;
+            color: $hungry-text;
         }
     }
     .content-rating,
@@ -161,7 +158,7 @@ $vertical-tile-margin: 10px;
         width: 60px;
     }
     .feed-tile-header {
-        color: $text;
+        color: $hungry-text;
         font-size: 15px;
         font-weight: 500;
         line-height: 22px;
@@ -176,7 +173,7 @@ $vertical-tile-margin: 10px;
         }
     }
     .app-name {
-        color: $text;
+        color: $hungry-text;
         font-size: 12px;
         font-weight: 500;
         line-height: $vertical-margin;
@@ -248,7 +245,7 @@ $vertical-tile-margin: 10px;
         margin-bottom: $vertical-margin;
     }
     a {
-        color: $text;
+        color: $hungry-text;
         position: relative;
     }
     h2 {
@@ -393,29 +390,5 @@ $vertical-tile-margin: 10px;
         &.mega.full .desc {
             top: 155px;
         }
-    }
-}
-
-// Upstream later.
-.feed .mkt-tile .button {
-    background: $breezy-blue;
-    border-radius: 5px;
-    border: 0;
-    bottom: 0;
-    box-shadow: 0 1px 0 darken($breezy-blue, 10%);
-    font-size: 12px;
-    height: 25px;
-    line-height: 25px;
-    min-width: 65px;
-    padding: 0;
-    position: absolute;
-    right: 0;
-
-    &:not([disabled]):hover {
-        color: $white;
-    }
-    &[disabled] {
-        background: $seavan-salt-white;
-        box-shadow: none;
     }
 }
