@@ -1,22 +1,29 @@
 @import 'lib';
 
-$txtcolour = #797979;
-$baby-blue = #4cb1ff;
+$breezy-blue = #4cb1ff;
+$text = #797979;
+
+$mobile-tile-width: 300px;
+$horizontal-tile-padding: 10px;
+$vertical-tile-padding: 15px;
+$vertical-margin: 18px;
+$vertical-text-margin: 10px;
+$vertical-tile-margin: 10px;
 
 // Main container for feed elements on the homepage.
 .feed {
     list-style-type: none;
     margin: 0 auto;
     padding: 10px 0;
-    width: 300px;
+    width: $mobile-tile-width;
 
     .mkt-tile {
         background-color: #fff;
         border-radius: 5px;
         box-shadow: 0 1px 1px $cement-gray;
-        color: $txtcolour;
-        margin-bottom: 10px;
-        padding: 15px 10px;
+        color: $text;
+        margin-bottom: $vertical-tile-margin;
+        padding: $tile-padding $horizontal-tile-padding;
         position: relative;
 
         img {
@@ -38,15 +45,15 @@ $baby-blue = #4cb1ff;
         .author,
         h3 {
             font-size: 12px;
-            line-height: 18px;
+            line-height: $vertical-margin;
         }
         .author {
             margin-top: -2px;
         }
         h3 {
-            color: $txtcolour;
+            color: $text;
             font-weight: 500;
-            padding: 10px 0 0;
+            padding: $vertical-text-margin 0 0;
         }
         .rating {
             padding: 5px 0;
@@ -65,13 +72,13 @@ $baby-blue = #4cb1ff;
             }
         }
         .quote {
-            background-color: $baby-blue;
+            background-color: $breezy-blue;
             color: #fff;
             left: -10px;
             padding: 5px 0 15px;
             position: relative;
             top: 15px;
-            width: 300px;
+            width: $mobile-tile-width;
         }
         .description .desc {
             padding-top: 15px;
@@ -85,11 +92,17 @@ $baby-blue = #4cb1ff;
                     margin-top: 10px;
                 }
             }
-            img {
+            .feed-app-preview-container {
                 border-radius: 0 0 5px 5px;
+                overflow: hidden;
                 margin: 15px 0 -16px -10px;
-                max-height: 160px;
-                width: 300px;
+                height: 150px;
+                width: $mobile-tile-width;
+
+                .feed-app-preview {
+                    width: 100%;
+                    height: auto;
+                }
             }
         }
         .tile-footer {
@@ -106,7 +119,7 @@ $baby-blue = #4cb1ff;
         }
         .desc {
             background-color: #fff;
-            color: $txtcolour;
+            color: $text;
         }
     }
     .content-rating,
@@ -115,7 +128,7 @@ $baby-blue = #4cb1ff;
         display: none;
     }
     .group-subheader {
-        margin-bottom: 18px;
+        margin-bottom: $vertical-margin;
     }
 }
 
@@ -148,7 +161,7 @@ $baby-blue = #4cb1ff;
         width: 60px;
     }
     .feed-tile-header {
-        color: $txtcolour;
+        color: $text;
         font-size: 15px;
         font-weight: 500;
         line-height: 22px;
@@ -157,21 +170,20 @@ $baby-blue = #4cb1ff;
     .app-list {
         clear: both;
         list-style-type: none;
-        padding-top: 18px;
 
         img {
             margin-bottom: 8px;
         }
     }
     .app-name {
-        color: $txtcolour;
+        color: $text;
         font-size: 12px;
         font-weight: 500;
-        line-height: 18px;
+        line-height: $vertical-margin;
     }
     .mini-app {
         height: 60px;
-        margin-bottom: 18px;
+        margin-top: $vertical-margin;
 
         .info {
             height: 60px;
@@ -181,7 +193,7 @@ $baby-blue = #4cb1ff;
 
 
 // Editorial brand grid layout.
-.feed-layout-grid.multi-app-tile {
+.feed .feed-layout-grid.multi-app-tile {
     .app {
         float: left;
         height: 120px;
@@ -203,7 +215,7 @@ $baby-blue = #4cb1ff;
     .button,
     .button[disabled] {
         background: transparent;
-        color: $baby-blue;
+        color: $breezy-blue;
         cursor: pointer;
         height: 20px;
         line-height: 20px;
@@ -214,15 +226,29 @@ $baby-blue = #4cb1ff;
         width: auto;
     }
     .app-list .button:hover {
-        color: $baby-blue;
+        color: $breezy-blue;
+    }
+    .mini-app {
+        height: 110px;
+        margin-top: $vertical-margin;
+
+        img {
+            margin-bottom: $vertical-text-margin;
+        }
+        .info {
+            height: 30px;
+        }
     }
 }
 
 
 // Editorial brand list layout.
 .feed-layout-list {
+    .info {
+        margin-bottom: $vertical-margin;
+    }
     a {
-        color: $txtcolour;
+        color: $text;
         position: relative;
     }
     h2 {
@@ -243,7 +269,7 @@ $baby-blue = #4cb1ff;
     margin-bottom: 15px;
     overflow: hidden;
     position: relative;
-    width: 300px;
+    width: $mobile-tile-width;
 
     .curve,
     .alt-curve {
@@ -268,7 +294,7 @@ $baby-blue = #4cb1ff;
     }
     .author {
         font-size: 12px;
-        line-height: 18px;
+        line-height: $vertical-margin;
     }
     h1, .author, img {
         color: #fff;
@@ -371,12 +397,12 @@ $baby-blue = #4cb1ff;
 }
 
 // Upstream later.
-.mkt-tile .button {
-    background: $baby-blue;
+.feed .mkt-tile .button {
+    background: $breezy-blue;
     border-radius: 5px;
     border: 0;
     bottom: 0;
-    box-shadow: 0 1px 0 darken($baby-blue, 10%);
+    box-shadow: 0 1px 0 darken($breezy-blue, 10%);
     font-size: 12px;
     height: 25px;
     line-height: 25px;

@@ -119,7 +119,9 @@
       {% if feed_app.description %}
         <p class="desc">{{ feed_app.description }}</p>
       {% endif %}
-      <img src="{{ feed_app.background_image }}">
+      <div class="feed-app-preview-container">
+        <img class="feed-app-preview" src="{{ feed_app.preview.image_url }}">
+      </div>
     {% endif %}
   </div>
 {% endmacro %}
