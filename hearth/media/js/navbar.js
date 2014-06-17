@@ -5,8 +5,8 @@ define('navbar', ['jquery', 'jquery.hammer', 'log', 'navigation', 'nunjucks', 's
     var console = log('navbar');
 
     // Tab name must match route/view name to match window.location.pathname.
-    var tabsMkt = ['homepage', 'new', 'popular', 'categories', 'collections'];
-    var tabsSettings = ['settings', 'purchases', 'help', 'feedback'];
+    var tabsMkt = ['homepage', 'new', 'popular', 'categories'];
+    var tabsSettings = ['settings', 'purchases', /*'help',*/ 'feedback'];
 
     // Navbar settings + Marketplace buttons.
     function initNavbarButtons() {
