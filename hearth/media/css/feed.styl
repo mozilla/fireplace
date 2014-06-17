@@ -1,5 +1,7 @@
 @import 'lib';
 
+$view-all-blue = #5BBAFF;
+
 $mobile-tile-width = 300px;
 $horizontal-tile-padding = 10px;
 $vertical-tile-padding = 15px;
@@ -150,6 +152,35 @@ $vertical-tile-margin = 10px;
             text-decoration: none;
         }
     }
+    .view-all {
+        color: $view-all-blue;
+        border-bottom: 1px solid $view-all-blue;
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 16px;
+        margin: $vertical-margin auto 0 50%;
+        padding-bottom: 10px;
+        text-align: center;
+        transform: translate(-50%, 0);
+        width: 170px;
+
+        &:before,
+        &:after {
+            border-left: 1px solid $view-all-blue;
+            bottom: 0;
+            content: "";
+            height: 5px;
+            position: absolute;
+            width: 0;
+        }
+        &:before {
+            left: 0;
+        }
+        &:after {
+            right: 0;
+        }
+    }
 }
 
 .feed .multi-app-tile.mkt-tile {
@@ -168,6 +199,7 @@ $vertical-tile-margin = 10px;
     }
     .app-list {
         clear: both;
+        display: inline-block;
         list-style-type: none;
 
         img {
@@ -242,9 +274,6 @@ $vertical-tile-margin = 10px;
 
 // Editorial brand list layout.
 .feed-layout-list {
-    .info {
-        margin-bottom: $vertical-margin;
-    }
     a {
         color: $hungry-text;
         position: relative;

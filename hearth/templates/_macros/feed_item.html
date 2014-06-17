@@ -1,8 +1,8 @@
 {% include '_macros/market_tile.html' %}
 {% from "_macros/market_button.html" import market_button %}
 
-{% macro mini_tile(app) %}
-  <li class="app mini-app">
+{% macro mini_tile(app, hidden=False) %}
+  <li class="app mini-app {{ 'hidden' if hidden }}">
     <a href="{{ url('app', [app.slug])|urlparams(src=src) }}" class="app-link c">
       <img src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}">
       <div class="info">
@@ -61,9 +61,13 @@
     </div>
     <ul class="app-list">
       {% for app in brand.apps %}
-        {{ mini_tile(app) }}
+        {# Show the first X apps, hide the rest. #}
+        {{ mini_tile(app, hidden=loop.index0 >= feed.MAX_BRAND_APPS) }}
       {% endfor %}
     </ul>
+    {% if brand.apps.length > feed.MAX_BRAND_APPS %}
+      <a class="view-all">{{ _('View all apps') }}</a>
+    {% endif %}
   </section>
 {% endmacro %}
 

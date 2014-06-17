@@ -156,7 +156,9 @@ define('feed',
         grouped_apps.push(current_group);
 
         return grouped_apps;
-    };
+    }
+
+    var MAX_BRAND_APPS = 6;
 
     return {
         BRAND_TYPES: BRAND_TYPES,
@@ -174,6 +176,7 @@ define('feed',
         FEEDAPP_PREVIEW: FEEDAPP_PREVIEW,
         FEEDAPP_TYPES: FEEDAPP_TYPES,
         get_brand_name: get_brand_name,
-        group_apps: group_apps
+        group_apps: group_apps,
+        MAX_BRAND_APPS: MAX_BRAND_APPS,
     };
 });
