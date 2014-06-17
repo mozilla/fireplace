@@ -15,7 +15,7 @@ $baby-blue = #4cb1ff;
         border-radius: 5px;
         box-shadow: 0 1px 1px $cement-gray;
         color: $txtcolour;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         padding: 15px 10px;
         position: relative;
 
@@ -127,7 +127,7 @@ $baby-blue = #4cb1ff;
     }
 }
 
-.multi-app-tile {
+.feed .multi-app-tile.mkt-tile {
     background-color: #fff;
 
     img {
@@ -150,6 +150,15 @@ $baby-blue = #4cb1ff;
             margin-bottom: 8px;
         }
     }
+    .app-name {
+        color: $txtcolour;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 18px;
+    }
+    .mini-app .button {
+        top: 36px;
+    }
 }
 
 // Editorial brand grid layout.
@@ -160,19 +169,13 @@ $baby-blue = #4cb1ff;
         margin: 0 20px 0 0;
         width: 80px;
 
-        &:nth-child(3n) {
+         &:nth-child(3n) {
             margin-right: 0;
         }
+        .info {
+            margin-left: 0;
+        }
 
-    }
-    .app-name {
-        color: $txtcolour;
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 18px;
-    }
-    a .info {
-        margin-left: 0;
     }
     .author,
     .stars {
@@ -223,7 +226,8 @@ $baby-blue = #4cb1ff;
     position: relative;
     width: 300px;
 
-    .curve, .alt-curve {
+    .curve,
+    .alt-curve {
         border-radius: 50%;
         height: 400px;
         left: -350px;
@@ -328,11 +332,22 @@ $baby-blue = #4cb1ff;
 }
 
 .feed-landing {
+    &.feed {
+        padding-top: 0;
+    }
     .feed-item {
         border-radius: 0;
         position: relative;
         right: 10px;
         width: 320px;
+
+        .curve,
+        .alt-curve {
+            left: -340px;
+        }
+        &.mega.full .desc {
+            top: 155px;
+        }
     }
 }
 

@@ -11,7 +11,7 @@
             <h1 class="feed-tile-header">{{ group.name }}</h1>
             <ul class="app-list">
               {% for app in group.apps %}
-                <li class="app">{{ mini_tile(app) }}</li>
+                {{ mini_tile(app) }}
               {% endfor %}
             </ul>
           </section>
