@@ -5,7 +5,7 @@
   <a href="{{ url('app', [app.slug])|urlparams(src=src) }}" class="c">
     <img src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}">
     <div class="info">
-      <h2>{{ app.name|translate(app) }}</h2>
+      <h2 class="app-name">{{ app.name|translate(app) }}</h2>
       <p class="author lineclamp">{{ app.author }}</p>
       <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
         {{ stars(app.ratings.average) }}
@@ -22,7 +22,7 @@
 
   <a href="{{ url('app', [feed_app.app.slug]) }}" class="fanchor">
     {% if indexOf([feed.FEEDAPP_ICON, feed.FEEDAPP_IMAGE], feed_app.type) != -1 %}
-      <section class="feeditem"
+      <section class="feed-item"
                {% if not feed_app.description and not feed_app.background_image %}
                  style="background-color: {{ color|hex2rgba('.4') }}"
                {% elif feed_app.background_image %}
@@ -51,15 +51,15 @@
 {% endmacro %}
 
 {% macro feed_brand(brand) %}
-  <section class="feedbrand feed-{{ brand.layout }} mkt-tile c">
+  <section class="feed-brand feed-layout-{{ brand.layout }} multi-app-tile mkt-tile c">
     {# TODO: `src` based on the brand `brand.type`. Nuke inline style. #}
-    <img src="" class="brand" style="background-color: green">
+    <img src="" alt="" class="brand" style="border: 1px solid #ddd;">
     <div class="info">
-      <h1>{{ feed.get_brand_name(brand) }}</h1>
+      <h1 class="feed-tile-header">{{ feed.get_brand_name(brand) }}</h1>
     </div>
     <ul class="app-list">
       {% for app in brand.apps %}
-        <li>{{ mini_tile(app) }}</li>
+        <li class="app">{{ mini_tile(app) }}</li>
       {% endfor %}
     </ul>
   </section>
@@ -70,7 +70,7 @@
   {% set shelf = True if coll.type == 'shelf' else False %}
 
   <a href="{{ url('feed_collection', [coll.slug]) }}" class="fanchor">
-    <section class="feeditem{{ ' shelf' if shelf }}
+    <section class="feed-item{{ ' shelf' if shelf }}
                     {{ 'mega' if coll.description and not shelf }}
                     {{ 'full' if not shelf }}"
                     {% if not coll.description and not coll.background_image %}

@@ -1,5 +1,5 @@
 define('feed',
-    ['l10n', 'utils_local'], function(l10n, utils_local) {
+    ['l10n', 'nunjucks', 'utils_local'], function(l10n, nunjucks, utils_local) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -129,6 +129,35 @@ define('feed',
         return BRAND_TYPES[item.type][0];
     }
 
+    function group_apps(apps) {
+        // Breaks up a list of apps with group attributions into a list of
+        // groups {'name': <str>, 'apps': <arr>}.
+        if (!apps || !apps[0].group) {
+            return apps;
+        }
+
+        var grouped_apps = [];
+        var current_group = {
+            name: apps[0].group,
+            apps: []
+        };
+
+        for (var i = 0; i < apps.length; i++) {
+            if (apps[i].group != current_group.name) {
+                // New group.
+                grouped_apps.push(current_group);
+                current_group = {
+                    name: apps[i].group,
+                    apps: []
+                };
+            }
+            current_group.apps.push(apps[i]);
+        }
+        grouped_apps.push(current_group);
+
+        return grouped_apps;
+    };
+
     return {
         BRAND_TYPES: BRAND_TYPES,
         BRAND_TYPES_CHOICES: BRAND_TYPES_CHOICES,
@@ -144,6 +173,7 @@ define('feed',
         FEEDAPP_QUOTE: FEEDAPP_QUOTE,
         FEEDAPP_PREVIEW: FEEDAPP_PREVIEW,
         FEEDAPP_TYPES: FEEDAPP_TYPES,
-        get_brand_name: get_brand_name
+        get_brand_name: get_brand_name,
+        group_apps: group_apps
     };
 });

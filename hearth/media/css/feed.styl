@@ -71,6 +71,7 @@ $baby-blue = #4cb1ff;
             .desc {
                 margin: -20px 0 0;
                 padding: 15px 0 0;
+
                 + img {
                     margin-top: 10px;
                 }
@@ -99,6 +100,14 @@ $baby-blue = #4cb1ff;
             color: $txtcolour;
         }
     }
+    .content-rating,
+    .rating .cnt,
+    .price {
+        display: none;
+    }
+    .group-subheader {
+        margin-bottom: 18px;
+    }
 }
 
 .fanchor {
@@ -108,14 +117,24 @@ $baby-blue = #4cb1ff;
 }
 
 // Editorial brands.
-.feedbrand {
+.feed-brand {
+    li {
+        position: relative;
+
+        a:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.multi-app-tile {
     background-color: #fff;
 
     img {
         height: 60px;
         width: 60px;
     }
-    h1 {
+    .feed-tile-header {
         color: $txtcolour;
         font-size: 15px;
         font-weight: 500;
@@ -131,71 +150,70 @@ $baby-blue = #4cb1ff;
             margin-bottom: 8px;
         }
     }
-    h2 {
+}
+
+// Editorial brand grid layout.
+.feed-layout-grid.multi-app-tile {
+    .app {
+        float: left;
+        height: 120px;
+        margin: 0 20px 0 0;
+        width: 80px;
+
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+
+    }
+    .app-name {
         color: $txtcolour;
         font-size: 12px;
         font-weight: 500;
         line-height: 18px;
     }
-    li {
+    a .info {
+        margin-left: 0;
+    }
+    .author,
+    .stars {
+        display: none;
+    }
+    .button,
+    .button[disabled] {
+        background: transparent;
+        color: $baby-blue;
+        cursor: pointer;
+        height: 20px;
+        line-height: 20px;
+        margin: -20px 0 0;
+        padding: 0;
+        position: static;
+        text-align: left;
+        width: auto;
+    }
+    .app-list .button:hover {
+        color: $baby-blue;
+    }
+}
+
+
+// Editorial brand list layout.
+.feed-layout-list {
+    a {
+        color: $txtcolour;
         position: relative;
-
-        a:hover {
-            text-decoration: none;
-        }
     }
-    // Editorial brand grid layout.
-    &.feed-grid {
-        li {
-            float: left;
-            height: 120px;
-            margin: 0 20px 0 0;
-            width: 80px;
-
-            &:nth-child(3n) {
-                margin-right: 0;
-            }
-        }
-        a .info {
-            margin-left: 0;
-        }
-        .author, .stars {
-            display: none;
-        }
-        .button, .button[disabled] {
-            background: transparent;
-            color: $baby-blue;
-            cursor: pointer;
-            height: 20px;
-            line-height: 20px;
-            margin: -20px 0 0;
-            padding: 0;
-            position: static;
-            text-align: left;
-            width: auto;
-        }
-        .app-list .button:hover {
-            color: $baby-blue;
-        }
+    h2 {
+        padding: 4px 0 0;
     }
-    // Editorial brand list layout.
-    &.feed-list {
-        a {
-            color: $txtcolour;
-            position: relative;
-        }
-        h2 {
-            padding: 4px 0 0;
-        }
-        .button {
-            top: 35px;
-            right: 0;
-        }
+    .button {
+        top: 35px;
+        right: 0;
     }
 }
 
 // Colored or image background feed tiles.
-.feeditem {
+.feed-item {
     background-size: cover;
     border-radius: 5px;
     height: 142px;
@@ -309,21 +327,12 @@ $baby-blue = #4cb1ff;
     }
 }
 
-// Listing detail pages.
-.feed-listing-detail {
-    .feeditem {
+.feed-landing {
+    .feed-item {
         border-radius: 0;
-        width: 100%
-    }
-}
-
-
-.feed,
-.feed-listing-detail {
-    .content-rating,
-    .rating .cnt,
-    .price {
-        display: none;
+        position: relative;
+        right: 10px;
+        width: 320px;
     }
 }
 

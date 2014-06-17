@@ -1,18 +1,30 @@
 {% include "_macros/feed_item.html" %}
-{% include "_macros/collection_tile.html" %}
 {% include "_macros/market_tile.html" %}
 
 {% defer (url=api('feed-collection', [slug]), id='collection', as='collection', key=slug) %}
-  <section class="main feed-listing-detail">
+  <section class="main feed feed-landing">
     {{ feed_collection(this) }}
     {% if this.apps %}
-      <ol class="container listing c">
-        {% for result in this.apps %}
-          <li class="item result app c">
-            {{ market_tile(result, link=true, src='collection', tray=False) }}
-          </li>
+      {% if this.apps[0].group %}
+        {% for group in feed.group_apps(this.apps) %}
+          <section class="feed-layout-grid multi-app-tile mkt-tile c">
+            <h1 class="feed-tile-header">{{ group.name }}</h1>
+            <ul class="app-list">
+              {% for app in group.apps %}
+                <li class="app">{{ mini_tile(app) }}</li>
+              {% endfor %}
+            </ul>
+          </section>
         {% endfor %}
-      </ol>
+      {% else %}
+        <ol class="container listing c">
+          {% for app in this.apps %}
+            <li class="item result app c">
+              {{ market_tile(app, link=true, src='collection', tray=False) }}
+            </li>
+          {% endfor %}
+        </ol>
+      {% endif %}
     {% else %}
       {# L10n: Please do your best to capture the essence of Scooby Doo. #}
       {{ _("Ruh roh! No apps here, Shaggy!") }}

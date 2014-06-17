@@ -17,17 +17,6 @@ define('helpers_local', ['feed', 'nunjucks', 'settings' 'user_helpers', 'utils_l
     ];
 
     /* Register filters. */
-    filters.feed_app_extras = function(feed_app) {
-        return {
-            type: feed_app.type,
-            image: feed_app.preview.image_url,
-            description: feed_app.description,
-            quote_text: feed_app.pullquote_text,
-            quote_rating: feed_app.pullquote_rating,
-            quote_source: feed_app.pullquote_attribute
-        };
-    };
-
     filters.items = utils_local.items;
 
     filters.rewriteCdnUrls = function(text){
