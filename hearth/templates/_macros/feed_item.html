@@ -3,7 +3,7 @@
 
 {% macro mini_tile(app) %}
   <li class="app mini-app">
-    <a href="{{ url('app', [app.slug])|urlparams(src=src) }}" class="c">
+    <a href="{{ url('app', [app.slug])|urlparams(src=src) }}" class="app-link c">
       <img src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}">
       <div class="info">
         <h2 class="app-name">{{ app.name|translate(app) }}</h2>
@@ -22,7 +22,7 @@
 {% macro feed_app(feed_app) %}
   {% set color = feed_app.background_color %}
 
-  <a href="{{ url('app', [feed_app.app.slug]) }}" class="fanchor">
+  <a href="{{ url('app', [feed_app.app.slug]) }}" class="app-link">
     {% if indexOf([feed.FEEDAPP_ICON, feed.FEEDAPP_IMAGE], feed_app.type) != -1 %}
       <section class="feed-item"
                {% if not feed_app.description and not feed_app.background_image %}

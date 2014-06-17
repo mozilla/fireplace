@@ -34,13 +34,6 @@
         {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
         <div class="author lineclamp vital subdetail" itemprop="creator">{{ app.author }}</div>
       {% endif %}
-      {% if app.content_ratings.rating %}
-        <div class="content-rating lineclamp vital subdetail" itemprop="content-rating">
-          {{ iarc_names.ratings[app.content_ratings.body][app.content_ratings.rating] }}
-        </div>
-      {% else %}
-        <div class="content-rating lineclamp vital subdetail">{{ _('Not yet rated') }}</div>
-      {% endif %}
       <div class="price vital">{{ app.price_locale if app.payment_required else _('Free') }}</div>
       {{ market_button(app, data_attrs={'manifest_url': app.manifest_url,
                                         'slug': app.slug}) if app.slug }}

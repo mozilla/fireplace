@@ -24,10 +24,19 @@ $baby-blue = #4cb1ff;
         }
         .info {
             float: left;
+            height: 64px;
             margin-left: 10px;
+            position: relative;
             width: 205px;
         }
-        .author, h3 {
+        .author.lineclamp {
+            max-width: 125px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .author,
+        h3 {
             font-size: 12px;
             line-height: 18px;
         }
@@ -110,7 +119,11 @@ $baby-blue = #4cb1ff;
     }
 }
 
-.fanchor {
+.app-link {
+    height: 100%;
+    position: relative;
+    width: 100%;
+
     &:hover, :active {
         text-decoration: none;
     }
@@ -156,10 +169,16 @@ $baby-blue = #4cb1ff;
         font-weight: 500;
         line-height: 18px;
     }
-    .mini-app .button {
-        top: 36px;
+    .mini-app {
+        height: 60px;
+        margin-bottom: 18px;
+
+        .info {
+            height: 60px;
+        }
     }
 }
+
 
 // Editorial brand grid layout.
 .feed-layout-grid.multi-app-tile {
@@ -356,19 +375,21 @@ $baby-blue = #4cb1ff;
     background: $baby-blue;
     border-radius: 5px;
     border: 0;
-    box-shadow: none;
+    bottom: 0;
+    box-shadow: 0 1px 0 darken($baby-blue, 10%);
     font-size: 12px;
     height: 25px;
     line-height: 25px;
+    min-width: 65px;
     padding: 0;
     position: absolute;
-    right: 10px;
-    top: 54px;
+    right: 0;
 
     &:not([disabled]):hover {
         color: $white;
     }
     &[disabled] {
         background: $seavan-salt-white;
+        box-shadow: none;
     }
 }
