@@ -4,8 +4,6 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
     var base_settings = JSON.parse(document.body.getAttribute('data-settings') || '{}');
     base_settings = _.defaults(base_settings, settings_local);
 
-    var flags = JSON.parse(document.body.getAttribute('data-flags') || '{}');
-
     // When in "preview mode", don't send the feature profile to the API.
     var param_blacklist = (
         window.location.search || '').indexOf('preview=true') > 0 ? ['pro'] : null;
@@ -89,8 +87,8 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         cache_rewriting_enabled: true,
         potatolytics_enabled: false,
 
-        // Waffle flags/switches from the server.
-        flags: flags,
+        // Waffle switches from the server.
+        switches: [],  // Updated after consumer-info is called.
 
         // Enabling this settings will mock compatibility with all apps.
         never_incompat: false,

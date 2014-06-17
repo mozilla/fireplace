@@ -1,6 +1,6 @@
 define('consumer_info',
-    ['user', 'user_helpers', 'mobilenetwork', 'urls', 'requests', 'defer', 'log'],
-    function(user, user_helpers, mobilenetwork, urls, requests, defer, log) {
+    ['user', 'user_helpers', 'mobilenetwork', 'urls', 'requests', 'defer', 'log', 'settings'],
+    function(user, user_helpers, mobilenetwork, urls, requests, defer, log, settings) {
 
     var logger = log('consumer_info');
 
@@ -25,6 +25,7 @@ define('consumer_info',
                 if (user.logged_in() && consumerInfo.apps !== undefined) {
                     user.update_apps(consumerInfo.apps);
                 }
+                settings.switches = consumerInfo.waffle.switches || [];
             }, function() {
                 logger.error('Failed to retrieve consumer info.');
                 user_helpers.set_region_geoip('restofworld');
