@@ -103,7 +103,8 @@
 
 
 {% macro feed_app_footer(feed_app) %}
-  <div class="tile-footer {{ feed_app.type }}">
+  <div class="tile-footer {{ feed_app.type }}"
+       {% if feed_app.type == feed.FEEDAPP_QUOTE %}style="background: {{ feed_app.background_color }};"{% endif %}>
     {% if feed_app.type == feed.FEEDAPP_DESC %}
       <p class="desc">{{ feed_app.description }}</p>
     {% elif feed_app.type == feed.FEEDAPP_QUOTE %}
@@ -113,7 +114,7 @@
       <blockquote><p>{{ feed_app.pullquote_text }}</p></blockquote>
       <p class="quote-source">
         {{ _('- {attribution}')|format(
-             {attribution: feed_app.pullquote_source}) }}
+             {attribution: feed_app.pullquote_attribution}) }}
       </p>
     {% elif feed_app.type == feed.FEEDAPP_PREVIEW %}
       {% if feed_app.description %}

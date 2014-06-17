@@ -55,64 +55,8 @@ $vertical-tile-margin = 10px;
         .rating {
             padding: 5px 0;
         }
-        // For feed item type == 'quote'.
-        blockquote {
-            line-height: 23px;
-            margin: 0;
-            padding: 0 10px;
-            text-align: center;
-
-            + .quote-source {
-                font-size: 11px;
-                margin-top: 5px;
-                text-align: center;
-            }
-        }
-        .quote {
-            background-color: $breezy-blue;
-            color: #fff;
-            left: -10px;
-            padding: 5px 0 15px;
-            position: relative;
-            top: 15px;
-            width: $mobile-tile-width;
-        }
         .description .desc {
             padding-top: 15px;
-        }
-        .preview {
-            .desc {
-                margin: -20px 0 0;
-                padding: 15px 0 0;
-
-                + img {
-                    margin-top: 10px;
-                }
-            }
-            .feed-app-preview-container {
-                border-radius: 0 0 5px 5px;
-                overflow: hidden;
-                margin: 15px 0 -16px -10px;
-                height: 150px;
-                width: $mobile-tile-width;
-
-                .feed-app-preview {
-                    width: 100%;
-                    height: auto;
-                }
-            }
-        }
-        .tile-footer {
-            border-radius: 0 0 5px 5px;
-            clear: both;
-            font-size: 14px;
-            line-height: 20px;
-
-            .stars {
-                left: 50%;
-                margin: 15px 0 10px -32px;
-                position: relative;
-            }
         }
         .desc {
             background-color: #fff;
@@ -136,6 +80,64 @@ $vertical-tile-margin = 10px;
 
     &:hover, :active {
         text-decoration: none;
+    }
+}
+
+.feed-app {
+    // For feed item type == 'quote'.
+    blockquote {
+        line-height: 23px;
+        margin: 0;
+        padding: 0 10px;
+        text-align: center;
+
+        + .quote-source {
+            font-size: 11px;
+            margin-top: 5px;
+            text-align: center;
+        }
+    }
+    .quote {
+        color: #fff;
+        left: -10px;
+        padding: 5px 0 15px;
+        position: relative;
+        top: 15px;
+        width: $mobile-tile-width;
+    }
+    .preview {
+        .desc {
+            margin: -20px 0 0;
+            padding: 15px 0 0;
+
+            + img {
+                margin-top: 10px;
+            }
+        }
+        .feed-app-preview-container {
+            border-radius: 0 0 5px 5px;
+            overflow: hidden;
+            margin: 15px 0 -16px -10px;
+            height: 150px;
+            width: $mobile-tile-width;
+
+            .feed-app-preview {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+    .tile-footer {
+        border-radius: 0 0 5px 5px;
+        clear: both;
+        font-size: 14px;
+        line-height: 20px;
+
+        .stars {
+            left: 50%;
+            margin: 15px 0 10px -32px;
+            position: relative;
+        }
     }
 }
 
@@ -187,7 +189,6 @@ $vertical-tile-margin = 10px;
         }
     }
 }
-
 
 // Editorial brand grid layout.
 .feed .feed-layout-grid.multi-app-tile {
