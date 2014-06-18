@@ -1,4 +1,4 @@
-define('views/feed_brand',
+define('views/feed/feed_brand',
     ['jquery', 'l10n', 'textoverflowclamp', 'utils', 'z'],
     function($, l10n, clamp, utils, z) {
     'use strict';
@@ -7,7 +7,7 @@ define('views/feed_brand',
 
     return function(builder, args) {
         var slug = args[0];
-        builder.start('feed_brand.html', {
+        builder.start('feed/feed_brand.html', {
             landing: true,
             slug: slug
         }).done(function() {

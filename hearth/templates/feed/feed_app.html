@@ -1,0 +1,14 @@
+{% include "_macros/feed_item.html" %}
+
+{% defer (url=api('feed-app', [slug]), id='feed_app', as='feed-app', key=slug) %}
+  <section class="main feed feed-landing feed-app-landing">
+    {{ feed_app(this) }}
+  </section>
+{% placeholder %}
+  <p class="spinner alt spaced"></p>
+{% except %}
+  <div class="detailed-error">
+    <h2>{{ _('Oh no!') }}</h2>
+    <p>{{ _('We could not load that app. Please try again later.') }}</p>
+  </div>
+{% end %}

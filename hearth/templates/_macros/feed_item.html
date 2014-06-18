@@ -69,7 +69,7 @@
       {% endfor %}
     </ul>
     {% if not landing %}
-      <a href="{{ url('feed_brand', [brand.slug]) }}" class="view-all">
+      <a href="{{ url('feed/feed_brand', [brand.slug]) }}" class="view-all">
         {{ _('View all apps') }}
       </a>
     {% endif %}
@@ -83,7 +83,7 @@
   {% set color = coll.background_color %}
   {% set shelf = True if coll.type == 'shelf' else False %}
 
-  <a href="{{ url('feed_collection', [coll.slug]) }}" class="fanchor">
+  <a href="{{ url('feed/feed_collection', [coll.slug]) }}" class="fanchor">
     <section class="feed-item{{ ' shelf' if shelf }}
                     {{ 'mega' if coll.description and not shelf }}
                     {{ 'full' if not shelf }}"

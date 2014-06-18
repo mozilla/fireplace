@@ -2,7 +2,7 @@
 {% include "_macros/market_tile.html" %}
 
 {% defer (url=api('feed-collection', [slug]), id='collection', as='feed-collection', key=slug) %}
-  <section class="main feed feed-landing">
+  <section class="main feed feed-landing collection-landing">
     {{ feed_collection(this) }}
 
     {% if this.apps %}

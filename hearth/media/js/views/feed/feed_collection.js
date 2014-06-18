@@ -1,4 +1,4 @@
-define('views/feed_collection',
+define('views/feed/feed_collection',
     ['jquery', 'l10n', 'textoverflowclamp', 'utils', 'z'],
     function($, l10n, clamp, utils, z) {
     'use strict';
@@ -7,7 +7,7 @@ define('views/feed_collection',
 
     return function(builder, args) {
         var slug = args[0];
-        builder.start('feed_collection.html', {
+        builder.start('feed/feed_collection.html', {
             slug: slug
         }).done(function() {
             var collection = builder.results.collection;
