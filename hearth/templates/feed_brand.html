@@ -1,0 +1,14 @@
+{% include "_macros/feed_item.html" %}
+
+{% defer (url=api('feed-brand', [slug]), id='brand', as='feed-brand', key=slug) %}
+  <section class="main feed feed-landing brand-landing">
+    {{ feed_brand(this) }}
+  </section>
+{% placeholder %}
+  <p class="spinner alt spaced"></p>
+{% except %}
+  <div class="detailed-error">
+    <h2>{{ _('Oh no!') }}</h2>
+    <p>{{ _('We could not load that editorial brand. Please try again later.') }}</p>
+  </div>
+{% end %}

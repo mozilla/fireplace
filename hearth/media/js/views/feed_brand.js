@@ -8,6 +8,7 @@ define('views/feed_brand',
     return function(builder, args) {
         var slug = args[0];
         builder.start('feed_brand.html', {
+            landing: true,
             slug: slug
         }).done(function() {
             var brand = builder.results.brand;

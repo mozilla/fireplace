@@ -33,6 +33,7 @@ var routes = [
 
     // Feed.
     {'pattern': '^/feed/collection/([^/<>"\']+)/?$', 'view_name': 'feed_collection'},
+    {'pattern': '^/feed/editorial/([^/<>"\']+)/?$', 'view_name': 'feed_brand'},
 
     {'pattern': '^/debug$', 'view_name': 'debug'},
     {'pattern': '^/debug/features$', 'view_name': 'debug_features'},

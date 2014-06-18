@@ -23,6 +23,8 @@ define('routes_api', [], function() {
         'prepare_nav_pay': '/api/v2/webpay/prepare/',
         'payments_status': '/api/v2/webpay/status/{0}/',
 
+        'feed-app': '/api/v2/feed/apps/{0}/',
+        'feed-brand': '/api/v2/feed/brands/{0}/',
         'feed-collection': '/api/v2/feed/collections/{0}/',
         'feed-items': '/api/v2/feed/items/'
     };
