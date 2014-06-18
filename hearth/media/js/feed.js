@@ -1,5 +1,5 @@
 define('feed',
-    ['l10n', 'nunjucks', 'utils_local'], function(l10n, nunjucks, utils_local) {
+    ['l10n', 'models', 'nunjucks', 'utils_local'], function(l10n, models, nunjucks, utils_local) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -175,6 +175,9 @@ define('feed',
         FEEDAPP_QUOTE: FEEDAPP_QUOTE,
         FEEDAPP_PREVIEW: FEEDAPP_PREVIEW,
         FEEDAPP_TYPES: FEEDAPP_TYPES,
+        cast_feed_app: models('feed-app').cast,
+        cast_brand: models('feed-brand').cast,
+        cast_collection: models('feed-collection').cast,
         get_brand_name: get_brand_name,
         group_apps: group_apps,
         MAX_BRAND_APPS: MAX_BRAND_APPS,

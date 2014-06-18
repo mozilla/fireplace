@@ -1,12 +1,10 @@
 define('views/homepage',
-    ['format', 'jquery', 'l10n', 'log', 'models', 'newsletter', 'textoverflowclamp', 'underscore', 'urls', 'utils', 'z'],
-    function(format, $, l10n, log, models, newsletter, clamp, _, urls, utils, z) {
+    ['format', 'jquery', 'l10n', 'log', 'newsletter', 'textoverflowclamp', 'underscore', 'urls', 'utils', 'z'],
+    function(format, $, l10n, log, newsletter, clamp, _, urls, utils, z) {
     'use strict';
 
-    var gettext = l10n.gettext;
     var console = log('homepage');
-
-    var app_models = models('app');
+    var gettext = l10n.gettext;
 
     z.page.on('click', '.feed-brand .view-all', function() {
         $(this).hide().closest('.feed-brand').find('.app.hidden').show();
@@ -25,9 +23,6 @@ define('views/homepage',
             delete params.src;
         }
 
-        builder.start('feed.html', {
-            sort: params.sort,
-            app_cast: app_models.cast
-        });
+        builder.start('feed.html', {});
     };
 });

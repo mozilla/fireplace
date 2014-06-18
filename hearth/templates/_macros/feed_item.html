@@ -50,6 +50,9 @@
                      rating_link=False) }}
     {% endif %}
   </a>
+
+  {{ feed.cast_feed_app(feed_app, true) }}
+  {{ cast_app(feed_app.app, true) }}
 {% endmacro %}
 
 {% macro feed_brand(brand) %}
@@ -69,6 +72,9 @@
       <a class="view-all">{{ _('View all apps') }}</a>
     {% endif %}
   </section>
+
+  {{ feed.cast_brand(brand, true) }}
+  {{ cast_app(brand.apps, true) }}
 {% endmacro %}
 
 {% macro feed_collection(coll) %}
@@ -102,6 +108,9 @@
       <div class="desc">{{ coll.description }}</div>
     </section>
   </a>
+
+  {{ feed.cast_collection(coll, true) }}
+  {{ cast_app(coll.apps, true) }}
 {% endmacro %}
 
 {% macro feed_app_item(feed_item) %}

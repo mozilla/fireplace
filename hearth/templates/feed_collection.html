@@ -1,9 +1,10 @@
 {% include "_macros/feed_item.html" %}
 {% include "_macros/market_tile.html" %}
 
-{% defer (url=api('feed-collection', [slug]), id='collection', as='collection', key=slug) %}
+{% defer (url=api('feed-collection', [slug]), id='collection', as='feed-collection', key=slug) %}
   <section class="main feed feed-landing">
     {{ feed_collection(this) }}
+
     {% if this.apps %}
       {% if this.apps[0].group %}
         {% for group in feed.group_apps(this.apps) %}
