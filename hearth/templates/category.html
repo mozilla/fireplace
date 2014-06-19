@@ -14,6 +14,10 @@
 {% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
 {% set search_url = search_url|urlparams(sort=sort) if sort == 'reviewed' else search_url %}
 
+<header class="category-header">
+  <h3>{{ category_name }}</h3>
+</header>
+
 {% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection') %}
   {% set featured_apps = this.length and this[0].apps %}
   {% if featured_apps and featured_apps.length %}
