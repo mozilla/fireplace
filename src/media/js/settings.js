@@ -60,6 +60,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'feed-app': 'slug',
             'feed-brand': 'slug',
             'feed-collection': 'slug',
+            'feed-shelf': 'slug',
 
             // Dummy prototypes to facilitate testing:
             'dummy': 'id',

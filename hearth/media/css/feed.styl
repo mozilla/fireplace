@@ -35,8 +35,7 @@ $vertical-tile-margin = 10px;
             position: relative;
             width: 205px;
         }
-        .author.elliflow,
-        .app-name.elliflow {
+        .elliflow {
             max-width: 125px;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -405,6 +404,18 @@ $vertical-tile-margin = 10px;
             display: none;
         }
     }
+    &.grouped-collection,
+    &.shelf.shelf-landing {
+        height: 150px;
+
+        .curve {
+            top: 80px;
+        }
+        .info {
+            bottom: 30px;
+            top: auto;
+        }
+    }
 }
 
 .feed-landing {
@@ -415,7 +426,8 @@ $vertical-tile-margin = 10px;
     &.brand-landing {
         margin-top: $vertical-tile-margin;
     }
-    &.collection-landing .feed-item {
+    &.collection-landing .feed-item,
+    &.shelf-landing .feed-item {
         border-radius: 0;
         position: relative;
         right: 10px;
@@ -427,6 +439,18 @@ $vertical-tile-margin = 10px;
         }
         &.mega.full .desc {
             top: 155px;
+        }
+    }
+    &.shelf-landing {
+        .feed-item {
+            margin-bottom: 0;
+        }
+        .desc {
+            color: $hungry-text;
+            font-size: 15px;
+            font-weight: light;
+            line-height: 22px;
+            padding: 20px;
         }
     }
 }

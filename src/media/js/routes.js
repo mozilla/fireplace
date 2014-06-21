@@ -35,6 +35,7 @@ var routes = [
     {'pattern': '^/feed/app/([^/<>"\']+)/?$', 'view_name': 'feed/feed_app'},
     {'pattern': '^/feed/editorial/([^/<>"\']+)/?$', 'view_name': 'feed/feed_brand'},
     {'pattern': '^/feed/collection/([^/<>"\']+)/?$', 'view_name': 'feed/feed_collection'},
+    {'pattern': '^/feed/shelf/([^/<>"\']+)/?$', 'view_name': 'feed/feed_shelf'},
 
     {'pattern': '^/debug$', 'view_name': 'debug'},
     {'pattern': '^/debug/features$', 'view_name': 'debug_features'},

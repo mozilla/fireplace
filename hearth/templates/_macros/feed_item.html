@@ -81,32 +81,24 @@
 
 {% macro feed_collection(coll) %}
   {% set color = coll.background_color %}
-  {% set shelf = True if coll.type == 'shelf' else False %}
 
   <a href="{{ url('feed/feed_collection', [coll.slug]) }}" class="fanchor">
-    <section class="feed-item{{ ' shelf' if shelf }}
-                    {{ 'mega' if coll.description and not shelf }}
-                    {{ 'full' if not shelf }}"
+    <section class="feed-item full {{ 'mega' if coll.description }}"
                     {% if not coll.description and not coll.background_image %}
                       style="background-color: {{ color|hex2rgba('.4') }}"
                     {% elif coll.background_image %}
                       style="background-image: url({{ coll.background_image }})"
                    {% endif %}>
-      {% if not shelf %}
-        <ul class="app-icons">
-          {% for app in coll.apps %}
-            <li><img src="{{ app.icons[64] }}" alt="{{ app.name }}"></li>
-          {% endfor %}
-        </ul>
-      {% endif %}
+      <ul class="app-icons">
+        {% for app in coll.apps %}
+          <li><img src="{{ app.icons[64] }}" alt="{{ app.name }}"></li>
+        {% endfor %}
+      </ul>
       <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
       <div class="info">
         <h1>{{ coll.name }}</h1>
-        <p class="author">{{ coll.author }}</p>
       </div>
-      {% if not shelf %}
-        <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
-      {% endif %}
+      <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
       <div class="desc">{{ coll.description }}</div>
     </section>
   </a>
@@ -115,24 +107,33 @@
   {{ cast_app(coll.apps, true) }}
 {% endmacro %}
 
-{% macro feed_app_item(feed_item) %}
-  {{ feed_app(feed_item.app) }}
-{% endmacro %}
+{% macro feed_shelf(shelf, landing) %}
+  {% set color = shelf.background_color %}
 
-{% macro feed_brand_item(feed_item) %}
-  {{ feed_brand(feed_item.brand) }}
-{% endmacro %}
+  <a href="{{ url('feed/feed_shelf', [shelf.slug]) }}" class="fanchor">
+    <section class="feed-item shelf {{ 'shelf-landing' if landing }}" style="background-image: url({{ shelf.background_image }})">
+      <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
+      <div class="info">
+        <h1>{{ shelf.name }}</h1>
+      </div>
+    </section>
+  </a>
 
-{% macro feed_collection_item(feed_item) %}
-  {{ feed_collection(feed_item.collection) }}
+  {{ feed.cast_shelf(shelf, true) }}
+  {{ cast_app(shelf.apps, true) }}
 {% endmacro %}
 
 {% macro feed_item(obj) %}
   {% if obj.item_type == 'app' %}
-    {{ feed_app_item(obj) }}
+    {{ feed_app(obj.app) }}
+
   {% elif obj.item_type == 'brand' %}
-    {{ feed_brand_item(obj) }}
+    {{ feed_brand(obj.brand) }}
+
   {% elif obj.item_type == 'collection' %}
-    {{ feed_collection_item(obj) }}
+    {{ feed_collection(obj.collection) }}
+
+  {% elif obj.item_type == 'shelf' %}
+    {{ feed_shelf(obj.shelf) }}
   {% endif %}
 {% endmacro %}

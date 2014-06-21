@@ -26,6 +26,7 @@ define('routes_api', [], function() {
         'feed-app': '/api/v2/feed/apps/{0}/',
         'feed-brand': '/api/v2/feed/brands/{0}/',
         'feed-collection': '/api/v2/feed/collections/{0}/',
+        'feed-shelf': '/api/v2/feed/shelves/{0}/',
         'feed-items': '/api/v2/feed/items/'
     };
 });
