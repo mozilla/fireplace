@@ -1,70 +1,48 @@
 @import 'lib';
 
-.button, .button:visited {
+.button,
+.button:visited {
     // Bluish.
     btn-shadow();
-    gradient-two-color(#4cb1ff, #1793e5);
-    background-repeat: repeat-x;
-    border: 1px solid #1793e5;
-    border-radius: 3px;
+    background: $breezy-blue;
+    border: 0;
+    border-radius: 5px;
     color: $white;
     display: inline-block;
     font: 400 15px/48px $open-stack;
     height: 48px;
     min-width: 100px;
     white-space: nowrap;
-    padding: 0 20px;
+    padding: 3px 20px;
     text-align: center;
     text-decoration: none;
-    &:hover, &:focus {
-        gradient-two-color(darken(#4cb1ff, 10%), darken(#1793e5, 10%));
+
+    &:hover,
+    &:focus {
+        background: darken($breezy-blue, 10%);
         text-decoration: none;
     }
-    &:hover, &:focus, &:active {
-        color: darken($white, 10%);
-    }
-    // To override specifity of selector in `site.styl` (bug 980646 / bug 969187).
-    &:not([disabled]):active {
-        btn-shadow-active();
-        border: 1px solid darken(#1793e5, 10%);
-    }
 }
+
 .button {
     ellipsis();
+
     // Grayish.
-    &.disabled, &[disabled] {
-        gradient-two-color(#e7e7e7, #fafbfc);
-        border: 1px solid #b7b7b7;
+    &.disabled,
+    &[disabled] {
+        background: $seavan-salt-white;
         box-shadow: none;
-        color: #a7a7a7;
+        color: $earl-gray;
         pointer-events: none;
     }
     // Redish.
     &.manage {
-        gradient-two-color(#DA5132, #A91300);
-        border: 1px solid #A91300;
-        &:hover, &:focus {
-            gradient-two-color(darken(#DA5132, 10%), darken(#A91300, 10%));
-        }
-        &:active {
-            btn-shadow-active();
-            border: 1px solid darken(#A91300, 10%);
-        }
-    }
-    // Grayish (legacy).
-    &.alt {
-        alt-btn-shadow();
-        gradient-two-color(#fff, #e7e7e7);
-        border: 1px solid #b7b7b7;
-        color: $london-fog-gray;
-        &:hover, &:focus {
-            alt-btn-hover-focus();
-        }
-        &:hover, &:focus, &:active {
-            alt-btn-hover-focus-active();
-        }
-        &:active {
-            alt-btn-active();
+        background: #DA5132;
+        box-shadow: none;
+
+        &:hover,
+        &:focus {
+            background: darken(#DA5132, 10%);
         }
     }
     // Waiting/Loading spinner.
@@ -81,7 +59,6 @@
     &.product {
         fatten();
     }
-
     &[disabled], &.disabled,
     &.purchasing, &.purchased,
     &.installing, &.installed {
@@ -110,7 +87,7 @@
 
 @media (max-width: 600px) {
     .button {
-        padding: 0 15px;
+        padding: 3px 15px;
 
         &.fat {
             display: block;
@@ -121,11 +98,8 @@
 
 
 .mkt-tile .button {
-    background: $breezy-blue;
-    border-radius: 5px;
     border: 0;
     bottom: 0;
-    box-shadow: 0 1px 0 darken($breezy-blue, 10%);
     font-size: 12px;
     height: 25px;
     line-height: 25px;
@@ -134,9 +108,6 @@
     position: absolute;
     right: 0;
 
-    &:not([disabled]):hover {
-        color: $white;
-    }
     &[disabled] {
         background: $seavan-salt-white;
         box-shadow: none;
@@ -144,7 +115,6 @@
 }
 
 .loadmore {
-    // TODO: apply this loadmore button style site-wide.
     bottom: -65px;
     left: 10px;
     padding: 15px 0;
