@@ -1,22 +1,15 @@
-define('buttons',
+define('apps_buttons',
     ['apps', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'login',
      'models', 'notification', 'payments/payments', 'requests', 'settings',
      'tracking', 'tracking_helpers', 'urls', 'user', 'utils', 'views', 'z'],
-    function() {
+    function(apps, cache, capabilities, defer, l10n, log, login, models,
+             notification, payments, requests, settings, tracking,
+             tracking_helpers, urls, user, utils, views, z) {
 
-    var apps = require('apps');
-    var cache = require('cache');
-    var notification = require('notification');
-    var requests = require('requests');
-    var tracking = require('tracking');
-    var urls = require('urls');
-    var user = require('user');
-    var z = require('z');
+    var console = log('buttons');
+    var gettext = l10n.gettext;
 
-    var console = require('log')('buttons');
-
-    var apps_model = require('models')('app');
-    var gettext = require('l10n').gettext;
+    var apps_model = models('app');
 
     function setButton($button, text, cls) {
         revertButton($button, text);
@@ -38,7 +31,7 @@ define('buttons',
     }
 
     var launchHandler = _handler(function(product) {
-        z.apps[product.manifest_url].launch();
+        apps.launch(product.manifest_url);
         tracking.trackEvent(
             'Launch app',
             product.payment_required ? 'Paid' : 'Free',
@@ -53,12 +46,12 @@ define('buttons',
         // TODO: Have the API possibly return this (bug 889501).
         product.receipt_required = (product.premium_type !== 'free' &&
                                     product.premium_type !== 'free-inapp' &&
-                                    !require('settings').simulate_nav_pay);
+                                    !settings.simulate_nav_pay);
 
         // If it's a paid app, ask the user to sign in first.
         if (product.receipt_required && !user.logged_in()) {
             console.log('Install suspended; user needs to log in');
-            return require('login').login().done(function() {
+            return login.login().done(function() {
                 // Once login completes, just call this function again with
                 // the same parameters, but re-fetch the button (since the
                 // button instance is not the same).
@@ -81,7 +74,8 @@ define('buttons',
         }
 
         // Create a master deferred for the button action.
-        var def = require('defer').Deferred();
+        var def = defer.Deferred();
+
         // Create a reference to the button.
         var $this = $button || $(this);
         var _timeout;
@@ -94,11 +88,10 @@ define('buttons',
 
         if (product.payment_required) {
             // The app requires a payment.
-
             console.log('Starting payment flow for', product_name);
             $this.data('old-text', $this.html());  // Save the old text of the button.
             setButton($this, gettext('Purchasing'), 'purchasing');
-            require('payments/payments').purchase(product).then(function() {
+            payments.purchase(product).then(function() {
                 console.log('Purchase flow completed for', product_name);
 
                 // Update the button to say Install.
@@ -120,31 +113,27 @@ define('buttons',
 
                 def.always(function() {
                     // Do a reload to show any reviews privilege changes for bug 838848.
-                    require('views').reload();
+                    views.reload();
                 });
 
                 // Start the app's installation.
                 start_install();
-
             }, function() {
                 notification.notification({message: gettext('Payment cancelled.')});
 
                 console.log('Purchase flow rejected for', product_name);
                 def.reject();
             });
-
         } else {
             // There's no payment required, just start install.
-
             console.log('Starting app installation for', product_name);
             // Start the app's installation.
             start_install();
         }
 
         function start_install() {
-
             // Track the search term used to find this app, if applicable.
-            require('tracking_helpers').track_search_term();
+            tracking_helpers.track_search_term();
 
             // Track that an install was started.
             tracking.trackEvent(
@@ -158,13 +147,18 @@ define('buttons',
             $this.data('old-text', $this.html())
                  .html('<span class="spin"></span>')
                  .addClass('spinning');
-            // Reset button if it's been 30 seconds without user action.
-            _timeout = setTimeout(function() {
-                if ($this.hasClass('spinning')) {
-                    console.warn('Spinner timeout for', product_name);
-                    revertButton($this);
-                }
-            }, 30000);
+
+            // Temporary timeout for hosted apps until we catch the appropriate
+            // download error event for hosted apps (in iframe).
+            if (!product.is_packaged) {
+                _timeout = setTimeout(function() {
+                    if ($this.hasClass('spinning')) {
+                        console.log('Spinner timeout for ', product_name);
+                        revertButton($this);
+                        notification.notification({message: settings.offline_msg});
+                    }
+                }, 20000);
+            }
 
             // If the app has already been installed by the user and we don't
             // need a receipt, just start the app install.
@@ -175,7 +169,7 @@ define('buttons',
 
             // This is the data needed to record the app's install.
             var api_endpoint = urls.api.url('record_' + (product.receipt_required ? 'paid' : 'free'));
-            var post_data = {app: product.id, chromeless: +require('capabilities').chromeless};
+            var post_data = {app: product.id, chromeless: + capabilities.chromeless};
 
             // If we don't need a receipt to perform the installation...
             if (!product.receipt_required) {
@@ -229,10 +223,8 @@ define('buttons',
             });
         }
 
-        // After everything has completed...
+        // After everything has completed, carry out post-install logic.
         def.then(function(installer) {
-            // On install success, carry out post-install logic.
-
             // Clear the spinner timeout if one was set.
             if (_timeout) {
                 clearTimeout(_timeout);
@@ -240,7 +232,7 @@ define('buttons',
 
             // Show the box on how to run the app.
             var $installed = $('#installed');
-            var $how = $installed.find('.' + require('utils').browser());
+            var $how = $installed.find('.' + utils.browser());
             if ($how.length) {
                 $installed.show();
                 $how.show();
@@ -254,8 +246,7 @@ define('buttons',
                 $('.button.product').index($button)
             );
 
-            buttonInstalled(product.manifest_url, installer, $this);
-
+            mark_installed(product.manifest_url);
             console.log('Successful install for', product_name);
 
         }, function() {
@@ -282,50 +273,44 @@ define('buttons',
         return $('.button[data-manifest_url="' + manifest_url.replace(/"/, '\\"') + '"]');
     }
 
-    function buttonInstalled(manifest_url, installer, $button) {
-        // If the button wasn't passed, look it up.
-        if (!$button || !$button.length) {
-            $button = get_button(manifest_url);
-            if (!$button.length) {
-                return;
-            }
-        }
-        z.apps[manifest_url] = installer;
-
-        // L10n: "Launch" as in "Launch the app"
-        setButton($button, gettext('Launch'), 'launch install');
+    function mark_installed(manifest_url, $button) {
+        setButton($button || get_button(manifest_url), gettext('Open'), 'launch install');
+        apps.getInstalled();
     }
 
-    function revertUninstalled() {
-        /* If an app was uninstalled, revert state of install buttons from
-           "Launch" to "Install". */
-
-        // Get installed apps to know which apps may have been uninstalled.
-        var r = navigator.mozApps.getInstalled();
-        r.onsuccess = function() {
-            // Build an array of manifests that match the button's data-manifest.
-            var installed = [];
-            _.each(r.result, function(val) {
-                installed.push(require('utils').baseurl(val.manifestURL));
-            });
-
-            $('.button.product').each(function(i, button) {
-                var $button = $(button);
-                // For each install button, check if its respective app is installed.
-                if (installed.indexOf($button.data('manifest_url')) === -1) {
-                    // If it is no longer installed, revert button.
-                    if ($button.hasClass('launch')) {
-                        revertButton($button, gettext('Install'));
-                    }
-                    $button.removeClass('launch');
+    function mark_installeds() {
+        /* For each installed app, look for respective buttons and mark as
+           ready to launch ("Open"). */
+        setTimeout(function() {
+            z.apps.forEach(function(i, app) {
+                $button = get_button(app);
+                if ($button.length) {
+                    // L10n: "Open" as in "Open the app".
+                    mark_installed(null, $button);
                 }
             });
-        };
+        });
+    }
+
+    function mark_uninstalleds() {
+        /* If an app was uninstalled, revert state of install buttons from
+           "Launch" to "Install". */
+        $('.button.product').each(function(i, button) {
+            var $button = $(button);
+            // For each install button, check if its respective app is installed.
+            if (z.apps.indexOf($button.data('manifest_url')) === -1) {
+                // If it is no longer installed, revert button.
+                if ($button.hasClass('launch')) {
+                    revertButton($button, gettext('Install'));
+                }
+                $button.removeClass('launch');
+            }
+        });
     }
 
     return {
-        buttonInstalled: buttonInstalled,
         install: install,
-        revertUninstalled: revertUninstalled,
+        mark_installeds: mark_installeds,
+        mark_uninstalleds: mark_uninstalleds,
     };
 });
