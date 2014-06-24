@@ -90,11 +90,6 @@ function(_) {
     var settings = require('settings');
     var z = require('z');
 
-    var nunjucks_globals = require('nunjucks').require('globals');
-    nunjucks_globals.REGIONS = settings.REGION_CHOICES_SLUG;
-    nunjucks_globals.user_helpers = require('user_helpers');
-    nunjucks_globals.iarc_names = require('content-ratings').names;
-
     // Jank hack because Persona doesn't allow scripts in the doc iframe.
     // Please just delete it when they don't do that anymore.
     // Note: If this list changes - please change it in webpay too or let #payments know.
@@ -216,7 +211,7 @@ function(_) {
         iconDeferrer.refresh();
         screenshotDeferrer.refresh();
     });
-    nunjucks_globals.imgAlreadyDeferred = function(src) {
+    require('nunjucks').require('globals').imgAlreadyDeferred = function(src) {
         /*
             If an image already has been loaded, we use this helper in case the
             view is triggered to be rebuilt. When pages are rebuilt, we don't
