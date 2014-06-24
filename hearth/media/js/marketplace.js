@@ -44,6 +44,8 @@ define(
         'navigation',
         'outgoing_links',
         'overlay',
+        'perf_events',
+        'perf_helper',
         'previews',
         'ratings',
         'requests',
@@ -113,6 +115,7 @@ function(_) {
         var splash = $('#splash-overlay').addClass('hide');
         z.body.removeClass('overlayed').addClass('loaded');
         setTimeout(function() {
+            z.page.trigger('splash_removed');
             splash.remove();
         }, 1500);
     });
@@ -141,6 +144,7 @@ function(_) {
                 buttons.buttonInstalled(
                     require('utils').baseurl(val.manifestURL), val);
             });
+            z.page.trigger('mozapps_got_installed');
         };
     };
     if (capabilities.webApps) {
