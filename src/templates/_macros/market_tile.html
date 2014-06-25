@@ -120,9 +120,12 @@
       {% if feed_app.description %}
         <p class="desc">{{ feed_app.description }}</p>
       {% endif %}
-      <div class="feed-app-preview-container">
-        <img class="feed-app-preview" src="{{ feed_app.preview.image_url }}">
-      </div>
+      <div class="feed-app-preview-container"
+           style="background-color: {{ feed_app.background_color }};
+                  background-image: url({{ feed_app.preview.image_url }});
+                  background-position: center center;
+                  background-repeat: no-repeat;
+                  background-size: contain;"></div>
     {% endif %}
   </div>
 {% endmacro %}
