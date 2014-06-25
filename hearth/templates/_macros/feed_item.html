@@ -1,5 +1,6 @@
-{% include '_macros/market_tile.html' %}
 {% from "_macros/market_button.html" import market_button %}
+{% from '_macros/market_tile.html' import market_tile %}
+
 
 {% macro mini_tile(app, hidden=False, landing=False) %}
   <li class="app mini-app {{ 'hidden' if hidden and not landing }}">
@@ -9,7 +10,11 @@
         <h2 class="app-name elliflow">{{ app.name|translate(app) }}</h2>
         <p class="author elliflow">{{ app.author }}</p>
         <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-          {{ stars(app.ratings.average) }}
+          {% if app.ratings.average %}
+            {{ stars(app.ratings.average) }}
+          {% else %}
+            <span class="cnt long">{{ _('Not yet rated') }}</span>
+          {% endif %}
         </div>
       </div>
       {{ market_button(app, classes=(['paid'] if app.payment_required),
