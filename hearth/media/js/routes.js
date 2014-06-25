@@ -30,7 +30,8 @@ var routes = [
 
     {'pattern': '^/debug$', 'view_name': 'debug'},
     {'pattern': '^/debug/features$', 'view_name': 'debug_features'},
-    {'pattern': '^/credits$', 'view_name': 'credits'}
+    {'pattern': '^/credits$', 'view_name': 'credits'},
+    {'pattern': '^/fxa-authorize$', 'view_name': 'fxa_authorize'},
 ];
 
 // Only `require.js` has `window.require.defined`, so we can use this to
