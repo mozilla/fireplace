@@ -37,7 +37,7 @@
         {% endif %}
         <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
         <div class="info">
-          <h1>{{ feed_app.app.name }}</h1>
+          <h1 class="name">{{ feed_app.app.name }}</h1>
           <p class="author">{{ feed_app.app.author }}</p>
         </div>
         <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
@@ -96,7 +96,7 @@
       </ul>
       <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
       <div class="info">
-        <h1>{{ coll.name }}</h1>
+        <h1 class="name">{{ coll.name }}</h1>
       </div>
       <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
       <div class="desc">{{ coll.description }}</div>
@@ -114,7 +114,7 @@
     <section class="feed-item shelf {{ 'shelf-landing' if landing }}" style="background-image: url({{ shelf.background_image }})">
       <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
       <div class="info">
-        <h1>{{ shelf.name }}</h1>
+        <h1 class="name">{{ shelf.name }}</h1>
       </div>
     </section>
   </a>

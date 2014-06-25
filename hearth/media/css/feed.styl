@@ -310,6 +310,14 @@ $vertical-tile-margin = 10px;
         position: absolute;
         top: 85px;
         z-index: 15;
+
+        .name,
+        .author {
+            max-width: $mobile-tile-width - $horizontal-tile-padding;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     }
     h1 {
         font-size: 20px;
@@ -320,7 +328,9 @@ $vertical-tile-margin = 10px;
         font-size: 12px;
         line-height: $vertical-margin;
     }
-    h1, .author, img {
+    h1,
+    .author,
+    img {
         color: #fff;
     }
     .app-icons {
