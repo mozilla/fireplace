@@ -1,8 +1,14 @@
-define('helpers_local', ['nunjucks', 'z'], function(nunjucks, z) {
+define('helpers_local',
+    ['content-ratings', 'nunjucks', 'settings', 'user_helpers', 'z'],
+    function(iarc, nunjucks, settings, user_helpers, z) {
     var filters = nunjucks.require('filters');
     var globals = nunjucks.require('globals');
 
-   var rewriteCdnUrlMappings = [
+    globals.iarc_names = iarc.names;
+    globals.REGIONS = settings.REGION_CHOICES_SLUG;
+    globals.user_helpers = user_helpers;
+
+    var rewriteCdnUrlMappings = [
         {
             name: 'Privacy Policy',
             pattern: /\/media\/docs\/privacy\/.+\.html/g,
