@@ -108,14 +108,18 @@
     {% if feed_app.type == feed.FEEDAPP_DESC %}
       <p class="desc">{{ feed_app.description }}</p>
     {% elif feed_app.type == feed.FEEDAPP_QUOTE %}
-      <p class="stars large white stars-{{ feed_app.pullquote_rating }}">
-        {{ feed_app.pullquote_rating }}
-      </p>
+      {% if feed_app.pullquote_rating %}
+        <p class="stars large white stars-{{ feed_app.pullquote_rating }}">
+          {{ feed_app.pullquote_rating }}
+        </p>
+      {% endif %}
       <blockquote><p>{{ feed_app.pullquote_text }}</p></blockquote>
-      <p class="quote-source">
-        {{ _('&mdash; {attribution}')|format(
-             {attribution: feed_app.pullquote_attribution}) }}
-      </p>
+      {% if feed_app.pullquote_attribution %}
+        <p class="quote-source">
+          {{ _('&mdash; {attribution}')|format(
+               {attribution: feed_app.pullquote_attribution}) }}
+        </p>
+      {% endif %}
     {% elif feed_app.type == feed.FEEDAPP_PREVIEW %}
       {% if feed_app.description %}
         <p class="desc">{{ feed_app.description }}</p>
