@@ -121,9 +121,7 @@
         </p>
       {% endif %}
     {% elif feed_app.type == feed.FEEDAPP_PREVIEW %}
-      {% if feed_app.description %}
-        <p class="desc">{{ feed_app.description }}</p>
-      {% endif %}
+      <p class="desc">{{ feed_app.description }}</p>
       <div class="feed-app-preview-container"
            style="background-color: {{ feed_app.background_color }};
                   background-image: url({{ feed_app.preview.image_url }});"></div>
