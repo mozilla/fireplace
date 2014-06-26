@@ -2,6 +2,7 @@
 
 $view-all-blue = #5BBAFF;
 
+$feed-column-width = 320px;
 $mobile-tile-width = 300px;
 $horizontal-tile-padding = 10px;
 $vertical-tile-padding = 15px;
@@ -9,13 +10,40 @@ $vertical-margin = 18px;
 $vertical-text-margin = 10px;
 $vertical-tile-margin = 10px;
 
+@media $at-least-desktop {
+    ul.feed {
+        max-width: $feed-column-width * 2;
+
+        .feed-item-item {
+            margin: 0;
+            right: none;
+
+            &:not(:first-child) {
+                margin: 0;
+            }
+        }
+    }
+}
+
 // Main container for feed elements on the homepage.
 .feed {
     list-style-type: none;
-    margin: 0 auto;
+    margin: 6px auto 0 auto;
     padding: 10px 0;
-    width: $mobile-tile-width;
+    position: relative;
+    width: 100%;
+    max-width: $feed-column-width;
 
+    .feed-item-item {
+        margin: 0 auto 0 auto;
+        max-width: $mobile-tile-width;
+        right: 0;
+        width: $mobile-tile-width;
+
+        &:not(:first-child) {
+            margin-top: -18px;
+        }
+    }
     .mkt-tile {
         background-color: #fff;
         border-radius: 5px;
@@ -25,7 +53,7 @@ $vertical-tile-margin = 10px;
         padding: $vertical-tile-padding $horizontal-tile-padding;
         position: relative;
 
-        img {
+        .icon {
             float: left;
         }
         .info {
@@ -195,6 +223,7 @@ $vertical-tile-margin = 10px;
         clear: both;
         display: inline-block;
         list-style-type: none;
+        width: $mobile-tile-width;
 
         img {
             margin-bottom: 8px;
@@ -488,4 +517,11 @@ $vertical-tile-margin = 10px;
             }
         }
     }
+}
+
+#page .feed-item-item .icon.deferred {
+    height: 64px;
+    margin: 0;
+    position: static;
+    width: 64px;
 }

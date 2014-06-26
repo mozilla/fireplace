@@ -4,10 +4,10 @@
 
 {% set source = 'all' %}
 
-{% defer (url=api('feed-items')) %}
-  <ul class="feed feed-items">
+{% defer (url=api('feed-items'), id='feed-items') %}
+  <ul class="feed feed-items c">
     {% for item in this.objects %}
-      <li>{{ feed_item(item) }}</li>
+      <li class="feed-item-item">{{ feed_item(item) }}</li>
     {% endfor %}
   </ul>
 {% placeholder %}

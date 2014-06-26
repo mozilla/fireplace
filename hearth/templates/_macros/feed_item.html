@@ -5,7 +5,7 @@
 {% macro mini_tile(app, hidden=False, landing=False) %}
   <li class="app mini-app {{ 'hidden' if hidden and not landing }}">
     <a href="{{ url('app', [app.slug])|urlparams(src=src) }}" class="app-link c">
-      <img src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}">
+      <img class="icon" src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}">
       <div class="info">
         <h2 class="app-name elliflow">{{ app.name|translate(app) }}</h2>
         <p class="author elliflow">{{ app.author }}</p>
@@ -63,7 +63,7 @@
 {% macro feed_brand(brand) %}
   <section class="feed-brand feed-layout-{{ brand.layout }} multi-app-tile mkt-tile c">
     {# TODO: `src` based on the brand `brand.type`. Nuke inline style. #}
-    <img src="" alt="" class="brand" style="border: 1px solid #ddd;">
+    <img src="" alt="" class="brand icon" style="border: 1px solid #ddd;">
     <div class="info">
       <h1 class="feed-tile-header">{{ feed.get_brand_name(brand) }}</h1>
     </div>
