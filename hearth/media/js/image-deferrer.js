@@ -96,6 +96,8 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
             var maxY = yOffset + viewportHeight * 1.5;  // 1.5 viewport(s) ahead.
 
             // If images are within viewport loading boundaries, load it.
+            var imagesLoading = 0;
+            var imagesLoaded = 0;
             var imagesNotLoaded = [];
             $images.each(function(i, img) {
                 var y = getXYPos(img).y;
@@ -104,6 +106,7 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
                     // Load image via clone + replace. It's slower, but it
                     // looks visually smoother than changing the image's
                     // class/src in place.
+                    imagesLoading++;
                     imagesAlreadyLoaded.push(img);
 
                     var replace = img.cloneNode(false);
@@ -121,6 +124,9 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
 
                         // Keep track of what img have already been deferred.
                         _srcsAlreadyLoaded.push(replace.src);
+                        if (++imagesLoaded == imagesLoading) {
+                            z.page.trigger('images_loaded');
+                        }
                     };
                     replace.src = replace.getAttribute('data-src');
                     replace.style.opacity = 0.5;
@@ -129,8 +135,13 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
                 }
             });
 
-           // Don't loop over already loaded images.
-           $images = $(imagesNotLoaded);
+            if (imagesLoading == 0) {
+                // No images to load? Trigger images loaded.
+                z.page.trigger('images_loaded');
+            }
+
+            // Don't loop over already loaded images.
+            $images = $(imagesNotLoaded);
         }
 
         var setImages = function($newImages) {
