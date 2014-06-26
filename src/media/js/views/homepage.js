@@ -1,6 +1,6 @@
 define('views/homepage',
-    ['format', 'isotope', 'packery', 'jquery', 'l10n', 'log', 'newsletter', 'textoverflowclamp', 'underscore', 'urls', 'utils', 'z'],
-    function(format, isotope, packery, $, l10n, log, newsletter, clamp, _, urls, utils, z) {
+    ['format', 'isotope', 'jquery', 'l10n', 'log', 'newsletter', 'textoverflowclamp', 'underscore', 'urls', 'utils', 'z'],
+    function(format, isotope, $, l10n, log, newsletter, clamp, _, urls, utils, z) {
     'use strict';
 
     var console = log('homepage');
@@ -28,17 +28,8 @@ define('views/homepage',
         builder.onload('feed-items', function() {
             var iso = new isotope(document.querySelector('.feed'), {
                 itemSelector: '.feed-item-item',
-                layoutMode: 'packery',
-                packery: {
-                    columnWidth: 300,
-                    gutter: 18,
-                    isFitWidth: true
-                }
-            });
-            var iso = new isotope(document.querySelector('.feed'), {
-                itemSelector: '.feed-item-item',
-                layoutMode: 'packery',
-                packery: {
+                layoutMode: 'masonry',
+                masonry: {
                     columnWidth: 300,
                     gutter: 18,
                     isFitWidth: false

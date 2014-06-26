@@ -303,7 +303,7 @@ if ( typeof define === 'function' && define.amd ) {
  */
 
 (function () {
-	
+
 
 	/**
 	 * Class for managing events.
@@ -1051,7 +1051,7 @@ if ( typeof define === 'function' && define.amd ) {
 
 ( function( global, ElemProto ) {
 
-  
+
 
   var matchesMethod = ( function() {
     // check un-prefixed
@@ -3863,7 +3863,7 @@ function isotopeDefinition( Outlayer, getSize, matchesSelector, Item, LayoutMode
 
 if ( typeof define === 'function' && define.amd ) {
   // AMD
-  define( [
+  define('isotope', [
       'outlayer/outlayer',
       'get-size/get-size',
       'matches-selector/matches-selector',
