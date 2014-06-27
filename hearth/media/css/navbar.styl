@@ -156,8 +156,50 @@
 }
 
 @media $at-least-desktop {
-    .site-nav {
+    .navbar.nav-settings,
+    .act-tray,
+    .mkt-tray {
         display: none;
+    }
+    .site-nav {
+        background-color: #E0E0E0;
+        height: 50px;
+        margin: 0 auto;
+    }
+    ul.navbar {
+        disable-user-select();
+        display: inline-block;
+        height: auto;
+        margin: 0 auto;
+        left: 0;
+        opacity: 1;
+        padding: 8px 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: $desktop-content;
+
+        li {
+            display: inline-block;
+            font-size: 15px;
+            padding: 11px 60px 8px;
+            position: relative;
+            text-transform: uppercase;
+
+            &.active a {
+                color: $breezy-blue;
+            }
+            &:active {
+                border: 0;
+            }
+            a {
+                color: $medium-gray;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
     }
     [data-page-type~=settings] .header-button.settings {
         background-image: url(../img/pretty/settings_gear_active.svg);
