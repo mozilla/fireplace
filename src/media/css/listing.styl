@@ -587,11 +587,9 @@ grid-style() {
 
 @media $at-least-desktop {
     .listing li {
-        &.item, &.loadmore {
-            margin: 25px 0 0;
-        }
         &.item {
             border-radius: 10px;
+            margin: 25px 0 0;
 
             .mkt-tile + .tray {
                 // Subtract 1px for border.
@@ -599,7 +597,8 @@ grid-style() {
             }
         }
         &.loadmore {
-            margin-bottom: -25px;
+            margin: 10px 0;
+            width: 100%;
         }
         a {
             position: static;
@@ -809,4 +808,9 @@ ratings-sidebar() {
     h3 {
         color: #fff;
     }
+}
+
+.loadmore.pagination-error span.error-text {
+    display: block;
+    text-align: center;
 }

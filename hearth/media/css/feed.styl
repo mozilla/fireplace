@@ -11,6 +11,9 @@ $vertical-text-margin = 10px;
 $vertical-tile-margin = 10px;
 
 @media $at-least-desktop {
+    section.feed {
+        margin-bottom: $vertical-tile-margin;
+    }
     ul.feed {
         max-width: $feed-column-width * 2;
 
@@ -297,6 +300,9 @@ $vertical-tile-margin = 10px;
 
 // Editorial brand list layout.
 .feed-layout-list {
+    li {
+        width: unquote('calc(100% - 20px)');
+    }
     .rating .cnt {
         bottom: 5px;
         font-size: 11px;
@@ -310,8 +316,13 @@ $vertical-tile-margin = 10px;
     h2 {
         padding: 4px 0 0;
     }
-    .install {
-        right: 20px;
+    .loadmore {
+        margin: 0;
+        padding-top: 50px;
+
+        button {
+            height: 35px;
+        }
     }
 }
 

@@ -119,19 +119,59 @@
 }
 
 .loadmore {
-    left: 10px;
-    padding: 15px 0;
-    width: unquote('calc(100% - 20px)');
+    list-style: none;
+    margin: 0 auto;
+    padding: 18px 10px;
+    position: relative;
+    width: 100%;
 
     button {
         background: $earl-gray;
         border: 0;
         box-shadow: none;
         color: $white;
+        display: block;
+        margin: auto;
+        padding: 0;
+        width: 100%;
 
         &:hover {
             background: $earl-gray;
             color: $white;
         }
+        &.hide,
+        &:not(.hide) + .spinner {
+            display: none;
+        }
     }
+    &.loading {
+        button {
+            visibility: hidden;
+        }
+        .throbber {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 32px;
+            height: 32px;
+            border-radius: 20px;
+            border: 4px solid #666;
+            border-color: #666 transparent;
+            animation(unquote('spin 1s linear infinite'));
+        }
+    }
+    span,
+    .throbber {
+        display: none;
+    }
+}
+
+.listing .loadmore,
+.reviews-listing .loadmore {
+    height: auto;
+    min-height: 78px;
 }
