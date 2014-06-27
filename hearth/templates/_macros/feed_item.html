@@ -2,7 +2,7 @@
 {% from '_macros/market_tile.html' import market_tile %}
 
 
-{% macro mini_tile(app, hidden=False, landing=False) %}
+{% macro mini_tile(app, hidden, landing) %}
   <li class="app mini-app {{ 'hidden' if hidden and not landing }}">
     <a href="{{ url('app', [app.slug])|urlparams(src=src) }}" class="app-link c">
       <img class="icon" src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}">
@@ -73,7 +73,7 @@
         {{ mini_tile(app, hidden=loop.index0 >= feed.MAX_BRAND_APPS, landing=landing) }}
       {% endfor %}
     </ul>
-    {% if not landing %}
+    {% if not landing and brand.apps.length > feed.MAX_BRAND_APPS %}
       <a href="{{ url('feed/feed_brand', [brand.slug]) }}" class="view-all">
         {{ _('View all apps') }}
       </a>
