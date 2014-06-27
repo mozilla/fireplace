@@ -24,8 +24,8 @@ $vertical-tile-margin = 10px;
 // Main container for feed elements on the homepage.
 .feed {
     list-style-type: none;
-    margin: 6px auto 0 auto;
-    padding: 10px 0;
+    margin: 0 auto;
+    padding: 0 0 10px;
     position: relative;
     width: 100%;
     max-width: $feed-column-width;
@@ -199,6 +199,8 @@ $vertical-tile-margin = 10px;
 
 .feed .multi-app-tile.mkt-tile {
     background-color: #fff;
+    margin: 0 auto;
+    max-width: $mobile-tile-width;
 
     img {
         height: 60px;
@@ -308,11 +310,7 @@ $vertical-tile-margin = 10px;
     h2 {
         padding: 4px 0 0;
     }
-    .button {
-        top: 35px;
-        right: 0;
-    }
-    &.feed-brand .button {
+    .install {
         right: 20px;
     }
 }
@@ -488,28 +486,6 @@ $vertical-tile-margin = 10px;
             font-weight: light;
             line-height: 22px;
             padding: 20px;
-        }
-    }
-}
-
-.app-list {
-    .loadmore {
-        bottom: -65px;
-        left: 10px;
-        padding: 15px 0;
-        position: absolute;
-        width: unquote('calc(100% - 20px)');
-
-        button {
-            background: $earl-gray;
-            border: 0;
-            box-shadow: 0 1px 1px 0 $london-fog-gray;
-            color: $white;
-
-            &:hover {
-                background: $earl-gray;
-                color: $white;
-            }
         }
     }
 }
