@@ -169,7 +169,7 @@ define('apps_buttons',
 
             // This is the data needed to record the app's install.
             var api_endpoint = urls.api.url('record_' + (product.receipt_required ? 'paid' : 'free'));
-            var post_data = {app: product.id, chromeless: + capabilities.chromeless};
+            var post_data = {app: product.id, chromeless: +capabilities.chromeless};
 
             // If we don't need a receipt to perform the installation...
             if (!product.receipt_required) {
@@ -274,25 +274,25 @@ define('apps_buttons',
     }
 
     function mark_installed(manifest_url, $button) {
+        // L10n: "Open" as in "Open the app".
         setButton($button || get_button(manifest_url), gettext('Open'), 'launch install');
         apps.getInstalled();
     }
 
-    function mark_installeds() {
+    function mark_btns_as_installed() {
         /* For each installed app, look for respective buttons and mark as
            ready to launch ("Open"). */
         setTimeout(function() {
-            z.apps.forEach(function(i, app) {
+            z.apps.forEach(function(app, i) {
                 $button = get_button(app);
                 if ($button.length) {
-                    // L10n: "Open" as in "Open the app".
                     mark_installed(null, $button);
                 }
             });
         });
     }
 
-    function mark_uninstalleds() {
+    function mark_btns_as_uninstalled() {
         /* If an app was uninstalled, revert state of install buttons from
            "Launch" to "Install". */
         $('.button.product').each(function(i, button) {
@@ -310,7 +310,7 @@ define('apps_buttons',
 
     return {
         install: install,
-        mark_installeds: mark_installeds,
-        mark_uninstalleds: mark_uninstalleds,
+        mark_btns_as_installed: mark_btns_as_installed,
+        mark_btns_as_uninstalled: mark_btns_as_uninstalled,
     };
 });

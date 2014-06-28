@@ -25,6 +25,7 @@ define('consumer_info',
                 if (user.logged_in() && consumerInfo.apps !== undefined) {
                     user.update_apps(consumerInfo.apps);
                 }
+                deferred.resolve();
                 settings.switches = consumerInfo.waffle.switches || [];
                 settings.fxa_auth_url = consumerInfo.fxa_auth_url;
                 settings.fxa_auth_state = consumerInfo.fxa_auth_state;

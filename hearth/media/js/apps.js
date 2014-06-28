@@ -2,25 +2,38 @@
     Provides the apps module, a wrapper around navigator.mozApps
 */
 define('apps',
-    ['apps_iframe_installer', 'buckets', 'capabilities', 'defer', 'l10n', 'log', 'nunjucks', 'settings', 'underscore', 'utils'],
-    function(iframe_installer, buckets, capabilities, defer, l10n, log, nunjucks, settings, _, utils) {
+    ['buckets', 'capabilities', 'defer', 'installer_direct', 'installer_iframe', 'l10n', 'log', 'nunjucks', 'settings', 'underscore', 'utils'],
+    function(buckets, capabilities, defer, installer_direct, installer_iframe, l10n, log, nunjucks, settings, _, utils) {
     'use strict';
     var gettext = l10n.gettext;
     var console = log('apps');
+
+    /* Determine which installer to use.
+       If we are in an iframe (yulelog), invoke direct installer.
+       If we are packaged or directly in browser, invoke iframe installer that
+       uses the m.f.c origin.
+       The iframe installer does not work when we are in an iframe because
+       mozApps doesn't seem to work when double nested in iframes.
+    */
+    try {
+        var iframed = window.self !== window.top;
+    } catch (e) {
+        var iframed = true;
+    }
+    if (iframed) {
+        var installer = installer_direct;
+    } else {
+        var installer = installer_iframe;
+        installer.initialize_iframe();
+    }
 
     function install(product, opt) {
         /*
            apps.install(manifest_url, options)
 
-           It's just like navigator.apps.install with the following enhancements:
-           - If navigator.apps.install doesn't exist, an error is displayed
-           - If the install resulted in errors, they are displayed to the user
-
            This requires at least one apps-error-msg div to be present.
 
            See also: https://developer.mozilla.org/docs/DOM/Apps.install
-
-           The recognized option attributes are as follows:
 
            data -- optional dict to pass as navigator.apps.install(url, data, ...)
            success -- optional callback for when app installation was successful
@@ -30,7 +43,7 @@ define('apps',
         var def = defer.Deferred();
 
         // Bug 996150 for packaged Marketplace installing packaged apps.
-        iframe_installer.iframe_install(product, opt).done(function(result, product) {
+        installer.install(product, opt).done(function(result, product) {
             def.resolve(result, product);
         }).fail(function(message, error) {
             def.reject(message, error);
@@ -40,11 +53,11 @@ define('apps',
     }
 
     function getInstalled() {
-        return iframe_installer.getInstalled();
+        return installer.getInstalled();
     }
 
     function launch(manifestURL) {
-        return iframe_installer.launch_app(manifestURL);
+        return installer.launch(manifestURL);
     }
 
     var COMPAT_REASONS = '__compat_reasons';
@@ -93,9 +106,9 @@ define('apps',
 
     return {
         getInstalled: getInstalled,
+        launch: launch,
         incompat: incompat,
         install: install,
-        launch: launch,
         _use_compat_cache: function(val) {use_compat_cache = val;}
     };
 });

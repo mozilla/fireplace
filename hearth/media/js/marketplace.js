@@ -115,7 +115,7 @@ function(_) {
         setTimeout(function() {
             z.page.trigger('splash_removed');
             splash.remove();
-            apps.getInstalled().done(buttons.mark_installeds);
+            apps.getInstalled().done(buttons.mark_btns_as_installed);
         }, 1500);
     });
 
@@ -132,7 +132,7 @@ function(_) {
         // Triggered by apps-iframe-installer.
         apps.getInstalled().done(function() {
             z.page.trigger('mozapps_got_installed');
-            buttons.mark_installeds();
+            buttons.mark_btns_as_installed();
         });
     });
 
@@ -144,7 +144,7 @@ function(_) {
                 if (require('user').logged_in()) {
                     require('consumer_info').fetch(true);
                 }
-                apps.getInstalled().done(buttons.mark_uninstalleds);
+                apps.getInstalled().done(buttons.mark_btns_as_uninstalled);
             }
         }, false);
     }

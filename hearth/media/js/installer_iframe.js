@@ -1,15 +1,15 @@
 /*
-    Interface with mozApps through m.f.c iframe since Yogafire is packaged with different origin.
+    Interface with mozApps through m.f.c iframe when we are a packaged app.
 */
-define('apps_iframe_installer',
+define('installer_iframe',
     ['defer', 'l10n', 'log', 'settings', 'z'],
     function(defer, l10n, log, settings, z) {
     'use strict';
     var gettext = l10n.gettext;
-    var console = log('apps_iframe_installer');
+    var console = log('installer');
 
     window.addEventListener('message', function(e) {
-        if (!settings.iframe_installer_src.indexOf(e.origin) !== 0) {
+        if (settings.iframe_installer_src.indexOf(e.origin) !== 0) {
             console.log(e.origin + ' origin not allowed');
         }
 
@@ -25,18 +25,21 @@ define('apps_iframe_installer',
         }
     });
 
-    var iframe_id = 'iframe-installer';
-    if (!document.getElementById(iframe_id)) {
-        var iframe = document.createElement('iframe');
-        iframe.id = iframe_id;
-        iframe.src = settings.iframe_installer_src;
-        iframe.height = 0;
-        iframe.width = 0;
-        iframe.style.borderWidth = 0;
-        document.body.appendChild(iframe);
+    var iframe;
+    function initialize_iframe() {
+        var iframe_id = 'iframe-installer';
+        if (!document.getElementById(iframe_id)) {
+            iframe = document.createElement('iframe');
+            iframe.id = iframe_id;
+            iframe.src = settings.iframe_installer_src;
+            iframe.height = 0;
+            iframe.width = 0;
+            iframe.style.borderWidth = 0;
+            document.body.appendChild(iframe);
+        }
     }
 
-    var iframe_install = function(product, opt) {
+    function install(product, opt) {
         // m.f.c will receive this postMessage in hearth/iframe-install.html.
         console.log('Using iframe installer for ' + product.manifest_url);
         var def = defer.Deferred();
@@ -74,7 +77,7 @@ define('apps_iframe_installer',
         return def.promise();
     };
 
-    var getInstalled = function() {
+    function getInstalled() {
         console.log('Getting installed apps');
         var def = defer.Deferred();
 
@@ -94,7 +97,7 @@ define('apps_iframe_installer',
         return def.promise();
     };
 
-    var launch_app = function(manifestURL) {
+    function launch(manifestURL) {
         iframe.contentWindow.postMessage({
             name: 'launch-app',
             manifestURL: manifestURL
@@ -103,7 +106,8 @@ define('apps_iframe_installer',
 
     return {
         getInstalled: getInstalled,
-        iframe_install: iframe_install,
-        launch_app: launch_app,
+        initialize_iframe: initialize_iframe,
+        launch: launch,
+        install: install,
     };
 });
