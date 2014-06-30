@@ -1,4 +1,4 @@
-define('capabilities', [], function() {
+define('capabilities', ['settings'], function(settings) {
     function safeMatchMedia(query) {
         var m = window.matchMedia(query);
         return !!m && m.matches;
