@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
+"POT-Creation-Date: 2014-06-30T16:47:36.729Z\n"
 "PO-Revision-Date: 2013-12-20 17:51+0000\n"
 "Last-Translator: Chengings <chengings@gmail.com>\n"
 "Language-Team: none\n"
@@ -144,14 +144,6 @@ msgstr "ออกจากระบบ"
 msgid "Sign In"
 msgstr "เข้าสู่ระบบ"
 
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "คุณต้องใช้ Firefox ในการติดตั้งแอพ Firefox"
-
-#: /templates/incompatible.html:2
-msgid "Download."
-msgstr "ดาวน์โหลด"
-
 #: /templates/nominate.html:1
 msgid "Nominate apps to be featured on Firefox Marketplace!"
 msgstr ""
@@ -212,12 +204,20 @@ msgstr ""
 msgid "Submit"
 msgstr "ส่ง"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "คุณต้องใช้ Firefox ในการติดตั้งแอพ Firefox"
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr "ดาวน์โหลด"
+
 #. This app is unavailable for purchase.
 #: /templates/_macros/market_button.html:5
 msgid "Unavailable"
 msgstr "ไม่พร้อมใช้งาน"
 
-#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:61
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:63
 msgid "Free"
 msgstr "ฟรี"
 
@@ -234,54 +234,34 @@ msgstr ""
 msgid "{rating_body}: {rating}"
 msgstr ""
 
-#: /templates/_macros/market_tile.html:69
+#: /templates/_macros/market_tile.html:61
+msgid "Not yet rated"
+msgstr "ยังไม่ได้จัดอันดับ"
+
+#: /templates/_macros/market_tile.html:74
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:72 /templates/detail/main.html:137
+#: /templates/_macros/market_tile.html:77 /templates/detail/main.html:137
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} บทวิจารณ์"
 
-#: /templates/_macros/market_tile.html:76
+#: /templates/_macros/market_tile.html:81
 msgid "(0)"
 msgstr "(0)"
 
-#: /templates/_macros/market_tile.html:77
-msgid "Not yet rated"
-msgstr "ยังไม่ได้จัดอันดับ"
+#: /templates/_macros/market_tile.html:82
+msgid "Not yet reviewed"
+msgstr ""
+
+#: /templates/_macros/market_tile.html:92
+msgid "Works offline"
+msgstr ""
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "เพิ่มเติม"
-
-#: /templates/_macros/rating.html:9
-msgid "by {author}"
-msgstr "โดย {author}"
-
-#: /templates/_macros/rating.html:12
-msgid "for previous version {version}"
-msgstr "สำหรับรุ่นก่อนหน้า {version}"
-
-#: /templates/_macros/rating.html:21
-msgid "Flagged for review"
-msgstr ""
-
-#: /templates/_macros/rating.html:27
-msgid "Edit"
-msgstr "แก้ไข"
-
-#: /templates/_macros/rating.html:30
-msgid "Delete"
-msgstr "ลบ"
-
-#: /templates/_macros/rating.html:33
-msgid "Report"
-msgstr "รายงาน"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "ถูกจัดอันดับ {stars} จาก {maxstars} ดาว"
 
 #: /templates/category/main.html:37
 msgid "Featured Apps"
@@ -312,13 +292,29 @@ msgstr "ไม่มีหมวดหมู่ที่คุณร้องข
 msgid "An internal server error occurred. Please try again later."
 msgstr "เซิร์ฟเวอร์ภายในเกิดข้อผิดพลาด โปรดลองอีกครั้งในภายหลัง"
 
-#: /templates/detail/abuse.html:5 /templates/detail/main.html:202 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "รายงานการละเมิด"
+#: /templates/_macros/rating.html:9
+msgid "by {author}"
+msgstr "โดย {author}"
 
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "ส่งรายงาน"
+#: /templates/_macros/rating.html:12
+msgid "for previous version {version}"
+msgstr "สำหรับรุ่นก่อนหน้า {version}"
+
+#: /templates/_macros/rating.html:21
+msgid "Flagged for review"
+msgstr ""
+
+#: /templates/_macros/rating.html:27
+msgid "Edit"
+msgstr "แก้ไข"
+
+#: /templates/_macros/rating.html:30
+msgid "Delete"
+msgstr "ลบ"
+
+#: /templates/_macros/rating.html:33
+msgid "Report"
+msgstr "รายงาน"
 
 #. (es) Classificacao Indicativa.
 #: /templates/detail/content_ratings.html:5
@@ -329,6 +325,10 @@ msgstr ""
 #: /templates/detail/content_ratings.html:75
 msgid "Content Rating Details"
 msgstr ""
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "ถูกจัดอันดับ {stars} จาก {maxstars} ดาว"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -346,7 +346,7 @@ msgstr "เปิดแอพนี้จาก<b>พื้นโต๊ะ Windo
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "เปิดแอพนี้จาก<b>แดช</b>ของคุณ <b>ตัวเลือกแอพพลิเคชัน</b> หรือ<b>เมนูแอพพลิเคชัน</b>"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
 msgid "Loading..."
 msgstr "กำลังโหลด..."
 
@@ -391,18 +391,18 @@ msgid "Reviews"
 msgstr "บทวิจารณ์"
 
 #: /templates/detail/main.html:145
-msgid "App not yet rated"
-msgstr "แอพยังไม่ถูกจัดอันดับ"
+msgid "App not yet reviewed"
+msgstr ""
 
 #: /templates/detail/main.html:153
 msgid "Edit Your Review"
 msgstr "แก้ไขบทวิจารณ์ของคุณ"
 
-#: /templates/detail/main.html:157 /templates/ratings/main.html:18 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
+#: /templates/detail/main.html:157 /templates/ratings/main.html:19 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
 msgid "Write a Review"
 msgstr "เขียนบทวิจารณ์"
 
-#: /templates/detail/main.html:157 /templates/ratings/main.html:18
+#: /templates/detail/main.html:157 /templates/ratings/main.html:19
 msgid "Sign in to Review"
 msgstr "เข้าสู่ระบบเพื่อเขียนบทวิจารณ์"
 
@@ -422,11 +422,19 @@ msgstr "หน้าแรก"
 msgid "Statistics"
 msgstr "สถิติ"
 
+#: /templates/detail/main.html:202 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "รายงานการละเมิด"
+
 #: /templates/detail/main.html:213
 msgid "Premium version available"
 msgstr ""
 
-#: /templates/detail/privacy.html:5
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "ส่งรายงาน"
+
+#: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
 msgid "Back to app"
 msgstr "กลับสู่แอพ"
 
@@ -458,7 +466,7 @@ msgstr "เกิดข้อผิดพลาดขณะโหลดเพิ
 msgid "Try Again"
 msgstr "ลองใหม่"
 
-#: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:86
+#: /templates/ratings/main.html:15 /templates/ratings/edit.html:5 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "แก้ไขบทวิจารณ์"
 
@@ -479,22 +487,6 @@ msgstr "เฉพาะผู้ใช้ที่อยู่ในระบบ
 msgid "App Review"
 msgstr "บทวิจารณ์แอพ"
 
-#: /templates/ratings/report.html:2
-msgid "Please select a reason:"
-msgstr "โปรดเลือกเหตุผล:"
-
-#: /templates/ratings/report.html:8
-msgid "Spam or otherwise non-review content"
-msgstr "สแปม หรือเนื้อหาอื่น ๆ ที่ไม่ใช่การวิจารณ์"
-
-#: /templates/ratings/report.html:13
-msgid "Inappropriate language/dialog"
-msgstr "การโต้ตอบ หรือภาษาที่ไม่เหมาะสม"
-
-#: /templates/ratings/report.html:18
-msgid "Misplaced bug report or support request"
-msgstr "รายงานข้อบกพร่อง หรือขอความช่วยเหลือไม่ถูกที่"
-
 #: /templates/search/main.html:15
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
@@ -512,13 +504,21 @@ msgstr "ไม่พบผลลัพธ์"
 msgid "No results found, try again later"
 msgstr "ไม่พบผลลัพธ์ ลองใหม่อีกครั้งในภายหลัง"
 
-#: /templates/settings/feedback.html:12
-msgid "Send"
-msgstr "ส่ง"
+#: /templates/ratings/report.html:2
+msgid "Please select a reason:"
+msgstr "โปรดเลือกเหตุผล:"
 
-#: /templates/settings/feedback.html:18 /templates/settings/feedback.html:20
-msgid "Get Help"
-msgstr "รับความช่วยเหลือ"
+#: /templates/ratings/report.html:8
+msgid "Spam or otherwise non-review content"
+msgstr "สแปม หรือเนื้อหาอื่น ๆ ที่ไม่ใช่การวิจารณ์"
+
+#: /templates/ratings/report.html:13
+msgid "Inappropriate language/dialog"
+msgstr "การโต้ตอบ หรือภาษาที่ไม่เหมาะสม"
+
+#: /templates/ratings/report.html:18
+msgid "Misplaced bug report or support request"
+msgstr "รายงานข้อบกพร่อง หรือขอความช่วยเหลือไม่ถูกที่"
 
 #: /templates/settings/main.html:2 /media/js/views/settings.js:47
 msgid "Account Settings"
@@ -543,6 +543,14 @@ msgstr "บันทึกการเปลี่ยนแปลง"
 #: /templates/settings/main.html:41
 msgid "Sign In / Sign Up"
 msgstr "เข้าสู่ระบบ / สมัครสมาชิก"
+
+#: /templates/settings/feedback.html:12
+msgid "Send"
+msgstr "ส่ง"
+
+#: /templates/settings/feedback.html:18 /templates/settings/feedback.html:20
+msgid "Get Help"
+msgstr "รับความช่วยเหลือ"
 
 #: /templates/settings/nav.html:6
 msgid "Account"
@@ -575,6 +583,26 @@ msgstr ""
 #: /templates/user/purchases.html:34
 msgid "You have no apps"
 msgstr "คุณไม่มีแอพ"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "การติดตั้งแอพผิดพลาด: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "อุปกรณ์ของคุณไม่รองรับการชำระเงิน"
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "แอพนี้ไม่สามารถซื้อได้ในภูมิภาคของคุณ"
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "เบราว์เซอร์หรืออุปกรณ์ของคุณไม่เข้ากันได้กับเว็บแอพ"
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "แอพนี้ไม่สามารถใช้งานได้ในแพลตฟอร์มของคุณ"
 
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
@@ -665,26 +693,6 @@ msgstr ""
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr ""
-
-#: /media/js/apps.js:77 /media/js/apps.js:84
-msgid "App install error: {error}"
-msgstr "การติดตั้งแอพผิดพลาด: {error}"
-
-#: /media/js/apps.js:135
-msgid "Your device does not support payments."
-msgstr "อุปกรณ์ของคุณไม่รองรับการชำระเงิน"
-
-#: /media/js/apps.js:137
-msgid "This app is unavailable for purchase in your region."
-msgstr "แอพนี้ไม่สามารถซื้อได้ในภูมิภาคของคุณ"
-
-#: /media/js/apps.js:141
-msgid "Your browser or device is not web-app compatible."
-msgstr "เบราว์เซอร์หรืออุปกรณ์ของคุณไม่เข้ากันได้กับเว็บแอพ"
-
-#: /media/js/apps.js:143
-msgid "This app is unavailable for your platform."
-msgstr "แอพนี้ไม่สามารถใช้งานได้ในแพลตฟอร์มของคุณ"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -976,111 +984,111 @@ msgstr "บทวิจารณ์ของคุณถูกโพสต์แ
 msgid "Error while submitting review"
 msgstr "เกิดข้อผิดพลาดขณะกำลังส่งบทวิจารณ์"
 
-#: /media/js/settings.js:105
+#: /media/js/settings.js:103
 msgid "Rest of World"
 msgstr ""
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:104
 msgid "Argentina"
 msgstr ""
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:105
 msgid "Brazil"
 msgstr "บราซิล"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:106
 msgid "Chile"
 msgstr ""
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:107
 msgid "China"
 msgstr "จีน"
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:108
 msgid "Colombia"
 msgstr "โคลอมเบีย"
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:109
 msgid "Costa Rica"
 msgstr ""
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:110
 msgid "Ecuador"
 msgstr ""
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:111
 msgid "El Salvador"
 msgstr ""
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:112
 msgid "Germany"
 msgstr "เยอรมนี"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:113
 msgid "Greece"
 msgstr "กรีซ"
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:114
 msgid "Guatemala"
 msgstr ""
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:115
 msgid "Hungary"
 msgstr "ฮังการี"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:116
 msgid "Italy"
 msgstr "อิตาลี"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:117
 msgid "Mexico"
 msgstr "เม็กซิโก"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:118
 msgid "Montenegro"
 msgstr "มอนเตเนโกร"
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:119
 msgid "Nicaragua"
 msgstr ""
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:120
 msgid "Panama"
 msgstr ""
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:121
 msgid "Peru"
 msgstr "เปรู"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:122
 msgid "Poland"
 msgstr "โปแลนด์"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:123
 msgid "Serbia"
 msgstr "เซอร์เบีย"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:124
 msgid "Spain"
 msgstr "สเปน"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:125
 msgid "United Kingdom"
 msgstr "สหราชอาณาจักร"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:126
 msgid "United States"
 msgstr "สหรัฐอเมริกา"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:127
 msgid "Uruguay"
 msgstr ""
 
-#: /media/js/settings.js:130
+#: /media/js/settings.js:128
 msgid "Venezuela"
 msgstr ""
 
-#: /media/js/settings.js:131
+#: /media/js/settings.js:129
 msgid "No region in search"
 msgstr ""
 
@@ -1102,15 +1110,15 @@ msgstr "คุณได้เข้าสู่ระบบ"
 msgid "Error signing out"
 msgstr ""
 
-#: /media/js/commonplace/login.js:137
+#: /media/js/commonplace/login.js:171
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "การเข้าสู่ระบบ Persona ล้มเหลว บางทีคุณอาจยังไม่มีบัญชีภายใต้ที่อยู่อีเมลนั้น?"
 
-#: /media/js/commonplace/login.js:142
+#: /media/js/commonplace/login.js:176
 msgid "Persona login failed. A server error was encountered."
 msgstr "การเข้าสู่ระบบ Persona ล้มเหลว เซิร์ฟเวอร์เกิดข้อผิดพลาด"
 
-#: /media/js/commonplace/login.js:210
+#: /media/js/commonplace/login.js:244
 msgid "Persona cannot be reached. Try again later."
 msgstr ""
 
@@ -1137,12 +1145,12 @@ msgstr ""
 msgid "Your device does not support purchases."
 msgstr ""
 
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr ""
-
 #: /media/js/views/collection.js:43
 msgid "Collection Details"
+msgstr ""
+
+#: /media/js/views/app.js:69
+msgid "App Details"
 msgstr ""
 
 #: /media/js/views/feedback.js:23
@@ -1177,14 +1185,6 @@ msgstr "ได้รายงานการละเมิดแล้ว"
 msgid "Error while submitting report"
 msgstr "เกิดข้อผิดพลาดขณะกำลังส่งรายงาน"
 
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "โปรดเข้าสู่ระบบเพื่อดูใบเสร็จรับเงิน"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "ใบเสร็จรับเงิน"
-
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr ""
@@ -1193,6 +1193,14 @@ msgstr ""
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr ""
+
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "โปรดเข้าสู่ระบบเพื่อดูใบเสร็จรับเงิน"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "ใบเสร็จรับเงิน"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28T16:42:34.511Z\n"
+"POT-Creation-Date: 2014-06-30T16:47:36.729Z\n"
 "PO-Revision-Date: 2014-05-29 07:29+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: none\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1401348549.0\n"
 
@@ -147,14 +146,6 @@ msgstr "Одјави се"
 msgid "Sign In"
 msgstr "Пријави се"
 
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Морате користити Firefox како би инсталирали Firefox апликације."
-
-#: /templates/incompatible.html:2
-msgid "Download."
-msgstr "Преузми."
-
 #: /templates/nominate.html:1
 msgid "Nominate apps to be featured on Firefox Marketplace!"
 msgstr "Номинирај апликацију да буде истакнута на Firefox Marketplace!"
@@ -165,8 +156,7 @@ msgstr "Да ли сте програмер или фан ове сјајне а
 
 #: /templates/nominate.html:9
 msgid "Learn more about <a href=\"{wiki_url}\">how apps are featured</a>."
-msgstr ""
-"Сазнајте више о томе <a href=\"{wiki_url}\">како су апликације истакнуте</a>."
+msgstr "Сазнајте више о томе <a href=\"{wiki_url}\">како су апликације истакнуте</a>."
 
 #: /templates/nominate.html:15
 msgid "Thanks for submitting your nomination."
@@ -216,12 +206,20 @@ msgstr "Ваша адреса е-поште"
 msgid "Submit"
 msgstr "Пошаљи"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Морате користити Firefox како би инсталирали Firefox апликације."
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr "Преузми."
+
 #. This app is unavailable for purchase.
 #: /templates/_macros/market_button.html:5
 msgid "Unavailable"
 msgstr "Недоступна"
 
-#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:61
+#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:63
 msgid "Free"
 msgstr "Бесплатно"
 
@@ -238,56 +236,36 @@ msgstr "{app_name} снимак екрана"
 msgid "{rating_body}: {rating}"
 msgstr "{rating_body}: {rating}"
 
-#: /templates/_macros/market_tile.html:69
+#: /templates/_macros/market_tile.html:61
+msgid "Not yet rated"
+msgstr "Није оцењена"
+
+#: /templates/_macros/market_tile.html:74
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:72 /templates/detail/main.html:137
+#: /templates/_macros/market_tile.html:77 /templates/detail/main.html:137
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} преглед"
 msgstr[1] "{n} прегледа"
 msgstr[2] "{n} прегледа"
 
-#: /templates/_macros/market_tile.html:76
+#: /templates/_macros/market_tile.html:81
 msgid "(0)"
 msgstr "(0)"
 
-#: /templates/_macros/market_tile.html:77
-msgid "Not yet rated"
-msgstr "Није оцењена"
+#: /templates/_macros/market_tile.html:82
+msgid "Not yet reviewed"
+msgstr ""
+
+#: /templates/_macros/market_tile.html:92
+msgid "Works offline"
+msgstr ""
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "Још"
-
-#: /templates/_macros/rating.html:9
-msgid "by {author}"
-msgstr "од корисника {author}"
-
-#: /templates/_macros/rating.html:12
-msgid "for previous version {version}"
-msgstr "за претходну верзију {version}"
-
-#: /templates/_macros/rating.html:21
-msgid "Flagged for review"
-msgstr "Означено за преглед"
-
-#: /templates/_macros/rating.html:27
-msgid "Edit"
-msgstr "Измени"
-
-#: /templates/_macros/rating.html:30
-msgid "Delete"
-msgstr "Обриши"
-
-#: /templates/_macros/rating.html:33
-msgid "Report"
-msgstr "Пријави"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Оцењено са {stars} од {maxstars} звездица"
 
 #: /templates/category/main.html:37
 msgid "Featured Apps"
@@ -318,13 +296,29 @@ msgstr "Категорија коју сте затражили не посто�
 msgid "An internal server error occurred. Please try again later."
 msgstr "Догодила се грешка на серверу. Молимо Вас покушајте касније."
 
-#: /templates/detail/abuse.html:5 /templates/detail/main.html:202 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "Пријави злоупотребу"
+#: /templates/_macros/rating.html:9
+msgid "by {author}"
+msgstr "од корисника {author}"
 
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "Пошаљи извештај"
+#: /templates/_macros/rating.html:12
+msgid "for previous version {version}"
+msgstr "за претходну верзију {version}"
+
+#: /templates/_macros/rating.html:21
+msgid "Flagged for review"
+msgstr "Означено за преглед"
+
+#: /templates/_macros/rating.html:27
+msgid "Edit"
+msgstr "Измени"
+
+#: /templates/_macros/rating.html:30
+msgid "Delete"
+msgstr "Обриши"
+
+#: /templates/_macros/rating.html:33
+msgid "Report"
+msgstr "Пријави"
 
 #. (es) Classificacao Indicativa.
 #: /templates/detail/content_ratings.html:5
@@ -335,6 +329,10 @@ msgstr "Оцена садржаја"
 #: /templates/detail/content_ratings.html:75
 msgid "Content Rating Details"
 msgstr "Детаљи оцене садржаја"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Оцењено са {stars} од {maxstars} звездица"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -352,7 +350,7 @@ msgstr "Покрените ову апликацију са своје <b>Window
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Покрените ову апликацију са своје <b>линије</b>, <b>Изборника апликација</b> или <b>Менија са апликацијама</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
 msgid "Loading..."
 msgstr "Учитавање..."
 
@@ -397,18 +395,18 @@ msgid "Reviews"
 msgstr "Рецензије"
 
 #: /templates/detail/main.html:145
-msgid "App not yet rated"
-msgstr "Апликација није оцењена"
+msgid "App not yet reviewed"
+msgstr ""
 
 #: /templates/detail/main.html:153
 msgid "Edit Your Review"
 msgstr "Измени своју рецензију"
 
-#: /templates/detail/main.html:157 /templates/ratings/main.html:18 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
+#: /templates/detail/main.html:157 /templates/ratings/main.html:19 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
 msgid "Write a Review"
 msgstr "Напиши рецензију"
 
-#: /templates/detail/main.html:157 /templates/ratings/main.html:18
+#: /templates/detail/main.html:157 /templates/ratings/main.html:19
 msgid "Sign in to Review"
 msgstr "Пријавите се да бисте написали рецензију"
 
@@ -428,11 +426,19 @@ msgstr "Почетна страна"
 msgid "Statistics"
 msgstr "Статистика"
 
+#: /templates/detail/main.html:202 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "Пријави злоупотребу"
+
 #: /templates/detail/main.html:213
 msgid "Premium version available"
 msgstr "Специјална верзија је доступна"
 
-#: /templates/detail/privacy.html:5
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "Пошаљи извештај"
+
+#: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
 msgid "Back to app"
 msgstr "Назад на апликацију"
 
@@ -464,7 +470,7 @@ msgstr "Грешка при учитавању"
 msgid "Try Again"
 msgstr "Покушај поново"
 
-#: /templates/ratings/edit.html:5 /templates/ratings/main.html:14 /media/js/views/app/ratings/edit.js:86
+#: /templates/ratings/main.html:15 /templates/ratings/edit.html:5 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "Измени рецензију"
 
@@ -485,22 +491,6 @@ msgstr "Само пријављени корисници могу мењати �
 msgid "App Review"
 msgstr "Рецензија апликације"
 
-#: /templates/ratings/report.html:2
-msgid "Please select a reason:"
-msgstr "Молимо Вас одаберите разлог:"
-
-#: /templates/ratings/report.html:8
-msgid "Spam or otherwise non-review content"
-msgstr "Нежељени или други непрегледани садржај"
-
-#: /templates/ratings/report.html:13
-msgid "Inappropriate language/dialog"
-msgstr "Непристојно обраћање"
-
-#: /templates/ratings/report.html:18
-msgid "Misplaced bug report or support request"
-msgstr "Погрешно постављена порука о грешци или захтев за подршку"
-
 #: /templates/search/main.html:15
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
@@ -520,13 +510,21 @@ msgstr "Нема резултата"
 msgid "No results found, try again later"
 msgstr "Нема резултата - покушајте касније"
 
-#: /templates/settings/feedback.html:12
-msgid "Send"
-msgstr "Пошаљи"
+#: /templates/ratings/report.html:2
+msgid "Please select a reason:"
+msgstr "Молимо Вас одаберите разлог:"
 
-#: /templates/settings/feedback.html:18 /templates/settings/feedback.html:20
-msgid "Get Help"
-msgstr "Добави помоћ"
+#: /templates/ratings/report.html:8
+msgid "Spam or otherwise non-review content"
+msgstr "Нежељени или други непрегледани садржај"
+
+#: /templates/ratings/report.html:13
+msgid "Inappropriate language/dialog"
+msgstr "Непристојно обраћање"
+
+#: /templates/ratings/report.html:18
+msgid "Misplaced bug report or support request"
+msgstr "Погрешно постављена порука о грешци или захтев за подршку"
 
 #: /templates/settings/main.html:2 /media/js/views/settings.js:47
 msgid "Account Settings"
@@ -551,6 +549,14 @@ msgstr "Запамти измене"
 #: /templates/settings/main.html:41
 msgid "Sign In / Sign Up"
 msgstr "Пријави се / Региструј се"
+
+#: /templates/settings/feedback.html:12
+msgid "Send"
+msgstr "Пошаљи"
+
+#: /templates/settings/feedback.html:18 /templates/settings/feedback.html:20
+msgid "Get Help"
+msgstr "Добави помоћ"
 
 #: /templates/settings/nav.html:6
 msgid "Account"
@@ -583,6 +589,26 @@ msgstr "Пријави се / Региструј се"
 #: /templates/user/purchases.html:34
 msgid "You have no apps"
 msgstr "Немате апликација"
+
+#: /media/js/apps.js:77 /media/js/apps.js:84
+msgid "App install error: {error}"
+msgstr "Грешка током инсталације апликације: {error}"
+
+#: /media/js/apps.js:135
+msgid "Your device does not support payments."
+msgstr "Ваш уређај не подржава плаћање."
+
+#: /media/js/apps.js:137
+msgid "This app is unavailable for purchase in your region."
+msgstr "Куповина ове апликације није доступна у Вашем региону."
+
+#: /media/js/apps.js:141
+msgid "Your browser or device is not web-app compatible."
+msgstr "Ваш прегледач или уређај није компатибилан са веб апликацијама."
+
+#: /media/js/apps.js:143
+msgid "This app is unavailable for your platform."
+msgstr "Ова апликација није доступна за Вашу платформу."
 
 #: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
@@ -673,26 +699,6 @@ msgstr "Путовањa"
 #: /media/js/categories.js:25
 msgid "Utilities"
 msgstr "Услужне апликације"
-
-#: /media/js/apps.js:77 /media/js/apps.js:84
-msgid "App install error: {error}"
-msgstr "Грешка током инсталације апликације: {error}"
-
-#: /media/js/apps.js:135
-msgid "Your device does not support payments."
-msgstr "Ваш уређај не подржава плаћање."
-
-#: /media/js/apps.js:137
-msgid "This app is unavailable for purchase in your region."
-msgstr "Куповина ове апликације није доступна у Вашем региону."
-
-#: /media/js/apps.js:141
-msgid "Your browser or device is not web-app compatible."
-msgstr "Ваш прегледач или уређај није компатибилан са веб апликацијама."
-
-#: /media/js/apps.js:143
-msgid "This app is unavailable for your platform."
-msgstr "Ова апликација није доступна за Вашу платформу."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:97
@@ -984,111 +990,111 @@ msgstr "Ваша рецензија је објављена"
 msgid "Error while submitting review"
 msgstr "Грешка при слању рецензије"
 
-#: /media/js/settings.js:105
+#: /media/js/settings.js:103
 msgid "Rest of World"
 msgstr "Остатак света"
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:104
 msgid "Argentina"
 msgstr "Аргентина"
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:105
 msgid "Brazil"
 msgstr "Бразил"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:106
 msgid "Chile"
 msgstr "Чиле"
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:107
 msgid "China"
 msgstr "Кина"
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:108
 msgid "Colombia"
 msgstr "Колумбија"
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:109
 msgid "Costa Rica"
 msgstr "Костарика"
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:110
 msgid "Ecuador"
 msgstr "Еквадор"
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:111
 msgid "El Salvador"
 msgstr "Салвадор"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:112
 msgid "Germany"
 msgstr "Немачка"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:113
 msgid "Greece"
 msgstr "Грчка"
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:114
 msgid "Guatemala"
 msgstr "Гватемала"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:115
 msgid "Hungary"
 msgstr "Мађарска"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:116
 msgid "Italy"
 msgstr "Италија"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:117
 msgid "Mexico"
 msgstr "Мексико"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:118
 msgid "Montenegro"
 msgstr "Црна Гора"
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:119
 msgid "Nicaragua"
 msgstr "Никарагва"
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:120
 msgid "Panama"
 msgstr "Панама"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:121
 msgid "Peru"
 msgstr "Перу"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:122
 msgid "Poland"
 msgstr "Пољска"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:123
 msgid "Serbia"
 msgstr "Србија"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:124
 msgid "Spain"
 msgstr "Шпанија"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:125
 msgid "United Kingdom"
 msgstr "Уједињено Краљевство"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:126
 msgid "United States"
 msgstr "Сједињене Америчке Државе"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:127
 msgid "Uruguay"
 msgstr "Уругвај"
 
-#: /media/js/settings.js:130
+#: /media/js/settings.js:128
 msgid "Venezuela"
 msgstr "Венецуела"
 
-#: /media/js/settings.js:131
+#: /media/js/settings.js:129
 msgid "No region in search"
 msgstr "Нема региона у претрази"
 
@@ -1112,15 +1118,15 @@ msgstr "Пријављени сте"
 msgid "Error signing out"
 msgstr "Грешка приликом одјављивања"
 
-#: /media/js/commonplace/login.js:137
+#: /media/js/commonplace/login.js:171
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Пријава преко система Persona није успешна. Можда немате налог са том адресом е-поште?"
 
-#: /media/js/commonplace/login.js:142
+#: /media/js/commonplace/login.js:176
 msgid "Persona login failed. A server error was encountered."
 msgstr "Пријава преко система Persona није успешна. Дошло је до грешке на серверу."
 
-#: /media/js/commonplace/login.js:210
+#: /media/js/commonplace/login.js:244
 msgid "Persona cannot be reached. Try again later."
 msgstr "Persona не може да се контактира. Покушајте поново касније."
 
@@ -1149,13 +1155,13 @@ msgstr "Грешка при комуникацији са сервером. По
 msgid "Your device does not support purchases."
 msgstr "Ваш уређај не подржава куповину."
 
-#: /media/js/views/app.js:69
-msgid "App Details"
-msgstr "Детаљи о апликацији"
-
 #: /media/js/views/collection.js:43
 msgid "Collection Details"
 msgstr "Детаљи колекције"
+
+#: /media/js/views/app.js:69
+msgid "App Details"
+msgstr "Детаљи о апликацији"
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1189,14 +1195,6 @@ msgstr "Злоупотреба пријављена"
 msgid "Error while submitting report"
 msgstr "Грешка при слању извештаја"
 
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "Молимо Вас да се пријавите како бисте видели рачун"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "Рачун"
-
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr "Поздрав, свете!"
@@ -1205,6 +1203,14 @@ msgstr "Поздрав, свете!"
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "Није нађено"
+
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "Молимо Вас да се пријавите како бисте видели рачун"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "Рачун"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
