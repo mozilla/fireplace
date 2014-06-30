@@ -101,10 +101,10 @@
       </ul>
       <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
       <div class="info">
-        <h1 class="name">{{ coll.name }}</h1>
+        <h1 class="name">{{ coll.name|safe }}</h1>
       </div>
       <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
-      <div class="desc">{{ coll.description }}</div>
+      <div class="desc">{{ coll.description|safe }}</div>
     </section>
   </a>
 
@@ -119,7 +119,7 @@
     <section class="feed-item shelf {{ 'shelf-landing' if landing }}" style="background-image: url({{ shelf.background_image }})">
       <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
       <div class="info">
-        <h1 class="name">{{ shelf.name }}</h1>
+        <h1 class="name">{{ shelf.name|safe }}</h1>
       </div>
     </section>
   </a>

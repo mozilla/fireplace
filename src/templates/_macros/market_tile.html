@@ -1,3 +1,4 @@
+{% from "_macros/feed_app_tile.html" import feed_app_tile %}
 {% from "_macros/market_button.html" import market_button %}
 {% from "_macros/stars.html" import stars %}
 
@@ -67,7 +68,7 @@
         {{ _('Works offline') }}
       </div>
     {% endif %}
-    {{ feed_app_footer(feed_app) if feed_app }}
+    {{ feed_app_tile(feed_app) if feed_app }}
   </{{ tag }}>
   {% if tray and len(app.previews) %}
     <div class="tray previews full {{ 'single' if len(app.previews) == 1 }}">
@@ -98,33 +99,5 @@
     {% for preview in app.previews %}
       <b class="dot"></b>
     {% endfor %}
-  </div>
-{% endmacro %}
-
-
-{% macro feed_app_footer(feed_app) %}
-  <div class="tile-footer {{ feed_app.type }}"
-       {% if feed_app.type == feed.FEEDAPP_QUOTE %}style="background: {{ feed_app.background_color }};"{% endif %}>
-    {% if feed_app.type == feed.FEEDAPP_DESC %}
-      <p class="desc">{{ feed_app.description }}</p>
-    {% elif feed_app.type == feed.FEEDAPP_QUOTE %}
-      {% if feed_app.pullquote_rating %}
-        <p class="stars large white stars-{{ feed_app.pullquote_rating }}">
-          {{ feed_app.pullquote_rating }}
-        </p>
-      {% endif %}
-      <blockquote><p>{{ feed_app.pullquote_text }}</p></blockquote>
-      {% if feed_app.pullquote_attribution %}
-        <p class="quote-source">
-          {{ _('&mdash; {attribution}')|format(
-               {attribution: feed_app.pullquote_attribution}) }}
-        </p>
-      {% endif %}
-    {% elif feed_app.type == feed.FEEDAPP_PREVIEW %}
-      <p class="desc">{{ feed_app.description }}</p>
-      <div class="feed-app-preview-container"
-           style="background-color: {{ feed_app.background_color }};
-                  background-image: url({{ feed_app.preview.image_url }});"></div>
-    {% endif %}
   </div>
 {% endmacro %}
