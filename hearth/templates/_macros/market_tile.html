@@ -62,9 +62,8 @@
         <div class="content-rating lineclamp vital subdetail">{{ _('Not yet rated') }}</div>
       {% endif %}
       <div class="price vital">{{ app.price_locale if app.payment_required else _('Free') }}</div>
-      {{ market_button(app, classes=(['paid'] if app.payment_required),
-                       data_attrs={'manifest_url': app.manifest_url,
-                                   'slug': app.slug}) if app.slug }}
+      {{ market_button(app, data_attrs={'manifest_url': app.manifest_url,
+                                        'slug': app.slug}) if app.slug }}
       <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
         {% if not link %}
           <a href="{{ url('app/ratings', [app.slug]) }}" class="rating_link">
