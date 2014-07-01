@@ -1,5 +1,5 @@
-define('helpers_local', ['feed', 'models', 'nunjucks', 'settings' 'user_helpers', 'utils_local', 'z'],
-       function(feed, models, nunjucks, settings, user_helpers, utils_local, z) {
+define('helpers_local', ['feed', 'content-ratings', 'models', 'nunjucks', 'settings', 'user_helpers', 'utils_local', 'z'],
+       function(feed, iarc, models, nunjucks, settings, user_helpers, utils_local, z) {
     var filters = nunjucks.require('filters');
     var globals = nunjucks.require('globals');
 
@@ -57,8 +57,8 @@ define('helpers_local', ['feed', 'models', 'nunjucks', 'settings' 'user_helpers'
     }
 
     var helpers = {
-        cast_app: models('app').cast
-        has_installed: has_installed
+        cast_app: models('app').cast,
+        has_installed: has_installed,
         indexOf: indexOf,
     };
 
