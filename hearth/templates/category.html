@@ -18,6 +18,14 @@
   <h3>{{ category_name }}</h3>
 </header>
 
+<header class="category-header-desktop hidden">
+  <div class="dropdown secondary-header">
+    <a class="cat-{{ category }} cat-icon cur-cat" data-cat-slug="{{ category }}" href="#">
+      {{ category_name }}
+    </a>
+  </div>
+</header>
+
 {% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection') %}
   {% set featured_apps = this.length and this[0].apps %}
   {% if featured_apps and featured_apps.length %}

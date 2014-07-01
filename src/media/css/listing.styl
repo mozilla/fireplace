@@ -287,8 +287,9 @@ img {
 // .grid at desktop width and for .listing.grid-if-desktop at mobile width.
 grid-style() {
     font-size: 0; // Nuke whitespace
-    margin: 0 auto;
+    margin: 0 auto 10px;
     max-width: $desktop-content;
+
     li {
         display: inline-block;
         padding: 15px 10px;
@@ -796,17 +797,6 @@ ratings-sidebar() {
     // Hide "{num} Reviews" on narrow mobile.
     .cnt.long {
         display: none;
-    }
-}
-
-.category-header {
-    background: $note-gray;
-    padding: 10px 0;
-    width: 100%;
-    text-align: center;
-
-    h3 {
-        color: #fff;
     }
 }
 

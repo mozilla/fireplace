@@ -197,9 +197,6 @@ a[class*="cat-vivo-"]:active:before {
 }
 
 .show-cats {
-    #page {
-        padding-top: 0;
-    }
     .dropdown {
         border: 0;
         display: block;
@@ -235,23 +232,6 @@ a[class*="cat-vivo-"]:active:before {
             text-decoration: none;
             width: 100%;
             z-index: 1;
-
-            &:focus, &:hover {
-                color: $sailor-blue;
-            }
-            // Dropdown arrow
-            &:after {
-                background: url(../img/pretty/dropdown_mobile.svg) no-repeat;
-                background-size: 20px auto;
-                content: "";
-                display: inline-block;
-                height: 20px;
-                margin-left: 10px;
-                pointer-events: none;
-                position: absolute;
-                top: 13px;
-                width: 20px;
-            }
         }
         &.active a:after,
         a:hover:after,
@@ -348,7 +328,7 @@ a[class*="cat-vivo-"]:active:before {
                 font-weight: 300;
                 height: auto;
                 line-height: 59px; // Just enough so the float gets caught when wrapped
-                margin-bottom: 38px;
+                margin-bottom: 28px;
                 text-align: left;
                 text-shadow: 0 1px 0 $steam-white;
                 vertical-align: middle;

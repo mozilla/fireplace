@@ -11,9 +11,6 @@ $vertical-text-margin = 10px;
 $vertical-tile-margin = 10px;
 
 @media $at-least-desktop {
-    section.feed {
-        margin-bottom: $vertical-tile-margin;
-    }
     ul.feed {
         max-width: $feed-column-width * 2;
 
@@ -506,4 +503,31 @@ $vertical-tile-margin = 10px;
     margin: 0;
     position: static;
     width: 64px;
+}
+
+.category-header {
+    background: $note-gray;
+    margin-top: -6px;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+
+    h3 {
+        color: #fff;
+    }
+}
+
+@media $at-least-desktop {
+    .category-header {
+        display: none;
+    }
+    .category-header-desktop {
+        display: block;
+
+        .cur-cat {
+            &:hover {
+                cursor: default;
+            }
+        }
+    }
 }

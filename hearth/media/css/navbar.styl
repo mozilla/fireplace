@@ -1,12 +1,13 @@
 // Styles for the mobile navbar.
 @import 'lib';
 
+#cat-dropdown,
+#cat-list {
+    display: none;
+}
+
 @media $narrower-than-desktop {
     // New feed navigation (mobile only).
-    #cat-dropdown,
-    #cat-list {
-        display: none;
-    }
     header .act-tray {
         display: none;
     }
@@ -159,7 +160,8 @@
 @media $at-least-desktop {
     .navbar.nav-settings,
     .act-tray,
-    .mkt-tray {
+    .mkt-tray,
+    .category-header {
         display: none;
     }
     .site-nav {

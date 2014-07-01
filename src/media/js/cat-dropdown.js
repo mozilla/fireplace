@@ -104,6 +104,5 @@ define('cat-dropdown',
           .on('click', '.cat-menu a', handleCatClick)
           .on('keydown', '#cat-dropdown, #cat-list', handleDropDownDisplayByKey);
     z.doc.on('saferesize', handleResize);
-    z.page.on('build_start', handleBuildStart)
-          .on('reload_chrome', handleRenderDropdown);
+    z.page.on('build_start', handleBuildStart);
 });

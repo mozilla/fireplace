@@ -1,7 +1,7 @@
 {% include "_macros/act_tray.html" %}
 
 {% macro navtab(code, name, url, active_tab) %}
-  <li data-tab="{{ code }}"{% if active_tab == code %} class="active"{% endif %}>
+  <li class="{{ code }}" data-tab="{{ code }}"{% if active_tab == code %} class="active"{% endif %}>
     <a href="{{ url }}">{{ name }}</a>
   </li>
 {% endmacro %}
