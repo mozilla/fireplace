@@ -1,5 +1,6 @@
 {% from "_macros/market_button.html" import market_button %}
 {% from '_macros/market_tile.html' import market_tile %}
+{% from '_macros/stars.html' import stars %}
 
 
 {% macro mini_tile(app, hidden, landing) %}
@@ -17,9 +18,8 @@
           {% endif %}
         </div>
       </div>
-      {{ market_button(app, classes=(['paid'] if app.payment_required),
-                       data_attrs={'manifest_url': app.manifest_url,
-                                   'slug': app.slug}) if app.slug }}
+      {{ market_button(app, data_attrs={'manifest_url': app.manifest_url, 'slug': app.slug})
+         if app.slug }}
     </a>
   </li>
 {% endmacro %}
@@ -91,10 +91,10 @@
 
   <a href="{{ url('feed/feed_collection', [coll.slug]) }}" class="fanchor">
     <section class="feed-item full {{ 'mega' if desc }}"
-                    {% if desc and not coll.background_image %}
-                      style="background-color: {{ color|hex2rgba('.4') }}"
-                    {% elif coll.background_image %}
+                    {% if coll.background_image %}
                       style="background-image: url({{ coll.background_image }})"
+                    {% else %}
+                      style="background-color: {{ color|hex2rgba('.4') }}"
                    {% endif %}>
       <ul class="app-icons">
         {% for app in coll.apps %}
