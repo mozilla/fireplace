@@ -5,6 +5,7 @@
     background-size: cover;
     min-height: 150px;
     position: relative;
+
     header {
         bottom: 0;
         height: 62px;
@@ -37,6 +38,7 @@
 getcolor($type = '', $r, $g, $b) {
     if ($type == 'opaque') {
         background-color: rgb($r, $g, $b);
+
     } else {
         background-color: rgba($r, $g, $b, .8);
     }
@@ -71,6 +73,7 @@ $blue-theme-border = 1px solid rgba(255,255,255,.25);
 @media $at-least-desktop {
     .collection {
         margin-bottom: 48px;
+
         header {
             border-top: 0;
             padding: 80px 15px 15px;
