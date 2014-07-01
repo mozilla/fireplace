@@ -9,6 +9,7 @@ $triangle-size = 20px;
     display: block;
     overflow: hidden;
     position: relative;
+
     &:hover {
         text-decoration: none;
     }
@@ -41,6 +42,7 @@ $triangle-size = 20px;
 
     a {
         text-decoration: none;
+
         &:hover .cnt {
             text-decoration: underline;
         }
@@ -163,6 +165,7 @@ $triangle-size = 20px;
 
 .mkt-tile + .single li {
     width: 100%;
+
     img {
         position: static;
     }
@@ -247,6 +250,7 @@ $dot-size = 13px;
         padding: 2px 25px;
         text-align: center;
         transform: translate(-50%, 0);
+
         &:before, &:after {
             border-left: 1px solid $link;
             bottom: 0;
@@ -307,6 +311,7 @@ grid-style() {
     .mkt-tile {
         position: relative;
         width: 100%;
+
         &:hover .icon {
             opacity: .8;
         }
@@ -349,6 +354,7 @@ grid-style() {
     position: absolute;
     top: 0;
     width: 100%;
+
     a {
         color: $london-fog-gray;
         display: inline-block;
@@ -381,6 +387,7 @@ grid-style() {
 @media $at-least-desktop {
     .shots {
         position: relative;
+
         .next, .prev {
             border-radius: 0 30px 30px 0;
             border: 15px solid rgba(#252525,.7);
@@ -413,6 +420,7 @@ grid-style() {
         .next {
             border-radius: 30px 0 0 30px;
             right: 0;
+
             &:after {
                 transform(scaleX(-1));
             }
@@ -470,6 +478,7 @@ grid-style() {
             border-radius: 0;
             box-shadow: none;
             margin: 0;
+
             .mkt-tile {
                 padding: 0;
                 .icon {
@@ -489,11 +498,13 @@ grid-style() {
     .grid, .listing.grid-if-desktop {
         max-width: $desktop-content;
         padding: 0 5px;
+
         li {
             width: (100% / 7);
             &:nth-child(8),
             &:nth-child(15) {
                 clear: both;
+
                 &:before {
                     content: "";
                     display: block;
@@ -514,6 +525,7 @@ grid-style() {
 
     .tabs a {
         text-shadow: none;
+
         &.active:before, &.active:after {
             background-color: #fff;
         }
@@ -558,6 +570,7 @@ grid-style() {
 
 .listing {
     margin-bottom: 10px;
+
     .loadmore {
         margin-bottom: -10px;
     }
@@ -567,6 +580,7 @@ grid-style() {
         box-shadow: 0 1px 1px $cement-gray;
         margin: 10px 10px 0;
         position: relative;
+
         &:hover {
             border-color: darken($seavan-salt-white, 10%);
         }
@@ -587,6 +601,7 @@ grid-style() {
         }
         &.item {
             border-radius: 10px;
+
             .mkt-tile + .tray {
                 // Subtract 1px for border.
                 border-radius: 0 0 9px 9px;
@@ -695,6 +710,7 @@ ratings-sidebar() {
     &.product-details {
         background: #fff;
         border-radius: 10px 10px 0 0;
+
         .mkt-tile {
             border-radius: 10px 10px 0 0;
             ratings-sidebar();
@@ -715,6 +731,7 @@ ratings-sidebar() {
         }
         .mkt-tile {
             padding: 18px 15px;
+
             .button {
                 min-width: 100px;
                 width: 100px;
@@ -726,6 +743,7 @@ ratings-sidebar() {
         }
         &.product-details {
             border-radius: 10px;
+
             .mkt-tile {
                 + .tray:after,
                 + .tray:before {
