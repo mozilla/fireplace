@@ -1,4 +1,5 @@
-{% macro market_button(app, classes, data_attrs) %}
+{% macro market_button(app, data_attrs) %}
+  {% set installed = has_installed(app.manifest_url) %}
 
   {% if app.payment_required and not app.price %}
     {# An app would otherwise cost money in another region but there is no tier in the user's region. #}
@@ -8,10 +9,16 @@
     {% set price = app.price_locale if app.price and app.price != '0.00' else _('Free') %}
   {% endif %}
 
-  {% set classes = classes or [] %}
-  <button class="button product install {{ classes|join(' ') }} {{ 'incompatible' if app_incompat(app) }}"
+  <button class="button product install {{ 'launch' if installed }}
+                 {{ 'paid' if app.payment_required }} {{ 'incompatible' if app_incompat(app) }}"
           {{ data_attrs|make_data_attrs }}
           {{ 'disabled' if app_incompat(app) }}>
-    {{ _('Install') if user.has_installed(app.id) or user.has_purchased(app.id) else price }}
+    {% if installed %}
+      {{ _('Open') }}
+    {% elif user.has_installed(app.id) or user.has_purchased(app.id) %}
+      {{ _('Install') }}
+    {% else %}
+      {{ price }}
+    {% endif %}
   </button>
 {% endmacro %}

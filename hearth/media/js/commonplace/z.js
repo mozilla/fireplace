@@ -5,7 +5,7 @@ define('z', ['jquery'], function($) {
         body: $(document.body),
         container: $('main'),
         page: $('#page'),
-        apps: {},
+        apps: [],
         context: {},
         spaceheater: !!document.body.getAttribute('data-spaceheater')
     };

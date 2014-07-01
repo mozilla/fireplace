@@ -26,7 +26,7 @@ define(
         'jquery',
         'helpers',  // Must come before mostly everything else.
         'helpers_local',
-        'buttons',
+        'apps_buttons',
         'cache',
         'capabilities',
         'consumer_info',
@@ -62,8 +62,17 @@ define(
         'z'
     ],
 function(_) {
-    var console = require('log')('mkt');
+    var apps = require('apps');
+    var buttons = require('apps_buttons');
     var capabilities = require('capabilities');
+    var format = require('format');
+    var $ = require('jquery');
+    var settings = require('settings');
+    var nunjucks = require('templates');
+    var urls = require('urls');
+    var z = require('z');
+
+    var console = require('log')('mkt');
 
     // Use Native Persona, if it's available.
     if (capabilities.firefoxOS && 'mozId' in navigator && navigator.mozId !== null) {
@@ -84,18 +93,12 @@ function(_) {
 
     console.log('Dependencies resolved, starting init');
 
-    var $ = require('jquery');
-    var format = require('format');
-    var nunjucks = require('templates');
-    var settings = require('settings');
-    var z = require('z');
-
     // Jank hack because Persona doesn't allow scripts in the doc iframe.
     // Please just delete it when they don't do that anymore.
     // Note: If this list changes - please change it in webpay too or let #payments know.
     var doc_langs = ['cs', 'de', 'el', 'en-US', 'es', 'hr', 'hu', 'it', 'pl', 'pt-BR', 'sr', 'zh-CN'];
     var doc_lang = doc_langs.indexOf(navigator.l10n.language) >= 0 ? navigator.l10n.language : 'en-US';
-    var doc_location = require('urls').media('/docs/{type}/' + doc_lang + '.html?20140519');
+    var doc_location = urls.media('/docs/{type}/' + doc_lang + '.html?20140519');
     settings.persona_tos = format.format(doc_location, {type: 'terms'});
     settings.persona_privacy = format.format(doc_location, {type: 'privacy'});
 
@@ -105,13 +108,14 @@ function(_) {
     }
 
     z.page.one('loaded', function() {
+        // Remove the splash screen.
         console.log('Hiding splash screen (' + ((performance.now() - start_time) / 1000).toFixed(6) + 's)');
-        // Remove the splash screen once it's hidden.
         var splash = $('#splash-overlay').addClass('hide');
         z.body.removeClass('overlayed').addClass('loaded');
         setTimeout(function() {
             z.page.trigger('splash_removed');
             splash.remove();
+            apps.getInstalled().done(buttons.mark_btns_as_installed);
         }, 1500);
     });
 
@@ -124,41 +128,24 @@ function(_) {
         });
     }
 
-    var get_installed = function() {
-        // Don't getInstalled if the page isn't visible.
-        if (document.hidden) {
-            return;
-        }
-        // Get list of installed apps and mark as such.
-        var r = navigator.mozApps.getInstalled();
-        r.onsuccess = function() {
-            var buttons = require('buttons');
-
-            z.apps = {};
-            _.each(r.result, function(val) {
-                buttons.buttonInstalled(
-                    require('utils').baseurl(val.manifestURL), val);
-            });
+    z.page.on('iframe-loaded', function() {
+        // Triggered by apps-iframe-installer.
+        apps.getInstalled().done(function() {
             z.page.trigger('mozapps_got_installed');
-        };
-    };
+            buttons.mark_btns_as_installed();
+        });
+    });
+
     if (capabilities.webApps) {
-        z.page.on('loaded', get_installed);
-        z.page.on('fragment_loaded loaded_more',
-                  _.debounce(get_installed, 2000, true));  // No delay.
         document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                return;
+            if (!document.hidden) {
+                // Refresh list of installed apps in case user uninstalled apps
+                // and switched back.
+                if (require('user').logged_in()) {
+                    require('consumer_info').fetch(true);
+                }
+                apps.getInstalled().done(buttons.mark_btns_as_uninstalled);
             }
-            // We switched away from Marketplace, and now we are back and
-            // visible. The user might have installed/uninstalled apps during
-            // that time, so refresh the list of installed/purchased/developed
-            // apps, and check if apps were uninstalled since switching away,
-            // refreshing Install buttons if any were.
-            if (require('user').logged_in()) {
-                require('consumer_info').fetch(true);
-            }
-            require('buttons').revertUninstalled();
         }, false);
     }
 
@@ -245,7 +232,7 @@ function(_) {
 
     require('requests').on('deprecated', function() {
         // Divert the user to the deprecated view.
-        z.page.trigger('divert', [require('urls').reverse('deprecated')]);
+        z.page.trigger('divert', [urls.reverse('deprecated')]);
         throw new Error('Cancel navigation; deprecated client');
     });
 
