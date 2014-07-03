@@ -10,7 +10,10 @@ define('installer_iframe',
 
     window.addEventListener('message', function(e) {
         if (settings.iframe_installer_src.indexOf(e.origin) !== 0) {
-            console.log(e.origin + ' origin not allowed');
+            if (e.origin !== 'https://login.persona.org') {
+                console.log(e.origin + ' origin not allowed');
+            }
+            return;
         }
 
         switch (e.data.name) {
