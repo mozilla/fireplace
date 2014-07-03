@@ -35,6 +35,8 @@ define('views/homepage',
                     isFitWidth: false
                 }
             });
+
+            clamp(document.querySelector('.feed .desc'), 4);
         });
     };
 });
