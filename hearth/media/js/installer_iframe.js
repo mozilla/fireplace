@@ -78,7 +78,7 @@ define('installer_iframe',
         });
 
         return def.promise();
-    };
+    }
 
     function getInstalled() {
         console.log('Getting installed apps');
@@ -98,14 +98,14 @@ define('installer_iframe',
         }, '*');
 
         return def.promise();
-    };
+    }
 
     function launch(manifestURL) {
         iframe.contentWindow.postMessage({
             name: 'launch-app',
             manifestURL: manifestURL
         }, '*');
-    };
+    }
 
     return {
         getInstalled: getInstalled,

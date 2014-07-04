@@ -7,6 +7,8 @@ define('apps',
     'use strict';
     var gettext = l10n.gettext;
     var console = log('apps');
+    var iframed;
+    var installer;
 
     /* Determine which installer to use.
        If we are in an iframe (yulelog), invoke direct installer.
@@ -16,14 +18,14 @@ define('apps',
        mozApps doesn't seem to work when double nested in iframes.
     */
     try {
-        var iframed = window.self !== window.top;
+        iframed = window.self !== window.top;
     } catch (e) {
-        var iframed = true;
+        iframed = true;
     }
     if (iframed) {
-        var installer = installer_direct;
+        installer = installer_direct;
     } else {
-        var installer = installer_iframe;
+        installer = installer_iframe;
         installer.initialize_iframe();
     }
 

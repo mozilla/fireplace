@@ -4,5 +4,5 @@ define('views/fxa_authorize', [], function() {
     return function(builder) {
       window.opener.postMessage({auth_code: window.location.toString()}, "*");
       window.close();
-    }
+    };
 });

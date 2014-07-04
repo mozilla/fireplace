@@ -135,7 +135,7 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
                 }
             });
 
-            if (imagesLoading == 0) {
+            if (imagesLoading === 0) {
                 // No images to load? Trigger images loaded.
                 z.page.trigger('images_loaded');
             }

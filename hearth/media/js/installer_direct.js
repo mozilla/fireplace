@@ -41,7 +41,7 @@ define('installer_direct',
                 callback();
             }
         };
-    };
+    }
 
     function _install(product, opt) {
         console.log('Using direct installer for ' + product.manifest_url);
@@ -98,7 +98,7 @@ define('installer_direct',
         });
 
         return def.promise();
-    };
+    }
 
     return {
         getInstalled: getInstalled,
