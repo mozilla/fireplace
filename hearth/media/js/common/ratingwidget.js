@@ -51,13 +51,15 @@ define('common/ratingwidget', ['format', 'jquery'], function(format, $) {
                 }
             }).on('mouseout', function(evt) {
                 showStars(rating || 0);
-            }).on('touchmove touchend', function(e) {
+            }).on('touchmove', function(e) {
                 var wid = $widget.width();
                 var widget = $widget[0];
                 var left = widget.getBoundingClientRect().left + window.pageXOffset - document.body.clientLeft;
                 var r = (e.originalEvent.touches[0].clientX - left) / wid * 5 + 1;
                 r = Math.min(Math.max(r, 1), 5) | 0;
                 setStars(r);
+            }).on('touchstart', 'label', function (e) {
+                setStars(e.currentTarget.getAttribute('data-stars'));
             });
             $widget.html(rs);
             $el.before($widget).detach();
