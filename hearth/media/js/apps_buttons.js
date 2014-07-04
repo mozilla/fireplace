@@ -157,7 +157,7 @@ define('apps_buttons',
                         revertButton($this);
                         notification.notification({message: settings.offline_msg});
                     }
-                }, 20000);
+                }, 35000);
             }
 
             // If the app has already been installed by the user and we don't
