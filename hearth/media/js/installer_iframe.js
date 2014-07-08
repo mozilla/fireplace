@@ -38,6 +38,7 @@ define('installer_iframe',
             iframe.height = 0;
             iframe.width = 0;
             iframe.style.borderWidth = 0;
+            iframe.style.position = 'fixed';
             document.body.appendChild(iframe);
         }
     }
