@@ -22,6 +22,7 @@ define('installer_direct',
             for (var i = 0; i < r.result.length; i++) {
                 installed.push(r.result[i].manifestURL);
             }
+            z.apps = installed;
             def.resolve(installed);
         };
 
