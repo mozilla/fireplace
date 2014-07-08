@@ -179,18 +179,41 @@ select[name=rating] {
 }
 
 .stars {
-    background: url(../img/pretty/stars_small.svg) no-repeat;
+    background-color: $earl-gray;
+    clip-path: url("../img/pretty/stars_small.svg#stars-clip");
+    color: transparent;
     display: inline-block;
-    hidetext();
+    height: 12px;
     margin-right: 4px;
+    overflow: hidden;
+    position: relative;
+    text-indent: 101%;
+    white-space: nowrap;
     vertical-align: top;
-    width: 64px;
-    &.stars-4 { background-position: -13px 0; }
-    &.stars-3 { background-position: -26px 0; }
-    &.stars-2 { background-position: -39px 0; }
-    &.stars-1 { background-position: -52px 0; }
-    &.stars-0 { background-position: -65px 0; }
+    width: 65px;
+    &:after {
+        background-color: $sailor-blue;
+        content: "";
+        clip-path: url("../img/pretty/stars_small.svg#stars-clip");
+        display: inline-block;
+        height: 12px;
+        left: 0;
+        position: absolute;
+        top: 0;
+    }
+    &.stars-5:after   { width: 65px; }
+    &.stars-4-5:after { width: 59px; }
+    &.stars-4:after   { width: 52px; }
+    &.stars-3-5:after { width: 46px; }
+    &.stars-3:after   { width: 39px; }
+    &.stars-2-5:after { width: 33px; }
+    &.stars-2:after   { width: 26px; }
+    &.stars-1-5:after { width: 20px; }
+    &.stars-1:after   { width: 13px; }
+    &.stars-0-5:after { width:  7px; }
+    &.stars-0:after   { width:  0; }
 }
+
 
 .html-rtl .stars {
     margin: 0 0 0 4px;
@@ -198,15 +221,24 @@ select[name=rating] {
 
 tinyStars() {
     .stars {
-        background-size: auto 9px;
+        clip-path: url("../img/pretty/stars_small.svg#stars-small-clip");
         height: 9px;
-
-        &.stars-4 { background-position: -10px 0; }
-        &.stars-3 { background-position: -20px 0; }
-        &.stars-2 { background-position: -29px 0; }
-        &.stars-1 { background-position: -39px 0; }
-        &.stars-0 { background-position: -49px 0; }
-        width: 48px;
+        width: 48.75px;
+        &:after {
+            clip-path: url("../img/pretty/stars_small.svg#stars-small-clip");
+            height: 9px;
+        }
+        &.stars-5:after   { width: 48px; }
+        &.stars-4-5:after { width: 44px; }
+        &.stars-4:after   { width: 39px; }
+        &.stars-3-5:after { width: 34px; }
+        &.stars-3:after   { width: 29px; }
+        &.stars-2-5:after { width: 25px; }
+        &.stars-2:after   { width: 19px; }
+        &.stars-1-5:after { width: 15px; }
+        &.stars-1:after   { width: 10px; }
+        &.stars-0-5:after { width:  5px; }
+        &.stars-0:after   { width:  0; }
     }
 }
 

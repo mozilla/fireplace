@@ -1,8 +1,7 @@
 {% macro stars(rating, detailpage=false, aggregate=True) %}
-  {% set rating = rating|round %}
   {% set rating_itemprop = 'ratingValue' if aggregate else 'reviewRating' %}
   <meta itemprop="worstRating" content="1">
-  <span class="stars{{ ' large' if detailpage }} large stars-{{ rating }}" title="{{ title }}">
+  <span class="stars{{ ' large' if detailpage }} large stars-{{ rating | roundToNearestHalf | replace(".", "-") }}" title="{{ title }}">
     {{ _('Rated {stars} out of {maxstars} stars',
          stars='<span itemprop="' + rating_itemprop + '">' + rating + '</span>',
          maxstars='<span itemprop="bestRating">5</span>') }}
