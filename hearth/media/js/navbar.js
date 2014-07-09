@@ -1,5 +1,5 @@
-define('navbar', ['jquery', 'jquery.hammer', 'log', 'navigation', 'nunjucks', 'settings', 'underscore', 'urls', 'z'],
-    function($, hammer, log, navigation, nunjucks, settings, _, urls, z) {
+define('navbar', ['capabilities', 'jquery', 'jquery.hammer', 'log', 'navigation', 'nunjucks', 'settings', 'underscore', 'urls', 'z'],
+    function(caps, $, hammer, log, navigation, nunjucks, settings, _, urls, z) {
     'use strict';
 
     var console = log('navbar');
@@ -137,6 +137,30 @@ define('navbar', ['jquery', 'jquery.hammer', 'log', 'navigation', 'nunjucks', 's
                 z: z,
             })
         ).addClass('secondary-header');
+
+        // Categories hover menu.
+        if (caps.widescreen()) {
+            require('requests').get(urls.api.unsigned.params(
+                'categories',
+                {ordering: '-modified'}
+            )).done(function(result) {
+                var $menu = $('.hovercats');
+
+                $menu.html(
+                    nunjucks.env.render('cat_overlay.html', {
+                       categories: result.objects
+                    })
+                );
+
+                $('.navbar > .categories').on('mouseover', function() {
+                    $menu.addClass('active');
+                }).on('mouseout', function() {
+                    $menu.removeClass('active');
+                }).on('click', 'a', function() {
+                    $menu.removeClass('active');
+                });
+            });
+        }
     }
 
     // Render navbar.

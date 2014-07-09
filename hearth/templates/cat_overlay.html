@@ -1,0 +1,12 @@
+{# Gets rendered for desktop only - temporary until redesign. #}
+
+<ol class="cat-overlay c">
+  {% for cat in categories %}
+    <li>
+      <a class="cat-{{ cat.slug }} cur-cat"
+         href="{{ url('category', [cat.slug]) }}">
+         {{ cat.name }}
+      </a>
+    </li>
+  {% endfor %}
+</ol>

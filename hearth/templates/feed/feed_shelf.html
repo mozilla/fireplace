@@ -3,11 +3,13 @@
 
 {% defer (url=api('feed-shelf', [slug]), id='shelf', as='feed-shelf', key=slug) %}
   <section class="main feed feed-landing shelf-landing">
-    {{ feed_shelf(this, true) }}
-    <p class="desc">{{ this.description }}</p>
+    <div class="column-a">
+      {{ feed_shelf(this, true) }}
+      <p class="desc">{{ this.description|translate(this) }}</p>
+    </div>
 
     {% if this.apps %}
-      <ol class="container c">
+      <ol class="container column-b c">
         {% for app in this.apps %}
           <li class="item result app c">
             {{ market_tile(app, link=true, src='shelf', tray=False) }}

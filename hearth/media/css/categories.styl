@@ -1,4 +1,4 @@
-// Styles for the categories index page.
+// Styles for the categories index page and overlay.
 @import 'lib';
 
 .category-index {
@@ -35,6 +35,78 @@
             text-transform: uppercase;
             top: 25px;
             width: 180%;
+        }
+    }
+}
+
+.hovercats {
+    background: #fff;
+    border-radius: 5px;
+    display: none;
+    left: -162px;
+    position: absolute;
+    top: 34px;
+
+    &.active {
+        display: block;
+    }
+    &:after {
+        border: 10px solid transparent;
+        border-bottom: 10px solid #fff;
+        content: "";
+        height: 0;
+        left: 50%;
+        margin-left: -10px;
+        position: absolute;
+        top: -20px;
+        width: 0;
+    }
+}
+
+.cat-overlay {
+    padding: 20px;
+    width: 500px;
+
+    li {
+        border-bottom: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        float: left;
+        font-size: 15px;
+        padding: 10px;
+        position: relative;
+        text-transform: uppercase;
+        width: 50%;
+
+        &:nth-child(2n) {
+            border-right: 0;
+            a {
+                padding-left: 50px;
+
+                &:before {
+                    left: 10px;
+                }
+            }
+        }
+        &:nth-last-child(-n + 2) {
+            border-bottom: 0;
+        }
+    }
+    a {
+        color: $dark-gray;
+        line-height: 30px;
+        padding-left: 40px;
+
+        &:before {
+            background-image: url(../img/pretty/cats-sprite.svg);
+            background-size: 90px auto;
+            content: "";
+            height: 30px;
+            left: 0;
+            position: absolute;
+            width: 30px;
+        }
+        &:hover {
+            background-position: inherit;
         }
     }
 }
