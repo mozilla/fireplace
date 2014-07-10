@@ -104,7 +104,7 @@ define('requests',
     var urls_fetched = {};
 
     function get(url, nocache) {
-        var cache_offline = settings.offline_cache_enabled && settings.offline_cache_enabled();
+        var cache_offline = settings.offline_cache_enabled();
 
         var cached;
         if (cache.has(url) && !nocache) {

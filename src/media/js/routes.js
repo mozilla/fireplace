@@ -43,15 +43,14 @@ var routes = [
     {'pattern': '^/fxa-authorize$', 'view_name': 'fxa_authorize'},
 ];
 
-// Only when non-minified do we include the require-config.js since when we
-// build, Commonplace will inject require-config.js into our bundle. We can
-// use this discrepancy to sniff whether we're bundle.
-if (document.querySelector('script[src="/media/js/lib/require-config.js"]')) {
+// Only `require.js` has `window.require.defined`, so we can use this to
+// sniff for whether we're using the minified bundle or not. (In production
+// we use commonplace's `amd.js`.)
+if (window.require.hasOwnProperty('defined')) {
     // The minified JS bundle doesn't need some dev-specific JS views.
     // Those go here.
     routes = routes.concat([
-        {'pattern': '^/tests$', 'view_name': 'tests'},
-        {'pattern': '^/debug$', 'view_name': 'debug'}
+        {'pattern': '^/tests$', 'view_name': 'tests'}
     ]);
 }
 

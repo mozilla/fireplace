@@ -1,6 +1,6 @@
 define('views/homepage',
-    ['format', 'jquery', 'isotope', 'l10n', 'log', 'newsletter', 'textoverflowclamp', 'underscore', 'urls', 'utils', 'z'],
-    function(format, $, isotope, l10n, log, newsletter, clamp, _, urls, utils, z) {
+    ['format', 'isotope', 'jquery', 'l10n', 'log', 'newsletter', 'textoverflowclamp', 'underscore', 'urls', 'utils', 'z'],
+    function(format, isotope, $, l10n, log, newsletter, clamp, _, urls, utils, z) {
     'use strict';
 
     var console = log('homepage');
