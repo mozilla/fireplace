@@ -103,7 +103,7 @@ define('urls',
         // If the API URL is already reversed, then here's where we determine
         // whether that URL gets served from the API or CDN.
         var host = settings.api_url;
-        if (utils.baseurl(path) in settings.api_cdn_whitelist) {
+        if (settings.api_cdn_whitelist && utils.baseurl(path) in settings.api_cdn_whitelist) {
             host = settings.cdn_url;
         }
         return host;

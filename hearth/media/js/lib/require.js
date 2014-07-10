@@ -58,7 +58,6 @@ g.defQueue:R).push([b,c,d])};define.amd={jQuery:!0};l.exec=function(b){return ev
     ]
     var commonplace_views = [
         'not_found',
-        'debug',
         'hello_world',
         'tests',
     ]

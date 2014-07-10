@@ -8,7 +8,7 @@ define('models',
     var cache_key = 'model_cache';
     var data_store = {};
 
-    if (settings.offline_cache_enabled()) {
+    if (settings.offline_cache_enabled && settings.offline_cache_enabled()) {
         data_store = JSON.parse(storage.getItem(cache_key) || '{}');
     }
 
@@ -77,7 +77,7 @@ define('models',
 
         var key = prototypes[type];
 
-        function cast(data) {
+        function cast(data, do_not_return) {
             function do_cast(data) {
                 var keyed_value = data[key];
                 data_store[type][keyed_value] = data;
@@ -85,9 +85,11 @@ define('models',
             }
             if (_.isArray(data)) {
                 _.each(data, do_cast);
-                return data;
+                return do_not_return ? null : data;
+            } else {
+                var casted_data = do_cast(data);
+                return do_not_return ? null : [casted_data, data];
             }
-            return do_cast(data), data;
         }
 
         function uncast(object) {

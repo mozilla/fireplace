@@ -26,7 +26,23 @@ define('capabilities', ['settings'], function(settings) {
         'phantom': navigator.userAgent.match(/Phantom/)  // Don't use this if you can help it.
     };
 
-    static_caps.persona = function() { return (!!navigator.id || !!navigator.mozId) && !static_caps.phantom || (settings.switches.indexOf('firefox-accounts') != -1); };
+    static_caps.persona = function() { return (!!navigator.id || !!navigator.mozId) && !static_caps.phantom; };
+
+    static_caps.persona = function() {
+        return ((!!navigator.id || !!navigator.mozId)
+                && !static_caps.phantom
+                && !static_caps.fallbackFxA());
+    };
+    static_caps.nativeFxA = function() {
+        return (static_caps.firefoxOS
+                && !!navigator.userAgent.match(/rv:32.0/)
+                && settings.switches.indexOf('firefox-accounts') !== -1)
+    };
+    static_caps.fallbackFxA = function() {
+        return (!static_caps.nativeFxA()
+                && settings.switches.indexOf('firefox-accounts') !== -1);
+    };
+
 
     // True if the login should inherit mobile behaviors such as allowUnverified.
     // The _shimmed check is for B2G where identity is native (not shimmed).

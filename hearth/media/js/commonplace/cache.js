@@ -7,7 +7,7 @@ define('cache',
     var cache = {};
     var cache_key = 'request_cache';
 
-    if (settings.offline_cache_enabled()) {
+    if (settings.offline_cache_enabled && settings.offline_cache_enabled()) {
         cache = JSON.parse(storage.getItem(cache_key) || '{}');
         flush_expired();
     }
@@ -18,7 +18,7 @@ define('cache',
     function get_ttl(url) {
         // Returns TTL for an API URL in microseconds.
         var path = utils.urlparse(url).pathname;
-        if (path in settings.offline_cache_whitelist) {
+        if (settings.offline_cache_whitelist && path in settings.offline_cache_whitelist) {
             // Convert from seconds to microseconds.
             return settings.offline_cache_whitelist[path] * 1000;
         }
@@ -26,7 +26,7 @@ define('cache',
     }
 
     function save() {
-        if (!settings.offline_cache_enabled()) {
+        if (settings.offline_cache_enabled && !settings.offline_cache_enabled()) {
             return;
         }
 
@@ -140,13 +140,13 @@ define('cache',
             if (has(key)) {
                 return get(key);
             } else {
-                var val = JSON.parse(storage.getItem(persistentCachePrefix + key));
+                var val = storage.getItem(persistentCachePrefix + key);
                 set(key, val);
                 return val;
             }
         },
         set: function(key, val) {
-            storage.setItem(persistentCachePrefix + key, JSON.stringify(val));
+            storage.setItem(persistentCachePrefix + key, val);
             set(key, val);
         },
         bust: function(key) {
