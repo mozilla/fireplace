@@ -87,14 +87,14 @@
     top: 4px;
 }
 
-@media (min-width: 710px) {
+@media $at-least-desktop {
     .package .site-header .site:after {
         left: 2px;
         top: 5px;
     }
 }
 
-@media (min-width: 1024px) {
+@media $wider-desktop {
     .package .site-header .site:after {
         left: -4px;
         top: 7px;
@@ -492,7 +492,7 @@ main {
 // ***************** Cursor (Desktop) (>= 1024px)
 
 // This probably shouldn't be media query based.
-@media (min-width: 1024px) {
+@media $wider-desktop {
     main {
         padding: 0;
     }

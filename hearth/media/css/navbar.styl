@@ -185,11 +185,11 @@
         > li {
             display: inline-block;
             font-size: 15px;
-            position: relative;
-            text-transform: uppercase;
             line-height: 34px;
-            width: 25%;
+            position: relative;
             text-align: center;
+            text-transform: uppercase;
+            width: 25%;
 
             &.active a {
                 color: $breezy-blue;
@@ -208,17 +208,17 @@
         .categories > a {
             &:hover {
                 color: $breezy-blue;
+
                 &:after {
                     border-top-color: $breezy-blue;
                 }
             }
-
             &:after {
-                position: absolute;
-                content: "";
                 border: 4px solid transparent;
                 border-top: 7px solid $dark-gray;
+                content: "";
                 margin-left: 8px;
+                position: absolute;
                 top: 12px;
             }
         }

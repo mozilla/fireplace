@@ -40,14 +40,14 @@
 }
 
 .hovercats {
-    background: #fff;
+    background: $white;
     border-radius: 5px;
     display: none;
-    left: -162px;
+    left: -355px;
     position: absolute;
     top: 34px;
 
-    &.active {
+    &.active, &.active .cat-overlay {
         display: block;
     }
     &:after {
@@ -55,8 +55,8 @@
         border-bottom: 10px solid #fff;
         content: "";
         height: 0;
-        left: 50%;
-        margin-left: -10px;
+        left: 100%;
+        margin-left: -65px;
         position: absolute;
         top: -20px;
         width: 0;
@@ -64,12 +64,13 @@
 }
 
 .cat-overlay {
+    display: none;
     padding: 20px;
     width: 500px;
 
     li {
-        border-bottom: 1px solid #ccc;
-        border-right: 1px solid #ccc;
+        border-bottom: 1px solid $light-gray;
+        border-right: 1px solid $light-gray;
         float: left;
         font-size: 15px;
         padding: 10px;
@@ -79,6 +80,7 @@
 
         &:nth-child(2n) {
             border-right: 0;
+
             a {
                 padding-left: 50px;
 
@@ -87,6 +89,7 @@
                 }
             }
         }
+        // Last two children. 少しこわいい
         &:nth-last-child(-n + 2) {
             border-bottom: 0;
         }
@@ -107,6 +110,17 @@
         }
         &:hover {
             background-position: inherit;
+        }
+    }
+}
+
+@media $wider-desktop {
+    .hovercats {
+        left: -162px;
+
+        &:after{
+            left: 50%;
+            margin-left: -10px;
         }
     }
 }
