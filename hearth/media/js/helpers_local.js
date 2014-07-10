@@ -31,22 +31,6 @@ define('helpers_local',
         return text;
     };
 
-    // We want to take a float and return a string of either the
-    // integer value or integer + .5, whichever is closest
-    filters.roundToNearestHalf = function(number) {
-        var intPart = Math.floor(number);
-        var floatPart = number - intPart;
-        if (floatPart < 0.25) {
-            floatPart = 0;
-        } else if (floatPart > 0.75) {
-            floatPart = 0;
-            intPart += 1;
-        } else {
-            floatPart = 0.5;
-        }
-        return '' + (intPart + floatPart);
-    };
-
     function has_installed(manifestURL) {
         return z.apps.indexOf(manifestURL) !== -1;
     }
