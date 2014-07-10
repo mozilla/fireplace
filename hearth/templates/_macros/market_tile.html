@@ -48,15 +48,7 @@
       {% endif %}
       {% if app.content_ratings.rating %}
         <div class="content-rating lineclamp vital subdetail" itemprop="content-rating">
-          {% if app.content_ratings.body != 'generic' %}
-            {# L10n: the IARC rating body/system followed by a name/description of the rating (e.g. "ESRB: Everyone" or "PEGI: For ages 3+"). #}
-            {{ _('{rating_body}: {rating}',
-                 rating_body=iarc_names.bodies[app.content_ratings.body],
-                 rating=iarc_names.ratings[app.content_ratings.body][app.content_ratings.rating]) }}
-          {% else %}
-            {# Don't show "Generic:" as the body since that doesn't mean much. #}
-            {{ iarc_names.ratings[app.content_ratings.body][app.content_ratings.rating] }}
-          {% endif %}
+          {{ iarc_names.ratings[app.content_ratings.body][app.content_ratings.rating] }}
         </div>
       {% else %}
         <div class="content-rating lineclamp vital subdetail">{{ _('Not yet rated') }}</div>

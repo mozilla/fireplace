@@ -16,10 +16,10 @@
 
           {# Content descriptors as a list of text.
              Only shown if there are not any descriptor icons (i.e. non-PEGI bodies). #}
-          {% if this.descriptors and not iarc.descriptor_icons[this.body] %}
+          {% if this.descriptors_text and not iarc.descriptor_icons[this.body] %}
             <ul class="content-descriptors text">
-              {% for descriptor in this.descriptors %}
-                <li>{{ iarc_names.descriptors[this.body][descriptor] }}</li>
+              {% for descriptor_text in this.descriptors_text %}
+                <li>{{ descriptor_text }}</li>
               {% endfor %}
             </ul>
           {% else %}
@@ -34,35 +34,37 @@
             {# Content descriptors as a grid of icons.
                Only shown if there are descriptor icons (i.e. PEGI-only). #}
             <div class="content-descriptors icons">
-              {% for descriptor in this.descriptors %}
-                {% set icon_src = desc_icons[descriptor] %}
+              {% for descriptor_key in this.descriptors %}
+                {% set icon_src = desc_icons[descriptor_key] %}
                 {% if icon_src %}
                   <img data-src="{{ icon_src }}" class="icon deferred"
                        src="{{ media('fireplace/img/pretty/rocket.png') }}"
-                       title="{{ iarc_names.descriptors[this.body][descriptor] }}"
-                       alt="{{ names.descriptors[this.body][descriptor] }}">
+                       title="{{ this.descriptors_text[loop.index0] }}"
+                       alt="{{ this.descriptors_text[loop.index0] }}">
                 {% endif %}
               {% endfor %}
             </div>
 
           {% elif this.interactives %}
-           {% set interactive_icons = iarc.interactive_icons[this.body] %}
             <div class="interactive-elements {{ 'icons' if interactive_icons else 'text' }}">
-              {% for interactive in this.interactives %}
-                {% if interactive_icons %}
+              {% set interactive_icons = iarc.interactive_icons[this.body] %}
+              {% if interactive_icons %}
+                {% for interactive_key in this.interactives %}
                   {# Interactive elements as a row of icons (ESRB only). #}
-                  {% set icon_src = interactive_icons[interactive] %}
+                  {% set icon_src = interactive_icons[interactive_key] %}
                   {% if icon_src %}
                     <img data-src="{{ icon_src }}" class="icon deferred"
                          src="{{ media('fireplace/img/pretty/rocket.png') }}"
-                         title="{{ iarc_names.interactives[interactive] }}"
-                         alt="{{ names.interactives[interactive] }}">
+                         title="{{ this.interactives_text[loop.index0] }}"
+                         alt="{{ this.interactives_text[loop.index0] }}">
                   {% endif %}
-                {% else %}
+                {% endfor %}
+              {% else %}
+                {% for interactive_text in this.interactives_text %}
                   {# Interactive elements as a column of text (non-PEGI/ESRB bodies). #}
-                  <p>{{ iarc_names.interactives[interactive] }}</p>
-                {% endif %}
-              {% endfor %}
+                  <p>{{ interactive_text }}</p>
+                {% endfor %}
+              {% endif %}
             </div>
           {% endif %}
         </div>
