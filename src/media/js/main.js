@@ -33,8 +33,7 @@ define(
         'cache',
         'capabilities',
         'consumer_info',
-        'mobilenetwork',  // Must come before cat-dropdown (for amd.js)
-        'cat-dropdown',
+        'mobilenetwork',
         'content-ratings',
         'forms',
         'image-deferrer',

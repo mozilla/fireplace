@@ -5,22 +5,9 @@ define('views/homepage',
 
     var console = log('homepage');
     var gettext = l10n.gettext;
-    var catsTrigger = '.navbar > .categories';
 
     z.page.on('click', '.feed-brand .view-all', function() {
         $(this).hide().closest('.feed-brand').find('.app.hidden').show();
-    });
-
-    z.body.on('mouseover', catsTrigger, function() {
-        var $menu = $('.hovercats');
-        if (!$menu.find('.cat-overlay').length) {
-            $menu.append($('.cat-overlay').detach());
-        }
-        $menu.addClass('active');
-    }).on('mouseout', catsTrigger, function() {
-        $('.hovercats').removeClass('active');
-    }).on('click', catsTrigger + ' a', function() {
-        $('.hovercats').removeClass('active');
     });
 
     return function(builder, args, params) {

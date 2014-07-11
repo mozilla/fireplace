@@ -1,5 +1,5 @@
-define('navbar', ['capabilities', 'jquery', 'jquery.hammer', 'log', 'navigation', 'nunjucks', 'settings', 'underscore', 'urls', 'z'],
-    function(caps, $, hammer, log, navigation, nunjucks, settings, _, urls, z) {
+define('navbar', ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 'nunjucks', 'settings', 'underscore', 'urls', 'z'],
+    function(cats, $, hammer, log, navigation, nunjucks, settings, _, urls, z) {
     'use strict';
 
     var console = log('navbar');
@@ -85,10 +85,6 @@ define('navbar', ['capabilities', 'jquery', 'jquery.hammer', 'log', 'navigation'
                .eq(tabPos).addClass('active');
 
         z.page.trigger('navigate', $this.find('a').attr('href'));
-    })
-    .on('click', '.navbar li a', function() {
-        // Event wasn't propagating to parent :(.
-        $(this).parent().trigger('click');
     });
 
     // Desktop.
@@ -137,6 +133,26 @@ define('navbar', ['capabilities', 'jquery', 'jquery.hammer', 'log', 'navigation'
                 z: z,
             })
         ).addClass('secondary-header');
+
+        var catsTrigger = '.navbar > .categories';
+        var $menu = $('.hovercats');
+
+        $menu.html(
+            nunjucks.env.render('cat_overlay.html', {categories: cats})
+        );
+
+        z.body.on('mouseenter', catsTrigger, function() {
+            $menu.addClass('active');
+        }).on('mouseleave', catsTrigger, function() {
+            $menu.removeClass('active');
+        }).on('click', catsTrigger + ' li a', function(e) {
+            e.stopPropagation();
+            $menu.removeClass('active');
+        }).on('mouseenter', catsTrigger + ' li a', function() {
+            $(this).removeClass('cur-cat');
+        }).on('mouseleave', catsTrigger + ' li a', function() {
+            $(this).addClass('cur-cat');
+        });
     }
 
     // Render navbar.

@@ -73,7 +73,7 @@
         border-right: 1px solid $light-gray;
         float: left;
         font-size: 15px;
-        padding: 10px;
+        height: 50px;
         position: relative;
         text-transform: uppercase;
         width: 50%;
@@ -87,17 +87,26 @@
                 &:before {
                     left: 10px;
                 }
+                &:hover {
+                    margin: -1px -20px 0 0;
+                    padding-left: 50px;
+                }
             }
         }
         // Last two children. 少しこわいい
         &:nth-last-child(-n + 2) {
-            border-bottom: 0;
+            border-bottom: 1px solid $white;
         }
     }
     a {
         color: $dark-gray;
-        line-height: 30px;
-        padding-left: 40px;
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+        outline: 0;
+        padding: 0 0 0 40px;
+        text-align: left;
+        width: 230px;
 
         &:before {
             background-image: url(../img/pretty/cats-sprite.svg);
@@ -106,11 +115,31 @@
             height: 30px;
             left: 0;
             position: absolute;
+            top: 10px;
             width: 30px;
         }
         &:hover {
+            background-color: $breezy-blue;
             background-position: inherit;
+            color: $white;
+            height: 51px;
+            line-height: 51px;
+            margin-left: -20px;
+            margin-top: -1px;
+            padding-left: 60px;
+            width: 250px;
         }
+    }
+}
+
+.category-header-desktop {
+    display: none;
+}
+
+@media $at-least-desktop {
+    .category-header-desktop {
+        margin: 0 auto 20px;
+        width: $desktop-content;
     }
 }
 

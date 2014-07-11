@@ -4,7 +4,6 @@ define('categories', ['l10n', 'models'], function(l10n, models) {
     var gettext = l10n.gettext;
     var catModels = models('category');
     var categories = [
-        {slug: 'all', name: gettext('All Categories')},
         {slug: 'games', name: gettext('Games')},
         {slug: 'books', name: gettext('Books')},
         {slug: 'business', name: gettext('Business')},
