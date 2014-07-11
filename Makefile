@@ -68,6 +68,8 @@ package_dev:
 	SERVER='dev' NAME='Dev' DOMAIN='marketplace-dev.allizom.org' make package
 package_altdev:
 	SERVER='altdev' NAME='AltDev' DOMAIN='marketplace-altdev.allizom.org' make package
+package_paymentsalt:
+	SERVER='paymentsalt' NAME='PaymentAlt' DOMAIN='payments-alt.allizom.org' make package
 
 
 serve_package:
