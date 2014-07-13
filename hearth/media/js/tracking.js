@@ -93,9 +93,7 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
                 '}, false);',
                 '</script>'
             ].join('\n');
-            potato_iframe.height = 0;
-            potato_iframe.width = 0;
-            potato_iframe.style.borderWidth = 0;
+            potato_iframe.style.display = 'none';
             console.log('Setting up tracking with Potatolytics');
             document.body.appendChild(potato_iframe);
             potato_initialized = true;
