@@ -66,9 +66,10 @@ define('navbar', ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 
         }
 
         $navbar.find('li').eq(tabPos).trigger('click');
-    })
+    });
+
     // Tap handler.
-    .on('click', '.navbar li', function() {
+    z.body.on('click', '.navbar li > a', function() {
         var $this = $(this);
         var $navbar = $this.closest('.navbar.active');
         var tabs = tabsMkt;
@@ -76,7 +77,7 @@ define('navbar', ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 
             tabs = tabsSettings;
         }
 
-        var targetTab = $this.attr('data-tab');
+        var targetTab = $this.closest('li').attr('data-tab');
         var tabPos = tabs.indexOf(targetTab);
 
         // Visually change tab by sliding navbar.

@@ -93,6 +93,7 @@
             width: 100%;
 
             // Toggle navbars.
+            // TODO: These need a fixed width or this will fail with l10n.
             &.nav-mkt {
                 right: -100%;
 
@@ -139,15 +140,17 @@
                 bottom: 6px;
                 display: inline-block;
                 font-size: 12px;
-                padding: 11px 8px 8px;
                 position: relative;
+                margin-right: 8px;
 
                 &.active a {
                     border-bottom: 2px solid $flamin-hot-cheetos-orange;
-                    padding-bottom: 12px;
                 }
                 a {
                     color: $medium-gray;
+                    display: block;
+                    height: 38px;
+                    line-height: 38px;
                 }
             }
         }
@@ -176,7 +179,6 @@
         margin: 0 auto;
         left: 0;
         opacity: 1;
-        padding: 8px 0;
         position: absolute;
         right: 0;
         top: 0;
@@ -185,20 +187,22 @@
         > li {
             display: inline-block;
             font-size: 15px;
-            line-height: 34px;
+            line-height: 50px;
             position: relative;
             text-align: center;
             text-transform: uppercase;
             width: 25%;
 
-            &.active a {
+            &.active > a {
                 color: $breezy-blue;
             }
             &:nth-child(2) {
                 width: 23%;
             }
-            a {
+            > a {
                 color: $medium-gray;
+                display: block;
+                height: 50px;
 
                 &:hover {
                     text-decoration: none;
@@ -226,7 +230,7 @@
                     content: "";
                     margin-left: 8px;
                     position: absolute;
-                    top: 12px;
+                    top: 20px;
                 }
             }
         }
