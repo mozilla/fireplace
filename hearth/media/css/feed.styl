@@ -566,22 +566,50 @@ $vertical-tile-margin = 10px;
                 li {
                     float: left;
                     margin-right: 20px;
-                    width: 325px;
+                    width: 335px;
 
+                    &.mini-app {
+                        background-color: #fff;
+                        border-radius: 5px;
+                        height: 80px;
+                        padding: 10px;
+                    }
                     &:nth-child(2n) {
                         margin-right: 0;
                     }
                     &.loadmore {
                         clear: both;
-                        width: 670px;
+                        width: $desktop-content;
                     }
                 }
             }
             .multi-app-tile.mkt-tile {
-                max-width: 690px;
+                background-color: transparent;
+                box-shadow: none;
+                max-width: $desktop-content;
+                padding: 0;
 
                 .app-list {
                     width: $desktop-content;
+
+                    .fragment-error {
+                        background-color: transparent;
+                        display: inline-block;
+                        padding: 20px;
+                    }
+                }
+                > .icon {
+                    display: none;
+                }
+                > .info {
+                    height: 30px;
+                    margin-left: 0;
+                    width: 100%;
+
+                    h1 {
+                        font-size: 24px;
+                        line-height: 24px;
+                    }
                 }
             }
             .placeholder {
