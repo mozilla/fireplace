@@ -6,10 +6,7 @@
 
 {% defer (url=api('feed'), id='feed-items') %}
   <ul class="feed feed-items c">
-    {% if this.shelf %}
-      <li class="feed-item-item">{{ feed_item(this.shelf) }}</li>
-    {% endif %}
-    {% for item in this.feed %}
+    {% for item in this.objects %}
       <li class="feed-item-item">{{ feed_item(item) }}</li>
     {% endfor %}
   </ul>
