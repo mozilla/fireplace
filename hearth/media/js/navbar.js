@@ -85,7 +85,7 @@ define('navbar', ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 
                .find('li').removeClass('active')
                .eq(tabPos).addClass('active');
 
-        z.page.trigger('navigate', $this.find('a').attr('href'));
+        z.page.trigger('navigate', $this.attr('href'));
     });
 
     // Desktop.

@@ -556,4 +556,37 @@ $vertical-tile-margin = 10px;
             }
         }
     }
+    [data-page-type~=newpop] {
+        .feed {
+            max-width: $desktop-content;
+
+            .app-list {
+                max-width: $desktop-content;
+
+                li {
+                    float: left;
+                    margin-right: 20px;
+                    width: 325px;
+
+                    &:nth-child(2n) {
+                        margin-right: 0;
+                    }
+                    &.loadmore {
+                        clear: both;
+                        width: 670px;
+                    }
+                }
+            }
+            .multi-app-tile.mkt-tile {
+                max-width: 690px;
+
+                .app-list {
+                    width: $desktop-content;
+                }
+            }
+            .placeholder {
+                clear: both;
+            }
+        }
+    }
 }
