@@ -1,3 +1,4 @@
+/* This is a shared file between Fireplace and Transonic. */
 @import 'lib';
 
 $view-all-blue = #5BBAFF;
@@ -133,14 +134,23 @@ $vertical-tile-margin = 10px;
             padding: 15px 0 0;
         }
         .feed-app-preview-container {
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
             border-radius: 0 0 5px 5px;
             overflow: hidden;
             margin: 15px 0 -16px -10px;
             height: 150px;
             width: $mobile-tile-width;
+
+            &.vertical {
+                height: 240px;
+            }
+        }
+        .feed-app-preview {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: unquote('calc(100% - 10px)');  // Padding.
+            margin-top: 5px;
+            width: 100%;
         }
     }
     .tile-footer {

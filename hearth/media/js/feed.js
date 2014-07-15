@@ -1,3 +1,4 @@
+/* This is a shared file between Fireplace and Transonic. */
 define('feed',
     ['l10n', 'models', 'nunjucks', 'utils_local'], function(l10n, models, nunjucks, utils_local) {
     'use strict';

@@ -1,3 +1,5 @@
+{# This is a shared file between Fireplace and Transonic. #}
+
 {% macro feed_app_tile(feed_app) %}
   <div class="tile-footer {{ feed_app.type }}"
        {% if feed_app.type == feed.FEEDAPP_QUOTE %}style="background: {{ feed_app.background_color }};"{% endif %}>
@@ -18,9 +20,13 @@
       {% endif %}
     {% elif feed_app.type == feed.FEEDAPP_PREVIEW %}
       <p class="desc">{{ feed_app.description|translate(feed_app)|safe }}</p>
-      <div class="feed-app-preview-container"
-           style="background-color: {{ feed_app.background_color }};
-                  background-image: url({{ feed_app.preview.image_url }});"></div>
+      <div class="feed-app-preview-container
+                  {{ 'vertical' if feed_app.preview.image_size and
+                     feed_app.preview.image_size[1] > feed_app.preview.image_size[0] }}"
+           style="background-color: {{ feed_app.background_color }}">
+        <div class="feed-app-preview"
+             style="background-image: url({{ feed_app.preview.image_url }});"></div>
+      </div>
     {% endif %}
   </div>
 {% endmacro %}
