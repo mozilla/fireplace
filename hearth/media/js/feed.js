@@ -99,6 +99,16 @@ define('feed',
 
     var BRAND_LAYOUTS_CHOICES = utils_local.items(BRAND_LAYOUTS);
 
+    var BRAND_COLOR_CLASSES = [
+        'ruby',
+        'amber',
+        'emerald',
+        'topaz',
+        'sapphire',
+        'amethyst',
+        'garnet'
+    ];
+
     var FEEDAPP_ICON = 'icon';
     var FEEDAPP_IMAGE = 'image';
     var FEEDAPP_DESC = 'description';
@@ -127,6 +137,12 @@ define('feed',
             return BRAND_TYPES[item.type][1];
         }
         return BRAND_TYPES[item.type][0];
+    }
+
+    function get_brand_color_class() {
+        // Return random item from BRAND_COLOR_CLASSES array.
+        var seed = Math.floor(Math.random() * BRAND_COLOR_CLASSES.length);
+        return BRAND_COLOR_CLASSES[seed];
     }
 
     function group_apps(apps) {
@@ -179,6 +195,7 @@ define('feed',
         cast_brand: models('feed-brand').cast,
         cast_collection: models('feed-collection').cast,
         cast_shelf: models('feed-shelf').cast,
+        get_brand_color_class: get_brand_color_class,
         get_brand_name: get_brand_name,
         group_apps: group_apps,
         MAX_BRAND_APPS: MAX_BRAND_APPS,
