@@ -11,7 +11,9 @@ define('login',
     function signInNotification() {
         notification.notification({message: gettext('You have been signed in')});
     }
-
+    if (capabilities.fallbackFxA()) {
+        z.body.addClass('persona-loaded');
+    }
     z.body.on('click', '.persona', function(e) {
         e.preventDefault();
 
@@ -58,25 +60,6 @@ define('login',
         return [x, y];
     }
 
-    function fxaLogin() {
-        var data = {
-            'auth_response': msg.data.auth_code,
-            'state': settings.fxa_auth_state
-        };
-        z.page.trigger('before_login');
-        requests.post(urls.api.url('fxa-login'), data).done(function(data) {
-            user.set_token(data.token, data.settings);
-            user.update_permissions(data.permissions);
-            user.update_apps(data.apps);
-            console.log('Login succeeded, preparing the app');
-            z.body.addClass('logged-in');
-            $('.loading-submit').removeClass('loading-submit');
-            z.page.trigger('reload_chrome').trigger('logged_in');
-            _.invoke(pending_logins, 'resolve');
-            pending_logins = [];
-        });
-    }
-
     function startLogin() {
         var w = 320;
         var h = 500;
@@ -113,16 +96,26 @@ define('login',
                 if (!msg.data || !msg.data.auth_code) {
                     return;
                 }
-                fxaLogin(msg.data.auth_code);
+                var data = {
+                    'auth_response': msg.data.auth_code,
+                    'state': settings.fxa_auth_state
+                };
+                z.page.trigger('before_login');
+                requests.post(urls.api.url('fxa-login'), data).done(function(data) {
+                    user.set_token(data.token, data.settings);
+                    user.update_permissions(data.permissions);
+                    user.update_apps(data.apps);
+                    console.log('Login succeeded, preparing the app');
+                    z.body.addClass('logged-in');
+                    $('.loading-submit').removeClass('loading-submit');
+                    z.page.trigger('reload_chrome').trigger('logged_in');
+                    _.invoke(pending_logins, 'resolve');
+                    pending_logins = [];
+                });
             }, false);
-            if (capabilities.device_type == 'desktop') {
-                storage.setItem('fxa-destination') = window.location.href
-                window.location.href = settings.fxa_auth_url
-            } else {
-                window.open(
-                    settings.fxa_auth_url, "fxa",
-                    'width=' + w + ',height=' + h + ',left=' + i[0] + ',top=' + i[1]);
-            }
+
+            window.open(settings.fxa_auth_url, 'fxa',
+                        'width=' + w + ',height=' + h + ',left=' + i[0] + ',top=' + i[1]);
         } else {
             persona_loaded.done(function() {
                 if (capabilities.persona()) {
@@ -232,7 +225,7 @@ define('login',
     persona_loaded.done(function() {
         // This lets us change the cursor for the "Sign in" link.
         z.body.addClass('persona-loaded');
-
+        var opts;
         var email = user.get_setting('email') || '';
         if (email) {
             console.log('Detected user', email);
@@ -256,12 +249,11 @@ define('login',
             }
             navigator.id.watch(opts);
         }
-
     }).fail(function() {
         notification.notification({
             message: gettext('Persona cannot be reached. Try again later.')
         });
     });
 
-    return {login: startLogin, fxaLogin: fxaLogin};
+    return {login: startLogin};
 });
