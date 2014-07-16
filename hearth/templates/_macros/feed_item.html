@@ -99,7 +99,7 @@
                       style="background-color: {{ color|hex2rgba('.4') }}"
                    {% endif %}>
       <ul class="app-icons">
-        {% for app in coll.apps %}
+        {% for app in coll.apps.slice(0, 3) %}
           <li><img src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}"></li>
         {% endfor %}
       </ul>
