@@ -25,29 +25,29 @@ test: clean compile
 # Fireplace (real packaged app)
 package: clean
 	@rm -rf TMP
-	@rm -rf hearth/downloads/icons/*
-	@rm -rf hearth/downloads/screenshots/*
-	@rm -rf hearth/downloads/thumbnails/*
+	@rm -rf src/downloads/icons/*
+	@rm -rf src/downloads/screenshots/*
+	@rm -rf src/downloads/thumbnails/*
 	@mkdir -p TMP
 	@commonplace langpacks
-	@cp -r hearth TMP/hearth
+	@cp -r src TMP/src
 
-	@mv TMP/hearth/media/js/settings_package_$(SERVER).js TMP/hearth/media/js/settings_local_package.js
-	@rm -rf TMP/hearth/media/js/{settings_local_hosted.js,settings_package_*.js}
+	@mv TMP/src/media/js/settings_package_$(SERVER).js TMP/src/media/js/settings_local_package.js
+	@rm -rf TMP/src/media/js/{settings_local_hosted.js,settings_package_*.js}
 
 	@pushd TMP && commonplace includes && popd
 
 	@# We have to have a temp file to work around a bug in Mac's version of sed :(
-	@sed -i'.bak' -e 's/"Marketplace"/"$(NAME)"/g' TMP/hearth/manifest.webapp
-	@sed -i'.bak' -e 's/marketplace\.firefox\.com/$(DOMAIN)/g' TMP/hearth/manifest.webapp
-	@sed -i'.bak' -e 's/{launch_path}/app.html/g' TMP/hearth/manifest.webapp
-	@sed -i'.bak' -e 's/{fireplace_package_version}/$(VERSION_INT)/g' TMP/hearth/{manifest.webapp,media/js/include.js,app.html}
+	@sed -i'.bak' -e 's/"Marketplace"/"$(NAME)"/g' TMP/src/manifest.webapp
+	@sed -i'.bak' -e 's/marketplace\.firefox\.com/$(DOMAIN)/g' TMP/src/manifest.webapp
+	@sed -i'.bak' -e 's/{launch_path}/app.html/g' TMP/src/manifest.webapp
+	@sed -i'.bak' -e 's/{fireplace_package_version}/$(VERSION_INT)/g' TMP/src/{manifest.webapp,media/js/include.js,app.html}
 
 	@rm -rf package/archives/latest_$(SERVER)
 	@mkdir -p package/archives/latest_$(SERVER)
 	@rm -f package/archives/latest_$(SERVER).zip
 
-	@pushd TMP/hearth && \
+	@pushd TMP/src && \
 		cat ../../package/files.txt | sed '/^#/ d' | zip -9 -r ../../package/archives/$(NAME)_$(SERVER)_$(VERSION_INT).zip -@ && \
 		popd
 	@echo "Created package: package/archives/$(NAME)_$(SERVER)_$(VERSION_INT).zip"

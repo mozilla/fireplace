@@ -22,7 +22,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
 
     return _.defaults(base_settings, {
         app_name: 'fireplace',
-        init_module: 'marketplace',
+        init_module: 'main',
         default_locale: 'en-US',
         api_url: 'http://' + window.location.hostname,  // No trailing slash, please.
 
