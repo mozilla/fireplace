@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-30T16:47:36.729Z\n"
+"POT-Creation-Date: 2014-07-16T16:15:38.553Z\n"
 "PO-Revision-Date: 2014-03-15 19:41+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,10 +23,6 @@ msgstr "Pob Categori"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "O na! Dim apiau fan hyn, Mr Picton!"
 
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr ""
-
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Cau"
@@ -38,6 +34,10 @@ msgstr "Na"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Iawn"
+
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr ""
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -51,6 +51,18 @@ msgstr "Nid yw'r fersiwn o'r Firefox Marketplace rydych yn ei ddefnyddio yn cael
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "Diweddarwch Nawr"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Nodwedd"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "Ehangu"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "Heb ganfod apiau nodwedd"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -106,18 +118,6 @@ msgstr "Amodau Defnydd"
 msgid "Report Trademark Abuse"
 msgstr "Adrodd ar Gamddefnydd o Nod Masnachu"
 
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Nodwedd"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "Ehangu"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "Heb ganfod apiau nodwedd"
-
 #: /templates/header.html:1
 msgid "Back"
 msgstr "Nôl"
@@ -145,6 +145,14 @@ msgstr "Allgofnodi"
 #: /templates/header.html:31
 msgid "Sign In"
 msgstr "Mewngofnodi"
+
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Rhaid defnyddio Firefox i osod apiau Firefox."
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr "Llwyth i Lawr."
 
 #: /templates/nominate.html:1
 msgid "Nominate apps to be featured on Firefox Marketplace!"
@@ -206,24 +214,20 @@ msgstr ""
 msgid "Submit"
 msgstr "Cyflwyno"
 
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Rhaid defnyddio Firefox i osod apiau Firefox."
-
-#: /templates/incompatible.html:2
-msgid "Download."
-msgstr "Llwyth i Lawr."
-
 #. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
+#: /templates/_macros/market_button.html:6
 msgid "Unavailable"
 msgstr "Dim ar gael"
 
-#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:63
+#: /templates/_macros/market_button.html:8 /templates/_macros/market_tile.html:55
 msgid "Free"
 msgstr "Am Ddim"
 
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
+#: /templates/_macros/market_button.html:16 /media/js/apps_buttons.js:278
+msgid "Open"
+msgstr ""
+
+#: /templates/_macros/market_button.html:18 /media/js/apps_buttons.js:98 /media/js/apps_buttons.js:304
 msgid "Install"
 msgstr "Gosod"
 
@@ -231,20 +235,15 @@ msgstr "Gosod"
 msgid "{app_name} screenshot"
 msgstr ""
 
-#. the IARC rating body/system followed by a name/description of the rating (e.g. "ESRB: Everyone" or "PEGI: For ages 3+").
-#: /templates/_macros/market_tile.html:52
-msgid "{rating_body}: {rating}"
-msgstr "{rating_body}: {rating}"
-
-#: /templates/_macros/market_tile.html:61
+#: /templates/_macros/market_tile.html:53
 msgid "Not yet rated"
 msgstr "Heb eu graddio"
 
-#: /templates/_macros/market_tile.html:74
+#: /templates/_macros/market_tile.html:65
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:77 /templates/detail/main.html:137
+#: /templates/_macros/market_tile.html:68 /templates/detail/main.html:137
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} Adolygiad"
@@ -252,50 +251,22 @@ msgstr[1] "{n} Adolygiad"
 msgstr[2] "{n} Adolygiad"
 msgstr[3] "{n} Adolygiad"
 
-#: /templates/_macros/market_tile.html:81
+#. "(0)" means "0 reviews."
+#: /templates/_macros/market_tile.html:72
 msgid "(0)"
 msgstr "(0)"
 
-#: /templates/_macros/market_tile.html:82
+#: /templates/_macros/market_tile.html:73
 msgid "Not yet reviewed"
 msgstr ""
 
-#: /templates/_macros/market_tile.html:92
+#: /templates/_macros/market_tile.html:83
 msgid "Works offline"
 msgstr ""
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "Rhagor"
-
-#: /templates/category/main.html:37
-msgid "Featured Apps"
-msgstr "Apiau Nodwedd"
-
-#: /templates/category/main.html:38 /templates/category/main.html:45 /templates/category/main.html:65
-msgid "View All"
-msgstr "Gweld y Cyfan"
-
-#: /templates/category/main.html:61
-msgid "Popular"
-msgstr "Poblogaidd"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:63
-msgid "New"
-msgstr "Newydd"
-
-#: /templates/category/main.html:84
-msgid "No apps in this category"
-msgstr "Dim apiau yn y categori hwn"
-
-#: /templates/category/main.html:89
-msgid "The category you requested does not exist."
-msgstr "Nid yw'r categori rydych wedi gofyn amdano yn bodoli."
-
-#: /templates/category/main.html:91 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "Digwyddodd gwall gweinydd. Ceisiwch eto."
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -321,19 +292,56 @@ msgstr "Dileu"
 msgid "Report"
 msgstr "Adrodd"
 
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Graddiwyd {stars} allan o {maxstars} seren"
+
+#: /templates/category/main.html:37
+msgid "Featured Apps"
+msgstr "Apiau Nodwedd"
+
+#: /templates/category/main.html:38 /templates/category/main.html:46 /templates/category/main.html:66
+msgid "View All"
+msgstr "Gweld y Cyfan"
+
+#: /templates/category/main.html:62
+msgid "Popular"
+msgstr "Poblogaidd"
+
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:64
+msgid "New"
+msgstr "Newydd"
+
+#: /templates/category/main.html:85
+msgid "No apps in this category"
+msgstr "Dim apiau yn y categori hwn"
+
+#: /templates/category/main.html:90
+msgid "The category you requested does not exist."
+msgstr "Nid yw'r categori rydych wedi gofyn amdano yn bodoli."
+
+#: /templates/category/main.html:92 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr "Digwyddodd gwall gweinydd. Ceisiwch eto."
+
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:202 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "Adrodd ar Gamddefnydd"
+
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "Anfon Adroddiad"
+
 #. (es) Classificacao Indicativa.
 #: /templates/detail/content_ratings.html:5
 msgid "Content Rating"
 msgstr "Graddio'r Cynnwys"
 
 #. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:75
+#: /templates/detail/content_ratings.html:77
 msgid "Content Rating Details"
 msgstr "Manylion Graddio Cynnwys"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Graddiwyd {stars} allan o {maxstars} seren"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -351,7 +359,7 @@ msgstr "Cychwynnwch yr ap hwn o'ch <b>bwrdd gwaith Windows</b> neu <b>Cychwyn &#
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Cychwynnwch yr ap hwn o'ch <b>bwrdd gwaith</b>, <b>Dewisydd rhaglenni</b> neu <b>Ddewislen rhaglenni</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Llwytho..."
 
@@ -427,17 +435,9 @@ msgstr "Gwefan Cefnogi"
 msgid "Statistics"
 msgstr "Ystadegau"
 
-#: /templates/detail/main.html:202 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "Adrodd ar Gamddefnydd"
-
 #: /templates/detail/main.html:213
 msgid "Premium version available"
 msgstr "Fersiwn talu ar gael"
-
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "Anfon Adroddiad"
 
 #: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
 msgid "Back to app"
@@ -471,7 +471,7 @@ msgstr "Gwall wrth llwytho rhagor"
 msgid "Try Again"
 msgstr "Ceisiwch Eto"
 
-#: /templates/ratings/main.html:15 /templates/ratings/edit.html:5 /media/js/views/app/ratings/edit.js:86
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "Golygu Adolygiad"
 
@@ -491,6 +491,22 @@ msgstr "Dim ond defnyddwyr sydd wedi mewngofnodi sy'n cael golygu adolygiadau."
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Adolygu Apiau"
+
+#: /templates/ratings/report.html:2
+msgid "Please select a reason:"
+msgstr "Dewiswch reswm:"
+
+#: /templates/ratings/report.html:8
+msgid "Spam or otherwise non-review content"
+msgstr "Sbam neu gynnwys nad yw'n adolygiad"
+
+#: /templates/ratings/report.html:13
+msgid "Inappropriate language/dialog"
+msgstr "Iaith/deialog anaddas"
+
+#: /templates/ratings/report.html:18
+msgid "Misplaced bug report or support request"
+msgstr "Cais adroddiad gwall coll neu gefnogaeth"
 
 #: /templates/search/main.html:15
 msgid "<b>{n}</b> Result"
@@ -512,21 +528,13 @@ msgstr "Heb ganfod canlyniadau"
 msgid "No results found, try again later"
 msgstr "Heb ganfod canlyniadau, ceisiwch eto"
 
-#: /templates/ratings/report.html:2
-msgid "Please select a reason:"
-msgstr "Dewiswch reswm:"
+#: /templates/settings/feedback.html:12
+msgid "Send"
+msgstr "Anfon"
 
-#: /templates/ratings/report.html:8
-msgid "Spam or otherwise non-review content"
-msgstr "Sbam neu gynnwys nad yw'n adolygiad"
-
-#: /templates/ratings/report.html:13
-msgid "Inappropriate language/dialog"
-msgstr "Iaith/deialog anaddas"
-
-#: /templates/ratings/report.html:18
-msgid "Misplaced bug report or support request"
-msgstr "Cais adroddiad gwall coll neu gefnogaeth"
+#: /templates/settings/feedback.html:18 /templates/settings/feedback.html:20
+msgid "Get Help"
+msgstr "Cael Cymorh"
 
 #: /templates/settings/main.html:2 /media/js/views/settings.js:47
 msgid "Account Settings"
@@ -551,14 +559,6 @@ msgstr "Cadw'r Newidiadau"
 #: /templates/settings/main.html:41
 msgid "Sign In / Sign Up"
 msgstr "Mewngofnodi"
-
-#: /templates/settings/feedback.html:12
-msgid "Send"
-msgstr "Anfon"
-
-#: /templates/settings/feedback.html:18 /templates/settings/feedback.html:20
-msgid "Get Help"
-msgstr "Cael Cymorh"
 
 #: /templates/settings/nav.html:6
 msgid "Account"
@@ -592,43 +592,21 @@ msgstr "Mewngofnodi"
 msgid "You have no apps"
 msgstr "Nid oes gennych apiau"
 
-#: /media/js/apps.js:77 /media/js/apps.js:84
-msgid "App install error: {error}"
-msgstr "Gwall gosod ap: {error}"
-
-#: /media/js/apps.js:135
+#: /media/js/apps.js:93
 msgid "Your device does not support payments."
 msgstr "Nid yw eich dyfais yn cynnal taliadau."
 
-#: /media/js/apps.js:137
+#: /media/js/apps.js:95
 msgid "This app is unavailable for purchase in your region."
 msgstr "Nid yw'r ap hwn ar gael i'w brynu yn eich ardal chi."
 
-#: /media/js/apps.js:141
+#: /media/js/apps.js:99
 msgid "Your browser or device is not web-app compatible."
 msgstr "Nid yw eich porwr neu dyfais yn gydnaws ar gyfer ap gwe."
 
-#: /media/js/apps.js:143
+#: /media/js/apps.js:101
 msgid "This app is unavailable for your platform."
 msgstr "Nid yw'r ap hwn ar gael ar gyfer eich platfform chi."
-
-#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Diddymwud y taliad."
-
-#. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:100
-msgid "Purchasing"
-msgstr "Prynu"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:206
-msgid "Install failed. Please try again later."
-msgstr "Methodd y gosod. Ceisiwch eto."
-
-#: /media/js/buttons.js:296
-msgid "Launch"
-msgstr "Cychwyn"
 
 #: /media/js/categories.js:8
 msgid "Games"
@@ -702,262 +680,64 @@ msgstr ""
 msgid "Utilities"
 msgstr ""
 
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Diddymwud y taliad."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "Prynu"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "Methodd y gosod. Ceisiwch eto."
+
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:97
+#: /media/js/content-ratings.js:98
 msgid "For ages {0}+"
 msgstr ""
 
-#: /media/js/content-ratings.js:103
+#: /media/js/content-ratings.js:104
 msgid "Generic"
 msgstr ""
 
-#: /media/js/content-ratings.js:123
-msgid "Alcohol Reference"
-msgstr ""
-
-#: /media/js/content-ratings.js:124
-msgid "Alcohol and Tobacco Reference"
-msgstr ""
-
-#: /media/js/content-ratings.js:125
-msgid "Use of Alcohol and Tobacco"
-msgstr ""
-
-#: /media/js/content-ratings.js:126
-msgid "Use of Alcohol"
-msgstr ""
-
-#: /media/js/content-ratings.js:127
-msgid "Blood"
-msgstr ""
-
-#: /media/js/content-ratings.js:128
-msgid "Blood and Gore"
-msgstr ""
-
-#: /media/js/content-ratings.js:129
-msgid "Comic Mischief"
-msgstr ""
-
-#: /media/js/content-ratings.js:130
-msgid "Crime"
-msgstr ""
-
-#: /media/js/content-ratings.js:131
-msgid "Criminal Instruction"
-msgstr ""
-
-#: /media/js/content-ratings.js:132
-msgid "Crude Humor"
-msgstr ""
-
-#: /media/js/content-ratings.js:133
-msgid "Drug and Alcohol Reference"
-msgstr ""
-
-#: /media/js/content-ratings.js:134
-msgid "Drug, Alcohol, and Tobacco Reference"
-msgstr ""
-
-#: /media/js/content-ratings.js:135
-msgid "Use of Drug, Alcohol, and Tobacco"
-msgstr ""
-
-#: /media/js/content-ratings.js:136
-msgid "Use of Drug and Alcohol"
-msgstr ""
-
-#: /media/js/content-ratings.js:137
-msgid "Drug Reference"
-msgstr ""
-
-#: /media/js/content-ratings.js:138
-msgid "Drug and Tobacco Reference"
-msgstr ""
-
-#: /media/js/content-ratings.js:139
-msgid "Use of Drug and Tobacco"
-msgstr ""
-
-#: /media/js/content-ratings.js:140
-msgid "Use of Drugs"
-msgstr ""
-
-#: /media/js/content-ratings.js:141
-msgid "Fantasy Violence"
-msgstr ""
-
-#: /media/js/content-ratings.js:142
-msgid "Hate Speech"
-msgstr ""
-
-#: /media/js/content-ratings.js:143
-msgid "Intense Violence"
-msgstr ""
-
-#: /media/js/content-ratings.js:145 /media/js/content-ratings.js:170 /media/js/content-ratings.js:182
-msgid "Language"
-msgstr ""
-
-#: /media/js/content-ratings.js:146
-msgid "Mild Blood"
-msgstr ""
-
-#: /media/js/content-ratings.js:147
-msgid "Mild Fantasy Violence"
-msgstr ""
-
-#: /media/js/content-ratings.js:148
-msgid "Mild Language"
-msgstr ""
-
-#: /media/js/content-ratings.js:149
-msgid "Mild Violence"
-msgstr ""
-
-#: /media/js/content-ratings.js:150
-msgid "Nudity"
-msgstr ""
-
-#: /media/js/content-ratings.js:151
-msgid "Partial Nudity"
-msgstr ""
-
-#: /media/js/content-ratings.js:152
-msgid "Real Gambling"
-msgstr ""
-
-#: /media/js/content-ratings.js:153
-msgid "Scary Themes"
-msgstr ""
-
-#: /media/js/content-ratings.js:154
-msgid "Sexual Content"
-msgstr ""
-
-#: /media/js/content-ratings.js:155
-msgid "Sexual Themes"
-msgstr ""
-
-#: /media/js/content-ratings.js:156
-msgid "Simulated Gambling"
-msgstr ""
-
-#: /media/js/content-ratings.js:157
-msgid "Strong Language"
-msgstr ""
-
-#: /media/js/content-ratings.js:158
-msgid "Strong Sexual Content"
-msgstr ""
-
-#: /media/js/content-ratings.js:159
-msgid "Suggestive Themes"
-msgstr ""
-
-#: /media/js/content-ratings.js:160
-msgid "Tobacco Reference"
-msgstr ""
-
-#: /media/js/content-ratings.js:161
-msgid "Use of Tobacco"
-msgstr ""
-
-#: /media/js/content-ratings.js:162 /media/js/content-ratings.js:175 /media/js/content-ratings.js:187
-msgid "Violence"
-msgstr ""
-
-#: /media/js/content-ratings.js:163
-msgid "Violence References"
-msgstr ""
-
-#: /media/js/content-ratings.js:166 /media/js/content-ratings.js:178
-msgid "Discrimination"
-msgstr ""
-
-#: /media/js/content-ratings.js:167 /media/js/content-ratings.js:179
-msgid "Drugs"
-msgstr ""
-
-#: /media/js/content-ratings.js:168 /media/js/content-ratings.js:180
-msgid "Gambling"
-msgstr ""
-
-#: /media/js/content-ratings.js:171 /media/js/content-ratings.js:183
-msgid "Online"
-msgstr ""
-
-#: /media/js/content-ratings.js:172 /media/js/content-ratings.js:184
-msgid "Fear"
-msgstr ""
-
-#: /media/js/content-ratings.js:174 /media/js/content-ratings.js:186
-msgid "Sex"
-msgstr ""
-
-#: /media/js/content-ratings.js:189
-msgid "Social Interaction Functionality"
-msgstr ""
-
-#: /media/js/content-ratings.js:190
-msgid "Personal Data Sharing"
-msgstr ""
-
-#: /media/js/content-ratings.js:191
-msgid "In-app Purchase Option"
-msgstr ""
-
-#: /media/js/content-ratings.js:192
-msgid "Location Data Sharing"
-msgstr ""
-
-#: /media/js/content-ratings.js:217
-msgid "Digital Purchases"
-msgstr ""
-
-#: /media/js/content-ratings.js:218
-msgid "Shares Info"
-msgstr ""
-
-#: /media/js/content-ratings.js:219
-msgid "Shares Location"
-msgstr ""
-
-#: /media/js/content-ratings.js:220
-msgid "Users Interact"
-msgstr ""
-
-#: /media/js/content-ratings.js:225
+#: /media/js/content-ratings.js:111
 msgid "For all ages"
 msgstr ""
 
-#: /media/js/content-ratings.js:234
+#: /media/js/content-ratings.js:120
 msgid "Rating Pending"
 msgstr ""
 
-#: /media/js/content-ratings.js:235
+#: /media/js/content-ratings.js:121
 msgid "Rating Refused"
 msgstr ""
 
-#: /media/js/content-ratings.js:238
+#: /media/js/content-ratings.js:124
 msgid "Everyone"
 msgstr ""
 
-#: /media/js/content-ratings.js:239
+#: /media/js/content-ratings.js:125
 msgid "Everyone 10+"
 msgstr ""
 
-#: /media/js/content-ratings.js:240
+#: /media/js/content-ratings.js:126
 msgid "Teen"
 msgstr ""
 
-#: /media/js/content-ratings.js:241
+#: /media/js/content-ratings.js:127
 msgid "Mature 17+"
 msgstr ""
 
-#: /media/js/content-ratings.js:242
+#: /media/js/content-ratings.js:128
 msgid "Adults Only 18+"
 msgstr ""
+
+#: /media/js/installer_direct.js:97 /media/js/installer_iframe.js:72
+msgid "App install error: {error}"
+msgstr "Gwall gosod ap: {error}"
 
 #: /media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
@@ -1029,76 +809,84 @@ msgid "El Salvador"
 msgstr ""
 
 #: /media/js/settings.js:112
+msgid "France"
+msgstr ""
+
+#: /media/js/settings.js:113
 msgid "Germany"
 msgstr "Yr Almaen"
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:114
 msgid "Greece"
 msgstr "Gwlad Groeg"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:115
 msgid "Guatemala"
 msgstr ""
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:116
 msgid "Hungary"
 msgstr "Hwngari"
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:117
 msgid "Italy"
 msgstr "Yr Eidal"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:118
 msgid "Mexico"
 msgstr "Mecsico"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:119
 msgid "Montenegro"
 msgstr "Montenegro"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:120
 msgid "Nicaragua"
 msgstr ""
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:121
 msgid "Panama"
 msgstr ""
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:122
 msgid "Peru"
 msgstr "Periw"
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:123
 msgid "Poland"
 msgstr "Gwlad Pwyl"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:124
 msgid "Serbia"
 msgstr "Serbia"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:125
 msgid "Spain"
 msgstr "Sbaen"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:126
 msgid "United Kingdom"
 msgstr "Y Deyrnas Unedig"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:127
 msgid "United States"
 msgstr "Yr Unol Daleithiau"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:128
 msgid "Uruguay"
 msgstr "Uruguay"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:129
 msgid "Venezuela"
 msgstr "Venezuela"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:130
 msgid "No region in search"
 msgstr "Dim ardal yn y chwilio"
+
+#: /media/js/settings.js:156
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr ""
 
 #. {n} is the number of stars
 #: /media/js/common/ratingwidget.js:34
@@ -1117,19 +905,19 @@ msgstr "Rydych wedi eich allgofnodi"
 msgid "You have been signed in"
 msgstr "Rydych wedi eich mewngofnodi"
 
-#: /media/js/commonplace/login.js:50
+#: /media/js/commonplace/login.js:51
 msgid "Error signing out"
 msgstr ""
 
-#: /media/js/commonplace/login.js:171
+#: /media/js/commonplace/login.js:176
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Methodd mewngofnodi Persona. Efallai nad oes gennych gyfrif o dan y cyfeiriad e-bost hwnnw?"
 
-#: /media/js/commonplace/login.js:176
+#: /media/js/commonplace/login.js:181
 msgid "Persona login failed. A server error was encountered."
 msgstr "Methodd mewngofnodi Persona. Cafwyd gwall gweinydd."
 
-#: /media/js/commonplace/login.js:244
+#: /media/js/commonplace/login.js:254
 msgid "Persona cannot be reached. Try again later."
 msgstr ""
 
@@ -1159,13 +947,13 @@ msgstr "Gwall wrth gyfathrebu â'r gweinydd. Ceisiwch eto."
 msgid "Your device does not support purchases."
 msgstr "Nid yw eich dyfais yn cynnal prynu."
 
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "Manylion y Casgliad"
-
 #: /media/js/views/app.js:69
 msgid "App Details"
 msgstr "Manylion Apiau"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "Manylion y Casgliad"
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1199,6 +987,14 @@ msgstr "Adroddwyd ar ganddefnydd"
 msgid "Error while submitting report"
 msgstr "Gwall wrth gyflwyno adroddiad"
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "Mewngofnodwch i weld y dderbynneb"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "Derbynneb"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr ""
@@ -1207,14 +1003,6 @@ msgstr ""
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "Heb Ganfod"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "Mewngofnodwch i weld y dderbynneb"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "Derbynneb"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

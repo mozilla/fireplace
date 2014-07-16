@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-30T16:47:36.729Z\n"
+"POT-Creation-Date: 2014-07-16T16:15:38.553Z\n"
 "PO-Revision-Date: 2014-06-30 19:28+0000\n"
 "Last-Translator: Aman <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,10 +23,6 @@ msgstr "ਸਭ ਵਰਗ"
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "RUH roh! ਇੱਥੇ ਕੋਈ ਐਪਸ ਨਹੀ ਹੈ, Shaggy! "
 
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "ਕ੍ਰੈਡਿਟਸ"
-
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "ਬੰਦ ਕਰੋ"
@@ -38,6 +34,10 @@ msgstr "ਨਹੀਂ"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "ਹਾਂ"
+
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "ਕ੍ਰੈਡਿਟਸ"
 
 #. The Marketplace app is out-of-date and needs to be updated.
 #: /templates/deprecated.html:2
@@ -51,6 +51,18 @@ msgstr "ਜੋ ਫਾਇਰਫਾਕਸ ਮੰਡੀ ਦਾ ਵਰਜਨ ਤੁ�
 #: /templates/deprecated.html:5
 msgid "Update Now"
 msgstr "ਹੁਣੇ ਅੱਪਡੇਟ ਕਰੋ"
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "ਫੀਚਰ"
+
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+msgid "Expand"
+msgstr "ਫੈਲਾਓ"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "ਕੋਈ ਫੀਚਰ ਐਪਸ ਨਹੀਂ ਲੱਭੀ"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -106,18 +118,6 @@ msgstr "ਵਰਤੋ ਦਿਆ ਸ਼ਰਤਾ"
 msgid "Report Trademark Abuse"
 msgstr "ਰਿਪੋਰਟ ਟਰੇਡਮਾਰਕ ਦੀ ਰੀਪੋਰਟ ਕਰੋ"
 
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "ਫੀਚਰ"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
-msgid "Expand"
-msgstr "ਫੈਲਾਓ"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "ਕੋਈ ਫੀਚਰ ਐਪਸ ਨਹੀਂ ਲੱਭੀ"
-
 #: /templates/header.html:1
 msgid "Back"
 msgstr "ਪਿੱਛੇ"
@@ -145,6 +145,14 @@ msgstr "ਸਾਈਨ ਆਉਟ"
 #: /templates/header.html:31
 msgid "Sign In"
 msgstr "ਸਾਈਨ ਇਨ"
+
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "ਤੁਹਾਨੂੰ ਫਾਇਰਫਾਕਸ ਐਪਸ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਫਾਇਰਫਾਕਸ ਵਰਤਣਾ ਚਾਹੀਦਾ ਹੈ।"
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr "ਡਾਉਨਲੋਡ"
 
 #: /templates/nominate.html:1
 msgid "Nominate apps to be featured on Firefox Marketplace!"
@@ -206,24 +214,20 @@ msgstr "ਤੁਹਾਡਾ ਈਮੇਲ ਪਤਾ"
 msgid "Submit"
 msgstr "ਭੇਜੋ"
 
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "ਤੁਹਾਨੂੰ ਫਾਇਰਫਾਕਸ ਐਪਸ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਫਾਇਰਫਾਕਸ ਵਰਤਣਾ ਚਾਹੀਦਾ ਹੈ।"
-
-#: /templates/incompatible.html:2
-msgid "Download."
-msgstr "ਡਾਉਨਲੋਡ"
-
 #. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:5
+#: /templates/_macros/market_button.html:6
 msgid "Unavailable"
 msgstr "ਨਾ-ਉਪਲੱਬਧ"
 
-#: /templates/_macros/market_button.html:7 /templates/_macros/market_tile.html:63
+#: /templates/_macros/market_button.html:8 /templates/_macros/market_tile.html:55
 msgid "Free"
 msgstr "ਮੁਫ਼ਤ"
 
-#: /templates/_macros/market_button.html:14 /media/js/buttons.js:105 /media/js/buttons.js:318
+#: /templates/_macros/market_button.html:16 /media/js/apps_buttons.js:278
+msgid "Open"
+msgstr ""
+
+#: /templates/_macros/market_button.html:18 /media/js/apps_buttons.js:98 /media/js/apps_buttons.js:304
 msgid "Install"
 msgstr "ਇੰਸਟਾਲ"
 
@@ -231,69 +235,36 @@ msgstr "ਇੰਸਟਾਲ"
 msgid "{app_name} screenshot"
 msgstr "{app_name} ਸਕਰੀਨਸ਼ਾਟ"
 
-#. the IARC rating body/system followed by a name/description of the rating (e.g. "ESRB: Everyone" or "PEGI: For ages 3+").
-#: /templates/_macros/market_tile.html:52
-msgid "{rating_body}: {rating}"
-msgstr "{rating_body}: {rating}"
-
-#: /templates/_macros/market_tile.html:61
+#: /templates/_macros/market_tile.html:53
 msgid "Not yet rated"
 msgstr "ਹਾਲੇ ਰੇਟ ਨਹੀਂ ਕੀਤੀ"
 
-#: /templates/_macros/market_tile.html:74
+#: /templates/_macros/market_tile.html:65
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:77 /templates/detail/main.html:137
+#: /templates/_macros/market_tile.html:68 /templates/detail/main.html:137
 msgid "{n} Review"
 msgid_plural "{n} Reviews"
 msgstr[0] "{n} ਸਮੀਖਿਆ"
 msgstr[1] "{n} ਸਮੀਖਿਆ"
 
-#: /templates/_macros/market_tile.html:81
+#. "(0)" means "0 reviews."
+#: /templates/_macros/market_tile.html:72
 msgid "(0)"
 msgstr "(0)"
 
-#: /templates/_macros/market_tile.html:82
+#: /templates/_macros/market_tile.html:73
 msgid "Not yet reviewed"
 msgstr "ਹਾਲੇ ਕੋਈ ਰੀਵਿਊ ਨਹੀਂ"
 
-#: /templates/_macros/market_tile.html:92
+#: /templates/_macros/market_tile.html:83
 msgid "Works offline"
 msgstr "ਆਫ਼ਲਾਈਨ ਕੰਮ ਕਰਦੀ ਹੈ"
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "ਹੋਰ"
-
-#: /templates/category/main.html:37
-msgid "Featured Apps"
-msgstr "ਖਾਸ ਐਪਸ"
-
-#: /templates/category/main.html:38 /templates/category/main.html:45 /templates/category/main.html:65
-msgid "View All"
-msgstr "ਸਾਰੇ ਦੇਖੋ"
-
-#: /templates/category/main.html:61
-msgid "Popular"
-msgstr "ਪ੍ਰਸਿੱਧ"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:63
-msgid "New"
-msgstr "ਨਵਾ।"
-
-#: /templates/category/main.html:84
-msgid "No apps in this category"
-msgstr "ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਕੋਈ apps ਨਹੀ"
-
-#: /templates/category/main.html:89
-msgid "The category you requested does not exist."
-msgstr "ਤੁਹਾਨੂੰ ਬੇਨਤੀ ਕੀਤੀ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਮੌਜੂਦ ਨਹੀ ਹੈ।"
-
-#: /templates/category/main.html:91 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "ਇੱਕ ਅੰਦਰੂਨੀ ਸਰਵਰ ਨੂੰ ਗਲਤੀ ਆਈ ਹੈ। ਬਾਅਦ ਵਿੱਚ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -319,19 +290,56 @@ msgstr "ਹਟਾਓ"
 msgid "Report"
 msgstr "ਰਿਪੋਰਟ"
 
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "ਤਾਰਿਆ ਵਿਚੋ{maxstars} Rated {ਤਾਰੇ}"
+
+#: /templates/category/main.html:37
+msgid "Featured Apps"
+msgstr "ਖਾਸ ਐਪਸ"
+
+#: /templates/category/main.html:38 /templates/category/main.html:46 /templates/category/main.html:66
+msgid "View All"
+msgstr "ਸਾਰੇ ਦੇਖੋ"
+
+#: /templates/category/main.html:62
+msgid "Popular"
+msgstr "ਪ੍ਰਸਿੱਧ"
+
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category/main.html:64
+msgid "New"
+msgstr "ਨਵਾ।"
+
+#: /templates/category/main.html:85
+msgid "No apps in this category"
+msgstr "ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਕੋਈ apps ਨਹੀ"
+
+#: /templates/category/main.html:90
+msgid "The category you requested does not exist."
+msgstr "ਤੁਹਾਨੂੰ ਬੇਨਤੀ ਕੀਤੀ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਮੌਜੂਦ ਨਹੀ ਹੈ।"
+
+#: /templates/category/main.html:92 /templates/user/purchases.html:39
+msgid "An internal server error occurred. Please try again later."
+msgstr "ਇੱਕ ਅੰਦਰੂਨੀ ਸਰਵਰ ਨੂੰ ਗਲਤੀ ਆਈ ਹੈ। ਬਾਅਦ ਵਿੱਚ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।"
+
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:202 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "ਰੀਪੋਰਟ ਕਰੋ"
+
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "ਰੀਪੋਰਟ ਭੇਜੋ"
+
 #. (es) Classificacao Indicativa.
 #: /templates/detail/content_ratings.html:5
 msgid "Content Rating"
 msgstr "ਸਮੱਗਰੀ ਰੇਟਿੰਗ"
 
 #. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:75
+#: /templates/detail/content_ratings.html:77
 msgid "Content Rating Details"
 msgstr "ਸਮੱਗਰੀ ਰੇਟਿੰਗ ਵੇਰਵਾ"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "ਤਾਰਿਆ ਵਿਚੋ{maxstars} Rated {ਤਾਰੇ}"
 
 #: /templates/detail/main.html:42
 msgid "Installed!"
@@ -349,7 +357,7 @@ msgstr "ਇਹ ਐਪ ਆਪਣੇ<b>Windows ਡੈਸਕਟਾਪ </ b> ਤੋ 
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "ਆਪਣੇ <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b> ਤੋ ਐਪ ਲਾਚ ਕਰੋ।"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/collection.js:42 /media/js/views/app.js:68
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "...ਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
@@ -425,17 +433,9 @@ msgstr "ਮੁੱਖ ਸਫ਼ਾ"
 msgid "Statistics"
 msgstr "ਅੰਕੜੇ"
 
-#: /templates/detail/main.html:202 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "ਰੀਪੋਰਟ ਕਰੋ"
-
 #: /templates/detail/main.html:213
 msgid "Premium version available"
 msgstr "ਪ੍ਰੀਮੀਅਮ ਵਰਜਨ ਉਪਲੱਬਧ"
-
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "ਰੀਪੋਰਟ ਭੇਜੋ"
 
 #: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
 msgid "Back to app"
@@ -469,7 +469,7 @@ msgstr "ਹੋਰ ਲੋਡ ਕਰਨ ਦੋਰਾਨ ਗਲਤੀ"
 msgid "Try Again"
 msgstr "ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
 
-#: /templates/ratings/main.html:15 /templates/ratings/edit.html:5 /media/js/views/app/ratings/edit.js:86
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "ਪੜਤਾਲ ਸੋਧ"
 
@@ -490,6 +490,22 @@ msgstr "ਸਿਰਫ ਲਾਗਿੰਨ ਯੂਜਰ ਹੀ ਵਿੱਚ ਸਮ�
 msgid "App Review"
 msgstr "ਐਪ ਪੜਤਾਲ"
 
+#: /templates/ratings/report.html:2
+msgid "Please select a reason:"
+msgstr "ਕਿ੍ਪਾ ਕਰਕੇ ਇੱਕ ਕਾਰਨ ਚੁਣੋ ਜੀ:"
+
+#: /templates/ratings/report.html:8
+msgid "Spam or otherwise non-review content"
+msgstr "ਸਪੈਮ ਜਾ ਹੋਰ ਨਾਨ-ਸਮੀਖਿਆ ਦੀ ਸਮੱਗਰੀ"
+
+#: /templates/ratings/report.html:13
+msgid "Inappropriate language/dialog"
+msgstr "ਅਣਉਚਿਤ ਭਾਸ਼ਾ/ਵਾਰਤਾਲਾਪ"
+
+#: /templates/ratings/report.html:18
+msgid "Misplaced bug report or support request"
+msgstr "ਗੁੰਮ ਹੋਈ ਬੱਗ ਰਿਪੋਰਟ ਜਾ ਸਹਿਯੋਗ ਦੀ ਮੰਗ।"
+
 #: /templates/search/main.html:15
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
@@ -508,21 +524,13 @@ msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭਿਆ"
 msgid "No results found, try again later"
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭਿਆ, ਬਾਅਦ ਵਿੱਚ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
 
-#: /templates/ratings/report.html:2
-msgid "Please select a reason:"
-msgstr "ਕਿ੍ਪਾ ਕਰਕੇ ਇੱਕ ਕਾਰਨ ਚੁਣੋ ਜੀ:"
+#: /templates/settings/feedback.html:12
+msgid "Send"
+msgstr "ਭੇਜੋ"
 
-#: /templates/ratings/report.html:8
-msgid "Spam or otherwise non-review content"
-msgstr "ਸਪੈਮ ਜਾ ਹੋਰ ਨਾਨ-ਸਮੀਖਿਆ ਦੀ ਸਮੱਗਰੀ"
-
-#: /templates/ratings/report.html:13
-msgid "Inappropriate language/dialog"
-msgstr "ਅਣਉਚਿਤ ਭਾਸ਼ਾ/ਵਾਰਤਾਲਾਪ"
-
-#: /templates/ratings/report.html:18
-msgid "Misplaced bug report or support request"
-msgstr "ਗੁੰਮ ਹੋਈ ਬੱਗ ਰਿਪੋਰਟ ਜਾ ਸਹਿਯੋਗ ਦੀ ਮੰਗ।"
+#: /templates/settings/feedback.html:18 /templates/settings/feedback.html:20
+msgid "Get Help"
+msgstr "ਮਦਦ ਲਵੋ"
 
 #: /templates/settings/main.html:2 /media/js/views/settings.js:47
 msgid "Account Settings"
@@ -547,14 +555,6 @@ msgstr "ਬਦਲਾਅ ਸੰਭਾਲੋ"
 #: /templates/settings/main.html:41
 msgid "Sign In / Sign Up"
 msgstr "ਸਾਈਨ ਇਨ/ ਸਾਈਨ ਅੱਪ"
-
-#: /templates/settings/feedback.html:12
-msgid "Send"
-msgstr "ਭੇਜੋ"
-
-#: /templates/settings/feedback.html:18 /templates/settings/feedback.html:20
-msgid "Get Help"
-msgstr "ਮਦਦ ਲਵੋ"
 
 #: /templates/settings/nav.html:6
 msgid "Account"
@@ -588,43 +588,21 @@ msgstr "ਸਾਈਨ ਇਨ / ਸਾਈਨ ਅਪ"
 msgid "You have no apps"
 msgstr "ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ ਵੀ ਐਪਸ ਨਹੀ ਹੈ"
 
-#: /media/js/apps.js:77 /media/js/apps.js:84
-msgid "App install error: {error}"
-msgstr "ਐਪ ਇੰਸਟਾਲ  ਗਲਤੀ: {ਗਲਤੀ}"
-
-#: /media/js/apps.js:135
+#: /media/js/apps.js:93
 msgid "Your device does not support payments."
 msgstr "ਤੁਹਾਡਾ ਜੰਤਰ ਅਦਾਇਗੀ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀ ਕਰਦਾ।"
 
-#: /media/js/apps.js:137
+#: /media/js/apps.js:95
 msgid "This app is unavailable for purchase in your region."
 msgstr "ਇਸ ਐਪਲੀਕੇਸ਼ ਤੁਹਾਡੇ ਖੇਤਰ ਵਿੱਚ ਖਰੀਦਣ ਲਈ ਉਪਲੱਬਧ ਨਹੀ ਹੈ।"
 
-#: /media/js/apps.js:141
+#: /media/js/apps.js:99
 msgid "Your browser or device is not web-app compatible."
 msgstr "ਤੁਹਾਡਾ ਬਰਾਉਜਰ ਜਾ ਜੰਤਰ ਵੈੱਬ-ਐਪ ਲਈ ਅਨੁਕੂਲ ਨਹੀ ਹੈ।"
 
-#: /media/js/apps.js:143
+#: /media/js/apps.js:101
 msgid "This app is unavailable for your platform."
 msgstr "ਇਹ ਐਪਲੀਕੇਸ਼ ਤੁਹਾਡੇ ਪਲੇਟਫਾਰਮ ਲਈ ਉਪਲੱਬਧ ਨਹੀ ਹੈ।"
-
-#: /media/js/buttons.js:69 /media/js/buttons.js:130 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "ਅਦਾਇਗੀ ਰੱਦ ਕੀਤੀ"
-
-#. "Launch" as in "Launch the app"
-#: /media/js/buttons.js:100
-msgid "Purchasing"
-msgstr "ਖਰੀਦੀ ਜਾ ਰਹੀ ਹੈ"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/buttons.js:206
-msgid "Install failed. Please try again later."
-msgstr "ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਫੇਲ੍ਹ। ਬਾਅਦ ਵਿੱਚ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
-
-#: /media/js/buttons.js:296
-msgid "Launch"
-msgstr "ਚਲਾਉ"
 
 #: /media/js/categories.js:8
 msgid "Games"
@@ -698,262 +676,64 @@ msgstr "ਯਾਤਰਾ"
 msgid "Utilities"
 msgstr "ਸਹੂਲਤਾਂ"
 
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "ਅਦਾਇਗੀ ਰੱਦ ਕੀਤੀ"
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "ਖਰੀਦੀ ਜਾ ਰਹੀ ਹੈ"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਫੇਲ੍ਹ। ਬਾਅਦ ਵਿੱਚ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:97
+#: /media/js/content-ratings.js:98
 msgid "For ages {0}+"
 msgstr "{0}+ ਉਮਰ ਲਈ"
 
-#: /media/js/content-ratings.js:103
+#: /media/js/content-ratings.js:104
 msgid "Generic"
 msgstr "ਵਰਗ"
 
-#: /media/js/content-ratings.js:123
-msgid "Alcohol Reference"
-msgstr "ਸ਼ਰਾਬ ਸੰਬੰਧੀ"
-
-#: /media/js/content-ratings.js:124
-msgid "Alcohol and Tobacco Reference"
-msgstr "ਸ਼ਰਾਬ ਤੇ ਤੰਬਾਕੂ ਸੰਬੰਧੀ"
-
-#: /media/js/content-ratings.js:125
-msgid "Use of Alcohol and Tobacco"
-msgstr "ਸ਼ਰਾਬ ਤੇ ਤੰਬਾਕੂ ਦੀ ਵਰਤੋਂ"
-
-#: /media/js/content-ratings.js:126
-msgid "Use of Alcohol"
-msgstr "ਸ਼ਰਾਬ ਦੀ ਵਰਤੋਂ"
-
-#: /media/js/content-ratings.js:127
-msgid "Blood"
-msgstr "ਖ਼ੂਨ"
-
-#: /media/js/content-ratings.js:128
-msgid "Blood and Gore"
-msgstr "ਖ਼ੂਨ ਅਤੇ ਵਿੰਨ੍ਹਣਾ"
-
-#: /media/js/content-ratings.js:129
-msgid "Comic Mischief"
-msgstr "ਹਸਾਉਣ ਸ਼ਰਾਰਤ"
-
-#: /media/js/content-ratings.js:130
-msgid "Crime"
-msgstr "ਜੁਰਮ"
-
-#: /media/js/content-ratings.js:131
-msgid "Criminal Instruction"
-msgstr "ਮੁਜਰਮਾਨਾ ਹਿਦਾਇਤ"
-
-#: /media/js/content-ratings.js:132
-msgid "Crude Humor"
-msgstr "ਬੇਢੰਗਾ ਹਾਸ-ਰਸ"
-
-#: /media/js/content-ratings.js:133
-msgid "Drug and Alcohol Reference"
-msgstr "ਨਸ਼ੇ ਅਤੇ ਸ਼ਰਾਬ ਬਾਰੇ"
-
-#: /media/js/content-ratings.js:134
-msgid "Drug, Alcohol, and Tobacco Reference"
-msgstr "ਨਸ਼ੇ, ਸ਼ਰਾਬ ਅਤੇ ਤੰਬਾਕੂ ਬਾਰੇ"
-
-#: /media/js/content-ratings.js:135
-msgid "Use of Drug, Alcohol, and Tobacco"
-msgstr "ਨਸ਼ੇ, ਸ਼ਰਾਬ ਅਤੇ ਤੰਬਾਕੂ ਦੀ ਵਰਤੋਂ"
-
-#: /media/js/content-ratings.js:136
-msgid "Use of Drug and Alcohol"
-msgstr "ਨਸ਼ੇ ਅਤੇ ਸ਼ਰਾਬ ਦੀ ਵਰਤੋਂ"
-
-#: /media/js/content-ratings.js:137
-msgid "Drug Reference"
-msgstr "ਨਸ਼ਿਆਂ ਬਾਰੇ"
-
-#: /media/js/content-ratings.js:138
-msgid "Drug and Tobacco Reference"
-msgstr "ਨਸ਼ਿਆਂ ਤੇ ਸ਼ਰਾਬ ਬਾਰੇ"
-
-#: /media/js/content-ratings.js:139
-msgid "Use of Drug and Tobacco"
-msgstr "ਨਸ਼ਿਆਂ ਤੇ ਸ਼ਰਾਬ ਦੀ ਵਰਤੋਂ"
-
-#: /media/js/content-ratings.js:140
-msgid "Use of Drugs"
-msgstr "ਨਸ਼ਿਆਂ ਦੀ ਵਰਤੋਂ"
-
-#: /media/js/content-ratings.js:141
-msgid "Fantasy Violence"
-msgstr "ਕਲਪਨਿਕ ਹਿੰਸਾ"
-
-#: /media/js/content-ratings.js:142
-msgid "Hate Speech"
-msgstr "ਨਫ਼ਰਤ ਦੀ ਗੱਲ"
-
-#: /media/js/content-ratings.js:143
-msgid "Intense Violence"
-msgstr "ਤੀਖਣ ਹਿੰਸਾ"
-
-#: /media/js/content-ratings.js:145 /media/js/content-ratings.js:170 /media/js/content-ratings.js:182
-msgid "Language"
-msgstr "ਭਾਸ਼ਾ"
-
-#: /media/js/content-ratings.js:146
-msgid "Mild Blood"
-msgstr "ਹਲਕਾ ਖ਼ੂਨ"
-
-#: /media/js/content-ratings.js:147
-msgid "Mild Fantasy Violence"
-msgstr "ਹਲ਼ਕੀ ਕਲਪਨਿਕ ਹਿੰਸਾ"
-
-#: /media/js/content-ratings.js:148
-msgid "Mild Language"
-msgstr "ਹਲਕੀ ਭਾਸ਼ਾ"
-
-#: /media/js/content-ratings.js:149
-msgid "Mild Violence"
-msgstr "ਹਲਕੀ ਹਿੰਸਾ"
-
-#: /media/js/content-ratings.js:150
-msgid "Nudity"
-msgstr "ਨਗਨਤਾ"
-
-#: /media/js/content-ratings.js:151
-msgid "Partial Nudity"
-msgstr "ਅਧੂਰਾ ਨੰਗੇਜ਼"
-
-#: /media/js/content-ratings.js:152
-msgid "Real Gambling"
-msgstr "ਅਸਲ ਜੂਆ"
-
-#: /media/js/content-ratings.js:153
-msgid "Scary Themes"
-msgstr "ਭਿਆਨਕ ਵਿਸ਼ੇ"
-
-#: /media/js/content-ratings.js:154
-msgid "Sexual Content"
-msgstr "ਜਿਨਸੀ ਸਮੱਗਰੀ"
-
-#: /media/js/content-ratings.js:155
-msgid "Sexual Themes"
-msgstr "ਜਿਨਸੀ ਵਿਸ਼ੇ"
-
-#: /media/js/content-ratings.js:156
-msgid "Simulated Gambling"
-msgstr "ਜੂਏ ਦੀ ਨਕਲ"
-
-#: /media/js/content-ratings.js:157
-msgid "Strong Language"
-msgstr "ਕੜਕਵੀਂ ਭਾਸ਼ਾ"
-
-#: /media/js/content-ratings.js:158
-msgid "Strong Sexual Content"
-msgstr "ਸਖ਼ਤ ਜਿਨਸੀ ਸਮੱਗਰੀ"
-
-#: /media/js/content-ratings.js:159
-msgid "Suggestive Themes"
-msgstr "ਅਸ਼ਲੀਲਤਾ ਵਿਸ਼ੇ"
-
-#: /media/js/content-ratings.js:160
-msgid "Tobacco Reference"
-msgstr "ਤੰਬਾਕੂ ਬਾਰੇ"
-
-#: /media/js/content-ratings.js:161
-msgid "Use of Tobacco"
-msgstr "ਤੰਬਾਕੂ ਦੀ ਵਰਤੋਂ"
-
-#: /media/js/content-ratings.js:162 /media/js/content-ratings.js:175 /media/js/content-ratings.js:187
-msgid "Violence"
-msgstr "ਹਿੰਸਾ"
-
-#: /media/js/content-ratings.js:163
-msgid "Violence References"
-msgstr "ਹਿੰਸਾ ਬਾਰੇ"
-
-#: /media/js/content-ratings.js:166 /media/js/content-ratings.js:178
-msgid "Discrimination"
-msgstr "ਵਿਤਕਰਾ"
-
-#: /media/js/content-ratings.js:167 /media/js/content-ratings.js:179
-msgid "Drugs"
-msgstr "ਨਸ਼ੀਲੀਆਂ ਦਵਾਈਆਂ"
-
-#: /media/js/content-ratings.js:168 /media/js/content-ratings.js:180
-msgid "Gambling"
-msgstr "ਜੂਆ"
-
-#: /media/js/content-ratings.js:171 /media/js/content-ratings.js:183
-msgid "Online"
-msgstr "ਆਨਲਾਈਨ"
-
-#: /media/js/content-ratings.js:172 /media/js/content-ratings.js:184
-msgid "Fear"
-msgstr "ਡਰ"
-
-#: /media/js/content-ratings.js:174 /media/js/content-ratings.js:186
-msgid "Sex"
-msgstr "ਲਿੰਗ"
-
-#: /media/js/content-ratings.js:189
-msgid "Social Interaction Functionality"
-msgstr "ਸਮਾਜਿਕ ਤਾਲਮੇਲ ਕੰਮ"
-
-#: /media/js/content-ratings.js:190
-msgid "Personal Data Sharing"
-msgstr "ਨਿੱਜੀ ਡਾਟਾ ਸਾਂਝਾ ਕਰਨਾ"
-
-#: /media/js/content-ratings.js:191
-msgid "In-app Purchase Option"
-msgstr "ਐਪ-ਵਿੱਚ ਖਰੀਦਦਾਰੀ ਚੋਣ"
-
-#: /media/js/content-ratings.js:192
-msgid "Location Data Sharing"
-msgstr "ਟਿਕਾਣਾ ਡਾਟਾ ਸਾਂਝਾ ਕਰਨਾ"
-
-#: /media/js/content-ratings.js:217
-msgid "Digital Purchases"
-msgstr "ਡਿਜ਼ਿਟਲ ਖਰੀਦਦਾਰੀ"
-
-#: /media/js/content-ratings.js:218
-msgid "Shares Info"
-msgstr "ਜਾਣਕਾਰੀ ਸਾਂਝੀ"
-
-#: /media/js/content-ratings.js:219
-msgid "Shares Location"
-msgstr "ਟਿਕਾਣਾ ਸਾਂਝਾ"
-
-#: /media/js/content-ratings.js:220
-msgid "Users Interact"
-msgstr "ਯੂਜ਼ਰ ਆਪਸੀ ਪ੍ਰਭਾਵ"
-
-#: /media/js/content-ratings.js:225
+#: /media/js/content-ratings.js:111
 msgid "For all ages"
 msgstr "ਸਭ ਉਮਰਾਂ ਲਈ"
 
-#: /media/js/content-ratings.js:234
+#: /media/js/content-ratings.js:120
 msgid "Rating Pending"
 msgstr "ਰੇਟਿੰਗ ਬਾਕੀ ਹੈ"
 
-#: /media/js/content-ratings.js:235
+#: /media/js/content-ratings.js:121
 msgid "Rating Refused"
 msgstr "ਰੇਟਿੰਗ ਤੋਂ ਇਨਕਾਰ"
 
-#: /media/js/content-ratings.js:238
+#: /media/js/content-ratings.js:124
 msgid "Everyone"
 msgstr "ਹਰੇਕ"
 
-#: /media/js/content-ratings.js:239
+#: /media/js/content-ratings.js:125
 msgid "Everyone 10+"
 msgstr "10+ ਹਰੇਕ ਲਈ"
 
-#: /media/js/content-ratings.js:240
+#: /media/js/content-ratings.js:126
 msgid "Teen"
 msgstr "ਗੱਭਰੂ"
 
-#: /media/js/content-ratings.js:241
+#: /media/js/content-ratings.js:127
 msgid "Mature 17+"
 msgstr "ਗੱਭਰੂ 17+"
 
-#: /media/js/content-ratings.js:242
+#: /media/js/content-ratings.js:128
 msgid "Adults Only 18+"
 msgstr "ਕੇਵਲ 18+ ਬਾਲਗ"
+
+#: /media/js/installer_direct.js:97 /media/js/installer_iframe.js:72
+msgid "App install error: {error}"
+msgstr "ਐਪ ਇੰਸਟਾਲ  ਗਲਤੀ: {ਗਲਤੀ}"
 
 #: /media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
@@ -1025,76 +805,84 @@ msgid "El Salvador"
 msgstr "ਏਲ ਸਲਵਾਡੋਰ"
 
 #: /media/js/settings.js:112
+msgid "France"
+msgstr ""
+
+#: /media/js/settings.js:113
 msgid "Germany"
 msgstr "ਜਰਮਨੀ"
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:114
 msgid "Greece"
 msgstr "ਗਰੀਸ"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:115
 msgid "Guatemala"
 msgstr "ਗੁਆਟੇਮਾਲਾ"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:116
 msgid "Hungary"
 msgstr "ਹੰਗਰੀ"
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:117
 msgid "Italy"
 msgstr "ਇੱਟਲੀ"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:118
 msgid "Mexico"
 msgstr "ਮੈਕਸਿਕੋ"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:119
 msgid "Montenegro"
 msgstr "ਮੋਨਟੇਨਗਰੋ"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:120
 msgid "Nicaragua"
 msgstr "ਨਿਕਾਰਾਗੁਆ"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:121
 msgid "Panama"
 msgstr "ਪੈਨਾਮਾ"
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:122
 msgid "Peru"
 msgstr "ਪੇਰੂ"
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:123
 msgid "Poland"
 msgstr "ਪੋਲੈਡ"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:124
 msgid "Serbia"
 msgstr "ਸਰਬਿਆ"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:125
 msgid "Spain"
 msgstr "ਸਪੇਨ"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:126
 msgid "United Kingdom"
 msgstr "ਯੂਨਾਇਟੇਡ ਕਿੰਗਡਮ"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:127
 msgid "United States"
 msgstr "ਸੰਯੁਕਤ ਰਾਜ ਅਮਰੀਕਾ"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:128
 msgid "Uruguay"
 msgstr "ਉਰੂਗਵੇ"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:129
 msgid "Venezuela"
 msgstr "ਵੈਨੇਜ਼ੁਏਲਾ"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:130
 msgid "No region in search"
 msgstr "ਖੋਜ ਵਿੱਚ ਕੋਈ ਖੇਤਰ ਨਹੀ"
+
+#: /media/js/settings.js:156
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr ""
 
 #. {n} is the number of stars
 #: /media/js/common/ratingwidget.js:34
@@ -1111,19 +899,19 @@ msgstr "ਤੁਹਾਨੂੰ ਸਾਈਨ ਆਉਟ ਕੀਤਾ"
 msgid "You have been signed in"
 msgstr "ਤੁਸੀਂ ਸਾਈਨ ਇਨ ਹੋ ਚੁੱਕੇ ਹੋ"
 
-#: /media/js/commonplace/login.js:50
+#: /media/js/commonplace/login.js:51
 msgid "Error signing out"
 msgstr "ਸਾਈਨ ਆਉਟ ਕਰਨ ਵਿੱਚ ਗਲਤੀ"
 
-#: /media/js/commonplace/login.js:171
+#: /media/js/commonplace/login.js:176
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona ਲਾਗਇਨ ਫੇਲ੍ਹ ਹੋ ਗਿਆ ਹੈ। ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਇਸ ਮੇਲ ਪਤਾ ਹੇਠ ਤੁਹਾਡਾ ਖਾਤਾ ਨਹੀ ਹੈ?"
 
-#: /media/js/commonplace/login.js:176
+#: /media/js/commonplace/login.js:181
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona ਲਾਗਇਨ ਫੇਲ੍ਹ ਹੋ ਗਿਆ ਹੈ। ਸਰਵਰ ਗਲਤੀ ਲੱਭੀ ਗਈ।"
 
-#: /media/js/commonplace/login.js:244
+#: /media/js/commonplace/login.js:254
 msgid "Persona cannot be reached. Try again later."
 msgstr "ਪਰਸੋਨਾ ਨੂੰ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਬਾਅਦ ਵਿੱਚ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
@@ -1151,13 +939,13 @@ msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਕਰਨ ਦੌਰਾਨ ਗਲ�
 msgid "Your device does not support purchases."
 msgstr "ਤੁਹਾਡਾ ਜੰਤਰ ਖਰੀਦਾ ਨੂੰ ਸਪੋਟ ਨਹੀ ਕਰਦਾ।"
 
-#: /media/js/views/collection.js:43
-msgid "Collection Details"
-msgstr "ਭੰਡਾਰ ਵੇਰਵਾ"
-
 #: /media/js/views/app.js:69
 msgid "App Details"
 msgstr "ਐਪ ਵੇਰਵਾ"
+
+#: /media/js/views/collection.js:43
+msgid "Collection Details"
+msgstr "ਭੰਡਾਰ ਵੇਰਵਾ"
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1191,6 +979,14 @@ msgstr "ਬਦਸਲੂਕੀ ਦੀ ਰਿਪੋਰਟ ਕੀਤੀ ਗਈ"
 msgid "Error while submitting report"
 msgstr "ਰਿਪੋਰਟ ਜਮਾ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ ਹੋਈ "
 
+#: /media/js/views/app/receipt.js:22
+msgid "Please sign in to view the receipt"
+msgstr "ਰਸੀਦ ਨੂੰ ਵੇਖਣ ਲਈ ਸਾਇਨ ਇਨ ਕਰੋ ਜੀ"
+
+#: /media/js/views/app/receipt.js:40
+msgid "Receipt"
+msgstr "ਰਸੀਦ"
+
 #: /media/js/views/commonplace/hello_world.js:9
 msgid "Hello World!"
 msgstr "ਹੈਲੋ ਵਰਲਡ!"
@@ -1199,14 +995,6 @@ msgstr "ਹੈਲੋ ਵਰਲਡ!"
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "ਨਹੀ ਲੱਭਾ"
-
-#: /media/js/views/app/receipt.js:22
-msgid "Please sign in to view the receipt"
-msgstr "ਰਸੀਦ ਨੂੰ ਵੇਖਣ ਲਈ ਸਾਇਨ ਇਨ ਕਰੋ ਜੀ"
-
-#: /media/js/views/app/receipt.js:40
-msgid "Receipt"
-msgstr "ਰਸੀਦ"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
