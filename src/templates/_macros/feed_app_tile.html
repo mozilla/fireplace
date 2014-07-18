@@ -21,11 +21,11 @@
     {% elif feed_app.type == feed.FEEDAPP_PREVIEW %}
       <p class="desc">{{ feed_app.description|translate(feed_app)|safe }}</p>
       <div class="feed-app-preview-container
-                  {{ 'vertical' if feed_app.preview.image_size and
-                     feed_app.preview.image_size[1] > feed_app.preview.image_size[0] }}"
+                  {{ 'vertical' if feed_app.preview.thumbnail_size and
+                     feed_app.preview.thumbnail_size[1] > feed_app.preview.thumbnail_size[0] }}"
            style="background-color: {{ feed_app.background_color }}">
         <div class="feed-app-preview"
-             style="background-image: url({{ feed_app.preview.image_url }});"></div>
+             style="background-image: url({{ feed_app.preview.thumbnail_url }});"></div>
       </div>
     {% endif %}
   </div>
