@@ -1,14 +1,14 @@
 {# This is a shared file between Fireplace and Transonic. #}
 
 {% from "_macros/market_button.html" import market_button %}
-{% from '_macros/market_tile.html' import market_tile, deferred_icon %}
+{% from '_macros/market_tile.html' import market_tile %}
 {% from '_macros/stars.html' import stars %}
 
 
-{% macro mini_tile(app) %}
-  <li class="app mini-app">
-    <a href="{{ url('app', [app.slug])|urlparams(src='feed') }}" class="app-link c">
-      {{ deferred_icon(app.icons[64], app.name|translate(app)) }}
+{% macro mini_tile(app, hidden, landing) %}
+  <li class="app mini-app {{ 'hidden' if hidden and not landing }}">
+    <a href="{{ url('app', [app.slug])|urlparams(src=src) }}" class="app-link c">
+      <img class="icon" src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}">
       <div class="info">
         <h2 class="app-name elliflow">{{ app.name|translate(app) }}</h2>
         <p class="author elliflow">{{ app.author }}</p>
@@ -30,7 +30,7 @@
   {% set color = feed_app.background_color %}
   {% set desc = feed_app.description|translate(feed_app) %}
 
-  <a href="{{ url('app', [feed_app.app.slug])|urlparams(src='feed') }}" class="app-link">
+  <a href="{{ url('app', [feed_app.app.slug]) }}" class="app-link">
     {% if indexOf([feed.FEEDAPP_ICON, feed.FEEDAPP_IMAGE], feed_app.type) != -1 %}
       <section class="feed-item"
                {% if not desc and not feed_app.background_image %}
@@ -40,8 +40,7 @@
                {% endif %}>
         {% if feed_app.type == feed.FEEDAPP_ICON %}
           <ul class="app-icons">
-            <li>{{ deferred_icon(feed_app.app.icons[64],
-                                 feed_app.app.name|translate(feed_app.app)) }}</li>
+            <li><img src="{{ feed_app.app.icons[64] }}" alt="{{ feed_app.app.name|translate(feed_app) }}"></li>
           </ul>
         {% endif %}
         <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
@@ -56,114 +55,71 @@
                      classes=['feed-app'],
                      feed_app=feed_app,
                      tray=False,
-                     src='feed',
                      rating_link=False) }}
     {% endif %}
   </a>
+
+  {{ feed.cast_feed_app(feed_app, true) }}
+  {{ cast_app(feed_app.app, true) }}
 {% endmacro %}
 
 {% macro feed_brand(brand) %}
-  {% set color = feed.get_brand_color_class(brand) %}
+  {% set color = feed.get_brand_color_class() %}
 
-  <section class="feed-brand feed-layout-{{ 'list' if landing else brand.layout }}
-                  multi-app-tile mkt-tile c"
-           data-brand-type="{{ brand.type }}">
-    <div class="feed-tile-header-wrap">
-      <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src='feed') }}"
-         class="fanchor">
-        <h1 class="feed-tile-header" data-brand-color="{{ color }}">
-          {{ feed.get_brand_name(brand) }}
-        </h1>
-      </a>
+  <section class="feed-brand feed-layout-{{ brand.layout }} multi-app-tile mkt-tile c" data-brand-type="{{ brand.type }}">
+    <div class="info">
+      <h1 class="feed-tile-header" data-brand-color="{{ color }}">{{ feed.get_brand_name(brand) }}</h1>
     </div>
     <ul class="app-list">
       {% for app in brand.apps %}
-        {% if landing or loop.index0 < feed.MAX_BRAND_APPS %}
-          {{ mini_tile(app) }}
-        {% endif %}
+        {# Show the first X apps, hide the rest. #}
+        {{ mini_tile(app, hidden=loop.index0 >= feed.MAX_BRAND_APPS, landing=landing) }}
       {% endfor %}
     </ul>
     {% if not landing and brand.apps.length > feed.MAX_BRAND_APPS %}
-      <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src='feed') }}"
-         class="view-all">
+      <a href="{{ url('feed/feed_brand', [brand.slug]) }}" class="view-all">
         {{ _('View all apps') }}
       </a>
     {% endif %}
   </section>
+
+  {{ feed.cast_brand(brand, true) }}
+  {{ cast_app(brand.apps, true) }}
 {% endmacro %}
 
-{% macro feed_collection(coll, landing) %}
-  {% if coll.type == feed.COLL_PROMO %}
-    {{ feed_collection_promo(coll, landing) }}
-  {% elif coll.type == feed.COLL_LISTING %}
-    {{ feed_collection_listing(coll, landing) }}
-  {% endif %}
-{% endmacro %}
-
-{% macro feed_collection_promo(coll, landing) %}
+{% macro feed_collection(coll) %}
   {% set color = coll.background_color %}
   {% set desc = coll.description|translate(coll) %}
 
-  <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='feed') }}"
-     class="fanchor">
-    <section class="feed-item full {{ 'mega' if desc and not landing }}
-                    {{ 'has-background' if coll.background_image }}
-                    {{ 'collection-landing' if landing }}"
-         {% if coll.background_image %}
-             style="background-image: url({{ coll.background_image }})"
-         {% else %}
-             style="background-color: {{ color|hex2rgba('.4') }}"
-         {% endif %}>
-      {% if not coll.background_image %}
-        <ul class="app-icons">
-          {% for app in coll.apps.slice(0, 3) %}
-            <li>{{ deferred_icon(app.icons[64], app.name|translate(app)) }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
+  <a href="{{ url('feed/feed_collection', [coll.slug]) }}" class="fanchor">
+    <section class="feed-item full {{ 'mega' if desc }}"
+                    {% if coll.background_image %}
+                      style="background-image: url({{ coll.background_image }})"
+                    {% else %}
+                      style="background-color: {{ color|hex2rgba('.4') }}"
+                   {% endif %}>
+      <ul class="app-icons">
+        {% for app in coll.apps.slice(0, 3) %}
+          <li><img src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}"></li>
+        {% endfor %}
+      </ul>
       <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
       <div class="info">
         <h1 class="name">{{ coll.name|translate(coll)|safe }}</h1>
       </div>
-      {% if not landing %}
-        <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
-        <div class="desc">{{ desc|safe }}</div>
-      {% endif %}
+      <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
+      <div class="desc">{{ desc|safe }}</div>
     </section>
   </a>
-{% endmacro %}
 
-{% macro feed_collection_listing(coll) %}
-  <section class="feed-collection-listing feed-layout-grid multi-app-tile mkt-tile c">
-    <div class="feed-tile-header-wrap">
-      <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='feed') }}"
-         class="fanchor">
-        <h1 class="feed-tile-header">{{ coll.name|translate(coll)|safe }}</h1>
-      </a>
-    </div>
-    {% if coll.description %}
-      <p class="desc">{{ coll.description|translate(coll)|safe }}</p>
-    {% endif %}
-    <ul class="app-list">
-      {% for app in coll.apps %}
-        {% if landing or loop.index0 < feed.MAX_BRAND_APPS %}
-          {{ mini_tile(app) }}
-        {% endif %}
-      {% endfor %}
-    </ul>
-    {% if not landing and coll.apps.length > feed.MAX_BRAND_APPS %}
-      <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='feed') }}"
-         class="view-all">
-        {{ _('View all apps') }}
-      </a>
-    {% endif %}
-  </section>
+  {{ feed.cast_collection(coll, true) }}
+  {{ cast_app(coll.apps, true) }}
 {% endmacro %}
 
 {% macro feed_shelf(shelf, landing) %}
   {% set color = shelf.background_color %}
 
-  <a href="{{ url('feed/feed_shelf', [shelf.slug])|urlparams(src='feed') }}" class="fanchor">
+  <a href="{{ url('feed/feed_shelf', [shelf.slug]) }}" class="fanchor">
     <section class="feed-item shelf {{ 'shelf-landing' if landing }}" style="background-image: url({{ shelf.background_image }})">
       <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
       <div class="info">
@@ -171,74 +127,9 @@
       </div>
     </section>
   </a>
-{% endmacro %}
 
-{% macro feed_collection_landing(coll) %}
-  <section class="main feed feed-landing collection-landing">
-    <div class="column-wrap">
-      <div class="column-a">
-        {{ feed_collection(coll, true) }}
-        {% if coll.type == feed.COLL_PROMO and coll.description %}
-          <p class="desc">{{ coll.description|translate(coll) }}</p>
-        {% endif %}
-      </div>
-
-      {% if coll.type == feed.COLL_PROMO %}
-        <div class="column-b">
-          {% if coll.apps %}
-            {% if coll.apps[0].group %}
-              {% for group in feed.group_apps(coll.apps) %}
-                <section class="feed-layout-grid multi-app-tile mkt-tile grouped c">
-                  <h1 class="feed-tile-header grouped">{{ group.name }}</h1>
-                  <ul class="app-list">
-                    {% for app in group.apps %}
-                      {{ mini_tile(app) }}
-                    {% endfor %}
-                  </ul>
-                </section>
-              {% endfor %}
-            {% else %}
-              <ol class="container c">
-                {% for app in coll.apps %}
-                  <li class="item result app c">
-                    {{ market_tile(app, src='feed', tray=False) }}
-                  </li>
-                {% endfor %}
-              </ol>
-            {% endif %}
-          {% else %}
-            {# L10n: Please do your best to capture the essence of Scooby Doo. #}
-            {{ _("Ruh roh! No apps here, Shaggy!") }}
-          {% endif %}
-        </div>
-      </div>
-    {% endif %}
-  </section>
-{% endmacro %}
-
-{% macro feed_shelf_landing(shelf) %}
-  <section class="main feed feed-landing shelf-landing">
-    <div class="column-wrap">
-      <div class="column-a">
-        {{ feed_shelf(shelf, true) }}
-        {% if shelf.description %}
-          <p class="desc">{{ shelf.description|translate(shelf) }}</p>
-        {% endif %}
-      </div>
-      {% if shelf.apps %}
-        <ol class="container column-b c">
-          {% for app in shelf.apps %}
-            <li class="item result app c">
-              {{ market_tile(app, src='feed', tray=False) }}
-            </li>
-          {% endfor %}
-        </ol>
-      {% else %}
-        {# L10n: Please do your best to capture the essence of Scooby Doo. #}
-        {{ _("Ruh roh! No apps here, Shaggy!") }}
-      {% endif %}
-    </div>
-  </section>
+  {{ feed.cast_shelf(shelf, true) }}
+  {{ cast_app(shelf.apps, true) }}
 {% endmacro %}
 
 {% macro feed_item(obj) %}
