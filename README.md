@@ -17,7 +17,7 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
   <dt><a href="https://github.com/mozilla/flue">Flue</a></dt>
   <dd>A mocked-out version of the Marketplace API.</dd>
 
-  <dt>Hearth</dt>
+  <dt>src</dt>
   <dd>The source code for Fireplace.</dd>
 
   <dt>Inferno</dt>
@@ -96,12 +96,12 @@ heavy version of the project), run `commonplace includes`. This will generate
 two files:
 
 ```
-hearth/media/js/include.js
-hearth/media/css/include.css
+src/media/js/include.js
+src/media/css/include.css
 ```
 
 The CSS in `include.css` is generated in the order in which CSS files are
-included in `hearth/index.html`.
+included in `src/index.html`.
 
 `include.js` uses a lightweight AMD loader (rather than require.js). This keeps
 file size down and also makes it possible to name-mangle internal keywords which
@@ -139,7 +139,7 @@ Load [http://localhost:8675/tests](http://localhost:8675/tests) in your browser.
 
 Before you run the functional tests, make sure your `settings_local.js` file has
 the subset of keys found in
-[`settings_travis.js`](https://github.com/mozilla/fireplace/blob/master/hearth/media/js/settings_travis.js).
+[`settings_travis.js`](https://github.com/mozilla/fireplace/blob/master/src/media/js/settings_travis.js).
 
 ```bash
 make test

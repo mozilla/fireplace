@@ -20,7 +20,7 @@ require.config({
 });
 
 define(
-    'marketplace',
+    'main',
     [
         'underscore',
         'jquery',

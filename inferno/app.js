@@ -19,7 +19,7 @@ app.get('/', function(req, res){
 });
 
 function getMinifest(type, res) {
-    var manifest = JSON.parse(fs.readFileSync('build/fireplace-master/hearth/manifest.webapp'));
+    var manifest = JSON.parse(fs.readFileSync('build/fireplace-master/src/manifest.webapp'));
     manifest['package_path'] = 'https://inferno.paas.allizom.org/package.zip?type=' + type;
 
     res.set('Content-Type', 'application/x-web-app-manifest+json');
@@ -112,23 +112,23 @@ function build(fetched_cb) {
         }
         function ssettings() {
             console.log('Swapping in inferno settings');
-            cpe('cp hearth/media/js/settings_inferno.js hearth/media/js/settings_local.js', opts, rmfonts);
+            cpe('cp src/media/js/settings_inferno.js src/media/js/settings_local.js', opts, rmfonts);
         }
         function rmfonts() {
             console.log('Removing unnecessary fonts');
-            cpe('rm -f hearth/media/fonts/*.ttf hearth/media/fonts/*.svg hearth/media/fonts/*.eot', opts, rmstyl);
+            cpe('rm -f src/media/fonts/*.ttf src/media/fonts/*.svg src/media/fonts/*.eot', opts, rmstyl);
         }
         function rmstyl() {
             console.log('Removing unnecessary stylus files');
-            cpe('rm -f hearth/media/css/*.styl', opts, rmtemplates);
+            cpe('rm -f src/media/css/*.styl', opts, rmtemplates);
         }
         function rmtemplates() {
             console.log('Removing raw templates and tests');
-            cpe('rm -rf hearth/templates hearth/tests', opts, rmorigicons);
+            cpe('rm -rf src/templates src/tests', opts, rmorigicons);
         }
         function rmorigicons() {
             console.log('Removing original region icons');
-            cpe('rm -rf hearth/media/img/icons/regions/originals', opts, zip);
+            cpe('rm -rf src/media/img/icons/regions/originals', opts, zip);
         }
         function zip() {
             console.log('Removing old package.zip');
@@ -137,7 +137,7 @@ function build(fetched_cb) {
             } catch(e) {
                 console.log('No package.zip to remove');
             }
-            cpe('cd hearth/ && zip -r ../../package.zip *', opts, finish);
+            cpe('cd src/ && zip -r ../../package.zip *', opts, finish);
         }
     }
 
