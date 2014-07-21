@@ -1,6 +1,6 @@
 define('lightbox',
-    ['keys', 'models', 'navigation', 'utils', 'shothandles', 'tracking', 'underscore', 'z'],
-    function(keys, models, navigation, utils, handles, tracking, _, z) {
+    ['flipsnap', 'keys', 'models', 'navigation', 'utils', 'shothandles', 'tracking', 'underscore', 'z'],
+    function(Flipsnap, keys, models, navigation, utils, handles, tracking, _, z) {
 
     var $lightbox = $(document.getElementById('lightbox'));
     var $section = $lightbox.find('section');
