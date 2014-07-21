@@ -141,7 +141,7 @@
                 display: inline-block;
                 font-size: 12px;
                 position: relative;
-                margin-right: 8px;
+                margin-right: 25px;
 
                 &.active a {
                     border-bottom: 2px solid $flamin-hot-cheetos-orange;
@@ -169,6 +169,7 @@
     }
     .site-nav {
         background-color: #E0E0E0;
+        bottom: 38px;
         height: 50px;
         margin: 0 auto;
         z-index: 25;
@@ -239,5 +240,11 @@
     }
     [data-page-type~=settings] .header-button.settings {
         background-image: url(../img/pretty/settings_gear_active.svg);
+    }
+}
+
+@media $wider-desktop {
+    .site-nav {
+        top: 0px;
     }
 }

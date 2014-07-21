@@ -128,7 +128,7 @@ define('navbar', ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 
 
         $('#site-nav').html(
             nunjucks.env.render('nav.html', {
-                active_tab_mkt: tabsMktRouteMap[window.location.pathname] || 'home',
+                active_tab_mkt: tabsMktRouteMap[window.location.pathname] || 'homepage',
                 active_tab_settings: tabsSettingsRouteMap[window.location.pathname] || 'settings',
                 is_settings: z.body.attr('data-page-type').indexOf('settings') !== -1,
                 z: z,
