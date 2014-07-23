@@ -32,15 +32,11 @@ define('installer_direct',
     function launch(manifestURL) {
         var r = navigator.mozApps.getInstalled();
         r.onsuccess = function() {
-            var _installed = {};
+            var installed = {};
             for (var i = 0; i < r.result.length; i++) {
-                _installed[r.result[i].manifestURL] = r.result[i];
+                installed[r.result[i].manifestURL] = r.result[i];
             }
-            installed = _installed;
-
-            if (callback) {
-                callback();
-            }
+            installed[manifestURL].launch();
         };
     }
 
