@@ -4,6 +4,20 @@ define('login',
 
     var console = log('login');
 
+    var fxa_popup;
+    var opt = {
+        termsOfService: settings.persona_tos,
+        privacyPolicy: settings.persona_privacy,
+        siteLogo: settings.persona_site_logo,
+        oncancel: function() {
+            console.log('Login cancelled');
+            z.page.trigger('login_cancel');
+            _.invoke(pending_logins, 'reject');
+            pending_logins = [];
+        }
+    };
+    var pending_logins = [];
+
     function signOutNotification() {
         notification.notification({message: gettext('You have been signed out')});
     }
@@ -11,9 +25,28 @@ define('login',
     function signInNotification() {
         notification.notification({message: gettext('You have been signed in')});
     }
+
     if (capabilities.fallbackFxA()) {
+        // This lets us change the cursor for the "Sign in" link. (We do this
+        // for Native FxA + Native Persona + Fallback Persona below.)
         z.body.addClass('persona-loaded');
     }
+
+    z.win.on('focus', function() {
+        if (!capabilities.fallbackFxA()) {
+            return;
+        }
+
+        // If the FxA popup is closed, when the Marketplace regains focus,
+        // kill the throbber and clear the pending login.
+        // (Note: Since `window.closed` is unreliable on both Firefox & Chrome,
+        // we check for the existence of the `opener`, which becomes `null`
+        // when closed.)
+        if (pending_logins.length && !fxa_popup.opener) {
+            opt.oncancel();
+        }
+    });
+
     z.body.on('click', '.persona', function(e) {
         e.preventDefault();
 
@@ -52,8 +85,6 @@ define('login',
         });
     });
 
-    var pending_logins = [];
-
     function getCenteredCoordinates(width, height) {
         var x = window.screenX + Math.max(0, Math.floor((window.innerWidth - width) / 2));
         var y = window.screenY + Math.max(0, Math.floor((window.innerHeight - height) / 2));
@@ -67,17 +98,6 @@ define('login',
         var def = defer.Deferred();
         pending_logins.push(def);
 
-        var opt = {
-            termsOfService: settings.persona_tos,
-            privacyPolicy: settings.persona_privacy,
-            siteLogo: settings.persona_site_logo,
-            oncancel: function() {
-                console.log('Persona login cancelled');
-                z.page.trigger('login_cancel');
-                _.invoke(pending_logins, 'reject');
-                pending_logins = [];
-            }
-        };
         if (settings.persona_unverified_issuer) {
             // We always need to force a specific issuer because bridged IdPs don't work with verified/unverified.
             // See bug 910938.
@@ -114,8 +134,8 @@ define('login',
                 });
             }, false);
 
-            window.open(settings.fxa_auth_url, 'fxa',
-                        'width=' + w + ',height=' + h + ',left=' + i[0] + ',top=' + i[1]);
+            fxa_popup = window.open(settings.fxa_auth_url, 'fxa',
+                'width=' + w + ',height=' + h + ',left=' + i[0] + ',top=' + i[1]);
         } else {
             persona_loaded.done(function() {
                 if (capabilities.persona()) {
