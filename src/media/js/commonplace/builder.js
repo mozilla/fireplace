@@ -1,6 +1,6 @@
 define('builder',
-    ['log', 'templates', 'models', 'requests', 'settings', 'z', 'nunjucks.compat'],
-    function(log, nunjucks, models, requests, settings, z) {
+    ['log', 'jquery', 'templates', 'models', 'requests', 'settings', 'z', 'nunjucks.compat'],
+    function(log, $, nunjucks, models, requests, settings, z) {
 
     var console = log('builder');
     var SafeString = nunjucks.require('runtime').SafeString;
@@ -39,13 +39,7 @@ define('builder',
     }
 
     function fire(el, event_name, data) {
-        var e = new CustomEvent(event_name, {
-            bubbles: true,
-            cancelable: false,
-            detail: data
-        });
-        el.dispatchEvent(e);
-        return e;
+        $(el).trigger(event_name, data);
     }
 
     function Builder() {

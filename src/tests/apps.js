@@ -35,34 +35,34 @@ function MockNavigator(no_package) {
     }
 }
 
-test('apps.install', function(done, fail) {
+test('installer_direct.install', function(done, fail) {
     mock(
-        'apps',
+        'installer_direct',
         {defer: defer},
-        function(apps) {
+        function(installer_direct) {
             var nav = new MockNavigator();
             var product = {
                 manifest_url: 'foo/bar',
                 is_packaged: false
             };
-            apps.install(product, {navigator: nav}).done(done);
+            installer_direct.install(product, {navigator: nav}).done(done);
 
             nav.def.resolve({installState: 'installed'});
         }
     );
 });
 
-test('apps.install delay', function(done, fail) {
+test('installer_direct.install delay', function(done, fail) {
     mock(
-        'apps',
+        'installer_direct',
         {defer: defer},
-        function(apps) {
+        function(installer_direct) {
             var nav = new MockNavigator();
             var product = {
                 manifest_url: 'foo/bar',
                 is_packaged: false
             };
-            apps.install(product, {navigator: nav}).done(done);
+            installer_direct.install(product, {navigator: nav}).done(done);
 
             var result = {installState: 'pending'};
             nav.def.resolve(result);
@@ -73,67 +73,65 @@ test('apps.install delay', function(done, fail) {
     );
 });
 
-test('apps.install packaged', function(done, fail) {
+test('installer_direct.install packaged', function(done, fail) {
     mock(
-        'apps',
+        'installer_direct',
         {defer: defer},
-        function(apps) {
+        function(installer_direct) {
             var nav = new MockNavigator();
             var product = {
                 manifest_url: 'foo/bar',
                 is_packaged: true
             };
-            apps.install(product, {navigator: nav}).done(done);
+            installer_direct.install(product, {navigator: nav}).done(done);
             nav.def.resolve({installState: 'installed'});
         }
     );
 });
 
-test('apps.install unable', function(done, fail) {
+test('installer_direct.install unable', function(done, fail) {
     mock(
-        'apps',
+        'installer_direct',
         {defer: defer},
-        function(apps) {
+        function(installer_direct) {
             var nav = new MockNavigator();
             var product = {
                 manifest_url: null,
                 is_packaged: false
             };
-            apps.install(product, {navigator: nav}).done(fail).fail(done);
-            // This shouldn't ever be used, but if it is, it'll trigger a failure.
-            nav.def.resolve({installState: 'installed'});
+            installer_direct.install(product, {navigator: nav}).done(fail).fail(done);
+            nav.def.reject();
         }
     );
 });
 
-test('apps.install unable packaged', function(done, fail) {
+test('installer_direct.install unable packaged', function(done, fail) {
     mock(
-        'apps',
+        'installer_direct',
         {defer: defer},
-        function(apps) {
+        function(installer_direct) {
             var nav = new MockNavigator(true);
             var product = {
                 manifest_url: 'foo/bar',
                 is_packaged: true
             };
-            apps.install(product, {navigator: nav}).done(fail).fail(done);
-            // This shouldn't ever be used, but if it is, it'll trigger a failure.
-            nav.def.resolve({installState: 'installed'});
+            installer_direct.install(product, {navigator: nav}).done(fail).fail(done);
+            nav.def.reject();
         }
     );
 });
 
-test('apps.install fail', function(done, fail) {
+test('installer_direct.install fail', function(done, fail) {
     mock(
-        'apps',
+        'installer_direct',
         {defer: defer},
-        function(apps) {
+        function(installer_direct) {
             var nav = new MockNavigator();
             var product = {
                 manifest_url: 'foo/bar',
                 is_packaged: false
             };
-            apps.install(product, {navigator: nav}).fail(done).done(fail);
+            installer_direct.install(product, {navigator: nav}).fail(done).done(fail);
 
             nav.def.reject({});
         }

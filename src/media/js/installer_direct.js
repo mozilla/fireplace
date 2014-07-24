@@ -52,6 +52,9 @@ define('installer_direct',
 
         var mozApps = (opt.navigator || window.navigator).mozApps;
         var installer = product.is_packaged ? 'installPackage' : 'install';
+        if (!mozApps[installer]) {
+            return def.reject(gettext('Unable to install packaged apps')).promise();
+        }
         var installRequest = mozApps[installer](manifest_url, opt.data);
 
         installRequest.onsuccess = function() {

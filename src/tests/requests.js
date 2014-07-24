@@ -109,7 +109,7 @@ var data = {foo: 'bar'};
 var methods_to_test = ['post', 'del', 'put', 'patch'];
 var test_output = {
     post: ['POST', 'foo/bar', data],
-    del: ['DELETE', 'foo/bar', null],
+    del: ['DELETE', 'foo/bar', data],
     put: ['PUT', 'foo/bar', data],
     patch: ['PATCH', 'foo/bar', data]
 };

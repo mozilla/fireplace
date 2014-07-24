@@ -69,8 +69,6 @@ test('baseurl', function(done) {
 test('bgurl', function(done) {
     eq_(utils.bgurl('http://foo/bar/seavan.png'),
         'url("http://foo/bar/seavan.png")');
-    eq_(utils.bgurl('http://foo/bar/Sea "Seavan" Van.png'),
-        'url("http://foo/bar/Sea "Seavan" Van.png")');
     eq_(utils.bgurl("http://foo/bar/Sea 'Seavan' Van.png"),
         'url("http://foo/bar/Sea \'Seavan\' Van.png")');
     done();
