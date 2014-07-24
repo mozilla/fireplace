@@ -58,6 +58,13 @@ define('views/app',
             slug: slug
         });
 
+        // There could be several fragment errors (one for each `defer` block
+        // whose `request` failed). So we listen for just the first one and
+        // add a one-time-use event listener each time this page is rendered.
+        z.page.one('fragment_load_failed', function(e) {
+            builder.z('title', gettext('Oh no!'));
+        });
+
         // This is fine; tracking_helpers depends on:
         // navigation > views > views/app
         // This prevents a dependency loop, but all deps should have been
