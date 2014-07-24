@@ -111,9 +111,11 @@ define('urls',
 
     function media(path) {
         var media_url = settings.media_url;
-        if (media_url[media_url.length - 1] !== '/') {
+        // Media URL should end with trailing slash.
+        if (media_url.substr(-1) !== '/') {
             media_url += '/';
         }
+        // Path should not start with leading slash.
         if (path[0] === '/') {
             path = path.substr(1);
         }

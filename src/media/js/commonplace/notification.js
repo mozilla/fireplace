@@ -87,10 +87,10 @@ define('notification', ['defer', 'helpers', 'jquery', 'templates', 'z'], functio
 
         var confirmationDef = defer.Deferred();
 
-        confirmationEl.on('touchend click', '.yes', function(e) {
+        confirmationEl.on('touchend click', '.confirmation-yes', function(e) {
             e.preventDefault();
             confirmationDef.resolve();
-        }).on('touchend click', '.btn-cancel, .close', function(e) {
+        }).on('touchend click', '.confirmation-no, .close', function(e) {
             e.preventDefault();
             confirmationDef.reject();
         });

@@ -71,6 +71,10 @@ define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
         return url.split('?')[0];
     }
 
+    function bgurl(url) {
+        return 'url(' + JSON.stringify(url) + ')';
+    }
+
     function encodeURIComponent(uri) {
         return window.encodeURIComponent(uri).replace(/%20/g, '+');
     }
@@ -190,6 +194,7 @@ define('utils', ['jquery', 'l10n', 'underscore'], function($, l10n, _) {
     return {
         '_pd': _pd,
         'baseurl': baseurl,
+        'bgurl': bgurl,
         'browser': browser,
         'encodeURIComponent': encodeURIComponent,
         'decodeURIComponent': decodeURIComponent,

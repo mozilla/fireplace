@@ -25,7 +25,7 @@ define('nunjucks.compat', ['nunjucks'], function(nunjucks) {
     var ARRAY_MEMBERS = {
         pop: function(index) {
             if (index === undefined) {
-                return obj.pop();
+                return this.pop();
             }
             if (index >= this.length || index < 0) {
                 throw new Error('KeyError');

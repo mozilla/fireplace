@@ -164,9 +164,9 @@ define('requests',
         }
     }
 
-    function del(url) {
+    function del(url, data) {
         console.log('DELETing', url);
-        return ajax('DELETE', url).done(function() {
+        return ajax('DELETE', url, data).done(function() {
             console.log('DELETEd', url);
         });
     }
