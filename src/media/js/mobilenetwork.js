@@ -54,7 +54,10 @@ define('mobilenetwork',
         460: 'cn',
 
         // Japan
-        440: 'jp'
+        440: 'jp',
+
+        // France
+        208: 'fr'
     };
 
     var carriers = [
