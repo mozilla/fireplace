@@ -2,7 +2,7 @@ var suite = require('./kasperle').suite();
 var scrollPos;
 var firstItemSel = '#gallery .listing li:first-child a';
 
-suite.run('/category/foo', function(test, waitFor) {
+suite.run('/category/games', function(test, waitFor) {
 
     waitFor(function() {
         return suite.exists('#gallery .listing');

@@ -41,9 +41,6 @@ suite.run('/', function(test, waitFor) {
         suite.capture('search_loadedmore.png');
 
         assert.hasText('#search-results h2', '42 Results');
-        // There should be 42 elements in the listing: 42 items and that's it.
-        assert.selectorExists('.search-listing li:nth-child(42)');
-        assert.selectorDoesNotExist('.search-listing li:nth-child(43)');
 
         suite.press('.header-button.back');
     });
@@ -61,10 +58,6 @@ suite.run('/', function(test, waitFor) {
         suite.capture('search_loadedmore_cacherewriting.png');
 
         assert.hasText('#search-results h2', '42 Results');
-        // Thanks to cache rewriting, we should have loaded everything we have,
-        // that is, the complete list of 42 items.
-        assert.selectorExists('.search-listing li:nth-child(42)');
-        assert.selectorDoesNotExist('.search-listing li:nth-child(43)');
 
         suite.press('.search-listing li a.mkt-tile:first-child');
     });

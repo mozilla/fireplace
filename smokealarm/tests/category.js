@@ -1,9 +1,9 @@
 var suite = require('./kasperle').suite();
 
-suite.run('/category/foo', function(test, waitFor) {
+suite.run('/category/games', function(test, waitFor) {
 
     waitFor(function() {
-        return suite.exists('#featured li a');
+        return suite.exists('#gallery li a');
     });
 
     test('Category baseline tests', function(assert) {
@@ -11,8 +11,7 @@ suite.run('/category/foo', function(test, waitFor) {
         suite.capture('category.png');
 
         assert.visible('#search-q');
-        assert.selectorExists('#featured');
-        assert.selectorExists('#featured ol.grid li a h3:not(:empty)');
+        assert.selectorExists('#gallery');
 
         assert.visible('#gallery');
         assert.visible('#gallery ol.listing li a.mkt-tile');

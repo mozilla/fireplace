@@ -7,7 +7,7 @@ suite.run('/', function(test, waitFor) {
     });
 
     test('Perform a search', function(assert) {
-        suite.fill('#search', {q: 'empty'}, true);
+        suite.fill('#search', {q: 'xxxqqqbbb'}, true);
     });
 
     waitFor(function() {
@@ -15,7 +15,7 @@ suite.run('/', function(test, waitFor) {
     });
 
     test('Test that there are no results', function(assert) {
-        assert.URL(/\/search\?q=empty/);
+        assert.URL(/\/search\?q=xxxqqqbbb/);
         suite.capture('search_empty.png');
 
         assert.visible('#search-q');
