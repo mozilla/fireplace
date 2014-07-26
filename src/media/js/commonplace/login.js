@@ -56,34 +56,30 @@ define('login',
             $this.removeClass('loading-submit').trigger('blur');
         });
 
-    }).on('click', '.logout', function(e) {
-        e.preventDefault();
+    }).on('click', '.logout', utils._pd(function(e) {
+        requests.del(urls.api.url('logout'));
 
-        requests.del(urls.api.url('logout')).done(function() {
-            cache.flush_signed();
-            user.clear_token();
-            z.body.removeClass('logged-in');
-            z.page.trigger('reload_chrome').trigger('before_logout');
+        cache.flush_signed();
+        user.clear_token();
 
-            if (capabilities.persona()) {
-                console.log('Triggering Persona logout');
-                navigator.id.logout();
-            }
+        if (capabilities.persona()) {
+            console.log('Triggering Persona logout');
+            navigator.id.logout();
+        }
 
-            // Moved here from the onlogout callback for now until
-            // https://github.com/mozilla/browserid/issues/3229
-            // gets fixed.
-            if (!z.context.dont_reload_on_login) {
-                z.page.trigger('logged_out');
-                signOutNotification();
-                require('views').reload();
-            } else {
-                console.log('Reload on logout aborted by current view');
-            }
-        }).fail(function() {
-            notification.notification({message: gettext('Error signing out')});
-        });
-    });
+        z.body.removeClass('logged-in');
+        z.page.trigger('reload_chrome').trigger('before_logout');
+        // Moved here from the onlogout callback for now until
+        // https://github.com/mozilla/browserid/issues/3229
+        // gets fixed.
+        if (!z.context.dont_reload_on_login) {
+            z.page.trigger('logged_out');
+            signOutNotification();
+            require('views').reload();
+        } else {
+            console.log('Reload on logout aborted by current view');
+        }
+    }));
 
     function getCenteredCoordinates(width, height) {
         var x = window.screenX + Math.max(0, Math.floor((window.innerWidth - width) / 2));
