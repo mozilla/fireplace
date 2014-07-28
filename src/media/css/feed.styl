@@ -12,6 +12,10 @@ $vertical-text-margin = 10px;
 $vertical-tile-margin = 10px;
 
 @media $at-least-desktop {
+    section.feed,
+    ul.feed  {
+        padding: 0;
+    }
     ul.feed {
         max-width: $feed-column-width * 2;
 
@@ -26,7 +30,7 @@ $vertical-tile-margin = 10px;
 .feed {
     list-style-type: none;
     margin: 0 auto;
-    padding: 10px 0 10px;
+    padding: 10px 0;
     position: relative;
     width: 100%;
     max-width: $feed-column-width;
@@ -497,7 +501,7 @@ $vertical-tile-margin = 10px;
     }
     &.collection-landing .feed-item,
     &.shelf-landing .feed-item {
-        border-radius: 0;
+        border-radius: 2px;
         position: relative;
         width: 320px;
 
@@ -683,9 +687,11 @@ $vertical-tile-margin = 10px;
     [data-page-type~=leaf] {
         .column-wrap {
             padding: 0;
-            width: 635px;
+            width: -moz-fit-content;
+            width: -webkit-fit-content;
         }
         .column-a {
+            border-radius: 5px;
             display: inline-block;
             margin-right: 10px;
             vertical-align: top;
