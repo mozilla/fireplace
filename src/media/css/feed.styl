@@ -181,23 +181,6 @@ $vertical-tile-margin = 10px;
     }
     &.mkt-tile {
         position: relative;
-
-        .feed-tile-header {
-            margin-left: 60px;
-
-            &:before {
-                background-position: center;
-                background-repeat: no-repeat;
-                border-radius: 30px;
-                content: '';
-                display: block;
-                height: 60px;
-                left: -10px;
-                position: absolute;
-                top: 0;
-                width: 60px;
-            }
-        }
     }
     .view-all {
         color: $view-all-blue;
@@ -227,6 +210,50 @@ $vertical-tile-margin = 10px;
         &:after {
             right: 0;
         }
+    }
+}
+
+.feed-tile-header {
+    margin-left: 60px;
+
+    &:before {
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 30px;
+        content: '';
+        display: block;
+        height: 60px;
+        left: -10px;
+        position: absolute;
+        top: 0;
+        width: 60px;
+    }
+}
+
+@media $at-least-desktop {
+    .feed-tile-header {
+        margin: 10px 0 0 75px;
+
+        &:before {
+            left: 0;
+        }
+    }
+    .app-list {
+        position: relative;
+        top: 30px;
+    }
+}
+
+
+[data-page-type~="newpop"] {
+    .feed-tile-header:before {
+        background-color: $breezy-blue;
+    }
+    [data-type="popular"] .feed-tile-header:before {
+        background-image: url(../img/icons/brands/LocalCommunityFavourite-40px.png);
+    }
+    [data-type="new"] .feed-tile-header:before {
+        background-image: url(../img/icons/brands/appOfTheDay-40px.png);
     }
 }
 
