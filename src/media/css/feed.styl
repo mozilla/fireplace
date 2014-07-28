@@ -355,7 +355,6 @@ $vertical-tile-margin = 10px;
     border-radius: 5px;
     height: 142px;
     margin: 0 auto;
-    margin-bottom: 15px;
     overflow: hidden;
     position: relative;
     width: $mobile-tile-width;
@@ -659,6 +658,14 @@ $vertical-tile-margin = 10px;
     background-image: url(../img/icons/brands/countrySpecific-40px.png);
 }
 
+.column-b {
+    padding: $horizontal-tile-padding;
+    width: $feed-column-width;
+
+    .app .mkt-tile .info {
+        width: 205px;
+    }
+}
 
 @media $at-least-desktop {
     .category-header {
@@ -675,6 +682,7 @@ $vertical-tile-margin = 10px;
     }
     [data-page-type~=leaf] {
         .column-wrap {
+            padding: 0;
             width: 635px;
         }
         .column-a {
@@ -692,11 +700,6 @@ $vertical-tile-margin = 10px;
             display: inline-block;
             padding: 0;
             vertical-align: top;
-            width: $mobile-tile-width;
-
-            .app .mkt-tile .info {
-                width: 205px;
-            }
         }
         .feed-landing.shelf-landing .feed-item {
             right: inherit;
