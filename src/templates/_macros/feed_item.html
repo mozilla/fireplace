@@ -30,7 +30,7 @@
   {% set color = feed_app.background_color %}
   {% set desc = feed_app.description|translate(feed_app) %}
 
-  <a href="{{ url('app', [feed_app.app.slug]) }}" class="app-link">
+  <a href="{{ url('app', [feed_app.app.slug])|urlparams(src='feed') }}" class="app-link">
     {% if indexOf([feed.FEEDAPP_ICON, feed.FEEDAPP_IMAGE], feed_app.type) != -1 %}
       <section class="feed-item"
                {% if not desc and not feed_app.background_image %}
@@ -77,7 +77,7 @@
       {% endfor %}
     </ul>
     {% if not landing and brand.apps.length > feed.MAX_BRAND_APPS %}
-      <a href="{{ url('feed/feed_brand', [brand.slug]) }}" class="view-all">
+      <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src='feed') }}" class="view-all">
         {{ _('View all apps') }}
       </a>
     {% endif %}
@@ -91,7 +91,7 @@
   {% set color = coll.background_color %}
   {% set desc = coll.description|translate(coll) %}
 
-  <a href="{{ url('feed/feed_collection', [coll.slug]) }}" class="fanchor">
+  <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='feed') }}" class="fanchor">
     <section class="feed-item full {{ 'mega' if desc }}"
                     {% if coll.background_image %}
                       style="background-image: url({{ coll.background_image }})"
@@ -121,7 +121,7 @@
 {% macro feed_shelf(shelf, landing, is_preview) %}
   {% set color = shelf.background_color %}
 
-  <a href="{{ url('feed/feed_shelf', [shelf.slug]) }}" class="fanchor">
+  <a href="{{ url('feed/feed_shelf', [shelf.slug])|urlparams(src='feed') }}" class="fanchor">
     <section class="feed-item shelf {{ 'shelf-landing' if landing }}" style="background-image: url({{ shelf.background_image }})">
       <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
       <div class="info">
