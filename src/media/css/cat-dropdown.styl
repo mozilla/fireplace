@@ -24,7 +24,7 @@ sprite-background-position($vertical-pos) {
     // grey icons in the drop-down rather than blue.
     &.cur-cat:focus:before,
     &.cur-cat:hover:before,
-    &.cur-cat:not(.mobile):before {
+    &.cur-cat:before {
         background-position: 0 $vertical-pos;
     }
 }
@@ -402,23 +402,6 @@ a[class*="cat-vivo-"]:active:before {
             background-position: 0 11px;
             background-size: 45px auto;
             margin: -5px 5px 0 0;
-        }
-    }
-}
-
-.category-header-desktop {
-    margin-bottom: 15px;
-
-    h1 {
-        color: $castle-skull-gray;
-        font-size: 30px;
-        font-weight: 300;
-        text-shadow: 0 1px 0 $barely-gray;
-
-        &:before {
-            background-size: 180px auto;
-            height: 60px;
-            width: 60px;
         }
     }
 }

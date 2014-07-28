@@ -14,15 +14,13 @@
 {% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
 {% set search_url = search_url|urlparams(sort=sort) if sort == 'reviewed' else search_url %}
 
-<header class="category-header">
-  <h3>{{ category_name }}</h3>
-</header>
-
-<header class="category-header-desktop">
-  <h1 class="cat-{{ category }} cat-icon cur-cat" data-cat-slug="{{ category }}">
-    {{ category_name }}
-  </h1>
-</header>
+<section class="main">
+  <header class="category-header">
+    <h3 class="cat-{{ category }} cat-icon cur-cat" data-cat-slug="{{ category }}">
+      {{ category_name }}
+    </h3>
+  </header>
+</section>
 
 {% defer (url=endpoint|urlunparam(['sort']), pluck='featured', as='collection') %}
   {% set featured_apps = this.length and this[0].apps %}
