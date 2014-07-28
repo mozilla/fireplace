@@ -53,11 +53,14 @@ $vertical-tile-margin = 10px;
         .icon {
             float: left;
         }
-        .info {
+        .info,
+        .feed-tile-header-wrap {
             float: left;
             height: 64px;
-            margin-left: 10px;
             position: relative;
+        }
+        .info {
+            margin-left: 10px;
         }
         .elliflow {
             max-width: 125px;
@@ -375,7 +378,7 @@ $vertical-tile-margin = 10px;
         padding-top: 50px;
 
         button {
-            height: 35px;
+            height: 45px;
         }
     }
 }
@@ -689,6 +692,7 @@ $vertical-tile-margin = 10px;
 @media $at-least-desktop {
     [data-page-type~=leaf] {
         .column-wrap {
+            margin: 0 auto;
             padding: 0;
             width: -moz-fit-content;
             width: -webkit-fit-content;
@@ -707,16 +711,13 @@ $vertical-tile-margin = 10px;
         }
         .column-b {
             display: inline-block;
-            padding: 0;
+            padding: 0 $horizontal-tile-padding;
             vertical-align: top;
         }
         .feed-landing.shelf-landing .feed-item {
             right: inherit;
         }
         .feed .mkt-tile {
-            .info {
-                width: 210px;
-            }
             .elliflow {
                 max-width: 180px;
             }
@@ -727,6 +728,7 @@ $vertical-tile-margin = 10px;
             max-width: $desktop-content;
 
             .app-list {
+                padding-bottom: 95px;
                 max-width: $desktop-content;
 
                 li {
@@ -744,7 +746,9 @@ $vertical-tile-margin = 10px;
                         margin-right: 0;
                     }
                     &.loadmore {
+                        bottom: 30px;
                         clear: both;
+                        position: absolute;
                         width: $desktop-content;
                     }
                 }
