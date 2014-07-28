@@ -26,7 +26,7 @@ $vertical-tile-margin = 10px;
 .feed {
     list-style-type: none;
     margin: 0 auto;
-    padding: 0 0 10px;
+    padding: 10px 0 10px;
     position: relative;
     width: 100%;
     max-width: $feed-column-width;
@@ -54,7 +54,6 @@ $vertical-tile-margin = 10px;
             height: 64px;
             margin-left: 10px;
             position: relative;
-            width: 205px;
         }
         .elliflow {
             max-width: 125px;
@@ -247,7 +246,7 @@ $vertical-tile-margin = 10px;
         clear: both;
         display: inline-block;
         list-style-type: none;
-        width: $mobile-tile-width;
+        width: 100%;
 
         img {
             margin-bottom: 8px;
@@ -327,9 +326,6 @@ $vertical-tile-margin = 10px;
 
 // Editorial brand list layout.
 .feed-layout-list {
-    li {
-        width: unquote('calc(100% - 20px)');
-    }
     .rating .cnt {
         bottom: 5px;
         font-size: 11px;
@@ -526,9 +522,6 @@ $vertical-tile-margin = 10px;
             padding: 20px;
         }
     }
-    .column-b {
-        padding: 0 10px;
-    }
 }
 
 #page .feed-item-item .icon.deferred {
@@ -681,8 +674,13 @@ $vertical-tile-margin = 10px;
         }
     }
     [data-page-type~=leaf] {
+        .column-wrap {
+            width: 635px;
+        }
         .column-a {
-            float: left;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: top;
             width: 320px;
 
             .fanchor + .desc {
@@ -691,9 +689,14 @@ $vertical-tile-margin = 10px;
             }
         }
         .column-b {
-            float: right;
+            display: inline-block;
             padding: 0;
-            width: 360px;
+            vertical-align: top;
+            width: $mobile-tile-width;
+
+            .app .mkt-tile .info {
+                width: 205px;
+            }
         }
         .feed-landing.shelf-landing .feed-item {
             right: inherit;

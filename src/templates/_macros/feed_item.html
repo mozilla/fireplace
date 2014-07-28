@@ -138,36 +138,38 @@
 
 {% macro feed_collection_landing(coll, is_preview) %}
   <section class="main feed feed-landing collection-landing">
-    <div class="column-a">
-      {{ feed_collection(coll, is_preview) }}
-    </div>
+    <div class="column-wrap">
+      <div class="column-a">
+        {{ feed_collection(coll, is_preview) }}
+      </div>
 
-    <div class="column-b">
-      {% if coll.apps %}
-        {% if coll.apps[0].group %}
-          {% for group in feed.group_apps(coll.apps) %}
-            <section class="feed-layout-grid multi-app-tile mkt-tile c">
-              <h1 class="feed-tile-header">{{ group.name }}</h1>
-              <ul class="app-list">
-                {% for app in group.apps %}
-                  {{ mini_tile(app) }}
-                {% endfor %}
-              </ul>
-            </section>
-          {% endfor %}
-        {% else %}
-          <ol class="container c">
-            {% for app in coll.apps %}
-              <li class="item result app c">
-                {{ market_tile(app, link=(not is_preview), src='collection', tray=False) }}
-              </li>
+      <div class="column-b">
+        {% if coll.apps %}
+          {% if coll.apps[0].group %}
+            {% for group in feed.group_apps(coll.apps) %}
+              <section class="feed-layout-grid multi-app-tile mkt-tile c">
+                <h1 class="feed-tile-header">{{ group.name }}</h1>
+                <ul class="app-list">
+                  {% for app in group.apps %}
+                    {{ mini_tile(app) }}
+                  {% endfor %}
+                </ul>
+              </section>
             {% endfor %}
-          </ol>
+          {% else %}
+            <ol class="container c">
+              {% for app in coll.apps %}
+                <li class="item result app c">
+                  {{ market_tile(app, link=(not is_preview), src='collection', tray=False) }}
+                </li>
+              {% endfor %}
+            </ol>
+          {% endif %}
+        {% else %}
+          {# L10n: Please do your best to capture the essence of Scooby Doo. #}
+          {{ _("Ruh roh! No apps here, Shaggy!") }}
         {% endif %}
-      {% else %}
-        {# L10n: Please do your best to capture the essence of Scooby Doo. #}
-        {{ _("Ruh roh! No apps here, Shaggy!") }}
-      {% endif %}
+      </div>
     </div>
   </section>
 {% endmacro %}
