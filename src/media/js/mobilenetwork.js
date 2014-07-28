@@ -29,9 +29,6 @@ define('mobilenetwork',
         // Poland
         260: 'pl',
 
-        // Greece
-        202: 'gr',
-
         // Mexico
         334: 'mx',
 
@@ -41,23 +38,59 @@ define('mobilenetwork',
         // Germany
         262: 'de',
 
-        // Uruguay
-        748: 'uy',
+        // Montenegro
+        297: 'me',
 
         // Serbia
         220: 'rs',
 
-        // Montenegro
-        297: 'me',
+        // Greece
+        202: 'gr',
+
+        // Peru
+        716: 'pe',
+
+        // Uruguay
+        748: 'uy',
+
+        // Argentina
+        722: 'ar',
 
         // China
         460: 'cn',
 
-        // Japan
-        440: 'jp',
+        // Italy
+        222: 'it',
+
+        // Chile
+        703: 'cl',
+
+        // El Salvador
+        706: 'sv',
+
+        // Guatemala
+        704: 'gt',
+
+        // Ecuador
+        740: 'ec',
+
+        // Costa Rica
+        712: 'cr',
+
+        // Panama
+        714: 'pa',
+
+        // Nicaragua
+        710: 'ni',
 
         // France
-        208: 'fr'
+        208: 'fr',
+
+        // Bangladesh
+        470: 'bd',
+
+        // Japan
+        440: 'jp'
     };
 
     var carriers = [
@@ -66,6 +99,7 @@ define('mobilenetwork',
         'china_unicom',
         'deutsche_telekom',
         'etisalat',
+        'grameenphone',
         'hutchinson_three_group',
         'kddi',
         'kt',
@@ -216,7 +250,7 @@ define('mobilenetwork',
         748: {
             7: 'telefonica',
             // Claro.
-            10: 'america_movil',
+            10: 'america_movil'
         },
 
         // Serbia
@@ -232,10 +266,15 @@ define('mobilenetwork',
         // 1, 3, 6
         460: 'china_unicom',
 
+        // Bangladesh
+        470: {
+            1: 'grameenphone'
+        },
+
         // Japan
         // 7, 8, 49, 50, 51, 52, 53, 54, 55, 56, 70, 71, 72, 73, 74, 75, 76,
         // 77, 79, 88, 89
-        440: 'kddi',
+        440: 'kddi'
     };
 
     function getNetwork(mcc, mnc) {
