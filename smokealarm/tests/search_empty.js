@@ -7,7 +7,7 @@ suite.run('/', function(test, waitFor) {
     });
 
     test('Perform a search', function(assert) {
-        suite.fill('#search', {q: 'xxxqqqbbb'}, true);
+        suite.fill('#search', {q: 'empty'}, true);
     });
 
     waitFor(function() {
@@ -15,7 +15,7 @@ suite.run('/', function(test, waitFor) {
     });
 
     test('Test that there are no results', function(assert) {
-        assert.URL(/\/search\?q=xxxqqqbbb/);
+        assert.URL(/\/search\?q=empty/);
         suite.capture('search_empty.png');
 
         assert.visible('#search-q');
@@ -23,6 +23,5 @@ suite.run('/', function(test, waitFor) {
         assert.selectorDoesNotExist('.search-listing');
 
         assert.hasText('p.no-results', 'No results found');
-
     });
 });
