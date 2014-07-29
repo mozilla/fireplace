@@ -71,6 +71,10 @@ define('navbar', ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 
     // Tap handler.
     z.body.on('click', '.navbar li > a', function() {
         var $this = $(this);
+        if ($this.hasClass('desktop-cat-link')) {
+            // Don't allow click of category tab on desktop.
+            return;
+        }
         var $navbar = $this.closest('.navbar.active');
         var tabs = tabsMkt;
         if ($navbar.hasClass('nav-settings')) {

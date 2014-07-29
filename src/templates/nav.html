@@ -16,7 +16,8 @@
   {{ navtab('new', _('New'), url('new'), active_tab_mkt) }}
   {{ navtab('popular', _('Popular'), url('popular'), active_tab_mkt) }}
   <li class="categories" data-tab="categories"{% if active_tab == 'categories' %} class="active"{% endif %}>
-    <a href="{{ url('categories') }}">{{ _('Categories') }}</a>
+    <a class="mobile-cat-link" href="{{ url('categories') }}">{{ _('Categories') }}</a>
+    <a class="desktop-cat-link">{{ _('Categories') }}</a>
     <div class="hovercats"></div>
   </li>
 </ul>

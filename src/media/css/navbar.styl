@@ -152,6 +152,9 @@
                     height: 38px;
                     line-height: 38px;
                 }
+                .desktop-cat-link {
+                    display: none;
+                }
             }
         }
         .account-links {
@@ -210,10 +213,11 @@
                     text-decoration: none;
                 }
             }
+            a:not([href]):hover {
+                cursor: default;
+            }
         }
         .categories {
-            cursor: pointer;
-
             &:hover {
                 color: $breezy-blue;
 
@@ -235,6 +239,12 @@
                     top: 20px;
                 }
             }
+        }
+        .mobile-cat-link {
+            display: none;
+        }
+        .desktop-cat-link {
+            display: inline;
         }
     }
     [data-page-type~=settings] .header-button.settings {
