@@ -2,7 +2,7 @@
 {% include '_macros/market_tile.html' %}
 {% include '_macros/more_button.html' %}
 
-{% set search_url = api('search')|urlparams(sort=sort, limit=24) if sort else api('search') %}
+{% set search_url = anonApi('search')|urlparams(sort=sort, limit=24) if sort else api('search') %}
 
 <section class="feed c">
   <section class="feed-layout-list multi-app-tile mkt-tile c" data-type="{{ source }}">
@@ -10,7 +10,7 @@
       <h1 class="feed-tile-header">{{ title }}</h1>
     </div>
 
-    {% defer (url=search_url, pluck='objects', as='app', paginate='ol.listing') %}
+    {% defer (url=search_url, pluck='objects', as='app', paginate='ul.app-list') %}
       <ul class="app-list grid-if-desktop c">
         {% for app in this %}
           {{ mini_tile(app) }}
