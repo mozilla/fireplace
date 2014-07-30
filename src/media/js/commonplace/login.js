@@ -1,6 +1,6 @@
 define('login',
-    ['cache', 'capabilities', 'defer', 'jquery', 'log', 'notification', 'settings', 'underscore', 'urls', 'user', 'utils', 'requests', 'z'],
-    function(cache, capabilities, defer, $, log, notification, settings, _, urls, user, utils, requests, z) {
+    ['cache', 'capabilities', 'consumer_info', 'defer', 'jquery', 'log', 'notification', 'settings', 'underscore', 'urls', 'user', 'utils', 'requests', 'z'],
+    function(cache, capabilities, consumer_info, defer, $, log, notification, settings, _, urls, user, utils, requests, z) {
 
     var console = log('login');
     var persona_def = defer.Deferred();
@@ -23,21 +23,6 @@ define('login',
     function signInNotification() {
         notification.notification({message: gettext('You have been signed in')});
     }
-
-    z.win.on('focus', function() {
-        if (!capabilities.fallbackFxA()) {
-            return;
-        }
-
-        // If the FxA popup is closed, when the Marketplace regains focus,
-        // kill the throbber and clear the pending login.
-        // (Note: Since `window.closed` is unreliable on both Firefox & Chrome,
-        // we check for the existence of the `opener`, which becomes `null`
-        // when closed.)
-        if (pending_logins.length && !fxa_popup.opener) {
-            oncancel();
-        }
-    });
 
     z.body.on('click', '.persona', function(e) {
         e.preventDefault();
@@ -269,17 +254,33 @@ define('login',
         return persona_loaded;
     }
 
-    // Try to load persona.
-    if (!capabilities.fallbackFxA()) {
-        loadPersona();
-    } else {
-        // Fallback FxA doesn't use navigator.id, so we don't have anything to
-        // inject and can immediately add the "persona-loaded" class instead of
-        // waiting on the promise. This lets us change the cursor for the
-        // "Sign in" link.
-        persona_def.reject();
-        z.body.addClass('persona-loaded');
-    }
+    consumer_info.promise.done(function() {
+        // Wait on consumer_info promise, because it tells us whether fxa is
+        // enabled. (FIXME bug 1038936).
+        if (!capabilities.fallbackFxA()) {
+            window.console.info('Ok, no fallback FxA, loading Persona...');
+            // Try to load persona. This is used by persona native/fallback
+            // implementation, as well as fxa native.
+            loadPersona();
+        } else {
+            // Handle fallback FxA. It doesn't use navigator.id, so we don't
+            // have anything to inject and can immediately add the
+            // "persona-loaded" class instead of waiting on the promise.
+            // This lets us change the cursor for the "Sign in" link.
+            persona_def.reject();
+            z.body.addClass('persona-loaded');
+            z.win.on('focus', function() {
+                // If the FxA popup is closed, when the Marketplace regains
+                // focus, kill the throbber and clear the pending login.
+                // (Note: Since `window.closed` is unreliable on both Firefox
+                // & Chrome, we check for the existence of the `opener`, which
+                // becomes `null` when closed.)
+                if (pending_logins.length && !fxa_popup.opener) {
+                    opt.oncancel();
+                }
+            });
+        }
+    });
 
     return {login: startLogin};
 });
