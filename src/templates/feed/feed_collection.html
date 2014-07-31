@@ -1,6 +1,7 @@
 {% include "_macros/feed_item.html" %}
 
-{% defer (url=anonApi('feed-collection', [slug]), id='collection', as='feed-collection', key=slug) %}
+{% defer (url=anonApi('feed-collection', [slug]), id='feed-collection',
+          as='feed-collection', key=slug) %}
   {{ feed_collection_landing(this) }}
 {% placeholder %}
   <p class="spinner alt spaced"></p>

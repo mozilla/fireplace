@@ -10,13 +10,13 @@ define('views/feed/feed_collection',
         builder.start('feed/feed_collection.html', {
             slug: slug
         }).done(function() {
-            var collection = builder.results.collection;
+            var collection = builder.results.feed_collection;
             if (collection) {
                 builder.z('title', utils.translate(collection.name));
             }
         });
 
-        builder.onload('collection', function(data) {
+        builder.onload('feed-collection', function(data) {
             // Give him the clamps!
             clamp(document.querySelector('.collection + .desc'), 7);
         });
