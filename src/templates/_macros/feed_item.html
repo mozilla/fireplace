@@ -58,9 +58,6 @@
                      rating_link=False) }}
     {% endif %}
   </a>
-
-  {{ feed.cast_feed_app(feed_app, true) }}
-  {{ cast_app(feed_app.app, true) }}
 {% endmacro %}
 
 {% macro feed_brand(brand) %}
@@ -82,12 +79,9 @@
       </a>
     {% endif %}
   </section>
-
-  {{ feed.cast_brand(brand, true) }}
-  {{ cast_app(brand.apps, true) }}
 {% endmacro %}
 
-{% macro feed_collection(coll, is_preview) %}
+{% macro feed_collection(coll) %}
   {% set color = coll.background_color %}
   {% set desc = coll.description|translate(coll) %}
 
@@ -111,14 +105,9 @@
       <div class="desc">{{ desc|safe }}</div>
     </section>
   </a>
-
-  {% if not is_preview %}
-    {{ feed.cast_collection(coll, true) }}
-    {{ cast_app(coll.apps, true) }}
-  {% endif %}
 {% endmacro %}
 
-{% macro feed_shelf(shelf, landing, is_preview) %}
+{% macro feed_shelf(shelf, landing) %}
   {% set color = shelf.background_color %}
 
   <a href="{{ url('feed/feed_shelf', [shelf.slug])|urlparams(src='feed') }}" class="fanchor">
@@ -129,18 +118,13 @@
       </div>
     </section>
   </a>
-
-  {% if not is_preview %}
-    {{ feed.cast_shelf(shelf, true) }}
-    {{ cast_app(shelf.apps, true) }}
-  {% endif %}
 {% endmacro %}
 
-{% macro feed_collection_landing(coll, is_preview) %}
+{% macro feed_collection_landing(coll) %}
   <section class="main feed feed-landing collection-landing">
     <div class="column-wrap">
       <div class="column-a">
-        {{ feed_collection(coll, is_preview) }}
+        {{ feed_collection(coll) }}
       </div>
 
       <div class="column-b">
@@ -160,7 +144,7 @@
             <ol class="container c">
               {% for app in coll.apps %}
                 <li class="item result app c">
-                  {{ market_tile(app, link=(not is_preview), src='collection', tray=False) }}
+                  {{ market_tile(app, src='collection', tray=False) }}
                 </li>
               {% endfor %}
             </ol>
@@ -174,10 +158,10 @@
   </section>
 {% endmacro %}
 
-{% macro feed_shelf_landing(shelf, is_preview) %}
+{% macro feed_shelf_landing(shelf) %}
   <section class="main feed feed-landing shelf-landing">
     <div class="column-a">
-      {{ feed_shelf(shelf, true, is_preview) }}
+      {{ feed_shelf(shelf, true) }}
       <p class="desc">{{ shelf.description|translate(shelf) }}</p>
     </div>
 
@@ -185,7 +169,7 @@
       <ol class="container column-b c">
         {% for app in shelf.apps %}
           <li class="item result app c">
-            {{ market_tile(app, link=(not is_preview), src='shelf', tray=False) }}
+            {{ market_tile(app, src='shelf', tray=False) }}
           </li>
         {% endfor %}
       </ol>
