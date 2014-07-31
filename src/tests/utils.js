@@ -6,6 +6,7 @@ var feq_ = a.feq_;
 
 var filters = require('nunjucks').require('filters');
 var utils = require('utils');
+var utils_local = require('utils_local');
 
 test('String strip', function(done) {
     eq_(('  a s d  f   ').strip(), 'asdf');
@@ -143,6 +144,28 @@ test('translate', function(done) {
     eq_(filters.translate({'blah': '3'}, dlobj, 'es-PD'), '3');
     eq_(filters.translate({'foo': 'bar', 'en-US': '3'}, null, 'es-PD'), '3');
     eq_(filters.translate({}, dlobj, 'es-PD'), '');
+    done();
+});
+
+test('isSystemDateRecent', function(done) {
+    eq_(utils_local.isSystemDateRecent(), true);
+
+    // Backdate `Date` for testing.
+    var _Date = Date;
+    var d = new Date(2000, 1, 1);
+    Date = function() { // jshint ignore:line
+        return d;
+    };
+    // For `Date.now` (and `jquery.now`) to work.
+    Date.now = function() {
+        return d.getTime();
+    };
+
+    eq_(utils_local.isSystemDateRecent(), false);
+
+    // Put back date.
+    Date = _Date; // jshint ignore:line
+
     done();
 });
 
