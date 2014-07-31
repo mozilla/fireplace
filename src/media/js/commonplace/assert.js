@@ -41,10 +41,10 @@ define('assert', ['underscore'], function(_) {
     }
 
     function _contain(haystack, needle) {
-        if (_.isObject(haystack)) {
-            return needle in haystack;
-        } else if (_.isString(haystack)) {
+        if (_.isString(haystack) || _.isArray(haystack)) {
             return haystack.indexOf(needle) !== -1;
+        } else if (_.isObject(haystack)) {
+            return needle in haystack;
         } else {
             return _.contains(haystack, needle);
         }
