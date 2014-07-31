@@ -115,6 +115,19 @@ define('login',
 
             fxa_popup = window.open(settings.fxa_auth_url, 'fxa',
                 'width=' + w + ',height=' + h + ',left=' + i[0] + ',top=' + i[1]);
+
+            // The same-origin policy prevents us from listening to events to
+            // know when the cross-origin FxA popup was closed. And we can't
+            // listen to `focus` on the main window because, unlike Chrome,
+            // Firefox does not fire `focus` when a popup is closed (presumably
+            // because the page never truly lost focus).
+            var popup_interval = setInterval(function() {
+                if (!fxa_popup || fxa_popup.closed) {
+                    oncancel();
+                    clearInterval(popup_interval);
+                }
+            }, 150);
+
         } else {
             persona_loaded.done(function() {
                 if (capabilities.persona()) {
@@ -269,16 +282,6 @@ define('login',
             // This lets us change the cursor for the "Sign in" link.
             persona_def.reject();
             z.body.addClass('persona-loaded');
-            z.win.on('focus', function() {
-                // If the FxA popup is closed, when the Marketplace regains
-                // focus, kill the throbber and clear the pending login.
-                // (Note: Since `window.closed` is unreliable on both Firefox
-                // & Chrome, we check for the existence of the `opener`, which
-                // becomes `null` when closed.)
-                if (pending_logins.length && !fxa_popup.opener) {
-                    oncancel();
-                }
-            });
         }
     });
 
