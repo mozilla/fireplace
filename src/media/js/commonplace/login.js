@@ -7,18 +7,14 @@ define('login',
     var persona_loaded = persona_def.promise();
 
     var fxa_popup;
-    var opt = {
-        termsOfService: settings.persona_tos,
-        privacyPolicy: settings.persona_privacy,
-        siteLogo: settings.persona_site_logo,
-        oncancel: function() {
-            console.log('Login cancelled');
-            z.page.trigger('login_cancel');
-            _.invoke(pending_logins, 'reject');
-            pending_logins = [];
-        }
-    };
     var pending_logins = [];
+
+    function oncancel() {
+        console.log('Login cancelled');
+        z.page.trigger('login_cancel');
+        _.invoke(pending_logins, 'reject');
+        pending_logins = [];
+    }
 
     function signOutNotification() {
         notification.notification({message: gettext('You have been signed out')});
@@ -39,7 +35,7 @@ define('login',
         // we check for the existence of the `opener`, which becomes `null`
         // when closed.)
         if (pending_logins.length && !fxa_popup.opener) {
-            opt.oncancel();
+            oncancel();
         }
     });
 
@@ -90,6 +86,12 @@ define('login',
         var def = defer.Deferred();
         pending_logins.push(def);
 
+        var opt = {
+            termsOfService: settings.persona_tos,
+            privacyPolicy: settings.persona_privacy,
+            siteLogo: settings.persona_site_logo,
+            oncancel: oncancel
+        };
         if (settings.persona_unverified_issuer) {
             // We always need to force a specific issuer because bridged IdPs don't work with verified/unverified.
             // See bug 910938.
