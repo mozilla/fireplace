@@ -104,7 +104,7 @@ define('navbar', ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 
     }
     initActTray();
     z.page.on('loaded', function() {
-        $('.account-links, .settings').removeClass('active');
+        $('.account-links, .act-tray .settings').removeClass('active');
     });
     z.body.on('reloaded_chrome', initActTray);
 
@@ -139,6 +139,7 @@ define('navbar', ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 
             })
         ).addClass('secondary-header');
 
+        // Desktop categories hover menu.
         var catsTrigger = '.navbar > .categories';
         var $menu = $('.hovercats');
 
