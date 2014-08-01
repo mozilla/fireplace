@@ -5,8 +5,8 @@
 {% from '_macros/stars.html' import stars %}
 
 
-{% macro mini_tile(app, hidden, landing) %}
-  <li class="app mini-app {{ 'hidden' if hidden and not landing }}">
+{% macro mini_tile(app, landing) %}
+  <li class="app mini-app">
     <a href="{{ url('app', [app.slug])|urlparams(src=src) }}" class="app-link c">
       <img class="icon" src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}">
       <div class="info">
@@ -69,8 +69,9 @@
     </div>
     <ul class="app-list">
       {% for app in brand.apps %}
-        {# Show the first X apps, hide the rest. #}
-        {{ mini_tile(app, hidden=loop.index0 >= feed.MAX_BRAND_APPS, landing=landing) }}
+        {% if (loop.index0 < feed.MAX_BRAND_APPS) or landing %}
+          {{ mini_tile(app, landing=landing) }}
+        {% endif %}
       {% endfor %}
     </ul>
     {% if not landing and brand.apps.length > feed.MAX_BRAND_APPS %}

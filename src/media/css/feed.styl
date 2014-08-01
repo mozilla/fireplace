@@ -244,7 +244,34 @@ $vertical-tile-margin = 10px;
     }
     [data-page-type~="newpop"] .app-list {
         position: relative;
-        top: 30px;
+        top: 35px;
+    }
+    .feed.brand-landing {
+        section.feed-brand {
+            background: transparent;
+            box-shadow: none;
+            max-width: $desktop-content;
+        }
+        .feed-layout-list {
+            padding: 0;
+
+            h1.feed-tile-header {
+                font-size: 24px;
+            }
+            li.mini-app {
+                background-color: $white;
+                border-radius: 5px;
+                float: left;
+                height: 80px;
+                margin-right: 20px;
+                padding: 10px;
+                width: 335px;
+
+                &:nth-child(even) {
+                    margin-right: 0;
+                }
+            }
+        }
     }
 }
 
@@ -551,6 +578,9 @@ $vertical-tile-margin = 10px;
             line-height: 22px;
             padding: 20px;
         }
+    }
+    .multi-app-tile {
+        top: 10px;
     }
 }
 
