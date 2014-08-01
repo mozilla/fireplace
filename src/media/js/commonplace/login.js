@@ -276,7 +276,7 @@ define('login',
                 // & Chrome, we check for the existence of the `opener`, which
                 // becomes `null` when closed.)
                 if (pending_logins.length && !fxa_popup.opener) {
-                    opt.oncancel();
+                    oncancel();
                 }
             });
         }
