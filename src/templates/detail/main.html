@@ -11,6 +11,7 @@
     {{ market_tile(this, src='detail', rating_link=True) }}
   {% placeholder %}
     <div class="product mkt-tile">
+      <img class="icon deferred" src="{{ media('fireplace/img/pretty/rocket.png') }}" alt="" data-src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
       <div class="info">
         <h3>{{ _('Loading...') }}</h3>
         <div class="price vital">{{ _('Loading...') }}</div>
@@ -97,10 +98,6 @@
         </div>
       {% endif %}
   </div>
-</section>
-{% placeholder %}
-<section class="main blurbs prose infobox">
-  <p class="spinner alt"></p>
 </section>
 {% except %}
 {% end %}
