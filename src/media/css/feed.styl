@@ -17,7 +17,7 @@ $vertical-tile-margin = 10px;
         padding: 0;
     }
     ul.feed {
-        max-width: $feed-column-width * 2;
+        max-width: $mobile-tile-width * 2 + $horizontal-tile-padding * 2;
 
         .feed-item-item {
             margin: 0 0 $vertical-tile-padding;
@@ -698,7 +698,7 @@ $vertical-tile-margin = 10px;
         .column-a {
             border-radius: 5px;
             display: inline-block;
-            margin-right: 10px;
+            margin-right: $horizontal-tile-padding;
             vertical-align: top;
             width: 320px;
 
@@ -709,9 +709,13 @@ $vertical-tile-margin = 10px;
         }
         .column-b {
             display: inline-block;
-            padding: 0 $horizontal-tile-padding;
+            padding: 0;
             vertical-align: top;
+            width: $mobile-tile-width;
 
+            .container {
+                width: $mobile-tile-width;
+            }
             .mkt-tile .elliflow {
                 max-width: 125px;
             }

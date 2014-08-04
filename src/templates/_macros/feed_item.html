@@ -162,23 +162,25 @@
 
 {% macro feed_shelf_landing(shelf) %}
   <section class="main feed feed-landing shelf-landing">
-    <div class="column-a">
-      {{ feed_shelf(shelf, true) }}
-      <p class="desc">{{ shelf.description|translate(shelf) }}</p>
-    </div>
+    <div class="column-wrap">
+      <div class="column-a">
+        {{ feed_shelf(shelf, true) }}
+        <p class="desc">{{ shelf.description|translate(shelf) }}</p>
+      </div>
 
-    {% if shelf.apps %}
-      <ol class="container column-b c">
-        {% for app in shelf.apps %}
-          <li class="item result app c">
-            {{ market_tile(app, src='feed', tray=False) }}
-          </li>
-        {% endfor %}
-      </ol>
-    {% else %}
-      {# L10n: Please do your best to capture the essence of Scooby Doo. #}
-      {{ _("Ruh roh! No apps here, Shaggy!") }}
-    {% endif %}
+      {% if shelf.apps %}
+        <ol class="container column-b c">
+          {% for app in shelf.apps %}
+            <li class="item result app c">
+              {{ market_tile(app, src='feed', tray=False) }}
+            </li>
+          {% endfor %}
+        </ol>
+      {% else %}
+        {# L10n: Please do your best to capture the essence of Scooby Doo. #}
+        {{ _("Ruh roh! No apps here, Shaggy!") }}
+      {% endif %}
+    </div>
   </section>
 {% endmacro %}
 
