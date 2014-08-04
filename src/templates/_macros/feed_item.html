@@ -7,7 +7,7 @@
 
 {% macro mini_tile(app, landing) %}
   <li class="app mini-app">
-    <a href="{{ url('app', [app.slug])|urlparams(src=src) }}" class="app-link c">
+    <a href="{{ url('app', [app.slug])|urlparams(src='feed') }}" class="app-link c">
       <img class="icon" src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}">
       <div class="info">
         <h2 class="app-name elliflow">{{ app.name|translate(app) }}</h2>
