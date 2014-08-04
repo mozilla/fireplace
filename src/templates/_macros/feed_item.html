@@ -132,8 +132,8 @@
         {% if coll.apps %}
           {% if coll.apps[0].group %}
             {% for group in feed.group_apps(coll.apps) %}
-              <section class="feed-layout-grid multi-app-tile mkt-tile c">
-                <h1 class="feed-tile-header">{{ group.name }}</h1>
+              <section class="feed-layout-grid multi-app-tile mkt-tile grouped c">
+                <h1 class="feed-tile-header grouped">{{ group.name }}</h1>
                 <ul class="app-list">
                   {% for app in group.apps %}
                     {{ mini_tile(app) }}
