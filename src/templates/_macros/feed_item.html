@@ -55,6 +55,7 @@
                      classes=['feed-app'],
                      feed_app=feed_app,
                      tray=False,
+                     src='feed',
                      rating_link=False) }}
     {% endif %}
   </a>
@@ -145,7 +146,7 @@
             <ol class="container c">
               {% for app in coll.apps %}
                 <li class="item result app c">
-                  {{ market_tile(app, src='collection', tray=False) }}
+                  {{ market_tile(app, src='feed', tray=False) }}
                 </li>
               {% endfor %}
             </ol>
@@ -170,7 +171,7 @@
       <ol class="container column-b c">
         {% for app in shelf.apps %}
           <li class="item result app c">
-            {{ market_tile(app, src='shelf', tray=False) }}
+            {{ market_tile(app, src='feed', tray=False) }}
           </li>
         {% endfor %}
       </ol>
