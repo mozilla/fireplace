@@ -67,12 +67,7 @@ $triangle-size = 20px;
         margin: -4px 0 -7px;
         padding-bottom: 10px;
     }
-    .icon {
-        float: left;
-        position: absolute;
-        top: 15px;
-        left: 10px;
-    }
+
     .subdetail {
         color: $earl-gray;
         font-size: 12px;
@@ -139,19 +134,19 @@ $triangle-size = 20px;
             position: relative;
             width: 100%;
         }
-        img {
-            -moz-user-select: none;
-            bottom: 0;
-            display: block;
-            left: 0;
-            margin: auto;
-            max-height: 100%;
-            max-width: 100%;
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
     }
+}
+.tray img {
+    -moz-user-select: none;
+    bottom: 0;
+    display: block;
+    left: 0;
+    margin: auto;
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .mkt-tile + .single li {
@@ -185,6 +180,7 @@ $dot-size = 13px;
         transition-duration: 0.15s;
         transition-property: border-color, border-width;
         width: $dot-size;
+
         &.current,
         &:hover,
         &:active {
@@ -259,25 +255,35 @@ $dot-size = 13px;
     }
 }
 
+// Rocketship placeholder for image deferrer.
 img {
     transition(opacity .1s);
 }
-#page .screenshot .deferred,
-#page .icon.deferred {
+.screenshot .deferred,
+img.icon.deferred {
     height: 60px;
     opacity: 0.2;
     width: 42px;
 }
-#page .mkt-tile .icon.deferred {
-    left: 13px;
-    margin: 0 38px 4px 0;
-    position: relative;
-    top: 0;
-}
-#page .screenshot img.deferred {
+.screenshot img.deferred {
     /* Screenshots use placeholder image, make it look nice. */
     height: 60px;
     margin-top: 40px;
+}
+img.icon.deferred {
+    position: relative;
+    top: 0;
+}
+.mkt-tile .icon.deferred,
+.mini-app .icon.deferred {
+    left: 13px;
+}
+[data-page-type~="detail"] .mkt-tile .icon {
+    margin-right: 15px;
+
+    &.deferred {
+        margin: 0 37px 4px 0;
+    }
 }
 
 // Grid
@@ -653,12 +659,6 @@ ratings-sidebar() {
         padding: 15px 10px 10px 10px;
         position: relative;
 
-        .icon {
-            float: left;
-            margin-right: 15px;
-            position: static;
-            width: 64px;
-        }
         h3 {
             color: $castle-skull-gray;
             font-size: 15px;
@@ -714,6 +714,14 @@ ratings-sidebar() {
             }
         }
     }
+}
+
+.mkt-tile .icon {
+    float: left;
+    left: 10px;
+    position: static;
+    top: 15px;
+    width: 64px;
 }
 
 @media $at-least-desktop {

@@ -8,7 +8,9 @@
 {% macro mini_tile(app) %}
   <li class="app mini-app">
     <a href="{{ url('app', [app.slug])|urlparams(src='feed') }}" class="app-link c">
-      <img class="icon" src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}">
+      <img class="icon deferred" src="{{ media('fireplace/img/pretty/rocket.png') }}"
+           data-src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}"
+           height="64" width="64">
       <div class="info">
         <h2 class="app-name elliflow">{{ app.name|translate(app) }}</h2>
         <p class="author elliflow">{{ app.author }}</p>
@@ -40,7 +42,11 @@
                {% endif %}>
         {% if feed_app.type == feed.FEEDAPP_ICON %}
           <ul class="app-icons">
-            <li><img src="{{ feed_app.app.icons[64] }}" alt="{{ feed_app.app.name|translate(feed_app) }}"></li>
+            <li>
+              <img class="icon deferred" src="{{ media('fireplace/img/pretty/rocket.png') }}"
+                   data-src="{{ feed_app.app.icons[64] }}"
+                   alt="{{ feed_app.app.name|translate(feed_app) }}">
+            </li>
           </ul>
         {% endif %}
         <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
@@ -98,7 +104,10 @@
                    {% endif %}>
       <ul class="app-icons">
         {% for app in coll.apps.slice(0, 3) %}
-          <li><img src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}"></li>
+          <li>
+            <img class="icon deferred" src="{{ media('fireplace/img/pretty/rocket.png') }}"
+                 data-src="{{ app.icons[64] }}" alt="{{ app.name|translate(app) }}">
+          </li>
         {% endfor %}
       </ul>
       <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>

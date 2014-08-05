@@ -26,6 +26,11 @@ $vertical-tile-margin = 10px;
     }
 }
 
+.feed .icon {
+    height: 60px;
+    width: 60px;
+}
+
 // Main container for feed elements on the homepage.
 .feed {
     list-style-type: none;
@@ -318,10 +323,6 @@ $vertical-tile-margin = 10px;
     &.grouped {
         margin-bottom: $vertical-tile-margin;
     }
-    img {
-        height: 60px;
-        width: 60px;
-    }
     .feed-tile-header {
         color: $hungry-text;
         font-size: 15px;
@@ -495,15 +496,13 @@ $vertical-tile-margin = 10px;
 
         li {
             display: inline-block;
+            height: 60px;
             margin-right: 20px;
+            width: 60px;
 
             &:last-child {
                 margin-right: 0;
             }
-        }
-        li, img {
-            height: 60px;
-            width: 60px;
         }
         + .curve {
             top: 30px;
@@ -609,11 +608,15 @@ $vertical-tile-margin = 10px;
     }
 }
 
-#page .feed-item-item .icon.deferred {
-    height: 64px;
-    margin: 0;
-    position: static;
-    width: 64px;
+.mini-app .icon.deferred,
+.feed-app .icon.deferred {
+    margin-bottom: 10px;
+    margin-right: 18px;
+}
+.app-icons .icon.deferred,
+.mini-app .icon.deferred,
+.feed-app .icon.deferred {
+    left: 8px;
 }
 
 // Editoral Brand colors.
