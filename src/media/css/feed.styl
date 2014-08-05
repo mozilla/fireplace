@@ -186,6 +186,24 @@ $vertical-tile-margin = 10px;
     &.mkt-tile {
         position: relative;
     }
+    .feed-tile-header-wrap {
+        float: none !important;
+    }
+    .fanchor {
+        display: table-cell;  // So we can vertically center the children.
+        height: 60px;
+        padding-left: 60px;
+        vertical-align: middle;
+
+        &:hover {
+            border: none;
+            text-decoration: underline;
+        }
+    }
+    .feed-tile-header {
+        margin: 0 0 0 10px !important;
+        padding: 0 !important;
+    }
     .view-all {
         color: $view-all-blue;
         border-bottom: 1px solid $view-all-blue;

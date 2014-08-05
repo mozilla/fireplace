@@ -66,7 +66,9 @@
 
   <section class="feed-brand feed-layout-{{ brand.layout }} multi-app-tile mkt-tile c" data-brand-type="{{ brand.type }}">
     <div class="feed-tile-header-wrap">
-      <h1 class="feed-tile-header" data-brand-color="{{ color }}">{{ feed.get_brand_name(brand) }}</h1>
+      <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src='feed') }}" class="fanchor">
+        <h1 class="feed-tile-header" data-brand-color="{{ color }}">{{ feed.get_brand_name(brand) }}</h1>
+      </a>
     </div>
     <ul class="app-list">
       {% for app in brand.apps %}
