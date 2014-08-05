@@ -51,7 +51,7 @@ $vertical-tile-margin = 10px;
         border-radius: 5px;
         box-shadow: 0 1px 1px $cement-gray;
         color: $hungry-text;
-        margin-bottom: $vertical-tile-margin;
+        margin-bottom: 0;
         padding: $vertical-tile-padding $horizontal-tile-padding;
         position: relative;
 
@@ -106,6 +106,10 @@ $vertical-tile-margin = 10px;
     .group-subheader {
         margin-bottom: $vertical-margin;
     }
+}
+
+[data-page-type~="leaf"] .feed .mkt-tile {
+    margin-bottom: $vertical-tile-padding;
 }
 
 .app-link {
@@ -610,7 +614,7 @@ $vertical-tile-margin = 10px;
 
 .mini-app .icon.deferred,
 .feed-app .icon.deferred {
-    margin-bottom: 10px;
+    margin-bottom: 0;
     margin-right: 18px;
 }
 .app-icons .icon.deferred,
