@@ -5,9 +5,11 @@
 
 FROM mozillamarketplace/centos-phantomjs-mkt:0.1
 
-RUN npm install -g commonplace
-
 RUN mkdir -p /srv/fireplace
+ADD src/.commonplace /srv/fireplace/.commonplace
+
+RUN npm install -g commonplace@$(cat /srv/fireplace/.commonplace | python -c 'import sys, json; print json.load(sys.stdin)["version"]')
+
 ADD package.json /srv/fireplace/package.json
 
 WORKDIR /srv/fireplace
