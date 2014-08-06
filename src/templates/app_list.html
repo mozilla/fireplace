@@ -2,7 +2,8 @@
 {% include '_macros/market_tile.html' %}
 {% include '_macros/more_button.html' %}
 
-{% set search_url = anonApi('search')|urlparams(sort=sort, limit=24) if sort else api('search') %}
+{% set search_url = anonApi('search')|urlparams(sort=sort, limit=24) if sort
+                    else anonApi('search')|urlparams(limit=24) %}
 
 <section class="feed c">
   <section class="feed-layout-list multi-app-tile mkt-tile c" data-type="{{ source }}">
