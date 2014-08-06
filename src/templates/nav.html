@@ -2,7 +2,7 @@
 
 {% macro navtab(code, name, url, active_tab) %}
 <li class="{{ code }} {{ 'active' if active_tab == code }}" data-tab="{{ code }}">
-  <a href="{{ url }}">{{ name }}</a>
+  <a class="tab-link" href="{{ url }}">{{ name }}</a>
 </li>
 {% endmacro %}
 
@@ -16,7 +16,7 @@
   {{ navtab('new', _('New'), url('new'), active_tab_mkt) }}
   {{ navtab('popular', _('Popular'), url('popular'), active_tab_mkt) }}
   <li class="categories" data-tab="categories"{% if active_tab == 'categories' %} class="active"{% endif %}>
-    <a class="mobile-cat-link" href="{{ url('categories') }}">{{ _('Categories') }}</a>
+    <a class="tab-link mobile-cat-link" href="{{ url('categories') }}">{{ _('Categories') }}</a>
     <a class="desktop-cat-link">{{ _('Categories') }}</a>
     <div class="hovercats"></div>
   </li>

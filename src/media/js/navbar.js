@@ -65,7 +65,7 @@ define('navbar', ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 
             return;
         }
 
-        $navbar.find('li').eq(tabPos).find('a').trigger('click');
+        $navbar.find('li').eq(tabPos).find('.tab-link').trigger('click');
     });
 
     // Tap handler.
