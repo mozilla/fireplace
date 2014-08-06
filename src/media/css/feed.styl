@@ -281,21 +281,31 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
     }
 }
 
-.feed-collection .feed-tile-header {
-    margin-left: 70px;
+[data-page-type~="newpop"] .feed .feed-layout-list > .info {
+    margin-left: 0;
 }
 
-.feed-brand .feed-tile-header:before {
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 30px;
-    content: '';
-    display: block;
-    height: 60px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 60px;
+.feed-collection,
+[data-page-type~="newpop"] {
+    .feed-tile-header {
+        margin-left: 70px;
+    }
+}
+
+.feed-brand,
+[data-page-type~="newpop"] {
+    .feed-tile-header:before {
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 30px;
+        content: '';
+        display: block;
+        height: 60px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 60px;
+    }
 }
 
 @media $at-least-desktop {
