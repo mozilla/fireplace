@@ -58,15 +58,12 @@ $vertical-tile-margin = 10px;
         .icon {
             float: left;
         }
-        .info,
-        .feed-tile-header-wrap {
+        .info {
             float: left;
             height: 64px;
-            position: relative;
-        }
-        .info {
             margin-left: 10px;
             min-width: 205px;
+            position: relative;
         }
         .elliflow {
             max-width: 125px;
@@ -106,6 +103,12 @@ $vertical-tile-margin = 10px;
     .group-subheader {
         margin-bottom: $vertical-margin;
     }
+}
+
+.feed-tile-header-wrap {
+    float: left;
+    height: 64px;
+    position: relative;
 }
 
 [data-page-type~="leaf"] .feed .mkt-tile {
@@ -184,7 +187,8 @@ $vertical-tile-margin = 10px;
 }
 
 // Editorial brands.
-.feed-brand {
+.feed-brand,
+.feed-collection-listing {
     li {
         position: relative;
 
@@ -196,7 +200,7 @@ $vertical-tile-margin = 10px;
         position: relative;
     }
     .feed-tile-header-wrap {
-        float: none !important;
+        float: none;
     }
     .fanchor {
         display: table-cell;  // So we can vertically center the children.
@@ -210,8 +214,8 @@ $vertical-tile-margin = 10px;
         }
     }
     .feed-tile-header {
-        margin: 0 0 0 10px !important;
-        padding: 0 !important;
+        margin: 0 0 0 10px;
+        padding: 0;
     }
     .view-all {
         color: $view-all-blue;
@@ -244,21 +248,42 @@ $vertical-tile-margin = 10px;
     }
 }
 
-.feed-tile-header:not(.grouped) {
-    margin-left: 70px;
+.feed-collection-listing {
+    .feed-tile-header-wrap {
+        height: auto;
 
-    &:before {
-        background-position: center;
-        background-repeat: no-repeat;
-        border-radius: 30px;
-        content: '';
-        display: block;
-        height: 60px;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 60px;
+        .fanchor,
+        .feed-tile-header {
+            padding-left: 0;
+        }
+        .fanchor {
+            height: auto;
+
+        }
+        .feed-tile-header {
+            margin-left: 0;
+        }
     }
+    .desc {
+        margin-top: 15px;
+    }
+}
+
+.feed-collection .feed-tile-header {
+    margin-left: 70px;
+}
+
+.feed-brand .feed-tile-header:before {
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    content: '';
+    display: block;
+    height: 60px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 60px;
 }
 
 @media $at-least-desktop {
