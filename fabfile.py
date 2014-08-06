@@ -8,8 +8,8 @@ import deploysettings as settings
 
 env.key_filename = settings.SSH_KEY
 fabdeploytools.envs.loadenv(settings.CLUSTER)
-ROOT, FIREPLACE = helpers.get_app_dirs(__file__)
 
+ROOT, FIREPLACE = helpers.get_app_dirs(__file__)
 COMMONPLACE = '%s/node_modules/commonplace/bin' % FIREPLACE
 GRUNT = '%s/node_modules/grunt-cli/bin' % FIREPLACE
 
