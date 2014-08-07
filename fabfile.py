@@ -22,6 +22,8 @@ if settings.ZAMBONI_DIR:
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_local_mkt'
 os.environ["PATH"] += os.pathsep + os.pathsep.join([COMMONPLACE, GRUNT])
 
+PACKAGE_NAME = getattr(settings, 'PACKAGE_NAME', 'marketplace')
+
 
 @task
 def pre_update(ref):
@@ -81,4 +83,4 @@ def build_package():
 def upload_package():
     with lcd(ZAMBONI):
         local('%s manage.py upload_new_marketplace_package %s %s '
-              % (ZAMBONI_PYTHON, 'marketplace', FIREPLACE_PACKAGE))
+              % (ZAMBONI_PYTHON, PACKAGE_NAME, FIREPLACE_PACKAGE))
