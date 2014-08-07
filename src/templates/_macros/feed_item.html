@@ -105,17 +105,19 @@
 
   <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='feed') }}"
      class="fanchor">
-    <section class="feed-item full {{ 'mega' if desc }}"
+    <section class="feed-item full {{ 'mega' if desc }} {{ 'has-background' if coll.background_image }}"
                     {% if coll.background_image %}
                       style="background-image: url({{ coll.background_image }})"
                     {% else %}
                       style="background-color: {{ color|hex2rgba('.4') }}"
                    {% endif %}>
-      <ul class="app-icons">
-        {% for app in coll.apps.slice(0, 3) %}
-          <li>{{ deferred_icon(app.icons[64], app.name|translate(app)) }}</li>
-        {% endfor %}
-      </ul>
+      {% if not coll.background_image %}
+        <ul class="app-icons">
+          {% for app in coll.apps.slice(0, 3) %}
+            <li>{{ deferred_icon(app.icons[64], app.name|translate(app)) }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
       <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
       <div class="info">
         <h1 class="name">{{ coll.name|translate(coll)|safe }}</h1>
