@@ -11,7 +11,7 @@ define('feed',
 
     var BRAND_LAYOUTS_CHOICES = utils_local.items(BRAND_LAYOUTS);
 
-    var BRAND_COLOR_CLASSES = [
+    var BRAND_COLORS = [
         'ruby',
         'amber',
         'emerald',
@@ -54,7 +54,7 @@ define('feed',
             // Generate a unique identifier from the brand.
             var brand_id = brand.type;
             _.each(brand.apps, function(app) {
-                brand_id += '_' + app.slug;
+                brand_id += '_' + app.slug
             });
             return brand_id;
         }
