@@ -18,12 +18,12 @@ define('user',
     if (save_to_ls) {
         // Try to initialize items from localStorage.
         token = storage.getItem('user');
-        settings = JSON.parse(storage.getItem('settings') || '{}');
-        permissions = JSON.parse(storage.getItem('permissions') || '{}');
+        settings = storage.getItem('settings') || {};
+        permissions = storage.getItem('permissions') || {};
 
         var _stored = storage.getItem('user_apps');
         if (_stored) {
-            apps = JSON.parse(_stored);
+            apps = _stored;
         }
 
         log.unmention(token);
@@ -103,7 +103,7 @@ define('user',
     function save_settings() {
         if (save_to_ls) {
             console.log('Saving settings to localStorage');
-            storage.setItem('settings', JSON.stringify(settings));
+            storage.setItem('settings', settings);
         } else {
             console.log('Settings not saved to localStorage');
         }
@@ -121,7 +121,7 @@ define('user',
     function save_permissions() {
         if (save_to_ls) {
             console.log('Saving permissions to localStorage');
-            storage.setItem('permissions', JSON.stringify(permissions));
+            storage.setItem('permissions', permissions);
         } else {
             console.log('Permissions not saved to localStorage');
         }
@@ -160,7 +160,7 @@ define('user',
     function save_apps() {
         if (save_to_ls) {
             console.log('Saving user apps to localStorage');
-            storage.setItem('user_apps', JSON.stringify(apps));
+            storage.setItem('user_apps', apps);
         } else {
             console.log('User apps not saved to localStorage');
         }
