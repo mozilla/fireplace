@@ -1,46 +1,58 @@
 define('storage', ['settings'], function(settings) {
-    var fakeStorage = {};
+
+    function FakeStorage(){
+        store = {};
+    }
+
+    FakeStorage.prototype.getItem = function(key){
+        return this.store[key];
+    };
+
+    FakeStorage.prototype.setItem = function(key, value){
+        this.store[key] = value;
+    };
+
+    FakeStorage.prototype.removeItem = function(key){
+        delete this.store[key];
+    };
+
+    FakeStorage.prototype.clear = function(){
+        this.store = {};
+    };
 
     var ls;
-    try { ls = localStorage;}
-    catch(e) {}
+    try {
+        ls = localStorage;
+    } catch(e) {
+        ls = new FakeStorage();
+    }
 
-    function prefix(func, backup_func) {
-        return function() {
-            var args = Array.prototype.slice.call(arguments, 0);
-            args[0] = settings.storage_version + '::' + args[0];
-            try {
-                return func.apply(ls, args);
-            } catch(e) {
-                return backup_func.apply(fakeStorage, args);
-            }
-        };
+    function mapKey(key){
+        return settings.storage_version + '::' + key;
     }
 
     // Expose storage version (which is prefixed to every key).
     // For instance, used in Zamboni login.js.
-    try {
-        ls.setItem('latestStorageVersion', settings.storage_version);
-    } catch(e) {
-        fakeStorage.latestStorageVersion = settings.storage_version;
-    }
+    ls.setItem('latestStorageVersion', settings.storage_version);
 
     return {
         clear: function() {
-            try { ls.clear(); }
-            catch(e) { fakeStorage = {}; }
+            ls.clear();
         },
-        getItem: prefix(
-            ls.getItem,
-            function(key) { return this[key]; }
-        ),
-        removeItem: prefix(
-            ls.removeItem,
-            function(key) { delete this[key]; }
-        ),
-        setItem: prefix(
-            ls.setItem,
-            function(key, value) { this[key] = value; }
-        )
+        getItem: function(key){
+            var value = ls.getItem(mapKey(key));
+            // Handle nulls, maybe other stray values
+            try{
+                return JSON.parse(value);
+            }catch(e){
+                return value;
+            }
+        },
+        removeItem: function(key){
+            ls.removeItem(mapKey(key));
+        },
+        setItem: function(key, value){
+            ls.setItem(mapKey(key), JSON.stringify(value));
+        }
     };
 });

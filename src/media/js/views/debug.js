@@ -18,7 +18,7 @@ define('views/debug',
         notification.notification({message: 'Offline cache enabled', timeout: 1000});
 
     }).on('click', '#disable-offline-cache', function() {
-        storage.setItem('offline_cache_disabled', '1');
+        storage.setItem('offline_cache_disabled', 1);
         persistent_console_debug.log('Offline cache disabled:', new Date());
         require('views').reload();
         notification.notification({message: 'Offline cache disabled', timeout: 1000});
@@ -102,7 +102,7 @@ define('views/debug',
             recent_logs: recent_logs,
             persistent_logs: log.persistent.all,
             filter: log.filter,
-            request_cache: JSON.parse(storage.getItem('request_cache') || '{}')
+            request_cache: storage.getItem('request_cache') || {}
         });
 
         builder.z('type', 'leaf debug');

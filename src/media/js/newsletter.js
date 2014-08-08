@@ -19,7 +19,7 @@ define('newsletter',
         }
         // 72 hours (1000 x 60 x 60 x 72)
         var timeDelta = 259200000;
-        var counter = +storage.getItem('newscounter');
+        var counter = storage.getItem('newscounter');
         if (counter == 4) return;
 
         var now = Date.now();
@@ -35,12 +35,12 @@ define('newsletter',
         // Increment counter if not expired otherwise save the time and set to 1.
         if (!counter || expired) {
             storage.setItem('newstimestamp', now);
-            storage.setItem('newscounter', '1');
+            storage.setItem('newscounter', 1);
         } else {
             if (counter++ == 2) {
                 injectSignupForm();
                 storage.removeItem('newstimestamp');
-                storage.setItem('newscounter', '4');
+                storage.setItem('newscounter', 4);
             } else {
                 storage.setItem('newscounter', counter);
             }

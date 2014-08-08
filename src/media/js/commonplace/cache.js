@@ -1,6 +1,6 @@
 define('cache',
-    ['log', 'rewriters', 'settings', 'storage', 'user', 'utils', 'z'],
-    function(log, rewriters, settings, storage, user, utils, z) {
+    ['log', 'rewriters', 'settings', 'storage', 'user', 'utils', 'underscore', 'z'],
+    function(log, rewriters, settings, storage, user, utils, _, z) {
 
     var console = log('cache');
 
@@ -8,7 +8,7 @@ define('cache',
     var cache_key = 'request_cache';
 
     if (settings.offline_cache_enabled && settings.offline_cache_enabled()) {
-        cache = JSON.parse(storage.getItem(cache_key) || '{}');
+        cache = storage.getItem(cache_key) || {};
         flush_expired();
     }
 
@@ -43,9 +43,8 @@ define('cache',
         z.doc.trigger('save_cache', cache_key);
 
         // Persist only if the data has changed.
-        var cache_to_save_str = JSON.stringify(cache_to_save);
-        if (storage.getItem(cache_key) !== cache_to_save_str) {
-            storage.setItem(cache_key, cache_to_save_str);
+        if (! _.isEqual(storage.getItem(cache_key), cache_to_save)) {
+            storage.setItem(cache_key, cache_to_save);
             console.log('Persisting request cache');
         }
     }
@@ -154,7 +153,7 @@ define('cache',
             bust(key);
         },
         has: function(key) {
-            return storage.getItem(persistentCachePrefix + key);
+            return !!storage.getItem(persistentCachePrefix + key);
         },
         purge: function() {
             for (var i = 0; i < storage.length; i++) {

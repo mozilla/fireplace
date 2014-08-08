@@ -131,9 +131,8 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'None': gettext('No region in search')
         },
 
-        // URL of the Marketplace logo (must be HTTPS; shown when logging in via Persona).
+        // A data URI of the project logo (shown when logging in via Persona).
         persona_site_logo: base_settings.media_url + '/fireplace/img/logos/128.png',
-        // The URLs for the Persona ToS and Privacy Policy.
         persona_tos: null,
         persona_privacy: null,
 
