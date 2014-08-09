@@ -65,7 +65,8 @@
 {% macro feed_brand(brand) %}
   {% set color = feed.get_brand_color_class(brand) %}
 
-  <section class="feed-brand feed-layout-{{ brand.layout }} multi-app-tile mkt-tile c"
+  <section class="feed-brand feed-layout-{{ 'list' if landing else brand.layout }}
+                  multi-app-tile mkt-tile c"
            data-brand-type="{{ brand.type }}">
     <div class="feed-tile-header-wrap">
       <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src='feed') }}"
