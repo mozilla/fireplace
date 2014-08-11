@@ -271,7 +271,6 @@ define('login',
         // Wait on consumer_info promise, because it tells us whether fxa is
         // enabled. (FIXME bug 1038936).
         if (!capabilities.fallbackFxA()) {
-            window.console.info('Ok, no fallback FxA, loading Persona...');
             // Try to load persona. This is used by persona native/fallback
             // implementation, as well as fxa native.
             loadPersona();
