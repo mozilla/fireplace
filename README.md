@@ -17,14 +17,8 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
   <dt><a href="https://github.com/mozilla/flue">Flue</a></dt>
   <dd>A mocked-out version of the Marketplace API.</dd>
 
-  <dt>src</dt>
-  <dd>The source code for Fireplace.</dd>
-
   <dt>Inferno</dt>
   <dd>A build server which generates a packaged version of the Marketplace.</dd>
-
-  <dt>Smoke Alarm</dt>
-  <dd>A functional test runner for great justice.</dd>
 
   <dt>Yule Log</dt>
   <dd>A fake version of Fireplace to provide the Gaia team with a package that can
@@ -124,10 +118,11 @@ found [on the wiki](https://github.com/mozilla/commonplace/wiki/L10n#extracting-
 
 ## Tests
 
-Install casper
+Casper should be installed along with your other npm deps. The tests expect version
+1.1+. You can verify the version with:
 
-```bash
-brew install casperjs
+```
+casperjs --version
 ```
 
 ### Running unit tests
@@ -143,6 +138,12 @@ the subset of keys found in
 
 ```bash
 make test
+```
+
+### Running a single test
+
+```bash
+casperjs test tests/ui/<PATH_TO_TEST_FILE>
 ```
 
 ## Local Development

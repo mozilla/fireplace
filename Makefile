@@ -4,6 +4,7 @@ VERSION = `date "+%Y.%m.%d_%H.%M.%S"`
 VERSION_INT = $(shell date "+%Y%m%d%H%M%S")
 TMP = _tmp
 SHELL = /bin/bash
+CASPERJS_BIN ?= 'casperjs'
 
 # This is what Yulelog's iframe src points to.
 DOMAIN?=marketplace.firefox.com
@@ -18,9 +19,7 @@ compile:
 	commonplace compile
 
 test: clean compile
-	cd smokealarm ; \
-	casperjs test tests
-
+	LC_ALL=en-US $(CASPERJS_BIN) test tests/ui/
 
 # Fireplace (real packaged app)
 package: clean
@@ -146,6 +145,7 @@ approve_log_dev:
 
 clean:
 	commonplace clean
+	@rm -rf tests/captures/*.png
 
 deploy:
 	git fetch && git reset --hard origin/master && npm install && make includes
