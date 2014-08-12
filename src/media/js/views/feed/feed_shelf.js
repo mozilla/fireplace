@@ -8,6 +8,7 @@ define('views/feed/feed_shelf',
     return function(builder, args) {
         var slug = args[0];
         builder.start('feed/feed_shelf.html', {
+            landing: true,
             slug: slug
         }).done(function() {
             var shelf = builder.results.shelf;
