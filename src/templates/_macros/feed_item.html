@@ -92,26 +92,28 @@
   </section>
 {% endmacro %}
 
-{% macro feed_collection(coll) %}
+{% macro feed_collection(coll, landing) %}
   {% if coll.type == feed.COLL_PROMO %}
-    {{ feed_collection_promo(coll) }}
+    {{ feed_collection_promo(coll, landing) }}
   {% elif coll.type == feed.COLL_LISTING %}
-    {{ feed_collection_listing(coll) }}
+    {{ feed_collection_listing(coll, landing) }}
   {% endif %}
 {% endmacro %}
 
-{% macro feed_collection_promo(coll) %}
+{% macro feed_collection_promo(coll, landing) %}
   {% set color = coll.background_color %}
   {% set desc = coll.description|translate(coll) %}
 
   <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='feed') }}"
      class="fanchor">
-    <section class="feed-item full {{ 'mega' if desc }} {{ 'has-background' if coll.background_image }}"
-                    {% if coll.background_image %}
-                      style="background-image: url({{ coll.background_image }})"
-                    {% else %}
-                      style="background-color: {{ color|hex2rgba('.4') }}"
-                   {% endif %}>
+    <section class="feed-item full {{ 'mega' if desc and not landing }}
+                    {{ 'has-background' if coll.background_image }}
+                    {{ 'collection-landing' if landing }}"
+         {% if coll.background_image %}
+             style="background-image: url({{ coll.background_image }})"
+         {% else %}
+             style="background-color: {{ color|hex2rgba('.4') }}"
+         {% endif %}>
       {% if not coll.background_image %}
         <ul class="app-icons">
           {% for app in coll.apps.slice(0, 3) %}
@@ -123,8 +125,10 @@
       <div class="info">
         <h1 class="name">{{ coll.name|translate(coll)|safe }}</h1>
       </div>
-      <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
-      <div class="desc">{{ desc|safe }}</div>
+      {% if not landing %}
+        <div class="alt-curve" style="background-color: {{ color|hex2rgba('.8') }}"></div>
+        <div class="desc">{{ desc|safe }}</div>
+      {% endif %}
     </section>
   </a>
 {% endmacro %}
@@ -156,7 +160,7 @@
   </section>
 {% endmacro %}
 
-{% macro feed_shelf(shelf) %}
+{% macro feed_shelf(shelf, landing) %}
   {% set color = shelf.background_color %}
 
   <a href="{{ url('feed/feed_shelf', [shelf.slug])|urlparams(src='feed') }}" class="fanchor">
@@ -173,7 +177,10 @@
   <section class="main feed feed-landing collection-landing">
     <div class="column-wrap">
       <div class="column-a">
-        {{ feed_collection(coll) }}
+        {{ feed_collection(coll, true) }}
+        {% if coll.description %}
+          <p class="desc">{{ coll.description|translate(coll) }}</p>
+        {% endif %}
       </div>
 
       {% if coll.type == feed.COLL_PROMO %}
