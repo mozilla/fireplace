@@ -178,7 +178,7 @@
     <div class="column-wrap">
       <div class="column-a">
         {{ feed_collection(coll, true) }}
-        {% if coll.description %}
+        {% if coll.type == feed.COLL_PROMO and coll.description %}
           <p class="desc">{{ coll.description|translate(coll) }}</p>
         {% endif %}
       </div>
