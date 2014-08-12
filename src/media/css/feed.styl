@@ -13,6 +13,11 @@ $vertical-margin = 18px;  // Inner margin within a feed tile.
 $vertical-text-margin = 10px;  // Inner margin for text within a feed tile.
 $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
 
+.feed .icon {
+    height: 60px;
+    width: 60px;
+}
+
 @media $at-least-desktop {
     section.feed,
     ul.feed  {
@@ -36,11 +41,6 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
         max-width: $feed-column-width * 2;
         width: $mobile-tile-width * 2 + $mobile-tile-margin;
     }
-}
-
-.feed .icon {
-    height: 60px;
-    width: 60px;
 }
 
 // Main container for feed elements on the homepage.
@@ -571,7 +571,7 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
             z-index: 15;
         }
         &.full {
-            min-height: 235px;
+            min-height: 239px;
 
             .has-background& {
                 min-height: 175px;
@@ -595,10 +595,10 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
                 }
             }
             .desc {
-                top: 150px;
+                top: 154px;
 
                 .has-background& {
-                    top: 110px;
+                    top: 97px;
                 }
             }
         }
@@ -647,9 +647,16 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
         &.mega.full .desc {
             top: 155px;
         }
-        &.mega.full.has-background .desc {
-            top: 110px;
-        }        
+        &.mega.full.has-background {
+            min-height: 240px;
+
+            .desc {
+                top: 100px;
+            }
+        }
+        &.mega.full {
+            height: 315px;
+        }
     }
     &.shelf-landing {
         .feed-item {
