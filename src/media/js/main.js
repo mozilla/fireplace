@@ -16,8 +16,6 @@ require.config({
         'templates': '../../templates',
         'settings': ['settings_local', 'settings'],
         'format': 'lib/format',
-        'textoverflowclamp': 'lib/textoverflowclamp',
-
         'hammerjs': 'hammer',
     },
 });

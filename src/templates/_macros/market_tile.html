@@ -28,7 +28,7 @@
       <h3 class="elliflow" itemprop="name">{{ app.name|translate(app) }}</h3>
       {% if app.author %}
         {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
-        <div class="author lineclamp elliflow vital subdetail" itemprop="creator">{{ app.author }}</div>
+        <div class="author elliflow vital subdetail" itemprop="creator">{{ app.author }}</div>
       {% endif %}
       <div class="price vital">{{ app.price_locale if app.payment_required else _('Free') }}</div>
       {{ market_button(app, data_attrs={'manifest_url': app.manifest_url,

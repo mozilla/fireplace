@@ -1,6 +1,6 @@
 define('views/feed/feed_brand',
-    ['jquery', 'l10n', 'textoverflowclamp', 'utils', 'z'],
-    function($, l10n, clamp, utils, z) {
+    ['jquery', 'l10n', 'utils', 'z'],
+    function($, l10n, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;

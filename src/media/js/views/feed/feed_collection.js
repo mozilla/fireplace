@@ -1,6 +1,6 @@
 define('views/feed/feed_collection',
-    ['jquery', 'l10n', 'textoverflowclamp', 'utils', 'z'],
-    function($, l10n, clamp, utils, z) {
+    ['jquery', 'l10n', 'utils', 'z'],
+    function($, l10n, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -14,11 +14,6 @@ define('views/feed/feed_collection',
             if (collection) {
                 builder.z('title', utils.translate(collection.name));
             }
-        });
-
-        builder.onload('feed-collection', function(data) {
-            // Give him the clamps!
-            clamp(document.querySelector('.collection + .desc'), 7);
         });
 
         builder.z('type', 'leaf');

@@ -1,6 +1,6 @@
 define('views/category',
-    ['models', 'textoverflowclamp', 'tracking', 'underscore', 'urls', 'utils', 'z'],
-    function(models, clamp, tracking, _, urls, utils, z) {
+    ['models', 'tracking', 'underscore', 'urls', 'utils', 'z'],
+    function(models, tracking, _, urls, utils, z) {
     'use strict';
 
     var cat_models = models('category');
@@ -30,8 +30,6 @@ define('views/category',
             endpoint: urls.api.unsigned.url('category', [category], params),
             sort: params.sort,
             app_cast: app_models.cast
-        }).done(function() {
-            clamp(document.querySelector('.collection + .desc'), 7);
         });
 
         tracking.setPageVar(5, 'Category', category, 3);
