@@ -150,7 +150,7 @@ define('apps_buttons',
 
             // Temporary timeout for hosted apps until we catch the appropriate
             // download error event for hosted apps (in iframe).
-            if (!product.is_packaged) {
+            if (!product.is_packaged && !product.payment_required) {
                 _timeout = setTimeout(function() {
                     if ($this.hasClass('spinning')) {
                         console.log('Spinner timeout for ', product_name);
