@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16T16:15:38.553Z\n"
+"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -356,7 +356,7 @@ msgstr "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:75 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Loading..."
 
@@ -448,7 +448,7 @@ msgstr "Loading Privacy Policy..."
 msgid "Thank you for purchasing"
 msgstr "Thank you for purchasing"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38 /media/js/views/app.js:65
 msgid "Oh no!"
 msgstr "Oh no!"
 
@@ -467,6 +467,24 @@ msgstr "Error loading more"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Try Again"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Result"
+msgstr[1] "<b>{n}</b> Results"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "No results found"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "No results found, try again later"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -504,24 +522,6 @@ msgstr "Inappropriate language/dialog"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Misplaced bug report or support request"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Result"
-msgstr[1] "<b>{n}</b> Results"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "No results found"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "No results found, try again later"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -587,21 +587,19 @@ msgstr "Sign in / Sign up"
 msgid "You have no apps"
 msgstr "You have no apps"
 
-#: /media/js/apps.js:93
-msgid "Your device does not support payments."
-msgstr "Your device does not support payments."
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Payment cancelled."
 
-#: /media/js/apps.js:95
-msgid "This app is unavailable for purchase in your region."
-msgstr "This app is unavailable for purchase in your region."
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "Purchasing"
 
-#: /media/js/apps.js:99
-msgid "Your browser or device is not web-app compatible."
-msgstr "Your browser or device is not web-app compatible."
-
-#: /media/js/apps.js:101
-msgid "This app is unavailable for your platform."
-msgstr "This app is unavailable for your platform."
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "Install failed. Please try again later."
 
 #: /media/js/categories.js:8
 msgid "Games"
@@ -675,19 +673,21 @@ msgstr "Travel"
 msgid "Utilities"
 msgstr "Utilities"
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Payment cancelled."
+#: /media/js/apps.js:93
+msgid "Your device does not support payments."
+msgstr "Your device does not support payments."
 
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr "Purchasing"
+#: /media/js/apps.js:95
+msgid "This app is unavailable for purchase in your region."
+msgstr "This app is unavailable for purchase in your region."
 
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr "Install failed. Please try again later."
+#: /media/js/apps.js:99
+msgid "Your browser or device is not web-app compatible."
+msgstr "Your browser or device is not web-app compatible."
+
+#: /media/js/apps.js:101
+msgid "This app is unavailable for your platform."
+msgstr "This app is unavailable for your platform."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -730,7 +730,11 @@ msgstr "Mature 17+"
 msgid "Adults Only 18+"
 msgstr "Adults Only 18+"
 
-#: /media/js/installer_direct.js:97 /media/js/installer_iframe.js:72
+#: /media/js/installer_direct.js:56
+msgid "Unable to install packaged apps"
+msgstr "Unable to install packaged apps"
+
+#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
 msgid "App install error: {error}"
 msgstr "App install error: {error}"
 
@@ -776,106 +780,110 @@ msgid "Argentina"
 msgstr "Argentina"
 
 #: /media/js/settings.js:105
+msgid "Bangladesh"
+msgstr "Bangladesh"
+
+#: /media/js/settings.js:106
 msgid "Brazil"
 msgstr "Brazil"
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:107
 msgid "Chile"
 msgstr "Chile"
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:108
 msgid "China"
 msgstr "China"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:109
 msgid "Colombia"
 msgstr "Colombia"
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:110
 msgid "Costa Rica"
 msgstr "Costa Rica"
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:111
 msgid "Ecuador"
 msgstr "Ecuador"
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:112
 msgid "El Salvador"
 msgstr "El Salvador"
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:113
 msgid "France"
 msgstr "France"
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:114
 msgid "Germany"
 msgstr "Germany"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:115
 msgid "Greece"
 msgstr "Greece"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:116
 msgid "Guatemala"
 msgstr "Guatemala"
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:117
 msgid "Hungary"
 msgstr "Hungary"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:118
 msgid "Italy"
 msgstr "Italy"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:119
 msgid "Mexico"
 msgstr "Mexico"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:120
 msgid "Montenegro"
 msgstr "Montenegro"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:121
 msgid "Nicaragua"
 msgstr "Nicaragua"
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:122
 msgid "Panama"
 msgstr "Panama"
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:123
 msgid "Peru"
 msgstr "Peru"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:124
 msgid "Poland"
 msgstr "Poland"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:125
 msgid "Serbia"
 msgstr "Serbia"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:126
 msgid "Spain"
 msgstr "Spain"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:127
 msgid "United Kingdom"
 msgstr "United Kingdom"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:128
 msgid "United States"
 msgstr "United States"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:129
 msgid "Uruguay"
 msgstr "Uruguay"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:130
 msgid "Venezuela"
 msgstr "Venezuela"
 
-#: /media/js/settings.js:130
+#: /media/js/settings.js:131
 msgid "No region in search"
 msgstr "No region in search"
 
@@ -890,27 +898,23 @@ msgid_plural "{n} stars"
 msgstr[0] "{n} star"
 msgstr[1] "{n} stars"
 
-#: /media/js/commonplace/login.js:8
+#: /media/js/commonplace/login.js:20
 msgid "You have been signed out"
 msgstr "You have been signed out"
 
-#: /media/js/commonplace/login.js:12
+#: /media/js/commonplace/login.js:24
 msgid "You have been signed in"
 msgstr "You have been signed in"
 
-#: /media/js/commonplace/login.js:51
-msgid "Error signing out"
-msgstr "Error signing out"
-
-#: /media/js/commonplace/login.js:176
+#: /media/js/commonplace/login.js:188
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona login failed. Maybe you don't have an account under that email address?"
 
-#: /media/js/commonplace/login.js:181
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona login failed. A server error was encountered."
 
-#: /media/js/commonplace/login.js:254
+#: /media/js/commonplace/login.js:263
 msgid "Persona cannot be reached. Try again later."
 msgstr "Persona cannot be reached. Try again later."
 
@@ -938,7 +942,7 @@ msgstr "Error while communicating with server. Try again later."
 msgid "Your device does not support purchases."
 msgstr "Your device does not support purchases."
 
-#: /media/js/views/app.js:69
+#: /media/js/views/app.js:76
 msgid "App Details"
 msgstr "App Details"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16T16:15:38.553Z\n"
+"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
 "PO-Revision-Date: 2013-07-29 12:37+0200\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Română\n"
@@ -357,7 +357,7 @@ msgstr "Lansează această aplicație <b>de pe desktopul Windows</b> sau <b>Star
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Lansează această aplicație din <b>bord</b>, <b>selectorul de aplicații</b> sau <b>meniul de aplicații</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:75 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Se încarcă..."
 
@@ -449,7 +449,7 @@ msgstr "Se încarcă politica de confidențialitate..."
 msgid "Thank you for purchasing"
 msgstr ""
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38 /media/js/views/app.js:65
 msgid "Oh no!"
 msgstr "O, nu!"
 
@@ -468,6 +468,25 @@ msgstr "Eroare la încărcare"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Reîncearcă"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> rezultat"
+msgstr[1] "<b>{n}</b> rezultate"
+msgstr[2] "<b>{n}</b> de rezultate"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Se afișează <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Niciun rezultat găsit"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Niciun rezultat găsit, reîncearcă mai târziu"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -505,25 +524,6 @@ msgstr "Limbaj/dialog licențios"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Raportare de bug nepotrivită sau cerere asistență"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> rezultat"
-msgstr[1] "<b>{n}</b> rezultate"
-msgstr[2] "<b>{n}</b> de rezultate"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Se afișează <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Niciun rezultat găsit"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Niciun rezultat găsit, reîncearcă mai târziu"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -589,21 +589,19 @@ msgstr "Autentificare / Înregistrare"
 msgid "You have no apps"
 msgstr "Nu ai nicio aplicație"
 
-#: /media/js/apps.js:93
-msgid "Your device does not support payments."
-msgstr ""
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Plată anulată."
 
-#: /media/js/apps.js:95
-msgid "This app is unavailable for purchase in your region."
-msgstr ""
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "Se achiziționează"
 
-#: /media/js/apps.js:99
-msgid "Your browser or device is not web-app compatible."
-msgstr ""
-
-#: /media/js/apps.js:101
-msgid "This app is unavailable for your platform."
-msgstr ""
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "Instalare eșuată. Te rugăm reîncearcă mai târziu"
 
 #: /media/js/categories.js:8
 msgid "Games"
@@ -677,19 +675,21 @@ msgstr ""
 msgid "Utilities"
 msgstr ""
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Plată anulată."
+#: /media/js/apps.js:93
+msgid "Your device does not support payments."
+msgstr ""
 
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr "Se achiziționează"
+#: /media/js/apps.js:95
+msgid "This app is unavailable for purchase in your region."
+msgstr ""
 
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr "Instalare eșuată. Te rugăm reîncearcă mai târziu"
+#: /media/js/apps.js:99
+msgid "Your browser or device is not web-app compatible."
+msgstr ""
+
+#: /media/js/apps.js:101
+msgid "This app is unavailable for your platform."
+msgstr ""
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -732,7 +732,11 @@ msgstr ""
 msgid "Adults Only 18+"
 msgstr ""
 
-#: /media/js/installer_direct.js:97 /media/js/installer_iframe.js:72
+#: /media/js/installer_direct.js:56
+msgid "Unable to install packaged apps"
+msgstr ""
+
+#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
 msgid "App install error: {error}"
 msgstr ""
 
@@ -778,106 +782,110 @@ msgid "Argentina"
 msgstr ""
 
 #: /media/js/settings.js:105
-msgid "Brazil"
+msgid "Bangladesh"
 msgstr ""
 
 #: /media/js/settings.js:106
-msgid "Chile"
+msgid "Brazil"
 msgstr ""
 
 #: /media/js/settings.js:107
-msgid "China"
+msgid "Chile"
 msgstr ""
 
 #: /media/js/settings.js:108
-msgid "Colombia"
+msgid "China"
 msgstr ""
 
 #: /media/js/settings.js:109
-msgid "Costa Rica"
+msgid "Colombia"
 msgstr ""
 
 #: /media/js/settings.js:110
-msgid "Ecuador"
+msgid "Costa Rica"
 msgstr ""
 
 #: /media/js/settings.js:111
-msgid "El Salvador"
+msgid "Ecuador"
 msgstr ""
 
 #: /media/js/settings.js:112
-msgid "France"
+msgid "El Salvador"
 msgstr ""
 
 #: /media/js/settings.js:113
-msgid "Germany"
+msgid "France"
 msgstr ""
 
 #: /media/js/settings.js:114
-msgid "Greece"
+msgid "Germany"
 msgstr ""
 
 #: /media/js/settings.js:115
-msgid "Guatemala"
+msgid "Greece"
 msgstr ""
 
 #: /media/js/settings.js:116
-msgid "Hungary"
+msgid "Guatemala"
 msgstr ""
 
 #: /media/js/settings.js:117
-msgid "Italy"
+msgid "Hungary"
 msgstr ""
 
 #: /media/js/settings.js:118
-msgid "Mexico"
+msgid "Italy"
 msgstr ""
 
 #: /media/js/settings.js:119
-msgid "Montenegro"
+msgid "Mexico"
 msgstr ""
 
 #: /media/js/settings.js:120
-msgid "Nicaragua"
+msgid "Montenegro"
 msgstr ""
 
 #: /media/js/settings.js:121
-msgid "Panama"
+msgid "Nicaragua"
 msgstr ""
 
 #: /media/js/settings.js:122
-msgid "Peru"
+msgid "Panama"
 msgstr ""
 
 #: /media/js/settings.js:123
-msgid "Poland"
+msgid "Peru"
 msgstr ""
 
 #: /media/js/settings.js:124
-msgid "Serbia"
+msgid "Poland"
 msgstr ""
 
 #: /media/js/settings.js:125
-msgid "Spain"
+msgid "Serbia"
 msgstr ""
 
 #: /media/js/settings.js:126
-msgid "United Kingdom"
+msgid "Spain"
 msgstr ""
 
 #: /media/js/settings.js:127
-msgid "United States"
+msgid "United Kingdom"
 msgstr ""
 
 #: /media/js/settings.js:128
-msgid "Uruguay"
+msgid "United States"
 msgstr ""
 
 #: /media/js/settings.js:129
-msgid "Venezuela"
+msgid "Uruguay"
 msgstr ""
 
 #: /media/js/settings.js:130
+msgid "Venezuela"
+msgstr ""
+
+#: /media/js/settings.js:131
 msgid "No region in search"
 msgstr ""
 
@@ -893,27 +901,23 @@ msgstr[0] "{n} stea"
 msgstr[1] "{n} stele"
 msgstr[2] "{n} de stele"
 
-#: /media/js/commonplace/login.js:8
+#: /media/js/commonplace/login.js:20
 msgid "You have been signed out"
 msgstr "Ai fost deconectat"
 
-#: /media/js/commonplace/login.js:12
+#: /media/js/commonplace/login.js:24
 msgid "You have been signed in"
 msgstr "Ai fost autentificat"
 
-#: /media/js/commonplace/login.js:51
-msgid "Error signing out"
-msgstr ""
-
-#: /media/js/commonplace/login.js:176
+#: /media/js/commonplace/login.js:188
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Autentificare Persona eșuată. Poate că nu ai un cont sub acea adresă de e-mail?"
 
-#: /media/js/commonplace/login.js:181
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. A server error was encountered."
 msgstr "Autentificare Persona eșuată. O eroare la server a intervenit."
 
-#: /media/js/commonplace/login.js:254
+#: /media/js/commonplace/login.js:263
 msgid "Persona cannot be reached. Try again later."
 msgstr ""
 
@@ -942,7 +946,7 @@ msgstr ""
 msgid "Your device does not support purchases."
 msgstr ""
 
-#: /media/js/views/app.js:69
+#: /media/js/views/app.js:76
 msgid "App Details"
 msgstr "Detalii aplicație"
 

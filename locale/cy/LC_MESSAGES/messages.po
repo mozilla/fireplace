@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16T16:15:38.553Z\n"
+"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
 "PO-Revision-Date: 2014-03-15 19:41+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -359,7 +359,7 @@ msgstr "Cychwynnwch yr ap hwn o'ch <b>bwrdd gwaith Windows</b> neu <b>Cychwyn &#
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Cychwynnwch yr ap hwn o'ch <b>bwrdd gwaith</b>, <b>Dewisydd rhaglenni</b> neu <b>Ddewislen rhaglenni</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:75 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Llwytho..."
 
@@ -451,7 +451,7 @@ msgstr "Llwytho Polisi Preifatrwydd..."
 msgid "Thank you for purchasing"
 msgstr "Diolch am brynu"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38 /media/js/views/app.js:65
 msgid "Oh no!"
 msgstr "O na!"
 
@@ -470,6 +470,26 @@ msgstr "Gwall wrth llwytho rhagor"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Ceisiwch Eto"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Canlyniad"
+msgstr[1] "<b>{n}</b> Canlyniad"
+msgstr[2] "<b>{n}</b> Canlyniad"
+msgstr[3] "<b>{n}</b> Canlyniad"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Dangos <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Heb ganfod canlyniadau"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Heb ganfod canlyniadau, ceisiwch eto"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -507,26 +527,6 @@ msgstr "Iaith/deialog anaddas"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Cais adroddiad gwall coll neu gefnogaeth"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Canlyniad"
-msgstr[1] "<b>{n}</b> Canlyniad"
-msgstr[2] "<b>{n}</b> Canlyniad"
-msgstr[3] "<b>{n}</b> Canlyniad"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Dangos <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Heb ganfod canlyniadau"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Heb ganfod canlyniadau, ceisiwch eto"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -592,21 +592,19 @@ msgstr "Mewngofnodi"
 msgid "You have no apps"
 msgstr "Nid oes gennych apiau"
 
-#: /media/js/apps.js:93
-msgid "Your device does not support payments."
-msgstr "Nid yw eich dyfais yn cynnal taliadau."
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Diddymwud y taliad."
 
-#: /media/js/apps.js:95
-msgid "This app is unavailable for purchase in your region."
-msgstr "Nid yw'r ap hwn ar gael i'w brynu yn eich ardal chi."
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "Prynu"
 
-#: /media/js/apps.js:99
-msgid "Your browser or device is not web-app compatible."
-msgstr "Nid yw eich porwr neu dyfais yn gydnaws ar gyfer ap gwe."
-
-#: /media/js/apps.js:101
-msgid "This app is unavailable for your platform."
-msgstr "Nid yw'r ap hwn ar gael ar gyfer eich platfform chi."
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "Methodd y gosod. Ceisiwch eto."
 
 #: /media/js/categories.js:8
 msgid "Games"
@@ -680,19 +678,21 @@ msgstr ""
 msgid "Utilities"
 msgstr ""
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Diddymwud y taliad."
+#: /media/js/apps.js:93
+msgid "Your device does not support payments."
+msgstr "Nid yw eich dyfais yn cynnal taliadau."
 
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr "Prynu"
+#: /media/js/apps.js:95
+msgid "This app is unavailable for purchase in your region."
+msgstr "Nid yw'r ap hwn ar gael i'w brynu yn eich ardal chi."
 
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr "Methodd y gosod. Ceisiwch eto."
+#: /media/js/apps.js:99
+msgid "Your browser or device is not web-app compatible."
+msgstr "Nid yw eich porwr neu dyfais yn gydnaws ar gyfer ap gwe."
+
+#: /media/js/apps.js:101
+msgid "This app is unavailable for your platform."
+msgstr "Nid yw'r ap hwn ar gael ar gyfer eich platfform chi."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -735,7 +735,11 @@ msgstr ""
 msgid "Adults Only 18+"
 msgstr ""
 
-#: /media/js/installer_direct.js:97 /media/js/installer_iframe.js:72
+#: /media/js/installer_direct.js:56
+msgid "Unable to install packaged apps"
+msgstr ""
+
+#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
 msgid "App install error: {error}"
 msgstr "Gwall gosod ap: {error}"
 
@@ -781,106 +785,110 @@ msgid "Argentina"
 msgstr "Yr Ariannin"
 
 #: /media/js/settings.js:105
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/settings.js:106
 msgid "Brazil"
 msgstr "Brasil"
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:107
 msgid "Chile"
 msgstr "Chile"
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:108
 msgid "China"
 msgstr "China"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:109
 msgid "Colombia"
 msgstr "Colombia"
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:110
 msgid "Costa Rica"
 msgstr ""
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:111
 msgid "Ecuador"
 msgstr ""
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:112
 msgid "El Salvador"
 msgstr ""
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:113
 msgid "France"
 msgstr ""
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:114
 msgid "Germany"
 msgstr "Yr Almaen"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:115
 msgid "Greece"
 msgstr "Gwlad Groeg"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:116
 msgid "Guatemala"
 msgstr ""
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:117
 msgid "Hungary"
 msgstr "Hwngari"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:118
 msgid "Italy"
 msgstr "Yr Eidal"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:119
 msgid "Mexico"
 msgstr "Mecsico"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:120
 msgid "Montenegro"
 msgstr "Montenegro"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:121
 msgid "Nicaragua"
 msgstr ""
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:122
 msgid "Panama"
 msgstr ""
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:123
 msgid "Peru"
 msgstr "Periw"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:124
 msgid "Poland"
 msgstr "Gwlad Pwyl"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:125
 msgid "Serbia"
 msgstr "Serbia"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:126
 msgid "Spain"
 msgstr "Sbaen"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:127
 msgid "United Kingdom"
 msgstr "Y Deyrnas Unedig"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:128
 msgid "United States"
 msgstr "Yr Unol Daleithiau"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:129
 msgid "Uruguay"
 msgstr "Uruguay"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:130
 msgid "Venezuela"
 msgstr "Venezuela"
 
-#: /media/js/settings.js:130
+#: /media/js/settings.js:131
 msgid "No region in search"
 msgstr "Dim ardal yn y chwilio"
 
@@ -897,27 +905,23 @@ msgstr[1] "{n} sêr"
 msgstr[2] "{n} sêr"
 msgstr[3] "{n} sêr"
 
-#: /media/js/commonplace/login.js:8
+#: /media/js/commonplace/login.js:20
 msgid "You have been signed out"
 msgstr "Rydych wedi eich allgofnodi"
 
-#: /media/js/commonplace/login.js:12
+#: /media/js/commonplace/login.js:24
 msgid "You have been signed in"
 msgstr "Rydych wedi eich mewngofnodi"
 
-#: /media/js/commonplace/login.js:51
-msgid "Error signing out"
-msgstr ""
-
-#: /media/js/commonplace/login.js:176
+#: /media/js/commonplace/login.js:188
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Methodd mewngofnodi Persona. Efallai nad oes gennych gyfrif o dan y cyfeiriad e-bost hwnnw?"
 
-#: /media/js/commonplace/login.js:181
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. A server error was encountered."
 msgstr "Methodd mewngofnodi Persona. Cafwyd gwall gweinydd."
 
-#: /media/js/commonplace/login.js:254
+#: /media/js/commonplace/login.js:263
 msgid "Persona cannot be reached. Try again later."
 msgstr ""
 
@@ -947,7 +951,7 @@ msgstr "Gwall wrth gyfathrebu â'r gweinydd. Ceisiwch eto."
 msgid "Your device does not support purchases."
 msgstr "Nid yw eich dyfais yn cynnal prynu."
 
-#: /media/js/views/app.js:69
+#: /media/js/views/app.js:76
 msgid "App Details"
 msgstr "Manylion Apiau"
 

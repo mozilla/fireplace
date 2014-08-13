@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16T16:15:38.553Z\n"
+"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
 "PO-Revision-Date: 2013-07-27 13:46+0200\n"
 "Last-Translator: Mihail Chilyashev <m@chilyashev.com>\n"
 "Language-Team: Bulgarian (bg)\n"
@@ -356,7 +356,7 @@ msgstr "Стартирайте това приложение от вашия <b>
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Стартирайте това приложение от вашето <b>табло</b>, <b></b> или <b>меню Приложения</b>"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:75 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Зареждане..."
 
@@ -448,7 +448,7 @@ msgstr "Зареждане на декларацията за поверител
 msgid "Thank you for purchasing"
 msgstr "Благодарим за покупката ви"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38 /media/js/views/app.js:65
 msgid "Oh no!"
 msgstr "О, не!"
 
@@ -467,6 +467,24 @@ msgstr "Грешка при зареждането"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Опитай отново"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> резултат"
+msgstr[1] "<b>{n}</b> резултата"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Показване на <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Няма намерени резултати"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Няма намерени резултати, моля опитайте по-късно"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -504,24 +522,6 @@ msgstr "Неуместен език/диалог"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Неуместен доклад за проблем или заявка за поддръжка"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> резултат"
-msgstr[1] "<b>{n}</b> резултата"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Показване на <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Няма намерени резултати"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Няма намерени резултати, моля опитайте по-късно"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -587,21 +587,19 @@ msgstr "Вход / Регистрация"
 msgid "You have no apps"
 msgstr "Вие нямате приложения"
 
-#: /media/js/apps.js:93
-msgid "Your device does not support payments."
-msgstr "Устройството ви не поддържа плащания."
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Плащането отказано."
 
-#: /media/js/apps.js:95
-msgid "This app is unavailable for purchase in your region."
-msgstr "Това приложение не е достъпно за покупка във вашия регион"
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "Закупуване"
 
-#: /media/js/apps.js:99
-msgid "Your browser or device is not web-app compatible."
-msgstr "Вашият браузър или устройство не е съвместим с web-приложения"
-
-#: /media/js/apps.js:101
-msgid "This app is unavailable for your platform."
-msgstr "Това приложение не е достъпно за вашата платформа."
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "Инсталацията провалена. Моля, опитайте отново по-късно."
 
 #: /media/js/categories.js:8
 msgid "Games"
@@ -675,19 +673,21 @@ msgstr "Пътуване"
 msgid "Utilities"
 msgstr "Практични"
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Плащането отказано."
+#: /media/js/apps.js:93
+msgid "Your device does not support payments."
+msgstr "Устройството ви не поддържа плащания."
 
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr "Закупуване"
+#: /media/js/apps.js:95
+msgid "This app is unavailable for purchase in your region."
+msgstr "Това приложение не е достъпно за покупка във вашия регион"
 
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr "Инсталацията провалена. Моля, опитайте отново по-късно."
+#: /media/js/apps.js:99
+msgid "Your browser or device is not web-app compatible."
+msgstr "Вашият браузър или устройство не е съвместим с web-приложения"
+
+#: /media/js/apps.js:101
+msgid "This app is unavailable for your platform."
+msgstr "Това приложение не е достъпно за вашата платформа."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -730,7 +730,11 @@ msgstr ""
 msgid "Adults Only 18+"
 msgstr ""
 
-#: /media/js/installer_direct.js:97 /media/js/installer_iframe.js:72
+#: /media/js/installer_direct.js:56
+msgid "Unable to install packaged apps"
+msgstr ""
+
+#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
 msgid "App install error: {error}"
 msgstr "Грешка при инсталацията на приложението: {error}"
 
@@ -776,106 +780,110 @@ msgid "Argentina"
 msgstr "Аржентина"
 
 #: /media/js/settings.js:105
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/settings.js:106
 msgid "Brazil"
 msgstr "Бразилия"
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:107
 msgid "Chile"
 msgstr ""
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:108
 msgid "China"
 msgstr "Китай"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:109
 msgid "Colombia"
 msgstr "Колумбия"
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:110
 msgid "Costa Rica"
 msgstr ""
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:111
 msgid "Ecuador"
 msgstr ""
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:112
 msgid "El Salvador"
 msgstr ""
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:113
 msgid "France"
 msgstr ""
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:114
 msgid "Germany"
 msgstr "Германия"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:115
 msgid "Greece"
 msgstr "Гърция"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:116
 msgid "Guatemala"
 msgstr ""
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:117
 msgid "Hungary"
 msgstr "Унгария"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:118
 msgid "Italy"
 msgstr "Италия"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:119
 msgid "Mexico"
 msgstr "Мексико"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:120
 msgid "Montenegro"
 msgstr "Монтенегро"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:121
 msgid "Nicaragua"
 msgstr ""
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:122
 msgid "Panama"
 msgstr ""
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:123
 msgid "Peru"
 msgstr "Перу"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:124
 msgid "Poland"
 msgstr "Полша"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:125
 msgid "Serbia"
 msgstr "Сърбия"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:126
 msgid "Spain"
 msgstr "Испания"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:127
 msgid "United Kingdom"
 msgstr "Обединено кралство"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:128
 msgid "United States"
 msgstr "Съединени щати"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:129
 msgid "Uruguay"
 msgstr "Уругвай"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:130
 msgid "Venezuela"
 msgstr "Венецуела"
 
-#: /media/js/settings.js:130
+#: /media/js/settings.js:131
 msgid "No region in search"
 msgstr "Няма регион в търсенето"
 
@@ -890,27 +898,23 @@ msgid_plural "{n} stars"
 msgstr[0] "{n} звезда"
 msgstr[1] "{n} звезди"
 
-#: /media/js/commonplace/login.js:8
+#: /media/js/commonplace/login.js:20
 msgid "You have been signed out"
 msgstr "Вие излязохте"
 
-#: /media/js/commonplace/login.js:12
+#: /media/js/commonplace/login.js:24
 msgid "You have been signed in"
 msgstr "Вие влязохте"
 
-#: /media/js/commonplace/login.js:51
-msgid "Error signing out"
-msgstr ""
-
-#: /media/js/commonplace/login.js:176
+#: /media/js/commonplace/login.js:188
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Влизането в Persona се провали. Може би нямате акант с този имейл адрес?"
 
-#: /media/js/commonplace/login.js:181
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. A server error was encountered."
 msgstr "Влизането в Persona се провали. Възникна сървърна грешка"
 
-#: /media/js/commonplace/login.js:254
+#: /media/js/commonplace/login.js:263
 msgid "Persona cannot be reached. Try again later."
 msgstr ""
 
@@ -938,7 +942,7 @@ msgstr "Грешка при комуникацията със сървъра. М
 msgid "Your device does not support purchases."
 msgstr "Устройството ви не поддържа покупки."
 
-#: /media/js/views/app.js:69
+#: /media/js/views/app.js:76
 msgid "App Details"
 msgstr "Детайли на приложението"
 

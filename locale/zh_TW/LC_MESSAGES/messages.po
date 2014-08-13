@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16T16:15:38.553Z\n"
+"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
 "PO-Revision-Date: 2014-07-02 17:45+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: MozTW <petercpg@mail.moztw.org>\n"
@@ -355,7 +355,7 @@ msgstr "自您的 <b>Windows 桌面</b> 或 <b>開始 &#9658; 所有程式</b> �
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "自您的 <b>Dash</b>、<b>應用程式挑選器</b>，或是<b>應用程式選單</b> 執行此應用程式。"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:75 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "載入中…"
 
@@ -447,7 +447,7 @@ msgstr "正在載入隱私權保護政策…"
 msgid "Thank you for purchasing"
 msgstr "感謝您的購買"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38 /media/js/views/app.js:65
 msgid "Oh no!"
 msgstr "喔不！"
 
@@ -466,6 +466,23 @@ msgstr "載入更多資料時發生錯誤"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "重試"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> 筆結果"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "顯示 <b>1</b>&ndash;<b class=\"total-results\">{total}</b> 筆"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "找不到結果"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "找不到結果，請稍後重試"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -503,23 +520,6 @@ msgstr "不適當的語言或對話"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "發錯地方的臭蟲回報或技術支援請求"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> 筆結果"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "顯示 <b>1</b>&ndash;<b class=\"total-results\">{total}</b> 筆"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "找不到結果"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "找不到結果，請稍後重試"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -585,21 +585,19 @@ msgstr "登入 / 註冊"
 msgid "You have no apps"
 msgstr "您沒有應用程式"
 
-#: /media/js/apps.js:93
-msgid "Your device does not support payments."
-msgstr "您的裝置不支援付款。"
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "付款已取消。"
 
-#: /media/js/apps.js:95
-msgid "This app is unavailable for purchase in your region."
-msgstr "在您的地區無法購買此應用程式。"
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "購買中"
 
-#: /media/js/apps.js:99
-msgid "Your browser or device is not web-app compatible."
-msgstr "您的瀏覽器或裝置與網頁應用程式不相容。"
-
-#: /media/js/apps.js:101
-msgid "This app is unavailable for your platform."
-msgstr "您的平台無法使用此應用程式。"
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "安裝失敗，請稍後再試一次。"
 
 #: /media/js/categories.js:8
 msgid "Games"
@@ -673,19 +671,21 @@ msgstr "旅遊"
 msgid "Utilities"
 msgstr "工具"
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "付款已取消。"
+#: /media/js/apps.js:93
+msgid "Your device does not support payments."
+msgstr "您的裝置不支援付款。"
 
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr "購買中"
+#: /media/js/apps.js:95
+msgid "This app is unavailable for purchase in your region."
+msgstr "在您的地區無法購買此應用程式。"
 
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr "安裝失敗，請稍後再試一次。"
+#: /media/js/apps.js:99
+msgid "Your browser or device is not web-app compatible."
+msgstr "您的瀏覽器或裝置與網頁應用程式不相容。"
+
+#: /media/js/apps.js:101
+msgid "This app is unavailable for your platform."
+msgstr "您的平台無法使用此應用程式。"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -728,7 +728,11 @@ msgstr "17 歲以上"
 msgid "Adults Only 18+"
 msgstr "18 歲以上成人"
 
-#: /media/js/installer_direct.js:97 /media/js/installer_iframe.js:72
+#: /media/js/installer_direct.js:56
+msgid "Unable to install packaged apps"
+msgstr ""
+
+#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
 msgid "App install error: {error}"
 msgstr "應用程式安裝失敗: {error}"
 
@@ -774,106 +778,110 @@ msgid "Argentina"
 msgstr "阿根廷"
 
 #: /media/js/settings.js:105
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/settings.js:106
 msgid "Brazil"
 msgstr "巴西"
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:107
 msgid "Chile"
 msgstr "智利"
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:108
 msgid "China"
 msgstr "中國"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:109
 msgid "Colombia"
 msgstr "哥倫比亞"
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:110
 msgid "Costa Rica"
 msgstr "哥斯大黎加"
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:111
 msgid "Ecuador"
 msgstr "厄瓜多"
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:112
 msgid "El Salvador"
 msgstr "薩爾瓦多"
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:113
 msgid "France"
 msgstr ""
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:114
 msgid "Germany"
 msgstr "德國"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:115
 msgid "Greece"
 msgstr "希臘"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:116
 msgid "Guatemala"
 msgstr "瓜地馬拉"
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:117
 msgid "Hungary"
 msgstr "匈牙利"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:118
 msgid "Italy"
 msgstr "義大利"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:119
 msgid "Mexico"
 msgstr "墨西哥"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:120
 msgid "Montenegro"
 msgstr "蒙特尼格羅"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:121
 msgid "Nicaragua"
 msgstr "尼加拉瓜"
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:122
 msgid "Panama"
 msgstr "巴拿馬"
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:123
 msgid "Peru"
 msgstr "祕魯"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:124
 msgid "Poland"
 msgstr "波蘭"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:125
 msgid "Serbia"
 msgstr "塞爾維亞"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:126
 msgid "Spain"
 msgstr "西班牙"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:127
 msgid "United Kingdom"
 msgstr "英國"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:128
 msgid "United States"
 msgstr "美國"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:129
 msgid "Uruguay"
 msgstr "烏拉圭"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:130
 msgid "Venezuela"
 msgstr "委內瑞拉"
 
-#: /media/js/settings.js:130
+#: /media/js/settings.js:131
 msgid "No region in search"
 msgstr "沒有搜尋區域"
 
@@ -887,27 +895,23 @@ msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n} 顆星"
 
-#: /media/js/commonplace/login.js:8
+#: /media/js/commonplace/login.js:20
 msgid "You have been signed out"
 msgstr "您已經登出。"
 
-#: /media/js/commonplace/login.js:12
+#: /media/js/commonplace/login.js:24
 msgid "You have been signed in"
 msgstr "您已經登入。"
 
-#: /media/js/commonplace/login.js:51
-msgid "Error signing out"
-msgstr "登出錯誤"
-
-#: /media/js/commonplace/login.js:176
+#: /media/js/commonplace/login.js:188
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona 登入失敗，也許您沒有使用該電子郵件地址的帳號？"
 
-#: /media/js/commonplace/login.js:181
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona 登入失敗，伺服器發生錯誤。"
 
-#: /media/js/commonplace/login.js:254
+#: /media/js/commonplace/login.js:263
 msgid "Persona cannot be reached. Try again later."
 msgstr "無法連線至 Persona，請稍候再試。"
 
@@ -934,7 +938,7 @@ msgstr "與伺服器溝通時發生錯誤，請稍後再試一次。"
 msgid "Your device does not support purchases."
 msgstr "您的裝置無法購買。"
 
-#: /media/js/views/app.js:69
+#: /media/js/views/app.js:76
 msgid "App Details"
 msgstr "應用程式詳細資訊"
 

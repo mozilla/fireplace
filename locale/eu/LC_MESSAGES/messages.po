@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16T16:15:38.553Z\n"
+"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
 "PO-Revision-Date: 2014-07-18 00:39+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: 89578-OEM-7332157-00211\n"
@@ -358,7 +358,7 @@ msgstr "Abiarazi aplikazio hau <b>Windows-eko mahaigainetik</b> edo <b>Hasi &#96
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Abiarazi aplikazio hau <b>atrakagarri</b>tik, <b>Aplikazio-hautatzailetik</b> edo <b>Aplikazioen menutik</b>."
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:75 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "Kargatzen..."
 
@@ -450,7 +450,7 @@ msgstr "Pribatutasun-politika kargatzen..."
 msgid "Thank you for purchasing"
 msgstr "Eskerrik asko erosteagatik"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38 /media/js/views/app.js:65
 msgid "Oh no!"
 msgstr "O ez!"
 
@@ -469,6 +469,24 @@ msgstr "Errorea gehiago kargatzean"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Saiatu berriro"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "Emaitza <b>{n}</b>"
+msgstr[1] "<b>{n}</b> emaitza"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "<b>1</b>&ndash;<b class=\"total-results\">{total}</b> bistaratzen"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Ez da emaitzarik aurkitu"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Ez da emaitzarik aurkitu, saiatu berriro geroago"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -506,24 +524,6 @@ msgstr "Hizkera/elkarrizketa desegokia"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Programa-errorearen txostena edo laguntza-eskarera lekuz kanpo dago"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "Emaitza <b>{n}</b>"
-msgstr[1] "<b>{n}</b> emaitza"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "<b>1</b>&ndash;<b class=\"total-results\">{total}</b> bistaratzen"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Ez da emaitzarik aurkitu"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Ez da emaitzarik aurkitu, saiatu berriro geroago"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -589,21 +589,19 @@ msgstr "Hasi saioa / Eman izena"
 msgid "You have no apps"
 msgstr "Ez duzu aplikaziorik"
 
-#: /media/js/apps.js:93
-msgid "Your device does not support payments."
-msgstr "Zure gailuak ez ditu ordainketak onartzen."
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Ordainketa bertan behera utzita."
 
-#: /media/js/apps.js:95
-msgid "This app is unavailable for purchase in your region."
-msgstr "Aplikazio hau ezin da erosi zure herrialdean."
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "Erosten"
 
-#: /media/js/apps.js:99
-msgid "Your browser or device is not web-app compatible."
-msgstr "Zure nabigatzaile edo gailua ez da web-aplikazioekin bateragarria."
-
-#: /media/js/apps.js:101
-msgid "This app is unavailable for your platform."
-msgstr "Aplikazio hau ez dago zure plataformarentzat eskuragarri."
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "Huts egin du instalatzean. Saiatu berriro geroago."
 
 #: /media/js/categories.js:8
 msgid "Games"
@@ -677,19 +675,21 @@ msgstr "Bidaiak"
 msgid "Utilities"
 msgstr "Tresnak"
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Ordainketa bertan behera utzita."
+#: /media/js/apps.js:93
+msgid "Your device does not support payments."
+msgstr "Zure gailuak ez ditu ordainketak onartzen."
 
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr "Erosten"
+#: /media/js/apps.js:95
+msgid "This app is unavailable for purchase in your region."
+msgstr "Aplikazio hau ezin da erosi zure herrialdean."
 
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr "Huts egin du instalatzean. Saiatu berriro geroago."
+#: /media/js/apps.js:99
+msgid "Your browser or device is not web-app compatible."
+msgstr "Zure nabigatzaile edo gailua ez da web-aplikazioekin bateragarria."
+
+#: /media/js/apps.js:101
+msgid "This app is unavailable for your platform."
+msgstr "Aplikazio hau ez dago zure plataformarentzat eskuragarri."
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -732,7 +732,11 @@ msgstr "Helduentzat 17+"
 msgid "Adults Only 18+"
 msgstr "Helduentzako soilik 18+"
 
-#: /media/js/installer_direct.js:97 /media/js/installer_iframe.js:72
+#: /media/js/installer_direct.js:56
+msgid "Unable to install packaged apps"
+msgstr ""
+
+#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
 msgid "App install error: {error}"
 msgstr "Errorea aplikazioa instalatzean: {error}"
 
@@ -778,106 +782,110 @@ msgid "Argentina"
 msgstr "Argentina"
 
 #: /media/js/settings.js:105
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/settings.js:106
 msgid "Brazil"
 msgstr "Brasil"
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:107
 msgid "Chile"
 msgstr "Txile"
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:108
 msgid "China"
 msgstr "Txina"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:109
 msgid "Colombia"
 msgstr "Kolonbia"
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:110
 msgid "Costa Rica"
 msgstr "Costa Rica"
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:111
 msgid "Ecuador"
 msgstr "Ekuador"
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:112
 msgid "El Salvador"
 msgstr "El Salvador"
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:113
 msgid "France"
 msgstr "Frantzia"
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:114
 msgid "Germany"
 msgstr "Alemania"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:115
 msgid "Greece"
 msgstr "Grezia"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:116
 msgid "Guatemala"
 msgstr "Guatemala"
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:117
 msgid "Hungary"
 msgstr "Hungaria"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:118
 msgid "Italy"
 msgstr "Italia"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:119
 msgid "Mexico"
 msgstr "Mexiko"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:120
 msgid "Montenegro"
 msgstr "Montenegro"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:121
 msgid "Nicaragua"
 msgstr "Nikaragua"
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:122
 msgid "Panama"
 msgstr "Panama"
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:123
 msgid "Peru"
 msgstr "Peru"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:124
 msgid "Poland"
 msgstr "Polonia"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:125
 msgid "Serbia"
 msgstr "Serbia"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:126
 msgid "Spain"
 msgstr "Espainia"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:127
 msgid "United Kingdom"
 msgstr "Erresuma Batua"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:128
 msgid "United States"
 msgstr "Amerikako Estatu Batuak"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:129
 msgid "Uruguay"
 msgstr "Uruguai"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:130
 msgid "Venezuela"
 msgstr "Venezuela"
 
-#: /media/js/settings.js:130
+#: /media/js/settings.js:131
 msgid "No region in search"
 msgstr "Herrialderik ez bilaketan"
 
@@ -892,27 +900,23 @@ msgid_plural "{n} stars"
 msgstr[0] "Izar {n}"
 msgstr[1] "{n} izar"
 
-#: /media/js/commonplace/login.js:8
+#: /media/js/commonplace/login.js:20
 msgid "You have been signed out"
 msgstr "Saioa amaitu duzu"
 
-#: /media/js/commonplace/login.js:12
+#: /media/js/commonplace/login.js:24
 msgid "You have been signed in"
 msgstr "Saioa hasi duzu"
 
-#: /media/js/commonplace/login.js:51
-msgid "Error signing out"
-msgstr "Errorea saioa amaitzean"
-
-#: /media/js/commonplace/login.js:176
+#: /media/js/commonplace/login.js:188
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Huts egin du saioa hastean. Agian ez duzu konturik helbide elektroniko horrekin?"
 
-#: /media/js/commonplace/login.js:181
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. A server error was encountered."
 msgstr "Huts egin du saioa hastean. Zerbitzariaren errore bat gertatu da."
 
-#: /media/js/commonplace/login.js:254
+#: /media/js/commonplace/login.js:263
 msgid "Persona cannot be reached. Try again later."
 msgstr "Ezin izan da Personara konektatu. Saiatu berriro geroago."
 
@@ -940,7 +944,7 @@ msgstr "Errorea zerbitzariarekin komunikatzean. Saiatu berriro geroago."
 msgid "Your device does not support purchases."
 msgstr "Zure gailuak ez ditu erosketak onartzen."
 
-#: /media/js/views/app.js:69
+#: /media/js/views/app.js:76
 msgid "App Details"
 msgstr "Aplikazioaren xehetasunak"
 

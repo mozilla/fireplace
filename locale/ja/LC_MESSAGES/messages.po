@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16T16:15:38.553Z\n"
+"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
 "PO-Revision-Date: 2014-07-17 08:14-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -356,7 +356,7 @@ msgstr "このアプリは Windows の <b>デスクトップ</b> か <b>スタ�
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "このアプリは、<b>ダッシュ</b>、<b>アプリケーションピッカー</b> もしくは <b>アプリケーションメニュー</b> から起動できます。"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:75 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "読み込み中..."
 
@@ -448,7 +448,7 @@ msgstr "プライバシーポリシーを読み込んでいます..."
 msgid "Thank you for purchasing"
 msgstr "お買い上げありがとうございます"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38 /media/js/views/app.js:65
 msgid "Oh no!"
 msgstr "ページが見つかりません"
 
@@ -467,6 +467,24 @@ msgstr "読み込み中に問題が発生しました"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "再読み込み"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> 件の結果"
+msgstr[1] "<b>{n}</b> 件の結果"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "<b>1</b> 件から <b class=\"total-results\">{total}</b> 件までを表示しています"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "該当するアプリはありません"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "該当するアプリはありません。また後日見に来てください"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -504,24 +522,6 @@ msgstr "不適切な言葉遣いや会話"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "場違いのバグ報告もしくはサポート依頼"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> 件の結果"
-msgstr[1] "<b>{n}</b> 件の結果"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "<b>1</b> 件から <b class=\"total-results\">{total}</b> 件までを表示しています"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "該当するアプリはありません"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "該当するアプリはありません。また後日見に来てください"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -587,21 +587,19 @@ msgstr "ログイン / ユーザ登録"
 msgid "You have no apps"
 msgstr "まだインストールしたアプリはありません"
 
-#: /media/js/apps.js:93
-msgid "Your device does not support payments."
-msgstr "あなたの端末は決済に対応していません。"
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "決済がキャンセルされました"
 
-#: /media/js/apps.js:95
-msgid "This app is unavailable for purchase in your region."
-msgstr "このアプリはあなたがお住まいの地域では購入できません。"
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "購入中"
 
-#: /media/js/apps.js:99
-msgid "Your browser or device is not web-app compatible."
-msgstr "あなたのブラウザもしくは端末は Web アプリに対応していません。"
-
-#: /media/js/apps.js:101
-msgid "This app is unavailable for your platform."
-msgstr "このアプリはお使いの OS には対応していません。"
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "インストールに失敗しました。また後で試してください。"
 
 #: /media/js/categories.js:8
 msgid "Games"
@@ -675,19 +673,21 @@ msgstr "旅行"
 msgid "Utilities"
 msgstr "ユーティリティ"
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "決済がキャンセルされました"
+#: /media/js/apps.js:93
+msgid "Your device does not support payments."
+msgstr "あなたの端末は決済に対応していません。"
 
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr "購入中"
+#: /media/js/apps.js:95
+msgid "This app is unavailable for purchase in your region."
+msgstr "このアプリはあなたがお住まいの地域では購入できません。"
 
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr "インストールに失敗しました。また後で試してください。"
+#: /media/js/apps.js:99
+msgid "Your browser or device is not web-app compatible."
+msgstr "あなたのブラウザもしくは端末は Web アプリに対応していません。"
+
+#: /media/js/apps.js:101
+msgid "This app is unavailable for your platform."
+msgstr "このアプリはお使いの OS には対応していません。"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -730,7 +730,11 @@ msgstr "17 歳以上"
 msgid "Adults Only 18+"
 msgstr "成人向け、18 歳以上"
 
-#: /media/js/installer_direct.js:97 /media/js/installer_iframe.js:72
+#: /media/js/installer_direct.js:56
+msgid "Unable to install packaged apps"
+msgstr ""
+
+#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
 msgid "App install error: {error}"
 msgstr "アプリのインストールエラー: {error}"
 
@@ -776,106 +780,110 @@ msgid "Argentina"
 msgstr "アルゼンチン"
 
 #: /media/js/settings.js:105
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/settings.js:106
 msgid "Brazil"
 msgstr "ブラジル"
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:107
 msgid "Chile"
 msgstr "チリ"
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:108
 msgid "China"
 msgstr "中国"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:109
 msgid "Colombia"
 msgstr "コロンビア"
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:110
 msgid "Costa Rica"
 msgstr "コスタリカ"
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:111
 msgid "Ecuador"
 msgstr "エクアドル"
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:112
 msgid "El Salvador"
 msgstr "エルサルバドル"
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:113
 msgid "France"
 msgstr "フランス"
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:114
 msgid "Germany"
 msgstr "ドイツ"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:115
 msgid "Greece"
 msgstr "ギリシャ"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:116
 msgid "Guatemala"
 msgstr "グアテマラ"
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:117
 msgid "Hungary"
 msgstr "ハンガリー"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:118
 msgid "Italy"
 msgstr "イタリア"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:119
 msgid "Mexico"
 msgstr "メキシコ"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:120
 msgid "Montenegro"
 msgstr "モンテネグロ"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:121
 msgid "Nicaragua"
 msgstr "ニカラグア"
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:122
 msgid "Panama"
 msgstr "パナマ"
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:123
 msgid "Peru"
 msgstr "ペルー"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:124
 msgid "Poland"
 msgstr "ポーランド"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:125
 msgid "Serbia"
 msgstr "セルビア"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:126
 msgid "Spain"
 msgstr "スペイン"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:127
 msgid "United Kingdom"
 msgstr "イギリス"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:128
 msgid "United States"
 msgstr "アメリカ"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:129
 msgid "Uruguay"
 msgstr "ウルグアイ"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:130
 msgid "Venezuela"
 msgstr "ベネズエラ"
 
-#: /media/js/settings.js:130
+#: /media/js/settings.js:131
 msgid "No region in search"
 msgstr "検索対象地域が指定されていません"
 
@@ -890,27 +898,23 @@ msgid_plural "{n} stars"
 msgstr[0] "星 {n} つ"
 msgstr[1] "星 {n} つ"
 
-#: /media/js/commonplace/login.js:8
+#: /media/js/commonplace/login.js:20
 msgid "You have been signed out"
 msgstr "ログアウトしました"
 
-#: /media/js/commonplace/login.js:12
+#: /media/js/commonplace/login.js:24
 msgid "You have been signed in"
 msgstr "ログインしました"
 
-#: /media/js/commonplace/login.js:51
-msgid "Error signing out"
-msgstr "ログアウト中に問題が発生しました"
-
-#: /media/js/commonplace/login.js:176
+#: /media/js/commonplace/login.js:188
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona のログインに失敗しました。入力されたメールアドレスのアカウントは存在しない可能性があります。"
 
-#: /media/js/commonplace/login.js:181
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona のログインに失敗しました。サーバエラーが発生しました。"
 
-#: /media/js/commonplace/login.js:254
+#: /media/js/commonplace/login.js:263
 msgid "Persona cannot be reached. Try again later."
 msgstr "Persona サーバへ接続できませんでした。また後で試してください。"
 
@@ -938,7 +942,7 @@ msgstr "サーバとの通信中にエラーが発生しました。また後で
 msgid "Your device does not support purchases."
 msgstr "あなたの端末は購入に対応していません。"
 
-#: /media/js/views/app.js:69
+#: /media/js/views/app.js:76
 msgid "App Details"
 msgstr "アプリの詳細"
 
