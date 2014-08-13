@@ -9,7 +9,7 @@
             {# Content rating. #}
             <img data-src="{{ iarc.rating_icons[this.body][this.rating] }}"
                  class="icon icon-body-{{ this.body }} deferred"
-                 src="{{ media('fireplace/img/pretty/rocket.png') }}"
+                 src="{{ PLACEHOLDER_ICON }}"
                  title="{{ iarc_names.ratings[this.body][this.rating] }}"
                  alt="{{ iarc_names.ratings[this.body][this.rating] }}">
           </div>
@@ -38,7 +38,7 @@
                 {% set icon_src = desc_icons[descriptor_key] %}
                 {% if icon_src %}
                   <img data-src="{{ icon_src }}" class="icon deferred"
-                       src="{{ media('fireplace/img/pretty/rocket.png') }}"
+                       src="{{ PLACEHOLDER_ICON }}"
                        title="{{ this.descriptors_text[loop.index0] }}"
                        alt="{{ this.descriptors_text[loop.index0] }}">
                 {% endif %}
@@ -54,7 +54,7 @@
                   {% set icon_src = interactive_icons[interactive_key] %}
                   {% if icon_src %}
                     <img data-src="{{ icon_src }}" class="icon deferred"
-                         src="{{ media('fireplace/img/pretty/rocket.png') }}"
+                         src="{{ PLACEHOLDER_ICON }}"
                          title="{{ this.interactives_text[loop.index0] }}"
                          alt="{{ this.interactives_text[loop.index0] }}">
                   {% endif %}

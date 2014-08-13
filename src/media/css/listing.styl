@@ -262,8 +262,8 @@ img {
 .screenshot .deferred,
 img.icon.deferred {
     height: 60px;
-    opacity: 0.2;
-    width: 42px;
+    opacity: .5;
+    width: 60px;
 }
 .screenshot img.deferred {
     /* Screenshots use placeholder image, make it look nice. */
@@ -272,17 +272,18 @@ img.icon.deferred {
 }
 img.icon.deferred {
     position: relative;
+    left: 0;
     top: 0;
 }
-.mkt-tile .icon.deferred,
-.mini-app .icon.deferred {
-    left: 13px;
-}
-[data-page-type~="detail"] .mkt-tile .icon {
-    margin-right: 15px;
+[data-page-type~="detail"],
+[data-page-type~="search"] {
+    .mkt-tile .icon {
+        margin-right: 15px;
 
-    &.deferred {
-        margin: 0 37px 4px 0;
+        &.deferred {
+            height: 64px;
+            width: 64px;
+        }
     }
 }
 .gallery .icon.deferred {

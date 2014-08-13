@@ -1,5 +1,6 @@
-define('helpers_local', ['feed', 'content-ratings', 'models', 'nunjucks', 'settings', 'user_helpers', 'utils_local', 'z'],
-       function(feed, iarc, models, nunjucks, settings, user_helpers, utils_local, z) {
+define('helpers_local',
+    ['feed', 'content-ratings', 'models', 'nunjucks', 'settings', 'urls', 'user_helpers', 'utils_local', 'z'],
+    function(feed, iarc, models, nunjucks, settings, urls, user_helpers, utils_local, z) {
     var filters = nunjucks.require('filters');
     var globals = nunjucks.require('globals');
 
@@ -50,6 +51,7 @@ define('helpers_local', ['feed', 'content-ratings', 'models', 'nunjucks', 'setti
     globals.iarc_names = iarc.names;
     globals.REGIONS = settings.REGION_CHOICES_SLUG;
     globals.user_helpers = user_helpers;
+    globals.PLACEHOLDER_ICON = urls.media('fireplace/img/icons/placeholder.png');
 
     /* Helpers functions, provided in the default context. */
     function indexOf(arr, val) {

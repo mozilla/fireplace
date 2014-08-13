@@ -96,7 +96,7 @@
 {% macro deferred_icon(src, alt) %}
   {% if not imgAlreadyDeferred(src) %}
     {# Defer image loading. #}
-    <img class="icon deferred" src="{{ media('fireplace/img/pretty/rocket.png') }}"
+    <img class="icon deferred" src="{{ PLACEHOLDER_ICON }}"
          data-src="{{ src }}" alt="{{ alt or '' }}" height="64" width="64" itemprop="image">
   {% else %}
     <img class="icon" src="{{ src }}" alt="{{ alt or '' }}"
@@ -108,7 +108,7 @@
 {% macro deferred_screenshot(src) %}
   {% if not imgAlreadyDeferred(src) %}
     {# Defer image loading. Don't change data-src to src. #}
-    <img class="deferred" src="{{ media('fireplace/img/pretty/rocket.png') }}"
+    <img class="deferred" src="{{ PLACEHOLDER_ICON }}"
          data-src="{{ src }}" alt="{{ _('{app_name} screenshot', app_name=app.name) }}"
          draggable="false" itemprop="contentURL">
   {% else %}
