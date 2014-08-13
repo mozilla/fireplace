@@ -5,7 +5,9 @@
 {% from '_macros/stars.html' import stars %}
 
 
-{% macro mini_tile(app) %}
+{% macro mini_tile(app, price_only) %}
+  {# price_only_btns -- only show price as the label, don't show "Installed"/"Open". #}
+
   <li class="app mini-app">
     <a href="{{ url('app', [app.slug])|urlparams(src='feed') }}" class="app-link c">
       {{ deferred_icon(app.icons[64], app.name|translate(app)) }}
@@ -20,8 +22,9 @@
           {% endif %}
         </div>
       </div>
-      {{ market_button(app, data_attrs={'manifest_url': app.manifest_url,
-                       'slug': app.slug}) if app.slug }}
+      {{ market_button(app,
+                       data_attrs={'manifest_url': app.manifest_url, 'slug': app.slug},
+                       price_only=price_only) if app.slug }}
     </a>
   </li>
 {% endmacro %}
@@ -79,7 +82,7 @@
     <ul class="app-list">
       {% for app in brand.apps %}
         {% if landing or loop.index0 < feed.MAX_BRAND_APPS %}
-          {{ mini_tile(app) }}
+          {{ mini_tile(app, price_only=not landing and brand.layout == 'grid') }}
         {% endif %}
       {% endfor %}
     </ul>
@@ -147,7 +150,7 @@
     <ul class="app-list">
       {% for app in coll.apps %}
         {% if landing or loop.index0 < feed.MAX_BRAND_APPS %}
-          {{ mini_tile(app) }}
+          {{ mini_tile(app, price_only=not landing) }}
         {% endif %}
       {% endfor %}
     </ul>
@@ -192,7 +195,7 @@
                   <h1 class="feed-tile-header grouped">{{ group.name }}</h1>
                   <ul class="app-list">
                     {% for app in group.apps %}
-                      {{ mini_tile(app) }}
+                      {{ mini_tile(app, price_only=not landing) }}
                     {% endfor %}
                   </ul>
                 </section>

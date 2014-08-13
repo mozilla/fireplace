@@ -1,4 +1,6 @@
-{% macro market_button(app, data_attrs) %}
+{% macro market_button(app, data_attrs, price_only) %}
+  {# price_only -- used for Feed where we only want to show the price label. #}
+
   {% set installed = has_installed(app.manifest_url) %}
 
   {% if app.payment_required and not app.price %}
@@ -13,9 +15,9 @@
                  {{ 'paid' if app.payment_required }} {{ 'incompatible' if app_incompat(app) }}"
           {{ data_attrs|make_data_attrs }}
           {{ 'disabled' if app_incompat(app) }}>
-    {% if installed %}
+    {% if installed and not price_only %}
       {{ _('Open') }}
-    {% elif user.has_installed(app.id) or user.has_purchased(app.id) %}
+    {% elif not price_only and user.has_installed(app.id) or user.has_purchased(app.id) %}
       {{ _('Install') }}
     {% else %}
       {{ price }}
