@@ -151,20 +151,20 @@ test('isSystemDateRecent', function(done) {
     eq_(utils_local.isSystemDateRecent(), true);
 
     // Backdate `Date` for testing.
-    var _Date = Date;
+    var _Date = window.Date;
     var d = new Date(2000, 1, 1);
-    Date = function() { // jshint ignore:line
+    window.Date = function() {
         return d;
     };
     // For `Date.now` (and `jquery.now`) to work.
-    Date.now = function() {
+    window.Date.now = function() {
         return d.getTime();
     };
 
     eq_(utils_local.isSystemDateRecent(), false);
 
     // Put back date.
-    Date = _Date; // jshint ignore:line
+    window.Date = _Date;
 
     done();
 });
