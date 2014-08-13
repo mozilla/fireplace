@@ -86,7 +86,8 @@
         {% endif %}
       {% endfor %}
     </ul>
-    {% if not landing and brand.apps.length > feed.MAX_BRAND_APPS %}
+    {# Show the 'View all' link if there are 4-5 or 7+ apps in the brand.' #}
+    {% if not landing and ((brand.app_count > feed.MAX_BRAND_APPS) or ((brand.app_count < feed.MAX_BRAND_APPS) and (brand.app_count > 3))) %}
       <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src='feed') }}"
          class="view-all">
         {{ _('View all apps') }}
@@ -154,7 +155,8 @@
         {% endif %}
       {% endfor %}
     </ul>
-    {% if not landing and coll.apps.length > feed.MAX_BRAND_APPS %}
+    {# Show the 'View all' link if there are 4-5 or 7+ apps in the collection.' #}
+    {% if not landing and ((coll.app_count > feed.MAX_BRAND_APPS) or ((coll.app_count < feed.MAX_BRAND_APPS) and (coll.app_count > 3))) %}
       <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='feed') }}"
          class="view-all">
         {{ _('View all apps') }}
