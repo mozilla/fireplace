@@ -20,8 +20,8 @@
           {% endif %}
         </div>
       </div>
-      {{ market_button(app, data_attrs={'manifest_url': app.manifest_url, 'slug': app.slug})
-         if app.slug }}
+      {{ market_button(app, data_attrs={'manifest_url': app.manifest_url,
+                       'slug': app.slug}) if app.slug }}
     </a>
   </li>
 {% endmacro %}
@@ -201,7 +201,7 @@
               <ol class="container c">
                 {% for app in coll.apps %}
                   <li class="item result app c">
-                    {{ market_tile(app, src='feed', tray=False) }}
+                    {{ market_tile(app, src='feed', tray=False, link=True) }}
                   </li>
                 {% endfor %}
               </ol>
@@ -229,7 +229,7 @@
         <ol class="container column-b c">
           {% for app in shelf.apps %}
             <li class="item result app c">
-              {{ market_tile(app, src='feed', tray=False) }}
+              {{ market_tile(app, src='feed', tray=False, link=True) }}
             </li>
           {% endfor %}
         </ol>
