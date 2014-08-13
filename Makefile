@@ -15,6 +15,9 @@ NAME?=Marketplace
 # This is for `package` (choices: prod, stage, dev).
 SERVER?=prod
 
+# This is the origin of the package.
+ORIGIN?=app:\/\/packaged.marketplace.firefox.com
+
 compile:
 	commonplace compile
 
@@ -40,6 +43,7 @@ package: clean
 	@sed -i'.bak' -e 's/"Marketplace"/"$(NAME)"/g' TMP/src/manifest.webapp
 	@sed -i'.bak' -e 's/marketplace\.firefox\.com/$(DOMAIN)/g' TMP/src/manifest.webapp
 	@sed -i'.bak' -e 's/{launch_path}/app.html/g' TMP/src/manifest.webapp
+	@sed -i'.bak' -e 's/{fireplace_origin}/$(ORIGIN)/g' TMP/src/manifest.webapp
 	@sed -i'.bak' -e 's/{fireplace_package_version}/$(VERSION_INT)/g' TMP/src/{manifest.webapp,media/js/include.js,app.html}
 
 	@rm -rf package/archives/latest_$(SERVER)
@@ -65,6 +69,12 @@ package_stage:
 	SERVER='stage' NAME='Stage' DOMAIN='marketplace.allizom.org' make package
 package_dev:
 	SERVER='dev' NAME='Dev' DOMAIN='marketplace-dev.allizom.org' make package
+package_feed_dev:
+	SERVER='dev' NAME='FeedDev' DOMAIN='marketplace-feed-dev.allizom.org' \
+    ORIGIN='app:\/\/packaged.marketplace-feed-dev.allizom.org' make package
+package_feed_prod:
+	SERVER='prod' NAME='FeedProd' DOMAIN='marketplace.firefox.com' \
+    ORIGIN='app:\/\/packaged.marketplace-feed.firefox.com' make package
 package_altdev:
 	SERVER='altdev' NAME='AltDev' DOMAIN='marketplace-altdev.allizom.org' make package
 package_paymentsalt:
