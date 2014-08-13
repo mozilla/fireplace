@@ -17,7 +17,7 @@
   #}
   {% set tag = 'a' if link and app.slug else 'div' %}
   {% set classes = classes or [] %}
-  <{{ tag }} class="product mkt-tile {{ classes|join(' ') }}"
+  <{{ tag }} class="product mkt-tile c {{ classes|join(' ') }}"
     {% if link %} href="{{ app.url or url('app', [app.slug])|urlparams(src=src) }}"{% endif %}
     {{ data_attrs|make_data_attrs }}
     data-slug="{{ app.slug }}"
