@@ -1,0 +1,37 @@
+@import 'lib';
+
+#error-overlay {
+    background: $seavan-salt-white;
+    display: none;
+}
+
+.date-error #error-overlay {
+    display: block;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 102;
+}
+
+#error-overlay > .error-flex {
+    -moz-box-align: center;
+    align-items: center;
+    display: -moz-flex;
+    display: flex;
+    height: 100%;
+    -moz-box-pack: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.error-message {
+    font-weight: 600;
+    margin: 25px auto;
+    text-align: center;
+}
+
+.date-error-screen button {
+    text-align: center;
+}

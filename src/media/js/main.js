@@ -57,6 +57,7 @@ define(
         'user',
         'user_helpers',
         'utils',
+        'utils_local',
         'views',
         'webactivities',
         'z'
@@ -70,6 +71,7 @@ function(_) {
     var settings = require('settings');
     var nunjucks = require('templates');
     var urls = require('urls');
+    var utils_local = require('utils_local');
     var z = require('z');
 
     var console = require('log')('mkt');
@@ -105,6 +107,17 @@ function(_) {
     z.body.addClass('html-' + require('l10n').getDirection());
     if (settings.body_classes) {
         z.body.addClass(settings.body_classes);
+    }
+
+    // System date checking.
+    if (!utils_local.isSystemDateRecent()) {
+        z.body.addClass('date-error');
+        z.body.append(nunjucks.env.render('errors/date-error.html'));
+        z.body.on('click', '.try-again', function() {
+            if (utils_local.isSystemDateRecent()) {
+                window.location.reload();
+            }
+        });
     }
 
     z.page.one('loaded', function() {
