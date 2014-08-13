@@ -222,7 +222,7 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
 
         &:hover {
             border: none;
-            text-decoration: underline;
+            text-decoration: none;
         }
     }
     .feed-tile-header {
@@ -324,8 +324,10 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
         position: relative;
         top: 35px;
     }
-    .feed.brand-landing {
-        section.feed-brand {
+    .feed.brand-landing,
+    .feed.collection-landing {
+        section.feed-brand,
+        section.feed-collection-listing {
             background: transparent;
             box-shadow: none;
             max-width: $desktop-content;
@@ -684,7 +686,7 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
             padding: 20px;
         }
     }
-    &.collection-landing {
+    &.collection-landing-promo {
         .info {
             width: 280px;
         }

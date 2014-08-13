@@ -138,7 +138,8 @@
 {% endmacro %}
 
 {% macro feed_collection_listing(coll) %}
-  <section class="feed-collection-listing feed-layout-grid multi-app-tile mkt-tile c">
+  <section class="feed-collection-listing feed-layout-{{ 'list' if landing else 'grid' }}
+                  multi-app-tile mkt-tile c">
     <div class="feed-tile-header-wrap">
       <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='feed') }}"
          class="fanchor">
@@ -179,16 +180,18 @@
 {% endmacro %}
 
 {% macro feed_collection_landing(coll) %}
-  <section class="main feed feed-landing collection-landing">
-    <div class="column-wrap">
-      <div class="column-a">
-        {{ feed_collection(coll, true) }}
-        {% if coll.type == feed.COLL_PROMO and coll.description %}
-          <p class="desc">{{ coll.description|translate(coll) }}</p>
-        {% endif %}
-      </div>
-
-      {% if coll.type == feed.COLL_PROMO %}
+  <section class="main feed feed-landing collection-landing
+                  collection-landing-{{ coll.type }}">
+    {% if coll.type == feed.COLL_LISTING %}
+      {{ feed_collection(coll, true) }}
+    {% else %}
+      <div class="column-wrap">
+        <div class="column-a">
+          {{ feed_collection(coll, true) }}
+          {% if coll.description %}
+            <p class="desc">{{ coll.description|translate(coll) }}</p>
+          {% endif %}
+        </div>
         <div class="column-b">
           {% if coll.apps %}
             {% if coll.apps[0].group %}
