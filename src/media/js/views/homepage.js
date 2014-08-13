@@ -26,7 +26,7 @@ define('views/homepage',
         builder.start('feed.html', {});
 
         builder.onload('feed-items', function() {
-            var iso = new isotope(document.querySelector('.feed'), {
+            var iso = new isotope(document.querySelector('.feed'), { /*jshint ignore:line*/
                 itemSelector: '.feed-item-item',
                 layoutMode: 'masonry',
                 masonry: {

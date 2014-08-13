@@ -1,3 +1,4 @@
+/*jshint ignore:start*/
 /*! Hammer.JS - v1.0.6 - 2014-01-02
  * http://eightmedia.github.com/hammer.js
  *
@@ -1375,3 +1376,4 @@ Hammer.gestures.Transform = {
     window.Hammer = Hammer;
   }
 })(this);
+/*jshint ignore:end*/

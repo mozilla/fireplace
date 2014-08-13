@@ -112,8 +112,9 @@ define('navbar', ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 
     function render() {
         // Set class and data attribute of navbar to name of active tab.
         var tabsMktRouteMap = {};
+        var tabName;
         for (i = 0; i < tabsMkt.length; i++) {
-            var tabName = tabsMkt[i];
+            tabName = tabsMkt[i];
             try {
                 tabsMktRouteMap[urls.reverse(tabName)] = tabName;
             } catch(e) {
@@ -122,7 +123,7 @@ define('navbar', ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 
         }
         var tabsSettingsRouteMap = {};
         for (var i = 0; i < tabsSettings.length; i++) {
-            var tabName = tabsSettings[i];
+            tabName = tabsSettings[i];
             try {
                 tabsSettingsRouteMap[urls.reverse(tabName)] = tabName;
             } catch(e) {
