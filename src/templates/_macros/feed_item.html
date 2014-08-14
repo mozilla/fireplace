@@ -185,17 +185,18 @@
     {% if coll.type == feed.COLL_LISTING %}
       {{ feed_collection(coll, true) }}
     {% else %}
-      <div class="column-wrap">
-        <div class="column-a">
+      <ul class="feed">
+        <li class="detail-item header-block">
           {{ feed_collection(coll, true) }}
           {% if coll.description %}
             <p class="desc">{{ coll.description|translate(coll) }}</p>
           {% endif %}
-        </div>
-        <div class="column-b">
-          {% if coll.apps %}
-            {% if coll.apps[0].group %}
-              {% for group in feed.group_apps(coll.apps) %}
+        </li>
+
+        {% if coll.apps %}
+          {% if coll.apps[0].group %}
+            {% for group in feed.group_apps(coll.apps) %}
+              <li class="detail-item">
                 <section class="feed-layout-grid multi-app-tile mkt-tile grouped c">
                   <h1 class="feed-tile-header grouped">{{ group.name }}</h1>
                   <ul class="app-list">
@@ -204,21 +205,19 @@
                     {% endfor %}
                   </ul>
                 </section>
-              {% endfor %}
-            {% else %}
-              <ol class="container c">
-                {% for app in coll.apps %}
-                  <li class="item result app c">
-                    {{ market_tile(app, src='feed', tray=False, link=True) }}
-                  </li>
-                {% endfor %}
-              </ol>
-            {% endif %}
+              </li>
+            {% endfor %}
           {% else %}
-            {# L10n: Please do your best to capture the essence of Scooby Doo. #}
-            {{ _("Ruh roh! No apps here, Shaggy!") }}
+            {% for app in coll.apps %}
+              <li class="item result app c detail-item">
+                {{ market_tile(app, src='feed', tray=False, link=True) }}
+              </li>
+            {% endfor %}
           {% endif %}
-        </div>
+        {% else %}
+          {# L10n: Please do your best to capture the essence of Scooby Doo. #}
+          {{ _("Ruh roh! No apps here, Shaggy!") }}
+        {% endif %}
       </div>
     {% endif %}
   </section>
@@ -226,26 +225,25 @@
 
 {% macro feed_shelf_landing(shelf) %}
   <section class="main feed feed-landing shelf-landing">
-    <div class="column-wrap">
-      <div class="column-a">
+    <ul class="feed">
+      <li class="detail-item header-block">
         {{ feed_shelf(shelf, true) }}
         {% if shelf.description %}
           <p class="desc">{{ shelf.description|translate(shelf) }}</p>
         {% endif %}
-      </div>
+      </li>
+
       {% if shelf.apps %}
-        <ol class="container column-b c">
-          {% for app in shelf.apps %}
-            <li class="item result app c">
-              {{ market_tile(app, src='feed', tray=False, link=True) }}
-            </li>
-          {% endfor %}
-        </ol>
+        {% for app in shelf.apps %}
+          <li class="item result app c detail-item">
+            {{ market_tile(app, src='feed', tray=False, link=True) }}
+          </li>
+        {% endfor %}
       {% else %}
         {# L10n: Please do your best to capture the essence of Scooby Doo. #}
         {{ _("Ruh roh! No apps here, Shaggy!") }}
       {% endif %}
-    </div>
+    </ul>
   </section>
 {% endmacro %}
 

@@ -1,6 +1,6 @@
 define('views/feed/feed_shelf',
-    ['jquery', 'l10n', 'utils', 'z'],
-    function($, l10n, utils, z) {
+    ['jquery', 'isotope', 'l10n', 'utils', 'z'],
+    function($, isotope, l10n, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -20,5 +20,17 @@ define('views/feed/feed_shelf',
         builder.z('type', 'leaf');
         builder.z('title', gettext('Loading...'));
         builder.z('pagetitle', gettext('Operator Shelf Details'));
+
+        builder.onload('shelf', function() {
+            var iso = new isotope(document.querySelector('ul.feed'), {  /*jshint ignore:line*/
+                itemSelector: '.detail-item',
+                layoutMode: 'masonry',
+                masonry: {
+                    columnWidth: 320,
+                    gutter: 0,
+                    isFitWidth: true
+                }
+            });
+        });
     };
 });

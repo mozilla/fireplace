@@ -19,6 +19,7 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
 }
 
 @media $at-least-desktop {
+    // Three column feed layout on tweener screens.
     section.feed,
     ul.feed  {
         padding: 0;
@@ -37,6 +38,7 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
 }
 
 @media (min-width: 640px) and (max-width: 959px) {
+    // Two column feed layout on tweener screens.
     [data-page-type="root"] .feed {
         max-width: $feed-column-width * 2;
         width: $mobile-tile-width * 2 + $mobile-tile-margin;
@@ -687,9 +689,6 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
         }
     }
     &.collection-landing-promo {
-        .info {
-            width: 280px;
-        }
         h1.name {
             white-space: normal;
         }
@@ -884,6 +883,24 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
             .placeholder {
                 clear: both;
             }
+        }
+    }
+}
+
+.collection-landing-promo,
+.shelf-landing {
+    .feed {
+        padding-top: 0;
+        max-width: 100%;
+    }
+    .detail-item {
+        width: $mobile-tile-width;
+
+        &.header-block {
+            margin-top: 0;
+        }
+        &:not(.header-block) {
+            margin-left: 10px;
         }
     }
 }
