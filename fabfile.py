@@ -16,8 +16,6 @@ GRUNT = '%s/node_modules/grunt-cli/bin' % FIREPLACE
 if settings.ZAMBONI_DIR:
     ZAMBONI = '%s/zamboni' % settings.ZAMBONI_DIR
     ZAMBONI_PYTHON = '%s/venv/bin/python' % settings.ZAMBONI_DIR
-    FIREPLACE_PACKAGE = '%s/package/archives/latest_%s.zip' % (FIREPLACE,
-                                                               settings.ENV)
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_local_mkt'
 os.environ["PATH"] += os.pathsep + os.pathsep.join([COMMONPLACE, GRUNT])
@@ -40,17 +38,29 @@ def update():
         local('npm install --force commonplace@0.4.22')
 
         if settings.ZAMBONI_DIR:
-            build_package()
+            package_update()
 
         local('commonplace includes')
         local('commonplace langpacks')
 
 
 @task
-def deploy():
-    if settings.ZAMBONI_DIR:
-        upload_package()
+def package_update():
+    if 'feed' in PACKAGE_NAME:
+        build_package('feed_%s' % settings.ENV)
+        upload_package(fireplace_package(settings.ENV), PACKAGE_NAME)
 
+        # build prod feed package on -dev
+        if settings.ENV is 'dev':
+            build_package('feed_prod')
+            upload_package(fireplace_package('prod'), 'feed-prod')
+    else:
+        build_package(settings.ENV)
+        upload_package(fireplace_package(settings.ENV), PACKAGE_NAME)
+
+
+@task
+def deploy():
     helpers.deploy(name=settings.PROJECT_NAME,
                    app_dir='fireplace',
                    env=settings.ENV,
@@ -74,13 +84,17 @@ def pre_update_latest_tag():
 
 
 @task
-def build_package():
+def build_package(package_env):
     with lcd(FIREPLACE):
-        local('make package_%s' % settings.ENV)
+        local('make package_%s' % package_env)
 
 
 @task
-def upload_package():
+def upload_package(fireplace_package, package_name):
     with lcd(ZAMBONI):
         local('%s manage.py upload_new_marketplace_package %s %s '
-              % (ZAMBONI_PYTHON, PACKAGE_NAME, FIREPLACE_PACKAGE))
+              % (ZAMBONI_PYTHON, package_name, fireplace_package))
+
+
+def fireplace_package(env):
+    return '%s/package/archives/latest_%s.zip' % (FIREPLACE, env)
