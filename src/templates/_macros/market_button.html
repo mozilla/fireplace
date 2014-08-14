@@ -11,7 +11,7 @@
     {% set price = app.price_locale if app.price and app.price != '0.00' else _('Free') %}
   {% endif %}
 
-  <button class="button product install {{ 'launch' if installed }}
+  <button class="button product cta install {{ 'launch' if installed }}
                  {{ 'paid' if app.payment_required }} {{ 'incompatible' if app_incompat(app) }}"
           {{ data_attrs|make_data_attrs }}
           {{ 'disabled' if app_incompat(app) }}>

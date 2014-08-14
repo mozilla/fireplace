@@ -107,10 +107,10 @@
   {% if user.has_developed(this.id) or user.get_permission('reviewer') %}
     <section class="main actions infobox">
       <div>
-        <p class="split"><a href="/developers/app/{{ slug }}/edit" class="button manage" rel="external">
+        <p class="split"><a href="/developers/app/{{ slug }}/edit" class="button action" rel="external">
           {{ _('Edit Listing') }}</a></p>
         {% if user.get_permission('reviewer') %}
-          <p class="split"><a href="/reviewers/apps/review/{{ slug }}" class="button good reviewer" rel="external">
+          <p class="split"><a href="/reviewers/apps/review/{{ slug }}" class="button action reviewer" rel="external">
             {{ _('Approve / Reject') if this.status == 2 or this.status == 13 else _('Review History') }}</a></p>
         {% endif %}
       </div>
@@ -131,7 +131,7 @@
           {% endfor %}
         </ul>
         <div class="{{ 'split' if has_second_button else 'full' }}">
-          <a class="button alt average-rating" href="{{ url('app/ratings', [slug]) }}">
+          <a class="button support average-rating" href="{{ url('app/ratings', [slug]) }}">
             <span>
               {{ _plural('{n} Review', '{n} Reviews',
                          n=this.meta.total_count) }}
@@ -147,11 +147,11 @@
       {% if has_second_button %}
         <div class="{{ 'split' if this.objects.length else ' full' }}">
           {% if user.logged_in() and this.user.has_rated %}
-            <a class="button write-review alt" id="edit-review" href="{{ url('app/ratings/edit', [slug]) }}"
+            <a class="button write-review support" id="edit-review" href="{{ url('app/ratings/edit', [slug]) }}"
                data-app="{{ slug }}">
               {{ _('Edit Your Review') }}</a>
           {% else %}
-            <a class="button write-review alt" id="add-review" href="{{ url('app/ratings/add', [slug]) }}"
+            <a class="button write-review support" id="add-review" href="{{ url('app/ratings/add', [slug]) }}"
                data-app="{{ slug }}">
                {{ _('Write a Review') if user.logged_in() else _('Sign in to Review') }}</a>
           {% endif %}
@@ -170,34 +170,34 @@
     <ul class="c">
       {% if this.support_email %}
         <li class="support-email" data-tracking="Support email">
-          {{ emaillink(this.support_email, _('Support Email'), class='button alt') }}
+          {{ emaillink(this.support_email, _('Support Email'), class='button support') }}
         </li>
       {% endif %}
       {% if this.support_url %}
         <li class="support-url" data-tracking="Support site">
-          <a class="button alt" rel="external" {{ this.support_url|external_href }}>
+          <a class="button support" rel="external" {{ this.support_url|external_href }}>
             {{ _('Support Site') }}</a>
         </li>
       {% endif %}
       {% if this.homepage %}
         <li class="homepage" data-tracking="Homepage">
-          <a class="button alt" rel="external" {{ this.homepage|external_href }}>{{ _('Homepage') }}</a>
+          <a class="button support" rel="external" {{ this.homepage|external_href }}>{{ _('Homepage') }}</a>
         </li>
       {% endif %}
       {% if this.privacy_policy %}
         <li class="privacy-policy" data-tracking="Privacy policy">
-          <a class="button alt" href="{{ url('app/privacy', [slug]) }}">
+          <a class="button support" href="{{ url('app/privacy', [slug]) }}">
           {{ _('Privacy Policy') }}</a>
         </li>
       {% endif %}
       {% if this.public_stats or user.has_developed(this.id) %}
         <li class="statistics" data-tracking="Statistics">
-          <a class="button alt view-stats" rel="external" href="/statistics/app/{{ slug }}">
+          <a class="button support view-stats" rel="external" href="/statistics/app/{{ slug }}">
           {{ _('Statistics') }}</a>
         </li>
       {% endif %}
       <li class="abuse" data-tracking="Report abuse">
-        <a class="button alt" href="{{ url('app/abuse', [slug]) }}">
+        <a class="button support" href="{{ url('app/abuse', [slug]) }}">
         {{ _('Report Abuse') }}</a>
       </li>
     </ul>

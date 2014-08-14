@@ -1,54 +1,145 @@
 @import 'lib';
 
-.button,
-.button:visited {
-    // Bluish.
-    background: $breezy-blue;
+/*
+ * Style guide: http://pwalm.github.io/marketplace-style-guides/buttons.html
+ *
+ * <elm class="button">Normal Button</elm>
+ * <elm class="button cta">Primary Call to Action</elm>
+ * <elm class="button action">Positive Action like Yes or Launch</elm>
+ * <elm class="button alt">Alternate Style - External Links?</elm>
+ * <elm class="button cancel">Negative Action like Cancel or Delete</elm>
+ * <elm class="button support">Support Action - Less Visual Emphasis</elm>
+ *
+ * All button sizes are $medium unless overridden by a compound class: 't', 's', 'l'.
+ * On larger screens "button fat" will give you a 100% width button.
+ *
+ */
+
+// TODO: Edit pencil icon. White rocket icon for 'devhub' button.
+
+// Default state.
+$btn = #67E0FD; // light blue
+$cta = #4CB1FF; // blue
+$action = #64BE3C; // green
+$alt = #FFDC32; // yellow
+$cancel = #F54B3C; // red
+$support = #797979; // dark grey
+
+// Hover state.
+$btn-hvr = #67E0FD;
+$cta-hvr = #42CAFE;
+$action-hvr = #66D171;
+$alt-hvr = #FFE26E;
+$cancel-hvr = #FF6C70;
+$support-hvr = #9B9B9B;
+
+// Active state.
+$btn-act = #559DBD;
+$cta-act = #3D86BD;
+$action-act = #4D8D31;
+$alt-act = #BEA435;
+$cancel-act = #B63932;
+$support-act = #5B5B5B;
+
+// Disabled state.
+$disabled = #CBCBCB;
+
+// Button sizes.
+$tiny = 24px;
+$small = 36px;
+$medium = 48px;
+$large = 60px;
+
+// Horizontal padding around the button's text.
+$h-padding = 10px;
+
+.button {
+    background: $btn;
     border: 0;
     border-radius: 5px;
-    color: $white;
+    box-shadow: 0 2px $btn-act;
+    color: #fff;
     display: inline-block;
-    font: 400 15px/48px $open-stack;
-    height: 48px;
+    ellipsis();
+    font: 400 12px/$medium $open-stack;
+    height: $medium;
     min-width: 100px;
     white-space: nowrap;
-    padding: 0 20px;
+    padding: 0 $h-padding;
     text-align: center;
     text-decoration: none;
 
-    &:hover,
-    &:focus {
-        background: darken($breezy-blue, 10%);
+    &:focus, &:hover, &:active {
         text-decoration: none;
     }
-}
+    &:hover, &:focus {
+        background: $btn-hvr;
+    }
+    &:active {
+        background: $btn-act;
+        box-shadow: none;
+    }
+    &.cta {
+        background: $cta;
+        box-shadow: 0 2px $cta-act;
 
-.button {
-    ellipsis();
+        &:hover, &:focus { background: $cta-hvr; }
+        &:active { background: $cta-act; }
+    }
+    &.action {
+        background: $action;
+        box-shadow: 0 2px $action-act;
 
-    // Grayish.
+        &:hover, &:focus { background: $action-hvr; }
+        &:active { background: $action-act; }
+    }
+    &.alt {
+        background: $alt;
+        box-shadow: 0 2px $alt-act;
+
+        &:hover, &:focus { background: $alt-hvr; }
+        &:active { background: $alt-act; }
+    }
+    &.cancel {
+        background: $cancel;
+        box-shadow: 0 2px $cancel-act;
+
+        &:hover, &:focus { background: $cancel-hvr; }
+        &:active { background: $cancel-act; }
+    }
+    &.support {
+        background: $support;
+        box-shadow: 0 2px $support-act;
+
+        &:hover, &:focus { background: $support-hvr; }
+        &:active { background: $support-act; }
+    }
     &.disabled,
     &[disabled] {
-        background: $seavan-salt-white;
+        background: $disabled;
         box-shadow: none;
-        color: $earl-gray;
+    }
+    &[disabled], &.disabled,
+    &.purchasing, &.purchased,
+    &.installing, &.installed {
         pointer-events: none;
     }
-    // Redish.
-    &.manage {
-        background: #DA5132;
-        box-shadow: none;
+    &.installed, &.purchased, &.incompatible {
+        pointer-events: auto;
+    }
+    &.t, &.product {
+        height: $tiny;
+        line-height: $tiny;
+    }
+    &.s {
+        height: $small;
+        line-height: $small;
+    }
+    &.l {
+        height: $large;
+        line-height: $large;
+    }
 
-        &:hover,
-        &:focus {
-            background: darken(#DA5132, 10%);
-        }
-    }
-    &.gray {
-        border: 1px solid $cement-gray;
-        background-color: $seavan-salt-white;
-        color: $medium-gray;
-    }
     // Waiting/Loading spinner.
     &.loading-submit {
         position: relative;
@@ -61,17 +152,8 @@
         }
     }
     &.product {
-        fatten();
+        padding: 0 32px;
     }
-    &[disabled], &.disabled,
-    &.purchasing, &.purchased,
-    &.installing, &.installed {
-        pointer-events: none;
-    }
-    &.installed, &.purchased, &.incompatible {
-        pointer-events: auto;
-    }
-
     .spin {
         display: inline-block;
         spinner('install');
@@ -90,31 +172,22 @@
 }
 
 @media (max-width: 600px) {
-    .button {
-        padding: 3px 15px;
-
-        &.fat {
-            display: block;
-            width: 100%;
-        }
+    .button.fat {
+        display: block;
+        width: 100%;
     }
 }
 
 
 .mkt-tile .button {
-    border: 0;
     bottom: 0;
-    font-size: 12px;
-    height: 25px;
-    line-height: 25px;
     min-width: 65px;
     padding: 0;
     position: absolute;
     right: 0;
 
     &[disabled] {
-        background: $seavan-salt-white;
-        box-shadow: none;
+        background: $disabled;
     }
 }
 
@@ -126,9 +199,8 @@
     width: 100%;
 
     button {
-        background: $earl-gray;
-        border: 0;
-        box-shadow: none;
+        background: $alt;
+        box-shadow: 0 2px $alt-act;
         color: $white;
         display: block;
         margin: auto;
@@ -136,7 +208,7 @@
         width: 100%;
 
         &:hover {
-            background: $earl-gray;
+            background: $alt-hvr;
             color: $white;
         }
         &.hide,
