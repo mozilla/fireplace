@@ -1,3 +1,5 @@
+var system = require('system');
+
 var baseTestUrl = 'http://localhost:8675';
 var _currTestId;
 var require = patchRequire(require);
@@ -6,6 +8,14 @@ var utils = require('utils');
 function makeUrl(path) {
     return baseTestUrl + path;
 }
+
+
+if (system.env.SHOW_TEST_CONSOLE) {
+    casper.on('remote.message', function(message) {
+        casper.echo('client console: ' + message, 'INFO');
+    });
+}
+
 
 function startCasper(options) {
     options = options || {};

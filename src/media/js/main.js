@@ -110,14 +110,29 @@ function(_) {
         z.body.addClass(settings.body_classes);
     }
 
-    // System date checking.
     if (!utils_local.isSystemDateRecent()) {
-        z.body.addClass('date-error');
-        z.body.append(nunjucks.env.render('errors/date-error.html'));
-        z.body.on('click', '.try-again', function() {
-            if (utils_local.isSystemDateRecent()) {
-                window.location.reload();
-            }
+        // System date checking.
+        z.body.addClass('error-overlaid')
+            .append(nunjucks.env.render('errors/date-error.html'))
+            .on('click', '.system-date .try-again', function() {
+                if (utils_local.isSystemDateRecent()) {
+                    window.location.reload();
+                }
+            });
+    } else {
+        utils_local.checkOnline().fail(function() {
+            console.log('We are offline. Showing offline message');
+            z.body.addClass('error-overlaid')
+                .append(nunjucks.env.render('errors/offline-error.html'))
+                .on('click', '.offline .try-again', function() {
+                    console.log('Re-checking online status');
+                    utils_local.checkOnline().done(function(){
+                        console.log('Reloading');
+                        window.location.reload();
+                     }).fail(function() {
+                        console.log('Still offline');
+                    });
+                });
         });
     }
 

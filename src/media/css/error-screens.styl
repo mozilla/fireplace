@@ -1,37 +1,55 @@
 @import 'lib';
 
-#error-overlay {
-    background: $seavan-salt-white;
-    display: none;
+.error-overlaid {
+
+    overflow: hidden;
+
+    #error-overlay {
+        background: $seavan-salt-white;
+        bottom: 0;
+        display: block;
+        left: 0;
+        overflow: auto;
+        padding: 20px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        z-index: 102;
+    }
+
+    .error-message {
+        margin: 0 auto 20px;
+        max-width: 450px;
+        position: relative;
+        top: 45%;
+        transform(translateY(-50%));
+        button {
+            display: inline-block;
+            margin-top: 1em;
+            width: 100%;
+        }
+        h1 {
+            border-bottom: 1px solid $light-gray;
+            margin: 1em 0 1em;
+            padding: 0 0 5px;
+        }
+        p {
+            line-height: 1.5em;
+            margin: 1em 0;
+        }
+    }
 }
 
-.date-error #error-overlay {
-    display: block;
-    height: 100%;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 100%;
-    z-index: 102;
-}
+@media $at-least-desktop {
 
-#error-overlay > .error-flex {
-    -moz-box-align: center;
-    align-items: center;
-    display: -moz-flex;
-    display: flex;
-    height: 100%;
-    -moz-box-pack: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.error-message {
-    font-weight: 600;
-    margin: 25px auto;
-    text-align: center;
-}
-
-.date-error-screen button {
-    text-align: center;
+    .error-overlaid  .error-message {
+        top: 25%;
+        button {
+            float: right;
+            width: auto;
+        }
+    }
 }
