@@ -206,7 +206,7 @@ function(_) {
     var screenshotDeferrer = ImageDeferrer.Deferrer(null, 200);
     z.page.one('loaded', function() {
         iconDeferrer.setImages($('.icon.deferred'));
-        screenshotDeferrer.setImages($('.screenshot img.deferred'));
+        screenshotDeferrer.setImages($('.screenshot .deferred, .deferred-background'));
     }).on('loaded loaded_more navigate fragment_loaded', function() {
         iconDeferrer.refresh();
         screenshotDeferrer.refresh();

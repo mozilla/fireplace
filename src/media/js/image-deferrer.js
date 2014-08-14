@@ -4,6 +4,11 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
        <img class="deferred" data-src="{{ image.src }}" src="{{ placeholderSrc }}">
        imageDeferrer = require('image-deferrer').ImageDeferrer(null, 200);
        imageDeferrer.setImages($('img.deferred.defer-us'));
+
+       For background images:
+       <div class="deferred-background"
+            style="background-image: url({{ placeholderSrc }})"
+            data-src="{{ backgroundImageSrc }}">
     */
     function getXYPos(elem) {
         /*
@@ -109,27 +114,44 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
                     imagesLoading++;
                     imagesAlreadyLoaded.push(img);
 
-                    var replace = img.cloneNode(false);
-                    replace.classList.remove('deferred');
-                    replace.onload = function() {
-                        // Once the replace has loaded, swap and fade in.
-                        if (img.parentNode === null) {
-                            return;
-                        }
-                        img.parentNode.replaceChild(replace, img);
+                    if (!img.classList.contains('deferred-background')) {
+                        // Normal image defer with <img> elements. Uses a
+                        // clone and replace.
+                        var replace = img.cloneNode(false);
+                        replace.classList.remove('deferred');
+                        replace.onload = function() {
+                            // Once the replace has loaded, swap and fade in.
+                            if (img.parentNode === null) {
+                                return;
+                            }
+                            img.parentNode.replaceChild(replace, img);
 
-                        setTimeout(function() {
-                            replace.style.opacity = 1;  // Fade in.
-                        }, 50);
+                            setTimeout(function() {
+                                replace.style.opacity = 1;  // Fade in.
+                            }, 50);
+
+                            // Keep track of what img have already been deferred.
+                            _srcsAlreadyLoaded.push(replace.src);
+                            if (++imagesLoaded == imagesLoading) {
+                                z.page.trigger('images_loaded');
+                            }
+                        };
+                        replace.src = replace.getAttribute('data-src');
+                        replace.style.opacity = 0.5;
+                    } else {
+                        // Image defer for background-imaged elements. Just
+                        // updates the background-image src.
+                        img.classList.remove('deferred-background');
+                        var src = img.getAttribute('data-src');
+                        img.style.backgroundImage = 'url(' + src + ')';
 
                         // Keep track of what img have already been deferred.
-                        _srcsAlreadyLoaded.push(replace.src);
+                        _srcsAlreadyLoaded.push(src);
                         if (++imagesLoaded == imagesLoading) {
                             z.page.trigger('images_loaded');
                         }
-                    };
-                    replace.src = replace.getAttribute('data-src');
-                    replace.style.opacity = 0.5;
+                    }
+
                 } else {
                     imagesNotLoaded.push(img);
                 }
@@ -172,7 +194,6 @@ define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
             refresh();
         };
         z.win.on('unloading', clear);
-
 
         var getSrcsAlreadyLoaded = function() {
             return _srcsAlreadyLoaded;

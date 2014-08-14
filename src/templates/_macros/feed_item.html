@@ -35,11 +35,12 @@
 
   <a href="{{ url('app', [feed_app.app.slug])|urlparams(src='feed') }}" class="app-link">
     {% if indexOf([feed.FEEDAPP_ICON, feed.FEEDAPP_IMAGE], feed_app.type) != -1 %}
-      <section class="feed-item"
+      <section class="feed-item {{ 'deferred-background' if feed_app.background_image }}"
                {% if not desc and not feed_app.background_image %}
                  style="background-color: {{ color|hex2rgba('.4') }}"
                {% elif feed_app.background_image %}
-                 style="background-image: url({{ feed_app.background_image }})"
+                 style="background-image: url({{ PLACEHOLDER_ICON }})"
+                 data-src="{{ feed_app.background_image }}"
                {% endif %}>
         {% if feed_app.type == feed.FEEDAPP_ICON %}
           <ul class="app-icons">
@@ -86,7 +87,8 @@
       {% endfor %}
     </ul>
     {# Show the 'View all' link if there are 4-5 or 7+ apps in the brand.' #}
-    {% if not landing and ((brand.app_count > feed.MAX_BRAND_APPS) or ((brand.app_count < feed.MAX_BRAND_APPS) and (brand.app_count > 3))) %}
+    {% if not landing and ((brand.app_count > feed.MAX_BRAND_APPS) or
+                           ((brand.app_count < feed.MAX_BRAND_APPS) and (brand.app_count > 3))) %}
       <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src='feed') }}"
          class="view-all">
         {{ _('View all apps') }}
@@ -110,10 +112,11 @@
   <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='feed') }}"
      class="fanchor">
     <section class="feed-item full {{ 'mega' if desc and not landing }}
-                    {{ 'has-background' if coll.background_image }}
+                    {{ 'has-background deferred-background' if coll.background_image }}
                     {{ 'collection-landing' if landing }}"
          {% if coll.background_image %}
-             style="background-image: url({{ coll.background_image }})"
+             style="background-image: url({{ PLACEHOLDER_ICON }})"
+             data-src="{{ coll.background_image }}"
          {% else %}
              style="background-color: {{ color|hex2rgba('.4') }}"
          {% endif %}>
@@ -169,7 +172,9 @@
   {% set color = shelf.background_color %}
 
   <a href="{{ url('feed/feed_shelf', [shelf.slug])|urlparams(src='feed') }}" class="fanchor">
-    <section class="feed-item shelf {{ 'shelf-landing' if landing }}" style="background-image: url({{ shelf.background_image }})">
+    <section class="feed-item shelf deferred-background {{ 'shelf-landing' if landing }}"
+             style="background-image: url({{ PLACEHOLDER_ICON }})"
+             data-src="{{ shelf.background_image }}">
       <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
       <div class="info">
         <h1 class="name">{{ shelf.name|translate(shelf)|safe }}</h1>
