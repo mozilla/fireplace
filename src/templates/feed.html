@@ -2,13 +2,15 @@
 {% include '_macros/market_tile.html' %}
 {% include '_macros/more_button.html' %}
 
-{% set source = 'all' %}
-
-{% defer (url=anonApi('feed'), id='feed-items') %}
+{% defer (url=anonApi('feed')|urlparams(limit=10), id='feed-items') %}
   <ul class="feed feed-items c">
     {% for item in this.objects %}
       <li class="feed-item-item">{{ feed_item(item) }}</li>
     {% endfor %}
+
+    {% if response.meta.next %}
+      {{ more_button(response.meta.next, li_classes='feed-item-item') }}
+    {% endif %}
   </ul>
 {% placeholder %}
   <p class="spinner padded alt"></p>

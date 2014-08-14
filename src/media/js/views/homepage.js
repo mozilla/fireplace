@@ -1,13 +1,48 @@
 define('views/homepage',
-    ['format', 'isotope', 'jquery', 'l10n', 'log', 'newsletter', 'underscore', 'urls', 'utils', 'z'],
-    function(format, isotope, $, l10n, log, newsletter, _, urls, utils, z) {
+    ['require', 'jquery', 'isotope', 'format', 'l10n', 'log', 'newsletter',
+     'nunjucks', 'requests', 'underscore', 'urls', 'utils', 'z'],
+    function(require, $, Isotope, format, l10n, log, newsletter,
+             nunjucks, requests, _,urls, utils, z) {
     'use strict';
-
     var console = log('homepage');
     var gettext = l10n.gettext;
 
     z.page.on('click', '.feed-brand .view-all', function() {
         $(this).hide().closest('.feed-brand').find('.app.hidden').show();
+    })
+
+    .on('click', '.loadmore button', function() {
+        // Manually handle pagination in order to properly insert elements into
+        // Isotope's layout.
+        var $btn = $(this);
+        var $loadmore = $btn.parent();
+        var $btn_clone = $loadmore.clone();  // In case we have another page.
+        $btn.remove();
+
+        requests.get($btn.data('url')).done(function(data) {
+            $loadmore.remove();
+
+            require(['jquery-bridget/jquery.bridget'], function() {
+                // Use bridget to make Isotope a jQuery plugin.
+                // http://isotope.metafizzy.co/appendix.html#requirejs
+                $.bridget('isotope', Isotope);
+
+                // Insert via Isotope.
+                var elements = _.map(data.objects, function(item) {
+                    return $(nunjucks.env.render('feed/feed_item.html', {item: item}))[0];
+                });
+
+                // Render another loadmore button.
+                if (data.meta.next) {
+                    $btn_clone = $btn_clone.find('button').data(
+                        'url', urls.api.base.host(data.meta.next) + data.meta.next);
+                    elements.push($btn_clone[0]);
+                }
+
+                $('ul.feed').isotope('insert', elements);
+                z.page.trigger('fragment_loaded');
+            });
+        });
     });
 
     return function(builder, args, params) {
@@ -26,14 +61,20 @@ define('views/homepage',
         builder.start('feed.html', {});
 
         builder.onload('feed-items', function() {
-            var iso = new isotope(document.querySelector('.feed'), { /*jshint ignore:line*/
-                itemSelector: '.feed-item-item',
-                layoutMode: 'masonry',
-                masonry: {
-                    columnWidth: 300,
-                    gutter: 18,
-                    isFitWidth: false
-                }
+            require(['jquery-bridget/jquery.bridget'], function() {
+                // Use bridget to make Isotope a jQuery plugin.
+                // http://isotope.metafizzy.co/appendix.html#requirejs
+                $.bridget('isotope', Isotope);
+                $('.feed').isotope({
+                    itemSelector: '.feed-item-item',
+                    layoutMode: 'masonry',
+                    masonry: {
+                        columnWidth: 300,
+                        gutter: 18,
+                        isFitWidth: false
+                    }
+                });
+                z.page.trigger('fragment_loaded');
             });
         });
     };
