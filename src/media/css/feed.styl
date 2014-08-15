@@ -128,7 +128,7 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
 }
 
 [data-page-type~="leaf"] .feed .mkt-tile {
-    margin-bottom: $vertical-tile-padding;
+    margin-bottom: $vertical-tile-margin;
 }
 
 .app-link {
@@ -632,7 +632,6 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
     }
     &.collection-landing .feed-item,
     &.shelf-landing .feed-item {
-        border-radius: 2px;
         position: relative;
         width: 320px;
 
@@ -750,52 +749,7 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
     background-image: url(../img/icons/brands/countrySpecific-40px.png);
 }
 
-.column-b {
-    padding: $horizontal-tile-padding;
-    width: $feed-column-width;
-
-    .app .mkt-tile .info {
-        width: 205px;
-    }
-}
-
 @media $at-least-desktop {
-    [data-page-type~=leaf] {
-        .column-wrap {
-            margin: 0 auto;
-            padding: 0;
-            width: -moz-fit-content;
-            width: -webkit-fit-content;
-        }
-        .column-a {
-            border-radius: 5px;
-            display: inline-block;
-            margin-right: $horizontal-tile-padding;
-            vertical-align: top;
-            width: 320px;
-
-            .fanchor + .desc {
-                margin: 20px 0;
-                padding: 0;
-            }
-        }
-        .column-b {
-            display: inline-block;
-            padding: 0;
-            vertical-align: top;
-            width: $mobile-tile-width;
-
-            .container {
-                width: $mobile-tile-width;
-            }
-            .mkt-tile .elliflow {
-                max-width: 125px;
-            }
-        }
-        .feed-landing.shelf-landing .feed-item {
-            right: inherit;
-        }
-    }
     [data-page-type~=newpop] {
         .feed {
             max-width: $desktop-content;
@@ -878,10 +832,34 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
             margin-left: 10px;
         }
     }
+    .feed-item {
+        border-radius: 0;
+    }
 }
 
-.collection-landing-listing .desc {
-    border-radius: 5px;
+@media $at-least-desktop {
+    .collection-landing-listing .desc {
+        border-radius: 5px;
+    }
+    .collection-landing-promo,
+    .shelf-landing {
+        section.feed-item {
+            border-radius: 5px 5px 0 0;
+        }
+        p.desc {
+            border-radius: 0 0 5px 5px;
+        }
+    }
+}
+
+.collection-landing-promo,
+.shelf-landing {
+    .desc {
+        background: #fff;
+        box-shadow: 0 2px 1px -1px $cement-gray;
+        margin-bottom: $vertical-tile-margin;
+        width: $feed-column-width;
+    }
 }
 
 .fanchor,
