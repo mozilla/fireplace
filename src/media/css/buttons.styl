@@ -180,7 +180,7 @@ $h-padding = 10px;
 
 
 .mkt-tile .button {
-    bottom: 0;
+    bottom: 2px;
     min-width: 65px;
     padding: 0;
     position: absolute;
@@ -188,6 +188,7 @@ $h-padding = 10px;
 
     &[disabled] {
         background: $disabled;
+        bottom: 0;
     }
 }
 
@@ -199,8 +200,8 @@ $h-padding = 10px;
     width: 100%;
 
     button {
-        background: $alt;
-        box-shadow: 0 2px $alt-act;
+        background: $btn;
+        box-shadow: 0 2px $btn-act;
         color: $white;
         display: block;
         margin: auto;
@@ -208,7 +209,7 @@ $h-padding = 10px;
         width: 100%;
 
         &:hover {
-            background: $alt-hvr;
+            background: $btn-hvr;
             color: $white;
         }
         &.hide,

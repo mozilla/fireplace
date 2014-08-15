@@ -1,6 +1,6 @@
 {% macro more_button(next_page_url, li_classes) %}
 <li class="loadmore {{ li_classes }}">
-  <button class="button alt" data-url="{{ (apiHost(next_page_url) + next_page_url)|safe }}">{{ _('More') }}</button>
+  <button class="button" data-url="{{ (apiHost(next_page_url) + next_page_url)|safe }}">{{ _('More') }}</button>
   <div class="spinner alt btn-replace"></div>
 </li>
 {% endmacro %}
