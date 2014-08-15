@@ -15,10 +15,10 @@
  *
  */
 
-// TODO: Edit pencil icon. White rocket icon for 'devhub' button.
+// TODO: Edit pencil icon.
 
 // Default state.
-$btn = #67E0FD; // light blue
+$btn = #6ED2FF; // light blue
 $cta = #4CB1FF; // blue
 $action = #64BE3C; // green
 $alt = #FFDC32; // yellow
@@ -201,8 +201,6 @@ $h-padding = 10px;
 
     button {
         background: $btn;
-        box-shadow: 0 2px $btn-act;
-        color: $white;
         display: block;
         margin: auto;
         padding: 0;
@@ -211,6 +209,9 @@ $h-padding = 10px;
         &:hover {
             background: $btn-hvr;
             color: $white;
+        }
+        &:active {
+            background: $btn-act;
         }
         &.hide,
         &:not(.hide) + .spinner {
