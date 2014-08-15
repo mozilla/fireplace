@@ -9,25 +9,25 @@
       </p>
       <p class="form-footer">
         {{ potato_captcha() }}
-        <button class="button" type="submit">{{ _('Send') }}</button>
+        <button class="button cta" type="submit">{{ _('Send') }}</button>
       </p>
     </form>
     <ul class="support-list">
       <li>
         {% if capabilities.firefoxOS %}
-          <a href="https://support.mozilla.org/products/firefox-os/marketplace" class="button alt" target="_blank">{{ _('Get Help') }}</a>
+          <a href="https://support.mozilla.org/products/firefox-os/marketplace" class="button support" target="_blank">{{ _('Get Help') }}</a>
         {% elif capabilities.firefoxAndroid %}
-          <a href="https://support.mozilla.org/kb/install-android-apps-using-marketplace" class="button alt" target="_blank">{{ _('Get Help') }}</a>
+          <a href="https://support.mozilla.org/kb/install-android-apps-using-marketplace" class="button support" target="_blank">{{ _('Get Help') }}</a>
         {% endif %}
 
       </li>
       <li>
-        <a href="{{ url('privacy') }}" class="button alt">
+        <a href="{{ url('privacy') }}" class="button support">
           {{ _('Privacy Policy') }}</a>
         </a>
       </li>
       <li>
-        <a href="{{ url('terms') }}" class="button alt">
+        <a href="{{ url('terms') }}" class="button support">
           {{ _('Terms of Use') }}
         </a>
       </li>
