@@ -23,7 +23,7 @@ define('views/feed/feed_collection',
                 layoutMode: 'masonry',
                 masonry: {
                     columnWidth: 320,
-                    gutter: 0,
+                    gutter: -10,
                     isFitWidth: true
                 }
             });

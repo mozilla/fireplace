@@ -401,7 +401,7 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
     }
     .mini-app {
         height: 60px;
-        margin-top: $vertical-margin;
+        margin-top: $vertical-tile-margin;
 
         .info {
             height: 60px;
@@ -627,13 +627,12 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
 }
 
 .feed-landing {
-    &.feed {
+    &:not(.collection-landing-listing) {
         padding-top: 0;
     }
     &.collection-landing .feed-item,
     &.shelf-landing .feed-item {
         position: relative;
-        width: 320px;
 
         &.mega.full .desc {
             top: 155px;
@@ -823,13 +822,11 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
         max-width: 100%;
     }
     .detail-item {
+        margin-left: 10px;
         width: $mobile-tile-width;
 
         &.header-block {
             margin-top: 0;
-        }
-        &:not(.header-block) {
-            margin-left: 10px;
         }
     }
     .feed-item {
@@ -838,6 +835,9 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
 }
 
 @media $at-least-desktop {
+    .collection-landing-listing .feed-tile-header-wrap {
+        margin-bottom: $vertical-tile-margin;
+    }
     .collection-landing-listing .desc {
         border-radius: 5px;
     }
@@ -858,7 +858,6 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
         background: #fff;
         box-shadow: 0 2px 1px -1px $cement-gray;
         margin-bottom: $vertical-tile-margin;
-        width: $feed-column-width;
     }
 }
 
@@ -880,3 +879,22 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
     }
 }
 */
+
+@media (max-width: 321px) {
+    .collection-landing,
+    .shelf-landing {
+        .header-block,
+        .feed-item {
+            margin-left: 0;
+            width: $feed-column-width;
+        }
+    }
+}
+@media (min-width: 321px) {
+    .collection-landing,
+    .shelf-landing {
+        .header-block .desc {
+            border-radius: 0 0 5px 5px;
+        }
+    }
+}
