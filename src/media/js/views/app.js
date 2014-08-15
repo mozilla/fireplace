@@ -19,8 +19,6 @@ define('views/app',
         // Toggle description.
         $this.prev('.truncated-wrapper').toggleClass('truncated');
 
-        tracking.trackEvent('App view interactions', 'click', 'Toggle description');
-
     })).on('click', '.approval-pitch', utils._pd(function() {
         $('#preapproval-shortcut').trigger('submit');
 
@@ -29,16 +27,6 @@ define('views/app',
         window.location.hash = 'id=' + $('.product').data('id');
         e.stopPropagation();
     }));
-
-    if (tracking.actions_enabled) {
-        z.page.on('click', '.detail .support li a.button', function(e) {
-            tracking.trackEvent(
-                'App view interaction',
-                'click',
-                this.parentNode.getAttribute('data-tracking')
-            );
-        });
-    }
 
     // Init desktop abuse form modal trigger.
     // The modal is responsive even if this handler isn't removed.
@@ -65,11 +53,11 @@ define('views/app',
             builder.z('title', gettext('Oh no!'));
         });
 
-        // This is fine; tracking_helpers depends on:
+        // This is fine; tracking_events depends on:
         // navigation > views > views/app
         // This prevents a dependency loop, but all deps should have been
         // resolved by the time this executes.
-        require('tracking_helpers').track_search_term(true);
+        require('tracking_events').track_search_term(true);
 
         builder.z('type', 'leaf detail');
         builder.z('title', gettext('Loading...'));

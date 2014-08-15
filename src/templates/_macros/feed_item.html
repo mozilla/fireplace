@@ -5,11 +5,11 @@
 {% from '_macros/stars.html' import stars %}
 
 
-{% macro mini_tile(app, price_only) %}
+{% macro mini_tile(app, price_only, src) %}
   {# price_only_btns -- only show price as the label, don't show "Installed"/"Open". #}
 
   <li class="app mini-app">
-    <a href="{{ url('app', [app.slug])|urlparams(src='feed') }}" class="app-link c">
+    <a href="{{ url('app', [app.slug])|urlparams(src=src or 'feed') }}" class="app-link c">
       {{ deferred_icon(app.icons[64], app.name|translate(app)) }}
       <div class="info">
         <h2 class="app-name elliflow">{{ app.name|translate(app) }}</h2>
@@ -33,7 +33,8 @@
   {% set color = feed_app.background_color %}
   {% set desc = feed_app.description|translate(feed_app) %}
 
-  <a href="{{ url('app', [feed_app.app.slug])|urlparams(src='feed') }}" class="app-link">
+  <a href="{{ url('app', [feed_app.app.slug])|urlparams(src='featured-app') }}"
+     class="featured-app app-link" data-tracking-slug="{{ feed_app.app.slug }}">
     {% if indexOf([feed.FEEDAPP_ICON, feed.FEEDAPP_IMAGE], feed_app.type) != -1 %}
       <section class="feed-item {{ 'deferred-background' if feed_app.background_image }}"
                {% if not desc and not feed_app.background_image %}
@@ -59,20 +60,21 @@
                      classes=['feed-app'],
                      feed_app=feed_app,
                      tray=False,
-                     src='feed',
+                     src='featured-app',
                      rating_link=False) }}
     {% endif %}
   </a>
 {% endmacro %}
 
 {% macro feed_brand(brand) %}
+  {% set src = 'branded-editorial-element' %}
   {% set color = feed.get_brand_color_class(brand) %}
 
   <section class="feed-brand feed-layout-{{ 'list' if landing else brand.layout }}
                   multi-app-tile mkt-tile c"
-           data-brand-type="{{ brand.type }}">
+           data-brand-type="{{ brand.type }}" data-tracking-slug="{{ brand.slug }}">
     <div class="feed-tile-header-wrap">
-      <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src='feed') }}"
+      <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src=src) }}"
          class="fanchor">
         <h1 class="feed-tile-header" data-brand-color="{{ color }}">
           {{ feed.get_brand_name(brand) }}
@@ -82,14 +84,14 @@
     <ul class="app-list">
       {% for app in brand.apps %}
         {% if landing or loop.index0 < feed.MAX_BRAND_APPS %}
-          {{ mini_tile(app, price_only=not landing and brand.layout == 'grid') }}
+          {{ mini_tile(app, price_only=not landing and brand.layout == 'grid', src=src) }}
         {% endif %}
       {% endfor %}
     </ul>
     {# Show the 'View all' link if there are 4-5 or 7+ apps in the brand.' #}
-    {% if not landing and ((brand.app_count > feed.MAX_BRAND_APPS) or
-                           ((brand.app_count < feed.MAX_BRAND_APPS) and (brand.app_count > 3))) %}
-      <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src='feed') }}"
+    {% if not landing and brand.app_count > feed.MAX_BRAND_APPS or
+       (brand.app_count < feed.MAX_BRAND_APPS and brand.app_count > 3) %}
+      <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src=src) }}"
          class="view-all">
         {{ _('View all apps') }}
       </a>
@@ -109,11 +111,12 @@
   {% set color = coll.background_color %}
   {% set desc = coll.description|translate(coll) %}
 
-  <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='feed') }}"
+  <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}"
      class="fanchor">
-    <section class="feed-item full {{ 'mega' if desc and not landing }}
+    <section class="feed-item feed-collection full {{ 'mega' if desc and not landing }}
                     {{ 'has-background deferred-background' if coll.background_image }}
                     {{ 'collection-landing' if landing }}"
+             data-tracking-slug="{{ coll.slug }}"
          {% if coll.background_image %}
              style="background-image: url({{ PLACEHOLDER_ICON }})"
              data-src="{{ coll.background_image }}"
@@ -140,10 +143,12 @@
 {% endmacro %}
 
 {% macro feed_collection_listing(coll) %}
-  <section class="feed-collection-listing feed-layout-{{ 'list' if landing else 'grid' }}
-                  multi-app-tile mkt-tile c">
+  <section class="feed-collection feed-collection-listing
+                  feed-layout-{{ 'list' if landing else 'grid' }}
+                  multi-app-tile mkt-tile c"
+           data-tracking-slug="{{ coll.slug }}">
     <div class="feed-tile-header-wrap">
-      <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='feed') }}"
+      <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}"
          class="fanchor">
         <h1 class="feed-tile-header">{{ coll.name|translate(coll)|safe }}</h1>
       </a>
@@ -154,13 +159,15 @@
     <ul class="app-list">
       {% for app in coll.apps %}
         {% if landing or loop.index0 < feed.MAX_BRAND_APPS %}
-          {{ mini_tile(app, price_only=not landing) }}
+          {{ mini_tile(app, price_only=not landing, src='collection-element') }}
         {% endif %}
       {% endfor %}
     </ul>
     {# Show the 'View all' link if there are 4-5 or 7+ apps in the collection.' #}
-    {% if not landing and ((coll.app_count > feed.MAX_BRAND_APPS) or ((coll.app_count < feed.MAX_BRAND_APPS) and (coll.app_count > 3))) %}
-      <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='feed') }}"
+    {% if not landing and ((coll.app_count > feed.MAX_BRAND_APPS) or
+                           (coll.app_count < feed.MAX_BRAND_APPS and coll.app_count > 3)) %}
+      <a href="{{ url('feed/feed_collection',
+                      [coll.slug])|urlparams(src='collection-element') }}"
          class="view-all">
         {{ _('View all apps') }}
       </a>
@@ -171,7 +178,9 @@
 {% macro feed_shelf(shelf, landing) %}
   {% set color = shelf.background_color %}
 
-  <a href="{{ url('feed/feed_shelf', [shelf.slug])|urlparams(src='feed') }}" class="fanchor">
+  <a href="{{ url('feed/feed_shelf', [shelf.slug])|
+              urlparams(src='operator-shelf-element') }}"
+     class="op-shelf fanchor" data-tracking-slug="{{ shelf.slug }}">
     <section class="feed-item shelf deferred-background {{ 'shelf-landing' if landing }}"
              style="background-image: url({{ PLACEHOLDER_ICON }})"
              data-src="{{ shelf.background_image }}">
@@ -214,7 +223,7 @@
           {% else %}
             {% for app in coll.apps %}
               <li class="item result app c detail-item">
-                {{ market_tile(app, src='feed', tray=False, link=True) }}
+                {{ market_tile(app, src='collection-element', tray=False, link=True) }}
               </li>
             {% endfor %}
           {% endif %}
@@ -228,7 +237,8 @@
 {% endmacro %}
 
 {% macro feed_shelf_landing(shelf) %}
-  <section class="main feed feed-landing shelf-landing">
+  <section class="main feed feed-landing shelf-landing"
+           data-tracking-slug="{{ shelf.slug }}">
     <ul class="feed">
       <li class="detail-item header-block">
         {{ feed_shelf(shelf, true) }}
@@ -240,7 +250,8 @@
       {% if shelf.apps %}
         {% for app in shelf.apps %}
           <li class="item result app c detail-item">
-            {{ market_tile(app, src='feed', tray=False, link=True) }}
+            {{ market_tile(app, src='operator-shelf-element', tray=False,
+                           link=True) }}
           </li>
         {% endfor %}
       {% else %}

@@ -1,5 +1,8 @@
-define('navbar', ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 'nunjucks', 'settings', 'underscore', 'urls', 'z'],
-    function(cats, $, hammer, log, navigation, nunjucks, settings, _, urls, z) {
+define('navbar',
+    ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 'nunjucks',
+     'settings', 'underscore', 'urls', 'z'],
+    function(cats, $, hammer, log, navigation, nunjucks,
+             settings, _, urls, z) {
     'use strict';
 
     var console = log('navbar');

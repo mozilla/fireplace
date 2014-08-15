@@ -1,14 +1,12 @@
 define('apps_buttons',
     ['apps', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'login',
      'models', 'notification', 'payments/payments', 'requests', 'settings',
-     'tracking', 'tracking_helpers', 'urls', 'user', 'utils', 'views', 'z'],
+     'tracking_events', 'urls', 'user', 'utils', 'views', 'z'],
     function(apps, cache, capabilities, defer, l10n, log, login, models,
-             notification, payments, requests, settings, tracking,
-             tracking_helpers, urls, user, utils, views, z) {
-
+             notification, payments, requests, settings,
+             tracking_events, urls, user, utils, views, z) {
     var console = log('buttons');
     var gettext = l10n.gettext;
-
     var apps_model = models('app');
 
     function setButton($button, text, cls) {
@@ -32,16 +30,11 @@ define('apps_buttons',
 
     var launchHandler = _handler(function(product) {
         apps.launch(product.manifest_url);
-        tracking.trackEvent(
-            'Launch app',
-            product.payment_required ? 'Paid' : 'Free',
-            product.slug
-        );
+        tracking_events.track_app_launch(product);
     });
 
     function install(product, $button) {
-        var product_name = product.name;
-        console.log('Install requested for', product_name);
+        console.log('Install requested for', product.name);
 
         // TODO: Have the API possibly return this (bug 889501).
         product.receipt_required = (product.premium_type !== 'free' &&
@@ -65,7 +58,7 @@ define('apps_buttons',
 
         // If there isn't a user object on the app, add one.
         if (!product.user) {
-            console.warn('User data not available for', product_name);
+            console.warn('User data not available for', product.name);
             product.user = {
                 purchased: false,
                 installed: false,
@@ -88,11 +81,11 @@ define('apps_buttons',
 
         if (product.payment_required) {
             // The app requires a payment.
-            console.log('Starting payment flow for', product_name);
+            console.log('Starting payment flow for', product.name);
             $this.data('old-text', $this.html());  // Save the old text of the button.
             setButton($this, gettext('Purchasing'), 'purchasing');
             payments.purchase(product).then(function() {
-                console.log('Purchase flow completed for', product_name);
+                console.log('Purchase flow completed for', product.name);
 
                 // Update the button to say Install.
                 setButton($this, gettext('Install'), 'purchased');
@@ -121,27 +114,20 @@ define('apps_buttons',
             }, function() {
                 notification.notification({message: gettext('Payment cancelled.')});
 
-                console.log('Purchase flow rejected for', product_name);
+                console.log('Purchase flow rejected for', product.name);
                 def.reject();
             });
         } else {
             // There's no payment required, just start install.
-            console.log('Starting app installation for', product_name);
+            console.log('Starting app installation for', product.name);
             // Start the app's installation.
             start_install();
         }
 
         function start_install() {
             // Track the search term used to find this app, if applicable.
-            tracking_helpers.track_search_term();
-
-            // Track that an install was started.
-            tracking.trackEvent(
-                'Click to install app',
-                product.receipt_required ? 'paid' : 'free',
-                product_name + ':' + product.id,
-                $('.button.product').index($this)
-            );
+            tracking_events.track_search_term();
+            tracking_events.track_app_install_begin(product, $this);
 
             // Make the button a spinner.
             $this.data('old-text', $this.html())
@@ -153,7 +139,7 @@ define('apps_buttons',
             if (!product.is_packaged && !product.payment_required) {
                 _timeout = setTimeout(function() {
                     if ($this.hasClass('spinning')) {
-                        console.log('Spinner timeout for ', product_name);
+                        console.log('Spinner timeout for ', product.name);
                         revertButton($this);
                         notification.notification({message: settings.offline_msg});
                     }
@@ -163,7 +149,7 @@ define('apps_buttons',
             // If the app has already been installed by the user and we don't
             // need a receipt, just start the app install.
             if (user.has_installed(product.id) && !product.receipt_required) {
-                console.log('Receipt not required (skipping record step) for', product_name);
+                console.log('Receipt not required (skipping record step) for', product.name);
                 return do_install();
             }
 
@@ -201,7 +187,7 @@ define('apps_buttons',
                 });
 
                 // Could not record/generate receipt!
-                console.error('Could not generate receipt or record install for', product_name);
+                console.error('Could not generate receipt or record install for', product.name);
                 def.reject();
             });
         }
@@ -238,29 +224,14 @@ define('apps_buttons',
                 $how.show();
             }
 
-            // Track that the install was successful.
-            tracking.trackEvent(
-                'Successful app install',
-                product.receipt_required ? 'paid' : 'free',
-                product_name + ':' + product.id,
-                $('.button.product').index($button)
-            );
-
             mark_installed(product.manifest_url);
-            console.log('Successful install for', product_name);
+            tracking_events.track_app_install_success(product, $button);
+            console.log('Successful install for', product.name);
 
         }, function() {
-            // If the purchase or installation fails, revert the button.
             revertButton($this);
-            console.log('Unsuccessful install for', product_name);
-
-            // Track that the install failed.
-            tracking.trackEvent(
-                'App failed to install',
-                product.receipt_required ? 'paid' : 'free',
-                product_name + ':' + product.id,
-                $('.button.product').index($button)
-            );
+            tracking_events.track_app_install_fail(product, $button);
+            console.log('Unsuccessful install for', product.name);
         });
 
         return def.promise();

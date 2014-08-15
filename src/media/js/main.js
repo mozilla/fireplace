@@ -53,6 +53,7 @@ define(
         'storage',
         'templates',
         'tracking',
+        'tracking_events',
         'urls',
         'user',
         'user_helpers',

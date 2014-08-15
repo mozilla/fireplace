@@ -2,16 +2,12 @@ define('views/homepage',
     ['require', 'jquery', 'isotope', 'format', 'l10n', 'log', 'newsletter',
      'nunjucks', 'requests', 'underscore', 'urls', 'utils', 'z'],
     function(require, $, Isotope, format, l10n, log, newsletter,
-             nunjucks, requests, _,urls, utils, z) {
+             nunjucks, requests, _, urls, utils, z) {
     'use strict';
     var console = log('homepage');
     var gettext = l10n.gettext;
 
-    z.page.on('click', '.feed-brand .view-all', function() {
-        $(this).hide().closest('.feed-brand').find('.app.hidden').show();
-    })
-
-    .on('click', '.loadmore button', function() {
+    z.page.on('click', '.loadmore button', function() {
         // Manually handle pagination in order to properly insert elements into
         // Isotope's layout.
         var $btn = $(this);

@@ -135,6 +135,7 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
         trackEvent: actionWrap(function() {
             var args = Array.prototype.slice.call(arguments, 0);
             ua_push.apply(this, ['send', 'event'].concat(args));
+            return args;
         })
     };
 
