@@ -20,12 +20,21 @@ sprite-background-position($vertical-pos) {
     &:hover:before {
         background-position: 100% $vertical-pos;
     }
+    &.cur-cat {
+        &:focus:before,
+        &:hover:before,
+        &:before {
+            background-position: 100% $vertical-pos;
+        }
+    }
     // Needed for the mobile screenwidth to have
     // grey icons in the drop-down rather than blue.
-    &.cur-cat:focus:before,
-    &.cur-cat:hover:before,
-    &.cur-cat:before {
-        background-position: 0 $vertical-pos;
+    &.cur-cat.mobile-cat {
+        &:focus:before,
+        &:hover:before,
+        &:before {
+            background-position: 0 $vertical-pos;
+        }
     }
 }
 

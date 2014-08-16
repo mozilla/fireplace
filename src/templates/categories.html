@@ -1,6 +1,6 @@
 <section class="category-index main">
   {% for cat in categories %}
-    <a class="cat-{{ cat.slug }} cat-icon cur-cat" data-cat-slug="{{ cat.slug }}"
+    <a class="cat-{{ cat.slug }} cat-icon cur-cat mobile-cat" data-cat-slug="{{ cat.slug }}"
        href="{{ url('category', [cat.slug]) }}">
       <p>{{ cat.name }}</p>
     </a>

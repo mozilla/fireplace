@@ -75,7 +75,7 @@
         font-size: 15px;
         height: 50px;
         position: relative;
-        text-transform: uppercase;
+        text-transform: none;
         width: 50%;
 
         &:nth-child(2n) {
@@ -110,9 +110,11 @@
         width: 230px;
 
         &:before {
+            background-color: $breezy-blue;
             background-image: url(../img/pretty/cats-sprite.svg);
             background-repeat: no-repeat;
             background-size: 90px auto;
+            border-radius: 50px;
             content: "";
             height: 30px;
             left: 0;
