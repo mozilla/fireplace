@@ -401,7 +401,7 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
     }
     .mini-app {
         height: 60px;
-        margin-top: $vertical-tile-margin;
+        margin-top: $vertical-margin;
 
         .info {
             height: 60px;
@@ -749,6 +749,9 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
 }
 
 @media $at-least-desktop {
+    .mini-app {
+        margin-top: $vertical-tile-margin;
+    }
     [data-page-type~=newpop] {
         .feed {
             max-width: $desktop-content;

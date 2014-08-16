@@ -57,11 +57,13 @@ define('views/homepage',
         builder.start('feed.html', {});
 
         builder.onload('feed-items', function() {
+            var $feed = $('.feed');
+
             require(['jquery-bridget/jquery.bridget'], function() {
                 // Use bridget to make Isotope a jQuery plugin.
                 // http://isotope.metafizzy.co/appendix.html#requirejs
                 $.bridget('isotope', Isotope);
-                $('.feed').isotope({
+                $feed.isotope({
                     itemSelector: '.feed-item-item',
                     layoutMode: 'masonry',
                     masonry: {
