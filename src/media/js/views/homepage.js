@@ -73,6 +73,8 @@ define('views/homepage',
                     }
                 });
                 z.page.trigger('fragment_loaded');
+
+                $feed.css('opacity', 1);  // Fade-in to hide the Isotope reflow.
             });
         });
     };
