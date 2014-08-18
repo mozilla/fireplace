@@ -45,11 +45,14 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
     }
 }
 
+[data-page-type~="root"] ul.feed {
+    opacity: 0;  // Fade-in.
+}
+
 // Main container for feed elements on the homepage.
 .feed {
     list-style-type: none;
     margin: 0 auto;
-    opacity: 0;  // Fade-in.
     padding: 10px 0;
     position: relative;
     transition(opacity .2s .15s);
