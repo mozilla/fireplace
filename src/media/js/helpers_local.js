@@ -18,6 +18,8 @@ define('helpers_local',
     ];
 
     /* Register filters. */
+    filters.json = JSON.stringify;
+
     filters.items = utils_local.items;
 
     filters.rewriteCdnUrls = function(text){

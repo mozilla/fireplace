@@ -24,7 +24,12 @@ define('apps_buttons',
         return function(e) {
             e.preventDefault();
             e.stopPropagation();
-            func.call(this, apps_model.lookup($(this).closest('[data-slug]').data('slug')));
+
+            // Fetch the product from either model cache or data attr.
+            var $btn = $(this);
+            var product = apps_model.lookup($btn.closest('[data-slug]').data('slug')) ||
+                          $btn.data('product');
+            func.call(this, product);
         };
     }
 
