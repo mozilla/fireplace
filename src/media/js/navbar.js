@@ -32,7 +32,7 @@ define('navbar',
             toggleNavbar($settingsNavGroup, $mktNavGroup);
             z.page.trigger('navigate', $settingsNavGroup.find('li.active a').attr('href'));
         })
-        .on('click', '.mkt-tray, .site', function() {
+        .on('click', '.mkt-tray, .site a', function() {
             // Activate Marketplace pages navbar.
             toggleNavbar($mktNavGroup, $settingsNavGroup);
             navigation.back();
