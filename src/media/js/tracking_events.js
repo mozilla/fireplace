@@ -142,10 +142,10 @@ define('tracking_events',
         }
         if ($install_btn.closest('.feed-collection').length) {
             // Only get position within the listing collection.
-            return $('.feed-collection .button.product').index($instalL_btn);
+            return $('.feed-collection .button.product').index($install_btn);
         }
         // Position within app listing.
-        return $('.button.product').index($instalL_btn);
+        return $('.button.product').index($install_btn);
     }
 
     function track_app_install_begin(product, $install_btn) {
