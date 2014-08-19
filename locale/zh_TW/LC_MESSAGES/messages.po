@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
+"POT-Creation-Date: 2014-08-19T20:50:50.498Z\n"
 "PO-Revision-Date: 2014-07-02 17:45+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: MozTW <petercpg@mail.moztw.org>\n"
@@ -20,7 +20,7 @@ msgid "All Categories"
 msgstr "所有分類"
 
 #. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
+#: /templates/collection.html:33 /templates/_macros/feed_item.html:210 /templates/_macros/feed_item.html:237
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "喔喔，這裡沒有應用程式！"
 
@@ -213,6 +213,19 @@ msgstr "您的電子郵件地址"
 msgid "Submit"
 msgstr "送出"
 
+#: /templates/_macros/feed_app_tile.html:16
+msgid "&mdash; {attribution}"
+msgstr ""
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:18 /templates/_macros/market_tile.html:53
+msgid "Not yet rated"
+msgstr "未評分"
+
+#: /templates/_macros/feed_item.html:88 /templates/_macros/feed_item.html:156
+msgid "View all apps"
+msgstr ""
+
 #. This app is unavailable for purchase.
 #: /templates/_macros/market_button.html:6
 msgid "Unavailable"
@@ -233,10 +246,6 @@ msgstr "安裝"
 #: /templates/_macros/market_tile.html:11 /templates/_macros/market_tile.html:13
 msgid "{app_name} screenshot"
 msgstr "{app_name} 畫面擷圖"
-
-#: /templates/_macros/market_tile.html:53
-msgid "Not yet rated"
-msgstr "未評分"
 
 #: /templates/_macros/market_tile.html:65
 msgid "({n})"
@@ -371,7 +380,7 @@ msgstr "更少&hellip;"
 msgid "More&hellip;"
 msgstr "更多&hellip;"
 
-#: /templates/detail/main.html:83
+#: /templates/detail/main.html:83 /media/js/feed.js:92
 msgid "Description"
 msgstr "描述"
 
@@ -455,6 +464,18 @@ msgstr "喔不！"
 msgid "The page you were looking for was not found."
 msgstr "找不到您想開啟的頁面。"
 
+#: /templates/errors/date-error.html:4
+msgid "Sorry, your device clock appears to be set incorrectly."
+msgstr ""
+
+#: /templates/errors/date-error.html:7
+msgid "Please set today's date and time in your device settings to access the Marketplace."
+msgstr ""
+
+#: /templates/errors/date-error.html:9
+msgid "Try again"
+msgstr ""
+
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
 msgstr "發生錯誤。"
@@ -466,23 +487,6 @@ msgstr "載入更多資料時發生錯誤"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "重試"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> 筆結果"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "顯示 <b>1</b>&ndash;<b class=\"total-results\">{total}</b> 筆"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "找不到結果"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "找不到結果，請稍後重試"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -520,6 +524,23 @@ msgstr "不適當的語言或對話"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "發錯地方的臭蟲回報或技術支援請求"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> 筆結果"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "顯示 <b>1</b>&ndash;<b class=\"total-results\">{total}</b> 筆"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "找不到結果"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "找不到結果，請稍後重試"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -585,92 +606,6 @@ msgstr "登入 / 註冊"
 msgid "You have no apps"
 msgstr "您沒有應用程式"
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "付款已取消。"
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr "購買中"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr "安裝失敗，請稍後再試一次。"
-
-#: /media/js/categories.js:8
-msgid "Games"
-msgstr "遊戲"
-
-#: /media/js/categories.js:9
-msgid "Books"
-msgstr "書籍"
-
-#: /media/js/categories.js:10
-msgid "Business"
-msgstr "商業"
-
-#: /media/js/categories.js:11
-msgid "Education"
-msgstr "教育"
-
-#: /media/js/categories.js:12
-msgid "Entertainment"
-msgstr "娛樂"
-
-#: /media/js/categories.js:13
-msgid "Health & Fitness"
-msgstr "健康與健身"
-
-#: /media/js/categories.js:14
-msgid "Lifestyle"
-msgstr "生活風格"
-
-#: /media/js/categories.js:15
-msgid "Maps & Navigation"
-msgstr "地圖與導航"
-
-#: /media/js/categories.js:16
-msgid "Music"
-msgstr "音樂"
-
-#: /media/js/categories.js:17
-msgid "News & Weather"
-msgstr "新聞與氣象"
-
-#: /media/js/categories.js:18
-msgid "Photo & Video"
-msgstr "拍照與攝影"
-
-#: /media/js/categories.js:19
-msgid "Productivity"
-msgstr "生產力"
-
-#: /media/js/categories.js:20
-msgid "Reference"
-msgstr "參考資料"
-
-#: /media/js/categories.js:21
-msgid "Shopping"
-msgstr "購物"
-
-#: /media/js/categories.js:22
-msgid "Social"
-msgstr "社交"
-
-#: /media/js/categories.js:23
-msgid "Sports"
-msgstr "運動"
-
-#: /media/js/categories.js:24
-msgid "Travel"
-msgstr "旅遊"
-
-#: /media/js/categories.js:25
-msgid "Utilities"
-msgstr "工具"
-
 #: /media/js/apps.js:93
 msgid "Your device does not support payments."
 msgstr "您的裝置不支援付款。"
@@ -686,6 +621,92 @@ msgstr "您的瀏覽器或裝置與網頁應用程式不相容。"
 #: /media/js/apps.js:101
 msgid "This app is unavailable for your platform."
 msgstr "您的平台無法使用此應用程式。"
+
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "付款已取消。"
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "購買中"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "安裝失敗，請稍後再試一次。"
+
+#: /media/js/categories.js:8 /media/js/feed.js:45
+msgid "Games"
+msgstr "遊戲"
+
+#: /media/js/categories.js:9 /media/js/feed.js:42
+msgid "Books"
+msgstr "書籍"
+
+#: /media/js/categories.js:10
+msgid "Business"
+msgstr "商業"
+
+#: /media/js/categories.js:11 /media/js/feed.js:44
+msgid "Education"
+msgstr "教育"
+
+#: /media/js/categories.js:12
+msgid "Entertainment"
+msgstr "娛樂"
+
+#: /media/js/categories.js:13 /media/js/feed.js:47
+msgid "Health & Fitness"
+msgstr "健康與健身"
+
+#: /media/js/categories.js:14 /media/js/feed.js:49
+msgid "Lifestyle"
+msgstr "生活風格"
+
+#: /media/js/categories.js:15 /media/js/feed.js:51
+msgid "Maps & Navigation"
+msgstr "地圖與導航"
+
+#: /media/js/categories.js:16 /media/js/feed.js:52
+msgid "Music"
+msgstr "音樂"
+
+#: /media/js/categories.js:17 /media/js/feed.js:54
+msgid "News & Weather"
+msgstr "新聞與氣象"
+
+#: /media/js/categories.js:18 /media/js/feed.js:55
+msgid "Photo & Video"
+msgstr "拍照與攝影"
+
+#: /media/js/categories.js:19
+msgid "Productivity"
+msgstr "生產力"
+
+#: /media/js/categories.js:20
+msgid "Reference"
+msgstr "參考資料"
+
+#: /media/js/categories.js:21 /media/js/feed.js:56
+msgid "Shopping"
+msgstr "購物"
+
+#: /media/js/categories.js:22 /media/js/feed.js:57
+msgid "Social"
+msgstr "社交"
+
+#: /media/js/categories.js:23 /media/js/feed.js:58
+msgid "Sports"
+msgstr "運動"
+
+#: /media/js/categories.js:24 /media/js/feed.js:60
+msgid "Travel"
+msgstr "旅遊"
+
+#: /media/js/categories.js:25
+msgid "Utilities"
+msgstr "工具"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -727,6 +748,358 @@ msgstr "17 歲以上"
 #: /media/js/content-ratings.js:128
 msgid "Adults Only 18+"
 msgstr "18 歲以上成人"
+
+#: /media/js/feed.js:8
+msgid "App for Albania"
+msgstr ""
+
+#: /media/js/feed.js:8
+msgid "Apps for Albania"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "App for Argentina"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "Apps for Argentina"
+msgstr ""
+
+#: /media/js/feed.js:10
+msgid "App for Bangladesh"
+msgstr ""
+
+#: /media/js/feed.js:10
+msgid "Apps for Bangladesh"
+msgstr ""
+
+#: /media/js/feed.js:11
+msgid "App for Brazil"
+msgstr ""
+
+#: /media/js/feed.js:11
+msgid "Apps for Brazil"
+msgstr ""
+
+#: /media/js/feed.js:12
+msgid "App for Bulgaria"
+msgstr ""
+
+#: /media/js/feed.js:12
+msgid "Apps for Bulgaria"
+msgstr ""
+
+#: /media/js/feed.js:13
+msgid "App for Chile"
+msgstr ""
+
+#: /media/js/feed.js:13
+msgid "Apps for Chile"
+msgstr ""
+
+#: /media/js/feed.js:14
+msgid "App for China"
+msgstr ""
+
+#: /media/js/feed.js:14
+msgid "Apps for China"
+msgstr ""
+
+#: /media/js/feed.js:15
+msgid "App for Colombia"
+msgstr ""
+
+#: /media/js/feed.js:15
+msgid "Apps for Colombia"
+msgstr ""
+
+#: /media/js/feed.js:16
+msgid "App for Costa Rica"
+msgstr ""
+
+#: /media/js/feed.js:16
+msgid "Apps for Costa Rica"
+msgstr ""
+
+#: /media/js/feed.js:17
+msgid "App for Croatia"
+msgstr ""
+
+#: /media/js/feed.js:17
+msgid "Apps for Croatia"
+msgstr ""
+
+#: /media/js/feed.js:18
+msgid "App for Czech Republic"
+msgstr ""
+
+#: /media/js/feed.js:18
+msgid "Apps for Czech Republic"
+msgstr ""
+
+#: /media/js/feed.js:19
+msgid "App for Ecuador"
+msgstr ""
+
+#: /media/js/feed.js:19
+msgid "Apps for Ecuador"
+msgstr ""
+
+#: /media/js/feed.js:20
+msgid "App for El Salvador"
+msgstr ""
+
+#: /media/js/feed.js:20
+msgid "Apps for El Salvador"
+msgstr ""
+
+#: /media/js/feed.js:21
+msgid "App for France"
+msgstr ""
+
+#: /media/js/feed.js:21
+msgid "Apps for France"
+msgstr ""
+
+#: /media/js/feed.js:22
+msgid "App for Germany"
+msgstr ""
+
+#: /media/js/feed.js:22
+msgid "Apps for Germany"
+msgstr ""
+
+#: /media/js/feed.js:23
+msgid "App for Greece"
+msgstr ""
+
+#: /media/js/feed.js:23
+msgid "Apps for Greece"
+msgstr ""
+
+#: /media/js/feed.js:24
+msgid "App for Hungary"
+msgstr ""
+
+#: /media/js/feed.js:24
+msgid "Apps for Hungary"
+msgstr ""
+
+#: /media/js/feed.js:25
+msgid "App for India"
+msgstr ""
+
+#: /media/js/feed.js:25
+msgid "Apps for India"
+msgstr ""
+
+#: /media/js/feed.js:26
+msgid "App for Italy"
+msgstr ""
+
+#: /media/js/feed.js:26
+msgid "Apps for Italy"
+msgstr ""
+
+#: /media/js/feed.js:27
+msgid "App for Japan"
+msgstr ""
+
+#: /media/js/feed.js:27
+msgid "Apps for Japan"
+msgstr ""
+
+#: /media/js/feed.js:28
+msgid "App for Macedonia"
+msgstr ""
+
+#: /media/js/feed.js:28
+msgid "Apps for Macedonia"
+msgstr ""
+
+#: /media/js/feed.js:29
+msgid "App for Mexico"
+msgstr ""
+
+#: /media/js/feed.js:29
+msgid "Apps for Mexico"
+msgstr ""
+
+#: /media/js/feed.js:30
+msgid "App for Montenegro"
+msgstr ""
+
+#: /media/js/feed.js:30
+msgid "Apps for Montenegro"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "App for Nicaragua"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "Apps for Nicaragua"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "App for Panama"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "Apps for Panama"
+msgstr ""
+
+#: /media/js/feed.js:33
+msgid "App for Peru"
+msgstr ""
+
+#: /media/js/feed.js:33
+msgid "Apps for Peru"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "App for Poland"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "Apps for Poland"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "App for Russia"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "Apps for Russia"
+msgstr ""
+
+#: /media/js/feed.js:36
+msgid "App for Serbia"
+msgstr ""
+
+#: /media/js/feed.js:36
+msgid "Apps for Serbia"
+msgstr ""
+
+#: /media/js/feed.js:37
+msgid "App for South Africa"
+msgstr ""
+
+#: /media/js/feed.js:37
+msgid "Apps for South Africa"
+msgstr ""
+
+#: /media/js/feed.js:38
+msgid "App for Spain"
+msgstr ""
+
+#: /media/js/feed.js:38
+msgid "Apps for Spain"
+msgstr ""
+
+#: /media/js/feed.js:39
+msgid "App for Uruguay"
+msgstr ""
+
+#: /media/js/feed.js:39
+msgid "Apps for Uruguay"
+msgstr ""
+
+#: /media/js/feed.js:40
+msgid "App for Venezuela"
+msgstr ""
+
+#: /media/js/feed.js:40
+msgid "Apps for Venezuela"
+msgstr ""
+
+#: /media/js/feed.js:41
+msgid "Arts & Entertainment"
+msgstr ""
+
+#: /media/js/feed.js:42
+msgid "Book"
+msgstr ""
+
+#: /media/js/feed.js:43
+msgid "Creativity"
+msgstr ""
+
+#: /media/js/feed.js:45
+msgid "Game"
+msgstr ""
+
+#: /media/js/feed.js:46
+msgid "Groundbreaking"
+msgstr ""
+
+#: /media/js/feed.js:48
+msgid "Hidden Gem"
+msgstr ""
+
+#: /media/js/feed.js:48
+msgid "Hidden Gems"
+msgstr ""
+
+#: /media/js/feed.js:50
+msgid "Local Favorite"
+msgstr ""
+
+#: /media/js/feed.js:50
+msgid "Local Favorites"
+msgstr ""
+
+#: /media/js/feed.js:53
+msgid "Mystery App!"
+msgstr ""
+
+#: /media/js/feed.js:53
+msgid "Mystery Apps!"
+msgstr ""
+
+#: /media/js/feed.js:59
+msgid "Tools & Time Saver"
+msgstr ""
+
+#: /media/js/feed.js:59
+msgid "Tools & Time Savers"
+msgstr ""
+
+#: /media/js/feed.js:61
+msgid "Work & Business"
+msgstr ""
+
+#: /media/js/feed.js:67
+msgid "Grid Layout"
+msgstr ""
+
+#: /media/js/feed.js:68
+msgid "List Layout"
+msgstr ""
+
+#: /media/js/feed.js:90
+msgid "Icon"
+msgstr ""
+
+#: /media/js/feed.js:91
+msgid "Background Image"
+msgstr ""
+
+#: /media/js/feed.js:93
+msgid "Quote"
+msgstr ""
+
+#: /media/js/feed.js:94
+msgid "Screenshot"
+msgstr ""
+
+#: /media/js/feed.js:102
+msgid "Promo Collection"
+msgstr ""
+
+#: /media/js/feed.js:103
+msgid "Listing Collection"
+msgstr ""
 
 #: /media/js/installer_direct.js:56
 msgid "Unable to install packaged apps"
@@ -903,15 +1276,15 @@ msgstr "您已經登出。"
 msgid "You have been signed in"
 msgstr "您已經登入。"
 
-#: /media/js/commonplace/login.js:188
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona 登入失敗，也許您沒有使用該電子郵件地址的帳號？"
 
-#: /media/js/commonplace/login.js:193
+#: /media/js/commonplace/login.js:198
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona 登入失敗，伺服器發生錯誤。"
 
-#: /media/js/commonplace/login.js:263
+#: /media/js/commonplace/login.js:268
 msgid "Persona cannot be reached. Try again later."
 msgstr "無法連線至 Persona，請稍候再試。"
 

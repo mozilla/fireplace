@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
+"POT-Creation-Date: 2014-08-19T20:50:50.498Z\n"
 "PO-Revision-Date: 2014-08-19 13:51+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1408456305.0\n"
 
@@ -20,7 +19,7 @@ msgid "All Categories"
 msgstr "Всі категорії"
 
 #. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
+#: /templates/collection.html:33 /templates/_macros/feed_item.html:210 /templates/_macros/feed_item.html:237
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Ой-йой! Тут немає програм, Шеггі!"
 
@@ -47,10 +46,7 @@ msgstr "Застарілий Marketplace"
 
 #: /templates/deprecated.html:3
 msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
-msgstr ""
-"Версія Firefox Marketplace, яку ви використовуєте більше не підтримується. "
-"Щоб продовжити використовувати Marketplace, вам необхідно спочатку "
-"застосувати оновлення."
+msgstr "Версія Firefox Marketplace, яку ви використовуєте більше не підтримується. Щоб продовжити використовувати Marketplace, вам необхідно спочатку застосувати оновлення."
 
 #: /templates/deprecated.html:5
 msgid "Update Now"
@@ -106,10 +102,8 @@ msgid ""
 "Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
 "Alike License v3.0</a> or any later version."
 msgstr ""
-"За виключенням вмісту з <a href=\"{legal_url}\" target=\"_blank\">явно "
-"зазначеною</a> ліцензією, вміст цього сайту ліцензовано на умовах <a "
-"href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution із збереженням "
-"умов версії 3.0</a> або пізнішої."
+"За виключенням вмісту з <a href=\"{legal_url}\" target=\"_blank\">явно зазначеною</a> ліцензією, вміст цього сайту ліцензовано на умовах <a href=\"{cc_url}\" target=\"_blank\">Creative Commons "
+"Attribution із збереженням умов версії 3.0</a> або пізнішої."
 
 #: /templates/footer.html:37 /templates/privacy.html:2 /templates/detail/main.html:191 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:26
 #: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
@@ -166,16 +160,11 @@ msgstr "Запропонувати програми до відібраного 
 
 #: /templates/nominate.html:6
 msgid "Are you the developer or fan of an awesome app or collection of apps on Firefox Marketplace? Submit your nominations, and you may see them in a featured spot."
-msgstr ""
-"Ви розробник чи прихильник чудової програми або збірки програм на Firefox "
-"Marketplace? Представте свої номінації і ви зможете побачити їх у "
-"відібраних."
+msgstr "Ви розробник чи прихильник чудової програми або збірки програм на Firefox Marketplace? Представте свої номінації і ви зможете побачити їх у відібраних."
 
 #: /templates/nominate.html:9
 msgid "Learn more about <a href=\"{wiki_url}\">how apps are featured</a>."
-msgstr ""
-"Дізнатись більше про те, <a href=\"{wiki_url}\">як програми стають "
-"відібраними</a>."
+msgstr "Дізнатись більше про те, <a href=\"{wiki_url}\">як програми стають відібраними</a>."
 
 #: /templates/nominate.html:15
 msgid "Thanks for submitting your nomination."
@@ -195,9 +184,7 @@ msgstr "Представити іншу номінацію"
 
 #: /templates/nominate.html:24
 msgid "Tell us which Marketplace apps you'd like to nominate for featuring"
-msgstr ""
-"Розкажіть нам, які програми Marketplace ви бажаєте запропонувати для "
-"відібраних"
+msgstr "Розкажіть нам, які програми Marketplace ви бажаєте запропонувати для відібраних"
 
 #: /templates/nominate.html:25
 msgid "Name of apps or Marketplace URLs"
@@ -227,6 +214,19 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
+#: /templates/_macros/feed_app_tile.html:16
+msgid "&mdash; {attribution}"
+msgstr ""
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:18 /templates/_macros/market_tile.html:53
+msgid "Not yet rated"
+msgstr "Ще не оцінено"
+
+#: /templates/_macros/feed_item.html:88 /templates/_macros/feed_item.html:156
+msgid "View all apps"
+msgstr ""
+
 #. This app is unavailable for purchase.
 #: /templates/_macros/market_button.html:6
 msgid "Unavailable"
@@ -247,10 +247,6 @@ msgstr ""
 #: /templates/_macros/market_tile.html:11 /templates/_macros/market_tile.html:13
 msgid "{app_name} screenshot"
 msgstr "Знімок екрану {app_name}"
-
-#: /templates/_macros/market_tile.html:53
-msgid "Not yet rated"
-msgstr "Ще не оцінено"
 
 #: /templates/_macros/market_tile.html:65
 msgid "({n})"
@@ -387,7 +383,7 @@ msgstr ""
 msgid "More&hellip;"
 msgstr ""
 
-#: /templates/detail/main.html:83
+#: /templates/detail/main.html:83 /media/js/feed.js:92
 msgid "Description"
 msgstr ""
 
@@ -471,6 +467,18 @@ msgstr ""
 msgid "The page you were looking for was not found."
 msgstr ""
 
+#: /templates/errors/date-error.html:4
+msgid "Sorry, your device clock appears to be set incorrectly."
+msgstr ""
+
+#: /templates/errors/date-error.html:7
+msgid "Please set today's date and time in your device settings to access the Marketplace."
+msgstr ""
+
+#: /templates/errors/date-error.html:9
+msgid "Try again"
+msgstr ""
+
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
 msgstr ""
@@ -481,25 +489,6 @@ msgstr ""
 
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
-msgstr ""
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr ""
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr ""
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
 msgstr ""
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
@@ -537,6 +526,25 @@ msgstr ""
 
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
+msgstr ""
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr ""
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr ""
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
 msgstr ""
 
 #: /templates/settings/feedback.html:12
@@ -603,92 +611,6 @@ msgstr ""
 msgid "You have no apps"
 msgstr ""
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr ""
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr ""
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr ""
-
-#: /media/js/categories.js:8
-msgid "Games"
-msgstr ""
-
-#: /media/js/categories.js:9
-msgid "Books"
-msgstr ""
-
-#: /media/js/categories.js:10
-msgid "Business"
-msgstr ""
-
-#: /media/js/categories.js:11
-msgid "Education"
-msgstr ""
-
-#: /media/js/categories.js:12
-msgid "Entertainment"
-msgstr ""
-
-#: /media/js/categories.js:13
-msgid "Health & Fitness"
-msgstr ""
-
-#: /media/js/categories.js:14
-msgid "Lifestyle"
-msgstr ""
-
-#: /media/js/categories.js:15
-msgid "Maps & Navigation"
-msgstr ""
-
-#: /media/js/categories.js:16
-msgid "Music"
-msgstr ""
-
-#: /media/js/categories.js:17
-msgid "News & Weather"
-msgstr ""
-
-#: /media/js/categories.js:18
-msgid "Photo & Video"
-msgstr ""
-
-#: /media/js/categories.js:19
-msgid "Productivity"
-msgstr ""
-
-#: /media/js/categories.js:20
-msgid "Reference"
-msgstr ""
-
-#: /media/js/categories.js:21
-msgid "Shopping"
-msgstr ""
-
-#: /media/js/categories.js:22
-msgid "Social"
-msgstr ""
-
-#: /media/js/categories.js:23
-msgid "Sports"
-msgstr ""
-
-#: /media/js/categories.js:24
-msgid "Travel"
-msgstr ""
-
-#: /media/js/categories.js:25
-msgid "Utilities"
-msgstr ""
-
 #: /media/js/apps.js:93
 msgid "Your device does not support payments."
 msgstr ""
@@ -703,6 +625,92 @@ msgstr ""
 
 #: /media/js/apps.js:101
 msgid "This app is unavailable for your platform."
+msgstr ""
+
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr ""
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr ""
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr ""
+
+#: /media/js/categories.js:8 /media/js/feed.js:45
+msgid "Games"
+msgstr ""
+
+#: /media/js/categories.js:9 /media/js/feed.js:42
+msgid "Books"
+msgstr ""
+
+#: /media/js/categories.js:10
+msgid "Business"
+msgstr ""
+
+#: /media/js/categories.js:11 /media/js/feed.js:44
+msgid "Education"
+msgstr ""
+
+#: /media/js/categories.js:12
+msgid "Entertainment"
+msgstr ""
+
+#: /media/js/categories.js:13 /media/js/feed.js:47
+msgid "Health & Fitness"
+msgstr ""
+
+#: /media/js/categories.js:14 /media/js/feed.js:49
+msgid "Lifestyle"
+msgstr ""
+
+#: /media/js/categories.js:15 /media/js/feed.js:51
+msgid "Maps & Navigation"
+msgstr ""
+
+#: /media/js/categories.js:16 /media/js/feed.js:52
+msgid "Music"
+msgstr ""
+
+#: /media/js/categories.js:17 /media/js/feed.js:54
+msgid "News & Weather"
+msgstr ""
+
+#: /media/js/categories.js:18 /media/js/feed.js:55
+msgid "Photo & Video"
+msgstr ""
+
+#: /media/js/categories.js:19
+msgid "Productivity"
+msgstr ""
+
+#: /media/js/categories.js:20
+msgid "Reference"
+msgstr ""
+
+#: /media/js/categories.js:21 /media/js/feed.js:56
+msgid "Shopping"
+msgstr ""
+
+#: /media/js/categories.js:22 /media/js/feed.js:57
+msgid "Social"
+msgstr ""
+
+#: /media/js/categories.js:23 /media/js/feed.js:58
+msgid "Sports"
+msgstr ""
+
+#: /media/js/categories.js:24 /media/js/feed.js:60
+msgid "Travel"
+msgstr ""
+
+#: /media/js/categories.js:25
+msgid "Utilities"
 msgstr ""
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
@@ -744,6 +752,358 @@ msgstr ""
 
 #: /media/js/content-ratings.js:128
 msgid "Adults Only 18+"
+msgstr ""
+
+#: /media/js/feed.js:8
+msgid "App for Albania"
+msgstr ""
+
+#: /media/js/feed.js:8
+msgid "Apps for Albania"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "App for Argentina"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "Apps for Argentina"
+msgstr ""
+
+#: /media/js/feed.js:10
+msgid "App for Bangladesh"
+msgstr ""
+
+#: /media/js/feed.js:10
+msgid "Apps for Bangladesh"
+msgstr ""
+
+#: /media/js/feed.js:11
+msgid "App for Brazil"
+msgstr ""
+
+#: /media/js/feed.js:11
+msgid "Apps for Brazil"
+msgstr ""
+
+#: /media/js/feed.js:12
+msgid "App for Bulgaria"
+msgstr ""
+
+#: /media/js/feed.js:12
+msgid "Apps for Bulgaria"
+msgstr ""
+
+#: /media/js/feed.js:13
+msgid "App for Chile"
+msgstr ""
+
+#: /media/js/feed.js:13
+msgid "Apps for Chile"
+msgstr ""
+
+#: /media/js/feed.js:14
+msgid "App for China"
+msgstr ""
+
+#: /media/js/feed.js:14
+msgid "Apps for China"
+msgstr ""
+
+#: /media/js/feed.js:15
+msgid "App for Colombia"
+msgstr ""
+
+#: /media/js/feed.js:15
+msgid "Apps for Colombia"
+msgstr ""
+
+#: /media/js/feed.js:16
+msgid "App for Costa Rica"
+msgstr ""
+
+#: /media/js/feed.js:16
+msgid "Apps for Costa Rica"
+msgstr ""
+
+#: /media/js/feed.js:17
+msgid "App for Croatia"
+msgstr ""
+
+#: /media/js/feed.js:17
+msgid "Apps for Croatia"
+msgstr ""
+
+#: /media/js/feed.js:18
+msgid "App for Czech Republic"
+msgstr ""
+
+#: /media/js/feed.js:18
+msgid "Apps for Czech Republic"
+msgstr ""
+
+#: /media/js/feed.js:19
+msgid "App for Ecuador"
+msgstr ""
+
+#: /media/js/feed.js:19
+msgid "Apps for Ecuador"
+msgstr ""
+
+#: /media/js/feed.js:20
+msgid "App for El Salvador"
+msgstr ""
+
+#: /media/js/feed.js:20
+msgid "Apps for El Salvador"
+msgstr ""
+
+#: /media/js/feed.js:21
+msgid "App for France"
+msgstr ""
+
+#: /media/js/feed.js:21
+msgid "Apps for France"
+msgstr ""
+
+#: /media/js/feed.js:22
+msgid "App for Germany"
+msgstr ""
+
+#: /media/js/feed.js:22
+msgid "Apps for Germany"
+msgstr ""
+
+#: /media/js/feed.js:23
+msgid "App for Greece"
+msgstr ""
+
+#: /media/js/feed.js:23
+msgid "Apps for Greece"
+msgstr ""
+
+#: /media/js/feed.js:24
+msgid "App for Hungary"
+msgstr ""
+
+#: /media/js/feed.js:24
+msgid "Apps for Hungary"
+msgstr ""
+
+#: /media/js/feed.js:25
+msgid "App for India"
+msgstr ""
+
+#: /media/js/feed.js:25
+msgid "Apps for India"
+msgstr ""
+
+#: /media/js/feed.js:26
+msgid "App for Italy"
+msgstr ""
+
+#: /media/js/feed.js:26
+msgid "Apps for Italy"
+msgstr ""
+
+#: /media/js/feed.js:27
+msgid "App for Japan"
+msgstr ""
+
+#: /media/js/feed.js:27
+msgid "Apps for Japan"
+msgstr ""
+
+#: /media/js/feed.js:28
+msgid "App for Macedonia"
+msgstr ""
+
+#: /media/js/feed.js:28
+msgid "Apps for Macedonia"
+msgstr ""
+
+#: /media/js/feed.js:29
+msgid "App for Mexico"
+msgstr ""
+
+#: /media/js/feed.js:29
+msgid "Apps for Mexico"
+msgstr ""
+
+#: /media/js/feed.js:30
+msgid "App for Montenegro"
+msgstr ""
+
+#: /media/js/feed.js:30
+msgid "Apps for Montenegro"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "App for Nicaragua"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "Apps for Nicaragua"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "App for Panama"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "Apps for Panama"
+msgstr ""
+
+#: /media/js/feed.js:33
+msgid "App for Peru"
+msgstr ""
+
+#: /media/js/feed.js:33
+msgid "Apps for Peru"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "App for Poland"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "Apps for Poland"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "App for Russia"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "Apps for Russia"
+msgstr ""
+
+#: /media/js/feed.js:36
+msgid "App for Serbia"
+msgstr ""
+
+#: /media/js/feed.js:36
+msgid "Apps for Serbia"
+msgstr ""
+
+#: /media/js/feed.js:37
+msgid "App for South Africa"
+msgstr ""
+
+#: /media/js/feed.js:37
+msgid "Apps for South Africa"
+msgstr ""
+
+#: /media/js/feed.js:38
+msgid "App for Spain"
+msgstr ""
+
+#: /media/js/feed.js:38
+msgid "Apps for Spain"
+msgstr ""
+
+#: /media/js/feed.js:39
+msgid "App for Uruguay"
+msgstr ""
+
+#: /media/js/feed.js:39
+msgid "Apps for Uruguay"
+msgstr ""
+
+#: /media/js/feed.js:40
+msgid "App for Venezuela"
+msgstr ""
+
+#: /media/js/feed.js:40
+msgid "Apps for Venezuela"
+msgstr ""
+
+#: /media/js/feed.js:41
+msgid "Arts & Entertainment"
+msgstr ""
+
+#: /media/js/feed.js:42
+msgid "Book"
+msgstr ""
+
+#: /media/js/feed.js:43
+msgid "Creativity"
+msgstr ""
+
+#: /media/js/feed.js:45
+msgid "Game"
+msgstr ""
+
+#: /media/js/feed.js:46
+msgid "Groundbreaking"
+msgstr ""
+
+#: /media/js/feed.js:48
+msgid "Hidden Gem"
+msgstr ""
+
+#: /media/js/feed.js:48
+msgid "Hidden Gems"
+msgstr ""
+
+#: /media/js/feed.js:50
+msgid "Local Favorite"
+msgstr ""
+
+#: /media/js/feed.js:50
+msgid "Local Favorites"
+msgstr ""
+
+#: /media/js/feed.js:53
+msgid "Mystery App!"
+msgstr ""
+
+#: /media/js/feed.js:53
+msgid "Mystery Apps!"
+msgstr ""
+
+#: /media/js/feed.js:59
+msgid "Tools & Time Saver"
+msgstr ""
+
+#: /media/js/feed.js:59
+msgid "Tools & Time Savers"
+msgstr ""
+
+#: /media/js/feed.js:61
+msgid "Work & Business"
+msgstr ""
+
+#: /media/js/feed.js:67
+msgid "Grid Layout"
+msgstr ""
+
+#: /media/js/feed.js:68
+msgid "List Layout"
+msgstr ""
+
+#: /media/js/feed.js:90
+msgid "Icon"
+msgstr ""
+
+#: /media/js/feed.js:91
+msgid "Background Image"
+msgstr ""
+
+#: /media/js/feed.js:93
+msgid "Quote"
+msgstr ""
+
+#: /media/js/feed.js:94
+msgid "Screenshot"
+msgstr ""
+
+#: /media/js/feed.js:102
+msgid "Promo Collection"
+msgstr ""
+
+#: /media/js/feed.js:103
+msgid "Listing Collection"
 msgstr ""
 
 #: /media/js/installer_direct.js:56
@@ -923,15 +1283,15 @@ msgstr ""
 msgid "You have been signed in"
 msgstr ""
 
-#: /media/js/commonplace/login.js:188
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr ""
 
-#: /media/js/commonplace/login.js:193
+#: /media/js/commonplace/login.js:198
 msgid "Persona login failed. A server error was encountered."
 msgstr ""
 
-#: /media/js/commonplace/login.js:263
+#: /media/js/commonplace/login.js:268
 msgid "Persona cannot be reached. Try again later."
 msgstr ""
 

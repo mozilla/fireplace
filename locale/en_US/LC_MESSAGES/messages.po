@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
+"POT-Creation-Date: 2014-08-19T20:50:50.498Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,7 +18,7 @@ msgid "All Categories"
 msgstr "All Categories"
 
 #. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
+#: /templates/collection.html:33 /templates/_macros/feed_item.html:210 /templates/_macros/feed_item.html:237
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Ruh roh! No apps here, Shaggy!"
 
@@ -213,6 +213,19 @@ msgstr "Your email address"
 msgid "Submit"
 msgstr "Submit"
 
+#: /templates/_macros/feed_app_tile.html:16
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:18 /templates/_macros/market_tile.html:53
+msgid "Not yet rated"
+msgstr "Not yet rated"
+
+#: /templates/_macros/feed_item.html:88 /templates/_macros/feed_item.html:156
+msgid "View all apps"
+msgstr "View all apps"
+
 #. This app is unavailable for purchase.
 #: /templates/_macros/market_button.html:6
 msgid "Unavailable"
@@ -233,10 +246,6 @@ msgstr "Install"
 #: /templates/_macros/market_tile.html:11 /templates/_macros/market_tile.html:13
 msgid "{app_name} screenshot"
 msgstr "{app_name} screenshot"
-
-#: /templates/_macros/market_tile.html:53
-msgid "Not yet rated"
-msgstr "Not yet rated"
 
 #: /templates/_macros/market_tile.html:65
 msgid "({n})"
@@ -372,7 +381,7 @@ msgstr "Less&hellip;"
 msgid "More&hellip;"
 msgstr "More&hellip;"
 
-#: /templates/detail/main.html:83
+#: /templates/detail/main.html:83 /media/js/feed.js:92
 msgid "Description"
 msgstr "Description"
 
@@ -456,6 +465,18 @@ msgstr "Oh no!"
 msgid "The page you were looking for was not found."
 msgstr "The page you were looking for was not found."
 
+#: /templates/errors/date-error.html:4
+msgid "Sorry, your device clock appears to be set incorrectly."
+msgstr "Sorry, your device clock appears to be set incorrectly."
+
+#: /templates/errors/date-error.html:7
+msgid "Please set today's date and time in your device settings to access the Marketplace."
+msgstr "Please set today's date and time in your device settings to access the Marketplace."
+
+#: /templates/errors/date-error.html:9
+msgid "Try again"
+msgstr "Try again"
+
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
 msgstr "An error occurred."
@@ -467,24 +488,6 @@ msgstr "Error loading more"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Try Again"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Result"
-msgstr[1] "<b>{n}</b> Results"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "No results found"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "No results found, try again later"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -522,6 +525,24 @@ msgstr "Inappropriate language/dialog"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Misplaced bug report or support request"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Result"
+msgstr[1] "<b>{n}</b> Results"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "No results found"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "No results found, try again later"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -587,92 +608,6 @@ msgstr "Sign in / Sign up"
 msgid "You have no apps"
 msgstr "You have no apps"
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Payment cancelled."
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr "Purchasing"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr "Install failed. Please try again later."
-
-#: /media/js/categories.js:8
-msgid "Games"
-msgstr "Games"
-
-#: /media/js/categories.js:9
-msgid "Books"
-msgstr "Books"
-
-#: /media/js/categories.js:10
-msgid "Business"
-msgstr "Business"
-
-#: /media/js/categories.js:11
-msgid "Education"
-msgstr "Education"
-
-#: /media/js/categories.js:12
-msgid "Entertainment"
-msgstr "Entertainment"
-
-#: /media/js/categories.js:13
-msgid "Health & Fitness"
-msgstr "Health & Fitness"
-
-#: /media/js/categories.js:14
-msgid "Lifestyle"
-msgstr "Lifestyle"
-
-#: /media/js/categories.js:15
-msgid "Maps & Navigation"
-msgstr "Maps & Navigation"
-
-#: /media/js/categories.js:16
-msgid "Music"
-msgstr "Music"
-
-#: /media/js/categories.js:17
-msgid "News & Weather"
-msgstr "News & Weather"
-
-#: /media/js/categories.js:18
-msgid "Photo & Video"
-msgstr "Photo & Video"
-
-#: /media/js/categories.js:19
-msgid "Productivity"
-msgstr "Productivity"
-
-#: /media/js/categories.js:20
-msgid "Reference"
-msgstr "Reference"
-
-#: /media/js/categories.js:21
-msgid "Shopping"
-msgstr "Shopping"
-
-#: /media/js/categories.js:22
-msgid "Social"
-msgstr "Social"
-
-#: /media/js/categories.js:23
-msgid "Sports"
-msgstr "Sports"
-
-#: /media/js/categories.js:24
-msgid "Travel"
-msgstr "Travel"
-
-#: /media/js/categories.js:25
-msgid "Utilities"
-msgstr "Utilities"
-
 #: /media/js/apps.js:93
 msgid "Your device does not support payments."
 msgstr "Your device does not support payments."
@@ -688,6 +623,92 @@ msgstr "Your browser or device is not web-app compatible."
 #: /media/js/apps.js:101
 msgid "This app is unavailable for your platform."
 msgstr "This app is unavailable for your platform."
+
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Payment cancelled."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "Purchasing"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "Install failed. Please try again later."
+
+#: /media/js/categories.js:8 /media/js/feed.js:45
+msgid "Games"
+msgstr "Games"
+
+#: /media/js/categories.js:9 /media/js/feed.js:42
+msgid "Books"
+msgstr "Books"
+
+#: /media/js/categories.js:10
+msgid "Business"
+msgstr "Business"
+
+#: /media/js/categories.js:11 /media/js/feed.js:44
+msgid "Education"
+msgstr "Education"
+
+#: /media/js/categories.js:12
+msgid "Entertainment"
+msgstr "Entertainment"
+
+#: /media/js/categories.js:13 /media/js/feed.js:47
+msgid "Health & Fitness"
+msgstr "Health & Fitness"
+
+#: /media/js/categories.js:14 /media/js/feed.js:49
+msgid "Lifestyle"
+msgstr "Lifestyle"
+
+#: /media/js/categories.js:15 /media/js/feed.js:51
+msgid "Maps & Navigation"
+msgstr "Maps & Navigation"
+
+#: /media/js/categories.js:16 /media/js/feed.js:52
+msgid "Music"
+msgstr "Music"
+
+#: /media/js/categories.js:17 /media/js/feed.js:54
+msgid "News & Weather"
+msgstr "News & Weather"
+
+#: /media/js/categories.js:18 /media/js/feed.js:55
+msgid "Photo & Video"
+msgstr "Photo & Video"
+
+#: /media/js/categories.js:19
+msgid "Productivity"
+msgstr "Productivity"
+
+#: /media/js/categories.js:20
+msgid "Reference"
+msgstr "Reference"
+
+#: /media/js/categories.js:21 /media/js/feed.js:56
+msgid "Shopping"
+msgstr "Shopping"
+
+#: /media/js/categories.js:22 /media/js/feed.js:57
+msgid "Social"
+msgstr "Social"
+
+#: /media/js/categories.js:23 /media/js/feed.js:58
+msgid "Sports"
+msgstr "Sports"
+
+#: /media/js/categories.js:24 /media/js/feed.js:60
+msgid "Travel"
+msgstr "Travel"
+
+#: /media/js/categories.js:25
+msgid "Utilities"
+msgstr "Utilities"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -729,6 +750,358 @@ msgstr "Mature 17+"
 #: /media/js/content-ratings.js:128
 msgid "Adults Only 18+"
 msgstr "Adults Only 18+"
+
+#: /media/js/feed.js:8
+msgid "App for Albania"
+msgstr "App for Albania"
+
+#: /media/js/feed.js:8
+msgid "Apps for Albania"
+msgstr "Apps for Albania"
+
+#: /media/js/feed.js:9
+msgid "App for Argentina"
+msgstr "App for Argentina"
+
+#: /media/js/feed.js:9
+msgid "Apps for Argentina"
+msgstr "Apps for Argentina"
+
+#: /media/js/feed.js:10
+msgid "App for Bangladesh"
+msgstr "App for Bangladesh"
+
+#: /media/js/feed.js:10
+msgid "Apps for Bangladesh"
+msgstr "Apps for Bangladesh"
+
+#: /media/js/feed.js:11
+msgid "App for Brazil"
+msgstr "App for Brazil"
+
+#: /media/js/feed.js:11
+msgid "Apps for Brazil"
+msgstr "Apps for Brazil"
+
+#: /media/js/feed.js:12
+msgid "App for Bulgaria"
+msgstr "App for Bulgaria"
+
+#: /media/js/feed.js:12
+msgid "Apps for Bulgaria"
+msgstr "Apps for Bulgaria"
+
+#: /media/js/feed.js:13
+msgid "App for Chile"
+msgstr "App for Chile"
+
+#: /media/js/feed.js:13
+msgid "Apps for Chile"
+msgstr "Apps for Chile"
+
+#: /media/js/feed.js:14
+msgid "App for China"
+msgstr "App for China"
+
+#: /media/js/feed.js:14
+msgid "Apps for China"
+msgstr "Apps for China"
+
+#: /media/js/feed.js:15
+msgid "App for Colombia"
+msgstr "App for Colombia"
+
+#: /media/js/feed.js:15
+msgid "Apps for Colombia"
+msgstr "Apps for Colombia"
+
+#: /media/js/feed.js:16
+msgid "App for Costa Rica"
+msgstr "App for Costa Rica"
+
+#: /media/js/feed.js:16
+msgid "Apps for Costa Rica"
+msgstr "Apps for Costa Rica"
+
+#: /media/js/feed.js:17
+msgid "App for Croatia"
+msgstr "App for Croatia"
+
+#: /media/js/feed.js:17
+msgid "Apps for Croatia"
+msgstr "Apps for Croatia"
+
+#: /media/js/feed.js:18
+msgid "App for Czech Republic"
+msgstr "App for Czech Republic"
+
+#: /media/js/feed.js:18
+msgid "Apps for Czech Republic"
+msgstr "Apps for Czech Republic"
+
+#: /media/js/feed.js:19
+msgid "App for Ecuador"
+msgstr "App for Ecuador"
+
+#: /media/js/feed.js:19
+msgid "Apps for Ecuador"
+msgstr "Apps for Ecuador"
+
+#: /media/js/feed.js:20
+msgid "App for El Salvador"
+msgstr "App for El Salvador"
+
+#: /media/js/feed.js:20
+msgid "Apps for El Salvador"
+msgstr "Apps for El Salvador"
+
+#: /media/js/feed.js:21
+msgid "App for France"
+msgstr "App for France"
+
+#: /media/js/feed.js:21
+msgid "Apps for France"
+msgstr "Apps for France"
+
+#: /media/js/feed.js:22
+msgid "App for Germany"
+msgstr "App for Germany"
+
+#: /media/js/feed.js:22
+msgid "Apps for Germany"
+msgstr "Apps for Germany"
+
+#: /media/js/feed.js:23
+msgid "App for Greece"
+msgstr "App for Greece"
+
+#: /media/js/feed.js:23
+msgid "Apps for Greece"
+msgstr "Apps for Greece"
+
+#: /media/js/feed.js:24
+msgid "App for Hungary"
+msgstr "App for Hungary"
+
+#: /media/js/feed.js:24
+msgid "Apps for Hungary"
+msgstr "Apps for Hungary"
+
+#: /media/js/feed.js:25
+msgid "App for India"
+msgstr "App for India"
+
+#: /media/js/feed.js:25
+msgid "Apps for India"
+msgstr "Apps for India"
+
+#: /media/js/feed.js:26
+msgid "App for Italy"
+msgstr "App for Italy"
+
+#: /media/js/feed.js:26
+msgid "Apps for Italy"
+msgstr "Apps for Italy"
+
+#: /media/js/feed.js:27
+msgid "App for Japan"
+msgstr "App for Japan"
+
+#: /media/js/feed.js:27
+msgid "Apps for Japan"
+msgstr "Apps for Japan"
+
+#: /media/js/feed.js:28
+msgid "App for Macedonia"
+msgstr "App for Macedonia"
+
+#: /media/js/feed.js:28
+msgid "Apps for Macedonia"
+msgstr "Apps for Macedonia"
+
+#: /media/js/feed.js:29
+msgid "App for Mexico"
+msgstr "App for Mexico"
+
+#: /media/js/feed.js:29
+msgid "Apps for Mexico"
+msgstr "Apps for Mexico"
+
+#: /media/js/feed.js:30
+msgid "App for Montenegro"
+msgstr "App for Montenegro"
+
+#: /media/js/feed.js:30
+msgid "Apps for Montenegro"
+msgstr "Apps for Montenegro"
+
+#: /media/js/feed.js:31
+msgid "App for Nicaragua"
+msgstr "App for Nicaragua"
+
+#: /media/js/feed.js:31
+msgid "Apps for Nicaragua"
+msgstr "Apps for Nicaragua"
+
+#: /media/js/feed.js:32
+msgid "App for Panama"
+msgstr "App for Panama"
+
+#: /media/js/feed.js:32
+msgid "Apps for Panama"
+msgstr "Apps for Panama"
+
+#: /media/js/feed.js:33
+msgid "App for Peru"
+msgstr "App for Peru"
+
+#: /media/js/feed.js:33
+msgid "Apps for Peru"
+msgstr "Apps for Peru"
+
+#: /media/js/feed.js:34
+msgid "App for Poland"
+msgstr "App for Poland"
+
+#: /media/js/feed.js:34
+msgid "Apps for Poland"
+msgstr "Apps for Poland"
+
+#: /media/js/feed.js:35
+msgid "App for Russia"
+msgstr "App for Russia"
+
+#: /media/js/feed.js:35
+msgid "Apps for Russia"
+msgstr "Apps for Russia"
+
+#: /media/js/feed.js:36
+msgid "App for Serbia"
+msgstr "App for Serbia"
+
+#: /media/js/feed.js:36
+msgid "Apps for Serbia"
+msgstr "Apps for Serbia"
+
+#: /media/js/feed.js:37
+msgid "App for South Africa"
+msgstr "App for South Africa"
+
+#: /media/js/feed.js:37
+msgid "Apps for South Africa"
+msgstr "Apps for South Africa"
+
+#: /media/js/feed.js:38
+msgid "App for Spain"
+msgstr "App for Spain"
+
+#: /media/js/feed.js:38
+msgid "Apps for Spain"
+msgstr "Apps for Spain"
+
+#: /media/js/feed.js:39
+msgid "App for Uruguay"
+msgstr "App for Uruguay"
+
+#: /media/js/feed.js:39
+msgid "Apps for Uruguay"
+msgstr "Apps for Uruguay"
+
+#: /media/js/feed.js:40
+msgid "App for Venezuela"
+msgstr "App for Venezuela"
+
+#: /media/js/feed.js:40
+msgid "Apps for Venezuela"
+msgstr "Apps for Venezuela"
+
+#: /media/js/feed.js:41
+msgid "Arts & Entertainment"
+msgstr "Arts & Entertainment"
+
+#: /media/js/feed.js:42
+msgid "Book"
+msgstr "Book"
+
+#: /media/js/feed.js:43
+msgid "Creativity"
+msgstr "Creativity"
+
+#: /media/js/feed.js:45
+msgid "Game"
+msgstr "Game"
+
+#: /media/js/feed.js:46
+msgid "Groundbreaking"
+msgstr "Groundbreaking"
+
+#: /media/js/feed.js:48
+msgid "Hidden Gem"
+msgstr "Hidden Gem"
+
+#: /media/js/feed.js:48
+msgid "Hidden Gems"
+msgstr "Hidden Gems"
+
+#: /media/js/feed.js:50
+msgid "Local Favorite"
+msgstr "Local Favorite"
+
+#: /media/js/feed.js:50
+msgid "Local Favorites"
+msgstr "Local Favorites"
+
+#: /media/js/feed.js:53
+msgid "Mystery App!"
+msgstr "Mystery App!"
+
+#: /media/js/feed.js:53
+msgid "Mystery Apps!"
+msgstr "Mystery Apps!"
+
+#: /media/js/feed.js:59
+msgid "Tools & Time Saver"
+msgstr "Tools & Time Saver"
+
+#: /media/js/feed.js:59
+msgid "Tools & Time Savers"
+msgstr "Tools & Time Savers"
+
+#: /media/js/feed.js:61
+msgid "Work & Business"
+msgstr "Work & Business"
+
+#: /media/js/feed.js:67
+msgid "Grid Layout"
+msgstr "Grid Layout"
+
+#: /media/js/feed.js:68
+msgid "List Layout"
+msgstr "List Layout"
+
+#: /media/js/feed.js:90
+msgid "Icon"
+msgstr "Icon"
+
+#: /media/js/feed.js:91
+msgid "Background Image"
+msgstr "Background Image"
+
+#: /media/js/feed.js:93
+msgid "Quote"
+msgstr "Quote"
+
+#: /media/js/feed.js:94
+msgid "Screenshot"
+msgstr "Screenshot"
+
+#: /media/js/feed.js:102
+msgid "Promo Collection"
+msgstr "Promo Collection"
+
+#: /media/js/feed.js:103
+msgid "Listing Collection"
+msgstr "Listing Collection"
 
 #: /media/js/installer_direct.js:56
 msgid "Unable to install packaged apps"
@@ -906,15 +1279,15 @@ msgstr "You have been signed out"
 msgid "You have been signed in"
 msgstr "You have been signed in"
 
-#: /media/js/commonplace/login.js:188
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona login failed. Maybe you don't have an account under that email address?"
 
-#: /media/js/commonplace/login.js:193
+#: /media/js/commonplace/login.js:198
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona login failed. A server error was encountered."
 
-#: /media/js/commonplace/login.js:263
+#: /media/js/commonplace/login.js:268
 msgid "Persona cannot be reached. Try again later."
 msgstr "Persona cannot be reached. Try again later."
 

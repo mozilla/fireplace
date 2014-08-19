@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
+"POT-Creation-Date: 2014-08-19T20:50:50.498Z\n"
 "PO-Revision-Date: 2014-08-14 04:56+0000\n"
 "Last-Translator: Marko <marko.andrejic93@gmail.com>\n"
 "Language-Team: none\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1407992194.0\n"
 
@@ -20,7 +19,7 @@ msgid "All Categories"
 msgstr "Све категорије"
 
 #. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
+#: /templates/collection.html:33 /templates/_macros/feed_item.html:210 /templates/_macros/feed_item.html:237
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Ав, ав! Шеги, овде нема апликација!"
 
@@ -215,6 +214,19 @@ msgstr "Ваша адреса е-поште"
 msgid "Submit"
 msgstr "Пошаљи"
 
+#: /templates/_macros/feed_app_tile.html:16
+msgid "&mdash; {attribution}"
+msgstr ""
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:18 /templates/_macros/market_tile.html:53
+msgid "Not yet rated"
+msgstr "Није оцењена"
+
+#: /templates/_macros/feed_item.html:88 /templates/_macros/feed_item.html:156
+msgid "View all apps"
+msgstr ""
+
 #. This app is unavailable for purchase.
 #: /templates/_macros/market_button.html:6
 msgid "Unavailable"
@@ -235,10 +247,6 @@ msgstr "Инсталирај"
 #: /templates/_macros/market_tile.html:11 /templates/_macros/market_tile.html:13
 msgid "{app_name} screenshot"
 msgstr "{app_name} снимак екрана"
-
-#: /templates/_macros/market_tile.html:53
-msgid "Not yet rated"
-msgstr "Није оцењена"
 
 #: /templates/_macros/market_tile.html:65
 msgid "({n})"
@@ -375,7 +383,7 @@ msgstr "Мање&hellip;"
 msgid "More&hellip;"
 msgstr "Више&hellip;"
 
-#: /templates/detail/main.html:83
+#: /templates/detail/main.html:83 /media/js/feed.js:92
 msgid "Description"
 msgstr "Опис"
 
@@ -459,6 +467,18 @@ msgstr "Ох, не!"
 msgid "The page you were looking for was not found."
 msgstr "Страница коју сте тражили није нађена."
 
+#: /templates/errors/date-error.html:4
+msgid "Sorry, your device clock appears to be set incorrectly."
+msgstr ""
+
+#: /templates/errors/date-error.html:7
+msgid "Please set today's date and time in your device settings to access the Marketplace."
+msgstr ""
+
+#: /templates/errors/date-error.html:9
+msgid "Try again"
+msgstr ""
+
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
 msgstr "Дошло је до грешке."
@@ -470,25 +490,6 @@ msgstr "Грешка при учитавању"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Покушај поново"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> резултат"
-msgstr[1] "<b>{n}</b> резултатa"
-msgstr[2] "<b>{n}</b> резултатa"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Приказујем <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Нема резултата"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Нема резултата - покушајте касније"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -526,6 +527,25 @@ msgstr "Непристојно обраћање"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Погрешно постављена порука о грешци или захтев за подршку"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> резултат"
+msgstr[1] "<b>{n}</b> резултатa"
+msgstr[2] "<b>{n}</b> резултатa"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Приказујем <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Нема резултата"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Нема резултата - покушајте касније"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -591,92 +611,6 @@ msgstr "Пријави се / Региструј се"
 msgid "You have no apps"
 msgstr "Немате апликација"
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Плаћање је отказано."
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr "Куповина"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr "Инсталација није успешна. Молимо Вас покушајте касније."
-
-#: /media/js/categories.js:8
-msgid "Games"
-msgstr "Игрице"
-
-#: /media/js/categories.js:9
-msgid "Books"
-msgstr "Књиге"
-
-#: /media/js/categories.js:10
-msgid "Business"
-msgstr "Посао"
-
-#: /media/js/categories.js:11
-msgid "Education"
-msgstr "Образовање"
-
-#: /media/js/categories.js:12
-msgid "Entertainment"
-msgstr "Забава"
-
-#: /media/js/categories.js:13
-msgid "Health & Fitness"
-msgstr "Здравље и фитнес"
-
-#: /media/js/categories.js:14
-msgid "Lifestyle"
-msgstr "Животни стил"
-
-#: /media/js/categories.js:15
-msgid "Maps & Navigation"
-msgstr "Мапе и навигација"
-
-#: /media/js/categories.js:16
-msgid "Music"
-msgstr "Музика"
-
-#: /media/js/categories.js:17
-msgid "News & Weather"
-msgstr "Вести и временска прогноза"
-
-#: /media/js/categories.js:18
-msgid "Photo & Video"
-msgstr "Слике и видео"
-
-#: /media/js/categories.js:19
-msgid "Productivity"
-msgstr "Продуктивност"
-
-#: /media/js/categories.js:20
-msgid "Reference"
-msgstr "Упутства"
-
-#: /media/js/categories.js:21
-msgid "Shopping"
-msgstr "Куповина"
-
-#: /media/js/categories.js:22
-msgid "Social"
-msgstr "Друштвене"
-
-#: /media/js/categories.js:23
-msgid "Sports"
-msgstr "Спортови"
-
-#: /media/js/categories.js:24
-msgid "Travel"
-msgstr "Путовањa"
-
-#: /media/js/categories.js:25
-msgid "Utilities"
-msgstr "Услужне апликације"
-
 #: /media/js/apps.js:93
 msgid "Your device does not support payments."
 msgstr "Ваш уређај не подржава плаћање."
@@ -692,6 +626,92 @@ msgstr "Ваш прегледач или уређај није компатиб�
 #: /media/js/apps.js:101
 msgid "This app is unavailable for your platform."
 msgstr "Ова апликација није доступна за Вашу платформу."
+
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Плаћање је отказано."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "Куповина"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "Инсталација није успешна. Молимо Вас покушајте касније."
+
+#: /media/js/categories.js:8 /media/js/feed.js:45
+msgid "Games"
+msgstr "Игрице"
+
+#: /media/js/categories.js:9 /media/js/feed.js:42
+msgid "Books"
+msgstr "Књиге"
+
+#: /media/js/categories.js:10
+msgid "Business"
+msgstr "Посао"
+
+#: /media/js/categories.js:11 /media/js/feed.js:44
+msgid "Education"
+msgstr "Образовање"
+
+#: /media/js/categories.js:12
+msgid "Entertainment"
+msgstr "Забава"
+
+#: /media/js/categories.js:13 /media/js/feed.js:47
+msgid "Health & Fitness"
+msgstr "Здравље и фитнес"
+
+#: /media/js/categories.js:14 /media/js/feed.js:49
+msgid "Lifestyle"
+msgstr "Животни стил"
+
+#: /media/js/categories.js:15 /media/js/feed.js:51
+msgid "Maps & Navigation"
+msgstr "Мапе и навигација"
+
+#: /media/js/categories.js:16 /media/js/feed.js:52
+msgid "Music"
+msgstr "Музика"
+
+#: /media/js/categories.js:17 /media/js/feed.js:54
+msgid "News & Weather"
+msgstr "Вести и временска прогноза"
+
+#: /media/js/categories.js:18 /media/js/feed.js:55
+msgid "Photo & Video"
+msgstr "Слике и видео"
+
+#: /media/js/categories.js:19
+msgid "Productivity"
+msgstr "Продуктивност"
+
+#: /media/js/categories.js:20
+msgid "Reference"
+msgstr "Упутства"
+
+#: /media/js/categories.js:21 /media/js/feed.js:56
+msgid "Shopping"
+msgstr "Куповина"
+
+#: /media/js/categories.js:22 /media/js/feed.js:57
+msgid "Social"
+msgstr "Друштвене"
+
+#: /media/js/categories.js:23 /media/js/feed.js:58
+msgid "Sports"
+msgstr "Спортови"
+
+#: /media/js/categories.js:24 /media/js/feed.js:60
+msgid "Travel"
+msgstr "Путовањa"
+
+#: /media/js/categories.js:25
+msgid "Utilities"
+msgstr "Услужне апликације"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -733,6 +753,358 @@ msgstr "Зрели 17+"
 #: /media/js/content-ratings.js:128
 msgid "Adults Only 18+"
 msgstr "Одрасли само 18+"
+
+#: /media/js/feed.js:8
+msgid "App for Albania"
+msgstr ""
+
+#: /media/js/feed.js:8
+msgid "Apps for Albania"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "App for Argentina"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "Apps for Argentina"
+msgstr ""
+
+#: /media/js/feed.js:10
+msgid "App for Bangladesh"
+msgstr ""
+
+#: /media/js/feed.js:10
+msgid "Apps for Bangladesh"
+msgstr ""
+
+#: /media/js/feed.js:11
+msgid "App for Brazil"
+msgstr ""
+
+#: /media/js/feed.js:11
+msgid "Apps for Brazil"
+msgstr ""
+
+#: /media/js/feed.js:12
+msgid "App for Bulgaria"
+msgstr ""
+
+#: /media/js/feed.js:12
+msgid "Apps for Bulgaria"
+msgstr ""
+
+#: /media/js/feed.js:13
+msgid "App for Chile"
+msgstr ""
+
+#: /media/js/feed.js:13
+msgid "Apps for Chile"
+msgstr ""
+
+#: /media/js/feed.js:14
+msgid "App for China"
+msgstr ""
+
+#: /media/js/feed.js:14
+msgid "Apps for China"
+msgstr ""
+
+#: /media/js/feed.js:15
+msgid "App for Colombia"
+msgstr ""
+
+#: /media/js/feed.js:15
+msgid "Apps for Colombia"
+msgstr ""
+
+#: /media/js/feed.js:16
+msgid "App for Costa Rica"
+msgstr ""
+
+#: /media/js/feed.js:16
+msgid "Apps for Costa Rica"
+msgstr ""
+
+#: /media/js/feed.js:17
+msgid "App for Croatia"
+msgstr ""
+
+#: /media/js/feed.js:17
+msgid "Apps for Croatia"
+msgstr ""
+
+#: /media/js/feed.js:18
+msgid "App for Czech Republic"
+msgstr ""
+
+#: /media/js/feed.js:18
+msgid "Apps for Czech Republic"
+msgstr ""
+
+#: /media/js/feed.js:19
+msgid "App for Ecuador"
+msgstr ""
+
+#: /media/js/feed.js:19
+msgid "Apps for Ecuador"
+msgstr ""
+
+#: /media/js/feed.js:20
+msgid "App for El Salvador"
+msgstr ""
+
+#: /media/js/feed.js:20
+msgid "Apps for El Salvador"
+msgstr ""
+
+#: /media/js/feed.js:21
+msgid "App for France"
+msgstr ""
+
+#: /media/js/feed.js:21
+msgid "Apps for France"
+msgstr ""
+
+#: /media/js/feed.js:22
+msgid "App for Germany"
+msgstr ""
+
+#: /media/js/feed.js:22
+msgid "Apps for Germany"
+msgstr ""
+
+#: /media/js/feed.js:23
+msgid "App for Greece"
+msgstr ""
+
+#: /media/js/feed.js:23
+msgid "Apps for Greece"
+msgstr ""
+
+#: /media/js/feed.js:24
+msgid "App for Hungary"
+msgstr ""
+
+#: /media/js/feed.js:24
+msgid "Apps for Hungary"
+msgstr ""
+
+#: /media/js/feed.js:25
+msgid "App for India"
+msgstr ""
+
+#: /media/js/feed.js:25
+msgid "Apps for India"
+msgstr ""
+
+#: /media/js/feed.js:26
+msgid "App for Italy"
+msgstr ""
+
+#: /media/js/feed.js:26
+msgid "Apps for Italy"
+msgstr ""
+
+#: /media/js/feed.js:27
+msgid "App for Japan"
+msgstr ""
+
+#: /media/js/feed.js:27
+msgid "Apps for Japan"
+msgstr ""
+
+#: /media/js/feed.js:28
+msgid "App for Macedonia"
+msgstr ""
+
+#: /media/js/feed.js:28
+msgid "Apps for Macedonia"
+msgstr ""
+
+#: /media/js/feed.js:29
+msgid "App for Mexico"
+msgstr ""
+
+#: /media/js/feed.js:29
+msgid "Apps for Mexico"
+msgstr ""
+
+#: /media/js/feed.js:30
+msgid "App for Montenegro"
+msgstr ""
+
+#: /media/js/feed.js:30
+msgid "Apps for Montenegro"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "App for Nicaragua"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "Apps for Nicaragua"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "App for Panama"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "Apps for Panama"
+msgstr ""
+
+#: /media/js/feed.js:33
+msgid "App for Peru"
+msgstr ""
+
+#: /media/js/feed.js:33
+msgid "Apps for Peru"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "App for Poland"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "Apps for Poland"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "App for Russia"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "Apps for Russia"
+msgstr ""
+
+#: /media/js/feed.js:36
+msgid "App for Serbia"
+msgstr ""
+
+#: /media/js/feed.js:36
+msgid "Apps for Serbia"
+msgstr ""
+
+#: /media/js/feed.js:37
+msgid "App for South Africa"
+msgstr ""
+
+#: /media/js/feed.js:37
+msgid "Apps for South Africa"
+msgstr ""
+
+#: /media/js/feed.js:38
+msgid "App for Spain"
+msgstr ""
+
+#: /media/js/feed.js:38
+msgid "Apps for Spain"
+msgstr ""
+
+#: /media/js/feed.js:39
+msgid "App for Uruguay"
+msgstr ""
+
+#: /media/js/feed.js:39
+msgid "Apps for Uruguay"
+msgstr ""
+
+#: /media/js/feed.js:40
+msgid "App for Venezuela"
+msgstr ""
+
+#: /media/js/feed.js:40
+msgid "Apps for Venezuela"
+msgstr ""
+
+#: /media/js/feed.js:41
+msgid "Arts & Entertainment"
+msgstr ""
+
+#: /media/js/feed.js:42
+msgid "Book"
+msgstr ""
+
+#: /media/js/feed.js:43
+msgid "Creativity"
+msgstr ""
+
+#: /media/js/feed.js:45
+msgid "Game"
+msgstr ""
+
+#: /media/js/feed.js:46
+msgid "Groundbreaking"
+msgstr ""
+
+#: /media/js/feed.js:48
+msgid "Hidden Gem"
+msgstr ""
+
+#: /media/js/feed.js:48
+msgid "Hidden Gems"
+msgstr ""
+
+#: /media/js/feed.js:50
+msgid "Local Favorite"
+msgstr ""
+
+#: /media/js/feed.js:50
+msgid "Local Favorites"
+msgstr ""
+
+#: /media/js/feed.js:53
+msgid "Mystery App!"
+msgstr ""
+
+#: /media/js/feed.js:53
+msgid "Mystery Apps!"
+msgstr ""
+
+#: /media/js/feed.js:59
+msgid "Tools & Time Saver"
+msgstr ""
+
+#: /media/js/feed.js:59
+msgid "Tools & Time Savers"
+msgstr ""
+
+#: /media/js/feed.js:61
+msgid "Work & Business"
+msgstr ""
+
+#: /media/js/feed.js:67
+msgid "Grid Layout"
+msgstr ""
+
+#: /media/js/feed.js:68
+msgid "List Layout"
+msgstr ""
+
+#: /media/js/feed.js:90
+msgid "Icon"
+msgstr ""
+
+#: /media/js/feed.js:91
+msgid "Background Image"
+msgstr ""
+
+#: /media/js/feed.js:93
+msgid "Quote"
+msgstr ""
+
+#: /media/js/feed.js:94
+msgid "Screenshot"
+msgstr ""
+
+#: /media/js/feed.js:102
+msgid "Promo Collection"
+msgstr ""
+
+#: /media/js/feed.js:103
+msgid "Listing Collection"
+msgstr ""
 
 #: /media/js/installer_direct.js:56
 msgid "Unable to install packaged apps"
@@ -911,15 +1283,15 @@ msgstr "Одјављени сте"
 msgid "You have been signed in"
 msgstr "Пријављени сте"
 
-#: /media/js/commonplace/login.js:188
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Пријава преко система Persona није успешна. Можда немате налог са том адресом е-поште?"
 
-#: /media/js/commonplace/login.js:193
+#: /media/js/commonplace/login.js:198
 msgid "Persona login failed. A server error was encountered."
 msgstr "Пријава преко система Persona није успешна. Дошло је до грешке на серверу."
 
-#: /media/js/commonplace/login.js:263
+#: /media/js/commonplace/login.js:268
 msgid "Persona cannot be reached. Try again later."
 msgstr "Persona не може да се контактира. Покушајте поново касније."
 

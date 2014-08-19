@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
+"POT-Creation-Date: 2014-08-19T20:50:50.498Z\n"
 "PO-Revision-Date: 2014-08-14 15:53+0000\n"
 "Last-Translator: Channy <channy@mozilla.or.kr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgid "All Categories"
 msgstr "모든 카테고리"
 
 #. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
+#: /templates/collection.html:33 /templates/_macros/feed_item.html:210 /templates/_macros/feed_item.html:237
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "앱이 하나도 없습니다!"
 
@@ -214,6 +214,19 @@ msgstr "이메일 주소"
 msgid "Submit"
 msgstr "보내기"
 
+#: /templates/_macros/feed_app_tile.html:16
+msgid "&mdash; {attribution}"
+msgstr ""
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:18 /templates/_macros/market_tile.html:53
+msgid "Not yet rated"
+msgstr "아직 평가 안함"
+
+#: /templates/_macros/feed_item.html:88 /templates/_macros/feed_item.html:156
+msgid "View all apps"
+msgstr ""
+
 #. This app is unavailable for purchase.
 #: /templates/_macros/market_button.html:6
 msgid "Unavailable"
@@ -234,10 +247,6 @@ msgstr "설치"
 #: /templates/_macros/market_tile.html:11 /templates/_macros/market_tile.html:13
 msgid "{app_name} screenshot"
 msgstr "{app_name} 스크린샷"
-
-#: /templates/_macros/market_tile.html:53
-msgid "Not yet rated"
-msgstr "아직 평가 안함"
 
 #: /templates/_macros/market_tile.html:65
 msgid "({n})"
@@ -372,7 +381,7 @@ msgstr "감추기&hellip;"
 msgid "More&hellip;"
 msgstr "펼치기&hellip;"
 
-#: /templates/detail/main.html:83
+#: /templates/detail/main.html:83 /media/js/feed.js:92
 msgid "Description"
 msgstr "설명"
 
@@ -456,6 +465,18 @@ msgstr "오, 이런!"
 msgid "The page you were looking for was not found."
 msgstr "찾으시는 페이지가 없습니다."
 
+#: /templates/errors/date-error.html:4
+msgid "Sorry, your device clock appears to be set incorrectly."
+msgstr ""
+
+#: /templates/errors/date-error.html:7
+msgid "Please set today's date and time in your device settings to access the Marketplace."
+msgstr ""
+
+#: /templates/errors/date-error.html:9
+msgid "Try again"
+msgstr ""
+
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
 msgstr "오류가 발생했습니다."
@@ -467,23 +488,6 @@ msgstr "더 불러오는 중 오류 발생"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "다시 시도"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "결과 <b>{n}</b>개"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "<b>1</b>&ndash;<b class=\"total-results\">{total}</b> 보여줌"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "결과 없음"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "결과가 없습니다. 나중에 다시 시도해 주세요."
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -521,6 +525,23 @@ msgstr "부적절한 언어/대화"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "잘 못 올린 버그이거나 지원 요청"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "결과 <b>{n}</b>개"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "<b>1</b>&ndash;<b class=\"total-results\">{total}</b> 보여줌"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "결과 없음"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "결과가 없습니다. 나중에 다시 시도해 주세요."
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -586,92 +607,6 @@ msgstr "로그인 / 로그아웃"
 msgid "You have no apps"
 msgstr "앱이 없음"
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "지불이 취소되었습니다."
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr "구매"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr "설치가 싶패했습니다. 나중에 다시 시도해 주십시오."
-
-#: /media/js/categories.js:8
-msgid "Games"
-msgstr "게임"
-
-#: /media/js/categories.js:9
-msgid "Books"
-msgstr "도서"
-
-#: /media/js/categories.js:10
-msgid "Business"
-msgstr "비지니스"
-
-#: /media/js/categories.js:11
-msgid "Education"
-msgstr "교육"
-
-#: /media/js/categories.js:12
-msgid "Entertainment"
-msgstr "오락"
-
-#: /media/js/categories.js:13
-msgid "Health & Fitness"
-msgstr "건강"
-
-#: /media/js/categories.js:14
-msgid "Lifestyle"
-msgstr "라이프"
-
-#: /media/js/categories.js:15
-msgid "Maps & Navigation"
-msgstr "지도 및 교통"
-
-#: /media/js/categories.js:16
-msgid "Music"
-msgstr "음악"
-
-#: /media/js/categories.js:17
-msgid "News & Weather"
-msgstr "뉴스 및 날씨"
-
-#: /media/js/categories.js:18
-msgid "Photo & Video"
-msgstr "사진 및 동영상"
-
-#: /media/js/categories.js:19
-msgid "Productivity"
-msgstr "생산성"
-
-#: /media/js/categories.js:20
-msgid "Reference"
-msgstr "참고"
-
-#: /media/js/categories.js:21
-msgid "Shopping"
-msgstr "쇼핑"
-
-#: /media/js/categories.js:22
-msgid "Social"
-msgstr "소셜"
-
-#: /media/js/categories.js:23
-msgid "Sports"
-msgstr "스포츠"
-
-#: /media/js/categories.js:24
-msgid "Travel"
-msgstr "여행"
-
-#: /media/js/categories.js:25
-msgid "Utilities"
-msgstr "유틸리티"
-
 #: /media/js/apps.js:93
 msgid "Your device does not support payments."
 msgstr "사용하고 있는 기기가 지불을 지원하지 않습니다."
@@ -687,6 +622,92 @@ msgstr "사용하는 브라우저나 기기가 웹앱호환이 아닙니다."
 #: /media/js/apps.js:101
 msgid "This app is unavailable for your platform."
 msgstr "사용하는 플랫폼에서 이 앱을 사용할 수 없습니다."
+
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "지불이 취소되었습니다."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "구매"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "설치가 싶패했습니다. 나중에 다시 시도해 주십시오."
+
+#: /media/js/categories.js:8 /media/js/feed.js:45
+msgid "Games"
+msgstr "게임"
+
+#: /media/js/categories.js:9 /media/js/feed.js:42
+msgid "Books"
+msgstr "도서"
+
+#: /media/js/categories.js:10
+msgid "Business"
+msgstr "비지니스"
+
+#: /media/js/categories.js:11 /media/js/feed.js:44
+msgid "Education"
+msgstr "교육"
+
+#: /media/js/categories.js:12
+msgid "Entertainment"
+msgstr "오락"
+
+#: /media/js/categories.js:13 /media/js/feed.js:47
+msgid "Health & Fitness"
+msgstr "건강"
+
+#: /media/js/categories.js:14 /media/js/feed.js:49
+msgid "Lifestyle"
+msgstr "라이프"
+
+#: /media/js/categories.js:15 /media/js/feed.js:51
+msgid "Maps & Navigation"
+msgstr "지도 및 교통"
+
+#: /media/js/categories.js:16 /media/js/feed.js:52
+msgid "Music"
+msgstr "음악"
+
+#: /media/js/categories.js:17 /media/js/feed.js:54
+msgid "News & Weather"
+msgstr "뉴스 및 날씨"
+
+#: /media/js/categories.js:18 /media/js/feed.js:55
+msgid "Photo & Video"
+msgstr "사진 및 동영상"
+
+#: /media/js/categories.js:19
+msgid "Productivity"
+msgstr "생산성"
+
+#: /media/js/categories.js:20
+msgid "Reference"
+msgstr "참고"
+
+#: /media/js/categories.js:21 /media/js/feed.js:56
+msgid "Shopping"
+msgstr "쇼핑"
+
+#: /media/js/categories.js:22 /media/js/feed.js:57
+msgid "Social"
+msgstr "소셜"
+
+#: /media/js/categories.js:23 /media/js/feed.js:58
+msgid "Sports"
+msgstr "스포츠"
+
+#: /media/js/categories.js:24 /media/js/feed.js:60
+msgid "Travel"
+msgstr "여행"
+
+#: /media/js/categories.js:25
+msgid "Utilities"
+msgstr "유틸리티"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -728,6 +749,358 @@ msgstr "17세 이상+"
 #: /media/js/content-ratings.js:128
 msgid "Adults Only 18+"
 msgstr "18세 이상 성인+"
+
+#: /media/js/feed.js:8
+msgid "App for Albania"
+msgstr ""
+
+#: /media/js/feed.js:8
+msgid "Apps for Albania"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "App for Argentina"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "Apps for Argentina"
+msgstr ""
+
+#: /media/js/feed.js:10
+msgid "App for Bangladesh"
+msgstr ""
+
+#: /media/js/feed.js:10
+msgid "Apps for Bangladesh"
+msgstr ""
+
+#: /media/js/feed.js:11
+msgid "App for Brazil"
+msgstr ""
+
+#: /media/js/feed.js:11
+msgid "Apps for Brazil"
+msgstr ""
+
+#: /media/js/feed.js:12
+msgid "App for Bulgaria"
+msgstr ""
+
+#: /media/js/feed.js:12
+msgid "Apps for Bulgaria"
+msgstr ""
+
+#: /media/js/feed.js:13
+msgid "App for Chile"
+msgstr ""
+
+#: /media/js/feed.js:13
+msgid "Apps for Chile"
+msgstr ""
+
+#: /media/js/feed.js:14
+msgid "App for China"
+msgstr ""
+
+#: /media/js/feed.js:14
+msgid "Apps for China"
+msgstr ""
+
+#: /media/js/feed.js:15
+msgid "App for Colombia"
+msgstr ""
+
+#: /media/js/feed.js:15
+msgid "Apps for Colombia"
+msgstr ""
+
+#: /media/js/feed.js:16
+msgid "App for Costa Rica"
+msgstr ""
+
+#: /media/js/feed.js:16
+msgid "Apps for Costa Rica"
+msgstr ""
+
+#: /media/js/feed.js:17
+msgid "App for Croatia"
+msgstr ""
+
+#: /media/js/feed.js:17
+msgid "Apps for Croatia"
+msgstr ""
+
+#: /media/js/feed.js:18
+msgid "App for Czech Republic"
+msgstr ""
+
+#: /media/js/feed.js:18
+msgid "Apps for Czech Republic"
+msgstr ""
+
+#: /media/js/feed.js:19
+msgid "App for Ecuador"
+msgstr ""
+
+#: /media/js/feed.js:19
+msgid "Apps for Ecuador"
+msgstr ""
+
+#: /media/js/feed.js:20
+msgid "App for El Salvador"
+msgstr ""
+
+#: /media/js/feed.js:20
+msgid "Apps for El Salvador"
+msgstr ""
+
+#: /media/js/feed.js:21
+msgid "App for France"
+msgstr ""
+
+#: /media/js/feed.js:21
+msgid "Apps for France"
+msgstr ""
+
+#: /media/js/feed.js:22
+msgid "App for Germany"
+msgstr ""
+
+#: /media/js/feed.js:22
+msgid "Apps for Germany"
+msgstr ""
+
+#: /media/js/feed.js:23
+msgid "App for Greece"
+msgstr ""
+
+#: /media/js/feed.js:23
+msgid "Apps for Greece"
+msgstr ""
+
+#: /media/js/feed.js:24
+msgid "App for Hungary"
+msgstr ""
+
+#: /media/js/feed.js:24
+msgid "Apps for Hungary"
+msgstr ""
+
+#: /media/js/feed.js:25
+msgid "App for India"
+msgstr ""
+
+#: /media/js/feed.js:25
+msgid "Apps for India"
+msgstr ""
+
+#: /media/js/feed.js:26
+msgid "App for Italy"
+msgstr ""
+
+#: /media/js/feed.js:26
+msgid "Apps for Italy"
+msgstr ""
+
+#: /media/js/feed.js:27
+msgid "App for Japan"
+msgstr ""
+
+#: /media/js/feed.js:27
+msgid "Apps for Japan"
+msgstr ""
+
+#: /media/js/feed.js:28
+msgid "App for Macedonia"
+msgstr ""
+
+#: /media/js/feed.js:28
+msgid "Apps for Macedonia"
+msgstr ""
+
+#: /media/js/feed.js:29
+msgid "App for Mexico"
+msgstr ""
+
+#: /media/js/feed.js:29
+msgid "Apps for Mexico"
+msgstr ""
+
+#: /media/js/feed.js:30
+msgid "App for Montenegro"
+msgstr ""
+
+#: /media/js/feed.js:30
+msgid "Apps for Montenegro"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "App for Nicaragua"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "Apps for Nicaragua"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "App for Panama"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "Apps for Panama"
+msgstr ""
+
+#: /media/js/feed.js:33
+msgid "App for Peru"
+msgstr ""
+
+#: /media/js/feed.js:33
+msgid "Apps for Peru"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "App for Poland"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "Apps for Poland"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "App for Russia"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "Apps for Russia"
+msgstr ""
+
+#: /media/js/feed.js:36
+msgid "App for Serbia"
+msgstr ""
+
+#: /media/js/feed.js:36
+msgid "Apps for Serbia"
+msgstr ""
+
+#: /media/js/feed.js:37
+msgid "App for South Africa"
+msgstr ""
+
+#: /media/js/feed.js:37
+msgid "Apps for South Africa"
+msgstr ""
+
+#: /media/js/feed.js:38
+msgid "App for Spain"
+msgstr ""
+
+#: /media/js/feed.js:38
+msgid "Apps for Spain"
+msgstr ""
+
+#: /media/js/feed.js:39
+msgid "App for Uruguay"
+msgstr ""
+
+#: /media/js/feed.js:39
+msgid "Apps for Uruguay"
+msgstr ""
+
+#: /media/js/feed.js:40
+msgid "App for Venezuela"
+msgstr ""
+
+#: /media/js/feed.js:40
+msgid "Apps for Venezuela"
+msgstr ""
+
+#: /media/js/feed.js:41
+msgid "Arts & Entertainment"
+msgstr ""
+
+#: /media/js/feed.js:42
+msgid "Book"
+msgstr ""
+
+#: /media/js/feed.js:43
+msgid "Creativity"
+msgstr ""
+
+#: /media/js/feed.js:45
+msgid "Game"
+msgstr ""
+
+#: /media/js/feed.js:46
+msgid "Groundbreaking"
+msgstr ""
+
+#: /media/js/feed.js:48
+msgid "Hidden Gem"
+msgstr ""
+
+#: /media/js/feed.js:48
+msgid "Hidden Gems"
+msgstr ""
+
+#: /media/js/feed.js:50
+msgid "Local Favorite"
+msgstr ""
+
+#: /media/js/feed.js:50
+msgid "Local Favorites"
+msgstr ""
+
+#: /media/js/feed.js:53
+msgid "Mystery App!"
+msgstr ""
+
+#: /media/js/feed.js:53
+msgid "Mystery Apps!"
+msgstr ""
+
+#: /media/js/feed.js:59
+msgid "Tools & Time Saver"
+msgstr ""
+
+#: /media/js/feed.js:59
+msgid "Tools & Time Savers"
+msgstr ""
+
+#: /media/js/feed.js:61
+msgid "Work & Business"
+msgstr ""
+
+#: /media/js/feed.js:67
+msgid "Grid Layout"
+msgstr ""
+
+#: /media/js/feed.js:68
+msgid "List Layout"
+msgstr ""
+
+#: /media/js/feed.js:90
+msgid "Icon"
+msgstr ""
+
+#: /media/js/feed.js:91
+msgid "Background Image"
+msgstr ""
+
+#: /media/js/feed.js:93
+msgid "Quote"
+msgstr ""
+
+#: /media/js/feed.js:94
+msgid "Screenshot"
+msgstr ""
+
+#: /media/js/feed.js:102
+msgid "Promo Collection"
+msgstr ""
+
+#: /media/js/feed.js:103
+msgid "Listing Collection"
+msgstr ""
 
 #: /media/js/installer_direct.js:56
 msgid "Unable to install packaged apps"
@@ -904,15 +1277,15 @@ msgstr "로그아웃됨"
 msgid "You have been signed in"
 msgstr "로그인됨"
 
-#: /media/js/commonplace/login.js:188
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona 로그인에 실패했습니다. 입력하신 이메일과 연결된 계정이 없을 수 있습니다."
 
-#: /media/js/commonplace/login.js:193
+#: /media/js/commonplace/login.js:198
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona 로그인에 실패했습니다. 서버 오류가 발생했습니다."
 
-#: /media/js/commonplace/login.js:263
+#: /media/js/commonplace/login.js:268
 msgid "Persona cannot be reached. Try again later."
 msgstr "Persona 연결이 안됩니다. 다시 시도해 보세요."
 

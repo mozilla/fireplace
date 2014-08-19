@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16T16:15:38.553Z\n"
+"POT-Creation-Date: 2014-08-19T20:50:50.498Z\n"
 "PO-Revision-Date: 2014-03-29 10:38+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgid "All Categories"
 msgstr "সকল বিষয়শ্রেণী"
 
 #. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
+#: /templates/collection.html:33 /templates/_macros/feed_item.html:210 /templates/_macros/feed_item.html:237
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "আহ হা! এখানে কোন এ্যাপ নেই, ঝামেলা!"
 
@@ -214,6 +214,19 @@ msgstr "আপনার ইমেইল ঠিকানা"
 msgid "Submit"
 msgstr "জমা"
 
+#: /templates/_macros/feed_app_tile.html:16
+msgid "&mdash; {attribution}"
+msgstr ""
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:18 /templates/_macros/market_tile.html:53
+msgid "Not yet rated"
+msgstr "এখনও রেট দেওয়া হয়নি"
+
+#: /templates/_macros/feed_item.html:88 /templates/_macros/feed_item.html:156
+msgid "View all apps"
+msgstr ""
+
 #. This app is unavailable for purchase.
 #: /templates/_macros/market_button.html:6
 msgid "Unavailable"
@@ -234,10 +247,6 @@ msgstr "ইনস্টল"
 #: /templates/_macros/market_tile.html:11 /templates/_macros/market_tile.html:13
 msgid "{app_name} screenshot"
 msgstr ""
-
-#: /templates/_macros/market_tile.html:53
-msgid "Not yet rated"
-msgstr "এখনও রেট দেওয়া হয়নি"
 
 #: /templates/_macros/market_tile.html:65
 msgid "({n})"
@@ -357,7 +366,7 @@ msgstr "এই অ্যাপটি আপনার <b>উইন্ডোজ �
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "এই এপটি আপনার <b>ড্যাশ</b>, <b>এপ্লিকেশন পিকার</b>, কিংবা <b>এপ্লিকেশন মেনু</b> থেকে চালু করুন।"
 
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:68 /media/js/views/collection.js:42
+#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:75 /media/js/views/collection.js:42
 msgid "Loading..."
 msgstr "লোডিং..."
 
@@ -373,7 +382,7 @@ msgstr "কম&hellip;"
 msgid "More&hellip;"
 msgstr "আরও&hellip;"
 
-#: /templates/detail/main.html:83
+#: /templates/detail/main.html:83 /media/js/feed.js:92
 msgid "Description"
 msgstr "বর্ণনা"
 
@@ -449,13 +458,25 @@ msgstr "গোপনীয়তা নীতি লোডি হচ্ছে..."
 msgid "Thank you for purchasing"
 msgstr "ক্রয় করার জন্য ধন্যবাদ"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38 /media/js/views/app.js:65
 msgid "Oh no!"
 msgstr "ওহ না!"
 
 #: /templates/errors/404.html:3
 msgid "The page you were looking for was not found."
 msgstr "আপনি যে পাতাটি খুঁজেছেন তা পাওয়া যায়নি।"
+
+#: /templates/errors/date-error.html:4
+msgid "Sorry, your device clock appears to be set incorrectly."
+msgstr ""
+
+#: /templates/errors/date-error.html:7
+msgid "Please set today's date and time in your device settings to access the Marketplace."
+msgstr ""
+
+#: /templates/errors/date-error.html:9
+msgid "Try again"
+msgstr ""
 
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
@@ -604,78 +625,6 @@ msgstr "আপনার ব্রাউজার অথবা ডিভাইস
 msgid "This app is unavailable for your platform."
 msgstr "এই অ্যাপটি আপনার প্লাটফর্মের জন্য অবমুক্ত নয়।"
 
-#: /media/js/categories.js:8
-msgid "Games"
-msgstr "গেমস"
-
-#: /media/js/categories.js:9
-msgid "Books"
-msgstr "বই"
-
-#: /media/js/categories.js:10
-msgid "Business"
-msgstr "ব্যবসা"
-
-#: /media/js/categories.js:11
-msgid "Education"
-msgstr "শিক্ষা"
-
-#: /media/js/categories.js:12
-msgid "Entertainment"
-msgstr "চিত্তবিনোদন"
-
-#: /media/js/categories.js:13
-msgid "Health & Fitness"
-msgstr "স্বাস্থ্য ও সুস্থতা"
-
-#: /media/js/categories.js:14
-msgid "Lifestyle"
-msgstr "লাইফস্টাইল"
-
-#: /media/js/categories.js:15
-msgid "Maps & Navigation"
-msgstr "মানচিত্র ও পরিভ্রমণ"
-
-#: /media/js/categories.js:16
-msgid "Music"
-msgstr "সঙ্গীত"
-
-#: /media/js/categories.js:17
-msgid "News & Weather"
-msgstr "সংবাদ ও আবহাওয়া"
-
-#: /media/js/categories.js:18
-msgid "Photo & Video"
-msgstr "ছবি ও চলচ্চিত্র"
-
-#: /media/js/categories.js:19
-msgid "Productivity"
-msgstr "উৎপাদনশীলতা"
-
-#: /media/js/categories.js:20
-msgid "Reference"
-msgstr "সূত্র"
-
-#: /media/js/categories.js:21
-msgid "Shopping"
-msgstr "কেনাকাটা"
-
-#: /media/js/categories.js:22
-msgid "Social"
-msgstr "সামাজিক"
-
-#: /media/js/categories.js:23
-msgid "Sports"
-msgstr "খেলাধুলা"
-
-#: /media/js/categories.js:24
-msgid "Travel"
-msgstr "ভ্রমণ"
-
-#: /media/js/categories.js:25
-msgid "Utilities"
-msgstr "হাতিয়ার"
-
 #: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "লেনদেন বাতিল করা হয়েছে।"
@@ -689,6 +638,78 @@ msgstr "ক্রয় প্রক্রিয়াধীন "
 #: /media/js/apps_buttons.js:200
 msgid "Install failed. Please try again later."
 msgstr "ইন্সটল হয়নি। অনুগ্রহপূর্বক কিছুক্ষন কর আবার চেষ্টা করুন।"
+
+#: /media/js/categories.js:8 /media/js/feed.js:45
+msgid "Games"
+msgstr "গেমস"
+
+#: /media/js/categories.js:9 /media/js/feed.js:42
+msgid "Books"
+msgstr "বই"
+
+#: /media/js/categories.js:10
+msgid "Business"
+msgstr "ব্যবসা"
+
+#: /media/js/categories.js:11 /media/js/feed.js:44
+msgid "Education"
+msgstr "শিক্ষা"
+
+#: /media/js/categories.js:12
+msgid "Entertainment"
+msgstr "চিত্তবিনোদন"
+
+#: /media/js/categories.js:13 /media/js/feed.js:47
+msgid "Health & Fitness"
+msgstr "স্বাস্থ্য ও সুস্থতা"
+
+#: /media/js/categories.js:14 /media/js/feed.js:49
+msgid "Lifestyle"
+msgstr "লাইফস্টাইল"
+
+#: /media/js/categories.js:15 /media/js/feed.js:51
+msgid "Maps & Navigation"
+msgstr "মানচিত্র ও পরিভ্রমণ"
+
+#: /media/js/categories.js:16 /media/js/feed.js:52
+msgid "Music"
+msgstr "সঙ্গীত"
+
+#: /media/js/categories.js:17 /media/js/feed.js:54
+msgid "News & Weather"
+msgstr "সংবাদ ও আবহাওয়া"
+
+#: /media/js/categories.js:18 /media/js/feed.js:55
+msgid "Photo & Video"
+msgstr "ছবি ও চলচ্চিত্র"
+
+#: /media/js/categories.js:19
+msgid "Productivity"
+msgstr "উৎপাদনশীলতা"
+
+#: /media/js/categories.js:20
+msgid "Reference"
+msgstr "সূত্র"
+
+#: /media/js/categories.js:21 /media/js/feed.js:56
+msgid "Shopping"
+msgstr "কেনাকাটা"
+
+#: /media/js/categories.js:22 /media/js/feed.js:57
+msgid "Social"
+msgstr "সামাজিক"
+
+#: /media/js/categories.js:23 /media/js/feed.js:58
+msgid "Sports"
+msgstr "খেলাধুলা"
+
+#: /media/js/categories.js:24 /media/js/feed.js:60
+msgid "Travel"
+msgstr "ভ্রমণ"
+
+#: /media/js/categories.js:25
+msgid "Utilities"
+msgstr "হাতিয়ার"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -731,7 +752,363 @@ msgstr "১৭ বছরের উপরে"
 msgid "Adults Only 18+"
 msgstr "১৮+ বয়স্কদের জন্যে"
 
-#: /media/js/installer_direct.js:97 /media/js/installer_iframe.js:72
+#: /media/js/feed.js:8
+msgid "App for Albania"
+msgstr ""
+
+#: /media/js/feed.js:8
+msgid "Apps for Albania"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "App for Argentina"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "Apps for Argentina"
+msgstr ""
+
+#: /media/js/feed.js:10
+msgid "App for Bangladesh"
+msgstr ""
+
+#: /media/js/feed.js:10
+msgid "Apps for Bangladesh"
+msgstr ""
+
+#: /media/js/feed.js:11
+msgid "App for Brazil"
+msgstr ""
+
+#: /media/js/feed.js:11
+msgid "Apps for Brazil"
+msgstr ""
+
+#: /media/js/feed.js:12
+msgid "App for Bulgaria"
+msgstr ""
+
+#: /media/js/feed.js:12
+msgid "Apps for Bulgaria"
+msgstr ""
+
+#: /media/js/feed.js:13
+msgid "App for Chile"
+msgstr ""
+
+#: /media/js/feed.js:13
+msgid "Apps for Chile"
+msgstr ""
+
+#: /media/js/feed.js:14
+msgid "App for China"
+msgstr ""
+
+#: /media/js/feed.js:14
+msgid "Apps for China"
+msgstr ""
+
+#: /media/js/feed.js:15
+msgid "App for Colombia"
+msgstr ""
+
+#: /media/js/feed.js:15
+msgid "Apps for Colombia"
+msgstr ""
+
+#: /media/js/feed.js:16
+msgid "App for Costa Rica"
+msgstr ""
+
+#: /media/js/feed.js:16
+msgid "Apps for Costa Rica"
+msgstr ""
+
+#: /media/js/feed.js:17
+msgid "App for Croatia"
+msgstr ""
+
+#: /media/js/feed.js:17
+msgid "Apps for Croatia"
+msgstr ""
+
+#: /media/js/feed.js:18
+msgid "App for Czech Republic"
+msgstr ""
+
+#: /media/js/feed.js:18
+msgid "Apps for Czech Republic"
+msgstr ""
+
+#: /media/js/feed.js:19
+msgid "App for Ecuador"
+msgstr ""
+
+#: /media/js/feed.js:19
+msgid "Apps for Ecuador"
+msgstr ""
+
+#: /media/js/feed.js:20
+msgid "App for El Salvador"
+msgstr ""
+
+#: /media/js/feed.js:20
+msgid "Apps for El Salvador"
+msgstr ""
+
+#: /media/js/feed.js:21
+msgid "App for France"
+msgstr ""
+
+#: /media/js/feed.js:21
+msgid "Apps for France"
+msgstr ""
+
+#: /media/js/feed.js:22
+msgid "App for Germany"
+msgstr ""
+
+#: /media/js/feed.js:22
+msgid "Apps for Germany"
+msgstr ""
+
+#: /media/js/feed.js:23
+msgid "App for Greece"
+msgstr ""
+
+#: /media/js/feed.js:23
+msgid "Apps for Greece"
+msgstr ""
+
+#: /media/js/feed.js:24
+msgid "App for Hungary"
+msgstr ""
+
+#: /media/js/feed.js:24
+msgid "Apps for Hungary"
+msgstr ""
+
+#: /media/js/feed.js:25
+msgid "App for India"
+msgstr ""
+
+#: /media/js/feed.js:25
+msgid "Apps for India"
+msgstr ""
+
+#: /media/js/feed.js:26
+msgid "App for Italy"
+msgstr ""
+
+#: /media/js/feed.js:26
+msgid "Apps for Italy"
+msgstr ""
+
+#: /media/js/feed.js:27
+msgid "App for Japan"
+msgstr ""
+
+#: /media/js/feed.js:27
+msgid "Apps for Japan"
+msgstr ""
+
+#: /media/js/feed.js:28
+msgid "App for Macedonia"
+msgstr ""
+
+#: /media/js/feed.js:28
+msgid "Apps for Macedonia"
+msgstr ""
+
+#: /media/js/feed.js:29
+msgid "App for Mexico"
+msgstr ""
+
+#: /media/js/feed.js:29
+msgid "Apps for Mexico"
+msgstr ""
+
+#: /media/js/feed.js:30
+msgid "App for Montenegro"
+msgstr ""
+
+#: /media/js/feed.js:30
+msgid "Apps for Montenegro"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "App for Nicaragua"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "Apps for Nicaragua"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "App for Panama"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "Apps for Panama"
+msgstr ""
+
+#: /media/js/feed.js:33
+msgid "App for Peru"
+msgstr ""
+
+#: /media/js/feed.js:33
+msgid "Apps for Peru"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "App for Poland"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "Apps for Poland"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "App for Russia"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "Apps for Russia"
+msgstr ""
+
+#: /media/js/feed.js:36
+msgid "App for Serbia"
+msgstr ""
+
+#: /media/js/feed.js:36
+msgid "Apps for Serbia"
+msgstr ""
+
+#: /media/js/feed.js:37
+msgid "App for South Africa"
+msgstr ""
+
+#: /media/js/feed.js:37
+msgid "Apps for South Africa"
+msgstr ""
+
+#: /media/js/feed.js:38
+msgid "App for Spain"
+msgstr ""
+
+#: /media/js/feed.js:38
+msgid "Apps for Spain"
+msgstr ""
+
+#: /media/js/feed.js:39
+msgid "App for Uruguay"
+msgstr ""
+
+#: /media/js/feed.js:39
+msgid "Apps for Uruguay"
+msgstr ""
+
+#: /media/js/feed.js:40
+msgid "App for Venezuela"
+msgstr ""
+
+#: /media/js/feed.js:40
+msgid "Apps for Venezuela"
+msgstr ""
+
+#: /media/js/feed.js:41
+msgid "Arts & Entertainment"
+msgstr ""
+
+#: /media/js/feed.js:42
+msgid "Book"
+msgstr ""
+
+#: /media/js/feed.js:43
+msgid "Creativity"
+msgstr ""
+
+#: /media/js/feed.js:45
+msgid "Game"
+msgstr ""
+
+#: /media/js/feed.js:46
+msgid "Groundbreaking"
+msgstr ""
+
+#: /media/js/feed.js:48
+msgid "Hidden Gem"
+msgstr ""
+
+#: /media/js/feed.js:48
+msgid "Hidden Gems"
+msgstr ""
+
+#: /media/js/feed.js:50
+msgid "Local Favorite"
+msgstr ""
+
+#: /media/js/feed.js:50
+msgid "Local Favorites"
+msgstr ""
+
+#: /media/js/feed.js:53
+msgid "Mystery App!"
+msgstr ""
+
+#: /media/js/feed.js:53
+msgid "Mystery Apps!"
+msgstr ""
+
+#: /media/js/feed.js:59
+msgid "Tools & Time Saver"
+msgstr ""
+
+#: /media/js/feed.js:59
+msgid "Tools & Time Savers"
+msgstr ""
+
+#: /media/js/feed.js:61
+msgid "Work & Business"
+msgstr ""
+
+#: /media/js/feed.js:67
+msgid "Grid Layout"
+msgstr ""
+
+#: /media/js/feed.js:68
+msgid "List Layout"
+msgstr ""
+
+#: /media/js/feed.js:90
+msgid "Icon"
+msgstr ""
+
+#: /media/js/feed.js:91
+msgid "Background Image"
+msgstr ""
+
+#: /media/js/feed.js:93
+msgid "Quote"
+msgstr ""
+
+#: /media/js/feed.js:94
+msgid "Screenshot"
+msgstr ""
+
+#: /media/js/feed.js:102
+msgid "Promo Collection"
+msgstr ""
+
+#: /media/js/feed.js:103
+msgid "Listing Collection"
+msgstr ""
+
+#: /media/js/installer_direct.js:56
+msgid "Unable to install packaged apps"
+msgstr ""
+
+#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
 msgid "App install error: {error}"
 msgstr "অ্যাপ ইন্সটল ত্রুটি: {error}"
 
@@ -777,106 +1154,110 @@ msgid "Argentina"
 msgstr "আর্জেন্টিনা"
 
 #: /media/js/settings.js:105
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/settings.js:106
 msgid "Brazil"
 msgstr "ব্রাজিল"
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:107
 msgid "Chile"
 msgstr "চিলি"
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:108
 msgid "China"
 msgstr "চীন"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:109
 msgid "Colombia"
 msgstr "কলম্বিয়া"
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:110
 msgid "Costa Rica"
 msgstr ""
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:111
 msgid "Ecuador"
 msgstr ""
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:112
 msgid "El Salvador"
 msgstr ""
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:113
 msgid "France"
 msgstr ""
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:114
 msgid "Germany"
 msgstr "জার্মানি"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:115
 msgid "Greece"
 msgstr "গ্রীস"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:116
 msgid "Guatemala"
 msgstr ""
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:117
 msgid "Hungary"
 msgstr "হাঙ্গেরি"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:118
 msgid "Italy"
 msgstr "ইতালি"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:119
 msgid "Mexico"
 msgstr "মেক্সিকো"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:120
 msgid "Montenegro"
 msgstr "মন্টিনিগ্রো"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:121
 msgid "Nicaragua"
 msgstr ""
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:122
 msgid "Panama"
 msgstr ""
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:123
 msgid "Peru"
 msgstr "পেরু"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:124
 msgid "Poland"
 msgstr "পোল্যান্ড"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:125
 msgid "Serbia"
 msgstr "সার্বিয়া"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:126
 msgid "Spain"
 msgstr "স্পেন"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:127
 msgid "United Kingdom"
 msgstr "যুক্তরাজ্য"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:128
 msgid "United States"
 msgstr "যুক্তরাষ্ট্র"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:129
 msgid "Uruguay"
 msgstr "উরুগুয়ে"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:130
 msgid "Venezuela"
 msgstr "ভেনেজুয়েলা"
 
-#: /media/js/settings.js:130
+#: /media/js/settings.js:131
 msgid "No region in search"
 msgstr "কোন এলাকা খুঁজে পাওয়া যায়নি"
 
@@ -891,27 +1272,23 @@ msgid_plural "{n} stars"
 msgstr[0] "{n} টি তারকা"
 msgstr[1] "{n} টি তারকা"
 
-#: /media/js/commonplace/login.js:8
+#: /media/js/commonplace/login.js:20
 msgid "You have been signed out"
 msgstr "আপনি সাইন আউট করেছেন"
 
-#: /media/js/commonplace/login.js:12
+#: /media/js/commonplace/login.js:24
 msgid "You have been signed in"
 msgstr "আপনি সাইন ইন করেছেন"
 
-#: /media/js/commonplace/login.js:51
-msgid "Error signing out"
-msgstr ""
-
-#: /media/js/commonplace/login.js:176
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "পারসোনা লগইন হয়নি। সম্ভবত আপনার এই ইমেইল ঠিকানা দিইয়ে কোন একাউন্ট নেই?"
 
-#: /media/js/commonplace/login.js:181
+#: /media/js/commonplace/login.js:198
 msgid "Persona login failed. A server error was encountered."
 msgstr "পারসোনা লগইন হয়নি। সার্ভারে ত্রুটি ঘটেছে।"
 
-#: /media/js/commonplace/login.js:254
+#: /media/js/commonplace/login.js:268
 msgid "Persona cannot be reached. Try again later."
 msgstr "পারসোনায় পৌঁছানো যাচ্ছে না। কিছুক্ষণ পর আবার চেষ্টা করুন।"
 
@@ -939,7 +1316,7 @@ msgstr "সার্ভার এর সাথে যোগাযোগ কর�
 msgid "Your device does not support purchases."
 msgstr "আপনার ডিভাইস দিয়ে ক্রয় করা যাবেনা।"
 
-#: /media/js/views/app.js:69
+#: /media/js/views/app.js:76
 msgid "App Details"
 msgstr "অ্যাপের বিস্তারিত"
 
