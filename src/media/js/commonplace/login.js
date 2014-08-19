@@ -125,6 +125,11 @@ define('login',
                 if (!fxa_popup || fxa_popup.closed) {
                     oncancel();
                     clearInterval(popup_interval);
+                } else {
+                    // If login dialog ends up behind another window, we want
+                    // to bring it to the front, otherwise it looks like login
+                    // is stuck / broken.
+                    fxa_popup.focus();
                 }
             }, 150);
 
