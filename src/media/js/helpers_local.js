@@ -19,9 +19,6 @@ define('helpers_local',
 
     /* Register filters. */
     filters.json = JSON.stringify;
-    // TODO: figure out why these filters aren't being registered into
-    // nunjucks.env but helpers.js's filters are.
-    nunjucks.env.addFilter('json', JSON.stringify);
 
     filters.items = utils_local.items;
 
