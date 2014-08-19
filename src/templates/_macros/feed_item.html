@@ -70,6 +70,15 @@
   {% set src = 'branded-editorial-element' %}
   {% set color = feed.get_brand_color_class(brand) %}
 
+  {# Only show 6 or <= 3 apps on the feed. #}
+  {% if landing %}
+    {% set max_apps = brand.app_count %}
+  {% elif brand.app_count < 6 %}
+    {% set max_apps = 3 %}
+  {% else %}
+    {% set max_apps = 6 %}
+  {% endif %}
+
   <section class="feed-brand feed-layout-{{ 'list' if landing else brand.layout }}
                   multi-app-tile mkt-tile c"
            data-brand-type="{{ brand.type }}" data-tracking-slug="{{ brand.slug }}">
@@ -83,19 +92,21 @@
     </div>
     <ul class="app-list">
       {% for app in brand.apps %}
-        {% if landing or loop.index0 < feed.MAX_BRAND_APPS %}
+        {% if landing or (loop.index0 < max_apps) %}
           {{ mini_tile(app, price_only=not landing and brand.layout == 'grid', src=src) }}
         {% endif %}
       {% endfor %}
     </ul>
+
     {# Show the 'View all' link if there are 4-5 or 7+ apps in the brand.' #}
-    {% if not landing and ((brand.app_count > feed.MAX_BRAND_APPS) or
-                           (brand.app_count < feed.MAX_BRAND_APPS and brand.app_count > 3)) %}
+    {% if not landing and ((brand.app_count > 3 and brand.app_count < 6) or
+                            brand.app_count > 6) %}
       <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src=src) }}"
          class="view-all">
         {{ _('View all apps') }}
       </a>
     {% endif %}
+
   </section>
 {% endmacro %}
 
@@ -143,6 +154,15 @@
 {% endmacro %}
 
 {% macro feed_collection_listing(coll) %}
+  {# Only show 6 or <= 3 apps on the feed. #}
+  {% if landing %}
+    {% set max_apps = coll.app_count %}
+  {% elif coll.app_count < 6 %}
+    {% set max_apps = 3 %}
+  {% else %}
+    {% set max_apps = 6 %}
+  {% endif %}
+
   <section class="feed-collection feed-collection-listing
                   feed-layout-{{ 'list' if landing else 'grid' }}
                   multi-app-tile mkt-tile c"
@@ -158,20 +178,21 @@
     {% endif %}
     <ul class="app-list">
       {% for app in coll.apps %}
-        {% if landing or loop.index0 < feed.MAX_BRAND_APPS %}
+        {% if landing or loop.index0 < max_apps %}
           {{ mini_tile(app, price_only=not landing, src='collection-element') }}
         {% endif %}
       {% endfor %}
     </ul>
-    {# Show the 'View all' link if there are 4-5 or 7+ apps in the collection.' #}
-    {% if not landing and ((coll.app_count > feed.MAX_BRAND_APPS) or
-                           (coll.app_count < feed.MAX_BRAND_APPS and coll.app_count > 3)) %}
-      <a href="{{ url('feed/feed_collection',
-                      [coll.slug])|urlparams(src='collection-element') }}"
+
+    {# Show the 'View all' link if there are 4-5 or 7+ apps in the brand.' #}
+    {% if not landing and ((coll.app_count > 3 and coll.app_count < 6) or
+                            coll.app_count > 6) %}
+      <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src=src) }}"
          class="view-all">
         {{ _('View all apps') }}
       </a>
     {% endif %}
+
   </section>
 {% endmacro %}
 
