@@ -8,7 +8,7 @@ define('cache',
     var cache_key = 'request_cache';
 
     if (settings.offline_cache_enabled && settings.offline_cache_enabled()) {
-        cache = storage.getItem(cache_key) || '{}';
+        cache = storage.getItem(cache_key) || {};
         flush_expired();
     }
 
