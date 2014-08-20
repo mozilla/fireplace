@@ -62,36 +62,25 @@ test('no carrier+region', function(done) {
 });
 
 test('carrier+region for Telefónica España SIM via querystring', function(done, fail) {
-    var updated = false;
-    mock(
-        'mobilenetwork',
-        {
-            user: {
-                get_setting: function() { return null; },
-                get_settings: function() { return {}; },
-                update_settings: function(data) {
-                    assert('region_sim' in data);
-                    assert('carrier_sim' in data);
-                    eq_(data.region_sim, 'es');
-                    eq_(data.carrier_sim, 'telefonica');
-                    updated = true;
-                }
-            },
-            utils: {
-                getVars: function() { return {mcc: '214', mnc: '005'}; }
-            }
-        }, function(mobilenetwork) {
-            mobilenetwork.detectMobileNetwork({});
-            (updated ? done : fail)();
-        },
-        fail
-    );
+    user.clear_settings();
+
+    mobilenetwork.detectMobileNetwork({}, {
+        getVars: function () {
+            return {mcc: '214', mnc: '005'};
+        }
+    });
+
+    eq_(user.get_setting('carrier_sim'), 'telefonica');
+    eq_(user.get_setting('region_sim'), 'es');
+
+    done();
 });
 
-test('carrier+region for Telefónica España SIM via navigator.mozMobileConnection', function(done) {
+test('carrier+region for SIM via navigator.mozMobileConnection', function(done) {
     user.clear_settings();
 
     var navigator_ = {mozMobileConnection: {lastKnownNetwork: '214-005'}};
+
     mobilenetwork.detectMobileNetwork(navigator_);
 
     eq_(user.get_setting('carrier_sim'), 'telefonica');
@@ -100,46 +89,89 @@ test('carrier+region for Telefónica España SIM via navigator.mozMobileConnecti
     done();
 });
 
-test('api user-defined carrier (via SIM)', function(done, fail) {
-    mock(
-        'urls',
-        {
-            capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
-            user: {logged_in: function() {}, get_setting: function(x) {
-                return x == 'carrier_sim' && 'seavanaquaticcorp';
-            }}
-        }, function(urls) {
-            contains(urls.api.url('search'), 'carrier=seavanaquaticcorp');
-            done();
-        },
-        fail
-    );
+test('carrier+region for SIM via navigator.mozMobileConnection lastKnownHomeNetwork', function(done) {
+    user.clear_settings();
+
+    var navigator_ = {mozMobileConnection: {lastKnownHomeNetwork: '214-005'}};
+
+    mobilenetwork.detectMobileNetwork(navigator_);
+
+    eq_(user.get_setting('carrier_sim'), 'telefonica');
+    eq_(user.get_setting('region_sim'), 'es');
+
+    done();
 });
 
-test('api user-defined carrier+region (via SIM)', function(done, fail) {
-    mock(
-        'urls',
-        {
-            capabilities: {firefoxOS: true, widescreen: function() { return false; }, touch: 'foo'},
-            user: {
-                logged_in: function() {},
-                get_setting: function(x) {
-                    switch(x) {
-                        case 'carrier_sim':
-                            return 'seavanaquaticcorp';
-                        case 'region_sim':
-                            return 'underwater';
-                    }
-                }
-            }
-        }, function(urls) {
-            var url = urls.api.url('search');
-            contains(url, 'carrier=seavanaquaticcorp');
-            contains(url, 'region=underwater');
-            done();
-        },
-        fail
-    );
+test('carrier+region for SIM via navigator.mozMobileConnections', function(done) {
+    user.clear_settings();
+
+    var navigator_ = {
+        mozMobileConnections: [
+            {lastKnownNetwork: '202-005'},
+            {lastKnownNetwork: '214-005'},
+        ]
+    };
+
+    mobilenetwork.detectMobileNetwork(navigator_);
+
+    eq_(user.get_setting('carrier_sim'), 'deutsche_telekom');
+    eq_(user.get_setting('region_sim'), 'gr');
+
+    done();
+});
+
+test('carrier+region for SIM via navigator.mozMobileConnections with garbage', function(done) {
+    user.clear_settings();
+
+    var navigator_ = {
+        mozMobileConnections: [
+            {lastKnownNetwork: '999-666'},
+            {lastKnownNetwork: '214-005'},
+        ]
+    };
+
+    mobilenetwork.detectMobileNetwork(navigator_);
+
+    eq_(user.get_setting('carrier_sim'), 'telefonica');
+    eq_(user.get_setting('region_sim'), 'es');
+
+    done();
+});
+
+test('carrier+region for SIM via navigator.mozMobileConnections with weird lastKnownNetwork first', function(done) {
+    user.clear_settings();
+
+    var navigator_ = {
+        mozMobileConnections: [
+            {lastKnownNetwork: 'weirdstring'},
+            {lastKnownNetwork: '214-005'},
+        ]
+    };
+
+    mobilenetwork.detectMobileNetwork(navigator_);
+
+    eq_(user.get_setting('carrier_sim'), 'telefonica');
+    eq_(user.get_setting('region_sim'), 'es');
+
+    done();
+});
+
+test('carrier+region for SIM via navigator.mozMobileConnections lastKnownHomeNetwork', function(done) {
+    user.clear_settings();
+
+    var navigator_ = {
+        mozMobileConnections: [
+            {lastKnownHomeNetwork: '202-005'},
+            {lastKnownNetwork: '214-005'},
+        ]
+    };
+
+    mobilenetwork.detectMobileNetwork(navigator_);
+
+    eq_(user.get_setting('carrier_sim'), 'deutsche_telekom');
+    eq_(user.get_setting('region_sim'), 'gr');
+
+    done();
 });
 
 })();

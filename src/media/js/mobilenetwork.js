@@ -327,106 +327,74 @@ define('mobilenetwork',
         };
     }
 
-    function detectMobileNetwork(navigator) {
-        var consoleTagged = console.tagged('detectMobileNetwork');
-        navigator = navigator || window.navigator;
-
-        var newSettings = {};
-
-        var GET = utils.getVars();
-        // Get mobile region and carrier information passed via querystring.
-        var mcc = GET.mcc;
-        var mnc = GET.mnc;
-        var mccs = [];
-        try {
-            mccs = JSON.parse(GET.mccs || '[]');
-        } catch(e) {
-        }
-
-        var region;
-        var carrier = GET.carrier || user.get_setting('carrier') || null;
-
-        var i;
-        try {
-            // navigator.mozMobileConnections is the new API.
-            // navigator.mozMobileConnection is the legacy API.
-
-            // When Fireplace is served as a privileged packaged app (and not
-            // served via Yulelog) our JS will have direct access to this API.
-            // Assignment not comparison below.
-            var conn;
-            if (conn = navigator.mozMobileConnections) {
-                consoleTagged.log('navigator.mozMobileConnections available');
-                if (mccs.length) {
-                    consoleTagged.log('Using hardcoded MCCs:', JSON.stringify(mccs));
-                } else {
-                    // If we haven't hardcoded a MCC...
-                    mccs = [];
-                    var connData;
-                    var network;
-                    for (i = 0; i < conn.length; i++) {
-                        connData = conn[i];
-                        network = (connData.lastKnownHomeNetwork || connData.lastKnownNetwork || '-').split('-');
-                        consoleTagged.log('navigator.mozMobileConnections[' + i + '].lastKnownNetwork:',
-                                          connData.lastKnownNetwork);
-                        consoleTagged.log('navigator.mozMobileConnections[' + i + '].lastKnownHomeNetwork:',
-                                          conn.lastKnownHomeNetwork);
-                        mccs.push({mcc: network[0], mnc: network[1]});
-                    }
-                    consoleTagged.log('Using SIM MCCs:', JSON.stringify(mccs));
-                }
-            } else if (conn = navigator.mozMobileConnection) {
-                consoleTagged.log('navigator.mozMobileConnection available');
-                // `MCC`: Mobile Country Code
-                // `MNC`: Mobile Network Code
-                // `lastKnownHomeNetwork`: `{MCC}-{MNC}` (SIM's origin)
-                // `lastKnownNetwork`: `{MCC}-{MNC}` (could be different network if roaming)
-                var lastNetwork = (conn.lastKnownHomeNetwork || conn.lastKnownNetwork || '-').split('-');
-                mcc = lastNetwork[0];
-                mnc = lastNetwork[1];
-                consoleTagged.log('navigator.mozMobileConnection.lastKnownNetwork:',
-                    conn.lastKnownNetwork);
-                consoleTagged.log('navigator.mozMobileConnection.lastKnownHomeNetwork:',
-                    conn.lastKnownHomeNetwork);
-                consoleTagged.log('MCC:', mcc, ', MNC:', mnc);
-            } else {
-                consoleTagged.log('navigator.mozMobileConnection unavailable');
+    // Parse and return mcc/mnc from a MozMobileConnection object.
+    function handleConnection(conn, console) {
+        function mccify(network) {
+            var mccParts = (network || '-').split('-');
+            if (mccParts.length < 2) {
+                return null;
             }
-        } catch(e) {
-            // Fail gracefully if `navigator.mozMobileConnection(s)`
-            // gives us problems.
-            consoleTagged.warn('Error accessing navigator.mozMobileConnection:', e);
+            return {mcc: mccParts[0], mnc: mccParts[1]};
         }
+        var lastNetwork = mccify(conn.lastKnownHomeNetwork ||
+                                 conn.lastKnownNetwork);
+        console.log('lastKnownNetwork:', conn.lastKnownNetwork);
+        if (lastNetwork) {
+            console.log('Using lastKnownNetwork:', lastNetwork);
+            return lastNetwork;
+        } else {
+            console.log('Unknown network.');
+            return {mcc: undefined, mnc: undefined};
+        }
+    }
 
+    function detectMobileNetwork(navigator, _utils) {
+        var GET = (_utils || utils).getVars();
+        var carrier = GET.carrier || user.get_setting('carrier') || null;
+        var consoleTagged = console.tagged('detectMobileNetwork');
+        var newSettings = {};
+        var mccs, region, source, i, pair;
+
+        navigator = navigator || window.navigator;
         newSettings.carrier_sim = null;
         newSettings.region_sim = null;
 
-        function setFromSIMPair(mcc, mnc, source) {
-            // Look up region and carrier from MCC (Mobile Country Code)
-            // and MNC (Mobile Network Code).
-            var network = getNetwork(mcc, mnc);
+        // Array of sources to look at, in order. Each source function returns
+        // either an Array of mcc/mnc objects, or a falsey value.
+        var sources = [
+            ['GET mcc/mnc', getMCCMNC],
+            ['GET mccs', getMCCs],
+            ['dual SIM', getMultiSIM],
+            ['SIM', getSIM],
+            ['None', noNetwork],
+        ];
 
-            if (carrier !== network.carrier) {
-                persistent_console.log(
-                    'Carrier changed by ' + source + ':', carrier, '→', network.carrier);
-            }
-
-            region = newSettings.region_sim = network.region;
-            carrier = newSettings.carrier_sim = network.carrier;
-
-            return region;
-        }
-
-        if (mcc || mnc) {
-            setFromSIMPair(mcc, mnc, 'SIM');
+        // Loop through the sources, continue as long as the result is falsey.
+        // The first source to return a non-falsey value is the one we'll use.
+        for (i = 0; i < sources.length && !mccs; i++) {
+            source = sources[i][0];
+            mccs = sources[i][1]();
         }
 
         if (mccs.length) {
-            var pair;
+            // Go through the list of mcc/mnc, try to extract network information
+            // from each, stop as soon as we have a valid region, storing the
+            // result in the settings.
             for (i = 0; i < mccs.length; i++) {
                 pair = mccs[i];
                 consoleTagged.log('mccs[' + i + ']:', pair);
-                if (setFromSIMPair(pair.mcc, pair.mnc, 'dual SIM')) {
+                // Look up region and carrier from mcc/mnc, applying
+                // workarounds for special cases.
+                var network = getNetwork(pair.mcc, pair.mnc);
+
+                if (carrier !== network.carrier) {
+                    persistent_console.log('Carrier changed by ' + source + ':',
+                                           carrier, '→', network.carrier);
+                }
+
+                if (network.region) {
+                    region = newSettings.region_sim = network.region;
+                    carrier = newSettings.carrier_sim = network.carrier;
                     break;
                 }
             }
@@ -436,6 +404,64 @@ define('mobilenetwork',
 
         // Send the changed region to GA/UA.
         tracking.setVar(11, 'region', region);
+
+        // Potential sources used by detectMobileNetwork() are defined below:
+
+        // Get mobile region and carrier information passed via mcc/mnc
+        // querystring parameters.
+        function getMCCMNC() {
+            if (GET.mcc || GET.mnc) {
+                return [{mcc: GET.mcc, mnc: GET.mnc}];
+            }
+        }
+
+        // Get mobile region and carrier information passed via a single 'mccs'
+        // querystring parameter containing multiple mcc/mnc pairs.
+        function getMCCs() {
+            try {
+                return JSON.parse(GET.mccs);
+            } catch(e) {}
+        }
+
+        // Get mcc/mnc pairs using mozMobileConnections (needs to be privileged).
+        function getMultiSIM() {
+            try {
+                if (navigator.mozMobileConnections) {
+                    consoleTagged.log('navigator.mozMobileConnections available');
+                    var mccs = [],
+                        conns = navigator.mozMobileConnections;
+                    for (var i = 0; i < conns.length; i++) {
+                        mccs.push(handleConnection(conns[i], consoleTagged));
+                    }
+                    return mccs;
+                }
+            } catch(e) {
+                // Fail gracefully if `navigator.mozMobileConnection(s)`
+                // gives us problems.
+                consoleTagged.warn('Error accessing navigator.mozMobileConnections:', e);
+            }
+        }
+
+        // Get a single mcc/mnc pair using mozMobileConnection (needs to be privileged,
+        // legacy API from before mozMobileConnections was introduced).
+        function getSIM() {
+            try {
+                if (navigator.mozMobileConnection) {
+                    consoleTagged.log('navigator.mozMobileConnection available');
+                    return [handleConnection(navigator.mozMobileConnection, consoleTagged)];
+                }
+            } catch(e) {
+                // Fail gracefully if `navigator.mozMobileConnection`
+                // gives us problems.
+                consoleTagged.warn('Error accessing navigator.mozMobileConnection:', e);
+            }
+        }
+
+        // Fallback.
+        function noNetwork() {
+            consoleTagged.log('navigator.mozMobileConnection(s) unavailable and no GET parameter provided');
+            return [];
+        }
     }
 
     detectMobileNetwork(navigator);
