@@ -92,7 +92,7 @@ define('login',
         }
         if (capabilities.fallbackFxA()) {
             window.addEventListener('message', function (msg) {
-                if (!msg.data || !msg.data.auth_code) {
+                if (!msg.data || !msg.data.auth_code || msg.origin !== window.location.origin) {
                     return;
                 }
                 var data = {
