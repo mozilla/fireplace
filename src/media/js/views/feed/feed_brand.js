@@ -17,9 +17,7 @@ define('views/feed/feed_brand',
 
         builder.onload('brand', function(brand) {
             // Figure out the brand name via the type.
-            var name = feed.BRAND_TYPES[brand.type];
-            name = brand.apps.length == 1 ? name[0] : name[1];
-            builder.z('title', utils.translate(name));
+            builder.z('title', feed.get_brand_type(brand.type, brand.apps.length));
         });
     };
 });

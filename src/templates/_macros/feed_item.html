@@ -86,7 +86,7 @@
       <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src=src) }}"
          class="fanchor">
         <h1 class="feed-tile-header" data-brand-color="{{ color }}">
-          {{ feed.get_brand_name(brand) }}
+          {{ feed.get_brand_type(brand.type, brand.apps.length) }}
         </h1>
       </a>
     </div>
