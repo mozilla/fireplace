@@ -230,12 +230,11 @@ define('apps_buttons',
             }
 
             mark_installed(product.manifest_url);
-            tracking_events.track_app_install_success(product, $button);
+            tracking_events.track_app_install_success(product, $this);
             console.log('Successful install for', product.name);
-
         }, function() {
             revertButton($this);
-            tracking_events.track_app_install_fail(product, $button);
+            tracking_events.track_app_install_fail(product, $this);
             console.log('Unsuccessful install for', product.name);
         });
 
