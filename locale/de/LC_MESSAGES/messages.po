@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-19T20:50:50.498Z\n"
+"POT-Creation-Date: 2014-08-20T21:25:22.999Z\n"
 "PO-Revision-Date: 2014-08-19 21:46+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: German (de) <coce@nurfuerspam.de>\n"
@@ -18,11 +18,6 @@ msgstr ""
 msgid "All Categories"
 msgstr "Alle Kategorien"
 
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33 /templates/_macros/feed_item.html:210 /templates/_macros/feed_item.html:237
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr "Oje, hier gibt es keine Apps!"
-
 #: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Schließen"
@@ -34,6 +29,11 @@ msgstr "Nein"
 #: /templates/confirmation.html:4
 msgid "Yes"
 msgstr "Ja"
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/collection.html:33 /templates/_macros/feed_item.html:210 /templates/_macros/feed_item.html:237
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr "Oje, hier gibt es keine Apps!"
 
 #: /templates/credits.html:2 /media/js/views/credits.js:10
 msgid "Credits"
@@ -382,7 +382,7 @@ msgstr "Weniger&hellip;"
 msgid "More&hellip;"
 msgstr "Mehr&hellip;"
 
-#: /templates/detail/main.html:83 /media/js/feed.js:92
+#: /templates/detail/main.html:83 /media/js/feed.js:33
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -468,14 +468,11 @@ msgstr "Die Seite, die Sie suchen, wurde nicht gefunden."
 
 #: /templates/errors/date-error.html:4
 msgid "Sorry, your device clock appears to be set incorrectly."
-msgstr ""
-"Es tut uns Leid, die Uhr Ihres Geräts scheint falsch eingestellt zu sein."
+msgstr "Es tut uns Leid, die Uhr Ihres Geräts scheint falsch eingestellt zu sein."
 
 #: /templates/errors/date-error.html:7
 msgid "Please set today's date and time in your device settings to access the Marketplace."
-msgstr ""
-"Bitte stellen Sie in Ihren Geräteeinstellungen das heutige Datum und die "
-"Uhrzeit ein, um auf den Marketplace zuzugreifen."
+msgstr "Bitte stellen Sie in Ihren Geräteeinstellungen das heutige Datum und die Uhrzeit ein, um auf den Marketplace zuzugreifen."
 
 #: /templates/errors/date-error.html:9
 msgid "Try again"
@@ -492,6 +489,24 @@ msgstr "Beim Laden weiterer Informationen ist ein Fehler aufgetreten"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Versuchen Sie es erneut"
+
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Ergebnis"
+msgstr[1] "<b>{n}</b> Ergebnisse"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:12
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Angezeigt wird <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Keine Ergebnisse gefunden"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Keine Ergebnisse gefunden, versuchen Sie es später erneut"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -529,24 +544,6 @@ msgstr "Unpassende Wortwahl"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Unpassender Fehlerbericht, oder Unterstützungs-Anfrage"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Ergebnis"
-msgstr[1] "<b>{n}</b> Ergebnisse"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Angezeigt wird <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Keine Ergebnisse gefunden"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Keine Ergebnisse gefunden, versuchen Sie es später erneut"
 
 #: /templates/settings/feedback.html:12
 msgid "Send"
@@ -628,25 +625,11 @@ msgstr "Ihr Browser oder Ihr Gerät sind nicht mit Web-Apps kompatibel."
 msgid "This app is unavailable for your platform."
 msgstr "Diese App ist für Ihre Plattform nicht verfügbar."
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Zahlung abgebrochen."
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
-msgid "Purchasing"
-msgstr "Kaufen"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
-msgid "Install failed. Please try again later."
-msgstr "Installation fehlgeschlagen. Bitte versuchen Sie es später erneut."
-
-#: /media/js/categories.js:8 /media/js/feed.js:45
+#: /media/js/categories.js:8
 msgid "Games"
 msgstr "Spiele"
 
-#: /media/js/categories.js:9 /media/js/feed.js:42
+#: /media/js/categories.js:9
 msgid "Books"
 msgstr "Bücher"
 
@@ -654,7 +637,7 @@ msgstr "Bücher"
 msgid "Business"
 msgstr "Geschäftliches"
 
-#: /media/js/categories.js:11 /media/js/feed.js:44
+#: /media/js/categories.js:11
 msgid "Education"
 msgstr "Lernen"
 
@@ -662,27 +645,27 @@ msgstr "Lernen"
 msgid "Entertainment"
 msgstr "Unterhaltung"
 
-#: /media/js/categories.js:13 /media/js/feed.js:47
+#: /media/js/categories.js:13
 msgid "Health & Fitness"
 msgstr "Gesundheit & Fitness"
 
-#: /media/js/categories.js:14 /media/js/feed.js:49
+#: /media/js/categories.js:14
 msgid "Lifestyle"
 msgstr "Lifestyle"
 
-#: /media/js/categories.js:15 /media/js/feed.js:51
+#: /media/js/categories.js:15
 msgid "Maps & Navigation"
 msgstr "Straßenkarten & Navigation"
 
-#: /media/js/categories.js:16 /media/js/feed.js:52
+#: /media/js/categories.js:16
 msgid "Music"
 msgstr "Musik"
 
-#: /media/js/categories.js:17 /media/js/feed.js:54
+#: /media/js/categories.js:17
 msgid "News & Weather"
 msgstr "Nachrichten & Wetter"
 
-#: /media/js/categories.js:18 /media/js/feed.js:55
+#: /media/js/categories.js:18
 msgid "Photo & Video"
 msgstr "Foto & Video"
 
@@ -694,19 +677,19 @@ msgstr "Produktivität"
 msgid "Reference"
 msgstr "Nachschlagewerke"
 
-#: /media/js/categories.js:21 /media/js/feed.js:56
+#: /media/js/categories.js:21
 msgid "Shopping"
 msgstr "Einkaufen"
 
-#: /media/js/categories.js:22 /media/js/feed.js:57
+#: /media/js/categories.js:22
 msgid "Social"
 msgstr "Soziale Netzwerke"
 
-#: /media/js/categories.js:23 /media/js/feed.js:58
+#: /media/js/categories.js:23
 msgid "Sports"
 msgstr "Sport"
 
-#: /media/js/categories.js:24 /media/js/feed.js:60
+#: /media/js/categories.js:24
 msgid "Travel"
 msgstr "Reisen"
 
@@ -755,355 +738,408 @@ msgstr "ab 17 Jahren"
 msgid "Adults Only 18+"
 msgstr "ab 18 Jahren"
 
-#: /media/js/feed.js:8
+#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Zahlung abgebrochen."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:93
+msgid "Purchasing"
+msgstr "Kaufen"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:200
+msgid "Install failed. Please try again later."
+msgstr "Installation fehlgeschlagen. Bitte versuchen Sie es später erneut."
+
+#: /media/js/edbrands.js:33
+#, fuzzy
 msgid "App for Albania"
-msgstr "App für Albanien"
+msgid_plural "Apps for Albania"
+msgstr[0] "App für Albanien"
+msgstr[1] "App für Albanien"
+
+#: /media/js/edbrands.js:34
+#, fuzzy
+msgid "App for Argentina"
+msgid_plural "Apps for Argentina"
+msgstr[0] "App für Argentinien"
+msgstr[1] "App für Argentinien"
+
+#: /media/js/edbrands.js:35
+#, fuzzy
+msgid "App for Bangladesh"
+msgid_plural "Apps for Bangladesh"
+msgstr[0] "App für Bangladesch"
+msgstr[1] "App für Bangladesch"
+
+#: /media/js/edbrands.js:36
+#, fuzzy
+msgid "App for Brazil"
+msgid_plural "Apps for Brazil"
+msgstr[0] "App für Brasilien"
+msgstr[1] "App für Brasilien"
+
+#: /media/js/edbrands.js:37
+#, fuzzy
+msgid "App for Bulgaria"
+msgid_plural "Apps for Bulgaria"
+msgstr[0] "App für Bulgarien"
+msgstr[1] "App für Bulgarien"
+
+#: /media/js/edbrands.js:38
+#, fuzzy
+msgid "App for Chile"
+msgid_plural "Apps for Chile"
+msgstr[0] "App für Chile"
+msgstr[1] "App für Chile"
+
+#: /media/js/edbrands.js:39
+#, fuzzy
+msgid "App for China"
+msgid_plural "Apps for China"
+msgstr[0] "App für China"
+msgstr[1] "App für China"
+
+#: /media/js/edbrands.js:40
+#, fuzzy
+msgid "App for Colombia"
+msgid_plural "Apps for Colombia"
+msgstr[0] "App für Kolumbien"
+msgstr[1] "App für Kolumbien"
+
+#: /media/js/edbrands.js:41
+#, fuzzy
+msgid "App for Costa Rica"
+msgid_plural "Apps for Costa Rica"
+msgstr[0] "App für Costa Rica"
+msgstr[1] "App für Costa Rica"
+
+#: /media/js/edbrands.js:42
+#, fuzzy
+msgid "App for Croatia"
+msgid_plural "Apps for Croatia"
+msgstr[0] "App für Kroatien"
+msgstr[1] "App für Kroatien"
+
+#: /media/js/edbrands.js:43
+#, fuzzy
+msgid "App for Czech Republic"
+msgid_plural "Apps for Czech Republic"
+msgstr[0] "App für die Tschechische Republik"
+msgstr[1] "App für die Tschechische Republik"
+
+#: /media/js/edbrands.js:44
+#, fuzzy
+msgid "App for Ecuador"
+msgid_plural "Apps for Ecuador"
+msgstr[0] "App für Ecuador"
+msgstr[1] "App für Ecuador"
+
+#: /media/js/edbrands.js:45
+#, fuzzy
+msgid "App for El Salvador"
+msgid_plural "Apps for El Salvador"
+msgstr[0] "App für El Salvador"
+msgstr[1] "App für El Salvador"
+
+#: /media/js/edbrands.js:46
+#, fuzzy
+msgid "App for France"
+msgid_plural "Apps for France"
+msgstr[0] "App für Frankreich"
+msgstr[1] "App für Frankreich"
+
+#: /media/js/edbrands.js:47
+#, fuzzy
+msgid "App for Germany"
+msgid_plural "Apps for Germany"
+msgstr[0] "App für Deutschland"
+msgstr[1] "App für Deutschland"
+
+#: /media/js/edbrands.js:48
+#, fuzzy
+msgid "App for Greece"
+msgid_plural "Apps for Greece"
+msgstr[0] "App für Griechenland"
+msgstr[1] "App für Griechenland"
+
+#: /media/js/edbrands.js:49
+#, fuzzy
+msgid "App for Hungary"
+msgid_plural "Apps for Hungary"
+msgstr[0] "App für Ungarn"
+msgstr[1] "App für Ungarn"
+
+#: /media/js/edbrands.js:50
+#, fuzzy
+msgid "App for India"
+msgid_plural "Apps for India"
+msgstr[0] "App für Indien"
+msgstr[1] "App für Indien"
+
+#: /media/js/edbrands.js:51
+#, fuzzy
+msgid "App for Italy"
+msgid_plural "Apps for Italy"
+msgstr[0] "App für Italien"
+msgstr[1] "App für Italien"
+
+#: /media/js/edbrands.js:52
+#, fuzzy
+msgid "App for Japan"
+msgid_plural "Apps for Japan"
+msgstr[0] "App für Japan"
+msgstr[1] "App für Japan"
+
+#: /media/js/edbrands.js:53
+#, fuzzy
+msgid "App for Macedonia"
+msgid_plural "Apps for Macedonia"
+msgstr[0] "App für Mazedonien"
+msgstr[1] "App für Mazedonien"
+
+#: /media/js/edbrands.js:54
+#, fuzzy
+msgid "App for Mexico"
+msgid_plural "Apps for Mexico"
+msgstr[0] "App für Mexiko"
+msgstr[1] "App für Mexiko"
+
+#: /media/js/edbrands.js:55
+#, fuzzy
+msgid "App for Montenegro"
+msgid_plural "Apps for Montenegro"
+msgstr[0] "App für Montenegro"
+msgstr[1] "App für Montenegro"
+
+#: /media/js/edbrands.js:56
+#, fuzzy
+msgid "App for Nicaragua"
+msgid_plural "Apps for Nicaragua"
+msgstr[0] "App für Nicaragua"
+msgstr[1] "App für Nicaragua"
+
+#: /media/js/edbrands.js:57
+#, fuzzy
+msgid "App for Panama"
+msgid_plural "Apps for Panama"
+msgstr[0] "App für Panama"
+msgstr[1] "App für Panama"
+
+#: /media/js/edbrands.js:58
+#, fuzzy
+msgid "App for Peru"
+msgid_plural "Apps for Peru"
+msgstr[0] "App für Peru"
+msgstr[1] "App für Peru"
+
+#: /media/js/edbrands.js:59
+#, fuzzy
+msgid "App for Poland"
+msgid_plural "Apps for Poland"
+msgstr[0] "App für Polen"
+msgstr[1] "App für Polen"
+
+#: /media/js/edbrands.js:60
+#, fuzzy
+msgid "App for Russia"
+msgid_plural "Apps for Russia"
+msgstr[0] "App für Russland"
+msgstr[1] "App für Russland"
+
+#: /media/js/edbrands.js:61
+#, fuzzy
+msgid "App for Serbia"
+msgid_plural "Apps for Serbia"
+msgstr[0] "App für Serbien"
+msgstr[1] "App für Serbien"
+
+#: /media/js/edbrands.js:62
+#, fuzzy
+msgid "App for South Africa"
+msgid_plural "Apps for South Africa"
+msgstr[0] "App für Südafrika"
+msgstr[1] "App für Südafrika"
+
+#: /media/js/edbrands.js:63
+#, fuzzy
+msgid "App for Spain"
+msgid_plural "Apps for Spain"
+msgstr[0] "App für Spanien"
+msgstr[1] "App für Spanien"
+
+#: /media/js/edbrands.js:64
+#, fuzzy
+msgid "App for Uruguay"
+msgid_plural "Apps for Uruguay"
+msgstr[0] "App für Uruguay"
+msgstr[1] "App für Uruguay"
+
+#: /media/js/edbrands.js:65
+#, fuzzy
+msgid "App for Venezuela"
+msgid_plural "Apps for Venezuela"
+msgstr[0] "App für Venezuela"
+msgstr[1] "App für Venezuela"
+
+#: /media/js/edbrands.js:66
+msgid "Arts & Entertainment App"
+msgid_plural "Arts & Entertainment Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:67
+msgid "Featured Book App"
+msgid_plural "Featured Book Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:68
+msgid "Featured Creativity App"
+msgid_plural "Featured Creativity Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:69
+msgid "Featured Education App"
+msgid_plural "Featured Education Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:70
+msgid "Featured Game"
+msgid_plural "Featured Games"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:71
+msgid "Groundbreaking App"
+msgid_plural "Groundbreaking Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:72
+msgid "Health & Fitness App"
+msgid_plural "Health & Fitness Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:73
+#, fuzzy
+msgid "Hidden Gem"
+msgid_plural "Hidden Gems"
+msgstr[0] "Verborgener Schatz"
+msgstr[1] "Verborgener Schatz"
+
+#: /media/js/edbrands.js:74
+msgid "Featured Lifestyle App"
+msgid_plural "Featured Lifestyle Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:75
+msgid "Local Favorite App"
+msgid_plural "Local Favorite Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:76
+msgid "Maps & Navigation App"
+msgid_plural "Maps & Navigation Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:77
+msgid "Featured Music App"
+msgid_plural "Featured Music Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:78
+#, fuzzy
+msgid "Mystery App!"
+msgid_plural "Mystery Apps!"
+msgstr[0] "Geheimnisvolle App!"
+msgstr[1] "Geheimnisvolle App!"
+
+#: /media/js/edbrands.js:79
+msgid "News & Weather App"
+msgid_plural "News & Weather Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:80
+msgid "Photo & Video App"
+msgid_plural "Photo & Video Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:81
+msgid "Featured Shopping App"
+msgid_plural "Featured Shopping Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:82
+msgid "Featured Social App"
+msgid_plural "Featured Social Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:83
+msgid "Featured Sports App"
+msgid_plural "Featured Sports Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:84
+msgid "Tool & Time Saver"
+msgid_plural "Tools & Time Savers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:85
+msgid "Featured Travel App"
+msgid_plural "Featured Travel Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:86
+msgid "Work & Business App"
+msgid_plural "Work & Business Apps"
+msgstr[0] ""
+msgstr[1] ""
 
 #: /media/js/feed.js:8
-msgid "Apps for Albania"
-msgstr "Apps für Albanien"
-
-#: /media/js/feed.js:9
-msgid "App for Argentina"
-msgstr "App für Argentinien"
-
-#: /media/js/feed.js:9
-msgid "Apps for Argentina"
-msgstr "Apps für Argentinien"
-
-#: /media/js/feed.js:10
-msgid "App for Bangladesh"
-msgstr "App für Bangladesch"
-
-#: /media/js/feed.js:10
-msgid "Apps for Bangladesh"
-msgstr "Apps für Bangladesch"
-
-#: /media/js/feed.js:11
-msgid "App for Brazil"
-msgstr "App für Brasilien"
-
-#: /media/js/feed.js:11
-msgid "Apps for Brazil"
-msgstr "Apps für Brasilien"
-
-#: /media/js/feed.js:12
-msgid "App for Bulgaria"
-msgstr "App für Bulgarien"
-
-#: /media/js/feed.js:12
-msgid "Apps for Bulgaria"
-msgstr "Apps für Bulgarien"
-
-#: /media/js/feed.js:13
-msgid "App for Chile"
-msgstr "App für Chile"
-
-#: /media/js/feed.js:13
-msgid "Apps for Chile"
-msgstr "Apps für Chile"
-
-#: /media/js/feed.js:14
-msgid "App for China"
-msgstr "App für China"
-
-#: /media/js/feed.js:14
-msgid "Apps for China"
-msgstr "Apps für China"
-
-#: /media/js/feed.js:15
-msgid "App for Colombia"
-msgstr "App für Kolumbien"
-
-#: /media/js/feed.js:15
-msgid "Apps for Colombia"
-msgstr "Apps für Kolumbien"
-
-#: /media/js/feed.js:16
-msgid "App for Costa Rica"
-msgstr "App für Costa Rica"
-
-#: /media/js/feed.js:16
-msgid "Apps for Costa Rica"
-msgstr "Apps für Costa Rica"
-
-#: /media/js/feed.js:17
-msgid "App for Croatia"
-msgstr "App für Kroatien"
-
-#: /media/js/feed.js:17
-msgid "Apps for Croatia"
-msgstr "Apps für Kroatien"
-
-#: /media/js/feed.js:18
-msgid "App for Czech Republic"
-msgstr "App für die Tschechische Republik"
-
-#: /media/js/feed.js:18
-msgid "Apps for Czech Republic"
-msgstr "Apps für die Tschechische Republik"
-
-#: /media/js/feed.js:19
-msgid "App for Ecuador"
-msgstr "App für Ecuador"
-
-#: /media/js/feed.js:19
-msgid "Apps for Ecuador"
-msgstr "Apps für Ecuador"
-
-#: /media/js/feed.js:20
-msgid "App for El Salvador"
-msgstr "App für El Salvador"
-
-#: /media/js/feed.js:20
-msgid "Apps for El Salvador"
-msgstr "Apps für El Salvador"
-
-#: /media/js/feed.js:21
-msgid "App for France"
-msgstr "App für Frankreich"
-
-#: /media/js/feed.js:21
-msgid "Apps for France"
-msgstr "Apps für Frankreich"
-
-#: /media/js/feed.js:22
-msgid "App for Germany"
-msgstr "App für Deutschland"
-
-#: /media/js/feed.js:22
-msgid "Apps for Germany"
-msgstr "Apps für Deutschland"
-
-#: /media/js/feed.js:23
-msgid "App for Greece"
-msgstr "App für Griechenland"
-
-#: /media/js/feed.js:23
-msgid "Apps for Greece"
-msgstr "Apps für Griechenland"
-
-#: /media/js/feed.js:24
-msgid "App for Hungary"
-msgstr "App für Ungarn"
-
-#: /media/js/feed.js:24
-msgid "Apps for Hungary"
-msgstr "Apps für Ungarn"
-
-#: /media/js/feed.js:25
-msgid "App for India"
-msgstr "App für Indien"
-
-#: /media/js/feed.js:25
-msgid "Apps for India"
-msgstr "Apps für Indien"
-
-#: /media/js/feed.js:26
-msgid "App for Italy"
-msgstr "App für Italien"
-
-#: /media/js/feed.js:26
-msgid "Apps for Italy"
-msgstr "Apps für Italien"
-
-#: /media/js/feed.js:27
-msgid "App for Japan"
-msgstr "App für Japan"
-
-#: /media/js/feed.js:27
-msgid "Apps for Japan"
-msgstr "Apps für Japan"
-
-#: /media/js/feed.js:28
-msgid "App for Macedonia"
-msgstr "App für Mazedonien"
-
-#: /media/js/feed.js:28
-msgid "Apps for Macedonia"
-msgstr "Apps für Mazedonien"
-
-#: /media/js/feed.js:29
-msgid "App for Mexico"
-msgstr "App für Mexiko"
-
-#: /media/js/feed.js:29
-msgid "Apps for Mexico"
-msgstr "Apps für Mexiko"
-
-#: /media/js/feed.js:30
-msgid "App for Montenegro"
-msgstr "App für Montenegro"
-
-#: /media/js/feed.js:30
-msgid "Apps for Montenegro"
-msgstr "Apps für Montenegro"
-
-#: /media/js/feed.js:31
-msgid "App for Nicaragua"
-msgstr "App für Nicaragua"
-
-#: /media/js/feed.js:31
-msgid "Apps for Nicaragua"
-msgstr "Apps für Nicaragua"
-
-#: /media/js/feed.js:32
-msgid "App for Panama"
-msgstr "App für Panama"
-
-#: /media/js/feed.js:32
-msgid "Apps for Panama"
-msgstr "Apps für Panama"
-
-#: /media/js/feed.js:33
-msgid "App for Peru"
-msgstr "App für Peru"
-
-#: /media/js/feed.js:33
-msgid "Apps for Peru"
-msgstr "Apps für Peru"
-
-#: /media/js/feed.js:34
-msgid "App for Poland"
-msgstr "App für Polen"
-
-#: /media/js/feed.js:34
-msgid "Apps for Poland"
-msgstr "Apps für Polen"
-
-#: /media/js/feed.js:35
-msgid "App for Russia"
-msgstr "App für Russland"
-
-#: /media/js/feed.js:35
-msgid "Apps for Russia"
-msgstr "Apps für Russland"
-
-#: /media/js/feed.js:36
-msgid "App for Serbia"
-msgstr "App für Serbien"
-
-#: /media/js/feed.js:36
-msgid "Apps for Serbia"
-msgstr "Apps für Serbien"
-
-#: /media/js/feed.js:37
-msgid "App for South Africa"
-msgstr "App für Südafrika"
-
-#: /media/js/feed.js:37
-msgid "Apps for South Africa"
-msgstr "Apps für Südafrika"
-
-#: /media/js/feed.js:38
-msgid "App for Spain"
-msgstr "App für Spanien"
-
-#: /media/js/feed.js:38
-msgid "Apps for Spain"
-msgstr "Apps für Spanien"
-
-#: /media/js/feed.js:39
-msgid "App for Uruguay"
-msgstr "App für Uruguay"
-
-#: /media/js/feed.js:39
-msgid "Apps for Uruguay"
-msgstr "Apps für Uruguay"
-
-#: /media/js/feed.js:40
-msgid "App for Venezuela"
-msgstr "App für Venezuela"
-
-#: /media/js/feed.js:40
-msgid "Apps for Venezuela"
-msgstr "Apps für Venezuela"
-
-#: /media/js/feed.js:41
-msgid "Arts & Entertainment"
-msgstr "Kunst & Unterhaltung"
-
-#: /media/js/feed.js:42
-msgid "Book"
-msgstr "Buch"
-
-#: /media/js/feed.js:43
-msgid "Creativity"
-msgstr "Kreativität"
-
-#: /media/js/feed.js:45
-msgid "Game"
-msgstr "Spiel"
-
-#: /media/js/feed.js:46
-msgid "Groundbreaking"
-msgstr "Neuheit"
-
-#: /media/js/feed.js:48
-msgid "Hidden Gem"
-msgstr "Verborgener Schatz"
-
-#: /media/js/feed.js:48
-msgid "Hidden Gems"
-msgstr "Verborgene Schätze"
-
-#: /media/js/feed.js:50
-msgid "Local Favorite"
-msgstr "Lokaler Favorit"
-
-#: /media/js/feed.js:50
-msgid "Local Favorites"
-msgstr "Lokale Favoriten"
-
-#: /media/js/feed.js:53
-msgid "Mystery App!"
-msgstr "Geheimnisvolle App!"
-
-#: /media/js/feed.js:53
-msgid "Mystery Apps!"
-msgstr "Geheimnisvolle Apps!"
-
-#: /media/js/feed.js:59
-msgid "Tools & Time Saver"
-msgstr "Werkzeuge & Zeit sparende App"
-
-#: /media/js/feed.js:59
-msgid "Tools & Time Savers"
-msgstr "Werkzeuge & Zeit sparende Apps"
-
-#: /media/js/feed.js:61
-msgid "Work & Business"
-msgstr "Arbeit & Geschäft"
-
-#: /media/js/feed.js:67
 msgid "Grid Layout"
 msgstr "Gitteransicht"
 
-#: /media/js/feed.js:68
+#: /media/js/feed.js:9
 msgid "List Layout"
 msgstr "Listenansicht"
 
-#: /media/js/feed.js:90
+#: /media/js/feed.js:31
 msgid "Icon"
 msgstr "Symbol"
 
-#: /media/js/feed.js:91
+#: /media/js/feed.js:32
 msgid "Background Image"
 msgstr "Hintergrundgrafik"
 
-#: /media/js/feed.js:93
+#: /media/js/feed.js:34
 msgid "Quote"
 msgstr "Zitat"
 
-#: /media/js/feed.js:94
+#: /media/js/feed.js:35
 msgid "Screenshot"
 msgstr "Screeenshot"
 
-#: /media/js/feed.js:102
+#: /media/js/feed.js:43
 msgid "Promo Collection"
 msgstr "Promo-Sammlung"
 
-#: /media/js/feed.js:103
+#: /media/js/feed.js:44
 msgid "Listing Collection"
 msgstr "Listen-Sammlung"
 
