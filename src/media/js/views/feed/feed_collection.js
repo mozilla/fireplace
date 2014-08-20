@@ -18,15 +18,18 @@ define('views/feed/feed_collection',
             builder.z('title', utils.translate(feed_collection.name));
 
             // Masonry the apps around the feed element.
-            var iso = new Isotope(document.querySelector('ul.feed'), {
-                itemSelector: '.detail-item',
-                layoutMode: 'masonry',
-                masonry: {
-                    columnWidth: 320,
-                    gutter: -10,
-                    isFitWidth: true
-                }
-            });
+            var feed_elm = document.querySelector('ul.feed');
+            if (feed_elm) {
+                new Isotope(feed_elm, {
+                    itemSelector: '.detail-item',
+                    layoutMode: 'masonry',
+                    masonry: {
+                        columnWidth: 320,
+                        gutter: -10,
+                        isFitWidth: true
+                    }
+                });
+            }
         });
     };
 });
