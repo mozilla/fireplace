@@ -7,7 +7,8 @@ define('feed',
 
     /* Usage:
      * get_brand_type() => return a one-dimensional array of the brand types.
-     * get_brand_type(type, 2) => return the brand name with its plural form if applicable.
+     * get_brand_type('apps-for-canada', 2) => return the brand name string with its plural form if applicable.
+     * TODO: This function doesn't JIT due to multiple return types and isn't performant anyway.
      */
     function get_brand_type(cat, numApps) {
         if (!arguments.length) {
