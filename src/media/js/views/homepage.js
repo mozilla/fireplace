@@ -30,8 +30,8 @@ define('views/homepage',
 
                 // Render another loadmore button.
                 if (data.meta.next) {
-                    $btn_clone = $btn_clone.find('button').data(
-                        'url', urls.api.base.host(data.meta.next) + data.meta.next);
+                    $btn_clone.find('button').attr('data-url',
+                        urls.api.base.host(data.meta.next) + data.meta.next);
                     elements.push($btn_clone[0]);
                 }
 
