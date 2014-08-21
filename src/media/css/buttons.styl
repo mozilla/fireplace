@@ -53,6 +53,9 @@ $large = 60px;
 // Horizontal padding around the button's text.
 $h-padding = 10px;
 
+// Install button width.
+$btn-install-width = 65px;
+
 .button {
     background: $btn;
     border: 0;
@@ -178,17 +181,58 @@ $h-padding = 10px;
     }
 }
 
-
+// Install buttons.
 .mkt-tile .button {
-    bottom: 2px;
-    min-width: 65px;
+    // Unset many .button properties.
+    background: transparent;
+    bottom: 0;
+    box-shadow: none;
+    cursor: pointer;
+    height: 34px;
+    min-width: $btn-install-width;
     padding: 0;
     position: absolute;
     right: 0;
 
+    // This em becomes the visual button.
+    em {
+        background: $cta;
+        border-radius: 5px;
+        box-shadow: 0 2px $cta-act;
+        display: inline-block;
+        font-style: normal;
+        height: 24px;
+        min-width: $btn-install-width;
+    }
+    // Accomodate a better vertical align since this state has no box-shadow.
     &[disabled] {
-        background: $disabled;
-        bottom: 0;
+        bottom: -2px;
+
+        em {
+            background: $disabled;
+            box-shadow: none;
+        }
+        &:hover, &:active {
+            em {
+                background: $disabled;
+            }
+        }
+    }
+    &:hover em {
+        background: $cta-hvr;
+    }
+    &:active em {
+        background: $cta-act;
+        box-shadow: none;
+    }
+    &.spinning {
+        background: $cta-act;
+        bottom: 5px;
+        height: $tiny;
+
+        em {
+            display: none;
+        }
     }
 }
 

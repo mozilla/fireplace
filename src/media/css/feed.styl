@@ -440,19 +440,38 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
     .stars {
         display: none;
     }
-    .button,
-    .button[disabled] {
-        background: transparent;
-        box-shadow: none;
-        color: $breezy-blue;
-        cursor: pointer;
-        height: 20px;
-        line-height: 20px;
-        margin: -20px 0 0;
-        padding: 0;
-        position: static;
-        text-align: left;
-        width: auto;
+    .button {
+        bottom: -5px;
+        left: 0;
+
+        em, &[disabled] em {
+            background: transparent;
+            box-shadow: none;
+            color: $breezy-blue;
+            cursor: pointer;
+            height: 20px;
+            line-height: 20px;
+            margin: -20px 0 0;
+            padding: 0;
+            position: static;
+            text-align: left;
+            width: auto;
+        }
+        &[disabled] em {
+            color: $bg-gray;
+        }
+        &.spinning {
+            background: transparent;
+            box-shadow: none;
+            height: 34px;
+
+            .spin {
+                display: none;
+            }
+            em {
+                display: inline-block;
+            }
+        }
     }
     .app-list .button:hover {
         color: $breezy-blue;

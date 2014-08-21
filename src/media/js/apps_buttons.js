@@ -136,8 +136,8 @@ define('apps_buttons',
 
             // Make the button a spinner.
             $this.data('old-text', $this.html())
-                 .html('<span class="spin"></span>')
-                 .addClass('spinning');
+                 .addClass('spinning')
+                 .append('<span class="spin"></span>');
 
             // Temporary timeout for hosted apps until we catch the appropriate
             // download error event for hosted apps (in iframe).
