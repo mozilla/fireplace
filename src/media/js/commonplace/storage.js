@@ -1,6 +1,6 @@
 define('storage', ['settings'], function(settings) {
 
-    function FakeStorage(){
+    function FakeStorage() {
         store = {};
     }
 

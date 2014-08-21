@@ -20,7 +20,7 @@ test('storage returns proper types', function(done){
     eeq_(storage.getItem('boolean'), true);
     storage.removeItem('boolean');
 
-    storage.setItem('array', [1,2,3,4,5]);
+    storage.setItem('array', [1, 2, 3, 4, 5]);
     assert(Array.isArray(storage.getItem('array')));
     assert(_.isEqual(storage.getItem('array'), [1,2,3,4,5]));
     storage.removeItem('array');
@@ -40,11 +40,11 @@ test('remove items from storage', function(done){
         windows: 'has detected the mouse has moved. Please restart your system for changes to take effect',
         beos: 'These three are certain:/Death, taxes, and site not found./You, victim of one.'
     };
-    assert(storage.getItem(key) === null);
+    eeq_(storage.getItem(key), null);
     storage.setItem(key, value);
     assert(_.isEqual(storage.getItem(key), value));
     storage.removeItem(key);
-    assert(storage.getItem(key) === null);
+    eeq_(storage.getItem(key), null);
     done();
 });
 
