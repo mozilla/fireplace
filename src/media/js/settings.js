@@ -49,6 +49,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             '/api/v1/fireplace/search/': 60 * 3,  // 3 minutes
             '/api/v1/fireplace/search/featured/': 60 * 3,  // 3 minutes
             '/api/v1/apps/category/': 60 * 60,  // 1 hour
+            '/api/v2/feed/get/': 60 * 30,  // 30 minutes
         },
 
         // The list of models and their primary key mapping. Used by caching.
@@ -74,7 +75,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         offline_cache_whitelist: {
             '/api/v1/fireplace/consumer-info/': 60 * 60 * 24 * 7,  // 1 week
             '/api/v1/fireplace/search/featured/': 60 * 60 * 24 * 7,  // 1 week
-            '/api/v2/feed/items/': 60 * 60 * 24 * 1  // 1 day
+            '/api/v2/feed/get/': 60 * 60 * 24 * 1  // 1 day
         },
         offline_cache_enabled: offline_cache_enabled,
         offline_cache_limit: 1024 * 1024 * 4,  // 4 MB
