@@ -184,7 +184,6 @@ $btn-install-width = 65px;
 // Install buttons.
 .mkt-tile .button {
     // Unset many .button properties.
-    background: transparent;
     bottom: 0;
     box-shadow: none;
     cursor: pointer;
@@ -194,8 +193,11 @@ $btn-install-width = 65px;
     position: absolute;
     right: 0;
 
-    // This em becomes the visual button.
+    &.install {
+        background: transparent;
+    }
     em {
+        // This em becomes the visual button.
         background: $cta;
         border-radius: 5px;
         box-shadow: 0 2px $cta-act;

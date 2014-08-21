@@ -72,6 +72,9 @@ package_dev:
 package_feed_dev:
 	SERVER='dev' NAME='FeedDev' DOMAIN='marketplace-feed-dev.allizom.org' \
     ORIGIN='app:\/\/packaged.marketplace-feed-dev.allizom.org' make package
+package_feed_stage:
+	SERVER='stage' NAME='FeedStage' DOMAIN='marketplace-feed.allizom.org' \
+    ORIGIN='app:\/\/packaged.marketplace-feed.allizom.org' make package
 package_feed_prod:
 	SERVER='prod' NAME='FeedProd' DOMAIN='marketplace.firefox.com' \
     ORIGIN='app:\/\/packaged.marketplace-feed.firefox.com' make package
