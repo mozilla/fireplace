@@ -125,6 +125,7 @@
   <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}"
      class="fanchor">
     <section class="feed-item feed-collection full {{ 'mega' if desc and not landing }}
+                    {{ 'has-desc' if desc }}
                     {{ 'has-background deferred-background' if coll.background_image }}
                     {{ 'collection-landing' if landing }}"
              data-tracking-slug="{{ coll.slug }}"

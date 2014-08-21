@@ -677,7 +677,8 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
         .feed-item {
             margin-bottom: 0;
 
-            &.full {
+            &.full:not(.has-desc) {
+                border-radius: 5px;
                 margin-bottom: $vertical-tile-margin;
             }
         }
