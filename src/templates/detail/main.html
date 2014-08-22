@@ -133,8 +133,7 @@
         <div class="{{ 'split' if has_second_button else 'full' }}">
           <a class="button support average-rating" href="{{ url('app/ratings', [slug]) }}">
             <span>
-              {{ _plural('{n} Review', '{n} Reviews',
-                         n=this.meta.total_count) }}
+              {{ this.meta.total_count|numberfmt }} {{ _plural('Review', 'Reviews', n=this.meta.total_count) }}
             </span>
             {{ stars(this.info.average, detailpage=true) }}
           </a>
