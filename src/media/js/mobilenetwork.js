@@ -104,6 +104,7 @@ define('mobilenetwork',
         'kddi',
         'kt',
         'megafon',
+        'o2',
         'qtel',
         'singtel',
         'smart',
@@ -175,7 +176,11 @@ define('mobilenetwork',
 
         // Germany
         // 1, 6
-        262: 'deutsche_telekom',
+        262: {
+            1: 'deutsche_telekom',
+            2: 'deutsche_telekom',
+            7: 'o2'
+        },
 
         // Slovakia
         231: {
