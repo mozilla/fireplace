@@ -32,10 +32,19 @@ define('navbar',
             toggleNavbar($settingsNavGroup, $mktNavGroup);
             z.page.trigger('navigate', $settingsNavGroup.find('li.active a').attr('href'));
         })
-        .on('click', '.mkt-tray, .site a', function() {
+        .on('click', '.mkt-tray', function() {
             // Activate Marketplace pages navbar.
             toggleNavbar($mktNavGroup, $settingsNavGroup);
             navigation.back();
+        })
+        .on('click', '.site a', function() {
+            // Activate Marketplace pages navbar.
+            toggleNavbar($mktNavGroup, $settingsNavGroup);
+
+            // Change tab to home.
+            $('.nav-mkt').attr('data-tab', 'homepage')
+                   .find('li').removeClass('active')
+                   .eq(0).addClass('active');
         });
     }
     z.body.one('loaded', initNavbarButtons);
