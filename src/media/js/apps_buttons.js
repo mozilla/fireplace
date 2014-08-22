@@ -87,14 +87,14 @@ define('apps_buttons',
         if (product.payment_required) {
             // The app requires a payment.
             console.log('Starting payment flow for', product.name);
-            $this.data('old-text', $this.html());  // Save the old text of the button.
+            $this.data('old-text', $this.find('em').text());  // Save the old text of the button.
             setButton($this, gettext('Purchasing'), 'purchasing');
             payments.purchase(product).then(function() {
                 console.log('Purchase flow completed for', product.name);
 
                 // Update the button to say Install.
                 setButton($this, gettext('Install'), 'purchased');
-                $this.data('old-text', $this.html());  // Save the old text of the button.
+                $this.data('old-text', $this.find('em').text());  // Save the old text of the button.
 
                 // Update the cache to show that the app was purchased.
                 user.update_purchased(product.id);
@@ -135,7 +135,7 @@ define('apps_buttons',
             tracking_events.track_app_install_begin(product, $this);
 
             // Make the button a spinner.
-            $this.data('old-text', $this.html())
+            $this.data('old-text', $this.find('em').text())
                  .addClass('spinning');
 
             // Temporary timeout for hosted apps until we catch the appropriate
