@@ -203,6 +203,9 @@ $btn-install-width = 65px;
         height: 24px;
         min-width: $btn-install-width;
     }
+    .spin {
+        display: none;
+    }
     // Accomodate a better vertical align since this state has no box-shadow.
     &[disabled] {
         bottom: -2px;
@@ -231,6 +234,9 @@ $btn-install-width = 65px;
 
         em {
             display: none;
+        }
+        .spin {
+            display: inline-block;
         }
     }
 }

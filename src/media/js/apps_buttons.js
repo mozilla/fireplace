@@ -17,7 +17,7 @@ define('apps_buttons',
     function revertButton($button, text) {
         $button.removeClass('purchasing installing error spinning');
         text = text || $button.data('old-text');
-        $button.html(text);
+        $button.find('em').text(text);
     }
 
     function _handler(func) {
@@ -136,8 +136,7 @@ define('apps_buttons',
 
             // Make the button a spinner.
             $this.data('old-text', $this.html())
-                 .addClass('spinning')
-                 .append('<span class="spin"></span>');
+                 .addClass('spinning');
 
             // Temporary timeout for hosted apps until we catch the appropriate
             // download error event for hosted apps (in iframe).
