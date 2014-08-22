@@ -4,7 +4,7 @@
  * Style guide: http://pwalm.github.io/marketplace-style-guides/buttons.html
  *
  * <elm class="button">Normal Button</elm>
- * <elm class="button cta">Primary Call to Action</elm>
+ * <elm class="button btn">Primary Call to Action</elm>
  * <elm class="button action">Positive Action like Yes or Launch</elm>
  * <elm class="button alt">Alternate Style - External Links?</elm>
  * <elm class="button cancel">Negative Action like Cancel or Delete</elm>
@@ -18,24 +18,21 @@
 // TODO: Edit pencil icon.
 
 // Default state.
-$btn = #6ED2FF; // light blue
-$cta = #4CB1FF; // blue
+$btn = #4CB1FF; // blue
 $action = #64BE3C; // green
 $alt = #FFDC32; // yellow
 $cancel = #F54B3C; // red
 $support = #797979; // dark grey
 
 // Hover state.
-$btn-hvr = #67E0FD;
-$cta-hvr = #42CAFE;
+$btn-hvr = #42CAFE;
 $action-hvr = #66D171;
 $alt-hvr = #FFE26E;
 $cancel-hvr = #FF6C70;
 $support-hvr = #9B9B9B;
 
 // Active state.
-$btn-act = #559DBD;
-$cta-act = #3D86BD;
+$btn-act = #3D86BD;
 $action-act = #4D8D31;
 $alt-act = #BEA435;
 $cancel-act = #B63932;
@@ -82,12 +79,12 @@ $btn-install-width = 65px;
         background: $btn-act;
         box-shadow: none;
     }
-    &.cta {
-        background: $cta;
-        box-shadow: 0 2px $cta-act;
+    &.btn {
+        background: $btn;
+        box-shadow: 0 2px $btn-act;
 
-        &:hover, &:focus { background: $cta-hvr; }
-        &:active { background: $cta-act; }
+        &:hover, &:focus { background: $btn-hvr; }
+        &:active { background: $btn-act; }
     }
     &.action {
         background: $action;
@@ -198,9 +195,9 @@ $btn-install-width = 65px;
     }
     em {
         // This em becomes the visual button.
-        background: $cta;
+        background: $btn;
         border-radius: 5px;
-        box-shadow: 0 2px $cta-act;
+        box-shadow: 0 2px $btn-act;
         display: inline-block;
         font-style: normal;
         height: 24px;
@@ -221,14 +218,14 @@ $btn-install-width = 65px;
         }
     }
     &:hover em {
-        background: $cta-hvr;
+        background: $btn-hvr;
     }
     &:active em {
-        background: $cta-act;
+        background: $btn-act;
         box-shadow: none;
     }
     &.spinning {
-        background: $cta-act;
+        background: $btn-act;
         bottom: 5px;
         height: $tiny;
 
