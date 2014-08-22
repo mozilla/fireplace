@@ -29,7 +29,9 @@
         }
     }
     .site-nav {
+        background: $navbar-gray;
         bottom: 0;
+        height: 50px;
         overflow: hidden;
         position: relative;
         transition(bottom .5s, margin-bottom .5s);
@@ -39,45 +41,49 @@
         .act-tray,
         .mkt-tray {
             background-color: $cloud-gray;
-            height: 41px;
+            border: 1px solid $cement-gray;
+            height: 51px;
             transition(right .4s);
-            width: 45px;
+            width: 56px;
             z-index: 2;
 
             &.active {
                 right: 0;
                 transition(right .2s .6s);
             }
+            .header-button {
+                background-size: 30px auto;
+                right: 0;
+                top: 0;
+                width: 50px;
+            }
         }
         .act-tray {
-            border-radius: 0 20px 20px 0;
+            border-radius: 0 80px 80px 0;
             bottom: 2px;
             position: relative;
-            right: 50px;
+            right: 55px;
 
             &.active a.settings {
                 background-image: url(../img/pretty/settings_gear.svg);  // Don't highlight.
             }
             a.settings {
-                height: 30px;
-                top: 6px;
+                height: 50px;
             }
         }
         .mkt-tray {
-            border-radius: 20px 0 0 20px;
+            border-radius: 80px 0 0 80px;
             bottom: 0;
             position: absolute;
             right: -50px;
 
             a.back-to-marketplace {
                 background: url(../img/pretty/list_view.svg) 50% 50% no-repeat;
-                background-size: 24px auto;
+                background-size: 30px auto;
                 display: block;
-                height: 40px;
-                left: 5px;
+                height: 50px;
                 position: absolute;
-                top: 1px;
-                width: 40px;
+                width: 50px;
             }
         }
 
@@ -93,7 +99,6 @@
             width: 100%;
 
             // Toggle navbars.
-            // TODO: These need a fixed width or this will fail with l10n.
             &.nav-mkt {
                 right: -100%;
 
@@ -102,7 +107,7 @@
 
                     // Sliding navbar.
                     &[data-tab="homepage"] {
-                        right: -44px;
+                        right: -60px;
                     }
                     &[data-tab="new"] {
                         right: -10px;
@@ -137,29 +142,33 @@
                 }
             }
             li {
-                bottom: 6px;
                 display: inline-block;
-                font-size: 12px;
+                font-size: 15px;
+                margin: 0 10px;
                 position: relative;
                 text-align: center;
-                width: 70px;
+                text-transform: uppercase;
+                top: 2px;
+                width: -moz-fit-content;
+                width: -webkit-fit-content;
 
                 a {
                     color: $medium-gray;
                     display: block;
                     height: 38px;
-                    line-height: 38px;
+                    line-height: 32px;
 
-                    &:hover{
+                    &:hover {
                         border-bottom: 2px solid $bg-gray;
                         text-decoration: none;
                     }
                 }
                 &.active a {
-                    border-bottom: 2px solid $flamin-hot-cheetos-orange;
+                    color: $navbar-blue;
+                    border-bottom: 3px solid $navbar-blue;
 
                     &:hover {
-                        border-bottom-color: $flamin-hot-cheetos-orange;
+                        border-bottom-color: $navbar-blue;
                     }
                 }
 
