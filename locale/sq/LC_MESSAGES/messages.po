@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
+"POT-Creation-Date: 2014-08-22T21:32:41.880Z\n"
 "PO-Revision-Date: 2014-08-21 13:44+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,20 +14,53 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1408617251.0\n"
 
+#: /templates/app_list.html:28
+msgid "No apps found"
+msgstr ""
+
+#: /templates/app_list.html:33
+msgid "No apps found."
+msgstr ""
+
+#: /templates/app_list.html:35 /templates/category.html:83 /templates/user/purchases.html:38
+msgid "An internal server error occurred. Please try again later."
+msgstr "Ndodhi një gabim i brendshëm shërbyesi. Ju lutemi, riprovoni më vonë."
+
 #: /templates/cat_dropdown.html:1
-#: /media/js/categories.js:7
 msgid "All Categories"
 msgstr "Krejt Kategoritë"
 
+#: /templates/category.html:29
+msgid "Featured Apps"
+msgstr "Zbatime të Zgjedhura"
+
+#: /templates/category.html:30 /templates/category.html:37 /templates/category.html:57
+msgid "View All"
+msgstr "Shihini të Tëra"
+
+#: /templates/category.html:53 /templates/nav.html:16
+msgid "Popular"
+msgstr "Popullore"
+
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category.html:55 /templates/nav.html:15
+msgid "New"
+msgstr "Të reja"
+
+#: /templates/category.html:76
+msgid "No apps in this category"
+msgstr "Kjo kategori nuk ka zbatime"
+
+#: /templates/category.html:81
+msgid "The category you requested does not exist."
+msgstr "Kategoria që kërkuat nuk ekziston."
+
 #. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
+#: /templates/collection.html:33 /templates/_macros/feed_item.html:253 /templates/_macros/feed_item.html:280
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Aha! S'ka zbatime këtu, Shagi!"
 
-#: /templates/confirmation.html:0
-#: /templates/incompatible.html:3
-#: /templates/detail/abuse.html:6
-#: /templates/settings/nav.html:12
+#: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Mbylle"
 
@@ -39,8 +72,7 @@ msgstr "Jo"
 msgid "Yes"
 msgstr "Po"
 
-#: /templates/credits.html:2
-#: /media/js/views/credits.js:10
+#: /templates/credits.html:2 /media/js/views/credits.js:10
 msgid "Credits"
 msgstr "Kredite"
 
@@ -61,9 +93,7 @@ msgstr "Përditësojeni Tani"
 msgid "Featured"
 msgstr "Të zgjedhura"
 
-#: /templates/featured.html:8
-#: /templates/search/main.html:18
-#: /templates/user/purchases.html:14
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:13
 msgid "Expand"
 msgstr "Zgjeroje"
 
@@ -79,36 +109,25 @@ msgstr "Zhvilloni Zbatime"
 msgid "Developer Hub"
 msgstr "Qendër Zhvilluesish"
 
-#: /templates/footer.html:6
-#: /templates/header.html:26
-#: /templates/settings/nav.html:8
-#: /templates/settings/nav.html:11
+#: /templates/footer.html:6 /templates/nav.html:30 /templates/_macros/act_tray.html:14 /templates/settings/feedback.html:5 /templates/settings/nav.html:8 /templates/settings/nav.html:11
 #: /media/js/views/feedback.js:61
 msgid "Feedback"
 msgstr "Përshtypje"
 
-#: /templates/footer.html:8
-#: /templates/footer.html:10
+#: /templates/footer.html:8 /templates/footer.html:10
 msgid "Support"
 msgstr "Asistencë"
 
-#: /templates/footer.html:16
-#: /templates/header.html:22
-#: /templates/settings/nav.html:7
-#: /templates/user/purchases.html:44
-#: /templates/user/purchases.html:11
-#: /templates/user/purchases.html:31
-#: /media/js/views/purchases.js:13
+#: /templates/footer.html:16 /templates/nav.html:28 /templates/_macros/act_tray.html:10 /templates/settings/nav.html:7 /templates/user/purchases.html:43 /templates/user/purchases.html:10
+#: /templates/user/purchases.html:30 /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "Zbatimet e Mia"
 
-#: /templates/footer.html:18
-#: /templates/header.html:24
+#: /templates/footer.html:18 /templates/_macros/act_tray.html:12
 msgid "My Submissions"
 msgstr "Parashtrimet e Mia"
 
-#: /templates/footer.html:21
-#: /templates/settings/main.html:43
+#: /templates/footer.html:21 /templates/settings/main.html:42
 msgid "Reviewer Tools"
 msgstr "Mjete Shqyrtuesi"
 
@@ -117,25 +136,19 @@ msgid "Lookup Tool"
 msgstr "Mjet Kërkimesh"
 
 #: /templates/footer.html:32
-msgid "Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike License v3.0</a> or any later version."
-msgstr "Hiq atje ku <a href=\"{legal_url}\" target=\"_blank\">shënohet</a> ndryshe, lënda e këtij sajti qarkullon sipas licencës <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike License v3.0</a> ose cilitdo version të mëvonshëm."
+msgid ""
+"Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
+"Alike License v3.0</a> or any later version."
+msgstr ""
+"Hiq atje ku <a href=\"{legal_url}\" target=\"_blank\">shënohet</a> ndryshe, lënda e këtij sajti qarkullon sipas licencës <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
+"Alike License v3.0</a> ose cilitdo version të mëvonshëm."
 
-#: /templates/footer.html:37
-#: /templates/privacy.html:2
-#: /templates/detail/main.html:191
-#: /templates/detail/privacy.html:3
-#: /templates/detail/receipt.html:57
-#: /templates/settings/feedback.html:26
-#: /templates/user/newsletter.html:10
-#: /media/js/views/privacy.js:10
-#: /media/js/views/app/privacy.js:10
+#: /templates/footer.html:37 /templates/privacy.html:2 /templates/detail/main.html:188 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:29
+#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Rregulla Privatësie"
 
-#: /templates/footer.html:38
-#: /templates/terms.html:2
-#: /templates/settings/feedback.html:31
-#: /media/js/views/terms.js:10
+#: /templates/footer.html:38 /templates/terms.html:2 /templates/settings/feedback.html:34 /media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Kushte Përdorimi"
 
@@ -143,33 +156,19 @@ msgstr "Kushte Përdorimi"
 msgid "Report Trademark Abuse"
 msgstr "Njoftoni Dhunim Shenjash Tregtare"
 
-#: /templates/header.html:1
+#: /templates/header.html:3
 msgid "Back"
 msgstr "Mbrapsht"
 
-#: /templates/header.html:5
-#: /templates/header.html:8
+#: /templates/header.html:8 /templates/header.html:11
 msgid "Search"
 msgstr "Kërko"
 
-#: /templates/header.html:10
+#: /templates/header.html:13
 msgid "Clear"
 msgstr "Pastroje"
 
-#: /templates/header.html:14
-msgid "Settings"
-msgstr "Rregullime"
-
-#: /templates/header.html:20
-msgid "Edit Account Settings"
-msgstr "Përpunoni Rregullime Llogarie"
-
-#: /templates/header.html:27
-#: /templates/settings/main.html:40
-msgid "Sign Out"
-msgstr "Dilni"
-
-#: /templates/header.html:31
+#: /templates/header.html:18
 msgid "Sign In"
 msgstr "Hyni"
 
@@ -180,6 +179,22 @@ msgstr "Që të instaloni një zbatim Firefox, duhet të përdorni Firefox-in."
 #: /templates/incompatible.html:2
 msgid "Download."
 msgstr "Shkarkim."
+
+#: /templates/nav.html:14
+msgid "Home"
+msgstr ""
+
+#: /templates/nav.html:18 /templates/nav.html:19 /media/js/views/categories.js:9
+msgid "Categories"
+msgstr ""
+
+#: /templates/nav.html:27
+msgid "My Account"
+msgstr ""
+
+#: /templates/nav.html:34
+msgid "Back to Marketplace"
+msgstr ""
 
 #: /templates/nominate.html:1
 msgid "Nominate apps to be featured on Firefox Marketplace!"
@@ -229,8 +244,7 @@ msgstr "Në cilat rajone do të donit të ishin të zgjedhura këto zbatime?"
 msgid "Tell us why these apps should be featured"
 msgstr "Na tregoni pse do duhej të ishin mes të zgjedhurave këto zbatime"
 
-#: /templates/nominate.html:60
-#: /templates/nominate.html:61
+#: /templates/nominate.html:60 /templates/nominate.html:61
 msgid "Your name"
 msgstr "Emri juaj"
 
@@ -238,65 +252,78 @@ msgstr "Emri juaj"
 msgid "Your email address"
 msgstr "Adresa juaj email"
 
-#: /templates/nominate.html:71
-#: /templates/ratings/edit.html:22
-#: /templates/ratings/write.html:20
+#: /templates/nominate.html:71 /templates/ratings/edit.html:22 /templates/ratings/write.html:20
 msgid "Submit"
 msgstr "Parashtroje"
 
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:6
-msgid "Unavailable"
-msgstr "Jo i passhëm"
+#: /templates/_macros/act_tray.html:2
+msgid "Settings"
+msgstr "Rregullime"
 
-#: /templates/_macros/market_button.html:8
-#: /templates/_macros/market_tile.html:55
-msgid "Free"
-msgstr "Falas"
+#: /templates/_macros/act_tray.html:8
+msgid "Edit Account Settings"
+msgstr "Përpunoni Rregullime Llogarie"
 
-#: /templates/_macros/market_button.html:16
-#: /media/js/apps_buttons.js:278
-msgid "Open"
+#: /templates/_macros/act_tray.html:15 /templates/settings/main.html:39
+msgid "Sign Out"
+msgstr "Dilni"
+
+#: /templates/_macros/feed_app_tile.html:16
+msgid "&mdash; {attribution}"
 msgstr ""
 
-#: /templates/_macros/market_button.html:18
-#: /media/js/apps_buttons.js:98
-#: /media/js/apps_buttons.js:304
-msgid "Install"
-msgstr "Instaloje"
-
-#: /templates/_macros/market_tile.html:11
-#: /templates/_macros/market_tile.html:13
-msgid "{app_name} screenshot"
-msgstr "Foto ekrani e {app_name}"
-
-#: /templates/_macros/market_tile.html:53
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:20
 msgid "Not yet rated"
 msgstr "Ende i pavlerësuar"
 
-#: /templates/_macros/market_tile.html:65
+#: /templates/_macros/feed_item.html:105 /templates/_macros/feed_item.html:192
+msgid "View all apps"
+msgstr ""
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:8
+msgid "Unavailable"
+msgstr "Jo i passhëm"
+
+#: /templates/_macros/market_button.html:10 /templates/_macros/market_tile.html:32
+msgid "Free"
+msgstr "Falas"
+
+#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:252
+msgid "Open"
+msgstr ""
+
+#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:278
+msgid "Install"
+msgstr "Instaloje"
+
+#: /templates/_macros/market_tile.html:42
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:68
-#: /templates/detail/main.html:137
-msgid "{n} Review"
-msgid_plural "{n} Reviews"
-msgstr[0] "{n} Shqyrtim"
-msgstr[1] "{n} Shqyrtime"
+#: /templates/_macros/market_tile.html:45 /templates/detail/main.html:135
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] ""
+msgstr[1] ""
 
 #. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:72
+#: /templates/_macros/market_tile.html:49
 msgid "(0)"
 msgstr "(0)"
 
-#: /templates/_macros/market_tile.html:73
+#: /templates/_macros/market_tile.html:50
 msgid "Not yet reviewed"
 msgstr "Ende i pashqyrtuar"
 
-#: /templates/_macros/market_tile.html:83
+#: /templates/_macros/market_tile.html:62
 msgid "Works offline"
 msgstr "Funksionon jashtë linje"
+
+#: /templates/_macros/market_tile.html:111 /templates/_macros/market_tile.html:114
+msgid "{app_name} screenshot"
+msgstr "Foto ekrani e {app_name}"
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
@@ -330,48 +357,110 @@ msgstr "Raportoje"
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Vlerësuar me {stars} nga {maxstars} yje gjithsej"
 
-#: /templates/category/main.html:37
-msgid "Featured Apps"
-msgstr "Zbatime të Zgjedhura"
-
-#: /templates/category/main.html:38
-#: /templates/category/main.html:46
-#: /templates/category/main.html:66
-msgid "View All"
-msgstr "Shihini të Tëra"
-
-#: /templates/category/main.html:62
-msgid "Popular"
-msgstr "Popullore"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:64
-msgid "New"
-msgstr "Të reja"
-
-#: /templates/category/main.html:85
-msgid "No apps in this category"
-msgstr "Kjo kategori nuk ka zbatime"
-
-#: /templates/category/main.html:90
-msgid "The category you requested does not exist."
-msgstr "Kategoria që kërkuat nuk ekziston."
-
-#: /templates/category/main.html:92
-#: /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "Ndodhi një gabim i brendshëm shërbyesi. Ju lutemi, riprovoni më vonë."
-
-#: /templates/detail/abuse.html:5
-#: /templates/detail/main.html:202
-#: /templates/detail/receipt.html:68
-#: /media/js/views/app/abuse.js:34
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:199 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "Njoftoni Dhunim"
 
 #: /templates/detail/abuse.html:15
 msgid "Send Report"
 msgstr "Dërgoje Raportin"
+
+#: /templates/detail/main.html:44
+msgid "Installed!"
+msgstr "U instalua!"
+
+#: /templates/detail/main.html:47
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Niseni këtë zbatim nga drejtoria juaj <b>Zbatime</b>."
+
+#: /templates/detail/main.html:50
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Niseni këtë zbatim nga <b>desktopi juaj Windows</b> ose nga <b>Start &#9658; All Programs</b>."
+
+#: /templates/detail/main.html:53
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Niseni këtë zbatim nga <b>pulti</b> juaj, <b>zgjedhësi i Zbatimit</b>, ose <b>menuja e Zbatimeve</b>."
+
+#: /templates/detail/main.html:16 /templates/detail/main.html:17 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:63 /media/js/views/collection.js:39
+#: /media/js/views/feed/feed_app.js:9 /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:9 /media/js/views/feed/feed_shelf.js:9
+msgid "Loading..."
+msgstr "Po ngarkohet..."
+
+#: /templates/detail/main.html:68
+msgid "Updates"
+msgstr "Përditësime"
+
+#: /templates/detail/main.html:74 /templates/detail/main.html:91
+msgid "Less&hellip;"
+msgstr "Më pak&hellip;"
+
+#: /templates/detail/main.html:74 /templates/detail/main.html:91
+msgid "More&hellip;"
+msgstr "Më tepër&hellip;"
+
+#: /templates/detail/main.html:85 /media/js/feed.js:33
+msgid "Description"
+msgstr "Përshkrim"
+
+#: /templates/detail/main.html:94
+msgid "Version"
+msgstr "Version"
+
+#: /templates/detail/main.html:96
+msgid "Latest version: {version}"
+msgstr "Versioni më i ri: {version}"
+
+#: /templates/detail/main.html:110
+msgid "Edit Listing"
+msgstr "Përpunoni Listën"
+
+#: /templates/detail/main.html:113
+msgid "Approve / Reject"
+msgstr "Miratoni / Hidhni Poshtë"
+
+#: /templates/detail/main.html:113
+msgid "Review History"
+msgstr "Historik Shqyrtimesh"
+
+#: /templates/detail/main.html:124 /templates/ratings/main.html:6 /media/js/views/app/ratings.js:16
+msgid "Reviews"
+msgstr "Shqyrtime"
+
+#: /templates/detail/main.html:142
+msgid "App not yet reviewed"
+msgstr "Zbatim ende i pashqyrtuar"
+
+#: /templates/detail/main.html:150
+msgid "Edit Your Review"
+msgstr "Përpunoni Shqyrtimin Tuaj"
+
+#: /templates/detail/main.html:154 /templates/ratings/main.html:19 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
+msgid "Write a Review"
+msgstr "Shkruani një Shqyrtim"
+
+#: /templates/detail/main.html:154 /templates/ratings/main.html:19
+msgid "Sign in to Review"
+msgstr "Hyni që të Shqyrtoni"
+
+#: /templates/detail/main.html:171 /templates/detail/receipt.html:40
+msgid "Support Email"
+msgstr "Email Asistence"
+
+#: /templates/detail/main.html:177 /templates/detail/receipt.html:46
+msgid "Support Site"
+msgstr "Sajt Asistence"
+
+#: /templates/detail/main.html:182 /templates/detail/receipt.html:51
+msgid "Homepage"
+msgstr "Faqe hyrëse"
+
+#: /templates/detail/main.html:194 /templates/detail/receipt.html:63
+msgid "Statistics"
+msgstr "Statistika"
+
+#: /templates/detail/main.html:210
+msgid "Premium version available"
+msgstr "Ka version me pagesë"
 
 #. (es) Classificacao Indicativa.
 #: /templates/detail/content_ratings.html:5
@@ -383,121 +472,7 @@ msgstr "Vlerësim Lënde"
 msgid "Content Rating Details"
 msgstr "Hollësi Vlerësimi Lënde"
 
-#: /templates/detail/main.html:42
-msgid "Installed!"
-msgstr "U instalua!"
-
-#: /templates/detail/main.html:45
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Niseni këtë zbatim nga drejtoria juaj <b>Zbatime</b>."
-
-#: /templates/detail/main.html:48
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Niseni këtë zbatim nga <b>desktopi juaj Windows</b> ose nga <b>Start &#9658; All Programs</b>."
-
-#: /templates/detail/main.html:51
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Niseni këtë zbatim nga <b>pulti</b> juaj, <b>zgjedhësi i Zbatimit</b>, ose <b>menuja e Zbatimeve</b>."
-
-#: /templates/detail/main.html:14
-#: /templates/detail/main.html:15
-#: /templates/detail/receipt.html:18
-#: /templates/detail/receipt.html:19
-#: /media/js/views/app.js:75
-#: /media/js/views/collection.js:42
-msgid "Loading..."
-msgstr "Po ngarkohet..."
-
-#: /templates/detail/main.html:66
-msgid "Updates"
-msgstr "Përditësime"
-
-#: /templates/detail/main.html:72
-#: /templates/detail/main.html:89
-msgid "Less&hellip;"
-msgstr "Më pak&hellip;"
-
-#: /templates/detail/main.html:72
-#: /templates/detail/main.html:89
-msgid "More&hellip;"
-msgstr "Më tepër&hellip;"
-
-#: /templates/detail/main.html:83
-msgid "Description"
-msgstr "Përshkrim"
-
-#: /templates/detail/main.html:92
-msgid "Version"
-msgstr "Version"
-
-#: /templates/detail/main.html:94
-msgid "Latest version: {version}"
-msgstr "Versioni më i ri: {version}"
-
-#: /templates/detail/main.html:112
-msgid "Edit Listing"
-msgstr "Përpunoni Listën"
-
-#: /templates/detail/main.html:115
-msgid "Approve / Reject"
-msgstr "Miratoni / Hidhni Poshtë"
-
-#: /templates/detail/main.html:115
-msgid "Review History"
-msgstr "Historik Shqyrtimesh"
-
-#: /templates/detail/main.html:126
-#: /templates/ratings/main.html:6
-#: /media/js/views/app/ratings.js:16
-msgid "Reviews"
-msgstr "Shqyrtime"
-
-#: /templates/detail/main.html:145
-msgid "App not yet reviewed"
-msgstr "Zbatim ende i pashqyrtuar"
-
-#: /templates/detail/main.html:153
-msgid "Edit Your Review"
-msgstr "Përpunoni Shqyrtimin Tuaj"
-
-#: /templates/detail/main.html:157
-#: /templates/ratings/main.html:19
-#: /templates/ratings/write.html:2
-#: /media/js/views/app/ratings/add.js:40
-msgid "Write a Review"
-msgstr "Shkruani një Shqyrtim"
-
-#: /templates/detail/main.html:157
-#: /templates/ratings/main.html:19
-msgid "Sign in to Review"
-msgstr "Hyni që të Shqyrtoni"
-
-#: /templates/detail/main.html:174
-#: /templates/detail/receipt.html:40
-msgid "Support Email"
-msgstr "Email Asistence"
-
-#: /templates/detail/main.html:180
-#: /templates/detail/receipt.html:46
-msgid "Support Site"
-msgstr "Sajt Asistence"
-
-#: /templates/detail/main.html:185
-#: /templates/detail/receipt.html:51
-msgid "Homepage"
-msgstr "Faqe hyrëse"
-
-#: /templates/detail/main.html:197
-#: /templates/detail/receipt.html:63
-msgid "Statistics"
-msgstr "Statistika"
-
-#: /templates/detail/main.html:213
-msgid "Premium version available"
-msgstr "Ka version me pagesë"
-
-#: /templates/detail/privacy.html:5
-#: /templates/ratings/main.html:8
+#: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
 msgid "Back to app"
 msgstr "Mbrapsht te zbatimi"
 
@@ -509,16 +484,25 @@ msgstr "Po ngarkohen Rregullat e Privatësisë..."
 msgid "Thank you for purchasing"
 msgstr "Faleminderit për blerjen"
 
-#: /templates/errors/404.html:2
-#: /templates/errors/fragment.html:1
-#: /templates/user/purchases.html:38
-#: /media/js/views/app.js:65
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:53
 msgid "Oh no!"
 msgstr "Mooos!"
 
 #: /templates/errors/404.html:3
 msgid "The page you were looking for was not found."
 msgstr "Faqja që po kërkonit nuk i gjet."
+
+#: /templates/errors/date-error.html:4
+msgid "Sorry, your device clock appears to be set incorrectly."
+msgstr ""
+
+#: /templates/errors/date-error.html:7
+msgid "Please set today's date and time in your device settings to access the Marketplace."
+msgstr ""
+
+#: /templates/errors/date-error.html:9
+msgid "Try again"
+msgstr ""
 
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
@@ -532,52 +516,24 @@ msgstr "Gabim në ngarkim të tjerash"
 msgid "Try Again"
 msgstr "Riprovoni"
 
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Përfundim"
-msgstr[1] "<b>{n}</b> Përfundime"
-
-#: /templates/search/main.html:16
-#: /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Po shfaqen <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Nuk u gjetën përfundime"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Nuk u gjetën përfundime, riprovoni më vonë"
-
-#: /templates/ratings/edit.html:5
-#: /templates/ratings/main.html:15
-#: /media/js/views/app/ratings/edit.js:86
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "Përpunoni Shqyrtimin"
 
-#: /templates/ratings/edit.html:9
-#: /templates/ratings/write.html:7
+#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
 msgid "Rate:"
 msgstr "Vlerësoni:"
 
-#: /templates/ratings/edit.html:21
-#: /templates/ratings/report.html:3
-#: /templates/ratings/report.html:23
-#: /templates/ratings/write.html:3
-#: /templates/ratings/write.html:19
+#: /templates/ratings/edit.html:21 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
 #: /templates/user/newsletter.html:13
 msgid "Cancel"
 msgstr "Anuloje"
 
-#: /templates/ratings/edit.html:25
-#: /templates/ratings/write.html:23
+#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
 msgid "Only logged in users may edit reviews."
 msgstr "Vetëm përdoruesi e futur mund të përpunojnë shqyrtime."
 
-#: /templates/ratings/rating.html:4
-#: /media/js/views/app/ratings/rating.js:13
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Shqyrtim Zbatimi"
 
@@ -597,37 +553,53 @@ msgstr "Dialog/gjuhë e papërshtatshme"
 msgid "Misplaced bug report or support request"
 msgstr "Njoftim të metash apo kërkesë për asistencë jo në vendin e duhur"
 
-#: /templates/settings/feedback.html:12
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Përfundim"
+msgstr[1] "<b>{n}</b> Përfundime"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:11
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Po shfaqen <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Nuk u gjetën përfundime"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Nuk u gjetën përfundime, riprovoni më vonë"
+
+#: /templates/settings/feedback.html:15
 msgid "Send"
 msgstr "Dërgoje"
 
-#: /templates/settings/feedback.html:18
-#: /templates/settings/feedback.html:20
+#: /templates/settings/feedback.html:21 /templates/settings/feedback.html:23
 msgid "Get Help"
 msgstr "Merrni ndihmë"
 
-#: /templates/settings/main.html:2
-#: /media/js/views/settings.js:47
+#: /templates/settings/main.html:2 /media/js/views/settings.js:47
 msgid "Account Settings"
 msgstr "Rregullime Llogarie"
 
-#: /templates/settings/main.html:11
+#: /templates/settings/main.html:10
 msgid "Email"
 msgstr "Email"
 
-#: /templates/settings/main.html:20
+#: /templates/settings/main.html:19
 msgid "Display Name"
 msgstr "Emër Në Ekran"
 
-#: /templates/settings/main.html:29
+#: /templates/settings/main.html:28
 msgid "Region"
 msgstr "Rajon"
 
-#: /templates/settings/main.html:38
+#: /templates/settings/main.html:37
 msgid "Save Changes"
 msgstr "Ruaji Ndryshimet"
 
-#: /templates/settings/main.html:41
+#: /templates/settings/main.html:40
 msgid "Sign In / Sign Up"
 msgstr "Hyni / Regjistrohuni"
 
@@ -651,105 +623,31 @@ msgstr "Po regjistroheni..."
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "U regjistruat me sukses për buletinin e Marketplace-it!"
 
-#: /templates/user/purchases.html:49
+#: /templates/user/purchases.html:48
 msgid "You must be signed in to view your apps."
 msgstr "Duhet të jeni i futur që të mund të shihni zbatimet tuaja."
 
-#: /templates/user/purchases.html:50
+#: /templates/user/purchases.html:49
 msgid "Sign in / Sign up"
 msgstr "Hyni / Regjistrohuni"
 
-#: /templates/user/purchases.html:34
+#: /templates/user/purchases.html:33
 msgid "You have no apps"
 msgstr "Nuk keni zbatime"
 
-#: /media/js/apps_buttons.js:62
-#: /media/js/apps_buttons.js:122
-#: /media/js/payments/payments.js:91
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Pagimi u anulua."
 
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
+#: /media/js/apps_buttons.js:91
 msgid "Purchasing"
 msgstr "Blerje"
 
 #. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
+#: /media/js/apps_buttons.js:190
 msgid "Install failed. Please try again later."
 msgstr "Instalimi dështoi. Ju lutemi, riprovoni më vonë."
-
-#: /media/js/categories.js:8
-msgid "Games"
-msgstr "Lojëra"
-
-#: /media/js/categories.js:9
-msgid "Books"
-msgstr "Libra"
-
-#: /media/js/categories.js:10
-msgid "Business"
-msgstr "Biznes"
-
-#: /media/js/categories.js:11
-msgid "Education"
-msgstr "Edukim"
-
-#: /media/js/categories.js:12
-msgid "Entertainment"
-msgstr "Spektakël"
-
-#: /media/js/categories.js:13
-msgid "Health & Fitness"
-msgstr "Shëndet & Kalitje"
-
-#: /media/js/categories.js:14
-msgid "Lifestyle"
-msgstr "Lifestyle"
-
-#: /media/js/categories.js:15
-msgid "Maps & Navigation"
-msgstr "Harta & Lundrim"
-
-#: /media/js/categories.js:16
-msgid "Music"
-msgstr "Muzikë"
-
-#: /media/js/categories.js:17
-msgid "News & Weather"
-msgstr "Lajme & Moti"
-
-#: /media/js/categories.js:18
-msgid "Photo & Video"
-msgstr "Foto & Video"
-
-#: /media/js/categories.js:19
-msgid "Productivity"
-msgstr "Prodhimshmëri"
-
-#: /media/js/categories.js:20
-msgid "Reference"
-msgstr "Referenca"
-
-#: /media/js/categories.js:21
-msgid "Shopping"
-msgstr "Blerje"
-
-#: /media/js/categories.js:22
-msgid "Social"
-msgstr "Shoqërore"
-
-#: /media/js/categories.js:23
-msgid "Sports"
-msgstr "Sporte"
-
-#: /media/js/categories.js:24
-msgid "Travel"
-msgstr "Udhëtim"
-
-#: /media/js/categories.js:25
-msgid "Utilities"
-msgstr "Të dobishme"
 
 #: /media/js/apps.js:93
 msgid "Your device does not support payments."
@@ -766,6 +664,78 @@ msgstr "Shfletuesi ose pajisja juaj nuk është e përputhshme me zbatimet web."
 #: /media/js/apps.js:101
 msgid "This app is unavailable for your platform."
 msgstr "Ky zbatim nuk është i passhëm për platformën tuaj."
+
+#: /media/js/categories.js:7
+msgid "Games"
+msgstr "Lojëra"
+
+#: /media/js/categories.js:8
+msgid "Books"
+msgstr "Libra"
+
+#: /media/js/categories.js:9
+msgid "Business"
+msgstr "Biznes"
+
+#: /media/js/categories.js:10
+msgid "Education"
+msgstr "Edukim"
+
+#: /media/js/categories.js:11
+msgid "Entertainment"
+msgstr "Spektakël"
+
+#: /media/js/categories.js:12
+msgid "Health & Fitness"
+msgstr "Shëndet & Kalitje"
+
+#: /media/js/categories.js:13
+msgid "Lifestyle"
+msgstr "Lifestyle"
+
+#: /media/js/categories.js:14
+msgid "Maps & Navigation"
+msgstr "Harta & Lundrim"
+
+#: /media/js/categories.js:15
+msgid "Music"
+msgstr "Muzikë"
+
+#: /media/js/categories.js:16
+msgid "News & Weather"
+msgstr "Lajme & Moti"
+
+#: /media/js/categories.js:17
+msgid "Photo & Video"
+msgstr "Foto & Video"
+
+#: /media/js/categories.js:18
+msgid "Productivity"
+msgstr "Prodhimshmëri"
+
+#: /media/js/categories.js:19
+msgid "Reference"
+msgstr "Referenca"
+
+#: /media/js/categories.js:20
+msgid "Shopping"
+msgstr "Blerje"
+
+#: /media/js/categories.js:21
+msgid "Social"
+msgstr "Shoqërore"
+
+#: /media/js/categories.js:22
+msgid "Sports"
+msgstr "Sporte"
+
+#: /media/js/categories.js:23
+msgid "Travel"
+msgstr "Udhëtim"
+
+#: /media/js/categories.js:24
+msgid "Utilities"
+msgstr "Të dobishme"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -808,12 +778,367 @@ msgstr "Për të rritur 17+"
 msgid "Adults Only 18+"
 msgstr "Vetëm për të Rritur 18+"
 
+#: /media/js/feed.js:8
+msgid "Grid Layout"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "List Layout"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "Icon"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "Background Image"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "Quote"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "Screenshot"
+msgstr ""
+
+#: /media/js/feed.js:43
+msgid "Promo Collection"
+msgstr ""
+
+#: /media/js/feed.js:44
+msgid "Listing Collection"
+msgstr ""
+
+#: /media/js/edbrands.js:33
+msgid "App for Albania"
+msgid_plural "Apps for Albania"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:34
+msgid "App for Argentina"
+msgid_plural "Apps for Argentina"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:35
+msgid "App for Bangladesh"
+msgid_plural "Apps for Bangladesh"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:36
+msgid "App for Brazil"
+msgid_plural "Apps for Brazil"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:37
+msgid "App for Bulgaria"
+msgid_plural "Apps for Bulgaria"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:38
+msgid "App for Chile"
+msgid_plural "Apps for Chile"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:39
+msgid "App for China"
+msgid_plural "Apps for China"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:40
+msgid "App for Colombia"
+msgid_plural "Apps for Colombia"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:41
+msgid "App for Costa Rica"
+msgid_plural "Apps for Costa Rica"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:42
+msgid "App for Croatia"
+msgid_plural "Apps for Croatia"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:43
+msgid "App for Czech Republic"
+msgid_plural "Apps for Czech Republic"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:44
+msgid "App for Ecuador"
+msgid_plural "Apps for Ecuador"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:45
+msgid "App for El Salvador"
+msgid_plural "Apps for El Salvador"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:46
+msgid "App for France"
+msgid_plural "Apps for France"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:47
+msgid "App for Germany"
+msgid_plural "Apps for Germany"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:48
+msgid "App for Greece"
+msgid_plural "Apps for Greece"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:49
+msgid "App for Hungary"
+msgid_plural "Apps for Hungary"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:50
+msgid "App for India"
+msgid_plural "Apps for India"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:51
+msgid "App for Italy"
+msgid_plural "Apps for Italy"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:52
+msgid "App for Japan"
+msgid_plural "Apps for Japan"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:53
+msgid "App for Macedonia"
+msgid_plural "Apps for Macedonia"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:54
+msgid "App for Mexico"
+msgid_plural "Apps for Mexico"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:55
+msgid "App for Montenegro"
+msgid_plural "Apps for Montenegro"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:56
+msgid "App for Nicaragua"
+msgid_plural "Apps for Nicaragua"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:57
+msgid "App for Panama"
+msgid_plural "Apps for Panama"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:58
+msgid "App for Peru"
+msgid_plural "Apps for Peru"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:59
+msgid "App for Poland"
+msgid_plural "Apps for Poland"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:60
+msgid "App for Russia"
+msgid_plural "Apps for Russia"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:61
+msgid "App for Serbia"
+msgid_plural "Apps for Serbia"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:62
+msgid "App for South Africa"
+msgid_plural "Apps for South Africa"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:63
+msgid "App for Spain"
+msgid_plural "Apps for Spain"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:64
+msgid "App for Uruguay"
+msgid_plural "Apps for Uruguay"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:65
+msgid "App for Venezuela"
+msgid_plural "Apps for Venezuela"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:66
+msgid "Arts & Entertainment App"
+msgid_plural "Arts & Entertainment Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:67
+msgid "Featured Book App"
+msgid_plural "Featured Book Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:68
+msgid "Featured Creativity App"
+msgid_plural "Featured Creativity Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:69
+msgid "Featured Education App"
+msgid_plural "Featured Education Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:70
+msgid "Featured Game"
+msgid_plural "Featured Games"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:71
+msgid "Groundbreaking App"
+msgid_plural "Groundbreaking Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:72
+msgid "Health & Fitness App"
+msgid_plural "Health & Fitness Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:73
+msgid "Hidden Gem"
+msgid_plural "Hidden Gems"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:74
+msgid "Featured Lifestyle App"
+msgid_plural "Featured Lifestyle Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:75
+msgid "Local Favorite App"
+msgid_plural "Local Favorite Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:76
+msgid "Maps & Navigation App"
+msgid_plural "Maps & Navigation Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:77
+msgid "Featured Music App"
+msgid_plural "Featured Music Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:78
+msgid "Mystery App!"
+msgid_plural "Mystery Apps!"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:79
+msgid "News & Weather App"
+msgid_plural "News & Weather Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:80
+msgid "Photo & Video App"
+msgid_plural "Photo & Video Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:81
+msgid "Featured Shopping App"
+msgid_plural "Featured Shopping Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:82
+msgid "Featured Social App"
+msgid_plural "Featured Social Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:83
+msgid "Featured Sports App"
+msgid_plural "Featured Sports Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:84
+msgid "Tool & Time Saver"
+msgid_plural "Tools & Time Savers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:85
+msgid "Featured Travel App"
+msgid_plural "Featured Travel Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:86
+msgid "Work & Business App"
+msgid_plural "Work & Business Apps"
+msgstr[0] ""
+msgstr[1] ""
+
 #: /media/js/installer_direct.js:56
 msgid "Unable to install packaged apps"
 msgstr "Nuk instalon dot zbatime të paketuar"
 
-#: /media/js/installer_direct.js:96
-#: /media/js/installer_iframe.js:72
+#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
 msgid "App install error: {error}"
 msgstr "Gabim instalimi zbatimi: {error}"
 
@@ -850,123 +1175,123 @@ msgstr "Shqyrtimi juaj u postua"
 msgid "Error while submitting review"
 msgstr "Gabim gjatë parashtrimit të shqyrtimit"
 
-#: /media/js/settings.js:103
+#: /media/js/settings.js:109
 msgid "Rest of World"
 msgstr "Pjesa Tjetër e Botës"
 
-#: /media/js/settings.js:104
+#: /media/js/settings.js:110
 msgid "Argentina"
 msgstr "Argjentinë"
 
-#: /media/js/settings.js:105
+#: /media/js/settings.js:111
 msgid "Bangladesh"
 msgstr "Bangladesh"
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:112
 msgid "Brazil"
 msgstr "Brazil"
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:113
 msgid "Chile"
 msgstr "Kili"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:114
 msgid "China"
 msgstr "Kinë"
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:115
 msgid "Colombia"
 msgstr "Kolombi"
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:116
 msgid "Costa Rica"
 msgstr "Kosta Rika"
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:117
 msgid "Ecuador"
 msgstr "Ekuador"
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:118
 msgid "El Salvador"
 msgstr "Salvador"
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:119
 msgid "France"
 msgstr "Francë"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:120
 msgid "Germany"
 msgstr "Gjermani"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:121
 msgid "Greece"
 msgstr "Greqi"
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:122
 msgid "Guatemala"
 msgstr "Guatemalë"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:123
 msgid "Hungary"
 msgstr "Hungari"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:124
 msgid "Italy"
 msgstr "Itali"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:125
 msgid "Mexico"
 msgstr "Meksikë"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:126
 msgid "Montenegro"
 msgstr "Mali i Zi"
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:127
 msgid "Nicaragua"
 msgstr "Nikaragua"
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:128
 msgid "Panama"
 msgstr "Panama"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:129
 msgid "Peru"
 msgstr "Peru"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:130
 msgid "Poland"
 msgstr "Poloni"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:131
 msgid "Serbia"
 msgstr "Serbi"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:132
 msgid "Spain"
 msgstr "Spanjë"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:133
 msgid "United Kingdom"
 msgstr "Mbretëri e Bashkuar"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:134
 msgid "United States"
 msgstr "Shtetet e Bashkuara"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:135
 msgid "Uruguay"
 msgstr "Uruguaj"
 
-#: /media/js/settings.js:130
+#: /media/js/settings.js:136
 msgid "Venezuela"
 msgstr "Venezuelë"
 
-#: /media/js/settings.js:131
+#: /media/js/settings.js:137
 msgid "No region in search"
 msgstr "Pa rajon për kërkimin"
 
-#: /media/js/settings.js:156
+#: /media/js/settings.js:162
 msgid "Sorry, you are currently offline. Please try again later."
 msgstr "Na ndjeni, hëpërhë jeni jashtë linje. Ju lutemi, riprovoni më vonë."
 
@@ -985,15 +1310,15 @@ msgstr "Dolët"
 msgid "You have been signed in"
 msgstr "Hytë"
 
-#: /media/js/commonplace/login.js:188
+#: /media/js/commonplace/login.js:193
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Hyrja me Persona-n dështoi. Ndoshta nuk keni llogari nën këtë adresë email?"
 
-#: /media/js/commonplace/login.js:193
+#: /media/js/commonplace/login.js:198
 msgid "Persona login failed. A server error was encountered."
 msgstr "Hyrja me Persona-n dështoi. U has një gabim shërbyesi."
 
-#: /media/js/commonplace/login.js:263
+#: /media/js/commonplace/login.js:268
 msgid "Persona cannot be reached. Try again later."
 msgstr "Nuk kapet dot Persona. Ju lutemi, riprovoni më vonë."
 
@@ -1021,11 +1346,11 @@ msgstr "Gabim gjatë komunikimit me shërbyesin. Ju lutemi, riprovoni më vonë.
 msgid "Your device does not support purchases."
 msgstr "Pajisja juaj nuk mbulon blerjet."
 
-#: /media/js/views/app.js:76
+#: /media/js/views/app.js:64 /media/js/views/feed/feed_app.js:10
 msgid "App Details"
 msgstr "Hollësi Zbatimi"
 
-#: /media/js/views/collection.js:43
+#: /media/js/views/collection.js:40 /media/js/views/feed/feed_collection.js:10
 msgid "Collection Details"
 msgstr "Hollësi Koleksioni"
 
@@ -1037,9 +1362,17 @@ msgstr "Përshtypjet u parashtruan. Faleminderit!"
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Pati një problem gjatë parashtrimit të përshtypjeve tuaja. Riprovoni së shpejti."
 
+#: /media/js/views/new.js:12
+msgid "Fresh and New Apps"
+msgstr ""
+
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
 msgstr "Kandidoni zbatime"
+
+#: /media/js/views/popular.js:12
+msgid "Popular All Time"
+msgstr ""
 
 #: /media/js/views/search.js:218
 msgid "Search Results"
@@ -1078,6 +1411,14 @@ msgstr "Njatjeta Botë!"
 msgid "Not Found"
 msgstr "Nuk u Gjet"
 
+#: /media/js/views/feed/feed_brand.js:10
+msgid "Editorial Brand Details"
+msgstr ""
+
+#: /media/js/views/feed/feed_shelf.js:10
+msgid "Operator Shelf Details"
+msgstr ""
+
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
 msgstr "Shqyrtimi u përditësua me sukses"
@@ -1085,4 +1426,3 @@ msgstr "Shqyrtimi u përditësua me sukses"
 #: /media/js/views/app/ratings/edit.js:35
 msgid "There was a problem updating your review"
 msgstr "Pati një problem me përditësimin e shqyrtimit tuaj "
-

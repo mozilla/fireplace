@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13T16:40:43.517Z\n"
+"POT-Creation-Date: 2014-08-22T21:32:41.880Z\n"
 "PO-Revision-Date: 2014-08-13 21:17+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,12 +14,49 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1407964645.0\n"
 
-#: /templates/cat_dropdown.html:1 /media/js/categories.js:7
+#: /templates/app_list.html:28
+msgid "No apps found"
+msgstr ""
+
+#: /templates/app_list.html:33
+msgid "No apps found."
+msgstr ""
+
+#: /templates/app_list.html:35 /templates/category.html:83 /templates/user/purchases.html:38
+msgid "An internal server error occurred. Please try again later."
+msgstr "Ett internt serverfel inträffade. Försök igen senare."
+
+#: /templates/cat_dropdown.html:1
 msgid "All Categories"
 msgstr "Alla kategorier"
 
+#: /templates/category.html:29
+msgid "Featured Apps"
+msgstr "Rekommenderade appar"
+
+#: /templates/category.html:30 /templates/category.html:37 /templates/category.html:57
+msgid "View All"
+msgstr "Visa alla"
+
+#: /templates/category.html:53 /templates/nav.html:16
+msgid "Popular"
+msgstr "Populär"
+
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category.html:55 /templates/nav.html:15
+msgid "New"
+msgstr "Ny"
+
+#: /templates/category.html:76
+msgid "No apps in this category"
+msgstr "Inga appar i denna kategori"
+
+#: /templates/category.html:81
+msgid "The category you requested does not exist."
+msgstr "Kategorin som du söker finns inte."
+
 #. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33
+#: /templates/collection.html:33 /templates/_macros/feed_item.html:253 /templates/_macros/feed_item.html:280
 msgid "Ruh roh! No apps here, Shaggy!"
 msgstr "Ruh-roh! Inga appar här, Shaggy!"
 
@@ -46,10 +83,7 @@ msgstr "Marketplace inaktuell"
 
 #: /templates/deprecated.html:3
 msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
-msgstr ""
-"Den version av Firefox Marketplace som du använder stöds inte längre. Du "
-"kommer att behöva göra en uppdatering innan du kan fortsätta njuta av "
-"Marketplace."
+msgstr "Den version av Firefox Marketplace som du använder stöds inte längre. Du kommer att behöva göra en uppdatering innan du kan fortsätta njuta av Marketplace."
 
 #: /templates/deprecated.html:5
 msgid "Update Now"
@@ -59,7 +93,7 @@ msgstr "Uppdatera nu"
 msgid "Featured"
 msgstr "Rekommenderade"
 
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:14
+#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:13
 msgid "Expand"
 msgstr "Expandera"
 
@@ -75,7 +109,8 @@ msgstr "Utveckla appar"
 msgid "Developer Hub"
 msgstr "Utvecklarcenter"
 
-#: /templates/footer.html:6 /templates/header.html:26 /templates/settings/nav.html:8 /templates/settings/nav.html:11 /media/js/views/feedback.js:61
+#: /templates/footer.html:6 /templates/nav.html:30 /templates/_macros/act_tray.html:14 /templates/settings/feedback.html:5 /templates/settings/nav.html:8 /templates/settings/nav.html:11
+#: /media/js/views/feedback.js:61
 msgid "Feedback"
 msgstr "Återkoppling"
 
@@ -83,16 +118,16 @@ msgstr "Återkoppling"
 msgid "Support"
 msgstr "Hjälp"
 
-#: /templates/footer.html:16 /templates/header.html:22 /templates/settings/nav.html:7 /templates/user/purchases.html:44 /templates/user/purchases.html:11 /templates/user/purchases.html:31
-#: /media/js/views/purchases.js:13
+#: /templates/footer.html:16 /templates/nav.html:28 /templates/_macros/act_tray.html:10 /templates/settings/nav.html:7 /templates/user/purchases.html:43 /templates/user/purchases.html:10
+#: /templates/user/purchases.html:30 /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "Mina appar"
 
-#: /templates/footer.html:18 /templates/header.html:24
+#: /templates/footer.html:18 /templates/_macros/act_tray.html:12
 msgid "My Submissions"
 msgstr "Mina bidrag"
 
-#: /templates/footer.html:21 /templates/settings/main.html:43
+#: /templates/footer.html:21 /templates/settings/main.html:42
 msgid "Reviewer Tools"
 msgstr "Verktyg för granskare"
 
@@ -105,17 +140,15 @@ msgid ""
 "Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
 "Alike License v3.0</a> or any later version."
 msgstr ""
-"Om inget annat <a href=\"{legal_url}\" target=\"_blank\">anges</a>, är "
-"innehållet på denna sida licenserat under <a href=\"{cc_url}\" "
-"target=\"_blank\">Creative Commons Attribution Share-Alike License v3.0</a> "
-"eller någon senare version."
+"Om inget annat <a href=\"{legal_url}\" target=\"_blank\">anges</a>, är innehållet på denna sida licenserat under <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike "
+"License v3.0</a> eller någon senare version."
 
-#: /templates/footer.html:37 /templates/privacy.html:2 /templates/detail/main.html:191 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:26
+#: /templates/footer.html:37 /templates/privacy.html:2 /templates/detail/main.html:188 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:29
 #: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Sekretesspolicy"
 
-#: /templates/footer.html:38 /templates/terms.html:2 /templates/settings/feedback.html:31 /media/js/views/terms.js:10
+#: /templates/footer.html:38 /templates/terms.html:2 /templates/settings/feedback.html:34 /media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Användarvillkor"
 
@@ -123,31 +156,19 @@ msgstr "Användarvillkor"
 msgid "Report Trademark Abuse"
 msgstr "Rapportera varumärkesintrång"
 
-#: /templates/header.html:1
+#: /templates/header.html:3
 msgid "Back"
 msgstr "Tillbaka"
 
-#: /templates/header.html:5 /templates/header.html:8
+#: /templates/header.html:8 /templates/header.html:11
 msgid "Search"
 msgstr "Sök"
 
-#: /templates/header.html:10
+#: /templates/header.html:13
 msgid "Clear"
 msgstr "Rensa"
 
-#: /templates/header.html:14
-msgid "Settings"
-msgstr "Inställningar"
-
-#: /templates/header.html:20
-msgid "Edit Account Settings"
-msgstr "Redigera kontoinställningar"
-
-#: /templates/header.html:27 /templates/settings/main.html:40
-msgid "Sign Out"
-msgstr "Logga ut"
-
-#: /templates/header.html:31
+#: /templates/header.html:18
 msgid "Sign In"
 msgstr "Logga in"
 
@@ -159,16 +180,29 @@ msgstr "Du måste använda Firefox för att installera Firefox appar."
 msgid "Download."
 msgstr "Ladda ner."
 
+#: /templates/nav.html:14
+msgid "Home"
+msgstr ""
+
+#: /templates/nav.html:18 /templates/nav.html:19 /media/js/views/categories.js:9
+msgid "Categories"
+msgstr ""
+
+#: /templates/nav.html:27
+msgid "My Account"
+msgstr ""
+
+#: /templates/nav.html:34
+msgid "Back to Marketplace"
+msgstr ""
+
 #: /templates/nominate.html:1
 msgid "Nominate apps to be featured on Firefox Marketplace!"
 msgstr "Nominera appar som ska rekommenderas på Firefox Marketplace!"
 
 #: /templates/nominate.html:6
 msgid "Are you the developer or fan of an awesome app or collection of apps on Firefox Marketplace? Submit your nominations, and you may see them in a featured spot."
-msgstr ""
-"Är du utvecklare eller fan av en fantastisk app eller samling av appar på "
-"Firefox Marketplace? Skicka in dina nomineringar och du kan få se dem "
-"rekommenderade."
+msgstr "Är du utvecklare eller fan av en fantastisk app eller samling av appar på Firefox Marketplace? Skicka in dina nomineringar och du kan få se dem rekommenderade."
 
 #: /templates/nominate.html:9
 msgid "Learn more about <a href=\"{wiki_url}\">how apps are featured</a>."
@@ -222,53 +256,74 @@ msgstr "Din e-postadress"
 msgid "Submit"
 msgstr "Skicka in"
 
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:6
-msgid "Unavailable"
-msgstr "Otillgänglig"
+#: /templates/_macros/act_tray.html:2
+msgid "Settings"
+msgstr "Inställningar"
 
-#: /templates/_macros/market_button.html:8 /templates/_macros/market_tile.html:55
-msgid "Free"
-msgstr "Gratis"
+#: /templates/_macros/act_tray.html:8
+msgid "Edit Account Settings"
+msgstr "Redigera kontoinställningar"
 
-#: /templates/_macros/market_button.html:16 /media/js/apps_buttons.js:278
-msgid "Open"
-msgstr "Öppen"
+#: /templates/_macros/act_tray.html:15 /templates/settings/main.html:39
+msgid "Sign Out"
+msgstr "Logga ut"
 
-#: /templates/_macros/market_button.html:18 /media/js/apps_buttons.js:98 /media/js/apps_buttons.js:304
-msgid "Install"
-msgstr "Installera"
+#: /templates/_macros/feed_app_tile.html:16
+msgid "&mdash; {attribution}"
+msgstr ""
 
-#: /templates/_macros/market_tile.html:11 /templates/_macros/market_tile.html:13
-msgid "{app_name} screenshot"
-msgstr "{app_name} skärmdump"
-
-#: /templates/_macros/market_tile.html:53
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:20
 msgid "Not yet rated"
 msgstr "Ej betygsatt"
 
-#: /templates/_macros/market_tile.html:65
+#: /templates/_macros/feed_item.html:105 /templates/_macros/feed_item.html:192
+msgid "View all apps"
+msgstr ""
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:8
+msgid "Unavailable"
+msgstr "Otillgänglig"
+
+#: /templates/_macros/market_button.html:10 /templates/_macros/market_tile.html:32
+msgid "Free"
+msgstr "Gratis"
+
+#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:252
+msgid "Open"
+msgstr "Öppen"
+
+#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:278
+msgid "Install"
+msgstr "Installera"
+
+#: /templates/_macros/market_tile.html:42
 msgid "({n})"
 msgstr "({n})"
 
-#: /templates/_macros/market_tile.html:68 /templates/detail/main.html:137
-msgid "{n} Review"
-msgid_plural "{n} Reviews"
-msgstr[0] "{n} omdöme"
-msgstr[1] "{n} omdömen"
+#: /templates/_macros/market_tile.html:45 /templates/detail/main.html:135
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] ""
+msgstr[1] ""
 
 #. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:72
+#: /templates/_macros/market_tile.html:49
 msgid "(0)"
 msgstr "(0)"
 
-#: /templates/_macros/market_tile.html:73
+#: /templates/_macros/market_tile.html:50
 msgid "Not yet reviewed"
 msgstr "Ännu inget omdöme"
 
-#: /templates/_macros/market_tile.html:83
+#: /templates/_macros/market_tile.html:62
 msgid "Works offline"
 msgstr "Fungerar i nedkopplat läge"
+
+#: /templates/_macros/market_tile.html:111 /templates/_macros/market_tile.html:114
+msgid "{app_name} screenshot"
+msgstr "{app_name} skärmdump"
 
 #: /templates/_macros/more_button.html:2
 msgid "More"
@@ -302,42 +357,110 @@ msgstr "Rapportera"
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Betyg {stars} av {maxstars} stjärnor"
 
-#: /templates/category/main.html:37
-msgid "Featured Apps"
-msgstr "Rekommenderade appar"
-
-#: /templates/category/main.html:38 /templates/category/main.html:46 /templates/category/main.html:66
-msgid "View All"
-msgstr "Visa alla"
-
-#: /templates/category/main.html:62
-msgid "Popular"
-msgstr "Populär"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category/main.html:64
-msgid "New"
-msgstr "Ny"
-
-#: /templates/category/main.html:85
-msgid "No apps in this category"
-msgstr "Inga appar i denna kategori"
-
-#: /templates/category/main.html:90
-msgid "The category you requested does not exist."
-msgstr "Kategorin som du söker finns inte."
-
-#: /templates/category/main.html:92 /templates/user/purchases.html:39
-msgid "An internal server error occurred. Please try again later."
-msgstr "Ett internt serverfel inträffade. Försök igen senare."
-
-#: /templates/detail/abuse.html:5 /templates/detail/main.html:202 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+#: /templates/detail/abuse.html:5 /templates/detail/main.html:199 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
 msgid "Report Abuse"
 msgstr "Rapportera missbruk"
 
 #: /templates/detail/abuse.html:15
 msgid "Send Report"
 msgstr "Skicka rapport"
+
+#: /templates/detail/main.html:44
+msgid "Installed!"
+msgstr "Installerad!"
+
+#: /templates/detail/main.html:47
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Starta appen från din <b>program</b>-katalog."
+
+#: /templates/detail/main.html:50
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Starta appen från ditt <b>skrivbord i Windows</b> eller <b>Start &#9658; Alla program</b>."
+
+#: /templates/detail/main.html:53
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Starta appen från din <b>panel</b>, <b>programväljare</b> eller <b>programmeny</b>."
+
+#: /templates/detail/main.html:16 /templates/detail/main.html:17 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:63 /media/js/views/collection.js:39
+#: /media/js/views/feed/feed_app.js:9 /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:9 /media/js/views/feed/feed_shelf.js:9
+msgid "Loading..."
+msgstr "Laddar..."
+
+#: /templates/detail/main.html:68
+msgid "Updates"
+msgstr "Uppdateringar"
+
+#: /templates/detail/main.html:74 /templates/detail/main.html:91
+msgid "Less&hellip;"
+msgstr "Mindre&hellip;"
+
+#: /templates/detail/main.html:74 /templates/detail/main.html:91
+msgid "More&hellip;"
+msgstr "Mer&hellip;"
+
+#: /templates/detail/main.html:85 /media/js/feed.js:33
+msgid "Description"
+msgstr "Beskrivning"
+
+#: /templates/detail/main.html:94
+msgid "Version"
+msgstr "Version"
+
+#: /templates/detail/main.html:96
+msgid "Latest version: {version}"
+msgstr "Senaste version: {version}"
+
+#: /templates/detail/main.html:110
+msgid "Edit Listing"
+msgstr "Redigera poster"
+
+#: /templates/detail/main.html:113
+msgid "Approve / Reject"
+msgstr "Godkänn / Avvisa"
+
+#: /templates/detail/main.html:113
+msgid "Review History"
+msgstr "Granska historik"
+
+#: /templates/detail/main.html:124 /templates/ratings/main.html:6 /media/js/views/app/ratings.js:16
+msgid "Reviews"
+msgstr "Omdömen"
+
+#: /templates/detail/main.html:142
+msgid "App not yet reviewed"
+msgstr "Appen har inget omdöme"
+
+#: /templates/detail/main.html:150
+msgid "Edit Your Review"
+msgstr "Redigera ditt omdöme"
+
+#: /templates/detail/main.html:154 /templates/ratings/main.html:19 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
+msgid "Write a Review"
+msgstr "Skriv ett omdöme"
+
+#: /templates/detail/main.html:154 /templates/ratings/main.html:19
+msgid "Sign in to Review"
+msgstr "Logga in för att ge ett omdöme"
+
+#: /templates/detail/main.html:171 /templates/detail/receipt.html:40
+msgid "Support Email"
+msgstr "Support e-post"
+
+#: /templates/detail/main.html:177 /templates/detail/receipt.html:46
+msgid "Support Site"
+msgstr "Support webbplats"
+
+#: /templates/detail/main.html:182 /templates/detail/receipt.html:51
+msgid "Homepage"
+msgstr "Hemsida"
+
+#: /templates/detail/main.html:194 /templates/detail/receipt.html:63
+msgid "Statistics"
+msgstr "Statistik"
+
+#: /templates/detail/main.html:210
+msgid "Premium version available"
+msgstr "Premium version tillgänglig"
 
 #. (es) Classificacao Indicativa.
 #: /templates/detail/content_ratings.html:5
@@ -348,106 +471,6 @@ msgstr "Innehållsklassificering"
 #: /templates/detail/content_ratings.html:77
 msgid "Content Rating Details"
 msgstr "Detaljer om innehållsklassificering"
-
-#: /templates/detail/main.html:42
-msgid "Installed!"
-msgstr "Installerad!"
-
-#: /templates/detail/main.html:45
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Starta appen från din <b>program</b>-katalog."
-
-#: /templates/detail/main.html:48
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr ""
-"Starta appen från ditt <b>skrivbord i Windows</b> eller <b>Start &#9658; "
-"Alla program</b>."
-
-#: /templates/detail/main.html:51
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr ""
-"Starta appen från din <b>panel</b>, <b>programväljare</b> eller "
-"<b>programmeny</b>."
-
-#: /templates/detail/main.html:14 /templates/detail/main.html:15 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:75 /media/js/views/collection.js:42
-msgid "Loading..."
-msgstr "Laddar..."
-
-#: /templates/detail/main.html:66
-msgid "Updates"
-msgstr "Uppdateringar"
-
-#: /templates/detail/main.html:72 /templates/detail/main.html:89
-msgid "Less&hellip;"
-msgstr "Mindre&hellip;"
-
-#: /templates/detail/main.html:72 /templates/detail/main.html:89
-msgid "More&hellip;"
-msgstr "Mer&hellip;"
-
-#: /templates/detail/main.html:83
-msgid "Description"
-msgstr "Beskrivning"
-
-#: /templates/detail/main.html:92
-msgid "Version"
-msgstr "Version"
-
-#: /templates/detail/main.html:94
-msgid "Latest version: {version}"
-msgstr "Senaste version: {version}"
-
-#: /templates/detail/main.html:112
-msgid "Edit Listing"
-msgstr "Redigera poster"
-
-#: /templates/detail/main.html:115
-msgid "Approve / Reject"
-msgstr "Godkänn / Avvisa"
-
-#: /templates/detail/main.html:115
-msgid "Review History"
-msgstr "Granska historik"
-
-#: /templates/detail/main.html:126 /templates/ratings/main.html:6 /media/js/views/app/ratings.js:16
-msgid "Reviews"
-msgstr "Omdömen"
-
-#: /templates/detail/main.html:145
-msgid "App not yet reviewed"
-msgstr "Appen har inget omdöme"
-
-#: /templates/detail/main.html:153
-msgid "Edit Your Review"
-msgstr "Redigera ditt omdöme"
-
-#: /templates/detail/main.html:157 /templates/ratings/main.html:19 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
-msgid "Write a Review"
-msgstr "Skriv ett omdöme"
-
-#: /templates/detail/main.html:157 /templates/ratings/main.html:19
-msgid "Sign in to Review"
-msgstr "Logga in för att ge ett omdöme"
-
-#: /templates/detail/main.html:174 /templates/detail/receipt.html:40
-msgid "Support Email"
-msgstr "Support e-post"
-
-#: /templates/detail/main.html:180 /templates/detail/receipt.html:46
-msgid "Support Site"
-msgstr "Support webbplats"
-
-#: /templates/detail/main.html:185 /templates/detail/receipt.html:51
-msgid "Homepage"
-msgstr "Hemsida"
-
-#: /templates/detail/main.html:197 /templates/detail/receipt.html:63
-msgid "Statistics"
-msgstr "Statistik"
-
-#: /templates/detail/main.html:213
-msgid "Premium version available"
-msgstr "Premium version tillgänglig"
 
 #: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
 msgid "Back to app"
@@ -461,13 +484,25 @@ msgstr "Laddar sekretesspolicy..."
 msgid "Thank you for purchasing"
 msgstr "Tack för ditt köp"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:38 /media/js/views/app.js:65
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:53
 msgid "Oh no!"
 msgstr "Åh nej!"
 
 #: /templates/errors/404.html:3
 msgid "The page you were looking for was not found."
 msgstr "Sidan du letade efter kunde inte hittas."
+
+#: /templates/errors/date-error.html:4
+msgid "Sorry, your device clock appears to be set incorrectly."
+msgstr ""
+
+#: /templates/errors/date-error.html:7
+msgid "Please set today's date and time in your device settings to access the Marketplace."
+msgstr ""
+
+#: /templates/errors/date-error.html:9
+msgid "Try again"
+msgstr ""
 
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
@@ -480,24 +515,6 @@ msgstr "Fel uppstod när mer skulle laddas"
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Försök igen"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> träff"
-msgstr[1] "<b>{n}</b> träffar"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:12
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Visar <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Inga träffar"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Inga träffar, försök igen senare"
 
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
@@ -536,11 +553,29 @@ msgstr "Opassande språk"
 msgid "Misplaced bug report or support request"
 msgstr "Felplacerad buggrapport eller supportfråga"
 
-#: /templates/settings/feedback.html:12
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> träff"
+msgstr[1] "<b>{n}</b> träffar"
+
+#: /templates/search/main.html:16 /templates/user/purchases.html:11
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Visar <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Inga träffar"
+
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Inga träffar, försök igen senare"
+
+#: /templates/settings/feedback.html:15
 msgid "Send"
 msgstr "Skicka"
 
-#: /templates/settings/feedback.html:18 /templates/settings/feedback.html:20
+#: /templates/settings/feedback.html:21 /templates/settings/feedback.html:23
 msgid "Get Help"
 msgstr "Få hjälp"
 
@@ -548,23 +583,23 @@ msgstr "Få hjälp"
 msgid "Account Settings"
 msgstr "Kontoinställningar"
 
-#: /templates/settings/main.html:11
+#: /templates/settings/main.html:10
 msgid "Email"
 msgstr "E-post"
 
-#: /templates/settings/main.html:20
+#: /templates/settings/main.html:19
 msgid "Display Name"
 msgstr "Visa namn"
 
-#: /templates/settings/main.html:29
+#: /templates/settings/main.html:28
 msgid "Region"
 msgstr "Region"
 
-#: /templates/settings/main.html:38
+#: /templates/settings/main.html:37
 msgid "Save Changes"
 msgstr "Spara ändringar"
 
-#: /templates/settings/main.html:41
+#: /templates/settings/main.html:40
 msgid "Sign In / Sign Up"
 msgstr "Logga in / Registrera dig"
 
@@ -588,103 +623,31 @@ msgstr "Registrerar dig..."
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "Du har registrerat dig för Marketplace nyhetsbrev!"
 
-#: /templates/user/purchases.html:49
+#: /templates/user/purchases.html:48
 msgid "You must be signed in to view your apps."
 msgstr "Du måste vara inloggad för att se dina appar."
 
-#: /templates/user/purchases.html:50
+#: /templates/user/purchases.html:49
 msgid "Sign in / Sign up"
 msgstr "Logga in / Registrera dig"
 
-#: /templates/user/purchases.html:34
+#: /templates/user/purchases.html:33
 msgid "You have no apps"
 msgstr "Du har inga appar"
 
-#: /media/js/apps_buttons.js:62 /media/js/apps_buttons.js:122 /media/js/payments/payments.js:91
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120 /media/js/payments/payments.js:91
 msgid "Payment cancelled."
 msgstr "Betalning avbröts."
 
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:93
+#: /media/js/apps_buttons.js:91
 msgid "Purchasing"
 msgstr "Inköp"
 
 #. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:200
+#: /media/js/apps_buttons.js:190
 msgid "Install failed. Please try again later."
 msgstr "Installation misslyckades. Försök igen senare."
-
-#: /media/js/categories.js:8
-msgid "Games"
-msgstr "Spel"
-
-#: /media/js/categories.js:9
-msgid "Books"
-msgstr "Böcker"
-
-#: /media/js/categories.js:10
-msgid "Business"
-msgstr "Ekonomi"
-
-#: /media/js/categories.js:11
-msgid "Education"
-msgstr "Utbildning"
-
-#: /media/js/categories.js:12
-msgid "Entertainment"
-msgstr "Underhållning"
-
-#: /media/js/categories.js:13
-msgid "Health & Fitness"
-msgstr "Hälsa & fitness"
-
-#: /media/js/categories.js:14
-msgid "Lifestyle"
-msgstr "Livsstil"
-
-#: /media/js/categories.js:15
-msgid "Maps & Navigation"
-msgstr "Kartor & navigering"
-
-#: /media/js/categories.js:16
-msgid "Music"
-msgstr "Musik"
-
-#: /media/js/categories.js:17
-msgid "News & Weather"
-msgstr "Nyheter & väder"
-
-#: /media/js/categories.js:18
-msgid "Photo & Video"
-msgstr "Foto & video"
-
-#: /media/js/categories.js:19
-msgid "Productivity"
-msgstr "Produktivitet"
-
-#: /media/js/categories.js:20
-msgid "Reference"
-msgstr "Uppslagsverk"
-
-#: /media/js/categories.js:21
-msgid "Shopping"
-msgstr "Shopping"
-
-#: /media/js/categories.js:22
-msgid "Social"
-msgstr "Socialt"
-
-#: /media/js/categories.js:23
-msgid "Sports"
-msgstr "Sport"
-
-#: /media/js/categories.js:24
-msgid "Travel"
-msgstr "Resa"
-
-#: /media/js/categories.js:25
-msgid "Utilities"
-msgstr "Verktyg"
 
 #: /media/js/apps.js:93
 msgid "Your device does not support payments."
@@ -701,6 +664,78 @@ msgstr "Din webbläsare eller enhet är inte web-app kompatibel."
 #: /media/js/apps.js:101
 msgid "This app is unavailable for your platform."
 msgstr "Denna app är inte tillgänglig för din plattform."
+
+#: /media/js/categories.js:7
+msgid "Games"
+msgstr "Spel"
+
+#: /media/js/categories.js:8
+msgid "Books"
+msgstr "Böcker"
+
+#: /media/js/categories.js:9
+msgid "Business"
+msgstr "Ekonomi"
+
+#: /media/js/categories.js:10
+msgid "Education"
+msgstr "Utbildning"
+
+#: /media/js/categories.js:11
+msgid "Entertainment"
+msgstr "Underhållning"
+
+#: /media/js/categories.js:12
+msgid "Health & Fitness"
+msgstr "Hälsa & fitness"
+
+#: /media/js/categories.js:13
+msgid "Lifestyle"
+msgstr "Livsstil"
+
+#: /media/js/categories.js:14
+msgid "Maps & Navigation"
+msgstr "Kartor & navigering"
+
+#: /media/js/categories.js:15
+msgid "Music"
+msgstr "Musik"
+
+#: /media/js/categories.js:16
+msgid "News & Weather"
+msgstr "Nyheter & väder"
+
+#: /media/js/categories.js:17
+msgid "Photo & Video"
+msgstr "Foto & video"
+
+#: /media/js/categories.js:18
+msgid "Productivity"
+msgstr "Produktivitet"
+
+#: /media/js/categories.js:19
+msgid "Reference"
+msgstr "Uppslagsverk"
+
+#: /media/js/categories.js:20
+msgid "Shopping"
+msgstr "Shopping"
+
+#: /media/js/categories.js:21
+msgid "Social"
+msgstr "Socialt"
+
+#: /media/js/categories.js:22
+msgid "Sports"
+msgstr "Sport"
+
+#: /media/js/categories.js:23
+msgid "Travel"
+msgstr "Resa"
+
+#: /media/js/categories.js:24
+msgid "Utilities"
+msgstr "Verktyg"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -743,6 +778,362 @@ msgstr "Vuxen 17+"
 msgid "Adults Only 18+"
 msgstr "Endast vuxna 18+"
 
+#: /media/js/feed.js:8
+msgid "Grid Layout"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "List Layout"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "Icon"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "Background Image"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "Quote"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "Screenshot"
+msgstr ""
+
+#: /media/js/feed.js:43
+msgid "Promo Collection"
+msgstr ""
+
+#: /media/js/feed.js:44
+msgid "Listing Collection"
+msgstr ""
+
+#: /media/js/edbrands.js:33
+msgid "App for Albania"
+msgid_plural "Apps for Albania"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:34
+msgid "App for Argentina"
+msgid_plural "Apps for Argentina"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:35
+msgid "App for Bangladesh"
+msgid_plural "Apps for Bangladesh"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:36
+msgid "App for Brazil"
+msgid_plural "Apps for Brazil"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:37
+msgid "App for Bulgaria"
+msgid_plural "Apps for Bulgaria"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:38
+msgid "App for Chile"
+msgid_plural "Apps for Chile"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:39
+msgid "App for China"
+msgid_plural "Apps for China"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:40
+msgid "App for Colombia"
+msgid_plural "Apps for Colombia"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:41
+msgid "App for Costa Rica"
+msgid_plural "Apps for Costa Rica"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:42
+msgid "App for Croatia"
+msgid_plural "Apps for Croatia"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:43
+msgid "App for Czech Republic"
+msgid_plural "Apps for Czech Republic"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:44
+msgid "App for Ecuador"
+msgid_plural "Apps for Ecuador"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:45
+msgid "App for El Salvador"
+msgid_plural "Apps for El Salvador"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:46
+msgid "App for France"
+msgid_plural "Apps for France"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:47
+msgid "App for Germany"
+msgid_plural "Apps for Germany"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:48
+msgid "App for Greece"
+msgid_plural "Apps for Greece"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:49
+msgid "App for Hungary"
+msgid_plural "Apps for Hungary"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:50
+msgid "App for India"
+msgid_plural "Apps for India"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:51
+msgid "App for Italy"
+msgid_plural "Apps for Italy"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:52
+msgid "App for Japan"
+msgid_plural "Apps for Japan"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:53
+msgid "App for Macedonia"
+msgid_plural "Apps for Macedonia"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:54
+msgid "App for Mexico"
+msgid_plural "Apps for Mexico"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:55
+msgid "App for Montenegro"
+msgid_plural "Apps for Montenegro"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:56
+msgid "App for Nicaragua"
+msgid_plural "Apps for Nicaragua"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:57
+msgid "App for Panama"
+msgid_plural "Apps for Panama"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:58
+msgid "App for Peru"
+msgid_plural "Apps for Peru"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:59
+msgid "App for Poland"
+msgid_plural "Apps for Poland"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:60
+msgid "App for Russia"
+msgid_plural "Apps for Russia"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:61
+msgid "App for Serbia"
+msgid_plural "Apps for Serbia"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:62
+msgid "App for South Africa"
+msgid_plural "Apps for South Africa"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:63
+msgid "App for Spain"
+msgid_plural "Apps for Spain"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:64
+msgid "App for Uruguay"
+msgid_plural "Apps for Uruguay"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:65
+msgid "App for Venezuela"
+msgid_plural "Apps for Venezuela"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:66
+msgid "Arts & Entertainment App"
+msgid_plural "Arts & Entertainment Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:67
+msgid "Featured Book App"
+msgid_plural "Featured Book Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:68
+msgid "Featured Creativity App"
+msgid_plural "Featured Creativity Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:69
+msgid "Featured Education App"
+msgid_plural "Featured Education Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:70
+msgid "Featured Game"
+msgid_plural "Featured Games"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:71
+msgid "Groundbreaking App"
+msgid_plural "Groundbreaking Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:72
+msgid "Health & Fitness App"
+msgid_plural "Health & Fitness Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:73
+msgid "Hidden Gem"
+msgid_plural "Hidden Gems"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:74
+msgid "Featured Lifestyle App"
+msgid_plural "Featured Lifestyle Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:75
+msgid "Local Favorite App"
+msgid_plural "Local Favorite Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:76
+msgid "Maps & Navigation App"
+msgid_plural "Maps & Navigation Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:77
+msgid "Featured Music App"
+msgid_plural "Featured Music Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:78
+msgid "Mystery App!"
+msgid_plural "Mystery Apps!"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:79
+msgid "News & Weather App"
+msgid_plural "News & Weather Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:80
+msgid "Photo & Video App"
+msgid_plural "Photo & Video Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:81
+msgid "Featured Shopping App"
+msgid_plural "Featured Shopping Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:82
+msgid "Featured Social App"
+msgid_plural "Featured Social Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:83
+msgid "Featured Sports App"
+msgid_plural "Featured Sports Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:84
+msgid "Tool & Time Saver"
+msgid_plural "Tools & Time Savers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:85
+msgid "Featured Travel App"
+msgid_plural "Featured Travel Apps"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /media/js/edbrands.js:86
+msgid "Work & Business App"
+msgid_plural "Work & Business Apps"
+msgstr[0] ""
+msgstr[1] ""
+
 #: /media/js/installer_direct.js:56
 msgid "Unable to install packaged apps"
 msgstr "Kan inte installera paketerade appar"
@@ -784,123 +1175,123 @@ msgstr "Ditt omdöme skickades in"
 msgid "Error while submitting review"
 msgstr "Ett fel uppstod när omdömet skickades in"
 
-#: /media/js/settings.js:103
+#: /media/js/settings.js:109
 msgid "Rest of World"
 msgstr "Resten av världen"
 
-#: /media/js/settings.js:104
+#: /media/js/settings.js:110
 msgid "Argentina"
 msgstr "Argentina"
 
-#: /media/js/settings.js:105
+#: /media/js/settings.js:111
 msgid "Bangladesh"
 msgstr "Bangladesh"
 
-#: /media/js/settings.js:106
+#: /media/js/settings.js:112
 msgid "Brazil"
 msgstr "Brasilien"
 
-#: /media/js/settings.js:107
+#: /media/js/settings.js:113
 msgid "Chile"
 msgstr "Chile"
 
-#: /media/js/settings.js:108
+#: /media/js/settings.js:114
 msgid "China"
 msgstr "Kina"
 
-#: /media/js/settings.js:109
+#: /media/js/settings.js:115
 msgid "Colombia"
 msgstr "Colombia"
 
-#: /media/js/settings.js:110
+#: /media/js/settings.js:116
 msgid "Costa Rica"
 msgstr "Costa Rica"
 
-#: /media/js/settings.js:111
+#: /media/js/settings.js:117
 msgid "Ecuador"
 msgstr "Ecuador"
 
-#: /media/js/settings.js:112
+#: /media/js/settings.js:118
 msgid "El Salvador"
 msgstr "El Salvador"
 
-#: /media/js/settings.js:113
+#: /media/js/settings.js:119
 msgid "France"
 msgstr "Frankrike"
 
-#: /media/js/settings.js:114
+#: /media/js/settings.js:120
 msgid "Germany"
 msgstr "Tyskland"
 
-#: /media/js/settings.js:115
+#: /media/js/settings.js:121
 msgid "Greece"
 msgstr "Grekland"
 
-#: /media/js/settings.js:116
+#: /media/js/settings.js:122
 msgid "Guatemala"
 msgstr "Guatemala"
 
-#: /media/js/settings.js:117
+#: /media/js/settings.js:123
 msgid "Hungary"
 msgstr "Ungern"
 
-#: /media/js/settings.js:118
+#: /media/js/settings.js:124
 msgid "Italy"
 msgstr "Italien"
 
-#: /media/js/settings.js:119
+#: /media/js/settings.js:125
 msgid "Mexico"
 msgstr "Mexiko"
 
-#: /media/js/settings.js:120
+#: /media/js/settings.js:126
 msgid "Montenegro"
 msgstr "Montenegro"
 
-#: /media/js/settings.js:121
+#: /media/js/settings.js:127
 msgid "Nicaragua"
 msgstr "Nicaragua"
 
-#: /media/js/settings.js:122
+#: /media/js/settings.js:128
 msgid "Panama"
 msgstr "Panama"
 
-#: /media/js/settings.js:123
+#: /media/js/settings.js:129
 msgid "Peru"
 msgstr "Peru"
 
-#: /media/js/settings.js:124
+#: /media/js/settings.js:130
 msgid "Poland"
 msgstr "Polen"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:131
 msgid "Serbia"
 msgstr "Serbien"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:132
 msgid "Spain"
 msgstr "Spanien"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:133
 msgid "United Kingdom"
 msgstr "Storbritannien"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:134
 msgid "United States"
 msgstr "USA"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:135
 msgid "Uruguay"
 msgstr "Uruguay"
 
-#: /media/js/settings.js:130
+#: /media/js/settings.js:136
 msgid "Venezuela"
 msgstr "Venezuela"
 
-#: /media/js/settings.js:131
+#: /media/js/settings.js:137
 msgid "No region in search"
 msgstr "Ingen region i sökning"
 
-#: /media/js/settings.js:156
+#: /media/js/settings.js:162
 msgid "Sorry, you are currently offline. Please try again later."
 msgstr "Tyvärr, du är inte ansluten till internet. Försök igen senare."
 
@@ -919,17 +1310,15 @@ msgstr "Du är utloggad"
 msgid "You have been signed in"
 msgstr "Du är inloggad"
 
-#: /media/js/commonplace/login.js:188
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-"Persona-inloggning misslyckades. Du kanske inte har ett konto med den "
-"e-postadressen registrerad?"
-
 #: /media/js/commonplace/login.js:193
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Persona-inloggning misslyckades. Du kanske inte har ett konto med den e-postadressen registrerad?"
+
+#: /media/js/commonplace/login.js:198
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona-inloggning misslyckades. Ett serverfel uppstod."
 
-#: /media/js/commonplace/login.js:263
+#: /media/js/commonplace/login.js:268
 msgid "Persona cannot be reached. Try again later."
 msgstr "Persona kan inte nås. Försök igen senare."
 
@@ -957,11 +1346,11 @@ msgstr "Kommunikationsfel med servern. Försök igen senare."
 msgid "Your device does not support purchases."
 msgstr "Din enhet stöder inte köp."
 
-#: /media/js/views/app.js:76
+#: /media/js/views/app.js:64 /media/js/views/feed/feed_app.js:10
 msgid "App Details"
 msgstr "App-detaljer"
 
-#: /media/js/views/collection.js:43
+#: /media/js/views/collection.js:40 /media/js/views/feed/feed_collection.js:10
 msgid "Collection Details"
 msgstr "Detaljer samling"
 
@@ -971,13 +1360,19 @@ msgstr "Återkoppling inlämnad. Tack!"
 
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "Ett problem uppstod när dina synpunkter skulle skickas in. Försök igen senare."
+
+#: /media/js/views/new.js:12
+msgid "Fresh and New Apps"
 msgstr ""
-"Ett problem uppstod när dina synpunkter skulle skickas in. Försök igen "
-"senare."
 
 #: /media/js/views/nominate.js:114
 msgid "Nominate apps"
 msgstr "Nominera appar"
+
+#: /media/js/views/popular.js:12
+msgid "Popular All Time"
+msgstr ""
 
 #: /media/js/views/search.js:218
 msgid "Search Results"
@@ -1015,6 +1410,14 @@ msgstr "Hej världen!"
 #: /media/js/views/commonplace/not_found.js:9
 msgid "Not Found"
 msgstr "Hittades inte"
+
+#: /media/js/views/feed/feed_brand.js:10
+msgid "Editorial Brand Details"
+msgstr ""
+
+#: /media/js/views/feed/feed_shelf.js:10
+msgid "Operator Shelf Details"
+msgstr ""
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
