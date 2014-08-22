@@ -144,15 +144,25 @@
                 text-align: center;
                 width: 70px;
 
-                &.active a {
-                    border-bottom: 2px solid $flamin-hot-cheetos-orange;
-                }
                 a {
                     color: $medium-gray;
                     display: block;
                     height: 38px;
                     line-height: 38px;
+
+                    &:hover{
+                        border-bottom: 2px solid $bg-gray;
+                        text-decoration: none;
+                    }
                 }
+                &.active a {
+                    border-bottom: 2px solid $flamin-hot-cheetos-orange;
+
+                    &:hover {
+                        border-bottom-color: $flamin-hot-cheetos-orange;
+                    }
+                }
+
                 .desktop-cat-link {
                     display: none;
                 }
