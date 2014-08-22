@@ -11,8 +11,6 @@ define('routes_api_args',
     } else if (caps.firefoxAndroid) {
         _dev = 'android';
         _device = caps.widescreen() ? 'tablet' : 'mobile';
-    } else {
-        _dev = _device = 'desktop';
     }
 
     if (_device == 'mobile' || _device == 'firefoxos') {
