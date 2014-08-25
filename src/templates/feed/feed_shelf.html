@@ -1,6 +1,6 @@
 {% include "_macros/feed_item.html" %}
 
-{% defer (url=anonApi('feed-shelf', [slug]), id='shelf', as='feed-shelf', key=slug) %}
+{% defer (url=anonApi('feed-shelf', [slug]), id='shelf') %}
   {{ feed_shelf_landing(this) }}
 {% placeholder %}
   <p class="spinner alt spaced"></p>
