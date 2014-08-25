@@ -32,7 +32,7 @@
       </header>
       <ol class="grid c">
         {% for result in featured_apps %}
-          {{ app_cast(result) }}
+          {{ app_cast(result, true) }}
           <li>{{ market_tile(result, link=true, src='featured', tray=False) }}</li>
         {% endfor %}
       </ol>
