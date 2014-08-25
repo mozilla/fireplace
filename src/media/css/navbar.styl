@@ -6,6 +6,11 @@
     display: none;
 }
 
+[data-page-type~=settings] .header-button.settings,
+.act-tray.active .settings {
+    background-image: url(../img/pretty/gear.svg);
+}
+
 @media $narrower-than-desktop {
     // New feed navigation (mobile only).
     header .act-tray {
@@ -64,8 +69,8 @@
             position: relative;
             right: 55px;
 
-            &.active a.settings {
-                background-image: url(../img/pretty/gear.svg);  // Don't highlight.
+            &.active .header-button.settings {
+                background-image: url(../img/pretty/gear.svg);
             }
             a.settings {
                 height: 50px;
@@ -266,7 +271,7 @@
         }
     }
     [data-page-type~=settings] .header-button.settings {
-        background-image: url(../img/pretty/gear.svg);
+        background-image: url(../img/pretty/settings_gear.svg);
     }
 }
 

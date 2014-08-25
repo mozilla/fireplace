@@ -32,7 +32,8 @@
       </header>
       <ol class="grid c">
         {% for result in featured_apps %}
-          <li>{{ market_tile(app_cast(result), link=true, src='featured', tray=False) }}</li>
+          {{ app_cast(result) }}
+          <li>{{ market_tile(result, link=true, src='featured', tray=False) }}</li>
         {% endfor %}
       </ol>
       <a href="{{ featured_url }}" class="view-all-mbl">{{ _('View All') }}</a>

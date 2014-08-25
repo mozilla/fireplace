@@ -1,6 +1,6 @@
 {% include "_macros/feed_item.html" %}
 
-{% defer (url=anonApi('feed-app', [slug]), id='feed_app', as='feed-app', key=slug) %}
+{% defer (url=anonApi('feed-app', [slug]), id='feed_app') %}
   <section class="main feed feed-landing feed-app-landing">
     {{ feed_app(this) }}
   </section>
