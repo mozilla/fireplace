@@ -7,7 +7,7 @@ casper.test.begin('Feedback tests on mobile', {
     test: function(test) {
 
         casper.waitForSelector('#splash-overlay.hide', function() {
-            casper.click('#account-settings .toggles li:last-child a');
+            casper.click('.nav-settings .feedback a');
         });
 
         casper.waitUntilVisible('.feedback-form textarea', function() {

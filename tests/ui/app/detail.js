@@ -6,8 +6,8 @@ casper.test.begin('Detail Page baseline tests', {
 
     test: function(test) {
 
-        casper.waitForSelector('#featured', function() {
-            casper.click('#featured ol li a:first-child');
+        casper.waitForSelector('.feed', function() {
+            casper.click('.app-list:last-child li:first-child .app-link');
         });
 
         casper.waitForSelector('.reviews h3', function() {

@@ -16,7 +16,7 @@ casper.test.begin('Detail can rate', {
 
     test: function(test) {
 
-        casper.waitForSelector('#splash-overlay.hide', function() {
+        casper.waitForSelector('.reviews', function() {
             test.assertSelectorHasText('#add-review', 'Sign in to Review');
             helpers.fake_login();
         });

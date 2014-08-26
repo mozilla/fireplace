@@ -129,7 +129,6 @@ function(_) {
         apps.getInstalled().done(buttons.mark_btns_as_installed);
         setTimeout(function() {
             z.page.trigger('splash_removed');
-            splash.remove();
         }, 1500);
     });
 
