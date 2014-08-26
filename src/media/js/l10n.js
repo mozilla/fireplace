@@ -40,8 +40,10 @@ if (!window.define) {
     var qs_lang = /[\?&]lang=([\w\-]+)/i.exec(window.location.search);
     var locale = get_locale((qs_lang && qs_lang[1]) || navigator.language || navigator.userLanguage);
     if (locale === 'en-US') {
+        // Pull the English locales in since feed editorial brand strings
+        // don't necessarily always match the gettext key. So don't return
+        // here.
         window.navigator.l10n = {language: 'en-US'};
-        return;
     }
 
     // Cachebust the .js file for our CDN.
