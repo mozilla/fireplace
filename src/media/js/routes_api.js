@@ -28,6 +28,6 @@ define('routes_api', [], function() {
         'feed-collection': '/api/v2/fireplace/feed/collections/{0}/',
         'feed-shelf': '/api/v2/fireplace/feed/shelves/{0}/',
         'feed-items': '/api/v2/feed/items/',
-        'feed': '/api/v2/feed/get/'
+        'feed': '/api/v2/feed/get/?cache=1&vary=0'
     };
 });
