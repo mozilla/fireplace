@@ -57,7 +57,7 @@ define('helpers_local',
     globals.iarc_names = iarc.names;
     globals.REGIONS = settings.REGION_CHOICES_SLUG;
     globals.user_helpers = user_helpers;
-    globals.PLACEHOLDER_ICON = urls.media('fireplace/img/icons/placeholder.png');
+    globals.PLACEHOLDER_ICON = urls.media('media/fireplace/img/icons/placeholder.png');
 
     /* Helpers functions, provided in the default context. */
     function indexOf(arr, val) {
