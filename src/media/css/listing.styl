@@ -60,14 +60,6 @@ $triangle-size = 20px;
     min-height: 64px;
     padding: 15px 10px 15px 84px;
 
-    h3 {
-        font-size: 20px;
-        font-weight: 400;
-        line-height: 18px;
-        margin: -4px 0 -7px;
-        padding-bottom: 10px;
-    }
-
     .subdetail {
         color: $earl-gray;
         font-size: 12px;
@@ -314,10 +306,15 @@ grid-style() {
     .subdetail, .button, .cnt {
         display: none;
     }
-    .mkt-tile {
+    .product.mkt-tile {
+        box-shadow: none;
+        margin-bottom: 0;
         position: relative;
         width: 100%;
 
+        .deferred {
+            margin-bottom: 0;
+        }
         &:hover .icon {
             opacity: .8;
         }
@@ -334,7 +331,12 @@ grid-style() {
             padding-bottom: 2px;
         }
         .info {
-            padding-top: 10px;
+            margin-left: 0;
+            max-width: 78px;
+            min-width: 78px;
+        }
+        .elliflow {
+            max-width: 100%;
         }
         .price {
             color: $sailor-blue;
@@ -501,7 +503,7 @@ grid-style() {
         }
     }
 
-    .grid, .listing.grid-if-desktop {
+    .grid, .listing.grid-if-desktop.feed {
         max-width: $desktop-content;
         padding: 0 5px;
 
