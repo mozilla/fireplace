@@ -7,7 +7,7 @@ casper.test.begin('Test lightbox', {
     test: function(test) {
 
         casper.waitForSelector('#splash-overlay.hide', function() {
-            casper.click('#featured ol li a:last-child');
+            casper.click('.app-list:last-child li:first-child .app-link');
         });
 
         casper.waitForSelector('.slider li:first-child .screenshot img', function() {

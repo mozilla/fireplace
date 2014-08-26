@@ -32,10 +32,6 @@ casper.test.begin('Feedback on desktop', {
             casper.click('.feedback-form button');
          });
 
-        casper.waitWhileVisible('.feedback.modal', function() {
-            test.assertNotVisible('.feedback.modal');
-        });
-
         casper.run(function() {
            test.done();
         });
