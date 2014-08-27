@@ -2,7 +2,7 @@
 
 Fireplace is a packaged version of the Firefox Marketplace's front-end.
 
-[![Build Status](https://travis-ci.org/mozilla/fireplace.png?branch=master)](https://travis-ci.org/mozilla/fireplace)
+[![Build Status](https://travis-ci.org/mozilla/fireplace.svg?branch=master)](https://travis-ci.org/mozilla/fireplace)
 
 
 ## Glossary
