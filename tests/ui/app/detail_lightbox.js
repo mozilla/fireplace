@@ -6,7 +6,7 @@ casper.test.begin('Test lightbox', {
 
     test: function(test) {
 
-        casper.waitForSelector('#splash-overlay.hide', function() {
+        casper.waitForSelector('.app-list:last-child li:first-child .app-link', function() {
             casper.click('.app-list:last-child li:first-child .app-link');
         });
 
