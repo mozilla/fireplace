@@ -97,6 +97,7 @@ define('mobilenetwork',
         'america_movil',
         'carrierless',
         'china_unicom',
+        'congstar',
         'deutsche_telekom',
         'etisalat',
         'grameenphone',
@@ -174,9 +175,14 @@ define('mobilenetwork',
         },
 
         // Germany
-        // 1, 6
         262: {
-            1: 'deutsche_telekom',
+            1: {
+                // Differentiate congstar using the SPN, everything else is
+                // DT.
+                '__default': 'deutsche_telekom',
+                'congstar': 'congstar',
+                'congstar.de': 'congstar'
+            },
             2: 'deutsche_telekom',
             7: 'o2'
         },
@@ -281,8 +287,8 @@ define('mobilenetwork',
         440: 'kddi'
     };
 
-    function getNetwork(mcc, mnc) {
-        console.tagged('getNetwork').log('Trying MCC = ' + mcc + ', MNC = ' + mnc);
+    function getNetwork(mcc, mnc, spn) {
+        console.tagged('getNetwork').log('Trying MCC = ' + mcc + ', MNC = ' + mnc + ', SPN = ' + spn);
 
         // Look up region and carrier from MCC (Mobile Country Code)
         // and MNC (Mobile Network Code).
@@ -290,6 +296,9 @@ define('mobilenetwork',
         // Strip leading zeros and make it a string.
         mcc = (+mcc || 0) + '';
         mnc = (+mnc || 0) + '';
+
+        // Already a string or undefined, make it a lowercase string.
+        spn = (spn || '').toLowerCase();
 
         // Workaround for Polish SIMs (bug 876391, bug 880369).
         if (mcc === '260' && mnc[0] === '2') {
@@ -316,9 +325,15 @@ define('mobilenetwork',
         var carrier = carriersRegions[mcc];
 
         // If it's a string, the carrier is the same for every MNC.
-        // If it's an object, the carrier is different based on the MNC.
+        // If it's an object, the carrier is different based on the MNC or SPN.
         if (typeof carrier === 'object') {
             carrier = carrier[mnc];
+
+            // Some carriers share the same MCC but have a different SPN to
+            // tell them apart.
+            if (typeof carrier === 'object') {
+                carrier = carrier[spn] || carrier.__default;
+            }
         }
 
         return {
@@ -334,17 +349,23 @@ define('mobilenetwork',
             if (mccParts.length < 2) {
                 return null;
             }
-            return {mcc: mccParts[0], mnc: mccParts[1]};
+            // mccParts contains at least mcc and mnc. Recent implementations
+            // includes the SPN as a third parameter, if it's not present we'll
+            // just return undefined, it's fine.
+            return {mcc: mccParts[0], mnc: mccParts[1], spn: mccParts[2]};
         }
+        // Testing lastKnownHomeNetwork first is important, because it's the
+        // only one which contains the SPN.
         var lastNetwork = mccify(conn.lastKnownHomeNetwork ||
                                  conn.lastKnownNetwork);
-        console.log('lastKnownNetwork:', conn.lastKnownNetwork);
+        console.log('lastKnownNetwork: ' + conn.lastKnownNetwork +
+                    ', lastKnownHomeNetwork: ' + conn.lastKnownHomeNetwork);
         if (lastNetwork) {
-            console.log('Using lastKnownNetwork:', lastNetwork);
+            console.log('Using network: ' + lastNetwork);
             return lastNetwork;
         } else {
             console.log('Unknown network.');
-            return {mcc: undefined, mnc: undefined};
+            return {mcc: undefined, mnc: undefined, spn: undefined};
         }
     }
 
@@ -353,7 +374,7 @@ define('mobilenetwork',
         var carrier = GET.carrier || user.get_setting('carrier') || null;
         var consoleTagged = console.tagged('detectMobileNetwork');
         var newSettings = {};
-        var mccs, region, source, i, pair;
+        var mccs, region, source, i, triplet;
 
         navigator = navigator || window.navigator;
         newSettings.carrier_sim = null;
@@ -362,7 +383,7 @@ define('mobilenetwork',
         // Array of sources to look at, in order. Each source function returns
         // either an Array of mcc/mnc objects, or a falsey value.
         var sources = [
-            ['GET mcc/mnc', getMCCMNC],
+            ['GET mcc/mnc', getMCCMNCSPN],
             ['GET mccs', getMCCs],
             ['dual SIM', getMultiSIM],
             ['SIM', getSIM],
@@ -381,11 +402,11 @@ define('mobilenetwork',
             // from each, stop as soon as we have a valid region, storing the
             // result in the settings.
             for (i = 0; i < mccs.length; i++) {
-                pair = mccs[i];
-                consoleTagged.log('mccs[' + i + ']:', pair);
-                // Look up region and carrier from mcc/mnc, applying
+                triplet = mccs[i];
+                consoleTagged.log('mccs[' + i + ']:', triplet);
+                // Look up region and carrier from mcc/mnc/spn, applying
                 // workarounds for special cases.
-                var network = getNetwork(pair.mcc, pair.mnc);
+                var network = getNetwork(triplet.mcc, triplet.mnc, triplet.spn);
 
                 if (carrier !== network.carrier) {
                     persistent_console.log('Carrier changed by ' + source + ':',
@@ -407,11 +428,11 @@ define('mobilenetwork',
 
         // Potential sources used by detectMobileNetwork() are defined below:
 
-        // Get mobile region and carrier information passed via mcc/mnc
+        // Get mobile region and carrier information passed via mcc/mnc/spn
         // querystring parameters.
-        function getMCCMNC() {
-            if (GET.mcc || GET.mnc) {
-                return [{mcc: GET.mcc, mnc: GET.mnc}];
+        function getMCCMNCSPN() {
+            if (GET.mcc || GET.mnc || GET.spn) {
+                return [{mcc: GET.mcc, mnc: GET.mnc, spn: GET.spn}];
             }
         }
 
@@ -423,7 +444,7 @@ define('mobilenetwork',
             } catch(e) {}
         }
 
-        // Get mcc/mnc pairs using mozMobileConnections (needs to be privileged).
+        // Get mcc/mnc/spn triplets using mozMobileConnections (needs to be privileged).
         function getMultiSIM() {
             try {
                 if (navigator.mozMobileConnections) {
@@ -442,7 +463,7 @@ define('mobilenetwork',
             }
         }
 
-        // Get a single mcc/mnc pair using mozMobileConnection (needs to be privileged,
+        // Get a single mcc/mnc/spn triplet using mozMobileConnection (needs to be privileged,
         // legacy API from before mozMobileConnections was introduced).
         function getSIM() {
             try {

@@ -47,6 +47,20 @@ test('yes MCC, yes MNC', function(done, fail) {
     done();
 });
 
+test('yes MCC, yes MNC, no SPN', function(done, fail) {
+    var network = mobilenetwork.getNetwork('262', '001');
+    eq_(network.region, 'de');
+    eq_(network.carrier, 'deutsche_telekom');
+    done();
+});
+
+test('yes MCC, yes MNC, yes SPN', function(done, fail) {
+    var network = mobilenetwork.getNetwork('262', '001', 'congstar.de');
+    eq_(network.region, 'de');
+    eq_(network.carrier, 'congstar');
+    done();
+});
+
 test('no carrier+region', function(done) {
     user.clear_settings();
     eq_(user.get_setting('carrier_sim'), null);
@@ -92,12 +106,12 @@ test('carrier+region for SIM via navigator.mozMobileConnection', function(done) 
 test('carrier+region for SIM via navigator.mozMobileConnection lastKnownHomeNetwork', function(done) {
     user.clear_settings();
 
-    var navigator_ = {mozMobileConnection: {lastKnownHomeNetwork: '214-005'}};
+    var navigator_ = {mozMobileConnection: {lastKnownHomeNetwork: '262-001'}};
 
     mobilenetwork.detectMobileNetwork(navigator_);
 
-    eq_(user.get_setting('carrier_sim'), 'telefonica');
-    eq_(user.get_setting('region_sim'), 'es');
+    eq_(user.get_setting('carrier_sim'), 'deutsche_telekom');
+    eq_(user.get_setting('region_sim'), 'de');
 
     done();
 });
@@ -116,6 +130,26 @@ test('carrier+region for SIM via navigator.mozMobileConnections', function(done)
 
     eq_(user.get_setting('carrier_sim'), 'deutsche_telekom');
     eq_(user.get_setting('region_sim'), 'gr');
+
+    done();
+});
+
+test('carrier+region for SIM via navigator.mozMobileConnections with SPN', function(done) {
+    user.clear_settings();
+
+    var navigator_ = {
+        mozMobileConnections: [{
+            // This should match what the device typically returns. In particular,
+            // note that the SPN is only included in `lastKnownHomeNetwork`.
+            lastKnownHomeNetwork: '262-001-congstar',
+            lastKnownNetwork: '262-001'
+        }]
+    };
+
+    mobilenetwork.detectMobileNetwork(navigator_);
+
+    eq_(user.get_setting('carrier_sim'), 'congstar');
+    eq_(user.get_setting('region_sim'), 'de');
 
     done();
 });
