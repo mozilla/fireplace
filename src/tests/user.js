@@ -26,7 +26,9 @@ function mockConsumerInfoRequestFailure(data) {
 
 test('consumer_info automatically set region and switches when required', function(done, fail) {
     var geoip_region = null;
-    var settings = {};
+    var settings = {
+        api_cdn_whitelist: {}
+    };
     mock(
         'consumer_info',
         {
@@ -58,17 +60,22 @@ test('consumer_info automatically set region and switches when required', functi
                 contains(settings.switches, 'dummy-switch');
                 done();
             });
-        }
+        },
+        fail
     );
 });
 
 test('consumer_info automatically does not reset region if already present', function(done, fail) {
     var geoip_region = null;
+    var settings = {
+        api_cdn_whitelist: {}
+    };
     mock(
         'consumer_info',
         {
             requests: {get: mockConsumerInfoRequestSuccess({region: 'nowhere'})},
             user: {logged_in: function() { return false; }},
+            settings: settings,
             user_helpers: {
                 region: function(x, y) { return 'previous_region'; },
                 carrier: function() { return ''; },
@@ -82,16 +89,21 @@ test('consumer_info automatically does not reset region if already present', fun
                 eq_(geoip_region, null);
                 done();
             });
-        }
+        },
+        fail
     );
 });
 
 test('consumer_info automatically sets region to restofworld if API call fails', function(done, fail) {
     var geoip_region = null;
+    var settings = {
+        api_cdn_whitelist: {}
+    };
     mock(
         'consumer_info',
         {
             requests: {get: mockConsumerInfoRequestFailure()},
+            settings: settings,
             user_helpers: {
                 region: function(x, y) { return ''; },
                 carrier: function() { return ''; },
@@ -104,7 +116,8 @@ test('consumer_info automatically sets region to restofworld if API call fails',
                 eq_(geoip_region, 'restofworld');
                 done();
             });
-        }
+        },
+        fail
     );
 });
 
