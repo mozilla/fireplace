@@ -8,15 +8,15 @@ casper.test.begin('Test navbar', {
     test: function(test) {
 
         casper.waitForSelector('.navbar', function() {
-            test.assertExists('.nav-mkt[data-tab="homepage"].active', 'Check navbar initialised');
-            test.assertExists('.nav-mkt li[data-tab="homepage"].active', 'Check navbar li initialised');
-            test.assertExists('.nav-settings[data-tab="settings"]:not(.active)', 'Check settings exists but is not active.');
-            test.assertExists('.nav-settings li[data-tab="settings"].active', 'Check settings li exists');
+            test.assertExists('.nav-mkt.active', 'Check navbar initialised');
+            test.assertExists('.nav-mkt li[data-tab="homepage"]', 'Check navbar li initialised');
+            test.assertExists('.nav-settings:not(.active)', 'Check settings exists but is not active.');
+            test.assertExists('.nav-settings li[data-tab="settings"]', 'Check settings li exists');
             casper.click('.nav-mkt li[data-tab="categories"] a');
         });
 
-        casper.waitForSelector('.nav-mkt li[data-tab="categories"].active', function() {
-            test.assertExists('.nav-mkt[data-tab="categories"]', 'Check category tab active');
+        casper.waitForSelector('[data-page-type~="categories"]', function() {
+            test.assertExists('[data-page-type~=categories]', 'Check navigate to category');
             casper.click('.act-tray.mobile');
         });
 
@@ -26,13 +26,15 @@ casper.test.begin('Test navbar', {
         });
 
         casper.waitForSelector('.feedback.main', function() {
-            test.assertExists('.nav-settings[data-tab="feedback"]', 'Check feeback tab clicked');
+            test.assertExists('.feedback.main', 'Check navigate to feedback');
             casper.click('.mkt-tray');
         });
 
-        casper.waitForSelector('.nav-mkt', function() {
-            test.assertExists('.nav-mkt[data-tab="categories"]', 'Check we are back on cats tab');
-            test.assertExists('.nav-mkt li[data-tab="categories"].active', 'Check cat li has active class.');
+        casper.waitForSelector('.nav-mkt.active', function() {
+            test.assertExists('[data-page-type~=homepage]',
+                              'Check we are back on homepage');
+            test.assertExists('.nav-mkt.active',
+                              'Check nav-mkt has active class.');
         });
 
         casper.run(function() {

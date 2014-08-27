@@ -9,7 +9,7 @@ define('navbar',
 
     // Tab name must match route/view name to match window.location.pathname.
     var tabsMkt = ['homepage', 'new', 'popular', 'categories'];
-    var tabsSettings = ['settings', 'purchases', /*'help',*/ 'feedback'];
+    var tabsSettings = ['settings', 'purchases', 'feedback'];
 
     // Navbar settings + Marketplace buttons.
     function initNavbarButtons() {
@@ -19,10 +19,6 @@ define('navbar',
         function toggleNavbar($on, $off) {
             $on.addClass('active');
             $off.removeClass('active');
-            // Highlight first child if haven't visited this nav yet.
-            if (!$on.find('li.active').length) {
-                $('li:first-child', $on).addClass('active');
-            }
         }
 
         // Toggle between Settings page and Marketplace pages.
@@ -30,21 +26,18 @@ define('navbar',
             // Activate Settings page navbar.
             e.preventDefault();
             toggleNavbar($settingsNavGroup, $mktNavGroup);
-            z.page.trigger('navigate', $settingsNavGroup.find('li.active a').attr('href'));
+            z.page.trigger('navigate',
+                           $settingsNavGroup.find('[data-tab]:first-child a').attr('href'));
         })
         .on('click', '.mkt-tray', function() {
             // Activate Marketplace pages navbar.
             toggleNavbar($mktNavGroup, $settingsNavGroup);
-            navigation.back();
+            z.page.trigger('navigate',
+                           $mktNavGroup.find('[data-tab]:first-child a').attr('href'));
         })
         .on('click', '.site a', function() {
             // Activate Marketplace pages navbar.
             toggleNavbar($mktNavGroup, $settingsNavGroup);
-
-            // Change tab to home.
-            $('.nav-mkt').attr('data-tab', 'homepage')
-                   .find('li').removeClass('active')
-                   .eq(0).addClass('active');
         });
     }
     z.body.one('loaded', initNavbarButtons);
@@ -63,8 +56,15 @@ define('navbar',
         }
 
         // Calculate next tab.
-        var currentTab = $navbar.attr('data-tab');
+        var currentTab;
+        var page_type = $('body').attr('data-page-type').split(' ');
+        $navbar.find('[data-tab]').each(function(i, tab) {
+            if (page_type.indexOf(tab.dataset.tab) !== -1) {
+                currentTab = tab.dataset.tab;
+            }
+        });
         var tabPos = tabs.indexOf(currentTab);
+
         if (e.gesture.direction == 'left') {
             // Next tab (unless we're at the end of the array).
             tabPos = tabPos === tabs.length - 1 ? tabPos : tabPos + 1;
@@ -79,31 +79,16 @@ define('navbar',
             return;
         }
 
-        $navbar.find('li').eq(tabPos).find('.tab-link').trigger('click');
+        var href = $navbar.find('li').eq(tabPos).find('.tab-link').attr('href');
+        z.page.trigger('navigate', href);
     });
 
-    // Tap handler.
     z.body.on('click', '.navbar li > a', function() {
         var $this = $(this);
         if ($this.hasClass('desktop-cat-link')) {
             // Don't allow click of category tab on desktop.
             return;
         }
-        var $navbar = $this.closest('.navbar.active');
-        var tabs = tabsMkt;
-        if ($navbar.hasClass('nav-settings')) {
-            tabs = tabsSettings;
-        }
-
-        var targetTab = $this.closest('li').attr('data-tab');
-        var tabPos = tabs.indexOf(targetTab);
-
-        // Visually change tab by sliding navbar.
-        $navbar.attr('data-tab', targetTab)
-               .find('li').removeClass('active')
-               .eq(tabPos).addClass('active');
-
-        z.page.trigger('navigate', $this.attr('href'));
     });
 
     // Desktop.
@@ -147,8 +132,6 @@ define('navbar',
 
         $('#site-nav').html(
             nunjucks.env.render('nav.html', {
-                active_tab_mkt: tabsMktRouteMap[window.location.pathname] || 'homepage',
-                active_tab_settings: tabsSettingsRouteMap[window.location.pathname] || 'settings',
                 is_settings: z.body.attr('data-page-type').indexOf('settings') !== -1,
                 z: z,
             })
@@ -178,4 +161,5 @@ define('navbar',
 
     // Render navbar.
     z.page.one('loaded', render);
+    z.win.on('resize', _.debounce(render, 100));
 });

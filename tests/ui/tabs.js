@@ -7,7 +7,7 @@ casper.test.begin('Check tabs scroll position', {
 
     test: function(test) {
 
-        casper.waitForSelector('.navbar .active', function then() {
+        casper.waitForSelector('.navbar', function then() {
             var startScrollY = casper.evaluate(function() {
                 return window.scrollY;
             });
@@ -16,10 +16,10 @@ casper.test.begin('Check tabs scroll position', {
                 window.scrollTo(0, tabsTop);
                 return window.scrollY;
             }, casper.getElementBounds('.navbar').top);
-            casper.click('.navbar .active a');
+            casper.click('.navbar a');
         });
 
-        casper.waitForSelector('.navbar .active', function then() {
+        casper.waitForSelector('.navbar', function then() {
             var scrollY = casper.evaluate(function() {
                 return window.scrollY;
             });
@@ -28,7 +28,7 @@ casper.test.begin('Check tabs scroll position', {
             casper.back();
         });
 
-        casper.waitForSelector('.navbar .active', function then() {
+        casper.waitForSelector('.navbar', function then() {
             var scrollY = casper.evaluate(function() {
                 return window.scrollY;
             });
