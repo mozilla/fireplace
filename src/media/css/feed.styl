@@ -24,14 +24,14 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
     ul.feed  {
         padding: 0;
     }
-    [data-page-type="root"] .feed {
+    [data-page-type~="homepage"] .feed {
         max-width: $feed-column-width * 3;
         width: $mobile-tile-width * 3 + $mobile-tile-margin * 2;
     }
 }
 
 @media (min-width: 640px) {
-    [data-page-type="root"] .feed .feed-item-item:not(.loadmore) {
+    [data-page-type~="homepage"] .feed .feed-item-item:not(.loadmore) {
         margin: 0 0 $vertical-tile-padding;
         right: none;
     }
@@ -39,13 +39,13 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
 
 @media (min-width: 640px) and (max-width: 959px) {
     // Two column feed layout on tweener screens.
-    [data-page-type="root"] .feed {
+    [data-page-type~="homepage"] .feed {
         max-width: $feed-column-width * 2;
         width: $mobile-tile-width * 2 + $mobile-tile-margin;
     }
 }
 
-[data-page-type~="root"] ul.feed {
+[data-page-type~="homepage"] ul.feed {
     opacity: 0;  // Fade-in.
 }
 
@@ -53,11 +53,11 @@ $vertical-tile-margin = 10px;  // Vertical space between feed tiles.
 .feed {
     list-style-type: none;
     margin: 0 auto;
+    max-width: $feed-column-width;
     padding: 10px 0;
     position: relative;
     transition(opacity .2s .15s);
     width: 100%;
-    max-width: $feed-column-width;
 
     .feed-item-item {
         margin: 0 auto $vertical-tile-padding auto;

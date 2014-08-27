@@ -45,10 +45,7 @@ define('views/homepage',
         params = params || {};
 
         builder.z('title', '');
-
-        builder.z('type', 'root');
-        builder.z('search', params.name);
-        builder.z('title', params.name);
+        builder.z('type', 'root homepage');
 
         if ('src' in params) {
             delete params.src;

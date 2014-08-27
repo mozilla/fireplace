@@ -91,101 +91,86 @@
                 width: 50px;
             }
         }
-
-        .navbar {
-            disable-user-select();
-            display: inline-block;
-            height: auto;
-            opacity: 1;
-            padding: 8px 0;
-            position: absolute;
-            top: 0;
-            transition(unquote('right .5s ease-out, left .3s ease-in'));
-            width: 100%;
-            white-space: nowrap;
-
-            // Toggle navbars.
-            &.nav-mkt {
-                right: -100%;
-
-                &.active {
-                    right: -44px;
-
-                    // Sliding navbar.
-                    &[data-tab="homepage"] {
-                        right: -60px;
-                    }
-                    &[data-tab="new"] {
-                        right: -10px;
-                    }
-                    &[data-tab="popular"] {
-                        right: 53px;
-                    }
-                    &[data-tab="categories"] {
-                        right: 120px;
-                    }
-                }
-            }
-            &.nav-settings {
-                right: 100%;
-
-                &.active {
-                    right: 0;
-
-                    // Sliding navbar.
-                    &[data-tab="settings"] {
-                        right: -9px;
-                    }
-                    &[data-tab="purchases"] {
-                        right: 35px;
-                    }
-                    &[data-tab="help"] {
-                        right: 28px;
-                    }
-                    &[data-tab="feedback"] {
-                        right: 100px;
-                    }
-                }
-            }
-            li {
-                display: inline-block;
-                font-size: 15px;
-                margin: 0 10px;
-                position: relative;
-                text-align: center;
-                text-transform: uppercase;
-                top: 2px;
-                width: -moz-fit-content;
-                width: -webkit-fit-content;
-
-                a {
-                    color: $navbar-text;
-                    display: block;
-                    height: 38px;
-                    line-height: 32px;
-
-                    &:hover {
-                        border-bottom: 2px solid $bg-gray;
-                        text-decoration: none;
-                    }
-                }
-                &.active a {
-                    color: $breezy-blue;
-                    border-bottom: 3px solid $breezy-blue;
-
-                    &:hover {
-                        border-bottom-color: $breezy-blue;
-                    }
-                }
-
-                .desktop-cat-link {
-                    display: none;
-                }
-            }
-        }
         .account-links {
             display: none;
         }
+    }
+
+    .navbar {
+        disable-user-select();
+        display: inline-block;
+        height: auto;
+        opacity: 1;
+        padding: 8px 0;
+        position: absolute;
+        top: 0;
+        transition(unquote('right .5s ease-out, left .3s ease-in'));
+        white-space: nowrap;
+        width: 100%;
+
+        &.nav-mkt {
+            right: -100%;
+
+            &.active {
+                right: -44px;
+            }
+        }
+        &.nav-settings {
+            right: 100%;
+
+            &.active {
+                right: 0;
+            }
+        }
+        li {
+            display: inline-block;
+            font-size: 15px;
+            margin: 0 10px;
+            position: relative;
+            text-align: center;
+            text-transform: uppercase;
+            top: 2px;
+            width: -moz-fit-content;
+            width: -webkit-fit-content;
+
+            a {
+                color: $navbar-text;
+                display: block;
+                height: 38px;
+                line-height: 32px;
+
+                &:hover {
+                    border-bottom: 2px solid $bg-gray;
+                    text-decoration: none;
+                }
+            }
+            .desktop-cat-link {
+                display: none;
+            }
+        }
+    }
+
+    // Sliding navbar.
+    [data-page-type~="homepage"] .nav-mkt.active {
+        right: -60px;
+    }
+    [data-page-type~="new"] .nav-mkt.active {
+        right: -10px;
+    }
+    [data-page-type~="popular"] .nav-mkt.active {
+        right: 53px;
+    }
+    [data-page-type~="categories"] .nav-mkt.active {
+        right: 120px;
+    }
+    [data-page-type="root settings"] .nav-settings.active {
+        right: -9px;
+    }
+    [data-page-type~="purchases"] .nav-settings.active {
+        right: 35px;
+    }
+    [data-page-type~="feedback"] .nav-settings.active {
+        right: 100px;
     }
 }
 
@@ -235,6 +220,9 @@
                 height: 50px;
                 outline: 0;
 
+                &.tab-link {
+                    border-bottom: 0;
+                }
                 &:hover {
                     text-decoration: none;
                 }
@@ -283,3 +271,22 @@
         top: 0px;
     }
 }
+
+// Navbar active states.
+activeNavLi() {
+    a {
+        color: $breezy-blue;
+        border-bottom: 3px solid $breezy-blue;
+
+        &:hover {
+            border-bottom-color: $breezy-blue;
+        }
+    }
+}
+[data-page-type="root settings"] [data-tab="settings"] {
+    activeNavLi();
+}
+for tab in homepage new popular categories purchases feedback
+    [data-page-type~={tab}] [data-tab={tab}] {
+        activeNavLi();
+    }
