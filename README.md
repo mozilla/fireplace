@@ -55,10 +55,21 @@ Please note that any file that belongs in the package must get added to `package
 ## Usage
 
 If you haven't already, run `commonplace init` to install local settings
-files. Some settings (`media/js/settings_local.js`) may need to be updated
-if you plan to run a local setup, including `api_url`.
+files. Some settings in `media/js/settings_local.js` will need to be updated
+if you plan to run a local setup, at minimum you should have something like this:
 
-From the terminal, run the following command
+```js
+define('settings_local', [], function() {
+    return {
+        api_url: 'http://localhost',
+        media_url: 'http://localhost/media'
+    };
+});
+```
+
+**Important**: Do not end the URLs in your settings file with slashes, doing so will lead to subtle and hard-to-debug errors.
+
+Once you have your settings file in place, to run Fireplace from the terminal, run the following command:
 
 ```bash
 damper
