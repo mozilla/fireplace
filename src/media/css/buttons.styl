@@ -51,7 +51,7 @@ $large = 60px;
 $h-padding = 10px;
 
 // Install button width.
-$btn-install-width = 65px;
+$btn-install-width = 90px;
 
 .button {
     background: $btn;
@@ -202,9 +202,11 @@ $btn-install-width = 65px;
         border-radius: 5px;
         box-shadow: 0 2px $btn-act;
         display: inline-block;
+        ellipsis();
         font-style: normal;
         height: 24px;
-        min-width: $btn-install-width;
+        padding: 0 $h-padding;
+        width: $btn-install-width;
     }
     .spin {
         display: none;
