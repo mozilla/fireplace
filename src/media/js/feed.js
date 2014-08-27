@@ -54,7 +54,7 @@ define('feed',
             // Generate a unique identifier from the brand.
             var brand_id = brand.type;
             _.each(brand.apps, function(app) {
-                brand_id += '_' + app.slug
+                brand_id += '_' + app.slug;
             });
             return brand_id;
         }

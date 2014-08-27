@@ -24,6 +24,7 @@ define('tracking_events',
 
     function track(tracking_args) {
         // Send UA event.
+        /*jshint validthis:true */
         tracking.trackEvent.apply(this, tracking_args);
         // Log the track.
         track_log.push(tracking_args);
