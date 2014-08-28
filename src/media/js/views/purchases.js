@@ -9,7 +9,7 @@ define('views/purchases', ['l10n', 'common/linefit', 'urls'],
 
         $('.linefit').linefit(2);
 
-        builder.z('type', 'settings');
+        builder.z('type', 'root settings purchases');
         builder.z('title', gettext('My Apps'));
         builder.z('parent', urls.reverse('homepage'));
     };
