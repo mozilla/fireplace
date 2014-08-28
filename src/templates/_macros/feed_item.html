@@ -198,15 +198,15 @@
 {% endmacro %}
 
 {% macro feed_shelf(shelf, landing) %}
-  {% set color = shelf.background_color %}
-
   <a href="{{ url('feed/feed_shelf', [shelf.slug])|
               urlparams(src='operator-shelf-element') }}"
      class="op-shelf fanchor" data-tracking-slug="{{ shelf.slug }}">
     <section class="feed-item shelf deferred-background {{ 'shelf-landing' if landing }}"
              style="background-image: url({{ PLACEHOLDER_ICON }})"
-             data-src="{{ shelf.background_image }}">
-      <div class="curve" style="background-color: {{ color|hex2rgba('.6') }}"></div>
+             data-src="{{ shelf.background_image }}"
+             data-carrier="{{ shelf.carrier }}"
+             data-region="{{ shelf.region }}">
+      <div class="curve"></div>
       <div class="info">
         <h1 class="name">{{ shelf.name|translate(shelf)|safe }}</h1>
       </div>
