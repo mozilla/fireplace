@@ -38,7 +38,8 @@ $grameenphone_color = #00ACE7;
     ul.feed  {
         padding: 0;
     }
-    [data-page-type~="homepage"] .feed {
+    body[data-page-type~="homepage"] ul.feed {
+        margin-top: 0;
         max-width: $feed-column-width * 3;
         width: $mobile-tile-width * 3 + $mobile-tile-margin * 2;
     }
@@ -60,6 +61,7 @@ $grameenphone_color = #00ACE7;
 }
 
 [data-page-type~="homepage"] ul.feed {
+    margin-top: 4px;
     opacity: 0;  // Fade-in.
 }
 
