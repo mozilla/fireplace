@@ -6,8 +6,8 @@ casper.test.begin('Test lightbox', {
 
     test: function(test) {
 
-        casper.waitForSelector('.app-list:last-child li:first-child .app-link', function() {
-            casper.click('.app-list:last-child li:first-child .app-link');
+        casper.waitForSelector('.app-link', function() {
+            casper.click('.app-link');
         });
 
         casper.waitForSelector('.slider li:first-child .screenshot img', function() {
