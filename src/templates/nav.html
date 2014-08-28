@@ -1,7 +1,7 @@
 {% include "_macros/act_tray.html" %}
 
-{% macro navtab(code, name, url, active_tab) %}
-<li class="{{ code }} {{ 'active' if active_tab == code }}" data-tab="{{ code }}">
+{% macro navtab(code, name, url) %}
+<li class="{{ code }}" data-tab="{{ code }}">
   <a class="tab-link" href="{{ url }}">{{ name }}</a>
 </li>
 {% endmacro %}
@@ -10,12 +10,13 @@
 {{ act_tray(true, is_settings) }}
 
 {# Navigation tabs (Home, New, Popular, Categories). #}
-<ul class="navbar nav-mkt{% if not is_settings %} active{% endif %}" data-tab="{{ active_tab_mkt }}">
+{# Uses body[data-page-type] to set active styles on the navigation tabs. #}
+<ul class="navbar nav-mkt{% if not is_settings %} active{% endif %}">
   {# Tab name must match route name. #}
-  {{ navtab('homepage', _('Home'), url('homepage'), active_tab_mkt) }}
-  {{ navtab('new', _('New'), url('new'), active_tab_mkt) }}
-  {{ navtab('popular', _('Popular'), url('popular'), active_tab_mkt) }}
-  <li class="categories {{ 'active' if active_tab_mkt == 'categories'}}" data-tab="categories">
+  {{ navtab('homepage', _('Home'), url('homepage')) }}
+  {{ navtab('new', _('New'), url('new')) }}
+  {{ navtab('popular', _('Popular'), url('popular')) }}
+  <li class="categories" data-tab="categories">
     <a class="tab-link mobile-cat-link" href="{{ url('categories') }}">{{ _('Categories') }}</a>
     <a class="desktop-cat-link">{{ _('Categories') }}</a>
     <div class="hovercats"></div>
@@ -23,12 +24,11 @@
 </ul>
 
 {# Settings tabs (My Account, My Apps, Help, Feedback). #}
-<ul class="navbar nav-settings{% if is_settings %} active{% endif %}" data-tab="{{ active_tab_settings }}">
+<ul class="navbar nav-settings{% if is_settings %} active{% endif %}">
   {# Tab name must match route name. #}
-  {{ navtab('settings', _('My Account'), url('settings'), active_tab_settings) }}
-  {{ navtab('purchases', _('My Apps'), url('purchases'), active_tab_settings) }}
-  {# {{ navtab('help', _('Help'), '#', active_tab_settings) }} #}
-  {{ navtab('feedback', _('Feedback'), url('feedback'), active_tab_settings) }}
+  {{ navtab('settings', _('My Account'), url('settings')) }}
+  {{ navtab('purchases', _('My Apps'), url('purchases')) }}
+  {{ navtab('feedback', _('Feedback'), url('feedback')) }}
 </ul>
 
 <div class="mkt-tray{% if is_settings %} active{% endif %}">
