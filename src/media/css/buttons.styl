@@ -50,8 +50,14 @@ $large = 60px;
 // Horizontal padding around the button's text.
 $h-padding = 10px;
 
+// Button font-size.
+$font-size = 15px;
+
 // Install button width.
 $btn-install-width = 90px;
+
+// Install button font-size.
+$install-font-size = 12px;
 
 .button {
     background: $btn;
@@ -61,7 +67,7 @@ $btn-install-width = 90px;
     color: #fff;
     display: inline-block;
     ellipsis();
-    font: 400 12px/$medium $open-stack;
+    font: 400 $font-size/$medium $open-stack;
     height: $medium;
     min-width: 100px;
     white-space: nowrap;
@@ -184,6 +190,7 @@ $btn-install-width = 90px;
     bottom: 0;
     box-shadow: none;
     cursor: pointer;
+    font-size: $install-font-size;
     height: 34px;
     min-width: $btn-install-width;
     padding: 0;
