@@ -81,7 +81,7 @@ default.
 For more options, read the [damper documentation](https://github.com/mozilla/commonplace/wiki/Damper).
 
 For instructions on running Flue (the mock API server), please see the [Flue
-docs](https://github.com/mozilla/fireplace/blob/master/flue/README.rst).
+docs](https://github.com/mozilla/flue/blob/master/README.md).
 
 
 ### Compiling
