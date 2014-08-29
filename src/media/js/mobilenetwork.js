@@ -59,10 +59,6 @@ define('mobilenetwork',
         // China
         460: 'cn',
 
-        // India
-        404: 'in',
-        405: 'in',
-
         // Italy
         222: 'it',
 
