@@ -185,13 +185,13 @@ $install-font-size = 12px;
 }
 
 // Install buttons.
-.mkt-tile .button {
+.mkt-tile .install {
     // Unset many .button properties.
-    bottom: 0;
+    bottom: -7px; // To compensate for the larger click target. Calculation: (24-34)/2 - 2
     box-shadow: none;
     cursor: pointer;
     font-size: $install-font-size;
-    height: 34px;
+    height: 34px; // Actual click-target height. Queen Krupa request.
     min-width: $btn-install-width;
     padding: 0;
     position: absolute;
@@ -199,9 +199,6 @@ $install-font-size = 12px;
 
     &.install {
         background: transparent;
-    }
-    &.launch em {
-        background: $action;
     }
     em {
         // This em becomes the visual button.
@@ -220,7 +217,7 @@ $install-font-size = 12px;
     }
     // Accomodate a better vertical align since this state has no box-shadow.
     &[disabled] {
-        bottom: -2px;
+        bottom: -7px;
 
         em {
             background: $disabled;
@@ -241,7 +238,7 @@ $install-font-size = 12px;
     }
     &.spinning, &.purchasing {
         background: $btn-act;
-        bottom: 5px;
+        bottom: 2px;
         height: $tiny;
 
         em {
@@ -253,6 +250,21 @@ $install-font-size = 12px;
     }
 }
 
+// Install button launch state.
+.mkt-tile .launch {
+    em {
+        background: $action;
+        box-shadow: 0 2px $action-act;
+    }
+    &:hover em {
+        background: $action-hvr;
+    }
+    &:active em {
+        background: $action-act;
+    }
+}
+
+// More button.
 .loadmore {
     list-style: none;
     margin: 0 auto;
@@ -260,24 +272,17 @@ $install-font-size = 12px;
     position: relative;
     width: 100%;
 
-    button {
-        background: $support;
-        box-shadow: 0 2px $support-act;
+    .button {
         display: block;
         margin: auto;
         padding: 0;
         width: 100%;
 
-        &:hover {
-            background: $support-hvr;
-            color: $white;
-        }
-        &:active {
-            background: $support-act;
-        }
-        &.hide,
         &:not(.hide) + .spinner {
             display: none;
+        }
+        &.hide {
+            visibility: hidden;
         }
     }
     &.loading {
@@ -303,6 +308,9 @@ $install-font-size = 12px;
     span,
     .throbber {
         display: none;
+    }
+    .spinner {
+        display: block;
     }
 }
 

@@ -7,9 +7,9 @@ define('views/homepage',
     var console = log('homepage');
     var gettext = l10n.gettext;
 
-    z.page.on('click', '.loadmore button', function() {
+    z.page.on('click', '.loadmore.feed-item-item button', function() {
         // Manually handle pagination in order to properly insert elements into
-        // Isotope's layout.
+        // Isotope's layout. Be careful with the selector above it has to target the homepage only!
         var $btn = $(this);
         var $loadmore = $btn.parent();
         var $btn_clone = $loadmore.clone();  // In case we have another page.
