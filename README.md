@@ -75,7 +75,7 @@ Once you have your settings file in place, to run Fireplace from the terminal, r
 damper
 ```
 
-This will start a local server and filesystem watcher on 0.0.0.0:8675 by
+This will start a local server and filesystem watcher on http://0.0.0.0:8675 by
 default.
 
 For more options, read the [damper documentation](https://github.com/mozilla/commonplace/wiki/Damper).
