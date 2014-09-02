@@ -264,7 +264,8 @@ $install-font-size = 12px;
     }
 }
 
-// More button.
+// 'more' button container and button.
+// These rules were a bit scattered so now they'll all be here.
 .loadmore {
     list-style: none;
     margin: 0 auto;
@@ -312,10 +313,23 @@ $install-font-size = 12px;
     .spinner {
         display: block;
     }
+    &.pagination-error .error-text {
+        display: block;
+        text-align: center;
+    }
 }
 
 .listing .loadmore,
 .reviews-listing .loadmore {
     height: auto;
-    min-height: 78px;
+    min-height: 68px;
+}
+
+@media $at-least-desktop {
+    .loadmore {
+        padding: 25px 10px 0;
+    }
+    .grid-if-desktop .loadmore {
+        padding-top: 18px;
+    }
 }
