@@ -37,7 +37,7 @@ define('views/search',
         }
         $('ol.listing').toggleClass('expanded', expanded);
         $('.expand-toggle').toggleClass('active', expand);
-        storage.setItem('expand-listings', expanded ? true : false);
+        storage.setItem('expand-listings', !!expanded);
         if (expanded) {
             z.page.trigger('populatetray');
             // Set the `src` for hidden images so they get loaded.

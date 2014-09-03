@@ -43,7 +43,7 @@ define('cache',
         z.doc.trigger('save_cache', cache_key);
 
         // Persist only if the data has changed.
-        if (! _.isEqual(storage.getItem(cache_key), cache_to_save)) {
+        if (!_.isEqual(storage.getItem(cache_key), cache_to_save)) {
             storage.setItem(cache_key, cache_to_save);
             console.log('Persisting request cache');
         }
