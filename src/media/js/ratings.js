@@ -92,16 +92,15 @@ define('ratings',
     }
 
     function loginToRate() {
-        login.login().fail(function() {
-            // Clear flag for open rating modal on cancel/fail of login.
-            open_rating = false;
-        });
 
         // Set a flag to know that we expect the modal to open
         // this prevents opening later if login was cancelled
         // as this flag is cleared in that case.
         open_rating = true;
-        z.page.one('loaded', function(){
+        function onLoginFail() {
+            open_rating = false;
+        }
+        function onLoginSuccess() {
             if (open_rating){
                 open_rating = false;
                 var $reviewButton = $('.write-review');
@@ -117,7 +116,9 @@ define('ratings',
                     }
                 }
             }
-        });
+        }
+        login.login().done(onLoginSuccess).fail(onLoginFail);
+        z.page.one('loaded', onLoginSuccess);
         return;
     }
 
@@ -147,7 +148,6 @@ define('ratings',
                 );
                 $ratingModal = $('.compose-review.modal');
             }
-
             z.body.trigger('decloak');
             $ratingModal.addClass('show');
             $ratingModal.find('select[name="rating"]').ratingwidget('large');

@@ -123,7 +123,10 @@ define('login',
             // because the page never truly lost focus).
             var popup_interval = setInterval(function() {
                 if (!fxa_popup || fxa_popup.closed) {
-                    oncancel();
+                    // The oncancel was cancelling prematurely when window is closed,
+                    // prevents review dialog from popping up on login success.
+                    // oncancel();
+                    $('.loading-submit').removeClass('loading-submit').trigger('blur');
                     clearInterval(popup_interval);
                 } else {
                     // If login dialog ends up behind another window, we want
