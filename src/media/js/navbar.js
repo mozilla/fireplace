@@ -45,8 +45,8 @@ define('navbar',
     // Swipe handler.
     z.body.hammer({'swipe_velocity': 0.3}).on('swipe', function(e) {
         if (['left', 'right'].indexOf(e.gesture.direction) === -1 ||
-            $('body').attr('data-page-type').indexOf('leaf') !== -1 ||
-            $('body').attr('data-page-type').indexOf('search') !== -1) {
+            z.body.attr('data-page-type').indexOf('root') === -1 ||
+            $(e.target).closest('.slider').length) {
             return;
         }
         var $navbar = $('.navbar.active');
