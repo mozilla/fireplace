@@ -4,18 +4,13 @@ define('views/app/ratings/add',
 
     var gettext = l10n.gettext;
 
-    z.page.on('click', '.add-review-form .cancel', function(e) {
-        e.preventDefault();
-        var slug = $(this).closest('.add-review-form').attr('data-app');
-        z.page.trigger('navigate', urls.reverse('app', [slug]));
-
-    }).on('click touchend', '.compose-review .rating', function() {
+    z.page.on('click touchend', '.compose-review .rating', function() {
         // Scroll the page down to make the send/cancel buttons visible.
         var textarea = document.querySelector('.compose-review textarea:invalid');
         if (textarea) {
             textarea.focus();
         }
-        
+
     }).on('focus', '.compose-review textarea', function() {
         if (window.scrollTo && !caps.widescreen()) {
             window.scrollTo(0, 200);
