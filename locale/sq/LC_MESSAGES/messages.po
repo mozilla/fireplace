@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-22T21:32:41.880Z\n"
+"POT-Creation-Date: 2014-09-05T15:31:20.899Z\n"
 "PO-Revision-Date: 2014-08-21 13:44+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,45 +22,36 @@ msgstr ""
 msgid "No apps found."
 msgstr ""
 
-#: /templates/app_list.html:35 /templates/category.html:83 /templates/user/purchases.html:38
+#: /templates/app_list.html:35 /templates/category.html:57 /templates/user/purchases.html:38
 msgid "An internal server error occurred. Please try again later."
 msgstr "Ndodhi një gabim i brendshëm shërbyesi. Ju lutemi, riprovoni më vonë."
+
+#: /templates/category.html:27 /templates/nav.html:17
+msgid "Popular"
+msgstr "Popullore"
+
+#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
+#: /templates/category.html:29 /templates/nav.html:16
+msgid "New"
+msgstr "Të reja"
+
+#: /templates/category.html:31
+msgid "View All"
+msgstr "Shihini të Tëra"
+
+#: /templates/category.html:50
+msgid "No apps in this category"
+msgstr "Kjo kategori nuk ka zbatime"
+
+#: /templates/category.html:55
+msgid "The category you requested does not exist."
+msgstr "Kategoria që kërkuat nuk ekziston."
 
 #: /templates/cat_dropdown.html:1
 msgid "All Categories"
 msgstr "Krejt Kategoritë"
 
-#: /templates/category.html:29
-msgid "Featured Apps"
-msgstr "Zbatime të Zgjedhura"
-
-#: /templates/category.html:30 /templates/category.html:37 /templates/category.html:57
-msgid "View All"
-msgstr "Shihini të Tëra"
-
-#: /templates/category.html:53 /templates/nav.html:16
-msgid "Popular"
-msgstr "Popullore"
-
-#. "New" should translate to mean "Recent". Choose the shortest (space constraints)
-#: /templates/category.html:55 /templates/nav.html:15
-msgid "New"
-msgstr "Të reja"
-
-#: /templates/category.html:76
-msgid "No apps in this category"
-msgstr "Kjo kategori nuk ka zbatime"
-
-#: /templates/category.html:81
-msgid "The category you requested does not exist."
-msgstr "Kategoria që kërkuat nuk ekziston."
-
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33 /templates/_macros/feed_item.html:253 /templates/_macros/feed_item.html:280
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr "Aha! S'ka zbatime këtu, Shagi!"
-
-#: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/nav.html:12
+#: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6 /templates/settings/nav.html:12
 msgid "Close"
 msgstr "Mbylle"
 
@@ -72,34 +63,10 @@ msgstr "Jo"
 msgid "Yes"
 msgstr "Po"
 
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "Kredite"
-
-#. The Marketplace app is out-of-date and needs to be updated.
-#: /templates/deprecated.html:2
-msgid "Out-of-Date Marketplace"
-msgstr "Marketplace i Vjetruar"
-
-#: /templates/deprecated.html:3
-msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
-msgstr "Versioni i Firefox Marketplace-it që po përdorni nuk mbulohet më. Do t'ju duhet të kryeni një përditësim të tij, përpara se të mund të vazhdoni të shijoni Marketplace-in."
-
-#: /templates/deprecated.html:5
-msgid "Update Now"
-msgstr "Përditësojeni Tani"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Të zgjedhura"
-
-#: /templates/featured.html:8 /templates/search/main.html:18 /templates/user/purchases.html:13
-msgid "Expand"
-msgstr "Zgjeroje"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "S'u gjetën zbatime të zgjedhura"
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/collection.html:33 /templates/_macros/feed_item.html:253 /templates/_macros/feed_item.html:280
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr "Aha! S'ka zbatime këtu, Shagi!"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -118,8 +85,8 @@ msgstr "Përshtypje"
 msgid "Support"
 msgstr "Asistencë"
 
-#: /templates/footer.html:16 /templates/nav.html:28 /templates/_macros/act_tray.html:10 /templates/settings/nav.html:7 /templates/user/purchases.html:43 /templates/user/purchases.html:10
-#: /templates/user/purchases.html:30 /media/js/views/purchases.js:13
+#: /templates/footer.html:16 /templates/nav.html:29 /templates/_macros/act_tray.html:10 /templates/user/purchases.html:43 /templates/user/purchases.html:10 /templates/user/purchases.html:30
+#: /templates/settings/nav.html:7 /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "Zbatimet e Mia"
 
@@ -143,12 +110,12 @@ msgstr ""
 "Hiq atje ku <a href=\"{legal_url}\" target=\"_blank\">shënohet</a> ndryshe, lënda e këtij sajti qarkullon sipas licencës <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
 "Alike License v3.0</a> ose cilitdo version të mëvonshëm."
 
-#: /templates/footer.html:37 /templates/privacy.html:2 /templates/detail/main.html:188 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:29
+#: /templates/footer.html:37 /templates/privacy.html:2 /templates/detail/main.html:188 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:30
 #: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Rregulla Privatësie"
 
-#: /templates/footer.html:38 /templates/terms.html:2 /templates/settings/feedback.html:34 /media/js/views/terms.js:10
+#: /templates/footer.html:38 /templates/terms.html:2 /templates/settings/feedback.html:35 /media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Kushte Përdorimi"
 
@@ -172,29 +139,46 @@ msgstr "Pastroje"
 msgid "Sign In"
 msgstr "Hyni"
 
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Që të instaloni një zbatim Firefox, duhet të përdorni Firefox-in."
-
-#: /templates/incompatible.html:2
-msgid "Download."
-msgstr "Shkarkim."
-
-#: /templates/nav.html:14
+#: /templates/nav.html:15
 msgid "Home"
 msgstr ""
 
-#: /templates/nav.html:18 /templates/nav.html:19 /media/js/views/categories.js:9
+#: /templates/nav.html:19 /templates/nav.html:20 /media/js/views/categories.js:9
 msgid "Categories"
 msgstr ""
 
-#: /templates/nav.html:27
+#: /templates/nav.html:28
 msgid "My Account"
 msgstr ""
 
 #: /templates/nav.html:34
 msgid "Back to Marketplace"
 msgstr ""
+
+#: /templates/featured.html:7
+msgid "Featured"
+msgstr "Të zgjedhura"
+
+#: /templates/featured.html:8 /templates/user/purchases.html:13 /templates/search/main.html:18
+msgid "Expand"
+msgstr "Zgjeroje"
+
+#: /templates/featured.html:22
+msgid "No featured apps found"
+msgstr "S'u gjetën zbatime të zgjedhura"
+
+#. The Marketplace app is out-of-date and needs to be updated.
+#: /templates/deprecated.html:2
+msgid "Out-of-Date Marketplace"
+msgstr "Marketplace i Vjetruar"
+
+#: /templates/deprecated.html:3
+msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
+msgstr "Versioni i Firefox Marketplace-it që po përdorni nuk mbulohet më. Do t'ju duhet të kryeni një përditësim të tij, përpara se të mund të vazhdoni të shijoni Marketplace-in."
+
+#: /templates/deprecated.html:5
+msgid "Update Now"
+msgstr "Përditësojeni Tani"
 
 #: /templates/nominate.html:1
 msgid "Nominate apps to be featured on Firefox Marketplace!"
@@ -255,6 +239,14 @@ msgstr "Adresa juaj email"
 #: /templates/nominate.html:71 /templates/ratings/edit.html:22 /templates/ratings/write.html:20
 msgid "Submit"
 msgstr "Parashtroje"
+
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Që të instaloni një zbatim Firefox, duhet të përdorni Firefox-in."
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr "Shkarkim."
 
 #: /templates/_macros/act_tray.html:2
 msgid "Settings"
@@ -329,6 +321,22 @@ msgstr "Foto ekrani e {app_name}"
 msgid "More"
 msgstr "Më tepër"
 
+#: /templates/errors/date-error.html:4
+msgid "Sorry, your device clock appears to be set incorrectly."
+msgstr ""
+
+#: /templates/errors/date-error.html:7
+msgid "Please set today's date and time in your device settings to access the Marketplace."
+msgstr ""
+
+#: /templates/errors/date-error.html:9
+msgid "Try again"
+msgstr ""
+
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "Kredite"
+
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
 msgstr "nga {author}"
@@ -353,17 +361,27 @@ msgstr "Fshije"
 msgid "Report"
 msgstr "Raportoje"
 
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:53
+msgid "Oh no!"
+msgstr "Mooos!"
+
+#: /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "Faqja që po kërkonit nuk i gjet."
+
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Vlerësuar me {stars} nga {maxstars} yje gjithsej"
 
-#: /templates/detail/abuse.html:5 /templates/detail/main.html:199 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "Njoftoni Dhunim"
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Vlerësim Lënde"
 
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "Dërgoje Raportin"
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:77
+msgid "Content Rating Details"
+msgstr "Hollësi Vlerësimi Lënde"
 
 #: /templates/detail/main.html:44
 msgid "Installed!"
@@ -458,19 +476,29 @@ msgstr "Faqe hyrëse"
 msgid "Statistics"
 msgstr "Statistika"
 
+#: /templates/detail/main.html:199 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "Njoftoni Dhunim"
+
 #: /templates/detail/main.html:210
 msgid "Premium version available"
 msgstr "Ka version me pagesë"
 
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Vlerësim Lënde"
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Gabim në ngarkim të tjerash"
 
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:77
-msgid "Content Rating Details"
-msgstr "Hollësi Vlerësimi Lënde"
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Riprovoni"
+
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "Dërgoje Raportin"
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Ndodhi një gabim."
 
 #: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
 msgid "Back to app"
@@ -484,38 +512,6 @@ msgstr "Po ngarkohen Rregullat e Privatësisë..."
 msgid "Thank you for purchasing"
 msgstr "Faleminderit për blerjen"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:53
-msgid "Oh no!"
-msgstr "Mooos!"
-
-#: /templates/errors/404.html:3
-msgid "The page you were looking for was not found."
-msgstr "Faqja që po kërkonit nuk i gjet."
-
-#: /templates/errors/date-error.html:4
-msgid "Sorry, your device clock appears to be set incorrectly."
-msgstr ""
-
-#: /templates/errors/date-error.html:7
-msgid "Please set today's date and time in your device settings to access the Marketplace."
-msgstr ""
-
-#: /templates/errors/date-error.html:9
-msgid "Try again"
-msgstr ""
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Ndodhi një gabim."
-
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Gabim në ngarkim të tjerash"
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Riprovoni"
-
 #: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "Përpunoni Shqyrtimin"
@@ -524,7 +520,7 @@ msgstr "Përpunoni Shqyrtimin"
 msgid "Rate:"
 msgstr "Vlerësoni:"
 
-#: /templates/ratings/edit.html:21 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
+#: /templates/ratings/edit.html:21 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/report.html:3 /templates/ratings/report.html:23
 #: /templates/user/newsletter.html:13
 msgid "Cancel"
 msgstr "Anuloje"
@@ -533,49 +529,11 @@ msgstr "Anuloje"
 msgid "Only logged in users may edit reviews."
 msgstr "Vetëm përdoruesi e futur mund të përpunojnë shqyrtime."
 
-#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "Shqyrtim Zbatimi"
-
-#: /templates/ratings/report.html:2
-msgid "Please select a reason:"
-msgstr "Ju lutemi, përzgjidhni një arsye:"
-
-#: /templates/ratings/report.html:8
-msgid "Spam or otherwise non-review content"
-msgstr "Spam ose përndryshe lëndë jo nga shqyrtime"
-
-#: /templates/ratings/report.html:13
-msgid "Inappropriate language/dialog"
-msgstr "Dialog/gjuhë e papërshtatshme"
-
-#: /templates/ratings/report.html:18
-msgid "Misplaced bug report or support request"
-msgstr "Njoftim të metash apo kërkesë për asistencë jo në vendin e duhur"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Përfundim"
-msgstr[1] "<b>{n}</b> Përfundime"
-
-#: /templates/search/main.html:16 /templates/user/purchases.html:11
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "Po shfaqen <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Nuk u gjetën përfundime"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Nuk u gjetën përfundime, riprovoni më vonë"
-
-#: /templates/settings/feedback.html:15
+#: /templates/settings/feedback.html:16
 msgid "Send"
 msgstr "Dërgoje"
 
-#: /templates/settings/feedback.html:21 /templates/settings/feedback.html:23
+#: /templates/settings/feedback.html:22 /templates/settings/feedback.html:24
 msgid "Get Help"
 msgstr "Merrni ndihmë"
 
@@ -603,6 +561,42 @@ msgstr "Ruaji Ndryshimet"
 msgid "Sign In / Sign Up"
 msgstr "Hyni / Regjistrohuni"
 
+#: /templates/user/purchases.html:48
+msgid "You must be signed in to view your apps."
+msgstr "Duhet të jeni i futur që të mund të shihni zbatimet tuaja."
+
+#: /templates/user/purchases.html:49
+msgid "Sign in / Sign up"
+msgstr "Hyni / Regjistrohuni"
+
+#: /templates/user/purchases.html:11 /templates/search/main.html:16
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "Po shfaqen <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+
+#: /templates/user/purchases.html:33
+msgid "You have no apps"
+msgstr "Nuk keni zbatime"
+
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "Shqyrtim Zbatimi"
+
+#: /templates/ratings/report.html:2
+msgid "Please select a reason:"
+msgstr "Ju lutemi, përzgjidhni një arsye:"
+
+#: /templates/ratings/report.html:8
+msgid "Spam or otherwise non-review content"
+msgstr "Spam ose përndryshe lëndë jo nga shqyrtime"
+
+#: /templates/ratings/report.html:13
+msgid "Inappropriate language/dialog"
+msgstr "Dialog/gjuhë e papërshtatshme"
+
+#: /templates/ratings/report.html:18
+msgid "Misplaced bug report or support request"
+msgstr "Njoftim të metash apo kërkesë për asistencë jo në vendin e duhur"
+
 #: /templates/settings/nav.html:6
 msgid "Account"
 msgstr "Llogari"
@@ -623,17 +617,19 @@ msgstr "Po regjistroheni..."
 msgid "You were successfully signed up for the Marketplace newsletter!"
 msgstr "U regjistruat me sukses për buletinin e Marketplace-it!"
 
-#: /templates/user/purchases.html:48
-msgid "You must be signed in to view your apps."
-msgstr "Duhet të jeni i futur që të mund të shihni zbatimet tuaja."
+#: /templates/search/main.html:15
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Përfundim"
+msgstr[1] "<b>{n}</b> Përfundime"
 
-#: /templates/user/purchases.html:49
-msgid "Sign in / Sign up"
-msgstr "Hyni / Regjistrohuni"
+#: /templates/search/main.html:36
+msgid "No results found"
+msgstr "Nuk u gjetën përfundime"
 
-#: /templates/user/purchases.html:33
-msgid "You have no apps"
-msgstr "Nuk keni zbatime"
+#: /templates/search/main.html:41
+msgid "No results found, try again later"
+msgstr "Nuk u gjetën përfundime, riprovoni më vonë"
 
 #. "Open" as in "Open the app".
 #: /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120 /media/js/payments/payments.js:91
@@ -648,22 +644,6 @@ msgstr "Blerje"
 #: /media/js/apps_buttons.js:190
 msgid "Install failed. Please try again later."
 msgstr "Instalimi dështoi. Ju lutemi, riprovoni më vonë."
-
-#: /media/js/apps.js:93
-msgid "Your device does not support payments."
-msgstr "Pajisja juaj nuk i mbulon pagesat."
-
-#: /media/js/apps.js:95
-msgid "This app is unavailable for purchase in your region."
-msgstr "Ky zbatim nuk mund të blihet që nga rajoni juaj."
-
-#: /media/js/apps.js:99
-msgid "Your browser or device is not web-app compatible."
-msgstr "Shfletuesi ose pajisja juaj nuk është e përputhshme me zbatimet web."
-
-#: /media/js/apps.js:101
-msgid "This app is unavailable for your platform."
-msgstr "Ky zbatim nuk është i passhëm për platformën tuaj."
 
 #: /media/js/categories.js:7
 msgid "Games"
@@ -737,78 +717,21 @@ msgstr "Udhëtim"
 msgid "Utilities"
 msgstr "Të dobishme"
 
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:98
-msgid "For ages {0}+"
-msgstr "Për mosha {0}+"
+#: /media/js/apps.js:93
+msgid "Your device does not support payments."
+msgstr "Pajisja juaj nuk i mbulon pagesat."
 
-#: /media/js/content-ratings.js:104
-msgid "Generic"
-msgstr "Të përgjithshme"
+#: /media/js/apps.js:95
+msgid "This app is unavailable for purchase in your region."
+msgstr "Ky zbatim nuk mund të blihet që nga rajoni juaj."
 
-#: /media/js/content-ratings.js:111
-msgid "For all ages"
-msgstr "Për tërë moshat"
+#: /media/js/apps.js:99
+msgid "Your browser or device is not web-app compatible."
+msgstr "Shfletuesi ose pajisja juaj nuk është e përputhshme me zbatimet web."
 
-#: /media/js/content-ratings.js:120
-msgid "Rating Pending"
-msgstr "Në Pritje të Vlerësimit"
-
-#: /media/js/content-ratings.js:121
-msgid "Rating Refused"
-msgstr "Iu Mohua Vlerësimi"
-
-#: /media/js/content-ratings.js:124
-msgid "Everyone"
-msgstr "Për këdo"
-
-#: /media/js/content-ratings.js:125
-msgid "Everyone 10+"
-msgstr "Për këdo 10+"
-
-#: /media/js/content-ratings.js:126
-msgid "Teen"
-msgstr "Adoleshentë"
-
-#: /media/js/content-ratings.js:127
-msgid "Mature 17+"
-msgstr "Për të rritur 17+"
-
-#: /media/js/content-ratings.js:128
-msgid "Adults Only 18+"
-msgstr "Vetëm për të Rritur 18+"
-
-#: /media/js/feed.js:8
-msgid "Grid Layout"
-msgstr ""
-
-#: /media/js/feed.js:9
-msgid "List Layout"
-msgstr ""
-
-#: /media/js/feed.js:31
-msgid "Icon"
-msgstr ""
-
-#: /media/js/feed.js:32
-msgid "Background Image"
-msgstr ""
-
-#: /media/js/feed.js:34
-msgid "Quote"
-msgstr ""
-
-#: /media/js/feed.js:35
-msgid "Screenshot"
-msgstr ""
-
-#: /media/js/feed.js:43
-msgid "Promo Collection"
-msgstr ""
-
-#: /media/js/feed.js:44
-msgid "Listing Collection"
-msgstr ""
+#: /media/js/apps.js:101
+msgid "This app is unavailable for your platform."
+msgstr "Ky zbatim nuk është i passhëm për platformën tuaj."
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1134,6 +1057,79 @@ msgid_plural "Work & Business Apps"
 msgstr[0] ""
 msgstr[1] ""
 
+#: /media/js/feed.js:8
+msgid "Grid Layout"
+msgstr ""
+
+#: /media/js/feed.js:9
+msgid "List Layout"
+msgstr ""
+
+#: /media/js/feed.js:31
+msgid "Icon"
+msgstr ""
+
+#: /media/js/feed.js:32
+msgid "Background Image"
+msgstr ""
+
+#: /media/js/feed.js:34
+msgid "Quote"
+msgstr ""
+
+#: /media/js/feed.js:35
+msgid "Screenshot"
+msgstr ""
+
+#: /media/js/feed.js:43
+msgid "Promo Collection"
+msgstr ""
+
+#: /media/js/feed.js:44
+msgid "Listing Collection"
+msgstr ""
+
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:98
+msgid "For ages {0}+"
+msgstr "Për mosha {0}+"
+
+#: /media/js/content-ratings.js:104
+msgid "Generic"
+msgstr "Të përgjithshme"
+
+#: /media/js/content-ratings.js:111
+msgid "For all ages"
+msgstr "Për tërë moshat"
+
+#: /media/js/content-ratings.js:120
+msgid "Rating Pending"
+msgstr "Në Pritje të Vlerësimit"
+
+#: /media/js/content-ratings.js:121
+msgid "Rating Refused"
+msgstr "Iu Mohua Vlerësimi"
+
+#: /media/js/content-ratings.js:124
+msgid "Everyone"
+msgstr "Për këdo"
+
+#: /media/js/content-ratings.js:125
+msgid "Everyone 10+"
+msgstr "Për këdo 10+"
+
+#: /media/js/content-ratings.js:126
+msgid "Teen"
+msgstr "Adoleshentë"
+
+#: /media/js/content-ratings.js:127
+msgid "Mature 17+"
+msgstr "Për të rritur 17+"
+
+#: /media/js/content-ratings.js:128
+msgid "Adults Only 18+"
+msgstr "Vetëm për të Rritur 18+"
+
 #: /media/js/installer_direct.js:56
 msgid "Unable to install packaged apps"
 msgstr "Nuk instalon dot zbatime të paketuar"
@@ -1236,62 +1232,66 @@ msgid "Hungary"
 msgstr "Hungari"
 
 #: /media/js/settings.js:124
+msgid "India"
+msgstr ""
+
+#: /media/js/settings.js:125
 msgid "Italy"
 msgstr "Itali"
 
-#: /media/js/settings.js:125
+#: /media/js/settings.js:126
 msgid "Mexico"
 msgstr "Meksikë"
 
-#: /media/js/settings.js:126
+#: /media/js/settings.js:127
 msgid "Montenegro"
 msgstr "Mali i Zi"
 
-#: /media/js/settings.js:127
+#: /media/js/settings.js:128
 msgid "Nicaragua"
 msgstr "Nikaragua"
 
-#: /media/js/settings.js:128
+#: /media/js/settings.js:129
 msgid "Panama"
 msgstr "Panama"
 
-#: /media/js/settings.js:129
+#: /media/js/settings.js:130
 msgid "Peru"
 msgstr "Peru"
 
-#: /media/js/settings.js:130
+#: /media/js/settings.js:131
 msgid "Poland"
 msgstr "Poloni"
 
-#: /media/js/settings.js:131
+#: /media/js/settings.js:132
 msgid "Serbia"
 msgstr "Serbi"
 
-#: /media/js/settings.js:132
+#: /media/js/settings.js:133
 msgid "Spain"
 msgstr "Spanjë"
 
-#: /media/js/settings.js:133
+#: /media/js/settings.js:134
 msgid "United Kingdom"
 msgstr "Mbretëri e Bashkuar"
 
-#: /media/js/settings.js:134
+#: /media/js/settings.js:135
 msgid "United States"
 msgstr "Shtetet e Bashkuara"
 
-#: /media/js/settings.js:135
+#: /media/js/settings.js:136
 msgid "Uruguay"
 msgstr "Uruguaj"
 
-#: /media/js/settings.js:136
+#: /media/js/settings.js:137
 msgid "Venezuela"
 msgstr "Venezuelë"
 
-#: /media/js/settings.js:137
+#: /media/js/settings.js:138
 msgid "No region in search"
 msgstr "Pa rajon për kërkimin"
 
-#: /media/js/settings.js:162
+#: /media/js/settings.js:163
 msgid "Sorry, you are currently offline. Please try again later."
 msgstr "Na ndjeni, hëpërhë jeni jashtë linje. Ju lutemi, riprovoni më vonë."
 
@@ -1310,21 +1310,17 @@ msgstr "Dolët"
 msgid "You have been signed in"
 msgstr "Hytë"
 
-#: /media/js/commonplace/login.js:193
+#: /media/js/commonplace/login.js:196
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Hyrja me Persona-n dështoi. Ndoshta nuk keni llogari nën këtë adresë email?"
 
-#: /media/js/commonplace/login.js:198
+#: /media/js/commonplace/login.js:201
 msgid "Persona login failed. A server error was encountered."
 msgstr "Hyrja me Persona-n dështoi. U has një gabim shërbyesi."
 
-#: /media/js/commonplace/login.js:268
+#: /media/js/commonplace/login.js:271
 msgid "Persona cannot be reached. Try again later."
 msgstr "Nuk kapet dot Persona. Ju lutemi, riprovoni më vonë."
-
-#: /media/js/commonplace/navigation.js:33
-msgid "No internet connection"
-msgstr "Pa lidhje internet"
 
 #. {n} is the number of characters left.
 #: /media/js/commonplace/utils.js:28
@@ -1346,6 +1342,10 @@ msgstr "Gabim gjatë komunikimit me shërbyesin. Ju lutemi, riprovoni më vonë.
 msgid "Your device does not support purchases."
 msgstr "Pajisja juaj nuk mbulon blerjet."
 
+#: /media/js/commonplace/navigation.js:33
+msgid "No internet connection"
+msgstr "Pa lidhje internet"
+
 #: /media/js/views/app.js:64 /media/js/views/feed/feed_app.js:10
 msgid "App Details"
 msgstr "Hollësi Zbatimi"
@@ -1366,13 +1366,13 @@ msgstr "Pati një problem gjatë parashtrimit të përshtypjeve tuaja. Riprovoni
 msgid "Fresh and New Apps"
 msgstr ""
 
-#: /media/js/views/nominate.js:114
-msgid "Nominate apps"
-msgstr "Kandidoni zbatime"
-
 #: /media/js/views/popular.js:12
 msgid "Popular All Time"
 msgstr ""
+
+#: /media/js/views/nominate.js:114
+msgid "Nominate apps"
+msgstr "Kandidoni zbatime"
 
 #: /media/js/views/search.js:218
 msgid "Search Results"
