@@ -1,5 +1,7 @@
 var baseTestUrl = 'http://localhost:8675';
 var _currTestId;
+var require = patchRequire(require);
+var utils = require('utils');
 
 function makeUrl(path) {
     return baseTestUrl + path;
@@ -38,6 +40,36 @@ function assertHasFocus(selector, msg) {
         return document.querySelector(sel) === document.activeElement;
     }, selector);
     return casper.test.assert(hasFocus, msg);
+}
+
+
+function parseQueryString(qs) {
+    var vars = {}, param, params;
+    if (qs === undefined) {
+        return {};
+    }
+    params = qs.split('&');
+    for (var i = 0; i < params.length; i++) {
+        param = params[i].split('=');
+        vars[param[0]] = param[1];
+    }
+    return vars;
+}
+
+// Check whether an API call was made during the test run. Note that it doesn't
+// make check *when* the call was made, so be careful when using it.
+function assertAPICallWasMade(url, params, msg) {
+    function testFn(res) {
+        var target = res.url.split('?');
+        return target[0] == url && utils.equals(params, parseQueryString(target[1]));
+    }
+
+    msg = msg || 'API call was made';
+    url = casper.evaluate(function() {
+        return require('settings').api_url;
+    }) + url;
+
+    return casper.test.assertResourceExists(testFn, msg);
 }
 
 
@@ -96,6 +128,7 @@ function fake_login() {
 }
 
 module.exports = {
+    assertAPICallWasMade: assertAPICallWasMade,
     assertContainsText: assertContainsText,
     assertHasFocus: assertHasFocus,
     capture: capture,
