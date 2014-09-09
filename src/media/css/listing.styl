@@ -184,7 +184,6 @@ $dot-size = 13px;
     }
 }
 
-.additional-info,
 .bad-app,
 .shots .next,
 .shots .prev {
@@ -192,16 +191,13 @@ $dot-size = 13px;
 }
 
 .product-details {
-    .additional-info {
-        background-image: url("/media/img/pretty/no-connection.svg");
-        background-position: 4px 4px;
-        background-repeat: no-repeat;
-        background-size: 30px;
+    .works-offline {
+        background: url(../img/pretty/no-connection.svg) 0 10px no-repeat;
+        background-size: auto 18px;
         display: block;
         font-size: 12px;
-        line-height: 18px;
-        margin: 10px 0 0px;
-        padding: 6px 10px 6px 40px;
+        line-height: 20px;  /* 18px for icon height + 2px for alignment */
+        padding: 10px 10px 0 34px;  /* 34px = 24px for icon width + 10px padding */
     }
 
     .bad-app {
