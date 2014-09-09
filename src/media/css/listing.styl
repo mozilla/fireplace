@@ -2,95 +2,87 @@
 
 $triangle-size = 20px;
 
-// base class
-
-.mkt-tile {
-    color: $castle-skull-gray;
-    display: block;
-    overflow: hidden;
-    position: relative;
-
-    &:hover {
-        text-decoration: none;
-    }
-    .icon {
-        display: block;
-    }
-    .info h3,
-    .subdetail {
-        /* subdetail contains .author and .content-rating. */
-        ellipsis();
-    }
-    .author a:hover {
-        text-decoration: none;
-    }
-}
-
-[data-page-type~="root"] .mkt-tile .author a {
-    color: $hungry-text;
-    cursor: default;
-}
-[data-page-type~="detail"] .mkt-tile .author a {
-    color: $primary-blue;
-}
-
 .grid, .listing {
     clear: both;
     list-style: none;
     width: 100%;
 }
 
-// Listing
-// name + icon + price + rating in a vertical listview.
-// also used as standalone "card" on detail pages.
+// We need to duplicate these styles because we use this for
+// .grid at desktop width and for .listing.grid-if-desktop at mobile width.
+// TODO: Use this for mini-tiles. Tile unification part deux.
+grid-style() {
+    font-size: 0; // Nuke whitespace
+    margin: 0 auto 10px;
+    max-width: $desktop-content;
 
-.mkt-tile .rating {
-    clear: left;
-    color: $sailor-blue;
-    display: block;
-    font-size: 12px;
-    padding: 8px 0;
-
-    a {
-        text-decoration: none;
-
-        &:hover .cnt {
-            text-decoration: underline;
-        }
-    }
-    .cnt {
+    li {
+        display: inline-block;
+        padding: 15px 10px;
         position: relative;
-        top: -2px;
+        vertical-align: top;
+        width: (100% / 3);
     }
-    &.unrated, &.unrated a {
-        color: $earl-gray;
+    .subdetail, .button, .cnt {
+        display: none;
+    }
+    .product.mkt-tile {
+        box-shadow: none;
+        margin-bottom: 0;
+        position: relative;
+        width: 100%;
+
+        .deferred {
+            margin-bottom: 0;
+        }
+        &:hover .icon {
+            opacity: .8;
+        }
+        &:active .icon {
+            opacity: .4;
+        }
+        h3, .vital {
+            font-size: 12px;
+        }
+        h3 {
+            font-weight: 400;
+            line-height: 16px;
+            margin-bottom: -2px;
+            padding-bottom: 2px;
+        }
+        .info {
+            margin-left: 0;
+            max-width: 78px;
+            min-width: 78px;
+        }
+        .elliflow {
+            max-width: 100%;
+        }
+        .price {
+            color: $sailor-blue;
+            font-weight: 400;
+            margin-bottom: 2px;
+        }
+        .rating {
+            padding: 0;
+        }
     }
 }
 
-.listing .mkt-tile {
-    min-height: 64px;
-    padding: 15px 10px 15px 84px;
+.grid {
+    grid-style();
+}
 
-    .subdetail {
-        color: $earl-gray;
-        font-size: 12px;
-        line-height: 18px;
-        max-height: 28px;
-
-        &.content-rating {
-            margin-bottom: -2px;
-            padding-bottom: 8px;
-        }
-    }
-    .price {
-        display: none;
-    }
+.listing.grid-if-desktop .mkt-tile + .tray,
+.listing.grid-if-desktop .mkt-tile + .tray img {
+    display: none;
 }
 
 // Previews tray.
 .expanded .mkt-tile + .tray {
     display: block;
 }
+
 .mkt-tile + .tray {
     background: $salt-flat-white;
     border-radius: 0 0 10px 10px;
@@ -204,24 +196,6 @@ $dot-size = 13px;
     display: none;
 }
 
-.product-details {
-    .works-offline {
-        background: url(../img/pretty/no-connection.svg) 0 10px no-repeat;
-        background-size: auto 18px;
-        display: block;
-        font-size: 12px;
-        line-height: 20px;  /* 18px for icon height + 2px for alignment */
-        padding: 10px 10px 0 34px;  /* 34px = 24px for icon width + 10px padding */
-    }
-
-    .bad-app {
-        color: $maroon;
-        display: block;
-        font-size: 11px;
-        line-height: 12px;
-    }
-}
-
 .island {
     background: #fff;
     box-shadow: 0 1px 1px $cement-gray;
@@ -258,14 +232,16 @@ $dot-size = 13px;
             right: 0;
         }
     }
+    .listing {
+        margin-top: 25px;
+    }
 }
 
 // Rocketship placeholder for image deferrer.
 img {
     transition(opacity .1s);
 }
-.screenshot .deferred,
-img.icon.deferred {
+.screenshot .deferred {
     height: 60px;
     width: 60px;
 }
@@ -278,97 +254,8 @@ div .deferred-background {
     height: 60px;
     margin-top: 40px;
 }
-img.icon.deferred {
-    position: relative;
-    left: 0;
-    top: 0;
-}
-[data-page-type~="detail"],
-[data-page-type~="search"],
-[data-page-type~="settings"] {
-    .mkt-tile .icon {
-        margin-right: 15px;
-
-        &.deferred {
-            height: 64px;
-            width: 64px;
-        }
-    }
-}
 .gallery .icon.deferred {
     margin-bottom: 4px;
-}
-
-// Grid
-// store graphic, name, price in a floated grid (3 tiles wide at 320).
-
-// We need to duplicate these styles because we use this for
-// .grid at desktop width and for .listing.grid-if-desktop at mobile width.
-grid-style() {
-    font-size: 0; // Nuke whitespace
-    margin: 0 auto 10px;
-    max-width: $desktop-content;
-
-    li {
-        display: inline-block;
-        padding: 15px 10px;
-        position: relative;
-        vertical-align: top;
-        width: (100% / 3);
-    }
-    .subdetail, .button, .cnt {
-        display: none;
-    }
-    .product.mkt-tile {
-        box-shadow: none;
-        margin-bottom: 0;
-        position: relative;
-        width: 100%;
-
-        .deferred {
-            margin-bottom: 0;
-        }
-        &:hover .icon {
-            opacity: .8;
-        }
-        &:active .icon {
-            opacity: .4;
-        }
-        h3, .vital {
-            font-size: 12px;
-        }
-        h3 {
-            font-weight: 400;
-            line-height: 16px;
-            margin-bottom: -2px;
-            padding-bottom: 2px;
-        }
-        .info {
-            margin-left: 0;
-            max-width: 78px;
-            min-width: 78px;
-        }
-        .elliflow {
-            max-width: 100%;
-        }
-        .price {
-            color: $sailor-blue;
-            font-weight: 400;
-            margin-bottom: 2px;
-        }
-        .rating {
-            padding: 0;
-        }
-    }
-}
-
-.grid {
-    grid-style();
-}
-
-.listing.grid-if-desktop .mkt-tile + .tray,
-.listing.grid-if-desktop .mkt-tile + .tray img {
-    display: none;
 }
 
 .tabs {
@@ -459,11 +346,9 @@ grid-style() {
             box-shadow: 0 0 4px #fff;
         }
     }
-
     .island {
         border-radius: 10px;
     }
-
     .category {
         .view-all-mbl {
             display: none;
@@ -482,15 +367,6 @@ grid-style() {
             }
         }
     }
-
-    .featured {
-        margin-bottom: 48px;
-        // Show 7 at most on desktop.
-        li:nth-child(7) ~ li {
-            display: none;
-        }
-    }
-
     // Turn listing style into category horizontal style on desktop.
     .listing.grid-if-desktop {
         grid-style();
@@ -543,7 +419,6 @@ grid-style() {
             }
         }
     }
-
     .tabs a {
         text-shadow: none;
 
@@ -615,12 +490,10 @@ grid-style() {
 @media $at-least-desktop {
     .listing li {
         &.item {
-            border-radius: 10px;
             margin: 25px 0 0;
 
             .mkt-tile + .tray {
-                // Subtract 1px for border.
-                border-radius: 0 0 9px 9px;
+                border-radius: 0 0 5px 5px;
             }
         }
         a {
@@ -631,24 +504,13 @@ grid-style() {
 
 ratings-sidebar() {
     // These rules get applied on mobile detail page and desktop category listing pages.
-    .rating {
-        padding: 10px 0 10px;
-
-        .cnt {
-            display: inline-block;
-            // To line up with app name.
-            margin-left: 8px;
-            top: -1px;
-            &.short {
-                display: none;
-            }
+    .rating .cnt {
+        display: inline-block;
+        // To line up with app name.
+        margin-left: 3px;
+        &.short {
+            display: none;
         }
-    }
-    h3 {
-        font-size: 20px;
-        font-weight: 300;
-        line-height: 18px;
-        max-width: 100%;
     }
     .subdetail {
         font-size: 12px;
@@ -663,26 +525,6 @@ ratings-sidebar() {
         padding-top: 2px;
         padding-right: 100px;
         clear: left;
-    }
-    .info {
-        position: relative;
-
-        + .bad-app {
-            padding-top: 8px;
-        }
-    }
-    .mkt-tile {
-        padding: 15px 10px 10px 10px;
-        position: relative;
-
-        h3 {
-            color: $castle-skull-gray;
-            font-size: 15px;
-            font-weight: 400;
-            line-height: 20px;
-            margin-top: 0;
-            max-width: 100%;
-        }
     }
     .install {
         clear: left;
@@ -714,7 +556,6 @@ ratings-sidebar() {
     &.expanded .mkt-tile + .tray:before,
     &.expanded .mkt-tile + .tray:after,
     &.product-details .mkt-tile {
-        //background: #f4f4f4;
         background: #fff;
     }
 
@@ -732,14 +573,6 @@ ratings-sidebar() {
     }
 }
 
-.mkt-tile .icon {
-    float: left;
-    left: 10px;
-    position: static;
-    top: 15px;
-    width: 64px;
-}
-
 @media $at-least-desktop {
     .mkt-tile + .tray {
         border-radius: 0;
@@ -747,13 +580,6 @@ ratings-sidebar() {
     .listing {
         &:not(.grid-if-desktop) .mkt-tile {
             ratings-sidebar();
-        }
-        .mkt-tile {
-            padding: 18px 15px;
-        }
-        .install {
-            bottom: 18px;
-            right: 15px;
         }
         &.product-details {
             border-radius: 10px;
@@ -763,58 +589,21 @@ ratings-sidebar() {
                 + .tray:before {
                     background-image: none;
                 }
-                h3 {
-                    font-size: 26px;
-                    line-height: 26px;
-                }
-                .subdetail {
-                    font-size: 15px;
-                    line-height: 20px;
-                }
             }
+        }
+        &.grid-if-desktop li {
+            width: (100% / 7);
         }
     }
     .search-listing .mkt-tile + .tray {
         border-radius: 0 0 10px 10px;
     }
-}
-
-@media $narrower-than-desktop {
+    .app-list.grid {
+        li:nth-child(7n) {
+            margin-right: 0;
+        }
+    }
     .listing.grid-if-desktop {
-        .mkt-tile .rating .cnt {
-            top: -2px;
-        }
-        // The mocks call for some padding.
-        &:not(:first-child) {
-            padding-top: 8px;
-        }
-    }
-    .tabs {
-        border-bottom: 1px solid $cloud-gray;
-        font-size: 13px;
-        position: static;
-        padding: 0 10px;
-    }
-    .category.gallery {
-        // On desktop we like a nice box-shadow.
-        box-shadow: none;
-    }
-    .category.gallery .featured-header {
-        padding: 5px 0;
-    }
-}
-
-.cnt.short {
-    display: none;
-}
-
-@media (max-width: 400px) {
-    // Show "({num})" on narrow mobile.
-    .cnt.short {
-        display: inline-block;
-    }
-    // Hide "{num} Reviews" on narrow mobile.
-    .cnt.long {
-        display: none;
+        padding: 0 5px;
     }
 }

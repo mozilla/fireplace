@@ -28,12 +28,6 @@ $grameenphone_color = #00ACE7;
 $tmobile_regions = (hu pl)
 $tmobile_color = #E20074;
 
-
-.feed .icon {
-    height: 60px;
-    width: 60px;
-}
-
 @media $at-least-desktop {
     // Three column feed layout on tweener screens.
     section.feed,
@@ -93,38 +87,6 @@ $tmobile_color = #E20074;
         padding: $vertical-tile-padding $horizontal-tile-padding;
         position: relative;
 
-        .icon {
-            float: left;
-        }
-        .info {
-            float: left;
-            height: 64px;
-            margin-left: 10px;
-            min-width: 205px;
-            position: relative;
-        }
-        .elliflow {
-            max-width: 115px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .author,
-        h3 {
-            font-size: 12px;
-            line-height: $vertical-margin;
-        }
-        .author {
-            margin-top: -2px;
-        }
-        h3 {
-            color: $hungry-text;
-            font-weight: 500;
-            padding: $vertical-text-margin 0 0;
-        }
-        .rating {
-            padding: 5px 0;
-        }
         .description .desc {
             padding-top: 15px;
         }
@@ -347,7 +309,7 @@ $tmobile_color = #E20074;
     .brand-landing,
     .collection-landing,
     [data-page-type~="app-list"] {
-        .feed-layout-list li.mini-app {
+        .feed-layout-list li.mini-tile {
             box-shadow: 0 2px 1px -1px $cement-gray;
         }
     }
@@ -368,7 +330,7 @@ $tmobile_color = #E20074;
             h1.feed-tile-header {
                 font-size: 24px;
             }
-            li.mini-app {
+            li.mini-tile {
                 background-color: $white;
                 border-radius: 5px;
                 float: left;
@@ -445,13 +407,7 @@ $tmobile_color = #E20074;
         list-style-type: none;
         width: 100%;
     }
-    .app-name {
-        color: $hungry-text;
-        font-size: 12px;
-        font-weight: 500;
-        line-height: $vertical-margin;
-    }
-    .mini-app {
+    .mini-tile {
         height: 60px;
         margin-top: $vertical-margin;
 
@@ -523,7 +479,7 @@ $tmobile_color = #E20074;
     .app-list .button:hover {
         color: $breezy-blue;
     }
-    .mini-app {
+    .mini-tile {
         height: 110px;
         margin-top: $vertical-margin;
 
@@ -860,7 +816,7 @@ $tmobile_color = #E20074;
 }
 
 @media $at-least-desktop {
-    .mini-app {
+    .mini-tile {
         margin-top: $vertical-tile-margin;
     }
     [data-page-type~=app-list] {
@@ -876,7 +832,7 @@ $tmobile_color = #E20074;
                     margin-right: 20px;
                     width: 335px;
 
-                    &.mini-app {
+                    &.mini-tile {
                         background-color: #fff;
                         border-radius: 5px;
                         height: 80px;

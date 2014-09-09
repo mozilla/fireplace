@@ -8,12 +8,12 @@
 {% macro mini_tile(app, price_only, src) %}
   {# price_only_btns -- only show price as the label, don't show "Installed"/"Open". #}
 
-  <li class="app mini-app">
+  <li class="app mini-tile">
     <a href="{{ url('app', [app.slug])|urlparams(src=src or 'feed') }}" class="app-link c">
       {{ deferred_icon(app.icons[64], app.name|translate(app)) }}
       <div class="info">
-        <h2 class="app-name elliflow" title="{{ app.name|translate(app) }}">{{ app.name|translate(app) }}</h2>
-        <p class="author elliflow" title="{{ app.author }}">{{ app.author }}</p>
+        <h3 class="app-name elliflow" title="{{ app.name|translate(app) }}">{{ app.name|translate(app) }}</h3>
+        <div class="author elliflow vital subdetail" title="{{ app.author }}">{{ app.author }}</div>
         <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
           {% if app.ratings.average %}
             {{ stars(app.ratings.average) }}
@@ -57,11 +57,8 @@
       </section>
     {% else %}
       {{ market_tile(feed_app.app,
-                     classes=['feed-app'],
                      feed_app=feed_app,
-                     tray=False,
-                     src='featured-app',
-                     rating_link=False) }}
+                     src='featured-app') }}
     {% endif %}
   </a>
 {% endmacro %}
@@ -220,7 +217,7 @@
     {% if coll.type == feed.COLL_LISTING %}
       {{ feed_collection(coll, true) }}
     {% else %}
-      <ul class="feed">
+      <ul class="feed columned">
         <li class="detail-item header-block">
           {{ feed_collection(coll, true) }}
           {% if coll.description %}
@@ -245,7 +242,7 @@
           {% else %}
             {% for app in coll.apps %}
               <li class="item result app c detail-item">
-                {{ market_tile(app, src='collection-element', tray=False, link=True) }}
+                {{ market_tile(app, src='collection-element') }}
               </li>
             {% endfor %}
           {% endif %}
@@ -267,12 +264,11 @@
         <p class="desc">{{ shelf.description|translate(shelf) }}</p>
       {% endif %}
     </div>
-    <ul class="feed">
+    <ul class="feed columned">
       {% if shelf.apps %}
         {% for app in shelf.apps %}
           <li class="item result app c detail-item">
-            {{ market_tile(app, src='operator-shelf-element', tray=False,
-                           link=True) }}
+            {{ market_tile(app, src='operator-shelf-element') }}
           </li>
         {% endfor %}
       {% else %}

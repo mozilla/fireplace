@@ -190,7 +190,7 @@ $install-font-size = 12px;
 // Install buttons.
 .mkt-tile .install {
     // Unset many .button properties.
-    bottom: -7px; // To compensate for the larger click target. Calculation: (24-34)/2 - 2
+    bottom: -3px; // To compensate for the larger click target. Calculation: (24-34)/2 + 2
     box-shadow: none;
     cursor: pointer;
     font-size: $install-font-size;
@@ -213,6 +213,7 @@ $install-font-size = 12px;
         font-style: normal;
         height: 24px;
         padding: 0 $h-padding;
+        vertical-align: bottom;
         width: $btn-install-width;
     }
     .spin {
@@ -220,7 +221,7 @@ $install-font-size = 12px;
     }
     // Accomodate a better vertical align since this state has no box-shadow.
     &[disabled] {
-        bottom: -7px;
+        bottom: -5px;
 
         em {
             background: $disabled;
@@ -241,7 +242,7 @@ $install-font-size = 12px;
     }
     &.spinning, &.purchasing {
         background: $btn-act;
-        bottom: 2px;
+        bottom: 0;
         height: $tiny;
 
         em {

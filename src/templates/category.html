@@ -38,11 +38,9 @@
       <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
     </header>
   {% endif %}
-  <ol class="container listing grid-if-desktop search-listing feed c">
-    {% for result in this %}
-      <li class="item result app c">
-        {{ market_tile(result, link=true, src=source + '-' + (sort or 'popular'), tray=False) }}
-      </li>
+  <ol class="container listing grid-if-desktop search-listing c">
+    {% for app in this %}
+      <li class="item result app c">{{ market_tile(app, src=source + '-' + (sort or 'popular')) }}</li>
     {% endfor %}
 
     {# Render the more button if there's another page of results #}

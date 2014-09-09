@@ -3,7 +3,7 @@
 {% include '_macros/more_button.html' %}
 
 {% defer (url=anonApi('feed')|urlparams(limit=10), id='feed-items') %}
-  <ul class="feed feed-items c">
+  <ul class="feed feed-items columned c">
     {% for item in this.objects %}
       <li class="feed-item-item">{{ feed_item(item) }}</li>
     {% endfor %}

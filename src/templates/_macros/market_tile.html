@@ -2,73 +2,69 @@
 {% from "_macros/market_button.html" import market_button %}
 {% from "_macros/stars.html" import stars %}
 
+{# TODO: This should really be app_tile() #}
+{% macro market_tile(app, feed_app=None, is_detail=False, tray=False, src=None) %}
 
-{% macro market_tile(app, classes=None, data_attrs=None, feed_app=None,
-                     link=False, rating_link=False, src=None, tray=True) %}
   {#
       app -- app object
-      classes -- list of CSS classes to attach to tile
-      data_attrs -- data attributes to attach to tile
       feed_app - feed-app specific data
-      link -- turn the tile into a large anchor tag linking to app detail page
-      rating_link -- make the rating a link to the ratings page
-      src -- if tile is a link, attach a src param for analytics purposes
+      is_detail - is this tile a detail page tile?
       tray -- whether or not to attach a preview/screenshot tray
+      src -- if tile is a link, attach a src param for analytics purposes
   #}
-  {% set tag = 'a' if link and app.slug else 'div' %}
-  {% set classes = classes or [] %}
-  <{{ tag }} class="product mkt-tile c {{ classes|join(' ') }}"
-    {% if link %} href="{{ app.url or url('app', [app.slug])|urlparams(src=src) }}"{% endif %}
-    {{ data_attrs|make_data_attrs }}
+
+  {% set tag = 'div' if is_detail else 'a' %}
+
+  <{{ tag }} class="product mkt-tile c"
+    {% if not is_detail %} href="{{ app.url or url('app', [app.slug])|urlparams(src=src) }}"{% endif %}
     data-slug="{{ app.slug }}"
     data-id="{{ app.id }}"
-    {% if link %}itemscope itemtype="http://schema.org/SoftwareApplication"{% endif %}>
-    {{ deferred_icon(app.icons['64'], app.name|translate(app)) }}
-    <div class="info">
-      <h3 class="elliflow" itemprop="name" title="{{ app.name|translate(app) }}">{{ app.name|translate(app) }}</h3>
-      {% if app.author %}
-        {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
-        <div class="author elliflow vital subdetail" itemprop="creator" title="{{ app.author }}">
-          {% if not link -%}
-            <a href="{{ url('search')|urlparams(author=app.author) }}">{{ app.author }}</a>
-          {% else -%}
-            {{ app.author }}
-          {% endif -%}
+    {{ 'itemscope itemtype="http://schema.org/SoftwareApplication"' if not is_detail }}>
+    <div class="c">
+      {{ deferred_icon(app.icons['64']) }}
+      <div class="info">
+        <h3 itemprop="name">{{ app.name|translate(app) }}</h3>
+
+        {% if app.author %}
+          {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
+          <div class="author elliflow vital subdetail" itemprop="creator">
+            {% if is_detail -%}
+              <a href="{{ url('search')|urlparams(author=app.author) }}">{{ app.author }}</a>
+            {% else -%}
+              {{ app.author }}
+            {% endif -%}
+          </div>
+        {% endif %}
+
+        <div class="price vital">
+          {{ app.price_locale if app.payment_required else _('Free') }}
         </div>
-      {% endif %}
-      <div class="price vital">{{ app.price_locale if app.payment_required else _('Free') }}</div>
-      {{ market_button(app, data_attrs={'manifest_url': app.manifest_url,
-                                        'slug': app.slug}) if app.slug }}
-      <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-        {% if rating_link %}
-          <a href="{{ url('app/ratings', [app.slug]) }}" class="rating_link">
+
+        {% if app.slug %}
+          {{ market_button(app,
+                           data_attrs={'manifest_url': app.manifest_url,
+                           'slug': app.slug}) }}
         {% endif %}
-        {{ stars(app.ratings.average) }}
-        {% if app.ratings.count %}
-          <span class="cnt short">
-            {{ _('({n})', n='<span itemprop="reviewCount">' + app.ratings.count|numberfmt + '</span>') }}
-          </span>
-          <span class="cnt long">
-            {{ app.ratings.count|numberfmt }} {{ _plural('Review', 'Reviews', n=app.ratings.count) }}
-          </span>
-        {% else %}
-          {# L10n: "(0)" means "0 reviews." #}
-          <span class="cnt short">{{ _('(0)') }}</span>
-          <span class="cnt long">{{ _('Not yet reviewed') }}</span>
-        {% endif %}
-        {% if rating_link %}
-          </a>
-        {% endif %}
+
+        {{ rating_link() if not is_detail }}
+
       </div>
     </div>
+
+    {% if is_detail %}
+      {{ rating_link(is_detail=True) }}
+    {% endif %}
+
     {% for notice in app_incompat(app) %}
       <div class="bad-app">{{ notice }}</div>
     {% endfor %}
+
     {% if app.is_offline %}
       <div class="works-offline hidden">
         {{ _('Works offline') }}
       </div>
     {% endif %}
+
     {{ feed_app_tile(feed_app) if feed_app }}
   </{{ tag }}>
   {% if tray and len(app.previews) %}
@@ -104,7 +100,7 @@
     {# Defer image loading. #}
     <img class="icon deferred" src="{{ PLACEHOLDER_ICON }}"
          data-src="{{ src }}" title="{{ alt or '' }}" alt="{{ alt or '' }}"
-         height="64" width="64" itemprop="image">
+         height="60" width="60" itemprop="image">
   {% else %}
     <img class="icon" src="{{ src }}" title="{{ alt or '' }}" alt="{{ alt or '' }}"
          height="64" width="64" itemprop="image">
@@ -122,4 +118,36 @@
     <img src="{{ src }}" alt="{{ _('{app_name} screenshot', app_name=app.name) }}"
          draggable="false" itemprop="contentURL">
   {% endif %}
+{% endmacro %}
+
+
+{% macro rating_link(is_detail=False) %}
+  <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+
+    {# Detail page ratings link to the ratings list page. #}
+    {% if is_detail %}
+      <a href="{{ url('app/ratings', [app.slug]) }}" class="rating-link">
+
+        {{ stars(app.ratings.average) }}
+
+        {% if app.ratings.count %}
+          <span class="cnt short">
+            {{ _('({n})', n='<span itemprop="reviewCount">' + app.ratings.count|numberfmt + '</span>') }}
+          </span>
+          <span class="cnt long">
+            {{ app.ratings.count|numberfmt }} {{ _plural('Review', 'Reviews', n=app.ratings.count) }}
+          </span>
+        {% else %}
+          {# L10n: "(0)" means "0 reviews." #}
+          <span class="cnt short">{{ _('(0)') }}</span>
+          <span class="cnt long">{{ _('Not yet reviewed') }}</span>
+        {% endif %}
+
+      </a>
+    {% else %}
+      {# Stars-only rating (member of an app listing). #}
+      {{ stars(app.ratings.average) }}
+    {% endif %}
+
+  </div>
 {% endmacro %}

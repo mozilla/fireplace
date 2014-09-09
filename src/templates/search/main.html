@@ -25,7 +25,7 @@
     <ol class="container listing search-listing c">
       {% for result in processor(this) %}
         <li class="item result app c">
-          {{ market_tile(result, link=true, src='search') }}
+          {{ market_tile(result, src='search', tray=True) }}
         </li>
       {% endfor %}
 
