@@ -66,9 +66,11 @@ package: clean
 package_prod:
 	make package
 package_stage:
-	SERVER='stage' NAME='Stage' DOMAIN='marketplace.allizom.org' make package
+	SERVER='stage' NAME='Stage' DOMAIN='marketplace.allizom.org' \
+    ORIGIN='app:\/\/packaged.marketplace.allizom.org' make package
 package_dev:
-	SERVER='dev' NAME='Dev' DOMAIN='marketplace-dev.allizom.org' make package
+	SERVER='dev' NAME='Dev' DOMAIN='marketplace-dev.allizom.org' \
+    ORIGIN='app:\/\/packaged.marketplace-dev.allizom.org' make package
 package_feed_dev:
 	SERVER='dev' NAME='FeedDev' DOMAIN='marketplace-feed-dev.allizom.org' \
     ORIGIN='app:\/\/packaged.marketplace-feed-dev.allizom.org' make package
