@@ -38,7 +38,7 @@ casper.test.begin('Check date check dialogue', {
     test: function(test) {
 
         casper.waitForSelector('#splash-overlay.hide', function() {
-            test.assertVisible('.date-error', 'Check date error message is shown');
+            test.assertVisible('#error-overlay.system-date', 'Check date error message is shown');
         });
 
         casper.then(function() {
@@ -47,7 +47,7 @@ casper.test.begin('Check date check dialogue', {
         });
 
         casper.waitForSelector('#splash-overlay.hide', function() {
-            test.assertNotVisible('.date-error', 'Check date error message is removed');
+            test.assertNotVisible('#error-overlay.system-date', 'Check date error message is removed');
         });
 
         casper.run(function() {

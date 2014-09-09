@@ -158,7 +158,7 @@ approve_log_dev:
 
 clean:
 	commonplace clean
-	@rm -rf tests/captures/*.png
+	@rm -f tests/captures/*.png
 
 deploy:
 	git fetch && git reset --hard origin/master && npm install && make includes
