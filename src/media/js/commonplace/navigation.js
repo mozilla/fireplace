@@ -95,6 +95,13 @@ define('navigation',
             }
         }
 
+        if (!stack.length) {
+            // Band-aid patch for truncating issues.
+            stack = [
+                {path: '/', type: 'root'}
+            ];
+        }
+
         // Are we home? clear any history.
         if (state.type === 'root') {
             stack = [state];
