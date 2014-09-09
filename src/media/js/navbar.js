@@ -11,8 +11,8 @@ define('navbar',
     var tabsMkt = ['homepage', 'new', 'popular', 'categories'];
     var tabsSettings = ['settings', 'purchases', 'feedback'];
 
-    // Navbar settings + Marketplace buttons.
     function initNavbarButtons() {
+        // Navbar settings + Marketplace buttons.
         var $mktNavGroup = $('.nav-mkt , .act-tray.mobile');
         var $settingsNavGroup = $('.nav-settings, .mkt-tray');
 
@@ -107,8 +107,8 @@ define('navbar',
     });
     z.body.on('reloaded_chrome', initActTray);
 
-    // Build navbar.
     function render() {
+        // Build navbar.
         // Set class and data attribute of navbar to name of active tab.
         var tabsMktRouteMap = {};
         var tabName;
@@ -157,6 +157,8 @@ define('navbar',
         }).on('mouseleave', catsTrigger + ' li a', function() {
             $(this).addClass('cur-cat');
         });
+
+        initNavbarButtons();
     }
 
     // Render navbar.
