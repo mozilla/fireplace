@@ -58,6 +58,15 @@ $grameenphone_color = #00ACE7;
         max-width: $feed-column-width * 2;
         width: $mobile-tile-width * 2 + $mobile-tile-margin;
     }
+
+}
+
+// TODO: Fix these properly with the feed.styl refactor.
+@media (min-width: 640px) and (max-width: 1024px) {
+    // Address top-margin clip.
+    .feed.collection-landing {
+        top: 50px;
+    }
 }
 
 [data-page-type~="homepage"] ul.feed {
