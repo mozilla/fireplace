@@ -79,6 +79,7 @@ casper.test.begin('Search baseline tests', {
                     test.assertUrlMatch(/\/search\?q=test$/);
                     test.assertSelectorHasText('#search-results h2', '42 Results');
                     test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–25');
+                    test.assertSelectorDoesntHaveText('#search-results h2 .subtitle', 'Showing 1–25 Desktop Apps');
                     casper.click('.search-listing li a.mkt-tile:first-child');
                     test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
                 });
