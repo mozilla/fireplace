@@ -56,13 +56,28 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
 
     var potato_initialized = false;
     var potato_iframe;
+    var potato_queue = [];
+
     function ua_push() {
-        if (!potato_initialized) {
-            if (window.ga) {
-                window.ga.apply(this, Array.prototype.slice.call(arguments, 0));
+        var data = _.toArray(arguments);
+        var queued;
+
+        if (settings.potatolytics_enabled) {
+            // Add data to be sent to the queue.
+            potato_queue.push(data);
+
+            if (potato_initialized) {
+                // If potatolytics is enabled, then we send what's in the queue,
+                // starting from the top.
+                while ((queued = potato_queue.shift())) {
+                    queued.name = 'potatolytics-tracking';
+                    potato_iframe.contentWindow.postMessage(queued, settings.iframe_potatolytics_src);
+                }
             }
+        } else if (window.ga) {
+            window.ga.apply(this, data);
         } else {
-            potato_iframe.contentWindow.postMessage(JSON.stringify(arguments), '*');
+            console.error('Potatolytics is disabled but window.ga is absent!');
         }
     }
 
@@ -72,37 +87,41 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
 
     if (settings.ua_tracking_id) {
         if (settings.potatolytics_enabled) {
-            potato_iframe = document.createElement('iframe');
-            var origin = window.location.protocol + '//' + window.location.host;
-            potato_iframe.src = [
-                'data:text/html,',
-                '<html><head><body>',
-                '<script>',
-                '(',
-                setupUATracking.toString(),
-                ')("' + settings.ua_tracking_id + '", "' + get_url() + '", "' + clientID + '", "' +
-                    settings.tracking_section + '", ' + settings.tracking_section_index + ');',
-                'var origin = "' + origin + '";',
-                "window.addEventListener('message', function(e) {",
-                '  if (e.origin !== origin) {',
-                '    window.console.error("[tracking] Message from unknown origin:", e.origin, origin);',
-                '    return;',
-                '  }',
-                '  window.ga.apply(window.ga, JSON.parse(e.data));',
-                '  e.source.postMessage("[potatolytics][echo] " + e.data, e.origin);',
-                '}, false);',
-                '</script>'
-            ].join('\n');
-            potato_iframe.style.display = 'none';
             console.log('Setting up tracking with Potatolytics');
+            potato_iframe = document.createElement('iframe');
+            potato_iframe.id = 'iframe-potatolytics';
+            potato_iframe.src = settings.iframe_potatolytics_src;
+            potato_iframe.height = 0;
+            potato_iframe.width = 0;
+            potato_iframe.style.borderWidth = 0;
             document.body.appendChild(potato_iframe);
-            potato_initialized = true;
+
+            window.addEventListener('message', function(e) {
+                if (!e.data.name) {
+                    return;
+                }
+
+                switch (e.data.name) {
+                    case 'potatolytics-tracking':
+                        // For debugging:
+                        // console.warn('[echo] ' + e.data);
+                        break;
+                    case 'potatolytics-loaded':
+                        console.log('Potatolytics iframe is loaded');
+                        potato_initialized = true;
+                        ua_push(settings.ua_tracking_id, get_url(), clientID,
+                            settings.tracking_site_section,
+                            settings.tracking_site_section_index);
+                        break;
+                }
+            });
         } else {
             console.log('Setting up UA tracking without Potatolytics');
-            setupUATracking(settings.ua_tracking_id, get_url(), clientID,
-                            settings.tracking_site_section, settings.tracking_site_section_index);
+            ua_push(settings.ua_tracking_id, get_url(), clientID,
+                    settings.tracking_site_section, settings.tracking_site_section_index);
         }
     }
+
     console.log('Tracking initialized');
 
     var ua_page_vars = {};
