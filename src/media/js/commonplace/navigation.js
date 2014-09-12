@@ -50,10 +50,12 @@ define('navigation',
             return;
         }
 
-        views.build(view[0], view[1], state.params);
         if (initialized) {
+            // Call navigating before the view build function so that modules
+            // the view depend on can react in time.
             z.win.trigger('navigating', [popped]);
         }
+        views.build(view[0], view[1], state.params);
         initialized = true;
         state.type = z.context.type;
         state.title = z.context.title;

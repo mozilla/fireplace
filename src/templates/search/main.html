@@ -10,24 +10,13 @@
   {% if params.sort %}
     {% set api_url = api_url|urlparams(sort=params.sort) %}
   {% endif %}
-  {% if params.dev %}
-    {% set api_url = api_url|urlparams(dev=params.dev) %}
-  {% endif %}
-  {% if params.device %}
-    {% set api_url = api_url|urlparams(device=params.device) %}
-  {% endif %}
   {% defer (url=api_url, pluck='objects', as='app', paginate='ol.listing', id='searchresults') %}
     <header class="secondary-header c">
       <h2 class="linefit">
         {{ _plural('<b>{n}</b> Result', '<b>{n}</b> Results', n=response.meta.total_count) }}
-        {% if params.dev == 'desktop' %}
-          {# Per https://bugzilla.mozilla.org/show_bug.cgi?id=1060062#c4, we show the user that
-             only desktop apps are returned if the query string has a dev=desktop parameter. #}
-          <span class="subtitle hide-on-mobile">{{ _('Showing <b>1</b>&ndash;<b class="total-results">{total}</b> Desktop Apps', total=len(this)) }}</span>
-        {% else %}
-          <span class="subtitle hide-on-mobile">{{ _('Showing <b>1</b>&ndash;<b class="total-results">{total}</b>', total=len(this)) }}</span>
-        {% endif %}
+        <span class="subtitle hide-on-mobile">{{ _('Showing <b>1</b>&ndash;<b class="total-results">{total}</b>', total=len(this)) }}</span>
       </h2>
+      {% include "compatibility_filtering.html" %}
       <a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a>
     </header>
     <ol class="container listing search-listing c">

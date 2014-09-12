@@ -12,6 +12,7 @@ casper.test.begin('Search baseline tests', {
 
         casper.waitForSelector('.search-listing li', function() {
             test.assertUrlMatch(/\/search\?q=test$/);
+            test.assertField('compatibility_filtering', 'all');
             test.assertVisible('#search-q');
             test.assertDoesntExist('#featured');
             // There should be 26 elements in the listing: 25 items + "load more".
@@ -29,6 +30,7 @@ casper.test.begin('Search baseline tests', {
 
         casper.waitForSelector('.search-listing li:nth-child(42)', function() {
             test.assertUrlMatch(/\/search\?q=test$/);
+            test.assertField('compatibility_filtering', 'all');
             test.assertSelectorHasText('#search-results h2', '42 Results');
             test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–42');
             helpers.assertAPICallWasMade('/api/v2/fireplace/search/', {
@@ -40,6 +42,7 @@ casper.test.begin('Search baseline tests', {
 
         casper.waitForSelector('.search-listing li:nth-child(42)', function() {
             test.assertUrlMatch(/\/search\?q=test$/);
+            test.assertField('compatibility_filtering', 'all');
             test.assertSelectorHasText('#search-results h2', '42 Results');
             test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–42');
             casper.click('.search-listing li a.mkt-tile:first-child');
@@ -47,27 +50,31 @@ casper.test.begin('Search baseline tests', {
         });
 
         // Test device filtering using query string.
-        casper.thenOpen(helpers.makeUrl('/search?q=test&dev=desktop'), function() {
+        casper.thenOpen(helpers.makeUrl('/search?q=test&device_override=desktop'), function() {
             casper.waitForSelector('#splash-overlay.hide', function() {
-                test.assertUrlMatch(/\/search\?q=test&dev=desktop$/);
+                test.assertUrlMatch(/\/search\?q=test&device_override=desktop$/);
+                test.assertField('compatibility_filtering', 'desktop');
                 helpers.assertAPICallWasMade('/api/v2/fireplace/search/', {
-                    cache: '1', dev: 'desktop', lang: 'en-US', limit: '25', q: 'test', region: 'us', vary: '0'
+                    // Note: device_override is present in the query string because
+                    // we inject everything except 'src' from the page query string.
+                    cache: '1', dev: 'desktop', device_override: 'desktop', lang: 'en-US', limit: '25', q: 'test', region: 'us', vary: '0'
                 });
 
                 // There should be 26 elements in the listing: 25 items + "load more".
                 test.assertExists('.search-listing li:nth-child(26)');
                 test.assertDoesntExist('.search-listing li:nth-child(27)');
                 test.assertSelectorHasText('#search-results h2', '42 Results');
-                test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–25 Desktop Apps');
+                test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–25');
                 test.assertVisible('.search-listing li a.mkt-tile');
                 test.assertVisible('#search-results .expand-toggle');
                 casper.click('li.loadmore button');
             });
 
             casper.waitForSelector('.search-listing li:nth-child(42)', function() {
-                test.assertUrlMatch(/\/search\?q=test&dev=desktop$/);
+                test.assertUrlMatch(/\/search\?q=test&device_override=desktop$/);
+                test.assertField('compatibility_filtering', 'desktop');
                 test.assertSelectorHasText('#search-results h2', '42 Results');
-                test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–42 Desktop Apps');
+                test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–42');
                 casper.click('.header-button.back');
                 casper.fill('#search', {q: 'test'}, true);
             });
@@ -77,9 +84,9 @@ casper.test.begin('Search baseline tests', {
             casper.waitForSelector('.search-listing li:nth-child(26)', function() {
                 casper.waitForUrl(/\/search\?q=test$/, function() {
                     test.assertUrlMatch(/\/search\?q=test$/);
+                    test.assertField('compatibility_filtering', 'all');
                     test.assertSelectorHasText('#search-results h2', '42 Results');
                     test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–25');
-                    test.assertSelectorDoesntHaveText('#search-results h2 .subtitle', 'Showing 1–25 Desktop Apps');
                     casper.click('.search-listing li a.mkt-tile:first-child');
                     test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
                 });

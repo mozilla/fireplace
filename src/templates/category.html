@@ -32,6 +32,7 @@
       <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
     </header>
   {% endif %}
+  {% include "compatibility_filtering.html" %}
   <ol class="container listing grid-if-desktop search-listing feed c">
     {% for result in this %}
       <li class="item result app c">

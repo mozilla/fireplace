@@ -223,6 +223,7 @@ define('views/search',
         }
 
         builder.start('search/main.html', {
+            endpoint_name: 'search',
             params: _.extend({}, params),
             processor: processor(query)
         }).done(function() {
