@@ -1,0 +1,15 @@
+<mkt-banner id="fx-accounts-banner" success dismiss="off">
+  {{ _('Firefox Accounts has arrived!') }}
+  <mkt-login link>
+    {% if logged_in %}
+      {{ _("Transfer your account now. It's easy.") }}
+    {% else %}
+      {{ _("Simply sign in to transfer your account.") }}
+    {% endif %}
+  </mkt-login>
+  <small>
+    <a href="https://developer.mozilla.org/Firefox_Accounts">
+      {{ _('Learn more about Firefox Accounts.</a>') }}
+    </a>
+  </small>
+</mkt-banner>

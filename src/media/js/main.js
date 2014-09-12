@@ -17,6 +17,7 @@ require.config({
         'settings': ['settings_local', 'settings'],
         'format': 'lib/format',
         'hammerjs': 'hammer',
+        'document-register-element': 'lib/document-register-element',
     },
 });
 
@@ -30,6 +31,7 @@ define(
         'apps_buttons',
         'cache',
         'capabilities',
+        'components',
         'consumer_info',
         'mobilenetwork',
         'content-ratings',
@@ -67,6 +69,7 @@ function(_) {
     var apps = require('apps');
     var buttons = require('apps_buttons');
     var capabilities = require('capabilities');
+    var consumer_info = require('consumer_info');
     var format = require('format');
     var $ = require('jquery');
     var settings = require('settings');
@@ -170,7 +173,7 @@ function(_) {
                 // Refresh list of installed apps in case user uninstalled apps
                 // and switched back.
                 if (require('user').logged_in()) {
-                    require('consumer_info').fetch(true);
+                    consumer_info.fetch(true);
                 }
                 apps.getInstalled().done(buttons.mark_btns_as_uninstalled);
             }
@@ -186,16 +189,28 @@ function(_) {
         $('#site-footer').html(
             nunjucks.env.render('footer.html', context));
 
-        if (!navigator.mozApps &&
-            !navigator.userAgent.match(/googlebot/i) &&
-            !require('storage').getItem('hide_incompatibility_banner')) {
+        if (!window['incompatibility-banner'] &&
+                !navigator.mozApps &&
+                !navigator.userAgent.match(/googlebot/i)) {
             console.log('Adding incompatibility banner');
-            $('#incompatibility-banner').html(
-                nunjucks.env.render('incompatible.html'));
-            z.body.addClass('show-incompatibility-banner');
+            $('#site-nav').after(nunjucks.env.render('incompatible.html'));
         }
 
-        z.body.toggleClass('logged-in', require('user').logged_in());
+        var logged_in = require('user').logged_in();
+
+        // Wait for the switches to be pulled down.
+        consumer_info.promise.then(function () {
+            var fxAccountsMigration = settings.switches.indexOf(
+                'fx-accounts-migration') !== -1;
+
+            if (fxAccountsMigration && !window['fx-accounts-banner']) {
+                $('#site-nav').after(
+                    nunjucks.env.render('fx-accounts-banner.html',
+                                        {logged_in: logged_in}));
+            }
+        });
+
+        z.body.toggleClass('logged-in', logged_in);
         z.page.trigger('reloaded_chrome');
     }).trigger('reload_chrome');
 
@@ -207,13 +222,6 @@ function(_) {
         e.preventDefault();
         console.log('← button pressed');
         require('navigation').back();
-    });
-
-    z.body.on('click', '#incompatibility-banner .close', function(e) {
-        e.preventDefault();
-        console.log('Hiding incompatibility banner');
-        z.body.removeClass('show-incompatibility-banner');
-        require('storage').setItem('hide_incompatibility_banner', true);
     });
 
     var ImageDeferrer = require('image-deferrer');
@@ -246,7 +254,7 @@ function(_) {
         false
     );
 
-    require('consumer_info').promise.done(function() {
+    consumer_info.promise.done(function() {
         console.log('Triggering initial navigation');
         if (!z.spaceheater) {
             z.page.trigger('navigate', [window.location.pathname + window.location.search]);
