@@ -94,7 +94,10 @@ define('mobilenetwork',
         470: 'bd',
 
         // Japan
-        440: 'jp'
+        440: 'jp',
+
+        // Czech Republic
+        230: 'cz'
     };
 
     var carriers = [
@@ -199,6 +202,8 @@ define('mobilenetwork',
         },
 
         // Czech Republic
+        230: 'deutsche_telekom',
+
         // Austria
         // 2, 8
         232: 'telefonica',

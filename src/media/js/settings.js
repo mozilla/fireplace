@@ -111,6 +111,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'cn': gettext('China'),
             'co': gettext('Colombia'),
             'cr': gettext('Costa Rica'),
+            'cz': gettext('Czech Republic'),
             'ec': gettext('Ecuador'),
             'sv': gettext('El Salvador'),
             'fr': gettext('France'),
