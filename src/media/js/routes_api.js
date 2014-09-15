@@ -2,9 +2,7 @@ define('routes_api', [], function() {
     return {
         'app': '/api/v2/fireplace/app/{0}/?cache=1&vary=0',
         'app/privacy': '/api/v2/apps/app/{0}/privacy/?cache=1&vary=0',
-        'category': '/api/v2/fireplace/search/featured/?cat={0}&cache=1&vary=0',
-        'categories': '/api/v2/apps/category/?cache=1&vary=0',
-        'collection': '/api/v2/fireplace/collection/{0}/?cache=1&vary=0',
+        'category': '/api/v2/fireplace/search/?cat={0}&cache=1&vary=0',
         'fxa-login': '/api/v2/account/fxa-login/',
         'reviews': '/api/v2/apps/rating/',
         'review': '/api/v2/apps/rating/{0}/',

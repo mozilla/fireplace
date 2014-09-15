@@ -19,7 +19,6 @@ var routes = [
     {'pattern': '^/new$', 'view_name': 'new'},
     {'pattern': '^/popular$', 'view_name': 'popular'},
     {'pattern': '^/category/([^/<>"\']+)$', 'view_name': 'category'},
-    {'pattern': '^/category/([^/<>"\']+)/featured$', 'view_name': 'featured'},
     {'pattern': '^/nominate$', 'view_name': 'nominate'},
     {'pattern': '^/settings$', 'view_name': 'settings'},
     {'pattern': '^/feedback$', 'view_name': 'feedback'},
@@ -28,8 +27,6 @@ var routes = [
     {'pattern': '^/privacy-policy$', 'view_name': 'privacy'},
     {'pattern': '^/terms-of-use$', 'view_name': 'terms'},
     {'pattern': '^/site/deprecated$', 'view_name': 'deprecated'},
-
-    {'pattern': '^/collection/([^/<>"\']+)/?$', 'view_name': 'collection'},
 
     // Feed.
     {'pattern': '^/feed/app/([^/<>"\']+)/?$', 'view_name': 'feed/feed_app'},

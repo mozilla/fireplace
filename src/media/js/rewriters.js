@@ -43,9 +43,6 @@ define('rewriters',
         // Search pagination rewriter
         pagination(urls.api.base.url('search')),
 
-        // Category pagination rewriter
-        pagination(urls.api.base.url('category')),
-
         // My Apps pagination rewriter
         pagination(urls.api.base.url('installed'))
     ];
