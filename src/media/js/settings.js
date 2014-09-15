@@ -47,8 +47,6 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // (key: URL; value: max-age in seconds).
         api_cdn_whitelist: {
             '/api/v2/fireplace/search/': 60 * 3,  // 3 minutes
-            '/api/v2/fireplace/search/featured/': 60 * 3,  // 3 minutes
-            '/api/v2/apps/category/': 60 * 60,  // 1 hour
             '/api/v2/feed/get/': 60 * 30,  // 30 minutes
         },
 
@@ -74,7 +72,6 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // these TTLs apply to only when the app is first launched.
         offline_cache_whitelist: {
             '/api/v2/fireplace/consumer-info/': 60 * 60 * 24 * 7,  // 1 week
-            '/api/v2/fireplace/search/featured/': 60 * 60 * 24 * 7,  // 1 week
             '/api/v2/feed/get/': 60 * 60 * 24 * 1  // 1 day
         },
         offline_cache_enabled: offline_cache_enabled,
