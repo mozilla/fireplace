@@ -117,8 +117,8 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
             });
         } else {
             console.log('Setting up UA tracking without Potatolytics');
-            ua_push(settings.ua_tracking_id, get_url(), clientID,
-                    settings.tracking_site_section, settings.tracking_site_section_index);
+            setupUATracking(settings.ua_tracking_id, get_url(), clientID,
+                            settings.tracking_site_section, settings.tracking_site_section_index);
         }
     }
 
