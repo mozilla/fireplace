@@ -44,7 +44,7 @@ define('installer_iframe',
     }
 
     function install(product, opt) {
-        // m.f.c will receive this postMessage in hearth/iframe-install.html.
+        // m.f.c will receive this postMessage in `iframe-install.html`.
         console.log('Using iframe installer for ' + product.manifest_url);
         var def = defer.Deferred();
 
