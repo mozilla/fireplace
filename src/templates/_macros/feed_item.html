@@ -203,7 +203,7 @@
      class="op-shelf fanchor" data-tracking-slug="{{ shelf.slug }}">
     <section class="feed-item shelf deferred-background {{ 'shelf-landing' if landing }}"
              style="background-image: url({{ PLACEHOLDER_ICON }})"
-             data-src="{{ shelf.background_image }}"
+             data-src="{{ shelf.background_image_landing if landing else shelf.background_image }}"
              data-carrier="{{ shelf.carrier }}"
              data-region="{{ shelf.region }}">
       <div class="curve"></div>
@@ -261,14 +261,13 @@
 {% macro feed_shelf_landing(shelf) %}
   <section class="main feed feed-landing shelf-landing"
            data-tracking-slug="{{ shelf.slug }}">
+    <div class="detail-item header-block">
+      {{ feed_shelf(shelf, true) }}
+      {% if shelf.description %}
+        <p class="desc">{{ shelf.description|translate(shelf) }}</p>
+      {% endif %}
+    </div>
     <ul class="feed">
-      <li class="detail-item header-block">
-        {{ feed_shelf(shelf, true) }}
-        {% if shelf.description %}
-          <p class="desc">{{ shelf.description|translate(shelf) }}</p>
-        {% endif %}
-      </li>
-
       {% if shelf.apps %}
         {% for app in shelf.apps %}
           <li class="item result app c detail-item">

@@ -393,8 +393,27 @@ $grameenphone_color = #00ACE7;
             }
         }
     }
+    // Op shelf landing.
+    .shelf-landing {
+        .detail-item.header-block,
+        .feed-item {
+            width: $feed-column-width;
+        }
+        .detail-item.header-block {
+            margin: 0 auto;
+
+            .desc {
+                font-size: 13px;
+                padding: 10px;
+            }
+        }
+    }
 }
 
+// Feed app list should have a top margin when no desc present.
+.shelf-landing .header-block + .feed {
+    margin-top: 10px;
+}
 
 [data-page-type~="newpop"] {
     .feed-tile-header:before {
