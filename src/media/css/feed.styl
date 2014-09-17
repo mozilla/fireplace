@@ -25,6 +25,8 @@ $telenor_regions = (hu me rs bd)
 $telenor_color = #00ACE7;
 $grameenphone_regions = (bd)
 $grameenphone_color = #00ACE7;
+$tmobile_regions = (hu pl)
+$tmobile_color = #E20074;
 
 
 .feed .icon {
@@ -700,6 +702,13 @@ $grameenphone_color = #00ACE7;
                 for region in $grameenphone_regions {
                     [data-region={region}]& {
                         background-color: rgba($grameenphone_color, 0.6);
+                    }
+                }
+            }
+            [data-carrier="deutsche_telekom"]& {
+                for region in $tmobile_regions {
+                    [data-region={region}]& {
+                        background-color: rgba($tmobile_color, 0.6);
                     }
                 }
             }
