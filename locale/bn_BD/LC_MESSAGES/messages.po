@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05T15:31:20.899Z\n"
+"POT-Creation-Date: 2014-09-17T16:10:45.990Z\n"
 "PO-Revision-Date: 2014-03-29 10:38+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,10 @@ msgstr ""
 msgid "An internal server error occurred. Please try again later."
 msgstr "সার্ভারে কিছু ত্রুটি ঘটেছে। অনুগ্রহপূর্বক কিছুক্ষণ পর আবার চেষ্টা করুন।"
 
+#: /templates/cat_dropdown.html:1
+msgid "All Categories"
+msgstr "সকল বিষয়শ্রেণী"
+
 #: /templates/category.html:27 /templates/nav.html:17
 msgid "Popular"
 msgstr "জনপ্রিয়"
@@ -47,11 +51,7 @@ msgstr "এই বিষয়শ্রেণীতে কোনো অ্যাপ
 msgid "The category you requested does not exist."
 msgstr "আপনার অনুরোধকৃত বিষয়শ্রেণী বিদ্যমান নয়।"
 
-#: /templates/cat_dropdown.html:1
-msgid "All Categories"
-msgstr "সকল বিষয়শ্রেণী"
-
-#: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6 /templates/settings/nav.html:12
+#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6 /templates/settings/nav.html:12 /media/js/components.js:84 /media/js/components.js:85
 msgid "Close"
 msgstr "বন্ধ"
 
@@ -63,10 +63,71 @@ msgstr "না"
 msgid "Yes"
 msgstr "হ্যাঁ"
 
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33 /templates/_macros/feed_item.html:253 /templates/_macros/feed_item.html:280
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr "আহ হা! এখানে কোন এ্যাপ নেই, ঝামেলা!"
+#. The Marketplace app is out-of-date and needs to be updated.
+#: /templates/deprecated.html:2
+msgid "Out-of-Date Marketplace"
+msgstr "বহু পুরাতন মার্কেটপ্ল্যাস"
+
+#: /templates/deprecated.html:3
+msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
+msgstr "আপনি ফায়ারফক্স মার্কেটপ্লেসের যেই সংস্করণটি ব্যবহার করছেন, সেটি আর সমর্থিত নয়। আপনার মার্কেটপ্লেস উপভোগ করার পূর্বে তা হালনাগাদ করা প্রয়োজন।"
+
+#: /templates/deprecated.html:5
+msgid "Update Now"
+msgstr "এখন হালনাগাদ করুন"
+
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "স্বীকৃতি "
+
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "ফায়ারফক্স এপ ইন্সটল করতে আপনাকে অবশ্যই ফায়ারফক্স ব্যবহার করতে হবে।"
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr "ডাউনলোড।"
+
+#: /templates/fx-accounts-banner.html:1
+msgid "Firefox Accounts has arrived!"
+msgstr ""
+
+#: /templates/fx-accounts-banner.html:4
+msgid "Transfer your account now. It's easy."
+msgstr ""
+
+#: /templates/fx-accounts-banner.html:6
+msgid "Simply sign in to transfer your account."
+msgstr ""
+
+#: /templates/fx-accounts-banner.html:11
+msgid "Learn more about Firefox Accounts.</a>"
+msgstr ""
+
+#: /templates/header.html:3
+msgid "Back"
+msgstr "ফেরত"
+
+#: /templates/header.html:8 /templates/header.html:11
+msgid "Search"
+msgstr "অনুসন্ধান"
+
+#: /templates/header.html:13
+msgid "Clear"
+msgstr "পরিষ্কার"
+
+#: /templates/header.html:18
+msgid "Sign In"
+msgstr "সাইন ইন"
+
+#: /templates/terms.html:2 /templates/footer.html:38 /templates/settings/feedback.html:35 /media/js/views/terms.js:10
+msgid "Terms of Use"
+msgstr "ব্যবহারের শর্তাবলী"
+
+#: /templates/privacy.html:2 /templates/footer.html:37 /templates/detail/receipt.html:57 /templates/detail/privacy.html:3 /templates/detail/main.html:188 /templates/user/newsletter.html:10
+#: /templates/settings/feedback.html:30 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
+msgid "Privacy Policy"
+msgstr "গোপনীয়তা নীতি"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -85,8 +146,8 @@ msgstr "প্রতিক্রিয়া"
 msgid "Support"
 msgstr "সহায়তা"
 
-#: /templates/footer.html:16 /templates/nav.html:29 /templates/_macros/act_tray.html:10 /templates/user/purchases.html:43 /templates/user/purchases.html:10 /templates/user/purchases.html:30
-#: /templates/settings/nav.html:7 /media/js/views/purchases.js:13
+#: /templates/footer.html:16 /templates/nav.html:29 /templates/_macros/act_tray.html:10 /templates/settings/nav.html:7 /templates/user/purchases.html:43 /templates/user/purchases.html:10
+#: /templates/user/purchases.html:30 /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "আমার অ্যাপ"
 
@@ -110,75 +171,9 @@ msgstr ""
 "<a href=\"{legal_url}\" target=\"_blank\">উল্লেখিত</a> জায়গা ছাড়া, এই সাইটের সকল উপাদান <a href=\"{cc_url}\" target=\"_blank\">ক্রিয়েটিভ কমনস এ্যাট্রিবিউশন শেয়ার-এলাইক লাইসেন্স সংস্করন ৩.০ </a> বা পরবর্তী "
 "সংস্করন দ্বারা লাইসেন্সকৃত।"
 
-#: /templates/footer.html:37 /templates/privacy.html:2 /templates/detail/main.html:188 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:30
-#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
-msgid "Privacy Policy"
-msgstr "গোপনীয়তা নীতি"
-
-#: /templates/footer.html:38 /templates/terms.html:2 /templates/settings/feedback.html:35 /media/js/views/terms.js:10
-msgid "Terms of Use"
-msgstr "ব্যবহারের শর্তাবলী"
-
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "ট্রেডমার্কের অপব্যবহার সম্পর্কে জানিয়ে দিন"
-
-#: /templates/header.html:3
-msgid "Back"
-msgstr "ফেরত"
-
-#: /templates/header.html:8 /templates/header.html:11
-msgid "Search"
-msgstr "অনুসন্ধান"
-
-#: /templates/header.html:13
-msgid "Clear"
-msgstr "পরিষ্কার"
-
-#: /templates/header.html:18
-msgid "Sign In"
-msgstr "সাইন ইন"
-
-#: /templates/nav.html:15
-msgid "Home"
-msgstr ""
-
-#: /templates/nav.html:19 /templates/nav.html:20 /media/js/views/categories.js:9
-msgid "Categories"
-msgstr ""
-
-#: /templates/nav.html:28
-msgid "My Account"
-msgstr ""
-
-#: /templates/nav.html:34
-msgid "Back to Marketplace"
-msgstr ""
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "বৈশিষ্ট্যপূর্ণ"
-
-#: /templates/featured.html:8 /templates/user/purchases.html:13 /templates/search/main.html:18
-msgid "Expand"
-msgstr "সম্প্রাসারণ"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "কোন বৈশিস্ট্যপূর্ন এপস পাওয়া যায়নি"
-
-#. The Marketplace app is out-of-date and needs to be updated.
-#: /templates/deprecated.html:2
-msgid "Out-of-Date Marketplace"
-msgstr "বহু পুরাতন মার্কেটপ্ল্যাস"
-
-#: /templates/deprecated.html:3
-msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
-msgstr "আপনি ফায়ারফক্স মার্কেটপ্লেসের যেই সংস্করণটি ব্যবহার করছেন, সেটি আর সমর্থিত নয়। আপনার মার্কেটপ্লেস উপভোগ করার পূর্বে তা হালনাগাদ করা প্রয়োজন।"
-
-#: /templates/deprecated.html:5
-msgid "Update Now"
-msgstr "এখন হালনাগাদ করুন"
 
 #: /templates/nominate.html:1
 msgid "Nominate apps to be featured on Firefox Marketplace!"
@@ -240,55 +235,25 @@ msgstr "আপনার ইমেইল ঠিকানা"
 msgid "Submit"
 msgstr "জমা"
 
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "ফায়ারফক্স এপ ইন্সটল করতে আপনাকে অবশ্যই ফায়ারফক্স ব্যবহার করতে হবে।"
-
-#: /templates/incompatible.html:2
-msgid "Download."
-msgstr "ডাউনলোড।"
-
-#: /templates/_macros/act_tray.html:2
-msgid "Settings"
-msgstr "সেটিংস"
-
-#: /templates/_macros/act_tray.html:8
-msgid "Edit Account Settings"
-msgstr "অ্যাকাউন্ট সেটিংস সম্পাদনা"
-
-#: /templates/_macros/act_tray.html:15 /templates/settings/main.html:39
-msgid "Sign Out"
-msgstr "সাইন আউট"
-
-#: /templates/_macros/feed_app_tile.html:16
-msgid "&mdash; {attribution}"
+#: /templates/nav.html:15
+msgid "Home"
 msgstr ""
 
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/_macros/feed_item.html:20
-msgid "Not yet rated"
-msgstr "এখনও রেট দেওয়া হয়নি"
-
-#: /templates/_macros/feed_item.html:105 /templates/_macros/feed_item.html:192
-msgid "View all apps"
+#: /templates/nav.html:19 /templates/nav.html:20 /media/js/views/categories.js:9
+msgid "Categories"
 msgstr ""
 
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:8
-msgid "Unavailable"
-msgstr "উপস্থিত নেই"
+#: /templates/nav.html:28
+msgid "My Account"
+msgstr ""
 
-#: /templates/_macros/market_button.html:10 /templates/_macros/market_tile.html:32
+#: /templates/nav.html:34
+msgid "Back to Marketplace"
+msgstr ""
+
+#: /templates/_macros/market_tile.html:32 /templates/_macros/market_button.html:10
 msgid "Free"
 msgstr "বিনামূল্যে"
-
-#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:252
-msgid "Open"
-msgstr ""
-
-#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:278
-msgid "Install"
-msgstr "ইনস্টল"
 
 #: /templates/_macros/market_tile.html:42
 msgid "({n})"
@@ -317,25 +282,131 @@ msgstr ""
 msgid "{app_name} screenshot"
 msgstr ""
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:8
+msgid "Unavailable"
+msgstr "উপস্থিত নেই"
+
+#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:252
+msgid "Open"
+msgstr ""
+
+#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:278
+msgid "Install"
+msgstr "ইনস্টল"
+
+#: /templates/_macros/act_tray.html:2
+msgid "Settings"
+msgstr "সেটিংস"
+
+#: /templates/_macros/act_tray.html:8
+msgid "Edit Account Settings"
+msgstr "অ্যাকাউন্ট সেটিংস সম্পাদনা"
+
+#: /templates/_macros/act_tray.html:15 /templates/settings/main.html:39
+msgid "Sign Out"
+msgstr "সাইন আউট"
+
 #: /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "আরও"
 
-#: /templates/errors/date-error.html:4
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:20
+msgid "Not yet rated"
+msgstr "এখনও রেট দেওয়া হয়নি"
+
+#: /templates/_macros/feed_item.html:105 /templates/_macros/feed_item.html:192
+msgid "View all apps"
+msgstr ""
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:253 /templates/_macros/feed_item.html:280
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr "আহ হা! এখানে কোন এ্যাপ নেই, ঝামেলা!"
+
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:5
+msgid "Content Rating"
+msgstr "কনটেন্ট রেটিং"
+
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:77
+msgid "Content Rating Details"
+msgstr "কনটেন্ট রেটিং এর বিবরন"
+
+#: /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /templates/detail/main.html:199 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "অপব্যবহার রিপোর্ট করুন"
+
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "রিপোর্ট পাঠান"
+
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr "ক্রয় করার জন্য ধন্যবাদ"
+
+#: /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /templates/detail/main.html:16 /templates/detail/main.html:17 /media/js/views/app.js:63 /media/js/views/feed/feed_app.js:9
+#: /media/js/views/feed/feed_shelf.js:9 /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:9
+msgid "Loading..."
+msgstr "লোডিং..."
+
+#: /templates/detail/receipt.html:40 /templates/detail/main.html:171
+msgid "Support Email"
+msgstr "সহায়তা ইমেইল"
+
+#: /templates/detail/receipt.html:46 /templates/detail/main.html:177
+msgid "Support Site"
+msgstr "সহায়তা সাইট"
+
+#: /templates/detail/receipt.html:51 /templates/detail/main.html:182
+msgid "Homepage"
+msgstr "প্রধান পাতা"
+
+#: /templates/detail/receipt.html:63 /templates/detail/main.html:194
+msgid "Statistics"
+msgstr "পরিসংখ্যান"
+
+#: /templates/errors/date-error.html:2
+msgid "System Date Incorrect"
+msgstr ""
+
+#: /templates/errors/date-error.html:3
 msgid "Sorry, your device clock appears to be set incorrectly."
 msgstr ""
 
-#: /templates/errors/date-error.html:7
+#: /templates/errors/date-error.html:4
 msgid "Please set today's date and time in your device settings to access the Marketplace."
 msgstr ""
 
-#: /templates/errors/date-error.html:9
+#: /templates/errors/date-error.html:5 /templates/errors/offline-error.html:4
 msgid "Try again"
 msgstr ""
 
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "স্বীকৃতি "
+#: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
+msgid "Back to app"
+msgstr "অ্যাপ এ ফিরত যাও"
+
+#: /templates/detail/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "গোপনীয়তা নীতি লোডি হচ্ছে..."
+
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:53
+msgid "Oh no!"
+msgstr "ওহ না!"
+
+#: /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "আপনি যে পাতাটি খুঁজেছেন তা পাওয়া যায়নি।"
+
+#: /templates/errors/offline-error.html:2
+msgid "Currently Offline"
+msgstr ""
+
+#: /templates/errors/offline-error.html:3
+msgid "Sorry, you need to be online to access the Marketplace."
+msgstr ""
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -361,27 +432,17 @@ msgstr "মুছে ফেলুন"
 msgid "Report"
 msgstr "রিপোর্ট"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:53
-msgid "Oh no!"
-msgstr "ওহ না!"
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "একটি ত্রুটি দেখা দিয়েছে।"
 
-#: /templates/errors/404.html:3
-msgid "The page you were looking for was not found."
-msgstr "আপনি যে পাতাটি খুঁজেছেন তা পাওয়া যায়নি।"
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "আরও লোড করতে সমস্যা হচ্ছে"
 
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "{maxstars} এর মধ্যে {stars} রেট দেয়া হয়েছে"
-
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:5
-msgid "Content Rating"
-msgstr "কনটেন্ট রেটিং"
-
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:77
-msgid "Content Rating Details"
-msgstr "কনটেন্ট রেটিং এর বিবরন"
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "আবার চেষ্টা করুন"
 
 #: /templates/detail/main.html:44
 msgid "Installed!"
@@ -398,11 +459,6 @@ msgstr "এই অ্যাপটি আপনার <b>উইন্ডোজ �
 #: /templates/detail/main.html:53
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "এই এপটি আপনার <b>ড্যাশ</b>, <b>এপ্লিকেশন পিকার</b>, কিংবা <b>এপ্লিকেশন মেনু</b> থেকে চালু করুন।"
-
-#: /templates/detail/main.html:16 /templates/detail/main.html:17 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:63 /media/js/views/collection.js:39
-#: /media/js/views/feed/feed_app.js:9 /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:9 /media/js/views/feed/feed_shelf.js:9
-msgid "Loading..."
-msgstr "লোডিং..."
 
 #: /templates/detail/main.html:68
 msgid "Updates"
@@ -452,7 +508,7 @@ msgstr ""
 msgid "Edit Your Review"
 msgstr "আপনার পর্যালোচনা সম্পাদনা করুন"
 
-#: /templates/detail/main.html:154 /templates/ratings/main.html:19 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
+#: /templates/detail/main.html:154 /templates/ratings/main.html:19 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:35
 msgid "Write a Review"
 msgstr "পর্যালোচনা লিখুন"
 
@@ -460,74 +516,96 @@ msgstr "পর্যালোচনা লিখুন"
 msgid "Sign in to Review"
 msgstr "পর্যালোচনা লিখতে সাইন ইন করুন"
 
-#: /templates/detail/main.html:171 /templates/detail/receipt.html:40
-msgid "Support Email"
-msgstr "সহায়তা ইমেইল"
-
-#: /templates/detail/main.html:177 /templates/detail/receipt.html:46
-msgid "Support Site"
-msgstr "সহায়তা সাইট"
-
-#: /templates/detail/main.html:182 /templates/detail/receipt.html:51
-msgid "Homepage"
-msgstr "প্রধান পাতা"
-
-#: /templates/detail/main.html:194 /templates/detail/receipt.html:63
-msgid "Statistics"
-msgstr "পরিসংখ্যান"
-
-#: /templates/detail/main.html:199 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "অপব্যবহার রিপোর্ট করুন"
-
 #: /templates/detail/main.html:210
 msgid "Premium version available"
 msgstr "প্রিমিয়াম সংস্করণ রয়েছে"
 
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "আরও লোড করতে সমস্যা হচ্ছে"
+#: /templates/search/main.html:21
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> টি ফলাফল"
+msgstr[1] "<b>{n}</b> টি ফলাফল"
 
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "আবার চেষ্টা করুন"
+#: /templates/search/main.html:25
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b> Desktop Apps"
+msgstr ""
 
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "রিপোর্ট পাঠান"
+#: /templates/search/main.html:27 /templates/user/purchases.html:11
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "<b>1</b>&ndash;<b class=\"total-results\">{total}</b> দেখানো হচ্ছে"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "একটি ত্রুটি দেখা দিয়েছে।"
+#: /templates/search/main.html:30 /templates/user/purchases.html:13
+msgid "Expand"
+msgstr "সম্প্রাসারণ"
 
-#: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
-msgid "Back to app"
-msgstr "অ্যাপ এ ফিরত যাও"
+#: /templates/search/main.html:48
+msgid "No results found"
+msgstr "ফলাফল পাওয়া যায়নি"
 
-#: /templates/detail/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "গোপনীয়তা নীতি লোডি হচ্ছে..."
+#: /templates/search/main.html:53
+msgid "No results found, try again later"
+msgstr "কোন ফলাফল নেই, কিছুক্ষণ পর আবার চেষ্টা করুন"
 
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr "ক্রয় করার জন্য ধন্যবাদ"
+#: /templates/_macros/feed_app_tile.html:16
+msgid "&mdash; {attribution}"
+msgstr ""
 
-#: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "{maxstars} এর মধ্যে {stars} রেট দেয়া হয়েছে"
+
+#: /templates/ratings/main.html:15 /templates/ratings/edit.html:5 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "পর্যালোচনা সম্পাদনা"
+
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "অ্যাপ পর্যালোচনা"
+
+#: /templates/ratings/report.html:2
+msgid "Please select a reason:"
+msgstr "অনুগ্রহ করে একটি কারণ নির্বাচন করুন:"
+
+#: /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/edit.html:21 /templates/ratings/write.html:3 /templates/ratings/write.html:19
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "বাতিল"
+
+#: /templates/ratings/report.html:8
+msgid "Spam or otherwise non-review content"
+msgstr "স্প্যাম অথবা পরীক্ষা করা হয়নি এমন কনটেন্ট"
+
+#: /templates/ratings/report.html:13
+msgid "Inappropriate language/dialog"
+msgstr "অসঙ্গতিপূর্ণ ভাষা/বক্তব্য"
+
+#: /templates/ratings/report.html:18
+msgid "Misplaced bug report or support request"
+msgstr "ভুল স্থানে জমা দেওয়া বাগ রিপোর্ট অথবা সহায়তার আবেদন"
 
 #: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
 msgid "Rate:"
 msgstr "রেট:"
 
-#: /templates/ratings/edit.html:21 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/report.html:3 /templates/ratings/report.html:23
-#: /templates/user/newsletter.html:13
-msgid "Cancel"
-msgstr "বাতিল"
-
 #: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
 msgid "Only logged in users may edit reviews."
 msgstr "কেবলমাত্র লগ ইন করা ব্যবহারকারীগণ পর্যালোচনা সম্পাদনা করতে পারবেন।"
+
+#: /templates/user/newsletter.html:3
+msgid "Get Firefox Marketplace news"
+msgstr "ফায়ারফক্স মার্কেটপ্লেস সংক্রান্ত খবর নিন"
+
+#: /templates/user/newsletter.html:8
+msgid "Sign up"
+msgstr "সাইন আপ"
+
+#: /templates/user/newsletter.html:15
+msgid "Signing up..."
+msgstr "সাইন আপ হচ্ছে..."
+
+#: /templates/user/newsletter.html:18
+msgid "You were successfully signed up for the Marketplace newsletter!"
+msgstr "আপনি সফলভাবে মার্কেটপ্লেস সংক্রান্ত খবরের জন্য সাইন আপ করেছেন!"
 
 #: /templates/settings/feedback.html:16
 msgid "Send"
@@ -561,6 +639,10 @@ msgstr "সংরক্ষণ"
 msgid "Sign In / Sign Up"
 msgstr "সাইন ইন / সাইন আপ"
 
+#: /templates/settings/nav.html:6
+msgid "Account"
+msgstr "একাউন্ট"
+
 #: /templates/user/purchases.html:48
 msgid "You must be signed in to view your apps."
 msgstr "আপনার এপগুলো দেখেতে অবশ্যই সাইন ইন প্রয়োজন।"
@@ -569,81 +651,9 @@ msgstr "আপনার এপগুলো দেখেতে অবশ্যই
 msgid "Sign in / Sign up"
 msgstr "সাইন ইন / সাইন আপ"
 
-#: /templates/user/purchases.html:11 /templates/search/main.html:16
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "<b>1</b>&ndash;<b class=\"total-results\">{total}</b> দেখানো হচ্ছে"
-
 #: /templates/user/purchases.html:33
 msgid "You have no apps"
 msgstr "আপনার কোন এপ নেই"
-
-#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "অ্যাপ পর্যালোচনা"
-
-#: /templates/ratings/report.html:2
-msgid "Please select a reason:"
-msgstr "অনুগ্রহ করে একটি কারণ নির্বাচন করুন:"
-
-#: /templates/ratings/report.html:8
-msgid "Spam or otherwise non-review content"
-msgstr "স্প্যাম অথবা পরীক্ষা করা হয়নি এমন কনটেন্ট"
-
-#: /templates/ratings/report.html:13
-msgid "Inappropriate language/dialog"
-msgstr "অসঙ্গতিপূর্ণ ভাষা/বক্তব্য"
-
-#: /templates/ratings/report.html:18
-msgid "Misplaced bug report or support request"
-msgstr "ভুল স্থানে জমা দেওয়া বাগ রিপোর্ট অথবা সহায়তার আবেদন"
-
-#: /templates/settings/nav.html:6
-msgid "Account"
-msgstr "একাউন্ট"
-
-#: /templates/user/newsletter.html:3
-msgid "Get Firefox Marketplace news"
-msgstr "ফায়ারফক্স মার্কেটপ্লেস সংক্রান্ত খবর নিন"
-
-#: /templates/user/newsletter.html:8
-msgid "Sign up"
-msgstr "সাইন আপ"
-
-#: /templates/user/newsletter.html:15
-msgid "Signing up..."
-msgstr "সাইন আপ হচ্ছে..."
-
-#: /templates/user/newsletter.html:18
-msgid "You were successfully signed up for the Marketplace newsletter!"
-msgstr "আপনি সফলভাবে মার্কেটপ্লেস সংক্রান্ত খবরের জন্য সাইন আপ করেছেন!"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> টি ফলাফল"
-msgstr[1] "<b>{n}</b> টি ফলাফল"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "ফলাফল পাওয়া যায়নি"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "কোন ফলাফল নেই, কিছুক্ষণ পর আবার চেষ্টা করুন"
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "লেনদেন বাতিল করা হয়েছে।"
-
-#: /media/js/apps_buttons.js:91
-msgid "Purchasing"
-msgstr "ক্রয় প্রক্রিয়াধীন "
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:190
-msgid "Install failed. Please try again later."
-msgstr "ইন্সটল হয়নি। অনুগ্রহপূর্বক কিছুক্ষন কর আবার চেষ্টা করুন।"
 
 #: /media/js/categories.js:7
 msgid "Games"
@@ -732,6 +742,14 @@ msgstr "আপনার ব্রাউজার অথবা ডিভাইস
 #: /media/js/apps.js:101
 msgid "This app is unavailable for your platform."
 msgstr "এই অ্যাপটি আপনার প্লাটফর্মের জন্য অবমুক্ত নয়।"
+
+#: /media/js/installer_direct.js:56
+msgid "Unable to install packaged apps"
+msgstr ""
+
+#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
+msgid "App install error: {error}"
+msgstr "অ্যাপ ইন্সটল ত্রুটি: {error}"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1091,6 +1109,20 @@ msgstr ""
 msgid "Listing Collection"
 msgstr ""
 
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "লেনদেন বাতিল করা হয়েছে।"
+
+#: /media/js/apps_buttons.js:91
+msgid "Purchasing"
+msgstr "ক্রয় প্রক্রিয়াধীন "
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:190
+msgid "Install failed. Please try again later."
+msgstr "ইন্সটল হয়নি। অনুগ্রহপূর্বক কিছুক্ষন কর আবার চেষ্টা করুন।"
+
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
 msgid "For ages {0}+"
@@ -1132,17 +1164,141 @@ msgstr "১৭ বছরের উপরে"
 msgid "Adults Only 18+"
 msgstr "১৮+ বয়স্কদের জন্যে"
 
-#: /media/js/installer_direct.js:56
-msgid "Unable to install packaged apps"
-msgstr ""
-
-#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
-msgid "App install error: {error}"
-msgstr "অ্যাপ ইন্সটল ত্রুটি: {error}"
-
 #: /media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "আপনার নিউজলেটারের সাইন আপ অনুরোধে একটি ভুল হয়েছে"
+
+#: /media/js/settings.js:106
+msgid "Rest of World"
+msgstr "বাদবাকি পৃথিবী "
+
+#: /media/js/settings.js:107
+msgid "Argentina"
+msgstr "আর্জেন্টিনা"
+
+#: /media/js/settings.js:108
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/settings.js:109
+msgid "Brazil"
+msgstr "ব্রাজিল"
+
+#: /media/js/settings.js:110
+msgid "Chile"
+msgstr "চিলি"
+
+#: /media/js/settings.js:111
+msgid "China"
+msgstr "চীন"
+
+#: /media/js/settings.js:112
+msgid "Colombia"
+msgstr "কলম্বিয়া"
+
+#: /media/js/settings.js:113
+msgid "Costa Rica"
+msgstr ""
+
+#: /media/js/settings.js:114
+msgid "Czech Republic"
+msgstr ""
+
+#: /media/js/settings.js:115
+msgid "Ecuador"
+msgstr ""
+
+#: /media/js/settings.js:116
+msgid "El Salvador"
+msgstr ""
+
+#: /media/js/settings.js:117
+msgid "France"
+msgstr ""
+
+#: /media/js/settings.js:118
+msgid "Germany"
+msgstr "জার্মানি"
+
+#: /media/js/settings.js:119
+msgid "Greece"
+msgstr "গ্রীস"
+
+#: /media/js/settings.js:120
+msgid "Guatemala"
+msgstr ""
+
+#: /media/js/settings.js:121
+msgid "Hungary"
+msgstr "হাঙ্গেরি"
+
+#: /media/js/settings.js:122
+msgid "India"
+msgstr ""
+
+#: /media/js/settings.js:123
+msgid "Italy"
+msgstr "ইতালি"
+
+#: /media/js/settings.js:124
+msgid "Japan"
+msgstr ""
+
+#: /media/js/settings.js:125
+msgid "Mexico"
+msgstr "মেক্সিকো"
+
+#: /media/js/settings.js:126
+msgid "Montenegro"
+msgstr "মন্টিনিগ্রো"
+
+#: /media/js/settings.js:127
+msgid "Nicaragua"
+msgstr ""
+
+#: /media/js/settings.js:128
+msgid "Panama"
+msgstr ""
+
+#: /media/js/settings.js:129
+msgid "Peru"
+msgstr "পেরু"
+
+#: /media/js/settings.js:130
+msgid "Poland"
+msgstr "পোল্যান্ড"
+
+#: /media/js/settings.js:131
+msgid "Serbia"
+msgstr "সার্বিয়া"
+
+#: /media/js/settings.js:132
+msgid "Spain"
+msgstr "স্পেন"
+
+#: /media/js/settings.js:133
+msgid "United Kingdom"
+msgstr "যুক্তরাজ্য"
+
+#: /media/js/settings.js:134
+msgid "United States"
+msgstr "যুক্তরাষ্ট্র"
+
+#: /media/js/settings.js:135
+msgid "Uruguay"
+msgstr "উরুগুয়ে"
+
+#: /media/js/settings.js:136
+msgid "Venezuela"
+msgstr "ভেনেজুয়েলা"
+
+#: /media/js/settings.js:137
+msgid "No region in search"
+msgstr "কোন এলাকা খুঁজে পাওয়া যায়নি"
+
+#: /media/js/settings.js:163
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr ""
 
 #. The report is an abuse report for reviews
 #: /media/js/ratings.js:40
@@ -1173,136 +1329,16 @@ msgstr "আপনার পর্যালোচনা পোস্ট হয়ে
 msgid "Error while submitting review"
 msgstr "পর্যালোচনা জমা দেওয়ার সময় ভুল "
 
-#: /media/js/settings.js:109
-msgid "Rest of World"
-msgstr "বাদবাকি পৃথিবী "
-
-#: /media/js/settings.js:110
-msgid "Argentina"
-msgstr "আর্জেন্টিনা"
-
-#: /media/js/settings.js:111
-msgid "Bangladesh"
-msgstr ""
-
-#: /media/js/settings.js:112
-msgid "Brazil"
-msgstr "ব্রাজিল"
-
-#: /media/js/settings.js:113
-msgid "Chile"
-msgstr "চিলি"
-
-#: /media/js/settings.js:114
-msgid "China"
-msgstr "চীন"
-
-#: /media/js/settings.js:115
-msgid "Colombia"
-msgstr "কলম্বিয়া"
-
-#: /media/js/settings.js:116
-msgid "Costa Rica"
-msgstr ""
-
-#: /media/js/settings.js:117
-msgid "Ecuador"
-msgstr ""
-
-#: /media/js/settings.js:118
-msgid "El Salvador"
-msgstr ""
-
-#: /media/js/settings.js:119
-msgid "France"
-msgstr ""
-
-#: /media/js/settings.js:120
-msgid "Germany"
-msgstr "জার্মানি"
-
-#: /media/js/settings.js:121
-msgid "Greece"
-msgstr "গ্রীস"
-
-#: /media/js/settings.js:122
-msgid "Guatemala"
-msgstr ""
-
-#: /media/js/settings.js:123
-msgid "Hungary"
-msgstr "হাঙ্গেরি"
-
-#: /media/js/settings.js:124
-msgid "India"
-msgstr ""
-
-#: /media/js/settings.js:125
-msgid "Italy"
-msgstr "ইতালি"
-
-#: /media/js/settings.js:126
-msgid "Mexico"
-msgstr "মেক্সিকো"
-
-#: /media/js/settings.js:127
-msgid "Montenegro"
-msgstr "মন্টিনিগ্রো"
-
-#: /media/js/settings.js:128
-msgid "Nicaragua"
-msgstr ""
-
-#: /media/js/settings.js:129
-msgid "Panama"
-msgstr ""
-
-#: /media/js/settings.js:130
-msgid "Peru"
-msgstr "পেরু"
-
-#: /media/js/settings.js:131
-msgid "Poland"
-msgstr "পোল্যান্ড"
-
-#: /media/js/settings.js:132
-msgid "Serbia"
-msgstr "সার্বিয়া"
-
-#: /media/js/settings.js:133
-msgid "Spain"
-msgstr "স্পেন"
-
-#: /media/js/settings.js:134
-msgid "United Kingdom"
-msgstr "যুক্তরাজ্য"
-
-#: /media/js/settings.js:135
-msgid "United States"
-msgstr "যুক্তরাষ্ট্র"
-
-#: /media/js/settings.js:136
-msgid "Uruguay"
-msgstr "উরুগুয়ে"
-
-#: /media/js/settings.js:137
-msgid "Venezuela"
-msgstr "ভেনেজুয়েলা"
-
-#: /media/js/settings.js:138
-msgid "No region in search"
-msgstr "কোন এলাকা খুঁজে পাওয়া যায়নি"
-
-#: /media/js/settings.js:163
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr ""
-
 #. {n} is the number of stars
 #: /media/js/common/ratingwidget.js:34
 msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n} টি তারকা"
 msgstr[1] "{n} টি তারকা"
+
+#: /media/js/commonplace/navigation.js:33
+msgid "No internet connection"
+msgstr "কোন ইন্টারনেট সংযোগ নেই"
 
 #: /media/js/commonplace/login.js:20
 msgid "You have been signed out"
@@ -1344,17 +1380,9 @@ msgstr "সার্ভার এর সাথে যোগাযোগ কর�
 msgid "Your device does not support purchases."
 msgstr "আপনার ডিভাইস দিয়ে ক্রয় করা যাবেনা।"
 
-#: /media/js/commonplace/navigation.js:33
-msgid "No internet connection"
-msgstr "কোন ইন্টারনেট সংযোগ নেই"
-
 #: /media/js/views/app.js:64 /media/js/views/feed/feed_app.js:10
 msgid "App Details"
 msgstr "অ্যাপের বিস্তারিত"
-
-#: /media/js/views/collection.js:40 /media/js/views/feed/feed_collection.js:10
-msgid "Collection Details"
-msgstr "সংগ্রহের বিবরন"
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1376,10 +1404,6 @@ msgstr ""
 msgid "Nominate apps"
 msgstr "অ্যাপস মনোনয়ন করে"
 
-#: /media/js/views/search.js:218
-msgid "Search Results"
-msgstr "অনুসন্ধানের ফলাফল"
-
 #: /media/js/views/settings.js:34
 msgid "Settings saved"
 msgstr "সেটিংস সংরক্ষিত"
@@ -1395,6 +1419,10 @@ msgstr "অপব্যবহারের অভিযোগ গৃহীত হ
 #: /media/js/views/app/abuse.js:22
 msgid "Error while submitting report"
 msgstr "অভিযোগ পাঠানোর সময় সমস্যা হয়েছে"
+
+#: /media/js/views/search.js:218
+msgid "Search Results"
+msgstr "অনুসন্ধানের ফলাফল"
 
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"
@@ -1413,13 +1441,17 @@ msgstr ""
 msgid "Not Found"
 msgstr "পাওয়া যায়নি"
 
+#: /media/js/views/feed/feed_shelf.js:10
+msgid "Operator Shelf Details"
+msgstr ""
+
 #: /media/js/views/feed/feed_brand.js:10
 msgid "Editorial Brand Details"
 msgstr ""
 
-#: /media/js/views/feed/feed_shelf.js:10
-msgid "Operator Shelf Details"
-msgstr ""
+#: /media/js/views/feed/feed_collection.js:10
+msgid "Collection Details"
+msgstr "সংগ্রহের বিবরন"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05T15:31:20.899Z\n"
+"POT-Creation-Date: 2014-09-17T16:10:45.990Z\n"
 "PO-Revision-Date: 2014-09-06 04:34+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -26,6 +26,10 @@ msgstr "没有找到应用。"
 msgid "An internal server error occurred. Please try again later."
 msgstr "内部服务器出错，请稍后再试。"
 
+#: /templates/cat_dropdown.html:1
+msgid "All Categories"
+msgstr "所有类别"
+
 #: /templates/category.html:27 /templates/nav.html:17
 msgid "Popular"
 msgstr "热门"
@@ -47,11 +51,7 @@ msgstr "此类别下无应用"
 msgid "The category you requested does not exist."
 msgstr "您请求的类别不存在。"
 
-#: /templates/cat_dropdown.html:1
-msgid "All Categories"
-msgstr "所有类别"
-
-#: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6 /templates/settings/nav.html:12
+#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6 /templates/settings/nav.html:12 /media/js/components.js:84 /media/js/components.js:85
 msgid "Close"
 msgstr "关闭"
 
@@ -63,10 +63,71 @@ msgstr "否"
 msgid "Yes"
 msgstr "是"
 
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33 /templates/_macros/feed_item.html:253 /templates/_macros/feed_item.html:280
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr "啊噢，这里没有任何应用！"
+#. The Marketplace app is out-of-date and needs to be updated.
+#: /templates/deprecated.html:2
+msgid "Out-of-Date Marketplace"
+msgstr "此应用市场应用已过期"
+
+#: /templates/deprecated.html:3
+msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
+msgstr "您正在使用的此版本火狐应用市场已不再受支持。在继续享受应用市场的无限乐趣前，您须要先执行更新。"
+
+#: /templates/deprecated.html:5
+msgid "Update Now"
+msgstr "立即更新"
+
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "贡献者"
+
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "您必须使用 Firefox 才能安装 Firefox 应用程序。"
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr "下载。"
+
+#: /templates/fx-accounts-banner.html:1
+msgid "Firefox Accounts has arrived!"
+msgstr ""
+
+#: /templates/fx-accounts-banner.html:4
+msgid "Transfer your account now. It's easy."
+msgstr ""
+
+#: /templates/fx-accounts-banner.html:6
+msgid "Simply sign in to transfer your account."
+msgstr ""
+
+#: /templates/fx-accounts-banner.html:11
+msgid "Learn more about Firefox Accounts.</a>"
+msgstr ""
+
+#: /templates/header.html:3
+msgid "Back"
+msgstr "上一页"
+
+#: /templates/header.html:8 /templates/header.html:11
+msgid "Search"
+msgstr "检索"
+
+#: /templates/header.html:13
+msgid "Clear"
+msgstr "清空"
+
+#: /templates/header.html:18
+msgid "Sign In"
+msgstr "登录"
+
+#: /templates/terms.html:2 /templates/footer.html:38 /templates/settings/feedback.html:35 /media/js/views/terms.js:10
+msgid "Terms of Use"
+msgstr "使用条款"
+
+#: /templates/privacy.html:2 /templates/footer.html:37 /templates/detail/receipt.html:57 /templates/detail/privacy.html:3 /templates/detail/main.html:188 /templates/user/newsletter.html:10
+#: /templates/settings/feedback.html:30 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
+msgid "Privacy Policy"
+msgstr "隐私条款"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -85,8 +146,8 @@ msgstr "反馈"
 msgid "Support"
 msgstr "支持"
 
-#: /templates/footer.html:16 /templates/nav.html:29 /templates/_macros/act_tray.html:10 /templates/user/purchases.html:43 /templates/user/purchases.html:10 /templates/user/purchases.html:30
-#: /templates/settings/nav.html:7 /media/js/views/purchases.js:13
+#: /templates/footer.html:16 /templates/nav.html:29 /templates/_macros/act_tray.html:10 /templates/settings/nav.html:7 /templates/user/purchases.html:43 /templates/user/purchases.html:10
+#: /templates/user/purchases.html:30 /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "我的应用"
 
@@ -108,75 +169,9 @@ msgid ""
 "Alike License v3.0</a> or any later version."
 msgstr "除特别<a href=\"{legal_url}\" target=\"_blank\">标注</a>以外，本站内容均遵循 <a href=\"{cc_url}\" target=\"_blank\">署名-相同方式共享 3.0</a> 或更新版本的许可协议。"
 
-#: /templates/footer.html:37 /templates/privacy.html:2 /templates/detail/main.html:188 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:30
-#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
-msgid "Privacy Policy"
-msgstr "隐私条款"
-
-#: /templates/footer.html:38 /templates/terms.html:2 /templates/settings/feedback.html:35 /media/js/views/terms.js:10
-msgid "Terms of Use"
-msgstr "使用条款"
-
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "报告商标侵权。"
-
-#: /templates/header.html:3
-msgid "Back"
-msgstr "上一页"
-
-#: /templates/header.html:8 /templates/header.html:11
-msgid "Search"
-msgstr "检索"
-
-#: /templates/header.html:13
-msgid "Clear"
-msgstr "清空"
-
-#: /templates/header.html:18
-msgid "Sign In"
-msgstr "登录"
-
-#: /templates/nav.html:15
-msgid "Home"
-msgstr "首页"
-
-#: /templates/nav.html:19 /templates/nav.html:20 /media/js/views/categories.js:9
-msgid "Categories"
-msgstr "分类"
-
-#: /templates/nav.html:28
-msgid "My Account"
-msgstr "我的账户"
-
-#: /templates/nav.html:34
-msgid "Back to Marketplace"
-msgstr "返回应用市场"
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "精选"
-
-#: /templates/featured.html:8 /templates/user/purchases.html:13 /templates/search/main.html:18
-msgid "Expand"
-msgstr "展开"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "找不到精选应用"
-
-#. The Marketplace app is out-of-date and needs to be updated.
-#: /templates/deprecated.html:2
-msgid "Out-of-Date Marketplace"
-msgstr "此应用市场应用已过期"
-
-#: /templates/deprecated.html:3
-msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
-msgstr "您正在使用的此版本火狐应用市场已不再受支持。在继续享受应用市场的无限乐趣前，您须要先执行更新。"
-
-#: /templates/deprecated.html:5
-msgid "Update Now"
-msgstr "立即更新"
 
 #: /templates/nominate.html:1
 msgid "Nominate apps to be featured on Firefox Marketplace!"
@@ -238,55 +233,25 @@ msgstr "您的电子邮件地址"
 msgid "Submit"
 msgstr "提交"
 
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "您必须使用 Firefox 才能安装 Firefox 应用程序。"
+#: /templates/nav.html:15
+msgid "Home"
+msgstr "首页"
 
-#: /templates/incompatible.html:2
-msgid "Download."
-msgstr "下载。"
+#: /templates/nav.html:19 /templates/nav.html:20 /media/js/views/categories.js:9
+msgid "Categories"
+msgstr "分类"
 
-#: /templates/_macros/act_tray.html:2
-msgid "Settings"
-msgstr "设置"
+#: /templates/nav.html:28
+msgid "My Account"
+msgstr "我的账户"
 
-#: /templates/_macros/act_tray.html:8
-msgid "Edit Account Settings"
-msgstr "编辑帐户设置"
+#: /templates/nav.html:34
+msgid "Back to Marketplace"
+msgstr "返回应用市场"
 
-#: /templates/_macros/act_tray.html:15 /templates/settings/main.html:39
-msgid "Sign Out"
-msgstr "退出"
-
-#: /templates/_macros/feed_app_tile.html:16
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/_macros/feed_item.html:20
-msgid "Not yet rated"
-msgstr "尚未评分"
-
-#: /templates/_macros/feed_item.html:105 /templates/_macros/feed_item.html:192
-msgid "View all apps"
-msgstr "查看所有应用"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:8
-msgid "Unavailable"
-msgstr "不可用"
-
-#: /templates/_macros/market_button.html:10 /templates/_macros/market_tile.html:32
+#: /templates/_macros/market_tile.html:32 /templates/_macros/market_button.html:10
 msgid "Free"
 msgstr "免费版"
-
-#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:252
-msgid "Open"
-msgstr "打开"
-
-#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:278
-msgid "Install"
-msgstr "安装"
 
 #: /templates/_macros/market_tile.html:42
 msgid "({n})"
@@ -314,25 +279,131 @@ msgstr "离线使用"
 msgid "{app_name} screenshot"
 msgstr "{app_name} 屏幕截图"
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:8
+msgid "Unavailable"
+msgstr "不可用"
+
+#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:252
+msgid "Open"
+msgstr "打开"
+
+#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:278
+msgid "Install"
+msgstr "安装"
+
+#: /templates/_macros/act_tray.html:2
+msgid "Settings"
+msgstr "设置"
+
+#: /templates/_macros/act_tray.html:8
+msgid "Edit Account Settings"
+msgstr "编辑帐户设置"
+
+#: /templates/_macros/act_tray.html:15 /templates/settings/main.html:39
+msgid "Sign Out"
+msgstr "退出"
+
 #: /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "更多"
 
-#: /templates/errors/date-error.html:4
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:20
+msgid "Not yet rated"
+msgstr "尚未评分"
+
+#: /templates/_macros/feed_item.html:105 /templates/_macros/feed_item.html:192
+msgid "View all apps"
+msgstr "查看所有应用"
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:253 /templates/_macros/feed_item.html:280
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr "啊噢，这里没有任何应用！"
+
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:5
+msgid "Content Rating"
+msgstr "内容评级"
+
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:77
+msgid "Content Rating Details"
+msgstr "内容评级详情"
+
+#: /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /templates/detail/main.html:199 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "报告滥用"
+
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "发送报告"
+
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr "感谢您的购买"
+
+#: /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /templates/detail/main.html:16 /templates/detail/main.html:17 /media/js/views/app.js:63 /media/js/views/feed/feed_app.js:9
+#: /media/js/views/feed/feed_shelf.js:9 /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:9
+msgid "Loading..."
+msgstr "正在加载..."
+
+#: /templates/detail/receipt.html:40 /templates/detail/main.html:171
+msgid "Support Email"
+msgstr "用户支持邮箱"
+
+#: /templates/detail/receipt.html:46 /templates/detail/main.html:177
+msgid "Support Site"
+msgstr "用户支持网站"
+
+#: /templates/detail/receipt.html:51 /templates/detail/main.html:182
+msgid "Homepage"
+msgstr "主页"
+
+#: /templates/detail/receipt.html:63 /templates/detail/main.html:194
+msgid "Statistics"
+msgstr "统计数据"
+
+#: /templates/errors/date-error.html:2
+msgid "System Date Incorrect"
+msgstr ""
+
+#: /templates/errors/date-error.html:3
 msgid "Sorry, your device clock appears to be set incorrectly."
 msgstr "抱歉，您的设备时钟似乎有误。"
 
-#: /templates/errors/date-error.html:7
+#: /templates/errors/date-error.html:4
 msgid "Please set today's date and time in your device settings to access the Marketplace."
 msgstr "请在您的设备设置中设置今天的日期和时间以访问应用市场。"
 
-#: /templates/errors/date-error.html:9
+#: /templates/errors/date-error.html:5 /templates/errors/offline-error.html:4
 msgid "Try again"
 msgstr "重试"
 
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "贡献者"
+#: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
+msgid "Back to app"
+msgstr "返回应用"
+
+#: /templates/detail/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "正在加载隐私权政策..."
+
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:53
+msgid "Oh no!"
+msgstr "噢不！"
+
+#: /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "找不到您想开启的页面。"
+
+#: /templates/errors/offline-error.html:2
+msgid "Currently Offline"
+msgstr ""
+
+#: /templates/errors/offline-error.html:3
+msgid "Sorry, you need to be online to access the Marketplace."
+msgstr ""
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -358,27 +429,17 @@ msgstr "删除"
 msgid "Report"
 msgstr "报告"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:53
-msgid "Oh no!"
-msgstr "噢不！"
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "出错了。"
 
-#: /templates/errors/404.html:3
-msgid "The page you were looking for was not found."
-msgstr "找不到您想开启的页面。"
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "错误地加载过多"
 
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "评{stars}星（满分{maxstars}星）"
-
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:5
-msgid "Content Rating"
-msgstr "内容评级"
-
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:77
-msgid "Content Rating Details"
-msgstr "内容评级详情"
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "重试"
 
 #: /templates/detail/main.html:44
 msgid "Installed!"
@@ -395,11 +456,6 @@ msgstr "从您的 <b>Windows桌面</b> 或 <b>开始菜单 &#9658; 所有程序<
 #: /templates/detail/main.html:53
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "从你的<b>仪表板</b>、<b>应用程序选择器</b>或者<b>应用程序菜单</b>中启动这个应用。"
-
-#: /templates/detail/main.html:16 /templates/detail/main.html:17 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:63 /media/js/views/collection.js:39
-#: /media/js/views/feed/feed_app.js:9 /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:9 /media/js/views/feed/feed_shelf.js:9
-msgid "Loading..."
-msgstr "正在加载..."
 
 #: /templates/detail/main.html:68
 msgid "Updates"
@@ -449,7 +505,7 @@ msgstr "应用尚无评论"
 msgid "Edit Your Review"
 msgstr "编辑您的评论"
 
-#: /templates/detail/main.html:154 /templates/ratings/main.html:19 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
+#: /templates/detail/main.html:154 /templates/ratings/main.html:19 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:35
 msgid "Write a Review"
 msgstr "写评论"
 
@@ -457,74 +513,95 @@ msgstr "写评论"
 msgid "Sign in to Review"
 msgstr "登录以评论"
 
-#: /templates/detail/main.html:171 /templates/detail/receipt.html:40
-msgid "Support Email"
-msgstr "用户支持邮箱"
-
-#: /templates/detail/main.html:177 /templates/detail/receipt.html:46
-msgid "Support Site"
-msgstr "用户支持网站"
-
-#: /templates/detail/main.html:182 /templates/detail/receipt.html:51
-msgid "Homepage"
-msgstr "主页"
-
-#: /templates/detail/main.html:194 /templates/detail/receipt.html:63
-msgid "Statistics"
-msgstr "统计数据"
-
-#: /templates/detail/main.html:199 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "报告滥用"
-
 #: /templates/detail/main.html:210
 msgid "Premium version available"
 msgstr "另有付费版"
 
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "错误地加载过多"
+#: /templates/search/main.html:21
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b>条结果"
 
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "重试"
+#: /templates/search/main.html:25
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b> Desktop Apps"
+msgstr ""
 
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "发送报告"
+#: /templates/search/main.html:27 /templates/user/purchases.html:11
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "显示<b>1</b>&ndash;<b class=\"total-results\">{total}</b>笔交易"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "出错了。"
+#: /templates/search/main.html:30 /templates/user/purchases.html:13
+msgid "Expand"
+msgstr "展开"
 
-#: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
-msgid "Back to app"
-msgstr "返回应用"
+#: /templates/search/main.html:48
+msgid "No results found"
+msgstr "找不到结果"
 
-#: /templates/detail/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "正在加载隐私权政策..."
+#: /templates/search/main.html:53
+msgid "No results found, try again later"
+msgstr "未找到结果，请稍后再试"
 
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr "感谢您的购买"
+#: /templates/_macros/feed_app_tile.html:16
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
 
-#: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "评{stars}星（满分{maxstars}星）"
+
+#: /templates/ratings/main.html:15 /templates/ratings/edit.html:5 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "编辑评论"
+
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "应用评价"
+
+#: /templates/ratings/report.html:2
+msgid "Please select a reason:"
+msgstr "请选择一个原因："
+
+#: /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/edit.html:21 /templates/ratings/write.html:3 /templates/ratings/write.html:19
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "取消"
+
+#: /templates/ratings/report.html:8
+msgid "Spam or otherwise non-review content"
+msgstr "垃圾信息或其他非评论内容"
+
+#: /templates/ratings/report.html:13
+msgid "Inappropriate language/dialog"
+msgstr "不适当的语言/对话"
+
+#: /templates/ratings/report.html:18
+msgid "Misplaced bug report or support request"
+msgstr "错置的bug报告或支持请求"
 
 #: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
 msgid "Rate:"
 msgstr "评分："
 
-#: /templates/ratings/edit.html:21 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/report.html:3 /templates/ratings/report.html:23
-#: /templates/user/newsletter.html:13
-msgid "Cancel"
-msgstr "取消"
-
 #: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
 msgid "Only logged in users may edit reviews."
 msgstr "仅已登录的用户可编辑评论。"
+
+#: /templates/user/newsletter.html:3
+msgid "Get Firefox Marketplace news"
+msgstr "获取火狐应用市场快讯"
+
+#: /templates/user/newsletter.html:8
+msgid "Sign up"
+msgstr "立即订阅"
+
+#: /templates/user/newsletter.html:15
+msgid "Signing up..."
+msgstr "正在订阅..."
+
+#: /templates/user/newsletter.html:18
+msgid "You were successfully signed up for the Marketplace newsletter!"
+msgstr "您已成功订阅应用市场快讯！"
 
 #: /templates/settings/feedback.html:16
 msgid "Send"
@@ -558,6 +635,10 @@ msgstr "保存更改"
 msgid "Sign In / Sign Up"
 msgstr "登录/注册"
 
+#: /templates/settings/nav.html:6
+msgid "Account"
+msgstr "帐户"
+
 #: /templates/user/purchases.html:48
 msgid "You must be signed in to view your apps."
 msgstr "登录后才能查看您的应用。"
@@ -566,80 +647,9 @@ msgstr "登录后才能查看您的应用。"
 msgid "Sign in / Sign up"
 msgstr "登录 / 注册"
 
-#: /templates/user/purchases.html:11 /templates/search/main.html:16
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "显示<b>1</b>&ndash;<b class=\"total-results\">{total}</b>笔交易"
-
 #: /templates/user/purchases.html:33
 msgid "You have no apps"
 msgstr "您尚无应用"
-
-#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "应用评价"
-
-#: /templates/ratings/report.html:2
-msgid "Please select a reason:"
-msgstr "请选择一个原因："
-
-#: /templates/ratings/report.html:8
-msgid "Spam or otherwise non-review content"
-msgstr "垃圾信息或其他非评论内容"
-
-#: /templates/ratings/report.html:13
-msgid "Inappropriate language/dialog"
-msgstr "不适当的语言/对话"
-
-#: /templates/ratings/report.html:18
-msgid "Misplaced bug report or support request"
-msgstr "错置的bug报告或支持请求"
-
-#: /templates/settings/nav.html:6
-msgid "Account"
-msgstr "帐户"
-
-#: /templates/user/newsletter.html:3
-msgid "Get Firefox Marketplace news"
-msgstr "获取火狐应用市场快讯"
-
-#: /templates/user/newsletter.html:8
-msgid "Sign up"
-msgstr "立即订阅"
-
-#: /templates/user/newsletter.html:15
-msgid "Signing up..."
-msgstr "正在订阅..."
-
-#: /templates/user/newsletter.html:18
-msgid "You were successfully signed up for the Marketplace newsletter!"
-msgstr "您已成功订阅应用市场快讯！"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b>条结果"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "找不到结果"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "未找到结果，请稍后再试"
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "付款已取消。"
-
-#: /media/js/apps_buttons.js:91
-msgid "Purchasing"
-msgstr "正在购买"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:190
-msgid "Install failed. Please try again later."
-msgstr "安装失败。请稍后重试。"
 
 #: /media/js/categories.js:7
 msgid "Games"
@@ -728,6 +738,14 @@ msgstr "您的浏览器或设备不兼容网络应用。"
 #: /media/js/apps.js:101
 msgid "This app is unavailable for your platform."
 msgstr "此应用无法在您的系统平台上运行。"
+
+#: /media/js/installer_direct.js:56
+msgid "Unable to install packaged apps"
+msgstr "无法安装封装应用"
+
+#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
+msgid "App install error: {error}"
+msgstr "应用安装出错：{error}"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1031,6 +1049,20 @@ msgstr "促销收藏集"
 msgid "Listing Collection"
 msgstr "上架收藏集"
 
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "付款已取消。"
+
+#: /media/js/apps_buttons.js:91
+msgid "Purchasing"
+msgstr "正在购买"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:190
+msgid "Install failed. Please try again later."
+msgstr "安装失败。请稍后重试。"
+
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
 msgid "For ages {0}+"
@@ -1072,17 +1104,141 @@ msgstr "17岁以上"
 msgid "Adults Only 18+"
 msgstr "18岁以上成人"
 
-#: /media/js/installer_direct.js:56
-msgid "Unable to install packaged apps"
-msgstr "无法安装封装应用"
-
-#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
-msgid "App install error: {error}"
-msgstr "应用安装出错：{error}"
-
 #: /media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "订阅快讯时出错。"
+
+#: /media/js/settings.js:106
+msgid "Rest of World"
+msgstr "其他地区"
+
+#: /media/js/settings.js:107
+msgid "Argentina"
+msgstr "阿根廷"
+
+#: /media/js/settings.js:108
+msgid "Bangladesh"
+msgstr "孟加拉"
+
+#: /media/js/settings.js:109
+msgid "Brazil"
+msgstr "巴西"
+
+#: /media/js/settings.js:110
+msgid "Chile"
+msgstr "智利"
+
+#: /media/js/settings.js:111
+msgid "China"
+msgstr "中国"
+
+#: /media/js/settings.js:112
+msgid "Colombia"
+msgstr "哥伦比亚"
+
+#: /media/js/settings.js:113
+msgid "Costa Rica"
+msgstr "哥斯达黎加"
+
+#: /media/js/settings.js:114
+msgid "Czech Republic"
+msgstr ""
+
+#: /media/js/settings.js:115
+msgid "Ecuador"
+msgstr "厄瓜多尔"
+
+#: /media/js/settings.js:116
+msgid "El Salvador"
+msgstr "萨尔瓦多"
+
+#: /media/js/settings.js:117
+msgid "France"
+msgstr "法国"
+
+#: /media/js/settings.js:118
+msgid "Germany"
+msgstr "德国"
+
+#: /media/js/settings.js:119
+msgid "Greece"
+msgstr "希腊"
+
+#: /media/js/settings.js:120
+msgid "Guatemala"
+msgstr "危地马拉"
+
+#: /media/js/settings.js:121
+msgid "Hungary"
+msgstr "匈牙利"
+
+#: /media/js/settings.js:122
+msgid "India"
+msgstr "印度"
+
+#: /media/js/settings.js:123
+msgid "Italy"
+msgstr "意大利"
+
+#: /media/js/settings.js:124
+msgid "Japan"
+msgstr ""
+
+#: /media/js/settings.js:125
+msgid "Mexico"
+msgstr "墨西哥"
+
+#: /media/js/settings.js:126
+msgid "Montenegro"
+msgstr "蒙得维的亚"
+
+#: /media/js/settings.js:127
+msgid "Nicaragua"
+msgstr "尼加拉瓜"
+
+#: /media/js/settings.js:128
+msgid "Panama"
+msgstr "巴拿马"
+
+#: /media/js/settings.js:129
+msgid "Peru"
+msgstr "秘鲁"
+
+#: /media/js/settings.js:130
+msgid "Poland"
+msgstr "波兰"
+
+#: /media/js/settings.js:131
+msgid "Serbia"
+msgstr "塞尔维亚"
+
+#: /media/js/settings.js:132
+msgid "Spain"
+msgstr "西班牙"
+
+#: /media/js/settings.js:133
+msgid "United Kingdom"
+msgstr "英国"
+
+#: /media/js/settings.js:134
+msgid "United States"
+msgstr "美国"
+
+#: /media/js/settings.js:135
+msgid "Uruguay"
+msgstr "乌拉圭"
+
+#: /media/js/settings.js:136
+msgid "Venezuela"
+msgstr "委内瑞拉"
+
+#: /media/js/settings.js:137
+msgid "No region in search"
+msgstr "搜索时不限区域"
+
+#: /media/js/settings.js:163
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "抱歉，您目前离线，请稍后再试。"
 
 #. The report is an abuse report for reviews
 #: /media/js/ratings.js:40
@@ -1113,135 +1269,15 @@ msgstr "您的评论已发表"
 msgid "Error while submitting review"
 msgstr "提交评论时出错"
 
-#: /media/js/settings.js:109
-msgid "Rest of World"
-msgstr "其他地区"
-
-#: /media/js/settings.js:110
-msgid "Argentina"
-msgstr "阿根廷"
-
-#: /media/js/settings.js:111
-msgid "Bangladesh"
-msgstr "孟加拉"
-
-#: /media/js/settings.js:112
-msgid "Brazil"
-msgstr "巴西"
-
-#: /media/js/settings.js:113
-msgid "Chile"
-msgstr "智利"
-
-#: /media/js/settings.js:114
-msgid "China"
-msgstr "中国"
-
-#: /media/js/settings.js:115
-msgid "Colombia"
-msgstr "哥伦比亚"
-
-#: /media/js/settings.js:116
-msgid "Costa Rica"
-msgstr "哥斯达黎加"
-
-#: /media/js/settings.js:117
-msgid "Ecuador"
-msgstr "厄瓜多尔"
-
-#: /media/js/settings.js:118
-msgid "El Salvador"
-msgstr "萨尔瓦多"
-
-#: /media/js/settings.js:119
-msgid "France"
-msgstr "法国"
-
-#: /media/js/settings.js:120
-msgid "Germany"
-msgstr "德国"
-
-#: /media/js/settings.js:121
-msgid "Greece"
-msgstr "希腊"
-
-#: /media/js/settings.js:122
-msgid "Guatemala"
-msgstr "危地马拉"
-
-#: /media/js/settings.js:123
-msgid "Hungary"
-msgstr "匈牙利"
-
-#: /media/js/settings.js:124
-msgid "India"
-msgstr "印度"
-
-#: /media/js/settings.js:125
-msgid "Italy"
-msgstr "意大利"
-
-#: /media/js/settings.js:126
-msgid "Mexico"
-msgstr "墨西哥"
-
-#: /media/js/settings.js:127
-msgid "Montenegro"
-msgstr "蒙得维的亚"
-
-#: /media/js/settings.js:128
-msgid "Nicaragua"
-msgstr "尼加拉瓜"
-
-#: /media/js/settings.js:129
-msgid "Panama"
-msgstr "巴拿马"
-
-#: /media/js/settings.js:130
-msgid "Peru"
-msgstr "秘鲁"
-
-#: /media/js/settings.js:131
-msgid "Poland"
-msgstr "波兰"
-
-#: /media/js/settings.js:132
-msgid "Serbia"
-msgstr "塞尔维亚"
-
-#: /media/js/settings.js:133
-msgid "Spain"
-msgstr "西班牙"
-
-#: /media/js/settings.js:134
-msgid "United Kingdom"
-msgstr "英国"
-
-#: /media/js/settings.js:135
-msgid "United States"
-msgstr "美国"
-
-#: /media/js/settings.js:136
-msgid "Uruguay"
-msgstr "乌拉圭"
-
-#: /media/js/settings.js:137
-msgid "Venezuela"
-msgstr "委内瑞拉"
-
-#: /media/js/settings.js:138
-msgid "No region in search"
-msgstr "搜索时不限区域"
-
-#: /media/js/settings.js:163
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "抱歉，您目前离线，请稍后再试。"
-
 #. {n} is the number of stars
 #: /media/js/common/ratingwidget.js:34
 msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n}星"
+
+#: /media/js/commonplace/navigation.js:33
+msgid "No internet connection"
+msgstr "没有互联网连接"
 
 #: /media/js/commonplace/login.js:20
 msgid "You have been signed out"
@@ -1282,17 +1318,9 @@ msgstr "与服务器通信时出错。请稍后再试。"
 msgid "Your device does not support purchases."
 msgstr "您的设备不支持购买。"
 
-#: /media/js/commonplace/navigation.js:33
-msgid "No internet connection"
-msgstr "没有互联网连接"
-
 #: /media/js/views/app.js:64 /media/js/views/feed/feed_app.js:10
 msgid "App Details"
 msgstr "应用明细"
-
-#: /media/js/views/collection.js:40 /media/js/views/feed/feed_collection.js:10
-msgid "Collection Details"
-msgstr "收藏集详情"
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1314,10 +1342,6 @@ msgstr "热门应用"
 msgid "Nominate apps"
 msgstr "提名应用"
 
-#: /media/js/views/search.js:218
-msgid "Search Results"
-msgstr "搜索结果"
-
 #: /media/js/views/settings.js:34
 msgid "Settings saved"
 msgstr "设置已保存。"
@@ -1333,6 +1357,10 @@ msgstr "已报告的滥用行为"
 #: /media/js/views/app/abuse.js:22
 msgid "Error while submitting report"
 msgstr "提交报告时出错"
+
+#: /media/js/views/search.js:218
+msgid "Search Results"
+msgstr "搜索结果"
 
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"
@@ -1351,13 +1379,17 @@ msgstr "Hello World!"
 msgid "Not Found"
 msgstr "未找到"
 
+#: /media/js/views/feed/feed_shelf.js:10
+msgid "Operator Shelf Details"
+msgstr "运营商货架细节"
+
 #: /media/js/views/feed/feed_brand.js:10
 msgid "Editorial Brand Details"
 msgstr "编辑品牌细节"
 
-#: /media/js/views/feed/feed_shelf.js:10
-msgid "Operator Shelf Details"
-msgstr "运营商货架细节"
+#: /media/js/views/feed/feed_collection.js:10
+msgid "Collection Details"
+msgstr "收藏集详情"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"

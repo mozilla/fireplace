@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05T15:31:20.899Z\n"
+"POT-Creation-Date: 2014-09-17T16:10:45.990Z\n"
 "PO-Revision-Date: 2013-12-30 16:50+0000\n"
 "Last-Translator: Michael <fios@akerbeltz.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,10 @@ msgstr ""
 msgid "An internal server error occurred. Please try again later."
 msgstr "Thachair mearachd frithealaiche inntearnail. Feuch ris a-rithist an ceann greis."
 
+#: /templates/cat_dropdown.html:1
+msgid "All Categories"
+msgstr "A h-uile roinn"
+
 #: /templates/category.html:27 /templates/nav.html:17
 msgid "Popular"
 msgstr "Fèill mhòr"
@@ -47,11 +51,7 @@ msgstr "Chan eil aplacaid sam bith san roinn-seòrsa seo"
 msgid "The category you requested does not exist."
 msgstr "Chan eil an roinn-seòrsa a dh'iarr thu ann."
 
-#: /templates/cat_dropdown.html:1
-msgid "All Categories"
-msgstr "A h-uile roinn"
-
-#: /templates/confirmation.html:0 /templates/incompatible.html:3 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6 /templates/settings/nav.html:12
+#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6 /templates/settings/nav.html:12 /media/js/components.js:84 /media/js/components.js:85
 msgid "Close"
 msgstr "Dùin"
 
@@ -63,10 +63,71 @@ msgstr "Chan eil"
 msgid "Yes"
 msgstr "Tha"
 
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/collection.html:33 /templates/_macros/feed_item.html:253 /templates/_macros/feed_item.html:280
-msgid "Ruh roh! No apps here, Shaggy!"
-msgstr "Ìoc! Chan eil aplacaid sam bith an-seo, a ghràidh!"
+#. The Marketplace app is out-of-date and needs to be updated.
+#: /templates/deprecated.html:2
+msgid "Out-of-Date Marketplace"
+msgstr "Tha aplacaid na margaidh ro aosta"
+
+#: /templates/deprecated.html:3
+msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
+msgstr "Chan eil taic ri tionndadh aplacaid na margaidh Firefox a tha thu a' cleachdadh tuilleadh. Feumaidh tu a h-ùrachadh mus urrainn dhut cumail a' dol leis a' mhargaidh."
+
+#: /templates/deprecated.html:5
+msgid "Update Now"
+msgstr "Ùraich e an-dràsta"
+
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr ""
+
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Feumaidh tu Firefox a chleachdadh mus urrainn dhur aplacaidean Firefox a stàladh."
+
+#: /templates/incompatible.html:2
+msgid "Download."
+msgstr "Luchdaich a-nuas."
+
+#: /templates/fx-accounts-banner.html:1
+msgid "Firefox Accounts has arrived!"
+msgstr ""
+
+#: /templates/fx-accounts-banner.html:4
+msgid "Transfer your account now. It's easy."
+msgstr ""
+
+#: /templates/fx-accounts-banner.html:6
+msgid "Simply sign in to transfer your account."
+msgstr ""
+
+#: /templates/fx-accounts-banner.html:11
+msgid "Learn more about Firefox Accounts.</a>"
+msgstr ""
+
+#: /templates/header.html:3
+msgid "Back"
+msgstr "Air ais"
+
+#: /templates/header.html:8 /templates/header.html:11
+msgid "Search"
+msgstr "Lorg"
+
+#: /templates/header.html:13
+msgid "Clear"
+msgstr "Falamhaich"
+
+#: /templates/header.html:18
+msgid "Sign In"
+msgstr "Clàraich a-steach"
+
+#: /templates/terms.html:2 /templates/footer.html:38 /templates/settings/feedback.html:35 /media/js/views/terms.js:10
+msgid "Terms of Use"
+msgstr "Teirmichean a' chleachdaidh"
+
+#: /templates/privacy.html:2 /templates/footer.html:37 /templates/detail/receipt.html:57 /templates/detail/privacy.html:3 /templates/detail/main.html:188 /templates/user/newsletter.html:10
+#: /templates/settings/feedback.html:30 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
+msgid "Privacy Policy"
+msgstr "Am poileasaidh prìobhaideachd"
 
 #: /templates/footer.html:2
 msgid "Develop Apps"
@@ -85,8 +146,8 @@ msgstr "Dè do bheachd?"
 msgid "Support"
 msgstr "Taic"
 
-#: /templates/footer.html:16 /templates/nav.html:29 /templates/_macros/act_tray.html:10 /templates/user/purchases.html:43 /templates/user/purchases.html:10 /templates/user/purchases.html:30
-#: /templates/settings/nav.html:7 /media/js/views/purchases.js:13
+#: /templates/footer.html:16 /templates/nav.html:29 /templates/_macros/act_tray.html:10 /templates/settings/nav.html:7 /templates/user/purchases.html:43 /templates/user/purchases.html:10
+#: /templates/user/purchases.html:30 /media/js/views/purchases.js:13
 msgid "My Apps"
 msgstr "Na h-aplacaidean agam"
 
@@ -110,75 +171,9 @@ msgstr ""
 "Mur eil an caochladh <a href=\"{legal_url}\" target=\"_blank\">'ga innse</a>, tha an t-susbaint air an làrach seo fon <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike "
 "License v3.0</a> no tionndadh sam bith dheth a tha nas ùire."
 
-#: /templates/footer.html:37 /templates/privacy.html:2 /templates/detail/main.html:188 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/feedback.html:30
-#: /templates/user/newsletter.html:10 /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
-msgid "Privacy Policy"
-msgstr "Am poileasaidh prìobhaideachd"
-
-#: /templates/footer.html:38 /templates/terms.html:2 /templates/settings/feedback.html:35 /media/js/views/terms.js:10
-msgid "Terms of Use"
-msgstr "Teirmichean a' chleachdaidh"
-
 #: /templates/footer.html:40
 msgid "Report Trademark Abuse"
 msgstr "Dèan aithris air mì-chleachdadh comharra-malairt"
-
-#: /templates/header.html:3
-msgid "Back"
-msgstr "Air ais"
-
-#: /templates/header.html:8 /templates/header.html:11
-msgid "Search"
-msgstr "Lorg"
-
-#: /templates/header.html:13
-msgid "Clear"
-msgstr "Falamhaich"
-
-#: /templates/header.html:18
-msgid "Sign In"
-msgstr "Clàraich a-steach"
-
-#: /templates/nav.html:15
-msgid "Home"
-msgstr ""
-
-#: /templates/nav.html:19 /templates/nav.html:20 /media/js/views/categories.js:9
-msgid "Categories"
-msgstr ""
-
-#: /templates/nav.html:28
-msgid "My Account"
-msgstr ""
-
-#: /templates/nav.html:34
-msgid "Back to Marketplace"
-msgstr ""
-
-#: /templates/featured.html:7
-msgid "Featured"
-msgstr "Brosnaichte"
-
-#: /templates/featured.html:8 /templates/user/purchases.html:13 /templates/search/main.html:18
-msgid "Expand"
-msgstr "Leudaich"
-
-#: /templates/featured.html:22
-msgid "No featured apps found"
-msgstr "Cha deach aplacaid bhrosnaichte a lorg"
-
-#. The Marketplace app is out-of-date and needs to be updated.
-#: /templates/deprecated.html:2
-msgid "Out-of-Date Marketplace"
-msgstr "Tha aplacaid na margaidh ro aosta"
-
-#: /templates/deprecated.html:3
-msgid "The version of the Firefox Marketplace that you're using is no longer supported. You will need to perform an update before you can continue enjoying the Marketplace."
-msgstr "Chan eil taic ri tionndadh aplacaid na margaidh Firefox a tha thu a' cleachdadh tuilleadh. Feumaidh tu a h-ùrachadh mus urrainn dhut cumail a' dol leis a' mhargaidh."
-
-#: /templates/deprecated.html:5
-msgid "Update Now"
-msgstr "Ùraich e an-dràsta"
 
 #: /templates/nominate.html:1
 msgid "Nominate apps to be featured on Firefox Marketplace!"
@@ -240,55 +235,25 @@ msgstr ""
 msgid "Submit"
 msgstr "Cuir"
 
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Feumaidh tu Firefox a chleachdadh mus urrainn dhur aplacaidean Firefox a stàladh."
-
-#: /templates/incompatible.html:2
-msgid "Download."
-msgstr "Luchdaich a-nuas."
-
-#: /templates/_macros/act_tray.html:2
-msgid "Settings"
-msgstr "Roghainnean"
-
-#: /templates/_macros/act_tray.html:8
-msgid "Edit Account Settings"
-msgstr "Deasaich roghainnean a' chunntais"
-
-#: /templates/_macros/act_tray.html:15 /templates/settings/main.html:39
-msgid "Sign Out"
-msgstr "Clàraich a-mach"
-
-#: /templates/_macros/feed_app_tile.html:16
-msgid "&mdash; {attribution}"
+#: /templates/nav.html:15
+msgid "Home"
 msgstr ""
 
-#. Please do your best to capture the essence of Scooby Doo.
-#: /templates/_macros/feed_item.html:20
-msgid "Not yet rated"
-msgstr "Gun rangachadh fhathast"
-
-#: /templates/_macros/feed_item.html:105 /templates/_macros/feed_item.html:192
-msgid "View all apps"
+#: /templates/nav.html:19 /templates/nav.html:20 /media/js/views/categories.js:9
+msgid "Categories"
 msgstr ""
 
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:8
-msgid "Unavailable"
-msgstr "Chan eil seo ri fhaighinn"
+#: /templates/nav.html:28
+msgid "My Account"
+msgstr ""
 
-#: /templates/_macros/market_button.html:10 /templates/_macros/market_tile.html:32
+#: /templates/nav.html:34
+msgid "Back to Marketplace"
+msgstr ""
+
+#: /templates/_macros/market_tile.html:32 /templates/_macros/market_button.html:10
 msgid "Free"
 msgstr "Saor an-asgaidh"
-
-#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:252
-msgid "Open"
-msgstr ""
-
-#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:278
-msgid "Install"
-msgstr "Stàlaich"
 
 #: /templates/_macros/market_tile.html:42
 msgid "({n})"
@@ -319,24 +284,130 @@ msgstr ""
 msgid "{app_name} screenshot"
 msgstr ""
 
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:8
+msgid "Unavailable"
+msgstr "Chan eil seo ri fhaighinn"
+
+#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:252
+msgid "Open"
+msgstr ""
+
+#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:278
+msgid "Install"
+msgstr "Stàlaich"
+
+#: /templates/_macros/act_tray.html:2
+msgid "Settings"
+msgstr "Roghainnean"
+
+#: /templates/_macros/act_tray.html:8
+msgid "Edit Account Settings"
+msgstr "Deasaich roghainnean a' chunntais"
+
+#: /templates/_macros/act_tray.html:15 /templates/settings/main.html:39
+msgid "Sign Out"
+msgstr "Clàraich a-mach"
+
 #: /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "Barrachd"
 
-#: /templates/errors/date-error.html:4
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:20
+msgid "Not yet rated"
+msgstr "Gun rangachadh fhathast"
+
+#: /templates/_macros/feed_item.html:105 /templates/_macros/feed_item.html:192
+msgid "View all apps"
+msgstr ""
+
+#. Please do your best to capture the essence of Scooby Doo.
+#: /templates/_macros/feed_item.html:253 /templates/_macros/feed_item.html:280
+msgid "Ruh roh! No apps here, Shaggy!"
+msgstr "Ìoc! Chan eil aplacaid sam bith an-seo, a ghràidh!"
+
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Rangachadh na susbaint"
+
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:77
+msgid "Content Rating Details"
+msgstr "Mion-fhiosrachadh air rangachadh na susbaint"
+
+#: /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /templates/detail/main.html:199 /media/js/views/app/abuse.js:34
+msgid "Report Abuse"
+msgstr "Dèan aithris air droch-ghiùlain"
+
+#: /templates/detail/abuse.html:15
+msgid "Send Report"
+msgstr "Cuir an aithisg"
+
+#: /templates/detail/receipt.html:8
+msgid "Thank you for purchasing"
+msgstr "Gun robh math agad airson a cheannach"
+
+#: /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /templates/detail/main.html:16 /templates/detail/main.html:17 /media/js/views/app.js:63 /media/js/views/feed/feed_app.js:9
+#: /media/js/views/feed/feed_shelf.js:9 /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:9
+msgid "Loading..."
+msgstr "'Ga luchdadh..."
+
+#: /templates/detail/receipt.html:40 /templates/detail/main.html:171
+msgid "Support Email"
+msgstr "Post-d na sgioba taice"
+
+#: /templates/detail/receipt.html:46 /templates/detail/main.html:177
+msgid "Support Site"
+msgstr "Làrach na taice"
+
+#: /templates/detail/receipt.html:51 /templates/detail/main.html:182
+msgid "Homepage"
+msgstr "Duilleag-dhachaigh"
+
+#: /templates/detail/receipt.html:63 /templates/detail/main.html:194
+msgid "Statistics"
+msgstr "Stadastaireachd"
+
+#: /templates/errors/date-error.html:2
+msgid "System Date Incorrect"
+msgstr ""
+
+#: /templates/errors/date-error.html:3
 msgid "Sorry, your device clock appears to be set incorrectly."
 msgstr ""
 
-#: /templates/errors/date-error.html:7
+#: /templates/errors/date-error.html:4
 msgid "Please set today's date and time in your device settings to access the Marketplace."
 msgstr ""
 
-#: /templates/errors/date-error.html:9
+#: /templates/errors/date-error.html:5 /templates/errors/offline-error.html:4
 msgid "Try again"
 msgstr ""
 
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
+#: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
+msgid "Back to app"
+msgstr "Air ais gun aplacaid"
+
+#: /templates/detail/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "A' luchdadh poileasaidh na prìobhaideachd..."
+
+#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:53
+msgid "Oh no!"
+msgstr "Mo chreach!"
+
+#: /templates/errors/404.html:3
+msgid "The page you were looking for was not found."
+msgstr "Cha do lorg sinn an duilleag a bha a dhìth ort."
+
+#: /templates/errors/offline-error.html:2
+msgid "Currently Offline"
+msgstr ""
+
+#: /templates/errors/offline-error.html:3
+msgid "Sorry, you need to be online to access the Marketplace."
 msgstr ""
 
 #: /templates/_macros/rating.html:9
@@ -363,27 +434,17 @@ msgstr "Sguab às"
 msgid "Report"
 msgstr "Dèan aithris"
 
-#: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:53
-msgid "Oh no!"
-msgstr "Mo chreach!"
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Thachair mearachd."
 
-#: /templates/errors/404.html:3
-msgid "The page you were looking for was not found."
-msgstr "Cha do lorg sinn an duilleag a bha a dhìth ort."
+#: /templates/errors/pagination.html:1
+msgid "Error loading more"
+msgstr "Mearachd le luchdadh a' chorr"
 
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Le rangachadh {stars} à {maxstars} rionnagan"
-
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Rangachadh na susbaint"
-
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:77
-msgid "Content Rating Details"
-msgstr "Mion-fhiosrachadh air rangachadh na susbaint"
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Feuch ris a-rithist"
 
 #: /templates/detail/main.html:44
 msgid "Installed!"
@@ -400,11 +461,6 @@ msgstr "Cuir air bhog an aplacaid seo o <b>dheasg Windows</b> no <b>Tòisich &#9
 #: /templates/detail/main.html:53
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Cuir air bhog an aplacaid seo on <b>deas-bhòrd</b>, <b>roghnaichear nan aplacaidean</b> no <b>clàr-taice nan aplacaidean</b>."
-
-#: /templates/detail/main.html:16 /templates/detail/main.html:17 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:63 /media/js/views/collection.js:39
-#: /media/js/views/feed/feed_app.js:9 /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:9 /media/js/views/feed/feed_shelf.js:9
-msgid "Loading..."
-msgstr "'Ga luchdadh..."
 
 #: /templates/detail/main.html:68
 msgid "Updates"
@@ -454,7 +510,7 @@ msgstr ""
 msgid "Edit Your Review"
 msgstr "Deasaich do lèirmheas"
 
-#: /templates/detail/main.html:154 /templates/ratings/main.html:19 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:40
+#: /templates/detail/main.html:154 /templates/ratings/main.html:19 /templates/ratings/write.html:2 /media/js/views/app/ratings/add.js:35
 msgid "Write a Review"
 msgstr "Sgrìobh lèirmheas"
 
@@ -462,74 +518,98 @@ msgstr "Sgrìobh lèirmheas"
 msgid "Sign in to Review"
 msgstr "Clàraich a-steach airson lèirmheas a dhèanamh"
 
-#: /templates/detail/main.html:171 /templates/detail/receipt.html:40
-msgid "Support Email"
-msgstr "Post-d na sgioba taice"
-
-#: /templates/detail/main.html:177 /templates/detail/receipt.html:46
-msgid "Support Site"
-msgstr "Làrach na taice"
-
-#: /templates/detail/main.html:182 /templates/detail/receipt.html:51
-msgid "Homepage"
-msgstr "Duilleag-dhachaigh"
-
-#: /templates/detail/main.html:194 /templates/detail/receipt.html:63
-msgid "Statistics"
-msgstr "Stadastaireachd"
-
-#: /templates/detail/main.html:199 /templates/detail/abuse.html:5 /templates/detail/receipt.html:68 /media/js/views/app/abuse.js:34
-msgid "Report Abuse"
-msgstr "Dèan aithris air droch-ghiùlain"
-
 #: /templates/detail/main.html:210
 msgid "Premium version available"
 msgstr "Tha tionndadh premium ri fhaighinn"
 
-#: /templates/errors/pagination.html:1
-msgid "Error loading more"
-msgstr "Mearachd le luchdadh a' chorr"
+#: /templates/search/main.html:21
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> toradh"
+msgstr[1] "<b>{n}</b> thoradh"
+msgstr[2] "<b>{n}</b> toraidhean"
+msgstr[3] "<b>{n}</b> toradh"
 
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Feuch ris a-rithist"
+#: /templates/search/main.html:25
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b> Desktop Apps"
+msgstr ""
 
-#: /templates/detail/abuse.html:15
-msgid "Send Report"
-msgstr "Cuir an aithisg"
+#: /templates/search/main.html:27 /templates/user/purchases.html:11
+msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
+msgstr "A' sealltainn <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Thachair mearachd."
+#: /templates/search/main.html:30 /templates/user/purchases.html:13
+msgid "Expand"
+msgstr "Leudaich"
 
-#: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
-msgid "Back to app"
-msgstr "Air ais gun aplacaid"
+#: /templates/search/main.html:48
+msgid "No results found"
+msgstr "Cha deach toradh a lorg"
 
-#: /templates/detail/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "A' luchdadh poileasaidh na prìobhaideachd..."
+#: /templates/search/main.html:53
+msgid "No results found, try again later"
+msgstr "Cha deach toradh a lorg, feuch ris a-rithist an ceann greis"
 
-#: /templates/detail/receipt.html:8
-msgid "Thank you for purchasing"
-msgstr "Gun robh math agad airson a cheannach"
+#: /templates/_macros/feed_app_tile.html:16
+msgid "&mdash; {attribution}"
+msgstr ""
 
-#: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Le rangachadh {stars} à {maxstars} rionnagan"
+
+#: /templates/ratings/main.html:15 /templates/ratings/edit.html:5 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "Deasaich an lèirmheas"
+
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "Lèirmheas aplacaid"
+
+#: /templates/ratings/report.html:2
+msgid "Please select a reason:"
+msgstr "Tagh adhbhar:"
+
+#: /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/edit.html:21 /templates/ratings/write.html:3 /templates/ratings/write.html:19
+#: /templates/user/newsletter.html:13
+msgid "Cancel"
+msgstr "Sguir dheth"
+
+#: /templates/ratings/report.html:8
+msgid "Spam or otherwise non-review content"
+msgstr "Spama no rud nach eil a' buntainn ri lèirmheas"
+
+#: /templates/ratings/report.html:13
+msgid "Inappropriate language/dialog"
+msgstr "Cainnt/còmhradh neo-iomchaidh"
+
+#: /templates/ratings/report.html:18
+msgid "Misplaced bug report or support request"
+msgstr "Aithris buga no iarrtas taice a tha san àite chearr"
 
 #: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
 msgid "Rate:"
 msgstr "Rangaich:"
 
-#: /templates/ratings/edit.html:21 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/report.html:3 /templates/ratings/report.html:23
-#: /templates/user/newsletter.html:13
-msgid "Cancel"
-msgstr "Sguir dheth"
-
 #: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
 msgid "Only logged in users may edit reviews."
 msgstr "Chan fhaod ach daoine a rinn clàradh a-steach lèirmheas a dheasachadh."
+
+#: /templates/user/newsletter.html:3
+msgid "Get Firefox Marketplace news"
+msgstr "Faigh naidheachdan margaidh Firefox"
+
+#: /templates/user/newsletter.html:8
+msgid "Sign up"
+msgstr "Clàraich leinn"
+
+#: /templates/user/newsletter.html:15
+msgid "Signing up..."
+msgstr "'Gad chlàradh..."
+
+#: /templates/user/newsletter.html:18
+msgid "You were successfully signed up for the Marketplace newsletter!"
+msgstr "Chlàraich thu airson cuairt-litir na margaidh!"
 
 #: /templates/settings/feedback.html:16
 msgid "Send"
@@ -563,6 +643,10 @@ msgstr "Sàbhail na dh'atharraich thu"
 msgid "Sign In / Sign Up"
 msgstr "Clàraich a-steach / Clàraich leinn"
 
+#: /templates/settings/nav.html:6
+msgid "Account"
+msgstr "Cunntas"
+
 #: /templates/user/purchases.html:48
 msgid "You must be signed in to view your apps."
 msgstr "Feumaidh tu clàradh a-steach mus fhaic thu na h-aplacaidean agad."
@@ -571,83 +655,9 @@ msgstr "Feumaidh tu clàradh a-steach mus fhaic thu na h-aplacaidean agad."
 msgid "Sign in / Sign up"
 msgstr "Clàraich a-steach / Clàraich leinn"
 
-#: /templates/user/purchases.html:11 /templates/search/main.html:16
-msgid "Showing <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-msgstr "A' sealltainn <b>1</b>&ndash;<b class=\"total-results\">{total}</b>"
-
 #: /templates/user/purchases.html:33
 msgid "You have no apps"
 msgstr "Chan eil aplacaid sam bith agad"
-
-#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "Lèirmheas aplacaid"
-
-#: /templates/ratings/report.html:2
-msgid "Please select a reason:"
-msgstr "Tagh adhbhar:"
-
-#: /templates/ratings/report.html:8
-msgid "Spam or otherwise non-review content"
-msgstr "Spama no rud nach eil a' buntainn ri lèirmheas"
-
-#: /templates/ratings/report.html:13
-msgid "Inappropriate language/dialog"
-msgstr "Cainnt/còmhradh neo-iomchaidh"
-
-#: /templates/ratings/report.html:18
-msgid "Misplaced bug report or support request"
-msgstr "Aithris buga no iarrtas taice a tha san àite chearr"
-
-#: /templates/settings/nav.html:6
-msgid "Account"
-msgstr "Cunntas"
-
-#: /templates/user/newsletter.html:3
-msgid "Get Firefox Marketplace news"
-msgstr "Faigh naidheachdan margaidh Firefox"
-
-#: /templates/user/newsletter.html:8
-msgid "Sign up"
-msgstr "Clàraich leinn"
-
-#: /templates/user/newsletter.html:15
-msgid "Signing up..."
-msgstr "'Gad chlàradh..."
-
-#: /templates/user/newsletter.html:18
-msgid "You were successfully signed up for the Marketplace newsletter!"
-msgstr "Chlàraich thu airson cuairt-litir na margaidh!"
-
-#: /templates/search/main.html:15
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> toradh"
-msgstr[1] "<b>{n}</b> thoradh"
-msgstr[2] "<b>{n}</b> toraidhean"
-msgstr[3] "<b>{n}</b> toradh"
-
-#: /templates/search/main.html:36
-msgid "No results found"
-msgstr "Cha deach toradh a lorg"
-
-#: /templates/search/main.html:41
-msgid "No results found, try again later"
-msgstr "Cha deach toradh a lorg, feuch ris a-rithist an ceann greis"
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120 /media/js/payments/payments.js:91
-msgid "Payment cancelled."
-msgstr "Sguireadh dhen phàigheadh."
-
-#: /media/js/apps_buttons.js:91
-msgid "Purchasing"
-msgstr "'Ga cheannach"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:190
-msgid "Install failed. Please try again later."
-msgstr "Dh'fhàillig an stàladh. Feuch a-rithist an ceann greis."
 
 #: /media/js/categories.js:7
 msgid "Games"
@@ -736,6 +746,14 @@ msgstr "Chan eil am brabhsair no uidheam agad co-chòrdail le aplacaidean-lìn."
 #: /media/js/apps.js:101
 msgid "This app is unavailable for your platform."
 msgstr "Chan eil an aplacaid seo ri fhaighinn dhan ùrlar agad."
+
+#: /media/js/installer_direct.js:56
+msgid "Unable to install packaged apps"
+msgstr ""
+
+#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
+msgid "App install error: {error}"
+msgstr "Mearachd le stàladh na h-aplacaid: {error}"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1201,6 +1219,20 @@ msgstr ""
 msgid "Listing Collection"
 msgstr ""
 
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120 /media/js/payments/payments.js:91
+msgid "Payment cancelled."
+msgstr "Sguireadh dhen phàigheadh."
+
+#: /media/js/apps_buttons.js:91
+msgid "Purchasing"
+msgstr "'Ga cheannach"
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:190
+msgid "Install failed. Please try again later."
+msgstr "Dh'fhàillig an stàladh. Feuch a-rithist an ceann greis."
+
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
 msgid "For ages {0}+"
@@ -1242,17 +1274,141 @@ msgstr ""
 msgid "Adults Only 18+"
 msgstr ""
 
-#: /media/js/installer_direct.js:56
-msgid "Unable to install packaged apps"
-msgstr ""
-
-#: /media/js/installer_direct.js:96 /media/js/installer_iframe.js:72
-msgid "App install error: {error}"
-msgstr "Mearachd le stàladh na h-aplacaid: {error}"
-
 #: /media/js/newsletter.js:65
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Thachair mearachd nuair a chuir sinn d' iarrtas airson na cuairt-litreach"
+
+#: /media/js/settings.js:106
+msgid "Rest of World"
+msgstr ""
+
+#: /media/js/settings.js:107
+msgid "Argentina"
+msgstr "An Argantain"
+
+#: /media/js/settings.js:108
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/settings.js:109
+msgid "Brazil"
+msgstr "Braisil"
+
+#: /media/js/settings.js:110
+msgid "Chile"
+msgstr ""
+
+#: /media/js/settings.js:111
+msgid "China"
+msgstr "An t-Sìn"
+
+#: /media/js/settings.js:112
+msgid "Colombia"
+msgstr "Coloimbia"
+
+#: /media/js/settings.js:113
+msgid "Costa Rica"
+msgstr ""
+
+#: /media/js/settings.js:114
+msgid "Czech Republic"
+msgstr ""
+
+#: /media/js/settings.js:115
+msgid "Ecuador"
+msgstr ""
+
+#: /media/js/settings.js:116
+msgid "El Salvador"
+msgstr ""
+
+#: /media/js/settings.js:117
+msgid "France"
+msgstr ""
+
+#: /media/js/settings.js:118
+msgid "Germany"
+msgstr "A' Ghearmailt"
+
+#: /media/js/settings.js:119
+msgid "Greece"
+msgstr "A' Ghreug"
+
+#: /media/js/settings.js:120
+msgid "Guatemala"
+msgstr ""
+
+#: /media/js/settings.js:121
+msgid "Hungary"
+msgstr "An Ungair"
+
+#: /media/js/settings.js:122
+msgid "India"
+msgstr ""
+
+#: /media/js/settings.js:123
+msgid "Italy"
+msgstr "An Eadailt"
+
+#: /media/js/settings.js:124
+msgid "Japan"
+msgstr ""
+
+#: /media/js/settings.js:125
+msgid "Mexico"
+msgstr "Meagsago"
+
+#: /media/js/settings.js:126
+msgid "Montenegro"
+msgstr "Am Monadh Neagrach"
+
+#: /media/js/settings.js:127
+msgid "Nicaragua"
+msgstr ""
+
+#: /media/js/settings.js:128
+msgid "Panama"
+msgstr ""
+
+#: /media/js/settings.js:129
+msgid "Peru"
+msgstr "Pearù"
+
+#: /media/js/settings.js:130
+msgid "Poland"
+msgstr "A' Phòlainn"
+
+#: /media/js/settings.js:131
+msgid "Serbia"
+msgstr "An t-Sèirb"
+
+#: /media/js/settings.js:132
+msgid "Spain"
+msgstr "An Spàinn"
+
+#: /media/js/settings.js:133
+msgid "United Kingdom"
+msgstr "An Rìoghachd Aonaichte"
+
+#: /media/js/settings.js:134
+msgid "United States"
+msgstr "Na Stàitean Aonaichte"
+
+#: /media/js/settings.js:135
+msgid "Uruguay"
+msgstr "Uruguaidh"
+
+#: /media/js/settings.js:136
+msgid "Venezuela"
+msgstr "A' Bheiniseala"
+
+#: /media/js/settings.js:137
+msgid "No region in search"
+msgstr "Chan eil dùthaich san lorg agad"
+
+#: /media/js/settings.js:163
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr ""
 
 #. The report is an abuse report for reviews
 #: /media/js/ratings.js:40
@@ -1283,130 +1439,6 @@ msgstr "Chaidh do lèirmheas a phostadh"
 msgid "Error while submitting review"
 msgstr "Thachair mearachd fhad 's a bha sinn a' cur do lèirmheis"
 
-#: /media/js/settings.js:109
-msgid "Rest of World"
-msgstr ""
-
-#: /media/js/settings.js:110
-msgid "Argentina"
-msgstr "An Argantain"
-
-#: /media/js/settings.js:111
-msgid "Bangladesh"
-msgstr ""
-
-#: /media/js/settings.js:112
-msgid "Brazil"
-msgstr "Braisil"
-
-#: /media/js/settings.js:113
-msgid "Chile"
-msgstr ""
-
-#: /media/js/settings.js:114
-msgid "China"
-msgstr "An t-Sìn"
-
-#: /media/js/settings.js:115
-msgid "Colombia"
-msgstr "Coloimbia"
-
-#: /media/js/settings.js:116
-msgid "Costa Rica"
-msgstr ""
-
-#: /media/js/settings.js:117
-msgid "Ecuador"
-msgstr ""
-
-#: /media/js/settings.js:118
-msgid "El Salvador"
-msgstr ""
-
-#: /media/js/settings.js:119
-msgid "France"
-msgstr ""
-
-#: /media/js/settings.js:120
-msgid "Germany"
-msgstr "A' Ghearmailt"
-
-#: /media/js/settings.js:121
-msgid "Greece"
-msgstr "A' Ghreug"
-
-#: /media/js/settings.js:122
-msgid "Guatemala"
-msgstr ""
-
-#: /media/js/settings.js:123
-msgid "Hungary"
-msgstr "An Ungair"
-
-#: /media/js/settings.js:124
-msgid "India"
-msgstr ""
-
-#: /media/js/settings.js:125
-msgid "Italy"
-msgstr "An Eadailt"
-
-#: /media/js/settings.js:126
-msgid "Mexico"
-msgstr "Meagsago"
-
-#: /media/js/settings.js:127
-msgid "Montenegro"
-msgstr "Am Monadh Neagrach"
-
-#: /media/js/settings.js:128
-msgid "Nicaragua"
-msgstr ""
-
-#: /media/js/settings.js:129
-msgid "Panama"
-msgstr ""
-
-#: /media/js/settings.js:130
-msgid "Peru"
-msgstr "Pearù"
-
-#: /media/js/settings.js:131
-msgid "Poland"
-msgstr "A' Phòlainn"
-
-#: /media/js/settings.js:132
-msgid "Serbia"
-msgstr "An t-Sèirb"
-
-#: /media/js/settings.js:133
-msgid "Spain"
-msgstr "An Spàinn"
-
-#: /media/js/settings.js:134
-msgid "United Kingdom"
-msgstr "An Rìoghachd Aonaichte"
-
-#: /media/js/settings.js:135
-msgid "United States"
-msgstr "Na Stàitean Aonaichte"
-
-#: /media/js/settings.js:136
-msgid "Uruguay"
-msgstr "Uruguaidh"
-
-#: /media/js/settings.js:137
-msgid "Venezuela"
-msgstr "A' Bheiniseala"
-
-#: /media/js/settings.js:138
-msgid "No region in search"
-msgstr "Chan eil dùthaich san lorg agad"
-
-#: /media/js/settings.js:163
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr ""
-
 #. {n} is the number of stars
 #: /media/js/common/ratingwidget.js:34
 msgid "{n} star"
@@ -1415,6 +1447,10 @@ msgstr[0] "{n} rionnag"
 msgstr[1] "{n} rionnag"
 msgstr[2] "{n} rionnagan"
 msgstr[3] "{n} rionnag"
+
+#: /media/js/commonplace/navigation.js:33
+msgid "No internet connection"
+msgstr "Chan eil ceangal ris an lìon"
 
 #: /media/js/commonplace/login.js:20
 msgid "You have been signed out"
@@ -1458,17 +1494,9 @@ msgstr "Thachair mearachd fhad 's bha sinn a' conaltradh ris an fhrithealaiche. 
 msgid "Your device does not support purchases."
 msgstr "Chan eil an t-uidheam agad a' cur taic ri ceannach rudan."
 
-#: /media/js/commonplace/navigation.js:33
-msgid "No internet connection"
-msgstr "Chan eil ceangal ris an lìon"
-
 #: /media/js/views/app.js:64 /media/js/views/feed/feed_app.js:10
 msgid "App Details"
 msgstr "Mion-fhiosrachadh na h-aplacaid"
-
-#: /media/js/views/collection.js:40 /media/js/views/feed/feed_collection.js:10
-msgid "Collection Details"
-msgstr "Mion-fhiosrachadh a' chruinneachaidh"
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1490,10 +1518,6 @@ msgstr ""
 msgid "Nominate apps"
 msgstr ""
 
-#: /media/js/views/search.js:218
-msgid "Search Results"
-msgstr "Toraidhean an luirg"
-
 #: /media/js/views/settings.js:34
 msgid "Settings saved"
 msgstr "Chaidh na roghainnean a sàbhaladh"
@@ -1509,6 +1533,10 @@ msgstr "Chaidh aithris a dhèanamh air droch-ghiùlan"
 #: /media/js/views/app/abuse.js:22
 msgid "Error while submitting report"
 msgstr "Thachair mearachd fhad 's a bha sinn a' cur na h-aithrise"
+
+#: /media/js/views/search.js:218
+msgid "Search Results"
+msgstr "Toraidhean an luirg"
 
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"
@@ -1527,13 +1555,17 @@ msgstr ""
 msgid "Not Found"
 msgstr "Cha deach a lorg"
 
+#: /media/js/views/feed/feed_shelf.js:10
+msgid "Operator Shelf Details"
+msgstr ""
+
 #: /media/js/views/feed/feed_brand.js:10
 msgid "Editorial Brand Details"
 msgstr ""
 
-#: /media/js/views/feed/feed_shelf.js:10
-msgid "Operator Shelf Details"
-msgstr ""
+#: /media/js/views/feed/feed_collection.js:10
+msgid "Collection Details"
+msgstr "Mion-fhiosrachadh a' chruinneachaidh"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
