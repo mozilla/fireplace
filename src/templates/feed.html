@@ -17,7 +17,7 @@
 {% except %}
   <p class="no-results">
     {% if error == 400 or error == 404 %}
-      {{ _('The category you requested does not exist.') }}
+      {{ _('The feed is currently empty. Come back later!') }}
     {% elif error == 500 %}
       {{ _('An internal server error occurred. Please try again later.') }}
     {% endif %}
