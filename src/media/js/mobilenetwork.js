@@ -8,32 +8,32 @@ define('mobilenetwork',
     var REGIONS = settings.REGION_CHOICES_SLUG;
 
     var regions = {
-        // United States
-        310: 'us',
+        // Greece
+        202: 'gr',
 
-        // United Kingdom
-        235: 'uk',
-
-        // Brazil
-        724: 'br',
+        // France
+        208: 'fr',
 
         // Spain
         214: 'es',
 
-        // Colombia
-        732: 'co',
+        // Hungary
+        216: 'hu',
 
-        // Venezuela
-        734: 've',
+        // Serbia
+        220: 'rs',
+
+        // Italy
+        222: 'it',
+
+        // Czech Republic
+        230: 'cz',
+
+        // United Kingdom
+        235: 'uk',
 
         // Poland
         260: 'pl',
-
-        // Mexico
-        334: 'mx',
-
-        // Hungary
-        216: 'hu',
 
         // Germany
         262: 'de',
@@ -41,42 +41,36 @@ define('mobilenetwork',
         // Montenegro
         297: 'me',
 
-        // Serbia
-        220: 'rs',
+        // United States
+        310: 'us',
 
-        // Greece
-        202: 'gr',
-
-        // Peru
-        716: 'pe',
-
-        // Uruguay
-        748: 'uy',
-
-        // Argentina
-        722: 'ar',
-
-        // China
-        460: 'cn',
+        // Mexico
+        334: 'mx',
 
         // India
         404: 'in',
         405: 'in',
 
-        // Italy
-        222: 'it',
+        // Japan
+        440: 'jp',
+
+        // China
+        460: 'cn',
+
+        // Bangladesh
+        470: 'bd',
 
         // Chile
         703: 'cl',
 
-        // El Salvador
-        706: 'sv',
-
         // Guatemala
         704: 'gt',
 
-        // Ecuador
-        740: 'ec',
+        // El Salvador
+        706: 'sv',
+
+        // Nicaragua
+        710: 'ni',
 
         // Costa Rica
         712: 'cr',
@@ -84,20 +78,26 @@ define('mobilenetwork',
         // Panama
         714: 'pa',
 
-        // Nicaragua
-        710: 'ni',
+        // Peru
+        716: 'pe',
 
-        // France
-        208: 'fr',
+        // Argentina
+        722: 'ar',
 
-        // Bangladesh
-        470: 'bd',
+        // Brazil
+        724: 'br',
 
-        // Japan
-        440: 'jp',
+        // Colombia
+        732: 'co',
 
-        // Czech Republic
-        230: 'cz'
+        // Venezuela
+        734: 've',
+
+        // Ecuador
+        740: 'ec',
+
+        // Uruguay
+        748: 'uy'
     };
 
     var carriers = [
@@ -124,52 +124,16 @@ define('mobilenetwork',
     ];
 
     var carriersRegions = {
-        // United States
-        // 26, 160, 170, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290
-        // 330, 490, 580, 660, 800, 310...
-        310: 'deutsche_telekom',
-
-        // United Kingdom
-        235: {
-            2: 'telefonica',
-            10: 'telefonica',
-            11: 'telefonica',
-            30: 'deutsche_telekom'
-        },
-
-        // Brazil
-        // 6, 10, 11, 23
-        724: 'telefonica',
-
-        // Spain
-        // 5, 7
-        214: 'telefonica',
-
-        // Colombia
-        // 102, 123
-        732: 'telefonica',
-
-        // Venezuela
-        734: {
-            4: 'telefonica'
-        },
-
-        // Poland
-        260: {
-            2: 'deutsche_telekom'
-        },
-
         // Greece
         202: {
-            // This actually belongs to Vodafone, which DT owns
+            // This actually belongs to Vodafone, which DT owns.
             5: 'deutsche_telekom'
         },
 
-        // Mexico
-        334: {
-            2: 'america_movil',
-            3: 'telefonica',
-            20: 'america_movil'
+        // Spain
+        214: {
+            5: 'telefonica',
+            7: 'telefonica'
         },
 
         // Hungary
@@ -177,21 +141,19 @@ define('mobilenetwork',
             1: 'telenor',
             20: 'telenor',
             30: 'deutsche_telekom',
-            // Actually Vodafone but treat like DT
+            // Actually Vodafone but treat like DT.
             70: 'deutsche_telekom'
         },
 
-        // Germany
-        262: {
-            1: {
-                // Differentiate congstar using the SPN, everything else is
-                // DT.
-                '__default': 'deutsche_telekom',
-                'congstar': 'congstar',
-                'congstar.de': 'congstar'
-            },
-            2: 'deutsche_telekom',
-            7: 'o2'
+        // Serbia
+        220: {
+            1: 'telenor',
+            2: 'telenor'
+        },
+
+        // Czech Republic
+        230: {
+            1: 'deutsche_telekom'
         },
 
         // Slovakia
@@ -201,12 +163,93 @@ define('mobilenetwork',
             6: 'telefonica'
         },
 
-        // Czech Republic
-        230: 'deutsche_telekom',
-
         // Austria
-        // 2, 8
-        232: 'telefonica',
+        232: {
+            2: 'telefonica',
+            8: 'telefonica'
+        },
+
+        // United Kingdom
+        235: {
+            2: 'telefonica',
+            10: 'telefonica',
+            11: 'telefonica',
+            30: 'deutsche_telekom'
+        },
+
+        // Poland
+        260: {
+            2: 'deutsche_telekom'
+        },
+
+        // Germany
+        262: {
+            1: {
+                // Differentiate congstar using the SPN, everything else with
+                // that MNC is DT.
+                '__default': 'deutsche_telekom',
+                'congstar': 'congstar',
+                'congstar.de': 'congstar'
+            },
+            2: 'deutsche_telekom',
+            7: 'o2'
+        },
+
+        // Montenegro
+        297: {
+            1: 'telenor'
+        },
+
+        // United States
+        // T-Mobile has a bunch of other MNCs but they are marked as
+        // 'Not Operational' on http://en.wikipedia.org/wiki/Mobile_country_code
+        310: {
+            26: 'deutsche_telekom',
+            260: 'deutsche_telekom',
+            490: 'deutsche_telekom'
+        },
+
+        // Mexico
+        334: {
+            2: 'america_movil',
+            3: 'telefonica',
+            20: 'america_movil'
+        },
+
+        // Japan
+        440: {
+            7: 'kddi',
+            8: 'kddi',
+            50: 'kddi',
+            51: 'kddi',
+            52: 'kddi',
+            53: 'kddi',
+            54: 'kddi',
+            55: 'kddi',
+            56: 'kddi',
+            70: 'kddi',
+            71: 'kddi',
+            72: 'kddi',
+            73: 'kddi',
+            74: 'kddi',
+            75: 'kddi',
+            76: 'kddi',
+            77: 'kddi',
+            78: 'kddi',
+            79: 'kddi',
+            88: 'kddi',
+            89: 'kddi'
+        },
+
+        // China
+        460: {
+            1: 'china_unicom'
+        },
+
+        // Bangladesh
+        470: {
+            1: 'grameenphone'
+        },
 
         // Guatemala
         704: {
@@ -234,21 +277,6 @@ define('mobilenetwork',
             3: 'america_movil'
         },
 
-        // Chile
-        730: {
-            2: 'telefonica'
-        },
-
-        // Ecuador
-        740: {
-            1: 'america_movil'
-        },
-
-        // Paraguay
-        744: {
-            4: 'telefonica',
-        },
-
         // Peru
         716: {
             6: 'telefonica',
@@ -265,35 +293,46 @@ define('mobilenetwork',
             330: 'america_movil'
         },
 
+        // Brazil
+        724: {
+            6: 'telefonica',
+            10: 'telefonica',
+            11: 'telefonica',
+            23: 'telefonica'
+        },
+
+        // Chile
+        730: {
+            2: 'telefonica'
+        },
+
+        // Colombia
+        732: {
+            102: 'telefonica',
+            123: 'telefonica'
+        },
+
+        // Venezuela
+        734: {
+            4: 'telefonica'
+        },
+
+        // Ecuador
+        740: {
+            1: 'america_movil'
+        },
+
+        // Paraguay
+        744: {
+            4: 'telefonica',
+        },
+
         // Uruguay
         748: {
             7: 'telefonica',
             // Claro.
             10: 'america_movil'
-        },
-
-        // Serbia
-        // 1, 2
-        220: 'telenor',
-
-        // Montenegro
-        297: {
-            1: 'telenor'
-        },
-
-        // China
-        // 1, 3, 6
-        460: 'china_unicom',
-
-        // Bangladesh
-        470: {
-            1: 'grameenphone'
-        },
-
-        // Japan
-        // 7, 8, 49, 50, 51, 52, 53, 54, 55, 56, 70, 71, 72, 73, 74, 75, 76,
-        // 77, 79, 88, 89
-        440: 'kddi'
+        }
     };
 
     function getNetwork(mcc, mnc, spn) {

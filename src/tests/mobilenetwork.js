@@ -20,16 +20,9 @@ test('no MCC, no MNC', function(done) {
 });
 
 test('yes MCC, no MNC', function(done, fail) {
-    var network = mobilenetwork.getNetwork('214', '');
-    eq_(network.region, 'es');
-    eq_(network.carrier, 'telefonica');  // Because Telefonica is the only carrier in Spain.
-    done();
-});
-
-test('yes MCC, no MNC, not exclusive', function(done, fail) {
     var network = mobilenetwork.getNetwork('334', '');
     eq_(network.region, 'mx');
-    eq_(network.carrier, null);  // Because there are multiple carriers in Mexico.
+    eq_(network.carrier, null);
     done();
 });
 
