@@ -37,6 +37,7 @@ define(
         'compatibility_filtering_select',
         'content-ratings',
         'forms',
+        'fxa_migration',
         'image-deferrer',
         'l10n',
         'lightbox',
@@ -76,6 +77,7 @@ function(_) {
     var settings = require('settings');
     var nunjucks = require('templates');
     var urls = require('urls');
+    var user = require('user');
     var utils_local = require('utils_local');
     var z = require('z');
 
@@ -173,7 +175,7 @@ function(_) {
             if (!document.hidden) {
                 // Refresh list of installed apps in case user uninstalled apps
                 // and switched back.
-                if (require('user').logged_in()) {
+                if (user.logged_in()) {
                     consumer_info.fetch(true);
                 }
                 apps.getInstalled().done(buttons.mark_btns_as_uninstalled);
@@ -197,17 +199,23 @@ function(_) {
             $('#site-nav').after(nunjucks.env.render('incompatible.html'));
         }
 
-        var logged_in = require('user').logged_in();
+        var logged_in = user.logged_in();
 
         // Wait for the switches to be pulled down.
         consumer_info.promise.then(function () {
             var fxAccountsMigration = settings.switches.indexOf(
                 'fx-accounts-migration') !== -1;
 
-            if (fxAccountsMigration && !window['fx-accounts-banner']) {
-                $('#site-nav').after(
-                    nunjucks.env.render('fx-accounts-banner.html',
-                                        {logged_in: logged_in}));
+            if (fxAccountsMigration) {
+                var banner = document.getElementById('fx-accounts-banner');
+                if (banner) {
+                    banner.dismissBanner();
+                }
+                if (require('fxa_migration').canMigrate()) {
+                    $('#site-nav').after(
+                        nunjucks.env.render('fx-accounts-banner.html',
+                                            {logged_in: logged_in}));
+                }
             }
         });
 
