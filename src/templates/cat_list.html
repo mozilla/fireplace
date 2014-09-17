@@ -1,8 +1,0 @@
-<menu class="cat-menu cat-icons hidden c">
-{% for cat in categories %}
-  <li>
-      <a class="cat-{{ cat.slug }} cat-icon-a" data-cat-slug="{{ cat.slug }}"
-         href="{% if cat.slug == 'all' %}{{ url('homepage') }}{% else %}{{ url('category', [cat.slug]) }}{% endif %}">{{ cat.name }}</a>
-  </li>
-{% endfor %}
-</menu>
