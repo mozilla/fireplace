@@ -53,7 +53,7 @@ define('urls',
     function _userArgs(func) {
         return function() {
             var out = func.apply(this, arguments);
-            var args = api_args();
+            var args = api_args(arguments[0]);  // arguments[0] should always be the endpoint/URL.
             if (user.logged_in()) {
                 args._user = user.get_token();
             }
@@ -65,7 +65,7 @@ define('urls',
     function _anonymousArgs(func) {
         return function() {
             var out = func.apply(this, arguments);
-            var args = api_args();
+            var args = api_args(arguments[0]);  // arguments[0] should always be the endpoint/URL.
             _removeBlacklistedParams(args);
             return utils.urlparams(out, args);
         };

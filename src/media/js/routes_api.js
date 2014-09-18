@@ -2,7 +2,7 @@ define('routes_api', [], function() {
     return {
         'app': '/api/v2/fireplace/app/{0}/?cache=1&vary=0',
         'app/privacy': '/api/v2/apps/app/{0}/privacy/?cache=1&vary=0',
-        'category': '/api/v2/fireplace/search/?cat={0}&cache=1&vary=0',
+        'category_landing': '/api/v2/fireplace/search/?cat={0}&cache=1&vary=0',
         'fxa-login': '/api/v2/account/fxa-login/',
         'reviews': '/api/v2/apps/rating/',
         'review': '/api/v2/apps/rating/{0}/',
@@ -27,6 +27,11 @@ define('routes_api', [], function() {
         'feed-collection': '/api/v2/fireplace/feed/collections/{0}/',
         'feed-shelf': '/api/v2/fireplace/feed/shelves/{0}/',
         'feed-items': '/api/v2/feed/items/',
-        'feed': '/api/v2/feed/get/?cache=1&vary=0'
+        'feed': '/api/v2/feed/get/?cache=1&vary=0',
+
+        // New / Popular pages use a regular search API call, but we need to
+        // do device filtering differently depending on the page group, so we
+        // need an alias.
+        'new_popular_search': '/api/v2/fireplace/search/?cache=1&vary=0'
     };
 });

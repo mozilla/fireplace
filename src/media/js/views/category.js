@@ -27,7 +27,8 @@ define('views/category',
         builder.start('category.html', {
             category: category,
             category_name: name,
-            endpoint: urls.api.unsigned.url('category', [category], params),
+            endpoint: urls.api.unsigned.url('category_landing', [category], params),
+            endpoint_name: 'category_landing',
             sort: params.sort,
             app_cast: app_models.cast
         });

@@ -16,6 +16,7 @@ define('views/popular',
 
         builder.start('app_list.html', {
             app_cast: app_models.cast,
+            endpoint_name: 'new_popular_search',
             source: 'popular',
             title: title
         });

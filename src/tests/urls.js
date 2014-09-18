@@ -195,4 +195,43 @@ test('api url params', function(done, fail) {
     );
 });
 
+test('api url params api_args', function(done, fail) {
+    var api_args = {};
+    mock(
+        'urls',
+        {
+            // Bit of a weird mock, but route_api_args directly returns a
+            // function so we have to do this.
+            routes_api_args: function() {
+                return function() {
+                    return function() {
+                        return api_args;
+                    };
+                };
+            },
+            routes_api: {'homepage': '/foo/asdf'},
+            settings: {
+                api_url: 'api:',
+                api_cdn_whitelist: {}
+            }
+        }, function(urls) {
+            var homepage_url = urls.api.params('homepage', {q: 'poop'});
+            eq_(homepage_url.substr(0, 13), 'api:/foo/asdf');
+            contains(homepage_url, 'q=poop');
+            disincludes(homepage_url, 'device');
+
+            api_args.device = null;
+            homepage_url = urls.api.params('homepage', {q: 'poop'});
+            disincludes(homepage_url, 'device');
+
+            api_args.device = 'customdevice';
+            homepage_url = urls.api.params('homepage', {q: 'poop'});
+            contains(homepage_url, 'device=customdevice');
+
+            done();
+        },
+        fail
+    );
+});
+
 })();

@@ -16,6 +16,7 @@ define('views/new',
 
         builder.start('app_list.html', {
             app_cast: app_models.cast,
+            endpoint_name: 'new_popular_search',
             sort: 'reviewed',
             source: 'new',
             title: title
