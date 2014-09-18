@@ -34,6 +34,7 @@ define(
         'components',
         'consumer_info',
         'mobilenetwork',
+        'compatibility_filtering_select',
         'content-ratings',
         'forms',
         'image-deferrer',

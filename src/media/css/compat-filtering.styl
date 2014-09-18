@@ -1,0 +1,86 @@
+.compatibility-filtering {
+    clear: both;
+    display: block;
+    font-size: 13px;
+    margin: 0 auto;
+    max-width: 690px;
+    padding: 0;
+
+    label {
+        color: #797979;
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 18px;
+        margin: 0;
+        padding: 0 10px 0 0;
+        vertical-align: middle;
+    }
+
+    select, option {
+        padding: 4px;
+    }
+}
+
+@media (max-width: 709px) {
+    .compatibility-filtering {
+        max-width: 320px;
+    }
+
+    .app-list-page {
+        top: 35px;
+    }
+
+    .mkt-tile {
+        overflow: visible;
+    }
+
+    .multi-app-tile .compatibility-filtering {
+        padding: 0;
+        position: absolute;
+        top: -35px;
+    }
+
+    .category .compatibility-filtering {
+        margin: 6px 10px -6px 10px;
+    }
+
+    #search-results .compatibility-filtering {
+        left: 10px;
+        position: absolute;
+        top: 48px;
+    }
+
+    #search-results .search-listing {
+        margin-top: 45px;
+    }
+}
+
+@media (min-width: 710px) {
+    .category {
+        overflow: visible;
+        position: relative;
+        top: 49px;
+    }
+
+    .category .compatibility-filtering {
+        padding: 0;
+        position: absolute;
+        top: -55px;
+    }
+
+    #search-results .expand-toggle {
+        bottom: 0;
+        top: auto;
+    }
+
+    #search-results .compatibility-filtering {
+        bottom: -8px;
+        position: absolute;
+    }
+
+    #search-results .secondary-header {
+        height: 100px;
+        max-height: 100px;
+    }
+}
