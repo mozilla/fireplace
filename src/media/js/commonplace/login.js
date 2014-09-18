@@ -1,6 +1,6 @@
 define('login',
-    ['cache', 'capabilities', 'consumer_info', 'defer', 'jquery', 'log', 'notification', 'settings', 'underscore', 'urls', 'user', 'utils', 'requests', 'z'],
-    function(cache, capabilities, consumer_info, defer, $, log, notification, settings, _, urls, user, utils, requests, z) {
+    ['cache', 'capabilities', 'consumer_info', 'defer', 'fxa_migration', 'jquery', 'log', 'notification', 'settings', 'storage', 'underscore', 'urls', 'user', 'utils', 'requests', 'z'],
+    function(cache, capabilities, consumer_info, defer, fxa_migration, $, log, notification, settings, storage, _, urls, user, utils, requests, z) {
 
     var console = log('login');
     var persona_def = defer.Deferred();
@@ -113,7 +113,16 @@ define('login',
                 });
             }, false);
 
-            fxa_popup = window.open(settings.fxa_auth_url, 'fxa',
+            var fxa_url;
+            if (fxa_migration.canMigrate()) {
+                fxa_url = '/fxa-migration.html';
+                save_fxa_auth_url(settings.fxa_auth_url);
+            } else {
+                fxa_url = settings.fxa_auth_url;
+            }
+            fxa_popup = window.open(
+                fxa_url,
+                'fxa',
                 'width=' + w + ',height=' + h + ',left=' + i[0] + ',top=' + i[1]);
 
             // The same-origin policy prevents us from listening to events to
@@ -292,5 +301,14 @@ define('login',
         }
     });
 
-    return {login: startLogin};
+    var fxa_auth_url_key = 'fxa_auth_url';
+    function save_fxa_auth_url(url) {
+        storage.setItem(fxa_auth_url_key, url);
+    }
+
+    function get_fxa_auth_url() {
+        return storage.getItem(fxa_auth_url_key);
+    }
+
+    return {login: startLogin, get_fxa_auth_url: get_fxa_auth_url};
 });

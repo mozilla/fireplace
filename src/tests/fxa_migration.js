@@ -13,6 +13,9 @@
             return store[key];
         };
     };
+    var migrationEnabledSettings = {
+        switches: ['fx-accounts-migration'],
+    };
 
 
     test('a new user cannot migrate',
@@ -20,6 +23,7 @@
         mock(
             'fxa_migration',
             {
+                settings: migrationEnabledSettings,
                 storage: new Storage(),
             },
             function (fxa_migration) {
@@ -33,6 +37,7 @@
         mock(
             'fxa_migration',
             {
+                settings: migrationEnabledSettings,
                 storage: new Storage({permissions: {}}),
             },
             function (fxa_migration) {
@@ -46,6 +51,7 @@
         mock(
             'fxa_migration',
             {
+                settings: migrationEnabledSettings,
                 storage: new Storage({'fxa-migrated': true}),
             },
             function (fxa_migration) {
@@ -60,6 +66,7 @@
         mock(
             'fxa_migration',
             {
+                settings: migrationEnabledSettings,
                 storage: fakeStorage,
                 user: {
                     get_setting: function (key) {

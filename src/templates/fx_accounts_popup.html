@@ -1,0 +1,41 @@
+<div class="fxa-box">
+  <div id="fox-logo" style="opacity: 1;"></div>
+  <div id="stage">
+    <div id="main-content">
+      <div class="box-1">
+        <section>
+          {{ _('Firefox Marketplace has transitioned to Firefox Accounts to manage your profile. Continue to complete the simple upgrade process.') }}
+        </section>
+        <section>
+          <form id="notice-form">
+            <div class="button-row">
+              <button>{{ _('Continue') }}</button>
+            </div>
+          </form>
+          <div class="links">
+            <a href="#">{{ _('Learn more') }}</a>
+          </div>
+        </section>
+      </div>
+      <div class="box-2">
+        <header>
+          <h1>{{ _('Enter your email') }}</h1>
+        </header>
+        <section>
+          <form id="email-form" novalidate>
+            <div class="input-row">
+              <input name="email" class="email" placeholder="Email" type="email" required>
+              <aside id="email-error" class="tooltip fade-down-tt">{{ _('Valid email required') }}</aside>
+            </div>
+            <div class="button-row">
+              <button id="email-button" class="disabled">{{ _('Next') }}</button>
+            </div>
+          </form>
+          <div class="links">
+            <a href="#">{{ _('Learn more') }}</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
