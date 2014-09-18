@@ -75,8 +75,10 @@ define('views/search',
                     query.premium_types = append(query.premium_types, 'premium-other');
                 } else if (value.indexOf('cat=') === 0) {
                     query.cat = value.split('=')[1];
-                } else if (value === 'desktop' || value === 'mobile' ||
-                           value === 'tablet' || value === 'firefoxos') {
+                } else if (value === 'desktop' || value === 'firefoxos') {
+                    query.dev = append(query.dev, value);
+                } else if (value === 'tablet' || value === 'mobile') {
+                    query.dev = append(query.dev, 'android');
                     query.device = append(query.device, value);
                     // TODO: Add ":compatible" mode that triggers buchet
                     // filtering on desktop.
