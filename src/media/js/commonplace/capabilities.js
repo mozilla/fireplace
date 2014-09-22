@@ -36,7 +36,7 @@ define('capabilities', ['settings'], function(settings) {
     static_caps.nativeFxA = function() {
         return (static_caps.firefoxOS &&
                 window.location.protocol === 'app:' &&
-                navigator.userAgent.match(/rv:(\d{2})/)[1] >= 32);
+                navigator.userAgent.match(/rv:(\d{2})/)[1] >= 34);
 
     };
     static_caps.fallbackFxA = function() {
