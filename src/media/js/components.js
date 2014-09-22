@@ -56,6 +56,11 @@ define('components', ['document-register-element'], function () {
                     MktHTMLElement.prototype.createdCallback.call(this);
                     this.classList.add('mkt-banner');
 
+                    // This is a Firefox banner if it isn't a success banner.
+                    if (!this.success) {
+                        this.classList.add('mkt-banner-firefox');
+                    }
+
                     if (this.rememberDismissal && this.dismissed) {
                         this.dismissBanner();
                     }
@@ -70,12 +75,7 @@ define('components', ['document-register-element'], function () {
 
                     var content = document.createElement('div');
                     content.classList.add('mkt-banner-content');
-
-                    // Wrap the provided content in a span so it gets flexed as
-                    // one element.
-                    var contentSpan = document.createElement('span');
-                    contentSpan.innerHTML = html;
-                    content.appendChild(contentSpan);
+                    content.innerHTML = html;
 
                     if (!this.undismissable) {
                         var closeButton = document.createElement('a');
