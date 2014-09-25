@@ -1,6 +1,8 @@
 define('consumer_info',
-    ['urls', 'user', 'user_helpers', 'requests', 'defer', 'log', 'settings'],
-    function(urls, user, user_helpers, requests, defer, log, settings) {
+    // mobilenetwork needs to be called before we start retrieving consumer_info,
+    // as it sets the region/carrier from the SIM data.
+    ['defer', 'log', 'mobilenetwork', 'requests', 'settings', 'urls', 'user', 'user_helpers'],
+    function(defer, log, mobilenetwork, requests, settings, urls, user, user_helpers) {
     var logger = log('consumer_info');
 
     function fetch() {
