@@ -14,7 +14,7 @@
     {% defer (url=search_url, pluck='objects', as='app', paginate='ul.app-list') %}
       <ul class="app-list grid-if-desktop c">
         {% for app in this %}
-          {{ mini_tile(app) }}
+          {{ mini_tile(app, src=source) }}
         {% endfor %}
 
         {# Render the more button if there's another page of results #}

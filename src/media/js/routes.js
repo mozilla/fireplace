@@ -26,7 +26,6 @@ var routes = [
 
     {'pattern': '^/privacy-policy$', 'view_name': 'privacy'},
     {'pattern': '^/terms-of-use$', 'view_name': 'terms'},
-    {'pattern': '^/site/deprecated$', 'view_name': 'deprecated'},
 
     // Feed.
     {'pattern': '^/feed/app/([^/<>"\']+)/?$', 'view_name': 'feed/feed_app'},

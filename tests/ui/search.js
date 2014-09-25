@@ -24,6 +24,8 @@ casper.test.begin('Search baseline tests', {
                 cache: '1', lang: 'en-US', limit: '25', q: 'test', region: 'us', vary: '0'
             });
             test.assertVisible('.search-listing li a.mkt-tile');
+            var href = this.getElementAttribute('.search-listing li a.mkt-tile:nth-child(1)', 'href');
+            test.assertEqual(href.split('?')[1], 'src=search');
             test.assertVisible('#search-results .expand-toggle');
             casper.click('li.loadmore button');
         });
