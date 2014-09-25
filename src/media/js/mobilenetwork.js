@@ -8,6 +8,8 @@ define('mobilenetwork',
     var REGIONS = settings.REGION_CHOICES_SLUG;
 
     var regions = {
+        // Missing [ "231", "232", "744" ]
+
         // Greece
         202: 'gr',
 
@@ -29,7 +31,8 @@ define('mobilenetwork',
         // Czech Republic
         230: 'cz',
 
-        // United Kingdom
+        // United Kingdom.
+        234: 'uk',
         235: 'uk',
 
         // Poland
@@ -60,9 +63,6 @@ define('mobilenetwork',
         // Bangladesh
         470: 'bd',
 
-        // Chile
-        703: 'cl',
-
         // Guatemala
         704: 'gt',
 
@@ -86,6 +86,9 @@ define('mobilenetwork',
 
         // Brazil
         724: 'br',
+
+        // Chile
+        730: 'cl',
 
         // Colombia
         732: 'co',
@@ -124,6 +127,8 @@ define('mobilenetwork',
     ];
 
     var carriersRegions = {
+        // Missing [ "208", "222", "234", "404", "405" ]
+
         // Greece
         202: {
             // This actually belongs to Vodafone, which DT owns.
@@ -153,7 +158,9 @@ define('mobilenetwork',
 
         // Czech Republic
         230: {
-            1: 'deutsche_telekom'
+            1: 'deutsche_telekom',
+            2: 'telefonica',
+            10: 'telefonica'
         },
 
         // Slovakia
@@ -170,7 +177,7 @@ define('mobilenetwork',
         },
 
         // United Kingdom
-        235: {
+        234: {
             2: 'telefonica',
             10: 'telefonica',
             11: 'telefonica',
@@ -197,7 +204,9 @@ define('mobilenetwork',
 
         // Montenegro
         297: {
-            1: 'telenor'
+            1: 'telenor',
+            2: 'deutsche_telekom',
+            4: 'deutsche_telekom'
         },
 
         // United States
@@ -205,6 +214,7 @@ define('mobilenetwork',
         // 'Not Operational' on http://en.wikipedia.org/wiki/Mobile_country_code
         310: {
             26: 'deutsche_telekom',
+            160: 'deutsche_telekom',
             260: 'deutsche_telekom',
             490: 'deutsche_telekom'
         },
@@ -324,6 +334,7 @@ define('mobilenetwork',
 
         // Paraguay
         744: {
+            2: 'america_movil',
             4: 'telefonica',
         },
 
@@ -536,6 +547,8 @@ define('mobilenetwork',
     detectMobileNetwork(navigator);
 
     return {
+        regions: regions,
+        carriersRegions: carriersRegions,
         carriers: carriers,
         detectMobileNetwork: detectMobileNetwork,
         getNetwork: getNetwork
