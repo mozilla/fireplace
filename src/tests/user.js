@@ -44,6 +44,7 @@ test('consumer_info automatically set region and switches when required', functi
             )},
             user: {logged_in: function() { return false; }},
             settings: settings,
+            mobilenetwork: {},
             user_helpers: {
                 region: function(x, y) { return ''; },
                 carrier: function() { return ''; },
@@ -76,6 +77,7 @@ test('consumer_info automatically does not reset region if already present', fun
             requests: {get: mockConsumerInfoRequestSuccess({region: 'nowhere'})},
             user: {logged_in: function() { return false; }},
             settings: settings,
+            mobilenetwork: {},
             user_helpers: {
                 region: function(x, y) { return 'previous_region'; },
                 carrier: function() { return ''; },
