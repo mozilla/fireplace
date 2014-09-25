@@ -13,7 +13,12 @@
 
 <section class="main">
   <header class="category-header">
-    <h3 class="cat-{{ category }} cat-icon cur-cat" data-cat-slug="{{ category }}">
+    <h3 class="cat-{{ category }} cat-icon mobile-cat-header"
+        data-cat-slug="{{ category }}">
+      {{ category_name }}
+    </h3>
+    <h3 class="cat-{{ category }} cat-icon desktop-cat-header"
+        data-cat-slug="{{ category }}">
       {{ category_name }}
     </h3>
   </header>

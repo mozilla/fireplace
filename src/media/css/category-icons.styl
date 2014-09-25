@@ -21,6 +21,16 @@ sprite-background-position($vertical-pos) {
     &.cur-cat:before {
         background-position: 0 $vertical-pos;
     }
+    &.mobile-cat-header:focus:before,
+    &.mobile-cat-header:hover:before,
+    &.mobile-cat-header:before {
+        background-position: 100% $vertical-pos;
+    }
+    &.desktop-cat-header:focus:before,
+    &.desktop-cat-header:hover:before,
+    &.desktop-cat-header:before {
+        background-position: 0 $vertical-pos;
+    }
 }
 
 .cat-icon,
