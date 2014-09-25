@@ -13,14 +13,23 @@
      999999998 -- editorial brand element.
 */
 define('tracking_events',
-    ['jquery', 'log', 'navigation', 'tracking', 'z'],
-    function($, log, navigation, tracking, z) {
+    ['jquery', 'log', 'navigation', 'settings', 'tracking', 'z'],
+    function($, log, navigation, settings, tracking, z) {
     'use strict';
     var console = log('tracking_events');
     var track_log = [];
 
     var FEATURED_APP_VALUE = 999999999;
     var EDITORIAL_BRAND_VALUE = 999999998;
+
+    // Track package version in UA.
+    var packageVersion = settings.package_version;
+    if (packageVersion) {
+        tracking.setVar(15, 'Package Version', packageVersion);
+    } else {
+        // Set package version to 0 for hosted.
+        tracking.setVar(15, 'Package Version', 0);
+    }
 
     function track(tracking_args) {
         // Send UA event.

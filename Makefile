@@ -83,7 +83,8 @@ package_feed_prod:
 package_altdev:
 	SERVER='altdev' NAME='AltDev' DOMAIN='marketplace-altdev.allizom.org' make package
 package_paymentsalt:
-	SERVER='paymentsalt' NAME='PaymentAlt' DOMAIN='payments-alt.allizom.org' make package
+	SERVER='paymentsalt' NAME='PaymentAlt' DOMAIN='payments-alt.allizom.org' \
+    ORIGIN='app:\/\/packaged.payments-alt.allizom.org' make package
 
 
 serve_package:

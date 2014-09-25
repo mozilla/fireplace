@@ -272,9 +272,6 @@ function(_) {
         }
     });
 
-    // Set the tracking consumer page variable.
-    //require('tracking').setVar(3, 'Site section', 'Consumer', 3);
-
     require('requests').on('deprecated', function() {
         // Divert the user to the deprecated view.
         z.page.trigger('divert', [urls.reverse('deprecated')]);
