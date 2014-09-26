@@ -66,7 +66,7 @@ define('login',
 
     function startLogin() {
         var w = 320;
-        var h = 500;
+        var h = 600;
         var i = getCenteredCoordinates(w, h);
         var def = defer.Deferred();
         pending_logins.push(def);
