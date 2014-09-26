@@ -11,7 +11,7 @@ define('views/popular',
     return function(builder, args, params) {
         var title = gettext('Popular All Time');
 
-        builder.z('type', 'root newpop popular');
+        builder.z('type', 'root app-list popular');
         builder.z('title', title);
 
         builder.start('app_list.html', {
