@@ -11,7 +11,7 @@ define('views/new',
     return function(builder, args, params) {
         var title = gettext('Fresh and New Apps');
 
-        builder.z('type', 'root newpop new');
+        builder.z('type', 'root app-list new');
         builder.z('title', title);
 
         builder.start('app_list.html', {

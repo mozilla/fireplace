@@ -1,86 +1,96 @@
-.compatibility-filtering {
+@import "lib";
+
+.compat-filter {
     clear: both;
     display: block;
-    font-size: 13px;
     margin: 0 auto;
-    max-width: 690px;
     padding: 0;
+    position: absolute;
+    z-index: 1;
 
+    .pretty-select {
+        border-radius: 0 5px 5px 0;
+    }
+    select {
+        font-size: 13px;
+        min-width: 180px;
+        vertical-align: middle;
+    }
     label {
-        color: #797979;
+        background: $primary-blue;
+        border: 1px solid $light-gray;
+        border-radius: 5px 0 0 5px;
+        color: #fff;
         display: inline-block;
         font-size: 12px;
         font-weight: 500;
         line-height: 18px;
         margin: 0;
-        padding: 0 10px 0 0;
+        margin-right: -5px;
+        padding: 10px 20px;
         vertical-align: middle;
-    }
-
-    select, option {
-        padding: 4px;
     }
 }
 
+.compat-select-wrapper {
+    vertical-align: middle;
+}
+
 @media (max-width: 709px) {
-    .compatibility-filtering {
-        max-width: 320px;
+    .compat-filter {
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+    .compat-filter .pretty-select {
+        width: 229px;
+
+        &:after {
+            width: 60px;
+        }
+        &:before {
+            right: 18px;
+        }
+        select {
+            padding-right: 75px;
+        }
     }
 
-    .app-list-page {
-        top: 35px;
+    .app-list-page,
+    .category,
+    #search-results .search-listing {
+        position: relative;
+        top: 45px;
+    }
+    .category-header + .compat-filter,
+    #search-results .compat-filter {
+        top: 45px;
+    }
+
+    [data-page-type~="app-list"] .compat-filter {
+        top: 7px;
+    }
+    .category-header + .compat-filter {
+        margin-top: 2px;
     }
 
     .mkt-tile {
         overflow: visible;
     }
-
-    .multi-app-tile .compatibility-filtering {
-        padding: 0;
-        position: absolute;
-        top: -40px;
-    }
-
-    .category .compatibility-filtering {
-        margin: 6px 10px -6px 10px;
-    }
-
-    #search-results .compatibility-filtering {
-        left: 10px;
-        position: absolute;
-        top: 44px;
-    }
-
-    #search-results .search-listing {
-        margin-top: 45px;
-    }
 }
 
 @media (min-width: 710px) {
-    .category {
-        overflow: visible;
-        position: relative;
-        top: 49px;
+    .compat-filter {
+        right: 0;
+        top: 0;
     }
-
-    .category .compatibility-filtering {
-        padding: 0;
-        position: absolute;
-        top: -55px;
-    }
-
     #search-results .expand-toggle {
         bottom: 0;
         top: auto;
     }
-
-    #search-results .compatibility-filtering {
-        bottom: -8px;
-        position: absolute;
-    }
-
     #search-results .secondary-header {
-        height: 100px;
-        max-height: 100px;
+        height: 80px;
+        max-height: 80px;
     }
 }
