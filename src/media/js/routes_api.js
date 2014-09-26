@@ -7,6 +7,7 @@ define('routes_api', [], function() {
         'reviews': '/api/v2/apps/rating/',
         'review': '/api/v2/apps/rating/{0}/',
         'settings': '/api/v2/account/settings/mine/',
+        'account_info': '/api/v2/account/info/{0}',
         'installed': '/api/v2/account/installed/mine/',
         'login': '/api/v2/account/login/',
         'logout': '/api/v2/account/logout/',

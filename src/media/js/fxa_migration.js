@@ -1,8 +1,8 @@
-define('fxa_migration', ['storage', 'user', 'z'],
-       function (storage, user, z) {
+define('fxa_migration', ['settings', 'storage', 'user', 'z'],
+       function (settings, storage, user, z) {
 
     function canMigrate() {
-        return !doneMigration() && hasLoggedIn();
+        return migrationEnabled() && !doneMigration() && hasLoggedIn();
     }
 
     function hasLoggedIn() {
@@ -18,7 +18,12 @@ define('fxa_migration', ['storage', 'user', 'z'],
         return storage.getItem('fxa-migrated');
     }
 
+    function migrationEnabled() {
+        return settings.switches.indexOf('fx-accounts-migration') !== -1;
+    }
+
     return {
         canMigrate: canMigrate,
+        migrationEnabled: migrationEnabled,
     };
 });
