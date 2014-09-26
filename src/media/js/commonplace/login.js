@@ -115,7 +115,7 @@ define('login',
 
             var fxa_url;
             if (fxa_migration.canMigrate()) {
-                fxa_url = '/fxa-migration.html';
+                fxa_url = '/fxa-migration';
                 save_fxa_auth_url(settings.fxa_auth_url);
             } else {
                 fxa_url = settings.fxa_auth_url;
