@@ -46,17 +46,8 @@ def update():
 
 @task
 def package_update():
-    if 'feed' in PACKAGE_NAME:
-        build_package('feed_%s' % settings.ENV)
-        upload_package(fireplace_package(settings.ENV), PACKAGE_NAME)
-
-        # build prod feed package on -dev
-        if settings.ENV is 'dev':
-            build_package('feed_prod')
-            upload_package(fireplace_package('prod'), 'feed-prod')
-    else:
-        build_package(settings.ENV)
-        upload_package(fireplace_package(settings.ENV), PACKAGE_NAME)
+    build_package(settings.ENV)
+    upload_package(fireplace_package(settings.ENV), PACKAGE_NAME)
 
 
 @task
