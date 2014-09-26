@@ -1,6 +1,8 @@
 # Startup script for running damper under Docker.
 #
 # Check settings file exists, if not create one.
+make init
+
 if [[ ! -a "src/media/js/settings_local.js" ]]; then
   echo "Creating settings file."
   cp "src/media/js/settings_local.js.dist" "src/media/js/settings_local.js"
