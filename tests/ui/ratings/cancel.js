@@ -14,17 +14,17 @@ casper.test.begin('Add rating tests', {
 
         casper.waitForSelector('.compose-review', function() {
             test.assertUrlMatch(/\/app\/can_rate\/ratings\/add/);
+            test.assertVisible('.compose-review');
             test.assertVisible('.add-review-form');
-            test.assertVisible('.char-count b');
-            test.assertSelectorHasText('.char-count b', '150');
-            casper.fill('.add-review-form', {'body': 'test'});
+            casper.click('.add-review-form .cancel');
         });
 
-        casper.waitForText('146', function() {
-            test.assertSelectorHasText('.char-count b', '146');
-            test.assertExists('.add-review-form button[type="submit"][disabled]');
-            casper.click('.stars input[value="3"]');
-            test.assertExists('.add-review-form button[type="submit"]:not([disabled])');
+        // On mobile, canceling the add review form takes you back to the
+        // detail page.
+        casper.waitForUrl(/\/app\/can_rate/, function() {
+            test.assertUrlMatch(/\/app\/can_rate/);
+            test.assertNotVisible('.compose-review');
+            test.assertDoesntExist('.cloak.show');
         });
 
         casper.run(function() {
