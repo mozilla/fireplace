@@ -1,11 +1,6 @@
 // Styles for the mobile navbar.
 @import 'lib';
 
-#cat-dropdown,
-#cat-list {
-    display: none;
-}
-
 [data-page-type~=settings] .header-button.settings,
 .act-tray.active .settings {
     background-image: url(../img/pretty/gear.svg);
@@ -273,7 +268,7 @@
 
 // Navbar active states.
 activeNavLi() {
-    a {
+    > a {
         color: $breezy-blue;
         border-bottom: 3px solid $breezy-blue;
 

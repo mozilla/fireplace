@@ -13,10 +13,16 @@
 
 <section class="main">
   <header class="category-header">
-    <h3 class="cat-{{ category }} cat-icon cur-cat" data-cat-slug="{{ category }}">
+    <h3 class="cat-{{ category }} cat-icon mobile-cat-header"
+        data-cat-slug="{{ category }}">
+      {{ category_name }}
+    </h3>
+    <h3 class="cat-{{ category }} cat-icon desktop-cat-header"
+        data-cat-slug="{{ category }}">
       {{ category_name }}
     </h3>
   </header>
+  {% include "compatibility_filtering.html" %}
 </section>
 
 <section id="gallery" class="island main category gallery full c">
@@ -32,7 +38,6 @@
       <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
     </header>
   {% endif %}
-  {% include "compatibility_filtering.html" %}
   <ol class="container listing grid-if-desktop search-listing feed c">
     {% for result in this %}
       <li class="item result app c">

@@ -26,6 +26,8 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         default_locale: 'en-US',
         api_url: 'http://' + window.location.hostname,  // No trailing slash, please.
 
+        fxa_css_path: '/media/css/fxa.css',
+
         package_version: null,
 
         // The version number for localStorage data. Bump when the schema for

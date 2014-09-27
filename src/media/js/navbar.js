@@ -44,9 +44,11 @@ define('navbar',
 
     // Swipe handler.
     z.body.hammer({'swipe_velocity': 0.3}).on('swipe', function(e) {
+        var $target = $(e.gesture.startEvent.target);
         if (['left', 'right'].indexOf(e.gesture.direction) === -1 ||
             z.body.attr('data-page-type').indexOf('root') === -1 ||
-            $(e.target).closest('.slider').length) {
+            $target.closest('.slider').length ||
+            $target.closest('input').length) {
             return;
         }
         var $navbar = $('.navbar.active');

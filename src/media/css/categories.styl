@@ -1,4 +1,4 @@
-// Styles for the categories index page and overlay.
+// Styles for the categories index page.
 @import 'lib';
 
 .category-index {
@@ -44,105 +44,6 @@
     }
 }
 
-@media $at-least-desktop {
-    .hovercats {
-        background: $white;
-        border-radius: 5px;
-        box-shadow: 0 2px 1px -1px $cement-gray;  // Bottom box-shadow.
-        display: none;
-        left: -355px;
-        position: absolute;
-        top: 45px;
-
-        &.active, &.active .cat-overlay {
-            display: block;
-        }
-        &:after {
-            border: 10px solid transparent;
-            border-bottom: 10px solid #fff;
-            content: "";
-            height: 0;
-            left: 100%;
-            margin-left: -65px;
-            position: absolute;
-            top: -20px;
-            width: 0;
-        }
-    }
-}
-
-.cat-overlay {
-    display: none;
-    padding: 10px 20px;
-    width: 500px;
-
-    li {
-        border-bottom: 1px solid $light-gray;
-        border-right: 1px solid $light-gray;
-        float: left;
-        font-size: 15px;
-        height: 50px;
-        position: relative;
-        text-transform: uppercase;
-        width: 50%;
-
-        &:nth-child(2n) {
-            border-right: 0;
-
-            a {
-                padding-left: 50px;
-
-                &:before {
-                    left: 10px;
-                }
-                &:hover {
-                    margin: -1px -20px 0 0;
-                    padding-left: 50px;
-                }
-            }
-        }
-        // Last two children. 少しこわいい
-        &:nth-last-child(-n + 2) {
-            border-bottom: 1px solid $white;
-        }
-    }
-    a {
-        color: $dark-gray;
-        display: inline-block;
-        height: 50px;
-        line-height: 50px;
-        outline: 0;
-        padding: 0 0 0 40px;
-        text-align: left;
-        vertical-align: middle;
-        width: 230px;
-
-        &:before {
-            background-image: url(../img/pretty/cats-sprite.svg);
-            background-repeat: no-repeat;
-            background-size: 90px auto;
-            content: "";
-            height: 30px;
-            left: 0;
-            position: absolute;
-            top: 10px;
-            width: 30px;
-        }
-        &:hover {
-            background-color: $breezy-blue;
-            background-position: inherit;
-            color: $white;
-            height: 51px;
-            line-height: 51px;
-            margin-left: -20px;
-            margin-top: -1px;
-            padding-left: 60px;
-            text-decoration: none;
-            width: 250px;
-        }
-    }
-}
-
 .category-header-desktop {
     display: none;
 }
@@ -154,26 +55,9 @@
     }
 }
 
-@media $wider-desktop {
-    .hovercats {
-        left: -162px;
-
-        &:after {
-            left: 50%;
-            margin-left: -10px;
-        }
-    }
-}
-
-@media $retina-desktop {
-    .cat-overlay a:hover {
-        margin-top: -2px;
-    }
-}
-
 .category-header {
     background: $note-gray;
-    padding: 8px 0;
+    padding: 8px 0 6px;
     text-align: center;
     width: 100%;
 
@@ -182,7 +66,17 @@
     }
 }
 
+.desktop-cat-header {
+    display: none;
+}
+
 @media $at-least-desktop {
+    .mobile-cat-header {
+        display: none;
+    }
+    .desktop-cat-header {
+        display: block;
+    }
     .category-header {
         background: none;
         padding: 0;

@@ -202,19 +202,14 @@ function(_) {
 
         // Wait for the switches to be pulled down.
         consumer_info.promise.then(function () {
-            var fxAccountsMigration = settings.switches.indexOf(
-                'fx-accounts-migration') !== -1;
-
-            if (fxAccountsMigration) {
-                var banner = document.getElementById('fx-accounts-banner');
-                if (banner) {
-                    banner.dismissBanner();
-                }
-                if (require('fxa_migration').canMigrate()) {
-                    $('#site-nav').after(
-                        nunjucks.env.render('fx-accounts-banner.html',
-                                            {logged_in: logged_in}));
-                }
+            var banner = document.getElementById('fx-accounts-banner');
+            if (banner) {
+                banner.dismissBanner();
+            }
+            if (require('fxa_migration').canMigrate()) {
+                $('#site-nav').after(
+                    nunjucks.env.render('fx-accounts-banner.html',
+                                        {logged_in: logged_in}));
             }
         });
 
