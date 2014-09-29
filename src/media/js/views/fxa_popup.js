@@ -3,7 +3,7 @@ define('views/fxa_popup',
        function (defer, $, l10n, login, requests, settings, urls, user, z) {
 
     return function (builder, args, params) {
-        var cssPath = settings.fxa_css_path;
+        var cssPath = urls.media(settings.fxa_css_path);
 
         z.body.css({display: 'none'});
         // TODO: Keep showing the splash until the new CSS is loaded.
