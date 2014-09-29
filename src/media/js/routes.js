@@ -18,6 +18,7 @@ var routes = [
     {'pattern': '^/categories$', 'view_name': 'categories'},
     {'pattern': '^/new$', 'view_name': 'new'},
     {'pattern': '^/popular$', 'view_name': 'popular'},
+    {'pattern': '^/recommended$', 'view_name': 'recommended'},
     {'pattern': '^/category/([^/<>"\']+)$', 'view_name': 'category'},
     {'pattern': '^/nominate$', 'view_name': 'nominate'},
     {'pattern': '^/settings$', 'view_name': 'settings'},

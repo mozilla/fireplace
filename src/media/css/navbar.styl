@@ -6,6 +6,14 @@
     background-image: url(../img/pretty/gear.svg);
 }
 
+// Hide recommendations tab by default.
+body .nav-mkt li.recommended {
+    display: none;
+}
+body.show-recommendations .nav-mkt li.recommended {
+    display: inline-block;
+}
+
 @media $narrower-than-desktop {
     // New feed navigation (mobile only).
     header .act-tray {
@@ -153,10 +161,16 @@
         right: -10px;
     }
     [data-page-type~="popular"] .nav-mkt.active {
-        right: 53px;
+        right: 43px;
     }
     [data-page-type~="categories"] .nav-mkt.active {
         right: 120px;
+    }
+    body.show-recommendations[data-page-type~="recommended"] .nav-mkt.active {
+        right: 120px;
+    }
+    body.show-recommendations[data-page-type~="categories"] .nav-mkt.active {
+        right: 170px;
     }
     [data-page-type="root settings"] .nav-settings.active {
         right: -9px;
@@ -260,6 +274,16 @@
     }
 }
 
+/* Add recommendation nav item if body.show-recommendations. */
+@media $at-least-desktop {
+    .show-recommendations .navbar > li {
+        width: 20%;
+        &:nth-child(2) {
+            width: 17%;
+        }
+    }
+}
+
 @media $wider-desktop {
     .site-nav {
         top: 0px;
@@ -280,7 +304,7 @@ activeNavLi() {
 [data-page-type="root settings"] [data-tab="settings"] {
     activeNavLi();
 }
-for tab in homepage new popular categories purchases feedback
+for tab in homepage new popular recommended categories purchases feedback
     [data-page-type~={tab}] [data-tab={tab}] {
         activeNavLi();
     }

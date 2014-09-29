@@ -211,6 +211,11 @@ function(_) {
                     nunjucks.env.render('fx-accounts-banner.html',
                                         {logged_in: logged_in}));
             }
+
+            // To show or not to show the recommendations nav.
+            if (logged_in && settings.switches.indexOf('recommendations') !== -1) {
+                z.body.addClass('show-recommendations');
+            }
         });
 
         z.body.toggleClass('logged-in', logged_in);

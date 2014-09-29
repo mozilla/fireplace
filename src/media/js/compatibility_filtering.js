@@ -42,6 +42,7 @@ define('compatibility_filtering',
     device_filtering_preferences = {
         'category_landing': device_filter_name,
         'new_popular_search': device_filter_name,
+        'recommended': device_filter_name,
         'search': device_filter_name
     };
     device_filtering_preferences = _.extend(device_filtering_preferences,
