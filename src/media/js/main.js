@@ -4,6 +4,23 @@ console.log('   (C)Copyright Mozilla Corp 1998-2014');
 console.log('');
 console.log('64K High Memory Area is available.');
 
+require.config({
+    enforceDefine: true,
+    paths: {
+        'flipsnap': 'lib/flipsnap',
+        'isotope': 'lib/isotope',
+        'jquery': 'lib/jquery-2.0.2',
+        'underscore': 'lib/underscore',
+        'nunjucks': 'lib/nunjucks',
+        'nunjucks.compat': 'lib/nunjucks.compat',
+        'templates': '../../templates',
+        'settings': ['settings_local', 'settings'],
+        'format': 'lib/format',
+        'hammerjs': 'hammer',
+        'document-register-element': 'lib/document-register-element',
+    },
+});
+
 define(
     'main',
     [

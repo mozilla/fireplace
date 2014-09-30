@@ -14,10 +14,9 @@ node_js:
   - "0.10"
 before_script:
   - "export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'"
-  - "npm install -g commonplace"  # Get commonplace up in hurrr.
-  - "make init"
   - "mv src/media/js/settings_travis.js src/media/js/settings_local.js"
-  - "nohup damper &"  # Start the damper.
+  - "npm install -g commonplace"  # Get commonplace up in hurrr
+  - "nohup damper &"  # start the damper
   - "git clone git://github.com/n1k0/casperjs.git casperjs"
   - "cd casperjs && git checkout -q tags/1.1-beta3; cd .."
 script:

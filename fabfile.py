@@ -35,8 +35,7 @@ def pre_update(ref):
 def update():
     with lcd(FIREPLACE):
         local('npm install')
-        local('npm install --force commonplace@0.5.1')
-        local('make update')
+        local('npm install --force commonplace@0.4.22')
 
         if settings.ZAMBONI_DIR:
             package_update()
