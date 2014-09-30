@@ -1,14 +1,3 @@
-gulp:
-	@node_modules/.bin/gulp
-
-init:
-	@npm install
-	@node_modules/.bin/gulp update
-	@cp src/media/js/settings_local.js.dist src/media/js/settings_local.js
-
-update:
-	@node_modules/.bin/gulp update
-
 REPO = "fireplace"
 UUID = "e6a59937-29e4-456a-b636-b69afa8693b4"
 VERSION = `date "+%Y.%m.%d_%H.%M.%S"`
