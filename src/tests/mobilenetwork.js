@@ -26,6 +26,13 @@ test('yes MCC, no MNC', function(done, fail) {
     done();
 });
 
+test('yes MCC, unknown MNC', function(done, fail) {
+    var network = mobilenetwork.getNetwork('310', '410');
+    eq_(network.region, 'us');
+    eq_(network.carrier, null);
+    done();
+});
+
 test('no MCC, yes MNC', function(done, fail) {
     var network = mobilenetwork.getNetwork('', '005');
     eq_(network.region, null);
@@ -197,6 +204,26 @@ test('carrier+region for SIM via navigator.mozMobileConnections lastKnownHomeNet
 
     eq_(user.get_setting('carrier_sim'), 'deutsche_telekom');
     eq_(user.get_setting('region_sim'), 'gr');
+
+    done();
+});
+
+test('region with unknown carrier and previously stored carrier', function(done) {
+    user.clear_settings();
+    user.update_settings({'carrier_sim': 'deutsche_telekom'});
+    eq_(user.get_setting('carrier_sim'), 'deutsche_telekom');
+
+    var navigator_ = {
+        mozMobileConnections: [
+            {lastKnownHomeNetwork: '310-410'},  // US with AT&T, unsupported carrier.
+            {lastKnownNetwork: '226-03'}  // Romania, unsupported region&carrier.
+        ]
+    };
+
+    mobilenetwork.detectMobileNetwork(navigator_);
+
+    eq_(user.get_setting('carrier_sim'), undefined);
+    eq_(user.get_setting('region_sim'), 'us');
 
     done();
 });
