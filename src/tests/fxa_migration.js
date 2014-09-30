@@ -83,4 +83,24 @@
                 done();
             }, fail);
     });
+
+    test('canMigrate is false on nativeFxA',
+         function (done, fail) {
+        mock(
+            'fxa_migration',
+            {
+                settings: migrationEnabledSettings,
+                storage: new Storage({permissions: {}}),
+                capabilities: {
+                    nativeFxA: function () {
+                        return true;
+                    },
+                },
+            },
+            function (fxa_migration) {
+                ok_(!fxa_migration.canMigrate());
+                done();
+            }, fail);
+
+    });
 })();
