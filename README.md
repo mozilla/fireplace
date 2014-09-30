@@ -29,8 +29,9 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
 ## Installation
 
 ```bash
-npm install
 npm install -g commonplace
+make init
+damper
 ```
 
 ### Flue
@@ -54,9 +55,9 @@ Please note that any file that belongs in the package must get added to `package
 
 ## Usage
 
-If you haven't already, run `commonplace init` to install local settings
-files. Some settings in `media/js/settings_local.js` will need to be updated
-if you plan to run a local setup, at minimum you should have something like this:
+If you haven't already, run `make init` to install dependencies. Some settings
+in `media/js/settings_local.js` will need to be updated if you plan to run a
+local setup, at minimum you should have something like this:
 
 ```js
 define('settings_local', [], function() {
@@ -82,6 +83,17 @@ For more options, read the [damper documentation](https://github.com/mozilla/com
 
 For instructions on running Flue (the mock API server), please see the [Flue
 docs](https://github.com/mozilla/flue/blob/master/README.md).
+
+
+### Updating Dependencies
+
+We use Bower as our frontend package manager, which is pulled into the project
+via Gulp. For development, we inject an inline RequireJS config so everything
+runs out-of-the-box. To update your dependencies:
+
+```bash
+make update
+```
 
 
 ### Compiling
