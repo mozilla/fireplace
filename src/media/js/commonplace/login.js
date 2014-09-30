@@ -24,6 +24,21 @@ define('login',
         notification.notification({message: gettext('You have been signed in')});
     }
 
+    function logOut() {
+        cache.flush_signed();
+        user.clear_token();
+
+        z.body.removeClass('logged-in');
+        z.page.trigger('reload_chrome').trigger('before_logout');
+        if (!z.context.dont_reload_on_login) {
+            z.page.trigger('logged_out');
+            signOutNotification();
+            require('views').reload();
+        } else {
+            console.log('Reload on logout aborted by current view');
+        }
+    }
+
     z.body.on('click', '.persona', function(e) {
         e.preventDefault();
 
@@ -36,25 +51,14 @@ define('login',
     }).on('click', '.logout', utils._pd(function(e) {
         requests.del(urls.api.url('logout'));
 
-        cache.flush_signed();
-        user.clear_token();
-
         if (capabilities.persona()) {
             console.log('Triggering Persona logout');
             navigator.id.logout();
         }
-
-        z.body.removeClass('logged-in');
-        z.page.trigger('reload_chrome').trigger('before_logout');
-        // Moved here from the onlogout callback for now until
-        // https://github.com/mozilla/browserid/issues/3229
-        // gets fixed.
-        if (!z.context.dont_reload_on_login) {
-            z.page.trigger('logged_out');
-            signOutNotification();
-            require('views').reload();
-        } else {
-            console.log('Reload on logout aborted by current view');
+        if ('email' in settings) {
+            // navigator.id callback didn't log us out, let's do it now.
+            // see https://github.com/mozilla/browserid/issues/3229
+            logOut();
         }
     }));
 
@@ -265,10 +269,7 @@ define('login',
                     loggedInUser: email,
                     onready: function() {},
                     onlogin: gotVerifiedEmail,
-                    onlogout: function() {
-                        z.body.removeClass('logged-in');
-                        z.page.trigger('reload_chrome').trigger('logout');
-                    }
+                    onlogout: logOut
                 };
                 if (capabilities.nativeFxA()) {
                     opts.wantIssuer = 'firefox-accounts';
