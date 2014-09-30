@@ -1,5 +1,17 @@
 @import 'lib';
 
+// Don't show logout links to native FxA users (bug 1073177).
+.native-fxa {
+    .logout,
+    .logout.button.only-logged-in {
+        display: none;
+    }
+
+    .account-settings .reviewer-tools {
+        margin-top: 0;
+    }
+}
+
 .account-settings {
     background: #fff;
     width: 100%;

@@ -111,6 +111,15 @@ function(_) {
     settings.persona_privacy = format.format(doc_location, {type: 'privacy'});
 
     z.body.addClass('html-' + require('l10n').getDirection());
+    // We might want to style things differently for native FxA users,
+    // specifically they should need to log out through settings instead
+    // of through Marketplace (hide logout buttons for bug 1073177).
+    // Unfortunately we need to wait for the switches to load.
+    consumer_info.promise.then(function () {
+        if (capabilities.nativeFxA()) {
+            z.body.addClass('native-fxa');
+        }
+    });
     if (settings.body_classes) {
         z.body.addClass(settings.body_classes);
     }
