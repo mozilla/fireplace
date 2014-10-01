@@ -6,7 +6,7 @@ var languages = [
     'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu', 'fr',
     'ga-IE', 'hr', 'hu', 'it', 'ja', 'ko', 'mk', 'nb-NO', 'nl', 'pa',
     'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sq', 'sr', 'sr-Latn', 'ta', 'tr',
-    'zh-CN', 'zh-TW', 'dbg'
+    'xh', 'zh-CN', 'zh-TW', 'zu', 'dbg'
 ];
 var body_langs;
 if (body_langs = document.body.getAttribute('data-languages')) {
