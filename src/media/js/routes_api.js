@@ -16,6 +16,7 @@ define('routes_api', [], function() {
         'record_paid': '/api/v2/receipts/install/',
         'app_abuse': '/api/v2/abuse/app/',
         'search': '/api/v2/fireplace/search/?cache=1&vary=0',
+        'recommended': '/api/v2/apps/recommend/',
         'feedback': '/api/v2/account/feedback/',
         'consumer_info': '/api/v2/fireplace/consumer-info/',
         'features': '/api/v2/apps/features/',

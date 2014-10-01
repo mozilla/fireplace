@@ -8,7 +8,7 @@ define('navbar',
     var console = log('navbar');
 
     // Tab name must match route/view name to match window.location.pathname.
-    var tabsMkt = ['homepage', 'new', 'popular', 'categories'];
+    var tabsMkt = ['homepage', 'new', 'popular', 'recommended', 'categories'];
     var tabsSettings = ['settings', 'purchases', 'feedback'];
 
     function initNavbarButtons() {
@@ -135,7 +135,7 @@ define('navbar',
         $('#site-nav').html(
             nunjucks.env.render('nav.html', {
                 is_settings: z.body.attr('data-page-type').indexOf('settings') !== -1,
-                z: z,
+                z: z
             })
         ).addClass('secondary-header');
 
