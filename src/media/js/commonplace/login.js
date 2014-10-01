@@ -54,10 +54,13 @@ define('login',
         if (capabilities.persona()) {
             console.log('Triggering Persona logout');
             navigator.id.logout();
-        }
-        if (storage.getItem('user')) {
-            // navigator.id callback didn't log us out, let's do it now.
-            // see https://github.com/mozilla/browserid/issues/3229
+            if (storage.getItem('user')) {
+                console.log("logout for-serious");
+                // navigator.id callback didn't log us out, let's do it now.
+                // see https://github.com/mozilla/browserid/issues/3229
+                logOut();
+            }
+        } else {
             logOut();
         }
     }));
