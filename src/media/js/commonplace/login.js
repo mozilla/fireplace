@@ -55,7 +55,7 @@ define('login',
             console.log('Triggering Persona logout');
             navigator.id.logout();
         }
-        if ('email' in settings) {
+        if (storage.getItem('user')) {
             // navigator.id callback didn't log us out, let's do it now.
             // see https://github.com/mozilla/browserid/issues/3229
             logOut();
