@@ -20,6 +20,7 @@ define('routes_api', [], function() {
         'feedback': '/api/v2/account/feedback/',
         'consumer_info': '/api/v2/fireplace/consumer-info/',
         'features': '/api/v2/apps/features/',
+        'preverify_token': '/api/v2/account/fxa-preverify/',
 
         'prepare_nav_pay': '/api/v2/webpay/prepare/',
         'payments_status': '/api/v2/webpay/status/{0}/',

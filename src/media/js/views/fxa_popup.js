@@ -44,10 +44,22 @@ define('views/fxa_popup',
             e.preventDefault();
             var email = user.get_setting('email');
             if (email) {
-                redirectToFxA(email);
+                requests.post(urls.api.url('preverify_token'))
+                        .then(function (token) {
+                    redirectToFxA(email, token);
+                }, function (jqXHR) {
+                    if (jqXHR.status === 403) {
+                        // Turns out we aren't verified, proceed to FxA.
+                        redirectToFxA(email);
+                    } else {
+                        showEmailForm();
+                        console.error("Error retrieving preverify token",
+                                      jqXHR.status,
+                                      jqXHR);
+                    }
+                });
             } else {
-                document.body.classList.add('email');
-                emailField.focus();
+                showEmailForm();
             }
         });
 
@@ -68,16 +80,24 @@ define('views/fxa_popup',
             }
         });
 
-        function redirectToFxA(email) {
+        function redirectToFxA(email, preVerifyToken) {
             requests.get(urls.api.unsigned.url('account_info', email))
                     .then(function (info) {
                 var action = info.source === 'firefox-accounts' ? 'signin'
                                                                 : 'signup';
-                window.location = login.get_fxa_auth_url() +
+                var url = login.get_fxa_auth_url() +
                     '&email=' + encodeURIComponent(email) +
-                    '&action=' + action;
+                    '&action=' + encodeURIComponent(action);
+                if (preVerifyToken) {
+                    url += '&preVerifyToken=' + encodeURIComponent(preVerifyToken);
+                }
+                window.location = url;
             });
         }
 
+        function showEmailForm() {
+            document.body.classList.add('email');
+            emailField.focus();
+        }
     };
 });
