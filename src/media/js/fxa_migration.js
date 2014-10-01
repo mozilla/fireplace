@@ -1,5 +1,5 @@
-define('fxa_migration', ['settings', 'storage', 'user', 'z'],
-       function (settings, storage, user, z) {
+define('fxa_migration', ['capabilities', 'settings', 'storage', 'user', 'z'],
+       function (capabilities, settings, storage, user, z) {
 
     function canMigrate() {
         return migrationEnabled() && !doneMigration() && hasLoggedIn();
@@ -12,6 +12,10 @@ define('fxa_migration', ['settings', 'storage', 'user', 'z'],
     }
 
     function doneMigration() {
+        if (capabilities.nativeFxA()) {
+            // Native FxA devices setup an account on first run.
+            return true;
+        }
         if (user.get_setting('source') === 'firefox-accounts') {
             storage.setItem('fxa-migrated', true);
         }
