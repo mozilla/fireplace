@@ -36,7 +36,6 @@ define(
         'compatibility_filtering_select',
         'content-ratings',
         'forms',
-        'fxa_migration',
         'image-deferrer',
         'l10n',
         'lightbox',
@@ -215,7 +214,7 @@ function(_) {
             if (banner) {
                 banner.dismissBanner();
             }
-            if (require('fxa_migration').canMigrate()) {
+            if (user.canMigrate()) {
                 $('#site-nav').after(
                     nunjucks.env.render('fx-accounts-banner.html',
                                         {logged_in: logged_in}));

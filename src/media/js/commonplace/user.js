@@ -1,11 +1,11 @@
 define('user',
-    ['capabilities', 'log', 'storage', 'utils'],
-    function(capabilities, log, storage, utils) {
+    ['capabilities', 'log', 'settings', 'storage', 'utils'],
+    function(capabilities, log, settings, storage, utils) {
 
     var console = log('user');
 
     var token;
-    var settings = {};
+    var user_settings = {};
     var permissions = {};
     var apps = {
         'installed': [],
@@ -18,7 +18,7 @@ define('user',
     if (save_to_ls) {
         // Try to initialize items from localStorage.
         token = storage.getItem('user');
-        settings = storage.getItem('settings') || {};
+        user_settings = storage.getItem('settings') || {};
         permissions = storage.getItem('permissions') || {};
 
         var _stored = storage.getItem('user_apps');
@@ -27,20 +27,20 @@ define('user',
         }
 
         log.unmention(token);
-        save_settings();
+        save_user_settings();
     }
 
-    function clear_settings() {
-        settings = {};
+    function clear_user_settings() {
+        user_settings = {};
     }
 
     function clear_token() {
         console.log('Clearing user token');
 
         storage.removeItem('user');
-        if ('email' in settings) {
-            delete settings.email;
-            save_settings();
+        if ('email' in user_settings) {
+            delete user_settings.email;
+            save_user_settings();
             permissions = {};
             save_permissions();
             apps = {
@@ -53,16 +53,16 @@ define('user',
         token = null;
     }
 
-    function get_setting(setting, default_) {
-        return settings[setting] || default_;
+    function get_user_setting(setting, default_) {
+        return user_settings[setting] || default_;
     }
 
     function get_permission(setting) {
         return permissions[setting] || false;
     }
 
-    function get_settings() {
-        return settings;
+    function get_user_settings() {
+        return user_settings;
     }
 
     function get_apps() {
@@ -81,7 +81,7 @@ define('user',
         return apps.purchased.indexOf(app_id) !== -1;
     }
 
-    function set_token(new_token, new_settings) {
+    function set_token(new_token, new_user_settings) {
         console.log('Setting new user token');
         if (!new_token) {
             return;
@@ -97,25 +97,25 @@ define('user',
 
         // Update the user's settings with the ones that are in the
         // login API response.
-        update_settings(new_settings);
+        update_user_settings(new_user_settings);
     }
 
-    function save_settings() {
+    function save_user_settings() {
         if (save_to_ls) {
-            console.log('Saving settings to localStorage');
-            storage.setItem('settings', settings);
+            console.log('Saving user_settings to localStorage');
+            storage.setItem('settings', user_settings);
         } else {
-            console.log('Settings not saved to localStorage');
+            console.log('user_settings not saved to localStorage');
         }
     }
 
-    function update_settings(data) {
+    function update_user_settings(data) {
         if (!data) {
             return;
         }
         console.log('Updating user settings', data);
-        _.extend(settings, data);
-        save_settings();
+        _.extend(user_settings, data);
+        save_user_settings();
     }
 
     function save_permissions() {
@@ -166,13 +166,36 @@ define('user',
         }
     }
 
+    function canMigrate() {
+        return (settings.switches.indexOf('fx-accounts-migration') !== -1 &&
+                !doneMigration() && hasLoggedIn());
+    }
+
+    function hasLoggedIn() {
+        // We set `permissions` on login and reset it to `{}` on logout so we
+        // can use that to tell if this device has ever logged in.
+        return !!storage.getItem('permissions');
+    }
+
+    function doneMigration() {
+        if (capabilities.nativeFxA()) {
+            // Native FxA devices setup an account on first run.
+            return true;
+        }
+        if (get_user_setting('source') === 'firefox-accounts') {
+            storage.setItem('fxa-migrated', true);
+        }
+        return storage.getItem('fxa-migrated');
+    }
+
     return {
-        clear_settings: clear_settings,
+        canMigrate: canMigrate,
+        clear_settings: clear_user_settings,
         clear_token: clear_token,
         get_apps: get_apps,
         get_permission: get_permission,
-        get_setting: get_setting,
-        get_settings: get_settings,
+        get_setting: get_user_setting,
+        get_settings: get_user_settings,
         get_token: function() {return token;},
         has_developed: has_developed,
         has_installed: has_installed,
@@ -183,6 +206,6 @@ define('user',
         update_install: update_install,
         update_permissions: update_permissions,
         update_purchased: update_purchased,
-        update_settings: update_settings,
+        update_settings: update_user_settings,
     };
 });

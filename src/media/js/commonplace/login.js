@@ -1,6 +1,6 @@
 define('login',
-    ['cache', 'capabilities', 'consumer_info', 'defer', 'fxa_migration', 'jquery', 'log', 'notification', 'settings', 'storage', 'underscore', 'urls', 'user', 'utils', 'requests', 'z'],
-    function(cache, capabilities, consumer_info, defer, fxa_migration, $, log, notification, settings, storage, _, urls, user, utils, requests, z) {
+    ['cache', 'capabilities', 'consumer_info', 'defer', 'jquery', 'log', 'notification', 'settings', 'storage', 'underscore', 'urls', 'user', 'utils', 'requests', 'z'],
+    function(cache, capabilities, consumer_info, defer, $, log, notification, settings, storage, _, urls, user, utils, requests, z) {
 
     var console = log('login');
     var persona_def = defer.Deferred();
@@ -121,7 +121,7 @@ define('login',
             }, false);
 
             var fxa_url;
-            if (fxa_migration.canMigrate()) {
+            if (user.canMigrate()) {
                 fxa_url = '/fxa-migration';
                 save_fxa_auth_url(settings.fxa_auth_url);
             } else {
@@ -314,5 +314,8 @@ define('login',
         return storage.getItem(fxa_auth_url_key);
     }
 
-    return {login: startLogin, get_fxa_auth_url: get_fxa_auth_url};
+    return {
+        login: startLogin,
+        get_fxa_auth_url: get_fxa_auth_url
+    };
 });
