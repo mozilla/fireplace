@@ -177,7 +177,7 @@
         }
     }
 
-    var languages = ['cs', 'de', 'en-US', 'es', 'fr', 'ga-IE', 'it', 'pl', 'pt-BR'];
+    var languages = ['it', 'dbg', 'cs', 'el', 'en-US', 'eu', 'es', 'ru', 'nl', 'pt', 'pa', 'pl', 'fr', 'zh-TW', 'pt-BR', 'de', 'da', 'hu', 'ja', 'zh-CN', 'sr', 'sv', 'sv-SE', 'sk', 'uk', 'sr-Latn'];
 
     var lang_expander = {
         en: 'en-US',
@@ -204,23 +204,65 @@
     var locale = get_locale((qs_lang && qs_lang[1]) || navigator.language);
 
     var translations = {
-        'offline-message': {
-            'cs': 'Omlouváme se, ale pro přístup k Marketplace musíte být online.',
-            'de': 'Es tut uns Leid, Sie müssen online sein, um auf den Marktplatz zugreifen zu können.',
-            'es': 'Disculpa, debes tener una conexión a internet para acceder al Marketplace.',
-            'fr': 'Désolé, vous devez être en ligne pour accéder au Marketplace.',
-            'it': 'Devi essere in linea per accedere al Marketplace.',
-            'pl': 'Przepraszamy, musisz być online, by mieć dostęp do Marketplace.',
-            'pt-BR': 'Lamentamos, mas você precisa estar on-line para acessar o Marketplace.'
+        'offline': {
+            'it': 'Attualmente risulti non in linea. Riprova più tardi.',
+            'dbg': 'Şǿřřẏ, ẏǿŭ ȧřḗ ƈŭřřḗƞŧŀẏ ǿƒƒŀīƞḗ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř.',
+            'cs': 'Omlouváme se, ale jste aktuálně offline. Zkuste to znovu později.',
+            'en-US': 'Sorry, you are currently offline. Please try again later.',
+            'eu': 'Sentitzen dugu, une honetan lineaz kanpo zaude. Saiatu berriz geroago.',
+            'gl': 'Sentímolo, pero nestes momentos non está conectado. Tente de novo máis tarde.',
+            'es': 'Lo sentimos, actualmente estás desconectado. Por favor intenta de nuevo más tarde.',
+            'ru': 'К сожалению, вы не подключены к сети. Пожалуйста, повторите попытку позже.',
+            'nl': 'Sorry, u bent momenteel offline. Probeer het later nog eens.',
+            'pt': 'Lamentamos, mas está desligado da rede. Por favor, tente novamente mais tarde.',
+            'tr': 'Şu anda internete bağlı değilsiniz. Lütfen daha sonra tekrar deneyin.',
+            'pa': 'ਮੁਆਫ ਕਰਨਾ, ਤੁਸੀਂ ਇਸ ਵੇਲੇ ਆਫਲਾਈਨ ਹੋ। ਬਾਅਦ ਵਿੱਚ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।',
+            'pl': 'Przepraszamy, jesteś teraz w trybie offline. Spróbuj ponownie później.',
+            'fr': 'Désolé, vous êtes actuellement hors connexion, veuillez réessayer plus tard.',
+            'zh-TW': '抱歉，您目前不在線上，請稍後再試。',
+            'pt-BR': 'Desculpe, você está atualmente offline. Por favor, tente novamente mais tarde.',
+            'de': 'Es tut uns Leid, Sie sind derzeit offline. Bitte versuchen Sie es später erneut.',
+            'da': 'Du er i øjeblikket offline. Prøv igen senere.',
+            'el': 'Λυπούμαστε, πρέπει να είστε συνδεδεμένοι στο διαδίκτυο για να χρησιμοποιήσετε το Marketplace',
+            'hu': 'Elnézést, nincs internetkapcsolat. Próbálja újra később.',
+            'ja': '申し訳ありませんが、現在オフラインです。また後で試してください。',
+            'zh-CN': '抱歉，您目前离线，请稍后再试。',
+            'sr': 'Жао нам је, тренутно сте ван мреже. Молимо Вас покушајте касније.',
+            'sq': 'Na ndjeni, hëpërhë jeni jashtë linje. Ju lutemi, riprovoni më vonë.',
+            'ko': '죄송합니다. 오프라인 상태이니 나중에 다시 시도해 주십시오.',
+            'sv': 'Tyvärr, du är inte ansluten till internet. Försök igen senare.',
+            'sv-SE': 'Tyvärr, du är inte ansluten till internet. Försök igen senare.',
+            'sk': 'Prepáčte, ale momentálne ste v režime offline. Prosím vyskúšajte to neskôr.',
+            'uk': 'Нажаль, ви зараз поза мережею. Спробуйте знову пізніше.',
+            'sr-Latn': 'Žao nam je, trenutno ste van mreže. Molimo Vas pokušajte kasnije.',
         },
         'try-again': {
+            'it': 'Riprova',
+            'dbg': 'Ŧřẏ ȧɠȧīƞ',
             'cs': 'Zkusit znovu',
-            'de': 'Erneut versuchen',
-            'es': 'Probar de nuevo',
-            'fr': 'Réessayer',
-            'it': 'Prova di nuovo',
+            'el': 'Δοκιμάστε ξανά',
+            'en-US': 'Try again',
+            'eu': 'Saiatu berriro',
+            'es': 'Intenta de nuevo',
+            'ru': 'Попробовать снова',
+            'nl': 'Opnieuw proberen',
+            'pt': 'Tentar novamente',
+            'pa': 'ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ',
             'pl': 'Spróbuj ponownie',
-            'pt-BR': 'Tente novamente'
+            'fr': 'Réessayer',
+            'zh-TW': '重試',
+            'pt-BR': 'Tente novamente',
+            'de': 'Erneut versuchen',
+            'da': 'Prøv igen',
+            'hu': 'Újra',
+            'ja': '再読み込み',
+            'zh-CN': '重试',
+            'sr': 'Покушај поново',
+            'sv': 'Försök igen',
+            'sv-SE': 'Försök igen',
+            'sk': 'Skúsiť znova',
+            'uk': 'Спробувати знову',
+            'sr-Latn': 'Pokušaj ponovo',
         }
     };
 

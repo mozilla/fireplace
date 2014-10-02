@@ -12,10 +12,10 @@
         "url": "http://mozilla.org"
     },
     "icons": {
-        "60": "/60.png",
-        "90": "/90.png",
-        "120": "/120.png",
-        "128": "/128.png"
+        "60": "/app-icons/60.png",
+        "90": "/app-icons/90.png",
+        "120": "/app-icons/120.png",
+        "128": "/app-icons/128.png"
     },
     "launch_path": "/index.html",
     "locales": {
@@ -55,9 +55,18 @@
         "zu": {}
     },
     "name": "Marketplace",
-    "origin": "app://marketplace.firefox.com",
+    "orientation": ["portrait-primary"],
+    "origin": "app://{origin}",
     "permissions": {
-        "mobilenetwork": {"description": "To detect mobile carrier and regional information."}
+        "mobilenetwork": {
+            "description": "To detect mobile carrier and regional information."
+        },
+        "moz-firefox-accounts": {
+            "description": "To use native (2.0+) Firefox Accounts login."
+        },
+        "tcp-socket" : {
+            "description" : "To detect online status."
+        }
     },
     "type": "privileged",
     "version": "{version}"

@@ -123,20 +123,22 @@ approve_package_dev:
 log: clean
 	@mkdir -p TMP && cp -pR yulelog/* TMP/.
 	@# We have to have a temp file to work around a bug in Mac's version of sed :(
-	@sed -i'.bak' -e 's/marketplace\.firefox\.com/$(DOMAIN)/g' TMP/{main.js,manifest.webapp}
+	@sed -i'.bak' -e 's/marketplace\.firefox\.com/$(DOMAIN)/g' TMP/main.js
+	@sed -i'.bak' -e 's/{origin}/$(ORIGIN)/g' TMP/manifest.webapp
 	@sed -i'.bak' -e 's/{version}/$(VERSION_INT)/g' TMP/manifest.webapp
-	@sed -i'.bak' -e 's/"Marketplace"/"$(NAME)"/g' TMP/manifest.webapp
 	@rm -f TMP/README.md
 	@rm -f TMP/*.bak
 	@cd TMP && zip -q -r ../yulelog_$(NAME)_$(VERSION_INT).zip * && cd ../
 	@rm -rf TMP
 	@echo "Created file: yulelog_$(NAME)_$(VERSION_INT).zip"
 log_prod:
-	make log
+	ORIGIN='marketplace.firefox.org' make log
 log_stage:
-	SERVER='stage' NAME='Stage' DOMAIN='marketplace.allizom.org' make log
+	SERVER='stage' NAME='Stage' DOMAIN='marketplace.allizom.org' \
+	ORIGIN='packaged.marketplace.allizom.org' make log
 log_dev:
-	SERVER='dev' NAME='Dev' DOMAIN='marketplace-dev.allizom.org' make log
+	SERVER='dev' NAME='Dev' DOMAIN='marketplace-dev.allizom.org' \
+	ORIGIN='packaged.marketplace-dev.allizom.org' make log
 
 
 submit_log:
