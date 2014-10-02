@@ -1,0 +1,22 @@
+/*
+App listing.
+One column in an island on mobile.
+Two columns of tiles on wider screens.
+TODO: move app list styles here.
+*/
+@import "lib";
+
+[data-page-type~=app-list] {
+    .spinner {
+        position: relative;
+        top: 35px;
+    }
+}
+
+@media $at-least-desktop {
+    [data-page-type~=app-list] {
+        .spinner {
+            top: 0;
+        }
+    }
+}
