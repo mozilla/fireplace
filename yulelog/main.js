@@ -204,7 +204,7 @@
     var locale = get_locale((qs_lang && qs_lang[1]) || navigator.language);
 
     var translations = {
-        'offline-message': {
+        'offline': {
             'it': 'Attualmente risulti non in linea. Riprova più tardi.',
             'dbg': 'Şǿřřẏ, ẏǿŭ ȧřḗ ƈŭřřḗƞŧŀẏ ǿƒƒŀīƞḗ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř.',
             'cs': 'Omlouváme se, ale jste aktuálně offline. Zkuste to znovu později.',
