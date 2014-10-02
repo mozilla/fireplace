@@ -132,7 +132,7 @@ log: clean
 	@rm -rf TMP
 	@echo "Created file: yulelog_$(NAME)_$(VERSION_INT).zip"
 log_prod:
-	ORIGIN='marketplace.firefox.org' make log
+	ORIGIN='marketplace.firefox.com' make log
 log_stage:
 	SERVER='stage' NAME='Stage' DOMAIN='marketplace.allizom.org' \
 	ORIGIN='packaged.marketplace.allizom.org' make log
