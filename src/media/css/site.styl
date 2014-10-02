@@ -482,3 +482,19 @@ label:active,
 a:active {
     background: transparent;
 }
+
+// Hide the regular UI for standalone pages.
+[data-page-type=standalone-loading] {
+    > * {
+        display: none !important;
+    }
+
+    #splash-overlay {
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    #splash-overlay .throbber {
+        display: inline-block !important;
+    }
+}

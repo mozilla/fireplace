@@ -1,35 +1,37 @@
 define('views/fxa_popup',
-       ['defer', 'jquery', 'l10n', 'login', 'requests', 'settings', 'urls', 'user', 'z'],
-       function (defer, $, l10n, login, requests, settings, urls, user, z) {
+       ['defer', 'l10n', 'login', 'requests', 'settings', 'urls', 'user', 'z'],
+       function (defer, l10n, login, requests, settings, urls, user, z) {
+
+    function replaceCSS(builder, cssPath) {
+        // Prepare for CSS ruining.
+        var stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+
+        // Add Firefox Accounts's CSS because we want to be just like them.
+        var newStylesheet = document.createElement('link');
+        newStylesheet.rel = 'stylesheet';
+        newStylesheet.href = cssPath;
+        newStylesheet.addEventListener('load', function (e) {
+            // Remove the old stylesheets so we don't get weird styling.
+            Array.prototype.forEach.call(stylesheets, function (stylesheet) {
+                stylesheet.parentNode.removeChild(stylesheet);
+            });
+            // Change the page type to hide the splash.
+            builder.z('type', 'standalone');
+        });
+        document.head.appendChild(newStylesheet);
+    }
 
     return function (builder, args, params) {
         var cssPath = urls.media(settings.fxa_css_path);
 
-        z.body.css({display: 'none'});
-        // TODO: Keep showing the splash until the new CSS is loaded.
-        // Unhide the body when this JS context is done.
-        setTimeout(function () {
-            z.body.css({display: 'block'});
-        }, 1);
-
+        // Ensure the splash screen stays up.
         z.body.attr('data-page-type', 'standalone-loading');
-        // Remove the stuff we don't want.
-        $('#site-header, #site-footer, #site-nav, #lightbox, mkt-banner').remove();
-
-        // Prepare for CSS ruining.
-        // Select all the current stylesheets, we'll remove them later.
-        var stylesheets = $('link[rel="stylesheet"]');
-
-        // Add Firefox Accounts's CSS because we want to be just like them.
-        $('head').append('<link rel="stylesheet" href="' + cssPath + '">');
-
-        // Remove Marketplace's CSS because we want to start fresh.
-        stylesheets.remove();
 
         builder.start('fx_accounts_popup.html', {
             title: l10n.gettext('Firefox Accounts'),
         });
-        builder.z('type', 'standalone');
+
+        replaceCSS(builder, cssPath);
 
         var noticeForm = document.getElementById('notice-form');
         var continueButton = noticeForm['continue-button'];
