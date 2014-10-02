@@ -30,6 +30,8 @@ casper.test.begin('Detail Page baseline tests', {
             test.assertVisible('section.support .homepage a');  // Has a homepage button
             test.assertVisible('section.support .privacy-policy a');  // Has a privacy policy button
             test.assertExists('.support ul li');
+            var href = this.getElementAttribute('.mkt-tile .info .author a', 'href');
+            test.assertEqual(href.split('=')[0], '/search?author');
         });
 
         casper.run(function() {

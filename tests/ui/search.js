@@ -26,6 +26,8 @@ casper.test.begin('Search baseline tests', {
             test.assertVisible('.search-listing li a.mkt-tile');
             var href = this.getElementAttribute('.search-listing li a.mkt-tile:nth-child(1)', 'href');
             test.assertEqual(href.split('?')[1], 'src=search');
+            // Test we don't make the author a link on listing pages.
+            test.assertDoesntExist('.mkt-tile .info .author a');
             test.assertVisible('#search-results .expand-toggle');
             casper.click('li.loadmore button');
         });
