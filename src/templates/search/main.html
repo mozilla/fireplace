@@ -1,15 +1,18 @@
 {% include '_macros/market_tile.html' %}
 {% include '_macros/more_button.html' %}
 
+{% set api_url = anonApiParams('search', params) %}
+
+{% if params.region %}
+  {# If the user entered PotatoSearch™ `:region=<region>` then update `region`. #}
+  {% set api_url = api_url|urlparams(region=params.region) %}
+{% endif %}
+
+{% if params.sort %}
+  {% set api_url = api_url|urlparams(sort=params.sort) %}
+{% endif %}
+
 <section id="search-results" class="main full c">
-  {% set api_url = anonApiParams('search', params) %}
-  {% if params.region %}
-    {# If the user entered PotatoSearch™ `:region=<region>` then update `region`. #}
-    {% set api_url = api_url|urlparams(region=params.region) %}
-  {% endif %}
-  {% if params.sort %}
-    {% set api_url = api_url|urlparams(sort=params.sort) %}
-  {% endif %}
   {% defer (url=api_url, pluck='objects', as='app', paginate='ol.listing', id='searchresults') %}
     <header class="secondary-header c">
       <h2 class="linefit">
@@ -34,6 +37,9 @@
   {% placeholder %}
     <p class="spinner spaced alt"></p>
   {% empty %}
+    <header class="search-404 secondary-header c">
+      {% include "compatibility_filtering.html" %}
+    </header>
     <p class="no-results">
       {{ _('No results found') }}
     </p>

@@ -1,15 +1,20 @@
 define('navbar',
     ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 'nunjucks',
-     'settings', 'underscore', 'urls', 'z'],
+     'settings', 'underscore', 'urls', 'user', 'z'],
     function(cats, $, hammer, log, navigation, nunjucks,
-             settings, _, urls, z) {
+             settings, _, urls, user, z) {
     'use strict';
 
     var console = log('navbar');
 
     // Tab name must match route/view name to match window.location.pathname.
-    var tabsMkt = ['homepage', 'new', 'popular', 'recommended', 'categories'];
+    var tabsMkt = ['homepage', 'new', 'popular', 'categories'];
     var tabsSettings = ['settings', 'purchases', 'feedback'];
+
+    if (user.logged_in() && settings.switches.indexOf('recommendations') !== -1) {
+        // Add recommended to navbar swipe list.
+        tabsMkt.splice(3, 0, 'recommended');
+    }
 
     function initNavbarButtons() {
         // Navbar settings + Marketplace buttons.
@@ -47,6 +52,7 @@ define('navbar',
         var $target = $(e.gesture.startEvent.target);
         if (['left', 'right'].indexOf(e.gesture.direction) === -1 ||
             z.body.attr('data-page-type').indexOf('root') === -1 ||
+            $target.closest('#lightbox').length ||
             $target.closest('.slider').length ||
             $target.closest('input').length) {
             return;
@@ -135,6 +141,8 @@ define('navbar',
         $('#site-nav').html(
             nunjucks.env.render('nav.html', {
                 is_settings: z.body.attr('data-page-type').indexOf('settings') !== -1,
+                logged_in: user.logged_in(),
+                recommendations: settings.switches.indexOf('recommendations') !== -1,
                 z: z
             })
         ).addClass('secondary-header');

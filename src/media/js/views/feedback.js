@@ -31,7 +31,10 @@ define('views/feedback',
 
     // Init desktop feedback form modal trigger.
     function addFeedbackModal() {
-        if (!caps.widescreen()) return;
+        if (!caps.widescreen() ||
+            urls.reverse('feedback') === window.location.pathname) {
+            return;
+        }
         if (!$('.main.feedback:not(.modal)').length && !$('.feedback.modal').length) {
             z.page.append(nunjucks.env.render('settings/feedback.html'));
         }
