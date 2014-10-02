@@ -52,6 +52,7 @@ define('navbar',
         var $target = $(e.gesture.startEvent.target);
         if (['left', 'right'].indexOf(e.gesture.direction) === -1 ||
             z.body.attr('data-page-type').indexOf('root') === -1 ||
+            $target.closest('#lightbox').length ||
             $target.closest('.slider').length ||
             $target.closest('input').length) {
             return;
