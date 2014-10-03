@@ -21,9 +21,17 @@ $triangle-size = 20px;
         /* subdetail contains .author and .content-rating. */
         ellipsis();
     }
-    .author a {
-        color: $primary-blue;
+    .author a:hover {
+        text-decoration: none;
     }
+}
+
+[data-page-type~="root"] .mkt-tile .author a {
+    color: $hungry-text;
+    cursor: default;
+}
+[data-page-type~="detail"] .mkt-tile .author a {
+    color: $primary-blue;
 }
 
 .grid, .listing {
