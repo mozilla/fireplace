@@ -20,6 +20,8 @@ if settings.ZAMBONI_DIR:
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_local_mkt'
 os.environ["PATH"] += os.pathsep + os.pathsep.join([COMMONPLACE, GRUNT])
 
+PACKAGE_NAME = getattr(settings, 'PACKAGE_NAME', 'marketplace')
+
 
 @task
 def pre_update(ref):
@@ -34,8 +36,18 @@ def update():
     with lcd(FIREPLACE):
         local('npm install')
         local('npm install --force commonplace@0.4.22')
+
+        if settings.ZAMBONI_DIR:
+            package_update()
+
         local('commonplace includes')
         local('commonplace langpacks')
+
+
+@task
+def package_update():
+    build_package(settings.ENV)
+    upload_package(fireplace_package(settings.ENV), PACKAGE_NAME)
 
 
 @task
@@ -60,3 +72,20 @@ def pre_update_latest_tag():
             f.seek(0)
             f.write(latest_tag)
             f.truncate()
+
+
+@task
+def build_package(package_env):
+    with lcd(FIREPLACE):
+        local('make package_%s' % package_env)
+
+
+@task
+def upload_package(fireplace_package, package_name):
+    with lcd(ZAMBONI):
+        local('%s manage.py upload_new_marketplace_package %s %s '
+              % (ZAMBONI_PYTHON, package_name, fireplace_package))
+
+
+def fireplace_package(env):
+    return '%s/package/archives/latest_%s.zip' % (FIREPLACE, env)
