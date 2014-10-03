@@ -1,6 +1,6 @@
 define('views/fxa_popup',
-       ['defer', 'l10n', 'login', 'requests', 'settings', 'urls', 'user', 'z'],
-       function (defer, l10n, login, requests, settings, urls, user, z) {
+       ['defer', 'l10n', 'login', 'requests', 'settings', 'urls', 'user', 'utils', 'z'],
+       function (defer, l10n, login, requests, settings, urls, user, utils, z) {
 
     function replaceCSS(builder, cssPath) {
         // Prepare for CSS ruining.
@@ -22,7 +22,8 @@ define('views/fxa_popup',
     }
 
     return function (builder, args, params) {
-        var cssPath = urls.media(settings.fxa_css_path);
+        var cssPath = utils.urlparams(urls.media(settings.fxa_css_path),
+                                      {b: z.body.data('build-id-js')});
 
         // Ensure the splash screen stays up.
         z.body.attr('data-page-type', 'standalone-loading');
