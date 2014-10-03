@@ -23,8 +23,6 @@ define('capabilities', ['settings'], function(settings) {
         'firefoxOS': navigator.mozApps && navigator.mozApps.installPackage &&
                      navigator.userAgent.indexOf('Android') === -1 &&
                      (navigator.userAgent.indexOf('Mobile') !== -1 || navigator.userAgent.indexOf('Tablet') !== -1),
-        'packaged': window.location.protocol === 'app:',
-        'packagedish': window.location.protocol === 'app:' || window.self !== window.top,
         'phantom': navigator.userAgent.match(/Phantom/)  // Don't use this if you can help it.
     };
 
@@ -38,7 +36,7 @@ define('capabilities', ['settings'], function(settings) {
     static_caps.nativeFxA = function() {
         return (static_caps.firefoxOS &&
                 settings.switches.indexOf('firefox-accounts') !== -1 &&
-                static_caps.packagedish &&
+                window.location.protocol === 'app:' &&
                 navigator.userAgent.match(/rv:(\d{2})/)[1] >= 34);
 
     };
