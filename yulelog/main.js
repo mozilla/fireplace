@@ -160,6 +160,17 @@
         if (e.data === 'loaded') {
             log('Preparing to send activities ...');
             sendActivities();
+        } else if (e.data.type === 'fxa-watch') {
+            log('Registering FxA callbacks');
+            navigator.mozId.watch({
+                wantIssuer: 'firefox-accounts',
+                loggedInUser: e.data.email,
+                onready: function() {},
+                onlogin: function(a) {log('fxa-login'); postMessage({type: 'fxa-login', assertion: a});},
+                onlogout: function() {log('fxa-logout'); postMessage({type: 'fxa-logout'});}
+            });
+        } else if (e.data.type === 'fxa-request') {
+            navigator.mozId.request({oncancel: function(){postMessage({type: 'fxa-cancel'})}});
         }
     }, false);
 
