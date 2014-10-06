@@ -47,12 +47,14 @@
                 var connData;
                 for (var i = 0; i < conn.length; i++) {
                     connData = conn[i];
+                    // Testing lastKnownHomeNetwork first is important, because it's the
+                    // only one which contains the SPN.
                     network = (connData.lastKnownHomeNetwork || connData.lastKnownNetwork || '-').split('-');
                     log('navigator.mozMobileConnections[' + i + '].lastKnownNetwork:',
                         connData.lastKnownNetwork);
                     log('navigator.mozMobileConnections[' + i + '].lastKnownHomeNetwork:',
                         conn.lastKnownHomeNetwork);
-                    mccs.push({mcc: network[0], mnc: network[1]});
+                    mccs.push({mcc: network[0], mnc: network[1], spn: network[2]});
                 }
                 mccs = JSON.stringify(mccs);
                 qs.push('mccs=' + mccs);
