@@ -272,7 +272,10 @@ define('login',
                     loggedInUser: email,
                     onready: function() {},
                     onlogin: gotVerifiedEmail,
-                    onlogout: logOut
+                    onlogout: function() {
+                        z.body.removeClass('logged-in');
+                        z.page.trigger('reload_chrome').trigger('logout');
+                    }
                 };
                 if (capabilities.nativeFxA()) {
                     opts.wantIssuer = 'firefox-accounts';
