@@ -23,12 +23,12 @@
     data-slug="{{ app.slug }}"
     data-id="{{ app.id }}"
     {% if link %}itemscope itemtype="http://schema.org/SoftwareApplication"{% endif %}>
-    {{ deferred_icon(app.icons['64']) }}
+    {{ deferred_icon(app.icons['64'], app.name|translate(app)) }}
     <div class="info">
-      <h3 class="elliflow" itemprop="name">{{ app.name|translate(app) }}</h3>
+      <h3 class="elliflow" itemprop="name" title="{{ app.name|translate(app) }}">{{ app.name|translate(app) }}</h3>
       {% if app.author %}
         {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
-        <div class="author elliflow vital subdetail" itemprop="creator">
+        <div class="author elliflow vital subdetail" itemprop="creator" title="{{ app.author }}">
           {% if not link -%}
             <a href="{{ url('search')|urlparams(author=app.author) }}">{{ app.author }}</a>
           {% else -%}
@@ -103,9 +103,10 @@
   {% if not imgAlreadyDeferred(src) %}
     {# Defer image loading. #}
     <img class="icon deferred" src="{{ PLACEHOLDER_ICON }}"
-         data-src="{{ src }}" alt="{{ alt or '' }}" height="64" width="64" itemprop="image">
+         data-src="{{ src }}" title="{{ alt or '' }}" alt="{{ alt or '' }}"
+         height="64" width="64" itemprop="image">
   {% else %}
-    <img class="icon" src="{{ src }}" alt="{{ alt or '' }}"
+    <img class="icon" src="{{ src }}" title="{{ alt or '' }}" alt="{{ alt or '' }}"
          height="64" width="64" itemprop="image">
   {% endif %}
 {% endmacro %}

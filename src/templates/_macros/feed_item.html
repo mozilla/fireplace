@@ -12,8 +12,8 @@
     <a href="{{ url('app', [app.slug])|urlparams(src=src or 'feed') }}" class="app-link c">
       {{ deferred_icon(app.icons[64], app.name|translate(app)) }}
       <div class="info">
-        <h2 class="app-name elliflow">{{ app.name|translate(app) }}</h2>
-        <p class="author elliflow">{{ app.author }}</p>
+        <h2 class="app-name elliflow" title="{{ app.name|translate(app) }}">{{ app.name|translate(app) }}</h2>
+        <p class="author elliflow" title="{{ app.author }}">{{ app.author }}</p>
         <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
           {% if app.ratings.average %}
             {{ stars(app.ratings.average) }}
