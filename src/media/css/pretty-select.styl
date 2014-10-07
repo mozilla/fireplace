@@ -1,67 +1,81 @@
 @import "lib";
 
 .pretty-select {
-    background-color: $primary-blue;
-    border: 1px solid $light-gray;
-    border-right-width: 0;
-    border-radius: 5px;
-    font-weight: normal;
-    font-size: 20px;
-    height: 40px;
-    padding: 0px 10px;
+    float: right;
 
-    // Above styles are defined separately in Transonic.
-    cursor: pointer;
-    display: inline-block;
-    padding: 0;
-    overflow: hidden;
-    position: relative;
-
-    &:before {
-        // Custom dropdown arrow
-        dropdown();
-        background: none;
-        color: #fff;
-        content: '\25BC';
-        font-size: 10px;
-        top: 14px;
-        right: -2px;
-        z-index: 2;
-    }
-    &:after {
-        // Hide the native `<select>` arrow.
-        background: $primary-blue;
-        border: 0;
-        content: "";
-        display: block;
-        height: 100%;
-        pointer-events: none;
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 38px;
-        z-index: 1;
-    }
     select {
-        -moz-padding-start: 10px;
-        appearance-none();
-        background: none;
-        border: 0;
         border-radius: 5px;
-        color: #fff;
-        cursor: pointer;
-        height: 40px;
-        outline: 0;
-        padding: 0 10px 0 7px;
-
-        &:-moz-focusring {
-            color: transparent;
-            text-shadow: 0 0 0 #fff;
-        }
+        height: $pretty-select-height;
+        line-height: $pretty-select-height;
     }
-    option {
-        background: #fff;
-        color: $text;
-        padding: 5px;
+}
+
+@media $at-least-desktop {
+    .pretty-select {
+        background-color: $primary-blue;
+        border: 1px solid $light-gray;
+        border-right-width: 0;
+        border-radius: 5px;
+        float: none;
+        font-weight: normal;
+        font-size: 20px;
+        height: $pretty-select-height;
+        padding: 0px 10px;
+
+        // Above styles are defined separately in Transonic.
+        cursor: pointer;
+        display: inline-block;
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+
+        &:before {
+            // Custom dropdown arrow
+            dropdown();
+            background: none;
+            color: #fff;
+            content: '\25BC';
+            font-size: 10px;
+            top: 14px;
+            right: -2px;
+            z-index: 2;
+        }
+        &:after {
+            // Hide the native `<select>` arrow.
+            background: $primary-blue;
+            border: 0;
+            content: "";
+            display: block;
+            height: 100%;
+            pointer-events: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 38px;
+            z-index: 1;
+        }
+        select {
+            -moz-padding-start: 10px;
+            appearance-none();
+            background: none;
+            border: 0;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            height: $pretty-select-height;
+            line-height: $pretty-select-height;
+            outline: 0;
+            padding: 0 10px 0 7px;
+
+            &:-moz-focusring {
+                color: transparent;
+                text-shadow: 0 0 0 #fff;
+            }
+        }
+        option {
+            background: #fff;
+            color: $text;
+            padding: 5px;
+        }
     }
 }
