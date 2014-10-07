@@ -139,6 +139,9 @@ log_stage:
 log_dev:
 	SERVER='dev' NAME='Dev' DOMAIN='marketplace-dev.allizom.org' \
 	ORIGIN='packaged.marketplace-dev.allizom.org' make log
+log_payments_alt:
+	SERVER='paymentsalt' NAME='PaymentsAlt' DOMAIN='payments-alt.allizom.org' \
+	ORIGIN='payments-alt.allizom.org' make log
 
 
 submit_log:
