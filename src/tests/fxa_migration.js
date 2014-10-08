@@ -62,7 +62,6 @@
     test('canMigrate will set fxa-migrated if migrated',
          function (done, fail) {
         var fakeStorage = new Storage();
-        fakeStorage.setItem('settings', {source: 'firefox-accounts'});
 
         mock(
             'user',
@@ -71,6 +70,7 @@
                 storage: fakeStorage,
             },
             function(user) {
+                user.update_settings({source: 'firefox-accounts'});
                 ok_(!fakeStorage.getItem('fxa-migrated'));
                 ok_(!user.canMigrate());
                 ok_(fakeStorage.getItem('fxa-migrated'));
