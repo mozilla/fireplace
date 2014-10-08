@@ -104,17 +104,21 @@
         width: 100%;
 
         &.nav-mkt {
+            visibility: hidden;
             right: -100%;
 
             &.active {
-                right: -44px;
+                right: -65px;
+                visibility: visible;
             }
         }
         &.nav-settings {
+            visibility: hidden;
             right: 100%;
 
             &.active {
                 right: 0;
+                visibility: visible;
             }
         }
         li {
@@ -143,35 +147,6 @@
                 display: none;
             }
         }
-    }
-
-    // Sliding navbar.
-    [data-page-type~="homepage"] .nav-mkt.active {
-        right: -60px;
-    }
-    [data-page-type~="new"] .nav-mkt.active {
-        right: -10px;
-    }
-    [data-page-type~="popular"] .nav-mkt.active {
-        right: 43px;
-    }
-    [data-page-type~="categories"] .nav-mkt.active {
-        right: 120px;
-    }
-    body.show-recommendations[data-page-type~="recommended"] .nav-mkt.active {
-        right: 120px;
-    }
-    body.show-recommendations[data-page-type~="categories"] .nav-mkt.active {
-        right: 170px;
-    }
-    [data-page-type="root settings"] .nav-settings.active {
-        right: -9px;
-    }
-    [data-page-type~="purchases"] .nav-settings.active {
-        right: 35px;
-    }
-    [data-page-type~="feedback"] .nav-settings.active {
-        right: 100px;
     }
 }
 

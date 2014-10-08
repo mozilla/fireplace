@@ -1,20 +1,13 @@
 define('navbar',
-    ['categories', 'jquery', 'jquery.hammer', 'log', 'navigation', 'nunjucks',
-     'settings', 'underscore', 'urls', 'user', 'z'],
-    function(cats, $, hammer, log, navigation, nunjucks,
-             settings, _, urls, user, z) {
+    ['categories', 'jquery', 'log', 'navigation', 'nunjucks', 'settings',
+     'underscore', 'urls', 'user', 'z'],
+    function(cats, $, log, navigation, nunjucks, settings, _, urls, user, z) {
     'use strict';
-
     var console = log('navbar');
 
-    // Tab name must match route/view name to match window.location.pathname.
-    var tabsMkt = ['homepage', 'new', 'popular', 'categories'];
-    var tabsSettings = ['settings', 'purchases', 'feedback'];
-
-    if (user.logged_in() && settings.switches.indexOf('recommendations') !== -1) {
-        // Add recommended to navbar swipe list.
-        tabsMkt.splice(3, 0, 'recommended');
-    }
+    var NAV_MKT_BASE_OFFSET = -65;
+    var NAV_SETTINGS_BASE_OFFSET = 0;
+    var NAV_LINK_VISIBLE_WIDTH = 50;
 
     function initNavbarButtons() {
         // Navbar settings + Marketplace buttons.
@@ -47,57 +40,66 @@ define('navbar',
     }
     z.body.one('loaded', initNavbarButtons);
 
-    // Swipe handler.
-    z.body.hammer({'swipe_velocity': 0.3}).on('swipe', function(e) {
-        var $target = $(e.gesture.startEvent.target);
-        if (['left', 'right'].indexOf(e.gesture.direction) === -1 ||
-            z.body.attr('data-page-type').indexOf('root') === -1 ||
-            $target.closest('#lightbox').length ||
-            $target.closest('.slider').length ||
-            $target.closest('input').length) {
-            return;
-        }
-        var $navbar = $('.navbar.active');
-        var tabs = tabsMkt;
-        if ($navbar.hasClass('nav-settings')) {
-            tabs = tabsSettings;
-        }
-
-        // Calculate next tab.
-        var currentTab;
-        var page_type = $('body').attr('data-page-type').split(' ');
-        $navbar.find('[data-tab]').each(function(i, tab) {
-            if (page_type.indexOf(tab.dataset.tab) !== -1) {
-                currentTab = tab.dataset.tab;
-            }
-        });
-        var tabPos = tabs.indexOf(currentTab);
-
-        if (e.gesture.direction == 'left') {
-            // Next tab (unless we're at the end of the array).
-            tabPos = tabPos === tabs.length - 1 ? tabPos : tabPos + 1;
-        } else if (e.gesture.direction == 'right') {
-            // Prev tab (unless we're at the beginning of the array).
-            tabPos = tabPos === 0 ? tabPos : tabPos - 1;
-        }
-
-        var newTab = tabs[tabPos];
-        if (newTab == currentTab) {
-            // Reached the end.
-            return;
-        }
-
-        var href = $navbar.find('li').eq(tabPos).find('.tab-link').attr('href');
-        z.page.trigger('navigate', href);
-    });
-
     z.body.on('click', '.navbar li > a', function() {
         var $this = $(this);
         if ($this.hasClass('desktop-cat-link')) {
             // Don't allow click of category tab on desktop.
             return;
         }
+
+        calcNavbarOffset($this.parent());
     });
+
+    function calcNavbarOffset($item) {
+        // Calculate appropriate offsets for the navbar so that it slides well
+        // for any language. Good luck understanding what's going on.
+        var $navbar = $item.closest('.navbar');
+        var currentNavbarOffset = $navbar.offset().left * -1;
+        var padding = 10;
+        var right = currentNavbarOffset;
+        var rightEdgeOffset = $item.offset().left + $item.width();
+
+        var baseOffset = NAV_MKT_BASE_OFFSET;
+        var windowWidth = z.win.width();
+        if ($navbar.hasClass('nav-settings')) {
+            baseOffset = NAV_SETTINGS_BASE_OFFSET;
+            windowWidth -= $('.mkt-tray').width();
+        }
+        console.log(baseOffset);
+
+        if (rightEdgeOffset > windowWidth) {
+            // Sliding forwards.
+            // If the link is overflowing off the right edge of the page,
+            // slide the navbar enough so the link is fully visible.
+            right = (currentNavbarOffset +
+                     (rightEdgeOffset - windowWidth) + padding);
+
+            // If there is another link after the current link, move the navbar
+            // some more such that the next link is clickable (50px target).
+            if ($item.next().length) {
+                right += NAV_LINK_VISIBLE_WIDTH;
+            }
+        } else if (currentNavbarOffset !== NAV_MKT_BASE_OFFSET) {
+            // Sliding backwards.
+            // If the next link to the one clicked is in full view, slide it
+            // so it becomes visible by only 50px and thus clickable.
+            var $next = $item.next();
+            var nextLeftEdgeOffset = $next.offset().left;
+            var nextRightEdgeOffset = nextLeftEdgeOffset + $next.width();
+            if (nextRightEdgeOffset < windowWidth) {
+                right = (currentNavbarOffset -
+                         (windowWidth + NAV_LINK_VISIBLE_WIDTH - nextRightEdgeOffset) +
+                         padding);
+            }
+        }
+
+        if (right < baseOffset) {
+            // Don't scroll past the base starting point.
+            right = baseOffset;
+        }
+
+        $item.closest('.navbar').css('right', right + 'px');
+    }
 
     // Desktop.
     function initActTray() {
@@ -117,35 +119,18 @@ define('navbar',
 
     function render() {
         // Build navbar.
-        // Set class and data attribute of navbar to name of active tab.
-        var tabsMktRouteMap = {};
-        var tabName;
-        for (i = 0; i < tabsMkt.length; i++) {
-            tabName = tabsMkt[i];
-            try {
-                tabsMktRouteMap[urls.reverse(tabName)] = tabName;
-            } catch(e) {
-                continue;
-            }
-        }
-        var tabsSettingsRouteMap = {};
-        for (var i = 0; i < tabsSettings.length; i++) {
-            tabName = tabsSettings[i];
-            try {
-                tabsSettingsRouteMap[urls.reverse(tabName)] = tabName;
-            } catch(e) {
-                continue;
-            }
-        }
-
+        var stack = navigation.stack();
         $('#site-nav').html(
             nunjucks.env.render('nav.html', {
                 is_settings: z.body.attr('data-page-type').indexOf('settings') !== -1,
                 logged_in: user.logged_in(),
                 recommendations: settings.switches.indexOf('recommendations') !== -1,
+                path: stack[stack.length - 1].path,
                 z: z
             })
         ).addClass('secondary-header');
+
+        calcNavbarOffset($('.navbar.active .initial-active'));
 
         // Desktop categories hover menu.
         var catsTrigger = '.navbar > .categories';
