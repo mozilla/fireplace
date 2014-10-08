@@ -17,6 +17,7 @@ require.config({
         'settings': ['settings_local', 'settings'],
         'format': 'lib/format',
         'document-register-element': 'lib/document-register-element',
+        'waffles': 'commonplace/waffles'
     },
 });
 
@@ -61,6 +62,7 @@ define(
         'utils',
         'utils_local',
         'views',
+        'waffles',
         'webactivities',
         'z'
     ],
@@ -76,6 +78,7 @@ function(_) {
     var urls = require('urls');
     var user = require('user');
     var utils_local = require('utils_local');
+    var waffles = require('waffles');
     var z = require('z');
 
     var console = require('log')('mkt');
@@ -109,15 +112,7 @@ function(_) {
     settings.persona_privacy = format.format(doc_location, {type: 'privacy'});
 
     z.body.addClass('html-' + require('l10n').getDirection());
-    // We might want to style things differently for native FxA users,
-    // specifically they should need to log out through settings instead
-    // of through Marketplace (hide logout buttons for bug 1073177).
-    // Unfortunately we need to wait for the switches to load.
-    consumer_info.promise.then(function () {
-        if (capabilities.nativeFxA()) {
-            z.body.addClass('native-fxa');
-        }
-    });
+
     if (settings.body_classes) {
         z.body.addClass(settings.body_classes);
     }
@@ -207,8 +202,15 @@ function(_) {
 
         var logged_in = user.logged_in();
 
-        // Wait for the switches to be pulled down.
-        consumer_info.promise.then(function () {
+        waffles.promise.then(function () {
+            if (capabilities.nativeFxA()) {
+                // We might want to style things differently for native FxA users,
+                // specifically they should need to log out through settings instead
+                // of through Marketplace (hide logout buttons for bug 1073177).
+                // Unfortunately we need to wait for the switches to load.
+                z.body.addClass('native-fxa');
+            }
+
             var banner = document.getElementById('fx-accounts-banner');
             if (banner) {
                 banner.dismissBanner();

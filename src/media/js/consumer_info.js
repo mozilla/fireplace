@@ -1,41 +1,48 @@
+/*
+   Retrieve user region and carrier information.
+   Depends on mobilenetwork as it sets the region/carrier from the SIM data.
+   On a clean cache, the promise will block on the request.
+   On subsequent page loads, the promise will resolve from the cache.
+*/
 define('consumer_info',
-    // mobilenetwork needs to be called before we start retrieving consumer_info,
-    // as it sets the region/carrier from the SIM data.
-    ['defer', 'log', 'mobilenetwork', 'requests', 'settings', 'urls', 'user', 'user_helpers'],
-    function(defer, log, mobilenetwork, requests, settings, urls, user, user_helpers) {
+    ['defer', 'log', 'mobilenetwork', 'requests', 'settings', 'urls', 'user',
+     'user_helpers'],
+    function(defer, log, mobilenetwork, requests, settings, urls, user,
+             user_helpers) {
     var logger = log('consumer_info');
 
-    function fetch() {
-        logger.log('Retrieving consumer info.');
+    function handleConsumerInfo(data) {
         var already_had_region = !!user_helpers.region(undefined, true);
-        var deferred = defer.Deferred();
-        var consumerInfoRequest = requests.get(urls.api.url('consumer_info'));
-        consumerInfoRequest.then(function(consumerInfo) {
-            logger.log('Consumer info retrieved.');
 
-            if (!already_had_region) {
-                // If we didn't already have a region, then the region returned
-                // by consumerInfo is coming from geoip, store it.
-                user_helpers.set_region_geoip(consumerInfo.region);
-            }
-            if (user.logged_in() && consumerInfo.apps !== undefined) {
-                user.update_apps(consumerInfo.apps);
-            }
-            settings.switches = (consumerInfo.waffle && consumerInfo.waffle.switches) || [];
-            settings.fxa_auth_url = consumerInfo.fxa_auth_url;
-            settings.fxa_auth_state = consumerInfo.fxa_auth_state;
-        }, function() {
-            logger.error('Failed to retrieve consumer info.');
-            user_helpers.set_region_geoip('restofworld');
-        }).always(function() {
-            // Always resolve the promise, but only when everything is over.
-            deferred.resolve();
+        if (!already_had_region) {
+            // If we didn't already have a region, then the region returned
+            // by consumerInfo is coming from geoip, store it.
+            user_helpers.set_region_geoip(data.region);
+        }
+        if (user.logged_in() && data.apps !== undefined) {
+            user.update_apps(data.apps);
+        }
+        settings.fxa_auth_url = data.fxa_auth_url;
+        settings.fxa_auth_state = data.fxa_auth_state;
+    }
+
+    function fetch() {
+        var def = defer.Deferred();
+
+        requests.get(urls.api.url('consumer_info')).then(handleConsumerInfo,
+            function() {
+                logger.error('Failed to retrieve consumer info.');
+                user_helpers.set_region_geoip('restofworld');
+            })
+        .always(function() {
+            def.resolve();
         });
-        return deferred.promise();
+
+        return def.promise();
     }
 
     return {
         'fetch': fetch,
-        'promise': fetch(),  // Call immediately and return the promise for consumption.
+        'promise': fetch(),
     };
 });

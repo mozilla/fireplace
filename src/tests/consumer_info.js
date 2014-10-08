@@ -24,7 +24,7 @@ function mockConsumerInfoRequestFailure(data) {
     };
 }
 
-test('consumer_info automatically set region and switches when required', function(done, fail) {
+test('consumer_info automatically set region when required', function(done, fail) {
     var geoip_region = null;
     var settings = {
         api_cdn_whitelist: {}
@@ -35,9 +35,6 @@ test('consumer_info automatically set region and switches when required', functi
             requests: {
                 get: mockConsumerInfoRequestSuccess({
                     region: 'nowhere',
-                    waffle: {
-                        switches: ['dummy-switch']
-                    },
                     fxa_auth_state: 'fxa_auth_state',
                     fxa_auth_url: 'fxa_auth_url'
                 }
@@ -57,8 +54,6 @@ test('consumer_info automatically set region and switches when required', functi
                 eq_(geoip_region, 'nowhere');
                 eq_(settings.fxa_auth_state, 'fxa_auth_state');
                 eq_(settings.fxa_auth_url, 'fxa_auth_url');
-                eq_(settings.switches.length, 1);
-                contains(settings.switches, 'dummy-switch');
                 done();
             });
         },
