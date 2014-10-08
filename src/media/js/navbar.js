@@ -24,14 +24,16 @@ define('navbar',
             // Activate Settings page navbar.
             e.preventDefault();
             toggleNavbar($settingsNavGroup, $mktNavGroup);
-            z.page.trigger('navigate',
-                           $settingsNavGroup.find('[data-tab]:first-child a').attr('href'));
+            var $firstLink = $settingsNavGroup.find('[data-tab]:first-child a');
+            z.page.trigger('navigate', $firstLink.attr('href'));
+            calcNavbarOffset($firstLink.closest('li'));
         })
         .on('click', '.mkt-tray', function() {
             // Activate Marketplace pages navbar.
             toggleNavbar($mktNavGroup, $settingsNavGroup);
-            z.page.trigger('navigate',
-                           $mktNavGroup.find('[data-tab]:first-child a').attr('href'));
+            var $firstLink = $mktNavGroup.find('[data-tab]:first-child a');
+            z.page.trigger('navigate', $firstLink.attr('href'));
+            calcNavbarOffset($firstLink.closest('li'));
         })
         .on('click', '.site a', function() {
             // Activate Marketplace pages navbar.
@@ -47,7 +49,7 @@ define('navbar',
             return;
         }
 
-        calcNavbarOffset($this.parent());
+        calcNavbarOffset($this.closest('li'));
     });
 
     function calcNavbarOffset($item) {
