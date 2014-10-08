@@ -17,17 +17,16 @@
         switches: ['fx-accounts-migration'],
     };
 
-
     test('a new user cannot migrate',
          function (done, fail) {
         mock(
-            'fxa_migration',
+            'user',
             {
                 settings: migrationEnabledSettings,
                 storage: new Storage(),
             },
-            function (fxa_migration) {
-                ok_(!fxa_migration.canMigrate());
+            function(user) {
+                ok_(!user.canMigrate());
                 done();
             }, fail);
     });
@@ -35,13 +34,13 @@
     test('a non migrated user that has signed in before can migrate',
          function (done, fail) {
         mock(
-            'fxa_migration',
+            'user',
             {
                 settings: migrationEnabledSettings,
                 storage: new Storage({permissions: {}}),
             },
-            function (fxa_migration) {
-                ok_(fxa_migration.canMigrate());
+            function(user) {
+                ok_(user.canMigrate());
                 done();
             }, fail);
     });
@@ -49,13 +48,13 @@
     test('a migrated user cannot migrate',
          function (done, fail) {
         mock(
-            'fxa_migration',
+            'user',
             {
                 settings: migrationEnabledSettings,
                 storage: new Storage({'fxa-migrated': true}),
             },
-            function (fxa_migration) {
-                ok_(!fxa_migration.canMigrate());
+            function(user) {
+                ok_(!user.canMigrate());
                 done();
             }, fail);
     });
@@ -63,22 +62,17 @@
     test('canMigrate will set fxa-migrated if migrated',
          function (done, fail) {
         var fakeStorage = new Storage();
+        fakeStorage.setItem('settings', {source: 'firefox-accounts'});
+
         mock(
-            'fxa_migration',
+            'user',
             {
                 settings: migrationEnabledSettings,
                 storage: fakeStorage,
-                user: {
-                    get_setting: function (key) {
-                        if (key === 'source') {
-                            return 'firefox-accounts';
-                        }
-                    },
-                },
             },
-            function (fxa_migration) {
+            function(user) {
                 ok_(!fakeStorage.getItem('fxa-migrated'));
-                ok_(!fxa_migration.canMigrate());
+                ok_(!user.canMigrate());
                 ok_(fakeStorage.getItem('fxa-migrated'));
                 done();
             }, fail);
@@ -87,7 +81,7 @@
     test('canMigrate is false on nativeFxA',
          function (done, fail) {
         mock(
-            'fxa_migration',
+            'user',
             {
                 settings: migrationEnabledSettings,
                 storage: new Storage({permissions: {}}),
@@ -97,8 +91,8 @@
                     },
                 },
             },
-            function (fxa_migration) {
-                ok_(!fxa_migration.canMigrate());
+            function(user) {
+                ok_(!user.canMigrate());
                 done();
             }, fail);
 
