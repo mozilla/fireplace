@@ -20,7 +20,8 @@
   {% if logged_in and recommendations %}
     {{ navtab('recommended', _('Recommended'), url('recommended'), path) }}
   {% endif %}
-  <li class="categories" data-tab="categories">
+  <li class="categories {{ 'initial-active' if path == url('categories') }}"
+      data-tab="categories">
     <a class="tab-link mobile-cat-link" href="{{ url('categories') }}">{{ _('Categories') }}</a>
     <a class="desktop-cat-link">{{ _('Categories') }}</a>
     <div class="hovercats"></div>
