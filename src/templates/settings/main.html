@@ -36,15 +36,32 @@
 
     <footer>
       <p class="only-logged-in inline"><button type="submit" class="button action">{{ _('Save Changes') }}</button></p>
-      <p class="extras">
+      {% if capabilities.fallbackFxA() %}
+        <p class="only-logged-out extras">
+          <a href="#" class="button persona register only-logged-out">{{ _('Register') }}</a>
+        </p>
+        <p class="only-logged-out extras">
+          <a href="#" class="button persona only-logged-out">{{ _('Sign In') }}</a>
+        </p>
+      {% else %}
+        <p class="only-logged-out extras">
+          <a href="#" class="button persona only-logged-out">{{ _('Sign In / Sign Up') }}</a>
+        </p>
+      {% endif %}
+      <p class="extras only-logged-in">
         <a href="#" class="button logout only-logged-in">{{ _('Sign Out') }}</a>
-        <a href="#" class="button persona only-logged-out">{{ _('Sign In / Sign Up') }}</a>
-        <a href="{{ url('privacy')  }}" class="button support terms">{{ _('Privacy Policy') }}</a>
-        <a href="{{ url('terms') }}" class="button support terms">{{ _('Terms of Use') }}</a>
-        {% if user.get_permission('reviewer') %}
-          <a href="/reviewers/apps/queue/" class="button action only-logged-in reviewer-tools" rel="external">{{ _('Reviewer Tools') }}</a>
-        {% endif %}
       </p>
+      <p class="extras terms">
+        <a href="{{ url('privacy')  }}" class="button support">{{ _('Privacy Policy') }}</a>
+      </p>
+      <p class="extras terms">
+        <a href="{{ url('terms') }}" class="button support">{{ _('Terms of Use') }}</a>
+      </p>
+      {% if user.get_permission('reviewer') %}
+        <p class="extras reviewer-tools">
+          <a href="/reviewers/apps/queue/" class="button action only-logged-in" rel="external">{{ _('Reviewer Tools') }}</a>
+        </p>
+      {% endif %}
     </footer>
   </form>
 

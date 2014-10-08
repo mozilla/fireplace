@@ -48,7 +48,7 @@ define('login',
 
         var $this = $(this);
         $this.addClass('loading-submit');
-        startLogin().always(function() {
+        startLogin({register: $this.hasClass('register')}).always(function() {
             $this.removeClass('loading-submit').trigger('blur');
         });
 
@@ -75,7 +75,7 @@ define('login',
         return [x, y];
     }
 
-    function startLogin() {
+    function startLogin(options) {
         var w = 320;
         var h = 600;
         var i = getCenteredCoordinates(w, h);
@@ -85,9 +85,13 @@ define('login',
         var opt = {
             termsOfService: settings.persona_tos,
             privacyPolicy: settings.persona_privacy,
+            register: false,
             siteLogo: settings.persona_site_logo,
             oncancel: oncancel
         };
+        // Override our settings with the provided ones.
+        _.extend(opt, options);
+
         if (settings.persona_unverified_issuer) {
             // We always need to force a specific issuer because bridged IdPs don't work with verified/unverified.
             // See bug 910938.
@@ -130,6 +134,9 @@ define('login',
                 save_fxa_auth_url(settings.fxa_auth_url);
             } else {
                 fxa_url = settings.fxa_auth_url;
+                if (opt.register) {
+                    fxa_url += '&action=signup';
+                }
             }
             fxa_popup = window.open(
                 fxa_url,

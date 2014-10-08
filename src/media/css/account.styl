@@ -97,6 +97,9 @@
             padding: 10px;
         }
     }
+    .only-logged-in.extras {
+      display: none;
+    }
     .extras {
         display: inline-block;
         background: $seavan-salt-white;
@@ -104,9 +107,16 @@
     }
     .reviewer-tools, .terms {
         display: block;
-        margin-top: 20px;
     }
 }
+.logged-in .account-settings .only-logged-out.extras {
+    display: none;
+}
+.logged-in .account-settings .only-logged-in.extras {
+    display: inline-block;
+}
+
+
 
 @media $at-least-desktop {
     .account-settings .terms {
@@ -197,10 +207,10 @@
             background: none;
         }
     }
-    .only-logged-in.button.reviewer-tools {
+    .only-logged-in.reviewer-tools {
         display: none;
     }
-    footer .extras .button.reviewer-tools {
+    footer .extras.reviewer-tools {
         display: none;
     }
 }

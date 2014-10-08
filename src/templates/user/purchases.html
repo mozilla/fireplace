@@ -47,7 +47,12 @@
   <footer class="only-logged-out">
     <article class="extras">
       <p class="notice">{{ _('You must be signed in to view your apps.') }}</p>
-      <a class="button full persona" href="#">{{ _('Sign in / Sign up') }}</a>
+      {% if capabilities.fallbackFxA() %}
+        <a class="button full persona register" href="#">{{ _('Register') }}</a>
+        <a class="button full persona" href="#">{{ _('Sign In') }}</a>
+      {% else %}
+        <a class="button full persona" href="#">{{ _('Sign In / Sign Up') }}</a>
+      {% endif %}
     </article>
   </footer>
 </section>
