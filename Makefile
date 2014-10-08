@@ -71,15 +71,6 @@ package_stage:
 package_dev:
 	SERVER='dev' NAME='Dev' DOMAIN='marketplace-dev.allizom.org' \
     ORIGIN='app:\/\/packaged.marketplace-dev.allizom.org' make package
-package_feed_dev:
-	SERVER='dev' NAME='FeedDev' DOMAIN='marketplace-feed-dev.allizom.org' \
-    ORIGIN='app:\/\/packaged.marketplace-feed-dev.allizom.org' make package
-package_feed_stage:
-	SERVER='stage' NAME='FeedStage' DOMAIN='marketplace-feed.allizom.org' \
-    ORIGIN='app:\/\/packaged.marketplace-feed.allizom.org' make package
-package_feed_prod:
-	SERVER='prod' NAME='FeedProd' DOMAIN='marketplace.firefox.com' \
-    ORIGIN='app:\/\/packaged.marketplace-feed.firefox.com' make package
 package_altdev:
 	SERVER='altdev' NAME='AltDev' DOMAIN='marketplace-altdev.allizom.org' make package
 package_paymentsalt:
