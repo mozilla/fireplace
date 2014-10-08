@@ -12,8 +12,8 @@
     {% endif %}
   </div>
   <div class="language group links">
-    <a href="{{ url('settings') }}" class="region region-{{ user_helpers.region('restofworld') }}">
-      {{ REGIONS[user_helpers.region('restofworld')] }}</a>
+    <span class="region region-{{ user_helpers.region('restofworld') }}">
+      {{ REGIONS[user_helpers.region('restofworld')] }}</span>
     <a href="{{ url('purchases') }}">{{ _('My Apps') }}</a>
     {% if user.get_permission('developer') %}
       <a href="/developers/submissions" rel="external">{{ _('My Submissions') }}</a>
