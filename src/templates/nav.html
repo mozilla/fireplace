@@ -12,7 +12,8 @@
 
 {# Navigation tabs (Home, New, Popular, Categories). #}
 {# Uses body[data-page-type] to set active styles on the navigation tabs. #}
-<ul class="navbar nav-mkt{% if not is_settings %} active{% endif %}">
+<ul class="navbar nav-mkt{% if not is_settings %} active{% endif %}
+           {{ 'has-recommendations' if logged_in and recommendations }}">
   {# Tab name must match route name. #}
   {{ navtab('homepage', _('Home'), url('homepage'), path) }}
   {{ navtab('new', _('New'), url('new'), path) }}

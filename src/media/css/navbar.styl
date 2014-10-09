@@ -170,24 +170,22 @@
         left: 0;
         opacity: 1;
         position: absolute;
-        right: 0;
+        right: 0 !important;  // navbar.js sets rule on `style`, so override.
         top: 0;
-        width: $desktop-content;
+        width: -moz-fit-content;
 
         > li {
             display: inline-block;
             font-size: 15px;
             line-height: 50px;
+            padding: 0 60px;
             position: relative;
             text-align: center;
             text-transform: uppercase;
-            width: 25%;
+            width: -moz-fit-content;
 
             &.active > a {
                 color: $breezy-blue;
-            }
-            &:nth-child(2) {
-                width: 23%;
             }
             > a {
                 color: $medium-gray;
