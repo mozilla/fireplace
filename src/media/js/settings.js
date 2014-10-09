@@ -73,8 +73,9 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // Keep in mind that the cache is always refreshed asynchronously;
         // these TTLs apply to only when the app is first launched.
         offline_cache_whitelist: {
+            '/api/v2/feed/get/': 60 * 60 * 24 * 7,  // 1 week
             '/api/v2/fireplace/consumer-info/': 60 * 60 * 24 * 7,  // 1 week
-            '/api/v2/feed/get/': 60 * 60 * 24 * 7  // 1 week
+            '/api/v2/services/waffle/': 60 * 60 * 24 * 7  // 1 week
         },
         offline_cache_enabled: offline_cache_enabled,
         offline_cache_limit: 1024 * 1024 * 4,  // 4 MB
