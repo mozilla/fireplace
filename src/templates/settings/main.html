@@ -39,6 +39,8 @@
       <p class="extras">
         <a href="#" class="button logout only-logged-in">{{ _('Sign Out') }}</a>
         <a href="#" class="button persona only-logged-out">{{ _('Sign In / Sign Up') }}</a>
+        <a href="{{ url('privacy')  }}" class="button support terms">{{ _('Privacy Policy') }}</a>
+        <a href="{{ url('terms') }}" class="button support terms">{{ _('Terms of Use') }}</a>
         {% if user.get_permission('reviewer') %}
           <a href="/reviewers/apps/queue/" class="button action only-logged-in reviewer-tools" rel="external">{{ _('Reviewer Tools') }}</a>
         {% endif %}
