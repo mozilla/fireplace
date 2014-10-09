@@ -104,23 +104,26 @@
         width: 100%;
 
         &.nav-mkt {
+            visibility: hidden;
             right: -100%;
 
             &.active {
-                right: -44px;
+                right: -65px;
+                visibility: visible;
             }
         }
         &.nav-settings {
+            visibility: hidden;
             right: 100%;
 
             &.active {
                 right: 0;
+                visibility: visible;
             }
         }
         li {
             display: inline-block;
             font-size: 15px;
-            margin: 0 10px;
             position: relative;
             text-align: center;
             text-transform: uppercase;
@@ -133,6 +136,7 @@
                 display: block;
                 height: 38px;
                 line-height: 32px;
+                padding: 0 10px;
 
                 &:hover {
                     border-bottom: 2px solid $bg-gray;
@@ -143,35 +147,6 @@
                 display: none;
             }
         }
-    }
-
-    // Sliding navbar.
-    [data-page-type~="homepage"] .nav-mkt.active {
-        right: -60px;
-    }
-    [data-page-type~="new"] .nav-mkt.active {
-        right: -10px;
-    }
-    [data-page-type~="popular"] .nav-mkt.active {
-        right: 43px;
-    }
-    [data-page-type~="categories"] .nav-mkt.active {
-        right: 120px;
-    }
-    body.show-recommendations[data-page-type~="recommended"] .nav-mkt.active {
-        right: 120px;
-    }
-    body.show-recommendations[data-page-type~="categories"] .nav-mkt.active {
-        right: 170px;
-    }
-    [data-page-type="root settings"] .nav-settings.active {
-        right: -9px;
-    }
-    [data-page-type~="purchases"] .nav-settings.active {
-        right: 35px;
-    }
-    [data-page-type~="feedback"] .nav-settings.active {
-        right: 100px;
     }
 }
 
@@ -195,24 +170,22 @@
         left: 0;
         opacity: 1;
         position: absolute;
-        right: 0;
+        right: 0 !important;  // navbar.js sets rule on `style`, so override.
         top: 0;
-        width: $desktop-content;
+        width: -moz-fit-content;
 
         > li {
             display: inline-block;
             font-size: 15px;
             line-height: 50px;
+            padding: 0 60px;
             position: relative;
             text-align: center;
             text-transform: uppercase;
-            width: 25%;
+            width: -moz-fit-content;
 
             &.active > a {
                 color: $breezy-blue;
-            }
-            &:nth-child(2) {
-                width: 23%;
             }
             > a {
                 color: $medium-gray;

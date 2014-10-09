@@ -7,7 +7,10 @@ define('views/purchases', ['l10n', 'common/linefit', 'urls'],
     return function(builder, args) {
         builder.start('user/purchases.html');
 
-        $('.linefit').linefit(2);
+        var $linefit = $('.linefit');
+        if ($linefit.length) {
+            $('.linefit').linefit(2);
+        }
 
         builder.z('type', 'root settings purchases');
         builder.z('title', gettext('My Apps'));

@@ -16,7 +16,6 @@ require.config({
         'templates': '../../templates',
         'settings': ['settings_local', 'settings'],
         'format': 'lib/format',
-        'hammerjs': 'hammer',
         'document-register-element': 'lib/document-register-element',
     },
 });
