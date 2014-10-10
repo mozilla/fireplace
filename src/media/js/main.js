@@ -17,7 +17,7 @@ require.config({
         'settings': ['settings_local', 'settings'],
         'format': 'lib/format',
         'document-register-element': 'lib/document-register-element',
-        'waffles': 'commonplace/waffles'
+        'site_config': 'commonplace/site_config'
     },
 });
 
@@ -52,6 +52,7 @@ define(
         'ratings',
         'requests',
         'settings',
+        'site_config',
         'storage',
         'templates',
         'tracking',
@@ -62,7 +63,6 @@ define(
         'utils',
         'utils_local',
         'views',
-        'waffles',
         'webactivities',
         'z'
     ],
@@ -74,11 +74,11 @@ function(_) {
     var format = require('format');
     var $ = require('jquery');
     var settings = require('settings');
+    var siteConfig = require('site_config');
     var nunjucks = require('templates');
     var urls = require('urls');
     var user = require('user');
     var utils_local = require('utils_local');
-    var waffles = require('waffles');
     var z = require('z');
 
     var console = require('log')('mkt');
@@ -202,7 +202,7 @@ function(_) {
 
         var logged_in = user.logged_in();
 
-        waffles.promise.then(function () {
+        siteConfig.promise.then(function () {
             if (capabilities.nativeFxA()) {
                 // We might want to style things differently for native FxA users,
                 // specifically they should need to log out through settings instead

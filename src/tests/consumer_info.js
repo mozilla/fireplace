@@ -35,8 +35,6 @@ test('consumer_info automatically set region when required', function(done, fail
             requests: {
                 get: mockConsumerInfoRequestSuccess({
                     region: 'nowhere',
-                    fxa_auth_state: 'fxa_auth_state',
-                    fxa_auth_url: 'fxa_auth_url'
                 }
             )},
             user: {logged_in: function() { return false; }},
@@ -52,8 +50,6 @@ test('consumer_info automatically set region when required', function(done, fail
             var promise = consumer_info.promise;
             promise.then(function() {
                 eq_(geoip_region, 'nowhere');
-                eq_(settings.fxa_auth_state, 'fxa_auth_state');
-                eq_(settings.fxa_auth_url, 'fxa_auth_url');
                 done();
             });
         },

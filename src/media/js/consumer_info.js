@@ -22,8 +22,6 @@ define('consumer_info',
         if (user.logged_in() && data.apps !== undefined) {
             user.update_apps(data.apps);
         }
-        settings.fxa_auth_url = data.fxa_auth_url;
-        settings.fxa_auth_state = data.fxa_auth_state;
     }
 
     function fetch() {

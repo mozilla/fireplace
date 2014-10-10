@@ -1,6 +1,10 @@
 define('login',
-    ['cache', 'capabilities', 'defer', 'jquery', 'log', 'notification', 'settings', 'storage', 'underscore', 'urls', 'user', 'utils', 'requests', 'waffles', 'z'],
-    function(cache, capabilities, defer, $, log, notification, settings, storage, _, urls, user, utils, requests, waffles, z) {
+    ['cache', 'capabilities', 'defer', 'jquery', 'log', 'notification',
+     'settings', 'site_config', 'storage', 'underscore', 'urls', 'user',
+     'utils', 'requests', 'z'],
+    function(cache, capabilities, defer, $, log, notification,
+             settings, siteConfig, storage, _, urls, user,
+             utils, requests, z) {
 
     var console = log('login');
     var persona_def = defer.Deferred();
@@ -291,7 +295,7 @@ define('login',
         return persona_loaded;
     }
 
-    waffles.promise.done(function() {
+    siteConfig.promise.done(function(data) {
         if (!capabilities.fallbackFxA()) {
             // Try to load persona. This is used by persona native/fallback
             // implementation, as well as fxa native.
