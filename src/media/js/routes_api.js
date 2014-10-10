@@ -32,6 +32,6 @@ define('routes_api', [], function() {
         'reviews': '/api/v2/apps/rating/',
         'search': '/api/v2/fireplace/search/?cache=1&vary=0',
         'settings': '/api/v2/account/settings/mine/',
-        'site-config': '/api/v2/services/config/site/',
+        'site-config': '/api/v2/services/config/site/?serializer=commonplace',
     };
 });
