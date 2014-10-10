@@ -187,7 +187,11 @@ function(_) {
     // Do some last minute template compilation.
     z.page.on('reload_chrome', function() {
         console.log('Reloading chrome');
-        var context = {z: z};
+        var user_helpers = require('user_helpers');
+        var context = {
+            region: user_helpers.region('restofworld'),
+            z: z
+        };
         $('#site-header').html(
             nunjucks.env.render('header.html', context));
         $('#site-footer').html(
@@ -224,6 +228,18 @@ function(_) {
             // To show or not to show the recommendations nav.
             if (logged_in && settings.switches.indexOf('recommendations') !== -1) {
                 z.body.addClass('show-recommendations');
+            }
+
+            // Re-render footer region if necessary.
+            var current_region = user_helpers.region('restofworld');
+            if (current_region !== context.region) {
+                console.log('Region has changed from ' + context.region +
+                            ' to ' + current_region + ' since we rendered ' +
+                            'the footer, updating region in footer.');
+                $('#site-footer span.region')
+                    .removeClass('region-' + context.region)
+                    .addClass('region-' + current_region)
+                    .text(settings.REGION_CHOICES_SLUG[current_region]);
             }
         });
 
