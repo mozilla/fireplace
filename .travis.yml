@@ -14,12 +14,19 @@ node_js:
   - "0.10"
 before_script:
   - "export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'"
+# Create an installation.
+  - "make init"
   - "mv src/media/js/settings_travis.js src/media/js/settings_local.js"
-  - "npm install -g commonplace@0.4.22"  # Get commonplace up in hurrr
-  - "nohup damper &"  # start the damper
+# Set up test suite.
   - "git clone git://github.com/n1k0/casperjs.git casperjs"
   - "cd casperjs && git checkout -q tags/1.1-beta3; cd .."
 script:
-  - "commonplace lint"  # Lint the repo first!
-  - "commonplace langpacks"  # Generate langpacks; will catch PO file errors.
+# Lint the installation.
+# - "commonplace lint"
+# Generate langpacks, catches PO file errors.
+  - "commonplace langpacks"
+# Start the webserver.
+  - "make serve &"
+  - "sleep 5"
+# Run UI tests.
   - "CASPERJS_BIN=casperjs/bin/casperjs make test"

@@ -1,3 +1,30 @@
+gulp:
+	@node_modules/.bin/gulp
+
+init:
+	@npm install
+	@bower install
+	@node_modules/.bin/gulp update
+	@cp src/media/js/settings_local.js.dist src/media/js/settings_local.js
+
+update:
+	@node_modules/.bin/gulp update
+
+build:
+	@node_modules/.bin/gulp build
+
+css:
+	@node_modules/.bin/gulp css_compile
+
+templates:
+	@node_modules/.bin/gulp templates_build
+
+clean:
+	@node_modules/.bin/gulp clean
+
+serve:
+	@node_modules/.bin/gulp
+
 REPO = "fireplace"
 UUID = "e6a59937-29e4-456a-b636-b69afa8693b4"
 VERSION = `date "+%Y.%m.%d_%H.%M.%S"`
@@ -18,14 +45,11 @@ SERVER?=prod
 # This is the origin of the package.
 ORIGIN?=app:\/\/packaged.marketplace.firefox.com
 
-compile:
-	commonplace compile
-
-test: clean compile
+test: css templates
 	LC_ALL=en-US $(CASPERJS_BIN) test tests/ui/
 
 # Fireplace (real packaged app)
-package: clean
+package: clean build
 	@rm -rf TMP
 	@rm -rf src/downloads/icons/*
 	@rm -rf src/downloads/screenshots/*
@@ -36,8 +60,6 @@ package: clean
 
 	@mv TMP/src/media/js/settings_package_$(SERVER).js TMP/src/media/js/settings_local_package.js
 	@rm -rf TMP/src/media/js/{settings_local_hosted.js,settings_package_*.js}
-
-	@pushd TMP && commonplace includes && popd
 
 	@# We have to have a temp file to work around a bug in Mac's version of sed :(
 	@sed -i'.bak' -e 's/"Marketplace"/"$(NAME)"/g' TMP/src/manifest.webapp
@@ -153,11 +175,6 @@ approve_log_stage:
 	DOMAIN='marketplace.allizom.org' make approve_log
 approve_log_dev:
 	DOMAIN='marketplace-dev.allizom.org' make approve_log
-
-
-clean:
-	commonplace clean
-	@rm -f tests/captures/*.png
 
 deploy:
 	git fetch && git reset --hard origin/master && npm install && make includes
