@@ -1,5 +1,4 @@
 {% include '_macros/feed_item.html' %}
-{% include '_macros/market_tile.html' %}
 {% include '_macros/more_button.html' %}
 
 <section class="main">
@@ -11,12 +10,12 @@
 
 <section class="app-list-page feed c">
   <section class="feed-layout-list multi-app-tile mkt-tile c" data-type="{{ source }}">
-    <div class="info">
+    <div class="info hdr">
       <h1 class="feed-tile-header">{{ title }}</h1>
     </div>
 
     {% defer (url=search_url, pluck='objects', as='app', paginate='ul.app-list') %}
-      <ul class="app-list grid-if-desktop c">
+      <ul class="app-list columned c">
         {% for app in this %}
           {{ mini_tile(app, src=source) }}
         {% endfor %}

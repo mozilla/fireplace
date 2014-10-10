@@ -1,0 +1,196 @@
+@import 'lib';
+
+$icon-size = 60px;
+$detail-icon-size = 64px;
+$tile-font-colour = $hungry-text;
+
+// Info is the wrapper for the app title, autor, stars, install button.
+$tile-info-width = 210px;
+$tile-info-width-desktop = 600px;
+
+// Mini tiles are grid layout app tiles.
+$mini-tile-width = 80px;
+
+// Detail page.
+$app-title-size = 20px;
+
+// base class
+.mkt-tile {
+    color: $castle-skull-gray;
+    display: block;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+
+    &:hover {
+        text-decoration: none;
+    }
+    .icon {
+        float: left;
+        height: $icon-size;
+        margin-right: 10px;
+        width: $icon-size;
+    }
+    h3,
+    .subdetail {
+        // subdetail contains .author
+        color: $tile-font-colour;
+        ellipsis();
+        font-size: 12px;
+    }
+    h3 {
+        font-weight: 500;
+        line-height: 20px;
+    }
+    .author {
+        line-height: 18px;
+    }
+    .info {
+        float: left;
+        height: $icon-size;
+        position: relative;
+        width: $tile-info-width;
+
+        + .bad-app {
+            padding-top: 8px;
+        }
+    }
+    .mini-tile .info {
+        width: $mini-tile-width;
+    }
+    .tile-footer {
+        border-radius: 0 0 5px 5px;
+        clear: both;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .desc {
+        margin-top: 15px;
+    }
+    .author {
+        width: 120px;
+    }
+    .preview-container {
+        height: 150px;
+        margin: 15px 0 -15px -10px; // To ignore parent's padding.
+        overflow: hidden;
+        width: 300px;
+
+        &.vertical {
+            height: 240px;
+        }
+        > div {
+            margin-top: 5px;
+        }
+    }
+}
+
+// Detail page.
+.detail {
+    .mkt-tile h3 {
+        font-size: $app-title-size;
+        font-weight: 300;
+        line-height: 1;
+    }
+    .info {
+        width: $tile-info-width - ($detail-icon-size - $icon-size);
+    }
+    .author {
+        // Vertically aligns app author to app title on the detail page.
+        // TODO: Explore font rendering properties to address this.
+        padding-left: 1px;
+    }
+    .rating {
+        margin-bottom: 2px;
+    }
+    .bad-app {
+        margin-top: 12px;
+    }
+    .icon {
+        height: $detail-icon-size;
+        width: $detail-icon-size;
+    }
+}
+
+// Listing
+// name + icon + price + rating in a vertical listview.
+// also used as standalone "card" on detail pages.
+.mkt-tile .rating {
+    color: $sailor-blue;
+    display: block;
+    font-size: 12px;
+    padding: 8px 0;
+
+    a {
+        text-decoration: none;
+
+        &:hover .cnt {
+            text-decoration: underline;
+        }
+    }
+    .cnt {
+        position: relative;
+        top: -2px;
+    }
+    &.unrated, &.unrated a {
+        color: $earl-gray;
+    }
+}
+
+.listing .mkt-tile {
+    .subdetail {
+        line-height: 18px;
+        max-height: 28px;
+    }
+    .price {
+        display: none;
+    }
+}
+
+.product-details {
+    .works-offline {
+        background: url(../img/pretty/no-connection.svg) 0 10px no-repeat;
+        background-size: auto 18px;
+        display: block;
+        font-size: 12px;
+        line-height: 20px;  /* 18px for icon height + 2px for alignment */
+        padding: 10px 10px 0 34px;  /* 34px = 24px for icon width + 10px padding */
+    }
+
+    .bad-app {
+        color: $maroon;
+        display: block;
+        font-size: 11px;
+        line-height: 12px;
+    }
+}
+
+@media $at-least-desktop {
+    // 'columned' happens on collection detail landing pages.
+    ul:not(.columned) .mkt-tile .info,
+    ol:not(.columned) .mkt-tile .info {
+        width: $tile-info-width-desktop;
+
+        .author {
+            width: 100%;
+        }
+    }
+    .grid-if-desktop .mkt-tile .price {
+        display: block;
+    }
+    .mkt-tile .rating .cnt {
+        top: 1px;
+    }
+    .detail {
+        .mkt-tile {
+            padding: 15px;
+
+            .info {
+                width: 586px;
+            }
+        }
+        .author {
+            width: auto;
+        }
+    }
+}
