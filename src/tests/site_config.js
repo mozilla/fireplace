@@ -52,6 +52,9 @@ test('sets fxa auth', function(done, fail) {
         {
             requests: {
                 get: mockSiteConfigRequestSuccess({
+                    waffle: {
+                        switches: ['dummy-switch']
+                    },
                     fxa: {
                         fxa_auth_url: 'http://ngokevin.com',
                         fxa_auth_state: 'somemoreseolongtoken'
@@ -71,4 +74,33 @@ test('sets fxa auth', function(done, fail) {
         fail
     );
 });
+
+test('handles no fxa auth data', function(done, fail) {
+    var settings = {
+        api_cdn_whitelist: {}
+    };
+    mock(
+        'site_config',
+        {
+            requests: {
+                get: mockSiteConfigRequestSuccess({
+                    waffle: {
+                        switches: ['dummy-switch']
+                    },
+                })
+            },
+            settings: settings,
+        },
+        function(siteConfig) {
+            var promise = siteConfig.promise;
+            promise.then(function() {
+                eq_(settings.fxa_auth_url, undefined);
+                eq_(settings.fxa_auth_state, undefined);
+                done();
+            });
+        },
+        fail
+    );
+});
+
 })();
