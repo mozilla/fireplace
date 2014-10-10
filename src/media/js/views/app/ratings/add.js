@@ -4,7 +4,17 @@ define('views/app/ratings/add',
 
     var gettext = l10n.gettext;
 
-    z.page.on('click touchend', '.compose-review .rating', function() {
+    z.page.on('click', '.add-review-form .cancel', function(e) {
+        e.preventDefault();
+        var slug = $(this).closest('.add-review-form').attr('data-app');
+        var app_detail_url = urls.reverse('app', [slug]);
+
+        if (window.location.pathname !== app_detail_url) {
+            // On mobile, when we open a review we end up on a different page,
+            // so in order to cancel we need to navigate back instead.
+            require('navigation').back();
+        }
+    }).on('click touchend', '.compose-review .rating', function() {
         // Scroll the page down to make the send/cancel buttons visible.
         var textarea = document.querySelector('.compose-review textarea:invalid');
         if (textarea) {
