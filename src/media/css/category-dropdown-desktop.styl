@@ -4,7 +4,7 @@
 .cat-overlay {
     display: none;
     padding: 10px 20px;
-    width: 500px;
+    width: 0;  // Don't affect fit-content on mobile.
 
     li {
         border-bottom: 1px solid $light-gray;
@@ -85,6 +85,7 @@
 
         &.active, &.active .cat-overlay {
             display: block;
+            width: 500px;
         }
         &:after {
             border: 10px solid transparent;
