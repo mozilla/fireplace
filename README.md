@@ -30,7 +30,7 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
 
 ```bash
 npm install
-npm install -g commonplace
+npm install -g commonplace@0.4.22
 ```
 
 ### Flue
