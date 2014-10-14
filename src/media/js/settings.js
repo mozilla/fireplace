@@ -46,10 +46,11 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         api_param_blacklist: param_blacklist,
 
         // These are the only API endpoints that should be served from the CDN
-        // (key: URL; value: max-age in seconds).
+        // (key: URL; value: max-age in seconds, but it's unused at the moment).
         api_cdn_whitelist: {
             '/api/v2/fireplace/search/': 60 * 3,  // 3 minutes
             '/api/v2/feed/get/': 60 * 30,  // 30 minutes
+            '/api/v2/services/config/site/': 60 * 3  // 3 minutes
         },
 
         // The list of models and their primary key mapping. Used by caching.
@@ -75,7 +76,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         offline_cache_whitelist: {
             '/api/v2/feed/get/': 60 * 60 * 24 * 7,  // 1 week
             '/api/v2/fireplace/consumer-info/': 60 * 60 * 24 * 7,  // 1 week
-            '/api/v2/services/waffle/': 60 * 60 * 24 * 7  // 1 week
+            '/api/v2/services/config/site/': 60 * 60 * 24 * 7  // 1 week
         },
         offline_cache_enabled: offline_cache_enabled,
         offline_cache_limit: 1024 * 1024 * 4,  // 4 MB
