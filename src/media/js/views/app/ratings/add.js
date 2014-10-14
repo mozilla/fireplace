@@ -11,8 +11,11 @@ define('views/app/ratings/add',
 
         if (window.location.pathname !== app_detail_url) {
             // On mobile, when we open a review we end up on a different page,
-            // so in order to cancel we need to navigate back instead.
-            require('navigation').back();
+            // so in order to cancel we need to go back to the app detail page.
+            // It'd cleaner to use navigation.back() but the parent is
+            // automatically pushed to the stack, so we'd end up in the app
+            // reviews list page even though we didn't come from there.
+            z.page.trigger('navigate', app_detail_url);
         }
     }).on('click touchend', '.compose-review .rating', function() {
         // Scroll the page down to make the send/cancel buttons visible.
