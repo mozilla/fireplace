@@ -113,5 +113,35 @@ test('l10n.getLocale', function(done) {
     done();
 });
 
+test('l10n.getLocaleSrc', function(done) {
+    // Mock document.body.getAttribute to test with different data-*
+    // attributes.
+    var doc = {
+        body: {
+            getAttribute: function(attr) {
+                return doc.body[attr];
+            }
+        }
+    };
+    eq_(eltenen.getLocaleSrc('en-US', doc), '/media/locales/en-US.js');
+
+    doc.body['data-media'] = 'https://cdn.example.com/somewhere/';
+    eq_(eltenen.getLocaleSrc('en-US', doc),
+        'https://cdn.example.com/somewhere/locales/en-US.js');
+
+    doc.body['data-media'] = 'https://cdn.example.com/somewhere/';
+    doc.body['data-repo'] = 'bar';
+    eq_(eltenen.getLocaleSrc('en-US', doc),
+        'https://cdn.example.com/somewhere/bar/locales/en-US.js');
+
+    doc.body['data-media'] = 'https://cdn.example.com/somewhere/';
+    doc.body['data-repo'] = 'bar';
+    doc.body['data-build-id-js'] = '4815162342';
+    eq_(eltenen.getLocaleSrc('en-US', doc),
+        'https://cdn.example.com/somewhere/bar/locales/en-US.js?b=4815162342');
+
+    done();
+});
+
 
 })();

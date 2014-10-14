@@ -8,8 +8,9 @@ var languages = [
     'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sq', 'sr', 'sr-Latn', 'ta', 'tr',
     'xh', 'zh-CN', 'zh-TW', 'zu', 'dbg'
 ];
-var body_langs;
-if (body_langs = document.body.getAttribute('data-languages')) {
+// Resist the temptation to use .dataset, as it doesn't work with IE10.
+var body_langs = document.body.getAttribute('data-languages');
+if (body_langs) {
     languages = JSON.parse(body_langs);
 }
 
@@ -36,6 +37,27 @@ function get_locale(locale) {
     return 'en-US';
 }
 
+function get_locale_src(locale, document) {
+    if (!document) {
+        document = window.document;
+    }
+    // We need the CDN url, but only in a website context - if we are inside a
+    // packaged app, we don't want an unecessary network request. Fortunately,
+    // the packaged app's app.html shouldn't have data-media set on its <body>.
+    var media_url = document.body.getAttribute('data-media');
+    // If we have a build id, cool, we'll use that to do cachebusting. If we
+    // don't, then we're probably in a packaged app context again and don't
+    // need to care about that.
+    var build_id = document.body.getAttribute('data-build-id-js');
+    var repo = document.body.getAttribute('data-repo');
+    return [
+        media_url ? media_url : '/media/',
+        repo ? repo + '/' : '',
+        'locales/' + locale + '.js',
+        build_id ? '?b=' + build_id : ''
+    ].join('');
+}
+
 if (!window.define) {
     var qs_lang = /[\?&]lang=([\w\-]+)/i.exec(window.location.search);
     var locale = get_locale((qs_lang && qs_lang[1]) || navigator.language || navigator.userLanguage);
@@ -46,11 +68,8 @@ if (!window.define) {
         window.navigator.l10n = {language: 'en-US'};
     }
 
-    // Cachebust the .js file for our CDN.
-    var build_id = document.body.getAttribute('data-buildIdJs') || +new Date();
-    var repo = document.body.getAttribute('data-repo');
     /* jshint ignore:start */
-    document.write('<script src="/media/' + (repo ? repo + '/' : '') + 'locales/' + locale + '.js?b=' + build_id + '"></script>');
+    document.write('<script src="' + get_locale_src(locale) + '"></script>');
     /* jshint ignore:end */
 
 } else {
@@ -109,6 +128,7 @@ if (!window.define) {
                 // Arabic, Hebrew, Farsi, Pashto, Urdu
                 return rtlList.indexOf(language) >= 0 ? 'rtl' : 'ltr';
             },
+            getLocaleSrc: get_locale_src,
             getLocale: get_locale,
             languages: languages
         };
