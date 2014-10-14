@@ -17,7 +17,8 @@ function mockSiteConfigRequestSuccess(data) {
 
 test('sets waffle switches', function(done, fail) {
     var settings = {
-        api_cdn_whitelist: {}
+        api_cdn_whitelist: {},
+        switches: []
     };
     mock(
         'site_config',
@@ -43,9 +44,39 @@ test('sets waffle switches', function(done, fail) {
     );
 });
 
+test('sets waffle switches object', function(done, fail) {
+    var settings = {
+        api_cdn_whitelist: {},
+        switches: []
+    };
+    mock(
+        'site_config',
+        {
+            requests: {
+                get: mockSiteConfigRequestSuccess({
+                    waffle: {
+                        // Not an array, old-style response, will be ignored.
+                        switches: {'dummy-switch': {'somedata': 1}}
+                    }
+                }
+            )},
+            settings: settings,
+        },
+        function(siteConfig) {
+            var promise = siteConfig.promise;
+            promise.then(function() {
+                eq_(settings.switches.length, 0);
+                done();
+            });
+        },
+        fail
+    );
+});
+
 test('sets fxa auth', function(done, fail) {
     var settings = {
-        api_cdn_whitelist: {}
+        api_cdn_whitelist: {},
+        switches: []
     };
     mock(
         'site_config',
@@ -77,7 +108,8 @@ test('sets fxa auth', function(done, fail) {
 
 test('handles no fxa auth data', function(done, fail) {
     var settings = {
-        api_cdn_whitelist: {}
+        api_cdn_whitelist: {},
+        switches: []
     };
     mock(
         'site_config',

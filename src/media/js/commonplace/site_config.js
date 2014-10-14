@@ -2,8 +2,8 @@
     Get Zamboni site configuration data, including waffle switches and FXA
     info.
 */
-define('site_config', ['defer', 'requests', 'settings', 'urls'],
-    function(defer, requests, settings, urls) {
+define('site_config', ['defer', 'requests', 'settings', 'underscore', 'urls'],
+    function(defer, requests, settings, _, urls) {
 
     function fetch() {
         var def = defer.Deferred();
@@ -12,7 +12,9 @@ define('site_config', ['defer', 'requests', 'settings', 'urls'],
                 settings.fxa_auth_url = data.fxa.fxa_auth_url;
                 settings.fxa_auth_state = data.fxa.fxa_auth_state;
             }
-            settings.switches = data.waffle.switches || [];
+            if (data.waffle.switches && _.isArray(data.waffle.switches)) {
+                settings.switches = data.waffle.switches;
+            }
             def.resolve(data);
         }).always(function() {
             def.resolve();
