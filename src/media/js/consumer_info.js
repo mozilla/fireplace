@@ -10,10 +10,9 @@ define('consumer_info',
     function(defer, log, mobilenetwork, requests, settings, urls, user,
              user_helpers) {
     var logger = log('consumer_info');
+    var already_had_region = !!user_helpers.region(undefined, true);
 
     function handleConsumerInfo(data) {
-        var already_had_region = !!user_helpers.region(undefined, true);
-
         if (!already_had_region) {
             // If we didn't already have a region, then the region returned
             // by consumerInfo is coming from geoip, store it.
@@ -24,18 +23,31 @@ define('consumer_info',
         }
     }
 
-    function fetch() {
+    function fetch(force) {
         var def = defer.Deferred();
 
-        requests.get(urls.api.url('consumer_info')).then(handleConsumerInfo,
-            function() {
-                logger.error('Failed to retrieve consumer info.');
-                user_helpers.set_region_geoip('restofworld');
-            })
-        .always(function() {
+        // We have to call the API when:
+        // - User is logged out and no SIM (we need the region)
+        // - User is logged out and SIM doesn't provide a known region
+        //   (again, we need the region)
+        // - User logged in (we need the installed/purchased/developed apps
+        //   list, possibly region as well)
+        // - The caller is forcing us
+        if (force || !already_had_region || user.logged_in()) {
+            requests.get(urls.api.url('consumer_info')).then(
+                handleConsumerInfo,
+                function() {
+                    logger.error('Failed to retrieve consumer info.');
+                    user_helpers.set_region_geoip('restofworld');
+                })
+            .always(function() {
+                def.resolve();
+            });
+        } else {
+            // We don't need to call consumer_info, we already have everything
+            // we need. Immediately resolve the deferred.
             def.resolve();
-        });
-
+        }
         return def.promise();
     }
 

@@ -32,6 +32,7 @@ test('consumer_info automatically set region when required', function(done, fail
     mock(
         'consumer_info',
         {
+            mobilenetwork: {},
             requests: {
                 get: mockConsumerInfoRequestSuccess({
                     region: 'nowhere',
@@ -39,7 +40,6 @@ test('consumer_info automatically set region when required', function(done, fail
             )},
             user: {logged_in: function() { return false; }},
             settings: settings,
-            mobilenetwork: {},
             user_helpers: {
                 region: function(x, y) { return ''; },
                 carrier: function() { return ''; },
@@ -65,10 +65,10 @@ test('consumer_info automatically does not reset region if already present', fun
     mock(
         'consumer_info',
         {
+            mobilenetwork: {},
             requests: {get: mockConsumerInfoRequestSuccess({region: 'nowhere'})},
             user: {logged_in: function() { return false; }},
             settings: settings,
-            mobilenetwork: {},
             user_helpers: {
                 region: function(x, y) { return 'previous_region'; },
                 carrier: function() { return ''; },
@@ -95,6 +95,7 @@ test('consumer_info automatically sets region to restofworld if API call fails',
     mock(
         'consumer_info',
         {
+            mobilenetwork: {},
             requests: {get: mockConsumerInfoRequestFailure()},
             settings: settings,
             user_helpers: {
@@ -107,6 +108,78 @@ test('consumer_info automatically sets region to restofworld if API call fails',
             var promise = consumer_info.promise;
             promise.then(function() {
                 eq_(geoip_region, 'restofworld');
+                done();
+            });
+        },
+        fail
+    );
+});
+
+test('consumer_info API is not called if unnecessary', function(done, fail) {
+    var geoip_region = null;
+    var settings = {
+        api_cdn_whitelist: {}
+    };
+    mock(
+        'consumer_info',
+        {
+            mobilenetwork: {},
+            requests: {get: function(url) { fail('We tried to make a request to ' + url); return defer.Deferred(); }},
+            settings: settings,
+            user: {logged_in: function() { return false; }},
+            user_helpers: {
+                region: function(x, y) { return 'fr'; },
+                carrier: function() { return ''; },
+                set_region_geoip: function() { fail(); }
+            }
+        },
+        function(consumer_info) {
+            consumer_info.promise.then(function() {
+                done();
+            });
+        },
+        fail
+    );
+});
+
+test('consumer_info API is called if user is logged in', function(done, fail) {
+    var geoip_region = null;
+    var settings = {
+        api_cdn_whitelist: {}
+    };
+    var apps = {
+        developed: [41, 42],
+        installed: [43, 44, 45],
+        purchased: [46, 47, 48, 49]
+    };
+    mock(
+        'consumer_info',
+        {
+            mobilenetwork: {},
+            requests: {
+                get: mockConsumerInfoRequestSuccess({
+                    region: 'faraway',
+                    apps: apps
+                }
+            )},
+            settings: settings,
+            user: {
+                get_token: function() { return 'faketoken'; },
+                logged_in: function() { return true; },
+                update_apps: function(incoming_apps) {
+                    eq_(incoming_apps.developed, apps.developed);
+                    eq_(incoming_apps.installed, apps.installed);
+                    eq_(incoming_apps.purchased, apps.purchased);
+                }
+            },
+            user_helpers: {
+                region: function(x, y) { return 'fr'; },
+                carrier: function() { return ''; },
+                set_region_geoip: function() { fail(); }  // We already had a region.
+            }
+        },
+        function(consumer_info) {
+            consumer_info.promise.then(function() {
                 done();
             });
         },
