@@ -110,7 +110,7 @@ define('login',
                 if (!msg.data || !msg.data.auth_code || msg.origin !== settings.api_url) {
                     return;
                 }
-                handle_fxa_login(ms.data.auth_code);
+                handle_fxa_login(msg.data.auth_code);
             }, false);
 
             var fxa_url;
