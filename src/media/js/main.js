@@ -85,6 +85,8 @@ function(_) {
 
     console.log('Dependencies resolved, starting init');
 
+    console.log('Package version: ' + (settings.package_version || 'N/A'));
+
     // Jank hack because Persona doesn't allow scripts in the doc iframe.
     // Please just delete it when they don't do that anymore.
     // Note: If this list changes - please change it in webpay too or let #payments know.
