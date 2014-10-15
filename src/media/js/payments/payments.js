@@ -1,6 +1,6 @@
 define('payments/payments',
-    ['capabilities', 'defer', 'l10n', 'log', 'notification', 'requests', 'settings', 'urls', 'z'],
-    function(caps, defer, l10n, log, notification, requests, settings, urls, z) {
+    ['capabilities', 'defer', 'l10n', 'log', 'notification', 'requests', 'settings', 'storage', 'urls', 'z'],
+    function(caps, defer, l10n, log, notification, requests, settings, storage, urls, z) {
 
     var console = log('payments');
 
@@ -72,7 +72,7 @@ define('payments/payments',
                 console.log('Calling mozPay with JWT: ', result.webpayJWT);
                 var request;
                 if (caps.navPay && !settings.simulate_nav_pay) {
-                    request = navigator.mozPay([result.webpayJWT]);
+                    request = navigator.mozPay([btoa(storage.getItem('user')) + '|' + result.webpayJWT]);
                 } else {
                     request = navigator.fakeMozPay([result.webpayJWT]);
                 }
