@@ -4,7 +4,6 @@
  * Style guide: http://pwalm.github.io/marketplace-style-guides/buttons.html
  *
  * <elm class="button">Normal Button</elm>
- * <elm class="button btn">Primary Call to Action</elm>
  * <elm class="button action">Positive Action like Yes or Launch</elm>
  * <elm class="button alt">Alternate Style - External Links?</elm>
  * <elm class="button cancel">Negative Action like Cancel or Delete</elm>
@@ -15,7 +14,8 @@
  *
  */
 
-// TODO: Edit pencil icon.
+// Don't (line-height: height + $shadow-size) if the box-shadow goes away.
+// It's only there for perceived vertical alignment.
 
 // Default state.
 $btn = #4CB1FF; // blue
@@ -59,20 +59,33 @@ $btn-install-width = 90px;
 // Install button font-size.
 $install-font-size = 12px;
 
+// Button box-shadow size.
+$shadow-size = 2px;
+
+commonprops($colour, $shadow) {
+    background: $colour;
+
+    if ($shadow == 'none') {
+        box-shadow: none;
+    } else {
+        box-shadow: 0 $shadow-size $shadow;
+    }
+}
+
 .button {
-    background: $btn;
     border: 0;
     border-radius: 5px;
-    box-shadow: 0 2px $btn-act;
     color: #fff;
+    commonprops($btn, $btn-act);
     display: inline-block;
     ellipsis();
     font: 400 $font-size/$medium $open-stack;
     height: $medium;
-    white-space: nowrap;
+    line-height: $medium + $shadow-size;
     padding: 0 $h-padding;
     text-align: center;
     text-decoration: none;
+    white-space: nowrap;
 
     &:focus, &:hover, &:active {
         text-decoration: none;
@@ -81,68 +94,58 @@ $install-font-size = 12px;
         background: $btn-hvr;
     }
     &:active {
-        background: $btn-act;
-        box-shadow: none;
-    }
-    &.btn {
-        background: $btn;
-        box-shadow: 0 2px $btn-act;
-
-        &:hover, &:focus { background: $btn-hvr; }
-        &:active { background: $btn-act; }
+        commonprops($btn-act, 'none');
     }
     &.action {
-        background: $action;
-        box-shadow: 0 2px $action-act;
+        commonprops($action, $action-act);
 
         &:hover, &:focus { background: $action-hvr; }
         &:active { background: $action-act; }
     }
     &.alt {
-        background: $alt;
-        box-shadow: 0 2px $alt-act;
+        commonprops($alt, $alt-act);
 
         &:hover, &:focus { background: $alt-hvr; }
         &:active { background: $alt-act; }
     }
     &.cancel {
-        background: $cancel;
-        box-shadow: 0 2px $cancel-act;
+        commonprops($cancel, $cancel-act);
 
         &:hover, &:focus { background: $cancel-hvr; }
         &:active { background: $cancel-act; }
     }
     &.support {
-        background: $support;
-        box-shadow: 0 2px $support-act;
+        commonprops($support, $support-act);
 
         &:hover, &:focus { background: $support-hvr; }
         &:active { background: $support-act; }
     }
     &.disabled,
     &[disabled] {
-        background: $disabled;
-        box-shadow: none;
+        commonprops($disabled, 'none');
     }
-    &[disabled], &.disabled,
-    &.purchasing, &.purchased,
-    &.installing, &.installed {
+    &[disabled],
+    &.disabled,
+    &.purchasing,
+    &.installing {
         pointer-events: none;
     }
-    &.installed, &.purchased, &.incompatible {
+    &.installed,
+    &.purchased,
+    &.incompatible {
         pointer-events: auto;
     }
     &.t, &.product {
         height: $tiny;
-        line-height: $tiny;
+        line-height: $tiny + $shadow-size;
     }
     &.s {
         height: $small;
-        line-height: $small;
+        line-height: $small + $shadow-size;
     }
     &.l {
         height: $large;
-        line-height: $large;
+        line-height: $large + $shadow-size;
     }
 
     // Waiting/Loading spinner.
@@ -190,8 +193,8 @@ $install-font-size = 12px;
 // Install buttons.
 .mkt-tile .install {
     // Unset many .button properties.
-    bottom: -3px; // To compensate for the larger click target. Calculation: (24-34)/2 + 2
-    box-shadow: none;
+    bottom: -2px; // To compensate for the larger click target. Calculation: (24-34)/2 + $shadow-size
+    commonprops(transparent, 'none');
     cursor: pointer;
     font-size: $install-font-size;
     height: 34px; // Actual click-target height. Queen Krupa request.
@@ -200,18 +203,15 @@ $install-font-size = 12px;
     position: absolute;
     right: 0;
 
-    &.install {
-        background: transparent;
-    }
     em {
         // This em becomes the visual button.
-        background: $btn;
         border-radius: 5px;
-        box-shadow: 0 2px $btn-act;
+        commonprops($btn, $btn-act);
         display: inline-block;
         ellipsis();
         font-style: normal;
-        height: 24px;
+        height: $tiny;
+        line-height: $tiny + $shadow-size;
         padding: 0 $h-padding;
         vertical-align: bottom;
         width: $btn-install-width;
@@ -221,11 +221,10 @@ $install-font-size = 12px;
     }
     // Accomodate a better vertical align since this state has no box-shadow.
     &[disabled] {
-        bottom: -5px;
+        bottom: -4px;
 
         em {
-            background: $disabled;
-            box-shadow: none;
+            commonprops($disabled, 'none')
         }
         &:hover, &:active {
             em {
@@ -237,12 +236,11 @@ $install-font-size = 12px;
         background: $btn-hvr;
     }
     &:active em {
-        background: $btn-act;
-        box-shadow: none;
+        commonprops($btn-act, 'none');
     }
     &.spinning, &.purchasing {
         background: $btn-act;
-        bottom: 0;
+        bottom: 1px;
         height: $tiny;
 
         em {
@@ -257,8 +255,7 @@ $install-font-size = 12px;
 // Install button launch state.
 .mkt-tile .launch {
     em {
-        background: $action;
-        box-shadow: 0 2px $action-act;
+        commonprops($action, $action-act);
     }
     &:hover em {
         background: $action-hvr;
