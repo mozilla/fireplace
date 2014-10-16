@@ -1,7 +1,7 @@
 <ol class="cat-overlay c">
   {% for cat in categories %}
     <li>
-      <a class="cat-{{ cat.slug }} cur-cat" title="{{ cat.name }}" href="{{ url('category', [cat.slug]) }}">
+      <a class="cat-{{ cat.slug }} cat-icon cat-hovercat" title="{{ cat.name }}" href="{{ url('category', [cat.slug]) }}">
          {{ cat.name }}
       </a>
     </li>

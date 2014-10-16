@@ -1,55 +1,44 @@
 // Styles for the categories desktop overlay.
 @import "lib";
 
+.cat-hovercat {
+    // Do not use `border-box` so we can cover the borders via padding.
+    box-sizing: content-box;
+    color: $dark-gray;
+    display: block;
+    ellipsis();
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+    text-align: left;
+    text-indent: 60px;
+    vertical-align: middle;
+    width: 100%;
+    z-index: 1;
+
+    &:hover {
+        background-color: $breezy-blue;
+        color: $white;
+
+        // To keep the text at the same vertical position.
+        line-height: 52px;
+
+        // To cover the borders.
+        padding: 0 1px 1px 0;
+        top: -1px;
+
+        // To keep the icon in the same place
+        // (to account for the -1px shift to cover the border).
+        &:before {
+            top: 11px;
+        }
+    }
+}
+
 .cat-overlay {
     display: none;
     padding: 10px;
     width: 0;  // Don't affect `fit-content` on mobile.
-
-    a {
-        // Do not use `border-box` so we can cover the borders via padding.
-        box-sizing: content-box;
-        color: $dark-gray;
-        display: block;
-        ellipsis();
-        height: 50px;
-        line-height: 50px;
-        position: relative;
-        text-align: left;
-        text-indent: 60px;
-        vertical-align: middle;
-        width: 100%;
-        z-index: 1;
-
-        &:before {
-            background: url(../img/pretty/cats-sprite.svg) no-repeat;
-            background-size: 90px auto;
-            content: "";
-            height: 30px;
-            left: 15px;
-            position: absolute;
-            top: 10px;
-            width: 30px;
-        }
-
-        &:hover {
-            background-color: $breezy-blue;
-            color: $white;
-
-            // To keep the text at the same vertical position.
-            line-height: 52px;
-
-            // To cover the borders.
-            padding: 0 1px 1px 0;
-            top: -1px;
-
-            // To keep the icon in the same place
-            // (to account for the -1px shift to cover the border).
-            &:before {
-                top: 11px;
-            }
-        }
-    }
 
     li {
         border-top: 1px solid $light-gray;
@@ -123,6 +112,17 @@
 }
 
 @media $at-least-desktop {
+    .tab-categories:hover {
+        .hovercats,
+        .cat-overlay {
+            display: block;
+        }
+    }
+
+    .cat-overlay {
+        width: 500px;
+    }
+
     .hovercats {
         background: $white;
         border-radius: 5px;
@@ -133,10 +133,6 @@
         top: 48px;
         transform(unquote('translate(-90%,0)'));
 
-        &.active, &.active .cat-overlay {
-            display: block;
-            width: 500px;
-        }
         &:after {
             border: 10px solid transparent;
             border-bottom: 10px solid #fff;

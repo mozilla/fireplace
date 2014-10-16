@@ -7,36 +7,32 @@ $cat-icon-size-desktop = 60px;
 // One day if background-position-x/y works we can
 // factor a lot of this out.
 sprite-background-position($vertical-pos) {
-    &:before {
-        background-position: 50% $vertical-pos;
-    }
-    &:focus:before,
-    &:hover:before {
-        background-position: 100% $vertical-pos;
-    }
-    // Needed for the mobile screenwidth to have
-    // grey icons in the drop-down rather than blue.
-    &.cur-cat:focus:before,
-    &.cur-cat:hover:before,
-    &.cur-cat:before {
-        background-position: 0 $vertical-pos;
-    }
-    &.mobile-cat-header:focus:before,
-    &.mobile-cat-header:hover:before,
+    // White.
+    &.cat-hovercat:hover:before,
     &.mobile-cat-header:before {
         background-position: 100% $vertical-pos;
     }
-    &.desktop-cat-header:focus:before,
-    &.desktop-cat-header:hover:before,
+
+    // Blue.
+    // The icons in category drop-down menu.
+    // The icon in desktop header on cat landing.
+    // The icons on `/categories` index.
+    &.cat-hovercat:before,
+    &:before,
     &.desktop-cat-header:before {
         background-position: 0 $vertical-pos;
     }
+
+    // Gray.
+    // The icon in mobile header on cat landing.
+    &.mobile-cat-header:before {
+        background-position: 50% $vertical-pos;
+    }
 }
 
-.cat-icon,
-.cat-icon-a {
+.cat-icon {
     &:before {
-        // Default to 'all' icon
+        // Default to 'all' icon.
         background: url(../img/pretty/cats-sprite.svg) no-repeat 50% 93.8%;
         background-size: 3*$cat-icon-size-default;
         content: '';
@@ -47,6 +43,20 @@ sprite-background-position($vertical-pos) {
         width: $cat-icon-size-default;
     }
     sprite-background-position(93.8%);
+
+    // Other styles for `.cat-hovercat` are in `category-dropdown-desktop.styl`.
+    &.cat-hovercat {
+        &:before {
+            background: url(../img/pretty/cats-sprite.svg) no-repeat;
+            background-size: 90px auto;
+            content: "";
+            height: 30px;
+            left: 15px;
+            position: absolute;
+            top: 10px;
+            width: 30px;
+        }
+    }
 }
 
 .cat-entertainment,
