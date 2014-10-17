@@ -166,10 +166,10 @@ define('navbar',
         // Check that the element before the one that goes off the screen is
         // clickable.
         var leftEdgeOffset = $el.offset().left;
-        if (leftEdgeOffset > windowWidth - NAV_LINK_VISIBLE_WIDTH) {
+        if (leftEdgeOffset > (windowWidth - NAV_LINK_VISIBLE_WIDTH)) {
             while (leftEdgeOffset > (windowWidth - NAV_LINK_VISIBLE_WIDTH)) {
                 var fontSize = parseInt($el.css('font-size'), 10);
-                $navbar.find('li').css('font-size', fontSize - 0.5 + 'px');
+                $navbar.find('li').css('font-size', fontSize - 1 + 'px');
                 leftEdgeOffset = $el.offset().left;
             }
         }
@@ -204,9 +204,11 @@ define('navbar',
         var stack = navigation.stack();
         $('#site-nav').html(
             nunjucks.env.render('nav.html', {
-                is_settings: z.body.attr('data-page-type').indexOf('settings') !== -1,
+                is_settings: z.body.attr('data-page-type') &&
+                             z.body.attr('data-page-type').indexOf('settings') !== -1,
                 logged_in: user.logged_in(),
-                recommendations: settings.switches.indexOf('recommendations') !== -1,
+                recommendations: settings.switches &&
+                                 settings.switches.indexOf('recommendations') !== -1,
                 path: stack[stack.length - 1].path,
                 z: z
             })

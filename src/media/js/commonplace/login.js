@@ -43,6 +43,42 @@ define('login',
         }
     }
 
+    function logIn(data) {
+        var should_reload = !user.logged_in();
+
+        user.set_token(data.token, data.settings);
+        user.update_permissions(data.permissions);
+        user.update_apps(data.apps);
+        console.log('Login succeeded, preparing the app');
+
+        z.body.addClass('logged-in');
+        $('.loading-submit').removeClass('loading-submit');
+        z.page.trigger('reload_chrome').trigger('logged_in');
+
+        function resolve_pending() {
+            _.invoke(pending_logins, 'resolve');
+            pending_logins = [];
+        }
+
+        if (should_reload && !z.context.dont_reload_on_login) {
+            require('views').reload().done(function() {
+                resolve_pending();
+                signInNotification();
+            });
+        } else {
+            console.log('Reload on login aborted by current view');
+        }
+    }
+
+    function logInFailed(message) {
+        message = message || gettext('Sign in failed');
+        notification.notification({message: message});
+        $('.loading-submit').removeClass('loading-submit');
+        z.page.trigger('login_fail');
+        _.invoke(pending_logins, 'reject');
+        pending_logins = [];
+    }
+
     z.body.on('click', '.persona', function(e) {
         e.preventDefault();
 
@@ -174,33 +210,9 @@ define('login',
 
         z.page.trigger('before_login');
 
-        requests.post(urls.api.url('login'), data).done(function(data) {
-            var should_reload = !user.logged_in();
-
-            user.set_token(data.token, data.settings);
-            user.update_permissions(data.permissions);
-            user.update_apps(data.apps);
-            console.log('Login succeeded, preparing the app');
-
-            z.body.addClass('logged-in');
-            $('.loading-submit').removeClass('loading-submit');
-            z.page.trigger('reload_chrome').trigger('logged_in');
-
-            function resolve_pending() {
-                _.invoke(pending_logins, 'resolve');
-                pending_logins = [];
-            }
-
-            if (should_reload && !z.context.dont_reload_on_login) {
-                require('views').reload().done(function() {
-                    resolve_pending();
-                    signInNotification();
-                });
-            } else {
-                console.log('Reload on login aborted by current view');
-            }
-
-        }).fail(function(jqXHR, textStatus, error) {
+        requests.post(urls.api.url('login'), data)
+                .done(logIn)
+                .fail(function(jqXHR, textStatus, error) {
             console.warn('Assertion verification failed!', textStatus, error);
 
             var err = jqXHR.responseText;
@@ -212,12 +224,7 @@ define('login',
             if (jqXHR.status != 200) {
                 err = gettext('Persona login failed. A server error was encountered.');
             }
-            $('.loading-submit').removeClass('loading-submit');
-            notification.notification({message: err});
-
-            z.page.trigger('login_fail');
-            _.invoke(pending_logins, 'reject');
-            pending_logins = [];
+            logInFailed(err);
         });
     }
 
@@ -318,16 +325,10 @@ define('login',
         };
         z.page.trigger('before_login');
         requests.post(urls.api.url('fxa-login'), loginData)
-                .done(function(data) {
-            user.set_token(data.token, data.settings);
-            user.update_permissions(data.permissions);
-            user.update_apps(data.apps);
-            console.log('Login succeeded, preparing the app');
-            z.body.addClass('logged-in');
-            $('.loading-submit').removeClass('loading-submit');
-            z.page.trigger('reload_chrome').trigger('logged_in');
-            _.invoke(pending_logins, 'resolve');
-            pending_logins = [];
+                .done(logIn)
+                .fail(function(jqXHR, textStatus, error) {
+            console.warn('FxA login failed', jqXHR, textStatus, error);
+            logInFailed();
         });
     }
 

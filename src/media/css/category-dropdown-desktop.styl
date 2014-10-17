@@ -3,11 +3,56 @@
 
 .cat-overlay {
     display: none;
-    padding: 10px 20px;
-    width: 0;  // Don't affect fit-content on mobile.
+    padding: 10px;
+    width: 0;  // Don't affect `fit-content` on mobile.
+
+    a {
+        // Do not use `border-box` so we can cover the borders via padding.
+        box-sizing: content-box;
+        color: $dark-gray;
+        display: block;
+        ellipsis();
+        height: 50px;
+        line-height: 50px;
+        position: relative;
+        text-align: left;
+        text-indent: 60px;
+        vertical-align: middle;
+        width: 100%;
+        z-index: 1;
+
+        &:before {
+            background: url(../img/pretty/cats-sprite.svg) no-repeat;
+            background-size: 90px auto;
+            content: "";
+            height: 30px;
+            left: 15px;
+            position: absolute;
+            top: 10px;
+            width: 30px;
+        }
+
+        &:hover {
+            background-color: $breezy-blue;
+            color: $white;
+
+            // To keep the text at the same vertical position.
+            line-height: 52px;
+
+            // To cover the borders.
+            padding: 0 1px 1px 0;
+            top: -1px;
+
+            // To keep the icon in the same place
+            // (to account for the -1px shift to cover the border).
+            &:before {
+                top: 11px;
+            }
+        }
+    }
 
     li {
-        border-bottom: 1px solid $light-gray;
+        border-top: 1px solid $light-gray;
         border-right: 1px solid $light-gray;
         float: left;
         font-size: 15px;
@@ -16,60 +61,63 @@
         text-transform: uppercase;
         width: 50%;
 
+        // Children on the right side. 少しこわいい
         &:nth-child(2n) {
             border-right: 0;
 
-            a {
-                padding-left: 50px;
+            a:hover {
+                // To cover the border.
+                left: -1px;
 
+                // To keep the text at the same horizontal position.
+                padding-left: 1px;
+
+                // To keep the icon in the same place
+                // (to account for the -1px shift to cover the border).
                 &:before {
-                    left: 10px;
-                }
-                &:hover {
-                    margin: -1px -20px 0 0;
-                    padding-left: 50px;
+                    left: 16px;
                 }
             }
         }
+
+        // First two children. 少しこわいい
+        &:nth-child(-n + 2) {
+            border-top: 0;
+
+            a:hover {
+                // To keep the text at the same vertical position.
+                line-height: 51px;
+
+                // There is no border to cover.
+                top: 0;
+
+                // To keep the icon in the same place
+                // (to account for the -1px shift to cover the border).
+                &:before {
+                    top: 10px;
+                }
+            }
+        }
+
         // Last two children. 少しこわいい
         &:nth-last-child(-n + 2) {
-            border-bottom: 1px solid $white;
+            a:hover {
+                padding-bottom: 0;
+            }
         }
-    }
-    a {
-        color: $dark-gray;
-        display: inline-block;
-        ellipsis();
-        height: 50px;
-        line-height: 50px;
-        outline: 0;
-        padding: 0 0 0 40px;
-        text-align: left;
-        vertical-align: middle;
-        width: 230px;
 
-        &:before {
-            background-image: url(../img/pretty/cats-sprite.svg);
-            background-repeat: no-repeat;
-            background-size: 90px auto;
-            content: "";
-            height: 30px;
-            left: 0;
-            position: absolute;
-            top: 10px;
-            width: 30px;
+        // Smooth corners for the ones by the edge.
+        &:first-child a {
+            border-radius: 5px 0 0;
         }
-        &:hover {
-            background-color: $breezy-blue;
-            background-position: inherit;
-            color: $white;
-            height: 51px;
-            line-height: 51px;
-            margin-left: -20px;
-            margin-top: -1px;
-            padding-left: 60px;
-            text-decoration: none;
-            width: 250px;
+        &:nth-child(2) a {
+            border-radius: 0 5px 0 0;
+        }
+        &:nth-last-child(2) a {
+            border-radius: 0 0 0 5px;
+        }
+        &:last-child a {
+            border-radius: 0 0 5px;
         }
     }
 }
@@ -80,9 +128,10 @@
         border-radius: 5px;
         box-shadow: 0 2px 1px -1px $cement-gray;  // Bottom box-shadow.
         display: none;
-        left: -355px;
+        left: 90%;
         position: absolute;
-        top: 45px;
+        top: 48px;
+        transform(unquote('translate(-90%,0)'));
 
         &.active, &.active .cat-overlay {
             display: block;
@@ -93,8 +142,8 @@
             border-bottom: 10px solid #fff;
             content: "";
             height: 0;
-            left: 100%;
-            margin-left: -65px;
+            left: 75%;
+            margin-left: -10px;
             position: absolute;
             top: -20px;
             width: 0;
@@ -102,19 +151,24 @@
     }
 }
 
-@media $wider-desktop {
+@media (max-width: 800px) {
     .hovercats {
-        left: -162px;
+        left: 100%;
+        transform(unquote('translate(-100%,0)'));
 
         &:after {
-            left: 50%;
-            margin-left: -10px;
+            left: 80%;
         }
     }
 }
 
-@media $retina-desktop {
-    .cat-overlay a:hover {
-        margin-top: -2px;
+@media $wider-desktop {
+    .hovercats {
+        left: 50%;
+        transform(unquote('translate(-50%,0)'));
+
+        &:after {
+            left: 50%;
+        }
     }
 }
