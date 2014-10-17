@@ -4,10 +4,10 @@
 .cat-overlay {
     display: none;
     padding: 10px;
-    width: 0;  // Don't affect fit-content on mobile.
+    width: 0;  // Don't affect `fit-content` on mobile.
 
     a {
-        // Do not use `border-box` so the padding will cover the borders.
+        // Do not use `border-box` so we can cover the borders via padding.
         box-sizing: content-box;
         color: $dark-gray;
         display: block;
@@ -31,14 +31,23 @@
             top: 10px;
             width: 30px;
         }
+
         &:hover {
             background-color: $breezy-blue;
             color: $white;
+
             // To keep the text at the same vertical position.
             line-height: 52px;
+
             // To cover the borders.
             padding: 0 1px 1px 0;
             top: -1px;
+
+            // To keep the icon in the same place
+            // (to account for the -1px shift to cover the border).
+            &:before {
+                top: 11px;
+            }
         }
     }
 
@@ -59,8 +68,15 @@
             a:hover {
                 // To cover the border.
                 left: -1px;
+
                 // To keep the text at the same horizontal position.
                 padding-left: 1px;
+
+                // To keep the icon in the same place
+                // (to account for the -1px shift to cover the border).
+                &:before {
+                    left: 16px;
+                }
             }
         }
 
@@ -71,8 +87,15 @@
             a:hover {
                 // To keep the text at the same vertical position.
                 line-height: 51px;
+
                 // There is no border to cover.
                 top: 0;
+
+                // To keep the icon in the same place
+                // (to account for the -1px shift to cover the border).
+                &:before {
+                    top: 10px;
+                }
             }
         }
 
@@ -85,7 +108,7 @@
 
         // Smooth corners for the ones by the edge.
         &:first-child a {
-            border-radius: 5px 0 0 0;
+            border-radius: 5px 0 0;
         }
         &:nth-child(2) a {
             border-radius: 0 5px 0 0;
