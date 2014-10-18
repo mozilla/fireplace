@@ -142,13 +142,6 @@ define('login',
             console.log('Not allowing unverified emails');
         }
         if (capabilities.fallbackFxA()) {
-            window.addEventListener('message', function (msg) {
-                if (!msg.data || !msg.data.auth_code || msg.origin !== settings.api_url) {
-                    return;
-                }
-                handle_fxa_login(msg.data.auth_code);
-            }, false);
-
             var fxa_url;
             if (user.canMigrate()) {
                 fxa_url = '/fxa-migration';
@@ -294,6 +287,16 @@ define('login',
         return persona_loaded;
     }
 
+    function registerFxAPostMessageHandler() {
+        window.addEventListener('message', function (msg) {
+            if (!msg.data || !msg.data.auth_code ||
+                    msg.origin !== settings.api_url) {
+                return;
+            }
+            handle_fxa_login(msg.data.auth_code);
+        });
+    }
+
     siteConfig.promise.done(function(data) {
         if (!capabilities.fallbackFxA()) {
             // Try to load persona. This is used by persona native/fallback
@@ -306,6 +309,9 @@ define('login',
             // This lets us change the cursor for the "Sign in" link.
             persona_def.reject();
             z.body.addClass('persona-loaded');
+            // Register the "message" handler here to avoid it being registered
+            // multiple times.
+            registerFxAPostMessageHandler();
         }
     });
 
