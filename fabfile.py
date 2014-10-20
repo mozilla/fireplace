@@ -36,6 +36,7 @@ def update():
         local('npm install')
         local('node_modules/.bin/bower install --allow-root')
         local('make update')
+        local('cp src/media/js/settings_local_hosted.js src/media/js/settings_local.js')
 
         if settings.ZAMBONI_DIR:
             package_update()
