@@ -33,6 +33,7 @@ def pre_update(ref):
 @task
 def update():
     with lcd(FIREPLACE):
+        local('rm -rf node_modules')
         local('npm update')
         local('node_modules/.bin/bower update --allow-root')
         local('make update')
