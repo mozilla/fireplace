@@ -256,7 +256,8 @@ body {
 
         &.loading-submit {
             box-shadow: none;
-            hidetext();
+            // Make text transparent to keep the width the same.
+            color: transparent;
             outline: 0;
             spinner('loading');
             margin-left: 15px;
