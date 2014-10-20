@@ -10,15 +10,14 @@ env.key_filename = settings.SSH_KEY
 fabdeploytools.envs.loadenv(settings.CLUSTER)
 
 ROOT, FIREPLACE = helpers.get_app_dirs(__file__)
-COMMONPLACE = '%s/node_modules/commonplace/bin' % FIREPLACE
-GRUNT = '%s/node_modules/grunt-cli/bin' % FIREPLACE
+COMMONPLACE = '%s/node_modules/.bin/commonplace' % FIREPLACE
 
 if settings.ZAMBONI_DIR:
     ZAMBONI = '%s/zamboni' % settings.ZAMBONI_DIR
     ZAMBONI_PYTHON = '%s/venv/bin/python' % settings.ZAMBONI_DIR
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_local_mkt'
-os.environ["PATH"] += os.pathsep + os.pathsep.join([COMMONPLACE, GRUNT])
+os.environ["PATH"] += os.pathsep + os.pathsep.join([COMMONPLACE])
 
 PACKAGE_NAME = getattr(settings, 'PACKAGE_NAME', 'marketplace')
 
@@ -35,13 +34,13 @@ def pre_update(ref):
 def update():
     with lcd(FIREPLACE):
         local('npm install')
-        local('npm install --force commonplace@0.4.22')
+        local('make update')
 
         if settings.ZAMBONI_DIR:
             package_update()
 
-        local('commonplace includes')
-        local('commonplace langpacks')
+        local('make build')
+        local('node_modules/.bin/commonplace langpacks')
 
 
 @task

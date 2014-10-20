@@ -11,9 +11,6 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
   <dt><a href="https://github.com/mozilla/ashes">Ashes</a></dt>
   <dd>A secure debug information collection server</dd>
 
-  <dt>Damper</dt>
-  <dd>A node.js server that serves a browser-friendly version of Fireplace</dd>
-
   <dt><a href="https://github.com/mozilla/flue">Flue</a></dt>
   <dd>A mocked-out version of the Marketplace API.</dd>
 
@@ -29,8 +26,7 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
 ## Installation
 
 ```bash
-npm install
-npm install -g commonplace@0.4.22
+make init
 ```
 
 ### Flue
@@ -54,9 +50,10 @@ Please note that any file that belongs in the package must get added to `package
 
 ## Usage
 
-If you haven't already, run `commonplace init` to install local settings
-files. Some settings in `media/js/settings_local.js` will need to be updated
-if you plan to run a local setup, at minimum you should have something like this:
+If you haven't already, copy `media/js/settings_local.js.dist` to
+`media/js/settings_local.js`.  Some settings in `media/js/settings_local.js`
+will need to be updated if you plan to run a local setup, at minimum you should
+have something like this:
 
 ```js
 define('settings_local', [], function() {
@@ -67,18 +64,19 @@ define('settings_local', [], function() {
 });
 ```
 
-**Important**: Do not end the URLs in your settings file with slashes, doing so will lead to subtle and hard-to-debug errors.
+**Important**: Do not end the URLs in your settings file with slashes, doing so
+will lead to subtle and hard-to-debug errors.
 
-Once you have your settings file in place, to run Fireplace from the terminal, run the following command:
+Once you have your settings file in place, to run Fireplace from the terminal,
+run the following command:
 
 ```bash
-damper
+make init
+make serve
 ```
 
 This will start a local server and filesystem watcher on http://0.0.0.0:8675 by
 default.
-
-For more options, read the [damper documentation](https://github.com/mozilla/commonplace/wiki/Damper).
 
 For instructions on running Flue (the mock API server), please see the [Flue
 docs](https://github.com/mozilla/flue/blob/master/README.md).
@@ -87,34 +85,19 @@ docs](https://github.com/mozilla/flue/blob/master/README.md).
 ### Compiling
 
 To run the compilation process, which compiles templates, CSS, and locale
-files, run the following command:
+files for production, run the following command:
 
 ```bash
-commonplace compile
+make build
 ```
 
-
-### Compiling Includes
-
-If you need to compile include files (i.e.: for Space Heater or a less HTTP-
-heavy version of the project), run `commonplace includes`. This will generate
-two files:
+This will generate files including:
 
 ```
+src/media/templates.js
 src/media/js/include.js
 src/media/css/include.css
 ```
-
-The CSS in `include.css` is generated in the order in which CSS files are
-included in `src/index.html`.
-
-`include.js` uses a lightweight AMD loader (rather than require.js). This keeps
-file size down and also makes it possible to name-mangle internal keywords which
-otherwise wouldn't be minifiable. Note that the only safe globals are `require`
-and `define`---using any other non-browser globals will result in errors. I.e.:
-accessing `_` without requiring `'underscore'` will cause the code to fail. Also
-note that all modules must include a name as the first parameter.
-
 
 ## Localizing
 
