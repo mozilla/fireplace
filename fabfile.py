@@ -34,7 +34,7 @@ def pre_update(ref):
 def update():
     with lcd(FIREPLACE):
         local('npm install')
-        local('bower install')
+        local('node_modules/.bin/bower install')
         local('make update')
 
         if settings.ZAMBONI_DIR:
