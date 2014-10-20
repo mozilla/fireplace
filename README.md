@@ -29,25 +29,6 @@ Fireplace is a packaged version of the Firefox Marketplace's front-end.
 make init
 ```
 
-### Flue
-
-Comprehensive Flue documentation can be found in
-[Flue's README](https://github.com/mozilla/flue/blob/master/README.md).
-
-
-### Yule Log
-
-Docs can be found in
-[Yule Log's README](https://github.com/mozilla/fireplace/blob/master/yulelog/README.md) and in the [Marketplace Documentation](http://marketplace.readthedocs.org/en/latest/topics/package.html).
-
-
-### Packaged App
-
-Docs can be found in the [Marketplace Documentation](http://marketplace.readthedocs.org/en/latest/topics/package.html).
-
-Please note that any file that belongs in the package must get added to `package/files.txt`.
-
-
 ## Usage
 
 If you haven't already, copy `media/js/settings_local.js.dist` to
@@ -98,6 +79,25 @@ src/media/templates.js
 src/media/js/include.js
 src/media/css/include.css
 ```
+
+### Flue
+
+Comprehensive Flue documentation can be found in
+[Flue's README](https://github.com/mozilla/flue/blob/master/README.md).
+
+
+### Yule Log
+
+Docs can be found in
+[Yule Log's README](https://github.com/mozilla/fireplace/blob/master/yulelog/README.md) and in the [Marketplace Documentation](http://marketplace.readthedocs.org/en/latest/topics/package.html).
+
+
+### Packaged App
+
+Docs can be found in the [Marketplace Documentation](http://marketplace.readthedocs.org/en/latest/topics/package.html).
+
+Please note that any file that belongs in the package must get added to `package/files.txt`.
+
 
 ## Localizing
 
