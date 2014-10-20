@@ -55,7 +55,7 @@ package: clean build
 	@rm -rf src/downloads/screenshots/*
 	@rm -rf src/downloads/thumbnails/*
 	@mkdir -p TMP
-	@commonplace langpacks
+	@node_modules/.bin/commonplace langpacks
 	@cp -r src TMP/src
 
 	@mv TMP/src/media/js/settings_package_$(SERVER).js TMP/src/media/js/settings_local_package.js
