@@ -49,8 +49,10 @@ define('views/app',
         // There could be several fragment errors (one for each `defer` block
         // whose `request` failed). So we listen for just the first one and
         // add a one-time-use event listener each time this page is rendered.
-        z.page.one('fragment_load_failed', function(e) {
-            builder.z('title', gettext('Oh no!'));
+        z.page.one('fragment_load_failed', function(e, data) {
+            if (data.signature.id === 'app-data') {
+                builder.z('title', gettext('Oh no!'));
+            }
         });
 
         // This is fine; tracking_events depends on:
