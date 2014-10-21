@@ -1,4 +1,4 @@
-define('views/purchases', ['l10n', 'common/linefit', 'urls'],
+define('views/purchases', ['l10n', 'linefit', 'urls'],
     function(l10n, linefit, urls) {
     'use strict';
 

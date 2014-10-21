@@ -1,4 +1,4 @@
-define('common/linefit', ['jquery'], function($) {
+define('linefit', ['jquery'], function($) {
     $.fn.linefit = function(lines) {
         // This function shrinks text to fit on one line.
         var min_font_size = 7;

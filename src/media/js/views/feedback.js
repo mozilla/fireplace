@@ -1,5 +1,5 @@
 define('views/feedback',
-       ['buckets', 'capabilities', 'forms', 'l10n', 'common/linefit', 'notification', 'requests', 'templates', 'urls', 'utils', 'z'],
+       ['buckets', 'capabilities', 'forms', 'l10n', 'linefit', 'notification', 'requests', 'templates', 'urls', 'utils', 'z'],
        function(buckets, caps, forms, l10n, linefit, notification, requests, nunjucks, urls, utils, z) {
 
     var gettext = l10n.gettext;
