@@ -63,8 +63,14 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
         var queued;
 
         if (settings.potatolytics_enabled) {
-            // Add data to be sent to the queue.
-            potato_queue.push(data);
+            if (data[0] === settings.ua_tracking_id) {
+                // If data[0] is our tracking_id, then we need to ensure it's
+                // at the top of the queue - that's our initial setup call.
+                potato_queue.unshift(data);
+            } else {
+                // Otherwise, add data to be sent to the bottom of the queue.
+                potato_queue.push(data);
+            }
 
             if (potato_initialized) {
                 // If potatolytics is enabled, then we send what's in the queue,
