@@ -7,7 +7,7 @@ define('routes_api', [], function() {
         'category_landing': '/api/v2/fireplace/search/?cat={0}&cache=1&vary=0',
         'consumer_info': '/api/v2/fireplace/consumer-info/',
         'features': '/api/v2/apps/features/',
-        'feed': '/api/v2/feed/get/?cache=1&vary=0',
+        'feed': '/api/v2/feed/get/?cache=21600&vary=0',
         'feed-app': '/api/v2/fireplace/feed/apps/{0}/',
         'feed-brand': '/api/v2/fireplace/feed/brands/{0}/',
         'feed-collection': '/api/v2/fireplace/feed/collections/{0}/',
@@ -19,7 +19,7 @@ define('routes_api', [], function() {
         'login': '/api/v2/account/login/',
         'logout': '/api/v2/account/logout/',
         // New / Popular pages use a regular search API call, but we need
-        // device filtering depending on the page group, so we need alias.
+        // device filtering depending on the page group, so we need an alias.
         'new_popular_search': '/api/v2/fireplace/search/?cache=1&vary=0',
         'newsletter': '/api/v2/account/newsletter/',
         'payments_status': '/api/v2/webpay/status/{0}/',

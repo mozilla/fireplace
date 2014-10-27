@@ -49,7 +49,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // (key: URL; value: max-age in seconds, but it's unused at the moment).
         api_cdn_whitelist: {
             '/api/v2/fireplace/search/': 60 * 3,  // 3 minutes
-            '/api/v2/feed/get/': 60 * 30,  // 30 minutes
+            '/api/v2/feed/get/': 6 * 60 * 60,  // 6 hours
             '/api/v2/services/config/site/': 60 * 3  // 3 minutes
         },
 
