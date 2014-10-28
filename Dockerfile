@@ -10,4 +10,3 @@ RUN mkdir -p /srv/fireplace
 ADD package.json /srv/fireplace/package.json
 
 WORKDIR /srv/fireplace
-RUN make init
