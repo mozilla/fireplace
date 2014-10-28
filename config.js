@@ -34,7 +34,7 @@ var localConfig = extend(true, {
             }
         }
     },
-    PORT: 8675
+    PORT: process.env.PORT || 8675
 }, config);
 
 localConfig.inlineRequireConfig = config.makeInlineRequireConfig(
