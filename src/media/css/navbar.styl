@@ -266,20 +266,20 @@
 }
 
 // Navbar active states.
-activeNavLi() {
+[data-page-type~=homepage] [data-tab=homepage],
+[data-page-type~=new] [data-tab=new],
+[data-page-type~=popular] [data-tab=popular],
+[data-page-type~=recommended] [data-tab=recommended],
+[data-page-type~=categories] [data-tab=categories],
+[data-page-type~=purchases] [data-tab=purchases],
+[data-page-type~=feedback] [data-tab=feedback],
+[data-page-type="root settings"] [data-tab=settings] {
     > a {
-        color: $breezy-blue;
         border-bottom: 3px solid $breezy-blue;
+        color: $breezy-blue;
 
         &:hover {
             border-bottom-color: $breezy-blue;
         }
     }
 }
-[data-page-type="root settings"] [data-tab="settings"] {
-    activeNavLi();
-}
-for tab in homepage new popular recommended categories purchases feedback
-    [data-page-type~={tab}] [data-tab={tab}] {
-        activeNavLi();
-    }
