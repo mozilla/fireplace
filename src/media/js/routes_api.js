@@ -5,7 +5,9 @@ define('routes_api', [], function() {
         'app/privacy': '/api/v2/apps/app/{0}/privacy/?cache=1&vary=0',
         'app_abuse': '/api/v2/abuse/app/',
         'category_landing': '/api/v2/fireplace/search/?cat={0}&cache=1&vary=0',
-        'consumer_info': '/api/v2/fireplace/consumer-info/',
+        // consumer_info should be cached by the browser, never served by the
+        // CDN, we can keep the Vary header.
+        'consumer_info': '/api/v2/fireplace/consumer-info/?cache=1',
         'features': '/api/v2/apps/features/',
         'feed': '/api/v2/feed/get/?cache=21600&vary=0',
         'feed-app': '/api/v2/fireplace/feed/apps/{0}/',
@@ -33,6 +35,6 @@ define('routes_api', [], function() {
         'reviews': '/api/v2/apps/rating/',
         'search': '/api/v2/fireplace/search/?cache=1&vary=0',
         'settings': '/api/v2/account/settings/mine/',
-        'site-config': '/api/v2/services/config/site/?serializer=commonplace',
+        'site-config': '/api/v2/services/config/site/?cache=1&serializer=commonplace&vary=0',
     };
 });
