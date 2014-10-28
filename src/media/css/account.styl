@@ -48,6 +48,7 @@
         padding: 0;
         overflow: hidden;
         position: relative;
+
         &:before {
             dropdown();
             z-index: 2;
@@ -105,7 +106,8 @@
         background: $seavan-salt-white;
         border: 0;
     }
-    .reviewer-tools, .terms {
+    .reviewer-tools,
+    .terms {
         display: block;
     }
 }
@@ -115,7 +117,6 @@
 .logged-in .account-settings .only-logged-in.extras {
     display: inline-block;
 }
-
 
 
 @media $at-least-desktop {
@@ -207,9 +208,7 @@
             background: none;
         }
     }
-    .only-logged-in.reviewer-tools {
-        display: none;
-    }
+    .only-logged-in.reviewer-tools,
     footer .extras.reviewer-tools {
         display: none;
     }
