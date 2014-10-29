@@ -8,7 +8,6 @@ define('outgoing_links', ['capabilities', 'z'], function(capabilities, z) {
     var outbound = 'a[href^="http://outgoing.mozilla.org"]';
 
     z.win.on('loaded', function() {
-
         // Hijack external links if we're within the app.
         if (capabilities.chromeless) {
             $('a[rel=external], a[href*="://"], ' + outbound).attr('target', '_blank');
@@ -29,12 +28,12 @@ define('outgoing_links', ['capabilities', 'z'], function(capabilities, z) {
             $(this).attr('target', '_blank');
         }
     }).on('click', 'a[data-orig-href]', function() {
-        var href = this.getAttribute('href');
-        this.setAttribute('href', this.getAttribute('data-orig-href'));
-        setTimeout(function() {
+        var el = this;
+        var href = el.getAttribute('href');
+        el.setAttribute('href', el.getAttribute('data-orig-href'));
+        window.setTimeout(function() {
             // Put back the real destination:
-            this.setAttribute('href', href);
+            el.setAttribute('href', href);
         }, 100);
-        return true;
     });
 });
