@@ -209,7 +209,7 @@ define('navbar',
                 logged_in: user.logged_in(),
                 recommendations: settings.switches &&
                                  settings.switches.indexOf('recommendations') !== -1,
-                path: stack[stack.length - 1].path,
+                path: stack.length ? stack[stack.length - 1].path : '',
                 z: z
             })
         ).addClass('secondary-header');
@@ -243,4 +243,8 @@ define('navbar',
     // Render navbar.
     z.page.one('loaded', render);
     z.win.on('resize', _.debounce(render, 100));
+
+    return {
+        'render': render,
+    };
 });
