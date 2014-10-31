@@ -217,25 +217,9 @@ define('navbar',
         fitNavbar($('.navbar.active .initial-active'));
 
         // Desktop categories hover menu.
-        var catsTrigger = '.navbar > .categories';
-        var $menu = $('.hovercats');
-
-        $menu.html(
+        $('.hovercats').html(
             nunjucks.env.render('cat_overlay.html', {categories: cats})
         );
-
-        z.body.on('mouseenter', catsTrigger, function() {
-            $menu.addClass('active');
-        }).on('mouseleave', catsTrigger, function() {
-            $menu.removeClass('active');
-        }).on('click', catsTrigger + ' li a', function(e) {
-            e.stopPropagation();
-            $menu.removeClass('active');
-        }).on('mouseenter', catsTrigger + ' li a', function() {
-            $(this).removeClass('cur-cat');
-        }).on('mouseleave', catsTrigger + ' li a', function() {
-            $(this).addClass('cur-cat');
-        });
 
         initNavbarButtons();
     }
