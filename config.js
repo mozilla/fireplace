@@ -35,7 +35,39 @@ var localConfig = extend(true, {
         }
     },
     BOWER_PATH: config.BOWER_PATH || 'bower_components/',
-    PORT: 8675
+    PORT: 8675,
+    packageConfig: {
+        'prod': {
+            domain: 'https://marketplace.firefox.com',
+            media_url: 'https://marketplace.cdn.mozilla.net/media/',
+            name: 'Marketplace',
+            origin: 'app://packaged.marketplace.firefox.com'
+        },
+        'dev': {
+            domain: 'https://marketplace-dev.allizom.org',
+            media_url: 'https://marketplace-dev.mozflare.net/media/',
+            name: 'Dev',
+            origin: 'app://packaged.marketplace-dev.allizom.org'
+        },
+        'stage': {
+            domain: 'https://marketplace.allizom.org',
+            media_url: 'https://marketplace-stage.cdn.mozilla.net/media/',
+            name: 'Stage',
+            origin: 'app://packaged.marketplace.allizom.org'
+        },
+        'altdev': {
+            domain: 'https://marketplace-altdev.allizom.org',
+            media_url: 'https://marketplace-altdev-cdn.allizom.org/media/',
+            name: 'AltDev',
+            origin: 'app://packaged.marketplace-altdev.allizom.org'
+        },
+        'paymentsalt': {
+            domain: 'https://payments-alt.allizom.org',
+            media_url: 'https://payments-alt-cdn.allizom.org/media/',
+            name: 'PaymentsAlt',
+            origin: 'app://packaged.payments-alt.allizom.org'
+        }
+    }
 }, config);
 
 localConfig.inlineRequireConfig = config.makeInlineRequireConfig(
