@@ -250,7 +250,6 @@ define('apps_buttons',
     function mark_installed(manifest_url, $button) {
         // L10n: "Open" as in "Open the app".
         setButton($button || get_button(manifest_url), gettext('Open'), 'launch install');
-        apps.getInstalled();
     }
 
     function mark_btns_as_installed() {
