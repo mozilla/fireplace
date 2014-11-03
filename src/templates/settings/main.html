@@ -36,18 +36,12 @@
 
     <footer>
       <p class="only-logged-in inline"><button type="submit" class="button action">{{ _('Save Changes') }}</button></p>
-      {% if capabilities.fallbackFxA() %}
-        <p class="only-logged-out extras">
-          <a href="#" class="button persona register only-logged-out">{{ _('Register') }}</a>
-        </p>
-        <p class="only-logged-out extras">
-          <a href="#" class="button persona only-logged-out">{{ _('Sign In') }}</a>
-        </p>
-      {% else %}
-        <p class="only-logged-out extras">
-          <a href="#" class="button persona only-logged-out">{{ _('Sign In / Sign Up') }}</a>
-        </p>
-      {% endif %}
+      <p class="only-logged-out extras">
+        <a href="#" class="button persona register only-logged-out">{{ _('Register') }}</a>
+      </p>
+      <p class="only-logged-out extras">
+        <a href="#" class="button persona only-logged-out">{{ _('Sign In') }}</a>
+      </p>
       <p class="extras only-logged-in">
         <a href="#" class="button logout only-logged-in">{{ _('Sign Out') }}</a>
       </p>
