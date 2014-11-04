@@ -8,4 +8,3 @@ if [[ ! -a "src/media/js/settings_local.js" ]]; then
 fi;
 
 ../node_modules/.bin/gulp docker
-../node_modules/.bin/gulp serve
