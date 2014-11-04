@@ -15,12 +15,12 @@
 
   {% set tag = 'div' if is_detail else 'a' %}
 
-  <{{ tag }} class="product mkt-tile c"
+  <{{ tag }} class="product mkt-tile"
     {% if not is_detail %} href="{{ app.url or url('app', [app.slug])|urlparams(src=src) }}"{% endif %}
     data-slug="{{ app.slug }}"
     data-id="{{ app.id }}"
     {{ 'itemscope itemtype="http://schema.org/SoftwareApplication"' if not is_detail }}>
-    <div class="c">
+    <div class="heading">
       {{ deferred_icon(app.icons['64']) }}
       <div class="info">
         <h3 itemprop="name">{{ app.name|translate(app) }}</h3>

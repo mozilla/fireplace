@@ -34,6 +34,7 @@ var localConfig = extend(true, {
             }
         }
     },
+    BOWER_PATH: config.BOWER_PATH || 'bower_components/',
     PORT: 8675
 }, config);
 
