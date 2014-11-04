@@ -18,6 +18,8 @@ requireDir(config.GULP_SRC_PATH);
 
 // For Docker.
 var gulp = require('gulp');
+var runSequence = require('run-sequence');
+
 var marketplaceGulp = require(config.BOWER_PATH + 'marketplace-gulp/index');
 
 
@@ -31,6 +33,12 @@ gulp.task('docker_require_config', function() {
 });
 
 
-// Does the Bower copying and require.js configuration generation without
-// the npm/bower install step.
-gulp.task('docker', ['docker_bower_copy', 'docker_require_config']);
+gulp.task('docker', function() {
+    // Sets up Fireplace on Docker at run-time without calling npm/bower install
+    // with one task.
+    runSequence(
+        ['docker_bower_copy', 'docker_require_config'],
+        'build',
+        'serve'
+    );
+});
