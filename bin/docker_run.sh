@@ -7,4 +7,5 @@ if [[ ! -a "src/media/js/settings_local.js" ]]; then
   sed -i "" -e "s/https/http/g" -e "s/[a-z\-]*\.allizom\.org/mp.dev/g" "src/media/js/settings_local.js"
 fi;
 
-make serve
+../node_modules/.bin/gulp docker
+../node_modules/.bin/gulp serve
