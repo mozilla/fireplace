@@ -1,4 +1,6 @@
-define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(log, settings, storage, _, z) {
+define('tracking',
+    ['log', 'settings', 'storage', 'underscore', 'utils', 'z'],
+    function(log, settings, storage, _, utils, z) {
 
     var enabled = settings.tracking_enabled;
     var actions_enabled = settings.action_tracking_enabled;
@@ -54,6 +56,8 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
         window.ga('send', 'pageview', initial_url);
     }
 
+    var build_id;
+    var iframe_src = settings.iframe_potatolytics_src;
     var potato_initialized = false;
     var potato_iframe;
     var potato_queue = [];
@@ -77,7 +81,7 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
                 // starting from the top.
                 while ((queued = potato_queue.shift())) {
                     queued.name = 'potatolytics-tracking';
-                    potato_iframe.contentWindow.postMessage(queued, settings.iframe_potatolytics_src);
+                    potato_iframe.contentWindow.postMessage(queued, iframe_src);
                 }
             }
         } else if (window.ga) {
@@ -93,10 +97,19 @@ define('tracking', ['log', 'settings', 'storage', 'underscore', 'z'], function(l
 
     if (settings.ua_tracking_id) {
         if (settings.potatolytics_enabled) {
+            build_id = z.body.data('build-id-js');
+            if (build_id) {
+                // If we have a build_id, we can ask zamboni to set a big max-age
+                // on the response and use the build_id to cachebust it.
+                iframe_src = utils.urlparams(settings.iframe_potatolytics_src, {
+                    b: build_id,
+                    cache: 31536000
+                });
+            }
             console.log('Setting up tracking with Potatolytics');
             potato_iframe = document.createElement('iframe');
             potato_iframe.id = 'iframe-potatolytics';
-            potato_iframe.src = settings.iframe_potatolytics_src;
+            potato_iframe.src = iframe_src;
             potato_iframe.height = 0;
             potato_iframe.width = 0;
             potato_iframe.style.borderWidth = 0;

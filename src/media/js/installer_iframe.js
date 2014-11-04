@@ -2,8 +2,8 @@
     Interface with mozApps through m.f.c iframe when we are a packaged app.
 */
 define('installer_iframe',
-    ['defer', 'l10n', 'log', 'settings', 'z'],
-    function(defer, l10n, log, settings, z) {
+    ['defer', 'l10n', 'log', 'settings', 'utils', 'z'],
+    function(defer, l10n, log, settings, utils, z) {
     'use strict';
     var gettext = l10n.gettext;
     var console = log('installer');
@@ -31,10 +31,20 @@ define('installer_iframe',
     var iframe;
     function initialize_iframe() {
         var iframe_id = 'iframe-installer';
+        var build_id = z.body.data('build-id-js');
+        var iframe_src = settings.iframe_installer_src;
+        if (build_id) {
+            // If we have a build_id, we can ask zamboni to set a big max-age
+            // on the response and use the build_id to cachebust it.
+            iframe_src = utils.urlparams(settings.iframe_installer_src, {
+                b: build_id,
+                cache: 31536000
+            });
+        }
         if (!document.getElementById(iframe_id)) {
             iframe = document.createElement('iframe');
             iframe.id = iframe_id;
-            iframe.src = settings.iframe_installer_src;
+            iframe.src = iframe_src;
             iframe.height = 0;
             iframe.width = 0;
             iframe.style.borderWidth = 0;
