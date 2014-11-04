@@ -13,7 +13,8 @@ casper.test.begin('Test account settings', {
             test.assertUrlMatch(/\/settings/);
             test.assertTitle('Account Settings | Firefox Marketplace');
             test.assertVisible('.account-settings .persona');
-            test.assertSelectorHasText('.account-settings .persona', 'Sign In / Sign Up');
+            test.assertSelectorHasText('.account-settings .persona', 'Sign In');
+            test.assertSelectorHasText('.account-settings .persona', 'Register');
             test.assertNotVisible('.account-settings .logout');
             test.assertNotVisible('.account-settings button[type="submit"]');
             test.assertNotVisible('.account-settings input[name="email"]');
@@ -45,7 +46,8 @@ casper.test.begin('Test account settings', {
         casper.waitForSelector('.account-settings .only-logged-out', function() {
             test.assertUrlMatch(/\/settings/);
             test.assertVisible('.account-settings .persona');
-            test.assertSelectorHasText('.account-settings .persona', 'Sign In / Sign Up');
+            test.assertSelectorHasText('.account-settings .persona', 'Sign In');
+            test.assertSelectorHasText('.account-settings .persona', 'Register');
             test.assertNotVisible('.account-settings .logout');
             test.assertNotVisible('.account-settings footer p:first-child button');
         });
