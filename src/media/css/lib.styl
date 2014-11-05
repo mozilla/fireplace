@@ -15,47 +15,30 @@ $retina-desktop = $retina unquote('and (min-width: 710px)');
 $retina-wide = $retina unquote('and (min-width: 1024px)');
 
 // Colors
-// TODO: Have Michael take a peek at these!
-$link = #2d87ca;
-$link-dark = darken($link, 10%);
-$faded-link = rgba($link, .5);
-$shadow-blue = #98B2C9;
-$border-blue = #C9DDF2;
-$border-black = rgba(#000, .2);
-$faded-blue = rgba($border-blue, .1);
-$orange = darken(#d60, 5%);
 $red = #c00000;
 $maroon = #800;
-$green = #090;
+$green = #008200;
 $black = #000;
 $dark-gray = #333;
 $navy-gray = #394C58;
-$overlay-gray = #2a353c;
 $text = #424f5a;
-$subtext = #74828d;
-$darker-text = darken($text, 25%);
 $medium-gray = #666;
 $gray = #888;
 $note-gray = #999;
-$bg-gray = #bbb;
 $light-gray = #ccc;
 $faint-gray = #eee;
 $barely-gray = #fcfcfc;
 $white = #fff;
 $bg = #eff1f3;
-$black-border = #14171a;
+$bg-gray = #bbb;
 $bg-lite = lighten($bg, 2%);
-$faint-blue = #ECF5FE;
-$grain = #394C58;
 
 // New design.
 $flamin-hot-cheetos-orange = #ff9500;
 $sailor-blue = #0099d0;
 $castle-skull-gray = #333;
-$grey-gardens-gray = #4d4d4d;
 $london-fog-gray = #5f5f5f;
 $earl-gray = #a7a7a7;
-$primer-gray = #b7b7b7;
 $cement-gray = #c7c7c7;
 $cloud-gray = #d7d7d7;
 $dark-gray = #797979;
@@ -399,7 +382,7 @@ alt-btn-hover-focus-active() {
 
 alt-btn-active() {
     btn-shadow-active();
-    border: 1px solid darken($primer-gray, 10%);
+    border: 1px solid $earl-gray;
 }
 
 dropdown() {
