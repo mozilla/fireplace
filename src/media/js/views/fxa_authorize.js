@@ -5,8 +5,9 @@ define('views/fxa_authorize', ['log', 'login', 'utils', 'z'],
     return function(builder) {
         var auth_code = window.location.href;
         if (window.opener) {
+            // Note: window.location.origin doesn't exist in Gecko18 (bug 1093747)
             window.opener.postMessage({auth_code: auth_code},
-                                      window.location.origin);
+                                      window.location.protocol + '//' + window.location.hostname);
             // This code will execute from a hosted origin, since the FxA login
             // process redirects there. Nevertheless, this might be a window
             // opened by the Marketplace packaged app. So, let's send this info
