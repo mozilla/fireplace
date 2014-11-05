@@ -195,22 +195,9 @@ function pad(n, width, z) {
 }
 
 
-// For Docker.
-gulp.task('docker_bower_copy', function() {
-    marketplaceGulp.bowerCopy();
-});
-
-
-gulp.task('docker_require_config', function() {
-    marketplaceGulp.requireConfig();
-});
-
-
 gulp.task('docker', function() {
-    // Sets up Fireplace on Docker at run-time without calling npm/bower install
-    // with one task.
     runSequence(
-        ['docker_bower_copy', 'docker_require_config'],
+        ['bower_copy', 'require_config'],
         'build',
         'serve'
     );
