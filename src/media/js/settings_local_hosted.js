@@ -1,4 +1,5 @@
-define('settings_local', [], function() {
+define('settings_local', ['polyfill'], function() {
+    // Require polyfill to set window.location.origin.
     var origin = window.location.origin;
     return {
         api_url: origin,
