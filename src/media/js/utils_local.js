@@ -78,12 +78,12 @@ define('utils_local', [
         var def = defer.Deferred();
         if (window.__mockOffLine === true) {
             offline(def);
-            return  def.promise();
-        } else if (navigator.mozTCPSocket === null) {
-            return checkOnlineDesktop();
+            return def.promise();
         }
-
         try {
+            if (navigator.mozTCPSocket === null) {
+                return checkOnlineDesktop();
+            }
             console.log('Checking online state with socket');
             var host = (new URL(settings.cdn_url)).host;
             var port = 80;
