@@ -9,6 +9,7 @@ define(
     [
         'underscore',
         'jquery',
+        'polyfill', // Must be early.
         'helpers',  // Must come before mostly everything else.
         'helpers_local',
         'apps_buttons',
