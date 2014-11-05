@@ -30,3 +30,6 @@ script:
   - "sleep 5"
 # Run UI tests.
   - "CASPERJS_BIN=casperjs/bin/casperjs make test"
+# Test package.
+  - "make package"
+  - "test -f package/archives/_prod/media/js/include.js"
