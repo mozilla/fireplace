@@ -78,7 +78,7 @@ def pre_update_latest_tag():
 @task
 def build_package(package_env):
     with lcd(FIREPLACE):
-        local('make package_%s' % package_env)
+        local('SERVER=%s node_modules/.bin/gulp package' % package_env)
 
 
 @task
