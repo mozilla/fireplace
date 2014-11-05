@@ -20,6 +20,12 @@
 
         .throbber {
             display: none;
+
+            > b {
+                // bug 962594, Firefox still tries to animate stuff in display: none
+                // It consumes power for nothing...
+                animation: none;
+            }
         }
     }
 
