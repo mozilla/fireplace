@@ -16,10 +16,7 @@ before_script:
   - "export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'"
 # Create an installation.
   - "make init"
-  - "mv src/media/js/settings_travis.js src/media/js/settings_local.js"
-# Set up test suite.
-  - "git clone git://github.com/n1k0/casperjs.git casperjs"
-  - "cd casperjs && git checkout -q tags/1.1-beta3; cd .."
+  - "mv tests/settings_travis.js src/media/js/settings_local.js"
 script:
 # Lint the installation.
 # - "commonplace lint"
@@ -29,7 +26,7 @@ script:
   - "make serve &"
   - "sleep 5"
 # Run UI tests.
-  - "CASPERJS_BIN=casperjs/bin/casperjs make test"
+  - "make test"
 # Test package.
   - "make package"
   - "test -f package/archives/_prod/media/js/include.js"
