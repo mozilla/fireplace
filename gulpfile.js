@@ -8,12 +8,10 @@
    recommend git-cloning mozilla/marketplace-gulp directly into your
    bower_components directory.
 */
-var requireDir = require('require-dir');
+// Includes all tasks from the common gulpfile.
+var marketplaceGulp = require('marketplace-gulp');
 
 var config = require('./config');
-
-// Include all tasks from the common gulpfile.
-requireDir(config.GULP_SRC_PATH);
 
 
 //*****************
@@ -21,19 +19,17 @@ requireDir(config.GULP_SRC_PATH);
 // - Package build
 //*****************
 var fs = require('fs');
+var path = require('path');
 
 var argv = require('yargs').argv;
 var clean = require('gulp-clean');
 var commonplace = require('commonplace');
 var gulp = require('gulp');
 var mergeStream = require('merge-stream');
-var path = require('path');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var runSequence = require('run-sequence');
 var zip = require('gulp-zip');
-
-var marketplaceGulp = require(config.BOWER_PATH + 'marketplace-gulp/index');
 
 
 var packageFilesWhitelist = [
