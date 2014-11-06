@@ -1,4 +1,4 @@
--include bower_components/marketplace-gulp/Makefile
+-include node_modules/marketplace-gulp/Makefile
 
 init:
 	@npm install
