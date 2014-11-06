@@ -9,6 +9,8 @@ init:
 package:
 	@node_modules/.bin/gulp package
 
+.PHONY: package
+
 REPO = "fireplace"
 UUID = "e6a59937-29e4-456a-b636-b69afa8693b4"
 VERSION = `date "+%Y.%m.%d_%H.%M.%S"`

@@ -19,7 +19,6 @@ requireDir(config.GULP_SRC_PATH);
 //*****************
 // Fireplace stuff.
 // - Package build
-// - Docker setup
 //*****************
 var fs = require('fs');
 
@@ -43,8 +42,8 @@ var packageFilesWhitelist = [
     'src/media/css/fxa.css',
     'src/media/css/include.css',
     'src/media/css/splash.css',
-    'src/media/js/include.js',
     'src/media/js/l10n.js',
+    // include.js is built and written straight to package folder.
     // Locale files dynamically whitelisted later.
 ];
 var imageWhitelist = [
@@ -95,14 +94,19 @@ gulp.task('package',
 });
 
 
-gulp.task('js_build_package', ['packaged_settings', 'templates_build_sync'], function() {
-    // JS build that excludes the settings_local in the src directory and
-    // instead uses the built settings_local_package.
-    var js = marketplaceGulp.paths.js;
-    js.push('!' + config.JS_DEST_PATH + 'settings_local.js');
-    js.push(TMP_PATH + 'settings_local.js');
-    return marketplaceGulp.jsBuild(gulp.src(js))
-        .pipe(gulp.dest(latestPackageFolder + 'media/js'));
+gulp.task('js_build_package', ['packaged_settings', 'templates_build_sync'], function(done) {
+    // JS build that points to the packaged settings, outputs to the package
+    // directory, and generates a sourcemap unique to the package.
+    var paths = config.requireConfig.paths;
+    paths.settings_local = '../../../' + TMP_PATH + 'settings_local';
+
+    marketplaceGulp.jsBuild({
+        generateSourceMaps: false,  // No source mappings for packages yet.
+        out: latestPackageFolder + 'media/js/' + marketplaceGulp.paths.include_js,
+        paths: paths,
+    }, function() {
+        done();
+    });
 });
 
 
