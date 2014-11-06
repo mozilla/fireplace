@@ -1,0 +1,82 @@
+// Widths
+$desktop-content = 690px;
+$desktop-ftr = 732px;
+$header-height = 48px;
+$max-site-width = 1024px;
+
+// Media query widths
+
+// Example usage:
+// @media $at-least-desktop { … }
+$at-least-desktop = unquote('(min-width: 710px)');
+$narrower-than-desktop = unquote('(max-width: 709px)');
+$wider-desktop = unquote('(min-width: 1024px)');
+$small-desktop = unquote('(min-width: 710px) and (max-width: 1024px)')
+
+$retina-tablet = $retina unquote('and (max-width: 540px)');
+$retina-desktop = $retina unquote('and (min-width: 710px)');
+$retina-wide = $retina unquote('and (min-width: 1024px)');
+
+
+// Retina
+$retina = unquote('screen and (-webkit-min-device-pixel-ratio: 2), screen and (min--moz-device-pixel-ratio: 2), screen and (min-device-pixel-ratio: 2)');
+
+
+// Colours
+$red = #c00000;
+$maroon = #800;
+$green = #008200;
+$black = #000;
+$dark-gray = #333;
+$navy-gray = #394C58;
+$text = #424f5a;
+$medium-gray = #666;
+$gray = #888;
+$note-gray = #999;
+$light-gray = #ccc;
+$faint-gray = #eee;
+$barely-gray = #fcfcfc;
+$white = #fff;
+$bg = #eff1f3;
+$bg-gray = #bbb;
+$bg-lite = lighten($bg, 2%);
+
+$flamin-hot-cheetos-orange = #ff9500;
+$sailor-blue = #0099d0;
+$castle-skull-gray = #333;
+$london-fog-gray = #5f5f5f;
+$earl-gray = #a7a7a7;
+$cement-gray = #c7c7c7;
+$cloud-gray = #d7d7d7;
+$dark-gray = #797979;
+$darker-gray = #535353;
+$seavan-salt-white = #e7e7e7;
+$salt-flat-white = #f1f1f1;
+$steam-white = #fffefe;
+$dark-green = #118E36;
+
+// Action primary colours from http://marketplaceux.github.io/marketplace-style-guides/palette.html#actionPrimary
+$primary-blue = #4cb1ff;
+$primary-green = #64be3c;
+$primary-yellow = #ffdc32;
+$primary-red = #f54b3c;
+
+// Feed
+$breezy-blue = #4cb1ff;
+$navbar-gray = #e0e0e0;
+$hungry-text = $dark-gray;
+$navbar-text = #1a1a1a;
+
+// User Collections Primary, from style guide:
+// http://marketplaceux.github.io/marketplace-style-guides/palette.html#userColPrimary
+$user-collections-ruby = #ce001c;
+$user-collections-amber = #f78813;
+$user-collections-emerald = #00953f;
+$user-collections-topaz = #0099d0;
+$user-collections-sapphire = #1e1e9c;
+$user-collections-amethyst = #5a197e;
+$user-collections-garnet = #a20d55;
+
+
+// Font Stacks
+$open-stack = "Fira Sans OT", "Fira Sans", FiraSansWeb, sans-serif;
