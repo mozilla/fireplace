@@ -39,6 +39,7 @@ define('views/fxa_popup',
         var noticeForm = document.getElementById('notice-form');
         var continueButton = noticeForm['continue-button'];
 
+        var email;
         var emailForm = document.getElementById('email-form');
         var emailField = emailForm.email;
         var emailButton = document.getElementById('email-button');
@@ -47,31 +48,25 @@ define('views/fxa_popup',
 
         noticeForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            var email = user.get_setting('email');
-            if (email) {
+            if (user.logged_in()) {
                 requests.post(urls.api.url('preverify_token'))
-                        .then(function(token) {
-                    proceedToFxA(email, token);
-                }, function(jqXHR) {
-                    if (jqXHR.status === 403) {
-                        // Turns out we aren't verified, proceed to FxA.
-                        proceedToFxA(email);
-                    } else {
-                        showEmailForm();
-                        console.error("Error retrieving preverify token",
-                                      jqXHR.status,
-                                      jqXHR);
-                    }
-                });
+                        .then(signUp, signUp);
             } else {
-                showEmailForm();
+                sendVerificationEmail()
+                    .then(function(confirmation) {
+                        showEmailSentPage(confirmation);
+                    }, function(response) {
+                        redirectToFxA(action);
+                        console.error("Failed to send email confirmation",
+                                      response);
+                    });
             }
         });
 
         emailForm.addEventListener('submit', function(e) {
             e.preventDefault();
             if (emailField.validity.valid) {
-                proceedToFxA(emailField.value);
+                setEmail(emailField.value);
             } else {
                 emailField.parentNode.appendChild(emailError);
             }
@@ -92,28 +87,12 @@ define('views/fxa_popup',
             }
         });
 
-        function proceedToFxA(email, preVerifyToken) {
-            getAccountInfo(email).then(function(info) {
-                var action = info.source === 'firefox-accounts' ? 'signin'
-                                                                : 'signup';
-                if (preVerifyToken) {
-                    redirectToFxA(email, action, preVerifyToken);
-                } else if (action === 'signup' && info.verified) {
-                    sendVerificationEmail(email)
-                        .done(function(confirmation) {
-                            showEmailSentPage(email, confirmation);
-                        }).fail(function(response) {
-                            redirectToFxA(email, action);
-                            console.error("Failed to send email confirmation",
-                                          response);
-                        });
-                } else {
-                    redirectToFxA(email, action);
-                }
-            });
+        if (user.logged_in()) {
+            // Use the currently logged in user's email.
+            setEmail(user.get_setting('email'));
         }
 
-        function redirectToFxA(email, action, preVerifyToken) {
+        function redirectToFxA(action, preVerifyToken) {
             var url = login.get_fxa_auth_url() +
                 '&email=' + encodeURIComponent(email) +
                 '&action=' + encodeURIComponent(action);
@@ -123,16 +102,16 @@ define('views/fxa_popup',
             window.location = url;
         }
 
-        function getAccountInfo(email) {
+        function getAccountInfo() {
             return requests.get(urls.api.unsigned.url('account_info', email));
         }
 
-        function sendVerificationEmail(email) {
+        function sendVerificationEmail() {
             return requests.put(
                 urls.api.unsigned.url('preverify_confirmation', email));
         }
 
-        function showEmailSentPage(email, confirmation) {
+        function showEmailSentPage(confirmation) {
             var text = gettext(
                 'Click the verification link sent to {email} to transfer ' +
                 'your apps to Firefox Accounts.');
@@ -148,6 +127,33 @@ define('views/fxa_popup',
 
         function showBox(name) {
             viewParent.setAttribute('data-view-state', name);
+        }
+
+        function signIn() {
+            redirectToFxA('signin');
+        }
+
+        function signUp(token) {
+            redirectToFxA('signup', token);
+        }
+
+        function notifyOfMigration() {
+            showBox('info');
+        }
+
+        function setEmail(_email) {
+            if (_email) {
+                email = _email;
+                getAccountInfo().then(function(info) {
+                    var outcomes = {
+                        'firefox-accounts': signIn,
+                        'unknown': signUp,
+                        'persona': notifyOfMigration,
+                    };
+                    var nextStep = outcomes[info.source] || signUp;
+                    nextStep();
+                }, signUp);
+            }
         }
     };
 });
