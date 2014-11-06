@@ -142,6 +142,46 @@ test('consumer_info API is not called if unnecessary', function(done, fail) {
     );
 });
 
+test('consumer_info API is not called if region is present in the body', function(done, fail) {
+    var geoip_region = null;
+    var settings = {
+        api_cdn_whitelist: {}
+    };
+    mock(
+        'consumer_info',
+        {
+            mobilenetwork: {},
+            requests: {get: function(url) { fail('We tried to make a request to ' + url); return defer.Deferred(); }},
+            settings: settings,
+            user: {logged_in: function() { return false; }},
+            user_helpers: {
+                region: function(x, y) { return ''; },
+                carrier: function() { return ''; },
+                set_region_geoip: function(r) { geoip_region = r; }
+            },
+            z: {
+                body: {
+                    data: function(key) {
+                        if (key == 'region') {
+                            return 'es';
+                        }
+                    },
+                },
+                win: {
+                    on: function() {}
+                }
+            }
+        },
+        function(consumer_info) {
+            consumer_info.promise.then(function() {
+                done();
+                eq_(geoip_region, 'es');
+            });
+        },
+        fail
+    );
+});
+
 test('consumer_info API is called if user is logged in', function(done, fail) {
     var geoip_region = null;
     var settings = {
