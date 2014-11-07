@@ -92,6 +92,14 @@ define('views/fxa_popup',
             setEmail(user.get_setting('email'));
         }
 
+        z.page.one('loaded', function() {
+            // Let the `loaded` event handler in main.js hide the splash before
+            // focusing the email field.
+            setTimeout(function() {
+                emailField.focus();
+            });
+        });
+
         function redirectToFxA(action, preVerifyToken) {
             var url = login.get_fxa_auth_url() +
                 '&email=' + encodeURIComponent(email) +
