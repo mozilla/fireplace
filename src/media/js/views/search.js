@@ -1,6 +1,6 @@
 define('views/search',
-    ['capabilities', 'l10n', 'storage', 'tracking', 'underscore', 'urls', 'utils', 'z'],
-    function(capabilities, l10n, storage, tracking, _, urls, utils, z) {
+    ['capabilities', 'l10n', 'storage', 'tracking', 'urls', 'utils', 'z'],
+    function(capabilities, l10n, storage, tracking, urls, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -188,11 +188,11 @@ define('views/search',
         return function(data) {
             switch (query) {
                 case 'what does the fox say?':
-                    var base = function(item) {return _.extend(item, {author: 'The Fox', 'previews':[], 'icons': {'64': urls.media('fireplace/img/logos/firefox-256.png')}});};
-                    data.unshift(base({name: 'Joff-tchoff-tchoffo-tchoffo-tchoff!'}));
-                    data.unshift(base({name: 'Hatee-hatee-hatee-ho!'}));
-                    data.unshift(base({name: 'Wa-pa-pa-pa-pa-pa-pow!'}));
-                    data.unshift(base({name: 'Ring-ding-ding-ding-dingeringeding!'}));
+                    var base = function(name) {return {name: name, author: 'The Fox', 'previews': [], 'icons': {'64': urls.media('fireplace/img/logos/firefox-256.png')}};};
+                    data.unshift(base('Joff-tchoff-tchoffo-tchoffo-tchoff!'));
+                    data.unshift(base('Hatee-hatee-hatee-ho!'));
+                    data.unshift(base('Wa-pa-pa-pa-pa-pa-pow!'));
+                    data.unshift(base('Ring-ding-ding-ding-dingeringeding!'));
                     break;
                 case 'hampster dance':
                     data.forEach(function(v, k) {
@@ -208,7 +208,7 @@ define('views/search',
     }
 
     return function(builder, args, params) {
-        params = parsePotatoSearch(_.extend({q: params.q}, params));
+        params = parsePotatoSearch(params);
 
         if ('sort' in params && params.sort === 'relevancy') {
             delete params.sort;
@@ -226,7 +226,7 @@ define('views/search',
 
         builder.start('search/main.html', {
             endpoint_name: 'search',
-            params: _.extend({}, params),
+            params: params,
             processor: processor(query)
         }).done(function() {
             var results = builder.results.searchresults;

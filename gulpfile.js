@@ -21,8 +21,7 @@ var config = require('./config');
 var fs = require('fs');
 var path = require('path');
 
-var argv = require('yargs').argv;
-var clean = require('gulp-clean');
+var del = require('del');
 var commonplace = require('commonplace');
 var gulp = require('gulp');
 var mergeStream = require('merge-stream');
@@ -48,7 +47,7 @@ var imageWhitelist = [
 ];
 var PKG_PATH = 'package/archives/';
 var TMP_PATH = 'package/.tmp/';  // Used to get around amd-optimize loader.
-var server = argv.SERVER || process.env.SERVER || 'prod';
+var server = process.env.SERVER || 'prod';
 var latestPackageFolder = PKG_PATH + '_' + server + '/';
 var latestPackageZip = PKG_PATH + '_' + server + '.zip';
 var versionTimestamp = getVersionTimestamp();
@@ -159,10 +158,9 @@ gulp.task('build_packaged', ['buildID_write', 'css_build_sync',
                              'templates_build_sync', 'imgurls_write']);
 
 
-gulp.task('latest_package_clean', function() {
+gulp.task('latest_package_clean', function(cb) {
     // Delete latest package folder + zip to replace with newer ones.
-    return gulp.src([latestPackageFolder, latestPackageZip], {read: false})
-        .pipe(clean({force: true}));
+    del([latestPackageFolder, latestPackageZip], cb);
 });
 
 
