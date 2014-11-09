@@ -1,4 +1,4 @@
-define('webactivities', ['capabilities', 'log', 'urls', 'utils', 'z'], function(capabilities, log, urls, utils, z) {
+define('webactivities', ['capabilities', 'log', 'login', 'urls', 'utils', 'z'], function(capabilities, log, login, urls, utils, z) {
 
     // See https://github.com/mozilla/fireplace/wiki/Web-Activities
     //
@@ -24,7 +24,12 @@ define('webactivities', ['capabilities', 'log', 'urls', 'utils', 'z'], function(
 
         switch (name) {
             case 'marketplace-app':
-                // Load up an app detail page.
+                // first: has this webactivity been hijacked to convey FxA login info?
+                if (data.type === 'login') {
+                    login.handle_fxa_login(data.auth_code, data.state);
+                    break;
+                }
+                // If not, load up an app detail page.
                 var slug = data.slug;
                 var manifest_url = data.manifest_url || data.manifest;
                 if (slug) {
