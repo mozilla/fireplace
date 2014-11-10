@@ -209,10 +209,6 @@
         width: fit-content;
     }
 
-    .tab-categories:hover .tab-link {
-        color: $breezy-blue;
-    }
-
     .tab-item {
         line-height: 50px;
         padding: 0 60px;
@@ -252,7 +248,9 @@
         cursor: pointer;
 
         &:hover {
-            color: $breezy-blue;
+            .tab-link {
+                color: $breezy-blue;
+            }
 
             .desktop-cat-link:after {
                 border-top-color: $breezy-blue;
