@@ -1,72 +1,24 @@
 # Fireplace
 
-Fireplace is a packaged version of the Firefox Marketplace's front-end.
+The [Firefox Marketplace](https://marketplace.firefox.com) frontend.
 
 [![Build Status](https://travis-ci.org/mozilla/fireplace.svg?branch=master)](https://travis-ci.org/mozilla/fireplace)
-
-
-## Glossary
-
-<dl>
-  <dt><a href="https://github.com/mozilla/ashes">Ashes</a></dt>
-  <dd>A secure debug information collection server</dd>
-
-  <dt><a href="https://github.com/mozilla/flue">Flue</a></dt>
-  <dd>A mocked-out version of the Marketplace API.</dd>
-
-  <dt>Inferno</dt>
-  <dd>A build server which generates a packaged version of the Marketplace.</dd>
-
-  <dt>Yule Log</dt>
-  <dd>A fake version of Fireplace to provide the Gaia team with a package that can
-  be shipped and later upgraded to the real Fireplace.</dd>
-</dl>
 
 
 ## Installation
 
 ```bash
 make init
-```
-
-## Usage
-
-If you haven't already, copy `media/js/settings_local.js.dist` to
-`media/js/settings_local.js`.  Some settings in `media/js/settings_local.js`
-will need to be updated if you plan to run a local setup, at minimum you should
-have something like this:
-
-```js
-define('settings_local', [], function() {
-    return {
-        api_url: 'http://localhost',
-        media_url: 'http://localhost/media'
-    };
-});
-```
-
-**Important**: Do not end the URLs in your settings file with slashes, doing so
-will lead to subtle and hard-to-debug errors.
-
-Once you have your settings file in place, to run Fireplace from the terminal,
-run the following command:
-
-```bash
-make init
 make serve
 ```
 
-This will start a local server and filesystem watcher on http://0.0.0.0:8675 by
-default.
-
-For instructions on running Flue (the mock API server), please see the [Flue
-docs](https://github.com/mozilla/flue/blob/master/README.md).
+This will start a webserver on http://localhost:8675.
 
 
-### Compiling
+### Building for Production
 
-To run the compilation process, which compiles templates, CSS, and locale
-files for production, run the following command:
+Our build process bundles up our JS, minifies our CSS, compiles our templates,
+and extracts locales into JS modules. To run the build process:
 
 ```bash
 make build
@@ -77,20 +29,35 @@ This will generate files including:
 ```
 src/media/templates.js
 src/media/js/include.js
+src/media/js/include.js.map
 src/media/css/include.css
 ```
 
+## Glossary
+
+<dl>
+  <dt><a href="https://github.com/mozilla/flue">Flue</a></dt>
+  <dd>A mocked-out version of the Marketplace API.</dd>
+
+  <dt>Yule Log</dt>
+  <dd>A fake version of Fireplace to provide the Gaia team with a package that can
+  be shipped and later upgraded to the real Fireplace.</dd>
+
+  <dt><a href="https://github.com/mozilla/ashes">Ashes</a></dt>
+  <dd>A secure debug information collection server</dd>
+</dl>
+
 ### Flue
 
-Comprehensive Flue documentation can be found in
+Flue documentation can be found in
 [Flue's README](https://github.com/mozilla/flue/blob/master/README.md).
-
 
 ### Yule Log
 
 Docs can be found in
-[Yule Log's README](https://github.com/mozilla/fireplace/blob/master/yulelog/README.md) and in the [Marketplace Documentation](http://marketplace.readthedocs.org/en/latest/topics/package.html).
-
+[Yule Log's README](https://github.com/mozilla/fireplace/blob/master/yulelog/README.md) and
+in the
+[Marketplace documentation](http://marketplace.readthedocs.org/en/latest/topics/package.html).
 
 ### Packaged App
 
@@ -105,52 +72,44 @@ A detailed guide to extracting strings and creating JS language packs can be
 found [on the wiki](https://github.com/mozilla/commonplace/wiki/L10n#extracting-strings).
 
 
-## The API
+## API
 
 [Read the docs.](http://firefox-marketplace-api.readthedocs.org/)
 
 
 ## Tests
 
-Casper should be installed along with your other npm deps. The tests expect version
-1.1+. You can verify the version with:
+We use CasperJS to write tests.
 
-```
-casperjs --version
-```
-
-### Running unit tests
+### Running Unit Tests
 
 Load [http://localhost:8675/tests](http://localhost:8675/tests) in your browser.
 
+### Running Functional and UI Tests
 
-### Running functional tests
-
-Before you run the functional tests, make sure your `settings_local.js` file has
-the subset of keys found in
-[`settings_travis.js`](https://github.com/mozilla/fireplace/blob/master/src/media/js/settings_travis.js).
+Before running the functional and UI tests, your ```settings_local.js``` should
+contain the same API and media URL found in [settings_travis.js](https://github.com/mozilla/fireplace/blob/master/tests/settings_travis.js).
 
 ```bash
 make test
 ```
 
-### Running a single test
+### Running a Single Functional or UI Test
 
 ```bash
 casperjs test tests/ui/<PATH_TO_TEST_FILE>
 ```
 
-## Local Development
+## Developing the Packaged App
 
-The packaging section above will explain how to build a package from your local
-source. If you want to install a hosted version of your local Fireplace you
-can do so. It won't have all the same privileges as the packaged app but it
-can let you test device-specific things like payments.
+To package the Marketplace frontend, run:
 
-To install as a hosted app, start the damper server (see Usage), and
-use this manifest:
-[http://0.0.0.0:8675/hosted-manifest.webapp](http://0.0.0.0:8675/hosted-manifest.webapp).
+```make package```
 
-### Setting up a virtual host with Nginx
+This will output a package and output to ```package/archives/```. You can use
+WebIDE to install this package in the device or simulator.
 
-See [Using Fireplace with Zamboni](https://github.com/mozilla/fireplace/wiki/Using-Fireplace-with-Zamboni)
+
+## Serving with Nginx
+
+Read about [serving Fireplace with Nginx](https://github.com/mozilla/fireplace/wiki/Using-Fireplace-with-Zamboni)
