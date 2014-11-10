@@ -287,11 +287,16 @@ $tmobile_color = #E20074;
         content: '';
         display: block;
         height: 60px;
-        left: 0;
+        left: 10px;
         position: absolute;
-        top: 0;
+        top: 15px;
         width: 60px;
     }
+}
+
+.feed-brand .feed-tile-header:before {
+    left: 0;
+    top: 0;
 }
 
 @media $at-least-desktop {
@@ -363,6 +368,10 @@ $tmobile_color = #E20074;
                 padding: 10px;
             }
         }
+    }
+    [data-page-type~="app-list"] .feed-tile-header:before {
+        left: 0;
+        top: 0;
     }
 }
 
