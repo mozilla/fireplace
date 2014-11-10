@@ -1,0 +1,87 @@
+/*
+    Defines the layout of the feed "tiles". Mostly columns.
+    Uses Salvattore to produce the columns (e.g., .size1of2).
+*/
+$feed-column-width = 320px;
+$feed-tile-width = 300px;
+$feed-tile-margin = 15px;
+
+[data-columns] {
+    margin: 0 auto;
+
+    .size-1of2,
+    .size-1of3 {
+        float: left;
+        max-width: $feed-column-width;
+        width: $feed-tile-width + $feed-tile-margin;
+    }
+}
+
+@media screen and (max-width: 639px) {
+    // One column.
+    .home-feed,
+    .feed-landing.collection-landing,
+    .feed-landing.shelf-landing {
+        width: $feed-column-width;
+    }
+
+    .home-feed,
+    .collection-landing [data-columns],
+    .shelf-landing [data-columns] {
+        &::before {
+            content: '1 .column.size-1of1';
+        }
+    }
+}
+
+@media screen and (min-width: 640px) {
+    // Two columns at the most.
+    .feed-landing.collection-landing,
+    .feed-landing.shelf-landing {
+        width: $feed-column-width * 2;
+    }
+
+    .collection-landing [data-columns],
+    .shelf-landing [data-columns] {
+        &::before {
+            content: '2 .column.size-1of2';
+        }
+    }
+
+    .shelf-landing .header-block {
+        margin: 0 auto;
+
+        .feed-item {
+            border-radius: 5px;
+        }
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 959px) {
+    // Two to three columns.
+    .home-feed {
+        width: $feed-column-width * 2;
+
+        &::before {
+            content: '2 .column.size-1of2';
+        }
+    }
+}
+
+@media screen and (min-width: 960px) {
+    // Three columns.
+    .home-feed {
+        width: $feed-column-width * 3;
+
+        &::before {
+            content: '3 .column.size-1of3';
+        }
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 709px) {
+    .feed-landing.collection-landing,
+    .feed-landing.shelf-landing {
+        padding-top: 18px;
+    }
+}

@@ -28,46 +28,15 @@ $grameenphone_color = #00ACE7;
 $tmobile_regions = (hu pl);
 $tmobile_color = #E20074;
 
-@media $at-least-desktop {
-    // Three column feed layout on tweener screens.
-    section.feed,
-    ul.feed {
-        padding: 0;
-    }
-    body[data-page-type~="homepage"] ul.feed {
-        margin-top: 0;
-        max-width: $feed-column-width * 3;
-        width: $mobile-tile-width * 3 + $mobile-tile-margin * 2;
-    }
-}
-
-@media (min-width: 640px) {
-    [data-page-type~="homepage"] .feed .feed-item-item:not(.loadmore) {
-        margin: 0 0 $vertical-tile-padding;
-        right: none;
-    }
-}
-
-@media (min-width: 640px) and (max-width: 959px) {
-    // Two column feed layout on tweener screens.
-    [data-page-type~="homepage"] .feed {
-        max-width: $feed-column-width * 2;
-        width: $mobile-tile-width * 2 + $mobile-tile-margin;
-    }
-
-}
 
 [data-page-type~="homepage"] ul.feed {
     margin-top: 4px;
-    opacity: 0;  // Fade-in.
 }
 
 // Main container for feed elements on the homepage.
 .feed {
     list-style-type: none;
     margin: 0 auto;
-    max-width: $feed-column-width;
-    padding: 10px 0;
     position: relative;
     transition(opacity .2s .15s);
     width: 100%;
@@ -401,7 +370,7 @@ $tmobile_color = #E20074;
     max-width: $mobile-tile-width;
 
     &.grouped {
-        margin-bottom: $vertical-tile-margin;
+        margin-bottom: $vertical-tile-padding;
     }
     .feed-tile-header {
         color: $hungry-text;
@@ -853,10 +822,6 @@ $tmobile_color = #E20074;
                     &:nth-child(2n) {
                         margin-right: 0;
                     }
-                    &.loadmore {
-                        clear: both;
-                        width: $desktop-content;
-                    }
                 }
             }
             .multi-app-tile.mkt-tile {
@@ -946,21 +911,6 @@ $tmobile_color = #E20074;
     &:hover,
     &:active {
         text-decoration: none;
-    }
-}
-
-.loadmore.feed-item-item {
-    // Put loadmore button on its own row.
-    margin-bottom: 0;
-    max-width: 100%;
-    padding-bottom: 12px;
-    padding-top: 15px;
-    width: 100%;
-}
-
-@media $at-least-desktop {
-    .loadmore.feed-item-item button {
-        width: 620px;
     }
 }
 

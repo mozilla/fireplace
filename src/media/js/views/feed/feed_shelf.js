@@ -1,6 +1,5 @@
-define('views/feed/feed_shelf',
-    ['jquery', 'isotope', 'l10n', 'utils', 'z'],
-    function($, Isotope, l10n, utils, z) {
+define('views/feed/feed_shelf', ['jquery', 'l10n', 'utils', 'utils_local', 'z'],
+    function($, l10n, utils, utils_local, z) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -15,19 +14,10 @@ define('views/feed/feed_shelf',
             slug: slug
         });
 
-        builder.onload('shelf', function(shelf) {
-            builder.z('title', utils.translate(shelf.name));
-
-            // Masonry the apps around the feed element.
-            var iso = new Isotope(document.querySelector('ul.feed'), {
-                itemSelector: '.detail-item',
-                layoutMode: 'masonry',
-                masonry: {
-                    columnWidth: 320,
-                    gutter: -10,
-                    isFitWidth: true
-                }
-            });
+        builder.onload('shelf', function(data) {
+            builder.z('title', utils.translate(data.name));
+            utils_local.initSalvattore(
+                document.querySelector('.shelf-landing [data-columns]'));
         });
     };
 });

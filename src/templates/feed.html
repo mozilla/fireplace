@@ -3,15 +3,14 @@
 {% include '_macros/more_button.html' %}
 
 {% defer (url=anonApi('feed')|urlparams(limit=10), id='feed-items') %}
-  <ul class="feed feed-items columned c">
+  <div class="feed feed-items home-feed columned c" data-columns>
     {% for item in this.objects %}
-      <li class="feed-item-item">{{ feed_item(item) }}</li>
+      <div class="feed-item-item">{{ feed_item(item) }}</div>
     {% endfor %}
-
-    {% if response.meta.next %}
-      {{ more_button(response.meta.next, li_classes='feed-item-item') }}
-    {% endif %}
-  </ul>
+  </div>
+  {% if response.meta.next %}
+    {{ more_button(response.meta.next, ['feed-item-item']) }}
+  {% endif %}
 {% placeholder %}
   <p class="spinner padded alt"></p>
 {% except %}

@@ -1,6 +1,5 @@
-define('views/feed/feed_collection',
-    ['jquery', 'isotope', 'l10n', 'utils', 'z'],
-    function($, Isotope, l10n, utils, z) {
+define('views/feed/feed_collection', ['jquery', 'l10n', 'utils', 'utils_local', 'z'],
+    function($, l10n, utils, utils_local, z) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -16,20 +15,8 @@ define('views/feed/feed_collection',
 
         builder.onload('feed-collection', function(feed_collection) {
             builder.z('title', utils.translate(feed_collection.name));
-
-            // Masonry the apps around the feed element.
-            var feed_elm = document.querySelector('ul.feed');
-            if (feed_elm) {
-                new Isotope(feed_elm, {
-                    itemSelector: '.detail-item',
-                    layoutMode: 'masonry',
-                    masonry: {
-                        columnWidth: 320,
-                        gutter: -10,
-                        isFitWidth: true
-                    }
-                });
-            }
+            utils_local.initSalvattore(
+                document.querySelector('.collection-landing [data-columns]'));
         });
     };
 });

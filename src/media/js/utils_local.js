@@ -1,19 +1,14 @@
-define('utils_local', [
-    'defer',
-    'jquery',
-    'log',
-    'settings',
-    'urls',
-    'z'
-], function(defer, $, log, settings, urls, z) {
+define('utils_local',
+    ['defer', 'jquery', 'log', 'salvattore', 'settings', 'underscore', 'urls', 'z'],
+    function(defer, $, log, salvattore, settings, _, urls, z) {
 
-    var console = log('utils_local');
+    var logger = log('utils_local');
     var check_interval;
 
     function isSystemDateRecent() {
         var rval = new Date().getFullYear() >= 2010;
         if (!rval) {
-            console.log('System date appears to be incorrect!');
+            logger.log('System date appears to be incorrect!');
         }
         return rval;
     }
@@ -42,7 +37,7 @@ define('utils_local', [
     function offline(def, socket) {
         if (z.onLine) {
             // Fire event for going offline.
-            console.log('Offline detected.');
+            logger.log('Offline detected.');
             z.win.trigger('offline_detected');
             z.onLine = false;
         }
@@ -56,7 +51,7 @@ define('utils_local', [
         if (!z.onLine) {
             // Fire event for going online.
             // Fire event to start loading images.
-            console.log('Online detected.');
+            logger.log('Online detected.');
             z.win.trigger('online_detected');
             z.onLine = true;
         }
@@ -84,7 +79,7 @@ define('utils_local', [
             if (navigator.mozTCPSocket === null) {
                 return checkOnlineDesktop();
             }
-            console.log('Checking online state with socket');
+            logger.log('Checking online state with socket');
             var host = (new URL(settings.cdn_url)).host;
             var port = 80;
             var socket = navigator.mozTCPSocket.open(host, port);
@@ -123,9 +118,21 @@ define('utils_local', [
         check_interval = setInterval(checkOnline, 10000);
     }
 
+    function initSalvattore(elem) {
+        // Initializes Salvattore layout on an element.
+        var coll = document.querySelector('.collection-landing [data-columns]');
+        if (elem) {
+            salvattore.register_grid(elem);
+        }
+        z.win.on('resize', _.debounce(function() {
+            salvattore.recreate_columns(elem);
+        }, 100));
+    }
+
     return {
         build_localized_field: build_localized_field,
         checkOnline: checkOnline,
+        initSalvattore: initSalvattore,
         isSystemDateRecent: isSystemDateRecent,
         items: items,
         pollOnlineState: pollOnlineState,

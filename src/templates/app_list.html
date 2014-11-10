@@ -20,12 +20,11 @@
         {% for app in this %}
           {{ mini_tile(app, src=source) }}
         {% endfor %}
-
+      </ul>
+      {% if response.meta.next %}
         {# Render the more button if there's another page of results #}
-        {% if response.meta.next %}
-          {{ more_button(response.meta.next) }}
-        {% endif %}
-      </ol>
+        {{ more_button(response.meta.next) }}
+      {% endif %}
     {% placeholder %}
       <p class="spinner padded alt"></p>
     {% empty %}
