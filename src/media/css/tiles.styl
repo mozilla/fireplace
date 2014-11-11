@@ -183,8 +183,17 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 }
 
 @media $at-least-desktop {
-    .grid-if-desktop .mkt-tile .price {
-        display: block;
+    .grid-if-desktop {
+        .heading {
+            height: auto;
+        }
+        .info {
+            padding: 0;
+            position: static;
+        }
+        .mkt-tile .price {
+            display: block;
+        }
     }
     .mkt-tile .rating .cnt {
         top: 1px;
