@@ -39,6 +39,9 @@
         text-decoration: none;
         width: 100%;
     }
+    input[type=checkbox] {
+        margin-right: 5px;
+    }
     .pretty-select,
     .pretty-select select {
         cursor: pointer;
@@ -82,11 +85,21 @@
             padding: 10px 12px;
         }
     }
-    label {
-        margin-bottom: 5px;
-    }
     .simple-field {
         padding: 10px 10px 0;
+    }
+    .form-label,
+    .form-label label {
+        font-weight: 500;
+    }
+    .form-col {
+        color: $london-fog-gray;
+        margin-top: 10px;
+    }
+    // Overrides region class to make things match and line up properly.
+    .region {
+        color: $london-fog-gray;
+        margin-top: -2px;
     }
     footer {
         border-top: 1px solid $cloud-gray;
