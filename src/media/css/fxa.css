@@ -20,7 +20,14 @@
 }
 body {
     padding: 0 !important;
-    /* $open-stack from lib.styl. */
+}
+
+body,
+header h1, header h2, header h3,
+.button-row a.button, .button-row button,
+.input-row button, .input-row input, .input-row select {
+    /* `$open-stack` from `lib.styl` to override `font-family` rules set below
+        for "Clear Sans" and "Fira Sans." */
     font-family: "Fira Sans OT", "Fira Sans", FiraSansWeb, sans-serif !important;
 }
 
