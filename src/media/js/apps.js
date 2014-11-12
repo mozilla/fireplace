@@ -2,8 +2,8 @@
     Provides the apps module, a wrapper around navigator.mozApps
 */
 define('apps',
-    ['buckets', 'capabilities', 'defer', 'installer_direct', 'installer_iframe', 'l10n', 'log', 'nunjucks', 'settings', 'underscore', 'utils'],
-    function(buckets, capabilities, defer, installer_direct, installer_iframe, l10n, log, nunjucks, settings, _, utils) {
+    ['capabilities', 'defer', 'installer_direct', 'installer_iframe', 'l10n', 'log', 'nunjucks', 'settings', 'underscore', 'utils'],
+    function(capabilities, defer, installer_direct, installer_iframe, l10n, log, nunjucks, settings, _, utils) {
     'use strict';
     var gettext = l10n.gettext;
     var console = log('apps');

@@ -1,6 +1,6 @@
 define('views/feedback',
-       ['buckets', 'capabilities', 'forms', 'l10n', 'linefit', 'notification', 'requests', 'templates', 'urls', 'utils', 'z'],
-       function(buckets, caps, forms, l10n, linefit, notification, requests, nunjucks, urls, utils, z) {
+       ['capabilities', 'compatibility_filtering', 'forms', 'l10n', 'linefit', 'notification', 'requests', 'templates', 'urls', 'utils', 'z'],
+       function(caps, compatibility_filtering, forms, l10n, linefit, notification, requests, nunjucks, urls, utils, z) {
 
     var gettext = l10n.gettext;
     var notify = notification.notification;
@@ -12,7 +12,7 @@ define('views/feedback',
         var data = utils.getVars($this.serialize());
         data.chromeless = caps.chromeless ? 'Yes' : 'No';
         data.from_url = window.location.pathname;
-        data.profile = buckets.profile;
+        data.profile = compatibility_filtering.feature_profile;
 
         forms.toggleSubmitFormState($this);
 
