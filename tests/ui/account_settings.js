@@ -19,6 +19,7 @@ casper.test.begin('Test account settings', {
             test.assertNotVisible('.account-settings button[type="submit"]');
             test.assertNotVisible('.account-settings input[name="email"]');
             test.assertNotVisible('.account-settings input[name="display_name"]');
+            test.assertNotVisible('.account-settings input[name="enable_recommendations"]');
             helpers.fake_login();
         });
 
@@ -31,14 +32,20 @@ casper.test.begin('Test account settings', {
             test.assertVisible('.account-settings button[type="submit"]');
             test.assertVisible('.account-settings input[name="email"]');
             test.assertVisible('.account-settings input[name="display_name"]');
+            test.assertVisible('.account-settings input[name="enable_recommendations"]');
             casper.fill('.account-settings', {
                 display_name: 'hello my name is rob hudson'
             });
+            casper.click('#enable_recommendations');
             casper.click('.account-settings button[type="submit"]');
 
             test.assertEqual(
                 casper.getFormValues('.account-settings').display_name,
                 'hello my name is rob hudson'
+            );
+            test.assertEqual(
+                casper.getFormValues('.account-settings').enable_recommendations,
+                false
             );
             casper.click('.logout');
         });

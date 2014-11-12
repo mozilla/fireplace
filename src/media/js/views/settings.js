@@ -13,6 +13,8 @@ define('views/settings',
         }
         acc_sett.find('[name=display_name]').val(user.get_setting('display_name'));
         acc_sett.find('[name=email]').val(user.get_setting('email'));
+        acc_sett.find('input#enable_recommendations').prop(
+            'checked', user.get_setting('enable_recommendations', true));
         z.page.trigger('reload_chrome');
     }
 
@@ -22,8 +24,11 @@ define('views/settings',
             return;
         }
 
-        var data = utils.getVars($(this).serialize());
-        delete data.email;
+        var $this = $(this);
+        var data = {
+            display_name: $this.find('#display_name').val(),
+            enable_recommendations: $this.find('#enable_recommendations').prop('checked')
+        };
 
         user.update_settings(data);
         requests.patch(

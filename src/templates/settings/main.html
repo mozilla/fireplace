@@ -7,9 +7,7 @@
 
   <form class="form-grid account-settings"{{ ' novalidate' if not user.logged_in() }}>
     <div class="simple-field c only-logged-in">
-      <div class="form-label label">
-        <label for="email">{{ _('Email') }}</label>
-      </div>
+      <div class="form-label label">{{ _('Email') }}</div>
       <div class="form-col">
         <input type="email" name="email" id="email" readonly value="{{ user.get_setting('email') }}">
       </div>
@@ -25,12 +23,21 @@
     </div>
 
     <div class="simple-field c">
-      <div class="form-label">
-        <label>{{ _('Region') }}</label>
-      </div>
+      <div class="form-label">{{ _('Region') }}</div>
       <div class="form-col">
         <span class="region region-{{ user_helpers.region('restofworld') }}">
           {{ REGIONS[user_helpers.region('restofworld')] }}</span>
+      </div>
+    </div>
+
+    <div class="brform simple-field c only-logged-in">
+      <div class="form-label">{{ _('Personalization') }}</div>
+      <div class="form-col">
+        <label>
+          <input name="enable_recommendations" id="enable_recommendations"
+                 type="checkbox"{{ ' checked' if user.get_setting('enable_recommendations', true) }}>
+          {{ _('Yes, enable app recommendations.') }}
+        </label>
       </div>
     </div>
 

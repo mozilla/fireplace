@@ -74,13 +74,17 @@ function(_) {
     }
 
     if (!capabilities.performance) {
-        // Polyfill `performance.now` for PhantomJS.
-        // (And don't even bother with `Date.now` because IE.)
-        window.performance = {
-            now: function() {
+        // Polyfill `performance.now` for old browsers,
+        // namely IE and WebKit (PhantomJS).
+        if (!window.performance) {
+            window.performance = {};
+        }
+        if (!window.performance.now) {
+            window.performance.now = function() {
+                // Avoid using `Date.now` because of IE 8 and lower.
                 return +new Date();
-            }
-        };
+            };
+        }
     }
     var start_time = performance.now();
 
