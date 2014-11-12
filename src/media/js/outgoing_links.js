@@ -5,7 +5,12 @@ define('outgoing_links', ['capabilities', 'z'], function(capabilities, z) {
     // ...will display as http://wvtc.net/
     //
 
-    var outbound = 'a[href^="http://outgoing.mozilla.org"]';
+    // These are all the possible values for `settings.REDIRECT_URL`
+    // in Zamboni for prod, stage, -dev, -altdev, and identity-stage-.
+    // P.S. future dev: nice catch, but the `http:` vs. `https:` is correct.
+    var outbound = 'a[href^="http://outgoing.mozilla.org"], ' +
+                   'a[href^="https://outgoing.allizom.org"], ' +
+                   'a[href^="https://outgoing-mkt-dev.allizom.org"]';
 
     z.win.on('loaded', function() {
         // Hijack external links if we're within the app.
