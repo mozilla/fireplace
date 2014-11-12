@@ -1,8 +1,12 @@
-# Fireplace
+[![Build Status](https://travis-ci.org/mozilla/fireplace.svg?branch=master)](https://travis-ci.org/mozilla/fireplace)
 
 The [Firefox Marketplace](https://marketplace.firefox.com) frontend.
 
-[![Build Status](https://travis-ci.org/mozilla/fireplace.svg?branch=master)](https://travis-ci.org/mozilla/fireplace)
+- [Marketplace frontend documentation](https://marketplace-frontend.readthedocs.org)
+- [Marketplace documentation](https://marketplace.readthedocs.org)
+- [Marketplace API documentation](https://firefox-marketplace-api.readthedocs.org)
+
+![](https://imgur.com/eGuUEfv.jpg)
 
 
 ## Installation
@@ -12,7 +16,7 @@ make init
 make serve
 ```
 
-This will start a webserver on http://localhost:8675.
+This will start a webserver on ```http://localhost:8675```.
 
 
 ### Building for Production
@@ -33,48 +37,37 @@ src/media/js/include.js.map
 src/media/css/include.css
 ```
 
-## Glossary
+### Developing the Packaged App
 
-<dl>
-  <dt><a href="https://github.com/mozilla/flue">Flue</a></dt>
-  <dd>A mocked-out version of the Marketplace API.</dd>
+To package the Marketplace frontend, run:
 
-  <dt>Yule Log</dt>
-  <dd>A fake version of Fireplace to provide the Gaia team with a package that can
-  be shipped and later upgraded to the real Fireplace.</dd>
+```make package```
 
-  <dt><a href="https://github.com/mozilla/ashes">Ashes</a></dt>
-  <dd>A secure debug information collection server</dd>
-</dl>
+This will output a package and output to ```package/archives/```. You can use
+WebIDE to install this package in the device or simulator.
 
-### Flue
+Further details can be found in the
+[Marketplace documentation](http://marketplace.readthedocs.org/latest/topics/package.html).
 
-Flue documentation can be found in
-[Flue's README](https://github.com/mozilla/flue/blob/master/README.md).
+### Flue (Fake API)
 
-### Yule Log
+Flue is a mocked-out version of the Marketplace API. Flue is hosted on
+```https://flue.paas.allizom.org``` and documentation can be found in
+[Flue's repository](https://github.com/mozilla/flue/blob/master/README.md).
 
-Docs can be found in
-[Yule Log's README](https://github.com/mozilla/fireplace/blob/master/yulelog/README.md) and
-in the
-[Marketplace documentation](http://marketplace.readthedocs.org/en/latest/topics/package.html).
+### Yule Log (Iframed Package)
 
-### Packaged App
-
-Docs can be found in the [Marketplace Documentation](http://marketplace.readthedocs.org/en/latest/topics/package.html).
-
-Please note that any file that belongs in the package must get added to `package/files.txt`.
+Yule Log is the iframed packaged version of the Marketplace frontend. This
+version currently ships on most of our devices. Documentation can be found
+within the [Yule Log directory](https://github.com/mozilla/fireplace/blob/master/yulelog/) and
+the [Marketplace documentation](http://marketplace.readthedocs.org/latest/topics/package.html).
 
 
 ## Localizing
 
-A detailed guide to extracting strings and creating JS language packs can be
-found [on the wiki](https://github.com/mozilla/commonplace/wiki/L10n#extracting-strings).
-
-
-## API
-
-[Read the docs.](http://firefox-marketplace-api.readthedocs.org/)
+A detailed guide to extracting strings and creating JS language packs is
+located
+[on the wiki](https://github.com/mozilla/commonplace/wiki/L10n#extracting-strings).
 
 
 ## Tests
@@ -100,16 +93,9 @@ make test
 casperjs test tests/ui/<PATH_TO_TEST_FILE>
 ```
 
-## Developing the Packaged App
-
-To package the Marketplace frontend, run:
-
-```make package```
-
-This will output a package and output to ```package/archives/```. You can use
-WebIDE to install this package in the device or simulator.
-
 
 ## Serving with Nginx
 
-Read about [serving Fireplace with Nginx](https://github.com/mozilla/fireplace/wiki/Using-Fireplace-with-Zamboni)
+If you wish to serve the Marketplace frontend with nginx, which is often
+useful for keeping all the Marketplace projects on the same domain, read about
+[serving Fireplace with Nginx](https://github.com/mozilla/fireplace/wiki/Using-Fireplace-with-Zamboni).
