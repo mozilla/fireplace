@@ -1,6 +1,6 @@
 {% include "_macros/act_tray.html" %}
 
-{% macro navtab(code, name, url, path) %}
+{% macro navtab(code, name, url) %}
 <li class="tab-item {{ code }}{{ ' initial-active' if path == url }}"
     data-tab="{{ code }}">
   <a class="tab-link" href="{{ url }}">{{ name }}</a>
@@ -15,11 +15,11 @@
 <ul class="navbar nav-mkt{% if not is_settings %} active{% endif %}
            {{ 'has-recommendations' if logged_in and recommendations }}">
   {# Tab name must match route name. #}
-  {{ navtab('homepage', _('Home'), url('homepage'), path) }}
-  {{ navtab('new', _('New'), url('new'), path) }}
-  {{ navtab('popular', _('Popular'), url('popular'), path) }}
+  {{ navtab('homepage', _('Home'), url('homepage')) }}
+  {{ navtab('new', _('New'), url('new')) }}
+  {{ navtab('popular', _('Popular'), url('popular')) }}
   {% if logged_in and recommendations %}
-    {{ navtab('recommended', _('Recommended'), url('recommended'), path) }}
+    {{ navtab('recommended', _('Recommended'), url('recommended')) }}
   {% endif %}
   <li class="tab-item tab-categories appear-on-hover--parent{{ ' initial-active' if path == url('categories') }}"
       data-tab="categories">
@@ -32,9 +32,9 @@
 {# Settings tabs (My Account, My Apps, Help, Feedback). #}
 <ul class="navbar nav-settings{{ ' active' if is_settings }}">
   {# Tab name must match route name. #}
-  {{ navtab('settings', _('My Account'), url('settings'), path) }}
-  {{ navtab('purchases', _('My Apps'), url('purchases'), path) }}
-  {{ navtab('feedback', _('Feedback'), url('feedback'), path) }}
+  {{ navtab('settings', _('My Account'), url('settings')) }}
+  {{ navtab('purchases', _('My Apps'), url('purchases')) }}
+  {{ navtab('feedback', _('Feedback'), url('feedback')) }}
 </ul>
 
 <div class="mkt-tray{{ ' active' if is_settings }}">
