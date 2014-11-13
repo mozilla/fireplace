@@ -15,7 +15,8 @@ node_js:
 before_script:
   - "export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'"
 # Create an installation.
-  - "make init"
+  - "npm install"
+  - "make install"
   - "mv tests/settings_travis.js src/media/js/settings_local.js"
 script:
 # Lint the installation.

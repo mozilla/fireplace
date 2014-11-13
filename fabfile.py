@@ -34,7 +34,7 @@ def pre_update(ref):
 def update():
     with lcd(FIREPLACE):
         local('npm install')
-        local('make update')
+        local('make install')
         local('cp src/media/js/settings_local_hosted.js src/media/js/settings_local.js')
 
         if settings.ZAMBONI_DIR:

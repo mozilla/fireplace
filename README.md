@@ -12,7 +12,8 @@ The [Firefox Marketplace](https://marketplace.firefox.com) frontend.
 ## Installation
 
 ```bash
-make init
+npm install
+make install
 make serve
 ```
 
