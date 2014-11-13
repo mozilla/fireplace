@@ -1,11 +1,5 @@
 -include node_modules/marketplace-gulp/Makefile
 
-init:
-	@npm install
-	@node_modules/.bin/bower install
-	@node_modules/.bin/gulp update
-	@cp src/media/js/settings_local.js.dist src/media/js/settings_local.js
-
 package:
 	@node_modules/.bin/gulp package
 
