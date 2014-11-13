@@ -63,6 +63,9 @@ define('mobilenetwork',
         // Bangladesh
         470: 'bd',
 
+        // Philippines
+        515: 'ph',
+
         // Guatemala
         704: 'gt',
 
