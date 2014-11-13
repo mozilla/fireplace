@@ -145,9 +145,11 @@ define('apps_buttons',
                     if ($this.hasClass('spinning')) {
                         console.log('Spinner timeout for ', product.name);
                         revertButton($this);
-                        notification.notification({message: settings.offline_msg});
+                        notification.notification({
+                            message: gettext('Sorry, we had trouble fetching this app\'s data. Please try again later.')
+                        });
                     }
-                }, 35000);
+                }, 25000);
             }
 
             // If the app has already been installed by the user and we don't
