@@ -22,8 +22,15 @@ define('views/fxa_popup',
     }
 
     return function(builder, args, params) {
-        var cssPath = utils.urlparams(urls.media(settings.fxa_css_path),
-                                      {b: z.body.data('build-id-js')});
+        var cssPath = settings.fxa_css_path;
+
+        // If HTML is being served from the server, prefix the URL with
+        // the media URL.
+        if (!settings.local_html) {
+            cssPath = urls.media(cssPath);
+        }
+
+        cssPath = utils.urlparams(cssPath, {b: z.body.data('build-id-js')});
 
         // Ensure the splash screen stays up.
         z.body.attr('data-page-type', 'standalone-loading');

@@ -24,7 +24,8 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         app_name: 'fireplace',
         init_module: 'main',
         default_locale: 'en-US',
-        api_url: 'http://' + window.location.hostname,  // No trailing slash, please.
+        api_url: 'http://' + window.location.hostname,  // No trailing slash, please./
+        local_html: document.body.hasAttribute('data-local-html'),  // Exists or not.
 
         fxa_css_path: '/media/css/fxa.css',
 
