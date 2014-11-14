@@ -135,6 +135,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'ph': gettext('Philippines'),
             'pl': gettext('Poland'),
             'rs': gettext('Serbia'),
+            'ru': gettext('Russia'),
             'es': gettext('Spain'),
             'uk': gettext('United Kingdom'),
             'us': gettext('United States'),

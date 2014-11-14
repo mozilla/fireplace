@@ -35,6 +35,9 @@ define('mobilenetwork',
         234: 'uk',
         235: 'uk',
 
+        // Russia
+        250: 'ru',
+
         // Poland
         260: 'pl',
 
