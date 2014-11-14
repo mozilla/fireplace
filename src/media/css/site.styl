@@ -293,13 +293,25 @@ body {
     }
 }
 
+@media $narrower-than-desktop {
+    .hide-on-mobile {
+        display: none;
+    }
+}
+
 @media $at-least-desktop {
+    .hide-on-desktop {
+        display: none !important;
+    }
+
     html, #footer {
         background: #fff;
     }
+
     #page {
         padding-top: 18px;
     }
+
     #footer,
     #directory-footer {
         border-top: 1px solid $cloud-gray;
