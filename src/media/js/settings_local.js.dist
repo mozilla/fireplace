@@ -1,6 +1,9 @@
 define('settings_local', [], function() {
     // Override settings here!
     return {
+        // Remove this if you want to have data fetched from the CDN rather
+        // than directly from the API.
+        api_cdn_whitelist: {},
         api_url: 'https://marketplace-dev.allizom.org',
         media_url: 'https://marketplace-dev-cdn.allizom.org/media/'
     };
