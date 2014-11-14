@@ -23,8 +23,6 @@
         font-size: 0;
     }
     p {
-        font-size: 15px;
-        vertical-align: top;
         width: 50%;
     }
     input[type=email],
@@ -105,37 +103,32 @@
         border-top: 1px solid $cloud-gray;
         clear: both;
         margin-top: 10px;
-
-        p {
-            border-bottom: 1px solid $cloud-gray;
-            padding: 10px;
-        }
+    }
+    p {
+        padding: 10px;
     }
     .only-logged-in.extras {
-      display: none;
+        display: none;
     }
     .extras {
         display: inline-block;
-        background: $seavan-salt-white;
-        border: 0;
-    }
-    .reviewer-tools,
-    .terms {
-        display: block;
+        vertical-align: top;
+
+        &:last-child {
+            padding-bottom: 10px;
+        }
+
+        .button {
+            font-weight: 300;
+        }
     }
 }
+
 .logged-in .account-settings .only-logged-out.extras {
     display: none;
 }
 .logged-in .account-settings .only-logged-in.extras {
     display: inline-block;
-}
-
-
-@media $at-least-desktop {
-    .account-settings .terms {
-        display: none;
-    }
 }
 
 @media $narrower-than-desktop {
@@ -150,8 +143,20 @@
             margin: 10px;
         }
     }
-    .account-settings p {
-        width: 100%;
+    .account-settings {
+        footer {
+            background: $seavan-salt-white;
+        }
+        p {
+            width: 100%;
+        }
+        .save-changes {
+            background: #fff;
+            border-bottom: 1px solid $cloud-gray;
+        }
+        .extras {
+            padding-bottom: 0;
+        }
     }
 }
 
@@ -189,13 +194,8 @@
     .account div.secondary-header {
         display: none;
     }
-    .extras {
-        background: #fff;
-        margin: 0;
-
-        .notice {
-            padding: 0 0 15px;
-        }
+    .extras .notice {
+        padding: 0 0 15px;
     }
     header.secondary-header {
         margin-bottom: 18px;
@@ -206,23 +206,15 @@
         float: left;
         padding: 3px 5px 8px;  // On desktop we want 18px above and below.
         position: relative;
+
         .simple-field {
             float: left;
             padding: 15px 10px 10px;
             width: 50%;
         }
-        footer, footer p {
+
+        footer {
             border: 0;
         }
-        footer {
-            padding-top: 5px;
-        }
-        .extras {
-            background: none;
-        }
-    }
-    .only-logged-in.reviewer-tools,
-    footer .extras.reviewer-tools {
-        display: none;
     }
 }

@@ -68,7 +68,7 @@ commonprops($colour, $shadow) {
     if ($shadow == 'none') {
         box-shadow: none;
     } else {
-        box-shadow: 0 $shadow-size $shadow;
+        box-shadow: 0 (-1 * $shadow-size) $shadow inset;
     }
 }
 
