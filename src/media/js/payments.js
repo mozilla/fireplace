@@ -1,4 +1,4 @@
-define('payments/payments',
+define('payments',
     ['capabilities', 'defer', 'l10n', 'log', 'notification', 'requests', 'settings', 'urls', 'z'],
     function(caps, defer, l10n, log, notification, requests, settings, urls, z) {
 

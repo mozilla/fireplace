@@ -1,6 +1,6 @@
 define('apps_buttons',
     ['apps', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'login',
-     'models', 'notification', 'payments/payments', 'requests', 'settings',
+     'models', 'notification', 'payments', 'requests', 'settings',
      'tracking_events', 'urls', 'user', 'utils', 'views', 'z'],
     function(apps, cache, capabilities, defer, l10n, log, login, models,
              notification, payments, requests, settings,
