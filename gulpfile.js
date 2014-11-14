@@ -169,7 +169,7 @@ function getLanguageWhitelist() {
     // size. As of writing, there are 82 languages total, each at around 30KB.
     // But we only use around 40 of them in the package.
     var template = fs.readFileSync('src/app.html').toString();
-    var langMatch = template.match(/<body data-languages="\[(.*?)\]">/);
+    var langMatch = template.match(/<body data-languages="\[(.*?)\]"?/);
     var langs = langMatch[1].replace(/&#34;/g, '').replace(/\s/g, '').split(',');
     return langs.map(function(lang) {
         return 'src/media/locales/' + lang + '.js';
