@@ -271,6 +271,7 @@ define('apps_buttons',
     function mark_btns_as_uninstalled() {
         /* If an app was uninstalled, revert state of install buttons from
            "Launch" to "Install". */
+        apps.getInstalled();
         $('.button.product').each(function(i, button) {
             var $button = $(button);
             // For each install button, check if its respective app is installed.
