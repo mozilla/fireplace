@@ -31,12 +31,12 @@
     </div>
 
     <div class="brform simple-field c only-logged-in">
-      <div class="form-label">{{ _('Personalization') }}</div>
+      <div class="form-label">{{ _('Recommendations') }}</div>
       <div class="form-col">
         <label>
           <input name="enable_recommendations" id="enable_recommendations"
                  type="checkbox"{{ ' checked' if user.get_setting('enable_recommendations', true) }}>
-          {{ _('Yes, enable app recommendations.') }}
+          {{ _('Yes, show me recommendations based on my installed apps.') }}
         </label>
       </div>
     </div>
