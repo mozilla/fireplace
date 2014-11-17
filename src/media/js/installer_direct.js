@@ -91,7 +91,7 @@ define('installer_direct',
             if (error == 'DENIED') {
                 def.reject();
             } else if (error == 'NETWORK_ERROR') {
-                def.reject(settings.offline_msg);
+                def.reject(gettext('Sorry, we had trouble fetching this app\'s data. Please try again later.'));
             } else {
                 def.reject(gettext('App install error: {error}', {error: error}));
             }
