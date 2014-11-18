@@ -87,7 +87,6 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         tracking_enabled: false,
         action_tracking_enabled: true,
         upsell_enabled: true,
-        newsletter_enabled: true,
         cache_rewriting_enabled: true,
         potatolytics_enabled: false,
 
