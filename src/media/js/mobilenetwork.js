@@ -69,6 +69,9 @@ define('mobilenetwork',
         // Philippines
         515: 'ph',
 
+        // South Africa
+        655: 'za',
+
         // Guatemala
         704: 'gt',
 
@@ -121,6 +124,7 @@ define('mobilenetwork',
         'kddi',
         'kt',
         'megafon',
+        'mtn',
         'qtel',
         'singtel',
         'smart',
@@ -265,6 +269,11 @@ define('mobilenetwork',
         // Bangladesh
         470: {
             1: 'grameenphone'
+        },
+
+        // South Africa
+        655: {
+            10: 'mtn'
         },
 
         // Guatemala
