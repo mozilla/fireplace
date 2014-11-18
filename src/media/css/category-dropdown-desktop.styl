@@ -119,7 +119,9 @@
 }
 
 @media $at-least-desktop {
-    .appear-on-hover--parent:hover .appear-on-hover {
+    // `link-clicked` class gets set in JS when a category link is clicked.
+    // When a category link is pressed, the drop-down disappears.
+    .tab-categories:not(.link-clicked):hover .appear-on-hover {
         opacity: 1;
         pointer-events: auto;
         visibility: visible;
