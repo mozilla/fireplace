@@ -217,18 +217,18 @@
     {% if coll.type == feed.COLL_LISTING %}
       {{ feed_collection(coll, true) }}
     {% else %}
-      <ul class="feed columned">
-        <li class="detail-item header-block">
+      <div class="feed" data-columns>
+        <div class="detail-item header-block">
           {{ feed_collection(coll, true) }}
           {% if coll.description %}
             <p class="desc">{{ coll.description|translate(coll) }}</p>
           {% endif %}
-        </li>
+        </div>
 
         {% if coll.apps %}
           {% if coll.apps[0].group %}
             {% for group in feed.group_apps(coll.apps) %}
-              <li class="detail-item">
+              <div class="detail-item">
                 <section class="feed-layout-grid multi-app-tile mkt-tile grouped c">
                   <h1 class="feed-tile-header grouped">{{ group.name }}</h1>
                   <ul class="app-list">
@@ -237,13 +237,13 @@
                     {% endfor %}
                   </ul>
                 </section>
-              </li>
+              </div>
             {% endfor %}
           {% else %}
             {% for app in coll.apps %}
-              <li class="item result app c detail-item">
+              <div class="item result app c detail-item">
                 {{ market_tile(app, src='collection-element') }}
-              </li>
+              </div>
             {% endfor %}
           {% endif %}
         {% else %}
@@ -264,18 +264,18 @@
         <p class="desc">{{ shelf.description|translate(shelf) }}</p>
       {% endif %}
     </div>
-    <ul class="feed columned">
+    <div class="feed" data-columns>
       {% if shelf.apps %}
         {% for app in shelf.apps %}
-          <li class="item result app c detail-item">
+          <div class="item result app c detail-item">
             {{ market_tile(app, src='operator-shelf-element') }}
-          </li>
+          </div>
         {% endfor %}
       {% else %}
         {# L10n: Please do your best to capture the essence of Scooby Doo. #}
         {{ _("Ruh roh! No apps here, Shaggy!") }}
       {% endif %}
-    </ul>
+    </div>
   </section>
 {% endmacro %}
 

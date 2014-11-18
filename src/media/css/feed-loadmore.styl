@@ -1,0 +1,23 @@
+@import 'lib';
+
+[data-page-type~=homepage],
+[data-page-type~=app-list] {
+    .loadmore {
+        // Put loadmore button on its own row.
+        margin-bottom: 0;
+        max-width: 100%;
+        padding-bottom: 0;
+        padding-top: 15px;
+        width: 100%;
+    }
+}
+
+@media $at-least-desktop {
+    [data-page-type~=homepage] .loadmore button {
+        width: 620px;
+    }
+    [data-page-type~=app-list] .loadmore {
+        clear: both;
+        width: $desktop-content;
+    }
+}
