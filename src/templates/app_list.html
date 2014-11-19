@@ -16,15 +16,15 @@
     </div>
 
     {% defer (url=search_url, pluck='objects', as='app', paginate='ul.app-list') %}
-      <ul class="app-list columned c">
+      <ul class="app-list c">
         {% for app in this %}
           {{ mini_tile(app, src=source) }}
         {% endfor %}
+        {% if response.meta.next %}
+          {# Render the more button if there's another page of results #}
+          {{ more_button(response.meta.next) }}
+        {% endif %}
       </ul>
-      {% if response.meta.next %}
-        {# Render the more button if there's another page of results #}
-        {{ more_button(response.meta.next) }}
-      {% endif %}
     {% placeholder %}
       <p class="spinner padded alt"></p>
     {% empty %}
