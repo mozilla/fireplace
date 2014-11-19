@@ -1,7 +1,7 @@
 define('views/homepage',
-    ['jquery', 'format', 'l10n', 'log', 'newsletter', 'nunjucks', 'requests',
+    ['jquery', 'format', 'l10n', 'log', 'nunjucks', 'requests',
      'salvattore', 'urls', 'utils', 'utils_local', 'z'],
-    function($, format, l10n, log, newsletter, nunjucks, requests,
+    function($, format, l10n, log, nunjucks, requests,
              salvattore, urls, utils, utils_local, z) {
     'use strict';
     var logger = log('homepage');

@@ -4,10 +4,10 @@ One column in an island on mobile.
 Two columns of tiles on wider screens.
 TODO: move app list styles here.
 */
-@import "lib";
+@import 'lib';
 
 .app-list-page {
-    padding-top: 10px;
+    padding: 10px 0;
 }
 
 [data-page-type~=app-list] {
@@ -15,13 +15,90 @@ TODO: move app list styles here.
         position: relative;
         top: 35px;
     }
+    .feed .feed-layout-list > .info {
+        margin-left: 0;
+    }
+
+    .feed-tile-header:before {
+        background-color: $breezy-blue;
+    }
+    [data-type="popular"] .feed-tile-header:before {
+        background-image: url(../img/icons/popular.png);
+    }
+    [data-type="new"] .feed-tile-header:before {
+        background-image: url(../img/icons/new.png);
+    }
+    [data-type="reco"] .feed-tile-header:before {
+        background-image: url(../img/icons/popular.png);
+    }
 }
 
 @media $at-least-desktop {
-    [data-page-type~=app-list] .spinner {
-        top: 0;
-    }
     .app-list-page {
-        padding-top: 0;
+        padding: 0;
+    }
+    body[data-page-type~=app-list] {
+        .feed {
+            max-width: $desktop-content;
+        }
+        .app-list {
+            position: relative;
+            max-width: $desktop-content;
+
+            li:not(.loadmore) {
+                float: left;
+                margin-right: 20px;
+                width: 335px;
+
+                &.mini-tile {
+                    background-color: #fff;
+                    border-radius: 5px;
+                    height: 80px;
+                    padding: 10px;
+                }
+                &:nth-child(2n) {
+                    margin-right: 0;
+                }
+            }
+        }
+        .feed-tile-header:before {
+            left: 0;
+            top: 0;
+        }
+        .multi-app-tile.mkt-tile {
+            background-color: transparent;
+            box-shadow: none;
+            max-width: $desktop-content;
+            padding: 0;
+
+            .app-list {
+                width: $desktop-content;
+
+                .fragment-error {
+                    background-color: transparent;
+                    display: inline-block;
+                    padding: 20px;
+                }
+            }
+            > .icon {
+                display: none;
+            }
+            > .info {
+                height: 60px;
+                margin-left: 0;
+                width: 100%;
+
+                h1 {
+                    font-size: 24px;
+                    line-height: 24px;
+                }
+            }
+        }
+        .placeholder {
+            clear: both;
+        }
+        .spinner {
+            top: 0;
+        }
     }
 }

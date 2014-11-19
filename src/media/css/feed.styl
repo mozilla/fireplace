@@ -238,10 +238,6 @@ $kddi_color = #E35205;
     }
 }
 
-[data-page-type~="app-list"] .feed .feed-layout-list > .info {
-    margin-left: 0;
-}
-
 .feed-collection,
 [data-page-type~="app-list"] {
     .feed-tile-header {
@@ -288,9 +284,6 @@ $kddi_color = #E35205;
         .feed-layout-list li.mini-tile {
             box-shadow: 0 2px 1px -1px $cement-gray;
         }
-    }
-    [data-page-type~="app-list"] .app-list {
-        position: relative;
     }
     .feed.brand-landing,
     .feed.collection-landing {
@@ -340,10 +333,6 @@ $kddi_color = #E35205;
             }
         }
     }
-    [data-page-type~="app-list"] .feed-tile-header:before {
-        left: 0;
-        top: 0;
-    }
 }
 
 // Feed app list should have a top margin when no desc present.
@@ -351,22 +340,7 @@ $kddi_color = #E35205;
     margin-top: 10px;
 }
 
-[data-page-type~="app-list"] {
-    .feed-tile-header:before {
-        background-color: $breezy-blue;
-    }
-    [data-type="popular"] .feed-tile-header:before {
-        background-image: url(../img/icons/popular.png);
-    }
-    [data-type="new"] .feed-tile-header:before {
-        background-image: url(../img/icons/new.png);
-    }
-    [data-type="reco"] .feed-tile-header:before {
-        background-image: url(../img/icons/popular.png);
-    }
-}
-
-.feed .multi-app-tile.mkt-tile {
+.multi-app-tile.mkt-tile {
     background-color: #fff;
     margin: 0 auto;
     max-width: $mobile-tile-width;
@@ -808,64 +782,6 @@ $kddi_color = #E35205;
 @media $at-least-desktop {
     .mini-tile {
         margin-top: $vertical-tile-margin;
-    }
-    [data-page-type~=app-list] {
-        .feed {
-            max-width: $desktop-content;
-
-            .app-list {
-                padding-bottom: 40px;
-                max-width: $desktop-content;
-
-                li {
-                    float: left;
-                    margin-right: 20px;
-                    width: 335px;
-
-                    &.mini-tile {
-                        background-color: #fff;
-                        border-radius: 5px;
-                        height: 80px;
-                        padding: 10px;
-                    }
-                    &:nth-child(2n) {
-                        margin-right: 0;
-                    }
-                }
-            }
-            .multi-app-tile.mkt-tile {
-                background-color: transparent;
-                box-shadow: none;
-                max-width: $desktop-content;
-                padding: 0;
-
-                .app-list {
-                    width: $desktop-content;
-
-                    .fragment-error {
-                        background-color: transparent;
-                        display: inline-block;
-                        padding: 20px;
-                    }
-                }
-                > .icon {
-                    display: none;
-                }
-                > .info {
-                    height: 60px;
-                    margin-left: 0;
-                    width: 100%;
-
-                    h1 {
-                        font-size: 24px;
-                        line-height: 24px;
-                    }
-                }
-            }
-            .placeholder {
-                clear: both;
-            }
-        }
     }
 }
 

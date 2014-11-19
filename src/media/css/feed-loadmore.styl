@@ -6,9 +6,15 @@
         // Put loadmore button on its own row.
         margin-bottom: 0;
         max-width: 100%;
-        padding-bottom: 15px;
         padding-top: 15px;
         width: 100%;
+    }
+}
+
+[data-page-type~=app-list] {
+    .loadmore {
+        padding-bottom: 0;
+        padding-top: 25px;
     }
 }
 
@@ -22,6 +28,7 @@
     }
     [data-page-type~=app-list] .loadmore {
         clear: both;
-        width: $desktop-content;
+        margin: 0 auto;
+        width: 620px;
     }
 }
