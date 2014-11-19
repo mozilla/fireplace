@@ -1,6 +1,6 @@
 define('views/debug',
-    ['buckets', 'cache', 'capabilities', 'log', 'models', 'notification', 'requests', 'settings', 'storage', 'user', 'utils', 'z'],
-    function(buckets, cache, capabilities, log, models, notification, requests, settings, storage, user, utils, z) {
+    ['cache', 'capabilities', 'compatibility_filtering', 'log', 'models', 'notification', 'requests', 'settings', 'storage', 'user', 'utils', 'z'],
+    function(cache, capabilities, compatibility_filtering, log, models, notification, requests, settings, storage, user, utils, z) {
     'use strict';
 
     var persistent_console_debug = log.persistent('debug', 'change');
@@ -55,13 +55,12 @@ define('views/debug',
         var data = {body: JSON.stringify({
             app: settings.app_name,
             origin: window.location.protocol + '//' + window.location.host,
-
             logs: log.all,
             persistent_logs: log.persistent.all,
             capabilities: capabilities,
             settings: settings,
             report_version: 1.0,
-            profile: buckets.profile
+            profile: compatibility_filtering.feature_profile
         })};
         requests.post('https://ashes.paas.allizom.org/post_report', data).done(function(data) {
             notification.notification({
@@ -98,7 +97,7 @@ define('views/debug',
             carriers: require('mobilenetwork').carriers,
             cache: cache.raw,
             capabilities: capabilities,
-            profile: buckets.profile,
+            profile: compatibility_filtering.feature_profile,
             recent_logs: recent_logs,
             persistent_logs: log.persistent.all,
             filter: log.filter,

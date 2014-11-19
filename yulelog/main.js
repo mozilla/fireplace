@@ -33,6 +33,82 @@
         };
     }
 
+    var profile = '';
+
+    function buildFeaturesPromises() {
+        var promises = [];
+        // The order matters - we'll push promises in the same order to
+        // generate the features signature.
+        var features = [
+            // false,  // Hardcoded boolean value.
+            // 'mozApps' in navigator,  // Dynamic boolean value.
+            // ['hardware.memory', 512],  // getFeature() with comparison.
+            // 'api.window.MozMobileNetworkInfo',  // hasFeature().
+
+            // We are only interested in 3 features for now:
+            'getMobileIdAssertion' in window.navigator || 'api.window.Navigator.getMobileIdAssertion',
+            'manifest.precompile',
+            ['hardware.memory', 512],
+        ];
+
+        features.forEach(function(key) {
+            if (typeof key === 'boolean') {
+                // Hardcoded boolean value, just pass it to promises directly.
+                promises.push(key);
+            }
+            else if (typeof key === 'string') {
+                // If the key is a string, then we just need to call
+                // hasFeature().
+                promises.push(navigator.hasFeature(key));
+            }
+            else {
+                // We are dealing with a more complex case, where we need to
+                // call getFeature() and compare against a value.
+                var feature = key[0];
+                var value = key[1];
+                // We need to wrap the getFeature() Promise into one of our own
+                // that does the comparison, so that we can just call
+                // Promise.all later and get only booleans.
+                promises.push(new Promise(function(resolve, reject) {
+                    navigator.getFeature(feature).then(function(data) {
+                        resolve(data >= value);
+                    });
+                }));
+            }
+        });
+        return Promise.all(promises);
+    }
+
+    function buildIframeWithFeatureProfile() {
+        buildFeaturesPromises().then(function(promises) {
+            // Build the signature:
+            // - First, get a binary representation of all the feature flags.
+            //   the first 47 (!) are currently hardcoded as true.
+            var hardcoded_signature_part = '11111111111111111111111111111111111111111111111';
+            var features_int = parseInt(
+                hardcoded_signature_part +
+                promises.map(function(x) { return !!x ? '1' : '0'; }).join(''),
+            2);
+            profile = [
+                // First part is the hexadecimal string built from the array
+                // containing the results from all the promises (which should
+                // only be booleans);
+                features_int.toString(16),
+                // Second part is the number of features checked. The hardcoded
+                // features are added to the number of promises we checked.
+                promises.length + hardcoded_signature_part.length,
+                // Last part is a hardcoded version number, to bump whenever
+                // we make changes.
+                5
+            ].join('.');
+
+            log('Generated profile: ' + profile);
+
+            // Now that we have a feature profile, build the iframe with it.
+            buildIframe();
+        });
+    }
+
     function buildQS() {
         var qs = [];
 
@@ -90,6 +166,10 @@
             qs.push('nativepersona=true');
         }
 
+        if (profile) {
+            qs.push('pro=' + profile);
+        }
+
         return qs.join('&');
     }
 
@@ -117,7 +197,16 @@
             }
         }, false);
     } else {
-        buildIframe();
+        // Build the iframe. If we have Promise and hasFeature, we build the
+        // profile signature first.
+        if (typeof window.Promise !== 'undefined' &&
+            typeof navigator.hasFeature !== 'undefined') {
+            log('navigator.hasFeature and window.Promise available');
+            buildIframeWithFeatureProfile();
+        } else {
+            log('navigator.hasFeature or window.Promise unavailable :(');
+            buildIframe();
+        }
 
         // When refocussing the app, toggle the iframe based on `navigator.onLine`.
         window.addEventListener('focus', toggleOffline, false);

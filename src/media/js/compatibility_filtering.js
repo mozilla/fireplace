@@ -1,9 +1,9 @@
 define('compatibility_filtering',
-    ['buckets', 'capabilities', 'log', 'storage', 'underscore', 'utils', 'z'],
-    function(buckets, capabilities, log, storage, _, utils, z) {
+    ['capabilities', 'log', 'storage', 'underscore', 'utils', 'z'],
+    function(capabilities, log, storage, _, utils, z) {
 
-    var dev = '';
-    var device = '';
+    var actual_dev = '';
+    var actual_device = '';
     var limit = 25;
     var device_filter_name;
     var key = 'device_filtering_preferences';
@@ -11,30 +11,47 @@ define('compatibility_filtering',
     var device_override;
     var device_filtering_preferences;
 
+    // Default feature profile signature.
+    // a specially crafted signature that includes all features except the more
+    // recent ones, to hide apps using more recent features from older
+    // Marketplaces that have not been updated yet. Generated in Zamboni with:
+    // f = FeatureProfile.from_signature('fffffffffffffffffffffffffff')
+    // f.update({'mobileid': False,
+    //           'precompile_asmjs': False,
+    //           'hardware_512mb_ram': False})
+    // f.to_signature()
+    var default_feature_profile = '3fffffffffff8.50.5';
+    // Get feature profile from query string (yulelog sets this), or fall back
+    // to the default.
+    var feature_profile = utils.getVars().pro || default_feature_profile;
+    // API endpoints where feature profile is enabled, if all other conditions are met. See
+    // api_args() below.
+    var endpoints_with_feature_profile = ['category_landing', 'new_popular_search', 'search'];
+
     refresh_params();
     z.win.on('navigating', refresh_params);
 
     // By default, filter by device everywhere but on desktop.
     if (capabilities.firefoxOS) {
         // Currently we don't distinguish between mobile & tablet on FirefoxOS,
-        // so don't set device.
-        dev = 'firefoxos';
+        // so don't set actual_device.
+        actual_dev = 'firefoxos';
     } else if (capabilities.firefoxAndroid) {
-        dev = 'android';
-        device = capabilities.widescreen() ? 'tablet' : 'mobile';
+        actual_dev = 'android';
+        actual_device = capabilities.widescreen() ? 'tablet' : 'mobile';
     }
 
     // For mobile phones, set limit to 10, otherwise use the default, 25.
-    if (device == 'mobile' || dev == 'firefoxos') {
+    if (actual_device == 'mobile' || actual_dev == 'firefoxos') {
         limit = 10;
     }
 
-    // Build the name of the filter combination we are currently using.
-    if (dev && device) {
-        device_filter_name = dev + '-' + device;
+    // Build the name of the filter combination we are currently using. It can
+    // even be '', which is fine, it's the default for desktop (no filtering).
+    if (actual_dev && actual_device) {
+        device_filter_name = actual_dev + '-' + actual_device;
     } else {
-        // Can be '', which is fine, it's the default for desktop (no filtering).
-        device_filter_name = dev;
+        device_filter_name = actual_dev;
     }
 
     // Filtering preferences per page group. The default is to follow the
@@ -102,17 +119,28 @@ define('compatibility_filtering',
             // If device_filtering_preferences[endpoint_name] does not exist or
             // is an 'empty' value, then we use the default filtering behaviour
             // with whatever dev and device are.
-            args.dev = dev;
-            args.device = device;
+            args.dev = actual_dev;
+            args.device = actual_device;
         }
         args.limit = limit;
-        args.pro = buckets.profile;
+        if (actual_dev === 'firefoxos' &&
+            actual_dev === args.dev &&
+            actual_device === args.device &&
+            _.indexOf(endpoints_with_feature_profile, endpoint_name) >= 0) {
+            // Include feature profile, but only if specific conditions are met:
+            // - We are using a Firefox OS device
+            // - We aren't showing 'all apps'
+            // - We are dealing with an endpoint that knows how to handle feature profiles
+            args.pro = feature_profile;
+        }
         return args;
     }
 
     return {
         api_args: api_args,
+        default_feature_profile: default_feature_profile,
         device_filter_name: device_filter_name,
+        feature_profile: feature_profile,
         is_preference_selected: is_preference_selected,
         set_preference: set_preference
     };
