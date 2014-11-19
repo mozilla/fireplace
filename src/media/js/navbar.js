@@ -5,6 +5,7 @@ define('navbar',
     'use strict';
     var logger = log('navbar');
 
+    var DESKTOP_WIDTH = 710;
     var NAV_MKT_BASE_OFFSET = -65;
     var NAV_SETTINGS_BASE_OFFSET = 0;
     var NAV_LINK_VISIBLE_WIDTH = 50;
@@ -131,7 +132,9 @@ define('navbar',
         return right;
     }
 
-    function linefitNavbar($navbar) {
+    function linefitNavbarMobile($navbar) {
+        // Linefits the navbar on mobile such that the nav element flowing
+        // off the screen is clickable by 50px.
         if (!$navbar.length) {
             return;
         }
@@ -175,12 +178,34 @@ define('navbar',
         }
     }
 
-    function fitNavbar($item) {
+    function fitNavbarMobile($item) {
         // Does both line-fitting and offset calculations for the navbar.
         // Note that line-fitting must be done first since the offset affects
         // its calculations.
-        linefitNavbar($item.closest('.navbar'));
+        linefitNavbarMobile($item.closest('.navbar'));
         calcNavbarOffset($item);
+    }
+
+    function fitNavbarDesktop() {
+        // Shrinks the font-size and padding of the nav elements until it
+        // all fits within the window.
+        var windowWidth = z.win.width();
+        if (windowWidth < DESKTOP_WIDTH) {
+            return;
+        }
+        var $navbar = $('.nav-mkt');
+        var $navbarItems = $navbar.find('li');
+        var navbarWidth = $navbar.width();
+        while (navbarWidth > windowWidth) {
+            var fontSize = parseInt($navbar.find('li').css('font-size'), 10);
+            var padding = parseInt($navbar.find('li').css('padding-right'), 10);
+            $navbarItems.css({
+                'font-size': fontSize - 1 + 'px',
+                'padding-left': padding - 10 + 'px',
+                'padding-right': padding - 10 + 'px'
+            });
+            navbarWidth = $navbar.width();
+        }
     }
 
     // Desktop.
@@ -214,7 +239,8 @@ define('navbar',
             })
         ).addClass('secondary-header');
 
-        fitNavbar($('.navbar.active .initial-active'));
+        fitNavbarMobile($('.navbar.active .initial-active'));
+        fitNavbarDesktop();
 
         // Desktop categories hover menu.
         $('.hovercats').html(
