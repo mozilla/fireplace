@@ -193,7 +193,9 @@ commonprops($colour, $shadow) {
 // Install buttons.
 .mkt-tile .install {
     // Unset many .button properties.
-    bottom: -2px; // To compensate for the larger click target. Calculation: (24-34)/2 + $shadow-size
+    // To compensate for the larger click target.
+    // Calculation: (24-34)/2 + $shadow-size
+    bottom: -2px;
     commonprops(transparent, 'none');
     cursor: pointer;
     font-size: $install-font-size;
@@ -211,7 +213,7 @@ commonprops($colour, $shadow) {
         ellipsis();
         font-style: normal;
         height: $tiny;
-        line-height: $tiny + $shadow-size;
+        line-height: $tiny;
         padding: 0 $h-padding;
         vertical-align: bottom;
         width: $btn-install-width;
