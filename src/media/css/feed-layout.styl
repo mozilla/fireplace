@@ -2,6 +2,8 @@
     Defines the layout of the feed "tiles". Mostly columns.
     Uses Salvattore to produce the columns (e.g., .size1of2).
 */
+@import 'lib';
+
 $feed-column-width = 320px;
 $feed-tile-width = 300px;
 $feed-tile-margin = 15px;
@@ -83,5 +85,14 @@ $feed-tile-margin = 15px;
     .feed-landing.collection-landing,
     .feed-landing.shelf-landing {
         padding-top: 18px;
+    }
+}
+
+.home-feed {
+    margin-top: 15px;
+}
+@media $at-least-desktop {
+    .home-feed {
+        margin-top: 0;
     }
 }

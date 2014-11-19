@@ -6,6 +6,10 @@ TODO: move app list styles here.
 */
 @import "lib";
 
+.app-list-page {
+    padding-top: 10px;
+}
+
 [data-page-type~=app-list] {
     .spinner {
         position: relative;
@@ -14,9 +18,10 @@ TODO: move app list styles here.
 }
 
 @media $at-least-desktop {
-    [data-page-type~=app-list] {
-        .spinner {
-            top: 0;
-        }
+    [data-page-type~=app-list] .spinner {
+        top: 0;
+    }
+    .app-list-page {
+        padding-top: 0;
     }
 }
