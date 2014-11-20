@@ -50,11 +50,11 @@ WebIDE to install this package in the device or simulator.
 Further details can be found in the
 [Marketplace documentation](http://marketplace.readthedocs.org/latest/topics/package.html).
 
-### Flue (Fake API)
+### Marketplace Mock API
 
-Flue is a mocked-out version of the Marketplace API. Flue is hosted on
-```https://flue.paas.allizom.org``` and documentation can be found in
-[Flue's repository](https://github.com/mozilla/flue/blob/master/README.md).
+We have an instance of a mocked version of the Marketplace API at
+```https://flue.paas.allizom.org```. Documentation can be found in
+[marketplace-mock-api's repository](https://github.com/mozilla/marketplace-mock-api/blob/master/README.md).
 
 ### Yule Log (Iframed Package)
 
