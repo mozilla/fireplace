@@ -219,10 +219,24 @@ define('navbar',
         });
     }
     initActTray();
+
     z.page.on('loaded', function() {
         $('.account-links, .act-tray .settings').removeClass('active');
     });
-    z.body.on('reloaded_chrome', initActTray);
+
+    z.body.on('click', '.hovercats a', function() {
+        // Since the category drop-down is shown with CSS on `:hover`, when a
+        // category link is pressed, we add this class to hide the drop-down
+        // with CSS. See https://bugzilla.mozilla.org/show_bug.cgi?id=1100688
+        $('.tab-categories').addClass('link-clicked');
+    }).on('mouseover', '.tab-categories', function() {
+        // If the drop-down was hidden via the `link-clicked` class, then
+        // we first remove the class to allow the drop-down to be shown with
+        // CSS on `:hover`. Admittedly, this is only slightly better than
+        // using JS to toggle visibility on `mouseover`/`mouseout`. You can
+        // blame this: https://bugzilla.mozilla.org/show_bug.cgi?id=1100688
+        $('.tab-categories.link-clicked').removeClass('link-clicked');
+    }).on('reloaded_chrome', initActTray);
 
     function render() {
         // Build navbar.

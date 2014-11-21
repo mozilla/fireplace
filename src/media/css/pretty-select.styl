@@ -2,8 +2,7 @@
 
 .pretty-select {
     background-color: $primary-blue;
-    border: 1px solid $light-gray;
-    border-right-width: 0;
+    border: 1px solid darken($primary-blue, 10%);
     border-radius: 5px;
     font-weight: normal;
     font-size: 20px;
@@ -63,5 +62,11 @@
         background: #fff;
         color: $text;
         padding: 5px;
+    }
+}
+
+@media $at-least-desktop {
+    .pretty-select select {
+        min-width: 180px;
     }
 }
