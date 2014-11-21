@@ -53,7 +53,6 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // The list of models and their primary key mapping. Used by caching.
         model_prototypes: {
             'app': 'slug',
-            'category': 'slug',
             'collection': 'slug',
 
             'feed-app': 'slug',
