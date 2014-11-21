@@ -15,7 +15,7 @@
 
   {% set tag = 'div' if is_detail else 'a' %}
 
-  <{{ tag }} class="product mkt-tile"
+  <{{ tag }} class="product mkt-tile{{ ' feed-app' if feed_app }}"
     {% if not is_detail %} href="{{ app.url or url('app', [app.slug])|urlparams(src=src) }}"{% endif %}
     data-slug="{{ app.slug }}"
     data-id="{{ app.id }}"
