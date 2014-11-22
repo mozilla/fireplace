@@ -18,8 +18,13 @@ define('consumer_info',
             // by consumerInfo is coming from geoip, store it.
             user_helpers.set_region_geoip(data.region);
         }
-        if (user.logged_in() && data.apps !== undefined) {
-            user.update_apps(data.apps);
+        if (user.logged_in()) {
+           if (data.apps !== undefined) {
+               user.update_apps(data.apps);
+           }
+           user.update_settings({
+               enable_recommendations: data.enable_recommendations
+           });
         }
     }
 
@@ -41,7 +46,7 @@ define('consumer_info',
         // - User is logged out and we don't know the region already, or it's
         //   not valid (we need the region to do all other API calls)
         // - User is logged in (we need the installed/purchased/developed apps
-        //   list, possibly region as well)
+        //   list, recommendation opt-out, possibly region as well)
         // - The caller is forcing us
         if (force || !already_had_region || user.logged_in()) {
             requests.get(urls.api.url('consumer_info')).then(

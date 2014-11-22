@@ -39,6 +39,7 @@ casper.test.begin('Test account settings', {
             casper.click('#enable_recommendations');
             casper.click('.account-settings button[type="submit"]');
 
+            // Test submitting with recommendations off removes the body class.
             test.assertEqual(
                 casper.getFormValues('.account-settings').display_name,
                 'hello my name is rob hudson'
@@ -47,6 +48,28 @@ casper.test.begin('Test account settings', {
                 casper.getFormValues('.account-settings').enable_recommendations,
                 false
             );
+        });
+
+        casper.waitUntilVisible('#notification', function() {
+            test.assertNotExists('body.show-recommendations');
+        });
+
+        casper.waitWhileVisible('#notification', function() {
+            // Now test enabling recommendations.
+            casper.click('#enable_recommendations');
+            casper.click('.account-settings button[type="submit"]');
+        }, function() {
+            this.echo('[TIMEOUT] Waiting for #notification timed out.');
+        }, 7500);
+
+        casper.waitUntilVisible('#notification', function() {
+            // Test submitting with recommendations on adds the body class.
+            test.assertExists('body.show-recommendations');
+            test.assertEqual(
+                casper.getFormValues('.account-settings').enable_recommendations,
+                true
+            );
+
             casper.click('.logout');
         });
 
@@ -57,6 +80,7 @@ casper.test.begin('Test account settings', {
             test.assertSelectorHasText('.account-settings .persona', 'Register');
             test.assertNotVisible('.account-settings .logout');
             test.assertNotVisible('.account-settings footer p:first-child button');
+            test.assertNotExists('body.show-recommendations');
         });
 
         casper.run(function() {
