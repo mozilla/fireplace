@@ -31,10 +31,17 @@ define('views/settings',
         };
 
         user.update_settings(data);
+
         requests.patch(
             urls.api.url('settings'),
             data
         ).done(function() {
+            // Add/Remove recommended nav item depending on what was checked.
+            if (data.enable_recommendations) {
+                z.body.addClass('show-recommendations');
+            } else {
+                z.body.removeClass('show-recommendations');
+            }
             update_settings();
             notify({message: gettext('Settings saved')});
         }).fail(function() {

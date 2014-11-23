@@ -183,6 +183,10 @@ function(_) {
 
         var logged_in = user.logged_in();
 
+        if (!logged_in) {
+            z.body.removeClass('show-recommendations');
+        }
+
         siteConfig.promise.then(function () {
             if (capabilities.nativeFxA()) {
                 // We might want to style things differently for native FxA users,
@@ -201,12 +205,20 @@ function(_) {
                     nunjucks.env.render('fx-accounts-banner.html',
                                         {logged_in: logged_in}));
             }
+        });
 
+        // TODO: Move this to the consumer-info callback when the waffle is
+        // removed as we no longer require siteConfig for the waffle switch.
+        $.when(siteConfig, consumer_info).then(function() {
             // To show or not to show the recommendations nav.
-            if (logged_in && settings.switches.indexOf('recommendations') !== -1) {
+            if (logged_in && user.get_setting('enable_recommendations') &&
+                    // TODO: Remove when waffle removed (bug 1083942).
+                    settings.switches.indexOf('recommendations') !== -1) {
                 z.body.addClass('show-recommendations');
             }
+        });
 
+        consumer_info.promise.then(function() {
             // Re-render footer region if necessary.
             var current_region = user_helpers.region('restofworld');
             if (current_region !== context.region) {

@@ -21,6 +21,15 @@
     width: fit-content;
 }
 
+// We hide the recommendations tab by default and enable it via JS if user is
+// logged in and opted in to recommendations.
+.tab-item.recommended {
+    display: none;
+}
+.show-recommendations .tab-item.recommended {
+    display: inline-block;
+}
+
 .tab-link {
     border-bottom: 3px solid transparent;
     color: $navbar-text;

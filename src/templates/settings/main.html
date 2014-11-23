@@ -36,7 +36,7 @@
         <label>
           <input name="enable_recommendations" id="enable_recommendations"
                  type="checkbox"{{ ' checked' if user.get_setting('enable_recommendations', true) }}>
-          {{ _('Yes, show me recommendations based on my installed apps.') }}
+          {{ _('Yes, show me recommendations based on my installed apps. (<a href="{url}" target="_blank">Learn more</a>)')|format(url='https://support.mozilla.org/kb/recommendations-marketplace') }}
         </label>
       </div>
     </div>

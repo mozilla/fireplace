@@ -1,8 +1,7 @@
 {% include "_macros/act_tray.html" %}
 
 {% macro navtab(code, name, url) %}
-<li class="tab-item {{ code }}{{ ' initial-active' if path == url }}"
-    data-tab="{{ code }}">
+<li class="tab-item {{ code }}{{ ' initial-active' if path == url }}" data-tab="{{ code }}">
   <a class="tab-link" href="{{ url }}">{{ name }}</a>
 </li>
 {% endmacro %}
@@ -17,9 +16,7 @@
   {{ navtab('homepage', _('Home'), url('homepage')) }}
   {{ navtab('new', _('New'), url('new')) }}
   {{ navtab('popular', _('Popular'), url('popular')) }}
-  {% if logged_in and recommendations %}
-    {{ navtab('recommended', _('Recommended'), url('recommended')) }}
-  {% endif %}
+  {{ navtab('recommended', _('Recommended'), url('recommended')) }}
   <li class="tab-item tab-categories{{ ' initial-active' if path == url('categories') }}"
       data-tab="categories">
     <a class="tab-link mobile-cat-link" href="{{ url('categories') }}">{{ _('Categories') }}</a>

@@ -23,17 +23,14 @@ casper.test.begin('"New" page tests', {
             var href = this.getElementAttribute('.app-list li a.app-link:nth-child(1)',
                                                 'href');
             test.assertEqual(href.split('?')[1], 'src=new', 'Assert src');
-        });
 
-        // Test model cache.
-        var modelCount;
-        casper.then(function() {
-            modelCount = JSON.parse(casper.evaluate(function() {
-                return Object.keys(window.require('models')('app').data_store.app).length;
-            }));
-        });
-        casper.then(function() {
-            test.assertEqual(modelCount, 24, 'Assert model cache');
+            // Test model cache.
+            casper.then(function() {
+                var modelCount = casper.evaluate(function() {
+                    return Object.keys(window.require('models')('app').data_store.app).length;
+                });
+                test.assertEqual(modelCount, 24, 'Assert model cache');
+            });
         });
 
         casper.run(function() {

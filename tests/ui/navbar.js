@@ -17,6 +17,12 @@ casper.test.begin('Test navbar', {
 
         casper.waitForSelector('[data-page-type~="categories"]', function() {
             test.assertExists('[data-page-type~=categories]', 'Check navigate to category');
+            casper.click('.nav-mkt li[data-tab="recommended"] a');
+        });
+
+        // Recommended exists but may or may not be visible depending on login state.
+        casper.waitForSelector('[data-page-type~="recommended"]', function() {
+            test.assertExists('[data-page-type~=recommended]', 'Check navigate to recommended');
             casper.click('.act-tray.mobile');
         });
 
