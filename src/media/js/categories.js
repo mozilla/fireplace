@@ -1,8 +1,7 @@
-define('categories', ['l10n', 'models'], function(l10n, models) {
+define('categories', ['l10n'], function(l10n) {
     'use strict';
 
     var gettext = l10n.gettext;
-    var catModels = models('category');
     var categories = [
         {slug: 'games', name: gettext('Games')},
         {slug: 'books', name: gettext('Books')},
@@ -23,9 +22,6 @@ define('categories', ['l10n', 'models'], function(l10n, models) {
         {slug: 'travel', name: gettext('Travel')},
         {slug: 'utilities', name: gettext('Utilities')}
     ];
-    console.groupCollapsed('Casting categories to model cache...');
-    catModels.cast(categories);
-    console.groupEnd();
 
     return categories;
 });
