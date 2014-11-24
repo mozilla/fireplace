@@ -199,6 +199,7 @@ test('consumer_info API is called if user is logged in', function(done, fail) {
             requests: {
                 get: mockConsumerInfoRequestSuccess({
                     region: 'faraway',
+                    enable_recommendations: true,
                     apps: apps
                 }
             )},
@@ -206,6 +207,9 @@ test('consumer_info API is called if user is logged in', function(done, fail) {
             user: {
                 get_token: function() { return 'faketoken'; },
                 logged_in: function() { return true; },
+                update_settings: function(settings) {
+                    eq_(settings.enable_recommendations, true);
+                },
                 update_apps: function(incoming_apps) {
                     eq_(incoming_apps.developed, apps.developed);
                     eq_(incoming_apps.installed, apps.installed);
