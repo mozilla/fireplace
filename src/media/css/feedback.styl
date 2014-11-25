@@ -21,14 +21,15 @@
     }
 }
 
-@media $narrower-than-desktop {
-    .feedback-form.form-modal {
-        border-bottom: 1px solid $cloud-gray;
-        padding: 15px 10px;
-    }
+.feedback-form.form-modal {
+    border-bottom: 1px solid $cloud-gray;
+    padding: 15px 10px;
 }
 
-@media $at-least-desktop {
+@media $base-desktop {
+    .feedback-form.form-modal {
+        border-bottom: 0;
+    }
     .feedback .support-list {
         display: none;
     }

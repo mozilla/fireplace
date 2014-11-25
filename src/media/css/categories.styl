@@ -49,13 +49,6 @@
     display: none;
 }
 
-@media $at-least-desktop {
-    .category-header-desktop {
-        margin: 0 auto 20px;
-        width: $desktop-content;
-    }
-}
-
 .category-header {
     background: $note-gray;
     padding: 8px 0 6px;
@@ -71,7 +64,11 @@
     display: none;
 }
 
-@media $at-least-desktop {
+@media $base-desktop {
+    .category-header-desktop {
+        margin: 0 auto 20px;
+        width: $desktop-content;
+    }
     .mobile-cat-header {
         display: none;
     }
