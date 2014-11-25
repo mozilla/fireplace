@@ -7,6 +7,9 @@ define('settings_local', [], function() {
         media_url: '{media_url}',
         tracking_enabled: true,
         potatolytics_enabled: true,
-        package_version: '{version}'
+        package_version: '{version}',
+        // FIXME: commented out while we haven't figured out what the manifest
+        // URL for the true packaged app is doing to be.
+        // manifest_url: origin + '/packaged.webapp',
     };
 });

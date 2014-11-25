@@ -7,6 +7,10 @@ define('installer_iframe',
     'use strict';
     var gettext = l10n.gettext;
     var console = log('installer');
+    var deferreds = {
+        'check-for-update': {},
+        'apply-update': {}
+    };
 
     window.addEventListener('message', function(e) {
         if (settings.iframe_installer_src.indexOf(e.origin) !== 0) {
@@ -18,13 +22,19 @@ define('installer_iframe',
 
         switch (e.data.name) {
             case 'loaded':
-                return z.page.trigger('iframe-loaded');
+                return z.page.trigger('iframe-install-loaded');
 
             case 'install-package':
                 return z.page.trigger('iframe-install-package', [e.data]);
 
             case 'getInstalled':
                 return z.page.trigger('iframe-getInstalled', [e.data]);
+
+            case 'check-for-update':
+                return z.page.trigger('iframe-check-for-update', [e.data]);
+
+            case 'apply-update':
+                return z.page.trigger('iframe-apply-update', [e.data]);
         }
     });
 
@@ -53,6 +63,22 @@ define('installer_iframe',
         }
     }
 
+    // Wait for events that need to be sorted by manifest URL.
+    z.page.on('iframe-check-for-update iframe-apply-update', function(e, data) {
+        console.log('Received message from iframe installer (' + data.name + ')');
+        var manifestURL = data.manifestURL;
+        var name = data.name;
+        var def = deferreds[name][manifestURL];
+        if (!def) {
+            return;
+        }
+        if (data.error) {
+            def.reject(data);
+        } else {
+            def.resolve(data);
+        }
+    });
+
     function install(product, opt) {
         // m.f.c will receive this postMessage in `iframe-install.html`.
         console.log('Using iframe installer for ' + product.manifest_url);
@@ -66,6 +92,9 @@ define('installer_iframe',
             }
         }, '*');
 
+        // FIXME: we are registering this everytime an app is installed, without
+        // removing it once it's done. That's bad! Refactor with the deferreds
+        // object above, see z.page.on('iframe...') above.
         z.page.on('iframe-install-package', function(e, data) {
             console.log('Received message from iframe installer (install-package)');
             if (data && data.name == 'install-package' && data.appId == product.id) {
@@ -88,6 +117,40 @@ define('installer_iframe',
             }
         });
 
+        return def.promise();
+    }
+
+    function checkForUpdate(manifestURL) {
+        console.log('Checking for update of ' + manifestURL);
+        var def = deferreds['check-for-update'][manifestURL];
+        if (def) {
+            // There is an existing defered, abort.
+            console.log('We are already checking for update of ' + manifestURL);
+            return def;
+        }
+        def = defer.Deferred();
+        deferreds['check-for-update'][manifestURL] = def;
+        iframe.contentWindow.postMessage({
+            name: 'check-for-update',
+            manifestURL: manifestURL
+        }, '*');
+        return def.promise();
+    }
+
+    function applyUpdate(manifestURL) {
+        console.log('Downloading update of ' + manifestURL);
+        var def = deferreds['apply-update'][manifestURL];
+        if (def) {
+            // There is an existing defered, abort.
+            console.log('We are already downloading update of ' + manifestURL);
+            return def;
+        }
+        def = defer.Deferred();
+        deferreds['apply-update'][manifestURL] = def;
+        iframe.contentWindow.postMessage({
+            name: 'apply-update',
+            manifestURL: manifestURL
+        }, '*');
         return def.promise();
     }
 
@@ -119,6 +182,8 @@ define('installer_iframe',
     }
 
     return {
+        applyUpdate: applyUpdate,
+        checkForUpdate: checkForUpdate,
         getInstalled: getInstalled,
         initialize_iframe: initialize_iframe,
         launch: launch,
