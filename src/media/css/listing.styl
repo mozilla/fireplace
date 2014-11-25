@@ -292,7 +292,7 @@ div .deferred-background {
     }
 }
 
-@media $at-least-desktop {
+@media $base-desktop {
     .shots {
         position: relative;
 
@@ -428,32 +428,33 @@ div .deferred-background {
     }
 }
 
-@media $narrower-than-desktop {
-    .purchases .mkt-tile + .tray {
-        display: none;
+.purchases .mkt-tile + .tray {
+    display: none;
+}
+
+.gallery {
+    background: $seavan-salt-white;
+}
+
+.grid li {
+    &:nth-child(4):before {
+        content: "";
+        display: block;
+        height: 0;
+        position: absolute;
+        top: -1px;
+        // Span 3 columns.
+        width: calc(unquote('300% - 20px'));
     }
-    .gallery {
-        background: $seavan-salt-white;
-    }
-    .grid li {
-        &:nth-child(4):before {
-            content: "";
-            display: block;
-            height: 0;
-            position: absolute;
-            top: -1px;
-            // Span 3 columns.
-            width: calc(unquote('300% - 20px'));
-        }
-        // Show 3 at most (per UX).
-        &:nth-child(3) ~ li {
-            display: none;
-        }
-    }
-    .tabs + .view-all {
+    // Show 3 at most (per UX).
+    &:nth-child(3) ~ li {
         display: none;
     }
 }
+.tabs + .view-all {
+    display: none;
+}
+
 
 @media $retina {
     .shots .next, .shots .prev {
@@ -487,7 +488,7 @@ div .deferred-background {
     border-radius: 0 0 5px 5px;
 }
 
-@media $at-least-desktop {
+@media $base-desktop {
     .listing li {
         &.item {
             margin: 25px 0 0;
@@ -573,7 +574,7 @@ ratings-sidebar() {
     }
 }
 
-@media $at-least-desktop {
+@media $base-desktop {
     .mkt-tile + .tray {
         border-radius: 0;
     }

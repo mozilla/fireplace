@@ -1,6 +1,8 @@
 // styles for the global site header only.
 @import 'lib';
 
+$placeholder-gray = #cacaca;
+
 // Add the header's height back as padding. This is overriden when the header
 // is not `position: fixed`.
 body {
@@ -143,7 +145,7 @@ body {
 #search-q {
     background: #f4f4f4 url(../img/pretty/search.svg) 8px 50% no-repeat;
     border: 2px solid $cement-gray;
-    border-radius: 10px;
+    border-radius: 5px;
     color: $london-fog-gray;
     font: 300 20px/28px $open-stack;
     height: 34px;
@@ -153,13 +155,13 @@ body {
     width: 100%;
     z-index: 2;
     &:-moz-placeholder {
-        color: darken($cement-gray, 5%);
+        color: $placeholder-gray;
     }
     &::-moz-placeholder {
-        color: darken($cement-gray, 5%);
+        color: $placeholder-gray;
     }
     &::-webkit-input-placeholder {
-        color: darken($cement-gray, 5%);
+        color: $placeholder-gray;
     }
     ~ .search-clear {
         transition(unquote('.3s opacity, .3s visibility'));
@@ -477,7 +479,7 @@ main {
 // ***************** Cursor (Desktop) (>= 1024px)
 
 // This probably shouldn't be media query based.
-@media $wider-desktop {
+@media $wide-desktop {
     body {
       padding-top: 0;
     }
@@ -557,15 +559,14 @@ main {
 
     .site-header .search,
     #search-q {
-        width: 532px;
+        width: 340px;
     }
 
     #search-q {
         background-position: 10px 50%;
         border-width: 1px;
         font-size: 18px;
-        font-weight: 400;
-        height: 40px;
+        height: 46px;
         line-height: 40px;
         padding: 6px 15px 4px 34px;
 
@@ -579,7 +580,7 @@ main {
     }
 
     .search-clear {
-        top: 4px;
+        top: 6px;
     }
 
     // How does the header look for the various page "types"?
@@ -599,7 +600,7 @@ main {
 }
 
 // ***************** Wide Mobile (> 671px)
-@media $at-least-desktop {
+@media $base-desktop {
     .secondary-header {
         background: none;
         border: 0;

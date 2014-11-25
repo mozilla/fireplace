@@ -26,10 +26,6 @@ select[name=rating] {
     .actions li, time {
         font-size: 12px;
     }
-    .actions {
-        float: left;
-        font-size: 0;
-    }
     time {
         float: right;
     }
@@ -90,7 +86,7 @@ select[name=rating] {
     padding: 0 10px 24px;
 }
 
-@media $at-least-desktop {
+@media $base-desktop {
     .reviews, .detail .reviews {
         padding: 0 15px 24px;
     }
@@ -315,7 +311,46 @@ tinyStars() {
     }
 }
 
-@media $at-least-desktop {
+.primary-button {
+    padding: 15px 10px;
+    width: 100%;
+
+    .button {
+        display: block;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+.reviews-listing {
+    .ratings-placeholder-inner {
+        margin-bottom: 0;
+    }
+    .review {
+        background: #fff;
+        border: 1px solid $seavan-salt-white;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 15px 10px;
+    }
+    .actions {
+        float: right;
+        font-size: 0;
+    }
+    time {
+        padding-right: 10px;
+    }
+    .loadmore {
+        // 15px above and below reviews.
+        padding: 5px 0 15px;
+    }
+}
+
+.detail .review + .review {
+    margin-top: 24px;
+}
+
+@media $base-desktop {
     .category .stars {
         display: block;
     }
@@ -381,42 +416,21 @@ tinyStars() {
             padding: 0 0 0 12px;
         }
     }
-}
-
-@media $narrower-than-desktop {
     .primary-button {
-        padding: 15px 10px;
-        width: 100%;
+        padding: 0;
+        width: inherit;
 
         .button {
-            display: block;
-            max-width: 400px;
-            margin: 0 auto;
+            display: inline-block;
         }
     }
     .reviews-listing {
-        .ratings-placeholder-inner {
-            margin-bottom: 0;
+        .actions {
+            float: left;
         }
         .review {
-            background: #fff;
-            border: 1px solid $seavan-salt-white;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            padding: 15px 10px;
+            padding-top: 24px;
+            border: 0;
         }
-        .actions {
-            float: right;
-        }
-        time {
-            padding-right: 10px;
-        }
-        .loadmore {
-            // 15px above and below reviews.
-            padding: 5px 0 15px;
-        }
-    }
-    .detail .review + .review {
-        margin-top: 24px;
     }
 }

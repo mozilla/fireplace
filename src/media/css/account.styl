@@ -136,32 +136,31 @@
     display: inline-block;
 }
 
-@media $narrower-than-desktop {
-    article.extras {
-        .notice {
-            background: #fff;
-            border-bottom: 1px solid $cloud-gray;
-            padding: 15px 10px;
-        }
-        .button {
-            display: block;
-            margin: 10px;
-        }
+article.extras {
+    .notice {
+        background: #fff;
+        border-bottom: 1px solid $cloud-gray;
+        padding: 15px 10px;
     }
-    .account-settings {
-        footer {
-            background: $seavan-salt-white;
-        }
-        p {
-            width: 100%;
-        }
-        .save-changes {
-            background: #fff;
-            border-bottom: 1px solid $cloud-gray;
-        }
-        .extras {
-            padding-bottom: 0;
-        }
+    .button {
+        display: block;
+        margin: 10px;
+    }
+}
+
+.account-settings {
+    footer {
+        background: $seavan-salt-white;
+    }
+    p {
+        width: 100%;
+    }
+    .save-changes {
+        background: #fff;
+        border-bottom: 1px solid $cloud-gray;
+    }
+    .extras {
+        padding-bottom: 0;
     }
 }
 
@@ -194,7 +193,7 @@
     }
 }
 
-@media $at-least-desktop {
+@media $base-desktop {
     $account-border-radius = 10px;
 
     .toggles,
