@@ -101,32 +101,9 @@ dd {
 }
 
 .back-to-app {
+    display: none;
     position: relative;
     z-index: 20;  // To cover relatively positioned "Write a Review" button.
-}
-
-@media $narrower-than-desktop {
-    .back-to-app {
-        display: none;
-    }
-}
-
-@media $at-least-desktop {
-    h2 {
-        font-size: 40px;
-        font-weight: 300;
-        line-height: 50px;
-    }
-    article {
-        border-radius: 10px;
-        margin: 48px 0 0;
-        padding: 18px 15px;
-    }
-}
-
-.island.prose {
-    border-radius: 5px;
-    padding: 24px;
 }
 
 .prose {
@@ -155,24 +132,42 @@ dd {
         margin-bottom: 0;
     }
     dl, ol, ul {
-        margin-left: 48px;
+        margin-left: 24px;
     }
     address, blockquote {
-        margin: 0 48px;
+        margin: 0 24px;
     }
 }
 
-@media $narrower-than-desktop {
+.island.prose {
+    border-radius: 5px;
+    margin: 10px;
+    padding: 15px 10px;
+}
+
+@media $base-desktop {
+    h2 {
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 50px;
+    }
+    article {
+        border-radius: 10px;
+        margin: 48px 0 0;
+        padding: 18px 15px;
+    }
+    .back-to-app {
+        display: block;
+    }
     .island.prose {
-        margin: 10px;
-        padding: 15px 10px;
+        padding: 24px;
     }
     .prose {
         dl, ol, ul {
-            margin-left: 24px;
+            margin-left: 48px;
         }
         address, blockquote {
-            margin: 0 24px;
+            margin: 0 48px;
         }
     }
 }

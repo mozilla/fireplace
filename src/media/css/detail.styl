@@ -175,9 +175,15 @@ section.releasenotes {
     }
 }
 
-// ***************** Wide Mobile (> 671px)
+// Statistics page is not mobile-optimized. Hide button to that page at non-
+// desktop widths.
+// TODO: Kill this once bug 924519 is resolved.
+.statistics {
+    display: none;
+}
 
-@media $at-least-desktop {
+// ***************** Wide Mobile (> 671px)
+@media $base-desktop {
     .upsell-wrapper {
         background: #fff;
     }
@@ -233,13 +239,7 @@ section.releasenotes {
         padding: 15px;
         position: static;
     }
-}
-
-
-// Statistics page is not mobile-optimized. Hide button to that page at non-
-// desktop widths.
-@media $narrower-than-desktop {
     .statistics {
-        display: none;
+        display: block;
     }
 }
