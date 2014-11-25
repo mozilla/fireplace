@@ -31,7 +31,7 @@ define('navbar',
             }
 
             setTimeout(function() {
-                fitNavbar($item);
+                fitNavbarMobile($item);
             }, waitForTransition);
         }
 
