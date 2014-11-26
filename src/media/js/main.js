@@ -188,7 +188,7 @@ function(_) {
         }
 
         siteConfig.promise.then(function () {
-            if (capabilities.nativeFxA()) {
+            if (capabilities.nativeFxA() || capabilities.yulelogFxA()) {
                 // We might want to style things differently for native FxA users,
                 // specifically they should need to log out through settings instead
                 // of through Marketplace (hide logout buttons for bug 1073177).
