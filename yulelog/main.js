@@ -58,8 +58,29 @@
             }
             else if (typeof key === 'string') {
                 // If the key is a string, then we just need to call
-                // hasFeature().
-                promises.push(navigator.hasFeature(key));
+                // hasFeature()... except for manifest.* properties, to work
+                // around platform bug 1098470.
+                if (key.substr(0, 9) !== 'manifest.') {
+                    promises.push(navigator.hasFeature(key));
+                } else {
+                    // While bug 1098470 is not fixed, hasFeature(manifest.*)
+                    // will fail, where as getFeature(manifest.*) will work.
+                    // When this bug is fixed, the behaviour will be reversed,
+                    // we need to handle both cases to prevent future breakage,
+                    // so we call hasFeature() first and *then* getFeature()
+                    // if it failed.
+                    promises.push(new Promise(function(resolve, reject) {
+                        navigator.hasFeature(key).then(function(data) {
+                            if (!data) {
+                                navigator.getFeature(key).then(function(data) {
+                                    resolve(data);
+                                });
+                            } else {
+                                resolve(data);
+                            }
+                        });
+                    }));
+                }
             }
             else {
                 // We are dealing with a more complex case, where we need to
