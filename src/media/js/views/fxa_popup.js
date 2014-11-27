@@ -97,6 +97,8 @@ define('views/fxa_popup',
         if (user.logged_in()) {
             // Use the currently logged in user's email.
             setEmail(user.get_setting('email'));
+        } else {
+            showEmailForm();
         }
 
         z.page.one('loaded', function() {
@@ -136,6 +138,13 @@ define('views/fxa_popup',
         }
 
         function showEmailForm() {
+            var helpText;
+            if (utils.getVars().action === 'signup') {
+                helpText = gettext('Join Firefox Marketplace');
+            } else {
+                helpText = gettext('Sign in to Firefox Marketplace');
+            }
+            document.getElementById('email-help-text').textContent = helpText;
             showBox('email');
             emailField.focus();
         }
