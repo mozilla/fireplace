@@ -312,6 +312,11 @@ test('compatibility_filtering api_args endpoint firefoxos w/ profiled passed by 
             eq_(args.device, '');
             eq_(args.pro, 'dummy-profile');
 
+            args = compatibility_filtering.api_args('feed');
+            eq_(args.dev, 'firefoxos');
+            eq_(args.device, '');
+            eq_(args.pro, 'dummy-profile');
+
             args = compatibility_filtering.api_args('new_popular_search');
             eq_(args.dev, 'firefoxos');
             eq_(args.device, '');
@@ -356,6 +361,11 @@ test('compatibility_filtering api_args endpoint firefoxos w/ storage', function(
             eq_(args.pro, undefined);
 
             args = compatibility_filtering.api_args('search');
+            eq_(args.dev, 'firefoxos');
+            eq_(args.device, '');
+            eq_(args.pro, compatibility_filtering.default_feature_profile);
+
+            args = compatibility_filtering.api_args('feed');
             eq_(args.dev, 'firefoxos');
             eq_(args.device, '');
             eq_(args.pro, compatibility_filtering.default_feature_profile);
