@@ -45,9 +45,14 @@
             // ['hardware.memory', 512],  // getFeature() with comparison.
             // 'api.window.MozMobileNetworkInfo',  // hasFeature().
 
-            // We are only interested in 3 features for now:
-            'getMobileIdAssertion' in window.navigator || 'api.window.Navigator.getMobileIdAssertion',
-            'manifest.precompile',
+            // We are only interested in 3 features for now. We're already only
+            // doing this if getFeature is present, and it was introduced in
+            // 2.0, so we know we can hardcode anything that comes with 2.0 or
+            // better. This sucks, won't scale, and we need a better long-term
+            // solution, but for now it helps us work the fact that hasFeature
+            // does not exist in 2.0 :(
+            true, // 'getMobileIdAssertion' in window.navigator || 'api.window.Navigator.getMobileIdAssertion',
+            true, // 'manifest.precompile',
             ['hardware.memory', 512],
         ];
 
@@ -218,14 +223,14 @@
             }
         }, false);
     } else {
-        // Build the iframe. If we have Promise and hasFeature, we build the
+        // Build the iframe. If we have Promise and getFeature, we build the
         // profile signature first.
         if (typeof window.Promise !== 'undefined' &&
-            typeof navigator.hasFeature !== 'undefined') {
-            log('navigator.hasFeature and window.Promise available');
+            typeof navigator.getFeature !== 'undefined') {
+            log('navigator.getFeature and window.Promise available');
             buildIframeWithFeatureProfile();
         } else {
-            log('navigator.hasFeature or window.Promise unavailable :(');
+            log('navigator.getFeature or window.Promise unavailable :(');
             buildIframe();
         }
 
