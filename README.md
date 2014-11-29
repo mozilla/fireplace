@@ -1,3 +1,5 @@
+# Fireplace
+
 [![Build Status](https://travis-ci.org/mozilla/fireplace.svg?branch=master)](https://travis-ci.org/mozilla/fireplace)
 
 The [Firefox Marketplace](https://marketplace.firefox.com) frontend.
@@ -6,7 +8,8 @@ The [Firefox Marketplace](https://marketplace.firefox.com) frontend.
 - [Marketplace documentation](https://marketplace.readthedocs.org)
 - [Marketplace API documentation](https://firefox-marketplace-api.readthedocs.org)
 
-![](https://imgur.com/eGuUEfv.jpg)
+![screenshot of Marketplace homepage](https://cloud.githubusercontent.com/assets/203725/5194189/cd55c5f8-74be-11e4-8272-ce2ab4bc5af7.jpg "screenshot of Marketplace homepage")
+
 
 
 ## Installation
@@ -17,7 +20,7 @@ make install
 make serve
 ```
 
-This will start a webserver on ```http://localhost:8675```.
+This will start a web server on ```http://localhost:8675```.
 
 
 ### Building for Production

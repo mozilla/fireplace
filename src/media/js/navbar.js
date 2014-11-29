@@ -12,8 +12,10 @@ define('navbar',
 
     function initNavbarButtons() {
         // Navbar settings + Marketplace buttons.
-        var $mktNavGroup = $('.nav-mkt , .act-tray.mobile');
-        var $settingsNavGroup = $('.nav-settings, .mkt-tray');
+        var $mktNav = $('.nav-mkt');
+        var $settingsNav = $('.nav-settings');
+        var $mktNavGroup = $mktNav.add('.act-tray.mobile');
+        var $settingsNavGroup = $settingsNav.add('.mkt-tray');
 
         function toggleNavbar($on, $off) {
             $on.addClass('active');
@@ -31,7 +33,7 @@ define('navbar',
             }
 
             setTimeout(function() {
-                fitNavbar($item);
+                fitNavbarMobile($item);
             }, waitForTransition);
         }
 
@@ -39,6 +41,7 @@ define('navbar',
         z.body.on('click', '.act-tray.mobile', function(e) {
             // Activate Settings page navbar.
             e.preventDefault();
+            $mktNav.css('right', '');  // Reset the offset for transition effect.
             toggleNavbar($settingsNavGroup, $mktNavGroup);
 
             var $firstLink = $settingsNavGroup.find('[data-tab]:first-child a');
@@ -50,6 +53,7 @@ define('navbar',
         .on('click', '.mkt-tray', function(e) {
             // Activate Marketplace pages navbar.
             e.preventDefault();
+            $('.nav-settings').css('right', '');  // Reset the offset for transition effect.
             toggleNavbar($mktNavGroup, $settingsNavGroup);
 
             var $firstLink = $mktNavGroup.find('[data-tab]:first-child a');
