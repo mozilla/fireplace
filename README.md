@@ -1,4 +1,4 @@
-# Fireplace
+# Marketplace Frontend
 
 [![Build Status](https://travis-ci.org/mozilla/fireplace.svg?branch=master)](https://travis-ci.org/mozilla/fireplace)
 
@@ -11,8 +11,7 @@ The [Firefox Marketplace](https://marketplace.firefox.com) frontend.
 ![screenshot of Marketplace homepage](https://cloud.githubusercontent.com/assets/203725/5194189/cd55c5f8-74be-11e4-8272-ce2ab4bc5af7.jpg "screenshot of Marketplace homepage")
 
 
-
-## Installation
+## Installation and Usage
 
 ```bash
 npm install
@@ -21,7 +20,6 @@ make serve
 ```
 
 This will start a web server on ```http://localhost:8675```.
-
 
 ### Building for Production
 
@@ -40,7 +38,6 @@ src/media/js/include.js
 src/media/js/include.js.map
 src/media/css/include.css
 ```
-
 ### Developing the Packaged App
 
 To package the Marketplace frontend, run:
