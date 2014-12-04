@@ -43,7 +43,8 @@ var packageFilesWhitelist = [
 ];
 var imageWhitelist = [
     // Match all images. If it isn't being used, it should be nixed.
-    'src/media/img/**/*.*',
+    'src/media/img/**/*',
+    '!src/media/app-icons/**/*'
 ];
 var PKG_PATH = 'package/archives/';
 var TMP_PATH = 'package/.tmp/';  // Used to get around amd-optimize loader.
