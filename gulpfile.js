@@ -201,3 +201,12 @@ gulp.task('docker', function() {
         'serve'
     );
 });
+
+
+gulp.task('watch_package', function() {
+    // Watch and recompile on change.
+    var paths = marketplaceGulp.paths;
+    gulp.watch(paths.styl, ['package']);
+    gulp.watch(paths.js, ['package']);
+    gulp.watch(paths.html, ['package']);
+});
