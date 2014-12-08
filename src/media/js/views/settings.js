@@ -1,6 +1,6 @@
 define('views/settings',
-    ['linefit', 'jquery', 'l10n', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
-    function(linefit, $, l10n, notification, requests, urls, user, utils, z) {
+    ['cache', 'jquery', 'linefit', 'l10n', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
+    function(cache, $, linefit, l10n, notification, requests, urls, user, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -44,6 +44,10 @@ define('views/settings',
             }
             update_settings();
             notify({message: gettext('Settings saved')});
+            cache.bust(urls.api.url('settings'));
+            // Also bust cache on consumer-info since `enable_recommendations`
+            // lives there also for the navbar toggling.
+            cache.bust(urls.api.url('consumer_info'));
         }).fail(function() {
             notify({message: gettext('Settings could not be saved')});
         });
