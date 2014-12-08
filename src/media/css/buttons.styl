@@ -1,5 +1,7 @@
 @import 'lib';
 
+$arrow-button-size = 30px;
+
 /*
  * Style guide: http://pwalm.github.io/marketplace-style-guides/buttons.html
  *
@@ -172,6 +174,39 @@ commonprops($colour, $shadow) {
     &.primo {
         padding: 0 30px;
     }
+}
+
+.arrow-button-left,
+.arrow-button-right {
+    background-color: $action-positive;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    border: 1px solid $white;
+    border-radius: 50%;
+    color: transparent;
+    cursor: pointer;
+    font-size: 0;
+    height: $arrow-button-size;
+    transition: 150ms;
+    width: $arrow-button-size;
+
+    &:hover {
+        background-color: $action-positive-hover;
+    }
+
+    &:active {
+        background-color: $action-positive-tapped;
+    }
+}
+
+.arrow-button-left {
+    background-image: url(../img/pretty/arrow-l.svg);
+    background-position: 45% 50%;
+}
+
+.arrow-button-right {
+    background-image: url(../img/pretty/arrow-r.svg);
+    background-position: 55% 50%;
 }
 
 @media $retina {
