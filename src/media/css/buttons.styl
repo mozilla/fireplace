@@ -93,6 +93,8 @@ commonprops($colour, $shadow) {
     &:hover, &:focus {
         background: $btn-hvr;
     }
+    // Override `button:not([disabled]):active` from site.styl.
+    &:not([disabled]):active,
     &:active {
         commonprops($btn-act, 'none');
     }

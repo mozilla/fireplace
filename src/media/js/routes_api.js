@@ -23,6 +23,7 @@ define('routes_api', [], function() {
         // New / Popular pages use a regular search API call, but we need
         // device filtering depending on the page group, so we need an alias.
         'new_popular_search': '/api/v2/fireplace/search/?cache=1&vary=0',
+        'newsletter': '/api/v2/account/newsletter/',
         'payments_status': '/api/v2/webpay/status/{0}/',
         'prepare_nav_pay': '/api/v2/webpay/prepare/',
         'preverify_token': '/api/v2/account/fxa-preverify/',

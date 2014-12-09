@@ -1,0 +1,130 @@
+@import 'lib';
+
+#newsletter-footer {
+    background: $navbar-gray;
+    padding: 20px;
+}
+
+.newsletter {
+    position: relative;
+
+    form, .success {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 690px;
+    }
+
+    .processing-hidden {
+        visibility: hidden;
+    }
+
+    .success, .processing {
+        display: none;
+    }
+
+    .success p {
+        margin-top: 5px;
+        line-height: 1.3;
+    }
+
+    .processing {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: calc(unquote('50% - 30px'));
+        right: 0;
+        text-align: center;
+    }
+
+    .spinner {
+        display: inline-block;
+        margin: 0;
+    }
+
+    h3 {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+
+    input, select, button {
+        margin: 0 10px 10px 0;
+    }
+
+    .privacy {
+        clear: left;
+        margin-bottom: 10px;
+
+        label {
+            color: $black;
+            display: inline;
+            font-weight: 400;
+        }
+
+        input {
+            margin: 0;
+        }
+    }
+}
+
+.newsletter-signup-page {
+    background: $white;
+    padding: 10px;
+
+    h3 {
+        margin-bottom: 20px;
+    }
+
+    .newsletter-details {
+        transition: none;
+    }
+}
+
+.newsletter-email-field,
+.newsletter-select {
+    background: $white;
+    height: 36px;
+    padding: 5px 6px;
+    width: 50%;
+}
+
+.newsletter-email-field {
+    width: 50%;
+}
+
+.expanding.newsletter-details {
+    opacity: 0;
+}
+
+.newsletter-details {
+    opacity: 1;
+    transition: .3s;
+}
+
+.expanded.newsletter-details {
+    transition: none;
+}
+
+@media $narrower-than-desktop {
+    .newsletter-details {
+        display: block;
+        width: 100%;
+    }
+
+    .newsletter .newsletter-desktop {
+        display: none;
+    }
+
+    .newsletter-email-field,
+    .newsletter-select,
+    .newsletter-signup-button,
+    .newsletter-cancel-button {
+        width: 100%;
+    }
+}
+
+@media $at-least-desktop {
+    .newsletter .newsletter-mobile {
+        display: none;
+    }
+}

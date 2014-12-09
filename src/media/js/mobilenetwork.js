@@ -5,8 +5,6 @@ define('mobilenetwork',
     var persistent_console = log.persistent('mobilenetwork', 'change');
     var gettext = l10n.gettext;
 
-    var REGIONS = settings.REGION_CHOICES_SLUG;
-
     var regions = {
         // Missing [ "231", "232", "744" ]
 

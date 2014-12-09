@@ -25,16 +25,16 @@
     p {
         width: 50%;
     }
+    h3 {
+        background: $salt-flat-white;
+        clear: both;
+        margin: 10px 0 0;
+        padding: 10px;
+        text-transform: uppercase;
+    }
     input[type=email],
     input[type=text] {
-        border-radius: 3px;
-        border: 1px solid $light-gray;
-        box-shadow: 0 1px 0 #fff, 0 1px 1px $seavan-salt-white inset;
-        color: $london-fog-gray;
-        font: 400 15px/28px $open-stack;
         height: 48px;
-        padding: 10px 12px;
-        text-decoration: none;
         width: 100%;
     }
     input[type=checkbox] {
@@ -124,6 +124,11 @@
     }
 }
 
+.newsletter-info p {
+    padding: 0 0 10px;
+    width: 100%;
+}
+
 .logged-in .account-settings .only-logged-out.extras {
     display: none;
 }
@@ -190,6 +195,8 @@
 }
 
 @media $at-least-desktop {
+    $account-border-radius = 10px;
+
     .toggles,
     .account div.secondary-header {
         display: none;
@@ -201,16 +208,24 @@
         margin-bottom: 18px;
     }
     .account-settings {
-        border-radius: 10px;
+        border-radius: $account-border-radius;
         box-shadow: 0 1px 1px $cement-gray;
         float: left;
-        padding: 3px 5px 8px;  // On desktop we want 18px above and below.
+        padding: 0;
         position: relative;
+
+        h3:first-of-type {
+            border-radius: $account-border-radius $account-border-radius 0 0;
+            margin: 0;
+        }
 
         .simple-field {
             float: left;
             padding: 15px 10px 10px;
             width: 50%;
+        }
+        .full-width {
+            width: 100%;
         }
 
         footer {

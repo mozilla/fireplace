@@ -1,0 +1,40 @@
+<div class="newsletter{{ ' newsletter-signup-page' if standalone_newsletter_signup }}">
+  <form class="c" method="post">
+    {% if standalone_newsletter_signup %}
+      <h3>{{ _('Sign up for our newsletter') }}</h3>
+    {% else %}
+      <h3>{{ _('Get Firefox news! Sign up for our newsletter') }}</h3>
+    {% endif %}
+    <input type="email" class="email newsletter-email-field" name="email" placeholder="E-Mail" value="{{ email }}" required>
+    <button class="button s newsletter-signup-button newsletter-desktop">{{ _('Sign me up') }}</button>
+    <div class="newsletter-details collapsed">
+      <select name="region" class="newsletter-select" placeholder="">
+        {% for code, region in REGIONS.items() %}
+          {% if code != 'None' %}
+            <option value="{{ code }}"{{ ' selected' if code == user_region }}>
+              {{ region }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      <div class="privacy">
+          <input type="checkbox" name="privacy" id="id_newsletter_privacy{% if standalone_newsletter_signup %}_standalone{% endif %}" required>
+          <label for="id_newsletter_privacy{% if standalone_newsletter_signup %}_standalone{% endif %}">
+            {{ _("I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>.",
+                 privacy_policy_url='https://www.mozilla.org/privacy/') }}
+          </label>
+      </div>
+    </div>
+    <button class="button newsletter-signup-button newsletter-mobile{{ ' s' if not standalone_newsletter_signup }}">{{ _('Sign me up') }}</button>
+    <a href="/settings" class="button support newsletter-cancel-button hide-on-desktop{{ ' s' if not standalone_newsletter_signup }}">{{ _('Cancel') }}</a>
+  </form>
+  <div class="processing">
+    <span class="spinner alt"></span>
+  </div>
+  <div class="success">
+    <h3>{{ _('Thanks for signing up!') }}</h3>
+    <p>
+      <strong>{{ _('Please check your inbox to confirm your subscription.') }}</strong>
+    </p>
+    <p>{{ _("You'll receive an email from mozilla@e.mozilla.org to confirm your subscription. If you don’t see it, check your spam filter. You must confirm your subscription to receive our newsletter.") }}</p>
+  </div>
+</div>

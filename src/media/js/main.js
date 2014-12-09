@@ -28,6 +28,7 @@ define(
         'models',
         'navbar',
         'navigation',
+        'newsletter',
         'outgoing_links',
         'overlay',
         'perf_events',
@@ -166,7 +167,8 @@ function(_) {
         console.log('Reloading chrome');
         var user_helpers = require('user_helpers');
         var context = {
-            region: user_helpers.region('restofworld'),
+            user_region: user_helpers.region('restofworld'),
+            email: user.get_setting('email'),
             z: z
         };
         $('#site-header').html(
@@ -221,12 +223,12 @@ function(_) {
         consumer_info.promise.then(function() {
             // Re-render footer region if necessary.
             var current_region = user_helpers.region('restofworld');
-            if (current_region !== context.region) {
-                console.log('Region has changed from ' + context.region +
+            if (current_region !== context.user_region) {
+                console.log('Region has changed from ' + context.user_region +
                             ' to ' + current_region + ' since we rendered ' +
                             'the footer, updating region in footer.');
                 $('#site-footer span.region')
-                    .removeClass('region-' + context.region)
+                    .removeClass('region-' + context.user_region)
                     .addClass('region-' + current_region)
                     .text(settings.REGION_CHOICES_SLUG[current_region]);
             }
