@@ -21,14 +21,14 @@ var config = require('./config');
 var fs = require('fs');
 var path = require('path');
 
-var del = require('del');
+var archiver = require('archiver');
 var commonplace = require('commonplace');
 var gulp = require('gulp');
 var mergeStream = require('merge-stream');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
+var rm = require('rimraf');
 var runSequence = require('run-sequence');
-var zip = require('gulp-zip');
 
 
 var packageFilesWhitelist = [
@@ -53,10 +53,12 @@ var latestPackageFolder = PKG_PATH + '_' + server + '/';
 var latestPackageZip = PKG_PATH + '_' + server + '.zip';
 var versionTimestamp = getVersionTimestamp();
 var packageFilename = server + '_' + versionTimestamp;
+var versionPackageZip = PKG_PATH + packageFilename + '.zip';
 
 
 gulp.task('package',
-    ['build_packaged', 'images', 'packaged_manifest'], function() {
+    ['build_packaged', 'images', 'packaged_manifest',
+     'whitelist_copy'], function() {
     /*
         Creates a package which involves:
             - Generating language packs.
@@ -65,6 +67,23 @@ gulp.task('package',
     */
     commonplace.generate_langpacks();
 
+    [latestPackageZip, versionPackageZip].forEach(function(outputZipName) {
+        // Use archiver to recursively zip contents of folder.
+        var output = fs.createWriteStream(outputZipName);
+        var archive = archiver('zip');
+        archive.pipe(output);
+        archive.bulk([
+            {src: [ '**/*' ], cwd: latestPackageFolder, expand: true}
+        ]);
+        archive.finalize();
+    });
+
+    console.log('Package complete: ./package/archives/' +
+                packageFilename + '.zip');
+});
+
+
+gulp.task('whitelist_copy', function() {
     packageFilesWhitelist = packageFilesWhitelist.concat(getLanguageWhitelist());
     return gulp.src(packageFilesWhitelist)
         // Create latest folder.
@@ -76,17 +95,7 @@ gulp.task('package',
             filePath.pop();
             // Copy it to the package.
             return latestPackageFolder + filePath.join('/');
-        }))
-        // Create latest zip.
-        .pipe(zip('_' + server + '.zip'))
-        .pipe(gulp.dest(PKG_PATH))
-        // Create version zip.
-        .pipe(rename(packageFilename + '.zip'))
-        .pipe(gulp.dest(PKG_PATH))
-        .on('end', function() {
-            console.log('Package complete: ./package/archives/' +
-                        packageFilename + '.zip');
-        });
+        }));
 });
 
 
@@ -161,7 +170,8 @@ gulp.task('build_packaged', ['buildID_write', 'css_build_sync',
 
 gulp.task('latest_package_clean', function(cb) {
     // Delete latest package folder + zip to replace with newer ones.
-    del([latestPackageFolder, latestPackageZip], cb);
+    rm(latestPackageFolder, function() {});
+    rm(latestPackageZip, cb);
 });
 
 
