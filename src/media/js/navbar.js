@@ -14,7 +14,7 @@ define('navbar',
         // Navbar settings + Marketplace buttons.
         var $mktNav = $('.nav-mkt');
         var $settingsNav = $('.nav-settings');
-        var $mktNavGroup = $mktNav.add('.act-tray.mobile');
+        var $mktNavGroup = $mktNav.add('.act-tray-mobile');
         var $settingsNavGroup = $settingsNav.add('.mkt-tray');
 
         function toggleNavbar($on, $off) {
@@ -38,7 +38,7 @@ define('navbar',
         }
 
         // Toggle between Settings page and Marketplace pages.
-        z.body.on('click', '.act-tray.mobile', function(e) {
+        z.body.on('click', '.act-tray-mobile', function(e) {
             // Activate Settings page navbar.
             e.preventDefault();
             $mktNav.css('right', '');  // Reset the offset for transition effect.
@@ -214,7 +214,7 @@ define('navbar',
 
     // Desktop.
     function initActTray() {
-        $('.act-tray:not(.mobile)').on('mouseover', function() {
+        $('.act-tray-desktop').on('mouseover', function() {
             $(this).addClass('active');
         }).on('mouseout', function() {
             $(this).removeClass('active');

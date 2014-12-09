@@ -23,7 +23,7 @@ casper.test.begin('Test navbar', {
         // Recommended exists but may or may not be visible depending on login state.
         casper.waitForSelector('[data-page-type~="recommended"]', function() {
             test.assertExists('[data-page-type~=recommended]', 'Check navigate to recommended');
-            casper.click('.act-tray.mobile');
+            casper.click('.act-tray-mobile');
         });
 
         casper.waitForSelector('#account-settings', function() {

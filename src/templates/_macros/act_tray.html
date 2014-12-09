@@ -1,5 +1,5 @@
 {% macro act_tray(mobile, is_settings) %}
-  <div class="act-tray{% if mobile %} mobile{% endif%}{% if mobile and not is_settings %} active{% endif %}">
+  <div class="act-tray {{ 'act-tray-mobile' if mobile else 'act-tray-desktop' }}{{ ' active' if mobile and not is_settings }}">
     <a href="{{ '#' if mobile else url('settings') }}"
        class="header-button icon settings" title="{{ _('Settings') }}"></a>
     <div class="account-links only-logged-in">
