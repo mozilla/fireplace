@@ -2,6 +2,13 @@ define('compatibility_filtering',
     ['capabilities', 'log', 'storage', 'underscore', 'utils', 'z'],
     function(capabilities, log, storage, _, utils, z) {
 
+    // API endpoints where feature profile is enabled, if all other conditions are met. See
+    // api_args() below.
+    var ENDPOINTS_WITH_FEATURE_PROFILE = [
+        'category_landing','feed', 'feed-app', 'feed-brand', 'feed-collection',
+        'feed-items', 'feed-shelf', 'new_popular_search', 'search'
+    ];
+
     var actual_dev = '';
     var actual_device = '';
     var limit = 25;
@@ -24,9 +31,6 @@ define('compatibility_filtering',
     // Get feature profile from query string (yulelog sets this), or fall back
     // to the default.
     var feature_profile = utils.getVars().pro || default_feature_profile;
-    // API endpoints where feature profile is enabled, if all other conditions are met. See
-    // api_args() below.
-    var endpoints_with_feature_profile = ['category_landing', 'new_popular_search', 'search'];
 
     refresh_params();
     z.win.on('navigating', refresh_params);
@@ -126,7 +130,7 @@ define('compatibility_filtering',
         if (actual_dev === 'firefoxos' &&
             actual_dev === args.dev &&
             actual_device === args.device &&
-            _.indexOf(endpoints_with_feature_profile, endpoint_name) >= 0) {
+            _.indexOf(ENDPOINTS_WITH_FEATURE_PROFILE, endpoint_name) >= 0) {
             // Include feature profile, but only if specific conditions are met:
             // - We are using a Firefox OS device
             // - We aren't showing 'all apps'
