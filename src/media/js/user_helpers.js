@@ -28,8 +28,15 @@ define('user_helpers', ['settings', 'user', 'utils'],
                '';
     }
 
+    function lang() {
+        return (navigator.l10n && navigator.l10n.language) ||
+            navigator.language ||
+            navigator.userLanguage;
+    }
+
     return {
         carrier: carrier,
+        lang: lang,
         region: region,
         set_region_geoip: function(region) {
             region_geoip = region;

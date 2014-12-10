@@ -5,7 +5,7 @@
     {% else %}
       <h3>{{ _('Get Firefox news! Sign up for our newsletter') }}</h3>
     {% endif %}
-    <input type="email" class="email newsletter-email-field" name="email" placeholder="E-Mail" value="{{ email }}" required>
+    <input type="email" class="email newsletter-email-field" name="email" placeholder="E-Mail" value="{{ user_email }}" required>
     <button class="button s newsletter-signup-button newsletter-desktop">{{ _('Sign me up') }}</button>
     <div class="newsletter-details collapsed">
       <select name="region" class="newsletter-select" placeholder="">
@@ -13,6 +13,15 @@
           {% if code != 'None' %}
             <option value="{{ code }}"{{ ' selected' if code == user_region }}>
               {{ region }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      <select name="lang" class="newsletter-select" placeholder="">
+        {% for code, language in NEWSLETTER_LANGUAGES.items() %}
+          {% if code != 'None' %}
+          {# user_lang is "pt-BR", "en-US", etc. "en-US" and "en-GB" should both be "English". #}
+          <option value="{{ code }}"{{ ' selected' if code == user_lang or code == user_lang.split('-')[0] }}>
+              {{ language }}</option>
           {% endif %}
         {% endfor %}
       </select>
