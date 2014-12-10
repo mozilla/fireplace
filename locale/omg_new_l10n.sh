@@ -10,6 +10,12 @@
 # This script makes a lot of assumptions and has no error checking, so read it
 # over before you run it.
 #
+# You'll need to install both commonplace and uglify-js globally for this script
+# to work.  Try this:
+#
+#    npm install -g commonplace
+#    npm install -g uglify-js
+#
 # Questions?  Talk to clouserw.
 
 
