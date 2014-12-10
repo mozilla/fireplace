@@ -9,8 +9,6 @@ var localConfig = extend(true, {
         // [Source, excluding bower_components]: [Destination].
         'document-register-element/build/document-register-element.max.js': config.LIB_DEST_PATH,
         'flipsnap/flipsnap.js': config.LIB_DEST_PATH,
-        'marketplace-elements/dist/js/marketplace-elements.js': config.LIB_DEST_PATH,
-        'marketplace-elements/dist/css/marketplace-elements.css': 'src/media/css/lib/',
         'salvattore-moox/dist/salvattore.js': config.LIB_DEST_PATH,
     },
     cssBundles: {
@@ -23,17 +21,15 @@ var localConfig = extend(true, {
         paths: {
             'document-register-element': 'lib/document-register-element.max',
             'flipsnap': 'lib/flipsnap',
-            'marketplace-elements': 'lib/marketplace-elements',
             'salvattore': 'lib/salvattore',
         },
         shim: {
-            'document-register-element': {
-                'exports': 'window.document.registerElement'
-            },
             'flipsnap': {
                 'exports': 'Flipsnap'
             },
-            'marketplace-elements': ['document-register-element'],
+            'document-register-element': {
+                'exports': 'window.document.registerElement'
+            },
             'salvattore': {
                 'exports': 'salvattore'
             }
