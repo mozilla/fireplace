@@ -7,15 +7,6 @@ define('tracking',
 
     var console = log('tracking');
 
-    // Respect DNT.
-    var should_not_track = {'yes': 1, '1': 1};
-    if (enabled && !settings.dnt_override &&
-        (navigator.doNotTrack in should_not_track ||
-         navigator.msDoNotTrack in should_not_track)) {
-        console.log('DNT enabled; disabling tracking');
-        enabled = false;
-    }
-
     var clientID = storage.getItem('clientID');
     if (!clientID && enabled) {
         storage.setItem('clientID', clientID = (Date.now() + Math.random()).toString(36));
