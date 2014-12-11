@@ -33,7 +33,10 @@ var localConfig = extend(true, {
             'flipsnap': {
                 'exports': 'Flipsnap'
             },
-            'marketplace-elements': ['document-register-element'],
+            'marketplace-elements': {
+                'exports': 'window.document.registerElement',
+                'deps': ['document-register-element'],
+            },
             'salvattore': {
                 'exports': 'salvattore'
             }
