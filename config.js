@@ -42,31 +42,43 @@ var localConfig = extend(true, {
             domain: 'https://marketplace.firefox.com',
             media_url: 'https://marketplace.cdn.mozilla.net/media/',
             name: 'Marketplace',
-            origin: 'app://packaged.marketplace.firefox.com'
+            origin: 'app://packaged.marketplace.firefox.com',
+            iframe_origin: 'app://marketplace.firefox.com'
         },
         'dev': {
             domain: 'https://marketplace-dev.allizom.org',
             media_url: 'https://marketplace-dev.mozflare.net/media/',
             name: 'Dev',
-            origin: 'app://packaged.marketplace-dev.allizom.org'
+            origin: 'app://packaged.marketplace-dev.allizom.org',
+            iframe_origin: 'app://marketplace-dev.allizom.org'
         },
         'stage': {
             domain: 'https://marketplace.allizom.org',
             media_url: 'https://marketplace-stage.cdn.mozilla.net/media/',
             name: 'Stage',
-            origin: 'app://packaged.marketplace.allizom.org'
+            origin: 'app://packaged.marketplace.allizom.org',
+            iframe_origin: 'app://marketplace.allizom.org'
         },
         'altdev': {
             domain: 'https://marketplace-altdev.allizom.org',
             media_url: 'https://marketplace-altdev-cdn.allizom.org/media/',
             name: 'AltDev',
-            origin: 'app://packaged.marketplace-altdev.allizom.org'
+            origin: 'app://packaged.marketplace-altdev.allizom.org',
+            iframe_origin: 'app://marketplace-altdev.allizom.org'
         },
         'paymentsalt': {
             domain: 'https://payments-alt.allizom.org',
             media_url: 'https://payments-alt-cdn.allizom.org/media/',
             name: 'PaymentsAlt',
-            origin: 'app://packaged.payments-alt.allizom.org'
+            origin: 'app://packaged.payments-alt.allizom.org',
+            iframe_origin: 'app://payments-alt.allizom.org'
+        },
+        'feeddev': {
+            domain: 'https://marketplace-feed-dev.allizom.org',
+            media_url: 'https://marketplace-feed-dev.allizom.org/media/',
+            name: 'FeedDev',
+            origin: 'app://packaged.marketplace-feed-dev.allizom.org',
+            iframe_origin: 'app://marketplace-feed-dev.allizom.org'
         }
     }
 }, config);
