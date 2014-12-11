@@ -10,12 +10,12 @@ define(
         'underscore',
         'jquery',
         'polyfill', // Must be early.
+        'document-register-element',
         'helpers',  // Must come before mostly everything else.
         'helpers_local',
         'apps_buttons',
         'cache',
         'capabilities',
-        'components',
         'consumer_info',
         'compatibility_filtering_select',
         'content-ratings',
@@ -25,6 +25,7 @@ define(
         'lightbox',
         'log',
         'login',
+        'marketplace-elements',
         'models',
         'navbar',
         'navigation',
