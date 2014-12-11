@@ -60,6 +60,8 @@ def deploy():
                    domain=settings.DOMAIN,
                    root=ROOT)
 
+    deploy_build_id('fireplace')
+
 
 @task
 def pre_update_latest_tag():
@@ -90,3 +92,10 @@ def upload_package(fireplace_package, package_name):
 
 def fireplace_package(env):
     return '%s/package/builds/_%s.zip' % (FIREPLACE, env)
+
+
+@task
+def deploy_build_id(app):
+    with lcd(ZAMBONI):
+        local('%s manage.py deploy_build_id %s' %
+              (ZAMBONI_PYTHON, app))
