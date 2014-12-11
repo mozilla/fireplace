@@ -38,6 +38,7 @@ src/media/js/include.js
 src/media/js/include.js.map
 src/media/css/include.css
 ```
+
 ### Developing the Packaged App
 
 To package the Marketplace frontend, run:
@@ -56,12 +57,11 @@ We have an instance of a mocked version of the Marketplace API at
 ```https://flue.paas.allizom.org```. Documentation can be found in
 [marketplace-mock-api's repository](https://github.com/mozilla/marketplace-mock-api/blob/master/README.md).
 
-### Yule Log (Iframed Package)
+### iframed Package
 
-Yule Log is the iframed packaged version of the Marketplace frontend. This
-version currently ships on most of our devices. Documentation can be found
-within the [Yule Log directory](https://github.com/mozilla/fireplace/blob/master/yulelog/) and
-the [Marketplace documentation](http://marketplace.readthedocs.org/latest/topics/package.html).
+We currently ship with an iframed version of the Marketplace frontend. It is
+a package that contains an iframe pointing to the Marketplace website.
+See more details within [the iframe package directory](https://github.com/mozilla/fireplace/blob/master/package/iframe).
 
 
 ## Localizing

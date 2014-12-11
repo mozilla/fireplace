@@ -32,21 +32,21 @@ var runSequence = require('run-sequence');
 
 
 var packageFilesWhitelist = [
+    // include.js not included since it is written straight to package folder.
+    // Locale files will be dynamically whitelisted later.
     'src/app.html',
     'src/app-icons/*.png',
     'src/media/css/fxa.css',
     'src/media/css/include.css',
     'src/media/css/splash.css',
     'src/media/js/l10n.js',
-    // include.js is built and written straight to package folder.
-    // Locale files dynamically whitelisted later.
 ];
 var imageWhitelist = [
     // Match all images. If it isn't being used, it should be nixed.
     'src/media/img/**/*',
     '!src/media/app-icons/**/*'
 ];
-var PKG_PATH = 'package/archives/';
+var PKG_PATH = 'package/builds/';
 var TMP_PATH = 'package/.tmp/';  // Used to get around amd-optimize loader.
 var server = process.env.SERVER || 'prod';
 var latestPackageFolder = PKG_PATH + '_' + server + '/';
@@ -55,30 +55,34 @@ var versionTimestamp = getVersionTimestamp();
 var packageFilename = server + '_' + versionTimestamp;
 var versionPackageZip = PKG_PATH + packageFilename + '.zip';
 
+var iframePackageFilesWhitelist = [
+    // include.js not included since it is written straight to package folder.
+    // Locale files will be dynamically whitelisted later.
+    'package/iframe/app-icons/*.png',
+    'package/iframe/index.html',
+    'package/iframe/style.css',
+];
+var IFRAME_SRC_PATH = path.join('package', 'iframe');
+var iframeLatestPackageFolder = PKG_PATH + '_iframe_' + server + '/';
+var iframeLatestPackageZip = PKG_PATH + '_iframe_' + server + '.zip';
+var iframePackageFilename = 'iframe_' + server + '_' + versionTimestamp;
+var iframeVersionPackageZip = PKG_PATH + iframePackageFilename + '.zip';
+
 
 gulp.task('package',
-    ['build_packaged', 'images', 'packaged_manifest',
-     'whitelist_copy'], function() {
+    ['build_package', 'images', 'package_manifest', 'whitelist_copy'], function() {
     /*
         Creates a package which involves:
             - Generating language packs.
-            - Copying source files into a folder in package/archives.
+            - Copying source files into a folder in package/builds.
             - Zipping the folder into a latest zip and a version zip.
     */
     commonplace.generate_langpacks();
 
     [latestPackageZip, versionPackageZip].forEach(function(outputZipName) {
-        // Use archiver to recursively zip contents of folder.
-        var output = fs.createWriteStream(outputZipName);
-        var archive = archiver('zip');
-        archive.pipe(output);
-        archive.bulk([
-            {src: [ '**/*' ], cwd: latestPackageFolder, expand: true}
-        ]);
-        archive.finalize();
+        zipPackage(latestPackageFolder, outputZipName);
     });
-
-    console.log('Package complete: ./package/archives/' +
+    console.log('Package complete: ./package/builds/' +
                 packageFilename + '.zip');
 });
 
@@ -99,7 +103,7 @@ gulp.task('whitelist_copy', function() {
 });
 
 
-gulp.task('js_build_package', ['packaged_settings', 'templates_build_sync'], function(done) {
+gulp.task('js_build_package', ['package_settings', 'templates_build_sync'], function(done) {
     // JS build that points to the packaged settings, outputs to the package
     // directory, and generates a sourcemap unique to the package.
     var paths = config.requireConfig.paths;
@@ -132,7 +136,7 @@ gulp.task('images', ['latest_package_clean'], function() {
 });
 
 
-gulp.task('packaged_settings', function() {
+gulp.task('package_settings', function() {
     return gulp.src('package/templates/settings_local_package.js')
         .pipe(replace(/{domain}/g, config.packageConfig[server].domain))
         .pipe(replace(/{media_url}/g, config.packageConfig[server].media_url))
@@ -142,7 +146,7 @@ gulp.task('packaged_settings', function() {
 });
 
 
-gulp.task('packaged_manifest', ['latest_package_clean'], function() {
+gulp.task('package_manifest', ['latest_package_clean'], function() {
     // Creates a packaged manifest with configurations from config.js using
     // the selected SERVER.
     return gulp.src('package/templates/manifest.webapp')
@@ -163,8 +167,8 @@ gulp.task('package_info_stdout', function() {
 });
 
 
-gulp.task('build_packaged', ['buildID_write', 'css_build_sync',
-                             'js_build_package', 'package_info_stdout',
+gulp.task('build_package', ['buildID_write', 'css_build_sync',
+                            'js_build_package', 'package_info_stdout',
                              'templates_build_sync', 'imgurls_write']);
 
 
@@ -204,13 +208,16 @@ function pad(n, width, z) {
 }
 
 
-gulp.task('docker', function() {
-    runSequence(
-        ['bower_copy', 'require_config'],
-        'build',
-        'serve'
-    );
-});
+function zipPackage(dirToZip, outputZipName) {
+    // Use archiver to recursively zip contents of folder.
+    var output = fs.createWriteStream(outputZipName);
+    var archive = archiver('zip');
+    archive.pipe(output);
+    archive.bulk([
+        {src: [ '**/*' ], cwd: dirToZip, expand: true}
+    ]);
+    archive.finalize();
+}
 
 
 gulp.task('watch_package', function() {
@@ -219,4 +226,68 @@ gulp.task('watch_package', function() {
     gulp.watch(paths.styl, ['package']);
     gulp.watch(paths.js, ['package']);
     gulp.watch(paths.html, ['package']);
+});
+
+
+gulp.task('iframe_package', ['iframe_package_js', 'iframe_package_manifest',
+                             'iframe_whitelist_copy'], function() {
+    [iframeLatestPackageZip, iframeVersionPackageZip].forEach(function(outputZipName) {
+        zipPackage(iframeLatestPackageFolder, outputZipName);
+    });
+    console.log('Package complete: ./package/builds/' +
+                iframePackageFilename + '.zip');
+});
+
+
+gulp.task('iframe_whitelist_copy', ['iframe_package_clean'], function() {
+    // Copy files from whitelist to the folder.
+    return gulp.src(iframePackageFilesWhitelist)
+        .pipe(gulp.dest(function(file) {
+            // Maintain directory structure for each file.
+            var filePath = file.path.split(__dirname)[1].slice(1).split('/');
+            // Remove 'package/iframe' from path and filename.
+            filePath.shift();
+            filePath.shift();
+            filePath.pop();
+            // Copy it to the package.
+            return iframeLatestPackageFolder + filePath.join('/');
+        }));
+});
+
+
+gulp.task('iframe_package_js', ['iframe_package_clean'], function() {
+    // Build iframe package JS. Swap in the correct domain.
+    return gulp.src(path.join(IFRAME_SRC_PATH, 'main.js'))
+        .pipe(replace(/{domain}/, config.packageConfig[server].domain))
+        .pipe(gulp.dest(iframeLatestPackageFolder));
+});
+
+
+gulp.task('iframe_package_manifest', ['iframe_package_clean'], function() {
+    // Build iframe package manifest. Swap in the name, origin, version.
+    var name = config.packageConfig[server].name;
+    if (server !== 'prod') {
+        name = 'i' + name;
+    }
+    return gulp.src(path.join(IFRAME_SRC_PATH, 'manifest.webapp'))
+        .pipe(replace(/{name}/, name))
+        .pipe(replace(/{origin}/, config.packageConfig[server].iframe_origin))
+        .pipe(replace(/{version}/, versionTimestamp))
+        .pipe(gulp.dest(iframeLatestPackageFolder));
+});
+
+
+gulp.task('iframe_package_clean', function(cb) {
+    // Delete latest iframe package folder + zip to replace with newer ones.
+    rm(iframeLatestPackageZip, function() {});
+    rm(iframeLatestPackageFolder, cb);
+});
+
+
+gulp.task('docker', function() {
+    runSequence(
+        ['bower_copy', 'require_config'],
+        'build',
+        'serve'
+    );
 });
