@@ -1,17 +1,16 @@
 define('navbar',
-    ['categories', 'jquery', 'log', 'navigation', 'nunjucks', 'settings',
-     'underscore', 'urls', 'user', 'z'],
-    function(cats, $, log, navigation, nunjucks, settings, _, urls, user, z) {
+    ['capabilities', 'categories', 'jquery', 'log', 'navigation', 'nunjucks',
+     'settings', 'underscore', 'user', 'z'],
+    function(capabilities, cats, $, log, navigation, nunjucks, settings, _,
+             user, z) {
     'use strict';
     var logger = log('navbar');
 
-    var DESKTOP_WIDTH = 710;
-    var NAV_MKT_BASE_OFFSET = -65;
-    var NAV_SETTINGS_BASE_OFFSET = 0;
     var NAV_LINK_VISIBLE_WIDTH = 50;
 
     function initNavbarButtons() {
         // Navbar settings + Marketplace buttons.
+        var $navContainer = $('.navbar-container');
         var $mktNav = $('.nav-mkt');
         var $settingsNav = $('.nav-settings');
         var $mktNavGroup = $mktNav.add('.act-tray-mobile');
@@ -20,6 +19,7 @@ define('navbar',
         function toggleNavbar($on, $off) {
             $on.addClass('active');
             $off.removeClass('active');
+            $navContainer[0].scrollLeft = 0;
         }
 
         function fitNavbarOnSwitch($navbar, $item) {
@@ -27,7 +27,7 @@ define('navbar',
             // line-fitting since the navbar is in a transitioning state. So
             // we do a timeout. But for navbars that have already been fitted,
             // don't do a timeout delay.
-            var waitForTransition = 500;
+            var waitForTransition = 200;
             if ($navbar.data('fitted')) {
                 waitForTransition = 0;
             }
@@ -41,7 +41,6 @@ define('navbar',
         z.body.on('click', '.act-tray-mobile', function(e) {
             // Activate Settings page navbar.
             e.preventDefault();
-            $mktNav.css('right', '');  // Reset the offset for transition effect.
             toggleNavbar($settingsNavGroup, $mktNavGroup);
 
             var $firstLink = $settingsNavGroup.find('[data-tab]:first-child a');
@@ -53,7 +52,6 @@ define('navbar',
         .on('click', '.mkt-tray', function(e) {
             // Activate Marketplace pages navbar.
             e.preventDefault();
-            $('.nav-settings').css('right', '');  // Reset the offset for transition effect.
             toggleNavbar($mktNavGroup, $settingsNavGroup);
 
             var $firstLink = $mktNavGroup.find('[data-tab]:first-child a');
@@ -65,76 +63,22 @@ define('navbar',
         .on('click', '.site a', function() {
             // Activate Marketplace pages navbar.
             toggleNavbar($mktNavGroup, $settingsNavGroup);
+        })
+        .on('click', '.tab-link', function(e) {
+            if (capabilities.widescreen()) {
+                return;
+            }
+
+            // Jump to the beginning when user clicks on the first link.
+            if ($(this).closest('.tab-item').is(':first-child')) {
+                $navContainer[0].scrollLeft = 0;
+            } else {
+                $navContainer[0].scrollLeft = this.getBoundingClientRect().left;
+            }
+            this.blur();
         });
     }
     z.body.one('loaded', initNavbarButtons);
-
-    z.body.on('click', '.navbar li > a', function() {
-        var $this = $(this);
-        if ($this.hasClass('desktop-cat-link')) {
-            // Don't allow click of category tab on desktop.
-            return;
-        }
-
-        calcNavbarOffset($this.closest('li'));
-    });
-
-    function calcNavbarOffset($item) {
-        // Calculate appropriate offsets for the navbar so that it slides well
-        // for any language. Good luck understanding what's going on.
-        var $navbar = $item.closest('.navbar');
-        if (!$navbar.length) {
-            return;
-        }
-
-        var currentNavbarOffset = $navbar.offset().left * -1;
-        var padding = 10;
-        var right = currentNavbarOffset;
-        var rightEdgeOffset = $item.offset().left + $item.width();
-
-        var baseOffset = NAV_MKT_BASE_OFFSET;
-        var windowWidth = z.win.width();
-        if ($navbar.hasClass('nav-settings')) {
-            baseOffset = NAV_SETTINGS_BASE_OFFSET;
-            windowWidth -= $('.mkt-tray').width();
-        }
-
-        if (rightEdgeOffset > windowWidth) {
-            // Sliding forwards.
-            // If the link is overflowing off the right edge of the page,
-            // slide the navbar enough so the link is fully visible.
-            right = (currentNavbarOffset +
-                     (rightEdgeOffset - windowWidth) + padding);
-
-            // If there is another link after the current link, move the navbar
-            // some more such that the next link is clickable (50px target).
-            if ($item.next().length) {
-                right += NAV_LINK_VISIBLE_WIDTH;
-            }
-        } else if (currentNavbarOffset !== NAV_MKT_BASE_OFFSET) {
-            // Sliding backwards.
-            // If the next link to the one clicked is in full view, slide it
-            // so it becomes visible by only 50px and thus clickable.
-            var $next = $item.next();
-            if ($next.length) {
-                var nextLeftEdgeOffset = $next.offset().left;
-                var nextRightEdgeOffset = nextLeftEdgeOffset + $next.width();
-                if (nextRightEdgeOffset < windowWidth) {
-                    right = (currentNavbarOffset -
-                             (windowWidth + NAV_LINK_VISIBLE_WIDTH - nextRightEdgeOffset) +
-                             padding);
-                }
-            }
-        }
-
-        if (right < baseOffset) {
-            // Don't scroll past the base starting point.
-            right = baseOffset;
-        }
-
-        $item.closest('.navbar').css('right', right + 'px');
-        return right;
-    }
 
     function linefitNavbarMobile($navbar) {
         // Linefits the navbar on mobile such that the nav element flowing
@@ -183,20 +127,17 @@ define('navbar',
     }
 
     function fitNavbarMobile($item) {
-        // Does both line-fitting and offset calculations for the navbar.
-        // Note that line-fitting must be done first since the offset affects
-        // its calculations.
+        // Does line-fitting for the navbar.
         linefitNavbarMobile($item.closest('.navbar'));
-        calcNavbarOffset($item);
     }
 
     function fitNavbarDesktop() {
         // Shrinks the font-size and padding of the nav elements until it
         // all fits within the window.
-        var windowWidth = z.win.width();
-        if (windowWidth < DESKTOP_WIDTH) {
+        if (!capabilities.widescreen()) {
             return;
         }
+        var windowWidth = z.win.width();
         var $navbar = $('.nav-mkt');
         var $navbarItems = $navbar.find('li');
         var navbarWidth = $navbar.width();
