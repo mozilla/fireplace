@@ -30,7 +30,6 @@ define(
         'navbar',
         'navigation',
         'newsletter',
-        'outgoing_links',
         'overlay',
         'perf_events',
         'perf_helper',
