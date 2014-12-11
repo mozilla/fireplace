@@ -88,4 +88,4 @@ def upload_package(fireplace_package, package_name):
 
 
 def fireplace_package(env):
-    return '%s/package/archives/latest_%s.zip' % (FIREPLACE, env)
+    return '%s/package/builds/_%s.zip' % (FIREPLACE, env)
