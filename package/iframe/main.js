@@ -1,14 +1,11 @@
 (function() {
-
     function log() {
         // `console.log` wrapper that prefixes log statements.
         console.log('[yulelog]', Array.prototype.slice.call(arguments, 0).join(' '));
     }
 
     // No trailing slash, please.
-    // Note: our Makefile swaps this out when you supply `DOMAIN`
-    // when running `make log`.
-    var MKT_URL = 'https://marketplace.firefox.com';
+    var MKT_URL = '{domain}';
     log('MKT_URL:', MKT_URL);
 
     var activitiesToSend = [];
