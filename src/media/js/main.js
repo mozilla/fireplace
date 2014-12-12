@@ -35,6 +35,7 @@ define(
         'perf_helper',
         'previews',
         'ratings',
+        'regions',
         'requests',
         'settings',
         'site_config',
@@ -61,6 +62,7 @@ function(_) {
     var settings = require('settings');
     var siteConfig = require('site_config');
     var nunjucks = require('templates');
+    var regions = require('regions');
     var urls = require('urls');
     var user = require('user');
     var utils_local = require('utils_local');
@@ -231,7 +233,7 @@ function(_) {
                 $('#site-footer span.region')
                     .removeClass('region-' + context.user_region)
                     .addClass('region-' + current_region)
-                    .text(settings.REGION_CHOICES_SLUG[current_region]);
+                    .text(regions.REGION_CHOICES_SLUG[current_region]);
             }
         });
 
