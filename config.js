@@ -9,6 +9,9 @@ var localConfig = extend(true, {
         // [Source, excluding bower_components]: [Destination].
         'document-register-element/build/document-register-element.max.js': config.LIB_DEST_PATH,
         'flipsnap/flipsnap.js': config.LIB_DEST_PATH,
+        'marketplace-constants/dist/css/regions.styl': 'src/media/css/lib/',
+        'marketplace-constants/dist/js/regions.js': config.LIB_DEST_PATH,
+        'marketplace-constants/dist/img/regions/*': 'src/media/img/icons/regions/',
         'marketplace-elements/dist/js/marketplace-elements.js': config.LIB_DEST_PATH,
         'marketplace-elements/dist/css/marketplace-elements.css': 'src/media/css/lib/',
         'salvattore-moox/dist/salvattore.js': config.LIB_DEST_PATH,
@@ -24,6 +27,7 @@ var localConfig = extend(true, {
             'document-register-element': 'lib/document-register-element.max',
             'flipsnap': 'lib/flipsnap',
             'marketplace-elements': 'lib/marketplace-elements',
+            'regions': 'lib/regions',
             'salvattore': 'lib/salvattore',
         },
         shim: {

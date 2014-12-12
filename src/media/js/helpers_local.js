@@ -1,6 +1,8 @@
 define('helpers_local',
-    ['feed', 'compatibility_filtering', 'content-ratings', 'models', 'nunjucks', 'settings', 'urls', 'user_helpers', 'utils_local', 'z'],
-    function(feed, compatibility_filtering, iarc, models, nunjucks, settings, urls, user_helpers, utils_local, z) {
+    ['feed', 'compatibility_filtering', 'content-ratings', 'models',
+     'nunjucks', 'regions', 'settings', 'urls', 'user_helpers', 'utils_local', 'z'],
+    function(feed, compatibility_filtering, iarc, models,
+             nunjucks, regions, settings, urls, user_helpers, utils_local, z) {
     var filters = nunjucks.require('filters');
     var globals = nunjucks.require('globals');
 
@@ -55,8 +57,8 @@ define('helpers_local',
     /* Global variables, provided in default context. */
     globals.feed = feed;
     globals.iarc_names = iarc.names;
-    globals.REGIONS = settings.REGION_CHOICES_SLUG;
     globals.NEWSLETTER_LANGUAGES = settings.NEWSLETTER_LANGUAGES;
+    globals.REGIONS = regions.REGION_CHOICES_SLUG;
     globals.user_helpers = user_helpers;
     globals.PLACEHOLDER_ICON = urls.media('fireplace/img/icons/placeholder.png');
     globals.compatibility_filtering = compatibility_filtering;
