@@ -6,7 +6,7 @@ define('routes_api_args',
         // Ask compatibility_filtering module for the base args to use, then
         // add a few extra generic ones.
         var args = compatibility_filtering.api_args(endpoint);
-        args.lang = (navigator.l10n && navigator.l10n.language) || navigator.language || navigator.userLanguage;
+        args.lang = user_helpers.lang();
         args.region = user_helpers.region(undefined, true);
         args.carrier = user_helpers.carrier();
         return args;
