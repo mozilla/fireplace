@@ -139,6 +139,18 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'None': gettext('No region in search')
         },
 
+        NEWSLETTER_LANGUAGES: {
+            'en': gettext('English'),
+            'fr': gettext('French'),
+            'de': gettext('German'),
+            'hu': gettext('Hungarian'),
+            'id': gettext('Indonesian'),
+            'pl': gettext('Polish'),
+            'pt-BR': gettext('Portuguese'),
+            'ru': gettext('Russian'),
+            'es': gettext('Spanish'),
+        },
+
         // A data URI of the project logo (shown when logging in via Persona).
         persona_site_logo: base_settings.media_url + '/fireplace/img/logos/128.png',
         persona_tos: null,

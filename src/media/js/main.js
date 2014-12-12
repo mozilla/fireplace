@@ -168,7 +168,8 @@ function(_) {
         var user_helpers = require('user_helpers');
         var context = {
             user_region: user_helpers.region('restofworld'),
-            email: user.get_setting('email'),
+            user_email: user.get_setting('email'),
+            user_lang: user_helpers.lang(),
             z: z
         };
         $('#site-header').html(

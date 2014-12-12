@@ -56,6 +56,7 @@ define('helpers_local',
     globals.feed = feed;
     globals.iarc_names = iarc.names;
     globals.REGIONS = settings.REGION_CHOICES_SLUG;
+    globals.NEWSLETTER_LANGUAGES = settings.NEWSLETTER_LANGUAGES;
     globals.user_helpers = user_helpers;
     globals.PLACEHOLDER_ICON = urls.media('fireplace/img/icons/placeholder.png');
     globals.compatibility_filtering = compatibility_filtering;
