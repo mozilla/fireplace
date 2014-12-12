@@ -46,7 +46,7 @@ def update():
 
 @task
 def package_update():
-    if settings.ENV != 'dev-feed':
+    if PACKAGE_NAME != 'dev-feed':
         build_package(settings.ENV)
         upload_package(fireplace_package(settings.ENV), PACKAGE_NAME)
 
