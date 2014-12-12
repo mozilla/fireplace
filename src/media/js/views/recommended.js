@@ -1,6 +1,6 @@
 define('views/recommended',
-    ['l10n', 'log', 'models', 'underscore', 'urls', 'utils', 'z'],
-    function(l10n, log, models, _, urls, utils, z) {
+    ['l10n', 'log', 'models', 'urls', 'z'],
+    function(l10n, log, models, urls, z) {
     'use strict';
 
     var gettext = l10n.gettext;
