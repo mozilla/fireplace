@@ -4,15 +4,17 @@ define('newsletter',
     'use strict';
 
     function expandDetails($details) {
-        $details
-            .addClass('expanding')
-            .removeClass('collapsed')
-            .one('transitionend', function() {
-                $details.addClass('expanded');
-            });
-        setTimeout(function() {
-            $details.removeClass('expanding');
-        }, 1);
+        if (!$details.hasClass('expanded')) {
+            $details
+                .addClass('expanding')
+                .removeClass('collapsed')
+                .one('transitionend', function() {
+                    $details.addClass('expanded');
+                });
+            setTimeout(function() {
+                $details.removeClass('expanding');
+            }, 1);
+        }
     }
 
     z.body.on('focus', '#newsletter-footer .email', function() {

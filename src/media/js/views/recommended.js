@@ -1,12 +1,19 @@
 define('views/recommended',
-    ['l10n', 'log', 'models', 'underscore', 'urls', 'utils'],
-    function(l10n, log, models, _, urls, utils) {
+    ['l10n', 'log', 'models', 'urls', 'z'],
+    function(l10n, log, models, urls, z) {
     'use strict';
 
     var gettext = l10n.gettext;
     var console = log('recommended');
 
     var app_models = models('app');
+
+    z.page.on('before_logout', function() {
+        if (window.location.pathname === urls.reverse('recommended')) {
+            // Logged out users shouldn't see /recommended; redirect them.
+            z.page.trigger('navigate', [urls.reverse('homepage')]);
+        }
+    });
 
     return function(builder, args, params) {
         var title = gettext('Recommended');
