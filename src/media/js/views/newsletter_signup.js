@@ -8,6 +8,7 @@ define('views/newsletter_signup',
             standalone_newsletter_signup: true,
             user_email: user.get_setting('email'),
             user_lang: user_helpers.lang(),
+            user_region: user_helpers.region('restofworld'),
         });
         builder.z('type', 'root settings');
     };
