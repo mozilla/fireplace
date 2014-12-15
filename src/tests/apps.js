@@ -2,13 +2,14 @@
 var a = require('assert');
 var assert = a.assert;
 var eq_ = a.eq_;
+var eeq = a.eeq_;
 var contains = a.contains;
 var mock = a.mock;
 var defer = require('defer');
 
 function MockNavigator(no_package) {
     var def = this.def = defer.Deferred();
-    function installer(url, data) {
+    function mockMethod(url, data) {
         var robj = {
             result: null
         };
@@ -27,12 +28,49 @@ function MockNavigator(no_package) {
         return robj;
     }
     this.mozApps = {
-        install: installer,
-        installPackage: installer
+        install: mockMethod,
+        installPackage: mockMethod,
+        getInstalled: mockMethod
     };
     if (no_package) {
         this.mozApps.installPackage = undefined;
     }
+}
+
+function MockApp(manifestURL, downloadAvailable) {
+    var def = this.def = defer.Deferred();
+    this.manifestURL = manifestURL;
+    this.downloadAvailable = downloadAvailable;
+    var app = this;
+
+    function mockMethod() {
+        console.error('mockMethod on app');
+        var robj = {
+            result: null
+        };
+        def.done(function(result, downloadAvailable) {
+            robj.result = result;
+            app.downloadAvailable = downloadAvailable;
+            if (robj.onsuccess) {
+                robj.onsuccess.apply(this);
+            }
+            if (app.ondownloadsuccess) {
+                app.ondownloadsuccess.apply(this);
+            }
+        }).fail(function(result) {
+            robj.result = result;
+            this.error = {name: 'Test Error'};
+            if (robj.onerror) {
+                robj.onerror.apply(this);
+            }
+            if (app.ondownloaderror) {
+                app.ondownloaderror.apply(this);
+            }
+        });
+        return robj;
+    }
+    this.checkForUpdate = mockMethod;
+    this.download = mockMethod;
 }
 
 test('installer_direct.install', function(done, fail) {
@@ -134,6 +172,219 @@ test('installer_direct.install fail', function(done, fail) {
             installer_direct.install(product, {navigator: nav}).fail(done).done(fail);
 
             nav.def.reject({});
+        }
+    );
+});
+
+test('installer_direct.getInstalled', function(done, fail) {
+    mock(
+        'installer_direct',
+        {defer: defer},
+        function(installer_direct) {
+            var nav = new MockNavigator();
+            installer_direct.getInstalled({navigator: nav}).done(function(result) {
+                eq_(result.length, 1);
+                eq_(result[0], 'http://foo.manifest.url');
+                done();
+            }).fail(fail);
+
+            // Resolve the mocked getInstalled promise.
+            nav.def.resolve([new MockApp('http://foo.manifest.url')]);
+        }
+    );
+});
+
+test('installer_direct.applyUpdate not installed', function(done, fail) {
+    mock(
+        'installer_direct',
+        {defer: defer},
+        function(installer_direct) {
+            var nav = new MockNavigator();
+
+            installer_direct.applyUpdate('http://bar.manifest.url', {
+                navigator: nav
+            }).done(fail).fail(function(result) {
+                eq_(result, 'NOT_INSTALLED');
+                done();
+            });
+
+            // Resolve the mocked getInstalled promise.
+            nav.def.resolve([new MockApp('http://foo.manifest.url')]);
+        }
+    );
+});
+
+test('installer_direct.applyUpdate already downloading', function(done, fail) {
+    mock(
+        'installer_direct',
+        {defer: defer},
+        function(installer_direct) {
+            var nav = new MockNavigator();
+            var app = new MockApp('http://foo.manifest.url');
+            app.downloading = true;
+
+            installer_direct.applyUpdate(app.manifestURL, {
+                navigator: nav
+            }).done(fail).fail(function(result) {
+                eq_(result, 'APP_IS_DOWNLOADING');
+                done();
+            });
+
+            // Resolve the mocked getInstalled promise.
+            nav.def.resolve([app]);
+        }
+    );
+});
+
+
+test('installer_direct.applyUpdate download not available', function(done, fail) {
+    mock(
+        'installer_direct',
+        {defer: defer},
+        function(installer_direct) {
+            var nav = new MockNavigator();
+            var app = new MockApp('http://foo.manifest.url');
+            app.downloadAvailable = false;
+
+            installer_direct.applyUpdate(app.manifestURL, {
+                navigator: nav
+            }).done(fail).fail(function(result) {
+                eq_(result, 'NO_DOWNLOAD_AVAILABLE');
+                done();
+            });
+
+            // Resolve the mocked getInstalled promise.
+            nav.def.resolve([app]);
+        }
+    );
+});
+
+test('installer_direct.applyUpdate download error', function(done, fail) {
+    mock(
+        'installer_direct',
+        {defer: defer},
+        function(installer_direct) {
+            var nav = new MockNavigator();
+            var app = new MockApp('http://foo.manifest.url', true);
+
+            installer_direct.applyUpdate(app.manifestURL, {
+                navigator: nav
+            }).done(fail).fail(function(result) {
+                eq_(result, 'Test Error');
+                done();
+            });
+
+            // Resolve the mocked getInstalled promise.
+            nav.def.resolve([app]);
+            // Reject the mocked download promise.
+            app.def.reject();
+        }
+    );
+});
+
+test('installer_direct.applyUpdate download', function(done, fail) {
+    mock(
+        'installer_direct',
+        {defer: defer},
+        function(installer_direct) {
+            var nav = new MockNavigator();
+            var app = new MockApp('http://foo.manifest.url', true);
+
+            installer_direct.applyUpdate(app.manifestURL, {
+                navigator: nav
+            }).done(done).fail(fail);
+
+            // Resolve the mocked getInstalled promise.
+            nav.def.resolve([app]);
+            // Resolve the mocked download promise.
+            app.def.resolve();
+        }
+    );
+});
+
+test('installer_direct.checkForUpdate not installed', function(done, fail) {
+    mock(
+        'installer_direct',
+        {defer: defer},
+        function(installer_direct) {
+            var nav = new MockNavigator();
+
+            installer_direct.checkForUpdate('http://bar.manifest.url', {
+                navigator: nav
+            }).done(fail).fail(function(result) {
+                eq_(result, 'NOT_INSTALLED');
+                done();
+            });
+
+            // Resolve the mocked getInstalled promise.
+            nav.def.resolve([new MockApp('http://foo.manifest.url')]);
+        }
+    );
+});
+
+test('installer_direct.checkForUpdate already downloading', function(done, fail) {
+    mock(
+        'installer_direct',
+        {defer: defer},
+        function(installer_direct) {
+            var nav = new MockNavigator();
+            var app = new MockApp('http://foo.manifest.url');
+            app.downloading = true;
+
+            installer_direct.checkForUpdate(app.manifestURL, {
+                navigator: nav
+            }).done(fail).fail(function(result) {
+                eq_(result, 'APP_IS_DOWNLOADING');
+                done();
+            });
+
+            // Resolve the mocked getInstalled promise.
+            nav.def.resolve([app]);
+        }
+    );
+});
+
+test('installer_direct.checkForUpdate download already available', function(done, fail) {
+    mock(
+        'installer_direct',
+        {defer: defer},
+        function(installer_direct) {
+            var nav = new MockNavigator();
+            var app = new MockApp('http://foo.manifest.url');
+            app.downloadAvailable = true;
+
+            installer_direct.checkForUpdate(app.manifestURL, {
+                navigator: nav
+            }).done(function(result) {
+                eq_(result, true);
+                done();
+            }).fail(fail);
+
+            // Resolve the mocked getInstalled promise.
+            nav.def.resolve([app]);
+        }
+    );
+});
+
+test('installer_direct.checkForUpdate error', function(done, fail) {
+    mock(
+        'installer_direct',
+        {defer: defer},
+        function(installer_direct) {
+            var nav = new MockNavigator();
+            var app = new MockApp('http://foo.manifest.url');
+
+            installer_direct.checkForUpdate(app.manifestURL, {
+                navigator: nav
+            }).done(fail).fail(function(result) {
+                eq_(result, 'Test Error');
+                done();
+            });
+
+            // Resolve the mocked getInstalled promise.
+            nav.def.resolve([app]);
+            // Reject the mocked checkForUpdate promise.
+            app.def.reject();
         }
     );
 });
