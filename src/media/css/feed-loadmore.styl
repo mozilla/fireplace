@@ -1,5 +1,7 @@
 @import 'lib';
 
+$loadmore-desktop-width = 300px;
+
 [data-page-type~=homepage],
 [data-page-type~=app-list] {
     .loadmore {
@@ -24,11 +26,15 @@
         padding-bottom: 0;
     }
     [data-page-type~=homepage] .loadmore button {
-        width: 620px;
+        width: $loadmore-desktop-width;
     }
     [data-page-type~=app-list] .loadmore {
         clear: both;
         margin: 0 auto;
-        width: 620px;
+        width: $loadmore-desktop-width;
+    }
+    [data-page-type~=search] .loadmore,
+    [data-page-type~=leaf] .loadmore {
+        width: $loadmore-desktop-width;
     }
 }

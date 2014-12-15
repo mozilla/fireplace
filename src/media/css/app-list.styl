@@ -1,10 +1,14 @@
 /*
 App listing.
-One column in an island on mobile.
-Two columns of tiles on wider screens.
+    - One column on mobile
+    - Two columns on tablet.
+    - Three columns on desktop.
 TODO: move app list styles here.
 */
 @import 'lib';
+
+$border = 1px solid $tile-border;
+$desktop-tile-padding = 20px 50px;
 
 .app-list-page {
     padding: 10px 0;
@@ -33,67 +37,91 @@ TODO: move app list styles here.
     }
 }
 
+.app-list {
+    list-style: none;
+    margin-top: 30px;
+
+    li:not(.loadmore) {
+        border-bottom: 1px solid $filters-border;
+        padding-top: 15px;
+    }
+}
+
+.app-list-filters {
+    color: $filters-label;
+    margin: 0 auto;
+    min-height: 20px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+@media $base-tablet {
+    .app-list {
+        position: relative;
+
+        li:not(.loadmore) {
+            border-bottom: $border;
+            border-right: $border;
+            float: left;
+            padding: $desktop-tile-padding;
+            width: 50%;
+
+            &:nth-child(2n) {
+                border-right: 0;
+                padding-right: 0;
+            }
+            &:nth-child(2n + 1) {
+                padding-left: 0;
+            }
+            // Last 3 (thanks loadmore!).
+            &:nth-last-child(-n + 3) {
+                border-bottom: 0;
+            }
+        }
+    }
+    .app-list-filters {
+        border-bottom: 2px solid $filters-border;
+        padding: 30px 0;
+        width: $desktop-content;
+    }
+}
+
 @media $base-desktop {
     .app-list-page {
         padding: 0;
     }
+    .app-list {
+        max-width: $desktop-content;
+
+        li:not(.loadmore) {
+            width: (100/3)%;
+
+            &:nth-child(2n),
+            &:nth-child(2n + 1) {
+                padding: $desktop-tile-padding;
+            }
+            &:nth-child(2n) {
+                border-right: $border;
+            }
+            &:nth-child(3n) {
+                border-right: 0;
+                padding-right: 0;
+            }
+            &:nth-child(3n + 1) {
+                padding-left: 0;
+            }
+            // Last 4.
+            &:nth-last-child(-n + 4) {
+                border-bottom: 0;
+            }
+        }
+    }
+    .cat-header .cat-icon:before {
+        background-size: 180px auto;
+        height: 60px;
+        width: 60px;
+    }
     body[data-page-type~=app-list] {
-        .feed {
-            max-width: $desktop-content;
-        }
-        .app-list {
-            position: relative;
-            max-width: $desktop-content;
-
-            li:not(.loadmore) {
-                float: left;
-                margin-right: 20px;
-                width: 335px;
-
-                &.mini-tile {
-                    background-color: #fff;
-                    border-radius: 5px;
-                    height: 80px;
-                    padding: 10px;
-                }
-                &:nth-child(2n) {
-                    margin-right: 0;
-                }
-            }
-        }
-        .feed-tile-header:before {
-            left: 0;
-            top: 0;
-        }
-        .multi-app-tile.mkt-tile {
-            background-color: transparent;
-            box-shadow: none;
-            max-width: $desktop-content;
-            padding: 0;
-
-            .app-list {
-                width: $desktop-content;
-
-                .fragment-error {
-                    background-color: transparent;
-                    display: inline-block;
-                    padding: 20px;
-                }
-            }
-            > .icon {
-                display: none;
-            }
-            > .info {
-                height: 60px;
-                margin-left: 0;
-                width: 100%;
-
-                h1 {
-                    font-size: 24px;
-                    line-height: 24px;
-                }
-            }
-        }
         .placeholder {
             clear: both;
         }

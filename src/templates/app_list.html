@@ -1,44 +1,41 @@
-{% include '_macros/feed_item.html' %}
+{% include '_macros/app_tile.html' %}
 {% include '_macros/more_button.html' %}
 
 <section class="main">
-  {% include "compatibility_filtering.html" %}
+  <div class="subheader">
+    <h1>{{ title }}<a href="#" class="expand-toggle" title="{{ _('Expand') }}"></a></h1>
+  </div>
 </section>
 
 {% set apiFn = api if require_user else anonApi %}
 {% set search_url = apiFn(endpoint_name)|urlparams(sort=sort, limit=24) if sort
                     else apiFn(endpoint_name)|urlparams(limit=24) %}
 
-<section class="app-list-page feed c">
-  <section class="feed-layout-list multi-app-tile mkt-tile c" data-type="{{ source }}">
-    <div class="info hdr">
-      <h1 class="feed-tile-header">{{ title }}</h1>
-    </div>
-
-    {% defer (url=search_url, pluck='objects', as='app', paginate='ul.app-list') %}
-      <ul class="app-list c">
-        {% for app in this %}
-          {{ mini_tile(app, src=source) }}
-        {% endfor %}
-        {% if response.meta.next %}
-          {# Render the more button if there's another page of results #}
-          {{ more_button(response.meta.next) }}
-        {% endif %}
-      </ul>
-    {% placeholder %}
-      <p class="spinner padded alt"></p>
-    {% empty %}
-      <p class="no-results">
-        {{ _('No apps found') }}
-      </p>
-    {% except %}
-      <p class="no-results">
-        {% if error == 400 or error == 404 %}
-          {{ _('No apps found.') }}
-        {% elif error == 500 %}
-          {{ _('An internal server error occurred. Please try again later.') }}
-        {% endif %}
-      </p>
-    {% end %}
-  </section>
+<section class="main full app-list-page c">
+  {% defer (url=search_url, pluck='objects', as='app', paginate='ul.app-list') %}
+    {% include "_includes/app_list_filters.html" %}
+    <ul class="app-list">
+      {% for app in this %}
+        <li>{{ app_tile(app, src=source, tray=True) }}</li>
+      {% endfor %}
+      {% if response.meta.next %}
+        {# Render the more button if there's another page of results #}
+        {{ more_button(response.meta.next) }}
+      {% endif %}
+    </ul>
+  {% placeholder %}
+    <p class="spinner padded alt"></p>
+  {% empty %}
+    <p class="no-results">
+      {{ _('No apps found') }}
+    </p>
+  {% except %}
+    <p class="no-results">
+      {% if error == 400 or error == 404 %}
+        {{ _('No apps found.') }}
+      {% elif error == 500 %}
+        {{ _('An internal server error occurred. Please try again later.') }}
+      {% endif %}
+    </p>
+  {% end %}
 </section>

@@ -14,9 +14,6 @@
  *
  */
 
-// Don't (line-height: height + $shadow-size) if the box-shadow goes away.
-// It's only there for perceived vertical alignment.
-
 // Default state.
 $btn = #4CB1FF; // blue
 $action = #64BE3C; // green
@@ -59,29 +56,25 @@ $btn-install-width = 90px;
 // Install button font-size.
 $install-font-size = 12px;
 
-// Button box-shadow size.
-$shadow-size = 2px;
-
-commonprops($colour, $shadow) {
+commonprops($colour, $border) {
     background: $colour;
 
-    if ($shadow == 'none') {
-        box-shadow: none;
+    if ($border == 'none') {
+        border-bottom: 0;
     } else {
-        box-shadow: 0 (-1 * $shadow-size) $shadow inset;
+        border-bottom: 1px solid $border;
     }
 }
 
 .button {
     border: 0;
-    border-radius: 5px;
     color: #fff;
     commonprops($btn, $btn-act);
     display: inline-block;
     ellipsis();
     font: 400 $font-size/$medium $open-stack;
     height: $medium;
-    line-height: $medium + $shadow-size;
+    line-height: 1;
     padding: 0 $h-padding;
     text-align: center;
     text-decoration: none;
@@ -139,15 +132,12 @@ commonprops($colour, $shadow) {
     }
     &.t, &.product {
         height: $tiny;
-        line-height: $tiny + $shadow-size;
     }
     &.s {
         height: $small;
-        line-height: $small + $shadow-size;
     }
     &.l {
         height: $large;
-        line-height: $large + $shadow-size;
     }
 
     // Waiting/Loading spinner.
@@ -196,8 +186,6 @@ commonprops($colour, $shadow) {
 .mkt-tile .install {
     // Unset many .button properties.
     // To compensate for the larger click target.
-    // Calculation: (24-34)/2 + $shadow-size
-    bottom: -2px;
     commonprops(transparent, 'none');
     cursor: pointer;
     font-size: $install-font-size;
@@ -209,7 +197,6 @@ commonprops($colour, $shadow) {
 
     em {
         // This em becomes the visual button.
-        border-radius: 5px;
         commonprops($btn, $btn-act);
         display: inline-block;
         ellipsis();
@@ -225,8 +212,6 @@ commonprops($colour, $shadow) {
     }
     // Accomodate a better vertical align since this state has no box-shadow.
     &[disabled] {
-        bottom: -4px;
-
         em {
             commonprops($disabled, 'none')
         }
@@ -332,6 +317,7 @@ commonprops($colour, $shadow) {
 
 @media $base-desktop {
     .loadmore {
+        clear: both;
         padding: 25px 10px 0;
     }
     .grid-if-desktop .loadmore {

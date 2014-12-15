@@ -2,24 +2,24 @@
 
 .compat-filter {
     clear: both;
-    display: block;
+    display: inline-block;
     margin: 0 auto;
-    padding: 0;
     position: absolute;
     z-index: 1;
 
     select {
-        font-size: 13px;
+        font-size: 15px;
         vertical-align: middle;
         width: 229px;
     }
     label {
-        color: $hungry-text;
+        color: $filters-label;
         display: inline-block;
-        font-size: 12px;
+        font-size: 15px;
         font-weight: 400;
         line-height: 18px;
         margin-right: 5px;
+        text-transform: uppercase;
         vertical-align: middle;
     }
 }
@@ -28,6 +28,7 @@
     vertical-align: middle;
 }
 
+// TODO: These need to be outside a media query.
 @media (max-width: 709px) {
     .compat-filter {
         margin: 0 auto;
@@ -48,16 +49,14 @@
     .category,
     #search-results .search-listing {
         position: relative;
-        top: 47px;
     }
     .category-header + .compat-filter,
-    #search-results .compat-filter {
-        top: 47px;
+    #search-results .compat-filter,
+    [data-page-type~="purchases"] .compat-filter,
+    [data-page-type~="app-list"] .compat-filter {
+        top: 15px;
     }
 
-    [data-page-type~="app-list"] .compat-filter {
-        top: 7px;
-    }
     .category-header + .compat-filter {
         margin-top: 2px;
     }
@@ -81,15 +80,13 @@
     }
 }
 
-@media (min-width: 710px) {
+@media $base-tablet {
     .compat-filter {
-        right: 0;
-        top: 0;
+        position: static;
     }
-    #search-results .expand-toggle {
-        bottom: 0;
-        top: auto;
-    }
+}
+
+@media $base-desktop {
     #search-results .secondary-header {
         height: 80px;
         max-height: 80px;
