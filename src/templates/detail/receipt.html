@@ -1,5 +1,5 @@
 {% include "_macros/emaillink.html" %}
-{% include "_macros/market_tile.html" %}
+{% include "_macros/app_tile.html" %}
 {% include "_macros/stars.html" %}
 
 {% set endpoint = api('app', [slug]) %}
@@ -12,7 +12,7 @@
 
   <section class="main product-details listing c">
     {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
-      {{ market_tile(this) }}
+      {{ app_tile(this) }}
     {% placeholder %}
       <div class="product mkt-tile">
         <div class="info">

@@ -1,7 +1,7 @@
 {# This is a shared file between Fireplace and Transonic. #}
 
 {% from "_macros/market_button.html" import market_button %}
-{% from '_macros/market_tile.html' import market_tile, deferred_icon %}
+{% from '_macros/app_tile.html' import app_tile, deferred_icon %}
 {% from '_macros/stars.html' import stars %}
 
 
@@ -56,7 +56,7 @@
         </div>
       </section>
     {% else %}
-      {{ market_tile(feed_app.app,
+      {{ app_tile(feed_app.app,
                      feed_app=feed_app,
                      src='featured-app') }}
     {% endif %}
@@ -242,7 +242,7 @@
           {% else %}
             {% for app in coll.apps %}
               <div class="item result app c detail-item">
-                {{ market_tile(app, src='collection-element') }}
+                {{ app_tile(app, src='collection-element') }}
               </div>
             {% endfor %}
           {% endif %}
@@ -268,7 +268,7 @@
       {% if shelf.apps %}
         {% for app in shelf.apps %}
           <div class="item result app c detail-item">
-            {{ market_tile(app, src='operator-shelf-element') }}
+            {{ app_tile(app, src='operator-shelf-element') }}
           </div>
         {% endfor %}
       {% else %}

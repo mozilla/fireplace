@@ -6,7 +6,7 @@ define('views/new',
     var console = log('new');
 
     return function(builder, args, params) {
-        var title = gettext('Fresh and New Apps');
+        var title = gettext('New');
 
         builder.z('type', 'root app-list new');
         builder.z('title', title);

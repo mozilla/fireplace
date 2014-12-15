@@ -1,12 +1,13 @@
 @import "lib";
 
+$select-height = 30px;
+
 .pretty-select {
-    background-color: $action-positive;
-    border: 1px solid darken($action-positive, 10%);
+    border: 1px solid $filters-border;
     border-radius: 5px;
     font-weight: normal;
     font-size: 20px;
-    height: 40px;
+    height: $select-height;
 
     // Above styles are defined separately in Transonic.
     cursor: pointer;
@@ -19,16 +20,16 @@
         // Custom dropdown arrow
         dropdown();
         background: none;
-        color: #fff;
+        color: $drop-arrow;
         content: '\25BC';
         font-size: 10px;
-        top: 14px;
+        top: 8px;
         right: -2px;
         z-index: 2;
     }
     &:after {
         // Hide the native `<select>` arrow.
-        background: $action-positive;
+        background: $white;
         border: 0;
         content: "";
         display: block;
@@ -44,19 +45,18 @@
         -moz-padding-start: 10px;
         -webkit-padding-start: 10px;
         appearance-none();
-        background: none;
+        background: $white;
         border: 0;
         border-radius: 5px;
         box-shadow: none;
-        color: #fff;
         cursor: pointer;
-        height: 40px;
+        height: $select-height;
         max-width: none;
         min-width: 229px;
         outline: 0;
 
         &:-moz-focusring {
-            color: transparent;
+            color: $filters-label;
             text-shadow: 0 0 0 #fff;
         }
     }
