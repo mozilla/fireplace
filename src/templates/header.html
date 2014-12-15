@@ -1,5 +1,3 @@
-{% include "_macros/act_tray.html" %}
-
 <nav role="navigation">
   <a href="#" id="nav-back" class="header-button icon back" title="{{ _('Back') }}"><b>{{ _('Back') }}</b></a>
   <h1 class="site"><a href="{{ url('homepage') }}"><span class="wordmark">Firefox Marketplace</span></a></h1>
@@ -15,7 +13,8 @@
   </form>
   <span class="flex-span"></span>
 
-  {{ act_tray(false) }}
+  {% include '_includes/settings_hover_desktop.html' %}
+
   <a href="#" class="header-button persona register">{{ _('Register') }}</a>
   <a href="#" class="header-button button t persona">{{ _('Sign In') }}</a>
 </nav>
