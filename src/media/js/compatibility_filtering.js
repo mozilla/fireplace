@@ -25,9 +25,10 @@ define('compatibility_filtering',
     // f = FeatureProfile.from_signature('fffffffffffffffffffffffffff')
     // f.update({'mobileid': False,
     //           'precompile_asmjs': False,
-    //           'hardware_512mb_ram': False})
+    //           'hardware_512mb_ram': False,
+    //           'hardware_1gb_ram': False})
     // f.to_signature()
-    var default_feature_profile = '3fffffffffff8.50.5';
+    var default_feature_profile = '7fffffffffff0.51.6';
     // Get feature profile from query string (yulelog sets this), or fall back
     // to the default.
     var feature_profile = utils.getVars().pro || default_feature_profile;
