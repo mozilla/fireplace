@@ -64,6 +64,25 @@
     display: none;
 }
 
+.category .compat-filter,
+.category .app-list-filters {
+    display: none;
+}
+
+.category .app-list {
+    margin-top: 0;
+}
+
+.cat-header .expand-toggle {
+    top: 3px;
+}
+
+@media $base-tablet {
+    .category .app-list {
+        margin-top: 30px;
+    }
+}
+
 @media $base-desktop {
     .category-header-desktop {
         margin: 0 auto 20px;
@@ -94,5 +113,18 @@
                 width: 60px;
             }
         }
+    }
+    // TODO: Look into whether these should be the base "tabs".
+    .category .app-list-filters .new-pop-tabs {
+        display: inline-block;
+        position: relative;
+        top: 3.5px;
+        width: auto;
+    }
+    .cat-header .expand-toggle {
+        top: -2px;
+    }
+    .category .app-list-filters {
+        display: block;
     }
 }

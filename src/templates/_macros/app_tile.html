@@ -2,8 +2,7 @@
 {% from "_macros/market_button.html" import market_button %}
 {% from "_macros/stars.html" import stars %}
 
-{# TODO: This should really be app_tile() #}
-{% macro market_tile(app, feed_app=None, is_detail=False, tray=False, src=None) %}
+{% macro app_tile(app, feed_app=None, is_detail=False, tray=False, src=None) %}
 
   {#
       app -- app object
@@ -35,10 +34,6 @@
             {% endif -%}
           </div>
         {% endif %}
-
-        <div class="price vital">
-          {{ app.price_locale if app.payment_required else _('Free') }}
-        </div>
 
         {% if app.slug %}
           {{ market_button(app,

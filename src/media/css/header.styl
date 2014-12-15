@@ -240,6 +240,10 @@ body {
     width: auto;
 }
 
+.subheader h1 {
+    padding: 10px;
+}
+
 .secondary-header,
 .featured-header {
     position: relative;
@@ -325,13 +329,19 @@ body {
 }
 
 // search results tile expand toggle
+.expand-wrapper {
+    display: none;
+    margin: 0 30px;
+}
 .expand-toggle {
-    display: block;
+    display: inline-block;
+    float: right;
     height: 22px;
     line-height: 22px;
-    position: absolute;
-    right: 10px;
-    top: 9px;
+    margin-left: 10px;
+    position: relative;
+    text-transform: uppercase;
+    top: -2px;
     width: 69px;
     &:before,
     &:after {
@@ -423,11 +433,27 @@ main {
         }
     }
     [data-page-type] main {
-        padding: 0 0 $header-height;
-
         &:before {
             display: none;
         }
+    }
+}
+
+@media $base-tablet {
+    .expand-toggle {
+        display: none;
+    }
+    .expand-wrapper {
+        display: inline-block;
+
+        .expand-toggle {
+            display: inline-block;
+            float: none;
+            top: 6px;
+        }
+    }
+    .subheader {
+
     }
 }
 
@@ -528,7 +554,18 @@ main {
     }
 }
 
-// ***************** Wide Mobile (> 671px)
+@media $base-tablet {
+    .subheader {
+        h1 {
+            padding: 10px;
+            margin: 40px 0 30px;
+        }
+        &.cat-header h1 {
+            margin: 25px 0 15px;
+        }
+    }
+}
+
 @media $base-desktop {
     .secondary-header {
         background: none;
@@ -547,15 +584,19 @@ main {
     .featured-header {
         padding: 15px 15px 5px;
     }
-    .expand-toggle {
-        top: 13px;
-        right: 0;
-    }
     .site-header {
         z-index: 30;
     }
+    .subheader {
+        margin-top: -18px;  // Offset #page padding.
+
+        h1 {
+            padding: 0;
+        }
+    }
 }
 
+// TODO: Move this up, get rid of its media query.
 @media (max-width: 540px) {
     .site-header {
         .search {

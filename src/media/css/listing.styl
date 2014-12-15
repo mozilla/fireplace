@@ -258,13 +258,13 @@ div .deferred-background {
     margin-bottom: 4px;
 }
 
-.tabs {
+.new-pop-tabs {
+    display: none;
     position: absolute;
     top: 0;
     width: 100%;
 
     a {
-        color: $london-fog-gray;
         display: inline-block;
         ellipsis();
         font-size: 15px;
@@ -282,8 +282,7 @@ div .deferred-background {
             border-bottom: 2px solid $seavan-salt-white;
         }
         &.active {
-            border-bottom: 2px solid $flamin-hot-cheetos-orange;
-            font-weight: 500;
+            border-bottom: 2px solid $filters-link;
             pointer-events: none;
         }
         + a {
@@ -419,7 +418,7 @@ div .deferred-background {
             }
         }
     }
-    .tabs a {
+    .new-pop-tabs a {
         text-shadow: none;
 
         &.active:before, &.active:after {
@@ -451,7 +450,7 @@ div .deferred-background {
         display: none;
     }
 }
-.tabs + .view-all {
+.new-pop-tabs + .view-all {
     display: none;
 }
 
