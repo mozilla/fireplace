@@ -1,6 +1,6 @@
 define('views/debug',
-    ['cache', 'capabilities', 'compatibility_filtering', 'log', 'models', 'notification', 'requests', 'settings', 'storage', 'user', 'utils', 'z'],
-    function(cache, capabilities, compatibility_filtering, log, models, notification, requests, settings, storage, user, utils, z) {
+    ['cache', 'capabilities', 'compatibility_filtering', 'log', 'models', 'notification', 'regions', 'requests', 'settings', 'storage', 'user', 'utils', 'z'],
+    function(cache, capabilities, compatibility_filtering, log, models, notification, regions, requests, settings, storage, user, utils, z) {
     'use strict';
 
     var persistent_console_debug = log.persistent('debug', 'change');
@@ -77,7 +77,7 @@ define('views/debug',
         }
         user.update_settings({region_override: val});
         z.page.trigger('reload_chrome');
-        notification.notification({message: 'Region updated to ' + (settings.REGION_CHOICES_SLUG[val] || '---')});
+        notification.notification({message: 'Region updated to ' + (regions.REGION_CHOICES_SLUG[val] || '---')});
 
     }).on('change', '#debug-page select[name=carrier]', function(e) {
         var val = $(this).val();
