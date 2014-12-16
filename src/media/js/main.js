@@ -64,6 +64,7 @@ function(_) {
     var l10n = require('l10n');
     var nunjucks = require('templates');
     var regions = require('regions');
+    var storage = require('storage');
     var urls = require('urls');
     var user = require('user');
     var utils = require('utils');
@@ -200,6 +201,7 @@ function(_) {
         console.log('Reloading chrome');
         var user_helpers = require('user_helpers');
         var context = {
+            render_newsletter: !storage.getItem('newsletter-completed'),
             user_region: user_helpers.region('restofworld'),
             user_email: user.get_setting('email'),
             user_lang: user_helpers.lang(),

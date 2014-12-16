@@ -1,6 +1,6 @@
 define('newsletter',
-    ['capabilities', 'jquery', 'notification', 'requests', 'urls', 'utils', 'z'],
-    function(capabilities, $, notification, requests, urls, utils, z) {
+    ['capabilities', 'jquery', 'notification', 'requests', 'storage', 'urls', 'utils', 'z'],
+    function(capabilities, $, notification, requests, storage, urls, utils, z) {
     'use strict';
 
     function expandDetails($details) {
@@ -36,6 +36,10 @@ define('newsletter',
             $form.remove();
             $processing.remove();
             $success.show();
+            storage.setItem('newsletter-completed', true);
+            z.win.one('navigating', function() {
+                $('#newsletter-footer').remove();
+            });
         }).fail(function() {
             $processing.remove();
             $form.removeClass('processing-hidden');
