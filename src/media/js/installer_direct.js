@@ -12,11 +12,12 @@ define('installer_direct',
     var gettext = l10n.gettext;
     var console = log('installer');
 
-    function getInstalled() {
+    function getInstalled(opt) {
         // navigator.mozApps.getInstalled to keep track of installed apps.
+        opt = opt || {};
         var def = defer.Deferred();
-
-        var r = navigator.mozApps.getInstalled();
+        var mozApps = (opt.navigator || window.navigator).mozApps;
+        var r = mozApps.getInstalled();
         r.onsuccess = function() {
             var installed = [];
             for (var i = 0; i < r.result.length; i++) {
@@ -24,6 +25,22 @@ define('installer_direct',
             }
             z.apps = installed;
             def.resolve(installed);
+        };
+        return def.promise();
+    }
+
+    function getApp(manifestURL, opt) {
+        opt = opt || {};
+        var def = defer.Deferred();
+        var mozApps = (opt.navigator || window.navigator).mozApps;
+        var r = mozApps.getInstalled();
+        r.onsuccess = function() {
+            for (var i = 0; i < r.result.length; i++) {
+                if (r.result[i].manifestURL == manifestURL) {
+                    def.resolve(r.result[i]);
+                }
+            }
+            def.reject();
         };
 
         return def.promise();
@@ -38,6 +55,73 @@ define('installer_direct',
             }
             installed[manifestURL].launch();
         };
+    }
+
+    function checkForUpdate(manifestURL, opt) {
+        var def = defer.Deferred();
+        console.log('Checking for update of ' + manifestURL);
+        getApp(manifestURL, opt).done(function(app) {
+
+            if (app.downloading) {
+                console.log('Checking for app update failed (APP_IS_DOWNLOADING) for ' + manifestURL);
+                def.reject('APP_IS_DOWNLOADING');
+                return;
+            }
+            if (app.downloadAvailable) {
+                // If we already know an app has a download available, we can
+                // return right away.
+                console.log('Checking for app update succeeded immediately (downloadavailable) for ' + manifestURL);
+                def.resolve(true);
+                return;
+            }
+            // Only one of those 2 events type is fired for success, depending
+            // on whether a download is available or not.
+            app.ondownloadavailable = function(e) {
+                console.log('Checking for app update succeeded (downloadavailable) for ' + manifestURL);
+                def.resolve(app.downloadAvailable);
+            };
+            app.ondownloadapplied = function(e) {
+                console.log('Checking for app update succeeded (downloadaapplied) for ' + manifestURL);
+                def.resolve(app.downloadAvailable);
+            };
+            var request = app.checkForUpdate();
+            request.onerror = function() {
+                var error = this.error.name || this.error;
+                console.log('Checking for app update failed (' + error + ') for ' + manifestURL);
+                def.reject(error);
+            };
+        }).fail(function() {
+            console.log('Checking for app update failed (NOT_INSTALLED) for ' + manifestURL);
+            def.reject('NOT_INSTALLED');
+        });
+        return def.promise();
+    }
+
+    function applyUpdate(manifestURL, opt) {
+        var def = defer.Deferred();
+        console.log('Applying update of ' + manifestURL);
+        getApp(manifestURL, opt).done(function(app) {
+            app.ondownloadsuccess = function(e) {
+                console.log('Applying app update succeeded (downloadsuccess) for ' + manifestURL);
+                def.resolve();
+            };
+            app.ondownloaderror = function(e) {
+                console.log('Applying app update failed (downloaderror) for ' + manifestURL);
+                def.reject(this.error.name || this.error);
+            };
+            if (app.downloading) {
+                def.reject('APP_IS_DOWNLOADING');
+                return;
+            }
+            if (!app.downloadAvailable) {
+                def.reject('NO_DOWNLOAD_AVAILABLE');
+                return;
+            }
+            app.download();
+        }).fail(function() {
+            def.reject('NOT_INSTALLED');
+        });
+        return def.promise();
     }
 
     function _install(product, opt) {
@@ -101,6 +185,8 @@ define('installer_direct',
     }
 
     return {
+        applyUpdate: applyUpdate,
+        checkForUpdate: checkForUpdate,
         getInstalled: getInstalled,
         launch: launch,
         install: install,

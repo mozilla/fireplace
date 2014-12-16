@@ -61,14 +61,17 @@ function(_) {
     var $ = require('jquery');
     var settings = require('settings');
     var siteConfig = require('site_config');
+    var l10n = require('l10n');
     var nunjucks = require('templates');
     var regions = require('regions');
     var urls = require('urls');
     var user = require('user');
+    var utils = require('utils');
     var utils_local = require('utils_local');
     var z = require('z');
 
     var console = require('log')('mkt');
+    var gettext = l10n.gettext;
 
     // Use Native Persona, if it's available.
     if (capabilities.firefoxOS && 'mozId' in navigator && navigator.mozId !== null) {
@@ -91,7 +94,7 @@ function(_) {
     settings.persona_tos = format.format(doc_location, {type: 'terms'});
     settings.persona_privacy = format.format(doc_location, {type: 'privacy'});
 
-    z.body.addClass('html-' + require('l10n').getDirection());
+    z.body.addClass('html-' + l10n.getDirection());
 
     if (settings.body_classes) {
         z.body.addClass(settings.body_classes);
@@ -128,7 +131,7 @@ function(_) {
         console.log('Hiding splash screen (' + ((performance.now() - start_time) / 1000).toFixed(6) + 's)');
         var splash = $('#splash-overlay').addClass('hide');
         z.body.removeClass('overlayed').addClass('loaded');
-        apps.getInstalled().done(buttons.mark_btns_as_installed);
+
         setTimeout(function() {
             z.page.trigger('splash_removed');
         }, 1500);
@@ -143,15 +146,43 @@ function(_) {
         });
     }
 
-    z.page.on('iframe-loaded', function() {
-        // Triggered by apps-iframe-installer.
-        apps.getInstalled().done(function() {
-            z.page.trigger('mozapps_got_installed');
-            buttons.mark_btns_as_installed();
-        });
-    });
-
     if (capabilities.webApps) {
+        // Mark installed apps as such and look for a Marketplace update. If we
+        // are in a packaged app, wait for the iframe to be loaded, otherwise
+        // we are using the direct installer and we just need to wait for the
+        // normal loaded event.
+        var event_for_apps = window.location.protocol === 'app:' ? 'iframe-install-loaded' : 'loaded';
+        z.page.one(event_for_apps, function() {
+            apps.getInstalled().done(function() {
+                z.page.trigger('mozapps_got_installed');
+                buttons.mark_btns_as_installed();
+            });
+
+
+            var manifest_url = settings.manifest_url;
+            // Note: only the iframed app defines a manifestURL for now.
+            if (manifest_url) {
+                apps.checkForUpdate(manifest_url).done(function(result) {
+                    if (result) {
+                        z.body.on('click', '#marketplace-update-banner a.download-button', utils._pd(function() {
+                            var $button = $(this);
+                            // Deactivate "remember" on the dismiss button so that it'll
+                            // show up for the next update if the user clicks on it now
+                            // they chose to apply the update.
+                            $button.closest('mkt-banner').get(0).dismiss = '';
+                            $button.addClass('spin');
+                            apps.applyUpdate(manifest_url).done(function() {
+                                $('#marketplace-update-banner span').text(gettext(
+                                    'The next time you start the Firefox Marketplace app, you’ll see the updated version!'));
+                                $button.remove();
+                            });
+                        }));
+                        $('#site-nav').after(nunjucks.env.render('marketplace-update.html'));
+                    }
+                });
+            }
+        });
+
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden) {
                 // Refresh list of installed apps in case user uninstalled apps

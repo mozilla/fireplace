@@ -7,26 +7,24 @@ define('apps',
     'use strict';
     var gettext = l10n.gettext;
     var console = log('apps');
-    var iframed;
     var installer;
 
-    /* Determine which installer to use.
-       If we are in an iframe (yulelog), invoke direct installer.
-       If we are packaged or directly in browser, invoke iframe installer that
-       uses the m.f.c origin.
-       The iframe installer does not work when we are in an iframe because
-       mozApps doesn't seem to work when double nested in iframes.
+    /*
+      Determine which installer to use.
+
+      We *need* to use https://m.f.c. origin to install apps.
+      - In the packaged app, protocol is app:, we need to use the iframe
+        installer to get the right origin.
+      - In the iframed app or browser, protocol is https:, we can use the
+        direct installer as the origin should already be the right one.
+      - When testing locally, the protocol is https: or http:, we also use the
+        direct installer, it makes things simpler to test.
     */
-    try {
-        iframed = window.self !== window.top;
-    } catch (e) {
-        iframed = true;
-    }
-    if (iframed) {
-        installer = installer_direct;
-    } else {
+    if (window.location.protocol === 'app:') {
         installer = installer_iframe;
         installer.initialize_iframe();
+    } else {
+        installer = installer_direct;
     }
 
     function install(product, opt) {
@@ -60,6 +58,14 @@ define('apps',
 
     function launch(manifestURL) {
         return installer.launch(manifestURL);
+    }
+
+    function checkForUpdate(manifestURL) {
+        return installer.checkForUpdate(manifestURL);
+    }
+
+    function applyUpdate(manifestURL) {
+        return installer.applyUpdate(manifestURL);
     }
 
     var COMPAT_REASONS = '__compat_reasons';
@@ -107,6 +113,8 @@ define('apps',
     nunjucks.require('globals').app_incompat = incompat;
 
     return {
+        applyUpdate: applyUpdate,
+        checkForUpdate: checkForUpdate,
         getInstalled: getInstalled,
         launch: launch,
         incompat: incompat,

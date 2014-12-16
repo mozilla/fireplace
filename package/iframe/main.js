@@ -51,6 +51,7 @@
             true, // 'getMobileIdAssertion' in window.navigator || 'api.window.Navigator.getMobileIdAssertion',
             true, // 'manifest.precompile',
             ['hardware.memory', 512],
+            ['hardware.memory', 1024],
         ];
 
         features.forEach(function(key) {
@@ -122,7 +123,7 @@
                 promises.length + hardcoded_signature_part.length,
                 // Last part is a hardcoded version number, to bump whenever
                 // we make changes.
-                5
+                6
             ].join('.');
 
             log('Generated profile: ' + profile);
