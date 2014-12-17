@@ -55,7 +55,7 @@ Further details can be found in the
 
 We have an instance of a mocked version of the Marketplace API at
 ```https://flue.paas.allizom.org```. Documentation can be found in
-[marketplace-mock-api's repository](https://github.com/mozilla/marketplace-mock-api/blob/master/README.md).
+[marketplace-api-mock's repository](https://github.com/mozilla/marketplace-api-mock/blob/master/README.md).
 
 ### iframed Package
 
