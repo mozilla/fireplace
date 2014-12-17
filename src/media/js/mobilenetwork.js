@@ -1,114 +1,9 @@
 define('mobilenetwork',
-       ['l10n', 'log', 'settings', 'tracking', 'user', 'utils'],
-       function(l10n, log, settings, tracking, user, utils) {
+       ['l10n', 'log', 'regions', 'tracking', 'user', 'utils'],
+       function(l10n, log, regions, tracking, user, utils) {
     var console = log('mobilenetwork');
     var persistent_console = log.persistent('mobilenetwork', 'change');
     var gettext = l10n.gettext;
-
-    var regions = {
-        // Missing [ "231", "232", "744" ]
-
-        // Greece
-        202: 'gr',
-
-        // France
-        208: 'fr',
-
-        // Spain
-        214: 'es',
-
-        // Hungary
-        216: 'hu',
-
-        // Serbia
-        220: 'rs',
-
-        // Italy
-        222: 'it',
-
-        // Czech Republic
-        230: 'cz',
-
-        // United Kingdom.
-        234: 'uk',
-        235: 'uk',
-
-        // Russia
-        250: 'ru',
-
-        // Poland
-        260: 'pl',
-
-        // Germany
-        262: 'de',
-
-        // Montenegro
-        297: 'me',
-
-        // United States
-        310: 'us',
-
-        // Mexico
-        334: 'mx',
-
-        // India
-        404: 'in',
-        405: 'in',
-
-        // Japan
-        440: 'jp',
-
-        // China
-        460: 'cn',
-
-        // Bangladesh
-        470: 'bd',
-
-        // Philippines
-        515: 'ph',
-
-        // South Africa
-        655: 'za',
-
-        // Guatemala
-        704: 'gt',
-
-        // El Salvador
-        706: 'sv',
-
-        // Nicaragua
-        710: 'ni',
-
-        // Costa Rica
-        712: 'cr',
-
-        // Panama
-        714: 'pa',
-
-        // Peru
-        716: 'pe',
-
-        // Argentina
-        722: 'ar',
-
-        // Brazil
-        724: 'br',
-
-        // Chile
-        730: 'cl',
-
-        // Colombia
-        732: 'co',
-
-        // Venezuela
-        734: 've',
-
-        // Ecuador
-        740: 'ec',
-
-        // Uruguay
-        748: 'uy'
-    };
 
     var carriers = [
         'america_movil',
@@ -409,7 +304,7 @@ define('mobilenetwork',
         }
 
         return {
-            region: regions[mcc] || null,
+            region: regions.MOBILE_CODES[mcc] || null,
             carrier: carrier || null
         };
     }
@@ -560,10 +455,10 @@ define('mobilenetwork',
     detectMobileNetwork(navigator);
 
     return {
-        regions: regions,
         carriersRegions: carriersRegions,
         carriers: carriers,
         detectMobileNetwork: detectMobileNetwork,
-        getNetwork: getNetwork
+        getNetwork: getNetwork,
+        regions: regions.MOBILE_CODES,
     };
 });
