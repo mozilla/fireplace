@@ -170,10 +170,9 @@ select[name=rating] {
 }
 
 .stars {
-    background: url(../img/pretty/stars_small.svg) no-repeat;
-    &.white {
-        background: url(../img/pretty/stars_small_white.svg) no-repeat;
-    }
+    background: url(../img/pretty/stars.svg) no-repeat;
+    background-size: 130px auto;
+
     display: inline-block;
     hidetext();
     margin-right: 4px;
@@ -190,39 +189,20 @@ select[name=rating] {
     margin: 0 0 0 4px;
 }
 
-tinyStars() {
-    .stars {
-        background-size: auto 9px;
-        height: 9px;
-
-        &.stars-4 { background-position: -10px 0; }
-        &.stars-3 { background-position: -20px 0; }
-        &.stars-2 { background-position: -29px 0; }
-        &.stars-1 { background-position: -39px 0; }
-        &.stars-0 { background-position: -49px 0; }
-        width: 48px;
-    }
-}
-
-.mkt-tile {
-    .info {
-        tinyStars();
-    }
-}
-
 .stars.ratingwidget {
-    background: url(../img/pretty/stars_large.svg) -300px 0 no-repeat;
+    background-size: 440px auto;
+    background-position: -220px 0;
     height: 40px;
-    width: 241px;
+    width: 220px;
 
-    &.stars-5 { background-position: -50px 0; }
-    &.stars-4 { background-position: -100px 0; }
-    &.stars-3 { background-position: -150px 0; }
-    &.stars-2 { background-position: -200px 0; }
-    &.stars-1 { background-position: -250px 0; }
+    &.stars-5 { background-position: 0 0; }
+    &.stars-4 { background-position: -44px 0; }
+    &.stars-3 { background-position: -88px 0; }
+    &.stars-2 { background-position: -132px 0; }
+    &.stars-1 { background-position: -176px 0; }
     label {
         height: 40px;
-        width: 48px;
+        width: 44px;
     }
 }
 
