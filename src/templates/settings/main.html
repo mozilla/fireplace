@@ -43,16 +43,13 @@
       </div>
     </div>
 
-    <h3>{{ _('Newsletter') }}</h3>
+    <h3 class="hide-on-desktop">{{ _('Newsletter') }}</h3>
 
-    <div class="brform simple-field c full-width newsletter-info">
-      <p class="hide-on-desktop">
+    <div class="brform simple-field c full-width newsletter-info hide-on-desktop">
+      <p>
         {# This <span> is just to get a space before the link. #}
         <span>{{ _('Get Firefox News.') }}</span>
         <a href="/newsletter-signup" class="newsletter-signup">{{ _('Sign up for our newsletter.') }}</a>
-      </p>
-      <p>
-        {{ _('If you have already signed up, you can <a href="{url}" target="_blank">change your newsletter preferences</a>.', url='https://www.mozilla.org/newsletter/existing/') }}
       </p>
     </div>
 
