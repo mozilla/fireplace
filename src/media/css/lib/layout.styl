@@ -1,0 +1,18 @@
+// Widths.
+$desktop-content = 690px;
+$desktop-ftr = 732px;
+$header-height = 48px;
+$max-site-width = 1024px;
+
+// Media query widths (e.g., @media $at-least-desktop { }).
+$at-least-desktop = unquote('(min-width: 710px)');
+$narrower-than-desktop = unquote('(max-width: 709px)');
+$wider-desktop = unquote('(min-width: 1024px)');
+$small-desktop = unquote('(min-width: 710px) and (max-width: 1024px)')
+
+$retina-tablet = $retina unquote('and (max-width: 540px)');
+$retina-desktop = $retina unquote('and (min-width: 710px)');
+$retina-wide = $retina unquote('and (min-width: 1024px)');
+
+// Retina.
+$retina = unquote('screen and (-webkit-min-device-pixel-ratio: 2), screen and (min--moz-device-pixel-ratio: 2), screen and (min-device-pixel-ratio: 2)');
