@@ -195,7 +195,7 @@ function getLanguageWhitelist() {
 function getVersionTimestamp() {
     // Year month day hour minute second (e.g., 20141125.063510).
     var date = new Date();
-    return date.getFullYear() + pad(date.getMonth(), 2) +
+    return date.getFullYear() + pad(date.getMonth() + 1, 2) +
            pad(date.getDate(), 2) + '.' + date.getHours() + date.getMinutes() +
            date.getSeconds();
 }
