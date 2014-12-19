@@ -1,15 +1,14 @@
 define('views/newsletter_signup',
-    ['user', 'user_helpers'],
-    function(user, user_helpers) {
+    ['newsletter', 'underscore', 'user', 'user_helpers'],
+    function(newsletter, underscore, user, user_helpers) {
     'use strict';
 
     return function(builder, args) {
-        builder.start('newsletter.html', {
+        var context = {
             standalone_newsletter_signup: true,
-            user_email: user.get_setting('email'),
-            user_lang: user_helpers.lang(),
-            user_region: user_helpers.region('restofworld'),
-        });
+        };
+        _.extend(context, newsletter.context());
+        builder.start('newsletter.html', context);
         builder.z('type', 'root settings');
     };
 });
