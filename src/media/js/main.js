@@ -61,6 +61,7 @@ function(_) {
     var settings = require('settings');
     var siteConfig = require('site_config');
     var l10n = require('l10n');
+    var newsletter = require('newsletter');
     var nunjucks = require('templates');
     var urls = require('urls');
     var user = require('user');
@@ -199,10 +200,9 @@ function(_) {
         var user_helpers = require('user_helpers');
         var context = {
             user_region: user_helpers.region('restofworld'),
-            user_email: user.get_setting('email'),
-            user_lang: user_helpers.lang(),
             z: z
         };
+        _.extend(context, newsletter.context());
         $('#site-header').html(
             nunjucks.env.render('header.html', context));
         $('#site-footer').html(
