@@ -120,12 +120,17 @@ define('utils_local',
 
     function initSalvattore(elem) {
         // Initializes Salvattore layout on an element.
-        var coll = document.querySelector('.collection-landing [data-columns]');
         if (elem) {
             salvattore.register_grid(elem);
         }
+
+        var width = z.win.width();
         z.win.on('resize', _.debounce(function() {
-            salvattore.recreate_columns(elem);
+            var newWidth = z.win.width();
+            if (newWidth !== width) {
+                salvattore.recreate_columns(elem);
+                width = newWidth;
+            }
         }, 100));
     }
 
