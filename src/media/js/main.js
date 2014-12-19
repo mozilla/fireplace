@@ -38,7 +38,6 @@ define(
         'requests',
         'settings',
         'site_config',
-        'storage',
         'templates',
         'tracking',
         'tracking_events',
@@ -61,7 +60,6 @@ function(_) {
     var settings = require('settings');
     var siteConfig = require('site_config');
     var nunjucks = require('templates');
-    var storage = require('storage');
     var urls = require('urls');
     var user = require('user');
     var utils_local = require('utils_local');
@@ -168,7 +166,6 @@ function(_) {
         console.log('Reloading chrome');
         var user_helpers = require('user_helpers');
         var context = {
-            render_newsletter: !storage.getItem('newsletter-completed'),
             user_region: user_helpers.region('restofworld'),
             user_email: user.get_setting('email'),
             user_lang: user_helpers.lang(),
