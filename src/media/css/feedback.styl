@@ -1,12 +1,7 @@
 @import 'lib';
 
-.modal.show {
-    nav.secondary-header, .support-list {
-        display: none;
-    }
-    div.secondary-header {
-        display: block;
-    }
+.feedback .secondary-header {
+    display: none;
 }
 
 .feedback .support-list {
@@ -15,20 +10,15 @@
 
     li {
         margin-top: 10px;
-        .button {
-            display: block;
-        }
+    }
+    .button {
+        display: block;
     }
 }
 
-.feedback-form.form-modal {
-    border-bottom: 1px solid $cloud-gray;
-    padding: 15px 10px;
-}
-
-@media $base-desktop {
-    .feedback-form.form-modal {
-        border-bottom: 0;
+@media $base-tablet {
+    .feedback .secondary-header {
+        display: block;
     }
     .feedback .support-list {
         display: none;
