@@ -37,7 +37,8 @@ def update():
         local('make install')
         local('cp src/media/js/settings_local_hosted.js src/media/js/settings_local.js')
 
-        if settings.ZAMBONI_DIR:
+        # do not perform a package update in prod
+        if settings.ZAMBONI_DIR and settings.ENV != 'prod':
             package_update()
 
         local('make build')

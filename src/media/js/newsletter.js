@@ -1,7 +1,19 @@
 define('newsletter',
-    ['capabilities', 'jquery', 'notification', 'requests', 'storage', 'urls', 'utils', 'z'],
-    function(capabilities, $, notification, requests, storage, urls, utils, z) {
+    ['capabilities', 'jquery', 'notification', 'nunjucks', 'requests', 'urls', 'user', 'user_helpers', 'utils', 'z'],
+    function(capabilities, $, notification, nunjucks, requests, urls, user, user_helpers, utils, z) {
     'use strict';
+
+    function context() {
+        return {
+            user_region: user_helpers.region('restofworld'),
+            user_email: user.get_setting('email'),
+            user_lang: user_helpers.lang(),
+        };
+    }
+
+    function renderFooter() {
+        return nunjucks.env.render('newsletter.html', context());
+    }
 
     function expandDetails($details) {
         if (!$details.hasClass('expanded')) {
@@ -36,9 +48,10 @@ define('newsletter',
             $form.remove();
             $processing.remove();
             $success.show();
-            storage.setItem('newsletter-completed', true);
             z.win.one('navigating', function() {
-                $('#newsletter-footer').remove();
+                // Once the success message is shown revert to the form after
+                // the user navigates away so it can be resubmitted.
+                $('#newsletter-footer').html(renderFooter());
             });
         }).fail(function() {
             $processing.remove();
@@ -46,4 +59,8 @@ define('newsletter',
             notification.notification({message: gettext('There was an error submitting your newsletter sign up request')});
         });
     }));
+
+    return {
+        context: context,
+    };
 });
