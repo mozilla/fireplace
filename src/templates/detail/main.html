@@ -110,7 +110,7 @@
         <p class="split"><a href="/developers/app/{{ slug }}/edit" class="button manage action" rel="external">
           {{ _('Edit Listing') }}</a></p>
         {% if user.get_permission('reviewer') %}
-          <p class="split"><a href="/reviewers/apps/review/{{ slug }}" class="button action reviewer" rel="external">
+          <p class="split"><a href="/reviewers/app/{{ slug }}" class="button action reviewer" rel="external">
             {{ _('Approve / Reject') if this.status == 2 or this.status == 13 else _('Review History') }}</a></p>
         {% endif %}
       </div>
