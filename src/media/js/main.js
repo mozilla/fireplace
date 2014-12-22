@@ -247,9 +247,7 @@ function(_) {
         // removed as we no longer require siteConfig for the waffle switch.
         $.when(siteConfig, consumer_info).then(function() {
             // To show or not to show the recommendations nav.
-            if (logged_in && user.get_setting('enable_recommendations') &&
-                    // TODO: Remove when waffle removed (bug 1083942).
-                    settings.switches.indexOf('recommendations') !== -1) {
+            if (logged_in && user.get_setting('enable_recommendations')) {
                 z.body.addClass('show-recommendations');
             }
         });
