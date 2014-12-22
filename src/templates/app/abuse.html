@@ -1,0 +1,26 @@
+{% from "_macros/forms.html" import potato_captcha %}
+
+{% macro abuse_prompt(slug, isModal) %}
+  <mkt-prompt {% if isModal %}data-modal="abuse"{% endif %}>
+    <form class="abuse-form">
+      {% if isModal %}<h3>{{ _('Need to report something?') }}</h3>{% endif %}
+      <p>{{ _('Let us know if you find any issues regarding abuse about this app.') }}</p>
+      <textarea name="text" placeholder="{{ _('Let us know...') }}"
+                required></textarea>
+      <input type="hidden" name="app" value="{{ slug }}">
+      {{ potato_captcha() }}
+      <div>
+        <button>{{ _('Cancel') }}</button>
+        <button>{{ _('Submit Report') }}</button>
+      </div>
+    </form>
+  </mkt-prompt>
+{% endmacro %}
+
+<div class="main abuse">
+  <header class="secondary-header">
+    <h2>{{ _('Report Abuse') }}</h2>
+    <a href="#" class="close btn-cancel">{{ _('Close') }}</a>
+  </header>
+  {{ abuse_prompt(slug) }}
+</div>
