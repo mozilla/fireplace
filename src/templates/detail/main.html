@@ -5,7 +5,8 @@
 
 {% set endpoint = api('app', [slug]) %}
 
-<div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication">
+<div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication"
+     data-slug="{{ slug }}">
 <section class="main product-details listing expanded c">
   {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
     {{ app_tile(this, is_detail=True, tray=True, src='detail') }}
@@ -196,7 +197,7 @@
         </li>
       {% endif %}
       <li class="abuse" data-tracking="Report abuse">
-        <a class="button support" href="{{ url('app/abuse', [slug]) }}">
+        <a class="button support" href="#"{{ url('app/abuse', [slug]) }}">
         {{ _('Report Abuse') }}</a>
       </li>
     </ul>
