@@ -58,8 +58,8 @@ $btn-install-width = 90px;
 // Install button font-size.
 $install-font-size = 12px;
 
-commonprops($colour, $border) {
-    background: $colour;
+commonprops($color, $border) {
+    background: $color;
 
     if ($border == 'none') {
         border-bottom: 0;
@@ -162,7 +162,16 @@ commonprops($colour, $border) {
     }
     // Primary CTA buttons with extra padding. Like "Write a Review" on the reviews page.
     &.primo {
-        padding: 0 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+a.button {
+    padding-top: 17px;
+
+    &.t {
+        padding-top: 5px;
     }
 }
 
@@ -286,76 +295,5 @@ commonprops($colour, $border) {
     }
     &:active em {
         background: $action-act;
-    }
-}
-
-// 'more' button container and button.
-// These rules were a bit scattered so now they'll all be here.
-.loadmore {
-    list-style: none;
-    margin: 0 auto;
-    padding: 18px 10px;
-    position: relative;
-    width: 100%;
-
-    .button {
-        display: block;
-        margin: auto;
-        padding: 0;
-        width: 100%;
-
-        &:not(.hide) + .spinner {
-            display: none;
-        }
-        &.hide {
-            visibility: hidden;
-        }
-    }
-    &.loading {
-        button {
-            visibility: hidden;
-        }
-        .throbber {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-            width: 32px;
-            height: 32px;
-            border-radius: 20px;
-            border: 4px solid #666;
-            border-color: #666 transparent;
-            animation(unquote('spin 1s linear infinite'));
-        }
-    }
-    span,
-    .throbber {
-        display: none;
-    }
-    .spinner {
-        display: block;
-    }
-    &.pagination-error .error-text {
-        display: block;
-        text-align: center;
-    }
-}
-
-.listing .loadmore,
-.reviews-listing .loadmore {
-    height: auto;
-    min-height: 68px;
-}
-
-@media $base-desktop {
-    .loadmore {
-        clear: both;
-        padding: 25px 10px 0;
-    }
-    .grid-if-desktop .loadmore {
-        padding-top: 18px;
     }
 }
