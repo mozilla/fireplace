@@ -1,31 +1,11 @@
+{% from "ratings/add.html" import review_prompt %}
+
+<header class="secondary-header">
+  <h2>{{ _('Edit Review') }}</h2>
+</header>
 {% defer (url=endpoint, id='main') %}
-  {# Pass `this` through `normalize()`, which is defined in the view. #}
-  {% set obj = normalize(this) %}
-  <div class="main compose-review" data-slug="{{ slug }}">
-    <header class="secondary-header">
-      <h2>{{ _('Edit Review') }}</h2>
-    </header>
-    <form class="edit-review-form form-modal" data-uri="{{ obj.resource_uri }}" data-slug="{{ slug }}">
-      <p class="simple-field rating c">
-        <label for="id_rating">{{ _('Rate:') }}</label>
-        <select name="rating" id="id_rating" required>
-          {% for i in range(1, 6) %}
-            <option value="{{ i }}"{{ ' selected' if i == obj.rating }}>{{ i }}</option>
-          {% endfor %}
-        </select>
-      </p>
-      <p>
-        <textarea id="id_body" rows="2" cols="40" name="body" required maxlength="150">{{ obj.body }}</textarea>
-        <div class="char-count" data-for="id_body"></div>
-      </p>
-      <footer class="form-footer buttons c only-logged-in">
-        <div class="two-up"><a href="#" class="cancel button">{{ _('Cancel') }}</a></div>
-        <div class="two-up"><button class="button" type="submit">{{ _('Submit') }}</button></div>
-      </footer>
-      <footer class="form-footer c only-logged-out">
-        <p>{{ _('Only logged in users may edit reviews.') }}</p>
-      </footer>
-    </form>
+  <div class="main add-review">
+    {{ review_prompt(slug, false, normalize(this)) }}
   </div>
 {% placeholder %}
   <p class="spinner alt"></p>
