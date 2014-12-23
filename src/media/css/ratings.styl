@@ -151,7 +151,11 @@ select[name=rating] {
     height: 12px;
 }
 
-.compose-review {
+mkt-prompt[data-modal="review"] .simple-field.rating {
+    margin: 0 0 50px;
+}
+
+.add-review {
     .simple-field.rating {
         height: inherit;
         padding-top: 12px;
@@ -339,23 +343,6 @@ select[name=rating] {
 
         button {
             width: 100%;
-        }
-    }
-    .compose-review.modal {
-        .buttons {
-            text-align: right;
-
-            .two-up {
-                display: inline;
-                float: none;
-                width: inherit;
-                .button {
-                    display: inline-block;
-                    min-width: 145px;
-                    vertical-align: top;
-                    width: inherit;
-                }
-            }
         }
     }
     .reviews {
