@@ -1,27 +1,24 @@
 define('previews',
-    ['flipsnap', 'log', 'models', 'templates', 'capabilities', 'shothandles', 'underscore', 'z'],
-    function(Flipsnap, log, models, nunjucks, caps, handles, _, z) {
-
-    var console = log('previews');
-
-    // magic numbers!
+    ['flipsnap', 'log', 'models', 'templates', 'capabilities', 'shothandles',
+     'underscore', 'z'],
+    function(Flipsnap, log, models, nunjucks, caps, handles,
+             _, z) {
+    var logger = log('previews');
+    // Magic numbers!
     var THUMB_WIDTH = 150;
     var THUMB_PADDED = 165;
 
     var slider_pool = [];
 
     z.page.on('click', '.dot', function() {
-        console.log('Dot clicked, repositioning trays');
+        logger.log('Dot clicked, repositioning trays');
         var $this = $(this);
         $this.closest('.tray')[0].slider.moveToPoint($this.index());
     });
 
     function populateTray() {
-        // preview trays expect to immediately follow a .mkt-tile.
         var $tray = $(this);
-        if (!$tray.prev().hasClass('mkt-tile') ||
-            $tray.hasClass('single') ||
-            $tray.hasClass('init')) {
+        if ($tray.hasClass('single') || $tray.hasClass('init')) {
             return;
         }
 
@@ -85,8 +82,8 @@ define('previews',
     z.page.on('dragstart dragover', function(e) {
         e.preventDefault();
     }).on('populatetray', function() {
-        console.log('Populating trays');
-        $('.listing.expanded .mkt-tile + .tray').each(populateTray);
+        logger.log('Populating trays');
+        $('.expanded .tray').each(populateTray);
     });
 
 });
