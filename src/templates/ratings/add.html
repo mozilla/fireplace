@@ -1,33 +1,38 @@
-{% macro review_prompt(slug, isModal) %}
-  <mkt-prompt {% if isModal %}data-modal="review"{% endif %}>
-    <section>
-      <form class="add-review-form">
-        {% if isModal %}<h3>{{ _('Leave a Review') }}</h3>{% endif %}
-        <p class="simple-field rating">
-          <label for="review-rating">{{ _('Rate:') }}</label>
-          <select id="review-rating" name="rating" required>
-            {% for i in range(1, 6) %}
-              <option value="{{ i }}">{{ i }}</option>
-            {% endfor %}
-          </select>
-        </p>
-        <p>
-          <textarea id="review-body" rows="2" cols="40" name="body"
-                    placeholder="{{ _('Tell us what you love about this app!') }}"
-                    required maxlength="150"></textarea>
-          <div class="char-count" data-for="review-body"></div>
-          <input type="hidden" name="app" value="{{ slug }}">
-        </p>
-        <footer class="form-footer c only-logged-out">
-          <p>{{ _('Only logged in users may edit reviews.') }}</p>
-        </footer>
-        <div>
-          <button>{{ _('Cancel') }}</button>
-          <button>{{ _('Submit Review') }}</button>
-        </div>
-      </form>
-    </section>
-  </mkt-prompt>
+{% macro review_prompt(slug, isModal, existingReview) %}
+  {# Used for both adding and editing reviews, in page form and modal form. #}
+  <mkt-prompt class="review" {% if isModal %}data-modal="review"{% endif %}>
+    <form class="{{ existingReview and 'edit-review-form' or 'add-review-form' }}"
+          {% if existingReview %}
+            data-uri="{{ existingReview.resource_uri }}" data-slug="{{ slug }}"
+          {% endif %}>
+      {% if isModal %}
+        <h3>{{ existingReview and _('Edit Review') or _('Leave a Review') }}</h3>
+      {% endif %}
+      <p class="simple-field rating">
+        <label for="review-rating">{{ _('Rate:') }}</label>
+        <select id="review-rating" name="rating" required>
+          {% for i in range(1, 6) %}
+            <option value="{{ i }}"
+                    {{ 'selected' if existingReview and i == existingReview.rating }}>
+              {{ i }}
+            </option>
+          {% endfor %}
+        </select>
+      </p>
+      <textarea id="review-body" rows="2" cols="40" name="body"
+                placeholder="{{ _('Tell us what you love about this app!') }}"
+                required maxlength="150">{{ existingReview.body }}</textarea>
+      <div class="char-count" data-for="review-body"></div>
+      <input type="hidden" name="app" value="{{ slug }}">
+      <footer class="form-footer only-logged-out c">
+        <p>{{ _('Only users that are logged in may submit reviews.') }}</p>
+      </footer>
+      <div>
+        <button>{{ _('Cancel') }}</button>
+        <button>{{ existingReview and _('Update Review') or _('Submit Review') }}</button>
+      </div>
+    </form>
+</mkt-prompt>
 {% endmacro %}
 
 <div class="main add-review">
