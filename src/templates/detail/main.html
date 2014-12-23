@@ -152,7 +152,7 @@
           {% else %}
             <a class="button write-review support" id="add-review" href="{{ url('app/ratings/add', [slug]) }}"
                data-app="{{ slug }}">
-               {{ _('Write a Review') if user.logged_in() else _('Sign in to Review') }}</a>
+               {{ _('Leave a Review') if user.logged_in() else _('Sign in to Review') }}</a>
           {% endif %}
         </div>
       {% endif %}
@@ -220,5 +220,4 @@
 {% end %}
 
 {% include "detail/content_ratings.html" %}
-
 </div>
