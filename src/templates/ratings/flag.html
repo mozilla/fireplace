@@ -1,0 +1,30 @@
+{% macro flag_review_prompt(isModal) %}
+  <mkt-prompt {% if isModal %}data-modal="flag-review"{% endif %}>
+    <form class="flag-review-form">
+      {% if isModal %}<h3>{{ _('Flag Review') }}</h3>{% endif %}
+      <p>{{ _('See an issue with this review? Select a reason below.') }}</p>
+      <ul class="reasons">
+        <li><a class="button cancel" data-reason="review_flag_reason_spam">
+          {{ _('Spam or otherwise non-review content') }}
+        </a></li>
+        <li><a class="button cancel" data-reason="review_flag_reason_language">
+          {{ _('Inappropriate language/dialog') }}
+        </a></li>
+        <li><a class="button cancel" data-reason="review_flag_reason_bug_support">
+          {{ _('Misplaced bug report or support request') }}
+        </a></li>
+      </ul>
+      <div>
+        <button>{{ _('Cancel') }}</button>
+        <button class="hidden"></button>
+      </div>
+    </form>
+  </mkt-prompt>
+{% endmacro %}
+
+<div class="main report-spam">
+  <header class="secondary-header">
+    <h2>{{ _('Flag Review') }}</h2>
+    {{ flag_review_prompt() }}
+  </header>
+</div>
