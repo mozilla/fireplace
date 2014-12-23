@@ -1,19 +1,29 @@
-@import 'lib';
+/* Miscellaneous base and layout styles for the app detail page. */
+@import '../lib';
+
+[data-page-type~="detail"] {
+    .subheader {
+        display: none;
+    }
+    section.main.full {
+        padding-bottom: 0;
+    }
+}
 
 .infobox.blurbs {
     border-top: 0;
 }
 
 .detail .support > div {
-    // Necessary to not clobber desktop L+R
+    // Necessary to not clobber desktop L+R.
     padding-bottom: 24px;
     padding-top: 24px;
 }
 
 .detail {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 1px 1px $cement-gray;
+    background: $white;
+    border-radius: 0;
+    box-shadow: 0 1px 1px $greyscale-grey;
     margin: 10px;
 
     h3 {
@@ -25,7 +35,7 @@
 .regionbanner {
     background: url(../img/pretty/alert.svg) 12px 50% no-repeat #82C80A;
     background-size: 48px;
-    color: #fff;
+    color: $white;
     padding-left: 60px;
 }
 
@@ -175,14 +185,12 @@ section.releasenotes {
     }
 }
 
-// Statistics page is not mobile-optimized. Hide button to that page at non-
-// desktop widths.
-// TODO: Kill this once bug 924519 is resolved.
+// Stats not mobile-optimized. Hide button on non-desktop.
+// TODO: Remove once bug 924519 is resolved.
 .statistics {
     display: none;
 }
 
-// ***************** Wide Mobile (> 671px)
 @media $base-desktop {
     .upsell-wrapper {
         background: #fff;
@@ -226,9 +234,7 @@ section.releasenotes {
     }
 
     .detail {
-        border-radius: 10px;
         margin: 0 auto;
-        max-width: $desktop-content;
         overflow: hidden;
     }
     .secondary-header .leading {

@@ -5,9 +5,14 @@
 
 {% set endpoint = api('app', [slug]) %}
 
+<section class="main">
+  <div class="subheader">
+    <h1>&nbsp;</h1>
+  </div>
+</section>
+
 <div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication"
      data-slug="{{ slug }}">
-<section class="main product-details listing expanded c">
   {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
     {{ app_tile(this, is_detail=True, tray=True, src='detail') }}
   {% placeholder %}
