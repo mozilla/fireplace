@@ -22,35 +22,25 @@ define('ratings',
         }, processor);
     }
 
-    function flagReview($reviewEl) {
-        var $modal = $('.report-spam');
+    function flagReview($review) {
+        z.page.append(nunjucks.env.render('_includes/flag_review_modal.html'));
+        $modal = $('mkt-prompt[data-modal="flag-review"]');
 
-        if (!$modal.length) {
-            z.page.append(
-                nunjucks.env.render('ratings/report.html')
-            );
-            $modal = $('.report-spam');
-        }
+        $modal.one('click', '.reasons a', utils._pd(function(e) {
+            var $actionEl = $review.find('.actions .flag');
+            $modal[0].dismissModal();
 
-        $modal.one('click', '.menu a', utils._pd(function(e) {
-            var $actionEl = $reviewEl.find('.actions .flag');
-            $('.cloak').trigger('dismiss');
-            // L10n: The report is an abuse report for reviews
-            $actionEl.text(gettext('Sending report...'));
-            requests.post(
-                settings.api_url + urls.api.sign($reviewEl.data('report-uri')),
-                {flag: $(e.target).attr('href').replace('#', '')}
-            ).done(function() {
-                notify({message: gettext('Review flagged')});
+            // L10n: The report is an abuse report for reviews.
+            $actionEl.text(gettext('Flagging review...'));
+
+            var endpoint = settings.api_url + urls.api.sign($review.data('report-uri'));
+            requests.post(endpoint, {flag: $(e.target).data('reason')}).done(function() {
+                notify({message: gettext('Review successfully flagged')});
                 $actionEl.remove();
             }).fail(function() {
-                // L10n: There was a problem submitting a report about a review.
-                notify({message: gettext('Report review operation failed')});
+                notify({message: gettext('Sorry, there was an issue flagging the review. Please try again later.')});
             });
         }));
-
-        z.body.trigger('decloak');
-        $modal.addClass('show');
     }
 
     function deleteReview(reviewEl, uri, app) {
