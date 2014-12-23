@@ -1,81 +1,21 @@
 @import 'lib';
 
-/*
- * Style guide: http://pwalm.github.io/marketplace-style-guides/buttons.html
- *
- * <elm class="button">Normal Button</elm>
- * <elm class="button action">Positive Action like Yes or Launch</elm>
- * <elm class="button alt">Alternate Style - External Links?</elm>
- * <elm class="button cancel">Negative Action like Cancel or Delete</elm>
- * <elm class="button support">Support Action - Less Visual Emphasis</elm>
- *
- * All button sizes are $medium unless overridden by a compound class: 't', 's', 'l'.
- * On larger screens "button fat" will give you a 100% width button.
- *
- */
-
-// Default state.
-$btn = #4CB1FF; // blue
-$action = #64BE3C; // green
-$alt = #FFDC32; // yellow
-$cancel = #F54B3C; // red
-$support = #797979; // dark grey
-
-// Hover state.
-$btn-hvr = #42CAFE;
-$action-hvr = #66D171;
-$alt-hvr = #FFE26E;
-$cancel-hvr = #FF6C70;
-$support-hvr = #9B9B9B;
-
-// Active state.
-$btn-act = #3D86BD;
-$action-act = #4D8D31;
-$alt-act = #BEA435;
-$cancel-act = #B63932;
-$support-act = #5B5B5B;
-
-// Disabled state.
-$disabled = #CBCBCB;
-
-// Button sizes.
-$tiny = 24px;
-$small = 36px;
-$medium = 48px;
-$large = 60px;
-
-// Horizontal padding around the button's text.
-$h-padding = 10px;
-
-// Button font-size.
-$font-size = 15px;
-
 // Install button width.
 $btn-install-width = 90px;
 
 // Install button font-size.
-$install-font-size = 12px;
-
-commonprops($color, $border) {
-    background: $color;
-
-    if ($border == 'none') {
-        border-bottom: 0;
-    } else {
-        border-bottom: 1px solid $border;
-    }
-}
+$btn-install-font-size = 12px;
 
 .button {
     border: 0;
-    color: #fff;
-    commonprops($btn, $btn-act);
+    color: $white;
+    btn_color($action-positive, $action-positive-tapped);
     display: inline-block;
     ellipsis();
-    font: 400 $font-size/$medium $open-stack;
-    height: $medium;
+    font: 400 $btn-font-size/$medium $primary-font-family;
+    height: $btn-medium;
     line-height: 1;
-    padding: 0 $h-padding;
+    padding: 0 $btn-h-padding;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
@@ -84,40 +24,40 @@ commonprops($color, $border) {
         text-decoration: none;
     }
     &:hover, &:focus {
-        background: $btn-hvr;
+        background: $action-positive-hover;
     }
     // Override `button:not([disabled]):active` from site.styl.
     &:not([disabled]):active,
     &:active {
-        commonprops($btn-act, 'none');
+        btn_color($action-positive-tapped, 'none');
     }
     &.action {
-        commonprops($action, $action-act);
+        btn_color($action-success, $action-success-tapped);
 
-        &:hover, &:focus { background: $action-hvr; }
-        &:active { background: $action-act; }
+        &:hover, &:focus { background: $action-success-hover; }
+        &:active { background: $action-success-tapped; }
     }
     &.alt {
-        commonprops($alt, $alt-act);
+        btn_color($action-wait, $action-wait-tapped);
 
-        &:hover, &:focus { background: $alt-hvr; }
-        &:active { background: $alt-act; }
+        &:hover, &:focus { background: $action-wait-hover; }
+        &:active { background: $action-wait-tapped; }
     }
     &.cancel {
-        commonprops($cancel, $cancel-act);
+        btn_color($action-error, $action-error-tapped);
 
-        &:hover, &:focus { background: $cancel-hvr; }
-        &:active { background: $cancel-act; }
+        &:hover, &:focus { background: $action-error-hover; }
+        &:active { background: $action-error-tapped; }
     }
     &.support {
-        commonprops($support, $support-act);
+        btn_color($action-neutral, $action-neutral-tapped);
 
-        &:hover, &:focus { background: $support-hvr; }
-        &:active { background: $support-act; }
+        &:hover, &:focus { background: $action-neutral-hover; }
+        &:active { background: $action-neutral-tapped; }
     }
     &.disabled,
     &[disabled] {
-        commonprops($disabled, 'none');
+        btn_color($action-disabled, 'none');
     }
     &[disabled],
     &.disabled,
@@ -131,13 +71,13 @@ commonprops($color, $border) {
         pointer-events: auto;
     }
     &.t, &.product {
-        height: $tiny;
+        height: $btn-tiny;
     }
     &.s {
-        height: $small;
+        height: $btn-small;
     }
     &.l {
-        height: $large;
+        height: $btn-large;
     }
 
     // Waiting/Loading spinner.
@@ -195,9 +135,9 @@ a.button {
 .mkt-tile .install {
     // Unset many .button properties.
     // To compensate for the larger click target.
-    commonprops(transparent, 'none');
+    btn_color(transparent, 'none');
     cursor: pointer;
-    font-size: $install-font-size;
+    font-size: $btn-install-font-size;
     height: 34px; // Actual click-target height. Queen Krupa request.
     min-width: $btn-install-width;
     padding: 0;
@@ -206,13 +146,13 @@ a.button {
 
     em {
         // This em becomes the visual button.
-        commonprops($btn, $btn-act);
+        btn_color($action-positive, $action-positive-tapped);
         display: inline-block;
         ellipsis();
         font-style: normal;
-        height: $tiny;
-        line-height: $tiny;
-        padding: 0 $h-padding;
+        height: $btn-tiny;
+        line-height: $btn-tiny;
+        padding: 0 $btn-h-padding;
         vertical-align: bottom;
         width: $btn-install-width;
     }
@@ -222,24 +162,24 @@ a.button {
     // Accomodate a better vertical align since this state has no box-shadow.
     &[disabled] {
         em {
-            commonprops($disabled, 'none')
+            btn_color($action-disabled, 'none')
         }
         &:hover, &:active {
             em {
-                background: $disabled;
+                background: $action-disabled;
             }
         }
     }
     &:hover em {
-        background: $btn-hvr;
+        background: $action-positive-hover;
     }
     &:active em {
-        commonprops($btn-act, 'none');
+        btn_color($action-positive-tapped, 'none');
     }
     &.spinning, &.purchasing {
-        background: $btn-act;
+        background: $action-positive-tapped;
         bottom: 1px;
-        height: $tiny;
+        height: $btn-tiny;
 
         em {
             display: none;
@@ -253,12 +193,12 @@ a.button {
 // Install button launch state.
 .mkt-tile .launch {
     em {
-        commonprops($action, $action-act);
+        btn_color($action-success, $action-success-active);
     }
     &:hover em {
-        background: $action-hvr;
+        background: $action-success-hover;
     }
     &:active em {
-        background: $action-act;
+        background: $action-success-tapped;
     }
 }

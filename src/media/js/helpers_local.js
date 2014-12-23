@@ -1,7 +1,7 @@
 define('helpers_local',
-    ['feed', 'compatibility_filtering', 'content-ratings', 'models',
+    ['apps', 'feed', 'compatibility_filtering', 'content-ratings', 'models',
      'nunjucks', 'regions', 'settings', 'urls', 'user_helpers', 'utils_local', 'z'],
-    function(feed, compatibility_filtering, iarc, models,
+    function(apps, feed, compatibility_filtering, iarc, models,
              nunjucks, regions, settings, urls, user_helpers, utils_local, z) {
     var filters = nunjucks.require('filters');
     var globals = nunjucks.require('globals');
@@ -68,7 +68,25 @@ define('helpers_local',
         return arr.indexOf(val);
     }
 
+    function app_notices(app) {
+        // App notices for the app detail page (e.g., not available,
+        // works offline). Returns an array of gettext/classes.
+        var notices = [];
+        // Positive notices.
+        if (app.is_offline) {
+            notices.push([gettext('Works offline'), 'positive']);
+        }
+        // Negative notices.
+        var incompat_notices = apps.incompat(app) || [];
+        incompat_notices.forEach(function(notice) {
+            notices.push([notice, 'negative']);
+        });
+        return notices;
+    }
+
     var helpers = {
+        app_incompat: apps.incompat,
+        app_notices: app_notices,
         cast_app: models('app').cast,
         has_installed: has_installed,
         indexOf: indexOf,

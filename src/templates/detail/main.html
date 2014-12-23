@@ -5,40 +5,47 @@
 
 {% set endpoint = api('app', [slug]) %}
 
+<section class="main">
+  <div class="subheader">
+    <h1>&nbsp;</h1>
+  </div>
+</section>
+
 <div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication"
      data-slug="{{ slug }}">
-<section class="main product-details listing expanded c">
-  {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
-    {{ app_tile(this, is_detail=True, tray=True, src='detail') }}
-  {% placeholder %}
-    <div class="product mkt-tile">
-      <img class="icon deferred" src="{{ PLACEHOLDER_ICON }}" alt=""
-           data-src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
-      <div class="info">
-        <h3>{{ _('Loading...') }}</h3>
-        <div class="price vital">{{ _('Loading...') }}</div>
-        <div class="rating vital unrated">
-          {{ stars(0) }}
+  <section class="main full app-header expanded">
+    {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
+      {{ app_tile(this, is_detail=True, tray=True, src='detail') }}
+    {% placeholder %}
+      <div class="product mkt-tile">
+        <img class="icon deferred" src="{{ PLACEHOLDER_ICON }}" alt=""
+             data-src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
+        <div class="info">
+          <h3>{{ _('Loading...') }}</h3>
+          <div class="price vital">{{ _('Loading...') }}</div>
+          <div class="rating vital unrated">
+            {{ stars(0) }}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="tray previews full"></div>
-  {% except %}
-    <div class="detailed-error">
-      <h2>{{ _('Oh no!') }}</h2>
-      {% if error == 403 %}
-        <p>{{ _('The app requested is not public.') }}</p>
-      {% elif error == 404 %}
-        <p>{{ _('The app requested was not found.') }}</p>
-      {% elif error == 451 %}
-        <p>{{ _('The app requested is not available for your region.') }}</p>
-        <p>{{ _('You may wish to contact the developer if you would like to see a version of this app for your region.') }}</p>
-      {% else %}
-        <p>{{ _('A server error occurred. Please try again later.') }}</p>
-      {% endif %}
-    </div>
-  {% end %}
-</section>
+      <div class="tray previews full"></div>
+    {% except %}
+      <div class="detailed-error">
+        <h2>{{ _('Oh no!') }}</h2>
+        {% if error == 403 %}
+          <p>{{ _('The app requested is not public.') }}</p>
+        {% elif error == 404 %}
+          <p>{{ _('The app requested was not found.') }}</p>
+        {% elif error == 451 %}
+          <p>{{ _('The app requested is not available for your region.') }}</p>
+          <p>{{ _('You may wish to contact the developer if you would like to see a version of this app for your region.') }}</p>
+        {% else %}
+          <p>{{ _('A server error occurred. Please try again later.') }}</p>
+        {% endif %}
+      </div>
+    {% end %}
+  </section>
+</div>
 
 <section class="main" id="installed">
   <div>
