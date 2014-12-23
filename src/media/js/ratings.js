@@ -106,7 +106,7 @@ define('ratings',
                     z.page.trigger('navigate', $reviewButton.attr('href'));
                 } else {
                     if (caps.widescreen()) {
-                        initAddReviewModal()
+                        initReviewModal()
                     } else {
                         z.page.trigger('navigate', $reviewButton.attr('href'));
                     }
@@ -119,8 +119,6 @@ define('ratings',
     }
 
     function addReview(e) {
-        var $this = $(this);
-
         if (!user.logged_in()) {
             // If not logged in, prompt to do so.
             e.preventDefault();
@@ -129,22 +127,31 @@ define('ratings',
         }
 
         if (caps.widescreen()) {
-            // Add review modal.
-            if (this.id === 'edit-review') {
-                // Edits go through to the view for now.
-                return;
-            }
-
             e.preventDefault();
             e.stopPropagation();
-            initAddReviewModal();
+
+            // Add review modal (for edit or add).
+            if (this.id === 'edit-review') {
+                var endpoint = urls.api.params('reviews', {
+                    app: $('.product').data('slug'),
+                    user: 'mine'
+                });
+                $('.write-review').html(gettext('Loading...'));
+                requests.get(endpoint).done(function(existingReview) {
+                    initReviewModal(existingReview.objects[0]);
+                    $('.write-review').html(gettext('Edit your Review'));
+                });
+            } else {
+                initReviewModal();
+            }
         }
     }
 
-    function initAddReviewModal(slug) {
-        if (!$('mkt-prompt.add-review').length) {
+    function initReviewModal(existingReview) {
+        if (!$('mkt-prompt[data-modal="review"]').length) {
             z.body.append(
                 nunjucks.env.render('_includes/review_modal.html', {
+                    existingReview: existingReview,
                     slug: $('.product').data('slug')
                 })
             );
