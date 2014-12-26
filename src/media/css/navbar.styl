@@ -1,6 +1,9 @@
 // Styles for the mobile navbar.
 @import 'lib';
 
+// TODO: rewrite navbar mobile-first.
+$narrower-than-tablet = unquote('(max-width: 699px)');
+
 [data-page-type~=settings] .header-button.settings,
 .act-tray.active .settings {
     background-image: url(../img/pretty/gear.svg);
@@ -60,9 +63,10 @@
     }
 }
 
-@media $narrower-than-desktop {
-    // New feed navigation (mobile only).
-    header .act-tray {
+@media $narrower-than-tablet {
+    // Feed navigation (mobile only).
+    header .act-tray,
+    body[data-page-type~=settings] .back {
         display: none;
     }
     body[data-page-type~=settings] {
@@ -192,7 +196,7 @@
     }
 }
 
-@media $base-desktop {
+@media $base-tablet {
     .navbar.nav-settings,
     .act-tray,
     .mkt-tray {
