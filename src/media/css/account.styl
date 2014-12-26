@@ -1,230 +1,133 @@
+/*
+    Account settings page.
+    Contains a lot of rules on what to show or hide if logged in or out.
+*/
 @import 'lib';
 
-// Don't show logout links to native FxA users (bug 1073177).
-.native-fxa {
-    .logout,
-    .logout.button.only-logged-in {
+.native-fxa .account-settings .logout {
+    // Don't show logout links to native FxA users (bug 1073177).
+    display: none;
+}
+
+.account-settings section.full > div {
+    padding-top: 30px;
+}
+
+.account-settings {
+    .hide-logged-out {
         display: none;
     }
-
-    .account-settings .reviewer-tools {
-        margin-top: 0;
+}
+.logged-in .account-settings {
+    .hide-logged-out {
+        display: block;
+    }
+    .hide-logged-in {
+        display: none;
     }
 }
 
 .account-settings {
-    background: #fff;
+    color: $greyscale-black;
+    background: $tile-border;
     width: 100%;
 
-    .button {
-        width: 100%;
-    }
-    footer {
-        font-size: 0;
-    }
-    p {
-        width: 50%;
+    .account-field {
+        padding: 15px;
+
+        > label {
+            color: $greyscale-dark-grey;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
     }
     h3 {
-        background: $salt-flat-white;
         clear: both;
-        margin: 10px 0 0;
-        padding: 10px;
+        padding: 0 10px 10px;
         text-transform: uppercase;
-    }
-    input[type=email],
-    input[type=text] {
-        height: 48px;
-        width: 100%;
     }
     input[type=checkbox] {
         margin-right: 5px;
     }
-    .pretty-select,
-    .pretty-select select {
-        cursor: pointer;
+    .display-name {
+        width: 100%;
     }
-    .pretty-select {
-        gradient-two-color(#fff, $seavan-salt-white);
-        padding: 0;
-        overflow: hidden;
-        position: relative;
-
-        &:before {
-            dropdown();
-            z-index: 2;
-        }
-        &:after {
-            // Hide the native `<select>` arrow so we can overlay our
-            // dropdown arrow in `:before`.
-            border-left: 1px solid $cement-gray;
-            box-shadow: 0 1px 0 #fff, 0 1px 1px $seavan-salt-white inset;
-            content: "";
-            display: block;
-            gradient-two-color(#fff, $seavan-salt-white);
-            height: 100%;
-            pointer-events: none;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 45px;
-            z-index: 1;
-        }
-        &:hover, &:active {
-            &:before {
-                background-image: url(../img/pretty/dropdown_active.svg);
-            }
-        }
-        select {
-            -moz-padding-start: 10px;
-            appearance-none();
-            background: none;
-            border: 0;
-            padding: 10px 12px;
-        }
+    [name="display_name"] {
+        height: 36px;
+        width: 100%;
     }
-    .simple-field {
-        padding: 10px 10px 0;
+    .recommendations label:last-child {
+        color: $greyscale-black;
+        display: inline;
+        line-height: 18px;
     }
-    .form-label,
-    .form-label label {
-        font-weight: 500;
-    }
-    .form-col {
-        color: $london-fog-gray;
-        margin-top: 10px;
-    }
-    // Overrides region class to make things match and line up properly.
     .region {
-        color: $london-fog-gray;
+        display: block;
         margin-top: -2px;
+
+        span {
+            color: $greyscale-black;
+        }
     }
-    footer {
-        border-top: 1px solid $cloud-gray;
-        clear: both;
-        margin-top: 10px;
-    }
-    p {
-        padding: 10px;
+    .newsletter-info {
+        padding-left: 10px;
+
+        p {
+            line-height: 18px;
+            padding: 0 0 10px;
+            width: 100%;
+        }
     }
     .only-logged-in.extras {
         display: none;
     }
-    .extras {
-        display: inline-block;
-        vertical-align: top;
-
-        &:last-child {
-            padding-bottom: 10px;
-        }
-
-        .button {
-            font-weight: 300;
-        }
-    }
 }
 
-.newsletter-info p {
-    padding: 0 0 10px;
-    width: 100%;
-}
+.account-settings-save,
+.account-settings-links div {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
-.logged-in .account-settings .only-logged-out.extras {
-    display: none;
-}
-.logged-in .account-settings .only-logged-in.extras {
-    display: inline-block;
-}
-
-article.extras {
-    .notice {
-        background: #fff;
-        border-bottom: 1px solid $cloud-gray;
-        padding: 15px 10px;
-    }
     .button {
-        display: block;
-        margin: 10px;
-    }
-}
-
-.account-settings {
-    footer {
-        background: $seavan-salt-white;
-    }
-    p {
+        margin-top: 10px;
         width: 100%;
     }
-    .save-changes {
-        background: #fff;
-        border-bottom: 1px solid $cloud-gray;
-    }
-    .extras {
-        padding-bottom: 0;
-    }
 }
 
-.toggles {
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-
-    li {
-        display: table-cell;
-        padding: 0 10px;
-        vertical-align: middle;
-        width: (100% / 3);
-        + li {
-            border-left: 1px dotted $cement-gray;
-            text-align: center;
-        }
-        &:last-of-type {
-            text-align: right;
-        }
-    }
-    a {
-        color: $text;
-        font-weight: 500;
-        text-decoration: none;
-
-        &.sel, &:active {
-            color: $sailor-blue;
-        }
-    }
+.account-settings-save {
+    clear: both;
 }
 
-@media $base-desktop {
-    $account-border-radius = 10px;
-
-    .toggles,
-    .account div.secondary-header {
-        display: none;
-    }
-    .extras .notice {
-        padding: 0 0 15px;
-    }
-    header.secondary-header {
-        margin-bottom: 18px;
+@media $base-tablet {
+    .logged-in .account-settings {
+        .display-name {
+            display: inline-block;
+        }
     }
     .account-settings {
-        border-radius: $account-border-radius;
-        box-shadow: 0 1px 1px $cement-gray;
-        float: left;
-        padding: 0;
-        position: relative;
-
-        h3:first-of-type {
-            border-radius: $account-border-radius $account-border-radius 0 0;
-            margin: 0;
-        }
-
-        .simple-field {
+        .email,
+        .display-name {
             float: left;
-            padding: 15px 10px 10px;
-            width: 50%;
+            width: (100 / 3)%;
         }
-        .full-width {
-            width: 100%;
+        .display-name + div {
+            clear: both;
+        }
+    }
+    .account-settings-links div {
+        .button {
+            margin-right: 10px;
+            max-width: $mobile-content-width;
+        }
+    }
+    .account-settings-save .button {
+        width: $mobile-content-width;
+
+        &:nth-child(1),
+        &:nth-child(2) {
+            margin-right: 10px;
         }
     }
 }
