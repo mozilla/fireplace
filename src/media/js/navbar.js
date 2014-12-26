@@ -250,8 +250,6 @@ define('navbar',
                 is_settings: z.body.attr('data-page-type') &&
                              z.body.attr('data-page-type').indexOf('settings') !== -1,
                 logged_in: user.logged_in(),
-                recommendations: settings.switches &&
-                                 settings.switches.indexOf('recommendations') !== -1,
                 path: stack.length ? stack[stack.length - 1].path : '',
                 z: z
             })
