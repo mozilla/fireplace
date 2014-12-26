@@ -1,7 +1,8 @@
 define('views/settings',
-    ['cache', 'jquery', 'linefit', 'l10n', 'notification', 'requests', 'urls', 'user', 'utils', 'z'],
-    function(cache, $, linefit, l10n, notification, requests, urls, user, utils, z) {
-
+    ['cache', 'jquery', 'l10n', 'notification', 'requests', 'urls', 'user',
+     'utils', 'z'],
+    function(cache, $, l10n, notification, requests, urls, user,
+             utils, z) {
     var _pd = utils._pd;
     var gettext = l10n.gettext;
     var notify = notification.notification;
@@ -32,35 +33,29 @@ define('views/settings',
 
         user.update_settings(data);
 
-        requests.patch(
-            urls.api.url('settings'),
-            data
-        ).done(function() {
-            // Add/Remove recommended nav item depending on what was checked.
+        requests.patch(urls.api.url('settings'), data).done(function() {
             if (data.enable_recommendations) {
-                z.body.addClass('show-recommendations');
-            } else {
-                z.body.removeClass('show-recommendations');
+                // Toggle recommended nav item depending on what was checked.
+                z.body.toggleClass('show-recommendations', data.enable_recommendations);
             }
             update_settings();
-            notify({message: gettext('Settings saved')});
+            notify({message: gettext('Your settings have been successfully saved')});
             cache.bust(urls.api.url('settings'));
-            // Also bust cache on consumer-info since `enable_recommendations`
-            // lives there also for the navbar toggling.
+            // Cachebust consumer-info since `enable_recommendations` lives
+            // there for navbar toggling.
             cache.bust(urls.api.url('consumer_info'));
         }).fail(function() {
             notify({message: gettext('Settings could not be saved')});
         });
+    }))
 
-    })).on('logged_in', update_settings);
+    .on('logged_in', update_settings);
 
     return function(builder) {
-        builder.start('settings/main.html');
-
-        $('.linefit').linefit(2);
-
         builder.z('type', 'root settings');
         builder.z('title', gettext('Account Settings'));
         builder.z('parent', urls.reverse('homepage'));
+
+        builder.start('settings.html');
     };
 });
