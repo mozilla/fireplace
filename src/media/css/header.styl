@@ -490,7 +490,7 @@ main:before {
     }
     .subheader {
         h1 {
-            padding: 10px;
+            padding: 0 10px;
             margin: 40px 0 30px;
         }
         &.cat-header h1 {
@@ -516,13 +516,6 @@ main:before {
     }
     .site-header {
         z-index: 30;
-    }
-    .subheader {
-        margin-top: -18px;  // Offset #page padding.
-
-        h1 {
-            padding: 0;
-        }
     }
     body {
       padding-top: 0;
@@ -619,5 +612,13 @@ main:before {
     .site-header .search,
     #search-q {
         width: 340px;
+    }
+    .subheader {
+        // Offset #page padding.
+        margin-top: -18px;
+
+        h1 {
+            padding: 0;
+        }
     }
 }
