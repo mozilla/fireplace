@@ -1,17 +1,16 @@
-// styles for the global site header only.
+/*
+    Styles for the global site header.
+*/
 @import 'lib';
 
 $placeholder-gray = #cacaca;
 
-// Add the header's height back as padding. This is overriden when the header
-// is not `position: fixed`.
+// Add header's height back as padding. Overridden when header not fixed.
 body {
     padding-top: $header-height;
 }
 
-// ***************** Wide Mobile (600+ px)
-
-// usable on any header
+// Usable on any header.
 .header {
     background: #fff;
     border-top: 1px solid $salt-flat-white;
@@ -38,7 +37,8 @@ body {
     }
 }
 
-// # for the primary site header *only*. If you need to generalize a style in here, move it.
+// # for the primary site header *only*.
+// If you need to generalize a style in here, move it.
 .site-header {
     display: block;
     position: fixed;
@@ -306,29 +306,7 @@ body {
     padding-top: 15px;
 }
 
-
-@media $narrower-than-desktop {
-    .secondary-header {
-        height: 40px;
-
-        h2 {
-            font-size: 15px;
-            line-height: 40px;
-            margin: 0 10px;
-        }
-        .subtitle, .subtitle:before {
-            font-size: 15px;
-        }
-        .subtitle {
-            font-weight: 400;
-        }
-    }
-    .featured .featured-header {
-        padding-bottom: 20px;
-    }
-}
-
-// search results tile expand toggle
+// Search results tile expand toggle.
 .expand-wrapper {
     display: none;
     margin: 0 30px;
@@ -382,8 +360,7 @@ body {
     display: none;
 }
 
-// When we're holding down on the debug page, don't allow clicking on the logo
-// because that would take us back home.
+// When holding down on debug page, don't allow clicking logo to go back home.
 [data-page-type~=debug] .header .wordmark {
     pointer-events: none;
 }
@@ -401,18 +378,56 @@ body {
         flex(1);
     }
 }
-main {
-    &:before {
-        // This makes a sweet gradient below the header
-        // (which will appear when scrolling past the category drop-down menu).
-        content: '';
-        display: block;
-        gradientLinear(unquote('to top, rgba(15,15,15,0) 0%, rgba(15,15,15,.3) 100%'));
-        height: 2px;
-        top: $header-height;
-        position: fixed;
-        width: 100%;
-        z-index: 18;
+
+main:before {
+    // Gradient below the header when scrolling past the cat dropdown menu.
+    content: '';
+    display: block;
+    gradientLinear(unquote('to top, rgba(15,15,15,0) 0%, rgba(15,15,15,.3) 100%'));
+    height: 2px;
+    top: $header-height;
+    position: fixed;
+    width: 100%;
+    z-index: 18;
+}
+
+@media (max-width: 540px) {
+    // TODO: get rid of this media query.
+    .site-header {
+        .search {
+            flex(1);
+            width: auto;
+        }
+    }
+    [data-page-type~=root] {
+        .site-header {
+            .site, .wordmark {
+                width: 35px;
+            }
+            .flex-shift {
+                display: none;
+            }
+        }
+    }
+    [data-page-type~=search],
+    [data-page-type~=leaf] {
+        .flex-span {
+            display: none;
+        }
+    }
+
+    .site-header.suggestions {
+        nav > *:not(.search) {
+            display: none;
+        }
+        .search {
+            position: relative;
+            width: 100%;
+            left: auto;
+        }
+        .search-clear {
+            display: block;
+        }
     }
 }
 
@@ -420,6 +435,27 @@ main {
     [data-page-type~="detail"] .header {
         // Make the border lighter since there's no secondary header on this page.
         border-bottom-color: $salt-flat-white;
+    }
+}
+
+@media $narrower-than-desktop {
+    .secondary-header {
+        height: 40px;
+
+        h2 {
+            font-size: 15px;
+            line-height: 40px;
+            margin: 0 10px;
+        }
+        .subtitle, .subtitle:before {
+            font-size: 15px;
+        }
+        .subtitle {
+            font-weight: 400;
+        }
+    }
+    .featured .featured-header {
+        padding-bottom: 20px;
     }
 }
 
@@ -453,14 +489,41 @@ main {
         }
     }
     .subheader {
-
+        h1 {
+            padding: 10px;
+            margin: 40px 0 30px;
+        }
+        &.cat-header h1 {
+            margin: 25px 0 15px;
+        }
     }
-}
+    .secondary-header {
+        background: none;
+        border: 0;
+        height: $header-height;
+        max-height: $header-height;
+        position: relative;
 
-// ***************** Cursor (Desktop) (>= 1024px)
+        &:before {
+            display: none;
+        }
+        h2 {
+            margin: 0;
+        }
+    }
+    .featured-header {
+        padding: 15px 15px 5px;
+    }
+    .site-header {
+        z-index: 30;
+    }
+    .subheader {
+        margin-top: -18px;  // Offset #page padding.
 
-// This probably shouldn't be media query based.
-@media $wide-desktop {
+        h1 {
+            padding: 0;
+        }
+    }
     body {
       padding-top: 0;
     }
@@ -473,6 +536,7 @@ main {
             height: 60px;
             margin: 0 auto;
             max-width: $max-site-width;
+            width: 95%;
         }
         .site {
             margin: 0;
@@ -510,7 +574,7 @@ main {
 
     .site-header .search,
     #search-q {
-        width: 340px;
+        width: 270px;
     }
 
     #search-q {
@@ -551,84 +615,9 @@ main {
     }
 }
 
-@media $base-tablet {
-    .subheader {
-        h1 {
-            padding: 10px;
-            margin: 40px 0 30px;
-        }
-        &.cat-header h1 {
-            margin: 25px 0 15px;
-        }
-    }
-}
-
-@media $base-tablet {
-    .secondary-header {
-        background: none;
-        border: 0;
-        height: $header-height;
-        max-height: $header-height;
-        position: relative;
-
-        &:before {
-            display: none;
-        }
-        h2 {
-            margin: 0;
-        }
-    }
-    .featured-header {
-        padding: 15px 15px 5px;
-    }
-    .site-header {
-        z-index: 30;
-    }
-    .subheader {
-        margin-top: -18px;  // Offset #page padding.
-
-        h1 {
-            padding: 0;
-        }
-    }
-}
-
-// TODO: Move this up, get rid of its media query.
-@media (max-width: 540px) {
-    .site-header {
-        .search {
-            flex(1);
-            width: auto;
-        }
-    }
-    [data-page-type~=root] {
-        .site-header {
-            .site, .wordmark {
-                width: 35px;
-            }
-            .flex-shift {
-                display: none;
-            }
-        }
-    }
-    [data-page-type~=search],
-    [data-page-type~=leaf] {
-        .flex-span {
-            display: none;
-        }
-    }
-
-    .site-header.suggestions {
-        nav > *:not(.search) {
-            display: none;
-        }
-        .search {
-            position: relative;
-            width: 100%;
-            left: auto;
-        }
-        .search-clear {
-            display: block;
-        }
+@media $base-desktop {
+    .site-header .search,
+    #search-q {
+        width: 340px;
     }
 }
