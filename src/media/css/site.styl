@@ -11,8 +11,73 @@
     word-wrap: break-word;
 }
 
+body {
+    background: $tile-border;
+    color: $castle-skull-gray;
+    // min-height needed so ff b2g/android can scroll to 0 (bug 872622).
+    min-height: 300px;
+    overflow-x: hidden;
+    transform-origin: 50% 400px;
+    transition: transform 1s;
+    -webkit-transition: -webkit-transform 1s;
+}
+
+#page {
+    position: relative;
+}
+
+#site-header,
+#page {
+    min-width: 320px;
+}
+
+.main {
+    margin: 0 auto;
+
+    .fragment-error {
+        padding: 0;
+    }
+}
+
+section.main {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+section.full {
+    background: $white;
+    max-width: 100%;
+    padding: 0 0 30px;
+    width: 100%;
+
+    > div {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 10px;
+    }
+}
+
 .js-hidden, .hidden {
     display: none;
+}
+
+a {
+    text-decoration: none;
+    color: $primary-blue;
+
+    &:hover {
+        text-decoration: underline;
+    }
+    &:not([href]) {
+        cursor: pointer;
+    }
 }
 
 .emaillink-wrapper {
@@ -49,61 +114,6 @@ noscript {
     }
 }
 
-a {
-    text-decoration: none;
-    color: $primary-blue;
-
-    &:hover {
-        text-decoration: underline;
-    }
-    &:not([href]) {
-        cursor: pointer;
-    }
-}
-
-body {
-    background: $tile-border;
-    color: $castle-skull-gray;
-    // min-height needed so ff b2g/android can scroll to 0 (bug 872622).
-    min-height: 300px;
-    overflow-x: hidden;
-    transform-origin: 50% 400px;
-    transition: transform 1s;
-    -webkit-transition: -webkit-transform 1s;
-}
-
-#site-header, #page {
-    min-width: 320px;
-
-    section.main {
-        margin-left: auto;
-        margin-right: auto;
-        position: relative;
-
-        &:after {
-            content: '';
-            display: block;
-            clear: both;
-        }
-        &.full {
-            background: #fff;
-            max-width: 100%;
-            padding: 0 0 30px;
-            width: 100%;
-
-            > div {
-                margin-left: auto;
-                margin-right: auto;
-                padding: 0 10px;
-            }
-        }
-    }
-}
-
-#page {
-    position: relative;
-}
-
 .row {
     clear: both;
 }
@@ -125,13 +135,6 @@ body {
     }
 }
 
-.main {
-    margin: 0 auto;
-
-    .fragment-error {
-        padding: 0;
-    }
-}
 #page > .overlay {
     max-width: 100%;
 }
@@ -203,41 +206,6 @@ body {
     display: none;
 }
 
-@media $base-desktop {
-    .hide-on-desktop {
-        display: none !important;
-    }
-
-    html {
-        background: #fff;
-    }
-
-    #page {
-        padding-top: 18px;
-
-        section.main.full > div {
-            padding: 0;
-            width: $max-site-width;
-        }
-    }
-
-    #page .main,
-    .main {
-        max-width: $desktop-content;
-    }
-
-    .container {
-        &.product-details,
-        &.results {
-            margin: 50px 0;
-        }
-        &.prose,
-        &.form-grid {
-            padding: 25px;
-        }
-    }
-} // End of Desktop.
-
 .region {
     background-repeat: no-repeat;
     background-size: 20px auto;
@@ -280,13 +248,40 @@ a:active {
     > * {
         display: none !important;
     }
-
     #splash-overlay {
         display: block !important;
         opacity: 1 !important;
     }
-
     #splash-overlay .throbber {
         display: inline-block !important;
+    }
+}
+
+@media $base-desktop {
+    .hide-on-desktop {
+        display: none !important;
+    }
+    html {
+        background: $white;
+    }
+    #page {
+        padding-top: 18px;
+    }
+    .main {
+        max-width: $desktop-content;
+    }
+    section.full > div {
+        padding: 30px 0 0;
+        width: $max-site-width;
+    }
+    .container {
+        &.product-details,
+        &.results {
+            margin: 50px 0;
+        }
+        &.prose,
+        &.form-grid {
+            padding: 25px;
+        }
     }
 }
