@@ -68,9 +68,6 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         font-size: 14px;
         line-height: 20px;
     }
-    .desc {
-        margin-top: 15px;
-    }
     .preview-container {
         height: 150px;
         margin: 0 0 -15px -10px;  // To ignore parent's padding.
@@ -176,6 +173,42 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 .mkt-tile[data-type] > .info {
     padding-left: 0;
     position: static;
+}
+
+// Feed.
+.feed-layout-list .mkt-tile {
+    margin-bottom: 10px;
+}
+.feed-layout-grid .mkt-tile {
+    float: left;
+    height: 128px;
+    width: 50%;
+
+    .icon {
+        float: none;
+        left: 40px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .info {
+        padding-left: 0;
+        text-align: center;
+    }
+    .install {
+        border-bottom: none;
+        color: $action-positive;
+        font-size: 15px;
+        height: auto;
+        position: relative;
+
+        em {
+            background: none !important;
+            border-bottom: none;
+        }
+        &[disabled] em {
+            background: none;
+        }
+    }
 }
 
 @media $greater-than-mobile {

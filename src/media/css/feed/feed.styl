@@ -1,0 +1,551 @@
+/* This is a shared file between Fireplace and Transonic. */
+@import '../lib';
+
+// Operator shelf colors and regions.
+$default_shelf_color = #ce001c;
+$movistar_regions = (mx co ar uy pe es cl ve ec gt sv ni pa cr);
+$movistar_color = #7AB800;
+$vivo_regions = (br);
+$vivo_color = #FF9900;
+$o2_regions = (de)
+$o2_color = #000066;
+$telenor_regions = (hu me rs bd)
+$telenor_color = #00ACE7;
+$grameenphone_regions = (bd);
+$grameenphone_color = #00ACE7;
+$tmobile_regions = (hu pl);
+$tmobile_color = #E20074;
+$kddi_regions = (jp)
+$kddi_color = #E35205;
+$mtn_regions = (za)
+$mtn_color = #CD6723;
+
+.feed-item-item {
+    // Wrapper around feed-items on the Feed (homepage).
+    margin: 0 auto $vertical-tile-padding auto;
+    max-width: $mobile-tile-width;
+    right: 0;
+    width: $mobile-tile-width;
+
+    > section {
+        padding: $vertical-tile-padding $horizontal-tile-padding;
+
+        &.feed-layout-grid {
+            padding-bottom: 0;
+        }
+    }
+    > a {
+        text-decoration: none;
+    }
+}
+
+.feed {
+    list-style-type: none;
+    margin: 0 auto;
+    position: relative;
+    transition(opacity .2s .15s);
+    width: 100%;
+
+    .price {
+        display: none;
+    }
+    .group-subheader {
+        margin-bottom: $vertical-margin;
+    }
+}
+
+[data-page-type~="leaf"] .feed .mkt-tile {
+    margin-bottom: $vertical-tile-margin;
+}
+
+.app-link {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.feed-app {
+    background-color: #fff;
+    margin-bottom: 0;
+    padding: $vertical-tile-padding $horizontal-tile-padding;
+    position: relative;
+
+    .heading {
+        margin-bottom: 10px;
+    }
+    .desc {
+        background-color: #fff;
+        color: $hungry-text;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    blockquote {
+        // For feed item type == 'quote'.
+        line-height: 23px;
+        margin: 0;
+        padding: 0 10px;
+        text-align: center;
+    }
+    .quote-source {
+        font-size: 11px;
+        margin-top: 5px;
+        text-align: center;
+    }
+    .quote {
+        color: #fff;
+        left: -10px;
+        padding: 5px 0 15px;
+        position: relative;
+        top: 15px;
+        width: $mobile-tile-width;
+    }
+    .preview {
+        .desc {
+            margin-bottom: 10px;
+        }
+        .feed-app-preview-container {
+            overflow: hidden;
+            margin: 15px 0 -16px -10px;
+            height: 150px;
+            width: $mobile-tile-width;
+
+            &.vertical {
+                height: 240px;
+            }
+        }
+    }
+}
+
+.tile-footer {
+    clear: both;
+    font-size: 14px;
+    line-height: 20px;
+
+    .stars {
+        left: 50%;
+        margin: 15px 0 10px -32px;
+        position: relative;
+    }
+}
+
+.feed-app-preview {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: unquote('calc(100% - 10px)');  // Padding.
+    margin-top: 5px;
+    width: 100%;
+}
+
+.feed-view-all {
+    color: $action-positive;
+    border-bottom: 2px solid $action-positive;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 16px;
+    margin: $vertical-margin auto 0 50%;
+    padding-bottom: 5px;
+    position: relative;
+    text-align: center;
+    transform: translate(-50%, 0);
+    width: 170px;
+
+    &:before,
+    &:after {
+        border-left: 2px solid $action-positive;
+        bottom: 0;
+        content: "";
+        height: 5px;
+        position: absolute;
+        width: 0;
+    }
+    &:before {
+        left: 0;
+    }
+    &:after {
+        right: 0;
+    }
+}
+
+.feed-layout-list .feed-view-all {
+    bottom: 5px;
+}
+.feed-layout-grid .feed-view-all {
+    bottom: 20px;
+}
+
+.feed-collection-listing .desc {
+    margin-top: 0;
+    padding: 10px 0 20px;
+}
+
+@media $base-desktop {
+    .feed.brand-landing,
+    .feed.collection-landing {
+        section.feed-brand,
+        section.feed-collection-listing {
+            background: transparent;
+            box-shadow: none;
+            max-width: $desktop-content;
+        }
+        .feed-layout-list {
+            padding: 0;
+        }
+    }
+    // Op shelf landing.
+    .shelf-landing {
+        .detail-item.header-block,
+        .feed-item {
+            width: $feed-column-width;
+
+            .curve {
+                left: -40px;
+            }
+        }
+        .detail-item.header-block {
+            margin: 0 auto;
+
+            .desc {
+                font-size: 13px;
+                padding: 10px;
+            }
+        }
+    }
+}
+
+// Feed app list should have a top margin when no desc present.
+.shelf-landing .header-block + .feed {
+    margin-top: 10px;
+}
+
+.multi-app-tile.mkt-tile {
+    background-color: #fff;
+    margin: 0 auto;
+    max-width: $mobile-tile-width;
+
+    &.grouped {
+        margin-bottom: $vertical-tile-padding;
+    }
+    .app-list {
+        clear: both;
+        display: inline-block;
+        list-style-type: none;
+        width: 100%;
+    }
+}
+
+// Grid layout for brands and collections. Mainly app icon.
+.feed-layout-grid {
+    .rating,
+    .author,
+    .stars {
+        display: none;
+    }
+}
+
+// Colored or image background feed tiles.
+.feed-item {
+    background-size: cover;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    width: $mobile-tile-width;
+
+    .curve,
+    .alt-curve {
+        border-radius: 50% 50% 0 0;
+        height: 53px;
+        left: -50px;
+        position: absolute;
+        top: 30px;
+        width: 400px;
+        z-index: 10;
+    }
+    .alt-curve {
+        margin-top: -10px;
+        position: relative;
+        top: 0;
+    }
+    .info {
+        margin-top: 83px;
+        padding: 0 0 20px;
+        text-align: center;
+
+        .name,
+        .author {
+            max-width: $mobile-tile-width - $horizontal-tile-padding;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+    h1 {
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 25px;
+    }
+    .author {
+        font-size: 12px;
+        line-height: $vertical-margin;
+    }
+    h1,
+    .author,
+    img {
+        color: #fff;
+    }
+    .app-icons {
+        height: 60px;
+        left: 50%;
+        position: absolute;
+        top: 15px;
+        transform: translate(-50%, 0);
+        white-space: nowrap;
+        z-index: 15;
+
+        li {
+            display: inline-block;
+            height: 60px;
+            margin-right: 20px;
+            width: 60px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+        + .curve {
+            top: 30px;
+        }
+    }
+    &.mega {
+        .curve {
+            top: 15px;
+        }
+        .info {
+            margin-top: 90px;
+        }
+        .desc {
+            color: #fff;
+            font-size: 14px;
+            line-height: 20px;
+            margin-top: -30px;
+            padding: 0 0 15px;
+            position: relative;
+            text-align: center;
+            width: $mobile-tile-width;
+            z-index: 18;
+        }
+        &.full {
+            .curve {
+                top: 30px;
+            }
+            .info .has-background& {
+                top: 50px;
+            }
+            h1.name {
+                white-space: normal;
+            }
+        }
+    }
+    &.shelf {
+        height: 90px;
+
+        .curve {
+            background-color: rgba($default_shelf_color, 0.6);
+            top: 50px;
+
+            [data-carrier="telefonica"]& {
+                for region in $movistar_regions {
+                    [data-region={region}]& {
+                        background-color: rgba($movistar_color, 0.6);
+                    }
+                }
+                for region in $vivo_regions {
+                    [data-region={region}]& {
+                        background-color: rgba($vivo_color, 0.6);
+                    }
+                }
+            }
+            [data-carrier="o2"]& {
+                for region in $o2_regions {
+                    [data-region={region}]& {
+                        background-color: rgba($o2_color, 0.6);
+                    }
+                }
+            }
+            [data-carrier="telenor"]& {
+                for region in $telenor_regions {
+                    [data-region={region}]& {
+                        background-color: rgba($telenor_color, 0.6);
+                    }
+                }
+            }
+            [data-carrier="grameenphone"]& {
+                for region in $grameenphone_regions {
+                    [data-region={region}]& {
+                        background-color: rgba($grameenphone_color, 0.6);
+                    }
+                }
+            }
+            [data-carrier="deutsche_telekom"]& {
+                for region in $tmobile_regions {
+                    [data-region={region}]& {
+                        background-color: rgba($tmobile_color, 0.6);
+                    }
+                }
+            }
+            [data-carrier="kddi"]& {
+                for region in $kddi_regions {
+                    [data-region={region}]& {
+                        background-color: rgba($kddi_color, 0.6);
+                    }
+                }
+            }
+            [data-carrier="mtn"]& {
+                for region in $mtn_regions {
+                    [data-region={region}]& {
+                        background-color: rgba($mtn_color, 0.6);
+                    }
+                }
+            }
+        }
+
+        .info {
+            position: relative;
+            margin-top: 60px;
+            z-index: 15;
+        }
+        .desc, .author {
+            display: none;
+        }
+    }
+    &.grouped-collection,
+    &.shelf.shelf-landing {
+        height: 150px;
+
+        .curve {
+            height: 70px;
+            top: 80px;
+        }
+        .info {
+            bottom: -45px;
+        }
+    }
+}
+section.full.feed-item {
+    background-size: cover;
+}
+
+.feed-landing {
+    &:not(.collection-landing-listing) {
+        padding-top: 0;
+    }
+    &.collection-landing .feed-item,
+    &.shelf-landing .feed-item {
+        position: relative;
+
+        &.mega.full .desc {
+            top: 155px;
+        }
+        &.mega.full.has-background {
+            min-height: 240px;
+
+            .desc {
+                top: 100px;
+            }
+        }
+        &.mega.full {
+            height: 315px;
+        }
+    }
+    &.shelf-landing,
+    &.collection-landing {
+        .feed-item {
+            margin-bottom: 0;
+
+            &.full:not(.has-desc) {
+                border-radius: 5px;
+                margin-bottom: $vertical-tile-margin;
+            }
+        }
+        .desc {
+            color: $hungry-text;
+            font-size: 15px;
+            font-weight: light;
+            line-height: 22px;
+            padding: 20px;
+        }
+    }
+    &.collection-landing-promo {
+        h1.name {
+            white-space: normal;
+        }
+    }
+}
+
+.collection-landing-promo,
+.shelf-landing {
+    .feed {
+        padding-top: 0;
+        max-width: 100%;
+    }
+    .detail-item {
+        margin-left: 10px;
+        width: $mobile-tile-width;
+
+        &.header-block {
+            margin-top: 0;
+        }
+    }
+    .feed-item {
+        border-radius: 0;
+    }
+}
+
+@media $base-desktop {
+    .collection-landing-listing .desc {
+        border-radius: 5px;
+    }
+    .collection-landing-promo,
+    .shelf-landing {
+        section.feed-item {
+            border-radius: 5px 5px 0 0;
+        }
+        p.desc {
+            border-radius: 0 0 5px 5px;
+        }
+    }
+}
+
+.collection-landing-promo,
+.shelf-landing {
+    .desc {
+        background: #fff;
+        margin-bottom: $vertical-tile-margin;
+    }
+}
+
+.app-link {
+    &:hover,
+    &:active {
+        text-decoration: none;
+    }
+}
+
+@media (max-width: 321px) {
+    .collection-landing,
+    .shelf-landing {
+        .header-block,
+        .feed-item {
+            margin-left: 0;
+            width: $feed-column-width;
+        }
+    }
+}
+@media (min-width: 321px) {
+    .collection-landing,
+    .shelf-landing {
+        .header-block .desc {
+            border-radius: 0 0 5px 5px;
+        }
+    }
+}

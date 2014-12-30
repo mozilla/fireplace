@@ -1,0 +1,116 @@
+/*
+    Stylesheet for editorial brands.
+*/
+@import '../lib';
+
+.brand-header {
+    bottom: 15px;
+    display: block;
+    padding: 10px 0;
+    position: relative;
+    right: 10px;
+    text-align: center;
+    width: unquote('calc(100% + 20px)');
+
+    &:hover {
+        text-decoration: none;
+    }
+    h3 {
+        color: $white;
+        font-weight: 300;
+        margin-top: 70px;
+    }
+    h3:before {
+        background-color: rgba($greyscale-light-grey, .8);
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 30px;
+        content: '';
+        display: block;
+        height: 60px;
+        left: unquote('calc(50% - 30px)');
+        position: absolute;
+        top: 10px;
+        width: 60px;
+    }
+}
+
+// Colors.
+[data-brand-color="ruby"] { background-color: $user-collections-ruby; }
+[data-brand-color="amber"] { background-color: $user-collections-amber; }
+[data-brand-color="emerald"] { background-color: $user-collections-emerald; }
+[data-brand-color="topaz"] { background-color: $user-collections-topaz; }
+[data-brand-color="sapphire"] { background-color: $user-collections-sapphire; }
+[data-brand-color="amethyst"] { background-color: $user-collections-amethyst; }
+[data-brand-color="garnet"] { background-color: $user-collections-garnet; }
+
+// Icons.
+[data-brand-type="groundbreaking"] h3:before {
+    background-image: url(../img/icons/brands/groundbreaking-40px.png);
+}
+[data-brand-type="arts-entertainment"] h3:before {
+    background-image: url(../img/icons/brands/arts&Entertainment-40px.png);
+}
+[data-brand-type="book"] h3:before {
+    background-image: url(../img/icons/brands/books-40px.png);
+}
+[data-brand-type="creativity"] h3:before {
+    background-image: url(../img/icons/brands/creativity-40px.png);
+}
+[data-brand-type="education"] h3:before {
+    background-image: url(../img/icons/brands/education-40px.png);
+}
+[data-brand-type="games"] h3:before {
+    background-image: url(../img/icons/brands/games-40px.png);
+}
+[data-brand-type="health-fitness"] h3:before {
+    background-image: url(../img/icons/brands/health&Fitness-40px.png);
+}
+[data-brand-type="hidden-gem"] h3:before {
+    background-image: url(../img/icons/brands/hiddenGem-40px.png);
+}
+[data-brand-type="lifestyle"] h3:before {
+    background-image: url(../img/icons/brands/lifestyle-40px.png);
+}
+[data-brand-type="local-favorite"] h3:before {
+    background-image: url(../img/icons/brands/LocalCommunityFavourite-40px.png);
+}
+[data-brand-type="maps-navigation"] h3:before {
+    background-image: url(../img/icons/brands/maps&Nav-40px.png);
+}
+[data-brand-type="music"] h3:before {
+    background-image: url(../img/icons/brands/music-40px.png);
+}
+[data-brand-type="mystery-app"] h3:before {
+    background-image: url(../img/icons/brands/mysteryApp-40px.png);
+}
+[data-brand-type="local-favorite"] h3:before {
+    background-image: url(../img/icons/brands/LocalCommunityFavourite-40px.png);
+}
+[data-brand-type="news-weather"] h3:before {
+    background-image: url(../img/icons/brands/news&Weather-40px.png);
+}
+[data-brand-type="photo-video"] h3:before {
+    background-image: url(../img/icons/brands/photos&Video-40px.png);
+}
+[data-brand-type="shopping"] h3:before {
+    background-image: url(../img/icons/brands/shopping-40px.png);
+}
+[data-brand-type="social"] h3:before {
+    background-image: url(../img/icons/brands/social-40px.png);
+}
+[data-brand-type="sports"] h3:before {
+    background-image: url(../img/icons/brands/sports-40px.png);
+}
+[data-brand-type="tools-time-savers"] h3:before {
+    background-image: url(../img/icons/brands/tools&TimesSavers-40px.png);
+}
+[data-brand-type="travel"] h3:before {
+    background-image: url(../img/icons/brands/travel-40px.png);
+}
+[data-brand-type="work-business"] h3:before {
+    background-image: url(../img/icons/brands/work&Business-40px.png);
+}
+[data-brand-type^="apps-for-"] h3:before {
+    background-image: url(../img/icons/brands/countrySpecific-40px.png);
+}
