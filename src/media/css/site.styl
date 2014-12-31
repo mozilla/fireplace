@@ -1,8 +1,8 @@
+/* Site-wide or structural styles only in this file.
+   Can't find a better file for your style? Create one!
+   This is not your diaper. */
 @import 'lib';
 
-// Site-wide or structural styles only in this file.
-// Can't find a better file for your style? Create one!
-// This is not your diaper.
 
 * {
     -moz-box-sizing: border-box;
@@ -61,6 +61,9 @@ section.full {
         margin-left: auto;
         margin-right: auto;
         padding: 30px 10px;
+    }
+    + section.full {
+        margin-top: 10px;
     }
 }
 
@@ -202,10 +205,6 @@ noscript {
     }
 }
 
-.hide-on-mobile {
-    display: none;
-}
-
 .region {
     background-repeat: no-repeat;
     background-size: 20px auto;
@@ -254,6 +253,16 @@ a:active {
     }
     #splash-overlay .throbber {
         display: inline-block !important;
+    }
+}
+
+.hide-on-mobile {
+    display: none;
+}
+
+@media $base-tablet {
+    .hide-on-mobile {
+        display: block;
     }
 }
 
