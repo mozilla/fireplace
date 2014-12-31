@@ -1,8 +1,10 @@
-/* Site-wide or structural styles only in this file.
-   Can't find a better file for your style? Create one!
-   This is not your diaper. */
+/*
+    Site-wide or structural styles ONLY. This is not your diaper.
+    section.full - section that visually expands full width, with top
+                   and bottom padding, and margins in between other
+                   full sections.
+*/
 @import 'lib';
-
 
 * {
     -moz-box-sizing: border-box;
@@ -62,9 +64,13 @@ section.full {
         margin-right: auto;
         padding: 30px 10px;
     }
-    + section.full {
+    + section.full,
+    + .placeholder section.full {
         margin-top: 10px;
     }
+}
+.placeholder + .placeholder section.full {
+    margin-top: 10px;
 }
 
 .js-hidden, .hidden {

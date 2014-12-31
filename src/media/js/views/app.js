@@ -11,19 +11,16 @@ define('views/app',
         // Toggle scary content rating disclaimers to developers.
         $(this).closest('.toggle').siblings('div').toggleClass('hidden');
 
-    })).on('click', '.show-toggle', utils._pd(function() {
-        var $this = $(this),
-            newTxt = $this.attr('data-toggle-text');
-        // Toggle "more..." or "less..." text.
-        $this.attr('data-toggle-text', $this.text());
-        $this.text(newTxt);
+    })).on('click', '.truncate-toggle', utils._pd(function() {
+        var $this = $(this);
         // Toggle description.
         $this.prev('.truncated-wrapper').toggleClass('truncated');
+        $this.remove();
 
     })).on('click', '.approval-pitch', utils._pd(function() {
         $('#preapproval-shortcut').trigger('submit');
 
-    })).on('click', '.product-details .icon', utils._pd(function(e) {
+    })).on('click', '.app-header .icon', utils._pd(function(e) {
         // When icon is clicked, append `#id=<id>` to the URL.
         window.location.hash = 'id=' + $('.product').data('id');
         e.stopPropagation();
@@ -63,7 +60,7 @@ define('views/app',
                 // 'truncated' class applied by default, remove if unneeded.
                 var $this = $(this);
                 if ($this.prop('scrollHeight') <= $this.prop('offsetHeight')) {
-                    $this.removeClass('truncated').next('.show-toggle').hide();
+                    $this.removeClass('truncated').next('.truncate-toggle').hide();
                 }
             });
 

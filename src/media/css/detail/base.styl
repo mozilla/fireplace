@@ -1,17 +1,12 @@
-/* Miscellaneous base and layout styles for the app detail page. */
+/*
+    Miscellaneous base and layout styles for the app detail page.
+*/
 @import '../lib';
 
 [data-page-type~="detail"] {
     .subheader {
         display: none;
     }
-    section.main.full {
-        padding-bottom: 0;
-    }
-}
-
-.infobox.blurbs {
-    border-top: 0;
 }
 
 .detail .support > div {
@@ -21,84 +16,13 @@
 }
 
 .detail {
-    background: $white;
+    background: $page-background;
     border-radius: 0;
     box-shadow: 0 1px 1px $greyscale-grey;
     margin: 10px;
 
-    h3 {
-        font-size: 15px;
-        font-weight: 500;
-    }
-}
-
-.regionbanner {
-    background: url(../img/pretty/alert.svg) 12px 50% no-repeat #82C80A;
-    background-size: 48px;
-    color: $white;
-    padding-left: 60px;
-}
-
-.blurbs {
-    clear: both;
-    color: $dark-gray;
-    line-height: 22px;
-
-    > div {
-        padding: 24px 10px;
-    }
-    blockquote {
-        background: $faint-gray;
-        border-left: 2px solid $light-gray;
-        color: $medium-gray;
-        margin: 0;
-        padding: 5px 10px;
-    }
-    .truncated-wrapper {
-        padding: 0;
-
-        &.truncated {
-            max-height: 16.5em;
-            overflow: hidden;
-            position: relative;
-
-            &:after {
-                bottom: 0;
-                content: '';
-                gradientTop(unquote('rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%'));
-                height: 6.5em;
-                left: 0;
-                pointer-events: none;
-                position: absolute;
-                width: 100%;
-                z-index: 10;
-            }
-        }
-    }
-}
-
-section.releasenotes {
-    border-bottom: 1px solid $cloud-gray;
-
-    .truncated-wrapper.truncated {
-        max-height: 7.5em;
-    }
-}
-
-.show-toggle {
-    display: block;
-    font-weight: bold;
-    padding: 10px;
-    text-align: right;
-    text-transform: lowercase;
-
-    &:before {
-        content: "(";
-        font-weight: 200;
-    }
-    &:after {
-        content: ")";
-        font-weight: 200;
+    section:not(.app-header) h3 {
+        _h3();
     }
 }
 
@@ -185,18 +109,55 @@ section.releasenotes {
     }
 }
 
+.truncated:after {
+    // Fade away at the end of truncated elements.
+    bottom: 0;
+    content: '';
+    gradientTop(unquote('rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%'));
+    height: 6.5em;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
 // Stats not mobile-optimized. Hide button on non-desktop.
 // TODO: Remove once bug 924519 is resolved.
 .statistics {
     display: none;
 }
 
+.detail-left-side {
+    margin-bottom: 30px;
+}
+
+@media $base-tablet {
+    .detail-flex-wrap {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .detail-left-side {
+        width: unquote('calc(100% - 300px)');
+        margin-right: 30px;
+    }
+    .detail-right-side {
+        width: $mobile-content-width;
+    }
+    .truncated-wrapper + a.view-all-tab {
+        display: none;
+    }
+}
+
 @media $base-desktop {
+    .truncate-toggle {
+        display: none;
+    }
     .upsell-wrapper {
         background: #fff;
     }
-    .upsell,
-    .blurbs > div {
+    .upsell {
         padding: 24px 15px;
     }
     .upsell {
@@ -216,23 +177,6 @@ section.releasenotes {
             line-height: 21px;
         }
     }
-    .blurbs .description-wrapper {
-        p.description {
-            padding-top: 0;
-        }
-    }
-    section.blurbs .truncated-wrapper.truncated {
-        max-height: none;
-        overflow: visible;
-
-        &:after {
-            content: none;
-        }
-    }
-    .show-toggle {
-        display: none;
-    }
-
     .detail {
         margin: 0 auto;
         overflow: hidden;
