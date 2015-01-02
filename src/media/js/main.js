@@ -151,17 +151,20 @@ function(_) {
         // are in a packaged app, wait for the iframe to be loaded, otherwise
         // we are using the direct installer and we just need to wait for the
         // normal loaded event.
-        var event_for_apps = window.location.protocol === 'app:' ? 'iframe-install-loaded' : 'loaded';
+        var is_packaged_app = window.location.protocol === 'app:';
+        var is_iframed_app = window.top !== window.self;  // Crude, but enough for our needs.
+        var event_for_apps = is_packaged_app ? 'iframe-install-loaded' : 'loaded';
         z.page.one(event_for_apps, function() {
             apps.getInstalled().done(function() {
                 z.page.trigger('mozapps_got_installed');
                 buttons.mark_btns_as_installed();
             });
 
-
             var manifest_url = settings.manifest_url;
-            // Note: only the iframed app defines a manifestURL for now.
-            if (manifest_url) {
+            // We want to check for an update, so we need the manifest url. In
+            // addition, we only want to show the update notification banner if
+            // we are inside an app (not just browsing the website).
+            if (manifest_url && (is_packaged_app || is_iframed_app)) {
                 apps.checkForUpdate(manifest_url).done(function(result) {
                     if (result) {
                         z.body.on('click', '#marketplace-update-banner a.download-button', utils._pd(function() {
@@ -180,6 +183,8 @@ function(_) {
                         $('#site-nav').after(nunjucks.env.render('marketplace-update.html'));
                     }
                 });
+            } else {
+                console.log('Not in an app or manifest_url is absent, skipping update check.');
             }
         });
 
