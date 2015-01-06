@@ -6,7 +6,8 @@
     <h2>{{ _('Reviews') }}</h2>
   </header>
   <a href="{{ url('app', [slug]) }}" class="back-to-app">{{ _('Back to app') }}</a>
-  {% defer (url=apiParams('reviews', {'app': slug}), pluck='objects', id='ratings', paginate='.ratings-placeholder-inner') %}
+  {% defer (url=apiParams('reviews', {'app': slug}), pluck='objects', id='ratings',
+            paginate='.reviews-wrapper') %}
     <p id="add-review" class="primary-button">
       {% if (response.user.can_rate or not user.logged_in()) or response.user.has_rated %}
         {% if user.logged_in() and response.user.has_rated %}
@@ -21,9 +22,9 @@
       {% endif %}
     </p>
     <div class="reviews reviews-listing">
-      <ul class="ratings-placeholder-inner">
-        {% for rat in this %}
-          {{ rating(rat, current_version=this.info.current_version) }}
+      <ul class="reviews-wrapper">
+        {% for review in this %}
+          {{ rating(review, current_version=this.info.current_version) }}
         {% endfor %}
 
         {# Render the more button if there's another page of results #}
