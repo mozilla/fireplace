@@ -162,43 +162,66 @@
 {% except %}
 {% end %}
 
-<section class="main reviews-wrapper c">
+<!--Reviews (detail/reviews.styl).-->
+<section class="main full app-reviews">
   {% defer (url=apiParams('reviews', {'app': slug}), id='ratings') %}
-    <div class="reviews">
-      <h3>{{ _('Reviews') }}</h3>
-      {% set has_second_button = this.user.can_rate or not user.logged_in() or this.user.has_rated %}
-      {% if this.meta.total_count %}
-        <ul class="ratings-placeholder-inner">
-          {% for rat in this.objects.slice(0, 2) %}
-            {{ rating(rat, detailpage=true, current_version=this.info.current_version) }}
-          {% endfor %}
-        </ul>
-        <div class="{{ 'split' if has_second_button else 'full' }}">
-          <a class="button support average-rating" href="{{ url('app/ratings', [slug]) }}">
-            <span>
-              {{ this.meta.total_count|numberfmt }} {{ _plural('Review', 'Reviews', n=this.meta.total_count) }}
-            </span>
+    <div class="detail-flex-wrap">
+      <div class="detail-left-side">
+        <h3>{{ _('Reviews') }}</h3>
+
+        {% if this.meta.total_count %}
+          <div class="reviews-summary-large">
             {{ stars(this.info.average, detailpage=true) }}
-          </a>
-        </div>
-      {% else %}
-        <p class="not-rated">
-          {{ _('App not yet reviewed') }}
-        </p>
-      {% endif %}
-      {% if has_second_button %}
-        <div class="{{ 'split' if this.objects.length else ' full' }}">
-          {% if user.logged_in() and this.user.has_rated %}
-            <a class="button write-review support" id="edit-review" href="{{ url('app/ratings/edit', [slug]) }}"
-               data-app="{{ slug }}">
-              {{ _('Edit Your Review') }}</a>
-          {% else %}
-            <a class="button write-review support" id="add-review" href="{{ url('app/ratings/add', [slug]) }}"
-               data-app="{{ slug }}">
-               {{ _('Leave a Review') if user.logged_in() else _('Sign in to Review') }}</a>
-          {% endif %}
-        </div>
-      {% endif %}
+            <p>
+              {{ _plural(
+                     '1 Review',
+                     format(_('{numReviews} Reviews'),
+                            numReviews=numberfmt(this.meta.total_count)),
+                 n=this.meta.total_count) }}
+            </p>
+          </div>
+        {% endif %}
+
+        {% if this.meta.total_count %}
+          <ul class="reviews-wrapper">
+            {% for review in this.objects.slice(0, 6) %}
+              {{ rating(review, detailpage=true, current_version=this.info.current_version) }}
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="not-rated">{{ _('App not yet reviewed') }}</p>
+        {% endif %}
+     </div>
+
+     <div class="detail-right-side">
+        {% if this.user.can_rate or not user.logged_in() or this.user.has_rated %}
+          <section class="review-buttons">
+            <ul>
+              {% if user.logged_in() and this.user.has_rated %}
+                <li>
+                  <a id="edit-review" class="button" data-app="{{ slug }}"
+                     href="{{ url('app/ratings/edit', [slug]) }}">
+                    {{ _('Edit your review') }}
+                  </a>
+                </li>
+              {% else %}
+                <li>
+                  <a id="add-review" class="button" data-app="{{ slug }}"
+                     href="{{ url('app/ratings/add', [slug]) }}">
+                     {{ _('Leave a review') if user.logged_in() else _('Sign in to review') }}
+                  </a>
+                </li>
+              {% endif %}
+              <li>
+                <a id="edit-review" class="button" data-app="{{ slug }}"
+                   href="{{ url('app/ratings', [slug]) }}">
+                  {{ _('Read all reviews') }}
+                </a>
+              </li>
+            </ul>
+          </section>
+        {% endif %}
+      </div>
     </div>
   {% placeholder %}
     <p class="spinner alt padded"></p>

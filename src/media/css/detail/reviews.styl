@@ -1,0 +1,43 @@
+/*
+    The reviews section below the info section.
+    Reviews on the left side (two columns on desktop).
+    Stars, review count, reviews action buttons on the right side.
+    On mobile, all displayed in one-column.
+
+    The large reviews summary (big stars and 'N Reviews' text) lives on the
+    left section in the HTML. On mobile, we want it displayed at the top, but
+    on desktop, we want it displayed on the right. So we're forced to do some
+    absolute positioning on desktop sizes to get it to the right section.
+*/
+@import '../lib';
+
+.reviews-summary-large {
+    text-align: center;
+    padding: 30px 0;
+
+    .stars {
+        transform(scale(2.5));
+        margin-bottom: 20px;
+    }
+    p {
+        color: $greyscale-dark-grey;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 25px;
+    }
+}
+
+@media $base-tablet {
+    .app-reviews h3 {
+        margin-bottom: 20px;
+    }
+    .app-reviews .detail-right-side {
+        padding-top: 100px;
+    }
+    .reviews-summary-large {
+        padding-bottom: 30px;
+        position: absolute;
+        top: 0;
+        right: 110px;
+    }
+}
