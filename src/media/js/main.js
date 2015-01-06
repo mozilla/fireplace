@@ -162,10 +162,12 @@ function(_) {
             });
 
             var manifest_url = settings.manifest_url;
+            var email = user.get_setting('email') || '';
             // We want to check for an update, so we need the manifest url. In
             // addition, we only want to show the update notification banner if
-            // we are inside an app (not just browsing the website).
-            if (manifest_url && (is_packaged_app || is_iframed_app)) {
+            // we are inside an app (not just browsing the website) and only
+            // to mozilla.com users for now.
+            if (manifest_url && (is_packaged_app || is_iframed_app) && email.substr(-12) === '@mozilla.com') {
                 apps.checkForUpdate(manifest_url).done(function(result) {
                     if (result) {
                         z.body.on('click', '#marketplace-update-banner a.download-button', utils._pd(function() {
@@ -185,7 +187,7 @@ function(_) {
                     }
                 });
             } else {
-                console.log('Not in an app or manifest_url is absent, skipping update check.');
+                console.log('Not in an app or manifest_url is absent or not a mozilla.com user, skipping update check.');
             }
         });
 
