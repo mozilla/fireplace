@@ -1,8 +1,10 @@
 define('helpers_local',
-    ['apps', 'feed', 'compatibility_filtering', 'content-ratings', 'models',
-     'nunjucks', 'regions', 'settings', 'urls', 'user_helpers', 'utils_local', 'z'],
-    function(apps, feed, compatibility_filtering, iarc, models,
-             nunjucks, regions, settings, urls, user_helpers, utils_local, z) {
+    ['apps', 'compatibility_filtering', 'content-ratings', 'feed', 'format',
+     'helpers', 'models', 'nunjucks', 'regions', 'settings', 'urls',
+     'user_helpers', 'utils_local', 'z'],
+    function(apps, compatibility_filtering, iarc, feed, format,
+             base_helpers, models, nunjucks, regions, settings, urls,
+             user_helpers, utils_local, z) {
     var filters = nunjucks.require('filters');
     var globals = nunjucks.require('globals');
 
@@ -88,8 +90,10 @@ define('helpers_local',
         app_incompat: apps.incompat,
         app_notices: app_notices,
         cast_app: models('app').cast,
+        format: format.format,
         has_installed: has_installed,
-        indexOf: indexOf,
+        numberfmt: nunjucks.require('filters').numberfmt,
+        indexOf: indexOf
     };
 
     for (var i in helpers) {
