@@ -107,7 +107,7 @@ define('installer_direct',
             };
             app.ondownloaderror = function(e) {
                 console.log('Applying app update failed (downloaderror) for ' + manifestURL);
-                def.reject('APP_DOWNLOAD_ERROR');
+                def.reject(e.application.downloadError.name);
             };
             if (app.downloading) {
                 def.reject('APP_IS_DOWNLOADING');
