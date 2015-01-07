@@ -3,29 +3,29 @@
 {% from "_macros/stars.html" import stars %}
 
 {% macro app_tile(app, feed_app=None, is_detail=False, tray=False, src=None) %}
-
   {#
       app -- app object
       feed_app - feed-app specific data
-      is_detail - is this tile a detail page tile?
+      is_detail - whether part of a detail page
       tray -- whether or not to attach a preview/screenshot tray
       src -- if tile is a link, attach a src param for analytics purposes
   #}
-
   {% set tag = 'div' if is_detail else 'a' %}
-
   <{{ tag }} class="product mkt-tile{{ ' feed-app' if feed_app }}"
-    {% if not is_detail %} href="{{ app.url or url('app', [app.slug])|urlparams(src=src) }}"{% endif %}
-    data-slug="{{ app.slug }}"
-    data-id="{{ app.id }}"
-    {{ 'itemscope itemtype="http://schema.org/SoftwareApplication"' if not is_detail }}>
+             data-slug="{{ app.slug }}" data-id="{{ app.id }}"
+             {% if not is_detail %}
+               href="{{ app.url or url('app', [app.slug])|urlparams(src=src) }}"
+             {% endif %}
+             {{ 'itemscope itemtype="http://schema.org/SoftwareApplication"' if not is_detail }}>
     <div class="heading">
-      {{ deferred_icon(app.icons['64']) }}
+      {# TODO: have backend deserialize a 128px icon. #}
+      {{ deferred_icon(app.icons['64']) if not is_detail else
+         deferred_icon(app.icons['64']|replace('64.png', '128.png'), '', 128) }}
       <div class="info">
         <h3 itemprop="name">{{ app.name|translate(app) }}</h3>
 
         {% if app.author %}
-          {# TODO: When we get user profiles, update this to be a proper Person itemprop #}
+          {# TODO: When we get user profiles, update to be Person itemprop. #}
           <div class="author elliflow vital subdetail" itemprop="creator">
             {% if is_detail -%}
               <a href="{{ url('search')|urlparams(author=app.author) }}">{{ app.author }}</a>
@@ -36,32 +36,29 @@
         {% endif %}
 
         {% if app.slug %}
-          {{ market_button(app,
-                           data_attrs={'manifest_url': app.manifest_url,
-                           'slug': app.slug}) }}
+          {{ market_button(app, data_attrs={'manifest_url': app.manifest_url,
+                                            'slug': app.slug}) }}
         {% endif %}
 
         {{ rating_link() if not is_detail }}
-
       </div>
     </div>
 
-    {% if is_detail %}
-      {{ rating_link(is_detail=True) }}
-    {% endif %}
-
-    {% for notice in app_incompat(app) %}
-      <div class="bad-app">{{ notice }}</div>
-    {% endfor %}
-
-    {% if app.is_offline %}
-      <div class="works-offline hidden">
-        {{ _('Works offline') }}
-      </div>
-    {% endif %}
-
+    {{ rating_link(is_detail=True) if is_detail }}
     {{ feed_app_tile(feed_app) if feed_app }}
   </{{ tag }}>
+
+  {% if is_detail %}
+    {% set notices = app_notices(app) %}
+    {% if notices.length %}
+      <div class="app-notices full">
+        {% for notice in notices %}
+          <span class="{{ notice[1] }}">{{ notice[0] }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endif %}
+
   {% if tray and len(app.previews) %}
     <div class="tray previews full {{ 'single' if len(app.previews) == 1 }}">
       {{ preview_tray(app, src) }}
@@ -90,15 +87,15 @@
 {% endmacro %}
 
 
-{% macro deferred_icon(src, alt) %}
+{% macro deferred_icon(src, alt, width) %}
   {% if not imgAlreadyDeferred(src) %}
     {# Defer image loading. #}
     <img class="icon deferred" src="{{ PLACEHOLDER_ICON }}"
          data-src="{{ src }}" title="{{ alt or '' }}" alt="{{ alt or '' }}"
-         height="60" width="60" itemprop="image">
+         height="{{ width or 60 }}" width="{{ width or 60 }}" itemprop="image">
   {% else %}
     <img class="icon" src="{{ src }}" title="{{ alt or '' }}" alt="{{ alt or '' }}"
-         height="64" width="64" itemprop="image">
+         height="{{ width or 64 }}" width="{{ width or 64 }}" itemprop="image">
   {% endif %}
 {% endmacro %}
 
@@ -117,32 +114,23 @@
 
 
 {% macro rating_link(is_detail=False) %}
-  <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-
+  <div class="rating vital{{ ' unrated' if not app.ratings.count }}"
+       itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
     {# Detail page ratings link to the ratings list page. #}
     {% if is_detail %}
       <a href="{{ url('app/ratings', [app.slug]) }}" class="rating-link">
-
-        {{ stars(app.ratings.average) }}
-
         {% if app.ratings.count %}
-          <span class="cnt short">
-            {{ _('({n})', n='<span itemprop="reviewCount">' + app.ratings.count|numberfmt + '</span>') }}
-          </span>
+          {{ stars(app.ratings.average) }}
           <span class="cnt long">
             {{ app.ratings.count|numberfmt }} {{ _plural('Review', 'Reviews', n=app.ratings.count) }}
           </span>
         {% else %}
-          {# L10n: "(0)" means "0 reviews." #}
-          <span class="cnt short">{{ _('(0)') }}</span>
           <span class="cnt long">{{ _('Not yet reviewed') }}</span>
         {% endif %}
-
       </a>
     {% else %}
       {# Stars-only rating (member of an app listing). #}
       {{ stars(app.ratings.average) }}
     {% endif %}
-
   </div>
 {% endmacro %}

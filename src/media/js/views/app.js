@@ -1,8 +1,8 @@
 define('views/app',
-    ['content-ratings', 'l10n', 'log', 'settings', 'overflow', 'tracking',
-     'utils', 'z'],
-    function(iarc, l10n, log, settings, overflow, tracking,
-             utils, z) {
+    ['capabilities', 'content-ratings', 'l10n', 'log', 'overflow', 'settings',
+     'tracking', 'utils', 'z'],
+    function(caps, iarc, l10n, log, overflow, settings,
+             tracking, utils, z) {
     'use strict';
     var gettext = l10n.gettext;
     var logger = log('app');
@@ -47,19 +47,20 @@ define('views/app',
             }
         });
 
-        // tracking_events depends on navigation > views > views/app
-        // Prevents a dep loop, but deps resolved by now.
+        // tracking_events requires navigation > views > views/app
+        // All deps should have been resolved by the time this executes.
         require('tracking_events').track_search_term(true);
 
         var sync = true;
         builder.onload('app-data', function(app) {
+            /* Called after app defer block is finished loading. */
             builder.z('title', utils.translate(app.name));
 
             z.page.trigger('populatetray');
             overflow.init();
 
             $('.truncated-wrapper').each(function() {
-                // 'truncated' class applied by default, remove if not needed.
+                // 'truncated' class applied by default, remove if unneeded.
                 var $this = $(this);
                 if ($this.prop('scrollHeight') <= $this.prop('offsetHeight')) {
                     $this.removeClass('truncated').next('.show-toggle').hide();
@@ -74,12 +75,16 @@ define('views/app',
                 tracking.setPageVar(6, 'App name', app.name, 3);
                 tracking.setPageVar(7, 'App ID', app.id + '', 3);
                 tracking.setPageVar(8, 'App developer', app.author, 3);
-                tracking.setPageVar(9, 'App view source', utils.getVars().src || 'direct', 3);
+                tracking.setPageVar(9, 'App view source',
+                                    utils.getVars().src || 'direct', 3);
+                tracking.setPageVar(10, 'App price',
+                                    app.payment_required ? 'paid' : 'free', 3);
             } else {
                 logger.warn('App object is falsey and is not being tracked');
             }
-
-        }).onload('ratings', function() {
+        })
+        .onload('ratings', function() {
+            /* Called after ratings defer block is finished loading. */
             var reviews = $('.detail .reviews li');
             if (reviews.length >= 3) {
                 for (var i = 0; i < reviews.length - 2; i += 2) {
