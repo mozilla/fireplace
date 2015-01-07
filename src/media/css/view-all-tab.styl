@@ -1,0 +1,38 @@
+/*
+    Stylesheet for the a link that looks like a tab. Used for View All or Show
+    More links.
+    |  View All  |
+    --------------
+
+    TODO: change Feed to use this definition after PRs are merged.
+*/
+@import 'lib';
+
+.view-all-tab {
+    color: $action-positive;
+    border-bottom: 2px solid $action-positive;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 10px auto 0;
+    padding-bottom: 5px;
+    position: relative;
+    text-align: center;
+    width: 170px;
+
+    &:before,
+    &:after {
+        border-left: 2px solid $action-positive;
+        bottom: 0;
+        content: "";
+        height: 5px;
+        position: absolute;
+        width: 0;
+    }
+    &:before {
+        left: 0;
+    }
+    &:after {
+        right: 0;
+    }
+}

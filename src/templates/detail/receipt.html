@@ -3,14 +3,16 @@
 {% include "_macros/stars.html" %}
 
 {% set endpoint = api('app', [slug]) %}
-<div class="detail">
-  <section class="main">
-    <header class="secondary-header">
-      <h2 class="leading">{{ _('Thank you for purchasing') }}</h2>
-    </header>
-  </section>
 
-  <section class="main product-details listing c">
+<section class="main">
+  <div class="subheader">
+    <h1>{{ _('Thank you for purchasing') }}</h1>
+  </div>
+</section>
+
+{# TODO: reuse code from detail templates. #}
+<div class="detail receipt" data-page-type="detail">
+  <section class="main full app-header">
     {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
       {{ app_tile(this) }}
     {% placeholder %}
@@ -73,5 +75,4 @@
   </section>
   {% except %}
   {% end %}
-
 </div>
