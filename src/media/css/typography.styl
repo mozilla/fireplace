@@ -103,8 +103,6 @@ dd {
 
 .back-to-app {
     display: none;
-    position: relative;
-    z-index: 20;  // To cover relatively positioned "Write a Review" button.
 }
 
 .prose {
@@ -162,7 +160,17 @@ dd {
         padding: 18px 15px;
     }
     .back-to-app {
-        display: block;
+        display: inline-block;
+
+        &:before {
+            content: "\2039";
+            display: inline-block;
+            font-size: 28px;
+            font-weight: 300;
+            margin-right: 10px;
+            position: relative;
+            top: 3px;
+        }
     }
     .island.prose {
         padding: 24px;

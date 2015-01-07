@@ -1,4 +1,4 @@
-{% include "_macros/rating.html" %}
+{% include "_macros/review.html" %}
 
 <section class="main c">
   <header class="secondary-header c">
@@ -7,7 +7,7 @@
   {% defer (url=api('review', [id])) %}
     <div class="reviews reviews-listing single-review">
       <ul class="ratings-placeholder-inner">
-        {{ rating(this) }}
+        {{ review(this) }}
       </ul>
     </div>
   {% placeholder %}

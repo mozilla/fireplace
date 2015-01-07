@@ -3,6 +3,7 @@
 <header class="secondary-header">
   <h2>{{ _('Edit Review') }}</h2>
 </header>
+
 {% defer (url=endpoint, id='main') %}
   <div class="main add-review">
     {{ review_prompt(slug, false, normalize(this)) }}

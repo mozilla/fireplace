@@ -121,10 +121,12 @@ define('ratings',
                     app: $('.product').data('slug'),
                     user: 'mine'
                 });
-                $('.review-button').html(gettext('Loading...'));
+                this.innerHTML = gettext('Loading...');
+
+                var self = this;
                 requests.get(endpoint).done(function(existingReview) {
                     initReviewModal(existingReview.objects[0]);
-                    $('.review-button').html(gettext('Edit your Review'));
+                    self.innerHTML = self.getAttribute('data-text');
                 });
             } else {
                 initReviewModal();
@@ -146,7 +148,7 @@ define('ratings',
         }
     }
 
-    z.page.on('click', '.review .actions a', utils._pd(function(e) {
+    z.page.on('click', '.review-actions a', utils._pd(function(e) {
         var $this = $(this);
         var action = $this.data('action');
         if (!action) {
@@ -160,12 +162,6 @@ define('ratings',
                 break;
             case 'report':
                 flagReview($review);
-                break;
-            case 'edit':
-                var view = utils.urlparams($this.attr('href'), {
-                    review: $this.data('review-id')
-                });
-                z.page.trigger('navigate', view);
                 break;
             default:
                 return;
