@@ -1,8 +1,8 @@
 define('categories', ['l10n'], function(l10n) {
     'use strict';
-
     var gettext = l10n.gettext;
-    var categories = [
+
+    return [
         {slug: 'games', name: gettext('Games')},
         {slug: 'books', name: gettext('Books')},
         {slug: 'business', name: gettext('Business')},
@@ -22,6 +22,4 @@ define('categories', ['l10n'], function(l10n) {
         {slug: 'travel', name: gettext('Travel')},
         {slug: 'utilities', name: gettext('Utilities')}
     ];
-
-    return categories;
 });

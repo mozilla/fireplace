@@ -1,0 +1,34 @@
+/*
+    The info section below the reviews section, featuring detailed app
+    information (category, package size) and content ratings.
+*/
+@import '../lib';
+
+.app-more-metadata {
+    dl {
+        display: inline-block;
+        vertical-align: top;
+        width-calc('50% - 2px');
+
+        &:last-child dd:last-child {
+            margin-bottom: 0;
+        }
+    }
+    dt {
+        color: $greyscale-dark-grey;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
+    dd {
+        color: $greyscale-black;
+        display: inline-block;
+
+        &:last-child {
+            margin-bottom: 30px;
+        }
+        &:not(:last-child):after {
+            content: attr(data-delimiter);  // For L10n.
+            display: inline-block;
+        }
+    }
+}

@@ -1,9 +1,19 @@
 define('compatibility_filtering',
-    ['capabilities', 'log', 'storage', 'underscore', 'utils', 'z'],
-    function(capabilities, log, storage, _, utils, z) {
+    ['capabilities', 'l10n', 'log', 'storage', 'underscore', 'utils', 'z'],
+    function(capabilities, l10n, log, storage, _, utils, z) {
+    'use strict';
+    var logger = log('compatibility_filtering');
+    var gettext = l10n.gettext;
 
-    // API endpoints where feature profile is enabled, if all other conditions are met. See
-    // api_args() below.
+    var DEVICE_CHOICES = {
+        'android-mobile': gettext('Android Mobile'),
+        'android-tablet': gettext('Android Tablet'),
+        'desktop': gettext('Desktop'),
+        'firefoxos': gettext('Firefox OS'),
+    };
+
+    // API endpoints where feature profile is enabled, if all conditions met.
+    // See api_args() below.
     var ENDPOINTS_WITH_FEATURE_PROFILE = [
         'category_landing','feed', 'feed-app', 'feed-brand', 'feed-collection',
         'feed-items', 'feed-shelf', 'new_popular_search', 'search'
@@ -14,7 +24,6 @@ define('compatibility_filtering',
     var limit = 25;
     var device_filter_name;
     var key = 'device_filtering_preferences';
-    var console = log('compatibility_filtering');
     var device_override;
     var device_filtering_preferences;
 
@@ -93,7 +102,7 @@ define('compatibility_filtering',
 
     /* Set a new filtering preference value for the specified endpoint. */
     function set_preference(endpoint_name, value) {
-        console.log('Filtering for ' + endpoint_name + ' changed to ' + value);
+        logger.log('Filtering for ' + endpoint_name + ' changed to ' + value);
         device_filtering_preferences[endpoint_name] = value;
         storage.setItem(key, device_filtering_preferences);
     }
@@ -144,6 +153,7 @@ define('compatibility_filtering',
     return {
         api_args: api_args,
         default_feature_profile: default_feature_profile,
+        DEVICE_CHOICES: DEVICE_CHOICES,
         device_filter_name: device_filter_name,
         feature_profile: feature_profile,
         is_preference_selected: is_preference_selected,

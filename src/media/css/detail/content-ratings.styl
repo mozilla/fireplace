@@ -2,11 +2,6 @@
 @import '../lib';
 
 .content-ratings-wrapper {
-    border-top: 1px solid $cloud-gray;
-
-    h3 {
-        padding-bottom: 24px;
-    }
     .icon {
         border-radius: 5px;
         display: inline-block;
@@ -74,11 +69,11 @@
 .content-descriptors.text li,
 .rating-description,
 .interactive-elements.text p {
-    color: $earl-gray;
+    color: $greyscale-dark-grey;
     display: inline-block;
     font-size: 11px;
     font-weight: 400;
-    margin: 0;
+    margin: 0 0 5px;
 }
 
 .content-descriptors.icons,
@@ -113,45 +108,4 @@
 
 .usk .content-ratings-right {
     left: 0;
-}
-
-@media $base-desktop {
-    .content-ratings-wrapper {
-        padding-bottom: 10px;
-
-        .content-rating .icon {
-            width: 64px;
-        }
-        .content-descriptors .icon,
-        .interactive-elements .icon {
-            width: 48px;
-        }
-        .content-rating {
-            max-width: 64px;
-        }
-        .content-ratings-left,
-        .content-descriptors,
-        .rating-description {
-            max-width: none;
-        }
-        .content-rating .icon {
-            margin-right: 15px;
-        }
-        .interactive-elements.text {
-            padding-left: 15px;
-        }
-        .interactive-elements,
-        .content-descriptors.icons {
-            padding-left: 20px;
-        }
-        ul.content-descriptors.text li,
-        .rating-description,
-        .interactive-elements.text p {
-            font-size: 15px;
-        }
-    }
-
-    .usk .content-ratings-right {
-        left: 12px;
-    }
 }
