@@ -29,6 +29,8 @@ $tmobile_regions = (hu pl);
 $tmobile_color = #E20074;
 $kddi_regions = (jp)
 $kddi_color = #E35205;
+$mtn_regions = (za)
+$mtn_color = #CD6723;
 
 
 [data-page-type~="homepage"] ul.feed {
@@ -624,6 +626,13 @@ $kddi_color = #E35205;
                 for region in $kddi_regions {
                     [data-region={region}]& {
                         background-color: rgba($kddi_color, 0.6);
+                    }
+                }
+            }
+            [data-carrier="mtn"]& {
+                for region in $mtn_regions {
+                    [data-region={region}]& {
+                        background-color: rgba($mtn_color, 0.6);
                     }
                 }
             }
