@@ -25,7 +25,7 @@ $arrow-side-padding = 10px;
 
 .desktop-promo-items[data-action="center"],
 .desktop-promo-items[data-action="left"] {
-    transition: 250ms;
+    transition: 500ms;
 }
 
 .desktop-promo-item {
@@ -37,7 +37,7 @@ $arrow-side-padding = 10px;
 }
 
 for $name in games productivity box soundcloud hexrace {
-    .desktop-promo-item-{$name} {
+    .desktop-promo-item[data-promo={$name}] {
         background-image: url(../img/promo/$name.png);
     }
 }
