@@ -82,6 +82,10 @@ function(_) {
         window.navigator.id = navigator.id = navigator.mozId;
     }
 
+    if (capabilities.device_type() === 'desktop') {
+        z.body.addClass('desktop');
+    }
+
     var start_time = performance.now();
 
     console.log('Dependencies resolved, starting init');
