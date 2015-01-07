@@ -1,6 +1,6 @@
 {% defer (url=endpoint, pluck='content_ratings') %}
   {% if this.rating %}
-    <div class="content-ratings-wrapper main infobox c {{ this.body }}">
+    <div class="content-ratings-wrapper {{ this.body }}">
       <div class="infobox-wrapper c">
         {# L10n: (es) Classificacao Indicativa. #}
         <h3>{{ _('Content Rating') }}</h3>
@@ -73,9 +73,9 @@
       <div class="full">
         {% set rating_detail_link = iarc.detail_links[this.body] %}
         {% if rating_detail_link %}
-          <a href="{{ rating_detail_link }}" class="button support" target="_blank">
-            {# L10n: (es) Classificacao Indicativa. #}
-            {{ _('Content Rating Details') }}</a>
+          <a href="{{ rating_detail_link }}" class="button" target="_blank">
+            {# L10n: (es) Classificacao Indicativa. Rating as in content rating. #}
+            {{ _('Rating Details') }}</a>
         {% endif %}
       </div>
     </div>

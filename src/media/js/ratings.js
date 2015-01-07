@@ -90,16 +90,11 @@ define('ratings',
         function onLoginSuccess() {
             if (open_rating) {
                 open_rating = false;
-                var $reviewButton = $('.write-review');
-                if ($reviewButton.attr('id') == 'edit-review') {
-                    // Load the edit view.
-                    z.page.trigger('navigate', $reviewButton.attr('href'));
+                var $reviewButton = $('.review-button');
+                if (caps.widescreen()) {
+                    initReviewModal();
                 } else {
-                    if (caps.widescreen()) {
-                        initReviewModal()
-                    } else {
-                        z.page.trigger('navigate', $reviewButton.attr('href'));
-                    }
+                    z.page.trigger('navigate', $reviewButton.attr('href'));
                 }
             }
         }
@@ -121,15 +116,15 @@ define('ratings',
             e.stopPropagation();
 
             // Add review modal (for edit or add).
-            if (this.id === 'edit-review') {
+            if (this.hasAttribute('data-edit-review')) {
                 var endpoint = urls.api.params('reviews', {
                     app: $('.product').data('slug'),
                     user: 'mine'
                 });
-                $('.write-review').html(gettext('Loading...'));
+                $('.review-button').html(gettext('Loading...'));
                 requests.get(endpoint).done(function(existingReview) {
                     initReviewModal(existingReview.objects[0]);
-                    $('.write-review').html(gettext('Edit your Review'));
+                    $('.review-button').html(gettext('Edit your Review'));
                 });
             } else {
                 initReviewModal();
@@ -178,7 +173,7 @@ define('ratings',
         e.stopPropagation();  // Don't fire if action was matched.
     }))
 
-    .on('click', '.write-review', addReview)
+    .on('click', '.review-button', addReview)
 
     .on('loaded', function() {
         // Hijack <select> with stars.

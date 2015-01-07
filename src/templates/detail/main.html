@@ -199,22 +199,22 @@
             <ul>
               {% if user.logged_in() and this.user.has_rated %}
                 <li>
-                  <a id="edit-review" class="button" data-app="{{ slug }}"
-                     href="{{ url('app/ratings/edit', [slug]) }}">
+                  <a class="review-button button" data-app="{{ slug }}"
+                     href="{{ url('app/ratings/edit', [slug]) }}"
+                     data-edit-review>
                     {{ _('Edit your review') }}
                   </a>
                 </li>
               {% else %}
                 <li>
-                  <a id="add-review" class="button" data-app="{{ slug }}"
+                  <a class="review-button button" data-app="{{ slug }}"
                      href="{{ url('app/ratings/add', [slug]) }}">
-                     {{ _('Leave a review') if user.logged_in() else _('Sign in to review') }}
+                    {{ _('Leave a review') if user.logged_in() else _('Sign in to review') }}
                   </a>
                 </li>
               {% endif %}
               <li>
-                <a id="edit-review" class="button" data-app="{{ slug }}"
-                   href="{{ url('app/ratings', [slug]) }}">
+                <a class="button" href="{{ url('app/ratings', [slug]) }}">
                   {{ _('Read all reviews') }}
                 </a>
               </li>
@@ -246,11 +246,60 @@
 {% except %}
 {% end %}
 
-{% include "detail/content_ratings.html" %}
-
-<section class="main full">
-  <a class="button support" href="{{ url('app/abuse', [slug]) }}">
-    {{ _('Report Abuse') }}</a>
+<!--More information (detail/more-info.styl).-->
+<section class="main full app-more-info">
+  <div>
+    {% defer (url=endpoint, as='app', key=slug) %}
+      <div class="detail-flex-wrap">
+        <div class="detail-left-side">
+          <h3>{{ _('More Information') }}</h3>
+          <div class="app-more-metadata">
+            <dl>
+              <dt>{{ _('Developer') }}</dt>
+              <dd>{{ this.author }}</dd>
+            </dl>
+            <dl>
+              <dt>{{ _('Compatibility') }}</dt>
+              {% for device_type in this.device_types %}
+                {# L10n: delimiter to separate list of words (e.g., "eggs, ham, cheese"). #}
+                <dd data-delimiter="{{ _(',') }}">{{ DEVICE_CHOICES[device_type] }}</dd>
+              {% endfor %}
+            </dl>
+            <dl class="app-metadata-categories">
+              <dt>{{ _('Categories') }}</dt>
+              {% for category in CATEGORIES %}
+                {% if indexOf(this.categories, category.slug) != -1 %}
+                  {# L10n: delimiter to separate list of words (e.g., "eggs, ham, cheese"). #}
+                  <dd data-delimiter="{{ _(',') }}">{{ category.name }}</dd>
+                {% endif %}
+              {% endfor %}
+            </dl>
+            <dl>
+              {% if this.is_packaged and this.size %}
+                <dt>{{ _('Size') }}</dt>
+                <dd>{{ this.size }}</dd>
+              {% endif %}
+            </dl>
+            <dl>
+              <dt>{{ _('Most Recent Version') }}</dt>
+              <dd>{{ this.current_version }}</dd>
+            </dl>
+          </div>
+        </div>
+        <div class="detail-right-side">
+          {% include "detail/content_ratings.html" %}
+        </div>
+      </div>
+    {% except %}
+    {% end %}
+  </div>
 </section>
 
+<section class="main full app-report-abuse">
+  <div>
+    <a class="button cancel abuse" data-tracking="Report abuse">
+      {{ _('Report Abuse') }}
+    </a>
+  </div>
+</section>
 </div>

@@ -1,6 +1,6 @@
 {% macro review_prompt(slug, isModal, existingReview) %}
   {# Used for both adding and editing reviews, in page form and modal form. #}
-  <mkt-prompt class="review" {% if isModal %}data-modal="review"{% endif %}>
+  <mkt-prompt {% if isModal %}data-modal="review"{% endif %}>
     <form class="{{ existingReview and 'edit-review-form' or 'add-review-form' }}"
           {% if existingReview %}
             data-uri="{{ existingReview.resource_uri }}" data-slug="{{ slug }}"

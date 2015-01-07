@@ -1,10 +1,10 @@
 define('helpers_local',
-    ['apps', 'compatibility_filtering', 'content-ratings', 'feed', 'format',
-     'helpers', 'models', 'nunjucks', 'regions', 'settings', 'urls',
-     'user_helpers', 'utils_local', 'z'],
-    function(apps, compatibility_filtering, iarc, feed, format,
-             base_helpers, models, nunjucks, regions, settings, urls,
-             user_helpers, utils_local, z) {
+    ['apps', 'categories', 'compatibility_filtering', 'content-ratings',
+     'feed', 'format', 'helpers', 'models', 'nunjucks', 'regions', 'settings',
+     'urls', 'user_helpers', 'utils_local', 'z'],
+    function(apps, categories, compatibility_filtering, iarc,
+             feed, format, base_helpers, models, nunjucks, regions, settings,
+             urls, user_helpers, utils_local, z) {
     var filters = nunjucks.require('filters');
     var globals = nunjucks.require('globals');
 
@@ -57,6 +57,8 @@ define('helpers_local',
     }
 
     /* Global variables, provided in default context. */
+    globals.CATEGORIES = categories;
+    globals.DEVICE_CHOICES = compatibility_filtering.DEVICE_CHOICES;
     globals.feed = feed;
     globals.iarc_names = iarc.names;
     globals.NEWSLETTER_LANGUAGES = settings.NEWSLETTER_LANGUAGES;
