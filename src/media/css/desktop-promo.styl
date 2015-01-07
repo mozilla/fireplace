@@ -1,5 +1,6 @@
 @import "lib";
 
+$image-height = 320px;
 $image-width = 620px;
 $image-padding = 10px;
 $image-count = 5;
@@ -29,8 +30,16 @@ $arrow-side-padding = 10px;
 
 .desktop-promo-item {
     display: inline-block;
+    height: $image-height;
     margin: 0 $image-padding;
     position: relative;
+    width: $image-width;
+}
+
+for $name in games productivity box soundcloud hexrace {
+    .desktop-promo-item-{$name} {
+        background-image: url(../img/promo/$name.png);
+    }
 }
 
 .desktop-promo-placeholder-item {
