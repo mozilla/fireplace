@@ -240,9 +240,12 @@ body {
     width: auto;
 }
 
-.subheader h1 {
-    line-height: 37px;
-    padding: 10px;
+.subheader {
+    h1,
+    a {
+        line-height: 37px;
+        padding: 10px;
+    }
 }
 
 .secondary-header,
@@ -250,7 +253,7 @@ body {
     position: relative;
 
     h2, h3 {
-        color: $london-fog-gray;
+        color: $greyscale-black;
         font-weight: 300;
         margin-bottom: -3px;
         max-width: calc(unquote('100% - 75px'));
@@ -467,10 +470,11 @@ main:before {
         }
     }
     .subheader {
-        h1 {
-            padding: 0 10px;
-            margin: 40px 0 30px;
+        h1,
+        a {
             line-height: 1;
+            margin: 40px 0 30px;
+            padding: 0 10px;
         }
         &.cat-header h1 {
             margin: 25px 0 15px;
@@ -481,6 +485,7 @@ main:before {
         border: 0;
         height: $header-height;
         max-height: $header-height;
+        padding: 0;
         position: relative;
 
         &:before {
@@ -488,6 +493,15 @@ main:before {
         }
         h2 {
             margin: 0;
+            padding: 0;
+        }
+    }
+    header.secondary-header {
+        margin: 10px auto 20px;
+        width: $max-site-width;
+
+        h2 {
+            font-size: 30px;
         }
     }
     .featured-header {
@@ -600,7 +614,8 @@ main:before {
         // Offset #page padding.
         margin-top: -18px;
 
-        h1 {
+        h1,
+        a {
             padding: 0;
         }
     }

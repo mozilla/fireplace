@@ -22,6 +22,10 @@ define('helpers_local',
     ];
 
     /* Register filters. */
+    filters.date = function(date) {
+        return new Date(date).toLocaleDateString();
+    };
+
     filters.json = JSON.stringify;
     if (nunjucks.env) {
         // For damper when rendering templates outside builder.

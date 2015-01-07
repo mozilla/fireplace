@@ -1,0 +1,15 @@
+{# Large stars with "X Reviews" underneath. Used on detail page and
+   reviews page. #}
+
+{% if response.meta.total_count %}
+  <div class="reviews-summary-large">
+    {{ stars(response.info.average, detailpage=true) }}
+    <p>
+      {{ _plural(
+             '1 Review',
+             format(_('{numReviews} Reviews'),
+                    numReviews=numberfmt(response.meta.total_count)),
+         n=response.meta.total_count) }}
+    </p>
+  </div>
+{% endif %}

@@ -1,0 +1,34 @@
+{#
+    Little sidebar for reviews to show overall app review summary and review
+    buttons.
+#}
+{% if response.user.can_rate or not user.logged_in() or response.user.has_rated %}
+  <section class="review-buttons">
+    <ul>
+      {% if user.logged_in() and response.user.has_rated %}
+        <li>
+          <a class="button review-button" data-app="{{ slug }}" data-edit-review
+             data-text="{{ _('Edit your Review') }}"
+             href="{{ url('app/ratings/edit', [slug]) }}">
+            {{ _('Edit your review') }}
+          </a>
+        </li>
+      {% else %}
+        <li>
+          <a class="button review-button" data-app="{{ slug }}"
+             href="{{ url('app/ratings/add', [slug]) }}">
+             {{ _('Leave a review') if user.logged_in() else _('Sign in to review') }}
+          </a>
+        </li>
+      {% endif %}
+      {% if not is_review_listing %}
+        <li>
+          <a class="button" data-app="{{ slug }}"
+             href="{{ url('app/ratings', [slug]) }}">
+            {{ _('Read all reviews') }}
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </section>
+{% endif %}

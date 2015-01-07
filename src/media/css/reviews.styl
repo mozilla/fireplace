@@ -9,7 +9,6 @@ select[name=rating] {
 }
 
 .review {
-    color: $earl-gray;
     display: block;
     margin-bottom: 30px;
     position: relative;
@@ -28,7 +27,8 @@ select[name=rating] {
         font-size: 12px;
     }
     time {
-        float: right;
+        position: absolute;
+        right: 20px;
     }
     ul {
         list-style: none;
@@ -44,6 +44,9 @@ select[name=rating] {
             color: $cement-gray;
             content: "\00a0\00a0\2022\00a0\00a0";
         }
+    }
+    .review-body {
+        type_body();
     }
 }
 
@@ -96,81 +99,12 @@ select[name=rating] {
     padding: 0 10px 24px;
 }
 
-@media $base-desktop {
-    .reviews,
-    .detail .reviews {
-        padding: 0 15px 24px;
-    }
-    .reviews-wrapper {
-        // `font-size: 0` so we can do `display: inline-block` without
-        // having to worry about the whitespace between the <li>s.
-        font-size: 0;
-        margin: 0 -15px 24px;
-        padding: 0 3px;
-        position: relative;
-        width: calc(unquote('100% + 30px'));
-
-        li {
-            font-size: 15px;
-        }
-    }
-    .review {
-        display: inline-block;
-        padding: 0 12px;
-        vertical-align: top;
-        width: 50%;
-    }
-    .reviews-listing {
-        .reviews-wrapper {
-            margin-bottom: 0;
-        }
-        &.single-review {
-            margin-top: 24px;
-
-            .review {
-                width: 100%;
-            }
-        }
-    }
-    .reviews-listing {
-        background: #fff;
-        border: 1px solid $seavan-salt-white;
-        border-radius: 10px;
-
-        .loadmore {
-            padding: 24px 15px 0;
-        }
-    }
-    .primary-button {
-        margin: 0 0 -16px;
-        min-height: 48px;
-        position: relative;
-        right: 0;
-        text-align: right;
-        top: -40px;
-        z-index: 19;
-    }
-}
-
 .rating, .stars {
     height: 12px;
 }
 
-mkt-prompt[data-modal="review"] .simple-field.rating {
+mkt-prompt .simple-field.rating {
     margin: 0 0 50px;
-}
-
-.add-review {
-    .simple-field.rating {
-        height: inherit;
-        padding-top: 12px;
-    }
-    textarea {
-        margin-bottom: 10px;
-    }
-    footer {
-        margin-top: 15px;
-    }
 }
 
 .char-count {
@@ -184,7 +118,6 @@ mkt-prompt[data-modal="review"] .simple-field.rating {
 
     display: inline-block;
     hidetext();
-    margin-right: 4px;
     vertical-align: top;
     width: 64px;
     &.stars-4 { background-position: -13px 0; }
@@ -209,6 +142,7 @@ mkt-prompt[data-modal="review"] .simple-field.rating {
     &.stars-3 { background-position: -88px 0; }
     &.stars-2 { background-position: -132px 0; }
     &.stars-1 { background-position: -176px 0; }
+
     label {
         height: 40px;
         width: 44px;
@@ -239,10 +173,6 @@ mkt-prompt[data-modal="review"] .simple-field.rating {
             color: $white;
         }
     }
-}
-
-.split + .split {
-    margin-top: 15px;
 }
 
 .simple-field.rating {
@@ -298,33 +228,13 @@ mkt-prompt[data-modal="flag-review"] {
     }
 }
 
-.primary-button {
-    padding: 15px 10px;
-    width: 100%;
-
-    .button {
-        display: block;
-        max-width: 400px;
-        margin: 0 auto;
-    }
-}
-
 .reviews-listing {
-    .reviews-wrapper {
-        margin-bottom: 0;
-    }
-    .review {
-        background: #fff;
-        border: 1px solid $seavan-salt-white;
-        border-radius: 5px;
-        margin-bottom: 10px;
+    h3 {
+        _h3();
     }
     .actions {
         float: right;
         font-size: 0;
-    }
-    time {
-        padding-right: 10px;
     }
     .loadmore {
         // 15px above and below reviews.
@@ -335,6 +245,9 @@ mkt-prompt[data-modal="flag-review"] {
 @media $base-tablet {
     .review .stars {
         right: 20px;
+    }
+    .reviews-listing h3 {
+        margin-bottom: 30px;
     }
 }
 
@@ -353,47 +266,6 @@ mkt-prompt[data-modal="flag-review"] {
     .reviews {
         padding: 0 15px 24px;
     }
-    #edit-review {
-        form {
-            padding: 5px 25px;
-
-            textarea {
-                min-height: 110px;
-                padding-top: 40px;
-                width: 385px;
-                font-size: 13px;
-            }
-        }
-        footer button {
-            width: auto;
-            margin: 0 0 0 10px;
-        }
-        .form-footer {
-            margin-bottom: 15px;
-
-            .char-count {
-                display: inline-block;
-            }
-        }
-    }
-    .split {
-        float: left;
-        padding: 0 12px 0 0;
-        width: 50%;
-
-        + .split {
-            margin-top: 0;
-            padding: 0 0 0 12px;
-        }
-    }
-    .primary-button {
-        padding: 0;
-        width: inherit;
-
-        .button {
-            display: inline-block;
-        }
-    }
     .reviews-listing {
         .actions {
             float: left;
@@ -401,5 +273,35 @@ mkt-prompt[data-modal="flag-review"] {
         .review {
             border: 0;
         }
+    }
+    .reviews,
+    .detail .reviews {
+        padding: 0 15px 24px;
+    }
+    .reviews-wrapper {
+        // `font-size: 0` so we can do `display: inline-block` without
+        // having to worry about the whitespace between the <li>s.
+        font-size: 0;
+        margin: 0 -15px 24px;
+        padding: 0 3px;
+        position: relative;
+        width: calc(unquote('100% + 30px'));
+
+        li {
+            font-size: 15px;
+        }
+    }
+    .review {
+        display: inline-block;
+        margin-bottom: 60px;
+        padding: 0 12px;
+        vertical-align: top;
+        width: 50%;
+    }
+    .reviews-listing .reviews-wrapper {
+        margin-bottom: 0;
+    }
+    .reviews-listing .loadmore {
+        padding: 24px 15px 0;
     }
 }

@@ -1,6 +1,6 @@
 {% include "_macros/emaillink.html" %}
 {% include "_macros/app_tile.html" %}
-{% include "_macros/rating.html" %}
+{% include "_macros/review.html" %}
 {% include "_macros/stars.html" %}
 
 {% set endpoint = api('app', [slug]) %}
@@ -169,58 +169,21 @@
       <div class="detail-left-side">
         <h3>{{ _('Reviews') }}</h3>
 
-        {% if this.meta.total_count %}
-          <div class="reviews-summary-large">
-            {{ stars(this.info.average, detailpage=true) }}
-            <p>
-              {{ _plural(
-                     '1 Review',
-                     format(_('{numReviews} Reviews'),
-                            numReviews=numberfmt(this.meta.total_count)),
-                 n=this.meta.total_count) }}
-            </p>
-          </div>
-        {% endif %}
+        {% include "_includes/reviews_summary.html" %}
 
         {% if this.meta.total_count %}
           <ul class="reviews-wrapper">
-            {% for review in this.objects.slice(0, 6) %}
-              {{ rating(review, detailpage=true, current_version=this.info.current_version) }}
+            {% for _review in this.objects.slice(0, 6) %}
+              {{ review(_review, detailpage=true, current_version=this.info.current_version) }}
             {% endfor %}
           </ul>
         {% else %}
           <p class="not-rated">{{ _('App not yet reviewed') }}</p>
         {% endif %}
-     </div>
+      </div>
 
-     <div class="detail-right-side">
-        {% if this.user.can_rate or not user.logged_in() or this.user.has_rated %}
-          <section class="review-buttons">
-            <ul>
-              {% if user.logged_in() and this.user.has_rated %}
-                <li>
-                  <a class="review-button button" data-app="{{ slug }}"
-                     href="{{ url('app/ratings/edit', [slug]) }}"
-                     data-edit-review>
-                    {{ _('Edit your review') }}
-                  </a>
-                </li>
-              {% else %}
-                <li>
-                  <a class="review-button button" data-app="{{ slug }}"
-                     href="{{ url('app/ratings/add', [slug]) }}">
-                    {{ _('Leave a review') if user.logged_in() else _('Sign in to review') }}
-                  </a>
-                </li>
-              {% endif %}
-              <li>
-                <a class="button" href="{{ url('app/ratings', [slug]) }}">
-                  {{ _('Read all reviews') }}
-                </a>
-              </li>
-            </ul>
-          </section>
-        {% endif %}
+      <div class="detail-right-side">
+        {% include "_includes/reviews_sidebar.html" %}
       </div>
     </div>
   {% placeholder %}
