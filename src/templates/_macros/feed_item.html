@@ -5,30 +5,6 @@
 {% from '_macros/stars.html' import stars %}
 
 
-{% macro mini_tile(app, price_only, src) %}
-  {# price_only_btns -- only show price as the label, don't show "Installed"/"Open". #}
-
-  <li class="app mini-tile">
-    <a href="{{ url('app', [app.slug])|urlparams(src=src or 'feed') }}" class="app-link c">
-      {{ deferred_icon(app.icons[64], app.name|translate(app)) }}
-      <div class="info">
-        <h3 class="app-name elliflow" title="{{ app.name|translate(app) }}">{{ app.name|translate(app) }}</h3>
-        <div class="author elliflow vital subdetail" title="{{ app.author }}">{{ app.author }}</div>
-        <div class="rating vital{{ ' unrated' if not app.ratings.count }}" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-          {% if app.ratings.average %}
-            {{ stars(app.ratings.average) }}
-          {% else %}
-            <span class="cnt long">{{ _('Not yet rated') }}</span>
-          {% endif %}
-        </div>
-      </div>
-      {{ market_button(app,
-                       data_attrs={'manifest_url': app.manifest_url, 'slug': app.slug},
-                       price_only=price_only) if app.slug }}
-    </a>
-  </li>
-{% endmacro %}
-
 {% macro feed_app(feed_app) %}
   {% set color = feed_app.background_color %}
   {% set desc = feed_app.description|translate(feed_app) %}
@@ -78,19 +54,16 @@
 
   <section class="feed-brand feed-layout-{{ 'list' if landing else brand.layout }}
                   multi-app-tile mkt-tile c"
-           data-brand-type="{{ brand.type }}" data-tracking-slug="{{ brand.slug }}">
-    <div class="feed-tile-header-wrap">
-      <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src=src) }}"
-         class="fanchor">
-        <h1 class="feed-tile-header" data-brand-color="{{ color }}">
-          {{ feed.get_brand_type(brand.type, brand.apps.length) }}
-        </h1>
-      </a>
-    </div>
-    <ul class="app-list">
+           data-tracking-slug="{{ brand.slug }}">
+    <a class="brand-header"
+       data-brand-color="{{ color }}" data-brand-type="{{ brand.type }}"
+       href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src=src) }}">
+      <h3>{{ feed.get_brand_type(brand.type, brand.apps.length) }}</h3>
+    </a>
+    <ul>
       {% for app in brand.apps %}
         {% if landing or (loop.index0 < max_apps) %}
-          {{ mini_tile(app, price_only=not landing and brand.layout == 'grid', src=src) }}
+          {{ app_tile(app, src=src) }}
         {% endif %}
       {% endfor %}
     </ul>
@@ -99,7 +72,7 @@
     {% if not landing and ((brand.app_count > 3 and brand.app_count < 6) or
                             brand.app_count > 6) %}
       <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src=src) }}"
-         class="view-all">
+         class="feed-view-all">
         {{ _('View all apps') }}
       </a>
     {% endif %}
@@ -119,8 +92,7 @@
   {% set color = coll.background_color %}
   {% set desc = coll.description|translate(coll) %}
 
-  <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}"
-     class="fanchor">
+  <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}">
     <section class="feed-item feed-collection full {{ 'mega' if desc and not landing }}
                     {{ 'has-desc' if desc }}
                     {{ 'has-background deferred-background' if coll.background_image }}
@@ -165,19 +137,17 @@
                   feed-layout-{{ 'list' if landing else 'grid' }}
                   multi-app-tile mkt-tile c"
            data-tracking-slug="{{ coll.slug }}">
-    <div class="feed-tile-header-wrap">
-      <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}"
-         class="fanchor">
-        <h1 class="feed-tile-header">{{ coll.name|translate(coll)|safe }}</h1>
-      </a>
-    </div>
+    <a class="collection-listing-header"
+       href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}">
+      <h3>{{ coll.name|translate(coll)|safe }}</h3>
+    </a>
     {% if coll.description %}
       <p class="desc">{{ coll.description|translate(coll)|safe }}</p>
     {% endif %}
-    <ul class="app-list">
+    <ul>
       {% for app in coll.apps %}
         {% if landing or loop.index0 < max_apps %}
-          {{ mini_tile(app, price_only=not landing, src='collection-element') }}
+          {{ app_tile(app, src='collection-element') }}
         {% endif %}
       {% endfor %}
     </ul>
@@ -186,7 +156,7 @@
     {% if not landing and ((coll.app_count > 3 and coll.app_count < 6) or
                             coll.app_count > 6) %}
       <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src=src) }}"
-         class="view-all">
+         class="feed-view-all">
         {{ _('View all apps') }}
       </a>
     {% endif %}
@@ -197,7 +167,7 @@
 {% macro feed_shelf(shelf, landing) %}
   <a href="{{ url('feed/feed_shelf', [shelf.slug])|
               urlparams(src='operator-shelf-element') }}"
-     class="op-shelf fanchor" data-tracking-slug="{{ shelf.slug }}">
+     class="op-shelf" data-tracking-slug="{{ shelf.slug }}">
     <section class="feed-item shelf deferred-background {{ 'shelf-landing' if landing }}"
              style="background-image: url({{ PLACEHOLDER_ICON }})"
              data-src="{{ shelf.background_image_landing if landing else shelf.background_image }}"
@@ -230,10 +200,10 @@
             {% for group in feed.group_apps(coll.apps) %}
               <div class="detail-item">
                 <section class="feed-layout-grid multi-app-tile mkt-tile grouped c">
-                  <h1 class="feed-tile-header grouped">{{ group.name }}</h1>
-                  <ul class="app-list">
+                  <h1 class="feed-item-header grouped">{{ group.name }}</h1>
+                  <ul>
                     {% for app in group.apps %}
-                      {{ mini_tile(app, price_only=not landing) }}
+                      {{ app_tile(app) }}
                     {% endfor %}
                   </ul>
                 </section>
