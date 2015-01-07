@@ -10,27 +10,25 @@ select[name=rating] {
 
 .review {
     color: $earl-gray;
+    display: block;
+    margin-bottom: 30px;
     position: relative;
+    width: 100%;
 
+    .stars {
+        position: absolute;
+        right: 0;
+        top: 1px;
+    }
     .timestamp {
         font-size: 12px;
     }
-    .byline {
-        position: relative;
-        top: -3px;
-    }
-    .byline, .byline strong {
-        font-weight: 500;
-        line-height: 9px;
-    }
-    .actions li, time {
+    .review-actions li,
+    time {
         font-size: 12px;
     }
     time {
         float: right;
-    }
-    .body {
-        color: $castle-skull-gray;
     }
     ul {
         list-style: none;
@@ -49,7 +47,19 @@ select[name=rating] {
     }
 }
 
-.reviews-listing .body {
+.review-author {
+    display: inline-block;
+    ellipsis();
+    max-width: unquote('calc(100% - 84px)');  // 64px stars and 20px margin.
+}
+
+.review-previous-version {
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.review-body {
+    color: $greyscale-black;
     margin-bottom: 10px;
 }
 
@@ -65,7 +75,7 @@ select[name=rating] {
     }
 }
 
-.ratings-placeholder-inner {
+.reviews-wrapper {
     margin-bottom: 24px;
 }
 
@@ -87,10 +97,11 @@ select[name=rating] {
 }
 
 @media $base-desktop {
-    .reviews, .detail .reviews {
+    .reviews,
+    .detail .reviews {
         padding: 0 15px 24px;
     }
-    .ratings-placeholder-inner {
+    .reviews-wrapper {
         // `font-size: 0` so we can do `display: inline-block` without
         // having to worry about the whitespace between the <li>s.
         font-size: 0;
@@ -98,12 +109,11 @@ select[name=rating] {
         padding: 0 3px;
         position: relative;
         width: calc(unquote('100% + 30px'));
+
         li {
             font-size: 15px;
         }
     }
-    // On detail/review listing pages:
-    // [ 15px ] { review } [ 24px ] { review } [ 15px ]
     .review {
         display: inline-block;
         padding: 0 12px;
@@ -111,11 +121,8 @@ select[name=rating] {
         width: 50%;
     }
     .reviews-listing {
-        .ratings-placeholder-inner {
+        .reviews-wrapper {
             margin-bottom: 0;
-        }
-        .review {
-            padding-top: 24px;
         }
         &.single-review {
             margin-top: 24px;
@@ -125,7 +132,6 @@ select[name=rating] {
             }
         }
     }
-
     .reviews-listing {
         background: #fff;
         border: 1px solid $seavan-salt-white;
@@ -135,7 +141,6 @@ select[name=rating] {
             padding: 24px 15px 0;
         }
     }
-
     .primary-button {
         margin: 0 0 -16px;
         min-height: 48px;
@@ -305,7 +310,7 @@ mkt-prompt[data-modal="flag-review"] {
 }
 
 .reviews-listing {
-    .ratings-placeholder-inner {
+    .reviews-wrapper {
         margin-bottom: 0;
     }
     .review {
@@ -313,7 +318,6 @@ mkt-prompt[data-modal="flag-review"] {
         border: 1px solid $seavan-salt-white;
         border-radius: 5px;
         margin-bottom: 10px;
-        padding: 15px 10px;
     }
     .actions {
         float: right;
@@ -328,8 +332,10 @@ mkt-prompt[data-modal="flag-review"] {
     }
 }
 
-.detail .review + .review {
-    margin-top: 24px;
+@media $base-tablet {
+    .review .stars {
+        right: 20px;
+    }
 }
 
 @media $base-desktop {
@@ -370,7 +376,6 @@ mkt-prompt[data-modal="flag-review"] {
             }
         }
     }
-    // ratings
     .split {
         float: left;
         padding: 0 12px 0 0;
@@ -394,7 +399,6 @@ mkt-prompt[data-modal="flag-review"] {
             float: left;
         }
         .review {
-            padding-top: 24px;
             border: 0;
         }
     }
