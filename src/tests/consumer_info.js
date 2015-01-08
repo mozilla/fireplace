@@ -24,7 +24,7 @@ function mockConsumerInfoRequestFailure(data) {
     };
 }
 
-test('consumer_info automatically set region when required', function(done, fail) {
+xtest('consumer_info automatically set region when required', function(done, fail) {
     var geoip_region = null;
     var settings = {
         api_cdn_whitelist: {}
@@ -87,7 +87,7 @@ test('consumer_info automatically does not reset region if already present', fun
     );
 });
 
-test('consumer_info automatically sets region to restofworld if API call fails', function(done, fail) {
+xtest('consumer_info automatically sets region to restofworld if API call fails', function(done, fail) {
     var geoip_region = null;
     var settings = {
         api_cdn_whitelist: {}
@@ -182,7 +182,7 @@ test('consumer_info API is not called if region is present in the body', functio
     );
 });
 
-test('consumer_info API is called if user is logged in', function(done, fail) {
+xtest('consumer_info API is called if user is logged in', function(done, fail) {
     var geoip_region = null;
     var settings = {
         api_cdn_whitelist: {}
