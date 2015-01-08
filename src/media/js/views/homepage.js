@@ -57,12 +57,12 @@ define('views/homepage',
         var promoItems = [
             {
                 name: 'games',
-                url: urls.reverse('feed/feed_collection', ['great-strategy-games']),
+                url: urls.reverse('feed/feed_collection', ['games-ent-appsdesktop']),
                 text: gettext('Games & Entertainment Apps -- Desktop Essentials'),
             },
             {
                 name: 'productivity',
-                url: urls.reverse('feed/feed_collection', ['essential-utilities']),
+                url: urls.reverse('feed/feed_collection', ['productivity-appsdesktop']),
                 text: gettext('Productivity Apps -- Desktop Essentials'),
             },
             {
