@@ -22,6 +22,7 @@ define(
         'flipsnap',
         'forms',
         'image-deferrer',
+        'image-deferrer-mkt',
         'l10n',
         'lightbox',
         'log',
@@ -290,30 +291,6 @@ function(_) {
         console.log('← button pressed');
         require('navigation').back();
     });
-
-    var ImageDeferrer = require('image-deferrer');
-    var iconDeferrer = ImageDeferrer.Deferrer(100, null);
-    var screenshotDeferrer = ImageDeferrer.Deferrer(null, 200);
-    z.page.one('loaded', function() {
-        iconDeferrer.setImages($('.icon.deferred'));
-        screenshotDeferrer.setImages($('.screenshot .deferred, .deferred-background'));
-    }).on('loaded loaded_more navigate fragment_loaded', function() {
-        iconDeferrer.refresh();
-        screenshotDeferrer.refresh();
-    });
-    require('nunjucks').require('globals').imgAlreadyDeferred = function(src) {
-        /*
-            If an image already has been loaded, we use this helper in case the
-            view is triggered to be rebuilt. When pages are rebuilt, we don't
-            mark images to be deferred if they have already been loaded.
-            This fixes images flashing back to the placeholder image when
-            switching between the New and Popular tabs on the home page.
-        */
-        var iconsLoaded = iconDeferrer.getSrcsAlreadyLoaded();
-        var screenshotsLoaded = screenshotDeferrer.getSrcsAlreadyLoaded();
-        var loaded = iconsLoaded.concat(screenshotsLoaded);
-        return loaded.indexOf(src) !== -1;
-    };
 
     window.addEventListener(
         'resize',

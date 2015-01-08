@@ -6,16 +6,59 @@
 .collection-listing-header {
     // Header for listing collections on the homepage.
     background: $action-positive;
-    bottom: 15px;
     display: block;
     height: 48px;
     padding-top: 15px;
     position: relative;
-    right: 10px;
     text-align: center;
-    width: unquote('calc(100% + 20px)');
 
     h3 {
         color: $white;
+        font-size: 20px;
+        font-weight: 200;
+        line-height: 20px;
+    }
+}
+
+[data-page-type~="homepage"] .collection-listing-header {
+    bottom: 15px;
+    right: 10px;
+    width: unquote('calc(100% + 20px)');
+}
+
+.collection-landing-header .collection-listing-header {
+    width: 100%;
+}
+
+.feed-collection-listing .desc {
+    margin-top: 0;
+    padding: 10px 0 20px;
+}
+
+.collection-group-header {
+    _h3();
+    padding: 15px 0 5px;
+}
+
+.collection-landing-header-mobile {
+    width: 100%;
+
+    .feed-collection {
+        display: block;
+        margin: 0 auto;
+        width: $mobile-content-width;
+    }
+}
+
+.collection-landing-header-desktop {
+    display: none;
+}
+
+@media $base-tablet {
+    .collection-landing-header-mobile {
+        display: none;
+    }
+    .collection-landing-header-desktop {
+        display-flex();
     }
 }

@@ -21,19 +21,6 @@ $desktop-tile-padding = 20px 50px;
     .feed .feed-layout-list > .info {
         margin-left: 0;
     }
-
-    .feed-tile-header:before {
-        background-color: $breezy-blue;
-    }
-    [data-type="popular"] .feed-tile-header:before {
-        background-image: url(../img/icons/popular.png);
-    }
-    [data-type="new"] .feed-tile-header:before {
-        background-image: url(../img/icons/new.png);
-    }
-    [data-type="reco"] .feed-tile-header:before {
-        background-image: url(../img/icons/popular.png);
-    }
 }
 
 .app-list {
@@ -41,8 +28,10 @@ $desktop-tile-padding = 20px 50px;
     margin-top: 30px;
 
     li:not(.loadmore) {
-        border-bottom: 1px solid $filters-border;
         padding-top: 15px;
+    }
+    li:not(.loadmore):not(:last-child) {
+        border-bottom: 1px solid $filters-border;
     }
 }
 

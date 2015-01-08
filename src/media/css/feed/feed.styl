@@ -150,23 +150,7 @@ $mtn_color = #CD6723;
     bottom: 20px;
 }
 
-.feed-collection-listing .desc {
-    margin-top: 0;
-    padding: 10px 0 20px;
-}
-
 @media $base-desktop {
-    .feed.collection-landing {
-        section.feed-brand,
-        section.feed-collection-listing {
-            background: transparent;
-            box-shadow: none;
-            max-width: $desktop-content;
-        }
-        .feed-layout-list {
-            padding: 0;
-        }
-    }
     // Op shelf landing.
     .shelf-landing {
         .detail-item.header-block,
@@ -223,7 +207,7 @@ $mtn_color = #CD6723;
         height: 53px;
         left: -50px;
         position: absolute;
-        top: 30px;
+        top: 23px;
         width: 400px;
         z-index: 10;
     }
@@ -402,10 +386,6 @@ section.full.feed-item {
 }
 
 .feed-landing {
-    &:not(.collection-landing-listing) {
-        padding-top: 0;
-    }
-    &.collection-landing .feed-item,
     &.shelf-landing .feed-item {
         position: relative;
 
@@ -423,13 +403,11 @@ section.full.feed-item {
             height: 315px;
         }
     }
-    &.shelf-landing,
-    &.collection-landing {
+    &.shelf-landing {
         .feed-item {
             margin-bottom: 0;
 
             &.full:not(.has-desc) {
-                border-radius: 5px;
                 margin-bottom: $vertical-tile-margin;
             }
         }
@@ -462,24 +440,6 @@ section.full.feed-item {
             margin-top: 0;
         }
     }
-    .feed-item {
-        border-radius: 0;
-    }
-}
-
-@media $base-desktop {
-    .collection-landing-listing .desc {
-        border-radius: 5px;
-    }
-    .collection-landing-promo,
-    .shelf-landing {
-        section.feed-item {
-            border-radius: 5px 5px 0 0;
-        }
-        p.desc {
-            border-radius: 0 0 5px 5px;
-        }
-    }
 }
 
 .collection-landing-promo,
@@ -498,20 +458,11 @@ section.full.feed-item {
 }
 
 @media (max-width: 321px) {
-    .collection-landing,
     .shelf-landing {
         .header-block,
         .feed-item {
             margin-left: 0;
             width: $feed-column-width;
-        }
-    }
-}
-@media (min-width: 321px) {
-    .collection-landing,
-    .shelf-landing {
-        .header-block .desc {
-            border-radius: 0 0 5px 5px;
         }
     }
 }

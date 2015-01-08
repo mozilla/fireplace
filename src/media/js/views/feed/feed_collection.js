@@ -15,8 +15,6 @@ define('views/feed/feed_collection', ['jquery', 'l10n', 'utils', 'utils_local', 
 
         builder.onload('feed-collection', function(feed_collection) {
             builder.z('title', utils.translate(feed_collection.name));
-            utils_local.initSalvattore(
-                document.querySelector('.collection-landing [data-columns]'));
         });
     };
 });
