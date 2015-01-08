@@ -39,44 +39,65 @@
   </a>
 {% endmacro %}
 
+{% macro brand_header(brand) %}
+  <a class="brand-header"
+     data-brand-color="{{ feed.get_brand_color_class(brand) }}"
+     data-brand-type="{{ brand.type }}"
+     href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src=src) }}">
+    <h3>{{ feed.get_brand_type(brand.type, brand.apps.length) }}</h3>
+  </a>
+{% endmacro %}
+
+{% macro feed_brand_landing(brand) %}
+  <div class="brand-landing-header">
+    <div class="brand-landing-header-mobile">
+      {{ brand_header(brand) }}
+    </div>
+    <div class="brand-landing-header-desktop">
+      <div class="brand-landing-icon"
+           data-brand-color="{{ feed.get_brand_color_class(brand) }}"
+           data-brand-type="{{ brand.type }}">
+        <h3></h3>
+      </div>
+      <h1>{{ feed.get_brand_type(brand.type, brand.apps.length) }}</h1>
+    </div>
+  </div>
+
+  <section class="main full brand-landing">
+    <div>
+      <ul class="app-list">
+        {% for app in brand.apps %}
+          <li>{{ app_tile(app, src='branded-editorial-element') }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endmacro %}
+
 {% macro feed_brand(brand) %}
   {% set src = 'branded-editorial-element' %}
-  {% set color = feed.get_brand_color_class(brand) %}
 
   {# Only show 6 or <= 3 apps on the feed. #}
-  {% if landing %}
-    {% set max_apps = brand.app_count %}
-  {% elif brand.app_count < 6 %}
-    {% set max_apps = 3 %}
-  {% else %}
-    {% set max_apps = 6 %}
-  {% endif %}
+  {% set max_apps = 3 if brand.app_count else 6 %}
 
-  <section class="feed-brand feed-layout-{{ 'list' if landing else brand.layout }}
-                  multi-app-tile mkt-tile c"
+  <section class="feed-brand feed-layout-{{ brand.layout }} multi-app-tile c"
            data-tracking-slug="{{ brand.slug }}">
-    <a class="brand-header"
-       data-brand-color="{{ color }}" data-brand-type="{{ brand.type }}"
-       href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src=src) }}">
-      <h3>{{ feed.get_brand_type(brand.type, brand.apps.length) }}</h3>
-    </a>
+    {{ brand_header(brand) }}
     <ul>
       {% for app in brand.apps %}
-        {% if landing or (loop.index0 < max_apps) %}
+        {% if loop.index0 < max_apps %}
           {{ app_tile(app, src=src) }}
         {% endif %}
       {% endfor %}
     </ul>
 
     {# Show the 'View all' link if there are 4-5 or 7+ apps in the brand.' #}
-    {% if not landing and ((brand.app_count > 3 and brand.app_count < 6) or
-                            brand.app_count > 6) %}
+    {% if brand.app_count > 3 and brand.app_count != 6 %}
       <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src=src) }}"
          class="view-all-tab feed-view-all-tab">
         {{ _('View all apps') }}
       </a>
     {% endif %}
-
   </section>
 {% endmacro %}
 
