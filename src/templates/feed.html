@@ -4,6 +4,9 @@
 
 {% if showPromo %}
   {% include 'desktop-promo.html' %}
+
+  <div class="desktop-promo-separator"></div>
+  <p class="desktop-promo-separator-text">{{ _('The Best of Marketplace') }}</p>
 {% endif %}
 
 {% defer (url=anonApi('feed')|urlparams(limit=10), id='feed-items') %}
