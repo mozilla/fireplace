@@ -54,8 +54,38 @@ define('views/homepage',
         }
 
         var isDesktop = capabilities.device_type() === 'desktop';
+        var promoItems = [
+            {
+                name: 'games',
+                url: urls.reverse('feed/feed_collection', ['great-strategy-games']),
+                text: gettext('Games & Entertainment Apps -- Desktop Essentials'),
+            },
+            {
+                name: 'productivity',
+                url: urls.reverse('feed/feed_collection', ['essential-utilities']),
+                text: gettext('Productivity Apps -- Desktop Essentials'),
+            },
+            {
+                name: 'box',
+                url: urls.reverse('app', ['box']),
+                text: gettext('Store and share any type of file with Box.'),
+            },
+            {
+                name: 'soundcloud',
+                url: urls.reverse('app', ['soundcloud']),
+                text: gettext('Discover, share, and enjoy music with SoundCloud.'),
+            },
+            {
+                name: 'hexrace',
+                url: urls.reverse('app', ['hexgl-1']),
+                text: gettext('Play Hex Race -- a thrill ride from the future!'),
+            },
+        ] .map(function (item) {
+          item.url = utils.urlparams(item.url, {src: 'desktop-promo'});
+          return item;
+        });
 
-        builder.start('feed.html', {showPromo: isDesktop});
+        builder.start('feed.html', {showPromo: isDesktop, promoItems: promoItems});
 
         if (isDesktop) {
             mktCarousel.initialize();

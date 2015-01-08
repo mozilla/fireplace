@@ -28,8 +28,7 @@ define('mkt-carousel', ['defer'], function (defer) {
         var desktopPromo = root.querySelector('.desktop-promo-items');
         var promoItems = Array.prototype.slice.call(desktopPromo.children);
         var placeholderItems = promoItems.map(function(item) {
-            var placeholder = item.cloneNode();
-            placeholder.innerHTML = item.innerHTML;
+            var placeholder = item.cloneNode(true);
             placeholder.classList.add('desktop-promo-placeholder-item');
             desktopPromo.appendChild(placeholder);
             return placeholder;
