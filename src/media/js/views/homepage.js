@@ -1,8 +1,10 @@
 define('views/homepage',
-    ['jquery', 'format', 'l10n', 'log', 'nunjucks', 'requests',
-     'salvattore', 'urls', 'utils', 'utils_local', 'z'],
-    function($, format, l10n, log, nunjucks, requests,
-             salvattore, urls, utils, utils_local, z) {
+    ['jquery', 'capabilities', 'format', 'l10n', 'log', 'mkt-carousel',
+     'nunjucks', 'requests', 'salvattore', 'urls', 'utils', 'utils_local',
+     'z'],
+    function($, capabilities, format, l10n, log, mktCarousel,
+             nunjucks, requests, salvattore, urls, utils, utils_local,
+             z) {
     'use strict';
     var logger = log('homepage');
     var gettext = l10n.gettext;
@@ -51,7 +53,13 @@ define('views/homepage',
             delete params.src;
         }
 
-        builder.start('feed.html', {});
+        var isDesktop = capabilities.device_type() === 'desktop';
+
+        builder.start('feed.html', {showPromo: isDesktop});
+
+        if (isDesktop) {
+            mktCarousel.initialize();
+        }
 
         builder.onload('feed-items', function(data) {
             utils_local.initSalvattore(document.querySelector('.home-feed'));

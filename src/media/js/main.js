@@ -19,6 +19,7 @@ define(
         'consumer_info',
         'compatibility_filtering_select',
         'content-ratings',
+        'flipsnap',
         'forms',
         'image-deferrer',
         'l10n',
@@ -57,6 +58,7 @@ function(_) {
     var buttons = require('apps_buttons');
     var capabilities = require('capabilities');
     var consumer_info = require('consumer_info');
+    var flipsnap = require('flipsnap');
     var format = require('format');
     var $ = require('jquery');
     var settings = require('settings');
@@ -78,6 +80,10 @@ function(_) {
     if (capabilities.firefoxOS && 'mozId' in navigator && navigator.mozId !== null) {
         console.log('Native Persona is available');
         window.navigator.id = navigator.id = navigator.mozId;
+    }
+
+    if (capabilities.device_type() === 'desktop') {
+        z.body.addClass('desktop');
     }
 
     var start_time = performance.now();
