@@ -16,13 +16,13 @@ function MockNavigator(no_package) {
         def.done(function(result) {
             robj.result = result;
             if (robj.onsuccess) {
-                robj.onsuccess.apply(this);
+                robj.onsuccess.call(robj);
             }
         }).fail(function(result) {
             robj.result = result;
-            this.error = {name: 'Test Error'};
+            robj.error = {name: 'Test Error'};
             if (robj.onerror) {
-                robj.onerror.apply(this);
+                robj.onerror.call(robj);
             }
         });
         return robj;
@@ -37,6 +37,7 @@ function MockNavigator(no_package) {
     }
 }
 
+
 function MockApp(manifestURL, downloadAvailable) {
     var def = this.def = defer.Deferred();
     this.manifestURL = manifestURL;
@@ -44,7 +45,6 @@ function MockApp(manifestURL, downloadAvailable) {
     var app = this;
 
     function mockMethod() {
-        console.error('mockMethod on app');
         var robj = {
             result: null
         };
@@ -52,19 +52,28 @@ function MockApp(manifestURL, downloadAvailable) {
             robj.result = result;
             app.downloadAvailable = downloadAvailable;
             if (robj.onsuccess) {
-                robj.onsuccess.apply(this);
+                robj.onsuccess.call(robj);
             }
             if (app.ondownloadsuccess) {
-                app.ondownloadsuccess.apply(this);
+                app.ondownloadsuccess.call(robj);
             }
         }).fail(function(result) {
             robj.result = result;
-            this.error = {name: 'Test Error'};
+            robj.error = {name: 'Test Error'};
             if (robj.onerror) {
-                robj.onerror.apply(this);
+                robj.onerror.call(robj);
             }
             if (app.ondownloaderror) {
-                app.ondownloaderror.apply(this);
+                // ondownloaderror is a litte tricky, it does not provides a
+                // .error property, instead we look for the error name in
+                // e.application.downloadError.name, so mock that.
+                app.ondownloaderror.call(app, {
+                    application: {
+                        downloadError: {
+                            name: 'Test Error'
+                        }
+                    }
+                });
             }
         });
         return robj;
@@ -86,7 +95,8 @@ test('installer_direct.install', function(done, fail) {
             installer_direct.install(product, {navigator: nav}).done(done);
 
             nav.def.resolve({installState: 'installed'});
-        }
+        },
+        fail
     );
 });
 
@@ -107,7 +117,8 @@ test('installer_direct.install delay', function(done, fail) {
             setTimeout(function() {
                 result.installState = 'installed';
             }, 400);
-        }
+        },
+        fail
     );
 });
 
@@ -123,7 +134,8 @@ test('installer_direct.install packaged', function(done, fail) {
             };
             installer_direct.install(product, {navigator: nav}).done(done);
             nav.def.resolve({installState: 'installed'});
-        }
+        },
+        fail
     );
 });
 
@@ -139,7 +151,8 @@ test('installer_direct.install unable', function(done, fail) {
             };
             installer_direct.install(product, {navigator: nav}).done(fail).fail(done);
             nav.def.reject();
-        }
+        },
+        fail
     );
 });
 
@@ -155,7 +168,8 @@ test('installer_direct.install unable packaged', function(done, fail) {
             };
             installer_direct.install(product, {navigator: nav}).done(fail).fail(done);
             nav.def.reject();
-        }
+        },
+        fail
     );
 });
 
@@ -172,7 +186,8 @@ test('installer_direct.install fail', function(done, fail) {
             installer_direct.install(product, {navigator: nav}).fail(done).done(fail);
 
             nav.def.reject({});
-        }
+        },
+        fail
     );
 });
 
@@ -190,7 +205,8 @@ test('installer_direct.getInstalled', function(done, fail) {
 
             // Resolve the mocked getInstalled promise.
             nav.def.resolve([new MockApp('http://foo.manifest.url')]);
-        }
+        },
+        fail
     );
 });
 
@@ -210,7 +226,8 @@ test('installer_direct.applyUpdate not installed', function(done, fail) {
 
             // Resolve the mocked getInstalled promise.
             nav.def.resolve([new MockApp('http://foo.manifest.url')]);
-        }
+        },
+        fail
     );
 });
 
@@ -232,7 +249,8 @@ test('installer_direct.applyUpdate already downloading', function(done, fail) {
 
             // Resolve the mocked getInstalled promise.
             nav.def.resolve([app]);
-        }
+        },
+        fail
     );
 });
 
@@ -255,11 +273,12 @@ test('installer_direct.applyUpdate download not available', function(done, fail)
 
             // Resolve the mocked getInstalled promise.
             nav.def.resolve([app]);
-        }
+        },
+        fail
     );
 });
 
-xtest('installer_direct.applyUpdate download error', function(done, fail) {
+test('installer_direct.applyUpdate download error', function(done, fail) {
     mock(
         'installer_direct',
         {defer: defer},
@@ -278,7 +297,8 @@ xtest('installer_direct.applyUpdate download error', function(done, fail) {
             nav.def.resolve([app]);
             // Reject the mocked download promise.
             app.def.reject();
-        }
+        },
+        fail
     );
 });
 
@@ -298,7 +318,8 @@ test('installer_direct.applyUpdate download', function(done, fail) {
             nav.def.resolve([app]);
             // Resolve the mocked download promise.
             app.def.resolve();
-        }
+        },
+        fail
     );
 });
 
@@ -318,7 +339,8 @@ test('installer_direct.checkForUpdate not installed', function(done, fail) {
 
             // Resolve the mocked getInstalled promise.
             nav.def.resolve([new MockApp('http://foo.manifest.url')]);
-        }
+        },
+        fail
     );
 });
 
@@ -340,7 +362,8 @@ test('installer_direct.checkForUpdate already downloading', function(done, fail)
 
             // Resolve the mocked getInstalled promise.
             nav.def.resolve([app]);
-        }
+        },
+        fail
     );
 });
 
@@ -362,7 +385,8 @@ test('installer_direct.checkForUpdate download already available', function(done
 
             // Resolve the mocked getInstalled promise.
             nav.def.resolve([app]);
-        }
+        },
+        fail
     );
 });
 
@@ -385,7 +409,8 @@ test('installer_direct.checkForUpdate error', function(done, fail) {
             nav.def.resolve([app]);
             // Reject the mocked checkForUpdate promise.
             app.def.reject();
-        }
+        },
+        fail
     );
 });
 
@@ -407,7 +432,8 @@ test('apps.incompat fine', function(done, fail) {
             var results = apps.incompat(product);
             assert(!results);
             done();
-        }
+        },
+        fail
     );
 });
 
@@ -432,7 +458,8 @@ test('apps.incompat caching', function(done, fail) {
             product.__compat_reasons = 'asdf';
             eq_(apps.incompat(product), 'asdf');
             done();
-        }
+        },
+        fail
     );
 });
 
@@ -458,7 +485,8 @@ test('apps.incompat payments', function(done, fail) {
             eq_(results.length, 1);
             eq_(results[0], 'Your device does not support payments.');
             done();
-        }
+        },
+        fail
     );
 });
 
