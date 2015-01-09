@@ -51,10 +51,10 @@ def deploy_jenkins():
                             app_dir='fireplace')
 
     rpm.local_install()
-    with lcd(rpm.install_to):
-        # do not perform a package update in prod
-        if settings.ZAMBONI_DIR and settings.ENV != 'prod':
-            package_update()
+
+    # do not perform a package update in prod
+    if settings.ZAMBONI_DIR and settings.ENV != 'prod':
+        package_update(rpm.install_to)
 
     rpm.remote_install(['web'])
 
@@ -77,9 +77,9 @@ def update():
 
 
 @task
-def package_update():
+def package_update(build_dir=FIREPLACE):
     if PACKAGE_NAME != 'dev-feed':
-        build_package(settings.ENV)
+        build_package(settings.ENV, build_dir)
         upload_package(fireplace_package(settings.ENV), PACKAGE_NAME)
 
 
@@ -110,8 +110,8 @@ def pre_update_latest_tag():
 
 
 @task
-def build_package(package_env):
-    with lcd(FIREPLACE):
+def build_package(package_env, build_dir=FIREPLACE):
+    with lcd(build_dir):
         local('SERVER=%s node_modules/.bin/gulp package' % package_env)
 
 
