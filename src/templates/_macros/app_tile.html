@@ -18,9 +18,7 @@
              {% endif %}
              {{ 'itemscope itemtype="http://schema.org/SoftwareApplication"' if not is_detail }}>
     <div class="heading">
-      {# TODO: have backend deserialize a 128px icon. #}
-      {{ deferred_icon(app.icons['64']) if not is_detail else
-         deferred_icon(app.icons['64']|replace('64.png', '128.png'), '', 128) }}
+      {{ deferred_icon(app.icons[is_detail and '128' or '64'] or app.icons['64']) }}
       <div class="info">
         <h3 itemprop="name">{{ app.name|translate(app) }}</h3>
 
