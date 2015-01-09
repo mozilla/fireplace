@@ -17,12 +17,12 @@ define('views/app/receipt',
             return;
         }
 
-        builder.start('detail/receipt.html', {slug: args[0]});
+        builder.start('app/receipt.html', {slug: args[0]});
 
         builder.onload('app-data', function() {
             if (caps.widescreen() && !$('.report-abuse').length) {
                 z.page.append(
-                    nunjucks.env.render('detail/abuse.html', {slug: slug})
+                    nunjucks.env.render('app/abuse.html', {slug: slug})
                 );
             }
         });
