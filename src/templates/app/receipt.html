@@ -1,6 +1,6 @@
-{% include "_macros/emaillink.html" %}
-{% include "_macros/app_tile.html" %}
-{% include "_macros/stars.html" %}
+{% from "_macros/emaillink.html" import emaillink %}
+{% from "_macros/app_tile.html" import app_tile %}
+{% from "_macros/stars.html" import stars %}
 
 {% set endpoint = api('app', [slug]) %}
 

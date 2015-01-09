@@ -32,7 +32,7 @@ define('views/app',
         builder.z('pagetitle', gettext('App Details'));
 
         var slug = args[0];
-        builder.start('detail/main.html', {
+        builder.start('app/index.html', {
             iarc: iarc,
             slug: slug
         });
