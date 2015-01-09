@@ -87,6 +87,20 @@ for $name in games productivity box soundcloud hexrace {
     right: $arrow-side-padding;
 }
 
+.desktop-promo-separator {
+    border-top: 1px solid $greyscale-grey;
+    border-bottom: 1px solid $greyscale-light-grey;
+    margin: 20px auto 0;
+    width: 80%;
+}
+
+.desktop-promo-separator-text {
+    font-size: 20px;
+    font-weight: 100;
+    margin: 20px 0;
+    text-align: center;
+}
+
 // Offsets
 // IMPORTANT: This section is duplicated because we are using an outdated
 //            version of stylus that doesn't support variables in @media
@@ -139,12 +153,16 @@ for $name in games productivity box soundcloud hexrace {
 
 // Responsive styles.
 
-.desktop-promo {
+.desktop-promo,
+.desktop-promo-separator,
+.desktop-promo-separator-text {
     display: none;
 }
 
 @media $wider-desktop {
-    .desktop-promo {
+    .desktop-promo,
+    .desktop-promo-separator,
+    .desktop-promo-separator-text {
         display: block;
     }
 }
