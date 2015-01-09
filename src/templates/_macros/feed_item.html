@@ -72,7 +72,7 @@
     {% if not landing and ((brand.app_count > 3 and brand.app_count < 6) or
                             brand.app_count > 6) %}
       <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src=src) }}"
-         class="feed-view-all">
+         class="view-all-tab feed-view-all-tab">
         {{ _('View all apps') }}
       </a>
     {% endif %}
@@ -156,7 +156,7 @@
     {% if not landing and ((coll.app_count > 3 and coll.app_count < 6) or
                             coll.app_count > 6) %}
       <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src=src) }}"
-         class="feed-view-all">
+         class="view-all-tab feed-view-all-tab">
         {{ _('View all apps') }}
       </a>
     {% endif %}
