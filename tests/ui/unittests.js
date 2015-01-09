@@ -24,8 +24,9 @@ casper.test.begin('Unit tests', {
     tearDown: function testStatus() {
         casper.echo('Getting test results...');
 
-        function logError(type, msg) {
-            console.log(casper.test.colorize(type, 'WARNING') + ' ' + msg);
+        function logError(type, msg, style) {
+            style = style || 'WARNING';
+            console.log(casper.test.colorize(type, style) + ' ' + msg);
         }
 
         var testResults = casper.evaluate(function() {
@@ -60,20 +61,20 @@ casper.test.begin('Unit tests', {
             }
         });
 
-        var status, color;
+        var status, style;
         if (passCount === testCount) {
             status = 'PASS';
-            color = 'GREEN_BAR';
+            style = 'GREEN_BAR';
         } else {
             status = 'FAIL';
-            color = 'RED_BAR';
+            style = 'RED_BAR';
         }
-        console.log(casper.test.colorize(status, color) + ' ' + [
+        logError(status, [
             testCount + ' started',
             passCount + ' passed',
             failCount + ' failed',
             stallCount + ' stalled',
             initCount + ' errored'
-        ].join(', ') + '.');
+        ].join(', ') + '.', style);
     },
 });
