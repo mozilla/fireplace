@@ -2,7 +2,7 @@ var helpers = require('../helpers');
 
 helpers.startCasper({path: '/tests'});
 
-casper.test.begin('Basic test', {
+casper.test.begin('Unit tests', {
     test: function(test) {
         casper.waitForSelector('progress[value="1"]', function() {
             var startedCount = casper.fetchText('#c_started');
