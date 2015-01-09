@@ -35,16 +35,19 @@ define('mkt-carousel', ['defer'], function (defer) {
         });
         var transitioning = false;
 
+        function setOrder(el, i) {
+            el.style['-webkit-order'] = i;
+            el.style.order = i;
+        }
+
         function setPromoItemsOrder() {
-            promoItems.forEach(function (placeholderItem, i) {
-                placeholderItem.style.order = i;
-            });
+            promoItems.forEach(setOrder);
         }
 
         function showPlaceholder(placeholder, position) {
             placeholder.classList.add('desktop-promo-placeholder-item-shown');
             var placeholderIndex = position ===  'right' ? promoItems.length : -1;
-            placeholder.style.order = placeholderIndex;
+            setOrder(placeholder, placeholderIndex);
         }
 
         function hidePlaceholder(placeholder) {
