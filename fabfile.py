@@ -31,6 +31,37 @@ def pre_update(ref):
 
 
 @task
+def build():
+    with lcd(FIREPLACE):
+        local('npm install')
+        local('make install')
+        local('cp src/media/js/settings_local_hosted.js src/media/js/settings_local.js')
+
+        local('make build')
+        local('node_modules/.bin/commonplace langpacks')
+
+
+@task
+def deploy_jenkins():
+    rpm = helpers.build_rpm(name=settings.PROJECT_NAME,
+                            env=settings.ENV,
+                            cluster=settings.CLUSTER,
+                            domain=settings.DOMAIN,
+                            root=ROOT,
+                            app_dir='fireplace')
+
+    rpm.local_install()
+    with lcd(rpm.install_to):
+        # do not perform a package update in prod
+        if settings.ZAMBONI_DIR and settings.ENV != 'prod':
+            package_update()
+
+    rpm.remote_install(['web'])
+
+    deploy_build_id('fireplace')
+
+
+@task
 def update():
     with lcd(FIREPLACE):
         local('npm install')
