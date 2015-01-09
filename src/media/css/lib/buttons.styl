@@ -25,12 +25,20 @@ $btn-h-padding = 10px;
 // Button font-size.
 $btn-font-size = 15px;
 
-btn_color($color, $border) {
+btn_color($color, $color-tapped, $color-hover, $border) {
     background: $color;
 
-    if ($border == 'none') {
+    if ($border == false) {
         border-bottom: 0;
     } else {
-        border-bottom: 1px solid $border;
+        border-bottom: 1px solid $color-tapped;
+    }
+
+    &:active {
+        background: $color-tapped;
+    }
+    &:hover,
+    &:focus {
+        background: $color-hover;
     }
 }
