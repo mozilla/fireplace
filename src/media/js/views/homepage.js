@@ -58,12 +58,12 @@ define('views/homepage',
             {
                 name: 'games',
                 url: urls.reverse('feed/feed_collection', ['games-ent-appsdesktop']),
-                text: gettext('Games & Entertainment Apps -- Desktop Essentials'),
+                text: gettext('Games & Entertainment Apps—Desktop Essentials'),
             },
             {
                 name: 'productivity',
                 url: urls.reverse('feed/feed_collection', ['productivity-appsdesktop']),
-                text: gettext('Productivity Apps -- Desktop Essentials'),
+                text: gettext('Productivity Apps—Desktop Essentials'),
             },
             {
                 name: 'box',
@@ -78,7 +78,7 @@ define('views/homepage',
             {
                 name: 'hexrace',
                 url: urls.reverse('app', ['hexgl-1']),
-                text: gettext('Play Hex Race -- a thrill ride from the future!'),
+                text: gettext('Play Hex Race—a thrill ride from the future!'),
             },
         ] .map(function (item) {
           item.url = utils.urlparams(item.url, {src: 'desktop-promo'});
