@@ -43,6 +43,15 @@
     }
 }
 
+[data-page-type~="detail"] .button.install {
+    padding: 0;
+
+    &.spinning,
+    &.purchasing {
+        bottom: -8px;
+    }
+}
+
 @media $base-tablet {
     [data-page-type~="detail"] {
         .subheader {
@@ -100,14 +109,18 @@
             .stars {
                 float: right;
             }
-            .install {
-                height: $btn-small;
+        }
+        .button.install {
+            height: $btn-small;
 
-                em {
-                    font-size: 15px;
-                    height: $btn-small;
-                    line-height: $btn-small;
-                }
+            &.spinning,
+            &.purchasing {
+                bottom: auto;
+            }
+            em {
+                font-size: 15px;
+                height: $btn-small;
+                line-height: $btn-small;
             }
         }
         .rating-link {
