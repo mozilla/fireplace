@@ -1,78 +1,7 @@
-{% from "_macros/emaillink.html" import emaillink %}
-{% from "_macros/app_tile.html" import app_tile %}
-{% from "_macros/stars.html" import stars %}
-
-{% set endpoint = api('app', [slug]) %}
-
 <section class="main">
   <div class="subheader">
     <h1>{{ _('Thank you for purchasing') }}</h1>
   </div>
 </section>
 
-{# TODO: reuse code from detail templates. #}
-<div class="detail receipt" data-page-type="detail">
-  <section class="main full app-header">
-    {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
-      {{ app_tile(this) }}
-    {% placeholder %}
-      <div class="product mkt-tile">
-        <div class="info">
-          <h3>{{ _('Loading...') }}</h3>
-          <div class="price vital">{{ _('Loading...') }}</div>
-          <div class="rating vital unrated">
-            {{ stars(0) }}
-          </div>
-        </div>
-      </div>
-      <div class="tray previews full"></div>
-    {% except %}
-      <div class="detailed-error">
-        <h2>{{ _('Oh no!') }}</h2>
-        <p>{{ _('The page you were looking for was not found.') }}</p>
-      </div>
-    {% end %}
-  </section>
-
-  {% defer (url=endpoint, as='app', key=slug) %}
-  <section class="main infobox c">
-    <div>
-      <ul class="c">
-        {% if this.support_email %}
-          <li class="support-email" data-tracking="Support email">
-            {{ emaillink(this.support_email, _('Support Email'), class='button') }}
-          </li>
-        {% endif %}
-        {% if this.support_url %}
-          <li class="support-url" data-tracking="Support site">
-            <a class="button" rel="external" {{ this.support_url|external_href }}>
-              {{ _('Support Site') }}</a>
-          </li>
-        {% endif %}
-        {% if this.homepage %}
-          <li class="homepage" data-tracking="Homepage">
-            <a class="button" rel="external" {{ this.homepage|external_href }}>{{ _('Homepage') }}</a>
-          </li>
-        {% endif %}
-        {% if this.privacy_policy %}
-          <li class="privacy-policy" data-tracking="Privacy policy">
-            <a class="button" href="{{ url('app/privacy', [slug]) }}">
-            {{ _('Privacy Policy') }}</a>
-          </li>
-        {% endif %}
-        {% if this.public_stats %}
-          <li class="statistics" data-tracking="Statistics">
-            <a class="button view-stats" rel="external" href="{{ url('app', [slug]) }}/statistics">
-            {{ _('Statistics') }}</a>
-          </li>
-        {% endif %}
-        <li class="abuse" data-tracking="Report abuse">
-          <a class="button" href="{{ url('app/abuse', [slug]) }}">
-          {{ _('Report Abuse') }}</a>
-        </li>
-      </ul>
-    </div>
-  </section>
-  {% except %}
-  {% end %}
-</div>
+{% include "app/index.html" %}

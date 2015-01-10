@@ -8,27 +8,17 @@ define('views/app/receipt',
 
     return function(builder, args) {
         var slug = args[0];
-
-        // If the user isn't logged in, redirect them to the detail page.
         if (!user.logged_in()) {
+            // If the user isn't logged in, redirect to detail page.
             notify({message: gettext('Please sign in to view the receipt')});
 
             z.page.trigger('divert', urls.reverse('app', [slug]));
             return;
         }
 
-        builder.start('app/receipt.html', {slug: args[0]});
-
-        builder.onload('app-data', function() {
-            if (caps.widescreen() && !$('.report-abuse').length) {
-                z.page.append(
-                    nunjucks.env.render('app/abuse.html', {slug: slug})
-                );
-            }
-        });
-
-        builder.z('type', 'leaf');
+        builder.z('type', 'leaf detail');
         builder.z('parent', urls.reverse('app', [args[0]]));
         builder.z('title', gettext('Receipt'));
+        builder.start('app/receipt.html', {slug: args[0]});
     };
 });

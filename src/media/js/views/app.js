@@ -80,6 +80,7 @@ define('views/app',
                 logger.warn('App object is falsey and is not being tracked');
             }
         })
+
         .onload('ratings', function() {
             /* Called after ratings defer block is finished loading. */
             var reviews = $('.detail .reviews li');
