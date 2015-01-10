@@ -23,8 +23,6 @@
 define('mkt-carousel', ['defer'], function (defer) {
     function initialize() {
         var root = document.querySelector('.desktop-promo');
-        var previousButton = root.querySelector('.desktop-promo-nav-left');
-        var nextButton = root.querySelector('.desktop-promo-nav-right');
         var desktopPromo = root.querySelector('.desktop-promo-items');
         var promoItems = Array.prototype.slice.call(desktopPromo.children);
         var placeholderItems = promoItems.map(function(item) {
@@ -41,7 +39,16 @@ define('mkt-carousel', ['defer'], function (defer) {
         }
 
         function setPromoItemsOrder() {
-            promoItems.forEach(setOrder);
+            promoItems.forEach(function (item, i) {
+                setOrder(item, i);
+                if (i === 0) {
+                    item.setAttribute('data-navigate', 'prev');
+                } else if (i === 2) {
+                    item.setAttribute('data-navigate', 'next');
+                } else {
+                    item.removeAttribute('data-navigate');
+                }
+            });
         }
 
         function showPlaceholder(placeholder, position) {
@@ -129,17 +136,22 @@ define('mkt-carousel', ['defer'], function (defer) {
             });
         }
 
-        previousButton.addEventListener('click', function () {
-            if (!transitioning) {
-                shiftRight();
+        root.addEventListener('click', function (e) {
+            if (transitioning) {
+                return;
             }
-        });
-
-        nextButton.addEventListener('click', function () {
-            if (!transitioning) {
+            if (e.target.getAttribute('data-navigate') === 'prev') {
+                e.preventDefault();
+                e.stopPropagation();
+                shiftRight();
+            } else if (e.target.getAttribute('data-navigate') === 'next') {
+                e.preventDefault();
+                e.stopPropagation();
                 shiftLeft();
             }
         });
+
+        setPromoItemsOrder();
 
         return {
             shiftLeft: shiftLeft,

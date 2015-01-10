@@ -31,6 +31,37 @@ def pre_update(ref):
 
 
 @task
+def build():
+    with lcd(FIREPLACE):
+        local('npm install')
+        local('make install')
+        local('cp src/media/js/settings_local_hosted.js src/media/js/settings_local.js')
+
+        local('make build')
+        local('node_modules/.bin/commonplace langpacks')
+
+
+@task
+def deploy_jenkins():
+    rpm = helpers.build_rpm(name=settings.PROJECT_NAME,
+                            env=settings.ENV,
+                            cluster=settings.CLUSTER,
+                            domain=settings.DOMAIN,
+                            root=ROOT,
+                            app_dir='fireplace')
+
+    rpm.local_install()
+
+    # do not perform a package update in prod
+    if settings.ZAMBONI_DIR and settings.ENV != 'prod':
+        package_update(rpm.install_to)
+
+    rpm.remote_install(['web'])
+
+    deploy_build_id('fireplace')
+
+
+@task
 def update():
     with lcd(FIREPLACE):
         local('npm install')
@@ -46,9 +77,9 @@ def update():
 
 
 @task
-def package_update():
+def package_update(build_dir=FIREPLACE):
     if PACKAGE_NAME != 'dev-feed':
-        build_package(settings.ENV)
+        build_package(settings.ENV, build_dir)
         upload_package(fireplace_package(settings.ENV), PACKAGE_NAME)
 
 
@@ -79,8 +110,8 @@ def pre_update_latest_tag():
 
 
 @task
-def build_package(package_env):
-    with lcd(FIREPLACE):
+def build_package(package_env, build_dir=FIREPLACE):
+    with lcd(build_dir):
         local('SERVER=%s node_modules/.bin/gulp package' % package_env)
 
 

@@ -581,63 +581,7 @@ $mtn_color = #CD6723;
         .curve {
             background-color: rgba($default_shelf_color, 0.6);
             top: 50px;
-
-            [data-carrier="telefonica"]& {
-                for region in $movistar_regions {
-                    [data-region={region}]& {
-                        background-color: rgba($movistar_color, 0.6);
-                    }
-                }
-                for region in $vivo_regions {
-                    [data-region={region}]& {
-                        background-color: rgba($vivo_color, 0.6);
-                    }
-                }
-            }
-            [data-carrier="o2"]& {
-                for region in $o2_regions {
-                    [data-region={region}]& {
-                        background-color: rgba($o2_color, 0.6);
-                    }
-                }
-            }
-            [data-carrier="telenor"]& {
-                for region in $telenor_regions {
-                    [data-region={region}]& {
-                        background-color: rgba($telenor_color, 0.6);
-                    }
-                }
-            }
-            [data-carrier="grameenphone"]& {
-                for region in $grameenphone_regions {
-                    [data-region={region}]& {
-                        background-color: rgba($grameenphone_color, 0.6);
-                    }
-                }
-            }
-            [data-carrier="deutsche_telekom"]& {
-                for region in $tmobile_regions {
-                    [data-region={region}]& {
-                        background-color: rgba($tmobile_color, 0.6);
-                    }
-                }
-            }
-            [data-carrier="kddi"]& {
-                for region in $kddi_regions {
-                    [data-region={region}]& {
-                        background-color: rgba($kddi_color, 0.6);
-                    }
-                }
-            }
-            [data-carrier="mtn"]& {
-                for region in $mtn_regions {
-                    [data-region={region}]& {
-                        background-color: rgba($mtn_color, 0.6);
-                    }
-                }
-            }
         }
-
         .info {
             position: relative;
             margin-top: 60px;
@@ -657,6 +601,63 @@ $mtn_color = #CD6723;
         }
         .info {
             bottom: -45px;
+        }
+    }
+}
+
+.curve {
+    [data-carrier="telefonica"]& {
+        for region in $movistar_regions {
+            [data-region={region}]& {
+                background-color: rgba($movistar_color, 0.6);
+            }
+        }
+        for region in $vivo_regions {
+            [data-region={region}]& {
+                background-color: rgba($vivo_color, 0.6);
+            }
+        }
+    }
+    [data-carrier="o2"]& {
+        for region in $o2_regions {
+            [data-region={region}]& {
+                background-color: rgba($o2_color, 0.6);
+            }
+        }
+    }
+    [data-carrier="telenor"]& {
+        for region in $telenor_regions {
+            [data-region={region}]& {
+                background-color: rgba($telenor_color, 0.6);
+            }
+        }
+    }
+    [data-carrier="grameenphone"]& {
+        for region in $grameenphone_regions {
+            [data-region={region}]& {
+                background-color: rgba($grameenphone_color, 0.6);
+            }
+        }
+    }
+    [data-carrier="deutsche_telekom"]& {
+        for region in $tmobile_regions {
+            [data-region={region}]& {
+                background-color: rgba($tmobile_color, 0.6);
+            }
+        }
+    }
+    [data-carrier="kddi"]& {
+        for region in $kddi_regions {
+            [data-region={region}]& {
+                background-color: rgba($kddi_color, 0.6);
+            }
+        }
+    }
+    [data-carrier="mtn"]& {
+        for region in $mtn_regions {
+            [data-region={region}]& {
+                background-color: rgba($mtn_color, 0.6);
+            }
         }
     }
 }
