@@ -82,7 +82,8 @@ def update():
 def package_update(build_dir=FIREPLACE):
     if PACKAGE_NAME != 'dev-feed':
         build_package(settings.ENV, build_dir)
-        upload_package(fireplace_package(settings.ENV), PACKAGE_NAME)
+        upload_package(fireplace_package(settings.ENV, build_dir),
+                       PACKAGE_NAME)
 
 
 @task
@@ -124,8 +125,8 @@ def upload_package(fireplace_package, package_name):
               % (ZAMBONI_PYTHON, package_name, fireplace_package))
 
 
-def fireplace_package(env):
-    return '%s/package/builds/_%s.zip' % (FIREPLACE, env)
+def fireplace_package(env, build_dir):
+    return '%s/package/builds/_%s.zip' % (build_dir, env)
 
 
 @task
