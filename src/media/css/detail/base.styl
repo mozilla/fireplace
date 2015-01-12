@@ -28,85 +28,6 @@
     display: none;
 }
 
-.actions {
-    > div {
-        float: left;
-        overflow: hidden;
-        width: 100%;
-    }
-    .button {
-        position: relative;
-        z-index: 1;
-        width: 100%;
-    }
-}
-
-.support {
-    ul {
-        margin: 0;
-        list-style: none;
-        padding: 0;
-        a {
-            display: inline-block;
-        }
-    }
-    li {
-        float: left;
-        margin-bottom: 10px;
-        min-height: 100px;
-        width: 480px;
-    }
-    p {
-        margin: 0;
-    }
-}
-
-.upsell-wrapper {
-    background: $salt-flat-white;
-    border-top: 1px solid $cloud-gray;
-}
-
-.upsell {
-    background: #fff;
-    border-radius: 5px;
-    border: 1px solid $cloud-gray;
-    display: block;
-    font-size: 0;
-    margin: 10px;
-    padding: 15px 10px;
-    text-decoration: none;
-
-    &:hover {
-        border-color: darken($seavan-salt-white, 10%);
-        img {
-            opacity: .8;
-        }
-    }
-    &:active {
-        depressed();
-    }
-    div {
-        display: inline-block;
-        padding: 8px 10px;
-        vertical-align: top;
-    }
-    img {
-        height: 64px;
-        width: 64px;
-    }
-    .avail {
-        color: #000;
-        display: block;
-        font-size: 15px;
-        line-height: 17px;
-    }
-    .name {
-        color: $earl-gray;
-        font-size: 12px;
-        line-height: 18px;
-    }
-}
-
 .truncated:after {
     // Fade away at the end of truncated elements.
     bottom: 0;
@@ -124,6 +45,14 @@
 // TODO: Remove once bug 924519 is resolved.
 .statistics {
     display: none;
+}
+
+.app-report-abuse .button {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    text-align: center;
+    width: $mobile-content-width;
 }
 
 .detail-left-side {
@@ -154,29 +83,6 @@
     .truncate-toggle {
         display: none;
     }
-    .upsell-wrapper {
-        background: #fff;
-    }
-    .upsell {
-        padding: 24px 15px;
-    }
-    .upsell {
-        border: 0;
-        border-radius: 0;
-        margin: 0;
-
-        div {
-            padding: 8px 15px;
-        }
-        .avail {
-            font-size: 17px;
-            line-height: 19px;
-        }
-        .name {
-            font-size: 15px;
-            line-height: 21px;
-        }
-    }
     .detail {
         margin: 0 auto;
         overflow: hidden;
@@ -192,12 +98,4 @@
     .statistics {
         display: block;
     }
-}
-
-.app-report-abuse .button {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    text-align: center;
-    width: $mobile-content-width;
 }
