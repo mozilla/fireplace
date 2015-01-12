@@ -34,6 +34,17 @@ define('views/app',
         var slug = args[0];
         builder.start('app/index.html', {
             iarc: iarc,
+            placeholder_app: {
+                author: gettext('Loading...'),
+                name: gettext('Loading...'),
+                price: gettext('Loading...'),
+                price_locale: gettext('Loading...'),
+                ratings: {
+                    average: 0,
+                    count: 0
+                },
+                slug: 'loading',
+            },
             slug: slug
         });
 
