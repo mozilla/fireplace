@@ -54,7 +54,7 @@ def deploy_jenkins():
 
     # do not perform a package update in prod
     if settings.ZAMBONI_DIR and settings.ENV != 'prod':
-        package_update(rpm.install_to)
+        package_update(os.path.join(rpm.install_to, 'fireplace'))
 
     rpm.remote_install(['web'])
 
