@@ -6,60 +6,69 @@
 
 {% set endpoint = api('app', [slug]) %}
 
-<section class="main">
-  <div class="subheader">
-    <h1>&nbsp;</h1>
-  </div>
-</section>
+{% defer (url=endpoint, as='app', key=slug, id='app-data') %}
+  <section class="main">
+    <div class="subheader">
+      <h1>&nbsp;</h1>
+    </div>
+  </section>
+{% except %}
+  <section class="main">
+    <div class="subheader">
+      <h1>{{ _('Oh no!') }}</h1>
+    </div>
+  </section>
+  <section class="main full"><div>
+    {% if error == 403 %}
+      <p>{{ _('The app requested is not public.') }}</p>
+    {% elif error == 404 %}
+      <p>{{ _('The app requested was not found.') }}</p>
+    {% elif error == 451 %}
+      <p>{{ _('The app requested is not available for your region.') }}</p>
+      <p>{{ _('You may wish to contact the developer if you would like to see a version of this app for your region.') }}</p>
+    {% else %}
+      <p>{{ _('A server error occurred. Please try again later.') }}</p>
+    {% endif %}
+  </div></section>
+{% end %}
 
 <div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication"
      data-slug="{{ slug }}">
-<section class="main full app-header expanded">
-  {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
-    {{ app_tile(this, is_detail=True, tray=True, src='detail') }}
-    <section id="installed">
-      <p class="installed">
-        {{ _('Installed!') }}
-      </p>
-      <p class="how mac">
-        {{ _('Launch this app from your <b>Applications</b> directory.') }}
-      </p>
-      <p class="how windows">
-        {{ _('Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>.') }}
-      </p>
-      <p class="how linux">
-        {{ _('Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>.') }}
-      </p>
-    </section>
-    <div id="purchased-message"></div>
-  {% placeholder %}
-    <div class="product mkt-tile">
-      <img class="icon deferred" src="{{ PLACEHOLDER_ICON }}" alt=""
-           data-src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
-      <div class="info">
-        <h3>{{ _('Loading...') }}</h3>
-        <div class="price vital">{{ _('Loading...') }}</div>
-        <div class="rating vital unrated">
-          {{ stars(0) }}
-        </div>
+{% defer (url=endpoint, as='app', key=slug, id='app-data') %}
+<section class="main full app-header expanded"><div>
+  {{ app_tile(this, is_detail=True, tray=True, src='detail') }}
+  <section id="installed">
+    <p class="installed">
+      {{ _('Installed!') }}
+    </p>
+    <p class="how mac">
+      {{ _('Launch this app from your <b>Applications</b> directory.') }}
+    </p>
+    <p class="how windows">
+      {{ _('Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>.') }}
+    </p>
+    <p class="how linux">
+      {{ _('Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>.') }}
+    </p>
+  </section>
+  <div id="purchased-message"></div>
+</div></section>
+{% placeholder %}
+<section class="main full app-header expanded"><div>
+  <div class="product mkt-tile">
+    <img class="icon deferred" src="{{ PLACEHOLDER_ICON }}" alt=""
+         data-src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
+    <div class="info">
+      <h3>{{ _('Loading...') }}</h3>
+      <div class="price vital">{{ _('Loading...') }}</div>
+      <div class="rating vital unrated">
+        {{ stars(0) }}
       </div>
-    <div class="tray previews full"></div>
-  {% except %}
-    <div class="detailed-error">
-      <h2>{{ _('Oh no!') }}</h2>
-      {% if error == 403 %}
-        <p>{{ _('The app requested is not public.') }}</p>
-      {% elif error == 404 %}
-        <p>{{ _('The app requested was not found.') }}</p>
-      {% elif error == 451 %}
-        <p>{{ _('The app requested is not available for your region.') }}</p>
-        <p>{{ _('You may wish to contact the developer if you would like to see a version of this app for your region.') }}</p>
-      {% else %}
-        <p>{{ _('A server error occurred. Please try again later.') }}</p>
-      {% endif %}
     </div>
-  {% end %}
-</section>
+  <div class="tray previews full"></div>
+</div></section>
+{% except %}
+{% end %}
 
 {% defer (url=endpoint, as='app', key=slug) %}
   <section class="main full app-info">
@@ -164,34 +173,34 @@
 {% end %}
 
 <!--Reviews (detail/reviews.styl).-->
+{% defer (url=apiParams('reviews', {'app': slug}), id='ratings') %}
 <section class="main full app-reviews">
-  {% defer (url=apiParams('reviews', {'app': slug}), id='ratings') %}
-    <div class="detail-flex-wrap">
-      <div class="detail-left-side">
-        <h3>{{ _('Reviews') }}</h3>
+  <div class="detail-flex-wrap">
+    <div class="detail-left-side">
+      <h3>{{ _('Reviews') }}</h3>
 
-        {% include "_includes/reviews_summary.html" %}
+      {% include "_includes/reviews_summary.html" %}
 
-        {% if this.meta.total_count %}
-          <ul class="reviews-wrapper">
-            {% for _review in this.objects.slice(0, 6) %}
-              {{ review(_review, detailpage=true, current_version=this.info.current_version) }}
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p class="not-rated">{{ _('App not yet reviewed') }}</p>
-        {% endif %}
-      </div>
-
-      <div class="detail-right-side">
-        {% include "_includes/reviews_sidebar.html" %}
-      </div>
+      {% if this.meta.total_count %}
+        <ul class="reviews-wrapper">
+          {% for _review in this.objects.slice(0, 6) %}
+            {{ review(_review, detailpage=true, current_version=this.info.current_version) }}
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="not-rated">{{ _('App not yet reviewed') }}</p>
+      {% endif %}
     </div>
-  {% placeholder %}
-    <p class="spinner alt padded"></p>
-  {% except %}
-  {% end %}
+
+    <div class="detail-right-side">
+      {% include "_includes/reviews_sidebar.html" %}
+    </div>
+  </div>
 </section>
+{% placeholder %}
+  <p class="spinner alt padded"></p>
+{% except %}
+{% end %}
 
 {% defer (url=endpoint, as='app', key=slug) %}
   {% if settings.payments_enabled and settings.upsell_enabled and this.upsell %}
@@ -210,54 +219,55 @@
 {% end %}
 
 <!--More information (detail/more-info.styl).-->
+{% defer (url=endpoint, as='app', key=slug) %}
 <section class="main full app-more-info">
   <div>
-    {% defer (url=endpoint, as='app', key=slug) %}
-      <div class="detail-flex-wrap">
-        <div class="detail-left-side">
-          <h3>{{ _('More Information') }}</h3>
-          <div class="app-more-metadata">
-            <dl>
-              <dt>{{ _('Developer') }}</dt>
-              <dd>{{ this.author }}</dd>
-            </dl>
-            <dl>
-              <dt>{{ _('Compatibility') }}</dt>
-              {% for device_type in this.device_types %}
+    <div class="detail-flex-wrap">
+      <div class="detail-left-side">
+        <h3>{{ _('More Information') }}</h3>
+        <div class="app-more-metadata">
+          <dl>
+            <dt>{{ _('Developer') }}</dt>
+            <dd>{{ this.author }}</dd>
+          </dl>
+          <dl>
+            <dt>{{ _('Compatibility') }}</dt>
+            {% for device_type in this.device_types %}
+              {# L10n: delimiter to separate list of words (e.g., "eggs, ham, cheese"). #}
+              <dd data-delimiter="{{ _(',') }}">{{ DEVICE_CHOICES[device_type] }}</dd>
+            {% endfor %}
+          </dl>
+          <dl class="app-metadata-categories">
+            <dt>{{ _('Categories') }}</dt>
+            {% for category in CATEGORIES %}
+              {% if indexOf(this.categories, category.slug) != -1 %}
                 {# L10n: delimiter to separate list of words (e.g., "eggs, ham, cheese"). #}
-                <dd data-delimiter="{{ _(',') }}">{{ DEVICE_CHOICES[device_type] }}</dd>
-              {% endfor %}
-            </dl>
-            <dl class="app-metadata-categories">
-              <dt>{{ _('Categories') }}</dt>
-              {% for category in CATEGORIES %}
-                {% if indexOf(this.categories, category.slug) != -1 %}
-                  {# L10n: delimiter to separate list of words (e.g., "eggs, ham, cheese"). #}
-                  <dd data-delimiter="{{ _(',') }}">{{ category.name }}</dd>
-                {% endif %}
-              {% endfor %}
-            </dl>
-            <dl>
-              {% if this.is_packaged and this.size %}
-                <dt>{{ _('Size') }}</dt>
-                <dd>{{ this.size }}</dd>
+                <dd data-delimiter="{{ _(',') }}">{{ category.name }}</dd>
               {% endif %}
-            </dl>
-            <dl>
-              <dt>{{ _('Most Recent Version') }}</dt>
-              <dd>{{ this.current_version }}</dd>
-            </dl>
-          </div>
-        </div>
-        <div class="detail-right-side">
-          {% include "_includes/content_ratings.html" %}
+            {% endfor %}
+          </dl>
+          <dl>
+            {% if this.is_packaged and this.size %}
+              <dt>{{ _('Size') }}</dt>
+              <dd>{{ this.size }}</dd>
+            {% endif %}
+          </dl>
+          <dl>
+            <dt>{{ _('Most Recent Version') }}</dt>
+            <dd>{{ this.current_version }}</dd>
+          </dl>
         </div>
       </div>
-    {% except %}
-    {% end %}
+      <div class="detail-right-side">
+        {% include "_includes/content_ratings.html" %}
+      </div>
+    </div>
   </div>
 </section>
+{% except %}
+{% end %}
 
+{% defer (url=endpoint, as='app', key=slug, id='app-data') %}
 <section class="main full app-report-abuse">
   <div>
     <a class="button cancel abuse" data-tracking="Report abuse">
@@ -265,4 +275,7 @@
     </a>
   </div>
 </section>
+{% except %}
+{% end %}
+
 </div>
