@@ -168,7 +168,8 @@
       {% endif %}
     </div>
 
-    <div class="detail-right-side">
+    <div class="detail-right-side"
+         {% if not this.meta.total_count %}data-not-reviewed{%endif %}>
       {% include "_includes/reviews_sidebar.html" %}
     </div>
   </div>
