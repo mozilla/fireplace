@@ -1,10 +1,19 @@
 /*
-    Stylesheet for editorial brands.
+    Stylesheet for editorial brands. On the feed and on the brand landing page.
 */
 @import '../lib';
 
+.brand-header h3:before,
+.brand-landing-header h3:before {
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    content: '';
+    display: block;
+    position: absolute;
+}
+
 .brand-header {
-    bottom: 15px;
     display: block;
     padding: 10px 0;
     position: relative;
@@ -22,16 +31,56 @@
     }
     h3:before {
         background-color: rgba($greyscale-light-grey, .8);
-        background-position: center;
-        background-repeat: no-repeat;
-        border-radius: 30px;
-        content: '';
-        display: block;
-        height: 60px;
         left: unquote('calc(50% - 30px)');
-        position: absolute;
+        height: 60px;
         top: 10px;
         width: 60px;
+    }
+}
+
+[data-page-type~="homepage"] .brand-header {
+    bottom: 15px;
+}
+
+.brand-landing {
+    &.full > div {
+        padding-top: 10px;
+    }
+    .app-list {
+        margin-top: 0;
+    }
+}
+
+.brand-landing-icon {
+    border-radius: 128px;
+    height: 64px;
+    margin: 0 auto;
+    width: 64px;
+
+    h3:before {
+        left: unquote('calc(50% - 32px)');
+        height: 64px;
+        width: 64px;
+    }
+}
+
+.brand-landing-header-desktop {
+    display: none;
+}
+
+@media $base-desktop {
+    .brand-landing-header-mobile {
+        display: none;
+    }
+    .brand-landing-header-desktop {
+        margin-top: 22px;  // To get 40px. Combine with 18px #page padding.
+        display: block;
+
+        h1 {
+            desktop_mega();
+            margin: 20px 0 40px;
+            text-align: center;
+        }
     }
 }
 
