@@ -313,5 +313,12 @@ function(_) {
         throw new Error('Cancel navigation; deprecated client');
     });
 
+    // Remove paginated class from app lists if .loadmore goes away.
+    z.page.on('loaded_more', function() {
+        if (!$('.loadmore').length) {
+            $('.app-list').removeClass('paginated');
+        }
+    });
+
     console.log('Initialization complete');
 });

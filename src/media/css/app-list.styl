@@ -30,8 +30,17 @@ $desktop-tile-padding = 20px 50px;
     li:not(.loadmore) {
         padding-top: 15px;
     }
-    li:not(.loadmore):not(:last-child) {
-        border-bottom: 1px solid $filters-border;
+    // Masking element to cover the last row's bottom border.
+    &:after {
+        background: $white;
+        bottom: 30px;
+        content: "";
+        display: block;
+        height: 1px;
+        left: 0;
+        max-width: $desktop-content;
+        position: absolute;
+        width: 100%;
     }
 }
 
@@ -45,13 +54,17 @@ $desktop-tile-padding = 20px 50px;
 }
 
 @media $base-tablet {
+    .app-list,
+    .app-list.only-logged-in {
+        display-flex();
+    }
     .app-list {
+        flex-wrap: wrap;
         position: relative;
 
         li:not(.loadmore) {
             border-bottom: $border;
             border-right: $border;
-            float: left;
             padding: $desktop-tile-padding;
             width: 50%;
 
@@ -62,10 +75,17 @@ $desktop-tile-padding = 20px 50px;
             &:nth-child(2n + 1) {
                 padding-left: 0;
             }
-            // Last 3 (thanks loadmore!).
-            &:nth-last-child(-n + 3) {
-                border-bottom: 0;
+            &:last-child {
+                border-right: 0;
             }
+        }
+        &.paginated {
+            li:nth-last-child(-n + 2) {
+                border-right: 0;
+            }
+        }
+        &:after {
+            bottom: 0;
         }
     }
     .app-list-filters {
@@ -100,9 +120,13 @@ $desktop-tile-padding = 20px 50px;
             &:nth-child(3n + 1) {
                 padding-left: 0;
             }
-            // Last 4.
-            &:nth-last-child(-n + 4) {
-                border-bottom: 0;
+            &:last-child {
+                border-right: 0;
+            }
+        }
+        &.paginated {
+            li:nth-last-child(-n + 2) {
+                border-right: 0;
             }
         }
     }

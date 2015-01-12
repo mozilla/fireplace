@@ -25,7 +25,7 @@
   <section id="search-results" class="main full app-list-page">
     <div>
       {% include "_includes/app_list_filters.html" %}
-      <ol class="app-list">
+      <ol class="app-list {{ 'paginated' if response.meta.next }}">
         {% for result in processor(this) %}
           <li class="item result app">
             {{ app_tile(result, src='search', tray=True) }}

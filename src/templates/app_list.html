@@ -14,7 +14,7 @@
 <section class="main full app-list-page c">
   {% defer (url=search_url, pluck='objects', as='app', paginate='ul.app-list') %}
     {% include "_includes/app_list_filters.html" %}
-    <ul class="app-list">
+    <ul class="app-list {{ 'paginated' if response.meta.next }}">
       {% for app in this %}
         <li>{{ app_tile(app, src=source, tray=True) }}</li>
       {% endfor %}
