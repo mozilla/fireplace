@@ -35,7 +35,8 @@ def build():
     with lcd(FIREPLACE):
         local('npm install')
         local('make install')
-        local('cp src/media/js/settings_local_hosted.js src/media/js/settings_local.js')
+        local('cp src/media/js/settings_local_hosted.js '
+              'src/media/js/settings_local.js')
 
         local('make build')
         local('node_modules/.bin/commonplace langpacks')
@@ -66,7 +67,8 @@ def update():
     with lcd(FIREPLACE):
         local('npm install')
         local('make install')
-        local('cp src/media/js/settings_local_hosted.js src/media/js/settings_local.js')
+        local('cp src/media/js/settings_local_hosted.js '
+              'src/media/js/settings_local.js')
 
         # do not perform a package update in prod
         if settings.ZAMBONI_DIR and settings.ENV != 'prod':
