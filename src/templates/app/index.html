@@ -195,14 +195,13 @@
 
 {% defer (url=endpoint, as='app', key=slug) %}
   {% if settings.payments_enabled and settings.upsell_enabled and this.upsell %}
-    <section class="main upsell-wrapper c">
+    <section class="main full">
       <div>
-        <a class="upsell" href="{{ url('app', [this.upsell.app_slug])|urlparams(src='mkt-detail-upsell') }}">
+        <h3>{{ _('Premium version available') }}</h3>
+        <a class="upsell"
+           href="{{ url('app', [this.upsell.app_slug])|urlparams(src='mkt-detail-upsell') }}">
           <img class="icon" src="{{ this.upsell.icon_url }}">
-          <div>
-            <span class="avail">{{ _('Premium version available') }}</span>
-            <span class="name">{{ this.upsell.name }}</span>
-          </div>
+          <span>{{ this.upsell.name }}</span>
         </a>
       </div>
     </section>
