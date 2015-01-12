@@ -35,38 +35,14 @@
 <div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication"
      data-slug="{{ slug }}">
 {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
-<section class="main full app-header expanded"><div>
-  {{ app_tile(this, is_detail=True, tray=True, src='detail') }}
-  <section id="installed">
-    <p class="installed">
-      {{ _('Installed!') }}
-    </p>
-    <p class="how mac">
-      {{ _('Launch this app from your <b>Applications</b> directory.') }}
-    </p>
-    <p class="how windows">
-      {{ _('Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>.') }}
-    </p>
-    <p class="how linux">
-      {{ _('Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>.') }}
-    </p>
-  </section>
-  <div id="purchased-message"></div>
-</div></section>
+  <section class="main full app-header expanded"><div>
+    {{ app_tile(this, is_detail=True, tray=True, src='detail') }}
+    {% include "_includes/installed_message.html" %}
+  </div></section>
 {% placeholder %}
-<section class="main full app-header expanded"><div>
-  <div class="product mkt-tile">
-    <img class="icon deferred" src="{{ PLACEHOLDER_ICON }}" alt=""
-         data-src="{{ app.icons['64'] }}" height="64" width="64" itemprop="image">
-    <div class="info">
-      <h3>{{ _('Loading...') }}</h3>
-      <div class="price vital">{{ _('Loading...') }}</div>
-      <div class="rating vital unrated">
-        {{ stars(0) }}
-      </div>
-    </div>
-  <div class="tray previews full"></div>
-</div></section>
+  <section class="main full app-header expanded"><div>
+    {{ app_tile(placeholder_app, is_detail=True) }}
+  </div></section>
 {% except %}
 {% end %}
 
