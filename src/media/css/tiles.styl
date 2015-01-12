@@ -20,6 +20,9 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     display: block;
     overflow: hidden;
     position: relative;
+    // Any layer may overlap this.
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1118367
+    z-index: 1;
 
     &:hover {
         text-decoration: none;
