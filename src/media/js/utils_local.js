@@ -74,6 +74,9 @@ define('utils_local',
         if (window.__mockOffLine === true) {
             offline(def);
             return def.promise();
+        } else if (settings.allow_offline) {
+            online(def);
+            return def.promise();
         }
         try {
             if (navigator.mozTCPSocket === null) {
