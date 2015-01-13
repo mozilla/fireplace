@@ -1,5 +1,6 @@
-define('views/feed/feed_shelf', ['jquery', 'l10n', 'utils', 'utils_local', 'z'],
-    function($, l10n, utils, utils_local, z) {
+define('views/feed/feed_shelf',
+    ['jquery', 'l10n', 'utils', 'z'],
+    function($, l10n, utils, z) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -10,14 +11,11 @@ define('views/feed/feed_shelf', ['jquery', 'l10n', 'utils', 'utils_local', 'z'],
 
         var slug = args[0];
         builder.start('feed/feed_shelf.html', {
-            landing: true,
             slug: slug
         });
 
         builder.onload('shelf', function(data) {
             builder.z('title', utils.translate(data.name));
-            utils_local.initSalvattore(
-                document.querySelector('.shelf-landing [data-columns]'));
         });
     };
 });

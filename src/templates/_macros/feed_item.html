@@ -189,19 +189,25 @@
 {% endmacro %}
 
 {% macro collection_landing(coll) %}
+  {# Used both for collections and shelves. Reduce, reuse, recycle. #}
   <div class="feed-landing-header collection-landing-header">
     <div class="collection-landing-header-mobile"
-         {% if coll.type == feed.COLL_PROMO and coll.background_color %}
+         {% if coll.type == feed.COLL_PROMO %}
            style="background: {{ coll.background_color|shadeHex(-40) }}"
          {% endif %}>
-      {{ collection_promo(coll) if coll.type == feed.COLL_PROMO else
-         collection_listing_header(coll) }}
+      {# Reuse the feed representation as the mobile header. #}
+      {% if coll.carrier %}
+        {{ shelf(coll, true) }}
+      {% else %}
+        {{ collection_promo(coll) if coll.type == feed.COLL_PROMO else
+           collection_listing_header(coll) }}
+      {% endif %}
     </div>
     <div class="collection-landing-header-desktop">
       {% if coll.background_image %}
         <div class="feed-landing-bg-image">
-          <img src="{{ coll.background_image }}" alt="{{ coll.name }}"
-               draggable="false" itemprop="contentURL">
+          <img src="{{ coll.background_image_landing or coll.background_image }}"
+               alt="{{ coll.name }}" draggable="false" itemprop="contentURL">
         </div>
       {% endif %}
       <div class="feed-landing-header-inner">
@@ -240,43 +246,15 @@
   {% endif %}
 {% endmacro %}
 
-{% macro feed_shelf(shelf, landing) %}
-  <a href="{{ url('feed/feed_shelf', [shelf.slug])|
-              urlparams(src='operator-shelf-element') }}"
-     class="op-shelf" data-tracking-slug="{{ shelf.slug }}">
-    <section class="feed-item shelf deferred-background {{ 'shelf-landing' if landing }}"
-             style="background-image: url({{ PLACEHOLDER_ICON }})"
-             data-src="{{ shelf.background_image_landing if landing else shelf.background_image }}"
-             data-carrier="{{ shelf.carrier }}"
-             data-region="{{ shelf.region }}">
-      <div class="curve"></div>
-      <div class="info">
-        <h1 class="name">{{ shelf.name|translate(shelf)|safe }}</h1>
-      </div>
-    </section>
-  </a>
-{% endmacro %}
-
-{% macro feed_shelf_landing(shelf) %}
-  <section class="main feed feed-landing shelf-landing"
-           data-tracking-slug="{{ shelf.slug }}">
-    <div class="detail-item header-block">
-      {{ feed_shelf(shelf, true) }}
-      {% if shelf.description %}
-        <p class="desc">{{ shelf.description|translate(shelf) }}</p>
-      {% endif %}
-    </div>
-    <div class="feed" data-columns>
-      {% if shelf.apps %}
-        {% for app in shelf.apps %}
-          <div class="item result app c detail-item">
-            {{ app_tile(app, src='operator-shelf-element') }}
-          </div>
-        {% endfor %}
-      {% else %}
-        {# L10n: Please do your best to capture the essence of Scooby Doo. #}
-        {{ _("Ruh roh! No apps here, Shaggy!") }}
-      {% endif %}
+{% macro shelf(shelf, landing) %}
+  <section class="feed-item shelf {{ 'shelf-landing' if landing }} deferred-background"
+           style="background-image: url({{ PLACEHOLDER_ICON }})"
+           data-src="{{ shelf.background_image_landing if landing else
+                        shelf.background_image }}"
+           data-carrier="{{ shelf.carrier }}" data-region="{{ shelf.region }}">
+    <div class="curve"></div>
+    <div class="info">
+      <h1 class="name">{{ shelf.name|translate(shelf)|safe }}</h1>
     </div>
   </section>
 {% endmacro %}
@@ -292,6 +270,10 @@
     {{ collection(obj.collection) }}
 
   {% elif obj.item_type == 'shelf' %}
-    {{ feed_shelf(obj.shelf) }}
+    <a href="{{ url('feed/feed_shelf', [obj.shelf.slug])|
+                urlparams(src='operator-shelf-element') }}"
+       class="op-shelf" data-tracking-slug="{{ obj.shelf.slug }}">
+      {{ shelf(obj.shelf) }}
+    </a>
   {% endif %}
 {% endmacro %}

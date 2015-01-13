@@ -1,5 +1,5 @@
-define('views/feed/feed_collection', ['jquery', 'l10n', 'utils', 'utils_local', 'z'],
-    function($, l10n, utils, utils_local, z) {
+define('views/feed/feed_collection', ['jquery', 'l10n', 'utils', 'z'],
+    function($, l10n, utils, z) {
     'use strict';
     var gettext = l10n.gettext;
 
