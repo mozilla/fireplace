@@ -1,10 +1,11 @@
-// Styles for the categories desktop overlay.
+/*
+    Stylesheet for the category dropdown on desktop.
+*/
 @import "lib";
 
 .cat-hovercat {
-    // Do not use `border-box` so we can cover the borders via padding.
-    box-sizing: content-box;
-    color: $dark-gray;
+    box-sizing: content-box;  // To cover the borders via padding.
+    color: $greyscale-black;
     display: block;
     ellipsis();
     height: 50px;
@@ -17,30 +18,42 @@
     z-index: 1;
 
     &:hover {
-        background-color: $breezy-blue;
+        background-color: $action-positive;
         color: $white;
-
-        // To keep the text at the same vertical position.
-        line-height: 52px;
-
-        // To cover the borders.
-        padding: 0 1px 1px 0;
+        line-height: 52px;  // Keep text at same vertical position.
+        padding: 0 1px 1px 0;  // Cover the borders.
         top: -1px;
 
-        // To keep the icon in the same place
-        // (to account for the -1px shift to cover the border).
         &:before {
-            top: 11px;
+            top: 11px;  // Keep icon same place for -1px border shift.
         }
     }
 }
 
-.appear-on-hover {
+.hovercats {
+    background: $white;
+    box-shadow: 0 0 1px 2px $greyscale-light-grey;
+    left: 90%;
+    margin-top: 10px;
     opacity: 0;
     pointer-events: none;
-    // Fade in slowly, fade out quickly.
-    transition(unquote('all .3s cubic-bezier(.25,1,.35,1)'));
+    position: absolute;
+    transform(unquote('translateX(-90%)'));
+    transition(unquote('all .3s cubic-bezier(.25, 1, .35, 1)'));
+    top: 48px;
     visibility: hidden;
+
+    &:after {
+        border: 20px solid transparent;
+        border-bottom: 20px solid $white;
+        content: "";
+        height: 0;
+        left: 75%;
+        margin-left: -20px;
+        position: absolute;
+        top: -40px;
+        width: 0;
+    }
 }
 
 .cat-overlay {
@@ -48,121 +61,69 @@
     width: 0;  // Don't affect `fit-content` on mobile.
 
     li {
-        border-top: 1px solid $light-gray;
-        border-right: 1px solid $light-gray;
+        border-top: 1px solid $tile-border;
+        border-right: 1px solid $tile-border;
         float: left;
         font-size: 15px;
         height: 50px;
         position: relative;
-        text-transform: uppercase;
+        text-transform: none;
         width: 50%;
 
-        // Children on the right side. 少しこわいい
         &:nth-child(2n) {
+            // Right side children.
             border-right: 0;
 
             a:hover {
-                // To cover the border.
-                left: -1px;
+                left: -1px;  // Cover the border.
+                padding-left: 1px;  // Keep text at same horizontal position.
 
-                // To keep the text at the same horizontal position.
-                padding-left: 1px;
-
-                // To keep the icon in the same place
-                // (to account for the -1px shift to cover the border).
                 &:before {
-                    left: 16px;
+                    left: 16px;  // Keep icon same place for -1px border shift.
                 }
             }
         }
-
-        // First two children. 少しこわいい
         &:nth-child(-n + 2) {
+            // First two children.
             border-top: 0;
 
             a:hover {
-                // To keep the text at the same vertical position.
-                line-height: 51px;
+                line-height: 51px;  // Keep text at same vertical position.
+                top: 0;  // No border to cover.
 
-                // There is no border to cover.
-                top: 0;
-
-                // To keep the icon in the same place
-                // (to account for the -1px shift to cover the border).
                 &:before {
-                    top: 10px;
+                    top: 10px;  // Keep icon same place for -1px border shift.
                 }
             }
         }
-
-        // Last two children. 少しこわいい
-        &:nth-last-child(-n + 2) {
-            a:hover {
-                padding-bottom: 0;
-            }
-        }
-
-        // Smooth corners for the ones by the edge.
-        &:first-child a {
-            border-radius: 5px 0 0;
-        }
-        &:nth-child(2) a {
-            border-radius: 0 5px 0 0;
-        }
-        &:nth-last-child(2) a {
-            border-radius: 0 0 0 5px;
-        }
-        &:last-child a {
-            border-radius: 0 0 5px;
+        &:nth-last-child(-n + 2) a:hover {
+            // Last two children.
+            padding-bottom: 0;
         }
     }
 }
 
 @media $base-tablet {
-    // `link-clicked` class gets set in JS when a category link is clicked.
-    // When a category link is pressed, the drop-down disappears.
-    .tab-categories:not(.link-clicked):hover .appear-on-hover {
+    // `link-clicked` set in JS when category link clicked.
+    // When category link pressed, dropdown disappears.
+    .tab-categories:not(.link-clicked):hover .hovercats {
         opacity: 1;
         pointer-events: auto;
         visibility: visible;
     }
-
     .tab-categories:hover .hovercats {
         transform(unquote('translateX(-90%)'));
     }
-
     .cat-overlay {
         width: 500px;
     }
 
-    .hovercats {
-        background: $white;
-        border-radius: 5px;
-        box-shadow: 0 2px 1px -1px $cement-gray;  // Bottom box-shadow.
-        left: 90%;
-        position: absolute;
-        top: 48px;
-        transform(unquote('translateX(-90%)'));
-
-        &:after {
-            border: 10px solid transparent;
-            border-bottom: 10px solid #fff;
-            content: "";
-            height: 0;
-            left: 75%;
-            margin-left: -10px;
-            position: absolute;
-            top: -20px;
-            width: 0;
-        }
-    }
 }
 
 @media (max-width: 800px) {
     .tab-categories:hover .hovercats {
         transform(unquote('translateX(-100%)'));
     }
-
     .hovercats {
         left: 100%;
         transform(unquote('translateX(-100%)'));
@@ -179,7 +140,6 @@
         transform(unquote('scale(1) translateX(-50%)'));
         top: 48px;
     }
-
     .hovercats {
         left: 50%;
         transform(unquote('scale(0) translateX(-50%)'));
