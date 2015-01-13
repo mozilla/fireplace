@@ -4,9 +4,6 @@ $icon-size = 60px;
 $detail-icon-size = 64px;
 $info-height = 87px;
 
-// Mini tiles are grid layout app tiles.
-$mini-tile-width = 80px;
-
 // Detail page.
 $app-title-size = 20px;
 
@@ -186,37 +183,6 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 .feed-layout-list .mkt-tile {
     margin-bottom: 10px;
 }
-.feed-layout-grid .mkt-tile {
-    float: left;
-    height: 128px;
-    width: 50%;
-
-    .icon {
-        float: none;
-        left: 40px;
-        margin: 0 auto;
-        position: relative;
-    }
-    .info {
-        padding-left: 0;
-        text-align: center;
-    }
-    .install {
-        border-bottom: none;
-        color: $action-positive;
-        font-size: 15px;
-        height: auto;
-        position: relative;
-
-        em {
-            background: none !important;
-            border-bottom: none;
-        }
-        &[disabled] em {
-            background: none;
-        }
-    }
-}
 
 @media $greater-than-mobile {
     .mkt-tile .author {
@@ -225,18 +191,6 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 }
 
 @media $base-desktop {
-    .grid-if-desktop {
-        .heading {
-            height: auto;
-        }
-        .info {
-            padding: 0;
-            position: static;
-        }
-        .mkt-tile .price {
-            display: block;
-        }
-    }
     .mkt-tile .rating .cnt {
         top: 1px;
     }
