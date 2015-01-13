@@ -20,11 +20,14 @@
     <div class="heading">
       {{ deferred_icon(app.icons[is_detail and '128' or '64'] or app.icons['64']) }}
       <div class="info">
-        <h3 itemprop="name">{{ app.name|translate(app) }}</h3>
+        <h3 itemprop="name" title="{{ app.name|translate(app) }}">
+          {{ app.name|translate(app) }}
+        </h3>
 
         {% if app.author %}
           {# TODO: When we get user profiles, update to be Person itemprop. #}
-          <div class="author elliflow vital subdetail" itemprop="creator">
+          <div class="author elliflow vital subdetail" itemprop="creator"
+               title="{{ app.author }}">
             {% if is_detail -%}
               <a href="{{ url('search')|urlparams(author=app.author) }}">{{ app.author }}</a>
             {% else -%}
