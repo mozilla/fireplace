@@ -14,6 +14,7 @@ define(
         'helpers',  // Must come before mostly everything else.
         'helpers_local',
         'apps_buttons',
+        'app_lists',
         'cache',
         'capabilities',
         'consumer_info',
@@ -311,13 +312,6 @@ function(_) {
         // Divert the user to the deprecated view.
         z.page.trigger('divert', [urls.reverse('deprecated')]);
         throw new Error('Cancel navigation; deprecated client');
-    });
-
-    // Remove paginated class from app lists if .loadmore goes away.
-    z.page.on('loaded_more', function() {
-        if (!$('.loadmore').length) {
-            $('.app-list').removeClass('paginated');
-        }
     });
 
     console.log('Initialization complete');

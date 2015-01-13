@@ -1,7 +1,8 @@
 @import 'lib';
 
-$dot-size = 13px;
-$triangle-size = 20px;
+$bar-height = 3px;
+$tray-height = 170px;
+$desktop-tray-size = 540px;
 
 .listing.grid-if-desktop .tray,
 .listing.grid-if-desktop .tray img {
@@ -14,30 +15,29 @@ $triangle-size = 20px;
 }
 
 .tray {
-    background: $salt-flat-white;
-    border-radius: 0 0 10px 10px;
+    background: $filters-border;
     display: none;
-    height: 230px;
+    height: $tray-height;
     overflow: hidden;
-    padding: 21px 0 0;
+    padding: 10px 0 0;
     position: relative;
+    top: 20px;
 
     &.single {
-        // No dots so make it smaller. Leave 15px from bottom of screenshot to bottom of tray.
-        height: 201px;
+        height: $tray-height;
     }
-    &.single .dots {
+    &.single .bars,
+    .desktop-content {
         display: none;
     }
     .slider {
-        margin-top: 15px;
         overflow: hidden;
         user-select: none;
         -webkit-user-select: none;
         -moz-user-select: none;
     }
     ul {
-        height: 150px; // 150 + 15
+        height: $tray-height - 20;
         list-style-type: none;
         margin: 0 auto;
         overflow: hidden;
@@ -46,9 +46,10 @@ $triangle-size = 20px;
     }
     li {
         float: left;
-        margin-left: 15px;
+        margin-left: 10px;
         text-align: center;
         width: 150px; // Max height/width of image.
+
         &:first-child {
             margin-left: 0;
         }
@@ -79,41 +80,24 @@ $triangle-size = 20px;
 
 .mkt-tile + .single li {
     width: 100%;
-
-    img {
-        position: static;
-    }
 }
 
 .tray {
-    .dots {
-        margin-top: 13px;
-        height: $dot-size;
+    .bars {
+        background: $white;
+        display-flex();
+        margin-top: 7px;
+        height: $bar-height;
         text-align: center;
         width: 100%;
     }
-    .dot {
-        background: $salt-flat-white;
-        // Don't use shorthand, we do transitions.
-        border-color: $cloud-gray;
-        border-radius: ($dot-size/2);
-        border-style: solid;
-        border-width: 3px;
-        cursor: pointer;
-        display: inline-block;
-        height: $dot-size;
-        margin: 0 3px;
-        transition-duration: 0.15s;
-        transition-property: border-color, border-width;
-        width: $dot-size;
+    .bar {
+        flex-grow: 1;
+        height: $bar-height;
+        margin: 0;
 
-        &.current,
-        &:hover,
-        &:active {
-            border-color: $sailor-blue;
-        }
         &.current {
-            background: $sailor-blue;
+            background: $action-positive;
         }
     }
 }
@@ -123,57 +107,14 @@ $triangle-size = 20px;
     display: none;
 }
 
-.purchases .tray {
-    display: none;
-}
-
-.search-listing .tray {
-    border-radius: 0 0 5px 5px;
-}
-
-.expanded .tray {
-    &:before, &:after {
-        border-bottom: $triangle-size solid $salt-flat-white;
-        bottom: 0;
-        content: "";
-        display: block;
-        height: 0;
-        position: absolute;
-        top: 0;
-        width: 50%;
-        z-index: 5;
-    }
-    &:before {
-        // dotted gets rid of strange edge rendering in b2g.
-        border-right: $triangle-size dotted transparent;
-        left: -($triangle-size);
-    }
-    &:after {
-        border-left: $triangle-size dotted transparent;
-        right: -($triangle-size);
-    }
-}
-.expanded .tray:before,
-.expanded .tray:after {
-    background: #fff;
-}
-.app-header .tray {
-    border-radius: 0;
-}
-
 [data-page-type~="detail"] .tray {
     // Offset div padding.
     right: 10px;
+    top: 0;
     width: unquote('calc(100% + 20px)');
 }
 
 @media $base-desktop {
-    .listing li .tray {
-        border-radius: 0 0 5px 5px;
-    }
-    .tray {
-        border-radius: 0;
-    }
     .listing.app-header {
         .mkt-tile {
             + .tray:after,
@@ -182,70 +123,57 @@ $triangle-size = 20px;
             }
         }
     }
-    .search-listing .tray {
-        border-radius: 0 0 10px 10px;
-    }
     .shots {
         position: relative;
 
-        .next, .prev {
-            border-radius: 0 30px 30px 0;
-            border: 15px solid rgba(#252525,.7);
-            height: 60px;
-            margin-top: -30px;
+        .arrow-button {
+            margin-top: -15px;
             outline: 0;
             position: absolute;
             top: 50%;
-            transition(all .2s linear);
-            width: 0;
             z-index: 16;
-
-            &:after {
-                background: url(../img/icons/slider_arrow.png) no-repeat;
-                content: "";
-                float: right;
-                height: 22px;
-                left: 7px;
-                position: relative;
-                top: 4px;
-                width: 15px;
-            }
-            &:hover {
-                border-color: rgba(#252525,.9);
-                border-left-width: 22px;
-            }
-            &:active {
-                border-color: rgba(#777,.9);
-            }
         }
         .next {
-            border-radius: 30px 0 0 30px;
-            right: 0;
-
-            &:after {
-                transform(scaleX(-1));
-            }
-            &:hover {
-                border-left-width: 15px;
-                border-right-width: 22px;
-            }
+            right: 20px;
         }
         .prev {
-            left: 0;
+            left: 20px;
         }
     }
-    #lightbox {
-        .next, .prev {
-            box-shadow: 0 0 4px #fff;
+    [data-page-type~="detail"] .tray {
+        height: $desktop-tray-size + 23px;
+        left: 0;
+        position: absolute;
+        right: inherit;
+        top: 240px;
+        width: 100%;
+
+        .bars {
+            margin-top: 10px;
+        }
+        .content {
+            display: none;
+        }
+        .desktop-content {
+            display: block;
+        }
+    }
+    .app-header.expanded > div {
+        height: 830px;
+    }
+    .tray .desktop-content {
+        height: $desktop-tray-size;
+    }
+    .desktop-content {
+        li {
+            width: $desktop-tray-size;
+        }
+        img {
+            height: $desktop-tray-size;
+            object-fit: cover;
+            object-position: 50% 50%;
+            width: $desktop-tray-size;
         }
     }
 }
 
-@media $retina {
-    .shots .next, .shots .prev {
-        &:after {
-            background: url(../img/icons/slider_arrow-2x.png) no-repeat;
-            background-size: 15px auto;
-        }
-    }
-}

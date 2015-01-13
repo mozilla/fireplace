@@ -2,7 +2,7 @@
 
 $icon-size = 60px;
 $detail-icon-size = 64px;
-$info-height = 87px;
+$info-height = 96px;
 
 // Detail page.
 $app-title-size = 20px;
@@ -50,6 +50,7 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     .heading,
     .info {
         height: $info-height;
+        padding-top: 12px;
     }
     .heading {
         position: relative;
@@ -113,9 +114,13 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     .heading,
     .info {
         height: $detail-icon-size;
+        padding-top: 0;
     }
     .info {
         padding-left: $detail-icon-size + 10;
+    }
+    .rating-link .long {
+        margin-left: 12px;
     }
 }
 
@@ -190,12 +195,15 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     }
 }
 
+@media $base-tablet {
+    .detail .rating-link .long {
+        margin-left: 0;
+    }
+}
+
 @media $base-desktop {
     .mkt-tile .rating .cnt {
         top: 1px;
-    }
-    .mkt-tile .info {
-        padding-top: 12px;
     }
     .detail {
         .mkt-tile {

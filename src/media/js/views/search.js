@@ -35,7 +35,7 @@ define('views/search',
         if (expanded !== undefined) {
             expand = expanded;
         }
-        $('ol.listing').toggleClass('expanded', expanded);
+        $('.app-list').toggleClass('expanded', expanded);
         $('.expand-toggle').toggleClass('active', expand);
         storage.setItem('expand-listings', !!expanded);
         if (expanded) {

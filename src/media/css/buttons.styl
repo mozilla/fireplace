@@ -93,9 +93,10 @@ a.button {
     }
 }
 
-.arrow-button-left,
-.arrow-button-right {
+.arrow-button {
     background-color: $action-positive;
+    background-image: url(../img/pretty/arrow-l.svg);
+    background-position: 45% 50%;
     background-repeat: no-repeat;
     background-size: 15px 15px;
     border: 1px solid $white;
@@ -110,20 +111,13 @@ a.button {
     &:hover {
         background-color: $action-positive-hover;
     }
-
     &:active {
         background-color: $action-positive-tapped;
     }
-}
-
-.arrow-button-left {
-    background-image: url(../img/pretty/arrow-l.svg);
-    background-position: 45% 50%;
-}
-
-.arrow-button-right {
-    background-image: url(../img/pretty/arrow-r.svg);
-    background-position: 55% 50%;
+    &.next {
+        background-position: 55% 50%;
+        transform(scaleX(-1));
+    }
 }
 
 @media $retina {

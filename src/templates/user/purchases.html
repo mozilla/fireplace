@@ -13,9 +13,9 @@
   {% if user.logged_in() %}
     {% defer (url=api('installed'), pluck='objects', as='app', paginate='ol.listing') %}
       {% include "_includes/app_list_filters.html" %}
-      <ol class="app-list only-logged-in">
+      <ul class="app-list only-logged-in {{ 'paginated' if response.meta.next }}">
         {% for result in this %}
-          <li class="item result app">
+          <li class="item result app-list-app">
             {{ app_tile(result, tray=true, src='myapps') }}
           </li>
         {% endfor %}
