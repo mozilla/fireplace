@@ -75,6 +75,7 @@ def update():
             package_update()
 
         local('make build')
+
         local('node_modules/.bin/commonplace langpacks')
 
 
