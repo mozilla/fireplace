@@ -95,9 +95,7 @@ define('apps',
 
         var reasons = [];
         var device = capabilities.device_type();
-        if (product.payment_required && !capabilities.navPay && !settings.simulate_nav_pay) {
-            reasons.push(gettext('Your device does not support payments.'));
-        } else if (product.payment_required && !product.price) {
+        if (product.payment_required && !product.price) {
             reasons.push(gettext('This app is unavailable for purchase in your region.'));
         }
 

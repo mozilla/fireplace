@@ -1,129 +1,158 @@
 define('payments',
-    ['capabilities', 'defer', 'l10n', 'log', 'notification', 'requests', 'settings', 'urls', 'z'],
-    function(caps, defer, l10n, log, notification, requests, settings, urls, z) {
+    ['capabilities', 'defer', 'fxpay', 'l10n', 'log', 'notification', 'requests', 'settings', 'underscore', 'urls', 'z'],
+    function(caps, defer, fxpay, l10n, log, notification, requests, settings, _, urls, z) {
 
-    var console = log('payments');
-
+    var logger = log('payments');
     var notify = notification.notification;
     var gettext = l10n.gettext;
+    var fxpayLog = log('fxpay');
 
-    function waitForPayment($def, product, webpayJWT, contribStatusURL) {
-        console.log('Waiting for payment confirmation for ', product.name);
-        var checkFunc = function() {
-            console.log('Fetching payment status of ' + product.name + ' from API...');
-            // The `true` passed to `requests.get` disables caching.
-            requests.get(settings.api_url + urls.api.sign(contribStatusURL), true).done(function(result) {
-                console.log('Got payment status: ', product.name, ':', result.status);
-                if (result.status == 'complete' || settings.simulate_nav_pay) {
-                    console.log('Payment complete. Resolving deferreds...');
-                    $def.resolve(product);
-                }
-            }).fail(function(xhr, status, error) {
-                console.error('Error fetching payment status: ', product.name, status, error);
-                $def.reject(null, product, 'MKT_SERVER_ERROR');
-            });
-        };
-        var checker = setInterval(checkFunc, 3000);
-        var giveUp = setTimeout(function() {
-            console.error('Payment took too long to complete. Rejecting: ', product.name);
-            $def.reject(null, product, 'MKT_INSTALL_ERROR');
-        }, 60000);
 
-        checkFunc();
-
-        $def.always(function() {
-            console.log('Clearing payment timers for: ', product.name);
-            clearInterval(checker);
-            clearTimeout(giveUp);
-        });
+    function MarketplaceAdapter() {
+        //
+        // fxpay adapter for making app purchases.
+        //
+        logger.log('using Firefox Marketplace app adapter');
     }
 
-    navigator.fakeMozPay = function(jwts) {
-        var console_mock = console.tagged('mock');
-        var request = {
-            onsuccess: function() {
-                console_mock.warning('handler did not define request.onsuccess');
-            },
-            onerror: function() {
-                console_mock.warning('handler did not define request.onerror');
-            }
-        };
-        console_mock.log('STUB navigator.mozPay received', jwts);
-        console_mock.log('calling onsuccess() in 3 seconds...');
-        setTimeout(function() {
-            console_mock.log('calling onsuccess()');
-            request.onsuccess();
-            //request.onerror.call({error: {name: 'DIALOG_CLOSED_BY_USER'}});
-        }, 3000);
-        return request;
+    MarketplaceAdapter.prototype.init = function(callback) {
+        // Nothing special needs to happen during fxpay initialization.
+        logger.log('initializing app adapter');
+        callback();
     };
 
-    function beginPurchase(product) {
-        var $def = defer.Deferred();
+    MarketplaceAdapter.prototype.startTransaction = function(opt, callback) {
+        //
+        // Start a transaction.
+        //
+        opt = _.defaults({}, opt, {
+            productId: null,
+        });
+        logger.log('adapter: starting transaction for product', opt.productId);
+
+        requests.post(urls.api.url('prepare_nav_pay'), {app: opt.productId}).done(function(result) {
+            logger.log('Calling fxpay with JWT: ', result.webpayJWT);
+            callback(null, {productJWT: result.webpayJWT,
+                            productId: opt.productId,
+                            productData: result});
+        }).fail(function(xhr, status, error) {
+            if (error === 409) {
+                logger.warn('App already purchased (409 from API)');
+                // This error code means the user has already purchased the app.
+                return callback('APP_ALREADY_PURCHASED');
+            }
+            logger.error('Error fetching JWT from API: ', status, error);
+            callback('MKT_SERVER_ERROR');
+        });
+    };
+
+    MarketplaceAdapter.prototype.transactionStatus = function(transData, callback) {
+        //
+        // Get the status of a transaction.
+        //
+        var productInfo = {
+            productId: transData.productId,
+        };
+
+        logger.log('Fetching payment status of ' + transData.productId + ' from API...');
+        var urlPath = urls.api.sign(transData.productData.contribStatusURL);
+        // The `true` passed to `requests.get` disables caching.
+        requests.get(settings.api_url + urlPath, true).done(function(result) {
+            logger.log('Got payment status: ', transData.productId, ':', result.status);
+            if (result.status == 'complete') {
+                logger.log('Payment complete.');
+                callback(null, true, productInfo);
+            } else {
+                callback(null, false);
+            }
+        }).fail(function(xhr, status, error) {
+            logger.error('Error fetching payment status: ', transData.productId, status, error);
+            callback('MKT_SERVER_ERROR');
+        });
+    };
+
+    var extraProviderUrls = {};
+    if (settings.dev_pay_providers) {
+        // This is typically populated by Zamboni's commonplace view.
+        extraProviderUrls = settings.dev_pay_providers;
+    }
+    // This is a chance for a local JS-only config to allow arbitrary providers.
+    extraProviderUrls = _.defaults(extraProviderUrls,
+                                   settings.local_pay_providers || {});
+
+    fxpay.init({
+        onerror: function(error) {
+            logger.error('fxpay initialized with error:', error);
+        },
+        oninit: function() {
+            logger.log('fxpay initialized OK');
+        },
+        adapter: new MarketplaceAdapter(),
+        log: {
+            error: fxpayLog.error,
+            log: fxpayLog.log,
+            warn: fxpayLog.warn,
+            // D'oh. These aren't implemented.
+            info: fxpayLog.log,
+            debug: fxpayLog.log,
+        },
+        extraProviderUrls: extraProviderUrls,
+    });
+
+
+    function beginPurchase(product, opt) {
+        opt = _.defaults({}, opt, {
+            fxpaySettings: null,
+        });
+        var purchase = defer.Deferred();
 
         if (!product || !product.payment_required) {
-            return $def.resolve(product).promise();
+            return purchase.resolve(product).promise();
         }
 
-        console.log('Initiating transaction');
+        logger.log('Initiating transaction');
 
-        if (caps.navPay || settings.simulate_nav_pay) {
-            requests.post(urls.api.url('prepare_nav_pay'), {app: product.slug}).done(function(result) {
-                console.log('Calling mozPay with JWT: ', result.webpayJWT);
-                var request;
-                if (caps.navPay && !settings.simulate_nav_pay) {
-                    request = navigator.mozPay([result.webpayJWT]);
-                } else {
-                    request = navigator.fakeMozPay([result.webpayJWT]);
-                }
-                request.onsuccess = function() {
-                    console.log('navigator.mozPay success');
-                    waitForPayment($def, product, result.webpayJWT, result.contribStatusURL);
-                };
-                request.onerror = function(errorMsg) {
-                    var msg;
-                    console.error('`navigator.mozPay` error:', this.error.name);
-                    switch (this.error.name) {
-                        // Sent from webpay.
-                        case 'USER_CANCELLED':
-                        // Sent from the trusted-ui on cancellation.
-                        case 'DIALOG_CLOSED_BY_USER':
-                            msg = gettext('Payment cancelled.');
-                            break;
-                        default:
-                            msg = gettext('Payment failed. Try again later.');
-                            break;
-                    }
-
-                    notify({
-                        classes: 'error',
-                        message: msg,
-                        timeout: 5000
-                    });
-
-                    $def.reject(null, product, 'MKT_CANCELLED');
-                };
-            }).fail(function(xhr, status, error) {
-                if (error === 409) {
-                    console.warn('App already purchased (409 from API)');
-                    // This error code means the user has already purchased the app.
-                    $def.resolve(product);
-                    return;
-                }
-                console.error('Error fetching JWT from API: ', status, error);
-                // L10n: This error is raised when we are unable to fetch a JWT from the payments API.
-                notify({message: gettext('Error while communicating with server. Try again later.')});
-                $def.reject(null, product, 'MKT_SERVER_ERROR');
-            });
-
-        } else {
-            console.error('`navigator.mozPay` unavailable and mocking disabled. Cancelling.');
-            // L10n: When a user tries to make a purchase from a device that does not support payments, this is the error.
-            notify({message: gettext('Your device does not support purchases.')});
-            $def.reject(null, product, 'MKT_CANCELLED');
+        if (opt.fxpaySettings) {
+            fxpay.configure(opt.fxpaySettings);
         }
 
-        return $def.promise();
+        fxpay.purchase(product.slug, function(error) {
+            if (error) {
+                var msg;
+                logger.error('fxpay error:', error);
+                if (error === 'APP_ALREADY_PURCHASED') {
+                    return purchase.resolve(product);
+                }
+                switch (error) {
+                    // Sent from webpay.
+                    case 'USER_CANCELLED':
+                    // Sent from the trusted-ui on cancellation.
+                    case 'DIALOG_CLOSED_BY_USER':
+                        msg = gettext('Payment cancelled.');
+                        break;
+                    case 'MKT_SERVER_ERROR':
+                        // L10n: This error is raised when we are unable to fetch a JWT from the payments API.
+                        msg = gettext('Error while communicating with server. Try again later.')
+                        break;
+                    default:
+                        msg = gettext('Payment failed. Try again later.');
+                        break;
+                }
+
+                notify({
+                    classes: 'error',
+                    message: msg,
+                    timeout: 5000
+                });
+
+                purchase.reject(null, product, 'MKT_CANCELLED');
+            } else {
+                logger.log('payment completed successfully');
+                purchase.resolve(product);
+            }
+        });
+
+        return purchase.promise();
     }
 
     return {

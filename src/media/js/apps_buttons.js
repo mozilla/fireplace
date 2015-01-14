@@ -43,8 +43,7 @@ define('apps_buttons',
 
         // TODO: Have the API possibly return this (bug 889501).
         product.receipt_required = (product.premium_type !== 'free' &&
-                                    product.premium_type !== 'free-inapp' &&
-                                    !settings.simulate_nav_pay);
+                                    product.premium_type !== 'free-inapp');
 
         // If it's a paid app, ask the user to sign in first.
         if (product.receipt_required && !user.logged_in()) {

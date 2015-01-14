@@ -9,6 +9,7 @@ var localConfig = extend(true, {
         // [Source, excluding bower_components]: [Destination].
         'document-register-element/build/document-register-element.max.js': config.LIB_DEST_PATH,
         'flipsnap/flipsnap.js': config.LIB_DEST_PATH,
+        'fxpay/dist/fxpay.min.js': config.LIB_DEST_PATH,
         'marketplace-constants/dist/css/regions.styl': 'src/media/css/lib/',
         'marketplace-constants/dist/js/regions.js': config.LIB_DEST_PATH,
         'marketplace-constants/dist/img/regions/*': 'src/media/img/icons/regions/',
@@ -26,6 +27,7 @@ var localConfig = extend(true, {
         paths: {
             'document-register-element': 'lib/document-register-element.max',
             'flipsnap': 'lib/flipsnap',
+            'fxpay': 'lib/fxpay.min',
             'marketplace-elements': 'lib/marketplace-elements',
             'regions': 'lib/regions',
             'salvattore': 'lib/salvattore',
@@ -36,6 +38,9 @@ var localConfig = extend(true, {
             },
             'flipsnap': {
                 'exports': 'Flipsnap'
+            },
+            'fxpay': {
+                'exports': 'fxpay'
             },
             'marketplace-elements': {
                 'exports': 'window.document.registerElement',

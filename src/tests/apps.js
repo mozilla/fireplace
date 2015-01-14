@@ -471,9 +471,8 @@ test('apps.incompat payments', function(done, fail) {
             capabilities: {
                 device_type: function() {return 'foo';},
                 webApps: true,
-                navPay: false
             },
-            settings: {simulate_nav_pay: false}
+            settings: {}
         },
         function(apps) {
             var product = {
@@ -483,7 +482,7 @@ test('apps.incompat payments', function(done, fail) {
             var results = apps.incompat(product);
             assert(results);
             eq_(results.length, 1);
-            eq_(results[0], 'Your device does not support payments.');
+            eq_(results[0], 'This app is unavailable for purchase in your region.');
             done();
         },
         fail
@@ -498,7 +497,6 @@ test('apps.incompat webapps', function(done, fail) {
             capabilities: {
                 device_type: function() {return 'foo';},
                 webApps: false,
-                navPay: true
             }
         },
         function(apps) {
@@ -525,7 +523,6 @@ test('apps.incompat platform', function(done, fail) {
             capabilities: {
                 device_type: function() {return 'foo';},
                 webApps: true,
-                navPay: true
             }
         },
         function(apps) {
@@ -552,7 +549,6 @@ test('apps.incompat payments unavailable', function(done, fail) {
             capabilities: {
                 device_type: function() {return 'foo';},
                 webApps: true,
-                navPay: true
             }
         },
         function(apps) {
@@ -578,7 +574,6 @@ test('apps.incompat platform and webapps', function(done, fail) {
             capabilities: {
                 device_type: function() {return 'foo';},
                 webApps: false,
-                navPay: true
             }
         },
         function(apps) {
