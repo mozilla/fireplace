@@ -39,6 +39,11 @@ define('newsletter',
         var $processing = $form.siblings('.processing');
         var data = utils.getVars($form.serialize());
 
+        $form.addClass('submitted-once');
+        if ($form.find(':invalid').length) {
+            return;
+        }
+
         data.newsletter = 'marketplace-' + capabilities.device_platform();
 
         $form.addClass('processing-hidden');
