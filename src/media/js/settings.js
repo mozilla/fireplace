@@ -31,9 +31,6 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         // storing data in localStorage changes.
         storage_version: '0',
 
-        // Set to true to simulate navigator.mozPay.
-        simulate_nav_pay: false,
-
         // The list of query string parameters that are not stripped when
         // removing navigation loops.
         param_whitelist: ['q', 'sort', 'cat'],
