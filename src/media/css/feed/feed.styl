@@ -10,10 +10,6 @@
 
     > section {
         padding: $vertical-tile-padding $horizontal-tile-padding;
-
-        &.feed-layout-grid {
-            padding-bottom: 0;
-        }
     }
     > a {
         text-decoration: none;
@@ -48,7 +44,7 @@
 .feed-app {
     background-color: #fff;
     margin-bottom: 0;
-    padding: $vertical-tile-padding $horizontal-tile-padding;
+    padding: 0 15px 10px;
     position: relative;
 
     .heading {
@@ -128,7 +124,7 @@
     bottom: 5px;
 }
 .feed-layout-grid .feed-view-all-tab {
-    bottom: 20px;
+    bottom: 10px;
 }
 
 .multi-app-tile {
@@ -261,4 +257,26 @@ section.full.feed-item {
     &:active {
         text-decoration: none;
     }
+}
+
+[data-collection-color="amber"] {
+    background: $color-collection--amber;
+}
+[data-collection-color="garnet"] {
+    background: $color-collection--garnet;
+}
+[data-collection-color="topaz"] {
+    background: $color-collection--topaz;
+}
+[data-collection-color="amethyst"] {
+    background: $color-collection--amethyst;
+}
+[data-collection-color="sapphire"] {
+    background: $color-collection--sapphire;
+}
+[data-collection-color="emerald"] {
+    background: $color-collection--emerald;
+}
+[data-collection-color="ruby"] {
+    background: $color-collection--ruby;
 }

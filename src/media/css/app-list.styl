@@ -39,10 +39,8 @@ $desktop-tile-padding = 20px 50px;
         position: absolute;
         width: 100%;
     }
-    &.expanded {
-        .app-list-app {
-            padding-bottom: 40px;
-        }
+    &.expanded .app-list-app {
+        padding-bottom: 40px;
     }
 }
 
@@ -59,6 +57,14 @@ $desktop-tile-padding = 20px 50px;
     min-height: 20px;
     position: relative;
     text-transform: uppercase;
+}
+
+.app-list.app-list-colored {
+    // When the app list has a colored background (e.g., Feed landing).
+    .mkt-tile h3,
+    .mkt-tile .author {
+        color: $white;
+    }
 }
 
 @media $base-tablet {

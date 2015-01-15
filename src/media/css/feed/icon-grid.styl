@@ -1,6 +1,8 @@
 /*
     Grid layout for brands and collections. Mostly app icons.
 */
+@import '../lib';
+
 .feed-layout-grid {
     .rating,
     .author,
@@ -16,6 +18,7 @@
 .feed-layout-grid .mkt-tile {
     float: left;
     height: 128px;
+    margin-bottom: 20px;
     width: 50%;
 
     .icon {
@@ -42,5 +45,13 @@
         &[disabled] em {
             background: none;
         }
+    }
+}
+
+.feed-layout-grid .button.install {
+    color: $action-positive;
+
+    &[disabled] {
+        color: $action-disabled;
     }
 }

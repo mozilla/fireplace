@@ -13,8 +13,8 @@ define('views/feed/feed_collection', ['jquery', 'l10n', 'utils', 'z'],
             slug: slug
         });
 
-        builder.onload('feed-collection', function(feed_collection) {
-            builder.z('title', utils.translate(feed_collection.name));
+        builder.onload('feed-collection', function(data) {
+            builder.z('title', utils.translate(data.name));
         });
     };
 });

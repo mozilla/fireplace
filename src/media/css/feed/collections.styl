@@ -1,17 +1,20 @@
 /*
     Stylesheet for collections. Landing styles are also used by shelves.
 */
+@import 'index';
 @import '../lib';
 
 .collection-listing-header {
     // Header for listing collections on the homepage.
-    background: $action-positive;
     display: block;
     height: 48px;
     padding-top: 15px;
     position: relative;
     text-align: center;
 
+    &:hover {
+        text-decoration: none;
+    }
     h3 {
         color: $white;
         font-size: 20px;
@@ -37,6 +40,7 @@
 
 .collection-group-header {
     _h3();
+    color: $white;
     padding: 15px 0 5px;
 }
 
@@ -50,15 +54,107 @@
     }
 }
 
+.collection-landing-wrapper:not([data-collection-landing-is-listing]) .collection-landing-header-mobile {
+    padding: 10px 0;
+}
+
 .collection-landing-header-desktop {
     display: none;
+    width: 100%;
+
+    h1,
+    .feed-landing-description {
+        color: $white;
+    }
+}
+
+.collection-landing-app-icons {
+    bottom: 35px;
+    list-style: none;
+    margin: 0 auto;
+    position: relative;
+
+    li {
+        display: inline-block;
+        vertical-align: middle;
+
+        &:not(:first-child) {
+            margin-left: 20px;
+        }
+    }
+    + .feed-landing-curve .feed-landing-header-inner {
+        margin-top: 40px;
+    }
+}
+
+[data-collection-landing-color="amber"] {
+    collection_background_colors($color-collection--amber);
+}
+[data-collection-landing-color="garnet"] {
+    collection_background_colors($color-collection--garnet);
+}
+[data-collection-landing-color="topaz"] {
+    collection_background_colors($color-collection--topaz);
+}
+[data-collection-landing-color="amethyst"] {
+    collection_background_colors($color-collection--amethyst);
+}
+[data-collection-landing-color="sapphire"] {
+    collection_background_colors($color-collection--sapphire);
+}
+[data-collection-landing-color="emerald"] {
+    collection_background_colors($color-collection--emerald);
+}
+[data-collection-landing-color="ruby"] {
+    collection_background_colors($color-collection--ruby);
 }
 
 @media $base-tablet {
+    .collection-landing-wrapper {
+        padding-top: 40px;
+    }
+    .collection-landing-header {
+        height: 140px;
+    }
     .collection-landing-header-mobile {
         display: none;
     }
     .collection-landing-header-desktop {
         display-flex();
+    }
+    .collection-landing-wrapper .collection-landing {
+        margin-top: 20px;
+    }
+    [data-collection-landing-has-description] .collection-landing {
+        // The curve is absolutely positioned. The div doesn't have the
+        // height of the curve. Had to add 20px extra margin to reach the 40px
+        // spacing desired.
+        margin-top: 60px;
+    }
+    [data-collection-landing-has-background-image] {
+        .collection-landing-curve-inner {
+            align-items: flex-start;
+            bottom: 40px;
+            display-flex();
+            justify-content: center;
+            right: 40px;
+            position: relative;
+
+            h1 {
+                clear: left;
+                float: left;
+            }
+        }
+        .feed-landing-description {
+            clear: left;
+            float: left;
+            width: 500px;
+        }
+    }
+}
+
+@media $base-desktop {
+    .collection-landing-wrapper {
+        margin-top: -18px;
     }
 }

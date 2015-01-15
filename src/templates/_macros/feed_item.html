@@ -64,7 +64,7 @@
       {{ brand_header(brand) }}
     </div>
     <div class="brand-landing-header-desktop">
-      <div class="brand-landing-curve"></div>
+      <div class="feed-landing-curve brand-landing-curve"></div>
       <div class="brand-landing-icon"
            data-brand-color="{{ feed.get_brand_color_class(brand) }}"
            data-brand-type="{{ brand.type }}">
@@ -154,7 +154,8 @@
 
 {% macro collection_listing_header(coll) %}
    <a class="collection-listing-header"
-      href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}">
+      href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}"
+      data-collection-color="{{ coll.color }}">
      <h3>{{ coll.name|translate(coll)|safe }}</h3>
   </a>
 {% endmacro %}
@@ -190,11 +191,16 @@
 
 {% macro collection_landing(coll) %}
   {# Used both for collections and shelves. Reduce, reuse, recycle. #}
+  <div class="collection-landing-wrapper"
+       {% if coll.background_image %}data-collection-landing-has-background-image{% endif %}
+       {% if coll.description %}data-collection-landing-has-description{% endif %}
+       {% if coll.color %}data-collection-landing-color="{{ coll.color }}"{% endif %}
+       {% if coll.type == feed.COLL_PROMO %}data-collection-landing-is-promo{% endif %}
+       {% if coll.type == feed.COLL_LISTING %}data-collection-landing-is-listing{% endif %}
+       {% if coll.region %}data-shelf-landing-region="{{ coll.region }}"{% endif %}
+       {% if coll.carrier %}data-shelf-landing-carrier="{{ coll.carrier }}"{% endif %}>
   <div class="feed-landing-header collection-landing-header">
-    <div class="collection-landing-header-mobile"
-         {% if coll.type == feed.COLL_PROMO %}
-           style="background: {{ coll.background_color|shadeHex(-40) }}"
-         {% endif %}>
+    <div class="collection-landing-header-mobile">
       {# Reuse the feed representation as the mobile header. #}
       {% if coll.carrier %}
         {{ shelf(coll, true) }}
@@ -204,17 +210,29 @@
       {% endif %}
     </div>
     <div class="collection-landing-header-desktop">
-      {% if coll.background_image %}
-        <div class="feed-landing-bg-image">
-          <img src="{{ coll.background_image_landing or coll.background_image }}"
-               alt="{{ coll.name }}" draggable="false" itemprop="contentURL">
-        </div>
+      {% if not coll.background_image %}
+        <ul class="collection-landing-app-icons">
+          {% for app in coll.apps %}
+            {% if loop.index0 < 3 %}
+              <li>{{ deferred_icon(app.icons[64], app.name|translate(feed_app.app)) }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
       {% endif %}
-      <div class="feed-landing-header-inner">
-        <h1>{{ coll.name }}</h1>
-        {% if coll.description %}
-          <p class="feed-landing-description">{{ coll.description|translate(coll) }}</p>
-        {% endif %}
+      <div class="feed-landing-curve collection-landing-curve">
+        <div class="collection-landing-curve-inner">
+          {% if coll.background_image %}
+            <img class="feed-landing-bg-image"
+                 src="{{ coll.background_image_landing or coll.background_image }}"
+                 alt="" draggable="false" itemprop="contentURL">
+          {% endif %}
+          <div class="feed-landing-header-inner">
+            <h1>{{ coll.name }}</h1>
+            {% if coll.description %}
+              <p class="feed-landing-description">{{ coll.description|translate(coll) }}</p>
+            {% endif %}
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -225,7 +243,7 @@
       <section class="main full feed-landing collection-landing">
         <div>
           <h3 class="collection-group-header">{{ group.name }}</h3>
-          <ul class="app-list collection-group c">
+          <ul class="app-list app-list-colored collection-group c">
             {% for app in group.apps %}
               <li class="app-list-app">{{ app_tile(app, src='collection-element') }}</li>
             {% endfor %}
@@ -236,7 +254,7 @@
   {% else %}
     <section class="main full feed-landing collection-landing">
       <div>
-        <ul class="app-list c">
+        <ul class="app-list app-list-colored c">
           {% for app in coll.apps %}
             <li class="app-list-app">{{ app_tile(app, src='collection-element') }}</li>
           {% endfor %}
@@ -244,6 +262,7 @@
       </div>
     </section>
   {% endif %}
+  </div>
 {% endmacro %}
 
 {% macro shelf(shelf, landing) %}

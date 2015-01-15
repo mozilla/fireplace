@@ -6,22 +6,27 @@
 
 .feed-landing-header {
     display: block;
+    position: relative;
+    z-index: 1;
 }
 
 .feed-landing-header-inner {
     max-width: 100%;
-    padding: 0 10px;
 }
 
 .feed-landing-bg-image {
-    margin: 0 auto;
+    display: inline-block;
+    height: 150px;
+    margin-right: 40px;
+    width: auto;
+    vertical-align: top;
 
-    img {
-        max-width: $mobile-content-width;
-    }
     + .feed-landing-header-inner {
         // Change some stylings when a background image is present.
+        display: inline-block;
         margin-top: 20px;
+        vertical-align: top;
+        width-fit-content();
 
         h1 {
             margin-top: 0;
@@ -30,10 +35,8 @@
 }
 
 .feed-landing {
-    margin-top: 0;
-
     &.full > div {
-        padding-top: 10px;
+        padding-top: 0;
     }
     .app-list {
         margin-top: 0;
@@ -41,7 +44,9 @@
 }
 
 .feed-landing-description {
+    margin-top: 10px;
     text-align: center;
+    type_body();
 }
 
 @media $base-tablet {
@@ -52,13 +57,16 @@
 
         h1 {
             desktop_mega();
+            ellipsis();
             margin: 20px 0 0;
+            max-width: 100%;
             text-align: center;
         }
     }
     .feed-landing-bg-image {
-        margin: 0 40px 0 0;
-
+        img {
+            margin: 0 40px 0 0;
+        }
         + .feed-landing-header-inner {
             margin-top: 60px;
 
@@ -67,9 +75,6 @@
                 text-align: left;
             }
         }
-    }
-    .feed-landing {
-        margin-top: 40px;
     }
     .brand-landing-header-desktop,
     .collection-landing-header-desktop {
@@ -80,9 +85,5 @@
 @media $base-desktop {
     .feed-landing-header {
         flex-wrap: wrap;
-    }
-    .brand-landing-header-desktop,
-    .collection-landing-header-desktop {
-        margin-top: 22px;  // To get 40px. Combine with 18px #page padding.
     }
 }

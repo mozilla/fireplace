@@ -1,10 +1,11 @@
 /*
     Stylesheet for operator shelves.
 */
+@import 'index';
 @import '../lib';
 
 // Operator shelf colors and regions.
-$default_shelf_color = #ce001c;
+$default_shelf_color = #0098cf;
 $movistar_regions = (mx co ar uy pe es cl ve ec gt sv ni pa cr);
 $movistar_color = #7AB800;
 $vivo_regions = (br);
@@ -21,6 +22,16 @@ $kddi_regions = (jp)
 $kddi_color = #E35205;
 $mtn_regions = (za)
 $mtn_color = #CD6723;
+
+shelf_curve_color($color) {
+    // For the 300px shelf tile.
+    .curve {
+        background: rgba($color, 0.6);
+    }
+    .collection-landing-header-mobile .curve {
+        background: rgba($color, 0.8);
+    }
+}
 
 .shelf.shelf-landing {
     height: 150px;
@@ -52,59 +63,64 @@ $mtn_color = #CD6723;
     }
 }
 
-.curve {
-    [data-carrier="telefonica"]& {
-        for region in $movistar_regions {
-            [data-region={region}]& {
-                background-color: rgba($movistar_color, 0.6);
-            }
+[data-carrier="telefonica"] {
+    shelf_curve_color($movistar_color);
+
+    for region in $vivo_regions {
+        &[data-region={region}] {
+            shelf_curve_color($vivo_color);
         }
+    }
+}
+[data-carrier="o2"] {
+    shelf_curve_color($o2_color);
+}
+[data-carrier="telenor"] {
+    shelf_curve_color($telenor_color);
+}
+[data-carrier="grameenphone"] {
+    shelf_curve_color($grameenphone_color);
+}
+[data-carrier="deutsche_telekom"] {
+    shelf_curve_color($tmobile_color);
+}
+[data-carrier="kddi"] {
+    shelf_curve_color($kddi_color);
+}
+[data-carrier="mtn"] {
+    shelf_curve_color($mtn_color);
+}
+
+[data-page-type~="shelf-landing"] .page {
+    // Default.
+    collection_background_colors($default_shelf_color);
+}
+[data-page-type~="shelf-landing"] {
+    [data-shelf-landing-carrier="telefonica"] {
+        collection_background_colors($movistar_color);
+
         for region in $vivo_regions {
-            [data-region={region}]& {
-                background-color: rgba($vivo_color, 0.6);
+            &[data-shelf-landing-region={region}] {
+                collection_background_colors($vivo_color);
             }
         }
     }
-    [data-carrier="o2"]& {
-        for region in $o2_regions {
-            [data-region={region}]& {
-                background-color: rgba($o2_color, 0.6);
-            }
-        }
+    [data-shelf-landing-carrier="o2"] {
+        collection_background_colors($o2_color);
     }
-    [data-carrier="telenor"]& {
-        for region in $telenor_regions {
-            [data-region={region}]& {
-                background-color: rgba($telenor_color, 0.6);
-            }
-        }
+    [data-shelf-landing-carrier="telenor"] {
+        collection_background_colors($telenor_color);
     }
-    [data-carrier="grameenphone"]& {
-        for region in $grameenphone_regions {
-            [data-region={region}]& {
-                background-color: rgba($grameenphone_color, 0.6);
-            }
-        }
+    [data-shelf-landing-carrier="grameenphone"] {
+        collection_background_colors($grameenphone_color);
     }
-    [data-carrier="deutsche_telekom"]& {
-        for region in $tmobile_regions {
-            [data-region={region}]& {
-                background-color: rgba($tmobile_color, 0.6);
-            }
-        }
+    [data-shelf-landing-carrier="deutsche_telekom"] {
+        collection_background_colors($tmobile_color);
     }
-    [data-carrier="kddi"]& {
-        for region in $kddi_regions {
-            [data-region={region}]& {
-                background-color: rgba($kddi_color, 0.6);
-            }
-        }
+    [data-shelf-landing-carrier="kddi"] {
+        collection_background_colors($kddi_color);
     }
-    [data-carrier="mtn"]& {
-        for region in $mtn_regions {
-            [data-region={region}]& {
-                background-color: rgba($mtn_color, 0.6);
-            }
-        }
+    [data-shelf-landing-carrier="mtn"] {
+        collection_background_colors($mtn_color);
     }
 }

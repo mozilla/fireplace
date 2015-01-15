@@ -5,7 +5,7 @@ define('views/feed/feed_shelf',
     var gettext = l10n.gettext;
 
     return function(builder, args) {
-        builder.z('type', 'leaf');
+        builder.z('type', 'leaf shelf-landing');
         builder.z('title', gettext('Loading...'));
         builder.z('pagetitle', gettext('Operator Shelf Details'));
 
