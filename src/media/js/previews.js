@@ -41,6 +41,7 @@ define('previews',
         var $tray = $(this);
         var numPreviews = $tray.find('li').length;
         var $content = $tray.find('.content');
+        var slider = {};
 
         // Init desktop detail screenshot tray.
         if (caps.device_type() === 'desktop' &&
@@ -75,7 +76,7 @@ define('previews',
                 return;
             }
 
-            var slider = Flipsnap(
+            slider = Flipsnap(
                 $tray.find('.desktop-content')[0],
                 {distance: DESKTOP_PADDED}
             );
@@ -104,7 +105,7 @@ define('previews',
                 return;
             }
 
-            var slider = Flipsnap(
+            slider = Flipsnap(
                 $tray.find('.content')[0],
                 {distance: THUMB_PADDED}
             );
