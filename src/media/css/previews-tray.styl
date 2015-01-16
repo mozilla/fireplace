@@ -115,12 +115,10 @@ $desktop-tray-size = 540px;
 }
 
 @media $base-desktop {
-    .listing.app-header {
-        .mkt-tile {
-            + .tray:after,
-            + .tray:before {
-                background-image: none;
-            }
+    .listing.app-header .mkt-tile {
+        + .tray:after,
+        + .tray:before {
+            background-image: none;
         }
     }
     .shots {
@@ -170,9 +168,7 @@ $desktop-tray-size = 540px;
         }
         img {
             height: $desktop-tray-size;
-            object-fit: cover;
-            object-position: 50% 50%;
-            width: $desktop-tray-size;
+            width: auto;
         }
     }
 }
