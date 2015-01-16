@@ -47,14 +47,33 @@ define('apps_buttons',
 
         // If it's a paid app, ask the user to sign in first.
         if (product.receipt_required && !user.logged_in()) {
+            var payWindow;
+
+            if (!capabilities.navPay) {
+                console.log('Creating payment window ahead of time via user click');
+                var width = 274;
+                var height = 384;
+                var left = (window.screen.width / 2) - (width / 2);
+                var top_ = (window.screen.height / 2) - (height / 2);
+                payWindow = window.open('', 'FxPay', 'toolbar=no,location=no,directories=no,' +
+                    'menubar=no,scrollbars=no,resizable=no,copyhistory=no,' +
+                    'width=' + width + ',height=' + height +',top=' + top_ +',left=' + left);
+            }
+
             console.log('Install suspended; user needs to log in');
             return login.login().done(function() {
+                if (payWindow) {
+                    payWindow.focus();
+                }
                 // Once login completes, just call this function again with
                 // the same parameters, but re-fetch the button (since the
                 // button instance is not the same).
                 var new_button = get_button(product.manifest_url);
                 install(product, new_button);
             }).fail(function(){
+                if (payWindow) {
+                    payWindow.close();
+                }
                 console.log('Install cancelled; login aborted');
                 notification.notification({message: gettext('Payment cancelled.')});
             });
