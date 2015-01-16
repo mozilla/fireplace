@@ -156,6 +156,7 @@ define('payments',
     }
 
     return {
-        'purchase': beginPurchase
+        'purchase': beginPurchase,
+        'utils': fxpay.utils
     };
 });

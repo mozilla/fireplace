@@ -51,13 +51,7 @@ define('apps_buttons',
 
             if (!capabilities.navPay) {
                 console.log('Creating payment window ahead of time via user click');
-                var width = 274;
-                var height = 384;
-                var left = (window.screen.width / 2) - (width / 2);
-                var top_ = (window.screen.height / 2) - (height / 2);
-                payWindow = window.open('', 'FxPay', 'toolbar=no,location=no,directories=no,' +
-                    'menubar=no,scrollbars=no,resizable=no,copyhistory=no,' +
-                    'width=' + width + ',height=' + height +',top=' + top_ +',left=' + left);
+                payWindow = payments.utils.openWindow({url: ''});
             }
 
             console.log('Install suspended; user needs to log in');
