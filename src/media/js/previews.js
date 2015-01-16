@@ -28,7 +28,7 @@ define('previews',
             $('.app-header.expanded > div')
                .css('height', 830 + trayOffset + 'px')
                .find('.previews')
-               .css('top', 240 + trayOffset + 'px');
+               .css('top', 225 + trayOffset + 'px');
         } else {
             $('.app-header.expanded > div')
                 .css('height', 'inherit')
