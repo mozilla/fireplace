@@ -271,6 +271,10 @@ commonprops($colour, $shadow) {
             }
         }
     }
+    &:active {
+        // Fix for bug 1123352.
+        background: transparent;
+    }
     &:hover em {
         background: $btn-hvr;
     }
