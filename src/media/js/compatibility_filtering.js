@@ -9,8 +9,8 @@ define('compatibility_filtering',
         'feed-items', 'feed-shelf', 'new_popular_search', 'search'
     ];
 
-    var actual_dev = '';
-    var actual_device = '';
+    var actual_platform = '';
+    var actual_formfactor = '';
     var limit = 25;
     var device_filter_name;
     var key = 'device_filtering_preferences';
@@ -36,27 +36,22 @@ define('compatibility_filtering',
     refresh_params();
     z.win.on('navigating', refresh_params);
 
-    // By default, filter by device everywhere but on desktop.
-    if (capabilities.firefoxOS) {
-        // Currently we don't distinguish between mobile & tablet on FirefoxOS,
-        // so don't set actual_device.
-        actual_dev = 'firefoxos';
-    } else if (capabilities.firefoxAndroid) {
-        actual_dev = 'android';
-        actual_device = capabilities.widescreen() ? 'tablet' : 'mobile';
-    }
+    // By default, filter by platform and form factor.
+    actual_platform = capabilities.device_platform();
+    actual_formfactor = capabilities.device_formfactor();
 
     // For mobile phones, set limit to 10, otherwise use the default, 25.
-    if (actual_device == 'mobile' || actual_dev == 'firefoxos') {
+    if (actual_formfactor == 'mobile' || actual_platform == 'firefoxos') {
         limit = 10;
     }
 
-    // Build the name of the filter combination we are currently using. It can
-    // even be '', which is fine, it's the default for desktop (no filtering).
-    if (actual_dev && actual_device) {
-        device_filter_name = actual_dev + '-' + actual_device;
-    } else {
-        device_filter_name = actual_dev;
+    // Build the name of the filter combination we are currently using.
+    device_filter_name = capabilities.device_type();
+
+    // On desktop, the default is no filtering.
+    if (actual_platform == 'desktop') {
+        actual_platform = '';
+        device_filter_name = '';
     }
 
     // Filtering preferences per page group. The default is to follow the
@@ -123,14 +118,14 @@ define('compatibility_filtering',
         else {
             // If device_filtering_preferences[endpoint_name] does not exist or
             // is an 'empty' value, then we use the default filtering behaviour
-            // with whatever dev and device are.
-            args.dev = actual_dev;
-            args.device = actual_device;
+            // with whatever actual_platform and actual_formfactor are.
+            args.dev = actual_platform;
+            args.device = actual_formfactor;
         }
         args.limit = limit;
-        if (actual_dev === 'firefoxos' &&
-            actual_dev === args.dev &&
-            actual_device === args.device &&
+        if (actual_platform === 'firefoxos' &&
+            actual_platform === args.dev &&
+            actual_formfactor === args.device &&
             _.indexOf(ENDPOINTS_WITH_FEATURE_PROFILE, endpoint_name) >= 0) {
             // Include feature profile, but only if specific conditions are met:
             // - We are using a Firefox OS device

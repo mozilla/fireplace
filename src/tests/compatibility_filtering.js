@@ -10,7 +10,11 @@ test('compatibility_filtering api_args desktop', function(done, fail) {
     mock(
         'compatibility_filtering',
         {
-            capabilities: {firefoxOS: false, firefoxAndroid: false},
+            capabilities: {
+                device_platform: function() { return 'desktop'; },
+                device_formfactor: function() { return ''; },
+                device_type: function() { return 'desktop'; },
+            },
             storage: {getItem: function() {}},
             utils: {getVars: function() { return {};}},
         },
@@ -54,7 +58,11 @@ test('compatibility_filtering api_args desktop override', function(done, fail) {
     mock(
         'compatibility_filtering',
         {
-            capabilities: {firefoxOS: false, firefoxAndroid: false},
+            capabilities: {
+                device_platform: function() { return 'desktop'; },
+                device_formfactor: function() { return ''; },
+                device_type: function() { return 'desktop'; },
+            },
             storage: {getItem: function() {}},
             utils: {getVars: function() { return {'device_override': 'desktop'};}},
         },
@@ -83,7 +91,11 @@ test('compatibility_filtering api_args desktop override firefoxos', function(don
     mock(
         'compatibility_filtering',
         {
-            capabilities: {firefoxOS: false, firefoxAndroid: false},
+            capabilities: {
+                device_platform: function() { return 'desktop'; },
+                device_formfactor: function() { return ''; },
+                device_type: function() { return 'desktop'; },
+            },
             storage: {getItem: function() {}},
             utils: {getVars: function() { return {'device_override': 'firefoxos'};}},
         },
@@ -116,7 +128,11 @@ test('compatibility_filtering api_args endpoint desktop w/ storage', function(do
     mock(
         'compatibility_filtering',
         {
-            capabilities: {firefoxOS: false, firefoxAndroid: false},
+            capabilities: {
+                device_platform: function() { return 'desktop'; },
+                device_formfactor: function() { return ''; },
+                device_type: function() { return 'desktop'; },
+            },
             storage: {getItem: function(key) { if (key == 'device_filtering_preferences') { return stored_prefs; }}},
         },
         function(compatibility_filtering) {
@@ -159,7 +175,11 @@ test('compatibility_filtering api_args endpoint android mobile', function(done, 
     mock(
         'compatibility_filtering',
         {
-            capabilities: {firefoxOS: false, firefoxAndroid: true, widescreen: function() { return false; }},
+            capabilities: {
+                device_platform: function() { return 'android'; },
+                device_formfactor: function() { return 'mobile'; },
+                device_type: function() { return 'android-mobile'; },
+            },
             storage: {getItem: function() {}},
         },
         function(compatibility_filtering) {
@@ -203,7 +223,11 @@ test('compatibility_filtering api_args endpoint android tablet', function(done, 
     mock(
         'compatibility_filtering',
         {
-            capabilities: {firefoxOS: false, firefoxAndroid: true, widescreen: function() { return true; }},
+            capabilities: {
+                device_platform: function() { return 'android'; },
+                device_formfactor: function() { return 'tablet'; },
+                device_type: function() { return 'android-tablet'; },
+            },
             storage: {getItem: function() {}},
         },
         function(compatibility_filtering) {
@@ -247,7 +271,11 @@ test('compatibility_filtering api_args endpoint firefoxos', function(done, fail)
     mock(
         'compatibility_filtering',
         {
-            capabilities: {firefoxOS: true, firefoxAndroid: false},
+            capabilities: {
+                device_platform: function() { return 'firefoxos'; },
+                device_formfactor: function() { return ''; },
+                device_type: function() { return 'firefoxos'; },
+            },
             storage: {getItem: function() {}},
         },
         function(compatibility_filtering) {
@@ -291,7 +319,11 @@ test('compatibility_filtering api_args endpoint firefoxos w/ profiled passed by 
     mock(
         'compatibility_filtering',
         {
-            capabilities: {firefoxOS: true, firefoxAndroid: false},
+            capabilities: {
+                device_platform: function() { return 'firefoxos'; },
+                device_formfactor: function() { return ''; },
+                device_type: function() { return 'firefoxos'; },
+            },
             storage: {getItem: function() {}},
             utils: {getVars: function() { return {'pro': 'dummy-profile'};}},
         },
@@ -345,7 +377,11 @@ test('compatibility_filtering api_args endpoint firefoxos w/ storage', function(
     mock(
         'compatibility_filtering',
         {
-            capabilities: {firefoxOS: true, firefoxAndroid: false},
+            capabilities: {
+                device_platform: function() { return 'firefoxos'; },
+                device_formfactor: function() { return ''; },
+                device_type: function() { return 'firefoxos'; },
+            },
             storage: {getItem: function(key) { if (key == 'device_filtering_preferences') { return stored_prefs; }}},
         },
         function(compatibility_filtering) {
