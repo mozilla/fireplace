@@ -134,14 +134,17 @@ function(_) {
     }
 
     z.page.one('loaded', function() {
-        // Remove the splash screen.
-        console.log('Hiding splash screen (' + ((performance.now() - start_time) / 1000).toFixed(6) + 's)');
-        var splash = $('#splash-overlay').addClass('hide');
-        z.body.removeClass('overlayed').addClass('loaded');
-
-        setTimeout(function() {
-            z.page.trigger('splash_removed');
-        }, 1500);
+        if (z.context.hide_splash !== false) {
+            // Remove the splash screen.
+            console.log('Hiding splash screen (' + ((performance.now() - start_time) / 1000).toFixed(6) + 's)');
+            var splash = $('#splash-overlay').addClass('hide');
+            z.body.removeClass('overlayed').addClass('loaded');
+            setTimeout(function() {
+                z.page.trigger('splash_removed');
+            }, 1500);
+        } else {
+            console.log('Retaining the splash screen for this view');
+        }
     });
 
     // This lets you refresh within the app by holding down command + R.

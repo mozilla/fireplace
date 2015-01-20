@@ -132,7 +132,7 @@ define('payments',
                         break;
                     case 'MKT_SERVER_ERROR':
                         // L10n: This error is raised when we are unable to fetch a JWT from the payments API.
-                        msg = gettext('Error while communicating with server. Try again later.')
+                        msg = gettext('Error while communicating with server. Try again later.');
                         break;
                     default:
                         msg = gettext('Payment failed. Try again later.');
@@ -150,7 +150,7 @@ define('payments',
                 logger.log('payment completed successfully');
                 purchase.resolve(product);
             }
-        });
+        }, {paymentWindow: opt.paymentWindow});
 
         return purchase.promise();
     }
