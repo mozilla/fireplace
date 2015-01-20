@@ -536,10 +536,6 @@ main:before {
             background-size: auto 46px;
             max-width: 232px;
             width: 232px;
-
-            .desktop & {
-                background: url(../img/pretty/marketplace-beta-logo.svg) 0 50% no-repeat;
-            }
         }
         .persona {
             display: block;
@@ -603,6 +599,10 @@ main:before {
             display: block;
         }
     }
+
+    .desktop .wordmark {
+        background: url(../img/pretty/marketplace-beta-logo.png) no-repeat 0 50% / 231px auto;
+    }
 }
 
 @media $base-desktop {
@@ -618,5 +618,11 @@ main:before {
         a {
             padding: 0;
         }
+    }
+}
+
+@media $retina-tablet {
+    .desktop .wordmark {
+        background: url(../img/pretty/marketplace-beta-logo2X.png) no-repeat 0 50% / 231px auto;
     }
 }
