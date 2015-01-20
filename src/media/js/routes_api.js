@@ -26,8 +26,6 @@ define('routes_api', [], function() {
         'newsletter': '/api/v2/account/newsletter/',
         'payments_status': '/api/v2/webpay/status/{0}/',
         'prepare_nav_pay': '/api/v2/webpay/prepare/',
-        'preverify_token': '/api/v2/account/fxa-preverify/',
-        'preverify_confirmation': '/api/v2/account/fxa-preverify/confirm/{0}/',
         'recommended': '/api/v2/apps/recommend/',
         'record_free': '/api/v2/installs/record/',
         'record_paid': '/api/v2/receipts/install/',

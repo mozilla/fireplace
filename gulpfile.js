@@ -36,7 +36,6 @@ var packageFilesWhitelist = [
     // Locale files will be dynamically whitelisted later.
     'src/app.html',
     'src/app-icons/*.png',
-    'src/media/css/fxa.css',
     'src/media/css/include.css',
     'src/media/css/splash.css',
     'src/media/js/l10n.js',
