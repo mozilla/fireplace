@@ -2,6 +2,7 @@
 
 $support-nav-height = 55px;
 
+// TODO: Nuke ID-based selectors here.
 #site-footer {
     display: none;
 }
@@ -67,18 +68,18 @@ $support-nav-height = 55px;
             width: $max-site-width;
         }
         .support-navigation {
-            border-bottom: 1px solid #e5e4e5;
+            border-bottom: 1px solid $footer-border;
+            display-flex();
             height: $support-nav-height;
             margin-top: -20px;
             padding: 0;
             text-align: center;
 
             li {
-                display: inline-block;
+                flex-grow: 1;
                 font-size: 17px;
                 font-weight: 500;
                 line-height: $support-nav-height;
-                padding: 0 50px;
             }
         }
     }

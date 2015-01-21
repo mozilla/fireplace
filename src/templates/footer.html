@@ -5,7 +5,11 @@
 <div id="footer">
   <ul class="support-navigation">
     <li><a href="#" class="submit-feedback">{{ _('Feedback') }}</a></li>
-    {% if capabilities.firefoxOS %}
+    {% if capabilities.device_type() == 'desktop' %}
+      <li>
+        <a href="https://support.mozilla.org/en-US/kb/marketplace-apps-firefox-desktop" target="_blank">{{ _('Support') }}</a>
+      </li>
+    {% elif capabilities.firefoxOS %}
       <li>
         <a href="https://support.mozilla.org/products/firefox-os/marketplace" target="_blank">{{ _('Support') }}</a>
       </li>
