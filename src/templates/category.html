@@ -18,8 +18,8 @@
   </div>
 </section>
 
-<section id="gallery" class="main category gallery full">
-{% defer (url=endpoint, pluck='objects', as='app', paginate='ol.app-list') %}
+<section class="category main full">
+{% defer (url=endpoint, pluck='objects', as='app', paginate='.app-list') %}
   {% set paginated = response.meta.total_count > response.meta.limit %}
   {% include "_includes/app_list_filters.html" %}
 

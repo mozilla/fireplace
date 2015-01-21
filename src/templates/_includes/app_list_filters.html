@@ -1,10 +1,10 @@
 <div class="app-list-filters">
   {% include "compatibility_filtering.html" %}
-  <nav class="new-pop-tabs">
+  <div class="app-list-filters-sort">
     <a{% if not sort %} class="active"{% endif %} href="{{ popular_url }}" data-preserve-scroll>{{ _('Popular') }}</a>
     {# L10n: "New" should translate to mean "Recent". Choose the shortest (space constraints) #}
     <a{% if sort == 'reviewed' %} class="active"{% endif %} href="{{ new_url }}" data-preserve-scroll>{{ _('New') }}</a>
-  </nav>
+  </div>
   <div class="expand-wrapper">
     {{ _('Display as') }}
     <a class="expand-toggle" title="{{ _('Expand') }}"></a>

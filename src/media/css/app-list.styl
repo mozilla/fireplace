@@ -67,6 +67,44 @@ $desktop-tile-padding = 20px 50px;
     }
 }
 
+.app-list-filters-sort {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    a {
+        display: inline-block;
+        ellipsis();
+        font-size: 15px;
+        font-weight: 300;
+        height: 29px;
+        line-height: 29px;
+        margin-top: 7px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-shadow: 0 .5px 1px #fff;
+        z-index: 2;
+        vertical-align: bottom;
+
+        &:hover {
+            border-bottom: 2px solid $seavan-salt-white;
+        }
+        &.active {
+            border-bottom: 2px solid $filters-link;
+            pointer-events: none;
+        }
+        &.active:before,
+        &.active:after {
+            background-color: #fff;
+        }
+        + a {
+            margin-left: 30px;
+        }
+    }
+}
+
 @media $base-tablet {
     .app-list,
     .app-list.only-logged-in {
@@ -172,5 +210,8 @@ $desktop-tile-padding = 20px 50px;
         &:last-child {
             border-right: 0;
         }
+    }
+    .app-list-filters-sort a {
+        text-shadow: none;
     }
 }

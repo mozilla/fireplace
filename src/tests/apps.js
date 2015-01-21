@@ -482,7 +482,7 @@ test('apps.incompat payments', function(done, fail) {
             var results = apps.incompat(product);
             assert(results);
             eq_(results.length, 1);
-            eq_(results[0], 'This app is unavailable for purchase in your region.');
+            eq_(results[0], 'Not available for your region');
             done();
         },
         fail
@@ -508,7 +508,7 @@ test('apps.incompat webapps', function(done, fail) {
             var results = apps.incompat(product);
             assert(results);
             eq_(results.length, 1);
-            eq_(results[0], 'Your browser or device is not web-app compatible.');
+            eq_(results[0], 'Not available for your platform');
             done();
         },
         fail
@@ -534,7 +534,7 @@ test('apps.incompat platform', function(done, fail) {
             var results = apps.incompat(product);
             assert(results);
             eq_(results.length, 1);
-            eq_(results[0], 'This app is unavailable for your platform.');
+            eq_(results[0], 'Not available for your platform');
             done();
         },
         fail
@@ -559,7 +559,7 @@ test('apps.incompat payments unavailable', function(done, fail) {
             var results = apps.incompat(product);
             assert(results);
             eq_(results.length, 1);
-            eq_(results[0], 'This app is unavailable for purchase in your region.');
+            eq_(results[0], 'Not available for your region');
             done();
         },
         fail
@@ -587,7 +587,7 @@ test('apps.incompat platform and webapps', function(done, fail) {
 
             // Only return the first one. Both don't make sense.
             eq_(results.length, 1);
-            eq_(results[0], 'Your browser or device is not web-app compatible.');
+            eq_(results[0], 'Not available for your platform');
             done();
         },
         fail

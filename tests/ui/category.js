@@ -5,14 +5,12 @@ helpers.startCasper({path: '/category/games'});
 casper.test.begin('Category baseline tests', {
 
     test: function(test) {
-
-        casper.waitForSelector('#gallery li a', function() {
+        casper.waitForSelector('.app-list', function() {
             test.assertUrlMatch(/\/category\/[a-zA-Z0-9]+/);
             test.assertVisible('#search-q');
-            test.assertExists('#gallery');
-            test.assertVisible('#gallery');
-            test.assertVisible('#gallery ol.listing li a.mkt-tile');
-            casper.click('#gallery ol.listing li a.mkt-tile:first-child');
+            test.assertVisible('.app-list');
+            test.assertVisible('.app-list .app-list-app');
+            casper.click('.app-list .mkt-tile');
             test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
         });
 

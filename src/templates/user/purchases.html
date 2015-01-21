@@ -11,7 +11,7 @@
   {% set current_page = 'purchases' %}
 
   {% if user.logged_in() %}
-    {% defer (url=api('installed'), pluck='objects', as='app', paginate='ol.listing') %}
+    {% defer (url=api('installed'), pluck='objects', as='app', paginate='.app-list') %}
       {% include "_includes/app_list_filters.html" %}
       <ul class="app-list only-logged-in {{ 'paginated' if response.meta.next }}">
         {% for result in this %}
