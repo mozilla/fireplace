@@ -17,7 +17,7 @@
         <li>
           <a class="button review-button" data-app="{{ slug }}"
              href="{{ url('app/ratings/add', [slug]) }}">
-             {{ _('Leave a review') if user.logged_in() else _('Sign in to review') }}
+             {{ _('Write a review') if user.logged_in() else _('Sign in to review') }}
           </a>
         </li>
       {% endif %}
