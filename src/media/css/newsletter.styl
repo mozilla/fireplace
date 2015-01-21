@@ -23,7 +23,8 @@
         visibility: hidden;
     }
 
-    .success, .processing {
+    .success,
+    .processing {
         display: none;
     }
 
@@ -51,7 +52,9 @@
         margin: 10px 0;
     }
 
-    input, select, button {
+    input,
+    select,
+    button {
         margin: 0 10px 10px 0;
     }
 
@@ -89,7 +92,6 @@
     background: $white;
     height: 36px;
     padding: 5px 6px;
-    width: 50%;
 }
 
 .newsletter-email-field {
@@ -101,34 +103,42 @@
 }
 
 .newsletter-details {
+    display: block;
     opacity: 1;
     transition: .3s;
+    width: 100%;
 }
 
 .expanded.newsletter-details {
     transition: none;
 }
 
-@media $narrower-than-desktop {
-    .newsletter-details {
-        display: block;
-        width: 100%;
-    }
-
-    .newsletter .newsletter-desktop {
-        display: none;
-    }
-
-    .newsletter-email-field,
-    .newsletter-select,
-    .newsletter-signup-button,
-    .newsletter-cancel-button {
-        width: 100%;
-    }
+.newsletter-desktop {
+    display: none;
 }
 
-@media $at-least-desktop {
-    .newsletter .newsletter-mobile {
+.newsletter-email-field,
+.newsletter-select,
+.newsletter-signup-button,
+.newsletter-cancel-button {
+    width: 100%;
+}
+
+
+@media $base-desktop {
+    .newsletter-email-field,
+    .newsletter-select {
+        width: 50%;
+    }
+    .newsletter-details.collapsed,
+    .newsletter-mobile {
         display: none;
+    }
+    .newsletter-desktop {
+        display: inline-block;
+    }
+    .newsletter-signup-button,
+    .newsletter-cancel-button {
+        width: auto;
     }
 }
