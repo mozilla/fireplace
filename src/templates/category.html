@@ -22,10 +22,7 @@
 {% defer (url=endpoint, pluck='objects', as='app', paginate='ol.app-list') %}
   {% set paginated = response.meta.total_count > response.meta.limit %}
   {% include "_includes/app_list_filters.html" %}
-  {# TODO: Add this back in once it's mocked. 'if paginated' #}
-  {% if false %}
-      <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
-  {% endif %}
+
   <ul class="app-list {{ 'paginated' if response.meta.next }}">
     {% for app in this %}
       <li class="item result app-list-app">{{ app_tile(app, src=source + '-' + (sort or 'popular'), tray=True) }}</li>
