@@ -271,6 +271,10 @@ commonprops($colour, $shadow) {
             }
         }
     }
+    &:active {
+        // Fix for bug 1123352.
+        background: transparent;
+    }
     &:hover em {
         background: $btn-hvr;
     }
@@ -279,7 +283,7 @@ commonprops($colour, $shadow) {
     }
     &.spinning, &.purchasing {
         background: $btn-act;
-        bottom: 1px;
+        bottom: 2px;
         height: $tiny;
 
         em {
