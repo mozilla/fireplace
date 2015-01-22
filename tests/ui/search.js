@@ -1,50 +1,41 @@
+/*
+    Test for the search results page.
+    Note that a lot of it is already tested in the app_list.js tests.
+*/
 var helpers = require('../lib/helpers');
 
-helpers.startCasper();
-
 casper.test.begin('Search baseline tests', {
-
     test: function(test) {
+        helpers.startCasper();
 
         casper.waitForSelector('#splash-overlay.hide', function() {
-            casper.fill('#search', {q: 'test'}, true);
+            casper.fill('.mkt-search', {q: 'test'}, true);
         });
 
-        casper.waitForSelector('.search-listing li', function() {
+        casper.waitForSelector('.app-list', function() {
+            // Test search results count in header.
             test.assertUrlMatch(/\/search\?q=test$/);
             test.assertField('compatibility_filtering', 'all');
-            test.assertVisible('#search-q');
-            test.assertDoesntExist('#featured');
-            // There should be 26 elements in the listing: 25 items + "load more".
-            test.assertExists('.search-listing li:nth-child(26)');
-            test.assertDoesntExist('.search-listing li:nth-child(27)');
+            test.assertVisible('.mkt-search');
+
             test.assertSelectorHasText('#search-results h2', '42 Results');
             test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–25');
-            helpers.assertAPICallWasMade('/api/v2/fireplace/search/', {
-                cache: '1', lang: 'en-US', limit: '25', q: 'test', region: 'us', vary: '0'
-            });
-            test.assertVisible('.search-listing li a.mkt-tile');
-            var href = this.getElementAttribute('.search-listing li a.mkt-tile:nth-child(1)', 'href');
-            test.assertEqual(href.split('?')[1], 'src=search');
-            // Test we don't make the author a link on listing pages.
-            test.assertDoesntExist('.mkt-tile .info .author a');
-            test.assertVisible('#search-results .expand-toggle');
+
             casper.click('li.loadmore button');
         });
 
-        casper.waitForSelector('.search-listing li:nth-child(42)', function() {
+        casper.waitForSelector('.app-list-app:nth-child(42)', function() {
+            // Test search results count in header after clicking `Load more`.
             test.assertUrlMatch(/\/search\?q=test$/);
             test.assertField('compatibility_filtering', 'all');
             test.assertSelectorHasText('#search-results h2', '42 Results');
             test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–42');
-            helpers.assertAPICallWasMade('/api/v2/fireplace/search/', {
-                cache: '1', lang: 'en-US', limit: '25', q: 'test', offset: '25', region: 'us', vary: '0'
-            });
+
             casper.click('.header-button.back');
             casper.fill('#search', {q: 'test'}, true);
         });
 
-        casper.waitForSelector('.search-listing li:nth-child(42)', function() {
+        casper.waitForSelector('.app-list-app:nth-child(42)', function() {
             test.assertUrlMatch(/\/search\?q=test$/);
             test.assertField('compatibility_filtering', 'all');
             test.assertSelectorHasText('#search-results h2', '42 Results');

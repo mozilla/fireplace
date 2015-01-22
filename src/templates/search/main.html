@@ -12,7 +12,8 @@
   {% set api_url = api_url|urlparams(sort=params.sort) %}
 {% endif %}
 
-{% defer (url=api_url, pluck='objects', as='app', paginate='ol.app-list', id='searchresults') %}
+{% defer (url=api_url, pluck='objects', as='app', paginate='.app-list',
+          id='searchresults') %}
   <section class="main">
     <div class="subheader">
       <h1>

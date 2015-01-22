@@ -3,10 +3,13 @@
     Marketplace, including New, Popular, Recommended, Search, Category,
     Purchases, and (Feed) Collection Landing pages.
 */
+var constants = require('../lib/constants');
 var helpers = require('../lib/helpers');
+
 var _ = require('../../node_modules/underscore');
 
-var APP_LIMIT = 24;
+var APP_LIMIT = constants.APP_LIMIT;
+var APP_LIMIT_LOADMORE = constants.APP_LIMIT_LOADMORE;
 
 var appListPages = [
     {
@@ -97,11 +100,6 @@ appListPages.forEach(function(appListPage) {
                     test.assertNotExists('.app-list-app:nth-child(' + (APP_LIMIT + 1) + ')');
                 }
 
-                if (!appListPage.notLoadmore) {
-                    // Test loadmore button.
-                    test.assertExists('.app-list .loadmore');
-                }
-
                 // Test API call.
                 var endpointParams = _.extend({
                     cache: '1', vary: '0', lang: 'en-US', region: 'us',
@@ -119,22 +117,52 @@ appListPages.forEach(function(appListPage) {
                            'Assert src');
 
                 // Test model cache.
-                casper.then(function() {
-                    var modelCount = casper.evaluate(function() {
-                        return Object.keys(
-                            window.require('models')('app')
-                                  .data_store.app).length;
-                    });
-                    test.assertEqual(modelCount,
-                                     appListPage.collection ? 6 : APP_LIMIT,
-                                     'Assert model cache');
+                var modelCount = casper.evaluate(function() {
+                    return Object.keys(
+                        window.require('models')('app')
+                              .data_store.app).length;
                 });
+                test.assertEqual(modelCount,
+                                 appListPage.collection ? 6 : APP_LIMIT,
+                                 'Assert model cache');
 
-                // Test navigate to app.
-                casper.click('.app-list .mkt-tile');
-                test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
+                // Test expand toggle.
+                if (!appListPage.collection) {
+                    test.assertVisible('.expand-toggle');
+                }
+
+                // Test authors are not a link.
+                test.assertDoesntExist('.mkt-tile .author a');
+
+                if (!appListPage.notLoadmore) {
+                    // Test loadmore button.
+                    test.assertExists('.app-list .loadmore');
+
+                    casper.click('.loadmore button');
+                    casper.waitForSelector('.app-list-app:nth-child(' + (APP_LIMIT + 1) +')',
+                                           function() {
+                        endpointParams.offset = APP_LIMIT + '';
+                        helpers.assertAPICallWasMade(appListPage.endpoint, endpointParams);
+
+                        // Test model cache after load more.
+                        var modelCount = casper.evaluate(function() {
+                            return Object.keys(
+                                window.require('models')('app')
+                                      .data_store.app).length;
+                        });
+                        test.assertEqual(modelCount, APP_LIMIT_LOADMORE,
+                                         'Assert model cache after Load more');
+
+                        // Test navigate to app.
+                        casper.click('.app-list .mkt-tile');
+                        test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
+                    });
+                } else {
+                    // Test navigate to app.
+                    casper.click('.app-list .mkt-tile');
+                    test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
+                }
             }, function() {}, 10000);
-
 
             casper.run(function() {
                 test.done();

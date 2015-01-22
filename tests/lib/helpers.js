@@ -71,6 +71,14 @@ function assertAPICallWasMade(url, params, msg) {
     // Does not check *when* the call was made so be careful when using it.
     function testFn(res) {
         var target = res.url.split('?');
+
+        // Log if the endpoint matches but not the params.
+        /*
+        console.log('API url param mismatch:');
+        console.log(JSON.stringify(params));
+        console.log(JSON.stringify(parseQueryString(target[1])));
+        */
+
         return target[0] == url && utils.equals(params, parseQueryString(target[1]));
     }
 
