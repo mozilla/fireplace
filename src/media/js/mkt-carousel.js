@@ -33,6 +33,11 @@ define('mkt-carousel', ['defer'], function (defer) {
         });
         var transitioning = false;
 
+        // Shuffle the items once so that the first item is centered.
+        // [1, 2, 3] ~> [3, 1, 2]
+        cycleRight(promoItems);
+        cycleRight(placeholderItems);
+
         function setOrder(el, i) {
             el.style['-webkit-order'] = i;
             el.style.order = i;
@@ -98,15 +103,21 @@ define('mkt-carousel', ['defer'], function (defer) {
             });
         }
 
+        function cycleRight(array) {
+            var centerItem = array.pop();
+            array.unshift(centerItem);
+            return centerItem;
+        }
+
+        function cycleLeft(array) {
+            var centerItem = array.shift();
+            array.push(centerItem);
+            return centerItem;
+        }
+
         function shiftRight() {
-            // Cycle the promo items.
-            var wrappingItem = promoItems.pop();
-            promoItems.unshift(wrappingItem);
-
-            // Cycle the placeholder items.
-            var placeholder = placeholderItems.pop();
-            placeholderItems.unshift(placeholder);
-
+            var wrappingItem = cycleRight(promoItems);
+            var placeholder = cycleRight(placeholderItems);
             setPromoItemsOrder();
             showPlaceholder(placeholder, 'right');
             setItemsOffset('right');
@@ -120,14 +131,8 @@ define('mkt-carousel', ['defer'], function (defer) {
         }
 
         function shiftLeft() {
-            // Cycle the promo items.
-            var wrappingItem = promoItems.shift();
-            promoItems.push(wrappingItem);
-
-            // Cycle the placeholder items.
-            var placeholder = placeholderItems.shift();
-            placeholderItems.push(placeholder);
-
+            var wrappingItem = cycleLeft(promoItems);
+            var placeholder = cycleLeft(placeholderItems);
             setPromoItemsOrder();
             showPlaceholder(placeholder, 'left');
             animateItemsOffset('left').then(function () {

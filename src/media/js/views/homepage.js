@@ -61,16 +61,6 @@ define('views/homepage',
                 text: gettext('Games & Entertainment Apps—Desktop Essentials'),
             },
             {
-                name: 'productivity',
-                url: urls.reverse('feed/feed_collection', ['productivity-appsdesktop']),
-                text: gettext('Productivity Apps—Desktop Essentials'),
-            },
-            {
-                name: 'box',
-                url: urls.reverse('app', ['box']),
-                text: gettext('Store and share any type of file with Box.'),
-            },
-            {
                 name: 'soundcloud',
                 url: urls.reverse('app', ['soundcloud']),
                 text: gettext('Discover, share, and enjoy music with SoundCloud.'),
@@ -79,6 +69,16 @@ define('views/homepage',
                 name: 'hexrace',
                 url: urls.reverse('app', ['hexgl-1']),
                 text: gettext('Play Hex Race—a thrill ride from the future!'),
+            },
+            {
+                name: 'productivity',
+                url: urls.reverse('feed/feed_collection', ['productivity-appsdesktop']),
+                text: gettext('Productivity Apps—Desktop Essentials'),
+            },
+            {
+                name: 'box',
+                url: urls.reverse('app', ['box']),
+                text: gettext('Store and share any type of file with Box.'),
             },
         ] .map(function (item) {
           item.url = utils.urlparams(item.url, {src: 'desktop-promo'});
