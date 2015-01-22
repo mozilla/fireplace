@@ -20,19 +20,20 @@
 
 <section class="category main full">
 {% defer (url=endpoint, pluck='objects', as='app', paginate='.app-list') %}
-  {% set paginated = response.meta.total_count > response.meta.limit %}
   {% include "_includes/app_list_filters.html" %}
 
   <ul class="app-list {{ 'paginated' if response.meta.next }}">
     {% for app in this %}
-      <li class="item result app-list-app">{{ app_tile(app, src=source + '-' + (sort or 'popular'), tray=True) }}</li>
+      <li class="item result app-list-app">
+        {{ app_tile(app, src=source + '-' + (sort or 'popular'), tray=True) }}
+      </li>
     {% endfor %}
 
     {# Render the more button if there's another page of results #}
     {% if response.meta.next %}
       {{ more_button(response.meta.next) }}
     {% endif %}
-  </ol>
+  </ul>
 {% placeholder %}
   <p class="spinner padded alt"></p>
 {% empty %}

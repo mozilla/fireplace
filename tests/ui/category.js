@@ -1,21 +1,32 @@
-var helpers = require('../helpers');
+var helpers = require('../lib/helpers');
 
-helpers.startCasper({path: '/category/games'});
-
-casper.test.begin('Category baseline tests', {
-
+casper.test.begin('Category app list sort tests', {
     test: function(test) {
+        casper.viewport(1050, 768);  // Sort filters only show on desktop.
+        helpers.startCasper({path: '/category/games'});
+
         casper.waitForSelector('.app-list', function() {
-            test.assertUrlMatch(/\/category\/[a-zA-Z0-9]+/);
-            test.assertVisible('#search-q');
-            test.assertVisible('.app-list');
-            test.assertVisible('.app-list .app-list-app');
-            casper.click('.app-list .mkt-tile');
-            test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
+            // Test popular link is active by default.
+            test.assertVisible('.app-list-sort');
+            test.assertSelectorExists('[data-app-list-sort-popular].active');
+
+            // Test switch to new.
+            casper.click('[data-app-list-sort-new]');
+        });
+
+        casper.waitForSelector('.app-list', function() {
+            test.assert(casper.getCurrentUrl().indexOf('sort=reviewed') !== -1);
+            test.assertSelectorExists('[data-app-list-sort-new].active');
+
+            // Test switch back to popular.
+            casper.click('[data-app-list-sort-popular]');
+            test.assert(casper.getCurrentUrl().indexOf('sort=reviewed') === -1);
+            test.assertSelectorExists('[data-app-list-sort-popular].active');
         });
 
         casper.run(function() {
             test.done();
+            casper.viewport(300, 400);
         });
     }
 });

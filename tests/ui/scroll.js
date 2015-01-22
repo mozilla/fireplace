@@ -1,4 +1,4 @@
-var helpers = require('../helpers');
+var helpers = require('../lib/helpers');
 
 var firstItemSel = '#gallery .listing li:first-child a';
 var scrollPos;

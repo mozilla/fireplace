@@ -21,7 +21,7 @@ define('compatibility_filtering',
 
     var actual_platform = '';
     var actual_formfactor = '';
-    var limit = 25;
+    var limit = 24;
     var device_filter_name;
     var key = 'device_filtering_preferences';
     var device_override;
@@ -49,7 +49,7 @@ define('compatibility_filtering',
     actual_platform = capabilities.device_platform();
     actual_formfactor = capabilities.device_formfactor();
 
-    // For mobile phones, set limit to 10, otherwise use the default, 25.
+    // For mobile phones, set limit to 10, otherwise use the default, 24.
     if (actual_formfactor == 'mobile' || actual_platform == 'firefoxos') {
         limit = 10;
     }

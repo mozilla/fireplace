@@ -191,6 +191,8 @@
 
 {% macro collection_landing(coll) %}
   {# Used both for collections and shelves. Reduce, reuse, recycle. #}
+  {% set src = 'operator-shelf-element' if coll.carrier else 'collection-element' %}
+
   <div class="collection-landing-wrapper"
        {% if coll.background_image %}data-collection-landing-has-background-image{% endif %}
        {% if coll.description %}data-collection-landing-has-description{% endif %}
@@ -245,7 +247,7 @@
           <h3 class="collection-group-header">{{ group.name }}</h3>
           <ul class="app-list app-list-colored collection-group c">
             {% for app in group.apps %}
-              <li class="app-list-app">{{ app_tile(app, src='collection-element') }}</li>
+              <li class="app-list-app">{{ app_tile(app, src=src) }}</li>
             {% endfor %}
           </ul>
         </div>
@@ -256,7 +258,7 @@
       <div>
         <ul class="app-list app-list-colored c">
           {% for app in coll.apps %}
-            <li class="app-list-app">{{ app_tile(app, src='collection-element') }}</li>
+            <li class="app-list-app">{{ app_tile(app, src=src) }}</li>
           {% endfor %}
         </ul>
       </div>
