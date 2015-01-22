@@ -12,7 +12,7 @@ casper.test.begin('Collection landing page tests', {
                 var modelCount = casper.evaluate(function() {
                     return Object.keys(window.require('models')('app').data_store.app).length;
                 });
-                test.assertEqual(modelCount, 3, 'Assert model cache');
+                test.assertEqual(modelCount, 6, 'Assert model cache');
             });
         });
 
