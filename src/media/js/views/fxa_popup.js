@@ -129,9 +129,8 @@ define('views/fxa_popup',
         }
 
         function showEmailSentPage(confirmation) {
-            var text = gettext(
-                'Click the verification link sent to {email} to transfer ' +
-                'your apps to Firefox Accounts.');
+            var text = gettext('Click the verification link sent to {email} ' +
+                'to transfer your apps to Firefox Accounts.');
             text = format.format(text, {email: email});
             document.getElementById('verification-text').textContent = text;
             showBox('email-sent');
