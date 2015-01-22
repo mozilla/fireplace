@@ -226,11 +226,13 @@ function(_) {
         $('#site-footer').html(
             nunjucks.env.render('footer.html', context));
 
-        if (!window['incompatibility-banner'] &&
-                !navigator.mozApps &&
-                !navigator.userAgent.match(/googlebot/i)) {
-            console.log('Adding incompatibility banner');
-            $('#site-nav').after(nunjucks.env.render('incompatible.html'));
+        if (!navigator.mozApps && !navigator.userAgent.match(/googlebot/i)) {
+            if (!document.getElementById('incompatibility-banner')) {
+                console.log('Adding incompatibility banner');
+                $('#site-nav').after(nunjucks.env.render('incompatible.html'));
+            }
+        } else if (capabilities.osXInstallIssues) {
+            $('#site-nav').after(nunjucks.env.render('_includes/os_x_banner.html'));
         }
 
         var logged_in = user.logged_in();
