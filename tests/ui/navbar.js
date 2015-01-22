@@ -1,41 +1,42 @@
 var helpers = require('../lib/helpers');
-var scrollPos;
-
-helpers.startCasper();
 
 casper.test.begin('Test navbar', {
-
     test: function(test) {
+        helpers.startCasper();
 
+        // Test everything is there.
         casper.waitForSelector('.navbar', function() {
-            test.assertExists('.nav-mkt.active', 'Check navbar initialised');
-            test.assertExists('.nav-mkt li[data-tab="homepage"]', 'Check navbar li initialised');
-            test.assertExists('.nav-settings:not(.active)', 'Check settings exists but is not active.');
-            test.assertExists('.nav-settings li[data-tab="settings"]', 'Check settings li exists');
-            casper.click('.nav-mkt li[data-tab="categories"] a');
+            test.assertExists('.nav-mkt.active', 'Check navbar initialized');
+            test.assertExists('.nav-mkt [data-tab="homepage"]',
+                              'Check navbar items initialized');
+            test.assertExists('.nav-settings:not(.active)',
+                              'Check settings exists but not active.');
+            test.assertExists('.nav-settings [data-tab="settings"]',
+                              'Check settings items exists');
+            casper.click('.nav-mkt [data-tab="categories"] a');
         });
 
+        // Test categories navigation.
         casper.waitForSelector('[data-page-type~="categories"]', function() {
-            test.assertExists('[data-page-type~=categories]', 'Check navigate to category');
-            casper.click('.nav-mkt li[data-tab="recommended"] a');
+            casper.click('.nav-mkt [data-tab="recommended"] a');
         });
 
-        // Recommended exists but may or may not be visible depending on login state.
+        // Test recommended navigation.
         casper.waitForSelector('[data-page-type~="recommended"]', function() {
-            test.assertExists('[data-page-type~=recommended]', 'Check navigate to recommended');
-            casper.click('.act-tray-mobile');
+            casper.click('.act-tray');
         });
 
-        casper.waitForSelector('#account-settings', function() {
-            test.assertExists('.nav-settings.active', 'Check settings navbar shown');
-            casper.click('.nav-settings li[data-tab="feedback"] a');
+        // Test go to settings navbar.
+        casper.waitForSelector('.nav-settings.active', function() {
+            casper.click('.nav-settings [data-tab="feedback"] a');
         });
 
-        casper.waitForSelector('.feedback.main', function() {
-            test.assertExists('.feedback.main', 'Check navigate to feedback');
-            casper.click('.mkt-tray');
+        // Test feedback navigation.
+        casper.waitUntilVisible('.feedback', function() {
+            casper.click('.back-to-marketplace');
         });
 
+        // Test back to Marketplace navbar.
         casper.waitForSelector('.nav-mkt.active', function() {
             test.assertExists('[data-page-type~=homepage]',
                               'Check we are back on homepage');
@@ -43,8 +44,6 @@ casper.test.begin('Test navbar', {
                               'Check nav-mkt has active class.');
         });
 
-        casper.run(function() {
-            test.done();
-        });
+        helpers.done(test);
     }
 });
