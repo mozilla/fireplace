@@ -38,7 +38,8 @@ define('apps_buttons',
         tracking_events.track_app_launch(product);
     });
 
-    function install(product, $button) {
+    function install(product, $button, loginPopup) {
+
         console.log('Install requested for', product.name);
 
         // TODO: Have the API possibly return this (bug 889501).
@@ -47,29 +48,23 @@ define('apps_buttons',
 
         // If it's a paid app, ask the user to sign in first.
         if (product.receipt_required && !user.logged_in()) {
-            var payWindow;
+            console.log('Purchase suspended; user needs to log in');
 
-            if (!capabilities.navPay) {
-                console.log('Creating payment window ahead of time via user click');
-                payWindow = payments.utils.openWindow({url: ''});
-            }
+            // Create a blank window here so we can pass it to the login func;
+            loginPopup = (!capabilities.navPay) ? utils.openWindow() : undefined;
 
-            console.log('Install suspended; user needs to log in');
-            return login.login().done(function() {
-                if (payWindow) {
-                    payWindow.focus();
-                }
+            return login.login({popupWindow: loginPopup}).done(function() {
                 // Once login completes, just call this function again with
                 // the same parameters, but re-fetch the button (since the
                 // button instance is not the same).
                 var new_button = get_button(product.manifest_url);
-                install(product, new_button);
+                install(product, new_button, loginPopup);
             }).fail(function(){
-                if (payWindow) {
-                    payWindow.close();
-                }
-                console.log('Install cancelled; login aborted');
+                console.log('Purchase cancelled; login aborted');
                 notification.notification({message: gettext('Payment cancelled.')});
+                if (loginPopup) {
+                    loginPopup.close();
+                }
             });
         }
 
@@ -101,7 +96,13 @@ define('apps_buttons',
             console.log('Starting payment flow for', product.name);
             $this.data('old-text', $this.find('em').text());  // Save the old text of the button.
             setButton($this, gettext('Purchasing'), 'purchasing');
-            payments.purchase(product).then(function() {
+
+            var purchaseOpts = {
+                // This will be undefined unless a window was created
+                paymentWindow: loginPopup,
+            };
+
+            payments.purchase(product, purchaseOpts).then(function() {
                 console.log('Purchase flow completed for', product.name);
 
                 // Update the button to say Install.
@@ -130,7 +131,6 @@ define('apps_buttons',
                 start_install();
             }, function() {
                 notification.notification({message: gettext('Payment cancelled.')});
-
                 console.log('Purchase flow rejected for', product.name);
                 def.reject();
             });
