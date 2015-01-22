@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-07T16:58:53.033Z\n"
+"POT-Creation-Date: 2015-01-22T17:57:33.005Z\n"
 "PO-Revision-Date: 2014-08-14 15:53+0000\n"
 "Last-Translator: Channy <channy@mozilla.or.kr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,6 +13,18 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1408031606.0\n"
+
+#: /templates/app_list.html:31
+msgid "No apps found"
+msgstr ""
+
+#: /templates/app_list.html:36
+msgid "No apps found."
+msgstr ""
+
+#: /templates/app_list.html:38 /templates/category.html:61 /templates/user/purchases.html:38
+msgid "An internal server error occurred. Please try again later."
+msgstr "내부 서버 오류가 발생하였습니다. 나중에 다시 시도해 주세요."
 
 #: /templates/category.html:33 /templates/nav.html:17
 msgid "Popular"
@@ -34,10 +46,6 @@ msgstr "이 카테고리에 앱 없음"
 #: /templates/category.html:59
 msgid "The category you requested does not exist."
 msgstr "요청한 카테고리가 존재하지 않습니다."
-
-#: /templates/category.html:61 /templates/app_list.html:38 /templates/user/purchases.html:38
-msgid "An internal server error occurred. Please try again later."
-msgstr "내부 서버 오류가 발생하였습니다. 나중에 다시 시도해 주세요."
 
 #: /templates/compatibility_filtering.html:3
 msgid "Show"
@@ -67,7 +75,7 @@ msgstr ""
 msgid "Android Tablet Apps"
 msgstr ""
 
-#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6
+#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6 /media/js/lib/marketplace-elements.js:106
 msgid "Close"
 msgstr "닫기"
 
@@ -79,12 +87,20 @@ msgstr "아니오"
 msgid "Yes"
 msgstr "예"
 
-#: /templates/app_list.html:31
-msgid "No apps found"
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "제작진"
+
+#: /templates/desktop-promo.html:1
+msgid "Previous"
 msgstr ""
 
-#: /templates/app_list.html:36
-msgid "No apps found."
+#: /templates/desktop-promo.html:10 /templates/fx_accounts_popup.html:31
+msgid "Next"
+msgstr ""
+
+#: /templates/feed.html:8
+msgid "More to Explore"
 msgstr ""
 
 #: /templates/footer.html:5
@@ -133,7 +149,7 @@ msgstr ""
 "이후 버전 라이센스를 따릅니다."
 
 #: /templates/footer.html:41 /templates/privacy.html:2 /templates/detail/main.html:188 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/main.html:70
-#: /media/js/views/app/privacy.js:10 /media/js/views/privacy.js:10
+#: /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "개인 정보 보호 정책"
 
@@ -177,10 +193,6 @@ msgstr ""
 msgid "Valid email required"
 msgstr ""
 
-#: /templates/fx_accounts_popup.html:31
-msgid "Next"
-msgstr ""
-
 #: /templates/fx_accounts_popup.html:41
 msgid "Verify your email"
 msgstr ""
@@ -188,6 +200,22 @@ msgstr ""
 #: /templates/fx_accounts_popup.html:46 /templates/header.html:3
 msgid "Back"
 msgstr "뒤로"
+
+#: /templates/header.html:8 /templates/header.html:11
+msgid "Search"
+msgstr "검색"
+
+#: /templates/header.html:13
+msgid "Clear"
+msgstr "삭제"
+
+#: /templates/header.html:18 /templates/settings/main.html:58 /templates/user/purchases.html:49
+msgid "Register"
+msgstr ""
+
+#: /templates/header.html:19 /templates/settings/main.html:61 /templates/user/purchases.html:50
+msgid "Sign In"
+msgstr "로그인"
 
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
@@ -241,7 +269,7 @@ msgstr ""
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
 msgstr ""
 
-#: /templates/newsletter.html:36 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/edit.html:21
+#: /templates/newsletter.html:36 /templates/ratings/edit.html:21 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
 msgid "Cancel"
 msgstr "취소"
 
@@ -256,6 +284,18 @@ msgstr ""
 #: /templates/_includes/more_button.html:2 /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "더보기"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may only allow you to install apps from the Mac App Store."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change your settings so you can install Marketplace apps."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:8
+msgid "Got it! You can always find out how to install Marketplace apps on your Mac on our <a href=\"{url}\">Support page</a>."
+msgstr ""
 
 #: /templates/_macros/act_tray.html:3
 msgid "Settings"
@@ -296,13 +336,39 @@ msgstr "유효하지 않음"
 msgid "Free"
 msgstr "무료"
 
-#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:254
+#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:266
 msgid "Open"
 msgstr "열기"
 
-#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:281
+#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:109 /media/js/apps_buttons.js:293
 msgid "Install"
 msgstr "설치"
+
+#: /templates/_macros/market_tile.html:63
+msgid "Works offline"
+msgstr "오프라인 동작"
+
+#: /templates/_macros/market_tile.html:114 /templates/_macros/market_tile.html:117
+msgid "{app_name} screenshot"
+msgstr "{app_name} 스크린샷"
+
+#: /templates/_macros/market_tile.html:134
+msgid "({n})"
+msgstr "({n})"
+
+#: /templates/_macros/market_tile.html:137 /templates/detail/main.html:135
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] ""
+
+#. "(0)" means "0 reviews."
+#: /templates/_macros/market_tile.html:141
+msgid "(0)"
+msgstr "(0)"
+
+#: /templates/_macros/market_tile.html:142
+msgid "Not yet reviewed"
+msgstr "검토 안됨"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -340,6 +406,16 @@ msgstr "권리 침해 신고"
 msgid "Send Report"
 msgstr "신고 보내기"
 
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:5
+msgid "Content Rating"
+msgstr "콘텐츠 등급"
+
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:77
+msgid "Content Rating Details"
+msgstr "콘텐츠 등급 소개"
+
 #: /templates/detail/main.html:44
 msgid "Installed!"
 msgstr "설치되었습니다!"
@@ -357,7 +433,7 @@ msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>A
 msgstr "<b>대시</b>나 <b>어플리케이션 피커</b>, <b>어플리케이션 메뉴</b>에서 앱을 실행하세요."
 
 #: /templates/detail/main.html:16 /templates/detail/main.html:17 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:65 /media/js/views/feed/feed_app.js:9
-#: /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_shelf.js:8 /media/js/views/feed/feed_collection.js:8
+#: /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:8 /media/js/views/feed/feed_shelf.js:8
 msgid "Loading..."
 msgstr "로딩중"
 
@@ -401,11 +477,6 @@ msgstr "사용자 평가 이력"
 msgid "Reviews"
 msgstr "사용자 평가"
 
-#: /templates/detail/main.html:135 /templates/_macros/market_tile.html:137
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] ""
-
 #: /templates/detail/main.html:142
 msgid "App not yet reviewed"
 msgstr "앱 검토 안됨"
@@ -442,16 +513,6 @@ msgstr "통계"
 msgid "Premium version available"
 msgstr "프리미엄 버전 있음"
 
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:5
-msgid "Content Rating"
-msgstr "콘텐츠 등급"
-
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:77
-msgid "Content Rating Details"
-msgstr "콘텐츠 등급 소개"
-
 #: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
 msgid "Back to app"
 msgstr "앱으로 돌아가기"
@@ -463,22 +524,6 @@ msgstr "개인 정보 보호 정책 로딩중..."
 #: /templates/detail/receipt.html:8
 msgid "Thank you for purchasing"
 msgstr "구매해 주셔서 감사합니다."
-
-#: /templates/header.html:8 /templates/header.html:11
-msgid "Search"
-msgstr "검색"
-
-#: /templates/header.html:13
-msgid "Clear"
-msgstr "삭제"
-
-#: /templates/header.html:18 /templates/settings/main.html:58 /templates/user/purchases.html:49
-msgid "Register"
-msgstr ""
-
-#: /templates/header.html:19 /templates/settings/main.html:61 /templates/user/purchases.html:50
-msgid "Sign In"
-msgstr "로그인"
 
 #: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:54
 msgid "Oh no!"
@@ -508,10 +553,6 @@ msgstr ""
 msgid "An error occurred."
 msgstr "오류가 발생했습니다."
 
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "제작진"
-
 #: /templates/errors/offline-error.html:2
 msgid "Currently Offline"
 msgstr ""
@@ -528,30 +569,21 @@ msgstr "더 불러오는 중 오류 발생"
 msgid "Try Again"
 msgstr "다시 시도"
 
-#: /templates/_macros/market_tile.html:63
-msgid "Works offline"
-msgstr "오프라인 동작"
-
-#: /templates/_macros/market_tile.html:114 /templates/_macros/market_tile.html:117
-msgid "{app_name} screenshot"
-msgstr "{app_name} 스크린샷"
-
-#: /templates/_macros/market_tile.html:134
-msgid "({n})"
-msgstr "({n})"
-
-#. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:141
-msgid "(0)"
-msgstr "(0)"
-
-#: /templates/_macros/market_tile.html:142
-msgid "Not yet reviewed"
-msgstr "검토 안됨"
-
-#: /templates/ratings/main.html:15 /templates/ratings/edit.html:5 /media/js/views/app/ratings/edit.js:86
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "사용자 평가 수정하기"
+
+#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "평가: "
+
+#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "보내기"
+
+#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "로그인한 사용자만 사용자 평가를 수정할 수 있습니다."
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
@@ -572,18 +604,6 @@ msgstr "부적절한 언어/대화"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "잘 못 올린 버그이거나 지원 요청"
-
-#: /templates/ratings/write.html:7 /templates/ratings/edit.html:9
-msgid "Rate:"
-msgstr "평가: "
-
-#: /templates/ratings/write.html:20 /templates/ratings/edit.html:22
-msgid "Submit"
-msgstr "보내기"
-
-#: /templates/ratings/write.html:23 /templates/ratings/edit.html:25
-msgid "Only logged in users may edit reviews."
-msgstr "로그인한 사용자만 사용자 평가를 수정할 수 있습니다."
 
 #: /templates/search/main.html:18
 msgid "<b>{n}</b> Result"
@@ -662,21 +682,107 @@ msgstr "내 앱을 보기 위해서는 로그인을 해야 합니다."
 msgid "You have no apps"
 msgstr "앱이 없음"
 
-#: /media/js/apps.js:99
-msgid "Your device does not support payments."
-msgstr "사용하고 있는 기기가 지불을 지원하지 않습니다."
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:64 /media/js/apps_buttons.js:133 /media/js/payments.js:131
+msgid "Payment cancelled."
+msgstr "지불이 취소되었습니다."
 
-#: /media/js/apps.js:101
+#: /media/js/apps_buttons.js:98
+msgid "Purchasing"
+msgstr "구매"
+
+#: /media/js/apps_buttons.js:161 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr ""
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:204
+msgid "Install failed. Please try again later."
+msgstr "설치가 싶패했습니다. 나중에 다시 시도해 주십시오."
+
+#: /media/js/apps.js:99
 msgid "This app is unavailable for purchase in your region."
 msgstr "현재 지역에서 이 앱을 구매할 수 없습니다."
 
-#: /media/js/apps.js:105
+#: /media/js/apps.js:103
 msgid "Your browser or device is not web-app compatible."
 msgstr "사용하는 브라우저나 기기가 웹앱호환이 아닙니다."
 
-#: /media/js/apps.js:107
+#: /media/js/apps.js:105
 msgid "This app is unavailable for your platform."
 msgstr "사용하는 플랫폼에서 이 앱을 사용할 수 없습니다."
+
+#: /media/js/categories.js:6
+msgid "Games"
+msgstr "게임"
+
+#: /media/js/categories.js:7
+msgid "Books"
+msgstr "도서"
+
+#: /media/js/categories.js:8
+msgid "Business"
+msgstr "비지니스"
+
+#: /media/js/categories.js:9
+msgid "Education"
+msgstr "교육"
+
+#: /media/js/categories.js:10
+msgid "Entertainment"
+msgstr "오락"
+
+#: /media/js/categories.js:11
+msgid "Health & Fitness"
+msgstr "건강"
+
+#: /media/js/categories.js:12
+msgid "Lifestyle"
+msgstr "라이프"
+
+#: /media/js/categories.js:13
+msgid "Maps & Navigation"
+msgstr "지도 및 교통"
+
+#: /media/js/categories.js:14
+msgid "Music"
+msgstr "음악"
+
+#: /media/js/categories.js:15
+msgid "News & Weather"
+msgstr "뉴스 및 날씨"
+
+#: /media/js/categories.js:16
+msgid "Photo & Video"
+msgstr "사진 및 동영상"
+
+#: /media/js/categories.js:17
+msgid "Productivity"
+msgstr "생산성"
+
+#: /media/js/categories.js:18
+msgid "Reference"
+msgstr "참고"
+
+#: /media/js/categories.js:19
+msgid "Shopping"
+msgstr "쇼핑"
+
+#: /media/js/categories.js:20
+msgid "Social"
+msgstr "소셜"
+
+#: /media/js/categories.js:21
+msgid "Sports"
+msgstr "스포츠"
+
+#: /media/js/categories.js:22
+msgid "Travel"
+msgstr "여행"
+
+#: /media/js/categories.js:23
+msgid "Utilities"
+msgstr "유틸리티"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -989,10 +1095,6 @@ msgid "Work & Business App"
 msgid_plural "Work & Business Apps"
 msgstr[0] ""
 
-#: /media/js/installer_iframe.js:111 /media/js/installer_direct.js:180
-msgid "App install error: {error}"
-msgstr "앱 설치 오류: {error}"
-
 #: /media/js/feed.js:8
 msgid "Grid Layout"
 msgstr ""
@@ -1029,162 +1131,26 @@ msgstr ""
 msgid "Unable to install packaged apps"
 msgstr "패킥지 앱 설치 할 수 없음"
 
-#: /media/js/installer_direct.js:178 /media/js/apps_buttons.js:149
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr ""
+#: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
+msgid "App install error: {error}"
+msgstr "앱 설치 오류: {error}"
 
-#: /media/js/main.js:181
+#: /media/js/main.js:190
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr ""
 
-#: /media/js/categories.js:6
-msgid "Games"
-msgstr "게임"
-
-#: /media/js/categories.js:7
-msgid "Books"
-msgstr "도서"
-
-#: /media/js/categories.js:8
-msgid "Business"
-msgstr "비지니스"
-
-#: /media/js/categories.js:9
-msgid "Education"
-msgstr "교육"
-
-#: /media/js/categories.js:10
-msgid "Entertainment"
-msgstr "오락"
-
-#: /media/js/categories.js:11
-msgid "Health & Fitness"
-msgstr "건강"
-
-#: /media/js/categories.js:12
-msgid "Lifestyle"
-msgstr "라이프"
-
-#: /media/js/categories.js:13
-msgid "Maps & Navigation"
-msgstr "지도 및 교통"
-
-#: /media/js/categories.js:14
-msgid "Music"
-msgstr "음악"
-
-#: /media/js/categories.js:15
-msgid "News & Weather"
-msgstr "뉴스 및 날씨"
-
-#: /media/js/categories.js:16
-msgid "Photo & Video"
-msgstr "사진 및 동영상"
-
-#: /media/js/categories.js:17
-msgid "Productivity"
-msgstr "생산성"
-
-#: /media/js/categories.js:18
-msgid "Reference"
-msgstr "참고"
-
-#: /media/js/categories.js:19
-msgid "Shopping"
-msgstr "쇼핑"
-
-#: /media/js/categories.js:20
-msgid "Social"
-msgstr "소셜"
-
-#: /media/js/categories.js:21
-msgid "Sports"
-msgstr "스포츠"
-
-#: /media/js/categories.js:22
-msgid "Travel"
-msgstr "여행"
-
-#: /media/js/categories.js:23
-msgid "Utilities"
-msgstr "유틸리티"
-
-#. When a user tries to make a purchase from a device that does not support payments, this is the error.
-#: /media/js/payments.js:91 /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120
-msgid "Payment cancelled."
-msgstr "지불이 취소되었습니다."
-
-#: /media/js/payments.js:94
-msgid "Payment failed. Try again later."
-msgstr "지불에 실패하였습니다. 나중에 다시 시도해 주세요."
-
-#. This error is raised when we are unable to fetch a JWT from the payments API.
-#: /media/js/payments.js:115
-msgid "Error while communicating with server. Try again later."
-msgstr "서버와 통신하는 중에 오류가 발생하였씁니다. 나중에 다시 시도해 주세요."
-
-#: /media/js/payments.js:122
-msgid "Your device does not support purchases."
-msgstr "사용하고 있는 기기가 구매를 지원하지 않습니다."
-
-#: /media/js/newsletter.js:59
+#: /media/js/newsletter.js:64
 msgid "There was an error submitting your newsletter sign up request"
 msgstr ""
 
-#: /media/js/apps_buttons.js:91
-msgid "Purchasing"
-msgstr "구매"
+#. This error is raised when we are unable to fetch a JWT from the payments API.
+#: /media/js/payments.js:135
+msgid "Error while communicating with server. Try again later."
+msgstr "서버와 통신하는 중에 오류가 발생하였씁니다. 나중에 다시 시도해 주세요."
 
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:192
-msgid "Install failed. Please try again later."
-msgstr "설치가 싶패했습니다. 나중에 다시 시도해 주십시오."
-
-#. {n} is the number of stars
-#: /media/js/ratingwidget.js:34
-msgid "{n} star"
-msgid_plural "{n} stars"
-msgstr[0] "{n}점"
-
-#: /media/js/settings.js:104
-msgid "English"
-msgstr ""
-
-#: /media/js/settings.js:105
-msgid "French"
-msgstr ""
-
-#: /media/js/settings.js:106
-msgid "German"
-msgstr ""
-
-#: /media/js/settings.js:107
-msgid "Hungarian"
-msgstr ""
-
-#: /media/js/settings.js:108
-msgid "Indonesian"
-msgstr ""
-
-#: /media/js/settings.js:109
-msgid "Polish"
-msgstr ""
-
-#: /media/js/settings.js:110
-msgid "Portuguese"
-msgstr ""
-
-#: /media/js/settings.js:111
-msgid "Russian"
-msgstr ""
-
-#: /media/js/settings.js:112
-msgid "Spanish"
-msgstr ""
-
-#: /media/js/settings.js:138
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "죄송합니다. 오프라인 상태이니 나중에 다시 시도해 주십시오."
+#: /media/js/payments.js:138
+msgid "Payment failed. Try again later."
+msgstr "지불에 실패하였습니다. 나중에 다시 시도해 주세요."
 
 #. The report is an abuse report for reviews
 #: /media/js/ratings.js:40
@@ -1215,16 +1181,234 @@ msgstr "사용자 평가가 등록되었습니다"
 msgid "Error while submitting review"
 msgstr "평가를 보내는 중에 오류가 발생했습니다"
 
+#. {n} is the number of stars
+#: /media/js/ratingwidget.js:34
+msgid "{n} star"
+msgid_plural "{n} stars"
+msgstr[0] "{n}점"
+
+#: /media/js/settings.js:101
+msgid "English"
+msgstr ""
+
+#: /media/js/settings.js:102
+msgid "French"
+msgstr ""
+
+#: /media/js/settings.js:103
+msgid "German"
+msgstr ""
+
+#: /media/js/settings.js:104
+msgid "Hungarian"
+msgstr ""
+
+#: /media/js/settings.js:105
+msgid "Indonesian"
+msgstr ""
+
+#: /media/js/settings.js:106
+msgid "Polish"
+msgstr ""
+
+#: /media/js/settings.js:107
+msgid "Portuguese"
+msgstr ""
+
+#: /media/js/settings.js:108
+msgid "Russian"
+msgstr ""
+
+#: /media/js/settings.js:109
+msgid "Spanish"
+msgstr ""
+
+#: /media/js/settings.js:135
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "죄송합니다. 오프라인 상태이니 나중에 다시 시도해 주십시오."
+
+#: /media/js/lib/regions.js:21
+msgid "Guatemala"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Colombia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "China"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Chile"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "South Africa"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Ecuador"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Czech Republic"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Argentina"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "India"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Costa Rica"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Galicia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Spain"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Venezuela"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Nicaragua"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Serbia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Lithuania"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Panama"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Rest of World"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Peru"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Italy"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Philippines"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Poland"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "France"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Russia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Germany"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Japan"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Hungary"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Brazil"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Greece"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Montenegro"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Uruguay"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "El Salvador"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "United States"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "United Kingdom"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Mexico"
+msgstr ""
+
 #: /media/js/views/app.js:66 /media/js/views/feed/feed_app.js:10
 msgid "App Details"
 msgstr "앱 상세"
 
-#: /media/js/views/fxa_popup.js:143
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "사용자 의견이 전성되었습니다. 감사합니다!"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "사용자 의견을 보내는 중에 오류가 발생하였씁니다. 나중에 다시 시도해 주세요."
+
+#: /media/js/views/fxa_popup.js:142
 msgid "Join Firefox Marketplace"
 msgstr ""
 
-#: /media/js/views/fxa_popup.js:145
+#: /media/js/views/fxa_popup.js:144
 msgid "Sign in to Firefox Marketplace"
+msgstr ""
+
+#: /media/js/views/homepage.js:61
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr ""
+
+#: /media/js/views/homepage.js:66
+msgid "Productivity Apps—Desktop Essentials"
+msgstr ""
+
+#: /media/js/views/homepage.js:71
+msgid "Store and share any type of file with Box."
+msgstr ""
+
+#: /media/js/views/homepage.js:76
+msgid "Discover, share, and enjoy music with SoundCloud."
+msgstr ""
+
+#: /media/js/views/homepage.js:81
+msgid "Play Hex Race—a thrill ride from the future!"
 msgstr ""
 
 #: /media/js/views/new.js:9
@@ -1247,13 +1431,31 @@ msgstr "설정 저장됨"
 msgid "Settings could not be saved"
 msgstr "설정이 저장되지 않음"
 
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "사용자 의견이 전성되었습니다. 감사합니다!"
+#: /media/js/lib/marketplace-core-modules/login.js:22
+msgid "You have been signed out"
+msgstr ""
 
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "사용자 의견을 보내는 중에 오류가 발생하였씁니다. 나중에 다시 시도해 주세요."
+#: /media/js/lib/marketplace-core-modules/login.js:26
+msgid "You have been signed in"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:72
+msgid "Sign in failed"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:178
+msgid "FxA login failed. A server error was encountered."
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/navigation.js:33
+msgid "No internet connection"
+msgstr ""
+
+#. {n} is the number of characters left.
+#: /media/js/lib/marketplace-core-modules/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] ""
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"
@@ -1263,10 +1465,6 @@ msgstr "권리 침해가 신고됨"
 msgid "Error while submitting report"
 msgstr "리포트 보내는 도중에 오류 발생"
 
-#: /media/js/views/commonplace/hello_world.js:9
-msgid "Hello World!"
-msgstr "시작하기!"
-
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"
 msgstr "영수증을 보기 위해서 로그인 해 주세요"
@@ -1275,10 +1473,26 @@ msgstr "영수증을 보기 위해서 로그인 해 주세요"
 msgid "Receipt"
 msgstr "영수증"
 
+#: /media/js/views/commonplace/hello_world.js:9
+msgid "Hello World!"
+msgstr "시작하기!"
+
 #. Page not found (404)
-#: /media/js/views/commonplace/not_found.js:9
+#: /media/js/views/commonplace/not_found.js:9 /media/js/lib/marketplace-core-modules/views/not_found.js:9
 msgid "Not Found"
 msgstr "없음"
+
+#: /media/js/views/feed/feed_brand.js:10
+msgid "Editorial Brand Details"
+msgstr ""
+
+#: /media/js/views/feed/feed_collection.js:9
+msgid "Collection Details"
+msgstr "콜렉션 상세"
+
+#: /media/js/views/feed/feed_shelf.js:9
+msgid "Operator Shelf Details"
+msgstr ""
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
@@ -1287,15 +1501,3 @@ msgstr "사용자 평가가 성공적으로 업데이트 되었습니다"
 #: /media/js/views/app/ratings/edit.js:35
 msgid "There was a problem updating your review"
 msgstr "사용자 평가를 업데이트 하는 중에 문제가 발생했습니다"
-
-#: /media/js/views/feed/feed_brand.js:10
-msgid "Editorial Brand Details"
-msgstr ""
-
-#: /media/js/views/feed/feed_shelf.js:9
-msgid "Operator Shelf Details"
-msgstr ""
-
-#: /media/js/views/feed/feed_collection.js:9
-msgid "Collection Details"
-msgstr "콜렉션 상세"

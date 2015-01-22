@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-07T16:58:53.033Z\n"
+"POT-Creation-Date: 2015-01-22T17:57:33.005Z\n"
 "PO-Revision-Date: 2015-01-09 13:53+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,10 +10,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1420811638.0\n"
+
+#: /templates/app_list.html:31
+msgid "No apps found"
+msgstr "Програм не знайдено"
+
+#: /templates/app_list.html:36
+msgid "No apps found."
+msgstr "Програм не знайдено."
+
+#: /templates/app_list.html:38 /templates/category.html:61 /templates/user/purchases.html:38
+msgid "An internal server error occurred. Please try again later."
+msgstr "Сталася внутрішня помилка сервера. Спробуйте знову пізніше."
 
 #: /templates/category.html:33 /templates/nav.html:17
 msgid "Popular"
@@ -35,10 +46,6 @@ msgstr "В цій категорії немає програм"
 #: /templates/category.html:59
 msgid "The category you requested does not exist."
 msgstr "Категорія, яку ви запитали не існує."
-
-#: /templates/category.html:61 /templates/app_list.html:38 /templates/user/purchases.html:38
-msgid "An internal server error occurred. Please try again later."
-msgstr "Сталася внутрішня помилка сервера. Спробуйте знову пізніше."
 
 #: /templates/compatibility_filtering.html:3
 msgid "Show"
@@ -68,7 +75,7 @@ msgstr "Програми для мобільних Android"
 msgid "Android Tablet Apps"
 msgstr "Програми для планшетів Android"
 
-#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6
+#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6 /media/js/lib/marketplace-elements.js:106
 msgid "Close"
 msgstr "Закрити"
 
@@ -80,13 +87,21 @@ msgstr "Ні"
 msgid "Yes"
 msgstr "Так"
 
-#: /templates/app_list.html:31
-msgid "No apps found"
-msgstr "Програм не знайдено"
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "Автори"
 
-#: /templates/app_list.html:36
-msgid "No apps found."
-msgstr "Програм не знайдено."
+#: /templates/desktop-promo.html:1
+msgid "Previous"
+msgstr ""
+
+#: /templates/desktop-promo.html:10 /templates/fx_accounts_popup.html:31
+msgid "Next"
+msgstr "Далі"
+
+#: /templates/feed.html:8
+msgid "More to Explore"
+msgstr ""
 
 #: /templates/footer.html:5
 msgid "Develop Apps"
@@ -134,7 +149,7 @@ msgstr ""
 "Attribution із збереженням умов версії 3.0</a> або пізнішої."
 
 #: /templates/footer.html:41 /templates/privacy.html:2 /templates/detail/main.html:188 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/main.html:70
-#: /media/js/views/app/privacy.js:10 /media/js/views/privacy.js:10
+#: /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Політика приватності"
 
@@ -178,10 +193,6 @@ msgstr "Введіть свою адресу ел. пошти"
 msgid "Valid email required"
 msgstr "Необхідна дійсна адреса ел. пошти"
 
-#: /templates/fx_accounts_popup.html:31
-msgid "Next"
-msgstr "Далі"
-
 #: /templates/fx_accounts_popup.html:41
 msgid "Verify your email"
 msgstr "Підтвердіть свою адресу ел. пошти"
@@ -189,6 +200,22 @@ msgstr "Підтвердіть свою адресу ел. пошти"
 #: /templates/fx_accounts_popup.html:46 /templates/header.html:3
 msgid "Back"
 msgstr "Назад"
+
+#: /templates/header.html:8 /templates/header.html:11
+msgid "Search"
+msgstr "Пошук"
+
+#: /templates/header.html:13
+msgid "Clear"
+msgstr "Очистити"
+
+#: /templates/header.html:18 /templates/settings/main.html:58 /templates/user/purchases.html:49
+msgid "Register"
+msgstr "Зареєструватись"
+
+#: /templates/header.html:19 /templates/settings/main.html:61 /templates/user/purchases.html:50
+msgid "Sign In"
+msgstr "Увійти"
 
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
@@ -240,11 +267,9 @@ msgstr "Підписатись"
 
 #: /templates/newsletter.html:30
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
-msgstr ""
-"Я погоджуюсь з тим, як Mozilla обробляє мою інформацію, як описано у <a "
-"href=\"{privacy_policy_url}\" target=\"_blank\">цій Політиці приватності</a>."
+msgstr "Я погоджуюсь з тим, як Mozilla обробляє мою інформацію, як описано у <a href=\"{privacy_policy_url}\" target=\"_blank\">цій Політиці приватності</a>."
 
-#: /templates/newsletter.html:36 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/edit.html:21
+#: /templates/newsletter.html:36 /templates/ratings/edit.html:21 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -254,14 +279,23 @@ msgstr "Дякуємо, що підписались!"
 
 #: /templates/newsletter.html:43
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
-msgstr ""
-"Ви отримаєте повідомлення від mozilla@e.mozilla.org. Будь ласка, перевірте "
-"свою теку вхідних, щоб прочитати першого листа від нас. Якщо ви його не "
-"бачите, перевірте теку для спаму."
+msgstr "Ви отримаєте повідомлення від mozilla@e.mozilla.org. Будь ласка, перевірте свою теку вхідних, щоб прочитати першого листа від нас. Якщо ви його не бачите, перевірте теку для спаму."
 
 #: /templates/_includes/more_button.html:2 /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "Більше"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may only allow you to install apps from the Mac App Store."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change your settings so you can install Marketplace apps."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:8
+msgid "Got it! You can always find out how to install Marketplace apps on your Mac on our <a href=\"{url}\">Support page</a>."
+msgstr ""
 
 #: /templates/_macros/act_tray.html:3
 msgid "Settings"
@@ -302,13 +336,41 @@ msgstr "Недоступно"
 msgid "Free"
 msgstr "Безплатно"
 
-#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:254
+#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:266
 msgid "Open"
 msgstr "Відкрити"
 
-#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:281
+#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:109 /media/js/apps_buttons.js:293
 msgid "Install"
 msgstr "Встановити"
+
+#: /templates/_macros/market_tile.html:63
+msgid "Works offline"
+msgstr "Працює поза мережею"
+
+#: /templates/_macros/market_tile.html:114 /templates/_macros/market_tile.html:117
+msgid "{app_name} screenshot"
+msgstr "Знімок екрану {app_name}"
+
+#: /templates/_macros/market_tile.html:134
+msgid "({n})"
+msgstr "({n})"
+
+#: /templates/_macros/market_tile.html:137 /templates/detail/main.html:135
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Відгук"
+msgstr[1] "Відгуки"
+msgstr[2] "Відгуків"
+
+#. "(0)" means "0 reviews."
+#: /templates/_macros/market_tile.html:141
+msgid "(0)"
+msgstr "(0)"
+
+#: /templates/_macros/market_tile.html:142
+msgid "Not yet reviewed"
+msgstr "Ще не перевірено"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -346,6 +408,16 @@ msgstr "Надіслати скаргу"
 msgid "Send Report"
 msgstr "Надіслати звіт"
 
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Оцінка вмісту"
+
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:77
+msgid "Content Rating Details"
+msgstr "Подробиці оцінки вмісту"
+
 #: /templates/detail/main.html:44
 msgid "Installed!"
 msgstr "Встановлено!"
@@ -363,7 +435,7 @@ msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>A
 msgstr "Запустити цю програму зі свого <b>dash</b>, <b>Панелі вибору програм</b>, або <b>Меню програм</b>."
 
 #: /templates/detail/main.html:16 /templates/detail/main.html:17 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:65 /media/js/views/feed/feed_app.js:9
-#: /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_shelf.js:8 /media/js/views/feed/feed_collection.js:8
+#: /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:8 /media/js/views/feed/feed_shelf.js:8
 msgid "Loading..."
 msgstr "Завантаження..."
 
@@ -407,13 +479,6 @@ msgstr "Історія відгуків"
 msgid "Reviews"
 msgstr "Відгуки"
 
-#: /templates/detail/main.html:135 /templates/_macros/market_tile.html:137
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Відгук"
-msgstr[1] "Відгуки"
-msgstr[2] "Відгуків"
-
 #: /templates/detail/main.html:142
 msgid "App not yet reviewed"
 msgstr "Програму ще не перевірено"
@@ -450,16 +515,6 @@ msgstr "Статистика"
 msgid "Premium version available"
 msgstr "Доступна преміум-версія"
 
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Оцінка вмісту"
-
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:77
-msgid "Content Rating Details"
-msgstr "Подробиці оцінки вмісту"
-
 #: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
 msgid "Back to app"
 msgstr "Повернутись до програми"
@@ -471,22 +526,6 @@ msgstr "Завантаження політики приватності..."
 #: /templates/detail/receipt.html:8
 msgid "Thank you for purchasing"
 msgstr "Дякуємо за покупку"
-
-#: /templates/header.html:8 /templates/header.html:11
-msgid "Search"
-msgstr "Пошук"
-
-#: /templates/header.html:13
-msgid "Clear"
-msgstr "Очистити"
-
-#: /templates/header.html:18 /templates/settings/main.html:58 /templates/user/purchases.html:49
-msgid "Register"
-msgstr "Зареєструватись"
-
-#: /templates/header.html:19 /templates/settings/main.html:61 /templates/user/purchases.html:50
-msgid "Sign In"
-msgstr "Увійти"
 
 #: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:54
 msgid "Oh no!"
@@ -516,10 +555,6 @@ msgstr "Спробувати знову"
 msgid "An error occurred."
 msgstr "Сталася помилка."
 
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "Автори"
-
 #: /templates/errors/offline-error.html:2
 msgid "Currently Offline"
 msgstr "Зараз поза мережею"
@@ -536,30 +571,21 @@ msgstr "Помилка подальшого завантаження"
 msgid "Try Again"
 msgstr "Спробувати знову"
 
-#: /templates/_macros/market_tile.html:63
-msgid "Works offline"
-msgstr "Працює поза мережею"
-
-#: /templates/_macros/market_tile.html:114 /templates/_macros/market_tile.html:117
-msgid "{app_name} screenshot"
-msgstr "Знімок екрану {app_name}"
-
-#: /templates/_macros/market_tile.html:134
-msgid "({n})"
-msgstr "({n})"
-
-#. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:141
-msgid "(0)"
-msgstr "(0)"
-
-#: /templates/_macros/market_tile.html:142
-msgid "Not yet reviewed"
-msgstr "Ще не перевірено"
-
-#: /templates/ratings/main.html:15 /templates/ratings/edit.html:5 /media/js/views/app/ratings/edit.js:86
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "Змінити відгук"
+
+#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "Оцінка:"
+
+#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Відправити"
+
+#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "Змінювати відгуки можна лише увійшовши."
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
@@ -580,18 +606,6 @@ msgstr "Недоречні мова/діалог"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Недоречний звіт про помилку або запит підтримки"
-
-#: /templates/ratings/write.html:7 /templates/ratings/edit.html:9
-msgid "Rate:"
-msgstr "Оцінка:"
-
-#: /templates/ratings/write.html:20 /templates/ratings/edit.html:22
-msgid "Submit"
-msgstr "Відправити"
-
-#: /templates/ratings/write.html:23 /templates/ratings/edit.html:25
-msgid "Only logged in users may edit reviews."
-msgstr "Змінювати відгуки можна лише увійшовши."
 
 #: /templates/search/main.html:18
 msgid "<b>{n}</b> Result"
@@ -672,21 +686,107 @@ msgstr "Для перегляду своїх програм ви повинні 
 msgid "You have no apps"
 msgstr "У вас немає програм"
 
-#: /media/js/apps.js:99
-msgid "Your device does not support payments."
-msgstr "Ваш пристрій не підтримує платежів."
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:64 /media/js/apps_buttons.js:133 /media/js/payments.js:131
+msgid "Payment cancelled."
+msgstr "Оплату скасовано."
 
-#: /media/js/apps.js:101
+#: /media/js/apps_buttons.js:98
+msgid "Purchasing"
+msgstr "Придбання"
+
+#: /media/js/apps_buttons.js:161 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Шкода, але трапився збій при виявленні даних про програми. Спробуйте ще раз пізніше."
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:204
+msgid "Install failed. Please try again later."
+msgstr "Встановлення невдале. Спробуйте знову пізніше."
+
+#: /media/js/apps.js:99
 msgid "This app is unavailable for purchase in your region."
 msgstr "Ця програма недоступна для придбання у вашому регіоні."
 
-#: /media/js/apps.js:105
+#: /media/js/apps.js:103
 msgid "Your browser or device is not web-app compatible."
 msgstr "Ваш браузер чи пристрій несумісні з веб-програмами."
 
-#: /media/js/apps.js:107
+#: /media/js/apps.js:105
 msgid "This app is unavailable for your platform."
 msgstr "Ця програма недоступна для вашої платформи."
+
+#: /media/js/categories.js:6
+msgid "Games"
+msgstr "Ігри"
+
+#: /media/js/categories.js:7
+msgid "Books"
+msgstr "Книги"
+
+#: /media/js/categories.js:8
+msgid "Business"
+msgstr "Робота"
+
+#: /media/js/categories.js:9
+msgid "Education"
+msgstr "Освіта"
+
+#: /media/js/categories.js:10
+msgid "Entertainment"
+msgstr "Розваги"
+
+#: /media/js/categories.js:11
+msgid "Health & Fitness"
+msgstr "Здоров'я та фітнес"
+
+#: /media/js/categories.js:12
+msgid "Lifestyle"
+msgstr "Стиль життя"
+
+#: /media/js/categories.js:13
+msgid "Maps & Navigation"
+msgstr "Карти і навігація"
+
+#: /media/js/categories.js:14
+msgid "Music"
+msgstr "Музика"
+
+#: /media/js/categories.js:15
+msgid "News & Weather"
+msgstr "Новини і погода"
+
+#: /media/js/categories.js:16
+msgid "Photo & Video"
+msgstr "Фото і відео"
+
+#: /media/js/categories.js:17
+msgid "Productivity"
+msgstr "Продуктивність"
+
+#: /media/js/categories.js:18
+msgid "Reference"
+msgstr "Посилання"
+
+#: /media/js/categories.js:19
+msgid "Shopping"
+msgstr "Покупки"
+
+#: /media/js/categories.js:20
+msgid "Social"
+msgstr "Соціальні"
+
+#: /media/js/categories.js:21
+msgid "Sports"
+msgstr "Спорт"
+
+#: /media/js/categories.js:22
+msgid "Travel"
+msgstr "Подорожі"
+
+#: /media/js/categories.js:23
+msgid "Utilities"
+msgstr "Утиліти"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -1107,10 +1207,6 @@ msgstr[0] "Програма з категорії робота і бізнес"
 msgstr[1] "Програми з категорії робота і бізнес"
 msgstr[2] "Програми з категорії робота і бізнес"
 
-#: /media/js/installer_iframe.js:111 /media/js/installer_direct.js:180
-msgid "App install error: {error}"
-msgstr "Помилка встановлення програми: {error}"
-
 #: /media/js/feed.js:8
 msgid "Grid Layout"
 msgstr "Розміщення сітки"
@@ -1147,166 +1243,26 @@ msgstr "Список збірок"
 msgid "Unable to install packaged apps"
 msgstr "Неможливо встановити запаковані програми"
 
-#: /media/js/installer_direct.js:178 /media/js/apps_buttons.js:149
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Шкода, але трапився збій при виявленні даних про програми. Спробуйте ще раз пізніше."
+#: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
+msgid "App install error: {error}"
+msgstr "Помилка встановлення програми: {error}"
 
-#: /media/js/main.js:181
+#: /media/js/main.js:190
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr ""
-"Наступного разу при запуску програми Firefox Marketplace, ви побачите "
-"оновлену версію!"
+msgstr "Наступного разу при запуску програми Firefox Marketplace, ви побачите оновлену версію!"
 
-#: /media/js/categories.js:6
-msgid "Games"
-msgstr "Ігри"
-
-#: /media/js/categories.js:7
-msgid "Books"
-msgstr "Книги"
-
-#: /media/js/categories.js:8
-msgid "Business"
-msgstr "Робота"
-
-#: /media/js/categories.js:9
-msgid "Education"
-msgstr "Освіта"
-
-#: /media/js/categories.js:10
-msgid "Entertainment"
-msgstr "Розваги"
-
-#: /media/js/categories.js:11
-msgid "Health & Fitness"
-msgstr "Здоров'я та фітнес"
-
-#: /media/js/categories.js:12
-msgid "Lifestyle"
-msgstr "Стиль життя"
-
-#: /media/js/categories.js:13
-msgid "Maps & Navigation"
-msgstr "Карти і навігація"
-
-#: /media/js/categories.js:14
-msgid "Music"
-msgstr "Музика"
-
-#: /media/js/categories.js:15
-msgid "News & Weather"
-msgstr "Новини і погода"
-
-#: /media/js/categories.js:16
-msgid "Photo & Video"
-msgstr "Фото і відео"
-
-#: /media/js/categories.js:17
-msgid "Productivity"
-msgstr "Продуктивність"
-
-#: /media/js/categories.js:18
-msgid "Reference"
-msgstr "Посилання"
-
-#: /media/js/categories.js:19
-msgid "Shopping"
-msgstr "Покупки"
-
-#: /media/js/categories.js:20
-msgid "Social"
-msgstr "Соціальні"
-
-#: /media/js/categories.js:21
-msgid "Sports"
-msgstr "Спорт"
-
-#: /media/js/categories.js:22
-msgid "Travel"
-msgstr "Подорожі"
-
-#: /media/js/categories.js:23
-msgid "Utilities"
-msgstr "Утиліти"
-
-#. When a user tries to make a purchase from a device that does not support payments, this is the error.
-#: /media/js/payments.js:91 /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120
-msgid "Payment cancelled."
-msgstr "Оплату скасовано."
-
-#: /media/js/payments.js:94
-msgid "Payment failed. Try again later."
-msgstr "Платіж невдалий. Спробуйте знову пізніше."
-
-#. This error is raised when we are unable to fetch a JWT from the payments API.
-#: /media/js/payments.js:115
-msgid "Error while communicating with server. Try again later."
-msgstr "Помилка при зв'язку із сервером. Спробуйте знову пізніше."
-
-#: /media/js/payments.js:122
-msgid "Your device does not support purchases."
-msgstr "Ваш пристрій не підтримує покупки."
-
-#: /media/js/newsletter.js:59
+#: /media/js/newsletter.js:64
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Трапилась помилка при відправленні вашого запиту на підписку"
 
-#: /media/js/apps_buttons.js:91
-msgid "Purchasing"
-msgstr "Придбання"
+#. This error is raised when we are unable to fetch a JWT from the payments API.
+#: /media/js/payments.js:135
+msgid "Error while communicating with server. Try again later."
+msgstr "Помилка при зв'язку із сервером. Спробуйте знову пізніше."
 
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:192
-msgid "Install failed. Please try again later."
-msgstr "Встановлення невдале. Спробуйте знову пізніше."
-
-#. {n} is the number of stars
-#: /media/js/ratingwidget.js:34
-msgid "{n} star"
-msgid_plural "{n} stars"
-msgstr[0] "{n} зірка"
-msgstr[1] "{n} зірки"
-msgstr[2] "{n} зірок"
-
-#: /media/js/settings.js:104
-msgid "English"
-msgstr "Англійська"
-
-#: /media/js/settings.js:105
-msgid "French"
-msgstr "Французька"
-
-#: /media/js/settings.js:106
-msgid "German"
-msgstr "Німецька"
-
-#: /media/js/settings.js:107
-msgid "Hungarian"
-msgstr "Угорська"
-
-#: /media/js/settings.js:108
-msgid "Indonesian"
-msgstr "Індонезійська"
-
-#: /media/js/settings.js:109
-msgid "Polish"
-msgstr "Польська"
-
-#: /media/js/settings.js:110
-msgid "Portuguese"
-msgstr "Португальська"
-
-#: /media/js/settings.js:111
-msgid "Russian"
-msgstr "Російська"
-
-#: /media/js/settings.js:112
-msgid "Spanish"
-msgstr "Іспанська"
-
-#: /media/js/settings.js:138
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "Нажаль, ви зараз поза мережею. Спробуйте знову пізніше."
+#: /media/js/payments.js:138
+msgid "Payment failed. Try again later."
+msgstr "Платіж невдалий. Спробуйте знову пізніше."
 
 #. The report is an abuse report for reviews
 #: /media/js/ratings.js:40
@@ -1337,17 +1293,237 @@ msgstr "Ваш відгук розміщено"
 msgid "Error while submitting review"
 msgstr "Помилка надсилання відгуку"
 
+#. {n} is the number of stars
+#: /media/js/ratingwidget.js:34
+msgid "{n} star"
+msgid_plural "{n} stars"
+msgstr[0] "{n} зірка"
+msgstr[1] "{n} зірки"
+msgstr[2] "{n} зірок"
+
+#: /media/js/settings.js:101
+msgid "English"
+msgstr "Англійська"
+
+#: /media/js/settings.js:102
+msgid "French"
+msgstr "Французька"
+
+#: /media/js/settings.js:103
+msgid "German"
+msgstr "Німецька"
+
+#: /media/js/settings.js:104
+msgid "Hungarian"
+msgstr "Угорська"
+
+#: /media/js/settings.js:105
+msgid "Indonesian"
+msgstr "Індонезійська"
+
+#: /media/js/settings.js:106
+msgid "Polish"
+msgstr "Польська"
+
+#: /media/js/settings.js:107
+msgid "Portuguese"
+msgstr "Португальська"
+
+#: /media/js/settings.js:108
+msgid "Russian"
+msgstr "Російська"
+
+#: /media/js/settings.js:109
+msgid "Spanish"
+msgstr "Іспанська"
+
+#: /media/js/settings.js:135
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "Нажаль, ви зараз поза мережею. Спробуйте знову пізніше."
+
+#: /media/js/lib/regions.js:21
+msgid "Guatemala"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Colombia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "China"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Chile"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "South Africa"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Ecuador"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Czech Republic"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Argentina"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "India"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Costa Rica"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Galicia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Spain"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Venezuela"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Nicaragua"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Serbia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Lithuania"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Panama"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Rest of World"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Peru"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Italy"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Philippines"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Poland"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "France"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Russia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Germany"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Japan"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Hungary"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Brazil"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Greece"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Montenegro"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Uruguay"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "El Salvador"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "United States"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "United Kingdom"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Mexico"
+msgstr ""
+
 #: /media/js/views/app.js:66 /media/js/views/feed/feed_app.js:10
 msgid "App Details"
 msgstr "Відомості програми"
 
-#: /media/js/views/fxa_popup.js:143
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "Відгук відправлено. Дякуємо!"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "Під час відправлення вашого відгуку виникла проблема. Зачекайте трохи і спробуйте знову."
+
+#: /media/js/views/fxa_popup.js:142
 msgid "Join Firefox Marketplace"
 msgstr "Зареєструватись на Firefox Marketplace"
 
-#: /media/js/views/fxa_popup.js:145
+#: /media/js/views/fxa_popup.js:144
 msgid "Sign in to Firefox Marketplace"
 msgstr "Увійти до Firefox Marketplace"
+
+#: /media/js/views/homepage.js:61
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr ""
+
+#: /media/js/views/homepage.js:66
+msgid "Productivity Apps—Desktop Essentials"
+msgstr ""
+
+#: /media/js/views/homepage.js:71
+msgid "Store and share any type of file with Box."
+msgstr ""
+
+#: /media/js/views/homepage.js:76
+msgid "Discover, share, and enjoy music with SoundCloud."
+msgstr ""
+
+#: /media/js/views/homepage.js:81
+msgid "Play Hex Race—a thrill ride from the future!"
+msgstr ""
 
 #: /media/js/views/new.js:9
 msgid "Fresh and New Apps"
@@ -1369,13 +1545,33 @@ msgstr "Налаштування збережено"
 msgid "Settings could not be saved"
 msgstr "Не вдалося зберегти налаштування"
 
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "Відгук відправлено. Дякуємо!"
+#: /media/js/lib/marketplace-core-modules/login.js:22
+msgid "You have been signed out"
+msgstr ""
 
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "Під час відправлення вашого відгуку виникла проблема. Зачекайте трохи і спробуйте знову."
+#: /media/js/lib/marketplace-core-modules/login.js:26
+msgid "You have been signed in"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:72
+msgid "Sign in failed"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:178
+msgid "FxA login failed. A server error was encountered."
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/navigation.js:33
+msgid "No internet connection"
+msgstr ""
+
+#. {n} is the number of characters left.
+#: /media/js/lib/marketplace-core-modules/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"
@@ -1385,10 +1581,6 @@ msgstr "Скаргу відправлено"
 msgid "Error while submitting report"
 msgstr "Помилка відправлення звіту"
 
-#: /media/js/views/commonplace/hello_world.js:9
-msgid "Hello World!"
-msgstr "Привіт, Світ!"
-
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"
 msgstr "Будь ласка, увійдіть, щоб побачити чек"
@@ -1397,10 +1589,26 @@ msgstr "Будь ласка, увійдіть, щоб побачити чек"
 msgid "Receipt"
 msgstr "Чек"
 
+#: /media/js/views/commonplace/hello_world.js:9
+msgid "Hello World!"
+msgstr "Привіт, Світ!"
+
 #. Page not found (404)
-#: /media/js/views/commonplace/not_found.js:9
+#: /media/js/views/commonplace/not_found.js:9 /media/js/lib/marketplace-core-modules/views/not_found.js:9
 msgid "Not Found"
 msgstr "Не знайдено"
+
+#: /media/js/views/feed/feed_brand.js:10
+msgid "Editorial Brand Details"
+msgstr "Додаткові відомості бренду"
+
+#: /media/js/views/feed/feed_collection.js:9
+msgid "Collection Details"
+msgstr "Відомості збірки"
+
+#: /media/js/views/feed/feed_shelf.js:9
+msgid "Operator Shelf Details"
+msgstr "Докладно про полицю оператора"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
@@ -1409,15 +1617,3 @@ msgstr "Відгук успішно оновлено"
 #: /media/js/views/app/ratings/edit.js:35
 msgid "There was a problem updating your review"
 msgstr "При оновленні вашого відгуку виникла проблема"
-
-#: /media/js/views/feed/feed_brand.js:10
-msgid "Editorial Brand Details"
-msgstr "Додаткові відомості бренду"
-
-#: /media/js/views/feed/feed_shelf.js:9
-msgid "Operator Shelf Details"
-msgstr "Докладно про полицю оператора"
-
-#: /media/js/views/feed/feed_collection.js:9
-msgid "Collection Details"
-msgstr "Відомості збірки"

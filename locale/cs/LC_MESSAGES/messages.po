@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Marketplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-07T16:58:53.033Z\n"
+"POT-Creation-Date: 2015-01-22T17:57:33.005Z\n"
 "PO-Revision-Date: 2015-01-09 13:28+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Czech <info@mozilla.cz>\n"
@@ -13,6 +13,18 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1420810122.0\n"
+
+#: /templates/app_list.html:31
+msgid "No apps found"
+msgstr "Nebyla nalezena žádná aplikace"
+
+#: /templates/app_list.html:36
+msgid "No apps found."
+msgstr "Nebyla nalezena žádná aplikace."
+
+#: /templates/app_list.html:38 /templates/category.html:61 /templates/user/purchases.html:38
+msgid "An internal server error occurred. Please try again later."
+msgstr "Nastala interní chyba serveru. Zkuste to znovu později."
 
 #: /templates/category.html:33 /templates/nav.html:17
 msgid "Popular"
@@ -34,10 +46,6 @@ msgstr "V této kategorii není žádná aplikace"
 #: /templates/category.html:59
 msgid "The category you requested does not exist."
 msgstr "Kategorie, kterou hledáte, není dostupná."
-
-#: /templates/category.html:61 /templates/app_list.html:38 /templates/user/purchases.html:38
-msgid "An internal server error occurred. Please try again later."
-msgstr "Nastala interní chyba serveru. Zkuste to znovu později."
 
 #: /templates/compatibility_filtering.html:3
 msgid "Show"
@@ -67,7 +75,7 @@ msgstr "Aplikace pro Android na mobilu"
 msgid "Android Tablet Apps"
 msgstr "Aplikace pro Android na tabletu"
 
-#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6
+#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6 /media/js/lib/marketplace-elements.js:106
 msgid "Close"
 msgstr "Zavřít"
 
@@ -79,13 +87,21 @@ msgstr "Ne"
 msgid "Yes"
 msgstr "Ano"
 
-#: /templates/app_list.html:31
-msgid "No apps found"
-msgstr "Nebyla nalezena žádná aplikace"
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "Poděkování"
 
-#: /templates/app_list.html:36
-msgid "No apps found."
-msgstr "Nebyla nalezena žádná aplikace."
+#: /templates/desktop-promo.html:1
+msgid "Previous"
+msgstr ""
+
+#: /templates/desktop-promo.html:10 /templates/fx_accounts_popup.html:31
+msgid "Next"
+msgstr "Další"
+
+#: /templates/feed.html:8
+msgid "More to Explore"
+msgstr ""
 
 #: /templates/footer.html:5
 msgid "Develop Apps"
@@ -133,7 +149,7 @@ msgstr ""
 "License v. 3.0</a> či kterékoliv pozdější verze."
 
 #: /templates/footer.html:41 /templates/privacy.html:2 /templates/detail/main.html:188 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/main.html:70
-#: /media/js/views/app/privacy.js:10 /media/js/views/privacy.js:10
+#: /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Zásady ochrany soukromí"
 
@@ -177,10 +193,6 @@ msgstr "Vložte svůj e-mail"
 msgid "Valid email required"
 msgstr "Je vyžadován platný e-mail"
 
-#: /templates/fx_accounts_popup.html:31
-msgid "Next"
-msgstr "Další"
-
 #: /templates/fx_accounts_popup.html:41
 msgid "Verify your email"
 msgstr "Ověření mého e-mailu"
@@ -188,6 +200,22 @@ msgstr "Ověření mého e-mailu"
 #: /templates/fx_accounts_popup.html:46 /templates/header.html:3
 msgid "Back"
 msgstr "Zpět"
+
+#: /templates/header.html:8 /templates/header.html:11
+msgid "Search"
+msgstr "Vyhledávání"
+
+#: /templates/header.html:13
+msgid "Clear"
+msgstr "Vymazat"
+
+#: /templates/header.html:18 /templates/settings/main.html:58 /templates/user/purchases.html:49
+msgid "Register"
+msgstr "Registrace"
+
+#: /templates/header.html:19 /templates/settings/main.html:61 /templates/user/purchases.html:50
+msgid "Sign In"
+msgstr "Přihlášení"
 
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
@@ -239,11 +267,9 @@ msgstr "Přihlásit"
 
 #: /templates/newsletter.html:30
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
-msgstr ""
-"Souhlasím, aby Mozilla pracovala s informacemi o mně dle <a "
-"href=\"{privacy_policy_url}\" target=\"_blank\">Zásad ochrany soukromí</a>."
+msgstr "Souhlasím, aby Mozilla pracovala s informacemi o mně dle <a href=\"{privacy_policy_url}\" target=\"_blank\">Zásad ochrany soukromí</a>."
 
-#: /templates/newsletter.html:36 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/edit.html:21
+#: /templates/newsletter.html:36 /templates/ratings/edit.html:21 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -253,14 +279,23 @@ msgstr "Děkujeme za přihlášení odběru!"
 
 #: /templates/newsletter.html:43
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
-msgstr ""
-"Obdržíte e-mail z adresy mozilla@e.mozilla.org. Zkontrolujte si svou poštu, "
-"zda jste jej obdrželi. Pokud ne, zkontrolujte nastavení filtru pro "
-"nevyžádanou poštu."
+msgstr "Obdržíte e-mail z adresy mozilla@e.mozilla.org. Zkontrolujte si svou poštu, zda jste jej obdrželi. Pokud ne, zkontrolujte nastavení filtru pro nevyžádanou poštu."
 
 #: /templates/_includes/more_button.html:2 /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "Více"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may only allow you to install apps from the Mac App Store."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change your settings so you can install Marketplace apps."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:8
+msgid "Got it! You can always find out how to install Marketplace apps on your Mac on our <a href=\"{url}\">Support page</a>."
+msgstr ""
 
 #: /templates/_macros/act_tray.html:3
 msgid "Settings"
@@ -301,13 +336,41 @@ msgstr "Není dostupné"
 msgid "Free"
 msgstr "Zdarma"
 
-#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:254
+#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:266
 msgid "Open"
 msgstr "Otevřít"
 
-#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:281
+#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:109 /media/js/apps_buttons.js:293
 msgid "Install"
 msgstr "Instalovat"
+
+#: /templates/_macros/market_tile.html:63
+msgid "Works offline"
+msgstr "Funguje offline"
+
+#: /templates/_macros/market_tile.html:114 /templates/_macros/market_tile.html:117
+msgid "{app_name} screenshot"
+msgstr "Snímek obrazovky {app_name}"
+
+#: /templates/_macros/market_tile.html:134
+msgid "({n})"
+msgstr "({n})"
+
+#: /templates/_macros/market_tile.html:137 /templates/detail/main.html:135
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Recenze"
+msgstr[1] "Recenze"
+msgstr[2] "Recenzí"
+
+#. "(0)" means "0 reviews."
+#: /templates/_macros/market_tile.html:141
+msgid "(0)"
+msgstr "(0)"
+
+#: /templates/_macros/market_tile.html:142
+msgid "Not yet reviewed"
+msgstr "Dosud nehodnoceno"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -345,6 +408,16 @@ msgstr "Nahlásit zneužití"
 msgid "Send Report"
 msgstr "Odeslání hlášení"
 
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Hodnocení obsahu"
+
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:77
+msgid "Content Rating Details"
+msgstr "Detaily hodnocení obsahu"
+
 #: /templates/detail/main.html:44
 msgid "Installed!"
 msgstr "Nainstalováno!"
@@ -362,7 +435,7 @@ msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>A
 msgstr "Spusťte aplikaci z vašeho <b>Dash</b>, <b>Application picker</b> nebo <b>nabídky Applications</b>."
 
 #: /templates/detail/main.html:16 /templates/detail/main.html:17 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:65 /media/js/views/feed/feed_app.js:9
-#: /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_shelf.js:8 /media/js/views/feed/feed_collection.js:8
+#: /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:8 /media/js/views/feed/feed_shelf.js:8
 msgid "Loading..."
 msgstr "Načítání..."
 
@@ -406,13 +479,6 @@ msgstr "Historie kontrol"
 msgid "Reviews"
 msgstr "Recenze"
 
-#: /templates/detail/main.html:135 /templates/_macros/market_tile.html:137
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Recenze"
-msgstr[1] "Recenze"
-msgstr[2] "Recenzí"
-
 #: /templates/detail/main.html:142
 msgid "App not yet reviewed"
 msgstr "Aplikace nebyla dosud recenzována"
@@ -449,16 +515,6 @@ msgstr "Statistiky"
 msgid "Premium version available"
 msgstr "K dispozici je placená verze"
 
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Hodnocení obsahu"
-
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:77
-msgid "Content Rating Details"
-msgstr "Detaily hodnocení obsahu"
-
 #: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
 msgid "Back to app"
 msgstr "Zpět na aplikaci"
@@ -470,22 +526,6 @@ msgstr "Probíhá načítání zásad ochrany soukromí..."
 #: /templates/detail/receipt.html:8
 msgid "Thank you for purchasing"
 msgstr "Děkujeme za nákup"
-
-#: /templates/header.html:8 /templates/header.html:11
-msgid "Search"
-msgstr "Vyhledávání"
-
-#: /templates/header.html:13
-msgid "Clear"
-msgstr "Vymazat"
-
-#: /templates/header.html:18 /templates/settings/main.html:58 /templates/user/purchases.html:49
-msgid "Register"
-msgstr "Registrace"
-
-#: /templates/header.html:19 /templates/settings/main.html:61 /templates/user/purchases.html:50
-msgid "Sign In"
-msgstr "Přihlášení"
 
 #: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:54
 msgid "Oh no!"
@@ -515,10 +555,6 @@ msgstr "Zkusit znovu"
 msgid "An error occurred."
 msgstr "Nastala chyba"
 
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "Poděkování"
-
 #: /templates/errors/offline-error.html:2
 msgid "Currently Offline"
 msgstr "Nyní jste offline"
@@ -535,30 +571,21 @@ msgstr "Chyba při načítání"
 msgid "Try Again"
 msgstr "Zkusit znovu"
 
-#: /templates/_macros/market_tile.html:63
-msgid "Works offline"
-msgstr "Funguje offline"
-
-#: /templates/_macros/market_tile.html:114 /templates/_macros/market_tile.html:117
-msgid "{app_name} screenshot"
-msgstr "Snímek obrazovky {app_name}"
-
-#: /templates/_macros/market_tile.html:134
-msgid "({n})"
-msgstr "({n})"
-
-#. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:141
-msgid "(0)"
-msgstr "(0)"
-
-#: /templates/_macros/market_tile.html:142
-msgid "Not yet reviewed"
-msgstr "Dosud nehodnoceno"
-
-#: /templates/ratings/main.html:15 /templates/ratings/edit.html:5 /media/js/views/app/ratings/edit.js:86
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "Úprava recenze"
+
+#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "Hodnocení:"
+
+#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Odeslat"
+
+#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "Upravovat recenze smí pouze přihlášení uživatelé."
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
@@ -579,18 +606,6 @@ msgstr "Nevhodný jazyk/chování"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Nevhodné oznámení chyby nebo žádost o podporu"
-
-#: /templates/ratings/write.html:7 /templates/ratings/edit.html:9
-msgid "Rate:"
-msgstr "Hodnocení:"
-
-#: /templates/ratings/write.html:20 /templates/ratings/edit.html:22
-msgid "Submit"
-msgstr "Odeslat"
-
-#: /templates/ratings/write.html:23 /templates/ratings/edit.html:25
-msgid "Only logged in users may edit reviews."
-msgstr "Upravovat recenze smí pouze přihlášení uživatelé."
 
 #: /templates/search/main.html:18
 msgid "<b>{n}</b> Result"
@@ -671,21 +686,107 @@ msgstr "Pro zobrazení svých aplikací musíte být přihlášen(a)."
 msgid "You have no apps"
 msgstr "Nemáte žádné aplikace"
 
-#: /media/js/apps.js:99
-msgid "Your device does not support payments."
-msgstr "Vaše zařízení nepodporuje platby."
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:64 /media/js/apps_buttons.js:133 /media/js/payments.js:131
+msgid "Payment cancelled."
+msgstr "Platba byla zrušena."
 
-#: /media/js/apps.js:101
+#: /media/js/apps_buttons.js:98
+msgid "Purchasing"
+msgstr "Probíhá zakoupení"
+
+#: /media/js/apps_buttons.js:161 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Omlouváme se, ale během získávání dat této aplikace se vyskytly problémy. Zkuste to prosím znovu později."
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:204
+msgid "Install failed. Please try again later."
+msgstr "Instalace selhala. Zkuste to prosím znovu později."
+
+#: /media/js/apps.js:99
 msgid "This app is unavailable for purchase in your region."
 msgstr "Aplikaci nelze koupit ve vašem regionu."
 
-#: /media/js/apps.js:105
+#: /media/js/apps.js:103
 msgid "Your browser or device is not web-app compatible."
 msgstr "Váš prohlížeč nebo zařízení nepodporuji webové aplikace."
 
-#: /media/js/apps.js:107
+#: /media/js/apps.js:105
 msgid "This app is unavailable for your platform."
 msgstr "Aplikace není dostupná pro vaši platformu."
+
+#: /media/js/categories.js:6
+msgid "Games"
+msgstr "Hry"
+
+#: /media/js/categories.js:7
+msgid "Books"
+msgstr "Knihy a reference"
+
+#: /media/js/categories.js:8
+msgid "Business"
+msgstr "Finance"
+
+#: /media/js/categories.js:9
+msgid "Education"
+msgstr "Vzdělávání"
+
+#: /media/js/categories.js:10
+msgid "Entertainment"
+msgstr "Zábava"
+
+#: /media/js/categories.js:11
+msgid "Health & Fitness"
+msgstr "Zdraví a fitness"
+
+#: /media/js/categories.js:12
+msgid "Lifestyle"
+msgstr "Životní styl"
+
+#: /media/js/categories.js:13
+msgid "Maps & Navigation"
+msgstr "Mapy a navigace"
+
+#: /media/js/categories.js:14
+msgid "Music"
+msgstr "Hudba"
+
+#: /media/js/categories.js:15
+msgid "News & Weather"
+msgstr "Novinky"
+
+#: /media/js/categories.js:16
+msgid "Photo & Video"
+msgstr "Fotky a média"
+
+#: /media/js/categories.js:17
+msgid "Productivity"
+msgstr "Produktivita"
+
+#: /media/js/categories.js:18
+msgid "Reference"
+msgstr "Reference"
+
+#: /media/js/categories.js:19
+msgid "Shopping"
+msgstr "Nakupování"
+
+#: /media/js/categories.js:20
+msgid "Social"
+msgstr "Sociální sítě"
+
+#: /media/js/categories.js:21
+msgid "Sports"
+msgstr "Sporty"
+
+#: /media/js/categories.js:22
+msgid "Travel"
+msgstr "Cestování"
+
+#: /media/js/categories.js:23
+msgid "Utilities"
+msgstr "Nástroje"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -1106,10 +1207,6 @@ msgstr[0] "Buďte produktivnější"
 msgstr[1] "Buďte produktivnější"
 msgstr[2] "Buďte produktivnější"
 
-#: /media/js/installer_iframe.js:111 /media/js/installer_direct.js:180
-msgid "App install error: {error}"
-msgstr "Chyba při instalaci aplikace: {error}"
-
 #: /media/js/feed.js:8
 msgid "Grid Layout"
 msgstr "Mřížka"
@@ -1146,166 +1243,26 @@ msgstr "Seznam sbírek"
 msgid "Unable to install packaged apps"
 msgstr "Nepodařila se instalace zabalených aplikací"
 
-#: /media/js/installer_direct.js:178 /media/js/apps_buttons.js:149
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Omlouváme se, ale během získávání dat této aplikace se vyskytly problémy. Zkuste to prosím znovu později."
+#: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
+msgid "App install error: {error}"
+msgstr "Chyba při instalaci aplikace: {error}"
 
-#: /media/js/main.js:181
+#: /media/js/main.js:190
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr ""
-"Při příštím spuštění aplikace Firefox Marketplace uvidíte aktualizovanou "
-"verzi!"
+msgstr "Při příštím spuštění aplikace Firefox Marketplace uvidíte aktualizovanou verzi!"
 
-#: /media/js/categories.js:6
-msgid "Games"
-msgstr "Hry"
-
-#: /media/js/categories.js:7
-msgid "Books"
-msgstr "Knihy a reference"
-
-#: /media/js/categories.js:8
-msgid "Business"
-msgstr "Finance"
-
-#: /media/js/categories.js:9
-msgid "Education"
-msgstr "Vzdělávání"
-
-#: /media/js/categories.js:10
-msgid "Entertainment"
-msgstr "Zábava"
-
-#: /media/js/categories.js:11
-msgid "Health & Fitness"
-msgstr "Zdraví a fitness"
-
-#: /media/js/categories.js:12
-msgid "Lifestyle"
-msgstr "Životní styl"
-
-#: /media/js/categories.js:13
-msgid "Maps & Navigation"
-msgstr "Mapy a navigace"
-
-#: /media/js/categories.js:14
-msgid "Music"
-msgstr "Hudba"
-
-#: /media/js/categories.js:15
-msgid "News & Weather"
-msgstr "Novinky"
-
-#: /media/js/categories.js:16
-msgid "Photo & Video"
-msgstr "Fotky a média"
-
-#: /media/js/categories.js:17
-msgid "Productivity"
-msgstr "Produktivita"
-
-#: /media/js/categories.js:18
-msgid "Reference"
-msgstr "Reference"
-
-#: /media/js/categories.js:19
-msgid "Shopping"
-msgstr "Nakupování"
-
-#: /media/js/categories.js:20
-msgid "Social"
-msgstr "Sociální sítě"
-
-#: /media/js/categories.js:21
-msgid "Sports"
-msgstr "Sporty"
-
-#: /media/js/categories.js:22
-msgid "Travel"
-msgstr "Cestování"
-
-#: /media/js/categories.js:23
-msgid "Utilities"
-msgstr "Nástroje"
-
-#. When a user tries to make a purchase from a device that does not support payments, this is the error.
-#: /media/js/payments.js:91 /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120
-msgid "Payment cancelled."
-msgstr "Platba byla zrušena."
-
-#: /media/js/payments.js:94
-msgid "Payment failed. Try again later."
-msgstr "Platba selhala. Zkuste to znovu později."
-
-#. This error is raised when we are unable to fetch a JWT from the payments API.
-#: /media/js/payments.js:115
-msgid "Error while communicating with server. Try again later."
-msgstr "Chyba při komunikaci se serverem. Zkuste to znovu později."
-
-#: /media/js/payments.js:122
-msgid "Your device does not support purchases."
-msgstr "Vaše zařízení nepodporuje platby."
-
-#: /media/js/newsletter.js:59
+#: /media/js/newsletter.js:64
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Při přihlašování odběru zpravodaje nastala chyba"
 
-#: /media/js/apps_buttons.js:91
-msgid "Purchasing"
-msgstr "Probíhá zakoupení"
+#. This error is raised when we are unable to fetch a JWT from the payments API.
+#: /media/js/payments.js:135
+msgid "Error while communicating with server. Try again later."
+msgstr "Chyba při komunikaci se serverem. Zkuste to znovu později."
 
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:192
-msgid "Install failed. Please try again later."
-msgstr "Instalace selhala. Zkuste to prosím znovu později."
-
-#. {n} is the number of stars
-#: /media/js/ratingwidget.js:34
-msgid "{n} star"
-msgid_plural "{n} stars"
-msgstr[0] "{n} hvězdička"
-msgstr[1] "{n} hvězdičky"
-msgstr[2] "{n} hvězdiček"
-
-#: /media/js/settings.js:104
-msgid "English"
-msgstr "Anglicky"
-
-#: /media/js/settings.js:105
-msgid "French"
-msgstr "Francouzsky"
-
-#: /media/js/settings.js:106
-msgid "German"
-msgstr "Německy"
-
-#: /media/js/settings.js:107
-msgid "Hungarian"
-msgstr "Maďarsky"
-
-#: /media/js/settings.js:108
-msgid "Indonesian"
-msgstr "Indonésky"
-
-#: /media/js/settings.js:109
-msgid "Polish"
-msgstr "Polsky"
-
-#: /media/js/settings.js:110
-msgid "Portuguese"
-msgstr "Portugalsky"
-
-#: /media/js/settings.js:111
-msgid "Russian"
-msgstr "Rusky"
-
-#: /media/js/settings.js:112
-msgid "Spanish"
-msgstr "Španělsky"
-
-#: /media/js/settings.js:138
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "Omlouváme se, ale jste aktuálně offline. Zkuste to znovu později."
+#: /media/js/payments.js:138
+msgid "Payment failed. Try again later."
+msgstr "Platba selhala. Zkuste to znovu později."
 
 #. The report is an abuse report for reviews
 #: /media/js/ratings.js:40
@@ -1336,17 +1293,237 @@ msgstr "Recenze byla přidána"
 msgid "Error while submitting review"
 msgstr "Chyba při odesílání recenze"
 
+#. {n} is the number of stars
+#: /media/js/ratingwidget.js:34
+msgid "{n} star"
+msgid_plural "{n} stars"
+msgstr[0] "{n} hvězdička"
+msgstr[1] "{n} hvězdičky"
+msgstr[2] "{n} hvězdiček"
+
+#: /media/js/settings.js:101
+msgid "English"
+msgstr "Anglicky"
+
+#: /media/js/settings.js:102
+msgid "French"
+msgstr "Francouzsky"
+
+#: /media/js/settings.js:103
+msgid "German"
+msgstr "Německy"
+
+#: /media/js/settings.js:104
+msgid "Hungarian"
+msgstr "Maďarsky"
+
+#: /media/js/settings.js:105
+msgid "Indonesian"
+msgstr "Indonésky"
+
+#: /media/js/settings.js:106
+msgid "Polish"
+msgstr "Polsky"
+
+#: /media/js/settings.js:107
+msgid "Portuguese"
+msgstr "Portugalsky"
+
+#: /media/js/settings.js:108
+msgid "Russian"
+msgstr "Rusky"
+
+#: /media/js/settings.js:109
+msgid "Spanish"
+msgstr "Španělsky"
+
+#: /media/js/settings.js:135
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "Omlouváme se, ale jste aktuálně offline. Zkuste to znovu později."
+
+#: /media/js/lib/regions.js:21
+msgid "Guatemala"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Colombia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "China"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Chile"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "South Africa"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Ecuador"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Czech Republic"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Argentina"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "India"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Costa Rica"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Galicia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Spain"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Venezuela"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Nicaragua"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Serbia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Lithuania"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Panama"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Rest of World"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Peru"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Italy"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Philippines"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Poland"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "France"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Russia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Germany"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Japan"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Hungary"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Brazil"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Greece"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Montenegro"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Uruguay"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "El Salvador"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "United States"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "United Kingdom"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Mexico"
+msgstr ""
+
 #: /media/js/views/app.js:66 /media/js/views/feed/feed_app.js:10
 msgid "App Details"
 msgstr "Detaily o aplikaci"
 
-#: /media/js/views/fxa_popup.js:143
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "Reakce byla odeslána. Děkujeme!"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "Při odeslání vaší reakce nastala chyba. Zkuste to brzy znovu."
+
+#: /media/js/views/fxa_popup.js:142
 msgid "Join Firefox Marketplace"
 msgstr "Připojte se k Firefox Marketplace"
 
-#: /media/js/views/fxa_popup.js:145
+#: /media/js/views/fxa_popup.js:144
 msgid "Sign in to Firefox Marketplace"
 msgstr "Přihlásit se na Firefox Marketplace"
+
+#: /media/js/views/homepage.js:61
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr ""
+
+#: /media/js/views/homepage.js:66
+msgid "Productivity Apps—Desktop Essentials"
+msgstr ""
+
+#: /media/js/views/homepage.js:71
+msgid "Store and share any type of file with Box."
+msgstr ""
+
+#: /media/js/views/homepage.js:76
+msgid "Discover, share, and enjoy music with SoundCloud."
+msgstr ""
+
+#: /media/js/views/homepage.js:81
+msgid "Play Hex Race—a thrill ride from the future!"
+msgstr ""
 
 #: /media/js/views/new.js:9
 msgid "Fresh and New Apps"
@@ -1368,13 +1545,33 @@ msgstr "Nastavení bylo uloženo"
 msgid "Settings could not be saved"
 msgstr "Nastavení nemohlo být uloženo"
 
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "Reakce byla odeslána. Děkujeme!"
+#: /media/js/lib/marketplace-core-modules/login.js:22
+msgid "You have been signed out"
+msgstr ""
 
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "Při odeslání vaší reakce nastala chyba. Zkuste to brzy znovu."
+#: /media/js/lib/marketplace-core-modules/login.js:26
+msgid "You have been signed in"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:72
+msgid "Sign in failed"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:178
+msgid "FxA login failed. A server error was encountered."
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/navigation.js:33
+msgid "No internet connection"
+msgstr ""
+
+#. {n} is the number of characters left.
+#: /media/js/lib/marketplace-core-modules/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"
@@ -1384,10 +1581,6 @@ msgstr "Zneužití nahlášeno"
 msgid "Error while submitting report"
 msgstr "Při odesílání reportu nastala chyba"
 
-#: /media/js/views/commonplace/hello_world.js:9
-msgid "Hello World!"
-msgstr "Ahoj světe!"
-
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"
 msgstr "Pro zobrazení stvrzenky se prosím přihlaste"
@@ -1396,10 +1589,26 @@ msgstr "Pro zobrazení stvrzenky se prosím přihlaste"
 msgid "Receipt"
 msgstr "Stvrzenka"
 
+#: /media/js/views/commonplace/hello_world.js:9
+msgid "Hello World!"
+msgstr "Ahoj světe!"
+
 #. Page not found (404)
-#: /media/js/views/commonplace/not_found.js:9
+#: /media/js/views/commonplace/not_found.js:9 /media/js/lib/marketplace-core-modules/views/not_found.js:9
 msgid "Not Found"
 msgstr "Nebylo nalezeno"
+
+#: /media/js/views/feed/feed_brand.js:10
+msgid "Editorial Brand Details"
+msgstr "Editorial Brand Details"
+
+#: /media/js/views/feed/feed_collection.js:9
+msgid "Collection Details"
+msgstr "Detaily sbírky"
+
+#: /media/js/views/feed/feed_shelf.js:9
+msgid "Operator Shelf Details"
+msgstr "Operator Shelf Details"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
@@ -1408,15 +1617,3 @@ msgstr "Recenze byla úspěšně upravena."
 #: /media/js/views/app/ratings/edit.js:35
 msgid "There was a problem updating your review"
 msgstr "Při úpravě vaší recenze se vyskytla chyba"
-
-#: /media/js/views/feed/feed_brand.js:10
-msgid "Editorial Brand Details"
-msgstr "Editorial Brand Details"
-
-#: /media/js/views/feed/feed_shelf.js:9
-msgid "Operator Shelf Details"
-msgstr "Operator Shelf Details"
-
-#: /media/js/views/feed/feed_collection.js:9
-msgid "Collection Details"
-msgstr "Detaily sbírky"

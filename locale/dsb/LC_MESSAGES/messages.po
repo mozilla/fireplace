@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-07T16:58:53.033Z\n"
+"POT-Creation-Date: 2015-01-22T17:57:33.005Z\n"
 "PO-Revision-Date: 2015-01-07 18:38+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,10 +10,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1420655920.0\n"
+
+#: /templates/app_list.html:31
+msgid "No apps found"
+msgstr "Žedne nałoženja namakane"
+
+#: /templates/app_list.html:36
+msgid "No apps found."
+msgstr "Žedne nałoženja namakane."
+
+#: /templates/app_list.html:38 /templates/category.html:61 /templates/user/purchases.html:38
+msgid "An internal server error occurred. Please try again later."
+msgstr "Nutśkowna zmólka jo nastała. Pšosym wopytajśo pózdźej hyšći raz."
 
 #: /templates/category.html:33 /templates/nav.html:17
 msgid "Popular"
@@ -35,10 +46,6 @@ msgstr "Žedne nałoženja w toś tej kategoriji"
 #: /templates/category.html:59
 msgid "The category you requested does not exist."
 msgstr "Kategorija, kótaruž sćo pominał, njeeksistěrujo."
-
-#: /templates/category.html:61 /templates/app_list.html:38 /templates/user/purchases.html:38
-msgid "An internal server error occurred. Please try again later."
-msgstr "Nutśkowna zmólka jo nastała. Pšosym wopytajśo pózdźej hyšći raz."
 
 #: /templates/compatibility_filtering.html:3
 msgid "Show"
@@ -68,7 +75,7 @@ msgstr "Nałoženja mobilnych telefonow z Androidom"
 msgid "Android Tablet Apps"
 msgstr "Nałoženja tabletow z Androidom"
 
-#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6
+#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6 /media/js/lib/marketplace-elements.js:106
 msgid "Close"
 msgstr "Zacyniś"
 
@@ -80,13 +87,21 @@ msgstr "Ně"
 msgid "Yes"
 msgstr "Jo"
 
-#: /templates/app_list.html:31
-msgid "No apps found"
-msgstr "Žedne nałoženja namakane"
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "Źěkowanje"
 
-#: /templates/app_list.html:36
-msgid "No apps found."
-msgstr "Žedne nałoženja namakane."
+#: /templates/desktop-promo.html:1
+msgid "Previous"
+msgstr ""
+
+#: /templates/desktop-promo.html:10 /templates/fx_accounts_popup.html:31
+msgid "Next"
+msgstr "Dalej"
+
+#: /templates/feed.html:8
+msgid "More to Explore"
+msgstr ""
 
 #: /templates/footer.html:5
 msgid "Develop Apps"
@@ -134,7 +149,7 @@ msgstr ""
 "License v3.0</a> abo pód póznjejšeju wersiju."
 
 #: /templates/footer.html:41 /templates/privacy.html:2 /templates/detail/main.html:188 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/main.html:70
-#: /media/js/views/app/privacy.js:10 /media/js/views/privacy.js:10
+#: /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Pšawidła priwatnosći"
 
@@ -178,10 +193,6 @@ msgstr "Zapódajśo swóju e-mailowu adresu"
 msgid "Valid email required"
 msgstr "Płaśiwa e-mailowa adresa trěbna"
 
-#: /templates/fx_accounts_popup.html:31
-msgid "Next"
-msgstr "Dalej"
-
 #: /templates/fx_accounts_popup.html:41
 msgid "Verify your email"
 msgstr "Wobkšuśćo swóju e-mailowu adresu"
@@ -189,6 +200,22 @@ msgstr "Wobkšuśćo swóju e-mailowu adresu"
 #: /templates/fx_accounts_popup.html:46 /templates/header.html:3
 msgid "Back"
 msgstr "Slědk"
+
+#: /templates/header.html:8 /templates/header.html:11
+msgid "Search"
+msgstr "Pytaś"
+
+#: /templates/header.html:13
+msgid "Clear"
+msgstr "Lašowaś"
+
+#: /templates/header.html:18 /templates/settings/main.html:58 /templates/user/purchases.html:49
+msgid "Register"
+msgstr "Registrěrowaś"
+
+#: /templates/header.html:19 /templates/settings/main.html:61 /templates/user/purchases.html:50
+msgid "Sign In"
+msgstr "Pśizjawiś"
 
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
@@ -240,12 +267,9 @@ msgstr "Registrěrowaś"
 
 #: /templates/newsletter.html:30
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
-msgstr ""
-"Som wobjadny, kak Mozilla wobchada z mójimi informacijami pó <a "
-"href=\"{privacy_policy_url}\" target=\"_blank\">toś tych pšawidłach "
-"priwatnosći</a>."
+msgstr "Som wobjadny, kak Mozilla wobchada z mójimi informacijami pó <a href=\"{privacy_policy_url}\" target=\"_blank\">toś tych pšawidłach priwatnosći</a>."
 
-#: /templates/newsletter.html:36 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/edit.html:21
+#: /templates/newsletter.html:36 /templates/ratings/edit.html:21 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
 msgid "Cancel"
 msgstr "Pśetergnuś"
 
@@ -255,14 +279,23 @@ msgstr "Wjeliki źěk za registrěrowanje!"
 
 #: /templates/newsletter.html:43
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
-msgstr ""
-"Dostanjośo mailku wót mozilla@e.mozilla.org, pšosym poglědajśo do swójogo "
-"dochada posta za wašeju prědneju mailku wót nas. Jolic ju njenamakajośo, "
-"poglědajśo do swójogo spamowego filtra."
+msgstr "Dostanjośo mailku wót mozilla@e.mozilla.org, pšosym poglědajśo do swójogo dochada posta za wašeju prědneju mailku wót nas. Jolic ju njenamakajośo, poglědajśo do swójogo spamowego filtra."
 
 #: /templates/_includes/more_button.html:2 /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "Dalšne"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may only allow you to install apps from the Mac App Store."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change your settings so you can install Marketplace apps."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:8
+msgid "Got it! You can always find out how to install Marketplace apps on your Mac on our <a href=\"{url}\">Support page</a>."
+msgstr ""
 
 #: /templates/_macros/act_tray.html:3
 msgid "Settings"
@@ -303,13 +336,42 @@ msgstr "Nic k dispoziciji"
 msgid "Free"
 msgstr "Dermo"
 
-#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:254
+#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:266
 msgid "Open"
 msgstr "Wócyniś"
 
-#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:281
+#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:109 /media/js/apps_buttons.js:293
 msgid "Install"
 msgstr "Instalěrowaś"
+
+#: /templates/_macros/market_tile.html:63
+msgid "Works offline"
+msgstr "Funkcioněrujo offline"
+
+#: /templates/_macros/market_tile.html:114 /templates/_macros/market_tile.html:117
+msgid "{app_name} screenshot"
+msgstr "Foto wobrazowki {app_name}"
+
+#: /templates/_macros/market_tile.html:134
+msgid "({n})"
+msgstr "({n})"
+
+#: /templates/_macros/market_tile.html:137 /templates/detail/main.html:135
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Pógódnośenje"
+msgstr[1] "Pógódnośeni"
+msgstr[2] "Pógódnośenja"
+msgstr[3] "Pógódnośenjow"
+
+#. "(0)" means "0 reviews."
+#: /templates/_macros/market_tile.html:141
+msgid "(0)"
+msgstr "(0)"
+
+#: /templates/_macros/market_tile.html:142
+msgid "Not yet reviewed"
+msgstr "Hyšći njepśeglědany"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -347,6 +409,16 @@ msgstr "Znjewužywanje k wěsći daś"
 msgid "Send Report"
 msgstr "Rozpšawu pósłaś"
 
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Wopśimjeśowe pógódnośenje"
+
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:77
+msgid "Content Rating Details"
+msgstr "Drobnostki k wopśimjeśowemu pógodnośenjeju"
+
 #: /templates/detail/main.html:44
 msgid "Installed!"
 msgstr "Zainstalěrowany!"
@@ -364,7 +436,7 @@ msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>A
 msgstr "Startujśo toś to nałoženje ze swójogo <b>pśeglěda</b>, <b>wólaka nałoženjow</b> abo <b>menija nałoženjow</b>."
 
 #: /templates/detail/main.html:16 /templates/detail/main.html:17 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:65 /media/js/views/feed/feed_app.js:9
-#: /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_shelf.js:8 /media/js/views/feed/feed_collection.js:8
+#: /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:8 /media/js/views/feed/feed_shelf.js:8
 msgid "Loading..."
 msgstr "Zacytujo se..."
 
@@ -408,14 +480,6 @@ msgstr "Historija pśeglědanjow"
 msgid "Reviews"
 msgstr "Pśeglědanja"
 
-#: /templates/detail/main.html:135 /templates/_macros/market_tile.html:137
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Pógódnośenje"
-msgstr[1] "Pógódnośeni"
-msgstr[2] "Pógódnośenja"
-msgstr[3] "Pógódnośenjow"
-
 #: /templates/detail/main.html:142
 msgid "App not yet reviewed"
 msgstr "Nałoženje hyšći njejo pśeglědane"
@@ -452,16 +516,6 @@ msgstr "Statistiki"
 msgid "Premium version available"
 msgstr "Premiumowa wersija k dispoziciji"
 
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Wopśimjeśowe pógódnośenje"
-
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:77
-msgid "Content Rating Details"
-msgstr "Drobnostki k wopśimjeśowemu pógodnośenjeju"
-
 #: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
 msgid "Back to app"
 msgstr "Slědk k nałoženjeju"
@@ -473,22 +527,6 @@ msgstr "Pšawidła priwatnosći se zacytuju..."
 #: /templates/detail/receipt.html:8
 msgid "Thank you for purchasing"
 msgstr "Źěkujomy se za wašu kup"
-
-#: /templates/header.html:8 /templates/header.html:11
-msgid "Search"
-msgstr "Pytaś"
-
-#: /templates/header.html:13
-msgid "Clear"
-msgstr "Lašowaś"
-
-#: /templates/header.html:18 /templates/settings/main.html:58 /templates/user/purchases.html:49
-msgid "Register"
-msgstr "Registrěrowaś"
-
-#: /templates/header.html:19 /templates/settings/main.html:61 /templates/user/purchases.html:50
-msgid "Sign In"
-msgstr "Pśizjawiś"
 
 #: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:54
 msgid "Oh no!"
@@ -518,10 +556,6 @@ msgstr "Hyšći raz wopytaś"
 msgid "An error occurred."
 msgstr "Zmólka jo nastała."
 
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "Źěkowanje"
-
 #: /templates/errors/offline-error.html:2
 msgid "Currently Offline"
 msgstr "Tuchylu offline"
@@ -538,30 +572,21 @@ msgstr "Zmólka pśi zacytowanju dalšnych datow"
 msgid "Try Again"
 msgstr "Wopytajśo hyšći raz"
 
-#: /templates/_macros/market_tile.html:63
-msgid "Works offline"
-msgstr "Funkcioněrujo offline"
-
-#: /templates/_macros/market_tile.html:114 /templates/_macros/market_tile.html:117
-msgid "{app_name} screenshot"
-msgstr "Foto wobrazowki {app_name}"
-
-#: /templates/_macros/market_tile.html:134
-msgid "({n})"
-msgstr "({n})"
-
-#. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:141
-msgid "(0)"
-msgstr "(0)"
-
-#: /templates/_macros/market_tile.html:142
-msgid "Not yet reviewed"
-msgstr "Hyšći njepśeglědany"
-
-#: /templates/ratings/main.html:15 /templates/ratings/edit.html:5 /media/js/views/app/ratings/edit.js:86
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "Pógódnośenje wobźěłaś"
+
+#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "Pógódnośenje:"
+
+#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Wótpósłaś"
+
+#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "Jano pśizjawjone wužywarje mógu pśegódnośenja wobźěłaś"
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
@@ -582,18 +607,6 @@ msgstr "Njepśisłušne słowa"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Njepśisłušna zmólkowa rozpšawa abo njepřisłušna pšosba wó pomoc"
-
-#: /templates/ratings/write.html:7 /templates/ratings/edit.html:9
-msgid "Rate:"
-msgstr "Pógódnośenje:"
-
-#: /templates/ratings/write.html:20 /templates/ratings/edit.html:22
-msgid "Submit"
-msgstr "Wótpósłaś"
-
-#: /templates/ratings/write.html:23 /templates/ratings/edit.html:25
-msgid "Only logged in users may edit reviews."
-msgstr "Jano pśizjawjone wužywarje mógu pśegódnośenja wobźěłaś"
 
 #: /templates/search/main.html:18
 msgid "<b>{n}</b> Result"
@@ -675,21 +688,107 @@ msgstr "Musyśo pśizjawjony byś, aby se swóje nałoženja woglědał."
 msgid "You have no apps"
 msgstr "Njamaśo žedne nałoženja"
 
-#: /media/js/apps.js:99
-msgid "Your device does not support payments."
-msgstr "Waš rěd njepódpěra płaśenja."
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:64 /media/js/apps_buttons.js:133 /media/js/payments.js:131
+msgid "Payment cancelled."
+msgstr "Płaśenje pśetergnjone."
 
-#: /media/js/apps.js:101
+#: /media/js/apps_buttons.js:98
+msgid "Purchasing"
+msgstr "Kupowanje"
+
+#: /media/js/apps_buttons.js:161 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Bóžko smy měli problemy, daty toś togo nałoženja wótwołaś. Pšosym wopytajśo pózdźej hyšći raz."
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:204
+msgid "Install failed. Please try again later."
+msgstr "Instalacija njejo se raźiła. Pšosym wopytajśo pózdźej hyšći raz."
+
+#: /media/js/apps.js:99
 msgid "This app is unavailable for purchase in your region."
 msgstr "Toś to nałoženje njejo k dispoziciji za kup we wašom regionje."
 
-#: /media/js/apps.js:105
+#: /media/js/apps.js:103
 msgid "Your browser or device is not web-app compatible."
 msgstr "Waš wobglědowak abo rěd njejo kompatibelny z webnałoženjami."
 
-#: /media/js/apps.js:107
+#: /media/js/apps.js:105
 msgid "This app is unavailable for your platform."
 msgstr "Toś to nałoženje njejo k dispoziciji za wašu platformu."
+
+#: /media/js/categories.js:6
+msgid "Games"
+msgstr "Graśa"
+
+#: /media/js/categories.js:7
+msgid "Books"
+msgstr "Knigły"
+
+#: /media/js/categories.js:8
+msgid "Business"
+msgstr "Pśekupniske wěcy"
+
+#: /media/js/categories.js:9
+msgid "Education"
+msgstr "Kubłanje"
+
+#: /media/js/categories.js:10
+msgid "Entertainment"
+msgstr "Rozdrosćenje"
+
+#: /media/js/categories.js:11
+msgid "Health & Fitness"
+msgstr "Strowje a fitnes"
+
+#: /media/js/categories.js:12
+msgid "Lifestyle"
+msgstr "Lifestyle"
+
+#: /media/js/categories.js:13
+msgid "Maps & Navigation"
+msgstr "Kórty a nawigacija"
+
+#: /media/js/categories.js:14
+msgid "Music"
+msgstr "Muzika"
+
+#: /media/js/categories.js:15
+msgid "News & Weather"
+msgstr "Powěsći a wjedro"
+
+#: /media/js/categories.js:16
+msgid "Photo & Video"
+msgstr "Foto a wideo"
+
+#: /media/js/categories.js:17
+msgid "Productivity"
+msgstr "Produktiwita"
+
+#: /media/js/categories.js:18
+msgid "Reference"
+msgstr "Pśrucnice"
+
+#: /media/js/categories.js:19
+msgid "Shopping"
+msgstr "Nakupowanje"
+
+#: /media/js/categories.js:20
+msgid "Social"
+msgstr "Socialne seśi"
+
+#: /media/js/categories.js:21
+msgid "Sports"
+msgstr "Sport"
+
+#: /media/js/categories.js:22
+msgid "Travel"
+msgstr "Drogowanje"
+
+#: /media/js/categories.js:23
+msgid "Utilities"
+msgstr "Rědy"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -1164,10 +1263,6 @@ msgstr[1] "Nałoženi za źěło a pśekupstwo"
 msgstr[2] "Nałoženja za źěło a pśekupstwo"
 msgstr[3] "Nałoženja za źěło a pśekupstwo"
 
-#: /media/js/installer_iframe.js:111 /media/js/installer_direct.js:180
-msgid "App install error: {error}"
-msgstr "Zmólka pśi instalěrowanju nałoženja: {error}"
-
 #: /media/js/feed.js:8
 msgid "Grid Layout"
 msgstr "Kśidnowy naglěd"
@@ -1204,169 +1299,26 @@ msgstr "Zběrka lisćinow"
 msgid "Unable to install packaged apps"
 msgstr "Zapakowane nałoženja njedaju se instalěrowaś"
 
-#: /media/js/installer_direct.js:178 /media/js/apps_buttons.js:149
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Bóžko smy měli problemy, daty toś togo nałoženja wótwołaś. Pšosym wopytajśo pózdźej hyšći raz."
+#: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
+msgid "App install error: {error}"
+msgstr "Zmólka pśi instalěrowanju nałoženja: {error}"
 
-#: /media/js/main.js:181
+#: /media/js/main.js:190
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr ""
-"Pśiducy raz, gaž startujośo nałoženje Firefox Marketplace, buźośo "
-"zaktualizěrowanu wersiju wiźeś!"
+msgstr "Pśiducy raz, gaž startujośo nałoženje Firefox Marketplace, buźośo zaktualizěrowanu wersiju wiźeś!"
 
-#: /media/js/categories.js:6
-msgid "Games"
-msgstr "Graśa"
-
-#: /media/js/categories.js:7
-msgid "Books"
-msgstr "Knigły"
-
-#: /media/js/categories.js:8
-msgid "Business"
-msgstr "Pśekupniske wěcy"
-
-#: /media/js/categories.js:9
-msgid "Education"
-msgstr "Kubłanje"
-
-#: /media/js/categories.js:10
-msgid "Entertainment"
-msgstr "Rozdrosćenje"
-
-#: /media/js/categories.js:11
-msgid "Health & Fitness"
-msgstr "Strowje a fitnes"
-
-#: /media/js/categories.js:12
-msgid "Lifestyle"
-msgstr "Lifestyle"
-
-#: /media/js/categories.js:13
-msgid "Maps & Navigation"
-msgstr "Kórty a nawigacija"
-
-#: /media/js/categories.js:14
-msgid "Music"
-msgstr "Muzika"
-
-#: /media/js/categories.js:15
-msgid "News & Weather"
-msgstr "Powěsći a wjedro"
-
-#: /media/js/categories.js:16
-msgid "Photo & Video"
-msgstr "Foto a wideo"
-
-#: /media/js/categories.js:17
-msgid "Productivity"
-msgstr "Produktiwita"
-
-#: /media/js/categories.js:18
-msgid "Reference"
-msgstr "Pśrucnice"
-
-#: /media/js/categories.js:19
-msgid "Shopping"
-msgstr "Nakupowanje"
-
-#: /media/js/categories.js:20
-msgid "Social"
-msgstr "Socialne seśi"
-
-#: /media/js/categories.js:21
-msgid "Sports"
-msgstr "Sport"
-
-#: /media/js/categories.js:22
-msgid "Travel"
-msgstr "Drogowanje"
-
-#: /media/js/categories.js:23
-msgid "Utilities"
-msgstr "Rědy"
-
-#. When a user tries to make a purchase from a device that does not support payments, this is the error.
-#: /media/js/payments.js:91 /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120
-msgid "Payment cancelled."
-msgstr "Płaśenje pśetergnjone."
-
-#: /media/js/payments.js:94
-msgid "Payment failed. Try again later."
-msgstr "Płaśenje njejo se raźiło. Wopytajśo pózdźej hyšći raz."
+#: /media/js/newsletter.js:64
+msgid "There was an error submitting your newsletter sign up request"
+msgstr "Pśi zapódawanju wašeje pšosby wó registrěrowanje powěsćowego lista jo zmólka nastała"
 
 #. This error is raised when we are unable to fetch a JWT from the payments API.
-#: /media/js/payments.js:115
+#: /media/js/payments.js:135
 msgid "Error while communicating with server. Try again later."
 msgstr "Zmólka pśi komunikaciji ze serwerom. Wopytajśo pózdźej hyšći raz."
 
-#: /media/js/payments.js:122
-msgid "Your device does not support purchases."
-msgstr "Waš rěd njepódpěra kupi."
-
-#: /media/js/newsletter.js:59
-msgid "There was an error submitting your newsletter sign up request"
-msgstr ""
-"Pśi zapódawanju wašeje pšosby wó registrěrowanje powěsćowego lista jo zmólka "
-"nastała"
-
-#: /media/js/apps_buttons.js:91
-msgid "Purchasing"
-msgstr "Kupowanje"
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:192
-msgid "Install failed. Please try again later."
-msgstr "Instalacija njejo se raźiła. Pšosym wopytajśo pózdźej hyšći raz."
-
-#. {n} is the number of stars
-#: /media/js/ratingwidget.js:34
-msgid "{n} star"
-msgid_plural "{n} stars"
-msgstr[0] "{n} gwězdka"
-msgstr[1] "{n} gwězdce"
-msgstr[2] "{n} gwězdki"
-msgstr[3] "{n} gwězdkow"
-
-#: /media/js/settings.js:104
-msgid "English"
-msgstr "Engelšćina"
-
-#: /media/js/settings.js:105
-msgid "French"
-msgstr "Francojšćina"
-
-#: /media/js/settings.js:106
-msgid "German"
-msgstr "Nimšćina"
-
-#: /media/js/settings.js:107
-msgid "Hungarian"
-msgstr "Hungoršćina"
-
-#: /media/js/settings.js:108
-msgid "Indonesian"
-msgstr "Indonešćina"
-
-#: /media/js/settings.js:109
-msgid "Polish"
-msgstr "Pólšćina"
-
-#: /media/js/settings.js:110
-msgid "Portuguese"
-msgstr "Portugišćina"
-
-#: /media/js/settings.js:111
-msgid "Russian"
-msgstr "Rušćina"
-
-#: /media/js/settings.js:112
-msgid "Spanish"
-msgstr "Špańšćina"
-
-#: /media/js/settings.js:138
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "Bóžko sćo tuchylu offline. Pšosym wopytajśo pózdźej hyšći raz."
+#: /media/js/payments.js:138
+msgid "Payment failed. Try again later."
+msgstr "Płaśenje njejo se raźiło. Wopytajśo pózdźej hyšći raz."
 
 #. The report is an abuse report for reviews
 #: /media/js/ratings.js:40
@@ -1397,17 +1349,238 @@ msgstr "Wašo pógódnośenje jo se wózjawiło"
 msgid "Error while submitting review"
 msgstr "Pśi wótpósćełanju pógódnośenja jo zmólka nastała"
 
+#. {n} is the number of stars
+#: /media/js/ratingwidget.js:34
+msgid "{n} star"
+msgid_plural "{n} stars"
+msgstr[0] "{n} gwězdka"
+msgstr[1] "{n} gwězdce"
+msgstr[2] "{n} gwězdki"
+msgstr[3] "{n} gwězdkow"
+
+#: /media/js/settings.js:101
+msgid "English"
+msgstr "Engelšćina"
+
+#: /media/js/settings.js:102
+msgid "French"
+msgstr "Francojšćina"
+
+#: /media/js/settings.js:103
+msgid "German"
+msgstr "Nimšćina"
+
+#: /media/js/settings.js:104
+msgid "Hungarian"
+msgstr "Hungoršćina"
+
+#: /media/js/settings.js:105
+msgid "Indonesian"
+msgstr "Indonešćina"
+
+#: /media/js/settings.js:106
+msgid "Polish"
+msgstr "Pólšćina"
+
+#: /media/js/settings.js:107
+msgid "Portuguese"
+msgstr "Portugišćina"
+
+#: /media/js/settings.js:108
+msgid "Russian"
+msgstr "Rušćina"
+
+#: /media/js/settings.js:109
+msgid "Spanish"
+msgstr "Špańšćina"
+
+#: /media/js/settings.js:135
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "Bóžko sćo tuchylu offline. Pšosym wopytajśo pózdźej hyšći raz."
+
+#: /media/js/lib/regions.js:21
+msgid "Guatemala"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Colombia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "China"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Chile"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "South Africa"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Ecuador"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Czech Republic"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Argentina"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "India"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Costa Rica"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Galicia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Spain"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Venezuela"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Nicaragua"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Serbia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Lithuania"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Panama"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Rest of World"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Peru"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Italy"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Philippines"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Poland"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "France"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Russia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Germany"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Japan"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Hungary"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Brazil"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Greece"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Montenegro"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Uruguay"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "El Salvador"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "United States"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "United Kingdom"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Mexico"
+msgstr ""
+
 #: /media/js/views/app.js:66 /media/js/views/feed/feed_app.js:10
 msgid "App Details"
 msgstr "Drobnostki nałoženja"
 
-#: /media/js/views/fxa_popup.js:143
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "Komentar jo se wotpósłał. Wjeliki źěk!"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "Pśi wótpósćełanju wašogo komentara jo problem nastał. Wopytajśo skóro hyšći raz."
+
+#: /media/js/views/fxa_popup.js:142
 msgid "Join Firefox Marketplace"
 msgstr "Wikowanišćoju Firefox pśistupiś"
 
-#: /media/js/views/fxa_popup.js:145
+#: /media/js/views/fxa_popup.js:144
 msgid "Sign in to Firefox Marketplace"
 msgstr "Pla Wikowanišća Firefox pśizjawiś"
+
+#: /media/js/views/homepage.js:61
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr ""
+
+#: /media/js/views/homepage.js:66
+msgid "Productivity Apps—Desktop Essentials"
+msgstr ""
+
+#: /media/js/views/homepage.js:71
+msgid "Store and share any type of file with Box."
+msgstr ""
+
+#: /media/js/views/homepage.js:76
+msgid "Discover, share, and enjoy music with SoundCloud."
+msgstr ""
+
+#: /media/js/views/homepage.js:81
+msgid "Play Hex Race—a thrill ride from the future!"
+msgstr ""
 
 #: /media/js/views/new.js:9
 msgid "Fresh and New Apps"
@@ -1429,13 +1602,34 @@ msgstr "Nastajenja skłaźone"
 msgid "Settings could not be saved"
 msgstr "Nastajenja njedaju se składowaś"
 
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "Komentar jo se wotpósłał. Wjeliki źěk!"
+#: /media/js/lib/marketplace-core-modules/login.js:22
+msgid "You have been signed out"
+msgstr ""
 
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "Pśi wótpósćełanju wašogo komentara jo problem nastał. Wopytajśo skóro hyšći raz."
+#: /media/js/lib/marketplace-core-modules/login.js:26
+msgid "You have been signed in"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:72
+msgid "Sign in failed"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:178
+msgid "FxA login failed. A server error was encountered."
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/navigation.js:33
+msgid "No internet connection"
+msgstr ""
+
+#. {n} is the number of characters left.
+#: /media/js/lib/marketplace-core-modules/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"
@@ -1445,10 +1639,6 @@ msgstr "Znjewužywanje jo se k wěsći dało"
 msgid "Error while submitting report"
 msgstr "Zmólka pśi wótpósćełanju rozpšawy"
 
-#: /media/js/views/commonplace/hello_world.js:9
-msgid "Hello World!"
-msgstr "Halo swět!"
-
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"
 msgstr "Pšosym pśizjawśo se, aby se kwitowanku woglědał"
@@ -1457,10 +1647,26 @@ msgstr "Pšosym pśizjawśo se, aby se kwitowanku woglědał"
 msgid "Receipt"
 msgstr "Kwitowanka"
 
+#: /media/js/views/commonplace/hello_world.js:9
+msgid "Hello World!"
+msgstr "Halo swět!"
+
 #. Page not found (404)
-#: /media/js/views/commonplace/not_found.js:9
+#: /media/js/views/commonplace/not_found.js:9 /media/js/lib/marketplace-core-modules/views/not_found.js:9
 msgid "Not Found"
 msgstr "Njenamakany"
+
+#: /media/js/views/feed/feed_brand.js:10
+msgid "Editorial Brand Details"
+msgstr "Drobnostki wó redakcionelnej marce"
+
+#: /media/js/views/feed/feed_collection.js:9
+msgid "Collection Details"
+msgstr "Drobnostki zběrki"
+
+#: /media/js/views/feed/feed_shelf.js:9
+msgid "Operator Shelf Details"
+msgstr "Drobnostki wó desce wóbgóspodarjowaŕja"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
@@ -1469,15 +1675,3 @@ msgstr "Pógódnośenje jo se wuspěšnje zaktualizěrowało"
 #: /media/js/views/app/ratings/edit.js:35
 msgid "There was a problem updating your review"
 msgstr "Pśi aktualizěrowanju wašogo pógódnośenja jo problem nastał"
-
-#: /media/js/views/feed/feed_brand.js:10
-msgid "Editorial Brand Details"
-msgstr "Drobnostki wó redakcionelnej marce"
-
-#: /media/js/views/feed/feed_shelf.js:9
-msgid "Operator Shelf Details"
-msgstr "Drobnostki wó desce wóbgóspodarjowaŕja"
-
-#: /media/js/views/feed/feed_collection.js:9
-msgid "Collection Details"
-msgstr "Drobnostki zběrki"

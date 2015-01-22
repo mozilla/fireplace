@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-07T16:58:53.033Z\n"
+"POT-Creation-Date: 2015-01-22T17:57:33.005Z\n"
 "PO-Revision-Date: 2015-01-08 18:52+0000\n"
 "Last-Translator: Marko <marko.andrejic93@gmail.com>\n"
 "Language-Team: none\n"
@@ -10,10 +10,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1420743139.0\n"
+
+#: /templates/app_list.html:31
+msgid "No apps found"
+msgstr "Нису пронађене апликације"
+
+#: /templates/app_list.html:36
+msgid "No apps found."
+msgstr "Нису пронађене апликације."
+
+#: /templates/app_list.html:38 /templates/category.html:61 /templates/user/purchases.html:38
+msgid "An internal server error occurred. Please try again later."
+msgstr "Догодила се грешка на серверу. Молимо Вас покушајте касније."
 
 #: /templates/category.html:33 /templates/nav.html:17
 msgid "Popular"
@@ -35,10 +46,6 @@ msgstr "Нема апликација у овој категорији"
 #: /templates/category.html:59
 msgid "The category you requested does not exist."
 msgstr "Категорија коју сте затражили не постоји."
-
-#: /templates/category.html:61 /templates/app_list.html:38 /templates/user/purchases.html:38
-msgid "An internal server error occurred. Please try again later."
-msgstr "Догодила се грешка на серверу. Молимо Вас покушајте касније."
 
 #: /templates/compatibility_filtering.html:3
 msgid "Show"
@@ -68,7 +75,7 @@ msgstr "Android апликације за моблини"
 msgid "Android Tablet Apps"
 msgstr "Android апликације за таблет"
 
-#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6
+#: /templates/confirmation.html:0 /templates/detail/abuse.html:6 /templates/settings/feedback.html:6 /media/js/lib/marketplace-elements.js:106
 msgid "Close"
 msgstr "Затвори"
 
@@ -80,13 +87,21 @@ msgstr "Не"
 msgid "Yes"
 msgstr "Да"
 
-#: /templates/app_list.html:31
-msgid "No apps found"
-msgstr "Нису пронађене апликације"
+#: /templates/credits.html:2 /media/js/views/credits.js:10
+msgid "Credits"
+msgstr "Кредити"
 
-#: /templates/app_list.html:36
-msgid "No apps found."
-msgstr "Нису пронађене апликације."
+#: /templates/desktop-promo.html:1
+msgid "Previous"
+msgstr ""
+
+#: /templates/desktop-promo.html:10 /templates/fx_accounts_popup.html:31
+msgid "Next"
+msgstr "Следећа"
+
+#: /templates/feed.html:8
+msgid "More to Explore"
+msgstr ""
 
 #: /templates/footer.html:5
 msgid "Develop Apps"
@@ -134,7 +149,7 @@ msgstr ""
 "Attribution Share-Alike License v3.0</a> или истом лиценцом новије верзије."
 
 #: /templates/footer.html:41 /templates/privacy.html:2 /templates/detail/main.html:188 /templates/detail/privacy.html:3 /templates/detail/receipt.html:57 /templates/settings/main.html:70
-#: /media/js/views/app/privacy.js:10 /media/js/views/privacy.js:10
+#: /media/js/views/privacy.js:10 /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Полиса приватности"
 
@@ -178,10 +193,6 @@ msgstr "Унесите Вашу е-пошту"
 msgid "Valid email required"
 msgstr "Захтевана је валидна е-пошта"
 
-#: /templates/fx_accounts_popup.html:31
-msgid "Next"
-msgstr "Следећа"
-
 #: /templates/fx_accounts_popup.html:41
 msgid "Verify your email"
 msgstr "Верификујте Вашу е-пошту"
@@ -189,6 +200,22 @@ msgstr "Верификујте Вашу е-пошту"
 #: /templates/fx_accounts_popup.html:46 /templates/header.html:3
 msgid "Back"
 msgstr "Назад"
+
+#: /templates/header.html:8 /templates/header.html:11
+msgid "Search"
+msgstr "Претражи"
+
+#: /templates/header.html:13
+msgid "Clear"
+msgstr "Очисти"
+
+#: /templates/header.html:18 /templates/settings/main.html:58 /templates/user/purchases.html:49
+msgid "Register"
+msgstr "Региструј се"
+
+#: /templates/header.html:19 /templates/settings/main.html:61 /templates/user/purchases.html:50
+msgid "Sign In"
+msgstr "Пријави се"
 
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
@@ -240,11 +267,9 @@ msgstr "Пријави ме"
 
 #: /templates/newsletter.html:30
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
-msgstr ""
-"Слажем се са тим да Mozilla користи моје информације као што је објашњено у "
-"<a href=\"{privacy_policy_url}\" target=\"_blank\">овој полиси приватности</a>."
+msgstr "Слажем се са тим да Mozilla користи моје информације као што је објашњено у <a href=\"{privacy_policy_url}\" target=\"_blank\">овој полиси приватности</a>."
 
-#: /templates/newsletter.html:36 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19 /templates/ratings/edit.html:21
+#: /templates/newsletter.html:36 /templates/ratings/edit.html:21 /templates/ratings/report.html:3 /templates/ratings/report.html:23 /templates/ratings/write.html:3 /templates/ratings/write.html:19
 msgid "Cancel"
 msgstr "Откажи"
 
@@ -254,14 +279,23 @@ msgstr "Хвала Вам што сте се пријавили!"
 
 #: /templates/newsletter.html:43
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
-msgstr ""
-"Примићете е-пошту од mozilla@e.mozilla.org, молимо Вас проверите Ваше "
-"сандуче за Вашу прву е-пошту од нас. Ако је не видите, проверите спам "
-"филтер."
+msgstr "Примићете е-пошту од mozilla@e.mozilla.org, молимо Вас проверите Ваше сандуче за Вашу прву е-пошту од нас. Ако је не видите, проверите спам филтер."
 
 #: /templates/_includes/more_button.html:2 /templates/_macros/more_button.html:2
 msgid "More"
 msgstr "Још"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may only allow you to install apps from the Mac App Store."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change your settings so you can install Marketplace apps."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:8
+msgid "Got it! You can always find out how to install Marketplace apps on your Mac on our <a href=\"{url}\">Support page</a>."
+msgstr ""
 
 #: /templates/_macros/act_tray.html:3
 msgid "Settings"
@@ -302,13 +336,41 @@ msgstr "Недоступна"
 msgid "Free"
 msgstr "Бесплатно"
 
-#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:254
+#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:266
 msgid "Open"
 msgstr "Отвори"
 
-#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:96 /media/js/apps_buttons.js:281
+#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:109 /media/js/apps_buttons.js:293
 msgid "Install"
 msgstr "Инсталирај"
+
+#: /templates/_macros/market_tile.html:63
+msgid "Works offline"
+msgstr "Ради и ван мреже"
+
+#: /templates/_macros/market_tile.html:114 /templates/_macros/market_tile.html:117
+msgid "{app_name} screenshot"
+msgstr "{app_name} снимак екрана"
+
+#: /templates/_macros/market_tile.html:134
+msgid "({n})"
+msgstr "({n})"
+
+#: /templates/_macros/market_tile.html:137 /templates/detail/main.html:135
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Преглед"
+msgstr[1] "Прегледа"
+msgstr[2] "Прегледа"
+
+#. "(0)" means "0 reviews."
+#: /templates/_macros/market_tile.html:141
+msgid "(0)"
+msgstr "(0)"
+
+#: /templates/_macros/market_tile.html:142
+msgid "Not yet reviewed"
+msgstr "Није још прегледано"
 
 #: /templates/_macros/rating.html:9
 msgid "by {author}"
@@ -346,6 +408,16 @@ msgstr "Пријави злоупотребу"
 msgid "Send Report"
 msgstr "Пошаљи извештај"
 
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Оцена садржаја"
+
+#. (es) Classificacao Indicativa.
+#: /templates/detail/content_ratings.html:77
+msgid "Content Rating Details"
+msgstr "Детаљи оцене садржаја"
+
 #: /templates/detail/main.html:44
 msgid "Installed!"
 msgstr "Инсталирано!"
@@ -363,7 +435,7 @@ msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>A
 msgstr "Покрените ову апликацију са своје <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 
 #: /templates/detail/main.html:16 /templates/detail/main.html:17 /templates/detail/receipt.html:18 /templates/detail/receipt.html:19 /media/js/views/app.js:65 /media/js/views/feed/feed_app.js:9
-#: /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_shelf.js:8 /media/js/views/feed/feed_collection.js:8
+#: /media/js/views/feed/feed_brand.js:9 /media/js/views/feed/feed_collection.js:8 /media/js/views/feed/feed_shelf.js:8
 msgid "Loading..."
 msgstr "Учитавање..."
 
@@ -407,13 +479,6 @@ msgstr "Историјат рецензија"
 msgid "Reviews"
 msgstr "Рецензије"
 
-#: /templates/detail/main.html:135 /templates/_macros/market_tile.html:137
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Преглед"
-msgstr[1] "Прегледа"
-msgstr[2] "Прегледа"
-
 #: /templates/detail/main.html:142
 msgid "App not yet reviewed"
 msgstr "Апликација још није прегледана"
@@ -450,16 +515,6 @@ msgstr "Статистика"
 msgid "Premium version available"
 msgstr "Специјална верзија је доступна"
 
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Оцена садржаја"
-
-#. (es) Classificacao Indicativa.
-#: /templates/detail/content_ratings.html:77
-msgid "Content Rating Details"
-msgstr "Детаљи оцене садржаја"
-
 #: /templates/detail/privacy.html:5 /templates/ratings/main.html:8
 msgid "Back to app"
 msgstr "Назад на апликацију"
@@ -471,22 +526,6 @@ msgstr "Учитавање полисе о приватности..."
 #: /templates/detail/receipt.html:8
 msgid "Thank you for purchasing"
 msgstr "Хвала на куповини"
-
-#: /templates/header.html:8 /templates/header.html:11
-msgid "Search"
-msgstr "Претражи"
-
-#: /templates/header.html:13
-msgid "Clear"
-msgstr "Очисти"
-
-#: /templates/header.html:18 /templates/settings/main.html:58 /templates/user/purchases.html:49
-msgid "Register"
-msgstr "Региструј се"
-
-#: /templates/header.html:19 /templates/settings/main.html:61 /templates/user/purchases.html:50
-msgid "Sign In"
-msgstr "Пријави се"
 
 #: /templates/errors/404.html:2 /templates/errors/fragment.html:1 /templates/user/purchases.html:37 /media/js/views/app.js:54
 msgid "Oh no!"
@@ -516,10 +555,6 @@ msgstr "Покушај поново"
 msgid "An error occurred."
 msgstr "Дошло је до грешке."
 
-#: /templates/credits.html:2 /media/js/views/credits.js:10
-msgid "Credits"
-msgstr "Кредити"
-
 #: /templates/errors/offline-error.html:2
 msgid "Currently Offline"
 msgstr "Тренутно је ван мреже"
@@ -536,30 +571,21 @@ msgstr "Грешка при учитавању"
 msgid "Try Again"
 msgstr "Покушај поново"
 
-#: /templates/_macros/market_tile.html:63
-msgid "Works offline"
-msgstr "Ради и ван мреже"
-
-#: /templates/_macros/market_tile.html:114 /templates/_macros/market_tile.html:117
-msgid "{app_name} screenshot"
-msgstr "{app_name} снимак екрана"
-
-#: /templates/_macros/market_tile.html:134
-msgid "({n})"
-msgstr "({n})"
-
-#. "(0)" means "0 reviews."
-#: /templates/_macros/market_tile.html:141
-msgid "(0)"
-msgstr "(0)"
-
-#: /templates/_macros/market_tile.html:142
-msgid "Not yet reviewed"
-msgstr "Није још прегледано"
-
-#: /templates/ratings/main.html:15 /templates/ratings/edit.html:5 /media/js/views/app/ratings/edit.js:86
+#: /templates/ratings/edit.html:5 /templates/ratings/main.html:15 /media/js/views/app/ratings/edit.js:86
 msgid "Edit Review"
 msgstr "Измени рецензију"
+
+#: /templates/ratings/edit.html:9 /templates/ratings/write.html:7
+msgid "Rate:"
+msgstr "Оцени:"
+
+#: /templates/ratings/edit.html:22 /templates/ratings/write.html:20
+msgid "Submit"
+msgstr "Пошаљи"
+
+#: /templates/ratings/edit.html:25 /templates/ratings/write.html:23
+msgid "Only logged in users may edit reviews."
+msgstr "Само пријављени корисници могу мењати рецензије."
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
@@ -580,18 +606,6 @@ msgstr "Непристојно обраћање"
 #: /templates/ratings/report.html:18
 msgid "Misplaced bug report or support request"
 msgstr "Погрешно постављена порука о грешци или захтев за подршку"
-
-#: /templates/ratings/write.html:7 /templates/ratings/edit.html:9
-msgid "Rate:"
-msgstr "Оцени:"
-
-#: /templates/ratings/write.html:20 /templates/ratings/edit.html:22
-msgid "Submit"
-msgstr "Пошаљи"
-
-#: /templates/ratings/write.html:23 /templates/ratings/edit.html:25
-msgid "Only logged in users may edit reviews."
-msgstr "Само пријављени корисници могу мењати рецензије."
 
 #: /templates/search/main.html:18
 msgid "<b>{n}</b> Result"
@@ -672,21 +686,107 @@ msgstr "Морате бити пријављени да бисте прегле�
 msgid "You have no apps"
 msgstr "Немате апликација"
 
-#: /media/js/apps.js:99
-msgid "Your device does not support payments."
-msgstr "Ваш уређај не подржава плаћање."
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:64 /media/js/apps_buttons.js:133 /media/js/payments.js:131
+msgid "Payment cancelled."
+msgstr "Плаћање је отказано."
 
-#: /media/js/apps.js:101
+#: /media/js/apps_buttons.js:98
+msgid "Purchasing"
+msgstr "Куповина"
+
+#: /media/js/apps_buttons.js:161 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Жао нам је, имали смо проблема при прикупљању података ове апликације. Молимо Вас покушајте касније."
+
+#. The app's installation has failed, but the problem is temporary.
+#: /media/js/apps_buttons.js:204
+msgid "Install failed. Please try again later."
+msgstr "Инсталација није успешна. Молимо Вас покушајте касније."
+
+#: /media/js/apps.js:99
 msgid "This app is unavailable for purchase in your region."
 msgstr "Куповина ове апликације није доступна у Вашем региону."
 
-#: /media/js/apps.js:105
+#: /media/js/apps.js:103
 msgid "Your browser or device is not web-app compatible."
 msgstr "Ваш прегледач или уређај није компатибилан са веб апликацијама."
 
-#: /media/js/apps.js:107
+#: /media/js/apps.js:105
 msgid "This app is unavailable for your platform."
 msgstr "Ова апликација није доступна за Вашу платформу."
+
+#: /media/js/categories.js:6
+msgid "Games"
+msgstr "Игрице"
+
+#: /media/js/categories.js:7
+msgid "Books"
+msgstr "Књиге"
+
+#: /media/js/categories.js:8
+msgid "Business"
+msgstr "Посао"
+
+#: /media/js/categories.js:9
+msgid "Education"
+msgstr "Образовање"
+
+#: /media/js/categories.js:10
+msgid "Entertainment"
+msgstr "Забава"
+
+#: /media/js/categories.js:11
+msgid "Health & Fitness"
+msgstr "Здравље и фитнес"
+
+#: /media/js/categories.js:12
+msgid "Lifestyle"
+msgstr "Животни стил"
+
+#: /media/js/categories.js:13
+msgid "Maps & Navigation"
+msgstr "Мапе и навигација"
+
+#: /media/js/categories.js:14
+msgid "Music"
+msgstr "Музика"
+
+#: /media/js/categories.js:15
+msgid "News & Weather"
+msgstr "Вести и временска прогноза"
+
+#: /media/js/categories.js:16
+msgid "Photo & Video"
+msgstr "Слике и видео"
+
+#: /media/js/categories.js:17
+msgid "Productivity"
+msgstr "Продуктивност"
+
+#: /media/js/categories.js:18
+msgid "Reference"
+msgstr "Упутства"
+
+#: /media/js/categories.js:19
+msgid "Shopping"
+msgstr "Куповина"
+
+#: /media/js/categories.js:20
+msgid "Social"
+msgstr "Друштвене"
+
+#: /media/js/categories.js:21
+msgid "Sports"
+msgstr "Спортови"
+
+#: /media/js/categories.js:22
+msgid "Travel"
+msgstr "Путовањa"
+
+#: /media/js/categories.js:23
+msgid "Utilities"
+msgstr "Услужне апликације"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:98
@@ -1107,10 +1207,6 @@ msgstr[0] "Обавите задатке"
 msgstr[1] "Обавите задатке"
 msgstr[2] "Обавите задатке"
 
-#: /media/js/installer_iframe.js:111 /media/js/installer_direct.js:180
-msgid "App install error: {error}"
-msgstr "Грешка током инсталације апликације: {error}"
-
 #: /media/js/feed.js:8
 msgid "Grid Layout"
 msgstr "Распоред мреже"
@@ -1147,166 +1243,26 @@ msgstr "Колекција листа"
 msgid "Unable to install packaged apps"
 msgstr "Инсталирање упаковане апликације није могуће"
 
-#: /media/js/installer_direct.js:178 /media/js/apps_buttons.js:149
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Жао нам је, имали смо проблема при прикупљању података ове апликације. Молимо Вас покушајте касније."
+#: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
+msgid "App install error: {error}"
+msgstr "Грешка током инсталације апликације: {error}"
 
-#: /media/js/main.js:181
+#: /media/js/main.js:190
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr ""
-"Следећи пут када покренете Firefox Marketplace апликацију, видећете "
-"ажурирану верзију!"
+msgstr "Следећи пут када покренете Firefox Marketplace апликацију, видећете ажурирану верзију!"
 
-#: /media/js/categories.js:6
-msgid "Games"
-msgstr "Игрице"
-
-#: /media/js/categories.js:7
-msgid "Books"
-msgstr "Књиге"
-
-#: /media/js/categories.js:8
-msgid "Business"
-msgstr "Посао"
-
-#: /media/js/categories.js:9
-msgid "Education"
-msgstr "Образовање"
-
-#: /media/js/categories.js:10
-msgid "Entertainment"
-msgstr "Забава"
-
-#: /media/js/categories.js:11
-msgid "Health & Fitness"
-msgstr "Здравље и фитнес"
-
-#: /media/js/categories.js:12
-msgid "Lifestyle"
-msgstr "Животни стил"
-
-#: /media/js/categories.js:13
-msgid "Maps & Navigation"
-msgstr "Мапе и навигација"
-
-#: /media/js/categories.js:14
-msgid "Music"
-msgstr "Музика"
-
-#: /media/js/categories.js:15
-msgid "News & Weather"
-msgstr "Вести и временска прогноза"
-
-#: /media/js/categories.js:16
-msgid "Photo & Video"
-msgstr "Слике и видео"
-
-#: /media/js/categories.js:17
-msgid "Productivity"
-msgstr "Продуктивност"
-
-#: /media/js/categories.js:18
-msgid "Reference"
-msgstr "Упутства"
-
-#: /media/js/categories.js:19
-msgid "Shopping"
-msgstr "Куповина"
-
-#: /media/js/categories.js:20
-msgid "Social"
-msgstr "Друштвене"
-
-#: /media/js/categories.js:21
-msgid "Sports"
-msgstr "Спортови"
-
-#: /media/js/categories.js:22
-msgid "Travel"
-msgstr "Путовањa"
-
-#: /media/js/categories.js:23
-msgid "Utilities"
-msgstr "Услужне апликације"
-
-#. When a user tries to make a purchase from a device that does not support payments, this is the error.
-#: /media/js/payments.js:91 /media/js/apps_buttons.js:60 /media/js/apps_buttons.js:120
-msgid "Payment cancelled."
-msgstr "Плаћање је отказано."
-
-#: /media/js/payments.js:94
-msgid "Payment failed. Try again later."
-msgstr "Плаћање неуспело. Покушајте касније."
-
-#. This error is raised when we are unable to fetch a JWT from the payments API.
-#: /media/js/payments.js:115
-msgid "Error while communicating with server. Try again later."
-msgstr "Грешка при комуникацији са сервером. Покушајте поново касније."
-
-#: /media/js/payments.js:122
-msgid "Your device does not support purchases."
-msgstr "Ваш уређај не подржава куповину."
-
-#: /media/js/newsletter.js:59
+#: /media/js/newsletter.js:64
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Дошло је до грешке приликом Ваше пријаве за билтен"
 
-#: /media/js/apps_buttons.js:91
-msgid "Purchasing"
-msgstr "Куповина"
+#. This error is raised when we are unable to fetch a JWT from the payments API.
+#: /media/js/payments.js:135
+msgid "Error while communicating with server. Try again later."
+msgstr "Грешка при комуникацији са сервером. Покушајте поново касније."
 
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:192
-msgid "Install failed. Please try again later."
-msgstr "Инсталација није успешна. Молимо Вас покушајте касније."
-
-#. {n} is the number of stars
-#: /media/js/ratingwidget.js:34
-msgid "{n} star"
-msgid_plural "{n} stars"
-msgstr[0] "{n} звездица"
-msgstr[1] "{n} звездице"
-msgstr[2] "{n} звездица"
-
-#: /media/js/settings.js:104
-msgid "English"
-msgstr "Енглески"
-
-#: /media/js/settings.js:105
-msgid "French"
-msgstr "Француски"
-
-#: /media/js/settings.js:106
-msgid "German"
-msgstr "Немачки"
-
-#: /media/js/settings.js:107
-msgid "Hungarian"
-msgstr "Мађарски"
-
-#: /media/js/settings.js:108
-msgid "Indonesian"
-msgstr "Индонежански"
-
-#: /media/js/settings.js:109
-msgid "Polish"
-msgstr "Пољски"
-
-#: /media/js/settings.js:110
-msgid "Portuguese"
-msgstr "Португалски"
-
-#: /media/js/settings.js:111
-msgid "Russian"
-msgstr "Руски"
-
-#: /media/js/settings.js:112
-msgid "Spanish"
-msgstr "Шпански"
-
-#: /media/js/settings.js:138
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "Жао нам је, тренутно сте ван мреже. Молимо Вас покушајте касније."
+#: /media/js/payments.js:138
+msgid "Payment failed. Try again later."
+msgstr "Плаћање неуспело. Покушајте касније."
 
 #. The report is an abuse report for reviews
 #: /media/js/ratings.js:40
@@ -1337,17 +1293,237 @@ msgstr "Ваша рецензија је објављена"
 msgid "Error while submitting review"
 msgstr "Грешка при слању рецензије"
 
+#. {n} is the number of stars
+#: /media/js/ratingwidget.js:34
+msgid "{n} star"
+msgid_plural "{n} stars"
+msgstr[0] "{n} звездица"
+msgstr[1] "{n} звездице"
+msgstr[2] "{n} звездица"
+
+#: /media/js/settings.js:101
+msgid "English"
+msgstr "Енглески"
+
+#: /media/js/settings.js:102
+msgid "French"
+msgstr "Француски"
+
+#: /media/js/settings.js:103
+msgid "German"
+msgstr "Немачки"
+
+#: /media/js/settings.js:104
+msgid "Hungarian"
+msgstr "Мађарски"
+
+#: /media/js/settings.js:105
+msgid "Indonesian"
+msgstr "Индонежански"
+
+#: /media/js/settings.js:106
+msgid "Polish"
+msgstr "Пољски"
+
+#: /media/js/settings.js:107
+msgid "Portuguese"
+msgstr "Португалски"
+
+#: /media/js/settings.js:108
+msgid "Russian"
+msgstr "Руски"
+
+#: /media/js/settings.js:109
+msgid "Spanish"
+msgstr "Шпански"
+
+#: /media/js/settings.js:135
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "Жао нам је, тренутно сте ван мреже. Молимо Вас покушајте касније."
+
+#: /media/js/lib/regions.js:21
+msgid "Guatemala"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Colombia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "China"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Chile"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "South Africa"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Ecuador"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Czech Republic"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Argentina"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "India"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Costa Rica"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Galicia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Spain"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Venezuela"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Nicaragua"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Serbia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Lithuania"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Panama"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Rest of World"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Peru"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Italy"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Philippines"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Poland"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "France"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Russia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Germany"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Japan"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Hungary"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Brazil"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Greece"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Montenegro"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Uruguay"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "El Salvador"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "United States"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "United Kingdom"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Mexico"
+msgstr ""
+
 #: /media/js/views/app.js:66 /media/js/views/feed/feed_app.js:10
 msgid "App Details"
 msgstr "Детаљи о апликацији"
 
-#: /media/js/views/fxa_popup.js:143
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "Повратне информације су послате. Хвала!"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "Дошло је до проблема при слању повратних информација. Покушајте поново ускоро."
+
+#: /media/js/views/fxa_popup.js:142
 msgid "Join Firefox Marketplace"
 msgstr "Прикључите се Firefox Marketplace-у"
 
-#: /media/js/views/fxa_popup.js:145
+#: /media/js/views/fxa_popup.js:144
 msgid "Sign in to Firefox Marketplace"
 msgstr "Пријавите се на Firefox Marketplace"
+
+#: /media/js/views/homepage.js:61
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr ""
+
+#: /media/js/views/homepage.js:66
+msgid "Productivity Apps—Desktop Essentials"
+msgstr ""
+
+#: /media/js/views/homepage.js:71
+msgid "Store and share any type of file with Box."
+msgstr ""
+
+#: /media/js/views/homepage.js:76
+msgid "Discover, share, and enjoy music with SoundCloud."
+msgstr ""
+
+#: /media/js/views/homepage.js:81
+msgid "Play Hex Race—a thrill ride from the future!"
+msgstr ""
 
 #: /media/js/views/new.js:9
 msgid "Fresh and New Apps"
@@ -1369,13 +1545,33 @@ msgstr "Поставке запамћене"
 msgid "Settings could not be saved"
 msgstr "Поставке нису могле бити запамћене"
 
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "Повратне информације су послате. Хвала!"
+#: /media/js/lib/marketplace-core-modules/login.js:22
+msgid "You have been signed out"
+msgstr ""
 
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "Дошло је до проблема при слању повратних информација. Покушајте поново ускоро."
+#: /media/js/lib/marketplace-core-modules/login.js:26
+msgid "You have been signed in"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:72
+msgid "Sign in failed"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:178
+msgid "FxA login failed. A server error was encountered."
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/navigation.js:33
+msgid "No internet connection"
+msgstr ""
+
+#. {n} is the number of characters left.
+#: /media/js/lib/marketplace-core-modules/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse reported"
@@ -1385,10 +1581,6 @@ msgstr "Злоупотреба пријављена"
 msgid "Error while submitting report"
 msgstr "Грешка при слању извештаја"
 
-#: /media/js/views/commonplace/hello_world.js:9
-msgid "Hello World!"
-msgstr "Поздрав, свете!"
-
 #: /media/js/views/app/receipt.js:22
 msgid "Please sign in to view the receipt"
 msgstr "Молимо Вас да се пријавите како бисте видели рачун"
@@ -1397,10 +1589,26 @@ msgstr "Молимо Вас да се пријавите како бисте в�
 msgid "Receipt"
 msgstr "Рачун"
 
+#: /media/js/views/commonplace/hello_world.js:9
+msgid "Hello World!"
+msgstr "Поздрав, свете!"
+
 #. Page not found (404)
-#: /media/js/views/commonplace/not_found.js:9
+#: /media/js/views/commonplace/not_found.js:9 /media/js/lib/marketplace-core-modules/views/not_found.js:9
 msgid "Not Found"
 msgstr "Није пронађено"
+
+#: /media/js/views/feed/feed_brand.js:10
+msgid "Editorial Brand Details"
+msgstr "Уређивачки детаљи марке"
+
+#: /media/js/views/feed/feed_collection.js:9
+msgid "Collection Details"
+msgstr "Детаљи колекције"
+
+#: /media/js/views/feed/feed_shelf.js:9
+msgid "Operator Shelf Details"
+msgstr "Operator Shelf детаљи"
 
 #: /media/js/views/app/ratings/edit.js:20
 msgid "Review updated successfully"
@@ -1409,15 +1617,3 @@ msgstr "Рецензија успешно ажурирана"
 #: /media/js/views/app/ratings/edit.js:35
 msgid "There was a problem updating your review"
 msgstr "Дошло је до проблема при ажурирању рецензије"
-
-#: /media/js/views/feed/feed_brand.js:10
-msgid "Editorial Brand Details"
-msgstr "Уређивачки детаљи марке"
-
-#: /media/js/views/feed/feed_shelf.js:9
-msgid "Operator Shelf Details"
-msgstr "Operator Shelf детаљи"
-
-#: /media/js/views/feed/feed_collection.js:9
-msgid "Collection Details"
-msgstr "Детаљи колекције"
