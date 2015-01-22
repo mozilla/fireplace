@@ -15,8 +15,9 @@ define('compatibility_filtering',
     // API endpoints where feature profile is enabled, if all conditions met.
     // See api_args() below.
     var ENDPOINTS_WITH_FEATURE_PROFILE = [
-        'category_landing','feed', 'feed-app', 'feed-brand', 'feed-collection',
-        'feed-items', 'feed-shelf', 'new_popular_search', 'search'
+        'category_landing', 'feed', 'feed-app', 'feed-brand', 'feed-collection',
+        'feed-items', 'feed-shelf', 'recommended', 'new_popular_search',
+        'search'
     ];
 
     var actual_platform = '';
@@ -123,8 +124,7 @@ define('compatibility_filtering',
                 args.dev = '';
                 args.device = '';
             }
-        }
-        else {
+        } else {
             // If device_filtering_preferences[endpoint_name] does not exist or
             // is an 'empty' value, then we use the default filtering behaviour
             // with whatever actual_platform and actual_formfactor are.

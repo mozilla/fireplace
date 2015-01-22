@@ -16,14 +16,14 @@
           id='searchresults') %}
   <section class="main">
     <div class="subheader">
-      <h1>
+      <h1 class="search-results-header">
         {{ _plural('<b>{n}</b> Result', '<b>{n}</b> Results', n=response.meta.total_count) }}
         <a class="expand-toggle" title="{{ _('Expand') }}"></a>
       </h1>
     </div>
   </section>
 
-  <section id="search-results" class="main full app-list-page">
+  <section id="search-results" class="main full app-list-page search-results">
     <div>
       {% include "_includes/app_list_filters.html" %}
       <ul class="app-list {{ 'paginated' if response.meta.next }}">

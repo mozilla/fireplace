@@ -2,94 +2,54 @@
     Test for the search results page.
     Note that a lot of it is already tested in the app_list.js tests.
 */
+var appList = require('../lib/app_list');
+var constants = require('../lib/constants');
 var helpers = require('../lib/helpers');
 
-casper.test.begin('Search baseline tests', {
+var appNthChild = appList.appNthChild;
+
+casper.test.begin('Search results header tests', {
     test: function(test) {
         helpers.startCasper();
 
-        casper.waitForSelector('#splash-overlay.hide', function() {
-            casper.fill('.mkt-search', {q: 'test'}, true);
+        helpers.waitForPageLoaded(function() {
+            casper.fill('.search', {q: 'test'}, true);
         });
 
+        // Test search results count in header.
         casper.waitForSelector('.app-list', function() {
-            // Test search results count in header.
             test.assertUrlMatch(/\/search\?q=test$/);
-            test.assertField('compatibility_filtering', 'all');
-            test.assertVisible('.mkt-search');
+            test.assertSelectorHasText('.search-results-header', '42 Results');
 
-            test.assertSelectorHasText('#search-results h2', '42 Results');
-            test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–25');
-
-            casper.click('li.loadmore button');
-        });
-
-        casper.waitForSelector('.app-list-app:nth-child(42)', function() {
-            // Test search results count in header after clicking `Load more`.
-            test.assertUrlMatch(/\/search\?q=test$/);
-            test.assertField('compatibility_filtering', 'all');
-            test.assertSelectorHasText('#search-results h2', '42 Results');
-            test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–42');
-
-            casper.click('.header-button.back');
-            casper.fill('#search', {q: 'test'}, true);
-        });
-
-        casper.waitForSelector('.app-list-app:nth-child(42)', function() {
-            test.assertUrlMatch(/\/search\?q=test$/);
-            test.assertField('compatibility_filtering', 'all');
-            test.assertSelectorHasText('#search-results h2', '42 Results');
-            test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–42');
-            casper.click('.search-listing li a.mkt-tile:first-child');
-            test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
-        });
-
-        // Test device filtering using query string.
-        casper.thenOpen(helpers.makeUrl('/search?q=test&device_override=desktop'), function() {
-            casper.waitForSelector('#splash-overlay.hide', function() {
-                test.assertUrlMatch(/\/search\?q=test&device_override=desktop$/);
-                test.assertField('compatibility_filtering', 'desktop');
-                helpers.assertAPICallWasMade('/api/v2/fireplace/search/', {
-                    // Note: device_override is present in the query string because
-                    // we inject everything except 'src' from the page query string.
-                    cache: '1', dev: 'desktop', device_override: 'desktop', lang: 'en-US', limit: '25', q: 'test', region: 'us', vary: '0'
-                });
-
-                // There should be 26 elements in the listing: 25 items + "load more".
-                test.assertExists('.search-listing li:nth-child(26)');
-                test.assertDoesntExist('.search-listing li:nth-child(27)');
-                test.assertSelectorHasText('#search-results h2', '42 Results');
-                test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–25');
-                test.assertVisible('.search-listing li a.mkt-tile');
-                test.assertVisible('#search-results .expand-toggle');
-                casper.click('li.loadmore button');
+            appList.waitForLoadMore(function() {
+                // Test results count in header after clicking `Load more`.
+                test.assertUrlMatch(/\/search\?q=test$/);
+                test.assertSelectorHasText('.search-results-header',
+                                           '42 Results');
             });
+        });
 
-            casper.waitForSelector('.search-listing li:nth-child(42)', function() {
-                test.assertUrlMatch(/\/search\?q=test&device_override=desktop$/);
-                test.assertField('compatibility_filtering', 'desktop');
-                test.assertSelectorHasText('#search-results h2', '42 Results');
-                test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–42');
-                casper.click('.header-button.back');
-                casper.fill('#search', {q: 'test'}, true);
-            });
+        helpers.done(test);
+    }
+});
 
-            // Doing a new search when we are filtering by device clears the filtering,
-            // so cache rewriting isn't done : it's a new search.
-            casper.waitForSelector('.search-listing li:nth-child(26)', function() {
+casper.test.begin('Search device filtering tests', {
+    test: function(test) {
+        helpers.startCasper({path: '/search?q=test&device_override=desktop'});
+
+        helpers.waitForPageLoaded(function() {
+            test.assertField('compatibility_filtering', 'desktop');
+
+            casper.fill('.search', {q: 'test'}, true);
+
+            // New search during dev. filter clears filter.
+            casper.waitForSelector('.app-list', function() {
                 casper.waitForUrl(/\/search\?q=test$/, function() {
-                    test.assertUrlMatch(/\/search\?q=test$/);
                     test.assertField('compatibility_filtering', 'all');
-                    test.assertSelectorHasText('#search-results h2', '42 Results');
-                    test.assertSelectorHasText('#search-results h2 .subtitle', 'Showing 1–25');
-                    casper.click('.search-listing li a.mkt-tile:first-child');
-                    test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
                 });
             });
         });
 
-        casper.run(function() {
-            test.done();
-        });
+        helpers.done(test);
     }
 });
