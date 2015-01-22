@@ -1,9 +1,13 @@
+/*
+    Test for category pages.
+    Note that most stuff is already tested in app_list.js.
+*/
 var helpers = require('../lib/helpers');
 
 casper.test.begin('Category app list sort tests', {
     test: function(test) {
-        casper.viewport(1050, 768);  // Sort filters only show on desktop.
         helpers.startCasper({path: '/category/games'});
+        helpers.changeViewportDesktop();  // Sort filters only show on desktop.
 
         casper.waitForSelector('.app-list', function() {
             // Test popular link is active by default.
@@ -24,9 +28,6 @@ casper.test.begin('Category app list sort tests', {
             test.assertSelectorExists('[data-app-list-sort-popular].active');
         });
 
-        casper.run(function() {
-            test.done();
-            casper.viewport(300, 400);
-        });
+        helpers.done(test);
     }
 });

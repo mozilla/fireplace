@@ -1,13 +1,35 @@
 var system = require('system');
 
-var baseTestUrl = 'http://localhost:8675';
-var _currTestId;
 var require = patchRequire(require);
 var utils = require('utils');
 
-function makeUrl(path) {
-    return baseTestUrl + path;
-}
+var baseTestUrl = 'http://localhost:8675';
+var _currTestId;
+
+
+casper.on('viewport.changed', function(dimensions) {
+    casper.echo('Viewport dimensions changed to: ' +
+                dimensions[0] + 'x' + dimensions[1]);
+});
+
+casper.on('started', function() {
+    _currTestId = makeToken();
+    casper.echo('Starting test', 'INFO');
+});
+
+
+casper.on('waitFor.timeout', function() {
+    var filename = 'timeout-' + _currTestId + '.png';
+    casper.echo('Timeout screenshot at ' + filename);
+    capture(filename);
+});
+
+
+casper.on('step.error', function() {
+    var filename = 'fail-' + _currTestId + '.png';
+    casper.echo('Test failure screenshot at ' + filename);
+    capture(filename);
+});
 
 
 if (system.env.SHOW_TEST_CONSOLE) {
@@ -20,7 +42,8 @@ if (system.env.SHOW_TEST_CONSOLE) {
 function startCasper(options) {
     options = options || {};
     if (options.url) {
-        casper.echo('You supplied a "url" option when you probably meant "path"', 'WARNING');
+        casper.echo('You supplied a "url" option when you probably meant ' +
+                    '"path"', 'WARNING');
     }
     var headers = options.headers;
     var path = options.path || '/';
@@ -37,8 +60,25 @@ function startCasper(options) {
 }
 
 
-// Check selector contains a string.
+function done(test) {
+    casper.run(function() {
+        test.done();
+    });
+}
+
+
+function waitForPageLoaded(cb) {
+    casper.waitForSelector('#splash-overlay.hide', cb, function() {}, 10000);
+}
+
+
+function makeUrl(path) {
+    return baseTestUrl + path;
+}
+
+
 function assertContainsText(selector, msg) {
+    // Check selector contains a string.
     msg = msg || 'Selector contains some text';
     casper.test.assert(!!casper.fetchText(selector).trim(), msg);
 }
@@ -73,13 +113,15 @@ function assertAPICallWasMade(url, params, msg) {
         var target = res.url.split('?');
 
         // Log if the endpoint matches but not the params.
-        if (target[0] == url && !utils.equals(params, parseQueryString(target[1]))) {
+        if (target[0] == url &&
+            !utils.equals(params, parseQueryString(target[1]))) {
             console.log('API url param mismatch:');
             console.log(JSON.stringify(params));
             console.log(JSON.stringify(parseQueryString(target[1])));
         }
 
-        return target[0] == url && utils.equals(params, parseQueryString(target[1]));
+        return target[0] == url &&
+               utils.equals(params, parseQueryString(target[1]));
     }
 
     msg = msg || 'API call was made';
@@ -103,29 +145,6 @@ function makeToken() {
     return Math.random().toString(36).slice(2);
 }
 
-casper.on('viewport.changed', function(dimensions) {
-    casper.echo('Viewport dimensions changed to: ' + dimensions[0] + 'x' + dimensions[1]);
-});
-
-casper.on('started', function() {
-    _currTestId = makeToken();
-    casper.echo('Starting test', 'INFO');
-});
-
-
-casper.on('waitFor.timeout', function() {
-    var filename = 'timeout-' + _currTestId + '.png';
-    casper.echo('Timeout screenshot at ' + filename);
-    capture(filename);
-});
-
-
-casper.on('step.error', function() {
-    var filename = 'fail-' + _currTestId + '.png';
-    casper.echo('Test failure screenshot at ' + filename);
-    capture(filename);
-});
-
 
 function fake_login() {
     casper.evaluate(function() {
@@ -146,15 +165,13 @@ function fake_login() {
 }
 
 
-function waitForPageLoaded(cb) {
-    casper.waitForSelector('#splash-overlay.hide', cb, function() {}, 10000);
+function changeViewportTablet() {
+    casper.viewport(700, 768);
 }
 
 
-function done(test) {
-    casper.run(function() {
-        test.done();
-    });
+function changeViewportDesktop() {
+    casper.viewport(1050, 768);
 }
 
 
@@ -163,6 +180,8 @@ module.exports = {
     assertContainsText: assertContainsText,
     assertHasFocus: assertHasFocus,
     capture: capture,
+    changeViewportDesktop: changeViewportDesktop,
+    changeViewportTablet: changeViewportTablet,
     done: done,
     fake_login: fake_login,
     makeUrl: makeUrl,
