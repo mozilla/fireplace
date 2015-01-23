@@ -224,9 +224,9 @@
             {% endfor %}
           </dl>
           <dl>
-            {% if this.is_packaged and this.size %}
-              <dt>{{ _('Size') }}</dt>
-              <dd>{{ this.size }}</dd>
+            {% if this.file_size %}
+              <dt>{{ _('File Size') }}</dt>
+              <dd>{{ this.file_size }}</dd>
             {% endif %}
           </dl>
           <dl>
