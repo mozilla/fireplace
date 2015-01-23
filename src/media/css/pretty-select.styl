@@ -27,20 +27,6 @@ $select-height = 30px;
         right: -2px;
         z-index: 2;
     }
-    &:after {
-        // Hide the native `<select>` arrow.
-        background: $white;
-        border: 0;
-        content: "";
-        display: block;
-        height: 100%;
-        pointer-events: none;
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 75px;
-        z-index: 1;
-    }
     select {
         -moz-padding-start: 10px;
         -webkit-padding-start: 10px;
@@ -57,12 +43,12 @@ $select-height = 30px;
 
         &:-moz-focusring {
             color: $filters-label;
-            text-shadow: 0 0 0 #fff;
+            text-shadow: 0 0 0 $white;
         }
     }
     option {
-        background: #fff;
-        color: $text;
+        background: $white;
+        color: $greyscale-black;
         padding: 5px;
     }
 }
