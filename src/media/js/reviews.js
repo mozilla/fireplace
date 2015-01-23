@@ -1,4 +1,4 @@
-define('ratings',
+define('reviews',
     ['cache', 'capabilities', 'forms', 'jquery', 'l10n', 'login', 'models',
      'notification', 'nunjucks', 'ratingwidget', 'requests', 'settings',
      'tracking', 'underscore', 'utils', 'urls', 'user', 'z'],
@@ -27,7 +27,7 @@ define('ratings',
         $modal = $('mkt-prompt[data-modal="flag-review"]');
 
         $modal.one('click', '.reasons a', utils._pd(function(e) {
-            var $actionEl = $review.find('.actions .flag');
+            var $actionEl = $review.find('.review-actions .flag');
             $modal[0].dismissModal();
 
             // L10n: The report is an abuse report for reviews.
@@ -35,7 +35,7 @@ define('ratings',
 
             var endpoint = settings.api_url + urls.api.sign($review.data('report-uri'));
             requests.post(endpoint, {flag: $(e.target).data('reason')}).done(function() {
-                notify({message: gettext('Review successfully flagged')});
+                notify({message: gettext('This review has been successfully flagged. Thanks!')});
                 $actionEl.remove();
             }).fail(function() {
                 notify({message: gettext('Sorry, there was an issue flagging the review. Please try again later.')});

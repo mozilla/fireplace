@@ -1,7 +1,7 @@
 define('views/app/ratings/edit',
-    ['cache', 'forms', 'l10n', 'notification', 'ratings', 'requests',
+    ['cache', 'forms', 'l10n', 'notification', 'requests', 'reviews',
      'settings', 'urls', 'user', 'utils', 'z'],
-    function(cache, forms, l10n, notification, ratings, requests,
+    function(cache, forms, l10n, notification, requests, reviews,
              settings, urls, user, utils, z) {
     var gettext = l10n.gettext;
     var notify = notification.notification;
