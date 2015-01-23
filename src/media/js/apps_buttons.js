@@ -135,6 +135,12 @@ define('apps_buttons',
                 def.reject();
             });
         } else {
+            // If a popup was kept open for payments we don't need it
+            // now we're starting the install.
+            if (loginPopup) {
+                console.log('Closing the popup');
+                loginPopup.close();
+            }
             // There's no payment required, just start install.
             console.log('Starting app installation for', product.name);
             // Start the app's installation.
