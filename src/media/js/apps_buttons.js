@@ -1,10 +1,10 @@
 define('apps_buttons',
     ['apps', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'login',
      'models', 'notification', 'payments', 'requests', 'settings',
-     'tracking_events', 'urls', 'user', 'views', 'z'],
+     'tracking_events', 'urls', 'user', 'utils', 'views', 'z'],
     function(apps, cache, capabilities, defer, l10n, log, login, models,
              notification, payments, requests, settings,
-             tracking_events, urls, user, views, z) {
+             tracking_events, urls, user, utils, views, z) {
     var console = log('buttons');
     var gettext = l10n.gettext;
     var apps_model = models('app');
@@ -135,6 +135,12 @@ define('apps_buttons',
                 def.reject();
             });
         } else {
+            // If a popup was kept open for payments we don't need it
+            // now we're starting the install.
+            if (loginPopup) {
+                console.log('Closing the popup');
+                loginPopup.close();
+            }
             // There's no payment required, just start install.
             console.log('Starting app installation for', product.name);
             // Start the app's installation.

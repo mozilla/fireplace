@@ -232,7 +232,10 @@ function(_) {
                 $('#site-nav').after(nunjucks.env.render('incompatible.html'));
             }
         } else if (capabilities.osXInstallIssues) {
-            $('#site-nav').after(nunjucks.env.render('_includes/os_x_banner.html'));
+            if ($('mkt-banner[name="mac-banner"]').length === 0) {
+                $('#site-nav').after(
+                    nunjucks.env.render('_includes/os_x_banner.html'));
+            }
         }
 
         var logged_in = user.logged_in();
