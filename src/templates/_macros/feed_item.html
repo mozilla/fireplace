@@ -87,9 +87,7 @@
 
 {% macro brand(brand) %}
   {% set src = 'branded-editorial-element' %}
-
-  {# Only show 6 or <= 3 apps on the feed. #}
-  {% set max_apps = 3 if brand.app_count else 6 %}
+  {% set max_apps = 4 %}
 
   <section class="feed-brand feed-layout-{{ brand.layout }} multi-app-tile c"
            data-tracking-slug="{{ brand.slug }}">
@@ -102,8 +100,7 @@
       {% endfor %}
     </ul>
 
-    {# Show the 'View all' link if there are 4-5 or 7+ apps in the brand.' #}
-    {% if brand.app_count > 3 and brand.app_count != 6 %}
+    {% if brand.app_count > 4 %}
       <a href="{{ url('feed/feed_brand', [brand.slug])|urlparams(src=src) }}"
          class="view-all-tab feed-view-all-tab">
         {{ _('View all apps') }}
@@ -161,8 +158,7 @@
 {% endmacro %}
 
 {% macro collection_listing(coll) %}
-  {# Only show 6 or <= 3 apps on the feed. #}
-  {% set max_apps = 3 if coll.app_count < 6 else 6 %}
+  {% set max_apps = 4 %}
 
   <section class="feed-collection feed-collection-listing feed-layout-list
                   multi-app-tile mkt-tile c"
@@ -179,8 +175,7 @@
       {% endfor %}
     </ul>
 
-    {# Show the 'View all' link if there are 4-5 or 7+ apps in the brand.' #}
-    {% if (coll.app_count > 3 and coll.app_count < 6) or coll.app_count > 6 %}
+    {% if coll.app_count > 4 %}
       <a href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src=src) }}"
          class="view-all-tab feed-view-all-tab">
         {{ _('View all apps') }}
