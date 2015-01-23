@@ -20,7 +20,7 @@ var localConfig = extend(true, {
     cssBundles: {
         'splash.css': ['splash.styl.css']
     },
-    cssExcludes: ['fxa.css', 'splash.styl.css'],
+    cssExcludes: ['splash.styl.css'],
     requireConfig: {
         // RequireJS configuration for development, notably files in lib/.
         // [Module name]: [Module path].

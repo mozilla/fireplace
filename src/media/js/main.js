@@ -252,16 +252,6 @@ function(_) {
                 // Unfortunately we need to wait for the switches to load.
                 z.body.addClass('native-fxa');
             }
-
-            var banner = document.getElementById('fx-accounts-banner');
-            if (banner) {
-                banner.dismissBanner();
-            }
-            if (user.canMigrate()) {
-                $('#site-nav').after(
-                    nunjucks.env.render('fx-accounts-banner.html',
-                                        {logged_in: logged_in}));
-            }
         });
 
         // TODO: Move this to the consumer-info callback when the waffle is
