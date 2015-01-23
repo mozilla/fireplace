@@ -74,6 +74,7 @@ $desktop-tile-padding = 20px 50px;
     width: 100%;
 
     a {
+        color: $greyscale-black;
         display: inline-block;
         ellipsis();
         font-size: 15px;
@@ -84,12 +85,12 @@ $desktop-tile-padding = 20px 50px;
         position: relative;
         text-align: center;
         text-decoration: none;
-        text-shadow: 0 .5px 1px #fff;
+        text-shadow: 0 .5px 1px $white;
         z-index: 2;
-        vertical-align: bottom;
+        vertical-align: middle;
 
         &:hover {
-            border-bottom: 2px solid $seavan-salt-white;
+            border-bottom: 2px solid $greyscale-light-grey;
         }
         &.active {
             border-bottom: 2px solid $filters-link;
@@ -97,7 +98,7 @@ $desktop-tile-padding = 20px 50px;
         }
         &.active:before,
         &.active:after {
-            background-color: #fff;
+            background-color: $white;
         }
         + a {
             margin-left: 30px;
@@ -131,6 +132,17 @@ $desktop-tile-padding = 20px 50px;
         border-bottom: 2px solid $filters-border;
         padding: 0 0 30px;
         width: $desktop-content;
+    }
+    .app-list-sort {
+        float: left;
+        margin-right: 30px;
+        position: relative;
+        top: 15px;
+        width: auto;
+
+        a {
+            text-shadow: none;
+        }
     }
     .app-list-app {
         border-bottom: $border;
@@ -210,8 +222,5 @@ $desktop-tile-padding = 20px 50px;
         &:last-child {
             border-right: 0;
         }
-    }
-    .app-list-sort a {
-        text-shadow: none;
     }
 }
