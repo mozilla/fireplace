@@ -26,7 +26,7 @@ define('previews',
             }
 
             $('.app-header.expanded > div')
-               .css('height', 830 + trayOffset + 'px')
+               .css('height', 778 + trayOffset + 'px')
                .find('.previews')
                .css('top', 225 + trayOffset + 'px');
         } else {
