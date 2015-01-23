@@ -1,32 +1,38 @@
+/*
+    Stylesheet for category icon using the spritesheet.
+    Defines the classes for each individual icon as well as its applications
+    within pages.
+*/
 @import 'lib';
 
 $cat-icon-size-default = 28px;
-$cat-icon-size-desktop = 60px;
 
-// Mixin to handle hover/focus states of svg sprite.
-// One day if background-position-x/y works we can
-// factor a lot of this out.
 sprite-background-position($vertical-pos) {
+    // Handles which color sprite to show on which pages.
     // White.
-    &.cat-hovercat:hover:before,
-    &.mobile-cat-header:before {
+    &.cat-hovercat:hover:before {
+        // Icons in category drop-down menu when hovered.
         background-position: 100% $vertical-pos;
     }
 
     // Blue.
-    // The icons in category drop-down menu.
-    // The icon in desktop header on cat landing.
-    // The icons on `/categories` index.
-    &.cat-hovercat:before,
     &:before,
-    &.desktop-cat-header:before {
+    &.cat-hovercat:before,
+    &.category-header-icon:before {
+        // The icons in category drop-down menu.
         background-position: 0 $vertical-pos;
     }
+}
 
-    // Gray.
-    // The icon in mobile header on cat landing.
-    &.mobile-cat-header:before {
-        background-position: 50% $vertical-pos;
+sprite-background-position-header($vertical-pos) {
+    // White.
+    // 75px icon in category header, which needs to be centered.
+    // Have to define separately from sprite-background-position since they
+    // align differently in this case.
+    @media $base-tablet {
+        &.category-header-icon:before {
+            background-position: 107% $vertical-pos;
+        }
     }
 }
 
@@ -42,6 +48,7 @@ sprite-background-position($vertical-pos) {
         vertical-align: middle;
         width: $cat-icon-size-default;
     }
+
     sprite-background-position(93.8%);
 
     // Other styles for `.cat-hovercat` are in `category-dropdown-desktop.styl`.
@@ -59,55 +66,71 @@ sprite-background-position($vertical-pos) {
     }
 }
 
-.cat-entertainment,
-.cat-sports {
-    sprite-background-position(49.7%);
-}
-.cat-business {
-    sprite-background-position(43.3%);
-}
-.cat-games {
-    sprite-background-position(-0.8%);
-}
-.cat-music {
-    sprite-background-position(11.8%);
-}
-.cat-news-weather {
-    sprite-background-position(5.6%);
-}
-.cat-productivity {
-    sprite-background-position(68.5%);
-}
-.cat-social {
-    sprite-background-position(75%);
-}
-.cat-travel {
-    sprite-background-position(87.5%);
-}
 .cat-books,
 .cat-reference {
     sprite-background-position(81.2%);
+    sprite-background-position-header(81.7%);
+}
+.cat-business {
+    sprite-background-position(43.3%);
+    sprite-background-position-header(43.3%);
 }
 .cat-education {
     sprite-background-position(24.4%);
+    sprite-background-position-header(24.4%);
+}
+.cat-entertainment,
+.cat-sports {
+    sprite-background-position(49.7%);
+    sprite-background-position-header(49.8%);
+}
+.cat-games {
+    sprite-background-position(-0.8%);
+    sprite-background-position-header(-1.5%);
 }
 .cat-health-fitness {
     sprite-background-position(18.2%);
+    sprite-background-position-header(18.2%);
 }
 .cat-lifestyle {
-    sprite-background-position(37%);
-}
-.cat-photo-video {
-    sprite-background-position(62.2%);
-}
-.cat-utilities {
-    sprite-background-position(30.7%);
-}
-.cat-shopping {
-    sprite-background-position(55.9%);
+    sprite-background-position(37.0%);
+    sprite-background-position-header(37.0%);
 }
 .cat-maps-navigation {
     sprite-background-position(100.1%);
+    sprite-background-position-header(101.4%);
+}
+.cat-music {
+    sprite-background-position(11.8%);
+    sprite-background-position-header(11.3%);
+}
+.cat-news-weather {
+    sprite-background-position(5.6%);
+    sprite-background-position-header(5.0%);
+}
+.cat-photo-video {
+    sprite-background-position(62.2%);
+    sprite-background-position-header(62.4%);
+}
+.cat-productivity {
+    sprite-background-position(68.5%);
+    sprite-background-position-header(68.9%);
+}
+.cat-shopping {
+    sprite-background-position(55.9%);
+    sprite-background-position-header(55.9%);
+}
+.cat-social {
+    sprite-background-position(75.0%);
+    sprite-background-position-header(75.5%);
+}
+.cat-travel {
+    sprite-background-position(87.5%);
+    sprite-background-position-header(87.7%);
+}
+.cat-utilities {
+    sprite-background-position(30.7%);
+    sprite-background-position-header(30.4%);
 }
 
 a[class*="cat-movistar-"]:before,
