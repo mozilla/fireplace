@@ -19,13 +19,14 @@ casper.test.begin('Search results header tests', {
         // Test search results count in header.
         casper.waitForSelector('.app-list', function() {
             test.assertUrlMatch(/\/search\?q=test$/);
-            test.assertSelectorHasText('.search-results-header', '42 Results');
+            test.assertSelectorHasText('.search-results-header',
+                                       '"test" returned 42 results');
 
             appList.waitForLoadMore(function() {
                 // Test results count in header after clicking `Load more`.
                 test.assertUrlMatch(/\/search\?q=test$/);
                 test.assertSelectorHasText('.search-results-header',
-                                           '42 Results');
+                                           '"test" returned 42 results');
             });
         });
 
