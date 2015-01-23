@@ -19,10 +19,14 @@
 [data-page-type~="detail"] {
     .mkt-tile {
         padding-bottom: 10px;
+
+        .rating {
+            padding: 15px 0;
+        }
     }
     .app-notices {
         border-top: 1px solid $tile-border;
-        margin-top: 15px;
+        margin-top: 0;
         padding: 10px 0;
         text-align: center;
         width: 100%;
@@ -134,10 +138,8 @@
             width-fit-content();
         }
     }
-    [data-page-type~="detail"] .mkt-tile .app-notices {
-        border-top-width: 2px;
-        margin-top: 0;
-        padding: 20px 0;
+    [data-page-type~="detail"] .app-notices {
+        margin-top: 15px;
     }
 }
 
