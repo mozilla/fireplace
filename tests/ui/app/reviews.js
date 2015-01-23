@@ -1,10 +1,11 @@
+/*
+    Tests for an app's review page.
+*/
 var helpers = require('../../lib/helpers');
 
-helpers.startCasper({path: '/app/can_rate'});
-
-casper.test.begin('Ratings page baseline tests', {
-
+casper.test.begin('App reviews tests', {
     test: function(test) {
+        helpers.startCasper({path: '/app/can_rate'});
 
         casper.waitForSelector('.reviews h3', function() {
             casper.click('.reviews .average-rating');
@@ -20,8 +21,6 @@ casper.test.begin('Ratings page baseline tests', {
             test.assertExists('.report-spam.show ul li a');
         });
 
-        casper.run(function() {
-           test.done();
-        });
+        helpers.done(test);
     }
 });

@@ -53,3 +53,23 @@ casper.test.begin('Search device filtering tests', {
         helpers.done(test);
     }
 });
+
+
+casper.test.begin('Search empty', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            casper.fill('.search', {q: 'empty'}, true);
+        });
+
+        casper.waitWhileVisible('.placeholder .spinner', function() {
+            test.assertUrlMatch(/\/search\?q=empty/);
+            test.assertVisible('#search-q');
+            test.assertDoesntExist('.app-list');
+            test.assertSelectorHasText('.subheader h1', 'No results found');
+        });
+
+        helpers.done(test);
+    }
+});

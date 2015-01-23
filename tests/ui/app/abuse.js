@@ -1,25 +1,19 @@
 var helpers = require('../../lib/helpers');
 
-helpers.startCasper({path: '/app/foo/abuse'});
-
-casper.test.begin('Abuse baseline tests', {
-
+casper.test.begin('App abuse tests', {
     test: function(test) {
+        helpers.startCasper({path: '/app/foo/abuse'});
 
-        casper.waitForSelector('#splash-overlay.hide', function() {
+        helpers.waitForPageLoaded(function() {
             test.assertTitle('Report Abuse | Firefox Marketplace');
             test.assertVisible('.abuse-form');
             test.assertVisible('.abuse-form textarea');
-            test.assertExists('.abuse-form button[disabled]');
+
             casper.fill('.abuse-form', {'text': 'test'});
-            test.assertExists('.abuse-form button:not([disabled])');
-            test.assertUrlMatch(/\/app\/foo\/abuse/);
             casper.click('.abuse-form button');
             test.assertUrlMatch(/\/app\/foo/);
         });
 
-        casper.run(function() {
-            test.done();
-        });
+        helpers.done(test);
     }
 });
