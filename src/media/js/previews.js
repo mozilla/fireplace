@@ -86,11 +86,7 @@ define('previews',
             slider.element.addEventListener('fsmoveend', setActiveBar, false);
 
             // Show as many thumbs as possible to start (zero-indexed).
-            if (numPreviews === 3) {
-                slider.moveToPoint(1);
-            } else {
-                slider.moveToPoint(~~($tray.width() / DESKTOP_PADDED / 2) - 1);
-            }
+            slider.moveToPoint(~~($tray.width() / DESKTOP_PADDED / 2));
 
             slider_pool.push(slider);
         } else {
