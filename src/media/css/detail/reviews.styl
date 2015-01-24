@@ -35,13 +35,8 @@
     }
 }
 
-[data-page-type~="detail"] .reviews-wrapper {
-    // Offset the margin-bottom from reviews.
-    margin-bottom: -60px;
-}
-
 [data-page-type~="detail"] .reviews-summary-large {
-    padding: 75px 0;
+    padding: 30px 0;
 }
 
 @media $base-tablet {
@@ -53,5 +48,12 @@
         position: absolute;
         top: 0;
         right: 110px;
+    }
+    [data-page-type~="detail"] .reviews-summary-large {
+        padding: 75px 0;
+    }
+    [data-page-type~="detail"] .reviews-wrapper {
+        // Offset the margin-bottom from reviews.
+        margin-bottom: -60px;
     }
 }
