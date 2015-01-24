@@ -28,7 +28,7 @@ select[name=rating] {
     }
     time {
         position: absolute;
-        right: 20px;
+        right: 0;
     }
     ul {
         list-style: none;
@@ -231,8 +231,18 @@ mkt-prompt[data-modal="flag-review"] {
     }
     .loadmore {
         padding: 5px 0 15px;  // 15px above and below reviews.
-        margin-top: -30px;  // Offset margin-bottom from reviews.
     }
+    .detail-left-side {
+        margin-bottom: 0;
+    }
+    .review-buttons,
+    .review-buttons li {
+        margin-top: 0;
+    }
+}
+
+.placeholder + section.full.reviews-listing {
+    margin-top: 0;
 }
 
 @media $base-tablet {
@@ -241,6 +251,12 @@ mkt-prompt[data-modal="flag-review"] {
     }
     .reviews-listing h3 {
         margin-bottom: 30px;
+    }
+    .reviews-listing .loadmore {
+        margin-top: -30px;  // Offset margin-bottom from reviews.
+    }
+    .review time {
+        right: 20px;
     }
 }
 

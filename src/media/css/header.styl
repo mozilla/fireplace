@@ -3,8 +3,6 @@
 */
 @import 'lib';
 
-$placeholder-gray = #cacaca;
-
 // Add header's height back as padding. Overridden when header not fixed.
 body {
     padding-top: $header-height;
@@ -12,7 +10,7 @@ body {
 
 // Usable on any header.
 .header {
-    background: #fff;
+    background: $white;
     border-top: 1px solid $salt-flat-white;
     border-bottom: 1px solid $seavan-salt-white;
     display-flex();
@@ -58,6 +56,7 @@ body {
         position: relative;
         text-align: left;
         width: 100%;
+
         > * {
             flex-center();
             display: block;
@@ -105,10 +104,10 @@ body {
 }
 
 #search-q {
-    background: #f4f4f4 url(../img/pretty/search.svg) 8px 50% no-repeat;
-    border: 2px solid $cement-gray;
+    background: $greyscale-light-grey url(../img/pretty/search.svg) 8px 50% no-repeat;
+    border: 1px solid $greyscale-light-grey-tapped;
     border-radius: 5px;
-    color: $london-fog-gray;
+    color: $greyscale-light-grey-hover;
     font: 300 20px/28px $open-stack;
     height: 34px;
     outline: none;
@@ -116,14 +115,15 @@ body {
     transition(unquote('.18s background-position, .2s border-color, .2s padding'));
     width: 100%;
     z-index: 2;
+
     &:-moz-placeholder {
-        color: $placeholder-gray;
+        color: $greyscale-grey;
     }
     &::-moz-placeholder {
-        color: $placeholder-gray;
+        color: $greyscale-grey;
     }
     &::-webkit-input-placeholder {
-        color: $placeholder-gray;
+        color: $greyscale-grey;
     }
     ~ .search-clear {
         transition(unquote('.3s opacity, .3s visibility'));
@@ -143,7 +143,7 @@ body {
     }
     &:focus {
         background-position: -18px 50%;
-        border-color: #72cfff;
+        border-color: $action-positive;
         padding-left: 10px;
     }
 }
@@ -360,18 +360,6 @@ body {
     }
 }
 
-main:before {
-    // Gradient below the header when scrolling past the cat dropdown menu.
-    content: '';
-    display: block;
-    gradientLinear(unquote('to top, rgba(15,15,15,0) 0%, rgba(15,15,15,.3) 100%'));
-    height: 2px;
-    top: $header-height;
-    position: fixed;
-    width: 100%;
-    z-index: 18;
-}
-
 @media (max-width: 540px) {
     // TODO: get rid of this media query.
     .site-header {
@@ -545,7 +533,6 @@ main:before {
             display: none;
         }
     }
-
     .logged-in .site-header {
         .act-tray {
             display: block;
@@ -554,16 +541,13 @@ main:before {
             display: none;
         }
     }
-
     .active .account-links {
         display: block;
     }
-
     .site-header .search,
     #search-q {
         width: 270px;
     }
-
     #search-q {
         background-position: 10px 50%;
         border-width: 1px;
@@ -580,11 +564,9 @@ main:before {
             padding-right: 15px;
         }
     }
-
     .search-clear {
         top: 6px;
     }
-
     // How does the header look for the various page "types"?
     [data-page-type~=search],
     [data-page-type~=leaf] {
@@ -595,12 +577,10 @@ main:before {
         .flex-span {
             display: none;
         }
-
         .flex-shift {
             display: block;
         }
     }
-
     .desktop .wordmark {
         background: url(../img/pretty/marketplace-beta-logo.png) no-repeat 0 50% / 231px auto;
     }
