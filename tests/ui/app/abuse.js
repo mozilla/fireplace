@@ -1,4 +1,4 @@
-var helpers = require('../../lib/helpers');
+var helpers = require('../lib/helpers');
 
 casper.test.begin('App abuse tests', {
     test: function(test) {

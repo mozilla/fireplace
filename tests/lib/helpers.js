@@ -1,5 +1,4 @@
 var system = require('system');
-
 var require = patchRequire(require);
 var utils = require('utils');
 
@@ -34,22 +33,27 @@ casper.on('step.error', function() {
 
 if (system.env.SHOW_TEST_CONSOLE) {
     casper.on('remote.message', function(message) {
-        casper.echo('client console: ' + message, 'INFO');
+        casper.echo(message, 'INFO');
+    });
+    casper.on('page.error', function(message) {
+        casper.echo(message, 'ERROR');
     });
 }
 
 
 function startCasper(options) {
     options = options || {};
+
+    casper.options.waitTimeout = 10000;
+
     if (options.url) {
-        casper.echo('You supplied a "url" option when you probably meant ' +
-                    '"path"', 'WARNING');
+        casper.echo('"url" supplied, you probably meant "path"', 'WARNING');
     }
     var headers = options.headers;
     var path = options.path || '/';
     var url = baseTestUrl + path;
-    casper.echo('Starting with url: ' + url);
 
+    casper.echo('Starting with url: ' + url);
     if (!headers) {
         casper.start(url);
     } else {
@@ -68,7 +72,7 @@ function done(test) {
 
 
 function waitForPageLoaded(cb) {
-    casper.waitForSelector('#splash-overlay.hide', cb, function() {}, 10000);
+    casper.waitForSelector('body.loaded', cb);
 }
 
 
@@ -93,6 +97,14 @@ function assertHasFocus(selector, msg) {
 }
 
 
+function checkValidity(selector) {
+    // Returns validity of a form as a boolean.
+    return casper.evaluate(function(sel) {
+        return document.querySelector(sel).checkValidity();
+    }, selector);
+}
+
+
 function parseQueryString(qs) {
     var vars = {}, param, params;
     if (qs === undefined) {
@@ -112,7 +124,6 @@ function assertAPICallWasMade(url, params, msg) {
     function testFn(res) {
         var target = res.url.split('?');
 
-        // Log if the endpoint matches but not the params.
         if (target[0] == url &&
             !utils.equals(params, parseQueryString(target[1]))) {
             console.log('API url param mismatch:');
@@ -149,7 +160,7 @@ function makeToken() {
 function fake_login() {
     casper.evaluate(function() {
         console.log('[phantom] Performing fake login action');
-        window.require('user').set_token("it's fine, it's fine");
+        window.require('user').set_token('mocktoken');
         window.require('user').update_apps({
             'installed': [],
             'developed': [424242],  // Hard-coded ID from the mock API.
@@ -165,6 +176,11 @@ function fake_login() {
 }
 
 
+function changeViewportMobile() {
+    casper.viewport(400, 300);
+}
+
+
 function changeViewportTablet() {
     casper.viewport(700, 768);
 }
@@ -175,16 +191,30 @@ function changeViewportDesktop() {
 }
 
 
+function setUpDesktop() {
+    changeViewportDesktop();
+}
+
+
+function tearDown() {
+    changeViewportMobile();
+}
+
+
 module.exports = {
     assertAPICallWasMade: assertAPICallWasMade,
     assertContainsText: assertContainsText,
     assertHasFocus: assertHasFocus,
     capture: capture,
+    checkValidity: checkValidity,
     changeViewportDesktop: changeViewportDesktop,
+    changeViewportMobile: changeViewportMobile,
     changeViewportTablet: changeViewportTablet,
     done: done,
     fake_login: fake_login,
     makeUrl: makeUrl,
+    setUpDesktop: setUpDesktop,
     startCasper: startCasper,
+    tearDown: tearDown,
     waitForPageLoaded: waitForPageLoaded,
 };

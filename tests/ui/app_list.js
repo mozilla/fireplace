@@ -7,8 +7,8 @@ var appList = require('../lib/app_list');
 var constants = require('../lib/constants');
 var helpers = require('../lib/helpers');
 
-var _ = require('../../node_modules/underscore');
-var jsuri = require('../../node_modules/jsuri');
+var _ = require('../node_modules/underscore');
+var jsuri = require('../node_modules/jsuri');
 
 var appNthChild = appList.appNthChild;
 var waitForAppListPage = appList.waitForAppListPage;
@@ -22,6 +22,9 @@ function getEndpointParams(appListPage, extend) {
         limit: APP_LIMIT + ''
     }, appListPage.endpointParams || {});
 
+    if (appListPage.noCache) {
+        delete endpointParams.cache;
+    }
     if (appListPage.noVary) {
         delete endpointParams.vary;
     }
@@ -65,9 +68,12 @@ var appListPages = [
         src: 'games-popular'
     },
     {
-        endpoint: '/api/v2/installed/mine/',
+        endpoint: '/api/v2/account/installed/mine/',
+        endpointParams: {_user: 'mocktoken'},
         login: true,
         name: 'Purchases',
+        noCache: true,
+        noVary: true,
         path: '/purchases',
         src: 'myapps',
     },
@@ -215,10 +221,11 @@ appListPages.forEach(function(appListPage) {
                     'device_override', 'desktop')
             });
 
-            // Takes some time for the dropdown to change values, so we have
-            // to do special stuff.
             if (appListPage.login) {
-                waitForAppListPage(appListPage, testCompatFiltering);
+                helpers.waitForPageLoaded(function() {
+                    helpers.fake_login();
+                    helpers.waitForPageLoaded(testCompatFiltering);
+                });
             } else {
                 helpers.waitForPageLoaded(testCompatFiltering);
             }

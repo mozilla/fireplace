@@ -11,16 +11,20 @@ function appNthChild(n) {
 function waitForAppListPage(appListPage, cb) {
     helpers.startCasper({path: appListPage.path});
     if (appListPage.login) {
-        helpers.fake_login();
+        helpers.waitForPageLoaded(function() {
+            helpers.fake_login();
+            casper.waitUntilVisible('.app-list', cb);
+        });
+    } else {
+        casper.waitUntilVisible('.app-list', cb);
     }
-    return casper.waitUntilVisible('.app-list', cb, function() {}, 10000);
 }
 
 function waitForLoadMore(cb) {
     return casper.waitUntilVisible('.loadmore .button', function() {
         casper.click('.loadmore .button');
         casper.waitUntilVisible(appNthChild(constants.APP_LIMIT_LOADMORE), cb);
-    }, function() {}, 10000);
+    });
 }
 
 module.exports = {

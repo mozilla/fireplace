@@ -1,3 +1,9 @@
+/*
+    Compatibility filtering.
+
+    Note that endpoint_name must be passed to views looking to use
+    compatiibility filtering since the `select`s need an endpoint_name.
+*/
 define('compatibility_filtering',
     ['capabilities', 'l10n', 'log', 'storage', 'underscore', 'utils', 'z'],
     function(capabilities, l10n, log, storage, _, utils, z) {
@@ -16,8 +22,8 @@ define('compatibility_filtering',
     // See api_args() below.
     var ENDPOINTS_WITH_FEATURE_PROFILE = [
         'category_landing', 'feed', 'feed-app', 'feed-brand', 'feed-collection',
-        'feed-items', 'feed-shelf', 'recommended', 'new_popular_search',
-        'search'
+        'feed-items', 'feed-shelf', 'installed', 'recommended',
+        'new_popular_search', 'search'
     ];
 
     var actual_platform = '';
@@ -70,18 +76,18 @@ define('compatibility_filtering',
         'category_landing': device_filter_name,
         'new_popular_search': device_filter_name,
         'recommended': device_filter_name,
-        'search': device_filter_name
+        'search': device_filter_name,
     };
     device_filtering_preferences = _.extend(device_filtering_preferences,
                                             storage.getItem(key) || {});
 
-    /* Refresh query string parameter override. Called when navigating */
+    /* Refresh query string parameter override. Called when navigating. */
     function refresh_params(e) {
         device_override = utils.getVars().device_override;
     }
 
     /* Return whether the value passed in argument should be selected for the
-     * specified endpoint. */
+     * seecified endpoint. */
     function is_preference_selected(endpoint_name, value) {
         if (value == 'all' && !device_filter_name) {
             // Special case: On desktop, where device_filter_name is empty,

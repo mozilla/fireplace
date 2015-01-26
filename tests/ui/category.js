@@ -7,7 +7,6 @@ var helpers = require('../lib/helpers');
 casper.test.begin('Category app list sort tests', {
     test: function(test) {
         helpers.startCasper({path: '/category/games'});
-        helpers.changeViewportDesktop();  // Sort filters only show on desktop.
 
         casper.waitForSelector('.app-list', function() {
             // Test popular link is active by default.

@@ -1,6 +1,9 @@
 define('lightbox',
-    ['keys', 'models', 'navigation', 'utils', 'shothandles', 'tracking', 'underscore', 'z'],
-    function(keys, models, navigation, utils, handles, tracking, _, z) {
+    ['keys', 'log', 'models', 'navigation', 'utils', 'shothandles', 'tracking',
+     'underscore', 'z'],
+    function(keys, log, models, navigation, utils, handles, tracking,
+             _, z) {
+    var console = log('lightbox');
 
     var $lightbox = $(document.getElementById('lightbox'));
     var $section = $lightbox.find('section');
@@ -15,7 +18,8 @@ define('lightbox',
         console.log('Opening lightbox');
 
         if (z.context.type === 'leaf') {
-            tracking.trackEvent('App view interactions', 'click', 'Screenshot view');
+            tracking.trackEvent('App view interactions', 'click',
+                                'Screenshot view');
         } else if (z.context.type === 'search') {
             tracking.trackEvent(
                 'Category view interactions',
@@ -27,10 +31,12 @@ define('lightbox',
         var $this = $(this);
         var which = $this.closest('li').index();
         var $tray = $this.closest('.tray');
-        var $tile = $tray.prev();
+        var $tile = $tray.siblings('.mkt-tile');
 
-        // We get the screenshots from the associated tile. No tile? bail.
-        if (!$tile.hasClass('mkt-tile')) return;
+        if (!$tile.length) {
+            console.log('[WARN] could not find .mkt-tile near .previews.');
+            return;
+        }
 
         var product = models('app').lookup($tile.data('slug'));
         var id = product.id;
@@ -89,8 +95,8 @@ define('lightbox',
             // Let's fail elegantly when our images don't load.
             // Videos on the other hand will always be injected.
             if (p.filetype == 'video/webm') {
-                // We can check for `HTMLMediaElement.NETWORK_NO_SOURCE` on the
-                // video's `networkState` property at some point.
+                // TODO: Check for `HTMLMediaElement.NETWORK_NO_SOURCE` on vid's
+                // `networkState` property.
                 var v = $('<video src="' + p.image_url + '" controls></video>');
                 $el.removeClass('loading');
                 $el.append(v);
@@ -120,7 +126,9 @@ define('lightbox',
     }
 
     function resize() {
-        if (!slider) return;
+        if (!slider) {
+            return;
+        }
         slider.distance = $section.width();
         slider.refresh();
     }
@@ -140,8 +148,8 @@ define('lightbox',
         z.body.removeClass('overlayed');
         pauseVideos();
         $lightbox.removeClass('show');
-        // We can't trust transitionend to fire in all cases.
         setTimeout(function() {
+            // Can't trust transitionend to fire in all cases.
             $lightbox.hide();
         }, 500);
         if (slider && slider.element) {
@@ -173,5 +181,4 @@ define('lightbox',
             closeLightbox();
         }
     });
-
 });

@@ -1,7 +1,7 @@
 /*
     Tests for the app detail page.
 */
-var helpers = require('../../lib/helpers');
+var helpers = require('../lib/helpers');
 
 casper.test.begin('App detail tests', {
     test: function(test) {
@@ -47,7 +47,7 @@ casper.test.begin('App detail previews tests', {
         helpers.startCasper({path: '/app/abc'});
 
         casper.waitForSelector('.previews img', function() {
-            casper.click('.previews li');
+            casper.click('.previews');
             casper.click('.previews li:first-child');
             casper.click('.previews li:first-child .screenshot');
             casper.click('.previews li:first-child .screenshot img');
@@ -131,9 +131,10 @@ casper.test.begin('App detail tests as a reviewer', {
 
 
 casper.test.begin('App detail reviews tests if user has not rated', {
+    setUp: helpers.setUpDesktop,
+    tearDown: helpers.tearDown,
     test: function(test) {
         helpers.startCasper({path: '/app/can_rate'});
-        helpers.changeViewportDesktop();
 
         casper.waitForSelector('.app-reviews', function() {
             test.assertSelectorHasText('.review-button', 'Sign in to review');
@@ -149,9 +150,10 @@ casper.test.begin('App detail reviews tests if user has not rated', {
 
 
 casper.test.begin('App detail reviews tests if user has rated', {
+    setUp: helpers.setUpDesktop,
+    tearDown: helpers.tearDown,
     test: function(test) {
         helpers.startCasper({path: '/app/has_rated'});
-        helpers.changeViewportDesktop();
 
         helpers.waitForPageLoaded(function() {
             test.assertSelectorHasText('.review-button', 'Sign in to review');

@@ -5,41 +5,44 @@
 */
 var helpers = require('../lib/helpers');
 
-casper.test.begin('Feedback modal on desktop', {
+function testFeedbackForm(test) {
+    test.assertElementCount('.feedback-form', 1,
+                            'Only one feedback form/modal exists');
+
+    test.assertExists('.potato-captcha');
+    test.assertNotVisible('.potato-captcha');
+
+    test.assertVisible('[name="feedback"]');
+
+    test.assert(!helpers.checkValidity('.feedback-form'));
+    casper.fill('.feedback-form', {'feedback': 'test'});
+    test.assert(helpers.checkValidity('.feedback-form'));
+}
+
+casper.test.begin('Test feedback page', {
     test: function(test) {
-        helpers.startCasper();
-        helpers.changeViewportDesktop();
-
-        helpers.waitForPageLoaded(function() {
-            casper.click('.submit-feedback');
+        helpers.startCasper({path: '/feedback'});
+        casper.waitUntilVisible('.feedback-form', function() {
+            testFeedbackForm(test);
         });
-
-        casper.waitForSelector('[data-modal="feedback"]', function() {
-            test.assertElementCount('[data-modal="feedback"]', 1,
-                                    'Only one feedback modal exists');
-
-            test.assertVisible('textarea[name="feedback"]');
-
-            test.assertExists('.potato-captcha');
-            test.assertNotVisible('.potato-captcha');
-
-            casper.fill('.feedback-form', {'feedback': 'test'});
-         });
-
-         helpers.done(test);
+        helpers.done(test);
     }
 });
 
 
-casper.test.begin('Feedback page on desktop', {
+casper.test.begin('Test feedback modal on desktop', {
+    setUp: helpers.setUpDesktop,
+    tearDown: helpers.tearDown,
     test: function(test) {
-        helpers.startCasper({path: '/feedback'});
-        helpers.changeViewportDesktop();
+        helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
-            test.assertVisible('mkt-prompt:not([data-modal])');
+            test.assertUrlMatch(/\//);
             casper.click('.submit-feedback');
-            helpers.assertHasFocus('.feedback-form textarea');
+        });
+
+        casper.waitForSelector('.feedback-form', function() {
+            testFeedbackForm(test);
         });
 
         helpers.done(test);
@@ -47,15 +50,16 @@ casper.test.begin('Feedback page on desktop', {
 });
 
 
-casper.test.begin('Feedback page on mobile', {
+casper.test.begin('Test feedback page on desktop', {
+    setUp: helpers.setUpDesktop,
+    tearDown: helpers.tearDown,
     test: function(test) {
         helpers.startCasper({path: '/feedback'});
 
-        casper.waitUntilVisible('.feedback-form', function() {
-            test.assertExists('.potato-captcha');
-            test.assertNotVisible('.potato-captcha');
-
-            casper.fill('.feedback-form', {'feedback': 'test'});
+        helpers.waitForPageLoaded(function() {
+            testFeedbackForm(test);
+            casper.click('.submit-feedback');
+            helpers.assertHasFocus('.feedback-form textarea');
         });
 
         helpers.done(test);

@@ -1,26 +1,145 @@
 /*
-    Tests for an app's review page.
+    Tests for app reviews.
 */
-var helpers = require('../../lib/helpers');
+var helpers = require('../lib/helpers');
 
-casper.test.begin('App reviews tests', {
+function testAddReviewModal(test) {
+    casper.waitForSelector('.mkt-prompt .add-review-form', function() {
+        test.assertSelectorHasText('.char-count b', '150');
+        test.assert(!helpers.checkValidity('.mkt-prompt form'));
+        casper.fill('.add-review-form', {'body': 'test'});
+    });
+
+    casper.waitForText('146', function() {
+        test.assert(!helpers.checkValidity('.mkt-prompt form'));
+        casper.click('.stars input[value="3"]');
+        test.assert(helpers.checkValidity('.mkt-prompt form'));
+    });
+}
+
+casper.test.begin('Test app review page', {
     test: function(test) {
-        helpers.startCasper({path: '/app/can_rate'});
+        helpers.startCasper({path: '/app/has_rated/ratings'});
 
-        casper.waitForSelector('.reviews h3', function() {
-            casper.click('.reviews .average-rating');
+        helpers.waitForPageLoaded(function() {
+            test.assertVisible('.review');
+            test.assertVisible('.review .stars');
+            test.assertVisible('.review .review-author');
+            test.assertVisible('.review .review-body');
         });
 
-        casper.waitForSelector('.main #add-review.primary-button', function() {
-            casper.click('.reviews .actions .flag');
+        helpers.done(test);
+    }
+});
+
+casper.test.begin('Test flag review on app review page', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/can_rate/ratings'});
+        helpers.fake_login();
+
+        casper.waitForSelector('.review-button', function() {
+            casper.click('.review-actions .flag');
         });
 
         casper.waitForUrl(/\/app\/can_rate\/ratings/, function() {
-            helpers.assertContainsText('#write-review');
-            test.assertVisible('.report-spam.show');
-            test.assertExists('.report-spam.show ul li a');
+            helpers.assertContainsText('.review-button');
+            test.assertVisible('.flag-review-form ul li');
         });
 
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test add review on app review page', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/can_rate'});
+        helpers.fake_login();
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('.review-button');
+            helpers.fake_login();
+        });
+
+        testAddReviewModal(test);
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test add ratings page w/o login redirects to app detail', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/foo/ratings/add'});
+        helpers.waitForPageLoaded(function() {
+            test.assertUrlMatch(/\/app\/foo$/);
+        });
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test edit ratings page w/o login redirects to app detail', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/foo/ratings/edit'});
+        helpers.waitForPageLoaded(function() {
+            test.assertUrlMatch(/\/app\/foo$/);
+        });
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test edit review on detail page', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/has_rated'});
+
+        helpers.waitForPageLoaded(function() {
+           helpers.fake_login();
+        });
+
+        helpers.waitForPageLoaded(function() {
+           casper.click('.review-button');
+        });
+
+        casper.waitForSelector('.edit-review-form', function() {
+            test.assertUrlMatch(/\/app\/has_rated\/ratings\/edit/);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test add rating on detail page on desktop', {
+    setUp: helpers.setUpDesktop,
+    tearDown: helpers.tearDown,
+    test: function(test) {
+        helpers.startCasper({path: '/app/can_rate'});
+
+        helpers.waitForPageLoaded(function() {
+            test.assertSelectorHasText('.review-button', 'Sign in to review');
+            casper.click('.review-button');
+            helpers.fake_login();
+        });
+
+        testAddReviewModal(test);
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test edit rating on detail page on desktop', {
+    setUp: helpers.setUpDesktop,
+    tearDown: helpers.tearDown,
+    test: function(test) {
+        helpers.startCasper({path: '/app/has_rated'});
+        helpers.waitForPageLoaded(function() {
+            helpers.fake_login();
+        });
+        helpers.waitForPageLoaded(function() {
+            casper.click('.review-button');
+        });
+        casper.waitForSelector('.edit-review-form');
         helpers.done(test);
     }
 });
