@@ -91,8 +91,9 @@ if confirm "Merge new strings to .po files?"; then
     popd > /dev/null
 fi
 
-if confirm "Process your debug language?"; then
+if confirm "Process your debug languages?"; then
     podebug --rewrite=unicode locale/templates/LC_MESSAGES/messages.pot locale/dbg/LC_MESSAGES/messages.po
+    podebug --rewrite=flipped locale/templates/LC_MESSAGES/messages.pot locale/rtl/LC_MESSAGES/messages.po
 fi
 
 if [ -z "$(git status --porcelain)" ]; then
