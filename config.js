@@ -13,8 +13,8 @@ var localConfig = extend(true, {
         'marketplace-constants/dist/css/regions.styl': 'src/media/css/lib/',
         'marketplace-constants/dist/js/regions.js': config.LIB_DEST_PATH,
         'marketplace-constants/dist/img/regions/*': 'src/media/img/icons/regions/',
-        'marketplace-elements/dist/js/marketplace-elements.js': config.LIB_DEST_PATH,
-        'marketplace-elements/dist/css/marketplace-elements.css': 'src/media/css/lib/',
+        'marketplace-elements/marketplace-elements.js': config.LIB_DEST_PATH,
+        'marketplace-elements/marketplace-elements.styl': 'src/media/css/',
         'salvattore-moox/dist/salvattore.js': config.LIB_DEST_PATH,
     },
     cssBundles: {
