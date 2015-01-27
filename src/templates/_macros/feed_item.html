@@ -21,9 +21,13 @@
      class="featured-app app-link" data-tracking-slug="{{ feed_app.app.slug }}">
     {% if indexOf([feed.FEEDAPP_ICON, feed.FEEDAPP_IMAGE], feed_app.type) != -1 %}
       <section class="feed-item {{ 'deferred-background' if feed_app.background_image }}"
+               {% if feed_app.type == feed.FEEDAPP_ICON %}
+                 data-feed-app-type-icon
+               {% endif %}
                {% if not desc and not feed_app.background_image %}
                  style="background-color: {{ color|hex2rgba('.4') }}"
                {% elif feed_app.background_image %}
+                 data-feed-app-has-background
                  style="background-image: url({{ PLACEHOLDER_ICON }})"
                  data-src="{{ feed_app.background_image }}"
                {% endif %}>

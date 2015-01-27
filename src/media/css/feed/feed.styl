@@ -1,3 +1,7 @@
+/*
+    Miscellaneous Feed styles leftover from the first iteration of the Feed.
+    Ideally, to be split out into more modularized components.
+*/
 @import '../lib';
 
 .feed-item-item {
@@ -235,20 +239,25 @@
             }
         }
         &.full {
+            &.has-background .info {
+                margin-top: 90px;
+                top: 50px;
+            }
             .curve {
                 top: 30px;
-            }
-            .info .has-background& {
-                top: 50px;
             }
             h1.name {
                 white-space: normal;
             }
-            .info {
-                margin-top: 90px;
-            }
         }
     }
+    &.full.has-background .info {
+        margin-top: 83px;
+    }
+}
+
+[data-feed-app-has-background]:not([data-feed-app-type-icon]) .info {
+    margin-top: 83px;
 }
 
 section.full.feed-item {
