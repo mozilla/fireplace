@@ -7,8 +7,8 @@ var appList = require('../lib/app_list');
 var constants = require('../lib/constants');
 var helpers = require('../lib/helpers');
 
-var _ = require('../node_modules/underscore');
-var jsuri = require('../node_modules/jsuri');
+var _ = require('../../node_modules/underscore');
+var jsuri = require('../../node_modules/jsuri');
 
 var appNthChild = appList.appNthChild;
 var waitForAppListPage = appList.waitForAppListPage;
