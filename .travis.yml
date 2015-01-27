@@ -23,6 +23,8 @@ before_script:
   - "pushd /tmp/flue"
   - "pip install --user --exists-action=w --download-cache=/tmp/pip-cache -r requirements.txt"
   - "popd"
+# Install gist gem.
+  - "gem install gist"
 # Create an installation.
   - "make install"
 script:
@@ -39,6 +41,8 @@ script:
   - "sleep 5"
 # Run UI tests.
   - "make test"
+# Upload captures.
+  - "sh tests/upload-captures.sh"
 # Test package.
   - "make package"
   - "test -f package/builds/_prod/media/js/include.js"
