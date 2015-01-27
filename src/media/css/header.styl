@@ -107,7 +107,7 @@ body {
     background: $greyscale-light-grey url(../img/pretty/search.svg) 8px 50% no-repeat;
     border: 1px solid $greyscale-light-grey-tapped;
     border-radius: 5px;
-    color: $greyscale-black;
+    color: $greyscale-light-grey-hover;
     font: 300 20px/28px $open-stack;
     height: 34px;
     outline: none;
@@ -311,33 +311,8 @@ body {
     padding-top: 15px;
 }
 
-// Search results tile expand toggle.
-.expand-wrapper {
-    display: none;
-    margin: 0 30px;
-}
-.expand-toggle {
-    background: url(../img/pretty/list-toggle.svg) no-repeat 0 -40px / 82px auto;
-    display: inline-block;
-    float: right;
-    height: 40px;
-    left: 3px;
-    position: relative;
-    width: 84px;
-
-    &.active {
-        background-position: 0 0;
-    }
-}
-
-.overlay .expand-toggle,
 .site-header .account-links,  // .site-header for specificity
 .active .account-links {
-    display: none;
-}
-
-// How does the header look for the various page "types"?
-[data-page-type~=root] .header .expand-toggle {
     display: none;
 }
 
@@ -445,19 +420,6 @@ body {
 }
 
 @media $base-tablet {
-    .expand-toggle {
-        display: none;
-    }
-    .expand-wrapper {
-        display: inline-block;
-
-        .expand-toggle {
-            display: inline-block;
-            float: none;
-            left: 10px;
-            top: 15px;
-        }
-    }
     .subheader {
         h1,
         a {
@@ -567,10 +529,11 @@ body {
     // How does the header look for the various page "types"?
     [data-page-type~=search],
     [data-page-type~=leaf] {
-        .back, .site {
+        .back,
+        .site {
             display: block;
         }
-        .back, .site-header .expand-toggle,
+        .back,
         .flex-span {
             display: none;
         }

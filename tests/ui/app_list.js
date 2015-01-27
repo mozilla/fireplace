@@ -140,7 +140,7 @@ appListPages.forEach(function(appListPage) {
 
                 // Test expand toggle.
                 if (!appListPage.collection) {
-                    test.assertVisible('.expand-toggle');
+                    test.assertVisible('.app-list-filters-expand-toggle');
                 }
 
                 // Test authors are not a link.

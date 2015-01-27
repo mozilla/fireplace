@@ -1,0 +1,123 @@
+/*
+App listing filters.
+    - expand list toggle shows up in the header (mobile)
+      and in the filters area (tablet and higher)
+*/
+@import 'lib';
+
+.app-list-filters {
+    bottom: 15px;
+    color: $filters-label;
+    margin: 0 auto;
+    min-height: 20px;
+    position: relative;
+    text-transform: uppercase;
+
+    .pretty-select {
+        line-height: 30px;
+
+        &:before {
+            top: 1px;
+        }
+    }
+}
+
+.app-list-filters-sort {
+    display: none;
+    width: 100%;
+
+    a {
+        color: $greyscale-black;
+        display: inline-block;
+        ellipsis();
+        font-size: 15px;
+        font-weight: 300;
+        height: 29px;
+        line-height: 29px;
+        margin-top: 7px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-shadow: 0 .5px 1px $white;
+        z-index: 2;
+        vertical-align: middle;
+
+        &:hover {
+            border-bottom: 2px solid $greyscale-light-grey;
+        }
+        &.active {
+            border-bottom: 2px solid $filters-link;
+            pointer-events: none;
+        }
+        &.active:before,
+        &.active:after {
+            background-color: $white;
+        }
+        + a {
+            margin-left: 30px;
+        }
+    }
+}
+
+.app-list-filters-content {
+    height: 40px;
+    line-height: 40px;
+}
+
+.app-list-filters-expand-toggle {
+    background: url(../img/pretty/list-toggle.svg) no-repeat 0 -40px / 82px auto;
+    display: inline-block;
+    float: right;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 8px;
+    width: 84px;
+
+    &.active {
+        background-position: 0 0;
+    }
+    &:active {
+        background: url(../img/pretty/list-toggle.svg) no-repeat 0 -40px / 82px auto;
+    }
+}
+
+.app-list-filters-expand-wrapper {
+    display: none;
+}
+
+@media $base-tablet {
+    .app-list-filters {
+        bottom: 0;
+        border-bottom: 2px solid $filters-border;
+        padding: 0 0 30px;
+        width: $desktop-content;
+    }
+    .app-list-filters-sort {
+        margin-right: 30px;
+        width: auto;
+
+        a {
+            margin-top: 0;
+            text-shadow: none;
+        }
+    }
+    .app-list-filters-content {
+        margin-top: 15px;
+
+        > div {
+            float: left;
+        }
+    }
+    // App list expand toggle.
+    .app-list-filters-expand-wrapper {
+        display: block;
+        margin: 0 30px;
+
+        .app-list-filters-expand-toggle {
+            display: block;
+        }
+    }
+    .app-list-filters-expand-toggle {
+        display: none;
+    }
+}

@@ -10,7 +10,7 @@ casper.test.begin('App detail tests', {
         casper.waitForSelector('.app-reviews', function() {
             // Test we are loaded.
             test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
-            test.assertNotVisible('.expand-toggle');
+            test.assertNotVisible('.app-list-filters-expand-toggle');
             test.assertSelectorDoesntHaveText('.mkt-tile [itemprop="name"]',
                                               'Loading...');
             test.assertSelectorDoesntHaveText('.mkt-tile .install em',
