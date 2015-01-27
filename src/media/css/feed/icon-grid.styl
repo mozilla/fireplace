@@ -1,0 +1,58 @@
+/*
+    Grid layout for brands and collections. Mostly app icons.
+*/
+@import '../lib';
+
+.feed-layout-grid {
+    .rating,
+    .author,
+    .stars {
+        display: none;
+    }
+}
+
+.feed-layout-grid ul {
+    margin-top: 15px;
+}
+
+.feed-layout-grid .mkt-tile {
+    float: left;
+    height: 128px;
+    margin-bottom: 20px;
+    width: 50%;
+
+    .icon {
+        float: none;
+        left: 40px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .info {
+        padding-left: 0;
+        text-align: center;
+    }
+    .install {
+        border-bottom: none;
+        color: $action-positive;
+        font-size: 15px;
+        height: auto;
+        pointer-events: none;
+        position: relative;
+
+        em {
+            background: none !important;
+            border-bottom: none;
+        }
+        &[disabled] em {
+            background: none;
+        }
+    }
+}
+
+.feed-layout-grid .button.install {
+    color: $action-positive;
+
+    &[disabled] {
+        color: $action-disabled;
+    }
+}

@@ -1,8 +1,7 @@
 define('compatibility_filtering_select',
     ['compatibility_filtering', 'jquery', 'log', 'views', 'z'],
     function(compatibility_filtering, $, log, views, z) {
-
-    var console = log('compatibility_filtering_select');
+    var logger = log('compatibility_filtering_select');
 
     z.body.on('change', '#compatibility_filtering', function() {
         var value = $(this[this.selectedIndex]).val();
@@ -14,7 +13,7 @@ define('compatibility_filtering_select',
             compatibility_filtering.set_preference(endpoint_name, value);
             views.reload();
         } else {
-            console.error('Tried to change filtering preferences without an endpoint');
+            logger.error('Tried to change filtering preferences w/o endpoint');
         }
     });
 });

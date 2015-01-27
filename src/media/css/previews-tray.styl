@@ -1,0 +1,168 @@
+@import 'lib';
+
+$bar-height = 3px;
+$tray-height = 170px;
+$desktop-tray-size = 540px;
+
+.listing.grid-if-desktop .tray,
+.listing.grid-if-desktop .tray img {
+    display: none;
+}
+
+// Previews tray.
+.expanded .tray {
+    display: block;
+}
+
+.tray {
+    background: $filters-border;
+    display: none;
+    height: $tray-height;
+    overflow: hidden;
+    padding: 10px 0 0;
+    position: relative;
+    top: 20px;
+
+    &.single {
+        height: $tray-height;
+    }
+    &.single .bars,
+    .desktop-content {
+        display: none;
+    }
+    .slider {
+        overflow: hidden;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+    }
+    ul {
+        height: $tray-height - 20;
+        list-style-type: none;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 0;
+        white-space: nowrap;
+    }
+    li {
+        float: left;
+        margin-left: 10px;
+        text-align: center;
+        width: 150px; // Max height/width of image.
+
+        &:first-child {
+            margin-left: 0;
+        }
+        // The following creates a square container
+        // that is as tall as the li is wide and
+        // positions the img vertically and
+        // horizontally center.
+        .thumbnail {
+            display: block;
+            padding-bottom: 100%;
+            position: relative;
+            width: 100%;
+        }
+    }
+}
+.tray img {
+    -moz-user-select: none;
+    bottom: 0;
+    display: block;
+    left: 0;
+    margin: auto;
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.mkt-tile + .single li {
+    width: 100%;
+}
+
+.tray {
+    .bars {
+        background: $white;
+        display-flex();
+        margin-top: 7px;
+        height: $bar-height;
+        text-align: center;
+        width: 100%;
+    }
+    .bar {
+        flex-grow: 1;
+        height: $bar-height;
+        margin: 0;
+
+        &.current {
+            background: $action-positive;
+        }
+    }
+}
+
+.shots .next,
+.shots .prev {
+    display: none;
+}
+
+[data-page-type~="detail"] .tray {
+    // Offset div padding.
+    right: 10px;
+    top: 0;
+    width: unquote('calc(100% + 20px)');
+}
+
+@media $base-desktop {
+    .listing.app-header .mkt-tile {
+        + .tray:after,
+        + .tray:before {
+            background-image: none;
+        }
+    }
+    .shots {
+        position: relative;
+
+        .arrow-button {
+            margin-top: -15px;
+            outline: 0;
+            position: absolute;
+            top: 50%;
+            z-index: 16;
+        }
+        .next {
+            right: 20px;
+        }
+        .prev {
+            left: 20px;
+        }
+    }
+    [data-page-type~="detail"] .tray {
+        height: $desktop-tray-size + 23px;
+        left: 0;
+        position: absolute;
+        right: inherit;
+        top: 225px;
+        width: 100%;
+
+        .bars {
+            margin-top: 10px;
+        }
+        .content {
+            display: none;
+        }
+        .desktop-content {
+            display: block;
+        }
+    }
+    .tray .desktop-content {
+        height: $desktop-tray-size;
+    }
+    .desktop-content {
+        li {
+            width: $desktop-tray-size;
+        }
+    }
+}
+

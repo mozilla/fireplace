@@ -1,6 +1,9 @@
 // Styles for the mobile navbar.
 @import 'lib';
 
+// TODO: rewrite navbar mobile-first.
+$narrower-than-tablet = unquote('(max-width: 699px)');
+
 [data-page-type~=settings] .header-button.settings,
 .act-tray.active .settings {
     background-image: url(../img/pretty/gear.svg);
@@ -60,9 +63,10 @@
     }
 }
 
-@media $narrower-than-desktop {
-    // New feed navigation (mobile only).
-    header .act-tray {
+@media $narrower-than-tablet {
+    // Feed navigation (mobile only).
+    header .act-tray,
+    body[data-page-type~=settings] .back {
         display: none;
     }
     body[data-page-type~=settings] {
@@ -192,7 +196,7 @@
     }
 }
 
-@media $at-least-desktop {
+@media $base-tablet {
     .navbar.nav-settings,
     .act-tray,
     .mkt-tray {
@@ -256,6 +260,7 @@
     }
 
     .tab-categories {
+        padding-bottom: 30px;  // Increase hover area.
         cursor: pointer;
 
         // `link-clicked` class gets set in JS when a category link is clicked.
@@ -283,7 +288,7 @@
     }
 }
 
-@media $wider-desktop {
+@media $wide-desktop {
     .site-nav {
         top: 0;
     }

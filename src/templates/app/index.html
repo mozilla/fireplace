@@ -1,0 +1,258 @@
+<!--App detail page.-->
+{% from "_macros/emaillink.html" import emaillink %}
+{% from "_macros/app_tile.html" import app_tile %}
+{% from "_macros/review.html" import review %}
+{% from "_macros/stars.html" import stars %}
+
+{% set endpoint = api('app', [slug]) %}
+
+{% defer (url=endpoint, as='app', key=slug, id='app-data') %}
+  <section class="main">
+    <div class="subheader">
+      <h1>&nbsp;</h1>
+    </div>
+  </section>
+{% except %}
+  <section class="main">
+    <div class="subheader">
+      <h1>{{ _('Oh no!') }}</h1>
+    </div>
+  </section>
+  <section class="main full"><div>
+    {% if error == 403 %}
+      <p>{{ _('The app requested is not public.') }}</p>
+    {% elif error == 404 %}
+      <p>{{ _('The app requested was not found.') }}</p>
+    {% elif error == 451 %}
+      <p>{{ _('The app requested is not available for your region.') }}</p>
+      <p>{{ _('You may wish to contact the developer if you would like to see a version of this app for your region.') }}</p>
+    {% else %}
+      <p>{{ _('A server error occurred. Please try again later.') }}</p>
+    {% endif %}
+  </div></section>
+{% end %}
+
+<div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication"
+     data-slug="{{ slug }}">
+{% defer (url=endpoint, as='app', key=slug, id='app-data') %}
+  <section class="main full app-header expanded"><div>
+    {{ app_tile(this, is_detail=True, tray=True, src='detail') }}
+    {% include "_includes/installed_message.html" %}
+  </div></section>
+{% placeholder %}
+  <section class="main full app-header expanded"><div>
+    {{ app_tile(placeholder_app, is_detail=True) }}
+  </div></section>
+{% except %}
+{% end %}
+
+{% defer (url=endpoint, as='app', key=slug) %}
+  <section class="main full app-info">
+    <div class="detail-flex-wrap">
+      <div class="detail-left-side">
+        {% if this.banner_regions and this.banner_message and
+              this.banner_regions.indexOf(user_helpers.region()) != -1 %}
+          <section class="region-banner">
+            <div>{{ this.banner_message|translate(this)|safe }}</div>
+          </section>
+        {% endif %}
+
+        <section class="prose">
+          <div>
+            <h3>{{ _('Description') }}</h3>
+            <div class="description-wrapper truncated-wrapper truncated">
+              <p class="description" itemprop="description">
+                {{ this.description|translate(this)|nl2br }}
+              </p>
+            </div>
+            <a href="#" class="truncate-toggle view-all-tab">{{ _('View All') }}</a>
+          </div>
+        </section>
+      </div>
+
+      <div class="detail-right-side">
+        {% if this.release_notes %}
+          <section class="prose release-notes">
+            <div>
+              <h3>{{ _('Updates') }}</h3>
+              <div class="truncated-wrapper truncated">
+                <p>{{ this.release_notes|translate(this)|nl2br }}</p>
+              </div>
+              <a href="#" class="truncate-toggle view-all-tab">{{ _('View All') }}</a>
+            </div>
+          </section>
+        {% endif %}
+
+        {% if this.is_packaged %}
+          <section class="prose package-version">
+            <h3>{{ _('Version') }}</h3>
+            <p>{{ _('Latest version: {version}',
+                    version=this.current_version) }}</p>
+          </section>
+        {% endif %}
+
+        <section class="app-support">
+          <ul>
+            {% if this.support_email %}
+              <li class="support-email" data-tracking="Support email">
+                {{ emaillink(this.support_email, _('Email Support'),
+                             class='button') }}
+              </li>
+            {% endif %}
+            {% if this.support_url %}
+              <li class="support-url" data-tracking="Support site">
+                <a class="button" rel="external" {{ this.support_url|external_href }}>
+                  {{ _('Support Site') }}</a>
+              </li>
+            {% endif %}
+            {% if this.homepage %}
+              <li class="homepage" data-tracking="Homepage">
+                <a class="button" rel="external" {{ this.homepage|external_href }}>
+                  {{ _('Homepage') }}</a>
+              </li>
+            {% endif %}
+            {% if this.privacy_policy %}
+              <li class="privacy-policy" data-tracking="Privacy policy">
+                <a class="button" href="{{ url('app/privacy', [slug]) }}">
+                  {{ _('Privacy Policy') }}</a>
+              </li>
+            {% endif %}
+            {% if this.public_stats or user.has_developed(this.id) %}
+              <li class="statistics" data-tracking="Statistics">
+                <a class="button view-stats" rel="external" href="/statistics/app/{{ slug }}">
+                  {{ _('Statistics') }}</a>
+              </li>
+            {% endif %}
+            {% if user.has_developed(this.id) or user.get_permission('reviewer') %}
+              <li>
+                <a class="button action manage" href="/developers/app/{{ slug }}/edit"
+                   rel="external">
+                  {{ _('Edit Listing') }}
+                </a>
+              </li>
+            {% endif %}
+            {% if user.get_permission('reviewer') %}
+              <li>
+                <a class="button action reviewer" href="/reviewers/app/{{ slug }}"
+                   rel="external">
+                  {{ _('Approve / Reject') if this.status == 2 or this.status == 13 else
+                     _('Review History') }}
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </section>
+      </div>
+    </div>
+  </section>
+{% except %}
+{% end %}
+
+<!--Reviews (detail/reviews.styl).-->
+{% defer (url=apiParams('reviews', {'app': slug}), id='ratings') %}
+<section class="main full app-reviews">
+  <div class="detail-flex-wrap">
+    <div class="detail-left-side">
+      <h3>{{ _('Reviews') }}</h3>
+
+      {% include "_includes/reviews_summary.html" %}
+
+      {% if this.meta.total_count %}
+        <ul class="reviews-wrapper">
+          {% for _review in this.objects.slice(0, 6) %}
+            {{ review(_review, detailpage=true, current_version=this.info.current_version) }}
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="not-rated">{{ _('App not yet reviewed') }}</p>
+      {% endif %}
+    </div>
+
+    <div class="detail-right-side"
+         {% if not this.meta.total_count %}data-not-reviewed{%endif %}>
+      {% include "_includes/reviews_sidebar.html" %}
+    </div>
+  </div>
+</section>
+{% placeholder %}
+  <p class="spinner alt padded"></p>
+{% except %}
+{% end %}
+
+{% defer (url=endpoint, as='app', key=slug) %}
+  {% if settings.payments_enabled and settings.upsell_enabled and this.upsell %}
+    <section class="main full">
+      <div>
+        <h3>{{ _('Premium version available') }}</h3>
+        <a class="upsell"
+           href="{{ url('app', [this.upsell.app_slug])|urlparams(src='mkt-detail-upsell') }}">
+          <img class="icon" src="{{ this.upsell.icon_url }}">
+          <span>{{ this.upsell.name }}</span>
+        </a>
+      </div>
+    </section>
+  {% endif %}
+{% except %}
+{% end %}
+
+<!--More information (detail/more-info.styl).-->
+{% defer (url=endpoint, as='app', key=slug) %}
+<section class="main full app-more-info">
+  <div>
+    <div class="detail-flex-wrap">
+      <div class="detail-left-side">
+        <h3>{{ _('More Information') }}</h3>
+        <div class="app-more-metadata">
+          <dl>
+            <dt>{{ _('Developer') }}</dt>
+            <dd>{{ this.author }}</dd>
+          </dl>
+          <dl>
+            <dt>{{ _('Compatibility') }}</dt>
+            {% for device_type in this.device_types %}
+              {# L10n: delimiter to separate list of words (e.g., "eggs, ham, cheese"). #}
+              <dd data-delimiter="{{ _(',') }}">{{ DEVICE_CHOICES[device_type] }}</dd>
+            {% endfor %}
+          </dl>
+          <dl class="app-metadata-categories">
+            <dt>{{ _('Categories') }}</dt>
+            {% for category in CATEGORIES %}
+              {% if indexOf(this.categories, category.slug) != -1 %}
+                {# L10n: delimiter to separate list of words (e.g., "eggs, ham, cheese"). #}
+                <dd data-delimiter="{{ _(',') }}">{{ category.name }}</dd>
+              {% endif %}
+            {% endfor %}
+          </dl>
+          <dl>
+            {% if this.file_size %}
+              <dt>{{ _('File Size') }}</dt>
+              <dd>{{ this.file_size }}</dd>
+            {% endif %}
+          </dl>
+          <dl>
+            <dt>{{ _('Most Recent Version') }}</dt>
+            <dd>{{ this.current_version }}</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="detail-right-side">
+        {% include "_includes/content_ratings.html" %}
+      </div>
+    </div>
+  </div>
+</section>
+{% except %}
+{% end %}
+
+{% defer (url=endpoint, as='app', key=slug, id='app-data') %}
+<section class="main full app-report-abuse">
+  <div>
+    <a class="button cancel abuse" data-tracking="Report abuse">
+      {{ _('Report Abuse') }}
+    </a>
+  </div>
+</section>
+{% except %}
+{% end %}
+
+</div>

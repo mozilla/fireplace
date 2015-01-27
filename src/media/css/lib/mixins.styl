@@ -173,7 +173,7 @@ spinner(type = '') {
         spinner-alt-image();
     } else if (type == 'install') {
         height: 18px;
-        margin: 2px 0;
+        margin: 3px 0;
         spinner-install-image();
         width: 18px;
     } else if (type == 'loading') {
@@ -269,4 +269,15 @@ disable-user-select() {
     -o-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+}
+
+width-fit-content() {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: -ms-fit-content;
+    width: fit-content;
+}
+
+width-calc($width) {
+    width: unquote('calc(' + $width + ')');
 }

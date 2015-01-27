@@ -14,7 +14,7 @@ define('navbar',
         // Navbar settings + Marketplace buttons.
         var $mktNav = $('.nav-mkt');
         var $settingsNav = $('.nav-settings');
-        var $mktNavGroup = $mktNav.add('.act-tray-mobile');
+        var $mktNavGroup = $mktNav.add('.act-tray');
         var $settingsNavGroup = $settingsNav.add('.mkt-tray');
 
         function toggleNavbar($on, $off) {
@@ -38,7 +38,7 @@ define('navbar',
         }
 
         // Toggle between Settings page and Marketplace pages.
-        z.body.on('click', '.act-tray-mobile', function(e) {
+        z.body.on('click', '.act-tray', function(e) {
             // Activate Settings page navbar.
             e.preventDefault();
             $mktNav.css('right', '');  // Reset the offset for transition effect.
@@ -212,17 +212,16 @@ define('navbar',
         }
     }
 
-    // Desktop.
-    function initActTray() {
-        $('.act-tray-desktop').on('mouseover', function() {
-            $(this).addClass('active');
+    function initSettingsHoverDesktop() {
+        $('.header-settings-wrap').on('mouseover', function() {
+            this.classList.add('active');
         }).on('mouseout', function() {
-            $(this).removeClass('active');
+            this.classList.remove('active');
         }).on('click', '.account-links a', function() {
-            $('.account-links, .settings, .act-tray').removeClass('active');
+            $('.account-links, .settings').removeClass('active');
         });
     }
-    initActTray();
+    initSettingsHoverDesktop();
 
     z.page.on('loaded', function() {
         $('.account-links, .act-tray .settings').removeClass('active');
@@ -240,7 +239,7 @@ define('navbar',
         // using JS to toggle visibility on `mouseover`/`mouseout`. You can
         // blame this: https://bugzilla.mozilla.org/show_bug.cgi?id=1100688
         $('.tab-categories.link-clicked').removeClass('link-clicked');
-    }).on('reloaded_chrome', initActTray);
+    }).on('reloaded_chrome', initSettingsHoverDesktop);
 
     function render() {
         // Build navbar.

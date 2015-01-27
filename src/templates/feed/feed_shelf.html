@@ -1,8 +1,8 @@
-{% include "_macros/feed_item.html" %}
+{% from "_macros/feed_item.html" import collection_landing %}
 
 {% defer (url=anonApi('feed-shelf', [slug]), pluck='apps', as='app',
           id='shelf') %}
-  {{ feed_shelf_landing(response) }}
+  {{ collection_landing(response) }}
 {% placeholder %}
   <p class="spinner alt spaced"></p>
 {% except %}

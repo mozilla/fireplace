@@ -1,0 +1,90 @@
+/*
+    Stylesheet for common styles all Feed landing pages.
+    Mostly meaning styles shared between Brand and Collection landing pages.
+    For example, the header type and app list padding.
+*/
+@import '../lib';
+
+.feed-landing-header {
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.feed-landing-header-inner {
+    max-width: 100%;
+}
+
+.feed-landing-bg-image {
+    display: inline-block;
+    height: 150px;
+    margin-right: 40px;
+    width: auto;
+    vertical-align: top;
+
+    + .feed-landing-header-inner {
+        // Change some stylings when a background image is present.
+        display: inline-block;
+        margin-top: 20px;
+        vertical-align: top;
+        width-fit-content();
+
+        h1 {
+            margin-top: 0;
+        }
+    }
+}
+
+.feed-landing {
+    &.full > div {
+        padding-top: 0;
+    }
+    .app-list {
+        margin-top: 0;
+    }
+}
+
+.feed-landing-description {
+    margin-top: 10px;
+    text-align: center;
+    type_body();
+}
+
+@media $base-tablet {
+    .feed-landing-header {
+        display-flex();
+        flex-wrap: nowrap;
+        justify-content: center;
+
+        h1 {
+            desktop_mega();
+            ellipsis();
+            margin: 20px 0 0;
+            max-width: 100%;
+            text-align: center;
+        }
+    }
+    .feed-landing-bg-image {
+        img {
+            margin: 0 40px 0 0;
+        }
+        + .feed-landing-header-inner {
+            margin-top: 60px;
+
+            h1,
+            p {
+                text-align: left;
+            }
+        }
+    }
+    .brand-landing-header-desktop,
+    .collection-landing-header-desktop {
+        margin-top: 40px;
+    }
+}
+
+@media $base-desktop {
+    .feed-landing-header {
+        flex-wrap: wrap;
+    }
+}

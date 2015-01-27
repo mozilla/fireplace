@@ -22,7 +22,7 @@ test('compatibility_filtering api_args desktop', function(done, fail) {
             var args = compatibility_filtering.api_args('');
             eq_(args.dev, '');
             eq_(args.device, '');
-            eq_(args.limit, 25);
+            eq_(args.limit, 24);
             eq_(args.pro, undefined);
 
             args = compatibility_filtering.api_args('category_landing');
@@ -70,7 +70,7 @@ test('compatibility_filtering api_args desktop override', function(done, fail) {
             args = compatibility_filtering.api_args('search');
             eq_(args.dev, 'desktop');
             eq_(args.device, '');
-            eq_(args.limit, 25);
+            eq_(args.limit, 24);
             eq_(args.pro, undefined);
 
             eq_(compatibility_filtering.device_filter_name, '');
@@ -103,7 +103,7 @@ test('compatibility_filtering api_args desktop override firefoxos', function(don
             args = compatibility_filtering.api_args('search');
             eq_(args.dev, 'firefoxos');
             eq_(args.device, '');
-            eq_(args.limit, 25);
+            eq_(args.limit, 24);
             eq_(args.pro, undefined);
 
             eq_(compatibility_filtering.device_filter_name, '');
@@ -139,7 +139,7 @@ test('compatibility_filtering api_args endpoint desktop w/ storage', function(do
             var args = compatibility_filtering.api_args('');
             eq_(args.dev, '');
             eq_(args.device, '');
-            eq_(args.limit, 25);
+            eq_(args.limit, 24);
             eq_(args.pro, undefined);
 
             args = compatibility_filtering.api_args('category_landing');
@@ -234,7 +234,7 @@ test('compatibility_filtering api_args endpoint android tablet', function(done, 
             var args = compatibility_filtering.api_args('');
             eq_(args.dev, 'android');
             eq_(args.device, 'tablet');
-            eq_(args.limit, 25);
+            eq_(args.limit, 24);
             eq_(args.pro, undefined);
 
             args = compatibility_filtering.api_args('category_landing');

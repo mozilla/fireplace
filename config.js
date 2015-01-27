@@ -10,6 +10,7 @@ var localConfig = extend(true, {
         'document-register-element/build/document-register-element.max.js': config.LIB_DEST_PATH,
         'flipsnap/flipsnap.js': config.LIB_DEST_PATH,
         'fxpay/dist/fxpay.min.js': config.LIB_DEST_PATH,
+        'marketplace-constants/dist/css/collection_colors.styl': 'src/media/css/lib/',
         'marketplace-constants/dist/css/regions.styl': 'src/media/css/lib/',
         'marketplace-constants/dist/js/regions.js': config.LIB_DEST_PATH,
         'marketplace-constants/dist/img/regions/*': 'src/media/img/icons/regions/',

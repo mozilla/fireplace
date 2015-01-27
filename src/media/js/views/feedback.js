@@ -1,25 +1,25 @@
 define('views/feedback',
-       ['capabilities', 'compatibility_filtering', 'forms', 'l10n', 'linefit', 'notification', 'requests', 'templates', 'urls', 'utils', 'z'],
-       function(caps, compatibility_filtering, forms, l10n, linefit, notification, requests, nunjucks, urls, utils, z) {
-
+       ['capabilities', 'compatibility_filtering', 'forms', 'l10n', 'linefit',
+        'notification', 'requests', 'templates', 'urls', 'utils', 'z'],
+       function(caps, compatibility_filtering, forms, l10n, linefit,
+                notification, requests, nunjucks, urls, utils, z) {
     var gettext = l10n.gettext;
     var notify = notification.notification;
 
-    z.page.on('submit', '.feedback-form', function(e) {
-        e.preventDefault();
-
+    z.doc.on('submit', '.feedback-form', utils._pd(function(e) {
+        // Used for both the feedback page and mkt-prompt.
         var $this = $(this);
-        var data = utils.getVars($this.serialize());
-        data.chromeless = caps.chromeless ? 'Yes' : 'No';
-        data.from_url = window.location.pathname;
-        data.profile = compatibility_filtering.feature_profile;
+        var data = $.extend(utils.getVars($this.serialize()), {
+            chromeless: caps.chromeless ? 'Yes' : 'No',
+            feedback: $this.find('[name="feedback"]').val(),
+            from_url: window.location.pathname,
+            profile: compatibility_filtering.feature_profile
+        });
 
         forms.toggleSubmitFormState($this);
-
         requests.post(urls.api.url('feedback'), data).done(function(data) {
             $this.find('textarea').val('');
             forms.toggleSubmitFormState($this, true);
-            $('.cloak').trigger('dismiss');
             notify({message: gettext('Feedback submitted. Thanks!')});
         }).fail(function() {
             forms.toggleSubmitFormState($this, true);
@@ -27,45 +27,42 @@ define('views/feedback',
                 message: gettext('There was a problem submitting your feedback. Try again soon.')
             });
         });
-    });
+    }));
 
-    // Init desktop feedback form modal trigger.
-    function addFeedbackModal() {
+    function addFeedbackModalDesktop() {
+        // Desktop feedback modal.
         if (!caps.widescreen() ||
             urls.reverse('feedback') === window.location.pathname) {
             return;
         }
-        if (!$('.main.feedback:not(.modal)').length && !$('.feedback.modal').length) {
-            z.page.append(nunjucks.env.render('settings/feedback.html'));
+        if (!$('.main.feedback').length && !$('mkt-prompt.feedback').length) {
+            z.page.append(nunjucks.env.render('_includes/feedback_modal.html'));
         }
-        z.body.trigger('decloak');
     }
 
     z.body.on('click', '.submit-feedback', function(e) {
         e.preventDefault();
         e.stopPropagation();
         // Focus the form if we're on the feedback page.
-        if ($('.main.feedback:not(.modal)').length) {
-            $('.simple-field textarea').trigger('focus');
+        if ($('.main.feedback').length) {
+            $('.feedback textarea').trigger('focus');
             return;
         }
-        addFeedbackModal();
-        $('.feedback.modal').addClass('show');
+        addFeedbackModalDesktop();
     });
 
     return function(builder) {
-        builder.start('settings/feedback.html').done(function() {
-            $('.feedback').removeClass('modal');
-            addFeedbackModal();
+        builder.z('type', 'root settings feedback');
+        builder.z('title', gettext('Feedback'));
+        builder.z('parent', urls.reverse('homepage'));
+
+        builder.start('feedback.html').done(function() {
+            addFeedbackModalDesktop();
 
             var $linefit = $('.linefit');
             if ($linefit.length) {
                 $('.linefit').linefit(2);
             }
         });
-
-        builder.z('type', 'root settings feedback');
-        builder.z('title', gettext('Feedback'));
-        builder.z('parent', urls.reverse('homepage'));
     };
 });

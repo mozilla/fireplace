@@ -1,0 +1,44 @@
+@import 'colors';
+
+/*
+ * Style guide: http://pwalm.github.io/marketplace-style-guides/buttons.html
+ *
+ * <elm class="button">Normal Button</elm>
+ * <elm class="button action">Positive Action like Yes or Launch</elm>
+ * <elm class="button alt">Alternate Style - External Links?</elm>
+ * <elm class="button cancel">Negative Action like Cancel or Delete</elm>
+ * <elm class="button support">Support Action - Less Visual Emphasis</elm>
+ *
+ * All button sizes are $medium unless overridden by a compound class: 't', 's', 'l'.
+ * On larger screens "button fat" will give you a 100% width button.
+ *
+ */
+// Button sizes.
+$btn-tiny = 24px;
+$btn-small = 36px;
+$btn-medium = 48px;
+$btn-large = 60px;
+
+// Horizontal padding around the button's text.
+$btn-h-padding = 10px;
+
+// Button font-size.
+$btn-font-size = 15px;
+
+btn_color($color, $color-tapped, $color-hover, $border) {
+    background: $color;
+
+    if ($border == false) {
+        border-bottom: 0;
+    } else {
+        border-bottom: 1px solid $color-tapped;
+    }
+
+    &:active {
+        background: $color-tapped;
+    }
+    &:hover,
+    &:focus {
+        background: $color-hover;
+    }
+}

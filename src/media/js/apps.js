@@ -96,19 +96,17 @@ define('apps',
         var reasons = [];
         var device = capabilities.device_type();
         if (product.payment_required && !product.price) {
-            reasons.push(gettext('This app is unavailable for purchase in your region.'));
+            reasons.push(gettext('Not available for your region'));
         }
-
-        if (!capabilities.webApps || (!capabilities.packagedWebApps && product.is_packaged)) {
-            reasons.push(gettext('Your browser or device is not web-app compatible.'));
-        } else if (!_.contains(product.device_types, device)) {
-            reasons.push(gettext('This app is unavailable for your platform.'));
+        if (!capabilities.webApps ||
+            (!capabilities.packagedWebApps && product.is_packaged) ||
+            !_.contains(product.device_types, device)) {
+            reasons.push(gettext('Not available for your platform'));
         }
 
         product[COMPAT_REASONS] = reasons.length ? reasons : undefined;
         return product[COMPAT_REASONS];
     }
-    nunjucks.require('globals').app_incompat = incompat;
 
     return {
         applyUpdate: applyUpdate,

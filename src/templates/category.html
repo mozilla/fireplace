@@ -1,4 +1,4 @@
-{% include '_macros/market_tile.html' %}
+{% include '_macros/app_tile.html' %}
 {% include '_macros/more_button.html' %}
 
 {% set source = category or 'all' %}
@@ -12,42 +12,28 @@
 {% set search_url = search_url|urlparams(sort=sort) if sort == 'reviewed' else search_url %}
 
 <section class="main">
-  <header class="category-header">
-    <h3 class="cat-{{ category }} cat-icon mobile-cat-header"
-        data-cat-slug="{{ category }}">
-      {{ category_name }}
-    </h3>
-    <h3 class="cat-{{ category }} cat-icon desktop-cat-header"
-        data-cat-slug="{{ category }}">
-      {{ category_name }}
-    </h3>
-  </header>
-  {% include "compatibility_filtering.html" %}
+  <div class="subheader cat-header">
+    <h1 class="cat-{{ category }} cat-icon">{{ category_name }}
+    <a class="expand-toggle" title="{{ _('Expand') }}"></a></h1>
+  </div>
 </section>
 
-<section id="gallery" class="island main category gallery full c">
-{% defer (url=endpoint, pluck='objects', as='app', paginate='ol.listing') %}
-  {% set paginated = response.meta.total_count > response.meta.limit %}
-  {% if paginated %}
-    <header class="featured-header c">
-      <nav class="tabs">
-        <a{% if not sort %} class="active"{% endif %} href="{{ popular_url }}" data-preserve-scroll>{{ _('Popular') }}</a>
-        {# L10n: "New" should translate to mean "Recent". Choose the shortest (space constraints) #}
-        <a{% if sort == 'reviewed' %} class="active"{% endif %} href="{{ new_url }}" data-preserve-scroll>{{ _('New') }}</a>
-      </nav>
-      <a href="{{ search_url }}" class="view-all">{{ _('View All') }}</a>
-    </header>
-  {% endif %}
-  <ol class="container listing grid-if-desktop search-listing c">
+<section class="category main full">
+{% defer (url=endpoint, pluck='objects', as='app', paginate='.app-list') %}
+  {% include "_includes/app_list_filters.html" %}
+
+  <ul class="app-list {{ 'paginated' if response.meta.next }}">
     {% for app in this %}
-      <li class="item result app c">{{ market_tile(app, src=source + '-' + (sort or 'popular')) }}</li>
+      <li class="item result app-list-app">
+        {{ app_tile(app, src=source + '-' + (sort or 'popular'), tray=True) }}
+      </li>
     {% endfor %}
 
     {# Render the more button if there's another page of results #}
     {% if response.meta.next %}
       {{ more_button(response.meta.next) }}
     {% endif %}
-  </ol>
+  </ul>
 {% placeholder %}
   <p class="spinner padded alt"></p>
 {% empty %}

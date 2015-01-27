@@ -1,10 +1,13 @@
 /*
 App listing.
-One column in an island on mobile.
-Two columns of tiles on wider screens.
-TODO: move app list styles here.
+    - One column on mobile
+    - Two columns on tablet.
+    - Three columns on desktop.
 */
 @import 'lib';
+
+$border = 1px solid $tile-border;
+$desktop-tile-padding = 20px 50px;
 
 .app-list-page {
     padding: 10px 0;
@@ -18,87 +21,206 @@ TODO: move app list styles here.
     .feed .feed-layout-list > .info {
         margin-left: 0;
     }
+}
 
-    .feed-tile-header:before {
-        background-color: $breezy-blue;
+.app-list {
+    list-style: none;
+    margin-top: 30px;
+
+    // Masking element to cover the last row's bottom border.
+    &:after {
+        background: $white;
+        bottom: 30px;
+        content: "";
+        display: block;
+        height: 1px;
+        left: 0;
+        max-width: $desktop-content;
+        position: absolute;
+        width: 100%;
     }
-    [data-type="popular"] .feed-tile-header:before {
-        background-image: url(../img/icons/popular.png);
-    }
-    [data-type="new"] .feed-tile-header:before {
-        background-image: url(../img/icons/new.png);
-    }
-    [data-type="reco"] .feed-tile-header:before {
-        background-image: url(../img/icons/popular.png);
+    &.expanded .app-list-app {
+        padding-bottom: 40px;
     }
 }
 
-@media $at-least-desktop {
+.app-list-app {
+    border-bottom: 1px solid $filters-border;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.app-list-filters {
+    bottom: 15px;
+    color: $filters-label;
+    margin: 0 auto;
+    min-height: 20px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.app-list.app-list-colored {
+    // When the app list has a colored background (e.g., Feed landing).
+    .mkt-tile h3,
+    .mkt-tile .author {
+        color: $white;
+    }
+}
+
+.app-list-sort {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    a {
+        color: $greyscale-black;
+        display: inline-block;
+        ellipsis();
+        font-size: 15px;
+        font-weight: 300;
+        height: 29px;
+        line-height: 29px;
+        margin-top: 7px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-shadow: 0 .5px 1px $white;
+        z-index: 2;
+        vertical-align: middle;
+
+        &:hover {
+            border-bottom: 2px solid $greyscale-light-grey;
+        }
+        &.active {
+            border-bottom: 2px solid $filters-link;
+            pointer-events: none;
+        }
+        &.active:before,
+        &.active:after {
+            background-color: $white;
+        }
+        + a {
+            margin-left: 30px;
+        }
+    }
+}
+
+@media $base-tablet {
+    .app-list,
+    .app-list.only-logged-in {
+        display-flex();
+    }
+    .app-list {
+        flex-wrap: wrap;
+        position: relative;
+
+        &.paginated .app-list-app:last-child {
+            border-right: 0;
+        }
+        &.expanded .app-list-app {
+            border-right: 0;
+            padding: 20px 0 40px;
+            width: 100%;
+        }
+        &:after {
+            bottom: 0;
+        }
+    }
+    .app-list-filters {
+        bottom: 0;
+        border-bottom: 2px solid $filters-border;
+        padding: 0 0 30px;
+        width: $desktop-content;
+    }
+    .app-list-sort {
+        float: left;
+        margin-right: 30px;
+        position: relative;
+        top: 15px;
+        width: auto;
+
+        a {
+            text-shadow: none;
+        }
+    }
+    .app-list-app {
+        border-bottom: $border;
+        border-right: $border;
+        padding: $desktop-tile-padding;
+        width: 50%;
+
+        &:nth-child(2n) {
+            border-right: 0;
+            padding-right: 0;
+        }
+        &:nth-child(2n + 1) {
+            padding-left: 0;
+        }
+        &:last-child {
+            border-right: 0;
+        }
+    }
+}
+
+@media $base-desktop {
     .app-list-page {
         padding: 0;
     }
-    body[data-page-type~=app-list] {
-        .feed {
-            max-width: $desktop-content;
+    .app-list {
+        max-width: $desktop-content;
+
+        &.paginated .app-list-app:last-child {
+            border-right: 0;
         }
-        .app-list {
-            position: relative;
-            max-width: $desktop-content;
+        &.expanded {
+            .app-list-app {
+                border-right: 0;
+                margin-bottom: 20px;
+                padding: 20px 10px 50px 0;
+                width: 50%;
 
-            li:not(.loadmore) {
-                float: left;
-                margin-right: 20px;
-                width: 335px;
-
-                &.mini-tile {
-                    background-color: #fff;
-                    border-radius: 5px;
-                    height: 80px;
-                    padding: 10px;
-                }
                 &:nth-child(2n) {
-                    margin-right: 0;
+                    padding: 20px 0 20px 10px;
                 }
             }
-        }
-        .feed-tile-header:before {
-            left: 0;
-            top: 0;
-        }
-        .multi-app-tile.mkt-tile {
-            background-color: transparent;
-            box-shadow: none;
-            max-width: $desktop-content;
-            padding: 0;
-
-            .app-list {
-                width: $desktop-content;
-
-                .fragment-error {
-                    background-color: transparent;
-                    display: inline-block;
-                    padding: 20px;
-                }
-            }
-            > .icon {
-                display: none;
-            }
-            > .info {
-                height: 60px;
-                margin-left: 0;
-                width: 100%;
-
-                h1 {
-                    font-size: 24px;
-                    line-height: 24px;
-                }
+            .loadmore {
+                margin-top: -21px;
             }
         }
+    }
+    .cat-header .cat-icon:before {
+        background-size: 180px auto;
+        height: 60px;
+        width: 60px;
+    }
+    body[data-page-type~=app-list] {
         .placeholder {
             clear: both;
         }
         .spinner {
             top: 0;
+        }
+    }
+    .app-list-app {
+        width: (100/3)%;
+
+        &:nth-child(2n),
+        &:nth-child(2n + 1) {
+            padding: $desktop-tile-padding;
+        }
+        &:nth-child(2n) {
+            border-right: $border;
+        }
+        &:nth-child(3n) {
+            border-right: 0;
+            padding-right: 0;
+        }
+        &:nth-child(3n + 1) {
+            padding-left: 0;
+        }
+        &:last-child {
+            border-right: 0;
         }
     }
 }

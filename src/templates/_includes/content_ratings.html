@@ -1,0 +1,84 @@
+{% defer (url=endpoint, pluck='content_ratings') %}
+  {% if this.rating %}
+    <div class="content-ratings-wrapper {{ this.body }}">
+      <div class="infobox-wrapper c">
+        {# L10n: (es) Classificacao Indicativa. #}
+        <h3>{{ _('Content Rating') }}</h3>
+        <div class="content-ratings-left">
+          <div class="content-rating c">
+            {# Content rating. #}
+            <img data-src="{{ iarc.rating_icons[this.body][this.rating] }}"
+                 class="icon icon-body-{{ this.body }} deferred"
+                 src="{{ PLACEHOLDER_ICON }}"
+                 title="{{ iarc_names.ratings[this.body][this.rating] }}"
+                 alt="{{ iarc_names.ratings[this.body][this.rating] }}">
+          </div>
+
+          {# Content descriptors as a list of text.
+             Only shown if there are not any descriptor icons (i.e. non-PEGI bodies). #}
+          {% if this.descriptors_text and not iarc.descriptor_icons[this.body] %}
+            <ul class="content-descriptors text">
+              {% for descriptor_text in this.descriptors_text %}
+                <li>{{ descriptor_text }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            {# If not showing descriptor text, show the rating name to fill in space. #}
+            <span class="rating-description">{{ iarc_names.ratings[this.body][this.rating] }}</span>
+          {% endif %}
+        </div>
+
+        <div class="content-ratings-right">
+          {% set desc_icons = iarc.descriptor_icons[this.body] %}
+          {% if desc_icons %}
+            {# Content descriptors as a grid of icons.
+               Only shown if there are descriptor icons (i.e. PEGI-only). #}
+            <div class="content-descriptors icons">
+              {% for descriptor_key in this.descriptors %}
+                {% set icon_src = desc_icons[descriptor_key] %}
+                {% if icon_src %}
+                  <img data-src="{{ icon_src }}" class="icon deferred"
+                       src="{{ PLACEHOLDER_ICON }}"
+                       title="{{ this.descriptors_text[loop.index0] }}"
+                       alt="{{ this.descriptors_text[loop.index0] }}">
+                {% endif %}
+              {% endfor %}
+            </div>
+
+          {% elif this.interactives %}
+            <div class="interactive-elements {{ 'icons' if interactive_icons else 'text' }}">
+              {% set interactive_icons = iarc.interactive_icons[this.body] %}
+              {% if interactive_icons %}
+                {% for interactive_key in this.interactives %}
+                  {# Interactive elements as a row of icons (ESRB only). #}
+                  {% set icon_src = interactive_icons[interactive_key] %}
+                  {% if icon_src %}
+                    <img data-src="{{ icon_src }}" class="icon deferred"
+                         src="{{ PLACEHOLDER_ICON }}"
+                         title="{{ this.interactives_text[loop.index0] }}"
+                         alt="{{ this.interactives_text[loop.index0] }}">
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+                {% for interactive_text in this.interactives_text %}
+                  {# Interactive elements as a column of text (non-PEGI/ESRB bodies). #}
+                  <p>{{ interactive_text }}</p>
+                {% endfor %}
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="full">
+        {% set rating_detail_link = iarc.detail_links[this.body] %}
+        {% if rating_detail_link %}
+          <a href="{{ rating_detail_link }}" class="button" target="_blank">
+            {# L10n: (es) Classificacao Indicativa. Rating as in content rating. #}
+            {{ _('Rating Details') }}</a>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% except %}
+{% end %}

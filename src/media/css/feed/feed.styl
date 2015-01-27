@@ -1,0 +1,294 @@
+/*
+    Miscellaneous Feed styles leftover from the first iteration of the Feed.
+    Ideally, to be split out into more modularized components.
+*/
+@import '../lib';
+
+.feed-item-item {
+    // Wrapper around feed-items on the Feed (homepage).
+    margin: 0 auto $vertical-tile-padding auto;
+    max-width: $mobile-tile-width;
+    right: 0;
+    width: $mobile-tile-width;
+
+    > section:not(.mega) {
+        padding: $vertical-tile-padding $horizontal-tile-padding;
+    }
+    > a {
+        text-decoration: none;
+    }
+}
+
+.feed {
+    list-style-type: none;
+    margin: 0 auto;
+    position: relative;
+    transition(opacity .2s .15s);
+    width: 100%;
+
+    .price {
+        display: none;
+    }
+    .group-subheader {
+        margin-bottom: $vertical-margin;
+    }
+}
+
+[data-page-type~="leaf"] .feed .mkt-tile {
+    margin-bottom: $vertical-tile-margin;
+}
+
+.app-link {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.feed-app {
+    background-color: $white;
+    margin-bottom: 0;
+    padding: 0 15px 10px;
+    position: relative;
+
+    .heading {
+        margin-bottom: 10px;
+    }
+    .desc {
+        background-color: $white;
+        type_body();
+    }
+    blockquote {
+        // For feed item type == 'quote'.
+        line-height: 23px;
+        margin: 0;
+        padding: 0 10px;
+        text-align: center;
+    }
+    .quote-source {
+        font-size: 11px;
+        margin-top: 5px;
+        text-align: center;
+    }
+    .quote {
+        color: $white;
+        left: -10px;
+        padding: 5px 0 15px;
+        position: relative;
+        top: 15px;
+        width: $mobile-tile-width;
+    }
+    .preview {
+        .desc {
+            margin-bottom: 10px;
+        }
+        .feed-app-preview-container {
+            overflow: hidden;
+            margin: 15px 0 -16px -10px;
+            height: 150px;
+            width: $mobile-tile-width;
+
+            &.vertical {
+                height: 240px;
+            }
+        }
+    }
+}
+
+.tile-footer {
+    clear: both;
+    font-size: 14px;
+    line-height: 20px;
+
+    .stars {
+        left: 50%;
+        margin: 15px 0 10px -32px;
+        position: relative;
+    }
+}
+
+.feed-app-preview {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: unquote('calc(100% - 10px)');  // Padding.
+    margin-top: 5px;
+    width: 100%;
+}
+
+.feed-view-all-tab.view-all-tab {
+    margin: $vertical-margin auto 5px 50%;
+    padding-bottom: 5px;
+    transform: translate(-50%, 0);
+}
+
+.feed-layout-list .feed-view-all-tab {
+    bottom: 5px;
+}
+.feed-layout-grid .feed-view-all-tab {
+    bottom: 10px;
+}
+
+.multi-app-tile {
+    background-color: $white;
+    margin: 0 auto;
+    max-width: $mobile-tile-width;
+
+    &.grouped {
+        margin-bottom: $vertical-tile-padding;
+    }
+    .app-list {
+        clear: both;
+        display: inline-block;
+        list-style-type: none;
+        width: 100%;
+    }
+}
+
+// Colored or image background feed tiles.
+.feed-item {
+    background-size: cover;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    width: $mobile-tile-width;
+
+    .curve,
+    .alt-curve {
+        border-radius: 50% 50% 0 0;
+        left: -50px;
+        position: absolute;
+        top: 23px;
+        width: 400px;
+        z-index: 10;
+    }
+    .curve {
+        height: 60px;
+    }
+    .alt-curve {
+        height: 53px;
+        margin-top: -10px;
+        position: relative;
+        top: 0;
+    }
+    .info {
+        margin-top: 90px;
+        padding: 0 0 20px;
+        text-align: center;
+
+        .name,
+        .author {
+            max-width: $mobile-tile-width - $horizontal-tile-padding;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+    h1 {
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 25px;
+    }
+    .author {
+        font-size: 12px;
+        line-height: $vertical-margin;
+    }
+    h1,
+    .author,
+    img {
+        color: $white;
+    }
+    .app-icons {
+        height: 60px;
+        left: 50%;
+        position: absolute;
+        top: 15px;
+        transform: translate(-50%, 0);
+        white-space: nowrap;
+        z-index: 15;
+
+        li {
+            display: inline-block;
+            height: 60px;
+            margin-right: 20px;
+            width: 60px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+        + .curve {
+            top: 30px;
+        }
+    }
+    &.mega {
+        .curve {
+            top: 15px;
+        }
+        .desc {
+            type_body();
+            color: $white;
+            margin-top: -30px;
+            padding: 0 10px 15px;
+            position: relative;
+            text-align: center;
+            width: $mobile-tile-width;
+            z-index: 18;
+
+            a {
+                color: $white;
+            }
+        }
+        &.full {
+            &.has-background .info {
+                margin-top: 90px;
+                top: 50px;
+            }
+            .curve {
+                top: 30px;
+            }
+            h1.name {
+                white-space: normal;
+            }
+        }
+    }
+    &.full.has-background .info {
+        margin-top: 83px;
+    }
+}
+
+[data-feed-app-has-background]:not([data-feed-app-type-icon]) .info {
+    margin-top: 83px;
+}
+
+section.full.feed-item {
+    background-size: cover;
+}
+
+.app-link {
+    &:hover,
+    &:active {
+        text-decoration: none;
+    }
+}
+
+[data-collection-color="amber"] {
+    background: $color-collection--amber;
+}
+[data-collection-color="garnet"] {
+    background: $color-collection--garnet;
+}
+[data-collection-color="topaz"] {
+    background: $color-collection--topaz;
+}
+[data-collection-color="amethyst"] {
+    background: $color-collection--amethyst;
+}
+[data-collection-color="sapphire"] {
+    background: $color-collection--sapphire;
+}
+[data-collection-color="emerald"] {
+    background: $color-collection--emerald;
+}
+[data-collection-color="ruby"] {
+    background: $color-collection--ruby;
+}

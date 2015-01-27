@@ -1,5 +1,5 @@
-define('views/feed/feed_collection', ['jquery', 'l10n', 'utils', 'utils_local', 'z'],
-    function($, l10n, utils, utils_local, z) {
+define('views/feed/feed_collection', ['jquery', 'l10n', 'utils', 'z'],
+    function($, l10n, utils, z) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -13,10 +13,8 @@ define('views/feed/feed_collection', ['jquery', 'l10n', 'utils', 'utils_local', 
             slug: slug
         });
 
-        builder.onload('feed-collection', function(feed_collection) {
-            builder.z('title', utils.translate(feed_collection.name));
-            utils_local.initSalvattore(
-                document.querySelector('.collection-landing [data-columns]'));
+        builder.onload('feed-collection', function(data) {
+            builder.z('title', utils.translate(data.name));
         });
     };
 });

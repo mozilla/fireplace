@@ -1,23 +1,32 @@
-var helpers = require('../helpers');
+/*
+    Test for category pages.
+    Note that most stuff is already tested in app_list.js.
+*/
+var helpers = require('../lib/helpers');
 
-helpers.startCasper({path: '/category/games'});
-
-casper.test.begin('Category baseline tests', {
-
+casper.test.begin('Category app list sort tests', {
     test: function(test) {
+        helpers.startCasper({path: '/category/games'});
 
-        casper.waitForSelector('#gallery li a', function() {
-            test.assertUrlMatch(/\/category\/[a-zA-Z0-9]+/);
-            test.assertVisible('#search-q');
-            test.assertExists('#gallery');
-            test.assertVisible('#gallery');
-            test.assertVisible('#gallery ol.listing li a.mkt-tile');
-            casper.click('#gallery ol.listing li a.mkt-tile:first-child');
-            test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
+        casper.waitForSelector('.app-list', function() {
+            // Test popular link is active by default.
+            test.assertVisible('.app-list-sort');
+            test.assertSelectorExists('[data-app-list-sort-popular].active');
+
+            // Test switch to new.
+            casper.click('[data-app-list-sort-new]');
         });
 
-        casper.run(function() {
-            test.done();
+        casper.waitForSelector('.app-list', function() {
+            test.assert(casper.getCurrentUrl().indexOf('sort=reviewed') !== -1);
+            test.assertSelectorExists('[data-app-list-sort-new].active');
+
+            // Test switch back to popular.
+            casper.click('[data-app-list-sort-popular]');
+            test.assert(casper.getCurrentUrl().indexOf('sort=reviewed') === -1);
+            test.assertSelectorExists('[data-app-list-sort-popular].active');
         });
+
+        helpers.done(test);
     }
 });

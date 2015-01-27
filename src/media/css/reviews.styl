@@ -1,0 +1,316 @@
+@import 'lib';
+
+.reviews-wrapper h3 {
+    margin: 24px 0 18px;
+}
+
+select[name=rating] {
+    display: none;
+}
+
+.review {
+    display: block;
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+
+    .stars {
+        position: absolute;
+        right: 0;
+        top: 1px;
+    }
+    .timestamp {
+        font-size: 12px;
+    }
+    .review-actions li,
+    time {
+        font-size: 12px;
+    }
+    time {
+        position: absolute;
+        right: 0;
+    }
+    ul {
+        list-style: none;
+    }
+    li {
+        display: inline-block;
+
+        &.hidden {
+            display: none;
+        }
+        &:not(.hidden) + li:before,
+        + li.hidden + li:before {
+            color: $cement-gray;
+            content: "\00a0\00a0\2022\00a0\00a0";
+        }
+    }
+}
+
+.review-author {
+    display: inline-block;
+    ellipsis();
+    max-width: unquote('calc(100% - 84px)');  // 64px stars and 20px margin.
+}
+
+.review-previous-version {
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.review-body {
+    margin-bottom: 10px;
+    type_body();
+}
+
+// This applies to "app details" pages only.
+.reviews {
+    .not-rated {
+        color: $dark-gray;
+        font-weight: 400;
+    }
+    .full .button {
+        display: block;
+        margin-top: 24px;
+    }
+}
+
+.reviews {
+    overflow: hidden;
+    padding: 0 10px;
+
+    .button {
+        display: block;
+    }
+    &.single-review {
+        margin-top: 15px;
+    }
+}
+
+.detail .reviews {
+    border-top: 1px solid $cloud-gray;
+    padding: 0 10px 24px;
+}
+
+.rating, .stars {
+    height: 12px;
+}
+
+mkt-prompt .simple-field.rating {
+    margin: 0 0 50px;
+}
+
+.char-count {
+    font-size: 12px;
+    color: $earl-gray;
+}
+
+.stars {
+    background: url(../img/pretty/stars.svg) no-repeat;
+    background-size: 130px auto;
+
+    display: inline-block;
+    hidetext();
+    vertical-align: top;
+    width: 64px;
+    &.stars-4 { background-position: -13px 0; }
+    &.stars-3 { background-position: -26px 0; }
+    &.stars-2 { background-position: -39px 0; }
+    &.stars-1 { background-position: -52px 0; }
+    &.stars-0 { background-position: -65px 0; }
+}
+
+.html-rtl .stars {
+    margin: 0 0 0 4px;
+}
+
+.stars.ratingwidget {
+    background-size: 440px auto;
+    background-position: -220px 0;
+    height: 40px;
+    width: 220px;
+
+    &.stars-5 { background-position: 0 0; }
+    &.stars-4 { background-position: -44px 0; }
+    &.stars-3 { background-position: -88px 0; }
+    &.stars-2 { background-position: -132px 0; }
+    &.stars-1 { background-position: -176px 0; }
+
+    label {
+        height: 40px;
+        width: 44px;
+    }
+}
+
+.no-rating strong {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.average-rating {
+    span {
+        color: $text;
+        vertical-align: middle;
+
+        &:first-child {
+            padding-right: 6px;
+        }
+    }
+    &.button {
+        .stars {
+            background-image: url(../img/pretty/stars_small_white.svg);
+            position: relative;
+            top: -1px;
+        }
+        span {
+            color: $white;
+        }
+    }
+}
+
+.simple-field.rating {
+    padding: 20px 10px;
+
+    > label {
+        display: none;
+    }
+    .ratingwidget {
+        margin: 0 auto;
+    }
+}
+
+.ratingwidget {
+    display: block;
+    float: none;
+    width: 65px;
+
+    input {
+        display: none;
+    }
+    label {
+        cursor: pointer;
+        display: block;
+        float: left;
+        hidetext();
+        margin: 0;
+        width: 13px;
+    }
+    &.disabled {
+        pointer-events: none;
+    }
+}
+
+mkt-prompt[data-modal="flag-review"] {
+    .reasons {
+        padding-bottom: 10px;
+        list-style: none;
+    }
+    li {
+        margin: 10px 0;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    form > div:last-child > button {
+        width: 100%;
+    }
+    a {
+        display: block;
+        text-align: center;
+    }
+}
+
+.reviews-listing {
+    h3 {
+        _h3();
+    }
+    .actions {
+        float: right;
+        font-size: 0;
+    }
+    .loadmore {
+        padding: 5px 0 15px;  // 15px above and below reviews.
+    }
+    .detail-left-side {
+        margin-bottom: 0;
+    }
+    .review-buttons,
+    .review-buttons li {
+        margin-top: 0;
+    }
+}
+
+.placeholder + section.full.reviews-listing {
+    margin-top: 0;
+}
+
+@media $base-tablet {
+    .review .stars {
+        right: 20px;
+    }
+    .reviews-listing h3 {
+        margin-bottom: 30px;
+    }
+    .reviews-listing .loadmore {
+        margin-top: -30px;  // Offset margin-bottom from reviews.
+    }
+    .review time {
+        right: 20px;
+    }
+}
+
+@media $base-desktop {
+    .category .stars {
+        display: block;
+    }
+    .report-spam {
+        width: 331px;
+        margin-left: -165px;
+
+        button {
+            width: 100%;
+        }
+    }
+    .reviews {
+        padding: 0 15px 24px;
+    }
+    .reviews-listing {
+        .actions {
+            float: left;
+        }
+        .review {
+            border: 0;
+        }
+    }
+    .reviews,
+    .detail .reviews {
+        padding: 0 15px 24px;
+    }
+    .reviews-wrapper {
+        // `font-size: 0` so we can do `display: inline-block` without
+        // having to worry about the whitespace between the <li>s.
+        font-size: 0;
+        margin: 0 -15px 24px;
+        padding: 0 3px;
+        position: relative;
+        width: calc(unquote('100% + 30px'));
+
+        li {
+            font-size: 15px;
+        }
+    }
+    .review {
+        display: inline-block;
+        margin-bottom: 60px;
+        padding: 0 12px;
+        vertical-align: top;
+        width: 50%;
+    }
+    .reviews-listing .reviews-wrapper {
+        margin-bottom: 0;
+    }
+    .reviews-listing .loadmore {
+        padding: 24px 15px 0;
+    }
+}

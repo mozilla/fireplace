@@ -1,8 +1,10 @@
+/*
+    Site-wide or structural styles ONLY. This is not your diaper.
+    section.full - section that visually expands full width, with top
+                   and bottom padding, and margins in between other
+                   full sections.
+*/
 @import 'lib';
-
-// Site-wide or structural styles only in this file.
-// Can't find a better file for your style? Create one!
-// This is not your diaper.
 
 * {
     -moz-box-sizing: border-box;
@@ -11,8 +13,85 @@
     word-wrap: break-word;
 }
 
+body {
+    background: $tile-border;
+    color: $castle-skull-gray;
+    // min-height needed so ff b2g/android can scroll to 0 (bug 872622).
+    min-height: 300px;
+    overflow-x: hidden;
+    transform-origin: 50% 400px;
+    transition: transform 1s;
+    -webkit-transition: -webkit-transform 1s;
+}
+
+#page {
+    position: relative;
+}
+
+#site-header,
+#page {
+    min-width: 320px;
+}
+
+.main {
+    margin: 0 auto;
+
+    .fragment-error {
+        padding: 0;
+    }
+}
+
+section.main {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+section.full {
+    background: $white;
+    max-width: 100%;
+    padding: 0;
+    width: 100%;
+
+    > div {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 30px 10px;
+    }
+    + section.full,
+    + .placeholder section.full {
+        margin-top: 10px;
+    }
+}
+.placeholder + .placeholder section.full,
+.placeholder + section.full {
+    margin-top: 10px;
+}
+
+section.full + section.full {
+    margin-top: 10px;
+}
+
 .js-hidden, .hidden {
     display: none;
+}
+
+a {
+    text-decoration: none;
+    color: $action-positive;
+
+    &:hover {
+        text-decoration: underline;
+    }
+    &:not([href]) {
+        cursor: pointer;
+    }
 }
 
 .emaillink-wrapper {
@@ -49,57 +128,6 @@ noscript {
     }
 }
 
-a {
-    text-decoration: none;
-    color: $sailor-blue;
-
-    &:hover {
-        text-decoration: underline;
-    }
-    &:not([href]) {
-        cursor: pointer;
-    }
-}
-
-body {
-    background: $seavan-salt-white;
-    color: $castle-skull-gray;
-    // min-height needed so ff b2g/android can scroll to 0 (bug 872622).
-    min-height: 300px;
-    overflow-x: hidden;
-    transform-origin: 50% 400px;
-    transition: transform 1s;
-    -webkit-transition: -webkit-transform 1s;
-}
-
-#site-header, #page {
-    min-width: 320px;
-
-    section.main {
-        margin-left: auto;
-        margin-right: auto;
-        position: relative;
-
-        &:after {
-            content: '';
-            display: block;
-            clear: both;
-        }
-        &.full {
-            width: 100%;
-
-            > div {
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-    }
-}
-
-#page {
-    position: relative;
-}
-
 .row {
     clear: both;
 }
@@ -121,13 +149,6 @@ body {
     }
 }
 
-.main {
-    margin: 0 auto;
-
-    .fragment-error {
-        padding: 0;
-    }
-}
 #page > .overlay {
     max-width: 100%;
 }
@@ -147,7 +168,6 @@ body {
     }
 }
 
-#site-footer,
 .only-logged-in,
 .logged-in .only-logged-out {
     display: none;
@@ -196,161 +216,6 @@ body {
     }
 }
 
-@media $narrower-than-desktop {
-    .hide-on-mobile {
-        display: none;
-    }
-}
-
-@media $at-least-desktop {
-    .hide-on-desktop {
-        display: none !important;
-    }
-
-    html, #footer {
-        background: #fff;
-    }
-
-    #page {
-        padding-top: 18px;
-    }
-
-    #footer,
-    #directory-footer {
-        padding: 48px 0;
-
-        ul {
-            list-style: none;
-        }
-    }
-
-    #newsletter-footer {
-        border-bottom: 1px solid $cloud-gray;
-        border-top: 1px solid $cloud-gray;
-    }
-
-    #directory-footer {
-        font-size: 15px;
-        font-weight: 300;
-        line-height: 18px;
-
-        .links a {
-            margin-top: 8px;
-            + a {
-                margin-top: 10px;
-            }
-        }
-        .devhub {
-            width: 290px;
-
-            // TODO: Get Michael to vectorize this as an SVG.
-            &:before {
-                background: url(../img/pretty/rocket.png) 0 50% no-repeat;
-                background-size: 20px auto;
-                content: "";
-                display: inline-block;
-                height: 100%;
-                vertical-align: top;
-                width: 28px;
-            }
-        }
-        .group {
-            float: left;
-            min-height: 48px;
-            position: relative;
-
-            a {
-                display: block;
-            }
-            + .group {
-                padding-left: 68px;
-                max-width: 200px;
-            }
-        }
-        .group.language {
-            max-width: 230px;
-            width: 230px;
-        }
-    }
-
-    #page .main,
-    .main {
-        max-width: $desktop-content;
-    }
-
-    .container {
-        &.product-details,
-        &.results {
-            margin: 50px 0;
-        }
-        &.prose,
-        &.form-grid {
-            padding: 25px;
-        }
-    }
-
-    #footzilla {
-        background: url(../img/logos/footzilla.png) 0 3px no-repeat;
-        float: left;
-        width: 100px;
-
-        a {
-            display: block;
-            height: 26px;
-            hidetext();
-            width: 80px;
-        }
-    }
-
-    #footer {
-        border-top: 1px solid $cloud-gray;
-        color: $note-gray;
-        overflow: hidden;
-        padding: 20px 0;
-        width: 100%;
-
-        .pad {
-            margin: 0 auto;
-            padding: 0;
-            width: 1024px;
-        }
-        p, ul {
-            border-left: 1px dotted $light-gray;
-            font-size: 11px;
-            line-height: 1.3;
-            margin: 0;
-            padding-left: 1em;
-        }
-        p {
-            float: left;
-            width: 60%;
-        }
-        ul {
-            float: right;
-            line-height: 1.2;
-            width: 20%;
-
-            a {
-                display: block;
-            }
-        }
-        li + li {
-            margin-top: 2px;
-        }
-    }
-
-    #site-footer {
-        display: block;
-    }
-
-    @media $retina {
-        #footzilla {
-            background-image: url(../img/logos/footzilla-2x.png);
-            background-size: 81px auto;
-        }
-    }
-} // End of Desktop.
-
 .region {
     background-repeat: no-repeat;
     background-size: 20px auto;
@@ -393,13 +258,49 @@ a:active {
     > * {
         display: none !important;
     }
-
     #splash-overlay {
         display: block !important;
         opacity: 1 !important;
     }
-
     #splash-overlay .throbber {
         display: inline-block !important;
+    }
+}
+
+.hide-on-mobile {
+    display: none;
+}
+
+@media $base-tablet {
+    .hide-on-mobile {
+        display: block;
+    }
+}
+
+@media $base-desktop {
+    .hide-on-desktop {
+        display: none !important;
+    }
+    html {
+        background: $white;
+    }
+    #page {
+        padding-top: 18px;
+    }
+    .main {
+        max-width: $desktop-content;
+    }
+    section.full > div {
+        padding: 30px 0;
+        width: $max-site-width;
+    }
+    .container {
+        &.product-details {
+            margin: 50px 0;
+        }
+        &.prose,
+        &.form-grid {
+            padding: 25px;
+        }
     }
 }
