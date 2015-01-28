@@ -1,18 +1,20 @@
 <div class="app-list-filters">
-  {% include "compatibility_filtering.html" %}
-  <div class="app-list-sort">
-    <a {% if not sort %}class="active"{% endif %} href="{{ popular_url }}"
-       data-app-list-sort-popular data-preserve-scroll>
-       {{ _('Popular') }}
-    </a>
-    {# L10n: "New" translates to mean "Recent". Make it short (space constraints). #}
-    <a {% if sort == 'reviewed' %}class="active"{% endif %} href="{{ new_url }}"
-       data-app-list-sort-new data-preserve-scroll>
-       {{ _('New') }}
-    </a>
-  </div>
-  <div class="expand-wrapper">
-    {{ _('Display as') }}
-    <a class="expand-toggle" title="{{ _('Expand') }}"></a>
+  <div class="app-list-filters-content">
+    <div class="app-list-filters-sort">
+      <a {% if not sort %}class="active"{% endif %} href="{{ popular_url }}"
+         data-app-list-sort-popular data-preserve-scroll>
+         {{ _('Popular') }}
+      </a>
+      {# L10n: "New" translates to mean "Recent". Make it short (space constraints). #}
+      <a {% if sort == 'reviewed' %}class="active"{% endif %} href="{{ new_url }}"
+         data-app-list-sort-new data-preserve-scroll>
+         {{ _('New') }}
+      </a>
+    </div>
+    {% include "compatibility_filtering.html" %}
+    <div class="app-list-filters-expand-wrapper">
+      {{ _('Display as') }}
+      <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
+    </div>
   </div>
 </div>

@@ -46,6 +46,24 @@ define('tracking_events',
             'click',
             $(this).parent().data('tab')
         ]);
+    })
+
+    // App list expand toggle (expanded)
+    .on('click', '.app-list-filters-expand-toggle:not(.active)', function() {
+        track([
+            'View type interactions',
+            'click',
+            'Expanded view'
+        ]);
+    })
+
+    // App list expand toggle (contracted)
+    .on('click', '.app-list-filters-expand-toggle.active', function() {
+        track([
+            'View type interactions',
+            'click',
+            'List view'
+        ]);
     });
 
     // Navigate from collection tile to collection detail.
@@ -110,15 +128,6 @@ define('tracking_events',
             $(this).closest('.shelf-landing').data('tracking-slug')
         ]);
     })
-
-    /* Older tracking events. */
-    .on('click', '.show-toggle', function() {
-        track([
-            'App view interactions',
-            'click',
-            'Toggle description'
-        ]);
-    });
 
     if (tracking.actions_enabled) {
         z.page.on('click', '.detail .support li a.button', function() {

@@ -2,7 +2,7 @@
 App listing.
     - One column on mobile
     - Two columns on tablet.
-    - Three columns on desktop.
+    - Three columns on desktop (two when expanded).
 */
 @import 'lib';
 
@@ -25,7 +25,6 @@ $desktop-tile-padding = 20px 50px;
 
 .app-list {
     list-style: none;
-    margin-top: 30px;
 
     // Masking element to cover the last row's bottom border.
     &:after {
@@ -50,59 +49,11 @@ $desktop-tile-padding = 20px 50px;
     padding-top: 15px;
 }
 
-.app-list-filters {
-    bottom: 15px;
-    color: $filters-label;
-    margin: 0 auto;
-    min-height: 20px;
-    position: relative;
-    text-transform: uppercase;
-}
-
 .app-list.app-list-colored {
     // When the app list has a colored background (e.g., Feed landing).
     .mkt-tile h3,
     .mkt-tile .author {
         color: $white;
-    }
-}
-
-.app-list-sort {
-    display: none;
-    position: absolute;
-    top: 0;
-    width: 100%;
-
-    a {
-        color: $greyscale-black;
-        display: inline-block;
-        ellipsis();
-        font-size: 15px;
-        font-weight: 300;
-        height: 29px;
-        line-height: 29px;
-        margin-top: 7px;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
-        text-shadow: 0 .5px 1px $white;
-        z-index: 2;
-        vertical-align: middle;
-
-        &:hover {
-            border-bottom: 2px solid $greyscale-light-grey;
-        }
-        &.active {
-            border-bottom: 2px solid $filters-link;
-            pointer-events: none;
-        }
-        &.active:before,
-        &.active:after {
-            background-color: $white;
-        }
-        + a {
-            margin-left: 30px;
-        }
     }
 }
 
@@ -113,6 +64,7 @@ $desktop-tile-padding = 20px 50px;
     }
     .app-list {
         flex-wrap: wrap;
+        margin-top: 30px;
         position: relative;
 
         &.paginated .app-list-app:last-child {
@@ -125,23 +77,6 @@ $desktop-tile-padding = 20px 50px;
         }
         &:after {
             bottom: 0;
-        }
-    }
-    .app-list-filters {
-        bottom: 0;
-        border-bottom: 2px solid $filters-border;
-        padding: 0 0 30px;
-        width: $desktop-content;
-    }
-    .app-list-sort {
-        float: left;
-        margin-right: 30px;
-        position: relative;
-        top: 15px;
-        width: auto;
-
-        a {
-            text-shadow: none;
         }
     }
     .app-list-app {

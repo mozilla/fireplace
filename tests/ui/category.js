@@ -10,7 +10,7 @@ casper.test.begin('Category app list sort tests', {
 
         casper.waitForSelector('.app-list', function() {
             // Test popular link is active by default.
-            test.assertVisible('.app-list-sort');
+            test.assertVisible('.app-list-filters-sort');
             test.assertSelectorExists('[data-app-list-sort-popular].active');
 
             // Test switch to new.

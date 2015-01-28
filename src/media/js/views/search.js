@@ -1,6 +1,6 @@
 define('views/search',
-    ['capabilities', 'l10n', 'storage', 'tracking', 'urls', 'utils', 'z'],
-    function(capabilities, l10n, storage, tracking, urls, utils, z) {
+    ['capabilities', 'l10n', 'tracking', 'urls', 'utils', 'z'],
+    function(capabilities, l10n, tracking, urls, utils, z) {
 
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -22,30 +22,6 @@ define('views/search',
             $('#search-q').val('').trigger('focus');
         }
     }));
-
-    // If we've set this value in localStorage before, then always use it.
-    var expand = !!storage.getItem('expand-listings');
-    if (expand === null) {
-        // Default to the graphical view at desktop widths and traditional
-        // list view at lesser widths.
-        expand = capabilities.widescreen();
-    }
-
-    function setTrays(expanded) {
-        if (expanded !== undefined) {
-            expand = expanded;
-        }
-        $('.app-list').toggleClass('expanded', expanded);
-        $('.expand-toggle').toggleClass('active', expand);
-        storage.setItem('expand-listings', !!expanded);
-        if (expanded) {
-            z.page.trigger('populatetray');
-            // Set the `src` for hidden images so they get loaded.
-            $('img[data-src]:not([src])').each(function () {
-                this.src = $(this).data('src');
-            });
-        }
-    }
 
     function parsePotatoSearch(query) {
         // This handles PotatoSearch queries:
@@ -123,21 +99,7 @@ define('views/search',
         return query;
     }
 
-    function isSearchPage() {
-        return $('#search-results, #account-settings .listing').length;
-    }
-
-    z.body.on('click', '.expand-toggle', _pd(function() {
-        setTrays(expand = !expand);
-
-        tracking.trackEvent(
-            'View type interactions',
-            'click',
-            expand ? 'Expanded view' : 'List view'
-        );
-
-        z.doc.trigger('scroll');  // For defer image loading.
-    })).on('submit', 'form#search', function(e) {
+    z.body.on('submit', 'form#search', function(e) {
         e.stopPropagation();
         e.preventDefault();
         var $q = $('#search-q');
@@ -161,13 +123,6 @@ define('views/search',
         var $q = $('#search-q');
         $q.val(z.context.search);
         // If this is a search results or "my apps" page.
-        if (isSearchPage()) {
-            setTrays(expand);
-        }
-    }).on('reloaded_chrome', function() {
-        if (isSearchPage()) {
-            setTrays(expand);
-        }
     }).on('loaded_more', function() {
         z.page.trigger('populatetray');
         // Update "Showing 1-{total}" text.
@@ -194,11 +149,6 @@ define('views/search',
                     data.unshift(base('Wa-pa-pa-pa-pa-pa-pow!'));
                     data.unshift(base('Ring-ding-ding-ding-dingeringeding!'));
                     break;
-                case 'hampster dance':
-                    data.forEach(function(v, k) {
-                        v.icons['64'] = urls.media('fireplace/img/icons/eggs/h' + (k % 4 + 1) + '.gif');
-                    });
-                    break;
                 case 'rick fant rolled':
                     data.forEach(function(v) { v.url = 'http://www.youtube.com/watch?v=oHg5SJYRHA0'; });
                     break;
@@ -218,11 +168,6 @@ define('views/search',
         var query = params.full_q || params.q;
         builder.z('search', query);
         builder.z('title', query || gettext('Search Results'));
-
-        if (params.q === 'hampster dance') {
-            params.q = 'dance';
-            (new Audio(urls.media('fireplace/hampster.ogg'))).play();
-        }
 
         builder.start('search.html', {
             endpoint_name: 'search',

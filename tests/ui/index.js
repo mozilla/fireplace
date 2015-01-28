@@ -11,7 +11,7 @@ casper.test.begin('"Home" page tests', {
             test.assertVisible('#search-q');
             test.assertVisible('.home-feed');
             test.assertDoesntExist('.mkt-tile .tray');
-            test.assertNotVisible('.expand-toggle');
+            test.assertNotVisible('.app-list-filters-expand-toggle');
         });
 
         casper.run(function() {

@@ -1,12 +1,9 @@
 @import "lib";
 
 .compat-filter {
-    clear: both;
-    display: inline-block;
+    display: block;
     margin: 0 auto;
-    position: absolute;
     text-transform: none;
-    z-index: 1;
 
     select {
         font-size: 15px;
@@ -43,13 +40,6 @@
     #search-results .search-listing {
         position: relative;
     }
-    .category-header + .compat-filter,
-    #search-results .compat-filter,
-    [data-page-type~="purchases"] .compat-filter,
-    [data-page-type~="app-list"] .compat-filter {
-        top: 15px;
-    }
-
     .category-header + .compat-filter {
         margin-top: 2px;
     }
@@ -70,12 +60,6 @@
         &:before {
             background: none;
         }
-    }
-}
-
-@media $base-tablet {
-    .compat-filter {
-        position: static;
     }
 }
 

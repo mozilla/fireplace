@@ -140,7 +140,14 @@ appListPages.forEach(function(appListPage) {
 
                 // Test expand toggle.
                 if (!appListPage.collection) {
-                    test.assertVisible('.expand-toggle');
+                    var toggleLink = '.app-list-filters-expand-toggle';
+                    test.assertVisible(toggleLink);
+                    casper.click(toggleLink);
+                    test.assertExists(toggleLink + '.active');
+                    test.assertExists('.app-list.expanded');
+                    casper.click(toggleLink);
+                    test.assertExists(toggleLink + ':not(.active)');
+                    test.assertExists('.app-list:not(.expanded)');
                 }
 
                 // Test authors are not a link.
