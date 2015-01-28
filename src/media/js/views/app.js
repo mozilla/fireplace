@@ -1,26 +1,20 @@
 define('views/app',
-    ['capabilities', 'content-ratings', 'l10n', 'log', 'overflow', 'settings',
-     'tracking', 'utils', 'z'],
-    function(caps, iarc, l10n, log, overflow, settings,
-             tracking, utils, z) {
+    ['capabilities', 'content-ratings', 'l10n', 'log', 'settings', 'tracking',
+     'utils', 'z'],
+    function(caps, iarc, l10n, log, settings, tracking,
+             utils, z) {
     'use strict';
     var gettext = l10n.gettext;
     var logger = log('app');
 
-    z.page.on('click', '#product-rating-status .toggle', utils._pd(function() {
-        // Toggle scary content rating disclaimers to developers.
-        $(this).closest('.toggle').siblings('div').toggleClass('hidden');
-
-    })).on('click', '.truncate-toggle', utils._pd(function() {
-        var $this = $(this);
+    z.page.on('click', '.truncate-toggle', utils._pd(function() {
         // Toggle description.
+        var $this = $(this);
         $this.prev('.truncated-wrapper').toggleClass('truncated');
         $this.remove();
+    }))
 
-    })).on('click', '.approval-pitch', utils._pd(function() {
-        $('#preapproval-shortcut').trigger('submit');
-
-    })).on('click', '.app-header .icon', utils._pd(function(e) {
+    .on('click', '.app-header .icon', utils._pd(function(e) {
         // When icon is clicked, append `#id=<id>` to the URL.
         window.location.hash = 'id=' + $('.product').data('id');
         e.stopPropagation();
@@ -59,13 +53,11 @@ define('views/app',
         // All deps should have been resolved by the time this executes.
         require('tracking_events').track_search_term(true);
 
-        var sync = true;
         builder.onload('app-data', function(app) {
-            /* Called after app defer block is finished loading. */
+            // Called after app defer block is finished loading.
             builder.z('title', utils.translate(app.name));
 
             z.page.trigger('populatetray');
-            overflow.init();
 
             $('.truncated-wrapper').each(function() {
                 // 'truncated' class applied by default, remove if unneeded.
@@ -75,10 +67,6 @@ define('views/app',
                 }
             });
 
-            if (!sync) {
-                return;
-            }
-
             if (app) {
                 tracking.setPageVar(6, 'App name', app.name, 3);
                 tracking.setPageVar(7, 'App ID', app.id + '', 3);
@@ -87,24 +75,7 @@ define('views/app',
                                     utils.getVars().src || 'direct', 3);
                 tracking.setPageVar(10, 'App price',
                                     app.payment_required ? 'paid' : 'free', 3);
-            } else {
-                logger.warn('App object is falsey and is not being tracked');
-            }
-        })
-
-        .onload('ratings', function() {
-            /* Called after ratings defer block is finished loading. */
-            var reviews = $('.detail .reviews li');
-            if (reviews.length >= 3) {
-                for (var i = 0; i < reviews.length - 2; i += 2) {
-                    var hgt = Math.max(reviews.eq(i).find('.review-inner').height(),
-                                       reviews.eq(i + 1).find('.review-inner').height());
-                    reviews.eq(i).find('.review-inner').height(hgt);
-                    reviews.eq(i + 1).find('.review-inner').height(hgt);
-                }
             }
         });
-
-        sync = false;
     };
 });
