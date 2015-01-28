@@ -1,0 +1,151 @@
+/*
+    The header section at the top of the app detail page, featuring the app
+    tile.
+*/
+@import '../lib';
+
+.app-header.full {
+    padding-bottom: 0;
+
+    > div {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+    &.expanded > div {
+        height: 778px;
+    }
+}
+
+[data-page-type~="detail"] {
+    .mkt-tile {
+        padding-bottom: 10px;
+
+        .rating {
+            padding: 15px 0;
+        }
+    }
+    .app-notices {
+        border-top: 1px solid $tile-border;
+        margin-top: 0;
+        padding: 10px 0;
+        text-align: center;
+        width: 100%;
+
+        > span {
+            background: $action-positive;
+            border-radius: 100px;
+            color: $white;
+            display: inline-block;
+            font-weight: 300;
+            margin: 5px;
+            padding: 8px 15px;
+            text-transform: lowercase;
+
+            &.positive {
+                background: $action-success;
+            }
+            &.negative {
+                background: $action-error;
+            }
+        }
+    }
+}
+
+[data-page-type~="detail"] .button.install {
+    padding: 0;
+
+    &.spinning,
+    &.purchasing {
+        bottom: -8px;
+    }
+}
+
+@media $base-tablet {
+    [data-page-type~="detail"] {
+        .subheader {
+            display: block;
+        }
+        .detail,
+        .main,
+        .mkt-tile {
+            overflow: visible
+        }
+        .heading {
+            margin-bottom: 70px;
+        }
+        .mkt-tile {
+            padding-bottom: 50px;
+            position: relative;
+            margin: 0 auto;
+            width: 50%;
+
+            .icon {
+                // Get the icon in the middle.
+                bottom: 15px;
+                height: 128px;
+                left: 0;
+                margin: 0 auto;
+                right: 0;
+                position: absolute;
+                text-align: center;
+                width: 128px;
+            }
+            .info {
+                padding: 0;
+                position: relative;
+            }
+            [itemprop="name"] {
+                desktop_mega();
+                margin-bottom: 30px;
+                padding-top: 45px;
+                position: relative;
+                text-align: center;
+                top: 15px;
+            }
+            [itemprop="creator"] {
+                font-weight: 300;
+                font-size: 20px;
+                line-height: 20px;
+            }
+            .rating {
+                font-weight: 300;
+                font-size: 20px;
+                padding: 18px 0;
+            }
+            .cnt {
+                float: left;
+                margin-right: 10px;
+            }
+            .stars {
+                float: right;
+            }
+        }
+        .button.install {
+            height: $btn-small;
+
+            &.spinning,
+            &.purchasing {
+                bottom: auto;
+            }
+            em {
+                font-size: 15px;
+                height: $btn-small;
+                line-height: $btn-small;
+            }
+        }
+        .rating-link {
+            display: table;
+            width-fit-content();
+        }
+    }
+    [data-page-type~="detail"] .app-notices {
+        margin-top: 15px;
+    }
+}
+
+@media $base-desktop {
+    [data-page-type~="detail"] .mkt-tile .stars {
+        position: relative;
+        top: 4px;
+    }
+}

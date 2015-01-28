@@ -1,17 +1,16 @@
-// styles for the global site header only.
+/*
+    Styles for the global site header.
+*/
 @import 'lib';
 
-// Add the header's height back as padding. This is overriden when the header
-// is not `position: fixed`.
+// Add header's height back as padding. Overridden when header not fixed.
 body {
     padding-top: $header-height;
 }
 
-// ***************** Wide Mobile (600+ px)
-
-// usable on any header
+// Usable on any header.
 .header {
-    background: #fff;
+    background: $white;
     border-top: 1px solid $salt-flat-white;
     border-bottom: 1px solid $seavan-salt-white;
     display-flex();
@@ -36,7 +35,8 @@ body {
     }
 }
 
-// # for the primary site header *only*. If you need to generalize a style in here, move it.
+// # for the primary site header *only*.
+// If you need to generalize a style in here, move it.
 .site-header {
     display: block;
     position: fixed;
@@ -56,6 +56,7 @@ body {
         position: relative;
         text-align: left;
         width: 100%;
+
         > * {
             flex-center();
             display: block;
@@ -90,61 +91,23 @@ body {
     width: 34px;  // 24px + 10px margin
 }
 
-.account-links {
-    cursor: pointer;
-    position: absolute;
-    right: -15px;
-    top: 49px;
-    width: 320px;
-    z-index: 21;
-
-    ul {
-        background: $castle-skull-gray;
-        line-height: 20px;
-        list-style-type: none;
-    }
-    li {
-        position: relative;
-
-        + li {
-            border-top: 1px solid $cloud-gray;
-        }
-        a {
-            color: $cement-gray;
-            display: block;
-            font-size: 15px;
-            font-weight: 400;
-            padding: 10px 15px;
-            text-decoration: none;
-
-            &:hover {
-                background-color: $sailor-blue;
-                color: #fff;
-            }
-        }
-    }
-    a b {
-        display: block;
-        font-weight: 300;
-    }
-}
-
 .site-header .search {
     margin-right: 10px;
     position: relative;
     top: -1px;
     transition(.3s all);
     width: 230px;
+
     label {
         display: none;
     }
 }
 
 #search-q {
-    background: #f4f4f4 url(../img/pretty/search.svg) 8px 50% no-repeat;
-    border: 2px solid $cement-gray;
-    border-radius: 10px;
-    color: $london-fog-gray;
+    background: $greyscale-light-grey url(../img/pretty/search.svg) 8px 50% no-repeat;
+    border: 1px solid $greyscale-light-grey-tapped;
+    border-radius: 5px;
+    color: $greyscale-black;
     font: 300 20px/28px $open-stack;
     height: 34px;
     outline: none;
@@ -152,14 +115,15 @@ body {
     transition(unquote('.18s background-position, .2s border-color, .2s padding'));
     width: 100%;
     z-index: 2;
+
     &:-moz-placeholder {
-        color: darken($cement-gray, 5%);
+        color: $greyscale-grey;
     }
     &::-moz-placeholder {
-        color: darken($cement-gray, 5%);
+        color: $greyscale-grey;
     }
     &::-webkit-input-placeholder {
-        color: darken($cement-gray, 5%);
+        color: $greyscale-grey;
     }
     ~ .search-clear {
         transition(unquote('.3s opacity, .3s visibility'));
@@ -179,7 +143,7 @@ body {
     }
     &:focus {
         background-position: -18px 50%;
-        border-color: #72cfff;
+        border-color: $action-positive;
         padding-left: 10px;
     }
 }
@@ -230,10 +194,9 @@ body {
         background: url(../img/pretty/settings_gear.svg) 50% 50% no-repeat;
         background-size: 24px auto;
         display: block;
-        height: 40px;
+        height: 80px;
         position: absolute;
-        right: 2px;
-        top: 2px;
+        right: 20px;
         width: 40px;
     }
     &.back {
@@ -255,6 +218,7 @@ body {
         word-wrap: normal;
 
         &.loading-submit {
+            border-bottom: 0;
             box-shadow: none;
             // Make text transparent to keep the width the same.
             color: transparent;
@@ -277,10 +241,12 @@ body {
     width: auto;
 }
 
-// On hover the settings gear icon should turn blue.
-// On the Account Settings page the gear should also turn blue.
-.act-tray.active .header-button.settings {
-    background-image: url(../img/pretty/settings_gear_active.svg);
+.subheader {
+    h1,
+    a {
+        line-height: 37px;
+        padding: 10px;
+    }
 }
 
 .secondary-header,
@@ -288,7 +254,7 @@ body {
     position: relative;
 
     h2, h3 {
-        color: $london-fog-gray;
+        color: $greyscale-black;
         font-weight: 300;
         margin-bottom: -3px;
         max-width: calc(unquote('100% - 75px'));
@@ -345,62 +311,22 @@ body {
     padding-top: 15px;
 }
 
-
-@media $narrower-than-desktop {
-    .secondary-header {
-        height: 40px;
-
-        h2 {
-            font-size: 15px;
-            line-height: 40px;
-            margin: 0 10px;
-        }
-        .subtitle, .subtitle:before {
-            font-size: 15px;
-        }
-        .subtitle {
-            font-weight: 400;
-        }
-    }
-    .featured .featured-header {
-        padding-bottom: 20px;
-    }
+// Search results tile expand toggle.
+.expand-wrapper {
+    display: none;
+    margin: 0 30px;
 }
-
-// search results tile expand toggle
 .expand-toggle {
-    display: block;
-    height: 22px;
-    line-height: 22px;
-    position: absolute;
-    right: 10px;
-    top: 9px;
-    width: 69px;
-    &:before,
-    &:after {
-        content: "";
-        display: block;
-        height: 22px;
-        position: absolute;
-    }
-    &:before {
-        background: url(../img/pretty/list_view_active.svg) no-repeat;
-        left: 0;
-        width: 24px;
-    }
-    &:after {
-        background: url(../img/pretty/screenshot_view.svg) 10px 0 no-repeat;
-        border-left: 1px dotted $cement-gray;
-        left: 34px;
-        width: 34px;
-    }
+    background: url(../img/pretty/list-toggle.svg) no-repeat 0 -40px / 82px auto;
+    display: inline-block;
+    float: right;
+    height: 40px;
+    left: 3px;
+    position: relative;
+    width: 84px;
+
     &.active {
-        &:before {
-            background-image: url(../img/pretty/list_view.svg);
-        }
-        &:after {
-            background-image: url(../img/pretty/screenshot_view_active.svg);
-        }
+        background-position: 0 0;
     }
 }
 
@@ -415,8 +341,7 @@ body {
     display: none;
 }
 
-// When we're holding down on the debug page, don't allow clicking on the logo
-// because that would take us back home.
+// When holding down on debug page, don't allow clicking logo to go back home.
 [data-page-type~=debug] .header .wordmark {
     pointer-events: none;
 }
@@ -434,203 +359,9 @@ body {
         flex(1);
     }
 }
-main {
-    &:before {
-        // This makes a sweet gradient below the header
-        // (which will appear when scrolling past the category drop-down menu).
-        content: '';
-        display: block;
-        gradientLinear(unquote('to top, rgba(15,15,15,0) 0%, rgba(15,15,15,.3) 100%'));
-        height: 2px;
-        top: $header-height;
-        position: fixed;
-        width: 100%;
-        z-index: 18;
-    }
-}
-
-@media (max-width: 709px) {
-    [data-page-type~="detail"] .header {
-        // Make the border lighter since there's no secondary header on this page.
-        border-bottom-color: $salt-flat-white;
-    }
-}
-
-@media (min-width: 710px) {
-    .site-header {
-        border-bottom: 1px solid $cloud-gray;
-        border-top: 0;
-
-        &:before, &:after {
-            display: none;
-        }
-    }
-    [data-page-type] main {
-        padding: 0 0 $header-height;
-
-        &:before {
-            display: none;
-        }
-    }
-}
-
-// ***************** Cursor (Desktop) (>= 1024px)
-
-// This probably shouldn't be media query based.
-@media $wider-desktop {
-    body {
-      padding-top: 0;
-    }
-
-    .header-button.settings {
-        right: 0;
-        top: 0;
-    }
-
-    .act-tray,
-    .act-tray .header-button.settings {
-        height: 40px;
-        width: 40px;
-    }
-    .act-tray {
-        margin-left: 15px;
-
-        &.active .settings {
-            background-position: calc(unquote('50% + 35px')) 8px;
-            height: 70px;
-            margin-left: -60px;
-            width: 110px;
-            &:after {
-                border: 38px solid transparent;
-                border-bottom-color: $castle-skull-gray;
-                display: block;
-                position: absolute;
-                right: -18px;
-                top: 0;
-            }
-        }
-    }
-
-    .site-header {
-        height: 60px;
-        max-height: 60px;
-        position: relative;
-
-        > nav {
-            height: 60px;
-            margin: 0 auto;
-            max-width: $max-site-width;
-        }
-        .site {
-            margin: 0;
-            width: 232px;
-        }
-        .site, .site a, .wordmark {
-            height: 60px;
-        }
-        .wordmark {
-            background-position: -5px 50%;
-            background-size: auto 46px;
-            max-width: 232px;
-            width: 232px;
-
-            .desktop & {
-                background: url(../img/pretty/marketplace-beta-logo.svg) 0 50% no-repeat;
-            }
-        }
-        .persona {
-            display: block;
-        }
-        .act-tray {
-            display: none;
-        }
-    }
-
-    .logged-in .site-header {
-        .act-tray {
-            display: block;
-        }
-        .persona {
-            display: none;
-        }
-    }
-
-    .active .account-links {
-        display: block;
-    }
-
-    .site-header .search,
-    #search-q {
-        width: 532px;
-    }
-
-    #search-q {
-        background-position: 10px 50%;
-        border-width: 1px;
-        font-size: 18px;
-        font-weight: 400;
-        height: 40px;
-        line-height: 40px;
-        padding: 6px 15px 4px 34px;
-
-        &:valid {
-            // Adjust width for padding for the X icon.
-            padding-right: 42px;
-        }
-        &:focus {
-            padding-right: 15px;
-        }
-    }
-
-    .search-clear {
-        top: 4px;
-    }
-
-    // How does the header look for the various page "types"?
-    [data-page-type~=search],
-    [data-page-type~=leaf] {
-        .back, .site {
-            display: block;
-        }
-        .back, .site-header .expand-toggle,
-        .flex-span {
-            display: none;
-        }
-        .flex-shift {
-            display: block;
-        }
-    }
-}
-
-// ***************** Wide Mobile (> 671px)
-@media $at-least-desktop {
-    .secondary-header {
-        background: none;
-        border: 0;
-        height: $header-height;
-        max-height: $header-height;
-        position: relative;
-
-        &:before {
-            display: none;
-        }
-        h2 {
-            margin: 0;
-        }
-    }
-    .featured-header {
-        padding: 15px 15px 5px;
-    }
-    .expand-toggle {
-        top: 13px;
-        right: 0;
-    }
-    .site-header {
-        z-index: 30;
-    }
-}
 
 @media (max-width: 540px) {
+    // TODO: get rid of this media query.
     .site-header {
         .search {
             flex(1);
@@ -666,5 +397,210 @@ main {
         .search-clear {
             display: block;
         }
+    }
+}
+
+@media (max-width: 709px) {
+    [data-page-type~="detail"] .header {
+        // Make the border lighter since there's no secondary header on this page.
+        border-bottom-color: $salt-flat-white;
+    }
+}
+
+@media $narrower-than-desktop {
+    .secondary-header {
+        height: 40px;
+
+        h2 {
+            font-size: 15px;
+            line-height: 40px;
+            margin: 0 10px;
+        }
+        .subtitle, .subtitle:before {
+            font-size: 15px;
+        }
+        .subtitle {
+            font-weight: 400;
+        }
+    }
+    .featured .featured-header {
+        padding-bottom: 20px;
+    }
+}
+
+@media (min-width: 710px) {
+    .site-header {
+        border-bottom: 1px solid $cloud-gray;
+        border-top: 0;
+
+        &:before, &:after {
+            display: none;
+        }
+    }
+    [data-page-type] main {
+        &:before {
+            display: none;
+        }
+    }
+}
+
+@media $base-tablet {
+    .expand-toggle {
+        display: none;
+    }
+    .expand-wrapper {
+        display: inline-block;
+
+        .expand-toggle {
+            display: inline-block;
+            float: none;
+            left: 10px;
+            top: 15px;
+        }
+    }
+    .subheader {
+        h1,
+        a {
+            line-height: 1;
+            margin: 40px 0 30px;
+            padding: 0 10px;
+        }
+    }
+    .secondary-header {
+        background: none;
+        border: 0;
+        height: $header-height;
+        max-height: $header-height;
+        padding: 0;
+        position: relative;
+
+        &:before {
+            display: none;
+        }
+        h2 {
+            margin: 0;
+            padding: 0;
+        }
+    }
+    header.secondary-header {
+        margin: 10px auto 20px;
+        width: $max-site-width;
+
+        h2 {
+            font-size: 30px;
+        }
+    }
+    .featured-header {
+        padding: 15px 15px 5px;
+    }
+    .site-header {
+        z-index: 30;
+    }
+    body {
+      padding-top: 0;
+    }
+    .site-header {
+        height: 60px;
+        max-height: 60px;
+        position: relative;
+
+        > nav {
+            height: 60px;
+            margin: 0 auto;
+            max-width: $max-site-width;
+            width: 95%;
+        }
+        .site {
+            margin: 0;
+            width: 232px;
+        }
+        .site, .site a, .wordmark {
+            height: 60px;
+        }
+        .wordmark {
+            background-position: -5px 50%;
+            background-size: auto 46px;
+            max-width: 232px;
+            width: 232px;
+        }
+        .persona {
+            display: block;
+        }
+        .act-tray {
+            display: none;
+        }
+    }
+    .logged-in .site-header {
+        .act-tray {
+            display: block;
+        }
+        .persona {
+            display: none;
+        }
+    }
+    .active .account-links {
+        display: block;
+    }
+    .site-header .search,
+    #search-q {
+        width: 270px;
+    }
+    #search-q {
+        background-position: 10px 50%;
+        border-width: 1px;
+        font-size: 18px;
+        height: 46px;
+        line-height: 40px;
+        padding: 6px 15px 4px 34px;
+
+        &:valid {
+            // Adjust width for padding for the X icon.
+            padding-right: 42px;
+        }
+        &:focus {
+            padding-right: 15px;
+        }
+    }
+    .search-clear {
+        top: 6px;
+    }
+    // How does the header look for the various page "types"?
+    [data-page-type~=search],
+    [data-page-type~=leaf] {
+        .back, .site {
+            display: block;
+        }
+        .back, .site-header .expand-toggle,
+        .flex-span {
+            display: none;
+        }
+        .flex-shift {
+            display: block;
+        }
+    }
+    .desktop .wordmark {
+        background: url(../img/pretty/marketplace-beta-logo.png) no-repeat 0 50% / 231px auto;
+    }
+}
+
+@media $base-desktop {
+    .site-header .search,
+    #search-q {
+        width: 340px;
+    }
+    .subheader {
+        // Offset #page padding.
+        margin-top: -18px;
+
+        h1,
+        a {
+            padding: 0;
+        }
+    }
+}
+
+@media $retina-tablet {
+    .desktop .wordmark {
+        background: url(../img/pretty/marketplace-beta-logo2X.png) no-repeat 0 50% / 231px auto;
     }
 }

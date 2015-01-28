@@ -1,12 +1,10 @@
 define('rewriters',
     ['log', 'settings', 'underscore', 'urls', 'utils'],
     function(log, settings, _, urls, utils) {
-
-    var console = log('rewriters');
+    var logger = log('rewriters');
 
     function pagination(url) {
         return function(new_key, new_value, c) {
-
             var new_base = utils.baseurl(new_key);
             if (new_base !== utils.baseurl(url)) {
                 return;
@@ -20,9 +18,9 @@ define('rewriters',
             delete new_qs.offset;
             delete new_qs._bust;
             var old_url = utils.urlparams(new_base, new_qs);
-            console.log('Attempting to rewrite', old_url);
+            logger.log('Attempting to rewrite', old_url);
             if (!(old_url in c)) {
-                console.error('Could not find cache entry to rewrite');
+                logger.error('Could not find cache entry to rewrite');
                 return;
             }
 
@@ -40,10 +38,13 @@ define('rewriters',
     }
 
     return [
-        // Search pagination rewriter
-        pagination(urls.api.base.url('search')),
+        // My Apps pagination rewriter.
+        pagination(urls.api.base.url('installed')),
 
-        // My Apps pagination rewriter
-        pagination(urls.api.base.url('installed'))
+        // Recommended pagination rewriter.
+        pagination(urls.api.base.url('recommended')),
+
+        // Search pagination rewriter.
+        pagination(urls.api.base.url('search')),
     ];
 });

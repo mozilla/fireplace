@@ -1,0 +1,86 @@
+/*
+    The info section below the header section, featuring description, version
+    information, and support links.
+    .prose - for long-form text typography.
+*/
+@import '../lib';
+
+.app-info {
+    .prose {
+        type_body();
+        border-top: 0;
+
+        blockquote {
+            background: $faint-gray;
+            border-left: 2px solid $light-gray;
+            color: $medium-gray;
+            margin: 0;
+            padding: 5px 10px;
+        }
+        .truncated-wrapper {
+            padding: 0;
+        }
+        .truncated {
+            max-height: 16.5em;
+            overflow: hidden;
+            position: relative;
+
+            &:after {
+                bottom: 0;
+                content: '';
+                height: 6.5em;
+                left: 0;
+                pointer-events: none;
+                position: absolute;
+                width: 100%;
+                z-index: 10;
+            }
+        }
+    }
+    .view-all-tab {
+        display: block;
+        margin: 20px auto 0;
+    }
+}
+
+.region-banner {
+    background: url(../img/pretty/alert.svg) 12px 50% no-repeat $action-error;
+    background-size: 48px;
+    color: $white;
+    padding-left: 60px;
+}
+
+.release-notes {
+    margin-bottom: 30px;
+}
+
+.release-notes .truncated-wrapper.truncated {
+    max-height: 7.5em;
+}
+
+.app-support,
+.review-buttons {
+    // TODO: move to base.styl.
+    margin-top: 15px;
+
+    li {
+        list-style: none;
+        margin-top: 15px;
+    }
+    .button {
+        width: 100%;
+    }
+}
+
+@media $base-tablet {
+    .app-info {
+        .prose .truncated-wrapper.truncated {
+            max-height: none;
+            overflow: visible;
+
+            &:after {
+                content: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,77 @@
+<section class="main hide-on-mobile">
+  <div class="subheader">
+    <h1>{{ _('Account Settings') }}</h1>
+  </div>
+</section>
+
+<form class="form-grid account-settings" {{ 'novalidate' if not user.logged_in() }}>
+  <section class="main full">
+    <div>
+      <h3>{{ _('General settings') }}</h3>
+
+      <div class="email account-field hide-logged-out">
+        <label>{{ _('Email Address') }}</label>
+        <p>{{ user.get_setting('email') }}</p>
+      </div>
+
+      <div class="display-name account-field hide-logged-out">
+        <label for="display_name">{{ _('Display Name') }}</label>
+        <input name="display_name" id="display_name"
+               pattern="[^\s].*|\s+\S.+" value="{{ user.get_setting('display_name') }}"
+               maxlength="50" type="text" required>
+      </div>
+
+      <div class="recommendations account-field hide-logged-out">
+        <label for="enable_recommendations">{{ _('Recommendations') }}</label>
+        <input id="enable_recommendations" name="enable_recommendations"
+               type="checkbox" {{ 'checked' if user.get_setting('enable_recommendations', true) }}>
+        <label for="enable_recommendations">
+            {{ _('Yes, show me recommendations based on my installed apps. <a href="{url}" target="_blank">Learn more</a>')|format(url='https://support.mozilla.org/kb/recommendations-marketplace') }}
+        </label>
+      </div>
+
+      <div class="region account-field">
+        <label>{{ _('Region') }}</label>
+        <span class="region region-{{ user_helpers.region('restofworld') }}">
+          {{ REGIONS[user_helpers.region('restofworld')] }}</span>
+      </div>
+
+      <div class="account-settings-save">
+        <button class="button hide-logged-out" type="submit">{{ _('Save Changes') }}</button>
+        <a href="#" class="button persona register hide-logged-in">{{ _('Register') }}</a>
+        <a class="button action login persona hide-logged-in">{{ _('Sign In') }}</a>
+        <a class="button action logout hide-logged-out">{{ _('Sign Out') }}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="main full hide-on-desktop">
+    <div>
+      <h3>{{ _('Newsletter') }}</h3>
+
+      <div class="account-field newsletter-info">
+        <p>
+          {# This <span> is just to get a space before the link. #}
+          <span>{{ _('Get Firefox News.') }}</span>
+          <a href="/newsletter-signup" class="newsletter-signup">
+            {{ _('Sign up for our newsletter.') }}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="main full hide-on-desktop account-settings-links">
+    <div>
+      <a href="https://wiki.mozilla.org/Marketplace/Contributing/Apps"
+         target="_blank" class="button">
+        {{ _('Get Involved') }}
+      </a>
+      <a href="{{ url('privacy') }}" class="button">{{ _('Privacy Policy') }}</a>
+      <a href="{{ url('terms') }}" class="button">{{ _('Terms of Use') }}</a>
+      {% if user.get_permission('reviewer') %}
+        <a href="/reviewers/apps/queue/" class="button action reviewer-tools hide-logged-out"
+           rel="external">{{ _('Reviewer Tools') }}</a>
+      {% endif %}
+    </div>
+  </section>
+</form>

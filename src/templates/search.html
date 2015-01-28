@@ -1,0 +1,62 @@
+{% include '_macros/app_tile.html' %}
+{% include '_macros/more_button.html' %}
+
+{% set api_url = anonApiParams('search', params) %}
+
+{% if params.region %}
+  {# If the user entered PotatoSearch™ `:region=<region>` then update `region`. #}
+  {% set api_url = api_url|urlparams(region=params.region) %}
+{% endif %}
+
+{% if params.sort %}
+  {% set api_url = api_url|urlparams(sort=params.sort) %}
+{% endif %}
+
+{% defer (url=api_url, pluck='objects', as='app', paginate='.app-list',
+          id='searchresults') %}
+  <section class="main">
+    <div class="subheader">
+      <h1 class="search-results-header">
+        {{ _plural('<b>"{search_query}"</b> returned {n} result',
+                   '<b>"{search_query}"</b> returned {n} results',
+                   search_query=params.q, n=response.meta.total_count) }}
+        <a class="expand-toggle" title="{{ _('Expand') }}"></a>
+      </h1>
+    </div>
+  </section>
+
+  <section id="search-results" class="main full app-list-page search-results">
+    <div>
+      {% include "_includes/app_list_filters.html" %}
+      <ul class="app-list {{ 'paginated' if response.meta.next }}">
+        {% for result in processor(this) %}
+          <li class="item result app-list-app">
+            {{ app_tile(result, src='search', tray=True) }}
+          </li>
+        {% endfor %}
+
+        {# Render the more button if there's another page of results #}
+        {% if response.meta.next %}
+          {{ more_button(response.meta.next) }}
+        {% endif %}
+      </ol>
+    </div>
+  </section>
+{% placeholder %}
+  <section class="main">
+    <p class="spinner spaced alt"></p>
+  </section>
+{% empty %}
+  <section class="main">
+    <div class="subheader">
+      <h1>{{ _('No results found') }}</h1>
+    </div>
+  </section>
+{% except %}
+  <section class="main">
+    <div class="subheader">
+      {# Handle 500s so the page isn't blank. (bug 868667) #}
+      <h1>{{ _('No results found, try again later') }}</h1>
+    </div>
+  </section>
+{% end %}

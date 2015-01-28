@@ -1,41 +1,42 @@
-{% include "_macros/market_tile.html" %}
 {% include "_macros/more_button.html" %}
-{% include "_macros/rating.html" %}
+{% from "_macros/stars.html" import stars %}
+{% from "_macros/review.html" import review %}
 
-<section class="main c">
-  <header class="secondary-header c">
-    <h2>{{ _('Reviews') }}</h2>
-  </header>
-  <a href="{{ url('app', [slug]) }}" class="back-to-app">{{ _('Back to app') }}</a>
-  {% defer (url=apiParams('reviews', {'app': slug}), pluck='objects', id='ratings', paginate='.ratings-placeholder-inner') %}
-    <p id="add-review" class="primary-button">
-      {% if (response.user.can_rate or not user.logged_in()) or response.user.has_rated %}
-        {% if user.logged_in() and response.user.has_rated %}
-          <a class="button primo write-review" id="edit-review" href="{{ url('app/ratings/edit', [slug]) }}"
-             data-app="{{ slug }}">
-             {{ _('Edit Review') }}</a>
-        {% else %}
-          <a class="button primo write-review" id="write-review" href="{{ url('app/ratings/add', [slug]) }}"
-             data-app="{{ slug }}">
-             {{ _('Write a Review') if user.logged_in() else _('Sign in to Review') }}</a>
-        {% endif %}
-      {% endif %}
-    </p>
-    <div class="reviews reviews-listing">
-      <ul class="ratings-placeholder-inner">
-        {% for rat in this %}
-          {{ rating(rat, current_version=this.info.current_version) }}
-        {% endfor %}
+{% set app_endpoint = api('app', [slug]) %}
 
-        {# Render the more button if there's another page of results #}
-        {% if response.meta.next %}
-          {{ more_button(response.meta.next) }}
-        {% endif %}
-      </ul>
-    </div>
-  {% empty %}
-    <p class="no-results">
-      {{ _('This app has no reviews.') }}
-    </p>
-  {% end %}
+{% include "_includes/back_to_app.html" %}
+
+<section class="main full detail app-reviews reviews-listing">
+  <div>
+    {% defer (url=apiParams('reviews', {'app': slug}), pluck='objects',
+              id='ratings', paginate='.reviews-wrapper') %}
+      <div class="detail-flex-wrap">
+        <div class="detail-left-side">
+          <h3>{{ _('Reviews') }}</h3>
+          {% include "_includes/reviews_summary.html" %}
+
+          <ul class="reviews-wrapper">
+            {% for _review in this %}
+              {{ review(_review, current_version=this.info.current_version) }}
+            {% endfor %}
+
+            {% if response.meta.next %}
+              {{ more_button(response.meta.next) }}
+            {% endif %}
+          </ul>
+        </div>
+
+        <div class="detail-right-side">
+          {% set is_review_listing = true %}
+          {% include "_includes/reviews_sidebar.html" %}
+        </div>
+      </div>
+    {% empty %}
+      <p class="no-results">
+        {{ _('This app has no reviews.') }}
+      </p>
+    {% end %}
+  </div>
 </section>
+
+{% include "_includes/back_to_app.html" %}

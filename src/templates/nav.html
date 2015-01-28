@@ -1,13 +1,12 @@
-{% include "_macros/act_tray.html" %}
-
 {% macro navtab(code, name, url) %}
 <li class="tab-item {{ code }}{{ ' initial-active' if path == url }}" data-tab="{{ code }}">
   <a class="tab-link" href="{{ url }}">{{ name }}</a>
 </li>
 {% endmacro %}
 
-{# Actions drop-down (desktop) or settings toggle (mobile). #}
-{{ act_tray(true, is_settings) }}
+<div class="act-tray{{ ' active' if not is_settings }}">
+  <a href="#" class="header-button icon settings" title="{{ _('Settings') }}"></a>
+</div>
 
 {# Navigation tabs (Home, New, Popular, Categories). #}
 {# Uses body[data-page-type] to set active styles on the navigation tabs. #}
@@ -21,7 +20,7 @@
       data-tab="categories">
     <a class="tab-link mobile-cat-link" href="{{ url('categories') }}">{{ _('Categories') }}</a>
     <a class="tab-link desktop-cat-link">{{ _('Categories') }}</a>
-    <div class="hovercats appear-on-hover"></div>
+    <div class="hovercats"></div>
   </li>
 </ul>
 

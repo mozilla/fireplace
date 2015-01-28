@@ -9,21 +9,29 @@
     text-align: center;
 }
 
-@media $at-least-desktop {
-    #search-results .listing > li {
-        .shots .next, .shots .prev {
-            opacity: 0;
-        }
-        &:hover {
-            .shots .next, .shots .prev {
-                opacity: 1;
-            }
-        }
-    }
+.search-results-header b {
+    font-weight: 400;
 }
 
-@media $narrower-than-desktop {
+#search-results {
+    margin-top: -6px;
+}
+
+@media $base-desktop {
     #search-results {
-        margin-top: -6px;
+        margin-top: 0;
+
+        .listing > li {
+            .shots .next,
+            .shots .prev {
+                opacity: 0;
+            }
+            &:hover {
+                .shots .next,
+                .shots .prev {
+                    opacity: 1;
+                }
+            }
+        }
     }
 }

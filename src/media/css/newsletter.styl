@@ -8,56 +8,46 @@
 .newsletter {
     position: relative;
 
-    form, .success {
+    form,
+    .success {
         display: block;
         margin-left: auto;
         margin-right: auto;
-        max-width: 690px;
+        max-width: $desktop-ftr;
     }
-
     .submitted-once input:invalid {
         box-shadow: 0px 0px 2px 2px $action-error;
     }
-
     .processing-hidden {
         visibility: hidden;
     }
-
-    .success, .processing {
+    .success,
+    .processing {
         display: none;
     }
-
     .success p {
         margin-top: 5px;
         line-height: 1.3;
     }
-
     .processing {
-        position: absolute;
-        width: 100%;
         height: 100%;
-        top: calc(unquote('50% - 30px'));
+        position: absolute;
         right: 0;
         text-align: center;
+        top: calc(unquote('50% - 30px'));
+        width: 100%;
     }
-
     .spinner {
         display: inline-block;
         margin: 0;
     }
-
     h3 {
         font-size: 20px;
-        margin: 10px 0;
-    }
-
-    input, select, button {
-        margin: 0 10px 10px 0;
+        padding: 5px 0 20px;
     }
 
     .privacy {
         clear: left;
-        margin-bottom: 10px;
 
         label {
             color: $black;
@@ -89,11 +79,11 @@
     background: $white;
     height: 36px;
     padding: 5px 6px;
-    width: 50%;
 }
 
 .newsletter-email-field {
     width: 50%;
+    margin-right: 5px;
 }
 
 .expanding.newsletter-details {
@@ -101,34 +91,51 @@
 }
 
 .newsletter-details {
+    display: block;
     opacity: 1;
     transition: .3s;
+    width: 100%;
 }
 
 .expanded.newsletter-details {
     transition: none;
 }
 
-@media $narrower-than-desktop {
-    .newsletter-details {
-        display: block;
-        width: 100%;
-    }
+.newsletter-desktop {
+    display: none;
+}
 
-    .newsletter .newsletter-desktop {
-        display: none;
-    }
+.newsletter-email-field,
+.newsletter-select,
+.newsletter-signup-button,
+.newsletter-cancel-button {
+    width: 100%;
+}
 
-    .newsletter-email-field,
-    .newsletter-select,
-    .newsletter-signup-button,
-    .newsletter-cancel-button {
-        width: 100%;
+.newsletter-details {
+    margin-top: 20px;
+
+    input,
+    select,
+    button {
+        margin: 0 20px 20px 0;
     }
 }
 
-@media $at-least-desktop {
-    .newsletter .newsletter-mobile {
+@media $base-desktop {
+    .newsletter-email-field,
+    .newsletter-select {
+        width: 50%;
+    }
+    .newsletter-details.collapsed,
+    .newsletter-mobile {
         display: none;
+    }
+    .newsletter-desktop {
+        display: inline-block;
+    }
+    .newsletter-signup-button,
+    .newsletter-cancel-button {
+        width: auto;
     }
 }

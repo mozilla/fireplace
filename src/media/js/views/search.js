@@ -35,7 +35,7 @@ define('views/search',
         if (expanded !== undefined) {
             expand = expanded;
         }
-        $('ol.listing').toggleClass('expanded', expanded);
+        $('.app-list').toggleClass('expanded', expanded);
         $('.expand-toggle').toggleClass('active', expand);
         storage.setItem('expand-listings', !!expanded);
         if (expanded) {
@@ -224,7 +224,7 @@ define('views/search',
             (new Audio(urls.media('fireplace/hampster.ogg'))).play();
         }
 
-        builder.start('search/main.html', {
+        builder.start('search.html', {
             endpoint_name: 'search',
             params: params,
             processor: processor(query)
@@ -243,5 +243,4 @@ define('views/search',
             }
         });
     };
-
 });

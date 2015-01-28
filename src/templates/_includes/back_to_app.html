@@ -1,0 +1,11 @@
+{# Link to go back to app. Used from reviews page. #}
+{% defer (url=app_endpoint, as='app', key=slug) %}
+  <section class="main">
+    <div class="subheader">
+      <a href="{{ url('app', [slug]) }}" class="back-to-app">
+        {{ _('Back to {app}')|format(app=this.name) }}
+      </a>
+    </div>
+  </section>
+{% except %}
+{% end %}

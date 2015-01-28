@@ -13,10 +13,9 @@
         width: 90px;
     }
     .cat-icon {
-        background-color: $faint-gray;
-        border: 1px solid $light-gray;
+        border: 1px solid $greyscale-light-grey-tapped;
         border-radius: 65px;
-        color: $bg-gray;
+        color: $greyscale-grey;
         display: inline-block;
         height: 50px;
         position: relative;
@@ -33,7 +32,7 @@
             width: 30px;
         }
         p {
-            color: $gray;
+            color: $greyscale-black;
             font-size: 11px;
             position: relative;
             right: 40%;
@@ -45,38 +44,47 @@
     }
 }
 
-.category-header-desktop {
-    display: none;
+.category .app-list {
+    margin-top: 0;
 }
 
-@media $at-least-desktop {
-    .category-header-desktop {
-        margin: 0 auto 20px;
-        width: $desktop-content;
+.category .app-list-sort {
+    display: inline-block;
+}
+
+.category .app-list-filters {
+    min-height: 80px;
+}
+
+.category .compat-filter {
+    top: 60px;
+}
+
+@media $base-tablet {
+    .category .app-list {
+        margin-top: 30px;
     }
-}
-
-.category-header {
-    background: $note-gray;
-    padding: 8px 0 6px;
-    text-align: center;
-    width: 100%;
-
-    h3 {
-        color: #fff;
-    }
-}
-
-.desktop-cat-header {
-    display: none;
-}
-
-@media $at-least-desktop {
     .mobile-cat-header {
         display: none;
     }
     .desktop-cat-header {
         display: block;
+    }
+    .subheader.cat-header h1 {
+        margin: 0;
+        padding: 20px 0;
+    }
+    .cat-header .cat-icon:before {
+        background-color: $action-positive;
+        background-size: 180px auto;
+        border-radius: 50px;
+        height: 75px;
+        margin: 0 20px;
+        width: 75px;
+    }
+    .category-header-desktop {
+        margin: 0 auto 20px;
+        width: $desktop-content;
     }
     .category-header {
         background: none;
@@ -86,16 +94,19 @@
         width: auto;
 
         h3 {
-            color: $castle-skull-gray;
+            color: $greyscale-black;
             font-size: 30px;
             font-weight: 300;
-            text-shadow: 0 1px 0 $barely-gray;
-
-            &:before {
-                background-size: 180px auto;
-                height: 60px;
-                width: 60px;
-            }
+            text-shadow: 0 1px 0 $greyscale-light-grey;
         }
+    }
+    .cat-header .expand-toggle {
+        top: -2px;
+    }
+}
+
+@media $base-desktop {
+    .cat-header .cat-icon:before {
+        margin-left: 0;
     }
 }

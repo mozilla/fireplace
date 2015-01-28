@@ -1,4 +1,4 @@
-var helpers = require('../helpers');
+var helpers = require('../lib/helpers');
 
 helpers.startCasper();
 

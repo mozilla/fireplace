@@ -1,4 +1,4 @@
-var helpers = require('../helpers');
+var helpers = require('../lib/helpers');
 
 helpers.startCasper();
 
@@ -27,8 +27,7 @@ casper.test.begin('Check offline dialogue', {
     },
 
     test: function(test) {
-
-        casper.waitUntilVisible('#error-overlay.offline', function() {
+        casper.waitForSelector('#splash-overlay.hide', function() {
             test.assertVisible('#error-overlay.offline', 'Check offline error message is shown');
         });
 
@@ -38,9 +37,11 @@ casper.test.begin('Check offline dialogue', {
         });
 
         casper.waitForSelector('#splash-overlay:not(.hide)', function() {
-            casper.waitForSelector('#splash-overlay.hide', function() {
+            // Wait for the splash to show up again before continuing.
+        });
+
+        casper.waitForSelector('#splash-overlay.hide', function() {
             test.assertNotVisible('#error-overlay.offline', 'Check offline error message is removed');
-            });
         });
 
         casper.run(function() {

@@ -1,0 +1,111 @@
+/* The content ratings section of the app detail page. */
+@import '../lib';
+
+.content-ratings-wrapper {
+    .icon {
+        border-radius: 5px;
+        display: inline-block;
+        height: auto;
+        margin-right: 10px;
+        text-align: center;
+        vertical-align: middle;
+        width: 36px;
+    }
+    .content-rating .icon {
+        width: 48px;
+    }
+    .infobox-wrapper {
+        padding-bottom: 0;
+    }
+    .full {
+        padding-top: 24px;
+
+        .button {
+            display: block;
+        }
+    }
+}
+
+.content-ratings-left,
+.content-ratings-right,
+.content-rating,
+.content-descriptors,
+.interactive-elements,
+.rating-description {
+    float: left;
+}
+
+.content-ratings-left,
+.content-ratings-right {
+    max-width: 50%;
+}
+.content-ratings-left {
+    .content-rating {
+        margin-right: 10px;
+        max-width: 48px;
+    }
+    .content-descriptors,
+    .rating-description {
+        max-width: calc(unquote('100% - 58px'));
+    }
+}
+
+.content-ratings .content-rating {
+    color: $text;
+    display: table;
+
+    .icon {
+        float: left;
+        margin-bottom: 5px;
+    }
+    .icon-body-pegi {
+        border-radius: 0;
+    }
+    .icon-body-usk {
+        border-radius: 8px;
+    }
+}
+
+.content-descriptors.text li,
+.rating-description,
+.interactive-elements.text p {
+    color: $greyscale-dark-grey;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 400;
+    margin: 0 0 5px;
+}
+
+.content-descriptors.icons,
+.interactive-elements {
+    border-left: 1px solid $faint-gray;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    position: relative;
+
+    .icon {
+        display: inline-block;
+        margin: 0 4px 8px 0;
+    }
+}
+
+.content-ratings-right {
+    left: 12px;
+    position: relative;
+}
+
+.classind {
+    .content-ratings-left,
+    .content-descriptors {
+        max-width: none;
+    }
+}
+
+.content-descriptors.text li,
+.interactive-elements.text p {
+    display: block;
+}
+
+.usk .content-ratings-right {
+    left: 0;
+}

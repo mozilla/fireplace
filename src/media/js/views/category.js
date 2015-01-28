@@ -2,7 +2,6 @@ define('views/category',
     ['categories', 'models', 'tracking', 'underscore', 'urls', 'utils', 'z'],
     function(categories, models, tracking, _, urls, utils, z) {
     'use strict';
-
     var app_models = models('app');
 
     return function(builder, args, params) {

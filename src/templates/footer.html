@@ -1,36 +1,34 @@
 <div id="newsletter-footer" class="c">
   {% include "newsletter.html" %}
 </div>
-<div id="directory-footer" class="main full c">
-  <div class="group">
-    <a class="button devhub" href="/developers/">{{ _('Develop Apps') }}</a>
-  </div>
-  <div class="group links">
-    <a href="/developers/">{{ _('Developer Hub') }}</a>
-    <a href="https://wiki.mozilla.org/Marketplace/Contributing/Apps" target="_blank">{{ _('Get Involved') }}</a>
-    <a href="#" class="submit-feedback">{{ _('Feedback') }}</a>
-    {% if capabilities.firefoxOS %}
-      <a href="https://support.mozilla.org/products/firefox-os/marketplace" target="_blank">{{ _('Support') }}</a>
+
+<div id="footer">
+  <ul class="support-navigation">
+    <li><a href="#" class="submit-feedback">{{ _('Feedback') }}</a></li>
+    {% if capabilities.device_type() == 'desktop' %}
+      <li>
+        <a href="https://support.mozilla.org/en-US/kb/marketplace-apps-firefox-desktop" target="_blank">{{ _('Support') }}</a>
+      </li>
+    {% elif capabilities.firefoxOS %}
+      <li>
+        <a href="https://support.mozilla.org/products/firefox-os/marketplace" target="_blank">{{ _('Support') }}</a>
+      </li>
     {% elif capabilities.firefoxAndroid %}
-      <a href="https://support.mozilla.org/kb/install-android-apps-using-marketplace" target="_blank">{{ _('Support') }}</a>
+      <li>
+        <a href="https://support.mozilla.org/kb/install-android-apps-using-marketplace" target="_blank">{{ _('Support') }}</a>
+      </li>
     {% endif %}
-  </div>
-  <div class="language group links">
-    <span class="region region-{{ user_region }}">
-      {{ REGIONS[user_region] }}</span>
-    <a href="{{ url('purchases') }}">{{ _('My Apps') }}</a>
+    <li><a href="/developers/">{{ _('Develop Apps') }}</a></li>
     {% if user.get_permission('developer') %}
-      <a href="/developers/submissions" rel="external">{{ _('My Submissions') }}</a>
+      <li><a href="/developers/submissions" rel="external">{{ _('My Submissions') }}</a></li>
     {% endif %}
     {% if user.get_permission('reviewer') %}
-      <a href="/reviewers/apps/queue/" rel="external" class="only-logged-in">{{ _('Reviewer Tools') }}</a>
+      <li><a href="/reviewers/apps/queue/" rel="external" class="only-logged-in">{{ _('Reviewer Tools') }}</a></li>
     {% endif %}
     {% if user.get_permission('lookup') %}
-      <a href="/lookup/" rel="external" class="only-logged-in">{{ _('Lookup Tool') }}</a>
+      <li><a href="/lookup/" rel="external" class="only-logged-in">{{ _('Lookup Tool') }}</a></li>
     {% endif %}
-  </div>
-</div>
-<div id="footer">
+  </ul>
   <div class="pad">
     <h1 id="footzilla"><a href="https://www.mozilla.org/" target="_blank">mozilla</a></h1>
     <p>

@@ -1,0 +1,97 @@
+/* 'more' button container, button, placement, and spinners. */
+@import 'lib';
+
+$loadmore-desktop-width = 300px;
+
+.loadmore {
+    list-style: none;
+    margin: -1px auto 0 auto;
+    padding: 18px 10px;
+    position: relative;
+    width: 100%;
+
+    .button {
+        display: block;
+        margin: auto;
+        padding: 0;
+        width: $loadmore-desktop-width;
+
+        &:not(.hide) + .spinner {
+            display: none;
+        }
+        &.hide {
+            visibility: hidden;
+        }
+    }
+    &.loading {
+        button {
+            visibility: hidden;
+        }
+        .throbber {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 32px;
+            height: 32px;
+            border-radius: 20px;
+            border: 4px solid #666;
+            border-color: #666 transparent;
+            animation(unquote('spin 1s linear infinite'));
+        }
+    }
+    span,
+    .throbber {
+        display: none;
+    }
+    .spinner {
+        display: block;
+    }
+    &.pagination-error .error-text {
+        display: block;
+        text-align: center;
+    }
+}
+
+.listing .loadmore,
+.reviews-listing .loadmore {
+    height: auto;
+    min-height: 68px;
+}
+
+@media $base-desktop {
+    .loadmore {
+        padding: 25px 10px 0;
+    }
+    .grid-if-desktop .loadmore {
+        padding-top: 18px;
+    }
+}
+
+[data-page-type~=homepage],
+[data-page-type~=app-list] {
+    .loadmore {
+        // Put loadmore button on its own row.
+        margin-bottom: 0;
+        max-width: 100%;
+        padding-top: 15px;
+        width: 100%;
+    }
+}
+
+[data-page-type~=app-list] {
+    .loadmore {
+        padding-bottom: 0;
+        padding-top: 25px;
+    }
+}
+
+@media $base-desktop {
+    [data-page-type~=homepage],
+    [data-page-type~=app-list] {
+        padding-bottom: 0;
+    }
+}
