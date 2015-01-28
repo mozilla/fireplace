@@ -160,18 +160,31 @@ function makeToken() {
 function fake_login() {
     casper.evaluate(function() {
         console.log('[phantom] Performing fake login action');
-        window.require('user').set_token('mocktoken');
-        window.require('user').update_apps({
-            'installed': [],
-            'developed': [424242],  // Hard-coded ID from the mock API.
-            'purchased': []
-        });
+        var user = window.require('user');
+        var views = window.require('views');
         var z = window.require('z');
+
+        user.set_token('mocktoken');
+        user.update_apps({
+            installed: [],
+            developed: [424242],  // Hard-coded ID from the mock API.
+            purchased: []
+        });
+        user.update_settings({
+            carrier_sim: null,
+            email: 'someemail123@mozilla.com',
+            enable_recommendations: false,
+            display_name: 'swarley',
+            region_sim: null,
+            region_geoip: 'us',
+            source: 'firefox-accounts'
+        });
+
         z.body.addClass('logged-in');
         z.page.trigger('reload_chrome');
         z.page.trigger('logged_in');
 
-        window.require('views').reload();
+        views.reload();
     });
 }
 
@@ -201,6 +214,15 @@ function tearDown() {
 }
 
 
+function desktopTest(testObj) {
+    // Wrapper around test object to set up desktop viewport.
+    return _.extend(testObj, {
+        setUp: setUpDesktop,
+        tearDown: tearDown
+    });
+}
+
+
 module.exports = {
     assertAPICallWasMade: assertAPICallWasMade,
     assertContainsText: assertContainsText,
@@ -210,6 +232,7 @@ module.exports = {
     changeViewportDesktop: changeViewportDesktop,
     changeViewportMobile: changeViewportMobile,
     changeViewportTablet: changeViewportTablet,
+    desktopTest: desktopTest,
     done: done,
     fake_login: fake_login,
     makeUrl: makeUrl,

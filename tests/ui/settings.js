@@ -1,20 +1,11 @@
 var helpers = require('../lib/helpers');
+var _ = require('../../node_modules/underscore');
 
-helpers.startCasper();
-
-casper.test.begin('Test account settings', {
+casper.test.begin('Test settings', {
     test: function(test) {
+        helpers.startCasper({path: '/settings'});
 
-        casper.waitForSelector('#splash-overlay.hide', function() {
-            casper.click('.header-button.settings');
-        });
-
-        casper.waitForUrl(helpers.makeUrl('/settings'), function() {
-            test.assertUrlMatch(/\/settings/);
-            test.assertTitle('Account Settings | Firefox Marketplace');
-            test.assertVisible('.account-settings .persona');
-            test.assertSelectorHasText('.account-settings .persona', 'Sign In');
-            test.assertSelectorHasText('.account-settings .persona', 'Register');
+        casper.waitUntilVisible('.account-settings .persona', function() {
             test.assertNotVisible('.account-settings .logout');
             test.assertNotVisible('.account-settings-save button[type="submit"]');
             test.assertNotVisible('.account-settings .email');
@@ -23,11 +14,7 @@ casper.test.begin('Test account settings', {
             helpers.fake_login();
         });
 
-        casper.waitForSelector('.account-settings .logout', function() {
-            test.assertUrlMatch(/\/settings/);
-            test.assertTitle('Account Settings | Firefox Marketplace');
-            test.assertVisible('.account-settings .logout');
-            test.assertSelectorHasText('.account-settings .logout', 'Sign Out');
+        casper.waitUntilVisible('.account-settings .logout', function() {
             test.assertNotVisible('.account-settings .persona');
             test.assertVisible('.account-settings-save button[type="submit"]');
             test.assertVisible('.account-settings .email');
@@ -36,47 +23,70 @@ casper.test.begin('Test account settings', {
             casper.fill('.account-settings', {
                 display_name: 'hello my name is rob hudson'
             });
-            casper.click('#enable_recommendations');
+            test.assertVisible('.account-settings .newsletter-info');
+            test.assert(helpers.checkValidity('.account-settings'),
+                        'Account settings form is valid');
             casper.click('.account-settings-save [type="submit"]');
 
-            // Test submitting with recommendations off removes the body class.
             test.assertEqual(
                 casper.getFormValues('.account-settings').display_name,
                 'hello my name is rob hudson'
             );
-            test.assertEqual(
-                casper.getFormValues('.account-settings').enable_recommendations,
-                false
-            );
-        });
 
-        casper.waitUntilVisible('#notification', function() {
-            test.assertNotExists('body.show-recommendations');
-
-            // Now test enabling recommendations.
-            casper.click('#enable_recommendations');
-            casper.click('.account-settings-save button');
-        });
-
-        casper.waitForSelector('body.show-recommendations', function() {
-            // Test submitting with recommendations on adds the body class.
-            test.assertEqual(
-                casper.getFormValues('.account-settings').enable_recommendations,
-                true
-            );
             casper.click('.account-settings-save .logout');
         });
 
         casper.waitUntilVisible('.account-settings', function() {
-            test.assertUrlMatch(/\/settings/);
             test.assertSelectorHasText('.account-settings-save .login', 'Sign In');
             test.assertSelectorHasText('.account-settings-save .register', 'Register');
             test.assertNotVisible('.account-settings-save .logout');
+        });
+
+        helpers.done(test);
+    }
+});
+
+casper.test.begin('Test settings recommendations', helpers.desktopTest({
+    test: function(test) {
+        helpers.startCasper({path: '/settings'});
+
+        helpers.waitForPageLoaded(function() {
+            helpers.fake_login();
+        });
+
+        helpers.waitForPageLoaded(function() {
+            test.assertNotExists('body.show-recommendations');
+            casper.click('#enable_recommendations');
+            casper.click('.account-settings-save button[type="submit"]');
+        });
+
+        casper.waitForSelector('body.show-recommendations', function() {
+            // Test submitting with recommendations adds the body class.
+            test.assertEqual(
+                casper.getFormValues('.account-settings').enable_recommendations,
+                true
+            );
+
+            // Test the recommendations tab is visible.
+            test.assertVisible('.navbar [data-tab="recommended"]');
+            casper.click('.account-settings-save .logout');
+        });
+
+        helpers.waitForPageLoaded(function() {
+            // Test logging out removes the body class.
             test.assertNotExists('body.show-recommendations');
         });
 
-        casper.run(function() {
-            test.done();
-        });
+        helpers.done(test);
     }
-});
+}));
+
+casper.test.begin('Test settings newsletter desktop', helpers.desktopTest({
+    test: function(test) {
+        helpers.waitForPageLoaded(function() {
+            test.assertNotVisible('.account-settings .newsletter-info');
+        });
+
+        helpers.done(test);
+    }
+}));
