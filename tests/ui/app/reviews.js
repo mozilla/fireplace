@@ -4,18 +4,31 @@
 var helpers = require('../lib/helpers');
 
 function testAddReviewModal(test) {
-    casper.waitForSelector('.mkt-prompt .add-review-form', function() {
+    casper.waitForSelector('.add-review-form', function() {
         test.assertSelectorHasText('.char-count b', '150');
         test.assert(!helpers.checkValidity('.mkt-prompt form'));
         casper.fill('.add-review-form', {'body': 'test'});
     });
 
     casper.waitForText('146', function() {
+        // Test form validity.
         test.assert(!helpers.checkValidity('.mkt-prompt form'));
+
         casper.click('.stars input[value="3"]');
         test.assert(helpers.checkValidity('.mkt-prompt form'));
+        casper.click('.add-review-form [type="submit"]');
+    });
+
+    casper.waitWhileVisible('.add-review-form', function() {
+        // Post review stuff.
+        helpers.assertUATracking(test, [
+            'App view interactions',
+            'click',
+            'Successful review'
+        ]);
     });
 }
+
 
 casper.test.begin('Test app review page', {
     test: function(test) {
@@ -31,6 +44,7 @@ casper.test.begin('Test app review page', {
         helpers.done(test);
     }
 });
+
 
 casper.test.begin('Test flag review on app review page', {
     test: function(test) {

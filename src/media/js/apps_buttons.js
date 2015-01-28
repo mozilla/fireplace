@@ -5,7 +5,7 @@ define('apps_buttons',
     function(apps, cache, capabilities, defer, l10n, log, login, models,
              notification, payments, requests, settings,
              tracking_events, urls, user, utils, views, z) {
-    var console = log('buttons');
+    var logger = log('buttons');
     var gettext = l10n.gettext;
     var apps_model = models('app');
 
@@ -39,8 +39,7 @@ define('apps_buttons',
     });
 
     function install(product, $button, loginPopup) {
-
-        console.log('Install requested for', product.name);
+        logger.log('Install requested for', product.name);
 
         // TODO: Have the API possibly return this (bug 889501).
         product.receipt_required = (product.premium_type !== 'free' &&
@@ -48,7 +47,7 @@ define('apps_buttons',
 
         // If it's a paid app, ask the user to sign in first.
         if (product.receipt_required && !user.logged_in()) {
-            console.log('Purchase suspended; user needs to log in');
+            logger.log('Purchase suspended; user needs to log in');
 
             // Create a blank window here so we can pass it to the login func;
             loginPopup = (!capabilities.navPay) ? utils.openWindow() : undefined;
@@ -60,7 +59,7 @@ define('apps_buttons',
                 var new_button = get_button(product.manifest_url);
                 install(product, new_button, loginPopup);
             }).fail(function(){
-                console.log('Purchase cancelled; login aborted');
+                logger.log('Purchase cancelled; login aborted');
                 notification.notification({message: gettext('Payment cancelled.')});
                 if (loginPopup) {
                     loginPopup.close();
@@ -93,7 +92,7 @@ define('apps_buttons',
 
         if (product.payment_required) {
             // The app requires a payment.
-            console.log('Starting payment flow for', product.name);
+            logger.log('Starting payment flow for', product.name);
             $this.data('old-text', $this.find('em').text());  // Save the old text of the button.
             setButton($this, gettext('Purchasing'), 'purchasing');
 
@@ -103,7 +102,7 @@ define('apps_buttons',
             };
 
             payments.purchase(product, purchaseOpts).then(function() {
-                console.log('Purchase flow completed for', product.name);
+                logger.log('Purchase flow completed for', product.name);
 
                 // Update the button to say Install.
                 setButton($this, gettext('Install'), 'purchased');
@@ -131,18 +130,18 @@ define('apps_buttons',
                 start_install();
             }, function() {
                 notification.notification({message: gettext('Payment cancelled.')});
-                console.log('Purchase flow rejected for', product.name);
+                logger.log('Purchase flow rejected for', product.name);
                 def.reject();
             });
         } else {
             // If a popup was kept open for payments we don't need it
             // now we're starting the install.
             if (loginPopup) {
-                console.log('Closing the popup');
+                logger.log('Closing the popup');
                 loginPopup.close();
             }
             // There's no payment required, just start install.
-            console.log('Starting app installation for', product.name);
+            logger.log('Starting app installation for', product.name);
             // Start the app's installation.
             start_install();
         }
@@ -161,7 +160,7 @@ define('apps_buttons',
             if (!product.is_packaged && !product.payment_required) {
                 _timeout = setTimeout(function() {
                     if ($this.hasClass('spinning')) {
-                        console.log('Spinner timeout for ', product.name);
+                        logger.log('Spinner timeout for ', product.name);
                         revertButton($this);
                         notification.notification({
                             message: gettext('Sorry, we had trouble fetching this app\'s data. Please try again later.')
@@ -173,7 +172,7 @@ define('apps_buttons',
             // If the app has already been installed by the user and we don't
             // need a receipt, just start the app install.
             if (user.has_installed(product.id) && !product.receipt_required) {
-                console.log('Receipt not required (skipping record step) for', product.name);
+                logger.log('Receipt not required (skipping record step) for', product.name);
                 return do_install();
             }
 
@@ -197,7 +196,7 @@ define('apps_buttons',
             requests.post(api_endpoint, post_data).done(function(response) {
                 // If the server returned an error, log it and reject the deferred.
                 if (response.error) {
-                    console.log('Server returned error: ' + response.error);
+                    logger.log('Server returned error: ' + response.error);
                     def.reject();
                     return;
                 }
@@ -228,7 +227,7 @@ define('apps_buttons',
                 if (error) {
                     notification.notification({message: error});
                 }
-                console.log('App install deferred was rejected for ', product.name);
+                logger.log('App install deferred was rejected for ', product.name);
                 def.reject();
             });
         }
@@ -250,11 +249,11 @@ define('apps_buttons',
 
             mark_installed(product.manifest_url);
             tracking_events.track_app_install_success(product, $this);
-            console.log('Successful install for', product.name);
+            logger.log('Successful install for', product.name);
         }, function() {
             revertButton($this);
             tracking_events.track_app_install_fail(product, $this);
-            console.log('Unsuccessful install for', product.name);
+            logger.log('Unsuccessful install for', product.name);
         });
 
         return def.promise();

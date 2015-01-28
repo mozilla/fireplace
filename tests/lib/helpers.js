@@ -97,11 +97,57 @@ function assertHasFocus(selector, msg) {
 }
 
 
+function assertWaitForSelector(test, selector, cb) {
+    // Waits for selector and then asserts it at the same time.
+    casper.waitForSelector(selector, function() {
+        test.assertExists(selector);
+        if (cb) {
+            cb();
+        }
+    });
+}
+
+
 function checkValidity(selector) {
     // Returns validity of a form as a boolean.
     return casper.evaluate(function(sel) {
         return document.querySelector(sel).checkValidity();
     }, selector);
+}
+
+
+function assertUATracking(test, trackArgs) {
+    // Check that a UA tracking event or variable change was made
+    // by checking the tracking logs.
+    // If trackArgs is a string, it will just check the first argument.
+    var isString = false;
+    if (trackArgs.constructor === String) {
+        isString = true;
+    }
+
+    var trackExists = casper.evaluate(function(trackArgs, isString) {
+        var track_log = require('tracking').track_log;
+
+        // Compare two arrays.
+        function arraysAreEqual(arrA, arrB) {
+            return arrA.length == arrB.length &&
+                arrA.every(function(element, index) {
+                    return element === arrB[index];
+                });
+        }
+
+        return track_log.filter(function(log) {
+            if (isString) {
+                return log[0] == trackArgs;
+            }
+            return arraysAreEqual(log, trackArgs);
+        }).length !== 0;
+    }, trackArgs, isString);
+
+    if (!trackExists) {
+        console.log(trackArgs);
+    }
+    test.assert(trackExists, 'Tracking event exists');
 }
 
 
@@ -227,6 +273,8 @@ module.exports = {
     assertAPICallWasMade: assertAPICallWasMade,
     assertContainsText: assertContainsText,
     assertHasFocus: assertHasFocus,
+    assertUATracking: assertUATracking,
+    assertWaitForSelector: assertWaitForSelector,
     capture: capture,
     checkValidity: checkValidity,
     changeViewportDesktop: changeViewportDesktop,

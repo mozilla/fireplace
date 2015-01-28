@@ -78,7 +78,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
 
         // Switches for features.
         payments_enabled: true,
-        tracking_enabled: false,
+        tracking_enabled: true,
         action_tracking_enabled: true,
         upsell_enabled: true,
         cache_rewriting_enabled: true,

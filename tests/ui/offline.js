@@ -1,8 +1,5 @@
 var helpers = require('../lib/helpers');
 
-helpers.startCasper();
-
-
 function restoreOnlineState() {
     casper.echo('Changing window.__mockOffLine -> false', 'INFO');
     casper.evaluate(function() {
@@ -10,9 +7,7 @@ function restoreOnlineState() {
     });
 }
 
-
 casper.test.begin('Check offline dialogue', {
-
     setUp: function() {
         casper.once('page.initialized', function() {
             casper.echo('Setting window.__mockOffLine -> true', 'INFO');
@@ -21,14 +16,15 @@ casper.test.begin('Check offline dialogue', {
             });
         });
     },
-
     tearDown: function() {
         restoreOnlineState();
     },
-
     test: function(test) {
-        casper.waitForSelector('#splash-overlay.hide', function() {
-            test.assertVisible('#error-overlay.offline', 'Check offline error message is shown');
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            test.assertVisible('#error-overlay.offline',
+                               'Check offline error message is shown');
         });
 
         casper.then(function() {
@@ -41,11 +37,10 @@ casper.test.begin('Check offline dialogue', {
         });
 
         casper.waitForSelector('#splash-overlay.hide', function() {
-            test.assertNotVisible('#error-overlay.offline', 'Check offline error message is removed');
+            test.assertNotVisible('#error-overlay.offline',
+                                  'Check offline error message is removed');
         });
 
-        casper.run(function() {
-            test.done();
-        });
+        helpers.done(test);
     },
 });

@@ -1,11 +1,14 @@
 define('tracking',
     ['log', 'settings', 'storage', 'underscore', 'utils', 'z'],
     function(log, settings, storage, _, utils, z) {
+    var logger = log('tracking');
 
     var enabled = settings.tracking_enabled;
-    var actions_enabled = settings.action_tracking_enabled;
+    var action_tracking_enabled = settings.action_tracking_enabled;
 
-    var console = log('tracking');
+    var track_log = [];
+    var track_vars = {};
+    var track_page_vars = {};
 
     var clientID = storage.getItem('clientID');
     if (!clientID && enabled) {
@@ -13,10 +16,13 @@ define('tracking',
     }
 
     if (!enabled) {
-        console.log('Tracking disabled, aborting init');
+        logger.log('UA tracking disabled');
         return {
             enabled: false,
-            actions_enabled: false,
+            action_enabled: false,
+            track_log: [],
+            track_vars: [],
+            track_page_vars: {},
             setVar: function() {},
             setPageVar: function() {},
             trackEvent: function() {}
@@ -97,7 +103,7 @@ define('tracking',
                     cache: 31536000
                 });
             }
-            console.log('Setting up tracking with Potatolytics');
+            logger.log('Initializing UA tracking through iframe');
             potato_iframe = document.createElement('iframe');
             potato_iframe.id = 'iframe-potatolytics';
             potato_iframe.src = iframe_src;
@@ -117,7 +123,7 @@ define('tracking',
                         // console.warn('[echo] ' + e.data);
                         break;
                     case 'potatolytics-loaded':
-                        console.log('Potatolytics iframe is loaded');
+                        logger.log('UA tracking iframe loaded');
                         potato_initialized = true;
                         ua_push(settings.ua_tracking_id, get_url(), clientID,
                             settings.tracking_site_section,
@@ -126,13 +132,13 @@ define('tracking',
                 }
             });
         } else {
-            console.log('Setting up UA tracking without Potatolytics');
+            logger.log('Initializing UA tracking without iframe');
             setupUATracking(settings.ua_tracking_id, get_url(), clientID,
                             settings.tracking_site_section, settings.tracking_site_section_index);
         }
     }
 
-    console.log('Tracking initialized');
+    logger.log('UA tracking initialized');
 
     var ua_page_vars = {};
     z.win.on('navigating', function(e, popped) {
@@ -140,7 +146,7 @@ define('tracking',
         if (!popped) {
             var url = get_url();
             // Pass page vars to UA
-            console.log('Tracking page view', url);
+            logger.log('UA-tracking page view', url);
             var uadata = _.extend({'page': url, 'title': document.title}, ua_page_vars);
             ua_push('send', 'pageview', uadata);
             ua_page_vars = {};
@@ -148,24 +154,32 @@ define('tracking',
     });
 
     function actionWrap(func) {
-        if (!actions_enabled) return function() {};
+        if (!action_tracking_enabled) {
+            return function() {};
+        }
         return func;
     }
 
     return {
         enabled: true,
-        actions_enabled: actions_enabled,
+        action_enabled: action_tracking_enabled,
+        track_log: track_log,
+        track_vars: track_vars,
         setVar: actionWrap(function(index, name, value) {
             ua_push('set', 'dimension' + index, value);
+            track_log.push([index, name, value]);
+            track_vars['dimension' + index] = value;
         }),
         setPageVar: actionWrap(function(index, name, value) {
             ua_page_vars['dimension' + index] = value;
+            track_log.push([index, name, value]);
+            track_page_vars['dimension' + index] = value;
         }),
         trackEvent: actionWrap(function() {
             var args = Array.prototype.slice.call(arguments, 0);
             ua_push.apply(this, ['send', 'event'].concat(args));
+            track_log.push(args);
             return args;
         })
     };
-
 });

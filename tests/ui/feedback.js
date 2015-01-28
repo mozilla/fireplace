@@ -15,9 +15,11 @@ function testFeedbackForm(test) {
     test.assertVisible('[name="feedback"]');
 
     test.assert(!helpers.checkValidity('.feedback-form'));
+
     casper.fill('.feedback-form', {'feedback': 'test'});
     test.assert(helpers.checkValidity('.feedback-form'));
 }
+
 
 casper.test.begin('Test feedback page', {
     test: function(test) {

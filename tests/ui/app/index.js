@@ -3,7 +3,7 @@
 */
 var helpers = require('../lib/helpers');
 
-casper.test.begin('App detail tests', {
+casper.test.begin('Test app detail', {
     test: function(test) {
         helpers.startCasper({path: '/app/free'});
 
@@ -42,7 +42,7 @@ casper.test.begin('App detail tests', {
 });
 
 
-casper.test.begin('App detail previews tests', {
+casper.test.begin('Test app detail previews', {
     test: function(test) {
         helpers.startCasper({path: '/app/abc'});
 
@@ -60,6 +60,12 @@ casper.test.begin('App detail previews tests', {
 
         casper.waitWhileVisible('#lightbox', function() {
             test.assertNotVisible('#lightbox', 'Lightbox should be invisible');
+
+            helpers.assertUATracking(test, [
+                'App view interactions',
+                'click',
+                'Screenshot view'
+            ]);
         });
 
         helpers.done(test);
@@ -67,8 +73,28 @@ casper.test.begin('App detail previews tests', {
 });
 
 
+casper.test.begin('Test app detail description toggle', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/abc'});
 
-casper.test.begin('App detail tests for packaged apps', {
+        casper.waitForSelector('.description-wrapper.truncated', function() {
+            casper.click('.description-wrapper + .truncate-toggle');
+
+            test.assertNotExists('.description-wrapper.truncated');
+
+            helpers.assertUATracking(test, [
+                'App view interactions',
+                'click',
+                'Toggle description'
+            ]);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test app detail tests for packaged apps', {
     test: function(test) {
         helpers.startCasper({path: '/app/packaged'});
         helpers.waitForPageLoaded(function() {
@@ -80,7 +106,7 @@ casper.test.begin('App detail tests for packaged apps', {
 });
 
 
-casper.test.begin('App detail tests for paid apps', {
+casper.test.begin('Test app detail for paid apps', {
     test: function(test) {
         helpers.startCasper({path: '/app/paid'});
         helpers.waitForPageLoaded(function() {
@@ -91,7 +117,7 @@ casper.test.begin('App detail tests for paid apps', {
 });
 
 
-casper.test.begin('App detail tests as a developer', {
+casper.test.begin('Test app detail as a developer', {
     test: function(test) {
         helpers.startCasper({path: '/app/developed'});
 
@@ -110,7 +136,7 @@ casper.test.begin('App detail tests as a developer', {
 });
 
 
-casper.test.begin('App detail tests as a reviewer', {
+casper.test.begin('Test app detail as a reviewer', {
     test: function(test) {
         helpers.startCasper({path: '/app/developed'});
 
@@ -130,7 +156,7 @@ casper.test.begin('App detail tests as a reviewer', {
 });
 
 
-casper.test.begin('App detail reviews tests if user has not rated', {
+casper.test.begin('Test app detail reviews if user has not rated', {
     setUp: helpers.setUpDesktop,
     tearDown: helpers.tearDown,
     test: function(test) {
@@ -149,7 +175,7 @@ casper.test.begin('App detail reviews tests if user has not rated', {
 });
 
 
-casper.test.begin('App detail reviews tests if user has rated', {
+casper.test.begin('Test app detail reviews if user has rated', {
     setUp: helpers.setUpDesktop,
     tearDown: helpers.tearDown,
     test: function(test) {
