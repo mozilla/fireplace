@@ -58,7 +58,7 @@ define('tracking_events',
     })
 
     // App list expand toggle (contracted)
-    .on('click', '.app-list-filters-expand-toggle:not(.active)', function() {
+    .on('click', '.app-list-filters-expand-toggle.active', function() {
         track([
             'View type interactions',
             'click',
