@@ -17,10 +17,10 @@ node_js:
   - "0.10"
 before_script:
   - "export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'"
-# Install flue.
+# Install API mock.
   - "export PYTHONUSERBASE=/tmp/python-env"
-  - "git clone https://github.com/mozilla/flue /tmp/flue"
-  - "pushd /tmp/flue"
+  - "git clone https://github.com/mozilla/marketplace-api-mock /tmp/marketplace-api-mock"
+  - "pushd /tmp/marketplace-api-mock"
   - "pip install --user --exists-action=w --download-cache=/tmp/pip-cache -r requirements.txt"
   - "popd"
 # Install gist gem.
@@ -32,8 +32,8 @@ script:
 # - "commonplace lint"
 # Generate langpacks, catches PO file errors.
   - "commonplace langpacks"
-# Start flue.
-  - "pushd /tmp/flue"
+# Start API mock server.
+  - "pushd /tmp/marketplace-api-mock"
   - "python main.py &"
   - "popd"
 # Start the webserver.
