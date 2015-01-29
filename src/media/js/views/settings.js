@@ -34,10 +34,8 @@ define('views/settings',
         user.update_settings(data);
 
         requests.patch(urls.api.url('settings'), data).done(function() {
-            if (data.enable_recommendations) {
-                // Toggle recommended nav item depending on what was checked.
-                z.body.toggleClass('show-recommendations', data.enable_recommendations);
-            }
+            // Toggle recommended nav item depending on what was checked.
+            z.body.toggleClass('show-recommendations', data.enable_recommendations);
             update_settings();
             notify({message: gettext('Your settings have been successfully saved')});
             cache.bust(urls.api.url('settings'));

@@ -54,10 +54,14 @@ casper.test.begin('Test settings recommendations', helpers.desktopTest({
             helpers.fake_login();
         });
 
-        helpers.waitForPageLoaded(function() {
-            test.assertNotExists('body.show-recommendations');
+        function toggleRecommendations() {
             casper.click('#enable_recommendations');
             casper.click('.account-settings-save button[type="submit"]');
+        }
+
+        helpers.waitForPageLoaded(function() {
+            test.assertNotExists('body.show-recommendations');
+            toggleRecommendations();
         });
 
         casper.waitForSelector('body.show-recommendations', function() {
@@ -69,6 +73,22 @@ casper.test.begin('Test settings recommendations', helpers.desktopTest({
 
             // Test the recommendations tab is visible.
             test.assertVisible('.navbar [data-tab="recommended"]');
+
+            // Test that disabling recommendations hides the tab.
+            toggleRecommendations();
+        });
+
+        helpers.waitForPageLoaded(function() {
+            // Test the body class has been removed and the tab is hidden.
+            test.assertNotExists('body.show-recommendations');
+            test.assertNotVisible('.navbar [data-tab="recommended"]');
+
+            // Re-enable recommendations.
+            toggleRecommendations();
+        });
+
+        helpers.waitForPageLoaded(function() {
+            // Sign out.
             casper.click('.account-settings-save .logout');
         });
 
