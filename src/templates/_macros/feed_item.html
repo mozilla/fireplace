@@ -193,9 +193,11 @@
   {% set src = 'operator-shelf-element' if coll.carrier else 'collection-element' %}
 
   <div class="collection-landing-wrapper"
+       {% if not coll.carrier %}
+         data-collection-landing-color="{{ coll.color or 'sapphire' }}"
+       {% endif %}
        {% if coll.background_image %}data-collection-landing-has-background-image{% endif %}
        {% if coll.description %}data-collection-landing-has-description{% endif %}
-       {% if coll.color %}data-collection-landing-color="{{ coll.color }}"{% endif %}
        {% if coll.type == feed.COLL_PROMO %}data-collection-landing-is-promo{% endif %}
        {% if coll.type == feed.COLL_LISTING %}data-collection-landing-is-listing{% endif %}
        {% if coll.region %}data-shelf-landing-region="{{ coll.region }}"{% endif %}
