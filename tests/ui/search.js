@@ -8,7 +8,7 @@ var helpers = require('../lib/helpers');
 
 var appNthChild = appList.appNthChild;
 
-casper.test.begin('Search results header tests', {
+casper.test.begin('Test search results header', {
     test: function(test) {
         helpers.startCasper();
 
@@ -34,7 +34,7 @@ casper.test.begin('Search results header tests', {
     }
 });
 
-casper.test.begin('Search device filtering tests', {
+casper.test.begin('Test search device filtering', {
     test: function(test) {
         helpers.startCasper({path: '/search?q=test&device_override=desktop'});
 
@@ -56,7 +56,7 @@ casper.test.begin('Search device filtering tests', {
 });
 
 
-casper.test.begin('Search empty', {
+casper.test.begin('Test search empty', {
     test: function(test) {
         helpers.startCasper();
 
@@ -69,6 +69,21 @@ casper.test.begin('Search empty', {
             test.assertVisible('#search-q');
             test.assertDoesntExist('.app-list');
             test.assertSelectorHasText('.subheader h1', 'No results found');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test search XSS', {
+    test: function(test) {
+        helpers.startCasper({
+            path: '/search?q=%3Cscript+id%3D%22%23xss-script%22%3E%3C%2Fscript%3E'
+        });
+
+        helpers.waitForPageLoaded(function() {
+            test.assertDoesntExist('#xss-script');
         });
 
         helpers.done(test);
