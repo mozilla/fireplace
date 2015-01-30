@@ -2,7 +2,7 @@
     Initialize the image deferrer for the Marketplace.
 */
 define('image-deferrer-mkt',
-    ['image-deferrer', 'nunjucks', 'z'],
+    ['image-deferrer', 'core/nunjucks', 'core/z'],
     function(ImageDeferrer, nunjucks, z) {
     'use strict';
 

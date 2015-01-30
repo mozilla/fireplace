@@ -1,5 +1,5 @@
 define('app_list',
-    ['capabilities', 'storage', 'tracking', 'utils', 'z'],
+    ['core/capabilities', 'core/storage', 'tracking', 'core/utils', 'core/z'],
     function(caps, storage, tracking, utils, z) {
     'use strict';
 

@@ -13,7 +13,7 @@ casper.test.begin('Test mozApps mock', {
 
         helpers.waitForPageLoaded(function() {
             test.assert(casper.evaluate(function() {
-                return window.require('capabilities').webApps;
+                return window.require('core/capabilities').webApps;
             }), 'Check mozApps mock is working');
         });
 

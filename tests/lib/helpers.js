@@ -9,6 +9,7 @@ var mozApps = require('./mozApps');
 var baseTestUrl = 'http://localhost:8675';
 var mobileViewportSize = [320, 480];
 var viewportSize = mobileViewportSize;
+var pageAlreadyLoaded = false;
 var _currTestId;
 
 
@@ -89,11 +90,6 @@ function done(test) {
 }
 
 
-function waitForPageLoaded(cb) {
-    casper.waitForSelector('body.loaded', cb);
-}
-
-
 function waitForAppDetail(cb) {
     casper.waitForSelector('[data-page-type~="detail"]', cb);
 }
@@ -101,6 +97,38 @@ function waitForAppDetail(cb) {
 
 function waitForAppList(cb) {
     casper.waitForSelector('.app-list', cb);
+}
+
+
+function waitForFeedItem(cb) {
+    casper.waitForSelector('.feed-item-item', cb);
+}
+
+
+function waitForLoggedIn(cb) {
+    casper.waitForSelector('body.logged-in', cb);
+}
+
+
+function waitForPageLoaded(cb) {
+    if (pageAlreadyLoaded) {
+        casper.echo('Waiting for page load but page has already loaded. Use ' +
+                    'helpers.waitForPageLoadedAgain if this is intentional.',
+                    'WARNING');
+    } else {
+        pageAlreadyLoaded = true;
+    }
+    waitForPageLoadedAgain(cb);
+}
+
+
+function waitForPageLoadedAgain(cb) {
+    if (!pageAlreadyLoaded) {
+        casper.echo('Waiting for additional page load but page has not ' +
+                    'loaded. Please use helpers.waitForPageLoaded instead.',
+                    'WARNING');
+    }
+    casper.waitForSelector('body.loaded', cb);
 }
 
 
@@ -222,7 +250,7 @@ function assertAPICallWasMade(url, params, msg) {
 
     msg = msg || 'API call was made';
     url = casper.evaluate(function() {
-        return require('settings').api_url;
+        return require('core/settings').api_url;
     }) + url;
 
     return casper.test.assertResourceExists(testFn, msg);
@@ -247,9 +275,9 @@ function fake_login(opts) {
 
     casper.evaluate(function(isAdmin) {
         console.log('[phantom] Performing fake login action');
-        var user = window.require('user');
-        var views = window.require('views');
-        var z = window.require('z');
+        var user = window.require('core/user');
+        var views = window.require('core/views');
+        var z = window.require('core/z');
 
         user.set_token('mocktoken');
         user.update_apps({
@@ -298,6 +326,7 @@ function setViewport() {
 
 
 casper.test.setUp(function() {
+    pageAlreadyLoaded = false;
     casper.start();
 });
 
@@ -326,5 +355,8 @@ module.exports = {
     tearDown: tearDown,
     waitForAppDetail: waitForAppDetail,
     waitForAppList: waitForAppList,
+    waitForFeedItem: waitForFeedItem,
+    waitForLoggedIn: waitForLoggedIn,
     waitForPageLoaded: waitForPageLoaded,
+    waitForPageLoadedAgain: waitForPageLoadedAgain,
 };

@@ -1,6 +1,6 @@
 define('views/app/abuse',
-    ['capabilities', 'forms', 'l10n', 'notification', 'nunjucks',  'requests',
-     'urls', 'utils', 'z'],
+    ['core/capabilities', 'core/forms', 'core/l10n', 'core/notification', 'core/nunjucks',  'core/requests',
+     'core/urls', 'core/utils', 'core/z'],
     function(caps, forms, l10n, notification, nunjucks, requests, urls,
              utils, z) {
     var gettext = l10n.gettext;

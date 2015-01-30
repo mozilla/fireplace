@@ -1,10 +1,12 @@
 define('reviews',
-    ['cache', 'capabilities', 'compatibility_filtering', 'forms', 'jquery',
-     'l10n', 'login', 'models', 'notification', 'nunjucks', 'ratingwidget',
-     'requests', 'settings', 'underscore', 'utils', 'urls', 'user', 'z'],
-    function(cache, caps, compat, forms, $,
-             l10n, login, models, notification, nunjucks, ratingwidget,
-             requests, settings, _, utils, urls, user, z) {
+    ['compatibility_filtering', 'core/cache', 'core/capabilities',
+     'core/forms', 'jquery', 'core/l10n', 'core/login', 'core/models',
+     'core/notification', 'core/nunjucks', 'ratingwidget', 'core/requests', 'core/settings',
+     'underscore', 'core/utils', 'core/urls', 'core/user', 'core/z'],
+    function(compat, cache, caps,
+             forms, $, l10n, login, models,
+             notification, nunjucks, ratingwidget, requests, settings,
+             _, utils, urls, user, z) {
     var gettext = l10n.gettext;
     var notify = notification.notification;
 

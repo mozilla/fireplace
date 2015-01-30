@@ -1,5 +1,5 @@
 define('rewriters',
-    ['log', 'settings', 'underscore', 'urls', 'utils'],
+    ['core/log', 'core/settings', 'underscore', 'core/urls', 'core/utils', 'routes'],
     function(log, settings, _, urls, utils) {
     var logger = log('rewriters');
 

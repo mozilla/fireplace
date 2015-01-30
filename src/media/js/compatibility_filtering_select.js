@@ -1,5 +1,5 @@
 define('compatibility_filtering_select',
-    ['compatibility_filtering', 'jquery', 'log', 'views', 'z'],
+    ['compatibility_filtering', 'jquery', 'core/log', 'core/views', 'core/z'],
     function(compatibility_filtering, $, log, views, z) {
     var logger = log('compatibility_filtering_select');
 

@@ -1,7 +1,7 @@
 define('views/homepage',
-    ['capabilities', 'desktop_promo', 'format', 'l10n', 'log', 'jquery',
-     'mkt-carousel', 'nunjucks', 'requests', 'salvattore', 'urls', 'utils',
-     'utils_local', 'z'],
+    ['core/capabilities', 'desktop_promo', 'core/format', 'core/l10n', 'core/log', 'jquery',
+     'mkt-carousel', 'core/nunjucks', 'core/requests', 'salvattore', 'core/urls', 'core/utils',
+     'utils_local', 'core/z'],
     function(capabilities, desktopPromo, format, l10n, log, $,
              mktCarousel, nunjucks, requests, salvattore, urls, utils,
              utils_local, z) {

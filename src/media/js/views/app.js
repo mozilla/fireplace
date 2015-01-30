@@ -1,6 +1,6 @@
 define('views/app',
-    ['capabilities', 'content-ratings', 'l10n', 'log', 'settings', 'tracking',
-     'utils', 'z'],
+    ['core/capabilities', 'content-ratings', 'core/l10n', 'core/log', 'core/settings', 'tracking',
+     'core/utils', 'core/z'],
     function(caps, iarc, l10n, log, settings, tracking,
              utils, z) {
     'use strict';
