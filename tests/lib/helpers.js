@@ -257,6 +257,11 @@ function setUpDesktop() {
 }
 
 
+function setUpTablet() {
+    changeViewportTablet();
+}
+
+
 function tearDown() {
     changeViewportMobile();
 }
@@ -266,6 +271,15 @@ function desktopTest(testObj) {
     // Wrapper around test object to set up desktop viewport.
     return _.extend(testObj, {
         setUp: setUpDesktop,
+        tearDown: tearDown
+    });
+}
+
+
+function tabletTest(testObj) {
+    // Wrapper around test object to set up tablet viewport.
+    return _.extend(testObj, {
+        setUp: setUpTablet,
         tearDown: tearDown
     });
 }
@@ -288,6 +302,7 @@ module.exports = {
     makeUrl: makeUrl,
     setUpDesktop: setUpDesktop,
     startCasper: startCasper,
+    tabletTest: tabletTest,
     tearDown: tearDown,
     waitForPageLoaded: waitForPageLoaded,
 };
