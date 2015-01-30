@@ -1,10 +1,12 @@
 define('helpers_local',
     ['apps', 'categories', 'compatibility_filtering', 'content-ratings',
-     'feed', 'format', 'helpers', 'models', 'nunjucks', 'regions', 'settings',
-     'urls', 'user_helpers', 'utils_local', 'z'],
+     'core/format', 'core/helpers', 'core/models', 'core/nunjucks',
+     'core/settings', 'core/urls', 'core/utils', 'core/z', 'feed', 'regions',
+     'user_helpers', 'utils_local'],
     function(apps, categories, compatibility_filtering, iarc,
-             feed, format, base_helpers, models, nunjucks, regions, settings,
-             urls, user_helpers, utils_local, z) {
+             format, base_helpers, models, nunjucks,
+             settings, urls, utils, z, feed, regions,
+             user_helpers, utils_local) {
     var filters = nunjucks.require('filters');
     var globals = nunjucks.require('globals');
 
@@ -20,7 +22,7 @@ define('helpers_local',
     var dateFormat;
     if (typeof Intl !== 'undefined' &&
         typeof Intl.DateTimeFormat !== 'undefined') {
-        var formatting = Intl.DateTimeFormat(user_helpers.lang(), {
+        var formatting = Intl.DateTimeFormat(utils.lang(), {
             year: 'numeric', month: 'long', day: 'numeric'
         });
         dateFormat = formatting.format.bind(formatting);

@@ -60,6 +60,10 @@ function testEditReviewForm(test) {
     casper.waitForSelector('[data-page-type~="detail"]');
 }
 
+function waitForReviewsLoaded(cb) {
+    casper.waitForSelector('.app-reviews', cb);
+}
+
 
 casper.test.begin('Test app review page', {
     test: function(test) {
@@ -171,7 +175,7 @@ casper.test.begin('Test review button hidden when logged in and cannot rate', {
             helpers.fake_login();
         });
 
-        helpers.waitForPageLoaded(function() {
+        waitForReviewsLoaded(function() {
             test.assertDoesntExist('.review-button');
         });
 
@@ -189,7 +193,7 @@ casper.test.begin('Test sign in to rate when cannot rate', {
             helpers.fake_login();
         });
 
-        helpers.waitForPageLoaded(function() {
+        waitForReviewsLoaded(function() {
             test.assertDoesntExist('.add-review-form');
         });
 
@@ -243,7 +247,7 @@ casper.test.begin('Test edit review on review page', {
            helpers.fake_login();
         });
 
-        helpers.waitForPageLoaded(function() {
+        waitForReviewsLoaded(function() {
            casper.click('.review-actions [data-edit-review]');
         });
 
@@ -274,7 +278,7 @@ casper.test.begin('Test edit review on detail page', {
            helpers.fake_login();
         });
 
-        helpers.waitForPageLoaded(function() {
+        waitForReviewsLoaded(function() {
            casper.click('.review-button');
         });
 
@@ -297,7 +301,7 @@ casper.test.begin('Test edit review on review page as admin', {
         });
 
         var reviewId;
-        helpers.waitForPageLoaded(function() {
+        waitForReviewsLoaded(function() {
             // Test multiple edit buttons to confirm admin can edit others.
             var editReviewBtnCount = casper.evaluate(function() {
                 return $('[data-edit-review]').length;
@@ -315,7 +319,7 @@ casper.test.begin('Test edit review on review page as admin', {
         // Test the review ID in review param.
         casper.waitForSelector('.edit-review-form', function() {
             var reviewParam = casper.evaluate(function() {
-                return window.require('utils').getVars().review;
+                return window.require('core/utils').getVars().review;
             });
             test.assert(reviewId == reviewParam, 'Test edit review param');
         });
@@ -416,7 +420,7 @@ casper.test.begin('Test delete review', {
                 return document.querySelectorAll('.review').length;
             });
             reviewCountModelCache = casper.evaluate(function() {
-                return window.require('models')('app').lookup('has_rated').ratings.count;
+                return window.require('core/models')('app').lookup('has_rated').ratings.count;
             });
 
             casper.click('.review-actions [data-action="delete"]');
@@ -428,7 +432,7 @@ casper.test.begin('Test delete review', {
 
             // Test busted from model cache.
             var newReviewCountModelCache = casper.evaluate(function() {
-                return window.require('models')('app').lookup('has_rated').ratings.count;
+                return window.require('core/models')('app').lookup('has_rated').ratings.count;
             });
             test.assert(newReviewCountModelCache == reviewCountModelCache - 1,
                         'App model cache decrement review count');
@@ -460,7 +464,7 @@ casper.test.begin('Test login to review on desktop on review page', {
             helpers.fake_login();
         });
 
-        helpers.waitForPageLoaded(function() {
+        waitForReviewsLoaded(function() {
             test.assertExists('.add-review-form');
             test.assertDoesntExist('.edit-review-form');
         });
@@ -479,7 +483,7 @@ casper.test.begin('Test login to review if already reviewed on desktop detail', 
             helpers.fake_login();
         });
 
-        helpers.waitForPageLoaded(function() {
+        waitForReviewsLoaded(function() {
             test.assertExists('.edit-review-form');
         });
 

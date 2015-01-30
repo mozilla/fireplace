@@ -1,4 +1,4 @@
-define('overlay', ['keys', 'l10n', 'utils', 'z'], function(keys, l10n, utils, z) {
+define('overlay', ['keys', 'core/l10n', 'core/utils', 'core/z'], function(keys, l10n, utils, z) {
     // Welcome to the world of overlays!
     // To setup your trigger do:
     // function() { z.body.trigger('decloak');doOtherStuff(); }

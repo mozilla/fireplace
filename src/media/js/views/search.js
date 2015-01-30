@@ -1,5 +1,5 @@
 define('views/search',
-    ['capabilities', 'l10n', 'tracking', 'urls', 'utils', 'z'],
+    ['core/capabilities', 'core/l10n', 'tracking', 'core/urls', 'core/utils', 'core/z'],
     function(capabilities, l10n, tracking, urls, utils, z) {
     'use strict';
     var _pd = utils._pd;

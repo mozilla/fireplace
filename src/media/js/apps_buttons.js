@@ -1,9 +1,11 @@
 define('apps_buttons',
-    ['apps', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'login',
-     'models', 'notification', 'payments', 'requests', 'settings',
-     'tracking_events', 'urls', 'user', 'utils', 'views', 'z'],
-    function(apps, cache, caps, defer, l10n, log, login, models, notification,
-             payments, requests, settings, tracking_events, urls, user, utils,
+    ['apps', 'core/cache', 'core/capabilities', 'core/defer', 'core/l10n',
+     'core/log', 'core/login', 'core/models', 'core/notification', 'payments',
+     'core/requests', 'core/settings', 'tracking_events', 'core/urls',
+     'core/user', 'core/utils', 'core/views', 'core/z'],
+    function(apps, cache, capabilities, defer, l10n,
+             log, login, models, notification, payments,
+             requests, settings, tracking_events, urls, user, utils,
              views, z) {
     var logger = log('buttons');
     var gettext = l10n.gettext;

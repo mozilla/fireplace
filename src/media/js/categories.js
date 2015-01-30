@@ -1,4 +1,4 @@
-define('categories', ['l10n'], function(l10n) {
+define('categories', ['core/l10n'], function(l10n) {
     'use strict';
     var gettext = l10n.gettext;
 

@@ -8,76 +8,79 @@ console.log('   (C)Copyright Mozilla Corp 1998-2015');
 console.log('');
 console.log('64K High Memory Area is available.');
 
-define(
-    'main',
-    [
-        'underscore',
-        'jquery',
-        'polyfill', // Must be early.
-        'document-register-element',
-        'helpers',  // Must come before mostly everything else.
-        'helpers_local',
-        'apps_buttons',
-        'app_list',
-        'cache',
-        'capabilities',
-        'consumer_info',
-        'compatibility_filtering_select',
-        'content-ratings',
-        'flipsnap',
-        'forms',
-        'image-deferrer',
-        'image-deferrer-mkt',
-        'l10n',
-        'lightbox',
-        'log',
-        'login',
-        'marketplace-elements',
-        'models',
-        'navbar',
-        'navigation',
-        'newsletter',
-        'overlay',
-        'perf_events',
-        'perf_helper',
-        'previews',
-        'regions',
-        'requests',
-        'reviews',
-        'settings',
-        'site_config',
-        'storage',
-        'templates',
-        'tracking',
-        'tracking_events',
-        'urls',
-        'user',
-        'user_helpers',
-        'utils',
-        'utils_local',
-        'views',
-        'webactivities',
-        'z'
-    ],
-function(_) {
+// Wait for init to load commonplace and initialize it before we continue.
+define('main', ['init'], function() {
+require([
+    'underscore',
+    'jquery',
+    'core/polyfill', // Must be early.
+    'document-register-element',
+    'core/helpers',  // Must come before mostly everything else.
+    'helpers_local',
+    'apps_buttons',
+    'app_list',
+    'core/cache',
+    'core/capabilities',
+    'consumer_info',
+    'compatibility_filtering_select',
+    'content-ratings',
+    'flipsnap',
+    'core/forms',
+    'image-deferrer',
+    'image-deferrer-mkt',
+    'core/l10n',
+    'lightbox',
+    'core/log',
+    'core/login',
+    'marketplace-elements',
+    'core/models',
+    'navbar',
+    'core/navigation',
+    'newsletter',
+    'overlay',
+    'perf_events',
+    'perf_helper',
+    'previews',
+    'regions',
+    'core/requests',
+    'reviews',
+    'core/settings',
+    'core/site_config',
+    'core/storage',
+    'templates',
+    'tracking',
+    'tracking_events',
+    'core/urls',
+    'core/user',
+    'user_helpers',
+    'core/utils',
+    'utils_local',
+    'core/views',
+    // These views register global event handlers.
+    'views/feedback',
+    'views/search',
+    'webactivities',
+    'core/z'
+], function(_) {
     var apps = require('apps');
-    var capabilities = require('capabilities');
+    var cache = require('core/cache');
+    var capabilities = require('core/capabilities');
     var consumer_info = require('consumer_info');
-    var format = require('format');
+    var format = require('core/format');
     var $ = require('jquery');
-    var settings = require('settings');
-    var siteConfig = require('site_config');
-    var l10n = require('l10n');
+    var settings = require('core/settings');
+    var siteConfig = require('core/site_config');
+    var l10n = require('core/l10n');
     var newsletter = require('newsletter');
     var nunjucks = require('templates');
     var regions = require('regions');
-    var urls = require('urls');
-    var user = require('user');
-    var utils = require('utils');
+    var urls = require('core/urls');
+    var user = require('core/user');
+    var utils = require('core/utils');
     var utils_local = require('utils_local');
-    var z = require('z');
+    var z = require('core/z');
 
-    var logger = require('log')('mkt');
+    var logger = require('core/log')('mkt');
     var gettext = l10n.gettext;
 
     logger.log('Package version: ' + (settings.package_version || 'N/A'));
@@ -94,12 +97,12 @@ function(_) {
         z.body.addClass(settings.body_classes);
     }
 
-    if (!utils_local.isSystemDateRecent()) {
+    if (!utils.isSystemDateRecent()) {
         // System date checking.
         z.body.addClass('error-overlaid')
             .append(nunjucks.env.render('errors/date-error.html'))
             .on('click', '.system-date .try-again', function() {
-                if (utils_local.isSystemDateRecent()) {
+                if (utils.isSystemDateRecent()) {
                     window.location.reload();
                 }
             });
@@ -256,13 +259,13 @@ function(_) {
     }).trigger('reload_chrome');
 
     z.page.on('before_login before_logout', function() {
-        require('cache').purge();
+        cache.purge();
     });
 
     z.body.on('click', '.site-header .back', function(e) {
         e.preventDefault();
         logger.log('← button pressed');
-        require('navigation').back();
+        require('core/navigation').back();
     });
 
     window.addEventListener(
@@ -280,11 +283,12 @@ function(_) {
         }
     });
 
-    require('requests').on('deprecated', function() {
+    require('core/requests').on('deprecated', function() {
         // Divert the user to the deprecated view.
         z.page.trigger('divert', [urls.reverse('deprecated')]);
         throw new Error('Cancel navigation; deprecated client');
     });
 
     logger.log('Initialization complete');
+});
 });

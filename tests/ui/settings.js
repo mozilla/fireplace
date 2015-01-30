@@ -59,7 +59,7 @@ casper.test.begin('Test settings recommendations', {
             casper.click('.account-settings-save button[type="submit"]');
         }
 
-        helpers.waitForPageLoaded(function() {
+        helpers.waitForLoggedIn(function() {
             test.assertNotExists('body.show-recommendations');
             toggleRecommendations();
         });
@@ -119,7 +119,7 @@ casper.test.begin('Test settings hide logout if native FxA', {
             helpers.fake_login();
         });
 
-        helpers.waitForPageLoaded(function() {
+        helpers.waitForLoggedIn(function() {
             test.assertVisible('.logout');
             casper.evaluate(function() {
                 document.querySelector('body').classList.add('native-fxa');

@@ -1,11 +1,13 @@
-/*
+e*
     Preview trays which holds previews and screenshots.
     On mobile, uses Flipsnap which enables touch-drag.
     On desktop, adds prev/next buttons to navigate images.
 */
 define('previews',
-    ['flipsnap', 'log', 'capabilities', 'shothandles', 'underscore', 'z'],
-    function(flipsnap, log, caps, handles, _, z) {
+    ['flipsnap', 'core/log', 'core/capabilities', 'shothandles', 'underscore',
+     'core/z'],
+    function(flipsnap, log, caps, handles, _,
+             z) {
     var logger = log('previews');
 
     // Padded size of preview images (in pixels).
