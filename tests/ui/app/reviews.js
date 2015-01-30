@@ -157,3 +157,21 @@ casper.test.begin('Test edit rating on detail page on desktop', {
         helpers.done(test);
     }
 });
+
+
+casper.test.begin('Test login to r? if already r? on desktop', helpers.desktopTest({
+    test: function(test) {
+        helpers.startCasper({path: '/app/has_rated'});
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('.review-button');
+            helpers.fake_login();
+        });
+
+        helpers.waitForPageLoaded(function() {
+            test.assertExists('.edit-review-form');
+        });
+
+        helpers.done(test);
+    }
+}));
