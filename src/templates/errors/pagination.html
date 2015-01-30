@@ -1,5 +1,3 @@
-<li class="pagination-error loadmore">
-  <span class="error-text">{{ _('Error loading more') }}</span>
-  <button class="button" data-url="{{ more_url }}">{{ _('Try Again') }}</button>
-  <div class="spinner alt btn-replace"></div>
-</li>
+{% from '_macros/more_button.html' import more_button %}
+
+{{ more_button(more_url, 'loadmore', _('Try Again')) }}
