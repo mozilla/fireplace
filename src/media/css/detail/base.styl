@@ -60,6 +60,10 @@
 }
 
 @media $base-tablet {
+    [data-page-type~="detail"] .detail > .placeholder > .loading {
+        // Fix offset caused by not all elements being loaded.
+        margin-top: 82px;
+    }
     .detail-flex-wrap {
         display: flex;
         justify-content: center;

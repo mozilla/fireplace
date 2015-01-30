@@ -1,9 +1,15 @@
+/*
+    Preview trays which holds previews and screenshots.
+    On mobile, uses Flipsnap which enables touch-drag.
+    On desktop, adds prev/next buttons to navigate images.
+*/
 define('previews',
     ['flipsnap', 'log', 'models', 'templates', 'capabilities', 'shothandles',
      'underscore', 'z'],
     function(Flipsnap, log, models, nunjucks, caps, handles,
              _, z) {
     var logger = log('previews');
+
     // Magic numbers!
     var THUMB_WIDTH = 150;
     var THUMB_PADDED = 165;
@@ -12,28 +18,16 @@ define('previews',
 
     var slider_pool = [];
 
-    function adjustOffset() {
-        var trayOffset = 0;
-        // If the app shows notices we need to increase the container height.
-        // TODO: Clean this up better once we have an idea
-        // of whether we're happy with the desktop trays.
+    function adjustWidth() {
+        // Full width of window on desktop.
+        // Width of page on mobile.
+        var $previews = $('.previews');
         if (window.matchMedia('(min-width:1070px)').matches) {
-            if ($('.app-notices').children().length) {
-                trayOffset += 90;
-            }
-            if ($('#installed').css('display') !== 'none') {
-                trayOffset += 90;
-            }
-
-            $('.app-header.expanded > div')
-               .css('height', 778 + trayOffset + 'px')
-               .find('.previews')
-               .css('top', 225 + trayOffset + 'px');
+            var winWidth = z.win.width();
+            $previews.css('width', winWidth + 'px');
+            $previews.css('right', (winWidth - 1070) / 2 + 'px');
         } else {
-            $('.app-header.expanded > div')
-                .css('height', 'inherit')
-                .find('.previews')
-                .css('top', 0);
+            $previews.attr('style', '');
         }
     }
 
@@ -45,7 +39,7 @@ define('previews',
 
         // Init desktop detail screenshot tray.
         if (caps.device_type() === 'desktop' &&
-            $('[data-page-type~="detail"] .detail').length &&
+            $('[data-page-type~="detail"]').length &&
             window.matchMedia('(min-width:1070px)').matches) {
 
             if ($tray.find('.desktop-content').length) {
@@ -61,7 +55,7 @@ define('previews',
                 $desktopShots.append($newShot);
             });
 
-            adjustOffset();
+            adjustWidth();
             $tray.find('.slider').append($desktopShots);
 
             $desktopShots.css({
@@ -137,7 +131,7 @@ define('previews',
             e.refresh();
         }
         z.page.trigger('populatetray');
-        adjustOffset();
+        adjustWidth();
     });
 
     // We're leaving the page, so destroy Flipsnap.

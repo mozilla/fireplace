@@ -139,16 +139,10 @@ $desktop-tray-size = 540px;
         }
     }
     [data-page-type~="detail"] .tray {
-        height: $desktop-tray-size + 23px;
-        left: 0;
-        position: absolute;
-        right: inherit;
-        top: 225px;
+        height: $desktop-tray-size;
+        position: relative;
         width: 100%;
 
-        .bars {
-            margin-top: 10px;
-        }
         .content {
             display: none;
         }
@@ -157,12 +151,10 @@ $desktop-tray-size = 540px;
         }
     }
     .tray .desktop-content {
-        height: $desktop-tray-size;
+        height: $desktop-tray-size - 20px;
     }
-    .desktop-content {
-        li {
-            width: $desktop-tray-size;
-        }
+    .desktop-content li {
+        width: $desktop-tray-size;
     }
 }
 
