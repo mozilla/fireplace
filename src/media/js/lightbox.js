@@ -1,9 +1,13 @@
+/*
+    Previews and screenshots modal, triggered on click of a preview
+    within a preview tray on an app detail page.
+*/
 define('lightbox',
     ['keys', 'log', 'models', 'navigation', 'utils', 'shothandles', 'tracking',
      'underscore', 'z'],
     function(keys, log, models, navigation, utils, handles, tracking,
              _, z) {
-    var console = log('lightbox');
+    var logger = log('lightbox');
 
     var $lightbox = $(document.getElementById('lightbox'));
     var $section = $lightbox.find('section');
@@ -15,18 +19,8 @@ define('lightbox',
     $lightbox.addClass('shots');
 
     function showLightbox() {
-        console.log('Opening lightbox');
-
-        if (z.context.type === 'leaf') {
-            tracking.trackEvent('App view interactions', 'click',
-                                'Screenshot view');
-        } else if (z.context.type === 'search') {
-            tracking.trackEvent(
-                'Category view interactions',
-                'click',
-                'Screenshot view'
-            );
-        }
+        logger.log('Opening lightbox');
+        z.body.trigger('lightbox-open');
 
         var $this = $(this);
         var which = $this.closest('li').index();
@@ -34,7 +28,7 @@ define('lightbox',
         var $tile = $tray.siblings('.mkt-tile');
 
         if (!$tile.length) {
-            console.log('[WARN] could not find .mkt-tile near .previews.');
+            logger.log('[WARN] could not find .mkt-tile near .previews.');
             return;
         }
 

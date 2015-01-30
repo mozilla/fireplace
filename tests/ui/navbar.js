@@ -47,3 +47,18 @@ casper.test.begin('Test navbar', {
         helpers.done(test);
     }
 });
+
+casper.test.begin('Test navbar tracking events', {
+    test: function(test) {
+        helpers.waitForPageLoaded(function() {
+            casper.click('.navbar [data-tab="popular"] a');
+            helpers.assertUATracking(test, [
+                'Nav Click',
+                'click',
+                'popular'
+            ]);
+        });
+
+        helpers.done(test);
+    }
+});

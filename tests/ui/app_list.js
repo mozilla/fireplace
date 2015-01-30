@@ -142,12 +142,26 @@ appListPages.forEach(function(appListPage) {
                 if (!appListPage.collection) {
                     var toggleLink = '.app-list-filters-expand-toggle';
                     test.assertVisible(toggleLink);
+
+                    // Expanded view.
                     casper.click(toggleLink);
                     test.assertExists(toggleLink + '.active');
                     test.assertExists('.app-list.expanded');
+                    helpers.assertUATracking(test, [
+                        'View type interactions',
+                        'click',
+                        'Expanded view'
+                    ]);
+
+                    // List view.
                     casper.click(toggleLink);
                     test.assertExists(toggleLink + ':not(.active)');
                     test.assertExists('.app-list:not(.expanded)');
+                    helpers.assertUATracking(test, [
+                        'View type interactions',
+                        'click',
+                        'List view'
+                    ]);
                 }
 
                 // Test authors are not a link.

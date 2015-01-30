@@ -1,7 +1,7 @@
 define('views/search',
-    ['capabilities', 'l10n', 'tracking', 'urls', 'utils', 'z'],
-    function(capabilities, l10n, tracking, urls, utils, z) {
-
+    ['capabilities', 'l10n', 'urls', 'utils', 'z'],
+    function(capabilities, l10n, urls, utils, z) {
+    'use strict';
     var _pd = utils._pd;
     var gettext = l10n.gettext;
 
@@ -14,10 +14,10 @@ define('views/search',
 
     // Clear search field on 'cancel' search suggestions.
     $('#site-header').on('click', '.header-button.cancel', _pd(function() {
-        // $('#site-search-suggestions').trigger('dismiss');
         $('#search-q').val('');
+    }))
 
-    })).on('click', '.header-button, .search-clear', _pd(function() {
+    .on('click', '.header-button, .search-clear', _pd(function() {
         if ($(this).hasClass('search-clear')) {
             $('#search-q').val('').trigger('focus');
         }
@@ -26,7 +26,6 @@ define('views/search',
     function parsePotatoSearch(query) {
         // This handles PotatoSearch queries:
         // https://github.com/mozilla/fireplace/wiki/QuickSearch-(PotatoSearch%E2%84%A2)
-
         query = query || {q: ''};
 
         // We keep track of the full query separately, since we don't want
@@ -99,9 +98,8 @@ define('views/search',
         return query;
     }
 
-    z.body.on('submit', 'form#search', function(e) {
+    z.body.on('submit', '#search', _pd(function(e) {
         e.stopPropagation();
-        e.preventDefault();
         var $q = $('#search-q');
         var query = $q.val();
         if (query === 'do a barrel roll') {
@@ -117,26 +115,26 @@ define('views/search',
         }
         $q.trigger('blur');
         z.page.trigger('search', {q: query});
-    });
+    }));
 
     z.page.on('loaded', function() {
         var $q = $('#search-q');
         $q.val(z.context.search);
         // If this is a search results or "my apps" page.
-    }).on('loaded_more', function() {
+    })
+
+    .on('loaded_more', function() {
         z.page.trigger('populatetray');
         // Update "Showing 1-{total}" text.
         z.page.find('.total-results').text(z.page.find('.item.app').length);
-    }).on('search', function(e, params) {
-        e.preventDefault();
-        return z.page.trigger(
-            'navigate',
-            [
-                utils.urlparams(urls.reverse('search'), params),
-                {search_query: params.q}
-            ]
-        );
-    });
+    })
+
+    .on('search', _pd(function(e, params) {
+        return z.page.trigger('navigate', [
+            utils.urlparams(urls.reverse('search'), params),
+            {search_query: params.q}
+        ]);
+    }));
 
     function processor(query) {
         query = query ? query.toLowerCase() : '';
@@ -149,9 +147,6 @@ define('views/search',
                     data.unshift(base('Wa-pa-pa-pa-pa-pa-pow!'));
                     data.unshift(base('Ring-ding-ding-ding-dingeringeding!'));
                     break;
-                case 'rick fant rolled':
-                    data.forEach(function(v) { v.url = 'http://www.youtube.com/watch?v=oHg5SJYRHA0'; });
-                    break;
             }
             return data;
         };
@@ -159,13 +154,12 @@ define('views/search',
 
     return function(builder, args, params) {
         params = parsePotatoSearch(params);
-
         if ('sort' in params && params.sort === 'relevancy') {
             delete params.sort;
         }
+        var query = params.full_q || params.q;
 
         builder.z('type', 'search');
-        var query = params.full_q || params.q;
         builder.z('search', query);
         builder.z('title', query || gettext('Search Results'));
 
@@ -175,16 +169,16 @@ define('views/search',
             processor: processor(query)
         }).done(function() {
             var results = builder.results.searchresults;
+
             if (params.manifest_url && results.objects.length === 1) {
-                z.page.trigger('divert', [urls.reverse('app', [results.objects[0].slug]) + '?src=' + params.src]);
+                z.page.trigger(
+                    'divert',
+                    [urls.reverse('app', [results.objects[0].slug]) + '?src=' + params.src]);
             }
-            // When there are no results, tell GA (bug 890314)
+
+            // Tell GA when no results (bug 890314).
             if (!results.objects.length) {
-                tracking.trackEvent(
-                    'No results found',
-                    'Search',
-                    query
-                );
+                tracking.trackEvent('No results found', 'Search', query);
             }
         });
     };
