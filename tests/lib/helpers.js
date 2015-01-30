@@ -2,6 +2,8 @@ var system = require('system');
 var require = patchRequire(require);
 var utils = require('utils');
 
+var _ = require('../../node_modules/underscore');
+
 var baseTestUrl = 'http://localhost:8675';
 var _currTestId;
 

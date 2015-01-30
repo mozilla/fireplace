@@ -63,8 +63,8 @@ define('reviews',
             });
 
             // Update the app model.
-            var app_model;
-            if (app_model = models('app').lookup(app)) {
+            var app_model = models('app').lookup(app);
+            if (app_model) {
                 app_model.ratings.count -= 1;
                 if (!app_model.ratings.count) {
                     app_model.ratings.average = 0;
@@ -80,42 +80,40 @@ define('reviews',
     }
 
     function loginToRate() {
-        // Set a flag to know that we expect the modal to open
-        // this prevents opening later if login was cancelled
-        // as this flag is cleared in that case.
-        open_rating = true;
-        function onLoginFail() {
-            open_rating = false;
-        }
+        // Prompt user to login, then open up review forms on post-login.
         function onLoginSuccess() {
-            if (open_rating) {
-                open_rating = false;
-                var $reviewButton = $('.review-button');
-                if (caps.widescreen()) {
-                    initReviewModal();
-                } else {
-                    z.page.trigger('navigate', $reviewButton.attr('href'));
-                }
+            var reviewButton = document.querySelector('.review-button');
+            if (caps.widescreen()) {
+                addReview.apply(reviewButton);
+            } else {
+                z.page.trigger('navigate', reviewButton.getAttribute('href'));
             }
         }
-        login.login().done(onLoginSuccess).fail(onLoginFail);
+
+        login.login().done(onLoginSuccess);
         z.page.one('loaded', onLoginSuccess);
         return;
     }
 
     function addReview(e) {
         if (!user.logged_in()) {
-            // If not logged in, prompt to do so.
-            e.preventDefault();
-            e.stopPropagation();
+            // If not logged in, prompt to do so. Review form will be handled
+            // on post-login.
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
             return loginToRate();
         }
 
         if (caps.widescreen()) {
-            e.preventDefault();
-            e.stopPropagation();
+            if (e) {
+                // Navigate to the page (for edit or add) on mobile.
+                e.preventDefault();
+                e.stopPropagation();
+            }
 
-            // Add review modal (for edit or add).
+            // Add review modal (for edit or add) for desktop.
             if (this.hasAttribute('data-edit-review')) {
                 var endpoint = urls.api.params('reviews', {
                     app: $('.product').data('slug'),
