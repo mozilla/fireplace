@@ -31,6 +31,10 @@ define('views/app',
             placeholder_app: {
                 author: gettext('Loading...'),
                 name: gettext('Loading...'),
+                previews: [{
+                    image_url: '',
+                    thumbnail_url: ''
+                }],
                 price: gettext('Loading...'),
                 price_locale: gettext('Loading...'),
                 ratings: {
