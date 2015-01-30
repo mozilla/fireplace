@@ -18,6 +18,21 @@ casper.test.begin('Test homepage', {
     }
 });
 
+
+casper.test.begin('Test Feed pagination', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('.loadmore .button');
+        });
+
+        helpers.assertWaitForSelector(test, '.feed-item-item:nth-child(30)');
+
+        helpers.done(test);
+    }
+});
+
 casper.test.begin('Test Feed navigation and tracking events', {
     test: function(test) {
         casper.waitForSelector('.home-feed', function() {

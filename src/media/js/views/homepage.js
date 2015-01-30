@@ -15,7 +15,7 @@ define('views/homepage',
         var $btn = $(this);
         var $loadmore = $btn.parent();
         var $btn_clone = $loadmore.clone();
-        $btn.remove();
+        $loadmore.addClass('loading');
 
         requests.get($btn.data('url')).done(function(data) {
             $loadmore.remove();
