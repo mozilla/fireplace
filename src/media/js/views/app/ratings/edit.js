@@ -1,6 +1,6 @@
 define('views/app/ratings/edit',
-    ['cache', 'forms', 'l10n', 'notification', 'requests', 'reviews',
-     'settings', 'urls', 'user', 'utils', 'z'],
+    ['core/cache', 'core/forms', 'core/l10n', 'core/notification', 'core/requests', 'reviews',
+     'core/settings', 'core/urls', 'core/user', 'core/utils', 'core/z'],
     function(cache, forms, l10n, notification, requests, reviews,
              settings, urls, user, utils, z) {
     var gettext = l10n.gettext;

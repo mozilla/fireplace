@@ -1,5 +1,5 @@
 define('views/app/ratings/add',
-    ['capabilities', 'login', 'l10n', 'urls', 'user', 'z'],
+    ['core/capabilities', 'core/login', 'core/l10n', 'core/urls', 'core/user', 'core/z'],
     function(caps, login, l10n, urls, user, z) {
     var gettext = l10n.gettext;
 

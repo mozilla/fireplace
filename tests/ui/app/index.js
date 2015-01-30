@@ -163,8 +163,8 @@ casper.test.begin('Test app detail as a reviewer', {
         helpers.waitForPageLoaded(function() {
             casper.evaluate(function() {
                 console.log('[phantom] Giving user "reviewer" permissions');
-                window.require('user').update_permissions({reviewer: true});
-                require('views').reload();
+                window.require('core/user').update_permissions({reviewer: true});
+                require('core/views').reload();
             });
 
             test.assertExists('.button.manage');
@@ -183,8 +183,8 @@ casper.test.begin('Test app detail as a user with the stats permission', {
         helpers.waitForPageLoaded(function() {
             casper.evaluate(function() {
                 console.log('[phantom] Giving user "stats" permission');
-                window.require('user').update_permissions({stats: true});
-                require('views').reload();
+                window.require('core/user').update_permissions({stats: true});
+                require('core/views').reload();
             });
 
             test.assertExists('.button.view-stats');
@@ -250,9 +250,18 @@ casper.test.begin('Test app detail desktop previews', {
 
         helpers.waitForPageLoaded(function() {
             test.assertVisible('.previews .desktop-content');
-            test.assertVisible('.desktop-content li:first-child img');
             test.assertVisible('.tray .bars');
             test.assertVisible('.tray .arrow-button');
+
+            // Check that the first image is visible, if the image takes too
+            // long to load this test will be skipped.
+            var imageSelector = '.desktop-content li:first-child img';
+            var imageUrl = casper.getElementAttribute(imageSelector, 'src');
+            casper.waitForResource(imageUrl, function() {
+                test.assertVisible(imageSelector);
+            }, function() {
+                test.skip(1, 'did not load image in time, skipping');
+            });
         });
 
         helpers.done(test);

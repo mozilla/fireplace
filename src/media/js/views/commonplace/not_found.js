@@ -1,4 +1,4 @@
-define('views/not_found', ['l10n'], function(l10n) {
+define('views/not_found', ['core/l10n'], function(l10n) {
 
     var gettext = l10n.gettext;
 

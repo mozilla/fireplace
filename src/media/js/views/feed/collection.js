@@ -1,5 +1,5 @@
 define('views/feed/collection',
-    ['l10n', 'utils'],
+    ['core/l10n', 'core/utils'],
     function(l10n, utils) {
     'use strict';
     var gettext = l10n.gettext;

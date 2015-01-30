@@ -1,5 +1,5 @@
 /* developer.mozilla.org/Apps/Build/Performance/Firefox_OS_app_responsiveness_guidelines */
-define('perf_events', ['z'], function(z) {
+define('perf_events', ['core/z'], function(z) {
     'use strict';
 
     // PerformanceTestHelper events.

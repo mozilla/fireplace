@@ -1,7 +1,7 @@
 /*
     My Apps page.
 */
-define('views/purchases', ['l10n', 'urls'], function(l10n, urls) {
+define('views/purchases', ['core/l10n', 'core/urls'], function(l10n, urls) {
     'use strict';
     var gettext = l10n.gettext;
 

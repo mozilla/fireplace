@@ -1,17 +1,9 @@
 define('utils_local',
-    ['defer', 'jquery', 'log', 'salvattore', 'settings', 'underscore', 'urls', 'z'],
+    ['core/defer', 'jquery', 'core/log', 'salvattore', 'core/settings', 'underscore', 'core/urls', 'core/z'],
     function(defer, $, log, salvattore, settings, _, urls, z) {
 
     var logger = log('utils_local');
     var check_interval;
-
-    function isSystemDateRecent() {
-        var rval = new Date().getFullYear() >= 2010;
-        if (!rval) {
-            logger.log('System date appears to be incorrect!');
-        }
-        return rval;
-    }
 
     var build_localized_field = function(name) {
         var data = {};
@@ -83,7 +75,7 @@ define('utils_local',
                 return checkOnlineDesktop();
             }
             logger.log('Checking online state with socket');
-            var host = (new URL(settings.cdn_url)).host;
+            var host = (new URL(urls.cdn_url())).host;
             var port = 80;
             var socket = navigator.mozTCPSocket.open(host, port);
             socket.onerror = function(e) {
@@ -141,7 +133,6 @@ define('utils_local',
         build_localized_field: build_localized_field,
         checkOnline: checkOnline,
         initSalvattore: initSalvattore,
-        isSystemDateRecent: isSystemDateRecent,
         items: items,
         pollOnlineState: pollOnlineState,
     };

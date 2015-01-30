@@ -1,4 +1,4 @@
-define('content-ratings', ['format', 'l10n', 'urls', 'utils', 'z'],
+define('content-ratings', ['core/format', 'core/l10n', 'core/urls', 'core/utils', 'core/z'],
     function(format, l10n, urls, utils, z) {
     'use strict';
 

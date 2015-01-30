@@ -1,5 +1,5 @@
 define('views/newsletter_signup',
-    ['newsletter', 'underscore', 'user', 'user_helpers'],
+    ['newsletter', 'underscore', 'core/user', 'user_helpers'],
     function(newsletter, underscore, user, user_helpers) {
     'use strict';
 

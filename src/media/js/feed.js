@@ -2,7 +2,7 @@
     Helpers for displaying the Feed.
 */
 define('feed',
-    ['collection_colors', 'edbrands', 'l10n', 'nunjucks', 'underscore',
+    ['collection_colors', 'edbrands', 'core/l10n', 'core/nunjucks', 'underscore',
      'utils_local'],
     function(colors, brands, l10n, nunjucks, _,
              utils_local) {

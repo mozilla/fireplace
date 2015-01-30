@@ -222,7 +222,7 @@ function assertAPICallWasMade(url, params, msg) {
 
     msg = msg || 'API call was made';
     url = casper.evaluate(function() {
-        return require('settings').api_url;
+        return require('core/settings').api_url;
     }) + url;
 
     return casper.test.assertResourceExists(testFn, msg);
@@ -247,9 +247,9 @@ function fake_login(opts) {
 
     casper.evaluate(function(isAdmin) {
         console.log('[phantom] Performing fake login action');
-        var user = window.require('user');
-        var views = window.require('views');
-        var z = window.require('z');
+        var user = window.require('core/user');
+        var views = window.require('core/views');
+        var z = window.require('core/z');
 
         user.set_token('mocktoken');
         user.update_apps({

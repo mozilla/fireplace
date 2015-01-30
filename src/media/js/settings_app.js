@@ -1,22 +1,20 @@
-define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, settings_local, _) {
+define('settings_app', ['core/capabilities', 'core/l10n', 'core/settings', 'core/storage', 'underscore'], function(capabilities, l10n, settings, storage, _) {
     var gettext = l10n.gettext;
 
     var base_settings = JSON.parse(document.body.getAttribute('data-settings') || '{}');
-    base_settings = _.defaults(base_settings, settings_local);
 
     // When in "preview mode", don't send the feature profile to the API.
     var param_blacklist = (
         window.location.search || '').indexOf('preview=true') > 0 ? ['pro'] : null;
 
     function offline_cache_enabled() {
-        var storage = require('storage');
-        if (storage.getItem('offline_cache_disabled') || require('capabilities').phantom) {
+        if (storage.getItem('offline_cache_disabled') || capabilities.phantom) {
             return false;
         }
         return window.location.search.indexOf('cache=false') === -1;
     }
 
-    return _.defaults(base_settings, {
+    settings._extend({
         app_name: 'fireplace',
         init_module: 'main',
         default_locale: 'en-US',

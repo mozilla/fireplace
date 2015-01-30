@@ -15,10 +15,10 @@
      999999998 -- editorial brand element.
 */
 define('tracking_events',
-    ['consumer_info', 'jquery', 'log', 'navigation', 'settings', 'tracking',
-     'utils', 'user_helpers', 'z'],
-    function(consumer_info, $, log, navigation, settings, tracking,
-             utils, user_helpers, z) {
+    ['consumer_info', 'jquery', 'core/log', 'core/navigation', 'core/settings',
+     'tracking', 'core/utils', 'user_helpers', 'core/z'],
+    function(consumer_info, $, log, navigation, settings,
+             tracking, utils, user_helpers, z) {
     'use strict';
     var logger = log('tracking_events');
 

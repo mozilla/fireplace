@@ -1,6 +1,6 @@
 define('views/feedback',
-       ['capabilities', 'compatibility_filtering', 'forms', 'l10n', 'linefit',
-        'notification', 'requests', 'templates', 'urls', 'utils', 'z'],
+       ['core/capabilities', 'compatibility_filtering', 'core/forms', 'core/l10n', 'linefit',
+        'core/notification', 'core/requests', 'templates', 'core/urls', 'core/utils', 'core/z'],
        function(caps, compatibility_filtering, forms, l10n, linefit,
                 notification, requests, nunjucks, urls, utils, z) {
     var gettext = l10n.gettext;

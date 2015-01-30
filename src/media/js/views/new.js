@@ -1,5 +1,5 @@
 define('views/new',
-    ['format', 'l10n', 'log', 'urls', 'utils'],
+    ['core/format', 'core/l10n', 'core/log', 'core/urls', 'core/utils'],
     function(format, l10n, log, urls, utils) {
     'use strict';
     var gettext = l10n.gettext;

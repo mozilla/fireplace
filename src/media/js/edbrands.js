@@ -1,6 +1,6 @@
 /* This is a shared file between Fireplace and Transonic. */
 define('edbrands',
-    ['l10n'], function(l10n) {
+    ['core/l10n'], function(l10n) {
     'use strict';
     var ngettext = l10n.ngettext;
 

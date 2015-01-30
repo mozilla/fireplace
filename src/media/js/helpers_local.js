@@ -1,7 +1,7 @@
 define('helpers_local',
     ['apps', 'categories', 'compatibility_filtering', 'content-ratings',
-     'feed', 'format', 'helpers', 'models', 'nunjucks', 'regions', 'settings',
-     'urls', 'user_helpers', 'utils_local', 'z'],
+     'feed', 'core/format', 'core/helpers', 'core/models', 'core/nunjucks', 'regions', 'core/settings',
+     'core/urls', 'user_helpers', 'utils_local', 'core/z'],
     function(apps, categories, compatibility_filtering, iarc,
              feed, format, base_helpers, models, nunjucks, regions, settings,
              urls, user_helpers, utils_local, z) {

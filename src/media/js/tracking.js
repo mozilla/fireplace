@@ -1,5 +1,5 @@
 define('tracking',
-    ['log', 'settings', 'storage', 'underscore', 'utils', 'z'],
+    ['core/log', 'core/settings', 'core/storage', 'underscore', 'core/utils', 'core/z'],
     function(log, settings, storage, _, utils, z) {
     var logger = log('tracking');
 

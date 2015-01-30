@@ -2,7 +2,7 @@
     Content for the desktop promo carousel.
 */
 define('desktop_promo',
-    ['capabilities', 'l10n', 'urls', 'utils',],
+    ['core/capabilities', 'core/l10n', 'core/urls', 'core/utils',],
     function(caps, l10n, urls, utils) {
     'use strict';
     var gettext = l10n.gettext;

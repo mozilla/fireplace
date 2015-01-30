@@ -1,5 +1,5 @@
 define('views/debug',
-    ['cache', 'capabilities', 'compatibility_filtering', 'log', 'models', 'notification', 'regions', 'requests', 'settings', 'storage', 'user', 'utils', 'z'],
+    ['core/cache', 'core/capabilities', 'compatibility_filtering', 'core/log', 'core/models', 'core/notification', 'regions', 'core/requests', 'core/settings', 'core/storage', 'core/user', 'core/utils', 'core/z'],
     function(cache, capabilities, compatibility_filtering, log, models, notification, regions, requests, settings, storage, user, utils, z) {
     'use strict';
 

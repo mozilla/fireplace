@@ -1,4 +1,4 @@
-define('views/app/privacy', ['l10n', 'urls'], function(l10n, urls) {
+define('views/app/privacy', ['core/l10n', 'core/urls'], function(l10n, urls) {
     var gettext = l10n.gettext;
 
     return function(builder, args) {

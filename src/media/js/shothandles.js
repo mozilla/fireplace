@@ -1,4 +1,4 @@
-define('shothandles', ['z'], function(z) {
+define('shothandles', ['core/z'], function(z) {
     function attachHandles(slider, $container) {
         $container.find('.prev, .next').remove();
 

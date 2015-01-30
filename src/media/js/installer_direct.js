@@ -6,7 +6,7 @@
     than messaging to a parent window.
 */
 define('installer_direct',
-    ['defer', 'l10n', 'log', 'settings', 'z'],
+    ['core/defer', 'core/l10n', 'core/log', 'core/settings', 'core/z'],
     function(defer, l10n, log, settings, z) {
     'use strict';
     var gettext = l10n.gettext;

@@ -1,5 +1,5 @@
 define('mobilenetwork',
-    ['l10n', 'log', 'regions', 'tracking', 'user', 'utils'],
+    ['core/l10n', 'core/log', 'regions', 'tracking', 'core/user', 'core/utils'],
     function(l10n, log, regions, tracking, user, utils) {
     var console = log('mobilenetwork');
     var persistent_console = log.persistent('mobilenetwork', 'change');

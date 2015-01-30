@@ -1,4 +1,4 @@
-define('views/app/ratings/rating', ['l10n', 'urls'], function(l10n, urls) {
+define('views/app/ratings/rating', ['core/l10n', 'core/urls'], function(l10n, urls) {
 
     var gettext = l10n.gettext;
 

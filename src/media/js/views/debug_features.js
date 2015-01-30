@@ -1,5 +1,5 @@
 define('views/debug_features',
-    ['compatibility_filtering', 'settings', 'urls'],
+    ['compatibility_filtering', 'core/settings', 'core/urls'],
     function(compatibility_filtering, settings, urls) {
     'use strict';
 

@@ -1,6 +1,6 @@
 define('views/feed/app',
-    ['l10n', 'utils'],
-    function(l10n, utils) {
+    ['jquery', 'core/l10n', 'core/utils', 'core/z'],
+    function($, l10n, utils, z) {
     'use strict';
     var gettext = l10n.gettext;
 

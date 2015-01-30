@@ -176,7 +176,7 @@ appListPages.forEach(function(appListPage) {
                     // Test model cache.
                     var modelCount = casper.evaluate(function() {
                         return Object.keys(
-                            window.require('models')('app')
+                            window.require('core/models')('app')
                                   .data_store.app).length;
                     });
                     test.assertEqual(modelCount,
@@ -192,14 +192,16 @@ appListPages.forEach(function(appListPage) {
     if (!appListPage.noExpandToggle) {
         casper.test.begin(appListPage.name + ' page app list expand toggle', {
             test: function(test) {
+                var toggleLink = '.app-list-filters-expand-toggle';
                 waitForAppListPage(appListPage, function() {
                     // Test expand toggle.
-                    var toggleLink = '.app-list-filters-expand-toggle';
                     test.assertVisible(toggleLink);
+                });
 
-                    // Expanded view.
-                    casper.click(toggleLink);
-                    test.assertExists(toggleLink + '.active');
+                // Expanded view.
+                casper.thenClick(toggleLink);
+
+                casper.waitForSelector(toggleLink + '.active', function() {
                     test.assertExists('.app-list.expanded');
                     helpers.assertUATracking(test, [
                         'View type interactions',
@@ -239,7 +241,7 @@ appListPages.forEach(function(appListPage) {
                         if (!appListPage.noModelCache) {
                             var modelCount = casper.evaluate(function() {
                                 return Object.keys(
-                                    window.require('models')('app')
+                                    window.require('core/models')('app')
                                         .data_store.app).length;
                             });
                             test.assertEqual(

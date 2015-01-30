@@ -1,6 +1,6 @@
 define('navbar',
-    ['categories', 'jquery', 'log', 'navigation', 'nunjucks', 'settings',
-     'underscore', 'urls', 'user', 'z'],
+    ['categories', 'jquery', 'core/log', 'core/navigation', 'core/nunjucks', 'core/settings',
+     'underscore', 'core/urls', 'core/user', 'core/z'],
     function(cats, $, log, navigation, nunjucks, settings, _, urls, user, z) {
     'use strict';
     var logger = log('navbar');

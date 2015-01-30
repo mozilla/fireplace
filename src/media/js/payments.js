@@ -1,5 +1,5 @@
 define('payments',
-    ['capabilities', 'defer', 'fxpay', 'l10n', 'log', 'notification', 'requests', 'settings', 'underscore', 'urls', 'z'],
+    ['core/capabilities', 'core/defer', 'fxpay', 'core/l10n', 'core/log', 'core/notification', 'core/requests', 'core/settings', 'underscore', 'core/urls', 'core/z'],
     function(caps, defer, fxpay, l10n, log, notification, requests, settings, _, urls, z) {
 
     var logger = log('payments');

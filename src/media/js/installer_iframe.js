@@ -2,7 +2,7 @@
     Interface with mozApps through m.f.c iframe when we are a packaged app.
 */
 define('installer_iframe',
-    ['defer', 'l10n', 'log', 'settings', 'utils', 'z'],
+    ['core/defer', 'core/l10n', 'core/log', 'core/settings', 'core/utils', 'core/z'],
     function(defer, l10n, log, settings, utils, z) {
     'use strict';
     var gettext = l10n.gettext;

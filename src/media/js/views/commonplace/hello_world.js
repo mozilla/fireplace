@@ -1,4 +1,4 @@
-define('views/hello_world', ['l10n'], function(l10n) {
+define('views/hello_world', ['core/l10n'], function(l10n) {
 
     var gettext = l10n.gettext;
 

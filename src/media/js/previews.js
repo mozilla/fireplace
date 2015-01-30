@@ -4,8 +4,8 @@
     On desktop, adds prev/next buttons to navigate images.
 */
 define('previews',
-    ['flipsnap', 'log', 'models', 'templates', 'capabilities', 'shothandles',
-     'underscore', 'z'],
+    ['flipsnap', 'core/log', 'core/models', 'templates', 'core/capabilities', 'shothandles',
+     'underscore', 'core/z'],
     function(Flipsnap, log, models, nunjucks, caps, handles,
              _, z) {
     var logger = log('previews');

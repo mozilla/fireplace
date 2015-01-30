@@ -1,5 +1,5 @@
 define('views/debug',
-    ['buckets', 'cache', 'capabilities', 'log', 'models', 'notification', 'requests', 'settings', 'storage', 'user', 'utils', 'z'],
+    ['core/buckets', 'core/cache', 'core/capabilities', 'core/log', 'core/models', 'core/notification', 'core/requests', 'core/settings', 'core/storage', 'core/user', 'core/utils', 'core/z'],
     function(buckets, cache, capabilities, log, models, notification, requests, settings, storage, user, utils, z) {
     'use strict';
 

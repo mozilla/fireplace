@@ -1,5 +1,5 @@
 define('newsletter',
-    ['capabilities', 'jquery', 'notification', 'nunjucks', 'requests', 'urls', 'user', 'user_helpers', 'utils', 'z'],
+    ['core/capabilities', 'jquery', 'core/notification', 'core/nunjucks', 'core/requests', 'core/urls', 'core/user', 'user_helpers', 'core/utils', 'core/z'],
     function(capabilities, $, notification, nunjucks, requests, urls, user, user_helpers, utils, z) {
     'use strict';
 
@@ -7,7 +7,7 @@ define('newsletter',
         return {
             user_region: user_helpers.region('restofworld'),
             user_email: user.get_setting('email'),
-            user_lang: user_helpers.lang(),
+            user_lang: utils.lang(),
         };
     }
 

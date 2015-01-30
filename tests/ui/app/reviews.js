@@ -238,7 +238,7 @@ casper.test.begin('Test edit review on review page as admin', {
         // Test the review ID in review param.
         casper.waitForSelector('.edit-review-form', function() {
             var reviewParam = casper.evaluate(function() {
-                return window.require('utils').getVars().review;
+                return window.require('core/utils').getVars().review;
             });
             test.assert(reviewId == reviewParam, 'Test edit review param');
         });
@@ -339,7 +339,7 @@ casper.test.begin('Test delete review', {
                 return document.querySelectorAll('.review').length;
             });
             reviewCountModelCache = casper.evaluate(function() {
-                return window.require('models')('app').lookup('has_rated').ratings.count;
+                return window.require('core/models')('app').lookup('has_rated').ratings.count;
             });
 
             casper.click('.review-actions [data-action="delete"]');
@@ -351,7 +351,7 @@ casper.test.begin('Test delete review', {
 
             // Test busted from model cache.
             var newReviewCountModelCache = casper.evaluate(function() {
-                return window.require('models')('app').lookup('has_rated').ratings.count;
+                return window.require('core/models')('app').lookup('has_rated').ratings.count;
             });
             test.assert(newReviewCountModelCache == reviewCountModelCache - 1,
                         'App model cache decrement review count');

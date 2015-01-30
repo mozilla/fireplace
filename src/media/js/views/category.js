@@ -1,5 +1,5 @@
 define('views/category',
-    ['categories', 'underscore', 'urls', 'utils', 'z'],
+    ['categories', 'underscore', 'core/urls', 'core/utils', 'core/z'],
     function(categories, _, urls, utils, z) {
     'use strict';
 

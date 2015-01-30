@@ -1,5 +1,5 @@
 define('views/feed/editorial',
-    ['edbrands', 'l10n', 'utils'],
+    ['edbrands', 'core/l10n', 'core/utils'],
     function(brands, l10n, utils) {
     'use strict';
     var gettext = l10n.gettext;
