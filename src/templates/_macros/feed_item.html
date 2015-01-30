@@ -18,7 +18,7 @@
   {% set desc = feed_app.description|translate(feed_app) %}
 
   <a href="{{ url('app', [feed_app.app.slug])|urlparams(src='featured-app') }}"
-     class="featured-app app-link" data-tracking-slug="{{ feed_app.app.slug }}">
+     class="featured-app app-link" data-tracking="{{ feed_app.app.slug }}">
     {% if indexOf([feed.FEEDAPP_ICON, feed.FEEDAPP_IMAGE], feed_app.type) != -1 %}
       <section class="feed-item {{ 'deferred-background' if feed_app.background_image }}"
                {% if feed_app.type == feed.FEEDAPP_ICON %}
@@ -92,7 +92,7 @@
   {% set max_apps = 4 %}
 
   <section class="feed-brand feed-layout-{{ brand.layout }} multi-app-tile c"
-           data-tracking-slug="{{ brand.slug }}">
+           data-tracking="{{ brand.slug }}">
     {{ brand_header(brand) }}
     <ul>
       {% for app in brand.apps %}
@@ -128,7 +128,7 @@
   <section class="feed-item feed-collection full {{ 'mega' if desc }}
                   {{ 'has-desc' if desc }}
                   {{ 'has-background deferred-background' if coll.background_image }}"
-           data-tracking-slug="{{ coll.slug }}"
+           data-tracking="{{ coll.slug }}"
        {% if coll.background_image %}
            style="background-image: url({{ PLACEHOLDER_ICON }})"
            data-src="{{ coll.background_image }}"
@@ -166,7 +166,7 @@
 
   <section class="feed-collection feed-collection-listing feed-layout-list
                   multi-app-tile mkt-tile c"
-           data-tracking-slug="{{ coll.slug }}">
+           data-tracking="{{ coll.slug }}">
     {{ collection_listing_header(coll) }}
     {% if coll.description %}
       <p class="desc">{{ coll.description|translate(coll)|safe }}</p>
@@ -192,10 +192,12 @@
   {# Used both for collections and shelves. Reduce, reuse, recycle. #}
   {% set src = 'operator-shelf-element' if coll.carrier else 'collection-element' %}
 
-  <div class="collection-landing-wrapper"
+  <div class="collection-landing-wrapper" data-tracking="{{ coll.slug }}"
+       {% if not coll.carrier %}
+         data-collection-landing-color="{{ coll.color or 'sapphire' }}"
+       {% endif %}
        {% if coll.background_image %}data-collection-landing-has-background-image{% endif %}
        {% if coll.description %}data-collection-landing-has-description{% endif %}
-       {% if coll.color %}data-collection-landing-color="{{ coll.color }}"{% endif %}
        {% if coll.type == feed.COLL_PROMO %}data-collection-landing-is-promo{% endif %}
        {% if coll.type == feed.COLL_LISTING %}data-collection-landing-is-listing{% endif %}
        {% if coll.region %}data-shelf-landing-region="{{ coll.region }}"{% endif %}
@@ -292,7 +294,7 @@
   {% elif obj.item_type == 'shelf' %}
     <a href="{{ url('feed/feed_shelf', [obj.shelf.slug])|
                 urlparams(src='operator-shelf-element') }}"
-       class="op-shelf" data-tracking-slug="{{ obj.shelf.slug }}">
+       class="op-shelf" data-tracking="{{ obj.shelf.slug }}">
       {{ shelf(obj.shelf) }}
     </a>
   {% endif %}

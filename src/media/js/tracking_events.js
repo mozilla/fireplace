@@ -2,6 +2,8 @@
    Note: UA events are [category, action, label, value].
 
    Other tracking events are found in other files:
+     mobilenetwork.js -- region change.
+     views/search.js -- no results event.
      /popular page views -- automatically tracked on 'navigating'.
      /new page views -- automatically tracked on 'navigating'.
      /category/X page views -- automatically tracked on 'navigating'.
@@ -13,11 +15,14 @@
      999999998 -- editorial brand element.
 */
 define('tracking_events',
-    ['jquery', 'log', 'navigation', 'settings', 'tracking', 'z'],
-    function($, log, navigation, settings, tracking, z) {
+    ['jquery', 'log', 'navigation', 'settings', 'tracking', 'utils', 'z'],
+    function($, log, navigation, settings, tracking, utils, z) {
     'use strict';
-    var console = log('tracking_events');
-    var track_log = [];
+    var logger = log('tracking_events');
+
+    var trackEvent = tracking.trackEvent;
+    var setVar = tracking.setVar;
+    var setPageVar = tracking.setPageVar;
 
     var FEATURED_APP_VALUE = 999999999;
     var EDITORIAL_BRAND_VALUE = 999999998;
@@ -25,128 +30,159 @@ define('tracking_events',
     // Track package version in UA.
     var packageVersion = settings.package_version;
     if (packageVersion) {
-        tracking.setVar(15, 'Package Version', packageVersion);
+        setVar(15, 'Package Version', packageVersion);
     } else {
         // Set package version to 0 for hosted.
-        tracking.setVar(15, 'Package Version', 0);
-    }
-
-    function track(tracking_args) {
-        // Send UA event.
-        /*jshint validthis:true */
-        tracking.trackEvent.apply(this, tracking_args);
-        // Log the track.
-        track_log.push(tracking_args);
+        setVar(15, 'Package Version', 0);
     }
 
     // Navigation tabs.
     z.body.on('click', '.navbar > li > a', function() {
-        track([
+        trackEvent(
             'Nav Click',
             'click',
-            $(this).parent().data('tab')
-        ]);
+            $(this).closest('li').data('tab')
+        );
     })
 
     // App list expand toggle (expanded)
     .on('click', '.app-list-filters-expand-toggle:not(.active)', function() {
-        track([
+        trackEvent(
             'View type interactions',
             'click',
             'Expanded view'
-        ]);
+        );
     })
 
     // App list expand toggle (contracted)
     .on('click', '.app-list-filters-expand-toggle.active', function() {
-        track([
+        trackEvent(
             'View type interactions',
             'click',
             'List view'
-        ]);
+        );
+    })
+
+    // Lightbox open (previews, screenshots).
+    .on('lightbox-open', function() {
+        if (z.context.type.split(' ').indexOf('detail') !== -1) {
+            trackEvent(
+                'App view interactions',
+                'click',
+                'Screenshot view'
+            );
+        } else {
+            trackEvent(
+                'Category view interactions',
+                'click',
+                'Screenshot view'
+            );
+        }
     });
 
     // Navigate from collection tile to collection detail.
-    z.page.on('click', '.feed-collection .view-all', function() {
-        track([
+    z.page.on('click', '.feed-collection .view-all-tab', function() {
+        trackEvent(
             'View Collection',
             'click',
-             $(this).closest('.feed-collection').data('tracking-slug')
-        ]);
+             $(this).closest('.feed-collection').data('tracking')
+        );
     })
 
     // Navigate from collection tile to app detail.
-    .on('click', '.feed-collection .app-link', function() {
-        track([
+    .on('click', '.feed-collection .mkt-tile', function() {
+        trackEvent(
             'View App from Collection Element',
             'click',
-            $(this).closest('.feed-collection').data('tracking-slug')
-        ]);
+            $(this).closest('.feed-collection').data('tracking')
+        );
     })
 
     // Navigate from featured app tile to app detail.
-    .on('click', '.featured-app.app-link', function() {
-        track([
+    .on('click', '.featured-app', function() {
+        trackEvent(
             'View App from Featured App Element',
             'click',
-            $(this).data('tracking-slug')
-        ]);
+            $(this).data('tracking')
+        );
     })
 
     // Navigate from brand tile to brand detail.
-    .on('click', '.feed-brand .fanchor, .feed-brand .view-all', function() {
-        track([
+    .on('click', '.brand-header, .feed-brand .view-all-tab', function() {
+        trackEvent(
             'View Branded Editorial Element',
             'click',
-            $(this).closest('.feed-brand').data('tracking-slug')
-        ]);
+            $(this).closest('.feed-brand').data('tracking')
+        );
     })
 
     // Navigate from brand tile to app detail.
-    .on('click', '.feed-brand .app-link', function() {
-        track([
+    .on('click', '.feed-brand .mkt-tile', function() {
+        trackEvent(
             'View App from Branded Editorial Element',
             'click',
-            $(this).closest('.feed-brand').data('tracking-slug')
-        ]);
+            $(this).closest('.feed-brand').data('tracking')
+        );
     })
 
     // Navigate from operator shelf tile to operator shelf detail.
-    .on('click', '.op-shelf.fanchor', function() {
-        track([
+    .on('click', '.op-shelf', function() {
+        trackEvent(
             'View Operator Shelf Element',
             'click',
-            $(this).data('tracking-slug')
-        ]);
+            $(this).data('tracking')
+        );
     })
 
     // Navigate from operator shelf detail to app detail.
-    .on('click', '.shelf-landing a.mkt-tile', function() {
-        track([
+    .on('click', '[data-shelf-landing-carrier] .mkt-tile', function() {
+        trackEvent(
             'View App from Operator Shelf Element',
             'click',
-            $(this).closest('.shelf-landing').data('tracking-slug')
-        ]);
+            $('[data-tracking]').data('tracking')
+        );
     })
 
+    .on('click', '.description-wrapper + .truncate-toggle', function() {
+        trackEvent(
+            'App view interactions',
+            'click',
+            'Toggle description'
+        );
+    });
+
+    // Add review.
+    z.doc.on('submit', '.add-review-form', utils._pd(function() {
+        var slug = this.elements.app.value;
+        var rating = this.elements.rating.value;
+
+        trackEvent(
+            'App view interactions',
+            'click',
+            'Successful review'
+        );
+        trackEvent('Write a Review', 'click', slug, rating);
+        setVar(12, 'Reviewer', 'Reviewer', 1);
+    }));
+
     if (tracking.actions_enabled) {
-        z.page.on('click', '.detail .support li a.button', function() {
-            track([
+        z.page.on('click', '.app-support .button', function() {
+            trackEvent(
                 'App view interaction',
                 'click',
                 this.parentNode.getAttribute('data-tracking')
-            ]);
+            );
         });
     }
 
     // Tracking methods for specific events.
     function track_app_launch(product) {
         // Track app launch.
-        track([
+        trackEvent(
             'Launch app',
             product.payment_required ? 'Paid' : 'Free',
             product.slug
-        ]);
+        );
     }
 
     function _get_app_install_value($install_btn) {
@@ -164,42 +200,40 @@ define('tracking_events',
             return $('.feed-collection .button.product').index($install_btn);
         }
         // Position within app listing.
-        return $('.button.product').index($install_btn);
+        return $('.button.install').index($install_btn);
     }
 
     function track_app_install_begin(product, $install_btn) {
         // Track app install start.
-        track([
+        trackEvent(
             'Click to install app',
             product.receipt_required ? 'paid' : 'free',
-            product.name + ':' + product.id,  // TODO: ask to use product.slug.
+            product.name + ':' + product.id,
             _get_app_install_value($install_btn)
-        ]);
+        );
     }
 
     function track_app_install_success(product, $install_btn) {
         // Track app install finish.
-        track([
+        trackEvent(
             'Successful app install',
             product.receipt_required ? 'paid' : 'free',
-            product.name + ':' + product.id,  // TODO: ask to use product.slug.
+            product.name + ':' + product.id,
             _get_app_install_value($install_btn)
-        ]);
+        );
     }
 
     function track_app_install_fail(product, $install_btn) {
         // Track app install fail.
-        track([
+        trackEvent(
             'App failed to install',
             product.receipt_required ? 'paid' : 'free',
-            product.name + ':' + product.id,  // TODO: ask to use product.slug.
+            product.name + ':' + product.id,
             _get_app_install_value($install_btn)
-        ]);
+        );
     }
 
     return {
-        track: track,
-        track_log: track_log,
         track_search_term: function(page) {
             // page -- whether the search query is being tracked for page view.
             var nav_stack = navigation.stack();
@@ -208,15 +242,14 @@ define('tracking_events',
                 if (!item.params || !item.params.search_query) {
                     continue;
                 }
-                console.log('Found search in nav stack, tracking search term:',
-                            item.params.search_query);
+                logger.log('Found search in nav stack, tracking search term:',
+                           item.params.search_query);
                 tracking[page ? 'setPageVar' : 'setVar'](
                     13, 'Search query', item.params.search_query);
                 return;
             }
-            console.log('No associated search term to track.');
+            logger.log('No associated search term to track.');
         },
-
         track_app_launch: track_app_launch,
         track_app_install_begin: track_app_install_begin,
         track_app_install_success: track_app_install_success,
