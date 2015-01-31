@@ -1,7 +1,7 @@
 /*
     Tests for app reviews.
 */
-var helpers = require('../lib/helpers');
+var helpers = require('../../lib/helpers');
 
 function testAddReviewModal(test) {
     casper.waitForSelector('.add-review-form', function() {
@@ -170,6 +170,24 @@ casper.test.begin('Test login to r? if already r? on desktop', helpers.desktopTe
 
         helpers.waitForPageLoaded(function() {
             test.assertExists('.edit-review-form');
+        });
+
+        helpers.done(test);
+    }
+}));
+
+
+casper.test.begin('Test reviews page back to app link', helpers.tabletTest({
+    test: function(test) {
+        helpers.startCasper({path: '/app/has_rated/ratings'});
+
+        helpers.waitForPageLoaded(function() {
+            test.assertVisible('.back-to-app');
+            casper.click('.back-to-app');
+        });
+
+        casper.waitForSelector('[data-page-type~="detail"]', function() {
+            test.assertExists('.detail');
         });
 
         helpers.done(test);

@@ -14,38 +14,23 @@ $loadmore-desktop-width = 300px;
         display: block;
         margin: auto;
         padding: 0;
+        position: relative;
         width: $loadmore-desktop-width;
 
-        &:not(.hide) + .spinner {
-            display: none;
-        }
-        &.hide {
-            visibility: hidden;
-        }
-    }
-    &.loading {
-        button {
-            visibility: hidden;
-        }
-        .throbber {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-            width: 32px;
-            height: 32px;
-            border-radius: 20px;
-            border: 4px solid #666;
-            border-color: #666 transparent;
-            animation(unquote('spin 1s linear infinite'));
+        &:before {
+            background: url('../img/icons/refresh-icon.svg');
+            bottom: 1px;
+            content: "";
+            display: inline-block;
+            margin-right: 10px;
+            width: 16px;
+            height: 16px;
+            position: relative;
+            vertical-align: middle;
         }
     }
-    span,
-    .throbber {
-        display: none;
+    &.loading .button:before {
+        animation(unquote('0.9s spin infinite steps(30)'));
     }
     .spinner {
         display: block;
@@ -60,15 +45,6 @@ $loadmore-desktop-width = 300px;
 .reviews-listing .loadmore {
     height: auto;
     min-height: 68px;
-}
-
-@media $base-desktop {
-    .loadmore {
-        padding: 25px 10px 0;
-    }
-    .grid-if-desktop .loadmore {
-        padding-top: 18px;
-    }
 }
 
 [data-page-type~=homepage],
@@ -90,6 +66,12 @@ $loadmore-desktop-width = 300px;
 }
 
 @media $base-desktop {
+    .loadmore {
+        padding: 25px 10px 0;
+    }
+    .grid-if-desktop .loadmore {
+        padding-top: 18px;
+    }
     [data-page-type~=homepage],
     [data-page-type~=app-list] {
         padding-bottom: 0;

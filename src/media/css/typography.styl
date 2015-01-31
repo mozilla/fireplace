@@ -103,6 +103,16 @@ dd {
 
 .back-to-app {
     display: none;
+
+    &:before {
+        content: "\2039";
+        display: inline-block;
+        font-size: 28px;
+        font-weight: 300;
+        margin-right: 10px;
+        position: relative;
+        top: 3px;
+    }
 }
 
 .prose {
@@ -145,6 +155,9 @@ dd {
 }
 
 @media $base-tablet {
+    .back-to-app {
+        display: inline-block;
+    }
     h1 {
         font-size: 30px;
     }
@@ -158,19 +171,6 @@ dd {
         border-radius: 10px;
         margin: 48px 0 0;
         padding: 18px 15px;
-    }
-    .back-to-app {
-        display: inline-block;
-
-        &:before {
-            content: "\2039";
-            display: inline-block;
-            font-size: 28px;
-            font-weight: 300;
-            margin-right: 10px;
-            position: relative;
-            top: 3px;
-        }
     }
     .island.prose {
         padding: 24px;
