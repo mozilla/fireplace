@@ -1,12 +1,13 @@
-<section class="site-terms-of-use main full c">
-  <header class="secondary-header c">
-    <h2>{{ _('Terms of Use') }}</h2>
-  </header>
-  <article class="island prose">
-    {% set url = '/docs/terms/' + language + '.html?20141223' %}
-    {% set fallback = '/docs/terms/' + settings.default_locale + '.html?20141223' %}
-    {% fetch (url=media(url), fallback=media(fallback), filters=['rewriteCdnUrls']) %}
-      <p class="spinner spaced alt"></p>
-    {% endfetch %}
-  </article>
+<section class="main">
+  <div class="subheader">
+    <h1>{{ _('Terms of Use') }}</h1>
+  </div>
+</section>
+
+<section class="site-terms-of-use main full prose">
+  {% set url = '/docs/terms/' + language + '.html?20141223' %}
+  {% set fallback = '/docs/terms/' + settings.default_locale + '.html?20141223' %}
+  {% fetch (url=media(url), fallback=media(fallback), filters=['rewriteCdnUrls']) %}
+    <p class="spinner spaced alt"></p>
+  {% endfetch %}
 </section>
