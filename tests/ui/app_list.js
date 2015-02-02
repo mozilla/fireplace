@@ -237,6 +237,11 @@ appListPages.forEach(function(appListPage) {
 
     casper.test.begin(appListPage.name + ' compatibility filtering tests', {
         test: function(test) {
+            if (appListPage.name == 'Purchases') {
+                helpers.done(test);
+                return;
+            }
+
             helpers.startCasper({
                 path: new jsuri(appListPage.path).addQueryParam(
                     'device_override', 'desktop')

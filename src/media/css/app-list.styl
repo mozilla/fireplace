@@ -62,6 +62,19 @@ $desktop-tile-padding = 20px 50px;
     display: none;
 }
 
+[data-page-type~="purchases"] {
+    .app-list-filters,
+    .compat-filter {
+        display: none;
+    }
+    .app-list-filters-expand-wrapper {
+        margin-left: 0;
+    }
+    section.full > div {
+        padding-top: 0;
+    }
+}
+
 @media $base-tablet {
     .app-list,
     .app-list.only-logged-in {
@@ -99,6 +112,14 @@ $desktop-tile-padding = 20px 50px;
         }
         &:last-child {
             border-right: 0;
+        }
+    }
+    [data-page-type~="purchases"] {
+        .app-list-filters {
+            display: block;
+        }
+        section.full > div {
+            padding-top: 30px;
         }
     }
 }
