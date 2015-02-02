@@ -4,20 +4,14 @@
 */
 @import 'lib';
 
-.native-fxa .account-settings .logout {
-    // Don't show logout links to native FxA users (bug 1073177).
-    display: none;
-}
-
 .account-settings section.full > div {
     padding-top: 30px;
 }
 
-.account-settings {
-    .hide-logged-out {
-        display: none;
-    }
+.account-settings .hide-logged-out {
+    display: none;
 }
+
 .logged-in .account-settings {
     .hide-logged-out {
         display: block;
@@ -25,6 +19,11 @@
     .hide-logged-in {
         display: none;
     }
+}
+
+.native-fxa .account-settings .account-settings-save .logout {
+    // Don't show logout links to native FxA users (bug 1073177).
+    display: none;
 }
 
 .account-settings {

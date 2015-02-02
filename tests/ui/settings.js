@@ -110,3 +110,22 @@ casper.test.begin('Test settings newsletter desktop', helpers.desktopTest({
         helpers.done(test);
     }
 }));
+
+
+casper.test.begin('Test settings hide logout if native FxA', {
+    test: function(test) {
+        helpers.waitForPageLoaded(function() {
+            helpers.fake_login();
+        });
+
+        helpers.waitForPageLoaded(function() {
+            test.assertVisible('.logout');
+            casper.evaluate(function() {
+                document.querySelector('body').classList.add('native-fxa');
+            });
+            test.assertNotVisible('.account-settings .logout');
+        });
+
+        helpers.done(test);
+    }
+});
