@@ -17,7 +17,8 @@
 
           <ul class="reviews-wrapper">
             {% for _review in this %}
-              {{ review(_review, current_version=this.info.current_version) }}
+              {{ review(_review, current_version=this.info.current_version,
+                        slug=slug) }}
             {% endfor %}
 
             {% if response.meta.next %}

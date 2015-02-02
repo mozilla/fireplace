@@ -1,7 +1,7 @@
 /*
     Tests for app reviews.
 */
-var helpers = require('../../lib/helpers');
+var helpers = require('../lib/helpers');
 
 function testAddReviewModal(test) {
     casper.waitForSelector('.add-review-form', function() {
@@ -98,6 +98,27 @@ casper.test.begin('Test edit ratings page w/o login redirects to app detail', {
         helpers.waitForPageLoaded(function() {
             test.assertUrlMatch(/\/app\/foo$/);
         });
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test edit review on review page', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/has_rated/ratings'});
+
+        helpers.waitForPageLoaded(function() {
+           helpers.fake_login();
+        });
+
+        helpers.waitForPageLoaded(function() {
+           casper.click('.review-actions [data-edit-review]');
+        });
+
+        casper.waitForSelector('.edit-review-form', function() {
+            test.assertUrlMatch(/\/app\/has_rated\/ratings\/edit/);
+        });
+
         helpers.done(test);
     }
 });

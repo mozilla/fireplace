@@ -1,6 +1,6 @@
 {% include "_macros/stars.html" %}
 
-{% macro review(this, detailpage=false, current_version=None) %}
+{% macro review(this, detailpage=false, slug=slug, current_version=None) %}
 <li class="review {{ 'flagged' if this.is_flagged }} c"
     data-report-uri="{{ this.report_spam }}" data-rating="{{ this.rating }}"
     itemprop="review" itemscope itemtype="http://schema.org/Review">
@@ -21,17 +21,18 @@
       {% if this.is_flagged %}
         <li class="flagged">{{ _('Flagged for review') }}</li>
       {% endif %}
-      {% if this.is_author or user.get_permission('reviewer') %}
+      {% if this.is_author %}
         <li>
           <a class="review-button" data-edit-review data-text="{{ _('Edit') }}"
              href="{{ url('app/ratings/edit', [slug]) }}">
             {{ _('Edit') }}
           </a>
         </li>
+      {% endif %}
+      {% if this.is_author or user.get_permission('reviewer') %}
         <li>
           <a class="delete post" data-action="delete" href="#"
-             data-href="{{ this.resource_uri }}"
-             data-app="{{ slug }}">
+             data-href="{{ this.resource_uri }}">
             {{ _('Delete') }}
           </a>
         </li>
