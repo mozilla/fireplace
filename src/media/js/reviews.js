@@ -116,7 +116,7 @@ define('reviews',
             // Add review modal (for edit or add) for desktop.
             if (this.hasAttribute('data-edit-review')) {
                 var endpoint = urls.api.params('reviews', {
-                    app: $('.product').data('slug'),
+                    app: $('[data-app]').data('slug'),
                     user: 'mine'
                 });
                 this.innerHTML = gettext('Loading...');
@@ -137,7 +137,7 @@ define('reviews',
             z.body.append(
                 nunjucks.env.render('_includes/review_modal.html', {
                     existingReview: existingReview,
-                    slug: $('.product').data('slug')
+                    slug: $('[data-app]').data('app')
                 })
             );
             $('mkt-prompt[data-modal="review"]').find('select[name="rating"]')

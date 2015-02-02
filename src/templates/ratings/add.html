@@ -23,7 +23,7 @@
                 placeholder="{{ _('Tell us what you love about this app!') }}"
                 required maxlength="150">{{ existingReview.body }}</textarea>
       <div class="char-count" data-for="review-body"></div>
-      <input type="hidden" name="app" value="{{ slug }}">
+      <input type="hidden" name="app" value="{{ slug }}" required>
       <footer class="form-footer only-logged-out c">
         <p>{{ _('Only users that are logged in may submit reviews.') }}</p>
       </footer>

@@ -3,10 +3,17 @@
 */
 var helpers = require('../lib/helpers');
 
-function testAddReviewModal(test) {
+function testAddReviewForm(test) {
+    // Checks review form existence and validation.
     casper.waitForSelector('.add-review-form', function() {
         test.assertSelectorHasText('.char-count b', '150');
         test.assert(!helpers.checkValidity('.mkt-prompt form'));
+
+        var slug = casper.evaluate(function() {
+            return document.querySelector('.add-review-form [name="app"]').value;
+        });
+        test.assert(!!slug, 'Assert review form has app value');
+
         casper.fill('.add-review-form', {'body': 'test'});
     });
 
@@ -67,7 +74,7 @@ casper.test.begin('Test flag review on app review page', {
 
 casper.test.begin('Test add review on app review page', {
     test: function(test) {
-        helpers.startCasper({path: '/app/can_rate'});
+        helpers.startCasper({path: '/app/can_rate/ratings'});
         helpers.fake_login();
 
         helpers.waitForPageLoaded(function() {
@@ -75,7 +82,7 @@ casper.test.begin('Test add review on app review page', {
             helpers.fake_login();
         });
 
-        testAddReviewModal(test);
+        testAddReviewForm(test);
         helpers.done(test);
     }
 });
@@ -157,7 +164,7 @@ casper.test.begin('Test add rating on detail page on desktop', {
             helpers.fake_login();
         });
 
-        testAddReviewModal(test);
+        testAddReviewForm(test);
         helpers.done(test);
     }
 });
