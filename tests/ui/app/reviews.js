@@ -1,7 +1,7 @@
 /*
     Tests for app reviews.
 */
-var helpers = require('../lib/helpers');
+var helpers = require('../../lib/helpers');
 
 function testAddReviewForm(test) {
     // Checks review form existence and validation.
@@ -72,10 +72,44 @@ casper.test.begin('Test flag review on app review page', {
 });
 
 
+casper.test.begin('Test review button hidden when logged in and cannot rate', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/cant_rate/ratings'});
+
+        helpers.waitForPageLoaded(function() {
+            helpers.fake_login();
+        });
+
+        helpers.waitForPageLoaded(function() {
+            test.assertDoesntExist('.review-button');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test sign in to rate when cannot rate', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/cant_rate/ratings'});
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('.review-button');
+            helpers.fake_login();
+        });
+
+        helpers.waitForPageLoaded(function() {
+            test.assertDoesntExist('.add-review-form');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
 casper.test.begin('Test add review on app review page', {
     test: function(test) {
         helpers.startCasper({path: '/app/can_rate/ratings'});
-        helpers.fake_login();
 
         helpers.waitForPageLoaded(function() {
             casper.click('.review-button');

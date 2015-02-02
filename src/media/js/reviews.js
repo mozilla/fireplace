@@ -83,7 +83,15 @@ define('reviews',
         // Prompt user to login, then open up review forms on post-login.
         function onLoginSuccess() {
             var reviewButton = document.querySelector('.review-button');
-            if (caps.widescreen()) {
+
+            if (!reviewButton) {
+                setTimeout(function() {
+                    // Bump this notification ahead of the login one.
+                    notification.notification({
+                        message: gettext('Sorry, you must purchase this app before reviewing'),
+                    });
+                });
+            } else if (caps.widescreen()) {
                 addReview.apply(reviewButton);
             } else {
                 z.page.trigger('navigate', reviewButton.getAttribute('href'));
