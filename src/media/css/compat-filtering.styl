@@ -3,6 +3,8 @@
 .compat-filter {
     display: block;
     margin: 0 auto;
+    right: 0;
+    text-align: center;
     text-transform: none;
 
     select {
@@ -17,55 +19,19 @@
         margin-right: 5px;
         vertical-align: middle;
     }
+    .pretty-select:before {
+        background-color: $white;
+        height: 25px;
+        right: 0px;
+    }
 }
 
 .compat-select-wrapper {
     vertical-align: middle;
 }
 
-// TODO: These need to be outside a media query.
-@media (max-width: 709px) {
-    .compat-filter {
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-        text-align: center;
-    }
+@media $base-tablet {
     .compat-filter .pretty-select:before {
-        right: 5px;
-    }
-
-    .app-list-page,
-    .category,
-    #search-results .search-listing {
-        position: relative;
-    }
-    .category-header + .compat-filter {
-        margin-top: 2px;
-    }
-
-    .mkt-tile {
-        overflow: visible;
-    }
-
-    #search-results .search-404 .compat-filter {
-        position: relative;
-        top: 10px;
-    }
-    #search-results .search-404 {
-        background: none;
-        border: 0;
-        margin-bottom: 10px;
-
-        &:before {
-            background: none;
-        }
-    }
-}
-
-@media $base-desktop {
-    #search-results .secondary-header {
-        height: 80px;
-        max-height: 80px;
+        background-color: transparent;
     }
 }
