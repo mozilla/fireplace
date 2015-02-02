@@ -1,12 +1,13 @@
-<section class="site-privacy-policy main full c">
-  <header class="secondary-header c">
-    <h2>{{ _('Privacy Policy') }}</h2>
-  </header>
-  <article class="island prose">
-    {% set url = '/docs/privacy/' + language + '.html?20141223' %}
-    {% set fallback = '/docs/privacy/' + settings.default_locale + '.html?20141223' %}
-    {% fetch (url=media(url), fallback=media(fallback), filters=['rewriteCdnUrls']) %}
-      <p class="spinner spaced alt"></p>
-    {% endfetch %}
-  </article>
+<section class="main">
+  <div class="subheader">
+    <h1>{{ _('Privacy Policy') }}</h1>
+  </div>
+</section>
+
+<section class="site-privacy-policy main full prose">
+  {% set url = '/docs/privacy/' + language + '.html?20141223' %}
+  {% set fallback = '/docs/privacy/' + settings.default_locale + '.html?20141223' %}
+  {% fetch (url=media(url), fallback=media(fallback), filters=['rewriteCdnUrls']) %}
+    <p class="spinner spaced alt"></p>
+  {% endfetch %}
 </section>
