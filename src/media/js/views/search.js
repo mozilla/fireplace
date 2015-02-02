@@ -1,6 +1,6 @@
 define('views/search',
-    ['capabilities', 'l10n', 'urls', 'utils', 'z'],
-    function(capabilities, l10n, urls, utils, z) {
+    ['capabilities', 'l10n', 'tracking', 'urls', 'utils', 'z'],
+    function(capabilities, l10n, tracking, urls, utils, z) {
     'use strict';
     var _pd = utils._pd;
     var gettext = l10n.gettext;
