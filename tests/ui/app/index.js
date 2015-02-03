@@ -35,6 +35,7 @@ casper.test.begin('Test app detail', {
             test.assertVisible('.app-support .privacy-policy');
             test.assertDoesntExist('.button.manage');
             test.assertDoesntExist('.button.reviewer');
+            test.assertDoesntExist('.button.view-stats');
         });
 
         helpers.done(test);
@@ -127,6 +128,8 @@ casper.test.begin('Test app detail as a developer', {
 
             // "Edit Listing" button.
             test.assertExists('.button.manage');
+            // Stats buttons.
+            test.assertExists('.button.view-stats');
             // "Approve/Reject" / "Review History" button.
             test.assertDoesntExist('.button.reviewer');
         });
@@ -149,6 +152,25 @@ casper.test.begin('Test app detail as a reviewer', {
 
             test.assertExists('.button.manage');
             test.assertExists('.button.reviewer');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test app detail as a user with the stats permission', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/abc'});
+
+        helpers.waitForPageLoaded(function() {
+            casper.evaluate(function() {
+                console.log('[phantom] Giving user "stats" permission');
+                window.require('user').update_permissions({stats: true});
+                require('views').reload();
+            });
+
+            test.assertExists('.button.view-stats');
         });
 
         helpers.done(test);
