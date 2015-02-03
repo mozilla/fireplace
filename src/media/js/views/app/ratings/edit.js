@@ -20,14 +20,14 @@ define('views/app/ratings/edit',
 
             // Rewrite cache with new review.
             cache.set(uri, data);
-            ratings._rewriter(slug, function(reviews) {
-                reviews.objects.forEach(function(obj, i) {
-                    if (reviews.objects[i].resource_uri === resource_uri) {
-                        reviews.objects[i].body = data.body;
-                        reviews.objects[i].rating = data.rating;
+            reviews._rewriter(slug, function(_reviews) {
+                _reviews.objects.forEach(function(obj, i) {
+                    if (_reviews.objects[i].resource_uri === resource_uri) {
+                        _reviews.objects[i].body = data.body;
+                        _reviews.objects[i].rating = data.rating;
                     }
                 });
-                return reviews;
+                return _reviews;
             });
 
             z.page.trigger('navigate', urls.reverse('app', [slug]));

@@ -5,16 +5,16 @@ var helpers = require('../../lib/helpers');
 
 function testAddReviewForm(test) {
     // Checks review form existence and validation.
-    casper.waitForSelector('.add-review-form', function() {
+    casper.waitForSelector('.mkt-prompt form', function() {
         test.assertSelectorHasText('.char-count b', '150');
         test.assert(!helpers.checkValidity('.mkt-prompt form'));
 
         var slug = casper.evaluate(function() {
-            return document.querySelector('.add-review-form [name="app"]').value;
+            return document.querySelector('[name="app"]').value;
         });
         test.assert(!!slug, 'Assert review form has app value');
 
-        casper.fill('.add-review-form', {'body': 'test'});
+        casper.fill('.mkt-prompt form', {'body': 'test'});
     });
 
     casper.waitForText('146', function() {
@@ -23,10 +23,10 @@ function testAddReviewForm(test) {
 
         casper.click('.stars input[value="3"]');
         test.assert(helpers.checkValidity('.mkt-prompt form'));
-        casper.click('.add-review-form [type="submit"]');
+        casper.click('.mkt-prompt form [type="submit"]');
     });
 
-    casper.waitWhileVisible('.add-review-form', function() {
+    casper.waitWhileVisible('.mkt-prompt form', function() {
         // Post review stuff.
         helpers.assertUATracking(test, [
             'App view interactions',
@@ -34,6 +34,29 @@ function testAddReviewForm(test) {
             'Successful review'
         ]);
     });
+}
+
+function testEditReviewForm(test) {
+    // Checks review form existence and validation.
+    casper.waitForSelector('.mkt-prompt form', function() {
+        test.assert(helpers.checkValidity('.mkt-prompt form'));
+
+        var slug = casper.evaluate(function() {
+            return document.querySelector('[name="app"]').value;
+        });
+        test.assert(!!slug, 'Assert review form has app value');
+
+        casper.fill('.mkt-prompt form', {'body': 'test'});
+    });
+
+    casper.waitForText('146', function() {
+        // Test form validity.
+        test.assert(helpers.checkValidity('.mkt-prompt form'));
+        casper.click('.stars input[value="1"]');
+        casper.click('.mkt-prompt form [type="submit"]');
+    });
+
+    casper.waitForSelector('[data-page-type~="detail"]');
 }
 
 
@@ -158,6 +181,7 @@ casper.test.begin('Test edit review on review page', {
 
         casper.waitForSelector('.edit-review-form', function() {
             test.assertUrlMatch(/\/app\/has_rated\/ratings\/edit/);
+            testEditReviewForm(test);
         });
 
         helpers.done(test);
@@ -179,6 +203,7 @@ casper.test.begin('Test edit review on detail page', {
 
         casper.waitForSelector('.edit-review-form', function() {
             test.assertUrlMatch(/\/app\/has_rated\/ratings\/edit/);
+            testEditReviewForm(test);
         });
 
         helpers.done(test);
