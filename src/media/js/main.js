@@ -4,7 +4,7 @@
     separate and appropriate modules. This is not your diaper.
 */
 console.log('Mozilla(R) FP-MKT (R) 1.0');
-console.log('   (C)Copyright Mozilla Corp 1998-2014');
+console.log('   (C)Copyright Mozilla Corp 1998-2015');
 console.log('');
 console.log('64K High Memory Area is available.');
 
