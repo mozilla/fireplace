@@ -1,7 +1,7 @@
 /*
     Tests for app reviews.
 */
-var helpers = require('../../lib/helpers');
+var helpers = require('../lib/helpers');
 
 function testAddReviewForm(test) {
     // Checks review form existence and validation.
@@ -241,6 +241,18 @@ casper.test.begin('Test edit rating on detail page on desktop', {
             casper.click('.review-button');
         });
         casper.waitForSelector('.edit-review-form');
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test unrated app hidden review listing link', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/unrated'});
+        helpers.waitForPageLoaded(function() {
+            test.assertElementCount('.review-buttons .button', 1);
+            test.assertElementCount('.review-buttons .review-button', 1);
+        });
         helpers.done(test);
     }
 });
