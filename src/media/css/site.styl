@@ -267,6 +267,11 @@ a:active {
     .hide-on-mobile {
         display: block;
     }
+    // Set a min page height.
+    // If this gets ugly we'll designate an id to primary content.
+    .main.full:not(.feed-landing) {
+        min-height: 500px;
+    }
 }
 
 @media $base-desktop {

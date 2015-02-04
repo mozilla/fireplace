@@ -42,7 +42,7 @@
         {% if response.meta.next %}
           {{ more_button(response.meta.next) }}
         {% endif %}
-      </ol>
+      </ul>
     </div>
   </section>
 {% placeholder %}
@@ -50,7 +50,8 @@
     <p class="spinner spaced alt"></p>
   </section>
 {% empty %}
-  <section class="main">
+  <section class="main empty-search">
+    {% include "_includes/app_list_filters.html" %}
     <h1 class="no-results">{{ _('No results found') }}</h1>
   </section>
 {% except %}
