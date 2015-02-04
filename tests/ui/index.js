@@ -115,3 +115,16 @@ casper.test.begin('Test Feed navigation and tracking events', {
         helpers.done(test);
     }
 });
+
+casper.test.begin('Test footer at tablet width', helpers.tabletTest({
+    test: function(test) {
+        helpers.startCasper({path: '/'});
+
+        helpers.waitForPageLoaded(function() {
+            test.assertVisible('#site-footer');
+            test.assertNotVisible('#newsletter-footer');
+        });
+
+        helpers.done(test);
+    }
+}));
