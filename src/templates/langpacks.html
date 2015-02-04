@@ -1,0 +1,43 @@
+{% include '_macros/more_button.html' %}
+
+<section class="main">
+  <div class="subheader">
+    <h1> {{ title }} </h1>
+  </div>
+</section>
+
+<section class="main full app-list-page c langpacks">
+  <header class="secondary-header">
+    <h2>{{ subtitle }}</h2>
+  </header>
+  {% defer (url=anonApiParams(endpoint_name, params), pluck='objects', paginate='.app-list') %}
+    <ul class="app-list {{ 'paginated' if response.meta.next }}">
+      {% for langpack in this %}
+        <li class="app-list-app">
+          <div class="product mkt-tile langpack" data-id="{{ langpack.pk }}">
+            <h3>{{ langpack.language_display }}</h3>
+            <button class="button product install" data-product="{{ langpack }}" data-manifest-url="{{ langpack.manifest_url }}"><em>{{ _('Install') }}</em><span class="spin"></span></button>
+          </div>
+        </li>
+      {% endfor %}
+      {% if response.meta.next %}
+        {# Render the more button if there's another page of results #}
+        {{ more_button(response.meta.next) }}
+      {% endif %}
+    </ul>
+  {% placeholder %}
+    <p class="spinner padded alt"></p>
+  {% empty %}
+    <p class="no-results">
+      {{ _('No language packs found.') }}
+    </p>
+  {% except %}
+    <p class="no-results">
+      {% if error == 400 or error == 404 %}
+        {{ _('No language packs found.') }}
+      {% elif error == 500 %}
+        {{ _('An internal server error occurred. Please try again later.') }}
+      {% endif %}
+    </p>
+  {% end %}
+</section>
