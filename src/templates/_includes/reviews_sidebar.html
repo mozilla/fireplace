@@ -20,7 +20,7 @@
         </a>
       </li>
     {% endif %}
-    {% if not is_review_listing %}
+    {% if not is_review_listing and response.meta.total_count > 0 %}
       <li>
         <a class="button" data-app="{{ slug }}"
            href="{{ url('app/ratings', [slug]) }}">
