@@ -1,0 +1,38 @@
+/*
+    Message that pops up after app installs that tells the user how to launch
+    the app on different platforms.
+*/
+@import '../lib';
+
+.post-install-message {
+    background-color: $action-positive;
+    display: none;
+    padding: 15px 10px;
+    position: relative;
+    right: 10px;
+    text-align: center;
+    width-calc('100% + 20px');
+
+    b,
+    span {
+        type_body();
+        color: $white;
+    }
+    b {
+        font-weight: 500;
+    }
+    .post-install-message-installed:before {
+        background: url(../../img/pretty/tick-white.svg) no-repeat;
+        background-size: contain;
+        content: "";
+        display: inline-block;
+        height: 15px;
+        margin: 0 10px;
+        vertical-align: middle;
+        width: 19px;
+    }
+    .post-install-message-how {
+        display: none;
+    }
+}
+
