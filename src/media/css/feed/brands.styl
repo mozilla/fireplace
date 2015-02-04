@@ -47,7 +47,11 @@
 .brand-landing-icon {
     border-radius: 128px;
     height: 64px;
+    left: 0;
     margin: 0 auto;
+    right: 0;
+    position: absolute;
+    top: 50px;
     width: 64px;
 
     h3:before {
@@ -57,23 +61,12 @@
     }
 }
 
-.brand-landing-header-desktop {
-    margin-top: 22px;  // To get 40px. Combine with 18px #page padding.
-    display: none;
-    width: 100%;
-    z-index: 1;
-}
+.feed-landing-header-desktop .brand-landing-curve {
+    flex-direction: column;
 
-@media $base-tablet {
-    .brand-landing-header-mobile {
-        display: none;
-    }
-    .brand-landing-header-desktop {
-        display: block;
-        margin-top: 22px;  // To get 40px. Combine with 18px #page padding.
-    }
-    .brand-landing {
-        margin-top: 40px;
+    h1 {
+        color: $greyscale-black;
+        margin-top: 60px;
     }
 }
 
