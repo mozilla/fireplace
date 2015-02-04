@@ -1,7 +1,8 @@
 @import 'lib';
 
-#newsletter-footer {
+.newsletter-footer {
     background: $navbar-gray;
+    display: none;
     padding: 20px;
 }
 
@@ -112,6 +113,11 @@
     width: 100%;
 }
 
+.newsletter-cancel-button,
+.newsletter-signup-button {
+    margin: 15px 0 0;
+}
+
 .newsletter-details {
     margin-top: 20px;
 
@@ -137,5 +143,11 @@
     .newsletter-signup-button,
     .newsletter-cancel-button {
         width: auto;
+        margin: 0;
+    }
+    .newsletter-footer {
+        border-bottom: 1px solid $footer-border;
+        border-top: 1px solid $footer-border;
+        display: block;
     }
 }
