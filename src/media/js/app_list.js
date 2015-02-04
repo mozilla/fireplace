@@ -37,7 +37,7 @@ define('app_list',
 
     z.page.on('loaded reloaded_chrome', function() {
         // On load - set the tray state on available app lists.
-        if ($('.app-list').length) {
+        if ($('.main:not(.feed-landing) .app-list').length) {
             setTrays(expand);
         }
     });

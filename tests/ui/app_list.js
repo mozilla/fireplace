@@ -285,3 +285,21 @@ appListPages.forEach(function(appListPage) {
         }
     });
 });
+
+casper.test.begin('Test collection detail page for app tile expanded state.', {
+    test: function(test) {
+        // Visit the popular page and click expand.
+        helpers.startCasper({path: '/popular'});
+        helpers.waitForPageLoaded(function() {
+            casper.click('.app-list-filters-expand-toggle');
+        });
+
+        // Visit a collection details page and check it's not expanded.
+        helpers.startCasper({path: '/feed/collection/top-games'});
+        helpers.waitForPageLoaded(function() {
+            test.assertDoesntExist('.app-list.expanded');
+            test.assertDoesntExist('.previews');
+        });
+        helpers.done(test);
+    }
+});
