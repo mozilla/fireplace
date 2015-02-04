@@ -61,22 +61,23 @@
 {% endmacro %}
 
 {% macro brand_landing(brand) %}
-  <div class="feed-landing-header brand-landing-header">
-    <div class="brand-landing-header-mobile">
+  <div class="feed-landing-header brand-landing-header feed-landing-wrapper">
+    <div class="feed-landing-header-mobile">
       {{ brand_header(brand) }}
     </div>
-    <div class="brand-landing-header-desktop">
-      <div class="feed-landing-curve brand-landing-curve"></div>
-      <div class="brand-landing-icon"
+    <div class="feed-landing-header-desktop">
+      <div class="feed-landing-curve brand-landing-curve">
+        <div class="brand-landing-icon"
            data-brand-color="{{ feed.get_brand_color_class(brand) }}"
            data-brand-type="{{ brand.type }}">
-        <h3></h3>
+          <h3></h3>
+        </div>
+        <h1>{{ feed.get_brand_type(brand.type, brand.apps.length) }}</h1>
       </div>
-      <h1>{{ feed.get_brand_type(brand.type, brand.apps.length) }}</h1>
     </div>
   </div>
 
-  <section class="main full feed-landing brand-landing">
+  <section class="main full feed-landing">
     <div>
       <ul class="app-list c">
         {% for app in brand.apps %}
@@ -192,7 +193,7 @@
   {# Used both for collections and shelves. Reduce, reuse, recycle. #}
   {% set src = 'operator-shelf-element' if coll.carrier else 'collection-element' %}
 
-  <div class="collection-landing-wrapper" data-tracking="{{ coll.slug }}"
+  <div class="feed-landing-wrapper" data-tracking="{{ coll.slug }}"
        {% if not coll.carrier %}
          data-collection-landing-color="{{ coll.color or 'sapphire' }}"
        {% endif %}
@@ -203,7 +204,7 @@
        {% if coll.region %}data-shelf-landing-region="{{ coll.region }}"{% endif %}
        {% if coll.carrier %}data-shelf-landing-carrier="{{ coll.carrier }}"{% endif %}>
   <div class="feed-landing-header collection-landing-header">
-    <div class="collection-landing-header-mobile">
+    <div class="feed-landing-header-mobile collection-landing-header-mobile">
       {# Reuse the feed representation as the mobile header. #}
       {% if coll.carrier %}
         {{ shelf(coll, true) }}
@@ -212,7 +213,7 @@
            collection_listing_header(coll) }}
       {% endif %}
     </div>
-    <div class="collection-landing-header-desktop">
+    <div class="feed-landing-header-desktop">
       {% if not coll.background_image %}
         <ul class="collection-landing-app-icons">
           {% for app in coll.apps %}
@@ -223,7 +224,6 @@
         </ul>
       {% endif %}
       <div class="feed-landing-curve collection-landing-curve">
-        <div class="collection-landing-curve-inner">
           {% if coll.background_image %}
             <img class="feed-landing-bg-image"
                  src="{{ coll.background_image_landing or coll.background_image }}"
@@ -235,7 +235,6 @@
               <p class="feed-landing-description">{{ coll.description|translate(coll) }}</p>
             {% endif %}
           </div>
-        </div>
       </div>
     </div>
   </div>

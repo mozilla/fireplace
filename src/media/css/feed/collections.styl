@@ -4,6 +4,15 @@
 @import 'index';
 @import '../lib';
 
+.collection-landing-wrapper {
+    display-flex();
+    flex-wrap: wrap;
+
+    .collection-landing-header {
+        width: 100%;
+    }
+}
+
 .collection-listing-header {
     // Header for listing collections on the homepage.
     display: block;
@@ -55,25 +64,18 @@
     }
 }
 
-.collection-landing-wrapper:not([data-collection-landing-is-listing]) .collection-landing-header-mobile {
+.feed-landing-wrapper:not([data-collection-landing-is-listing]) .collection-landing-header-mobile {
     padding: 10px 0;
 }
 
-.collection-landing-header-desktop {
-    display: none;
-    width: 100%;
-
-    h1,
-    .feed-landing-description {
-        color: $white;
-    }
-}
-
 .collection-landing-app-icons {
-    bottom: 35px;
+    left: 0;
     list-style: none;
-    margin: 0 auto;
-    position: relative;
+    margin-top: 5px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
 
     li {
         display: inline-block;
@@ -111,45 +113,8 @@
 }
 
 @media $base-tablet {
-    .collection-landing-wrapper {
-        padding-top: 40px;
-    }
-    .collection-landing-header {
-        height: 140px;
-    }
-    .collection-landing-header-mobile {
-        display: none;
-    }
-    .collection-landing-header-desktop {
-        display-flex();
-    }
-    .collection-landing-wrapper .collection-landing {
-        margin-top: 45px;
-    }
-    [data-collection-landing-has-background-image] {
-        .collection-landing-curve-inner {
-            align-items: flex-start;
-            bottom: 40px;
-            display-flex();
-            justify-content: center;
-            right: 40px;
-            position: relative;
-
-            h1 {
-                clear: left;
-                float: left;
-            }
-        }
-        .feed-landing-description {
-            clear: left;
-            float: left;
-            width: 500px;
-        }
-    }
-}
-
-@media $base-desktop {
-    .collection-landing-wrapper {
-        margin-top: -18px;
+    [data-collection-landing-has-background-image] .feed-landing-description {
+        width: 500px;
+        max-width: 100%;
     }
 }

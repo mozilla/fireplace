@@ -5,6 +5,7 @@
 */
 @import '../lib';
 
+
 .feed-landing-header {
     display: block;
     position: relative;
@@ -35,6 +36,16 @@
     }
 }
 
+.feed-landing-header-desktop {
+    display: none;
+    width: 100%;
+
+    h1,
+    .feed-landing-description {
+        color: $white;
+    }
+}
+
 .feed-landing {
     &.full > div {
         padding-top: 0;
@@ -45,12 +56,30 @@
 }
 
 .feed-landing-description {
-    margin-top: 10px;
+    margin: 10px auto 0;
+    max-width: 65%
     text-align: center;
     type_body();
 }
 
 @media $base-tablet {
+    .feed-landing-wrapper {
+        padding-top: 40px;
+    }
+    .feed-landing-header {
+        left: -10%;
+        position: relative;
+        width: 120%;
+    }
+    .feed-landing-header-mobile {
+        display: none;
+    }
+    .feed-landing-header-desktop {
+        display-flex();
+    }
+    .feed-landing {
+        margin-top: 45px;
+    }
     .feed-landing-header {
         display-flex();
         flex-wrap: nowrap;
@@ -77,13 +106,15 @@
             }
         }
     }
-    .brand-landing-header-desktop,
-    .collection-landing-header-desktop {
+    .feed-landing-header-desktop {
         margin-top: 40px;
     }
 }
 
 @media $base-desktop {
+    .feed-landing-wrapper {
+        margin-top: -18px;
+    }
     .feed-landing-header {
         flex-wrap: wrap;
     }
