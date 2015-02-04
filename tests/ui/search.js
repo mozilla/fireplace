@@ -68,8 +68,9 @@ casper.test.begin('Test search empty', {
             test.assertUrlMatch(/\/search\?q=empty/);
             test.assertVisible('#search-q');
             test.assertDoesntExist('.app-list');
-            test.assertDoesntExist('.app-list-filters');
+            test.assertExists('.app-list-filters', 'Check compatibility filtering is found');
             test.assertExists('.no-results', 'Check no-results header is found');
+            test.assertNotVisible('.app-list-filters-expand-wrapper');
         });
 
         helpers.done(test);
