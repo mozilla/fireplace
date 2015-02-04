@@ -1,4 +1,7 @@
-define('views/purchases', ['l10n', 'linefit', 'urls'], function(l10n, linefit, urls) {
+/*
+    My Apps page.
+*/
+define('views/purchases', ['l10n', 'urls'], function(l10n, urls) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -7,7 +10,7 @@ define('views/purchases', ['l10n', 'linefit', 'urls'], function(l10n, linefit, u
         builder.z('title', gettext('My Apps'));
         builder.z('parent', urls.reverse('homepage'));
 
-        builder.start('user/purchases.html', {
+        builder.start('purchases.html', {
             endpoint_name: 'installed'
         });
     };
