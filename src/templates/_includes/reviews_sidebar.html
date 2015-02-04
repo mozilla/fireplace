@@ -12,7 +12,7 @@
           {{ _('Edit your review') }}
         </a>
       </li>
-    {% elif not (user.logged_in() and not response.user.can_rate) %}
+    {% elif not user.logged_in() or response.user.can_rate %}
       <li>
         <a class="button review-button" data-app="{{ slug }}"
            href="{{ url('app/ratings/add', [slug]) }}">
