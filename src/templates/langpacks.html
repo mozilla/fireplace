@@ -1,3 +1,4 @@
+{% from "_macros/market_button.html" import market_button %}
 {% include '_macros/more_button.html' %}
 
 <section class="main">
@@ -13,10 +14,12 @@
   {% defer (url=anonApiParams(endpoint_name, params), pluck='objects', paginate='.app-list') %}
     <ul class="app-list {{ 'paginated' if response.meta.next }}">
       {% for langpack in this %}
+        {% set app = transform_to_app(langpack) %}
         <li class="app-list-app">
-          <div class="product mkt-tile langpack" data-id="{{ langpack.pk }}">
-            <h3>{{ langpack.language_display }}</h3>
-            <button class="button product install" data-product="{{ langpack }}" data-manifest-url="{{ langpack.manifest_url }}"><em>{{ _('Install') }}</em><span class="spin"></span></button>
+          <div class="product mkt-tile langpack" data-id="{{ app.pk }}">
+            <h3>{{ app.language_display }}</h3>
+            {{ market_button(app, data_attrs={'manifest_url': app.manifest_url,
+                                              'slug': app.slug}) }}
           </div>
         </li>
       {% endfor %}

@@ -12,6 +12,19 @@ define('views/langpacks',
     var gettext = l10n.gettext;
     var logger = log('langpacks');
 
+    function transform_to_app(langpack) {
+        /* Make a langpack as returned by the API look like an app product to
+           make it easy to re-use all buttons/install code. */
+        langpack.is_packaged = true;
+        langpack.premium_type = 'free';
+        langpack.receipt_required = false;
+        langpack.payment_required = false;
+        langpack.role = 'langpack';
+        langpack.slug = 'langpack-' + langpack.uuid;
+        langpack.device_types = ['firefoxos'];
+        return langpack;
+    }
+
     return function(builder, args, params) {
         var title = gettext('Language Packs');
         var fxos_version = args[0];
@@ -26,6 +39,7 @@ define('views/langpacks',
             params: params,
             source: 'langpacks',
             subtitle: gettext('Firefox OS {version}', {version: fxos_version}),
+            transform_to_app: transform_to_app,
             title: title
         });
     };

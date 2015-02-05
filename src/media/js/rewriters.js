@@ -46,5 +46,8 @@ define('rewriters',
 
         // Search pagination rewriter.
         pagination(urls.api.base.url('search')),
+
+        // Langpacks rewriter.
+        pagination(urls.api.base.url('langpacks')),
     ];
 });
