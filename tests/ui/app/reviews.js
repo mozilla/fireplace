@@ -1,7 +1,7 @@
 /*
     Tests for app reviews.
 */
-var helpers = require('../../lib/helpers');
+var helpers = require('../lib/helpers');
 
 function testAddReviewForm(test) {
     // Checks review form existence and validation.
@@ -313,8 +313,6 @@ casper.test.begin('Test delete review', {
             var newReviewCountModelCache = casper.evaluate(function() {
                 return window.require('models')('app').lookup('has_rated').ratings.count;
             });
-            console.log(reviewCountModelCache);
-            console.log(newReviewCountModelCache);
             test.assert(newReviewCountModelCache == reviewCountModelCache - 1,
                         'App model cache decrement review count');
         });
