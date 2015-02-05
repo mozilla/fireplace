@@ -346,6 +346,10 @@ body {
     }
 }
 
+.site-header .persona + span {
+    display: none;
+}
+
 @media (max-width: 540px) {
     // TODO: get rid of this media query.
     .site-header {
@@ -498,6 +502,10 @@ body {
         }
         .persona {
             display: block;
+
+            + span {
+                display: inline-block;
+            }
         }
         .act-tray {
             display: none;
