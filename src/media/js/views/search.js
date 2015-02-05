@@ -157,7 +157,7 @@ define('views/search',
         if ('sort' in params && params.sort === 'relevancy') {
             delete params.sort;
         }
-        var query = params.full_q || params.q;
+        var query = params.full_q || params.q || params.author;
 
         builder.z('type', 'search');
         builder.z('search', query);

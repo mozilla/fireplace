@@ -91,3 +91,22 @@ casper.test.begin('Test search XSS', {
         helpers.done(test);
     }
 });
+
+
+casper.test.begin('Test search author', {
+    test: function(test) {
+        helpers.startCasper({path: '/search?author=test'});
+
+        casper.waitForSelector('.app-list', function() {
+            test.assertUrlMatch(/\/search\?author=test$/);
+            // Test search results count in header.
+            test.assertField('q', 'test');
+
+            // Test search results count in header.
+            test.assertSelectorHasText('.search-results-header',
+                                       '"test" returned 42 results');
+        });
+
+        helpers.done(test);
+    }
+});
