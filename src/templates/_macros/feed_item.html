@@ -155,11 +155,17 @@
 {% endmacro %}
 
 {% macro collection_listing_header(coll) %}
+   {% set color = coll.color or 'sapphire' %}
    <a class="collection-listing-header"
       href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}"
-      data-collection-color="{{ coll.color or 'sapphire' }}">
+      data-collection-color-self="{{ color }}">
      <h3>{{ coll.name|translate(coll)|safe }}</h3>
   </a>
+  {% if coll.description %}
+    <p class="collection-listing-desc" data-collection-color="{{ color }}">
+      {{ coll.description|translate(coll)|safe }}
+    </p>
+  {% endif %}
 {% endmacro %}
 
 {% macro collection_listing(coll) %}
@@ -169,9 +175,6 @@
                   multi-app-tile mkt-tile c"
            data-tracking="{{ coll.slug }}">
     {{ collection_listing_header(coll) }}
-    {% if coll.description %}
-      <p class="desc">{{ coll.description|translate(coll)|safe }}</p>
-    {% endif %}
     <ul>
       {% for app in coll.apps %}
         {% if loop.index0 < max_apps %}
