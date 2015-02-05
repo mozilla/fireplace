@@ -209,14 +209,20 @@ body {
             background-image: url(../img/pretty/back_arrow_active.svg);
         }
     }
-    // 'Sign In'
     &.persona {
+        // 'Sign In' or 'Register'.
+        color: $action-positive;
+        font-weight: 500;
         cursor: wait;
         display: none;
         margin-left: 15px;
         word-break: keep-all;
         word-wrap: normal;
 
+        &:hover {
+            color: $action-positive-hover;
+            text-decoration: none;
+        }
         &.loading-submit {
             border-bottom: 0;
             box-shadow: none;
@@ -226,9 +232,14 @@ body {
             spinner('loading');
             margin-left: 15px;
             width: auto;
+
             &:after {
                 display: none;
             }
+        }
+        + span {
+            margin: 0 -10px 0 5px;
+            type_body();
         }
     }
 }
@@ -496,7 +507,8 @@ body {
         .act-tray {
             display: block;
         }
-        .persona {
+        .persona,
+        .persona + span {
             display: none;
         }
     }
