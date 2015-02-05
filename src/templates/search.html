@@ -19,7 +19,7 @@
       <h1 class="search-results-header hide-on-mobile">
         {{ _plural('<b>"{search_query}"</b> returned {n} result',
                    '<b>"{search_query}"</b> returned {n} results',
-                   search_query=(params.q or params.author)|escape,
+                   search_query=raw_query|escape,
                    n=response.meta.total_count) }}
       </h1>
       <h1 class="search-results-header hide-on-desktop">

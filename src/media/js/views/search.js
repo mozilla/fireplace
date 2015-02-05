@@ -166,7 +166,8 @@ define('views/search',
         builder.start('search.html', {
             endpoint_name: 'search',
             params: params,
-            processor: processor(query)
+            processor: processor(query),
+            raw_query: query || document.querySelector('[name="q"]').value,
         }).done(function() {
             var results = builder.results.searchresults;
 

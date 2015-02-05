@@ -110,3 +110,21 @@ casper.test.begin('Test search author', {
         helpers.done(test);
     }
 });
+
+
+casper.test.begin('Test search potato', {
+    test: function(test) {
+        helpers.startCasper({path: '/search?q=%3Apaid'});
+
+        casper.waitForSelector('.app-list', function() {
+            // Test search results count in input.
+            test.assertField('q', ':paid');
+
+            // Test search results count in header.
+            test.assertSelectorHasText('.search-results-header',
+                                       '":paid" returned 42 results');
+        });
+
+        helpers.done(test);
+    }
+});
