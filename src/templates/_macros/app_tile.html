@@ -60,6 +60,10 @@
     {% endif %}
   {% endif %}
 
+  {% if is_detail %}
+    {% include "_includes/post_install_message.html" %}
+  {% endif %}
+
   {% if tray and len(app.previews) %}
     <div class="tray previews full {{ 'single' if len(app.previews) == 1 }}">
       {{ preview_tray(app, src) }}
