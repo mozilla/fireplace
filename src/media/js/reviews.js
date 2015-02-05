@@ -123,15 +123,25 @@ define('reviews',
 
             // Add review modal (for edit or add) for desktop.
             if (this.hasAttribute('data-edit-review')) {
-                var endpoint = urls.api.params('reviews', {
-                    app: $('[data-app]').data('slug'),
-                    user: 'mine'
-                });
+                // Either get the direct URI (for admins) or use `mine`.
+                var endpoint = this.getAttribute('data-href');
+                if (endpoint) {
+                    endpoint = urls.api.host(endpoint) + endpoint;
+                } else {
+                    endpoint = urls.api.params('reviews', {
+                        app: $('[data-app]').data('slug'),
+                        user: 'mine'
+                    });
+                }
                 this.innerHTML = gettext('Loading...');
 
                 var self = this;
                 requests.get(endpoint).done(function(existingReview) {
-                    initReviewModal(existingReview.objects[0]);
+                    if (existingReview.objects) {
+                        // In case we used slug + mine.
+                        existingReview = existingReview.objects[0];
+                    }
+                    initReviewModal(existingReview);
                     self.innerHTML = self.getAttribute('data-text');
                 });
             } else {

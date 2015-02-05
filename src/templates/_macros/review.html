@@ -21,15 +21,14 @@
       {% if this.is_flagged %}
         <li class="flagged">{{ _('Flagged for review') }}</li>
       {% endif %}
-      {% if this.is_author %}
+      {% if this.is_author or user.get_permission('reviewer') %}
         <li>
           <a class="review-button" data-edit-review data-text="{{ _('Edit') }}"
-             href="{{ url('app/ratings/edit', [slug]) }}">
+             href="{{ url('app/ratings/edit', [slug]) }}"
+             data-href="{{ this.resource_uri }}">
             {{ _('Edit') }}
           </a>
         </li>
-      {% endif %}
-      {% if this.is_author or user.get_permission('reviewer') %}
         <li>
           <a class="delete post" data-action="delete" href="#"
              data-href="{{ this.resource_uri }}">
