@@ -45,8 +45,13 @@ define('webactivities', ['capabilities', 'log', 'login', 'urls', 'utils', 'z'], 
                 z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
                 break;
             case 'marketplace-category':
-                // Load up a category page.
-                url = urls.reverse('category', [data.slug]);
+                // Are we trying to load langpacks ?
+                if (data.slug == 'langpacks') {
+                    url = urls.reverse('langpacks', [data.fxos_version]);
+                } else {
+                    // Load up a category page.
+                    url = urls.reverse('category', [data.slug]);
+                }
                 z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
                 break;
             case 'marketplace-search':

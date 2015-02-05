@@ -31,7 +31,7 @@ define('views/langpacks',
 
         params.fxos_version = fxos_version;
 
-        builder.z('type', 'root app-list langpacks');
+        builder.z('type', 'leaf app-list langpacks');
         builder.z('title', title);
 
         builder.start('langpacks.html', {
