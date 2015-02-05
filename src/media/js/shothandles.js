@@ -2,18 +2,18 @@ define('shothandles', ['z'], function(z) {
     function attachHandles(slider, $container) {
         $container.find('.prev, .next').remove();
 
-        var $prevHandle = $('<a href="#" class="arrow-button prev"></a>'),
-            $nextHandle = $('<a href="#" class="arrow-button next"></a>');
+        var $prevHandle = $('<a class="arrow-button prev"></a>'),
+            $nextHandle = $('<a class="arrow-button next"></a>');
 
         function setHandleState() {
-            $prevHandle.hide();
-            $nextHandle.hide();
+            $prevHandle.addClass('disabled');
+            $nextHandle.addClass('disabled');
 
             if (slider.hasNext()) {
-                $nextHandle.show();
+                $nextHandle.removeClass('disabled');
             }
             if (slider.hasPrev()) {
-                $prevHandle.show();
+                $prevHandle.removeClass('disabled');
             }
         }
 
@@ -24,7 +24,7 @@ define('shothandles', ['z'], function(z) {
         $container.append($prevHandle, $nextHandle);
     }
 
-    z.body.on('click', '.arrow-button', function(e) {
+    z.body.on('click', '.arrow-button:not(.disabled)', function(e) {
         e.preventDefault();
         var slider = this.parentNode.slider;
         if (this.classList.contains('prev')) {

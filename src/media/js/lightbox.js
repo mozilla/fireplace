@@ -161,7 +161,7 @@ define('lightbox',
 
     // Dismiss the lighbox when we click outside it or on the close button.
     $lightbox.on('click', function(e) {
-        if ($(e.target).is('#lightbox')) {
+        if ($(e.target).is('#lightbox li')) {
             hideLightbox();
             e.preventDefault();
         }
