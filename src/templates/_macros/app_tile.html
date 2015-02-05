@@ -123,15 +123,17 @@
        itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
     {# Detail page ratings link to the ratings list page. #}
     {% if is_detail %}
-      <a href="{{ url('app/ratings', [app.slug]) }}" class="rating-link">
-        {% if app.ratings.count %}
-          {{ stars(app.ratings.average) }}
-          <span class="cnt long">
-            {{ app.ratings.count|numberfmt }} {{ _plural('Review', 'Reviews', n=app.ratings.count) }}
-          </span>
-        {% else %}
+      {% if app.ratings.count %}
+        <a href="{{ url('app/ratings', [app.slug]) }}" class="rating-link">
+            {{ stars(app.ratings.average) }}
+            <span class="cnt long">
+              {{ app.ratings.count|numberfmt }} {{ _plural('Review', 'Reviews', n=app.ratings.count) }}
+            </span>
+      {% else %}
+        <span class="rating-link">
           <span class="cnt long">{{ _('Not yet reviewed') }}</span>
-        {% endif %}
+        </span>
+      {% endif %}
       </a>
     {% else %}
       {# Stars-only rating (member of an app listing). #}

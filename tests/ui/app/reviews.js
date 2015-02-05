@@ -258,22 +258,16 @@ casper.test.begin('Test unrated app hidden review listing link', {
 });
 
 
-casper.test.begin('Test login to r? if already r? on desktop', helpers.desktopTest({
+casper.test.begin('Test unrated app no link on detail page', {
     test: function(test) {
-        helpers.startCasper({path: '/app/has_rated'});
-
+        helpers.startCasper({path: '/app/unrated'});
         helpers.waitForPageLoaded(function() {
-            casper.click('.review-button');
-            helpers.fake_login();
+            test.assertDoesntExist('a.rating-link');
+            test.assertExists('span.rating-link');
         });
-
-        helpers.waitForPageLoaded(function() {
-            test.assertExists('.edit-review-form');
-        });
-
         helpers.done(test);
     }
-}));
+});
 
 
 casper.test.begin('Test reviews page back to app link', helpers.tabletTest({
@@ -287,6 +281,24 @@ casper.test.begin('Test reviews page back to app link', helpers.tabletTest({
 
         casper.waitForSelector('[data-page-type~="detail"]', function() {
             test.assertExists('.detail');
+        });
+
+        helpers.done(test);
+    }
+}));
+
+
+casper.test.begin('Test login to r? if already r? on desktop', helpers.desktopTest({
+    test: function(test) {
+        helpers.startCasper({path: '/app/has_rated'});
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('.review-button');
+            helpers.fake_login();
+        });
+
+        helpers.waitForPageLoaded(function() {
+            test.assertExists('.edit-review-form');
         });
 
         helpers.done(test);
