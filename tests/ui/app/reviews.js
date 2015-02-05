@@ -1,7 +1,7 @@
 /*
     Tests for app reviews.
 */
-var helpers = require('../lib/helpers');
+var helpers = require('../../lib/helpers');
 
 function testAddReviewForm(test) {
     // Checks review form existence and validation.
@@ -286,6 +286,42 @@ casper.test.begin('Test reviews page back to app link', helpers.tabletTest({
         helpers.done(test);
     }
 }));
+
+
+casper.test.begin('Test delete review', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/has_rated/ratings'});
+
+        var reviewCount;
+        var reviewCountModelCache;
+        casper.waitForSelector('.reviews-listing', function() {
+            reviewCount = casper.evaluate(function() {
+                return document.querySelectorAll('.review').length;
+            });
+            reviewCountModelCache = casper.evaluate(function() {
+                return window.require('models')('app').lookup('has_rated').ratings.count;
+            });
+
+            casper.click('.review-actions [data-action="delete"]');
+        });
+
+        casper.waitWhileSelector('.review-actions [data-action="delete"]', function() {
+            // Test review removed from page.
+            test.assertElementCount('.review', reviewCount - 1);
+
+            // Test busted from model cache.
+            var newReviewCountModelCache = casper.evaluate(function() {
+                return window.require('models')('app').lookup('has_rated').ratings.count;
+            });
+            console.log(reviewCountModelCache);
+            console.log(newReviewCountModelCache);
+            test.assert(newReviewCountModelCache == reviewCountModelCache - 1,
+                        'App model cache decrement review count');
+        });
+
+        helpers.done(test);
+    }
+});
 
 
 casper.test.begin('Test login to review on desktop on review page',

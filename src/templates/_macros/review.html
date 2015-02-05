@@ -31,6 +31,7 @@
         </li>
         <li>
           <a class="delete post" data-action="delete" href="#"
+             data-app="{{ slug }}"  {# Needed for cache busting. #}
              data-href="{{ this.resource_uri }}">
             {{ _('Delete') }}
           </a>

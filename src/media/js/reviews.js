@@ -46,7 +46,7 @@ define('reviews',
     function deleteReview(reviewEl, uri, app) {
         reviewEl.addClass('deleting');
         requests.del(settings.api_url + urls.api.sign(uri)).done(function() {
-            notify({message: gettext('Review deleted')});
+            notify({message: gettext('This review has been successfully deleted')});
             reviewEl.remove();
 
             // Update the app's review listing.
@@ -75,7 +75,7 @@ define('reviews',
             // Clear the user's review from the request cache.
             cache.bust(urls.api.params('reviews', {app: app, user: 'mine'}));
         }).fail(function() {
-            notify({message: gettext('There was a problem deleting the review')});
+            notify({message: gettext('Sorry, there was a problem deleting the review')});
         });
     }
 
