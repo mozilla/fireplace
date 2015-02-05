@@ -288,7 +288,28 @@ casper.test.begin('Test reviews page back to app link', helpers.tabletTest({
 }));
 
 
-casper.test.begin('Test login to r? if already r? on desktop', helpers.desktopTest({
+casper.test.begin('Test login to review on desktop on review page',
+helpers.desktopTest({
+    test: function(test) {
+        helpers.startCasper({path: '/app/can_rate/ratings'});
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('.review-button');
+            helpers.fake_login();
+        });
+
+        helpers.waitForPageLoaded(function() {
+            test.assertExists('.add-review-form');
+            test.assertDoesntExist('.edit-review-form');
+        });
+
+        helpers.done(test);
+    }
+}));
+
+
+casper.test.begin('Test login to review if already reviewed on desktop detail',
+helpers.desktopTest({
     test: function(test) {
         helpers.startCasper({path: '/app/has_rated'});
 

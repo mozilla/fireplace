@@ -86,7 +86,7 @@ define('reviews',
                 return;
             }
 
-            var reviewButton = document.querySelector('.review-button');
+            var reviewButton = document.querySelector('.review-buttons .review-button');
             if (!reviewButton) {
                 setTimeout(function() {
                     // Bump this notification ahead of the login one.
