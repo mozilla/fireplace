@@ -94,11 +94,7 @@ a.button {
 }
 
 .arrow-button {
-    background-color: $action-positive;
-    background-image: url(../img/pretty/arrow-l.svg);
-    background-position: 45% 50%;
-    background-repeat: no-repeat;
-    background-size: 15px 15px;
+    background: $action-positive url(../img/pretty/arrow-l.svg) no-repeat 5px 50% / 15px 15px;
     border: 1px solid $white;
     border-radius: 50%;
     color: transparent;
@@ -112,11 +108,15 @@ a.button {
         background-color: $action-positive-hover;
     }
     &:active {
-        background-color: $action-positive-tapped;
+        background: $action-positive-tapped url(../img/pretty/arrow-l.svg) no-repeat 5px 50% / 15px 15px;
     }
     &.next {
-        background-position: 55% 50%;
+        background-position: 5px 50%;
         transform(scaleX(-1));
+    }
+    &.disabled {
+        background-color: $action-disabled;
+        cursor: default;
     }
 }
 
