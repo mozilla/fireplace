@@ -22,7 +22,8 @@ define('previews',
         // Full width of window on desktop.
         // Width of page on mobile.
         var $previews = $('.previews');
-        if (window.matchMedia('(min-width:1070px)').matches) {
+        if (window.matchMedia('(min-width:1070px)').matches &&
+            $previews.closest('.detail').length) {
             var winWidth = z.win.width();
             $previews.css('width', winWidth + 'px');
             $previews.css('right', (winWidth - 1070) / 2 + 'px');
@@ -58,16 +59,14 @@ define('previews',
             adjustWidth();
             $tray.find('.slider').append($desktopShots);
 
-            $desktopShots.css({
-                width: numPreviews * DESKTOP_PADDED - 10 + 'px',
-                margin: '0 ' + ($tray.width() - DESKTOP_WIDTH) / 2 + 'px'
-            });
-
-            $tray.addClass('init');
-
-            // Preview tray cloned. We can bail early.
             if ($tray.hasClass('single')) {
+                $tray.addClass('init');
                 return;
+            } else {
+                $desktopShots.css({
+                    width: numPreviews * DESKTOP_PADDED - 10 + 'px',
+                    margin: '0 ' + ($tray.width() - DESKTOP_WIDTH) / 2 + 'px'
+                });
             }
 
             slider = Flipsnap(
@@ -123,7 +122,7 @@ define('previews',
 
     // Reinitialize Flipsnap positions on resize.
     z.doc.on('saferesize.tray', function() {
-        $('.tray').each(function() {
+        $('.tray:not(.single)').each(function() {
             var $tray = $(this);
             $tray.find('.content').css('margin', '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px');
         });
