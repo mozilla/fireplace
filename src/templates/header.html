@@ -24,10 +24,6 @@
 
   {% include '_includes/settings_hover_desktop.html' %}
 
-  {# L10n: `{login_tag}`, `{html_tag}`, and `{register_tag}` are placeholders for HTML tags. Leave untouched. #}
-  {{ _('{login_tag}Sign In{html_tag} <span>or</span> {register_tag}Register{html_tag}')|format(
-        login_tag='<a href="#" class="header-button persona">',
-        html_tag='</a>',
-        register_tag='<a href="#" class="header-button persona register">')
-  }}
+  <a href="#" class="header-button persona">{{ _('Sign In') }}</a>
+  <a href="#" class="header-button persona register">{{ _('Register') }}</a>
 </nav>
