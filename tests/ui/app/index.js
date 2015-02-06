@@ -214,3 +214,34 @@ casper.test.begin('Test app detail reviews if user has rated', {
         helpers.done(test);
     }
 });
+
+casper.test.begin('Test app detail mobile previews', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/something'});
+
+        helpers.waitForPageLoaded(function() {
+            test.assertVisible('.previews .content');
+            test.assertVisible('.content li:first-child img');
+            test.assertNotVisible('.tray .bars');
+            test.assertNotVisible('.tray .arrow-button');
+        });
+
+        helpers.done(test);
+    }
+});
+
+casper.test.begin('Test app detail desktop previews',
+helpers.desktopTest({
+    test: function(test) {
+        helpers.startCasper({path: '/app/something'});
+
+        helpers.waitForPageLoaded(function() {
+            test.assertVisible('.previews .desktop-content');
+            test.assertVisible('.desktop-content li:first-child img');
+            test.assertVisible('.tray .bars');
+            test.assertVisible('.tray .arrow-button');
+        });
+
+        helpers.done(test);
+    }
+}));
