@@ -16,13 +16,14 @@ define('previews',
     var DESKTOP_WIDTH = 540;
     var DESKTOP_PADDED = 550;
 
+    var mediaSwitch = '(min-width:1050px)';
     var slider_pool = [];
 
     function adjustWidth() {
         // Full width of window on desktop.
         // Width of page on mobile.
         var $previews = $('.previews');
-        if (window.matchMedia('(min-width:1070px)').matches &&
+        if (window.matchMedia(mediaSwitch).matches &&
             $previews.closest('.detail').length) {
             var winWidth = z.win.width();
             $previews.css('width', winWidth + 'px');
@@ -41,7 +42,7 @@ define('previews',
         // Init desktop detail screenshot tray.
         if (caps.device_type() === 'desktop' &&
             $('[data-page-type~="detail"]').length &&
-            window.matchMedia('(min-width:1070px)').matches) {
+            window.matchMedia(mediaSwitch).matches) {
 
             if ($tray.find('.desktop-content').length) {
                 return;
@@ -79,7 +80,9 @@ define('previews',
             slider.element.addEventListener('fsmoveend', setActiveBar, false);
 
             // Show as many thumbs as possible to start (zero-indexed).
-            slider.moveToPoint(~~($tray.width() / DESKTOP_PADDED / 2));
+            if (numPreviews > 2) {
+                slider.moveToPoint(~~($tray.width() / DESKTOP_PADDED / 2));
+            }
 
             slider_pool.push(slider);
         } else {
