@@ -132,6 +132,13 @@ define('apps_buttons',
                 notification.notification({message: gettext('Payment cancelled.')});
                 logger.log('Purchase flow rejected for', product.name);
                 def.reject();
+            }).always(function() {
+                if (loginPopup) {
+                    // If we created the popup for a login and re-used it for a payment
+                    // we now need to close it.
+                    logger.log('Closing the popup window');
+                    loginPopup.close();
+                }
             });
         } else {
             // If a popup was kept open for payments we don't need it
