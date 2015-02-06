@@ -86,6 +86,7 @@ define('reviews',
                 return;
             }
 
+            /*
             var reviewButton = document.querySelector('.review-buttons .review-button');
             if (!reviewButton) {
                 setTimeout(function() {
@@ -94,7 +95,8 @@ define('reviews',
                         message: gettext('Sorry, you must purchase this app before reviewing'),
                     });
                 });
-            } else if (caps.widescreen()) {
+            */
+            if (caps.widescreen()) {
                 addReview.apply(reviewButton);
             } else {
                 z.page.trigger('navigate', reviewButton.getAttribute('href'));
