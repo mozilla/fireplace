@@ -274,6 +274,9 @@ define('apps_buttons',
     }
 
     function mark_installed(manifest_url, $button) {
+        if (manifest_url) {
+            logger.log('Marking as installed', manifest_url);
+        }
         // L10n: "Open" as in "Open the app".
         setButton($button || get_button(manifest_url), gettext('Open'), 'launch install');
         apps.getInstalled();
