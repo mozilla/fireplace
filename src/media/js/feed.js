@@ -1,6 +1,5 @@
-/* This is a shared file between Fireplace and Transonic. */
 define('feed',
-    ['edbrands', 'l10n', 'models', 'nunjucks', 'underscore', 'utils_local'], function(edbrands, l10n, models, nunjucks, _, utils_local) {
+    ['collection_colors', 'edbrands', 'l10n', 'models', 'nunjucks', 'underscore', 'utils_local'], function(colors, edbrands, l10n, models, nunjucks, _, utils_local) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -135,5 +134,6 @@ define('feed',
         get_brand_type: edbrands.get_brand_type,
         group_apps: group_apps,
         MAX_BRAND_APPS: MAX_BRAND_APPS,
+        COLLECTION_COLORS: colors.COLLECTION_COLORS
     };
 });
