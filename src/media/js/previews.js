@@ -4,164 +4,157 @@
     On desktop, adds prev/next buttons to navigate images.
 */
 define('previews',
-    ['flipsnap', 'log', 'models', 'templates', 'capabilities', 'shothandles',
-     'underscore', 'z'],
-    function(Flipsnap, log, models, nunjucks, caps, handles,
-             _, z) {
+    ['flipsnap', 'log', 'capabilities', 'shothandles', 'z'],
+    function(flipsnap, log, caps, handles, z) {
     var logger = log('previews');
 
-    // Magic numbers!
-    var THUMB_WIDTH = 150;
-    var THUMB_PADDED = 160;
-    var DESKTOP_WIDTH = 540;
-    var DESKTOP_PADDED = 550;
+    // Padded size of preview images (in pixels).
+    var dimensions = {
+        thumb: 160,
+        full: 550,
+        breakpoint: 1050,  // Width when desktop trays appear.
+        contentWidth: 1070,  // Max width of desktop content.
+        // Technically the left margin of each preview in tray.
+        padding: 10
+    };
 
-    var mediaSwitch = '(min-width:1050px)';
-    var slider_pool = [];
+    var mediaSwitch = '(min-width:' + dimensions.breakpoint + 'px)';
+    var sliders = [];
+    var winWidth = z.win.width();
+    var isDesktop = !!(caps.device_type() == 'desktop');
+    var isDesktopInitialized = false;
 
-    function adjustWidth() {
-        // Full width of window on desktop.
-        // Width of page on mobile.
-        var $previews = $('.previews');
-        if (window.matchMedia(mediaSwitch).matches &&
-            $previews.closest('.detail').length) {
-            var winWidth = z.win.width();
-            $previews.css('width', winWidth + 'px');
-            $previews.css('right', (winWidth - 1070) / 2 + 'px');
-        } else {
-            $previews.attr('style', '');
+    function setActiveBar($bars, position) {
+        $bars.filter('.current').removeClass('current');
+        $bars.eq(position).addClass('current');
+    }
+
+    function initUpdatePosition($bars, slider) {
+        // Listener to update the colored bar position.
+        slider.element.addEventListener('fsmoveend', function() {
+            setActiveBar($bars, slider.currentPoint);
+        }, false);
+
+        setActiveBar($bars, slider.currentPoint);
+    }
+
+    function refreshDesktopTray() {
+        winWidth = z.win.width();
+        $('.previews-tray').css({
+            // Resize tray to winWidth then shift left by half the margin.
+            left: -(winWidth - dimensions.contentWidth) / 2 + 'px',
+            width: winWidth + 'px'
+        });
+        logger.log('resized');
+    }
+
+    function isDesktopDetail() {
+        return $('[data-page-type~="detail"]').length &&
+            isDesktop && window.matchMedia(mediaSwitch).matches;
+    }
+
+    function initTrays() {
+        var $tray = $(this);
+        var numPreviews = $tray.find('.screenshot').length;
+        var $previewsContent = $tray.find('.previews-content');
+        var $bars = $tray.find('.previews-bars b');
+        var slider = {};
+
+        $previewsContent.css({
+            width: numPreviews * dimensions.thumb - dimensions.padding + 'px'
+        });
+
+        // Init Flipsnap itself!
+        slider = flipsnap($previewsContent[0], {distance: dimensions.thumb});
+
+        // Expose slider on the tray node. Used for arrow navigation.
+        this.slider = slider;
+
+        initUpdatePosition($bars, slider);
+        sliders.push(slider);
+
+        if (isDesktop) {
+            handles.attachHandles(slider, $tray.find('.previews-slider'));
         }
     }
 
-    function populateTray() {
+    function initDesktopDetailsTray() {
         var $tray = $(this);
-        var numPreviews = $tray.find('li').length;
-        var $content = $tray.find('.content');
+        var numPreviews = $tray.find('.screenshot').length;
+        var $previewsContent = $tray.find('.previews-content');
+        var $bars = $tray.find('.previews-bars b');
         var slider = {};
-        var singlePreview = $tray.hasClass('single');
-        var isDetailPage = !!$tray.closest('.detail').length;
+        var $desktopContent = $('<ul class="previews-desktop-content">');
+        var $slider = $tray.find('.previews-slider');
 
-        // Init desktop detail screenshot tray.
-        if (caps.device_type() === 'desktop' &&
-            $('[data-page-type~="detail"]').length &&
-            window.matchMedia(mediaSwitch).matches) {
+        refreshDesktopTray();
 
-            if ($tray.find('.desktop-content').length) {
-                return;
-            }
+        // Populate the new desktop content in memory.
+        $previewsContent.find('li').each(function(i, elm) {
+            var imageSrc = elm.querySelector('a').href;
+            var $newShot = $(elm).clone();
+            $newShot.find('img').removeClass('deferred').attr('src', imageSrc);
+            $desktopContent.append($newShot);
+        });
 
-            var $desktopShots = $('<ul class="desktop-content">');
+        $desktopContent.css({
+            width: numPreviews * dimensions.full - dimensions.padding + 'px'
+        });
 
-            $tray.find('.content li').each(function(i, elm) {
-                var imageSrc = elm.querySelector('a').href;
-                var $newShot = $(elm).clone();
-                $newShot.find('img').removeClass('deferred').attr('src', imageSrc);
-                $desktopShots.append($newShot);
-            });
+        // Add new content to the DOM.
+        $slider.append($desktopContent);
 
-            adjustWidth();
-            $tray.find('.slider').append($desktopShots);
+        isDesktopInitialized = true;
 
-            if (singlePreview) {
-                return;
-            } else {
-                $desktopShots.css({
-                    width: numPreviews * DESKTOP_PADDED - 10 + 'px',
-                    margin: '0 ' + ($tray.width() - DESKTOP_WIDTH) / 2 + 'px'
-                });
-            }
-
-            slider = Flipsnap(
-                $tray.find('.desktop-content')[0],
-                {distance: DESKTOP_PADDED}
-            );
-            this.slider = slider;
-            var $pointer = $tray.find('.bars .bar');
-
-            slider.element.addEventListener('fsmoveend', setActiveBar, false);
-
-            // Show as many thumbs as possible to start (zero-indexed).
-            if (numPreviews > 2) {
-                slider.moveToPoint(~~($tray.width() / DESKTOP_PADDED / 2));
-            }
-
-            slider_pool.push(slider);
-        } else {
-            var winWidth = z.win.width();
-
-            if (singlePreview) {
-                if (isDetailPage) {
-                    $content.css({
-                        width: winWidth + 'px'
-                    });
-                } else {
-                    $content.css({
-                        width: numPreviews * THUMB_PADDED - 10 + 'px',
-                    });
-                }
-            } else {
-                $content.css({
-                    width: numPreviews * THUMB_PADDED - 10 + 'px',
-                    margin: '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px'
-                });
-            }
-
-            if ($tray.hasClass('single')) {
-                return;
-            }
-
-            slider = Flipsnap(
-                $tray.find('.content')[0],
-                {distance: THUMB_PADDED}
-            );
-            this.slider = slider;
-            var $pointer = $tray.find('.bars .bar');
-
-            slider.element.addEventListener('fsmoveend', setActiveBar, false);
-
-            // Show as many thumbs as possible to start (zero-indexed).
-            slider.moveToPoint(~~($tray.width() / THUMB_PADDED / 2) - 1);
-
-            slider_pool.push(slider);
+        // Single preview tray. No need to init flipsnap.
+        if (numPreviews === 1) {
+            return;
         }
 
-        function setActiveBar() {
-            $pointer.filter('.current').removeClass('current');
-            $pointer.eq(slider.currentPoint).addClass('current');
-        }
-        setActiveBar();
+        // Init Flipsnap itself!
+        slider = flipsnap($desktopContent[0], {distance: dimensions.full});
 
-        if (caps.device_type() === 'desktop' && numPreviews > 1) {
-            handles.attachHandles(slider, $tray.find('.slider'));
-        }
+        // Expose slider on the tray node. Used for arrow navigation.
+        this.slider = slider;
+
+        initUpdatePosition($bars, slider);
+        sliders.push(slider);
+        handles.attachHandles(slider, $slider);
     }
 
     // Reinitialize Flipsnap positions on resize.
     z.doc.on('saferesize.tray', function() {
-        $('.tray:not(.single)').each(function() {
-            var $tray = $(this);
-            $tray.find('.content').css('margin', '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px');
-        });
-        for (var i = 0, e; e = slider_pool[i++];) {
+        for (var i = 0, e; e = sliders[i++];) {
             e.refresh();
         }
-        z.page.trigger('populatetray');
-        adjustWidth();
+        if (isDesktopDetail()) {
+            // If the desktop tray exists only refresh its position and size.
+            // Otherwise create the desktop tray.
+            if (isDesktopInitialized) {
+                refreshDesktopTray();
+            } else {
+                $('.previews-tray:not(.single-preview)').each(initDesktopDetailsTray);
+            }
+        } else {
+            $('.previews-tray').attr('style', '');
+        }
     });
 
     // We're leaving the page, so destroy Flipsnap.
     z.win.on('unloading.tray', function() {
-        for (var i = 0, e; e = slider_pool[i++];) {
+        for (var i = 0, e; e = sliders[i++];) {
             e.destroy();
         }
-        slider_pool = [];
+        sliders = [];
     });
 
-    z.page.on('dragstart dragover', function(e) {
-        e.preventDefault();
-    }).on('populatetray', function() {
-        logger.log('Populating trays');
-        $('.expanded .tray').each(populateTray);
-    });
+    z.page.on('populatetray', function() {
+        logger.log('Initializing trays');
 
+        if (isDesktopDetail()) {
+            $('.previews-tray').each(initDesktopDetailsTray);
+        } else {
+            $('.expanded .previews-tray:not(.single-preview)').each(initTrays);
+        }
+    });
 });

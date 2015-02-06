@@ -78,7 +78,12 @@ section.full + section.full {
     margin-top: 10px;
 }
 
-.js-hidden, .hidden {
+// Faster way to toggle show/hide than $.show()/$.hide()
+.js-hidden {
+    display: none !important;
+}
+
+.hidden {
     display: none;
 }
 
