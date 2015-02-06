@@ -6,7 +6,7 @@
       <h3>{{ _('Get Firefox news! Sign up for our newsletter') }}</h3>
     {% endif %}
     <input type="email" class="email newsletter-email-field" name="email" placeholder="{{ _('Email') }}" value="{{ user_email }}" required>
-    <button class="button s newsletter-signup-button newsletter-desktop">{{ _('Sign me up') }}</button>
+    <button class="button s newsletter-signup-button action newsletter-desktop">{{ _('Sign me up') }}</button>
     <div class="newsletter-details collapsed">
       <select name="region" class="newsletter-select">
         {% for code, region in REGIONS.items() %}
@@ -33,7 +33,7 @@
           </label>
       </div>
     </div>
-    <button class="button newsletter-signup-button newsletter-mobile{{ ' s' if not standalone_newsletter_signup }}">{{ _('Sign me up') }}</button>
+    <button class="button newsletter-signup-button action newsletter-mobile{{ ' s' if not standalone_newsletter_signup }}">{{ _('Sign me up') }}</button>
     <a href="/settings" class="button support newsletter-cancel-button hide-on-desktop{{ ' s' if not standalone_newsletter_signup }}">{{ _('Cancel') }}</a>
   </form>
   <div class="processing">
