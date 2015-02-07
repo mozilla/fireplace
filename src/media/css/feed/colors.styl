@@ -4,6 +4,14 @@
 @import 'index';
 @import '../lib';
 
+feed_background_color($color) {
+    background: $color;
+
+    &:active {
+        background: $color;
+    }
+}
+
 [data-collection-landing-color="amber"] {
     collection_background_colors($color-collection--amber);
 }
@@ -29,36 +37,27 @@
     collection_background_colors($color-collection--aquamarine);
 }
 
-[data-brand-color="ruby"] { background-color: $collections-ruby; }
-[data-brand-color="amber"] { background-color: $collections-amber; }
-[data-brand-color="emerald"] { background-color: $collections-emerald; }
-[data-brand-color="topaz"] { background-color: $collections-topaz; }
-[data-brand-color="sapphire"] { background-color: $collections-sapphire; }
-[data-brand-color="amethyst"] { background-color: $collections-amethyst; }
-[data-brand-color="garnet"] { background-color: $collections-garnet; }
-[data-brand-color="aquamarine"] { background-color: $collections-aquamarine; }
-
-[data-collection-color-self="amber"] {
-    background: $color-collection--amber;
+[data-feed-color="amber"] {
+    feed_background_color($color-collection--amber);
 }
-[data-collection-color-self="garnet"] {
-    background: $color-collection--garnet;
+[data-feed-color="garnet"] {
+    feed_background_color($color-collection--garnet);
 }
-[data-collection-color-self="topaz"] {
-    background: $color-collection--topaz;
+[data-feed-color="topaz"] {
+    feed_background_color($color-collection--topaz);
 }
-[data-collection-color-self="amethyst"] {
-    background: $color-collection--amethyst;
+[data-feed-color="amethyst"] {
+    feed_background_color($color-collection--amethyst);
 }
-[data-collection-color-self="sapphire"] {
-    background: $color-collection--sapphire;
+[data-feed-color="sapphire"] {
+    feed_background_color($color-collection--sapphire);
 }
-[data-collection-color-self="emerald"] {
-    background: $color-collection--emerald;
+[data-feed-color="emerald"] {
+    feed_background_color($color-collection--emerald);
 }
-[data-collection-color-self="ruby"] {
-    background: $color-collection--ruby;
+[data-feed-color="ruby"] {
+    feed_background_color($color-collection--ruby);
 }
-[data-collection-color-self="aquamarine"] {
-    background: $color-collection--aquamarine;
+[data-feed-color="aquamarine"] {
+    feed_background_color($color-collection--aquamarine);
 }
