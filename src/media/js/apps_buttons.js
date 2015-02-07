@@ -247,14 +247,17 @@ define('apps_buttons',
             }
 
             // Show the box on how to run the app.
-            var $installed = $('.post-install-message');
-            var $how = $installed.find('.post-install-message-' + capabilities.os.slug);
-            if ($how.length) {
-                $installed.show();
-                $how.show();
+            var $postInstallMsg = $('.post-install-message').show();
+            var $postInstallMsgPlat = $postInstallMsg.find(
+                '.post-install-message-' + capabilities.os.slug);
+            if ($postInstallMsgPlat.length) {
+                $postInstallMsg.show();
+                $postInstallMsgPlat.show();
             }
 
-            mark_installed(product.manifest_url);
+            setTimeout(function() {
+                mark_installed(product.manifest_url);
+            });
             tracking_events.track_app_install_success(product, $this);
             logger.log('Successful install for', product.name);
         }, function() {
@@ -274,6 +277,9 @@ define('apps_buttons',
     }
 
     function mark_installed(manifest_url, $button) {
+        if (manifest_url) {
+            logger.log('Marking as installed', manifest_url);
+        }
         // L10n: "Open" as in "Open the app".
         setButton($button || get_button(manifest_url), gettext('Open'), 'launch install');
         apps.getInstalled();

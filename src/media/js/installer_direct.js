@@ -10,7 +10,7 @@ define('installer_direct',
     function(defer, l10n, log, settings, z) {
     'use strict';
     var gettext = l10n.gettext;
-    var console = log('installer');
+    var logger = log('installer');
 
     function getInstalled(opt) {
         // navigator.mozApps.getInstalled to keep track of installed apps.
@@ -59,39 +59,39 @@ define('installer_direct',
 
     function checkForUpdate(manifestURL, opt) {
         var def = defer.Deferred();
-        console.log('Checking for update of ' + manifestURL);
+        logger.log('Checking for update of ' + manifestURL);
         getApp(manifestURL, opt).done(function(app) {
 
             if (app.downloading) {
-                console.log('Checking for app update failed (APP_IS_DOWNLOADING) for ' + manifestURL);
+                logger.log('Checking for app update failed (APP_IS_DOWNLOADING) for ' + manifestURL);
                 def.reject('APP_IS_DOWNLOADING');
                 return;
             }
             if (app.downloadAvailable) {
                 // If we already know an app has a download available, we can
                 // return right away.
-                console.log('Checking for app update succeeded immediately (downloadavailable) for ' + manifestURL);
+                logger.log('Checking for app update succeeded immediately (downloadavailable) for ' + manifestURL);
                 def.resolve(true);
                 return;
             }
             // Only one of those 2 events type is fired for success, depending
             // on whether a download is available or not.
             app.ondownloadavailable = function(e) {
-                console.log('Checking for app update succeeded (downloadavailable) for ' + manifestURL);
+                logger.log('Checking for app update succeeded (downloadavailable) for ' + manifestURL);
                 def.resolve(app.downloadAvailable);
             };
             app.ondownloadapplied = function(e) {
-                console.log('Checking for app update succeeded (downloadaapplied) for ' + manifestURL);
+                logger.log('Checking for app update succeeded (downloadaapplied) for ' + manifestURL);
                 def.resolve(app.downloadAvailable);
             };
             var request = app.checkForUpdate();
             request.onerror = function() {
                 var error = this.error.name || this.error;
-                console.log('Checking for app update failed (' + error + ') for ' + manifestURL);
+                logger.log('Checking for app update failed (' + error + ') for ' + manifestURL);
                 def.reject(error);
             };
         }).fail(function() {
-            console.log('Checking for app update failed (NOT_INSTALLED) for ' + manifestURL);
+            logger.log('Checking for app update failed (NOT_INSTALLED) for ' + manifestURL);
             def.reject('NOT_INSTALLED');
         });
         return def.promise();
@@ -99,14 +99,14 @@ define('installer_direct',
 
     function applyUpdate(manifestURL, opt) {
         var def = defer.Deferred();
-        console.log('Applying update of ' + manifestURL);
+        logger.log('Applying update of ' + manifestURL);
         getApp(manifestURL, opt).done(function(app) {
             app.ondownloadsuccess = function(e) {
-                console.log('Applying app update succeeded (downloadsuccess) for ' + manifestURL);
+                logger.log('Applying app update succeeded (downloadsuccess) for ' + manifestURL);
                 def.resolve();
             };
             app.ondownloaderror = function(e) {
-                console.log('Applying app update failed (downloaderror) for ' + manifestURL);
+                logger.log('Applying app update failed (downloaderror) for ' + manifestURL);
                 def.reject(e.application.downloadError.name);
             };
             if (app.downloading) {
@@ -125,7 +125,7 @@ define('installer_direct',
     }
 
     function _install(product, opt) {
-        console.log('Using direct installer for ' + product.manifest_url);
+        logger.log('Using direct installer for ' + product.manifest_url);
         var def = defer.Deferred();
         opt.data = opt.data || {};
 
@@ -142,7 +142,7 @@ define('installer_direct',
         var installRequest = mozApps[installer](manifest_url, opt.data);
 
         installRequest.onsuccess = function() {
-            console.log('App install request for ' + product.name);
+            logger.log('App install request for ' + product.name);
             var status;
             var isInstalled = setInterval(function() {
                 status = installRequest.result.installState;
@@ -168,10 +168,10 @@ define('installer_direct',
         var def = defer.Deferred();
 
         _install(product, opt).done(function() {
-            console.log('App installed: ' + product.name);
+            logger.log('App installed: ' + product.name);
             def.resolve({}, product);
         }).fail(function(error) {
-            console.log('Install failed: ' + error);
+            logger.log('Install failed: ' + error);
             if (error == 'DENIED') {
                 def.reject();
             } else if (error == 'NETWORK_ERROR') {
