@@ -205,8 +205,10 @@ function makeToken() {
 }
 
 
-function fake_login() {
-    casper.evaluate(function() {
+function fake_login(opts) {
+    opts = opts || {};
+
+    casper.evaluate(function(isAdmin) {
         console.log('[phantom] Performing fake login action');
         var user = window.require('user');
         var views = window.require('views');
@@ -228,12 +230,18 @@ function fake_login() {
             source: 'firefox-accounts'
         });
 
+        if (isAdmin) {
+            user.update_permissions({
+                'reviewer': true
+            });
+        }
+
         z.body.addClass('logged-in');
         z.page.trigger('reload_chrome');
         z.page.trigger('logged_in');
 
         views.reload();
-    });
+    }, opts.isAdmin);
 }
 
 
