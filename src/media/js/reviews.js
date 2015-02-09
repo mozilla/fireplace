@@ -74,6 +74,10 @@ define('reviews',
 
             // Clear the user's review from the request cache.
             cache.bust(urls.api.params('reviews', {app: app, user: 'mine'}));
+
+            // Change Edit to Write button.
+            $('.review-buttons [data-edit-review]').removeAttr('data-edit-review')
+                                                   .text(gettext('Write a Review'));
         }).fail(function() {
             notify({message: gettext('Sorry, there was a problem deleting the review')});
         });

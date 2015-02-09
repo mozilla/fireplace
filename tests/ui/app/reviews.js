@@ -329,6 +329,10 @@ casper.test.begin('Test delete review', {
     test: function(test) {
         helpers.startCasper({path: '/app/has_rated/ratings'});
 
+        helpers.waitForPageLoaded(function() {
+            helpers.fake_login();
+        });
+
         var reviewCount;
         var reviewCountModelCache;
         casper.waitForSelector('.reviews-listing', function() {
@@ -352,6 +356,15 @@ casper.test.begin('Test delete review', {
             });
             test.assert(newReviewCountModelCache == reviewCountModelCache - 1,
                         'App model cache decrement review count');
+        });
+
+        // Test Edit button goes away and becomes Add button.
+        casper.waitWhileSelector('[data-edit-review]', function() {
+            var reviewBtnText = casper.evaluate(function() {
+                return $('.review-buttons .review-button').text();
+            });
+            test.assert(reviewBtnText.toLowerCase().indexOf('edit') === -1,
+                        'Review button changed from Edit to Add');
         });
 
         helpers.done(test);
