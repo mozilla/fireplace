@@ -284,6 +284,45 @@ appListPages.forEach(function(appListPage) {
             helpers.done(test);
         }
     });
+
+    casper.test.begin(appListPage.name + ' mobile previews tests', {
+        test: function(test) {
+            waitForAppListPage(appListPage, function() {
+                // Expand listings.
+                casper.click('.app-list-filters-expand-toggle');
+                test.assertVisible('.previews li:first-child img');
+                test.assertNotVisible('.tray .bars');
+                test.assertNotVisible('.tray .arrow-button');
+
+                // Collapse listings.
+                casper.click('.app-list-filters-expand-toggle');
+                test.assertExists('.app-list:not(.expanded)');
+                test.assertNotVisible('.app-list-app .preview');
+            });
+
+            helpers.done(test);
+        }
+    });
+
+    casper.test.begin(appListPage.anem + ' desktop previews tests',
+    helpers.desktopTest({
+        test: function(test) {
+            waitForAppListPage(appListPage, function() {
+                // Expand listings.
+                casper.click('.app-list-filters-expand-toggle');
+                test.assertVisible('.previews li:first-child img');
+                test.assertVisible('.tray .bars');
+                test.assertVisible('.tray .arrow-button');
+
+                // Collapse listings.
+                casper.click('.app-list-filters-expand-toggle');
+                test.assertExists('.app-list:not(.expanded)');
+                test.assertNotVisible('.app-list-app .preview');
+            });
+
+            helpers.done(test);
+        }
+    }));
 });
 
 casper.test.begin('Test collection detail page for app tile expanded state.', {
