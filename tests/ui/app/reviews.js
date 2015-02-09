@@ -1,7 +1,7 @@
 /*
     Tests for app reviews.
 */
-var helpers = require('../lib/helpers');
+var helpers = require('../../lib/helpers');
 
 function testAddReviewForm(test) {
     // Checks review form existence and validation.
@@ -204,6 +204,43 @@ casper.test.begin('Test edit review on detail page', {
         casper.waitForSelector('.edit-review-form', function() {
             test.assertUrlMatch(/\/app\/has_rated\/ratings\/edit/);
             testEditReviewForm(test);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test edit review on review page as admin', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/can_rate/ratings'});
+
+        helpers.waitForPageLoaded(function() {
+            helpers.fake_login({isAdmin: true});
+        });
+
+        var reviewId;
+        helpers.waitForPageLoaded(function() {
+            // Test multiple edit buttons to confirm admin can edit others.
+            var editReviewBtnCount = casper.evaluate(function() {
+                return $('[data-edit-review]').length;
+            });
+            test.assert(editReviewBtnCount > 2, 'Test admin can edit others');
+
+            // Get a review ID from resource URI, click on it.
+            reviewId = casper.evaluate(function() {
+                var url = $('[data-edit-review]:last-child').data('href');
+                return url.match(/(\d+)\/$/)[1];
+            });
+            casper.click('[data-edit-review]:last-child');
+        });
+
+        // Test the review ID in review param.
+        casper.waitForSelector('.edit-review-form', function() {
+            var reviewParam = casper.evaluate(function() {
+                return window.require('utils').getVars().review;
+            });
+            test.assert(reviewId == reviewParam, 'Test edit review param');
         });
 
         helpers.done(test);

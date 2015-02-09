@@ -24,7 +24,8 @@
       {% if this.is_author or user.get_permission('reviewer') %}
         <li>
           <a class="review-button" data-edit-review data-text="{{ _('Edit') }}"
-             href="{{ url('app/ratings/edit', [slug]) }}"
+             href="{{ url('app/ratings/edit', [slug])|urlparams(
+                          review=getReviewId(this.resource_uri)) }}"
              data-href="{{ this.resource_uri }}">
             {{ _('Edit') }}
           </a>
