@@ -1,3 +1,5 @@
+$colored-grid-border = 1px solid rgba(#fff, 0.4);
+
 collection_background_colors($color) {
     background-color: rgba($color, 0.35);
 
@@ -19,6 +21,10 @@ collection_background_colors($color) {
 
         &[data-collection-landing-is-listing] {
             background-color: rgba($color, 0.55);
+        }
+        // Grid related.
+        .app-list-colored:after {
+            background-color: $color;
         }
     }
 }
