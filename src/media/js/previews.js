@@ -12,7 +12,7 @@ define('previews',
 
     // Magic numbers!
     var THUMB_WIDTH = 150;
-    var THUMB_PADDED = 165;
+    var THUMB_PADDED = 160;
     var DESKTOP_WIDTH = 540;
     var DESKTOP_PADDED = 550;
 
@@ -38,6 +38,8 @@ define('previews',
         var numPreviews = $tray.find('li').length;
         var $content = $tray.find('.content');
         var slider = {};
+        var singlePreview = $tray.hasClass('single');
+        var isDetailPage = !!$tray.closest('.detail').length;
 
         // Init desktop detail screenshot tray.
         if (caps.device_type() === 'desktop' &&
@@ -60,8 +62,7 @@ define('previews',
             adjustWidth();
             $tray.find('.slider').append($desktopShots);
 
-            if ($tray.hasClass('single')) {
-                $tray.addClass('init');
+            if (singlePreview) {
                 return;
             } else {
                 $desktopShots.css({
@@ -86,12 +87,24 @@ define('previews',
 
             slider_pool.push(slider);
         } else {
-            $content.css({
-                width: numPreviews * THUMB_PADDED - 15 + 'px',
-                margin: '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px'
-            });
+            var winWidth = z.win.width();
 
-            $tray.addClass('init');
+            if (singlePreview) {
+                if (isDetailPage) {
+                    $content.css({
+                        width: winWidth + 'px'
+                    });
+                } else {
+                    $content.css({
+                        width: numPreviews * THUMB_PADDED - 10 + 'px',
+                    });
+                }
+            } else {
+                $content.css({
+                    width: numPreviews * THUMB_PADDED - 10 + 'px',
+                    margin: '0 ' + ($tray.width() - THUMB_WIDTH) / 2 + 'px'
+                });
+            }
 
             if ($tray.hasClass('single')) {
                 return;
