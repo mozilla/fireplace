@@ -66,7 +66,7 @@ App listing filters.
 
 .app-list-filters-expand-toggle {
     background: url(../img/pretty/list-toggle.svg) no-repeat 0 -40px / 82px auto;
-    display: inline-block;
+    display: none;
     float: right;
     height: 40px;
     line-height: 40px;
@@ -78,6 +78,9 @@ App listing filters.
     }
     &:active {
         background: url(../img/pretty/list-toggle.svg) no-repeat 0 -40px / 82px auto;
+    }
+    &.show {
+        display: inline-block;
     }
 }
 
@@ -113,11 +116,12 @@ App listing filters.
         display: block;
         margin: 0 30px;
 
-        .app-list-filters-expand-toggle {
+        .app-list-filters-expand-toggle.show {
             display: block;
         }
     }
-    .app-list-filters-expand-toggle {
+    // Hide the mobile toggle (child of the mobile header).
+    .app-list-filters-expand-toggle.show {
         display: none;
     }
 }
