@@ -124,7 +124,7 @@
 {% endmacro %}
 
 {% macro collection_promo(coll) %}
-  {% set color = 'sapphire' if not feed_app.color or feed_app.color == 'topaz' else feed_app.color %}
+  {% set color = 'sapphire' if not coll.color or coll.color == 'topaz' else coll.color %}
   {% set inline_color = feed.COLLECTION_COLORS[color] %}
   {% set desc = coll.description|translate(coll) %}
 
