@@ -65,6 +65,7 @@ def deploy_jenkins():
 @task
 def update():
     with lcd(FIREPLACE):
+        local('rm -rf bower_components')
         local('npm install')
         local('make install')
         local('cp src/media/js/settings_local_hosted.js '
