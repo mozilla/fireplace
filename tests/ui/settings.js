@@ -46,9 +46,9 @@ casper.test.begin('Test settings', {
     }
 });
 
-casper.test.begin('Test settings recommendations', helpers.desktopTest({
+casper.test.begin('Test settings recommendations', {
     test: function(test) {
-        helpers.startCasper({path: '/settings'});
+        helpers.startCasper({path: '/settings', viewport: 'desktop'});
 
         helpers.waitForPageLoaded(function() {
             helpers.fake_login();
@@ -67,7 +67,8 @@ casper.test.begin('Test settings recommendations', helpers.desktopTest({
         casper.waitForSelector('body.show-recommendations', function() {
             // Test submitting with recommendations adds the body class.
             test.assertEqual(
-                casper.getFormValues('.account-settings').enable_recommendations,
+                casper.getFormValues('.account-settings')
+                      .enable_recommendations,
                 true
             );
 
@@ -78,7 +79,7 @@ casper.test.begin('Test settings recommendations', helpers.desktopTest({
             toggleRecommendations();
         });
 
-        helpers.waitForPageLoaded(function() {
+        casper.waitForSelector('body:not(.show-recommendations)', function() {
             // Test the body class has been removed and the tab is hidden.
             test.assertNotExists('body.show-recommendations');
             test.assertNotVisible('.navbar [data-tab="recommended"]');
@@ -87,33 +88,33 @@ casper.test.begin('Test settings recommendations', helpers.desktopTest({
             toggleRecommendations();
         });
 
-        helpers.waitForPageLoaded(function() {
-            // Sign out.
-            casper.click('.account-settings-save .logout');
-        });
-
-        helpers.waitForPageLoaded(function() {
+        // Sign out.
+        casper.thenClick('.account-settings-save .logout', function() {
             // Test logging out removes the body class.
             test.assertNotExists('body.show-recommendations');
         });
 
         helpers.done(test);
     }
-}));
+});
 
-casper.test.begin('Test settings newsletter desktop', helpers.desktopTest({
+casper.test.begin('Test settings newsletter desktop', {
     test: function(test) {
+        helpers.startCasper({viewport: 'desktop'});
+
         helpers.waitForPageLoaded(function() {
             test.assertNotVisible('.account-settings .newsletter-info');
         });
 
         helpers.done(test);
     }
-}));
+});
 
 
 casper.test.begin('Test settings hide logout if native FxA', {
     test: function(test) {
+        helpers.startCasper();
+
         helpers.waitForPageLoaded(function() {
             helpers.fake_login();
         });

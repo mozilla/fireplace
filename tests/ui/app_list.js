@@ -362,8 +362,7 @@ appListPages.forEach(function(appListPage) {
             }
         });
 
-        casper.test.begin(appListPage.anem + ' desktop previews tests',
-        helpers.desktopTest({
+        casper.test.begin(appListPage.anem + ' desktop previews tests', {
             test: function(test) {
                 waitForAppListPage(appListPage, function() {
                     // Expand listings.
@@ -376,11 +375,11 @@ appListPages.forEach(function(appListPage) {
                     casper.click('.app-list-filters-expand-toggle');
                     test.assertExists('.app-list:not(.expanded)');
                     test.assertNotVisible('.app-list-app .preview');
-                });
+                }, {viewport: 'desktop'});
 
                 helpers.done(test);
             },
-        }));
+        });
     }
 });
 
@@ -393,10 +392,11 @@ casper.test.begin('Test collection detail page for app tile expanded state.', {
         });
 
         // Visit a collection details page and check it's not expanded.
-        helpers.startCasper({path: '/feed/collection/top-games'});
-        helpers.waitForPageLoaded(function() {
-            test.assertDoesntExist('.app-list.expanded');
-            test.assertDoesntExist('.previews');
+        casper.thenOpen(helpers.makeUrl('/feed/collection/top-games'), function() {
+            helpers.waitForPageLoaded(function() {
+                test.assertDoesntExist('.app-list.expanded');
+                test.assertDoesntExist('.previews');
+            });
         });
         helpers.done(test);
     }

@@ -249,10 +249,8 @@ casper.test.begin('Test edit review on review page as admin', {
 
 
 casper.test.begin('Test add rating on detail page on desktop', {
-    setUp: helpers.setUpDesktop,
-    tearDown: helpers.tearDown,
     test: function(test) {
-        helpers.startCasper({path: '/app/can_rate'});
+        helpers.startCasper({path: '/app/can_rate', viewport: 'desktop'});
 
         helpers.waitForPageLoaded(function() {
             test.assertSelectorHasText('.review-button', 'Sign in to review');
@@ -267,10 +265,8 @@ casper.test.begin('Test add rating on detail page on desktop', {
 
 
 casper.test.begin('Test edit rating on detail page on desktop', {
-    setUp: helpers.setUpDesktop,
-    tearDown: helpers.tearDown,
     test: function(test) {
-        helpers.startCasper({path: '/app/has_rated'});
+        helpers.startCasper({path: '/app/has_rated', viewport: 'desktop'});
         helpers.waitForPageLoaded(function() {
             helpers.fake_login();
         });
@@ -307,9 +303,12 @@ casper.test.begin('Test unrated app no link on detail page', {
 });
 
 
-casper.test.begin('Test reviews page back to app link', helpers.tabletTest({
+casper.test.begin('Test reviews page back to app link', {
     test: function(test) {
-        helpers.startCasper({path: '/app/has_rated/ratings'});
+        helpers.startCasper({
+            path: '/app/has_rated/ratings',
+            viewport: 'tablet',
+        });
 
         helpers.waitForPageLoaded(function() {
             test.assertVisible('.back-to-app');
@@ -322,7 +321,7 @@ casper.test.begin('Test reviews page back to app link', helpers.tabletTest({
 
         helpers.done(test);
     }
-}));
+});
 
 
 casper.test.begin('Test delete review', {
@@ -372,10 +371,12 @@ casper.test.begin('Test delete review', {
 });
 
 
-casper.test.begin('Test login to review on desktop on review page',
-helpers.desktopTest({
+casper.test.begin('Test login to review on desktop on review page', {
     test: function(test) {
-        helpers.startCasper({path: '/app/can_rate/ratings'});
+        helpers.startCasper({
+            path: '/app/can_rate/ratings',
+            viewport: 'desktop',
+        });
 
         helpers.waitForPageLoaded(function() {
             casper.click('.review-button');
@@ -389,13 +390,12 @@ helpers.desktopTest({
 
         helpers.done(test);
     }
-}));
+});
 
 
-casper.test.begin('Test login to review if already reviewed on desktop detail',
-helpers.desktopTest({
+casper.test.begin('Test login to review if already reviewed on desktop detail', {
     test: function(test) {
-        helpers.startCasper({path: '/app/has_rated'});
+        helpers.startCasper({path: '/app/has_rated', viewport: 'desktop'});
 
         helpers.waitForPageLoaded(function() {
             casper.click('.review-button');
@@ -408,4 +408,4 @@ helpers.desktopTest({
 
         helpers.done(test);
     }
-}));
+});

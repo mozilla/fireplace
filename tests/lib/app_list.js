@@ -8,8 +8,8 @@ function appNthChild(n) {
     return '.app-list-app:nth-child(' + n + ')';
 }
 
-function waitForAppListPage(appListPage, cb) {
-    helpers.startCasper({path: appListPage.path});
+function waitForAppListPage(appListPage, cb, opts) {
+    helpers.startCasper(_.extend({path: appListPage.path}, opts || {}));
     if (appListPage.login) {
         helpers.waitForPageLoaded(function() {
             helpers.fake_login();
