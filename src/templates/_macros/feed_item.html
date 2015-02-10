@@ -14,7 +14,8 @@
 #}
 
 {% macro feed_app(feed_app) %}
-  {% set color = feed.COLLECTION_COLORS[feed_app.color or 'aquamarine'] %}
+  {% set color = 'sapphire' if not feed_app.color or feed_app.color == 'topaz' else feed_app.color %}
+  {% set inline_color = feed.COLLECTION_COLORS[color] %}
   {% set desc = feed_app.description|translate(feed_app) %}
 
   <a href="{{ url('app', [feed_app.app.slug])|urlparams(src='featured-app') }}"
@@ -25,7 +26,7 @@
                  data-feed-app-type-icon
                {% endif %}
                {% if not desc and not feed_app.background_image %}
-                 style="background-color: {{ color|hex2rgba('.55') }}"
+                 style="background-color: {{ inline_color|hex2rgba('.55') }}"
                {% elif feed_app.background_image %}
                  data-feed-app-has-background
                  style="background-image: url({{ PLACEHOLDER_ICON }})"
@@ -37,8 +38,8 @@
                                  feed_app.app.name|translate(feed_app.app)) }}</li>
           </ul>
         {% endif %}
-        <div class="curve" style="background-color: {{ color|hex2rgba('.85') }}"></div>
-        <div class="info" style="background-color: {{ color|hex2rgba('.85') }}">
+        <div class="curve" style="background-color: {{ inline_color|hex2rgba('.85') }}"></div>
+        <div class="info" style="background-color: {{ inline_color|hex2rgba('.85') }}">
           <h1 class="name">{{ feed_app.app.name|translate(feed_app) }}</h1>
           <p class="author">{{ feed_app.app.author }}</p>
         </div>
@@ -123,7 +124,8 @@
 {% endmacro %}
 
 {% macro collection_promo(coll) %}
-  {% set color = feed.COLLECTION_COLORS[coll.color or 'aquamarine'] %}
+  {% set color = 'sapphire' if not feed_app.color or feed_app.color == 'topaz' else feed_app.color %}
+  {% set inline_color = feed.COLLECTION_COLORS[color] %}
   {% set desc = coll.description|translate(coll) %}
 
   <section class="feed-item feed-collection full {{ 'mega' if desc }}
@@ -134,7 +136,7 @@
            style="background-image: url({{ PLACEHOLDER_ICON }})"
            data-src="{{ coll.background_image }}"
        {% else %}
-           style="background-color: {{ color|hex2rgba('.35') }}"
+           style="background-color: {{ inline_color|hex2rgba('.35') }}"
        {% endif %}>
     {% if not coll.background_image %}
       <ul class="app-icons">
@@ -143,19 +145,20 @@
         {% endfor %}
       </ul>
     {% endif %}
-    <div class="curve" style="background-color: {{ color|hex2rgba('.55') }}"></div>
-    <div class="info" style="background-color: {{ color|hex2rgba('.55') }}">
+    <div class="curve" style="background-color: {{ inline_color|hex2rgba('.55') }}"></div>
+    <div class="info" style="background-color: {{ inline_color|hex2rgba('.55') }}">
       <h1 class="name">{{ coll.name|translate(coll)|safe }}</h1>
     </div>
-    <div class="alt-curve" style="background-color: {{ color }}"></div>
+    <div class="alt-curve" style="background-color: {{ inline_color }}"></div>
     {% if desc %}
-      <div class="desc" style="background-color: {{ color }}">{{ desc|safe }}</div>
+      <div class="desc" style="background-color: {{ inline_color }}">{{ desc|safe }}</div>
     {% endif %}
   </section>
 {% endmacro %}
 
 {% macro collection_listing_header(coll) %}
-   {% set color = coll.color or 'aquamarine' %}
+   {% set color = 'sapphire' if not coll.color or coll.color == 'topaz' else coll.color %}
+
    <a class="collection-listing-header"
       href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}"
       data-feed-color="{{ color }}">
@@ -194,11 +197,13 @@
 
 {% macro collection_landing(coll) %}
   {# Used both for collections and shelves. Reduce, reuse, recycle. #}
+  {% set color = 'sapphire' if not coll.color or coll.color == 'topaz' else coll.color %}
+  {% set inline_color = feed.COLLECTION_COLORS[color] %}
   {% set src = 'operator-shelf-element' if coll.carrier else 'collection-element' %}
 
   <div class="feed-landing-wrapper" data-tracking="{{ coll.slug }}"
        {% if not coll.carrier %}
-         data-collection-landing-color="{{ coll.color or 'sapphire' }}"
+         data-collection-landing-color="{{ color }}"
        {% endif %}
        {% if coll.background_image %}data-collection-landing-has-background-image{% endif %}
        {% if coll.description %}data-collection-landing-has-description{% endif %}
