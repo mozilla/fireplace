@@ -18,7 +18,9 @@ define('app_list',
             expand = expanded;
         }
         $('.app-list').toggleClass('expanded', expanded);
-        $('.app-list-filters-expand-toggle').toggleClass('active', expand);
+        $('.app-list-filters-expand-toggle')
+            .toggleClass('active', expand)
+            .addClass('show');
         storage.setItem('expand-listings', !!expanded);
         if (expanded) {
             z.page.trigger('populatetray');
