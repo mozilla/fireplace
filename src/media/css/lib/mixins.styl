@@ -228,6 +228,14 @@ flex-center() {
     -webkit-align-self: center;
 }
 
+flex-grow($int) {
+    -webkit-box-flex: $int;
+    -webkit-flex-grow: $int;
+    -moz-flex-grow: $int;
+    -ms-flex-positive: $int;
+    flex-grow: $int;
+}
+
 flex-vertical-center() {
     // old way
     display-flex();
@@ -247,6 +255,16 @@ flex($flex) {
     -ms-flex: $flex;
     -moz-flex: $flex;
     -webkit-flex: $flex;
+}
+
+flex-wrap($wrap) {
+    flex-wrap: $wrap;
+    -moz-flex-wrap: $wrap;
+    -webkit-flex-wrap: $wrap;
+    -ms-flex-wrap: $wrap;
+    if $wrap == nowrap {
+        -ms-flex-wrap: none;
+    }
 }
 
 dropdown() {
