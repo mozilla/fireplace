@@ -253,7 +253,7 @@
       <section class="main full feed-landing collection-landing">
         <div>
           <h3 class="collection-group-header">{{ group.name }}</h3>
-          <ul class="app-list app-list-colored collection-group">
+          <ul class="app-list collection-group">
             {% for app in group.apps %}
               <li class="app-list-app">{{ app_tile(app, src=src) }}</li>
             {% endfor %}
@@ -264,7 +264,7 @@
   {% else %}
     <section class="main full feed-landing collection-landing">
       <div>
-        <ul class="app-list app-list-colored">
+        <ul class="app-list">
           {% for app in coll.apps %}
             <li class="app-list-app">{{ app_tile(app, src=src) }}</li>
           {% endfor %}
