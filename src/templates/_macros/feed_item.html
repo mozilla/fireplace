@@ -14,7 +14,7 @@
 #}
 
 {% macro feed_app(feed_app) %}
-  {% set color = 'sapphire' if not feed_app.color or feed_app.color == 'topaz' else feed_app.color %}
+  {% set color = coll.color or 'sapphire' %}
   {% set inline_color = feed.COLLECTION_COLORS[color] %}
   {% set desc = feed_app.description|translate(feed_app) %}
 
@@ -124,7 +124,7 @@
 {% endmacro %}
 
 {% macro collection_promo(coll) %}
-  {% set color = 'sapphire' if not coll.color or coll.color == 'topaz' else coll.color %}
+  {% set color = coll.color or 'sapphire' %}
   {% set inline_color = feed.COLLECTION_COLORS[color] %}
   {% set desc = coll.description|translate(coll) %}
 
@@ -157,7 +157,7 @@
 {% endmacro %}
 
 {% macro collection_listing_header(coll) %}
-   {% set color = 'sapphire' if not coll.color or coll.color == 'topaz' else coll.color %}
+   {% set color = coll.color or 'sapphire' %}
 
    <a class="collection-listing-header"
       href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}"
@@ -197,7 +197,7 @@
 
 {% macro collection_landing(coll) %}
   {# Used both for collections and shelves. Reduce, reuse, recycle. #}
-  {% set color = 'sapphire' if not coll.color or coll.color == 'topaz' else coll.color %}
+  {% set color = coll.color or 'sapphire' %}
   {% set inline_color = feed.COLLECTION_COLORS[color] %}
   {% set src = 'operator-shelf-element' if coll.carrier else 'collection-element' %}
 
