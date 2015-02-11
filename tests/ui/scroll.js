@@ -1,55 +1,90 @@
 /*
-    Test that navigating to a page and back maintains scroll position.
+    Test scroll states upon navigation.
 */
 var appList = require('../lib/app_list');
 var helpers = require('../lib/helpers');
 
-var appSelector = appList.appNthChild(1) + ' .mkt-tile';
+function getScrollY() {
+    return casper.evaluate(function() {
+        return window.scrollY;
+    });
+}
 
-casper.test.begin('Scroll tests', {
+function setScrollY(y) {
+    return casper.evaluate(function(y) {
+        window.scrollTo(0, y);
+        return window.scrollY;
+    }, y);
+}
+
+function scrollToAndClickApp(n) {
+    // Click an nth app on an app list, returns the Y-position of the app.
+    var appSelector = appList.appNthChild(n) + ' .mkt-tile';
+    var scrollPos = setScrollY(casper.getElementBounds(appSelector).top);
+    casper.click(appSelector);
+    return scrollPos;
+}
+
+casper.test.begin('Test scroll state when hitting back on initial page', {
     test: function(test) {
-        helpers.startCasper({path: '/category/games'});
+        helpers.startCasper({path: '/app/appy'});
 
-        // Open app list, scroll down, click on app.
-        casper.waitForSelector('.app-list', function() {
-            scrollPos = casper.evaluate(function(Y) {
-                window.scrollTo(0, Y);
-                return window.scrollY;
-            }, casper.getElementBounds(appSelector).top);
-            casper.click(appSelector);
+        helpers.waitForPageLoaded(function() {
+            casper.click('.back');
         });
 
-        // Test it automatically scrolled to top, then go back.
-        casper.waitForSelector('[data-page-type~=detail]', function() {
-            casper.wait(300, function() {  // Wait for scroll to kick in.
-                var scrollY = casper.evaluate(function() {
-                    return window.scrollY;
-                });
-                test.assertEquals(scrollY, 0, 'Check scroll is 0');
-                casper.back();
-            });
+        casper.waitWhileVisible('[data-page-type~="detail"]', function() {
+            test.assertEquals(getScrollY(), 0, 'Check scroll is 0');
         });
 
-        // Check that the scroll is reverted back.
-        casper.waitForSelector('.app-list', function() {
-            var scrollY = casper.evaluate(function() {
-                return window.scrollY;
-            });
-            test.assert(scrollY > 0, 'Check scroll greater than 0');
-            test.assertEquals(scrollY, scrollPos, 'Check scroll not changed');
-            casper.click(appSelector);
+        helpers.done(test);
+    }
+});
+
+casper.test.begin('Test scroll state set to 0 on navigate', {
+    test: function(test) {
+        helpers.startCasper({path: '/popular'});
+
+        helpers.waitForPageLoaded(function() {
+            scrollToAndClickApp(1);
         });
 
-        casper.waitForSelector('#nav-back', function() {
-            casper.click('#nav-back');
+        helpers.waitForAppDetail(function() {
+            test.assertEquals(getScrollY(), 0, 'Check scroll is 0');
         });
 
-        casper.wait(300, function() {
-            var scrollY = casper.evaluate(function() {
-                return window.scrollY;
-            });
-            test.assert(scrollY > 0, 'Check scroll is greater than 0');
-            test.assertEquals(scrollY, scrollPos, "Check scroll hasn't changed");
+        helpers.done(test);
+    }
+});
+
+casper.test.begin('Test scroll state preserved on pop', {
+    test: function(test) {
+        helpers.startCasper({path: '/popular'});
+
+        var scrollPos;
+        helpers.waitForPageLoaded(function() {
+            scrollPos = scrollToAndClickApp(1);
+        });
+
+        helpers.waitForAppDetail(function() {
+            casper.back();
+        });
+
+        helpers.waitForAppList(function() {
+            test.assertEquals(getScrollY(), scrollPos,
+                             'Check scroll preserved from before navigate');
+            scrollPos = scrollToAndClickApp(15);
+        });
+
+        // Go again with another app to be sure.
+        helpers.waitForAppDetail(function() {
+            casper.back();
+        });
+
+        helpers.waitForAppList(function() {
+            test.assertEquals(
+                getScrollY(), scrollPos,
+                'Check scroll preserved from before 2nd navigate');
         });
 
         helpers.done(test);
