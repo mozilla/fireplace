@@ -73,50 +73,67 @@ var appListPages = [
         login: true,
         name: 'Purchases',
         noCache: true,
+        noCompatFiltering: true,
         noVary: true,
         path: '/purchases',
         src: 'myapps',
     },
     {
-        collection: true,
+        appLimit: 6,
         endpoint: '/api/v2/fireplace/feed/collections/top-games/',
         name: 'Collection',
-        notLoadMore: true,
+        noCompatFiltering: true,
+        noExpandToggle: true,
+        noLoadMore: true,
         path: '/feed/collection/top-games',
         src: 'collection-element',
     },
     {
-        collection: true,
+        appLimit: 6,
         endpoint: '/api/v2/fireplace/feed/brands/fun-games/',
         name: 'Brand',
-        notLoadMore: true,
+        noCompatFiltering: true,
+        noExpandToggle: true,
+        noLoadMore: true,
         path: '/feed/editorial/fun-games',
         src: 'branded-editorial-element',
     },
     {
-        collection: true,
+        appLimit: 6,
         endpoint: '/api/v2/fireplace/feed/shelves/telefonica-games/',
         name: 'Shelf',
-        notLoadMore: true,
+        noCompatFiltering: true,
+        noExpandToggle: true,
+        noLoadMore: true,
         path: '/feed/shelf/telefonica-games',
         src: 'operator-shelf-element',
+    },
+    {
+        endpoint: '/api/v2/langpacks/',
+        endpointParams: {fxos_version: '2.2'},
+        name: 'Langpacks',
+        noCompatFiltering: true,
+        noDetailPage: true,
+        noExpandToggle: true,
+        noLoadMore: false,
+        noModelCache: true,
+        path: '/langpacks/2.2',
     }
 ];
 
 appListPages.forEach(function(appListPage) {
-    casper.test.begin(appListPage.name + ' page app list tests', {
+    if (!appListPage.appLimit) {
+        appListPage.appLimit = APP_LIMIT;
+    }
+
+    casper.test.begin(appListPage.name + ' page app list main tests', {
         test: function(test) {
             waitForAppListPage(appListPage, function() {
                 test.assertVisible('.search');
 
                 // Test app count.
-                if (appListPage.collection) {
-                    test.assertExists('.app-list-app');
-                }
-                else {
-                    test.assertExists(appNthChild(APP_LIMIT - 1));
-                    test.assertNotExists(appNthChild(APP_LIMIT + 1));
-                }
+                test.assertExists(appNthChild(appListPage.appLimit - 1));
+                test.assertNotExists(appNthChild(appListPage.appLimit + 1));
 
                 // Test API call.
                 var endpointParams = getEndpointParams(appListPage);
@@ -125,69 +142,20 @@ appListPages.forEach(function(appListPage) {
                 // Test app src.
                 var href = this.getElementAttribute('.mkt-tile:nth-child(1)',
                                                     'href');
-                test.assert(href.indexOf('src=' + appListPage.src) !== -1,
-                           'Assert src');
-
-                // Test model cache.
-                var modelCount = casper.evaluate(function() {
-                    return Object.keys(
-                        window.require('models')('app')
-                              .data_store.app).length;
-                });
-                test.assertEqual(modelCount,
-                                 appListPage.collection ? 6 : APP_LIMIT,
-                                 'Assert model cache');
-
-                // Test expand toggle.
-                if (!appListPage.collection) {
-                    var toggleLink = '.app-list-filters-expand-toggle';
-                    test.assertVisible(toggleLink);
-
-                    // Expanded view.
-                    casper.click(toggleLink);
-                    test.assertExists(toggleLink + '.active');
-                    test.assertExists('.app-list.expanded');
-                    helpers.assertUATracking(test, [
-                        'View type interactions',
-                        'click',
-                        'Expanded view'
-                    ]);
-
-                    // List view.
-                    casper.click(toggleLink);
-                    test.assertExists(toggleLink + ':not(.active)');
-                    test.assertExists('.app-list:not(.expanded)');
-                    helpers.assertUATracking(test, [
-                        'View type interactions',
-                        'click',
-                        'List view'
-                    ]);
+                if (appListPage.src) {
+                    test.assert(href.indexOf('src=' + appListPage.src) !== -1,
+                                'Assert src');
+                } else {
+                    // If no src is configured, it means this app list does not
+                    // contain any links.
+                    test.assertEqual(href, '', 'Assert href is empty');
                 }
 
                 // Test authors are not a link.
                 test.assertDoesntExist('.mkt-tile .author a');
 
-                if (!appListPage.notLoadMore) {
-                    // Test `Load more` button.
-                    waitForLoadMore(function() {
-                        getEndpointParams.offset = APP_LIMIT + '';
-                        helpers.assertAPICallWasMade(appListPage.endpoint, endpointParams);
-
-                        // Test model cache after load more.
-                        var modelCount = casper.evaluate(function() {
-                            return Object.keys(
-                                window.require('models')('app')
-                                      .data_store.app).length;
-                        });
-                        test.assertEqual(modelCount, APP_LIMIT_LOADMORE,
-                                         'Assert model cache after Load more');
-
-                        // Test navigate to app.
-                        casper.click('.app-list .mkt-tile');
-                        test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
-                    });
-                } else {
-                    // Test navigate to app.
+                // Test navigate to app.
+                if (!appListPage.noDetailPage) {
                     casper.click('.app-list .mkt-tile');
                     test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
                 }
@@ -197,20 +165,116 @@ appListPages.forEach(function(appListPage) {
         }
     });
 
-    if (appListPage.collection) {
-        return;
-    }
+    casper.test.begin(appListPage.name + ' page app list model cache test', {
+        test: function(test) {
+            if (appListPage.noModelCache) {
+                return helpers.done(test);
+            }
+            waitForAppListPage(appListPage, function() {
+                // Test model cache.
+                if (!appListPage.noModelCache) {
+                    var modelCount = casper.evaluate(function() {
+                        return Object.keys(
+                            window.require('models')('app')
+                                  .data_store.app).length;
+                    });
+                    test.assertEqual(modelCount,
+                                     appListPage.appLimit,
+                                     'Assert model cache');
+                }
+            });
+
+            helpers.done(test);
+        }
+    });
+
+    casper.test.begin(appListPage.name + ' page app list load more', {
+        test: function(test) {
+            if (appListPage.noLoadMore) {
+                return helpers.done(test);
+            }
+            waitForAppListPage(appListPage, function() {
+                // Test `Load more` button.
+                waitForLoadMore(function() {
+                    // Test API call.
+                    var endpointParams = getEndpointParams(appListPage);
+                    getEndpointParams.offset = appListPage.appLimit + '';
+                    helpers.assertAPICallWasMade(appListPage.endpoint, endpointParams);
+
+                    // Test model cache after load more.
+                    if (!appListPage.noModelCache) {
+                        var modelCount = casper.evaluate(function() {
+                            return Object.keys(
+                                window.require('models')('app')
+                                      .data_store.app).length;
+                        });
+                        test.assertEqual(modelCount, APP_LIMIT_LOADMORE,
+                                         'Assert model cache after Load more');
+                    }
+
+                    // Test navigate to app.
+                    if (!appListPage.noDetailPage) {
+                        casper.click('.app-list .mkt-tile');
+                        test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
+                    }
+                });
+            });
+
+            helpers.done(test);
+        }
+    });
+
+    casper.test.begin(appListPage.name + ' page app list expand toggle', {
+        test: function(test) {
+            if (appListPage.noExpandToggle) {
+                return helpers.done(test);
+            }
+            waitForAppListPage(appListPage, function() {
+                // Test expand toggle.
+                var toggleLink = '.app-list-filters-expand-toggle';
+                test.assertVisible(toggleLink);
+
+                // Expanded view.
+                casper.click(toggleLink);
+                test.assertExists(toggleLink + '.active');
+                test.assertExists('.app-list.expanded');
+                helpers.assertUATracking(test, [
+                    'View type interactions',
+                    'click',
+                    'Expanded view'
+                ]);
+
+                // List view.
+                casper.click(toggleLink);
+                test.assertExists(toggleLink + ':not(.active)');
+                test.assertExists('.app-list:not(.expanded)');
+                helpers.assertUATracking(test, [
+                    'View type interactions',
+                    'click',
+                    'List view'
+                ]);
+            });
+
+            helpers.done(test);
+        }
+    });
 
     casper.test.begin(appListPage.name + ' page compatibility filtering tests', {
         test: function(test) {
+            if (appListPage.noCompatFiltering) {
+                return helpers.done(test);
+            }
+
             waitForAppListPage(appListPage, function() {
                 test.assertField('compatibility_filtering', 'all');
             });
 
-            waitForLoadMore(function() {
-                // Test compatibility filtering after load more.
-                test.assertField('compatibility_filtering', 'all');
-            });
+            if (!appListPage.noLoadMore) {
+                waitForLoadMore(function() {
+                    // Test compatibility filtering after load more.
+                    test.assertField('compatibility_filtering', 'all');
+                });
+            }
 
             helpers.done(test);
         }
@@ -220,9 +284,12 @@ appListPages.forEach(function(appListPage) {
         // Test that clicking `Load more` rewrites the new apps into the cache.
         // Apps still there after nav to a different page and then going back.
         test: function(test) {
+            if (appListPage.noLoadMore) {
+                return helpers.done(test);
+            }
             waitForAppListPage(appListPage, function() {
-                test.assertExists(appNthChild(APP_LIMIT - 1));
-                test.assertNotExists(appNthChild(APP_LIMIT + 1));
+                test.assertExists(appNthChild(appListPage.appLimit - 1));
+                test.assertNotExists(appNthChild(appListPage.appLimit + 1));
 
                 waitForLoadMore(function() {
                     casper.click('.wordmark');
@@ -237,9 +304,8 @@ appListPages.forEach(function(appListPage) {
 
     casper.test.begin(appListPage.name + ' compatibility filtering tests', {
         test: function(test) {
-            if (appListPage.name == 'Purchases') {
-                helpers.done(test);
-                return;
+            if (appListPage.noCompatFiltering) {
+                return helpers.done(test);
             }
 
             helpers.startCasper({
@@ -273,12 +339,14 @@ appListPages.forEach(function(appListPage) {
                                              endpointParams);
 
                 // Test basic count during device filtering.
-                test.assertExists(appNthChild(constants.APP_LIMIT - 1));
-                test.assertNotExists(appNthChild(constants.APP_LIMIT + 1));
+                test.assertExists(appNthChild(appListPage.appLimit - 1));
+                test.assertNotExists(appNthChild(appListPage.appLimit + 1));
 
-                appList.waitForLoadMore(function() {
-                    test.assertField('compatibility_filtering', 'desktop');
-                });
+                if (!appListPage.noLoadMore) {
+                    appList.waitForLoadMore(function() {
+                        test.assertField('compatibility_filtering', 'desktop');
+                    });
+                }
             }
 
             helpers.done(test);
@@ -287,6 +355,9 @@ appListPages.forEach(function(appListPage) {
 
     casper.test.begin(appListPage.name + ' mobile previews tests', {
         test: function(test) {
+            if (appListPage.noExpandToggle) {
+                return helpers.done(test);
+            }
             waitForAppListPage(appListPage, function() {
                 // Expand listings.
                 casper.click('.app-list-filters-expand-toggle');
@@ -304,9 +375,12 @@ appListPages.forEach(function(appListPage) {
         }
     });
 
-    casper.test.begin(appListPage.anem + ' desktop previews tests',
+    casper.test.begin(appListPage.name + ' desktop previews tests',
     helpers.desktopTest({
         test: function(test) {
+            if (appListPage.noExpandToggle) {
+                return helpers.done(test);
+            }
             waitForAppListPage(appListPage, function() {
                 // Expand listings.
                 casper.click('.app-list-filters-expand-toggle');

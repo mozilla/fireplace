@@ -6,7 +6,6 @@ var appList = require('../lib/app_list');
 var constants = require('../lib/constants');
 var helpers = require('../lib/helpers');
 
-var appNthChild = appList.appNthChild;
 
 casper.test.begin('Test search results header', {
     test: function(test) {
