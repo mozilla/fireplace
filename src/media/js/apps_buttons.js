@@ -86,7 +86,7 @@ define('apps_buttons',
 
         // If the user has already purchased the app, we do need to generate
         // another receipt but we don't need to go through the purchase flow again.
-        if (user.has_purchased(product.id)) {
+        if (product.id && user.has_purchased(product.id)) {
             product.payment_required = false;
         }
 
@@ -178,7 +178,7 @@ define('apps_buttons',
 
             // If the app has already been installed by the user and we don't
             // need a receipt, just start the app install.
-            if (user.has_installed(product.id) && !product.receipt_required) {
+            if (product.id && user.has_installed(product.id) && !product.receipt_required) {
                 logger.log('Receipt not required (skipping record step) for', product.name);
                 return do_install();
             }
@@ -191,10 +191,12 @@ define('apps_buttons',
             if (!product.receipt_required) {
                 // Do the install immediately.
                 do_install().done(function() {
-                    // ...then record the installation.
-                    requests.post(api_endpoint, post_data);
-                    // We don't care if it fails or not because the user has
-                    // already installed the app.
+                    // ...then record the installation if necessary.
+                    if (product.role !== 'langpack') {
+                        requests.post(api_endpoint, post_data);
+                        // We don't care if it fails or not because the user
+                        // has already installed the app.
+                    }
                 });
                 return;
             }
@@ -224,10 +226,12 @@ define('apps_buttons',
 
         function do_install(data) {
             return apps.install(product, data || {}).done(function(installer) {
-                // Update the cache to show that the user installed the app.
-                user.update_install(product.id);
-                // Bust the cache for the My Apps page.
-                cache.bust(urls.api.url('installed'));
+                if (product.id) {
+                    // Update the cache to show that the user installed the app.
+                    user.update_install(product.id);
+                    // Bust the cache for the My Apps page.
+                    cache.bust(urls.api.url('installed'));
+                }
 
                 def.resolve(installer, product, $this);
             }).fail(function(error) {
@@ -256,6 +260,8 @@ define('apps_buttons',
             }
 
             setTimeout(function() {
+                // Pass the manifest_url and not the button in case there are
+                // multiple instances of the same button on the page.
                 mark_installed(product.manifest_url);
             });
             tracking_events.track_app_install_success(product, $this);
@@ -277,11 +283,21 @@ define('apps_buttons',
     }
 
     function mark_installed(manifest_url, $button) {
+        var text;
         if (manifest_url) {
             logger.log('Marking as installed', manifest_url);
+            $button = get_button(manifest_url);
         }
-        // L10n: "Open" as in "Open the app".
-        setButton($button || get_button(manifest_url), gettext('Open'), 'launch install');
+        if ($button.data('product').role === 'langpack') {
+            // Never show the 'Open' text for installed langpacks. Instead, say
+            // "Installed" and disable it.
+            text = gettext('Installed');
+            $button.prop('disabled', true);
+        } else {
+            // L10n: "Open" as in "Open the app".
+            text = gettext('Open');
+        }
+        setButton($button, text, 'launch install');
         apps.getInstalled();
     }
 
