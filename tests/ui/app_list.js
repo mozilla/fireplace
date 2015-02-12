@@ -165,14 +165,11 @@ appListPages.forEach(function(appListPage) {
         }
     });
 
-    casper.test.begin(appListPage.name + ' page app list model cache test', {
-        test: function(test) {
-            if (appListPage.noModelCache) {
-                return helpers.done(test);
-            }
-            waitForAppListPage(appListPage, function() {
-                // Test model cache.
-                if (!appListPage.noModelCache) {
+    if (!appListPage.noModelCache) {
+        casper.test.begin(appListPage.name + ' page app list model cache test', {
+            test: function(test) {
+                waitForAppListPage(appListPage, function() {
+                    // Test model cache.
                     var modelCount = casper.evaluate(function() {
                         return Object.keys(
                             window.require('models')('app')
@@ -181,222 +178,210 @@ appListPages.forEach(function(appListPage) {
                     test.assertEqual(modelCount,
                                      appListPage.appLimit,
                                      'Assert model cache');
-                }
-            });
-
-            helpers.done(test);
-        }
-    });
-
-    casper.test.begin(appListPage.name + ' page app list load more', {
-        test: function(test) {
-            if (appListPage.noLoadMore) {
-                return helpers.done(test);
-            }
-            waitForAppListPage(appListPage, function() {
-                // Test `Load more` button.
-                waitForLoadMore(function() {
-                    // Test API call.
-                    var endpointParams = getEndpointParams(appListPage);
-                    getEndpointParams.offset = appListPage.appLimit + '';
-                    helpers.assertAPICallWasMade(appListPage.endpoint, endpointParams);
-
-                    // Test model cache after load more.
-                    if (!appListPage.noModelCache) {
-                        var modelCount = casper.evaluate(function() {
-                            return Object.keys(
-                                window.require('models')('app')
-                                      .data_store.app).length;
-                        });
-                        test.assertEqual(modelCount, APP_LIMIT_LOADMORE,
-                                         'Assert model cache after Load more');
-                    }
-
-                    // Test navigate to app.
-                    if (!appListPage.noDetailPage) {
-                        casper.click('.app-list .mkt-tile');
-                        test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
-                    }
                 });
-            });
 
-            helpers.done(test);
-        }
-    });
-
-    casper.test.begin(appListPage.name + ' page app list expand toggle', {
-        test: function(test) {
-            if (appListPage.noExpandToggle) {
-                return helpers.done(test);
+                helpers.done(test);
             }
-            waitForAppListPage(appListPage, function() {
-                // Test expand toggle.
-                var toggleLink = '.app-list-filters-expand-toggle';
-                test.assertVisible(toggleLink);
+        });
+    }
 
-                // Expanded view.
-                casper.click(toggleLink);
-                test.assertExists(toggleLink + '.active');
-                test.assertExists('.app-list.expanded');
-                helpers.assertUATracking(test, [
-                    'View type interactions',
-                    'click',
-                    'Expanded view'
-                ]);
+    if (!appListPage.noExpandToggle) {
+        casper.test.begin(appListPage.name + ' page app list expand toggle', {
+            test: function(test) {
+                waitForAppListPage(appListPage, function() {
+                    // Test expand toggle.
+                    var toggleLink = '.app-list-filters-expand-toggle';
+                    test.assertVisible(toggleLink);
 
-                // List view.
-                casper.click(toggleLink);
-                test.assertExists(toggleLink + ':not(.active)');
-                test.assertExists('.app-list:not(.expanded)');
-                helpers.assertUATracking(test, [
-                    'View type interactions',
-                    'click',
-                    'List view'
-                ]);
-            });
+                    // Expanded view.
+                    casper.click(toggleLink);
+                    test.assertExists(toggleLink + '.active');
+                    test.assertExists('.app-list.expanded');
+                    helpers.assertUATracking(test, [
+                        'View type interactions',
+                        'click',
+                        'Expanded view'
+                    ]);
 
-            helpers.done(test);
-        }
-    });
+                    // List view.
+                    casper.click(toggleLink);
+                    test.assertExists(toggleLink + ':not(.active)');
+                    test.assertExists('.app-list:not(.expanded)');
+                    helpers.assertUATracking(test, [
+                        'View type interactions',
+                        'click',
+                        'List view'
+                    ]);
+                });
 
-    casper.test.begin(appListPage.name + ' page compatibility filtering tests', {
-        test: function(test) {
-            if (appListPage.noCompatFiltering) {
-                return helpers.done(test);
+                helpers.done(test);
             }
+        });
+    }
 
-            waitForAppListPage(appListPage, function() {
-                test.assertField('compatibility_filtering', 'all');
-            });
+    if (!appListPage.noLoadMore) {
+        casper.test.begin(appListPage.name + ' page app list load more', {
+            test: function(test) {
+                waitForAppListPage(appListPage, function() {
+                    // Test `Load more` button.
+                    waitForLoadMore(function() {
+                        // Test API call.
+                        var endpointParams = getEndpointParams(appListPage);
+                        getEndpointParams.offset = appListPage.appLimit + '';
+                        helpers.assertAPICallWasMade(appListPage.endpoint,
+                                                     endpointParams);
 
-            if (!appListPage.noLoadMore) {
-                waitForLoadMore(function() {
-                    // Test compatibility filtering after load more.
+                        // Test model cache after load more.
+                        if (!appListPage.noModelCache) {
+                            var modelCount = casper.evaluate(function() {
+                                return Object.keys(
+                                    window.require('models')('app')
+                                        .data_store.app).length;
+                            });
+                            test.assertEqual(
+                                modelCount,
+                                APP_LIMIT_LOADMORE,
+                                'Assert model cache after Load more');
+                        }
+
+                        // Test navigate to app.
+                        if (!appListPage.noDetailPage) {
+                            casper.click('.app-list .mkt-tile');
+                            test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
+                        }
+                    });
+                });
+
+                helpers.done(test);
+            }
+        });
+
+        casper.test.begin(appListPage.name + ' page pagination rewrite tests', {
+            // Test that clicking `Load more` rewrites the new apps into the cache.
+            // Apps still there after nav to a different page and then going back.
+            test: function(test) {
+                waitForAppListPage(appListPage, function() {
+                    test.assertExists(appNthChild(appListPage.appLimit - 1));
+                    test.assertNotExists(appNthChild(appListPage.appLimit + 1));
+
+                    waitForLoadMore(function() {
+                        casper.click('.wordmark');
+                        casper.back();
+                        casper.waitUntilVisible(appNthChild(APP_LIMIT_LOADMORE));
+                    });
+                });
+
+                helpers.done(test);
+            }
+        });
+    }
+
+    if (!appListPage.noCompatFiltering) {
+        casper.test.begin(appListPage.name + ' page compatibility filtering tests', {
+            test: function(test) {
+                waitForAppListPage(appListPage, function() {
                     test.assertField('compatibility_filtering', 'all');
                 });
-            }
-
-            helpers.done(test);
-        }
-    });
-
-    casper.test.begin(appListPage.name + ' page pagination rewrite tests', {
-        // Test that clicking `Load more` rewrites the new apps into the cache.
-        // Apps still there after nav to a different page and then going back.
-        test: function(test) {
-            if (appListPage.noLoadMore) {
-                return helpers.done(test);
-            }
-            waitForAppListPage(appListPage, function() {
-                test.assertExists(appNthChild(appListPage.appLimit - 1));
-                test.assertNotExists(appNthChild(appListPage.appLimit + 1));
-
-                waitForLoadMore(function() {
-                    casper.click('.wordmark');
-                    casper.back();
-                    casper.waitUntilVisible(appNthChild(APP_LIMIT_LOADMORE));
-                });
-            });
-
-            helpers.done(test);
-        }
-    });
-
-    casper.test.begin(appListPage.name + ' compatibility filtering tests', {
-        test: function(test) {
-            if (appListPage.noCompatFiltering) {
-                return helpers.done(test);
-            }
-
-            helpers.startCasper({
-                path: new jsuri(appListPage.path).addQueryParam(
-                    'device_override', 'desktop')
-            });
-
-            if (appListPage.login) {
-                helpers.waitForPageLoaded(function() {
-                    helpers.fake_login();
-                    helpers.waitForPageLoaded(testCompatFiltering);
-                });
-            } else {
-                helpers.waitForPageLoaded(testCompatFiltering);
-            }
-
-            function testCompatFiltering() {
-                // Test field is correct if device filtering present in params.
-                test.assertVisible('.compat-select-wrapper');
-                test.assertField('compatibility_filtering', 'desktop');
-
-                // Test API call.
-                var endpointParams = getEndpointParams(appListPage, {
-                    dev: 'desktop'
-                });
-                if (['Category', 'Search'].indexOf(appListPage.name) !== -1) {
-                    // utils.urlparams attaches any params from w.location.
-                    endpointParams.device_override = 'desktop';
-                }
-                helpers.assertAPICallWasMade(appListPage.endpoint,
-                                             endpointParams);
-
-                // Test basic count during device filtering.
-                test.assertExists(appNthChild(appListPage.appLimit - 1));
-                test.assertNotExists(appNthChild(appListPage.appLimit + 1));
 
                 if (!appListPage.noLoadMore) {
-                    appList.waitForLoadMore(function() {
-                        test.assertField('compatibility_filtering', 'desktop');
+                    waitForLoadMore(function() {
+                        // Test compatibility filtering after load more.
+                        test.assertField('compatibility_filtering', 'all');
                     });
                 }
+
+                helpers.done(test);
             }
+        });
 
-            helpers.done(test);
-        }
-    });
+        casper.test.begin(appListPage.name + ' compatibility filtering tests', {
+            test: function(test) {
+                helpers.startCasper({
+                    path: new jsuri(appListPage.path).addQueryParam(
+                        'device_override', 'desktop')
+                });
 
-    casper.test.begin(appListPage.name + ' mobile previews tests', {
-        test: function(test) {
-            if (appListPage.noExpandToggle) {
-                return helpers.done(test);
+                if (appListPage.login) {
+                    helpers.waitForPageLoaded(function() {
+                        helpers.fake_login();
+                        helpers.waitForPageLoaded(testCompatFiltering);
+                    });
+                } else {
+                    helpers.waitForPageLoaded(testCompatFiltering);
+                }
+
+                function testCompatFiltering() {
+                    // Test field is correct if device filtering present in params.
+                    test.assertVisible('.compat-select-wrapper');
+                    test.assertField('compatibility_filtering', 'desktop');
+
+                    // Test API call.
+                    var endpointParams = getEndpointParams(appListPage, {
+                        dev: 'desktop'
+                    });
+                    if (['Category', 'Search'].indexOf(appListPage.name) !== -1) {
+                        // utils.urlparams attaches any params from w.location.
+                        endpointParams.device_override = 'desktop';
+                    }
+                    helpers.assertAPICallWasMade(appListPage.endpoint,
+                                                 endpointParams);
+
+                    // Test basic count during device filtering.
+                    test.assertExists(appNthChild(appListPage.appLimit - 1));
+                    test.assertNotExists(appNthChild(appListPage.appLimit + 1));
+
+                    if (!appListPage.noLoadMore) {
+                        appList.waitForLoadMore(function() {
+                            test.assertField('compatibility_filtering', 'desktop');
+                        });
+                    }
+                }
+
+                helpers.done(test);
             }
-            waitForAppListPage(appListPage, function() {
-                // Expand listings.
-                casper.click('.app-list-filters-expand-toggle');
-                test.assertVisible('.previews li:first-child img');
-                test.assertNotVisible('.tray .bars');
-                test.assertNotVisible('.tray .arrow-button');
+        });
+    }
 
-                // Collapse listings.
-                casper.click('.app-list-filters-expand-toggle');
-                test.assertExists('.app-list:not(.expanded)');
-                test.assertNotVisible('.app-list-app .preview');
-            });
+    if (!appListPage.noExpandToggle) {
+        casper.test.begin(appListPage.name + ' mobile previews tests', {
+            test: function(test) {
+                waitForAppListPage(appListPage, function() {
+                    // Expand listings.
+                    casper.click('.app-list-filters-expand-toggle');
+                    test.assertVisible('.previews li:first-child img');
+                    test.assertNotVisible('.tray .bars');
+                    test.assertNotVisible('.tray .arrow-button');
 
-            helpers.done(test);
-        }
-    });
+                    // Collapse listings.
+                    casper.click('.app-list-filters-expand-toggle');
+                    test.assertExists('.app-list:not(.expanded)');
+                    test.assertNotVisible('.app-list-app .preview');
+                });
 
-    casper.test.begin(appListPage.name + ' desktop previews tests',
-    helpers.desktopTest({
-        test: function(test) {
-            if (appListPage.noExpandToggle) {
-                return helpers.done(test);
+                helpers.done(test);
             }
-            waitForAppListPage(appListPage, function() {
-                // Expand listings.
-                casper.click('.app-list-filters-expand-toggle');
-                test.assertVisible('.previews li:first-child img');
-                test.assertVisible('.tray .bars');
-                test.assertVisible('.tray .arrow-button');
+        });
 
-                // Collapse listings.
-                casper.click('.app-list-filters-expand-toggle');
-                test.assertExists('.app-list:not(.expanded)');
-                test.assertNotVisible('.app-list-app .preview');
-            });
+        casper.test.begin(appListPage.anem + ' desktop previews tests',
+        helpers.desktopTest({
+            test: function(test) {
+                waitForAppListPage(appListPage, function() {
+                    // Expand listings.
+                    casper.click('.app-list-filters-expand-toggle');
+                    test.assertVisible('.previews li:first-child img');
+                    test.assertVisible('.tray .bars');
+                    test.assertVisible('.tray .arrow-button');
 
-            helpers.done(test);
-        }
-    }));
+                    // Collapse listings.
+                    casper.click('.app-list-filters-expand-toggle');
+                    test.assertExists('.app-list:not(.expanded)');
+                    test.assertNotVisible('.app-list-app .preview');
+                });
+
+                helpers.done(test);
+            },
+        }));
+    }
 });
 
 casper.test.begin('Test collection detail page for app tile expanded state.', {
