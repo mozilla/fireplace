@@ -32,7 +32,8 @@ var routes = window.routes = [
     {'pattern': '^/search/?$', 'view_name': 'search'},
     {'pattern': '^/settings$', 'view_name': 'settings'},
     {'pattern': '^/terms-of-use$', 'view_name': 'terms'},
-    {'pattern': '^/tests$', 'view_name': 'tests'}
+    {'pattern': '^/tests$', 'view_name': 'tests'},
+    {'pattern': '^/usage$', 'view_name': 'usage'}
 ];
 
 define('routes', [
@@ -66,7 +67,8 @@ define('routes', [
     'views/search',
     'views/settings',
     'views/terms',
-    'views/tests'
+    'views/tests',
+    'views/usage'
 ], function() {
     for (var i = 0; i < routes.length; i++) {
         var route = routes[i];
