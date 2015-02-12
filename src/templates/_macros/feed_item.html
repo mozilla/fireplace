@@ -157,15 +157,12 @@
 {% endmacro %}
 
 {% macro collection_listing_header(coll) %}
-   {% set color = coll.color or 'sapphire' %}
-
    <a class="collection-listing-header"
-      href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}"
-      data-feed-color="{{ color }}">
+      href="{{ url('feed/feed_collection', [coll.slug])|urlparams(src='collection-element') }}">
      <h3>{{ coll.name|translate(coll)|safe }}</h3>
   </a>
   {% if coll.description %}
-    <p class="collection-listing-desc" data-collection-color="{{ color }}">
+    <p class="collection-listing-desc">
       {{ coll.description|translate(coll)|safe }}
     </p>
   {% endif %}
@@ -202,7 +199,7 @@
   {% set src = 'operator-shelf-element' if coll.carrier else 'collection-element' %}
 
   <div class="feed-landing-wrapper" data-tracking="{{ coll.slug }}"
-       {% if not coll.carrier %}
+       {% if not coll.carrier and coll.type != feed.COLL_LISTING %}
          data-collection-landing-color="{{ color }}"
        {% endif %}
        {% if coll.background_image %}data-collection-landing-has-background-image{% endif %}
