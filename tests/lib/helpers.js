@@ -5,6 +5,8 @@ var utils = require('utils');
 var _ = require('../../node_modules/underscore');
 
 var baseTestUrl = 'http://localhost:8675';
+var mobileViewportSize = [320, 480];
+var viewportSize = mobileViewportSize;
 var _currTestId;
 
 
@@ -43,6 +45,12 @@ if (system.env.SHOW_TEST_CONSOLE) {
 }
 
 
+var viewports = {
+    desktop: setUpDesktop,
+    tablet: setUpTablet,
+};
+
+
 function startCasper(options) {
     options = options || {};
 
@@ -53,15 +61,18 @@ function startCasper(options) {
     }
     var headers = options.headers;
     var path = options.path || '/';
-    var url = baseTestUrl + path;
+    var url = makeUrl(path);
 
     casper.echo('Starting with url: ' + url);
-    if (!headers) {
-        casper.start(url);
-    } else {
-        casper.start();
+    if (viewports.hasOwnProperty(options.viewport)) {
+        viewports[options.viewport]();
+    }
+    setViewport();
+    if (headers) {
         casper.echo(JSON.stringify(headers));
         casper.open(url, {headers: headers});
+    } else {
+        casper.open(url);
     }
 }
 
@@ -245,52 +256,32 @@ function fake_login(opts) {
 }
 
 
-function changeViewportMobile() {
-    casper.viewport(400, 300);
-}
-
-
-function changeViewportTablet() {
-    casper.viewport(700, 768);
-}
-
-
-function changeViewportDesktop() {
-    casper.viewport(1050, 768);
-}
-
-
 function setUpDesktop() {
-    changeViewportDesktop();
+    viewportSize = [1050, 768];
 }
 
 
 function setUpTablet() {
-    changeViewportTablet();
+    viewportSize = [700, 768];
 }
+
+
+function setViewport() {
+    casper.viewport(viewportSize[0], viewportSize[1]);
+}
+
+
+casper.test.setUp(function() {
+    casper.start();
+});
 
 
 function tearDown() {
-    changeViewportMobile();
+    viewportSize = mobileViewportSize;
 }
 
 
-function desktopTest(testObj) {
-    // Wrapper around test object to set up desktop viewport.
-    return _.extend(testObj, {
-        setUp: setUpDesktop,
-        tearDown: tearDown
-    });
-}
-
-
-function tabletTest(testObj) {
-    // Wrapper around test object to set up tablet viewport.
-    return _.extend(testObj, {
-        setUp: setUpTablet,
-        tearDown: tearDown
-    });
-}
+casper.test.tearDown(tearDown);
 
 
 module.exports = {
@@ -301,16 +292,9 @@ module.exports = {
     assertWaitForSelector: assertWaitForSelector,
     capture: capture,
     checkValidity: checkValidity,
-    changeViewportDesktop: changeViewportDesktop,
-    changeViewportMobile: changeViewportMobile,
-    changeViewportTablet: changeViewportTablet,
-    desktopTest: desktopTest,
     done: done,
     fake_login: fake_login,
     makeUrl: makeUrl,
-    setUpDesktop: setUpDesktop,
     startCasper: startCasper,
-    tabletTest: tabletTest,
-    tearDown: tearDown,
     waitForPageLoaded: waitForPageLoaded,
 };

@@ -95,6 +95,20 @@ casper.test.begin('Test app detail description toggle', {
 });
 
 
+casper.test.begin('Test app detail description shown when possible', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/abc', viewport: 'desktop'});
+
+        casper.waitForSelector('.description-wrapper', function() {
+            // The truncated class is removed when the content fits.
+            test.assertNotExists('.description-wrapper.truncated');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
 casper.test.begin('Test app detail tests for packaged apps', {
     test: function(test) {
         helpers.startCasper({path: '/app/packaged'});
@@ -179,10 +193,8 @@ casper.test.begin('Test app detail as a user with the stats permission', {
 
 
 casper.test.begin('Test app detail reviews if user has not rated', {
-    setUp: helpers.setUpDesktop,
-    tearDown: helpers.tearDown,
     test: function(test) {
-        helpers.startCasper({path: '/app/can_rate'});
+        helpers.startCasper({path: '/app/can_rate', viewport: 'desktop'});
 
         casper.waitForSelector('.app-reviews', function() {
             test.assertSelectorHasText('.review-button', 'Sign in to review');
@@ -198,10 +210,8 @@ casper.test.begin('Test app detail reviews if user has not rated', {
 
 
 casper.test.begin('Test app detail reviews if user has rated', {
-    setUp: helpers.setUpDesktop,
-    tearDown: helpers.tearDown,
     test: function(test) {
-        helpers.startCasper({path: '/app/has_rated'});
+        helpers.startCasper({path: '/app/has_rated', viewport: 'desktop'});
 
         helpers.waitForPageLoaded(function() {
             test.assertSelectorHasText('.review-button', 'Sign in to review');
@@ -230,10 +240,9 @@ casper.test.begin('Test app detail mobile previews', {
     }
 });
 
-casper.test.begin('Test app detail desktop previews',
-helpers.desktopTest({
+casper.test.begin('Test app detail desktop previews', {
     test: function(test) {
-        helpers.startCasper({path: '/app/something'});
+        helpers.startCasper({path: '/app/something', viewport: 'desktop'});
 
         helpers.waitForPageLoaded(function() {
             test.assertVisible('.previews .desktop-content');
@@ -244,4 +253,4 @@ helpers.desktopTest({
 
         helpers.done(test);
     }
-}));
+});

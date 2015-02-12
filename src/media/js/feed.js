@@ -1,8 +1,11 @@
+/*
+    Helpers for displaying the Feed.
+*/
 define('feed',
-    ['collection_colors', 'edbrands', 'l10n', 'models', 'nunjucks',
-     'underscore', 'utils_local'],
-    function(colors, edbrands, l10n, models, nunjucks,
-             _, utils_local) {
+    ['collection_colors', 'edbrands', 'l10n', 'nunjucks', 'underscore',
+     'utils_local'],
+    function(colors, edbrands, l10n, nunjucks, _,
+             utils_local) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -105,12 +108,25 @@ define('feed',
         return grouped_apps;
     }
 
-    var MAX_BRAND_APPS = 6;
+    function getSrc(feedItem) {
+        // Given a feed item, get the appropriate src.
+        if (feedItem.carrier) {
+            return 'operator-shelf-element';
+        }
+        if (feedItem.layout && feedItem.type) {
+            return 'branded-editorial-element';
+        }
+        if (feedItem.app) {
+            return 'featured-app';
+        }
+        return 'collection-element';
+    }
 
     return {
         BRAND_TYPES: edbrands.BRAND_TYPES,
         BRAND_LAYOUTS: BRAND_LAYOUTS,
         BRAND_LAYOUTS_CHOICES: BRAND_LAYOUTS_CHOICES,
+        COLLECTION_COLORS: colors.COLLECTION_COLORS,
         COLL_PROMO: COLL_PROMO,
         COLL_LISTING: COLL_LISTING,
         COLL_OPERATOR: COLL_OPERATOR,
@@ -121,14 +137,9 @@ define('feed',
         FEEDAPP_QUOTE: FEEDAPP_QUOTE,
         FEEDAPP_PREVIEW: FEEDAPP_PREVIEW,
         FEEDAPP_TYPES: FEEDAPP_TYPES,
-        cast_feed_app: models('feed-app').cast,
-        cast_brand: models('feed-brand').cast,
-        cast_collection: models('feed-collection').cast,
-        cast_shelf: models('feed-shelf').cast,
         get_brand_color_class: get_brand_color_class,
         get_brand_type: edbrands.get_brand_type,
+        getSrc: getSrc,
         group_apps: group_apps,
-        MAX_BRAND_APPS: MAX_BRAND_APPS,
-        COLLECTION_COLORS: colors.COLLECTION_COLORS
     };
 });

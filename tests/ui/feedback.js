@@ -33,10 +33,8 @@ casper.test.begin('Test feedback page', {
 
 
 casper.test.begin('Test feedback modal on desktop', {
-    setUp: helpers.setUpDesktop,
-    tearDown: helpers.tearDown,
     test: function(test) {
-        helpers.startCasper();
+        helpers.startCasper({viewport: 'desktop'});
 
         helpers.waitForPageLoaded(function() {
             test.assertUrlMatch(/\//);
@@ -53,10 +51,8 @@ casper.test.begin('Test feedback modal on desktop', {
 
 
 casper.test.begin('Test feedback page on desktop', {
-    setUp: helpers.setUpDesktop,
-    tearDown: helpers.tearDown,
     test: function(test) {
-        helpers.startCasper({path: '/feedback'});
+        helpers.startCasper({path: '/feedback', viewport: 'desktop'});
 
         helpers.waitForPageLoaded(function() {
             testFeedbackForm(test);

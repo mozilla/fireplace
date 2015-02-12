@@ -115,10 +115,9 @@ casper.test.begin('Test Feed navigation and tracking events', {
         helpers.done(test);
     }
 });
-
-casper.test.begin('Test footer at tablet width', helpers.tabletTest({
+casper.test.begin('Test footer at tablet width', {
     test: function(test) {
-        helpers.startCasper({path: '/'});
+        helpers.startCasper({path: '/', viewport: 'tablet'});
 
         helpers.waitForPageLoaded(function() {
             test.assertVisible('#site-footer');
@@ -127,4 +126,4 @@ casper.test.begin('Test footer at tablet width', helpers.tabletTest({
 
         helpers.done(test);
     }
-}));
+});
