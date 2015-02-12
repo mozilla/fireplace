@@ -60,8 +60,6 @@
 
 .collection-group-header {
     _h3();
-    color: $white;
-    padding: 20px 0 5px;
 }
 
 .collection-landing-header-mobile {
@@ -85,7 +83,7 @@
     position: absolute;
     right: 0;
     text-align: center;
-    top: 0;
+    top: 40px;
 
     li {
         display: inline-block;
@@ -101,6 +99,9 @@
 }
 
 @media $base-tablet {
+    [data-collection-landing-has-background-image] .feed-landing-header {
+        padding-top: 40px;
+    }
     [data-collection-landing-has-background-image] .feed-landing-description {
         width: 500px;
         max-width: 100%;

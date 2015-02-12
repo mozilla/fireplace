@@ -46,13 +46,9 @@
     }
 }
 
-.feed-landing {
-    &.full > div {
-        padding-top: 0;
-    }
-    .app-list {
-        margin-top: 0;
-    }
+
+.feed-landing .app-list {
+    margin-top: 0;
 }
 
 .feed-landing-description {
@@ -63,9 +59,6 @@
 }
 
 @media $base-tablet {
-    .feed-landing-wrapper {
-        padding-top: 40px;
-    }
     .feed-landing-header {
         left: -10%;
         position: relative;
@@ -79,11 +72,16 @@
     }
     .feed-landing {
         margin-top: 45px;
+
+        &:last-child {
+            margin-bottom: 15%;
+        }
     }
     .feed-landing-header {
         display-flex();
         flex-wrap(nowrap);
         justify-content: center;
+        padding-top: 80px;
 
         h1 {
             desktop_mega();
@@ -106,13 +104,10 @@
             }
         }
     }
-    .feed-landing-header-desktop {
-        margin-top: 40px;
-    }
 }
 
 @media $base-desktop {
-    .feed-landing-wrapper {
+    .feed-landing-header {
         margin-top: -18px;
     }
     .feed-landing-header {

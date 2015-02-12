@@ -1,8 +1,7 @@
-$colored-grid-border = 1px solid rgba(#fff, 0.4);
-
 collection_background_colors($color) {
-    background-color: rgba($color, 0.35);
-
+    .feed-landing-header {
+        background-color: rgba($color, 0.55);
+    }
     &[data-collection-landing-is-listing] {
         background: none;
     }
@@ -10,22 +9,12 @@ collection_background_colors($color) {
     .collection-landing-curve,
     .collection-landing-header-mobile .curve,
     .collection-listing-header {
-        background-color: rgba($color, 0.85);
-    }
-    .collection-landing {
-        background-color: $color;
-    }
-
-    // Grid related.
-    .app-list-colored:after {
         background-color: $color;
     }
 
     @media $base-tablet {
-        background-color: rgba($color, 0.55);
-
         &[data-collection-landing-is-listing] {
-            background-color: rgba($color, 0.55);
+            background-color: rgba($color, 0.85);
         }
     }
 }

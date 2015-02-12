@@ -13,6 +13,7 @@ ROOT, FIREPLACE = helpers.get_app_dirs(__file__)
 COMMONPLACE = '%s/node_modules/.bin/commonplace' % FIREPLACE
 
 if settings.ZAMBONI_DIR:
+    helpers.scl_enable('python27')
     ZAMBONI = '%s/zamboni' % settings.ZAMBONI_DIR
     ZAMBONI_PYTHON = '%s/venv/bin/python' % settings.ZAMBONI_DIR
 

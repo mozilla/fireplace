@@ -7,7 +7,6 @@ App listing.
 @import 'lib';
 
 $border = 1px solid $tile-border;
-$colored-grid-border = 1px solid $collections-grid-border;
 $desktop-tile-padding = 20px 50px;
 
 .app-list-page {
@@ -52,14 +51,6 @@ $desktop-tile-padding = 20px 50px;
     border-bottom: 1px solid $filters-border;
     padding-bottom: 15px;
     padding-top: 15px;
-}
-
-.app-list.app-list-colored {
-    // When the app list has a colored background (e.g., Feed landing).
-    .mkt-tile h3,
-    .mkt-tile .author {
-        color: $white;
-    }
 }
 
 // Hide rating on the "new" page. Most apps there have no rating.
@@ -130,17 +121,6 @@ $desktop-tile-padding = 20px 50px;
             padding-top: 30px;
         }
     }
-    // Colored grids.
-    .app-list-colored {
-        .app-list-app {
-            border-bottom: $colored-grid-border;
-            border-right: $colored-grid-border;
-        }
-        .app-list-app:nth-child(2n),
-        .app-list-app:last-child {
-            border-right: 0;
-        }
-    }
 }
 
 @media $base-desktop {
@@ -191,15 +171,6 @@ $desktop-tile-padding = 20px 50px;
             border-right: 0;
         }
         &:last-child {
-            border-right: 0;
-        }
-    }
-    // Colored grids.
-    .app-list-colored {
-        .app-list-app:nth-child(2n) {
-            border-right: $colored-grid-border;
-        }
-        .app-list-app:nth-child(3n) {
             border-right: 0;
         }
     }

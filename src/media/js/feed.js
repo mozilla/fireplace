@@ -13,15 +13,7 @@ define('feed',
 
     var BRAND_LAYOUTS_CHOICES = utils_local.items(BRAND_LAYOUTS);
 
-    var BRAND_COLORS = [
-        'ruby',
-        'amber',
-        'emerald',
-        'topaz',
-        'sapphire',
-        'amethyst',
-        'garnet'
-    ];
+    var BRAND_COLORS = Object.keys(colors.COLLECTION_COLORS);
 
     var FEEDAPP_ICON = 'icon';
     var FEEDAPP_IMAGE = 'image';
