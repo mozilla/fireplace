@@ -126,33 +126,40 @@
 {% macro collection_promo(coll) %}
   {% set color = coll.color or 'sapphire' %}
   {% set inline_color = feed.COLLECTION_COLORS[color] %}
-  {% set desc = coll.description|translate(coll) %}
+  {% set desc = coll.description|translate(coll)|safe %}
+  {% set has_background = True if coll.background_image %}
 
-  <section class="feed-item feed-collection full {{ 'mega' if desc }}
+  <section class="feed-item feed-collection full
                   {{ 'has-desc' if desc }}
-                  {{ 'has-background deferred-background' if coll.background_image }}"
+                  {{ 'has-background deferred-background' if has_background }}"
            data-tracking="{{ coll.slug }}"
-       {% if coll.background_image %}
+       {% if has_background %}
            style="background-image: url({{ PLACEHOLDER_ICON }})"
            data-src="{{ coll.background_image }}"
        {% else %}
            style="background-color: {{ inline_color|hex2rgba('.35') }}"
        {% endif %}>
-    {% if not coll.background_image %}
+    {% if not has_background %}
       <ul class="app-icons">
         {% for app in coll.apps.slice(0, 3) %}
           <li>{{ deferred_icon(app.icons[64], app.name|translate(app)) }}</li>
         {% endfor %}
       </ul>
     {% endif %}
-    <div class="curve" style="background-color: {{ inline_color|hex2rgba('.55') }}"></div>
-    <div class="info" style="background-color: {{ inline_color|hex2rgba('.55') }}">
-      <h1 class="name">{{ coll.name|translate(coll)|safe }}</h1>
+    <div class="curve" style="background-color: {{ inline_color|hex2rgba('.85') }}">
+      {% if has_background %}
+        <div class="curve-bottom" style="background-color: {{ inline_color|hex2rgba('.85') }}"></div>
+      {% endif %}
     </div>
-    <div class="alt-curve" style="background-color: {{ inline_color }}"></div>
-    {% if desc %}
-      <div class="desc" style="background-color: {{ inline_color }}">{{ desc|safe }}</div>
-    {% endif %}
+    <div class="info"
+      {% if not has_background %}
+        style="background-color: {{ inline_color|hex2rgba('.85') }}"
+      {% endif %}>
+      <h1 class="name">{{ coll.name|translate(coll)|safe }}</h1>
+      {% if desc %}
+        <p class="desc">{{ desc }}</p>
+      {% endif %}
+    </div>
   </section>
 {% endmacro %}
 
