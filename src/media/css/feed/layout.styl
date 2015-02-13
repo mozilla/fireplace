@@ -22,38 +22,13 @@
 
 @media screen and (max-width: 639px) {
     // One column.
-    .home-feed,
-    .feed-landing.shelf-landing {
+    .home-feed {
         width: $feed-column-width;
     }
 
-    .home-feed,
-    .collection-landing [data-columns],
-    .shelf-landing [data-columns] {
+    .home-feed {
         &::before {
             content: '1 .column.size-1of1';
-        }
-    }
-}
-
-@media screen and (min-width: 640px) {
-    // Two columns at the most.
-    .feed-landing.shelf-landing {
-        width: $feed-column-width * 2;
-    }
-
-    .collection-landing [data-columns],
-    .shelf-landing [data-columns] {
-        &::before {
-            content: '2 .column.size-1of2';
-        }
-    }
-
-    .shelf-landing .header-block {
-        margin: 0 auto;
-
-        .feed-item {
-            border-radius: 5px;
         }
     }
 }

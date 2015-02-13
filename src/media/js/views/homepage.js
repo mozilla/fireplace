@@ -1,10 +1,10 @@
 define('views/homepage',
-    ['jquery', 'capabilities', 'format', 'l10n', 'log', 'mkt-carousel',
-     'nunjucks', 'requests', 'salvattore', 'urls', 'utils', 'utils_local',
-     'z'],
-    function($, capabilities, format, l10n, log, mktCarousel,
-             nunjucks, requests, salvattore, urls, utils, utils_local,
-             z) {
+    ['capabilities', 'desktop_promo', 'format', 'l10n', 'log', 'jquery',
+     'mkt-carousel', 'nunjucks', 'requests', 'salvattore', 'urls', 'utils',
+     'utils_local', 'z'],
+    function(capabilities, desktopPromo, format, l10n, log, $,
+             mktCarousel, nunjucks, requests, salvattore, urls, utils,
+             utils_local, z) {
     'use strict';
     var logger = log('homepage');
     var gettext = l10n.gettext;
@@ -44,6 +44,8 @@ define('views/homepage',
     });
 
     return function(builder, args, params) {
+        var isDesktop = desktopPromo.isDesktop();
+
         params = params || {};
 
         builder.z('title', '');
@@ -53,39 +55,10 @@ define('views/homepage',
             delete params.src;
         }
 
-        var isDesktop = capabilities.device_type() === 'desktop';
-        var promoItems = [
-            {
-                name: 'games',
-                url: urls.reverse('feed/feed_collection', ['games-ent-appsdesktop']),
-                text: gettext('Games & Entertainment Apps—Desktop Essentials'),
-            },
-            {
-                name: 'soundcloud',
-                url: urls.reverse('app', ['soundcloud']),
-                text: gettext('Discover, share, and enjoy music with SoundCloud.'),
-            },
-            {
-                name: 'hexrace',
-                url: urls.reverse('app', ['hexgl-1']),
-                text: gettext('Play Hex Race—a thrill ride from the future!'),
-            },
-            {
-                name: 'productivity',
-                url: urls.reverse('feed/feed_collection', ['productivity-appsdesktop']),
-                text: gettext('Productivity Apps—Desktop Essentials'),
-            },
-            {
-                name: 'box',
-                url: urls.reverse('app', ['box']),
-                text: gettext('Store and share any type of file with Box.'),
-            },
-        ] .map(function (item) {
-          item.url = utils.urlparams(item.url, {src: 'desktop-promo'});
-          return item;
+        builder.start('homepage.html', {
+            showPromo: isDesktop,
+            promoItems: desktopPromo.promoItems
         });
-
-        builder.start('feed.html', {showPromo: isDesktop, promoItems: promoItems});
 
         if (isDesktop) {
             mktCarousel.initialize();

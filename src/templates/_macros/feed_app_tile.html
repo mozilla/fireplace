@@ -1,11 +1,9 @@
-{# This is a shared file between Fireplace and Transonic. #}
-
 {% macro feed_app_tile(feed_app) %}
   <div class="tile-footer {{ feed_app.type }}"
-       {% if feed_app.type == feed.FEEDAPP_QUOTE %}style="background: {{ feed_app.background_color }};"{% endif %}>
-    {% if feed_app.type == feed.FEEDAPP_DESC %}
+       {% if feed_app.isQuote %}style="background: {{ feed_app.background_color }};"{% endif %}>
+    {% if feed_app.isDescription %}
       <p class="desc">{{ feed_app.description|translate(feed_app.description)|safe }}</p>
-    {% elif feed_app.type == feed.FEEDAPP_QUOTE %}
+    {% elif feed_app.isQuote %}
       {% if feed_app.pullquote_rating %}
         <p class="stars large white stars-{{ feed_app.pullquote_rating }}">
           {{ feed_app.pullquote_rating }}
@@ -18,7 +16,7 @@
                {attribution: feed_app.pullquote_attribution|safe}) }}
         </p>
       {% endif %}
-    {% elif feed_app.type == feed.FEEDAPP_PREVIEW %}
+    {% elif feed_app.isPreview %}
       <p class="desc">{{ feed_app.description|translate(feed_app)|safe }}</p>
       <div class="preview-container
                   {{ 'vertical' if feed_app.preview.thumbnail_size and
