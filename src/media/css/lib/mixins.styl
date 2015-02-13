@@ -237,11 +237,11 @@ flex-grow($int) {
 }
 
 flex-vertical-center() {
-    // old way
+    // Old way.
     display-flex();
     flex-center();
 
-    // new way
+    // New way.
     align-items: center;
     display: flex;
     justify-content: center;
@@ -265,6 +265,27 @@ flex-wrap($wrap) {
     if $wrap == nowrap {
         -ms-flex-wrap: none;
     }
+}
+
+justify-content($value) {
+    if $value == flex-start {
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+    } else if $value == flex-end {
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+    } else if $value == space-between {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+    } else if $value == space-around {
+        -ms-flex-pack: distribute;
+    } else {
+        -webkit-box-pack: $value;
+        -ms-flex-pack: $value;
+    }
+    -webkit-justify-content: $value;
+    -moz-justify-content: $value;
+    justify-content: $value;
 }
 
 dropdown() {
