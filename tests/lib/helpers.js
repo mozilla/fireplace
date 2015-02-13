@@ -89,6 +89,16 @@ function waitForPageLoaded(cb) {
 }
 
 
+function waitForAppDetail(cb) {
+    casper.waitForSelector('[data-page-type~="detail"]', cb);
+}
+
+
+function waitForAppList(cb) {
+    casper.waitForSelector('.app-list', cb);
+}
+
+
 function makeUrl(path) {
     return baseTestUrl + path;
 }
@@ -296,5 +306,8 @@ module.exports = {
     fake_login: fake_login,
     makeUrl: makeUrl,
     startCasper: startCasper,
+    tearDown: tearDown,
+    waitForAppDetail: waitForAppDetail,
+    waitForAppList: waitForAppList,
     waitForPageLoaded: waitForPageLoaded,
 };
