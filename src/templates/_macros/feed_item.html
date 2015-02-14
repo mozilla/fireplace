@@ -14,7 +14,7 @@
 #}
 
 {% macro feed_app(feed_app) %}
-  {% set color = coll.color or 'sapphire' %}
+  {% set color = feed_app.color or 'sapphire' %}
   {% set inline_color = feed.COLLECTION_COLORS[color] %}
   {% set desc = feed_app.description|translate(feed_app) %}
 
