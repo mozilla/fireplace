@@ -36,11 +36,8 @@ casper.test.begin('Test Feed pagination', {
 casper.test.begin('Test Feed navigation and tracking events', {
     test: function(test) {
         casper.waitForSelector('.home-feed', function() {
-            helpers.assertUATracking(test, [
-                15,
-                'Package Version',
-                0
-            ]);
+            // Package version.
+            helpers.assertUATracking(test, ['dimension15', 0]);
 
             casper.click('.feed-collection[data-tracking="coll-listing"] .view-all-tab');
             helpers.assertWaitForSelector(test, '.app-list');

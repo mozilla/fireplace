@@ -1,7 +1,10 @@
 /*
-    Tests for generic app list pages, which are reused widely throughout
+    Tests for app list pages, which are reused widely throughout
     Marketplace, including New, Popular, Recommended, Search, Category,
-    Purchases, and (Feed) Collection Landing pages.
+    Purchases, (Feed) Collection Landing pages, and Langpacks.
+
+    If you are testing something that can be found throughout all or most
+    app list pages, here is a good place to put it for ultimate coverage.
 */
 var appList = require('../lib/app_list');
 var constants = require('../lib/constants');
@@ -112,6 +115,7 @@ var appListPages = [
         endpoint: '/api/v2/langpacks/',
         endpointParams: {fxos_version: '2.2'},
         name: 'Langpacks',
+        noAppInstall: true,
         noCompatFiltering: true,
         noDetailPage: true,
         noExpandToggle: true,
@@ -362,7 +366,7 @@ appListPages.forEach(function(appListPage) {
             }
         });
 
-        casper.test.begin(appListPage.anem + ' desktop previews tests', {
+        casper.test.begin(appListPage.name + ' desktop previews tests', {
             test: function(test) {
                 waitForAppListPage(appListPage, function() {
                     // Expand listings.
@@ -381,7 +385,26 @@ appListPages.forEach(function(appListPage) {
             },
         });
     }
+
+    if (!appListPage.noAppInstall) {
+        casper.test.begin(appListPage.name + ' app install tests', {
+            test: function(test) {
+                waitForAppListPage(appListPage, function() {
+                    casper.click('.app-list-app:first-child .install');
+
+                    casper.waitForSelector('.launch', function() {
+                        test.assertSelectorHasText(
+                            '.app-list-app:first-child .install',
+                            'Open');
+                    });
+                });
+
+                helpers.done(test);
+            },
+        });
+    }
 });
+
 
 casper.test.begin('Test collection detail page for app tile expanded state.', {
     test: function(test) {

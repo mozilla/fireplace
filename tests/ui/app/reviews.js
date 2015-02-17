@@ -1,7 +1,7 @@
 /*
     Tests for app reviews.
 */
-var helpers = require('../../lib/helpers');
+var helpers = require('../lib/helpers');
 
 function testAddReviewForm(test) {
     // Checks review form existence and validation.
@@ -270,7 +270,7 @@ casper.test.begin('Test edit rating on detail page on desktop', {
         helpers.waitForPageLoaded(function() {
             helpers.fake_login();
         });
-        helpers.waitForPageLoaded(function() {
+        casper.waitForSelector('.review-button', function() {
             casper.click('.review-button');
         });
         casper.waitForSelector('.edit-review-form');

@@ -1,7 +1,8 @@
 /*
     Tests for the app detail page.
 */
-var helpers = require('../lib/helpers');
+var appList = require('../../lib/app_list');
+var helpers = require('../../lib/helpers');
 
 casper.test.begin('Test app detail', {
     test: function(test) {
@@ -125,7 +126,8 @@ casper.test.begin('Test app detail for paid apps', {
     test: function(test) {
         helpers.startCasper({path: '/app/paid'});
         helpers.waitForPageLoaded(function() {
-            test.assertSelectorHasText('.mkt-tile .install em', '$0.99');
+            test.assertSelectorHasText('.mkt-tile .install em', '$3.50');
+            helpers.assertUATrackingPageVar(test, 'dimension10', 'paid');
         });
         helpers.done(test);
     }
@@ -249,6 +251,23 @@ casper.test.begin('Test app detail desktop previews', {
             test.assertVisible('.desktop-content li:first-child img');
             test.assertVisible('.tray .bars');
             test.assertVisible('.tray .arrow-button');
+        });
+
+        helpers.done(test);
+    }
+});
+
+casper.test.begin('Test app detail UA page vars', {
+    test: function(test) {
+        helpers.startCasper('/app/lol');
+
+        helpers.waitForPageLoaded(function() {
+            var app = appList.getAppData('.install');
+            helpers.assertUATrackingPageVar(test, 'dimension6', app.name);
+            helpers.assertUATrackingPageVar(test, 'dimension7', app.id);
+            helpers.assertUATrackingPageVar(test, 'dimension8', app.author);
+            helpers.assertUATrackingPageVar(test, 'dimension9', 'direct');
+            helpers.assertUATrackingPageVar(test, 'dimension10', 'free');
         });
 
         helpers.done(test);
