@@ -24,6 +24,7 @@ $desktop-tile-padding = 20px 50px;
 }
 
 .app-list {
+    display: none;
     list-style: none;
 
     // Masking element to cover the last row's bottom border.
@@ -40,6 +41,9 @@ $desktop-tile-padding = 20px 50px;
     }
     &.expanded .app-list-app {
         padding-bottom: 40px;
+    }
+    &.show {
+        display: block;
     }
 }
 
@@ -78,7 +82,7 @@ section.langpacks > div {
 @media $base-tablet {
     .app-list,
     .app-list.only-logged-in {
-        display-flex();
+        display: none;
     }
     .app-list {
         flex-wrap(wrap);
@@ -124,6 +128,10 @@ section.langpacks > div {
         section.full > div {
             padding-top: 30px;
         }
+    }
+    .app-list.show,
+    .app-list.only-logged-in.show {
+        display-flex();
     }
 }
 
