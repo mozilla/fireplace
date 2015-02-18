@@ -27,8 +27,20 @@ function waitForLoadMore(cb) {
     });
 }
 
+
+function getAppData(installBtnSel) {
+    // Return app data given its install button.
+    var app = casper.evaluate(function(installBtnSel) {
+        return $(installBtnSel).data('product');
+    }, installBtnSel);
+    app.UALabel = app.name + ':' + app.id;
+    return app;
+}
+
+
 module.exports = {
     appNthChild: appNthChild,
+    getAppData: getAppData,
     waitForAppListPage: waitForAppListPage,
     waitForLoadMore: waitForLoadMore,
 };

@@ -72,13 +72,11 @@ define('views/app',
             });
 
             if (app) {
-                tracking.setPageVar(6, 'App name', app.name, 3);
-                tracking.setPageVar(7, 'App ID', app.id + '', 3);
-                tracking.setPageVar(8, 'App developer', app.author, 3);
-                tracking.setPageVar(9, 'App view source',
-                                    utils.getVars().src || 'direct', 3);
-                tracking.setPageVar(10, 'App price',
-                                    app.payment_required ? 'paid' : 'free', 3);
+                tracking.setPageVar(6, app.name);
+                tracking.setPageVar(7, app.id + '');
+                tracking.setPageVar(8, app.author);
+                tracking.setPageVar(9, utils.getVars().src || 'direct');
+                tracking.setPageVar(10, app.payment_required ? 'paid' : 'free');
             }
         });
     };

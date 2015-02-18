@@ -30,10 +30,10 @@ define('tracking_events',
     // Track package version in UA.
     var packageVersion = settings.package_version;
     if (packageVersion) {
-        setVar(15, 'Package Version', packageVersion);
+        setVar(15, packageVersion);
     } else {
         // Set package version to 0 for hosted.
-        setVar(15, 'Package Version', 0);
+        setVar(15, 0);
     }
 
     // Navigation tabs.
@@ -162,7 +162,7 @@ define('tracking_events',
             'Successful review'
         );
         trackEvent('Write a Review', 'click', slug, rating);
-        setVar(12, 'Reviewer', 'Reviewer', 1);
+        setVar(12, 'Reviewer');
     }));
 
     if (tracking.actions_enabled) {
@@ -245,7 +245,7 @@ define('tracking_events',
                 logger.log('Found search in nav stack, tracking search term:',
                            item.params.search_query);
                 tracking[page ? 'setPageVar' : 'setVar'](
-                    13, 'Search query', item.params.search_query);
+                    13, item.params.search_query);
                 return;
             }
             logger.log('No associated search term to track.');
