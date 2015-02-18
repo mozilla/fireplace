@@ -140,16 +140,15 @@ define('tracking',
 
     logger.log('UA tracking initialized');
 
-    var ua_page_vars = {};
     z.win.on('navigating', function(e, popped) {
         // Otherwise we'll track back button hits etc.
         if (!popped) {
             var url = get_url();
             // Pass page vars to UA
             logger.log('UA-tracking page view', url);
-            var uadata = _.extend({'page': url, 'title': document.title}, ua_page_vars);
+            var uadata = _.extend({'page': url, 'title': document.title}, track_page_vars);
             ua_push('send', 'pageview', uadata);
-            ua_page_vars = {};
+            track_page_vars = {};
         }
     });
 
@@ -164,16 +163,18 @@ define('tracking',
         enabled: true,
         action_enabled: action_tracking_enabled,
         track_log: track_log,
+        track_page_vars: track_page_vars,
         track_vars: track_vars,
-        setVar: actionWrap(function(index, name, value) {
-            ua_push('set', 'dimension' + index, value);
-            track_log.push([index, name, value]);
-            track_vars['dimension' + index] = value;
+        setVar: actionWrap(function(index, value) {
+            var dimension = 'dimension' + index;
+            ua_push('set', dimension, value);
+            track_log.push([dimension, value]);
+            track_vars[dimension + index] = value;
         }),
-        setPageVar: actionWrap(function(index, name, value) {
-            ua_page_vars['dimension' + index] = value;
-            track_log.push([index, name, value]);
-            track_page_vars['dimension' + index] = value;
+        setPageVar: actionWrap(function(index, value) {
+            var dimension = 'dimension' + index;
+            track_log.push([dimension, value]);
+            track_page_vars[dimension] = value;
         }),
         trackEvent: actionWrap(function() {
             var args = Array.prototype.slice.call(arguments, 0);

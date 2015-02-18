@@ -4,6 +4,8 @@ var utils = require('utils');
 
 var _ = require('../../node_modules/underscore');
 
+var mozApps = require('./mozApps');
+
 var baseTestUrl = 'http://localhost:8675';
 var mobileViewportSize = [320, 480];
 var viewportSize = mobileViewportSize;
@@ -51,26 +53,29 @@ var viewports = {
 };
 
 
-function startCasper(options) {
-    options = options || {};
-
-    casper.options.waitTimeout = 10000;
-
-    if (options.url) {
-        casper.echo('"url" supplied, you probably meant "path"', 'WARNING');
+function startCasper(path, opts) {
+    if (path && path.constructor === Object) {
+        opts = path;
+        path = opts.path || opts.url || '/';
+    } else if (path === undefined) {
+        path = '/';
     }
-    var headers = options.headers;
-    var path = options.path || '/';
-    var url = makeUrl(path);
+    opts = opts || {};
 
-    casper.echo('Starting with url: ' + url);
-    if (viewports.hasOwnProperty(options.viewport)) {
-        viewports[options.viewport]();
+    casper.options.waitTimeout = 5000;
+
+    var url = makeUrl(path);
+    casper.echo('Opening ' + url);
+    if (viewports.hasOwnProperty(opts.viewport)) {
+        viewports[opts.viewport]();
     }
     setViewport();
-    if (headers) {
-        casper.echo(JSON.stringify(headers));
-        casper.open(url, {headers: headers});
+
+    mozApps.initialize();
+
+    if (opts.headers) {
+        casper.echo(JSON.stringify(opts.headers));
+        casper.open(url, {headers: opts.headers});
     } else {
         casper.open(url);
     }
@@ -171,6 +176,17 @@ function assertUATracking(test, trackArgs) {
         console.log(trackArgs);
     }
     test.assert(trackExists, 'Tracking event exists');
+}
+
+
+function assertUATrackingPageVar(test, key, val) {
+    test.assert(casper.evaluate(function(key, val) {
+        var uaPageVars = window.require('tracking').track_page_vars;
+        if (uaPageVars[key] != val) {
+            console.log('[debug] ' + uaPageVars[key] + ' != ' + val);
+        }
+        return uaPageVars[key] == val;
+    }, key, val), 'Check UA page var ' + key + ' == ' + val);
 }
 
 
@@ -299,6 +315,7 @@ module.exports = {
     assertContainsText: assertContainsText,
     assertHasFocus: assertHasFocus,
     assertUATracking: assertUATracking,
+    assertUATrackingPageVar: assertUATrackingPageVar,
     assertWaitForSelector: assertWaitForSelector,
     capture: capture,
     checkValidity: checkValidity,

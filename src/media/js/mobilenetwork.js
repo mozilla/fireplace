@@ -391,7 +391,7 @@ define('mobilenetwork',
         user.update_settings(newSettings);
 
         // Send the changed region to GA/UA.
-        tracking.setVar(11, 'region', region);
+        tracking.setVar(11, region);
 
         // Potential sources used by detectMobileNetwork() are defined below:
 

@@ -3,15 +3,6 @@
 */
 @import '../lib';
 
-.collection-landing-wrapper {
-    display-flex();
-    flex-wrap(wrap);
-
-    .collection-landing-header {
-        width: 100%;
-    }
-}
-
 .collection-listing-header {
     // Header for listing collections on the homepage.
     display: block;
@@ -36,7 +27,7 @@
     text-align: center;
 }
 
-[data-collection-landing-is-listing] .feed-landing {
+[data-feed-landing-is-coll-listing] .feed-landing-apps {
     margin-top: 30px;
 }
 
@@ -50,10 +41,6 @@
     width: unquote('calc(100% + 20px)');
 }
 
-.collection-landing-header .collection-listing-header {
-    width: 100%;
-}
-
 .feed-collection-listing .desc {
     margin-top: 0;
     padding: 5px 0 10px;
@@ -65,48 +52,15 @@
     padding-top: 30px;
 }
 
-.collection-landing-header-mobile {
-    width: 100%;
-
-    .feed-collection {
-        display: block;
-        margin: 0 auto;
-        width: $mobile-content-width;
-    }
+.feed-landing-header-mobile .feed-collection {
+    display: block;
+    margin: 0 auto;
+    width: $mobile-content-width;
 }
 
-.feed-landing-wrapper:not([data-collection-landing-is-listing]) .collection-landing-header-mobile {
-    padding: 10px 0;
-}
-
-.collection-landing-app-icons {
-    left: 0;
-    list-style: none;
-    margin-top: 5px;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 40px;
-
-    li {
-        display: inline-block;
-        vertical-align: middle;
-
-        &:not(:first-child) {
-            margin-left: 20px;
-        }
-    }
-    + .feed-landing-curve .feed-landing-header-inner {
-        margin-top: 40px;
-    }
-}
-
-@media $base-tablet {
-    [data-collection-landing-has-background-image] .feed-landing-header {
-        padding-top: 40px;
-    }
-    [data-collection-landing-has-background-image] .feed-landing-description {
-        width: 500px;
-        max-width: 100%;
+[data-feed-landing-is-coll-promo].
+[data-shelf-landing] {
+    .feed-landing-header-mobile {
+        padding: 10px 0;
     }
 }

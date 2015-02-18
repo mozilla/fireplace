@@ -4,42 +4,74 @@
 define('feed',
     ['collection_colors', 'edbrands', 'l10n', 'nunjucks', 'underscore',
      'utils_local'],
-    function(colors, edbrands, l10n, nunjucks, _,
+    function(colors, brands, l10n, nunjucks, _,
              utils_local) {
     'use strict';
     var gettext = l10n.gettext;
 
-    var BRAND_LAYOUTS = {
-        'grid': gettext('Grid Layout'),
-        'list': gettext('List Layout'),
-    };
+    function transformer(feedItem) {
+        /* Given a feed item, attach some fields to help presentation logic. */
+        // Attach types.
+        if (feedItem.app) {
+            feedItem.isApp = true;
+            feedItem.itemType = 'app';
+        } else if (feedItem.layout && !feedItem.name) {
+            feedItem.isBrand = true;
+            feedItem.itemType = 'brand';
+        } else if (feedItem.carrier) {
+            feedItem.isShelf = true;
+            feedItem.itemType = 'shelf';
+        } else {
+            feedItem.isCollection = true;
+            feedItem.itemType = 'collection';
+        }
 
-    var BRAND_LAYOUTS_CHOICES = utils_local.items(BRAND_LAYOUTS);
+        // Attach feed item-specific stuff.
+        switch (feedItem.itemType) {
+            case 'app':
+                switch (feedItem.type) {
+                    case 'icon':
+                        feedItem.isIcon = true;
+                        break;
+                    case 'image':
+                        feedItem.isImage = true;
+                        break;
+                    case 'description':
+                        feedItem.isDescription = true;
+                        break;
+                    case 'quote':
+                        feedItem.isQuote = true;
+                        break;
+                    case 'preview':
+                        feedItem.isPreview = true;
+                        break;
+                }
+                feedItem.src = 'featured-app';
+                break;
+            case 'brand':
+                feedItem.color = get_brand_color_class(feedItem);
+                feedItem.name = brands.get_brand_type(feedItem.type, feedItem.apps.length);
+                feedItem.src = 'branded-editorial-element';
+                break;
+            case 'collection':
+                if (feedItem.type == 'promo') {
+                    feedItem.isCollPromo = true;
+                } else {
+                    feedItem.isCollListing = true;
+                }
+                feedItem.src = 'collection-element';
+                break;
+            case 'shelf':
+                feedItem.src = 'operator-shelf-element';
+                break;
+        }
 
-    var BRAND_COLORS = Object.keys(colors.COLLECTION_COLORS);
+        // Attach hex color (deprecated).
+        feedItem.color = feedItem.color || 'sapphire';
+        feedItem.inline_color = colors.COLLECTION_COLORS[feedItem.color];
 
-    var FEEDAPP_ICON = 'icon';
-    var FEEDAPP_IMAGE = 'image';
-    var FEEDAPP_DESC = 'description';
-    var FEEDAPP_QUOTE = 'quote';
-    var FEEDAPP_PREVIEW = 'preview';
-
-    var FEEDAPP_TYPES = {
-        'icon': gettext('Icon'),
-        'image': gettext('Background Image'),
-        'description': gettext('Description'),
-        'quote': gettext('Quote'),
-        'preview': gettext('Screenshot'),
-    };
-
-    var COLL_PROMO = 'promo';
-    var COLL_LISTING = 'listing';
-    var COLL_OPERATOR = 'operator';
-
-    var COLL_TYPES = {
-        'promo': gettext('Promo Collection'),
-        'listing': gettext('Listing Collection'),
-    };
+        return feedItem;
+    }
 
     function get_brand_color_class(brand) {
         /*
@@ -76,7 +108,8 @@ define('feed',
         var seed = charcode_sum(brand_id);
         var random = seeded_random(seed);
 
-        return BRAND_COLORS[Math.floor(random * BRAND_COLORS.length)];
+        var color_names = Object.keys(colors.COLLECTION_COLORS);
+        return color_names[Math.floor(random * color_names.length)];
     }
 
     function group_apps(apps) {
@@ -108,38 +141,8 @@ define('feed',
         return grouped_apps;
     }
 
-    function getSrc(feedItem) {
-        // Given a feed item, get the appropriate src.
-        if (feedItem.carrier) {
-            return 'operator-shelf-element';
-        }
-        if (feedItem.layout && feedItem.type) {
-            return 'branded-editorial-element';
-        }
-        if (feedItem.app) {
-            return 'featured-app';
-        }
-        return 'collection-element';
-    }
-
     return {
-        BRAND_TYPES: edbrands.BRAND_TYPES,
-        BRAND_LAYOUTS: BRAND_LAYOUTS,
-        BRAND_LAYOUTS_CHOICES: BRAND_LAYOUTS_CHOICES,
-        COLLECTION_COLORS: colors.COLLECTION_COLORS,
-        COLL_PROMO: COLL_PROMO,
-        COLL_LISTING: COLL_LISTING,
-        COLL_OPERATOR: COLL_OPERATOR,
-        COLL_TYPES: COLL_TYPES,
-        FEEDAPP_ICON: FEEDAPP_ICON,
-        FEEDAPP_IMAGE: FEEDAPP_IMAGE,
-        FEEDAPP_DESC: FEEDAPP_DESC,
-        FEEDAPP_QUOTE: FEEDAPP_QUOTE,
-        FEEDAPP_PREVIEW: FEEDAPP_PREVIEW,
-        FEEDAPP_TYPES: FEEDAPP_TYPES,
-        get_brand_color_class: get_brand_color_class,
-        get_brand_type: edbrands.get_brand_type,
-        getSrc: getSrc,
         group_apps: group_apps,
+        transformer: transformer,
     };
 });

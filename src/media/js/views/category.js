@@ -30,6 +30,6 @@ define('views/category',
             app_cast: app_models.cast
         });
 
-        tracking.setPageVar(5, 'Category', slug, 3);
+        tracking.setPageVar(5, slug);
     };
 });
