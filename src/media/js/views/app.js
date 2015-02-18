@@ -23,7 +23,6 @@ define('views/app',
     return function(builder, args) {
         builder.z('type', 'leaf detail');
         builder.z('title', gettext('Loading...'));
-        builder.z('pagetitle', gettext('App Details'));
 
         var slug = args[0];
         builder.start('app/index.html', {

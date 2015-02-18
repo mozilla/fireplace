@@ -4,6 +4,7 @@
 var appList = require('../../lib/app_list');
 var helpers = require('../../lib/helpers');
 
+
 casper.test.begin('Test app detail', {
     test: function(test) {
         helpers.startCasper({path: '/app/free'});
@@ -219,6 +220,7 @@ casper.test.begin('Test app detail reviews if user has rated', {
             test.assertSelectorHasText('.review-button', 'Sign in to review');
             helpers.fake_login();
         });
+
         casper.waitForSelector('.review-button[data-edit-review]', function() {
             test.assertSelectorHasText('[data-edit-review]', 'Edit your review');
         });

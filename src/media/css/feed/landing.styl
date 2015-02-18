@@ -5,7 +5,7 @@
 */
 @import '../lib';
 
-.feed-landing.full > div {
+.feed-landing-apps.full > div {
     padding-top: 0;
 }
 
@@ -17,6 +17,32 @@
 
 .feed-landing-header-inner {
     max-width: 100%;
+}
+
+.feed-landing-header-mobile {
+    width: 100%;
+}
+
+.feed-landing-app-icons {
+    left: 0;
+    list-style: none;
+    margin-top: 5px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 40px;
+
+    li {
+        display: inline-block;
+        vertical-align: middle;
+
+        &:not(:first-child) {
+            margin-left: 20px;
+        }
+    }
+    + .feed-landing-curve .feed-landing-header-inner {
+        margin-top: 40px;
+    }
 }
 
 .feed-landing-bg-image {
@@ -45,7 +71,7 @@
 }
 
 
-.feed-landing .app-list {
+.feed-landing-apps .app-list {
     margin-top: 0;
 }
 
@@ -57,7 +83,7 @@
 }
 
 @media $base-tablet {
-    .feed-landing.full > div {
+    .feed-landing-apps.full > div {
         padding-top: 30px;
     }
     .feed-landing-header {
@@ -71,7 +97,7 @@
     .feed-landing-header-desktop {
         display-flex();
     }
-    .feed-landing {
+    .feed-landing-apps {
         margin-top: 45px;
 
         &:last-child {
@@ -104,6 +130,13 @@
                 text-align: left;
             }
         }
+    }
+    [data-feed-landing-has-background-image] .feed-landing-header {
+        padding-top: 40px;
+    }
+    [data-feed-landing-has-background-image] .feed-landing-description {
+        width: 500px;
+        max-width: 100%;
     }
 }
 

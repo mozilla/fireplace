@@ -1,15 +1,15 @@
-define('views/feed/feed_collection', ['jquery', 'l10n', 'utils', 'z'],
-    function($, l10n, utils, z) {
+define('views/feed/collection',
+    ['l10n', 'utils'],
+    function(l10n, utils) {
     'use strict';
     var gettext = l10n.gettext;
 
     return function(builder, args) {
         builder.z('type', 'leaf');
         builder.z('title', gettext('Loading...'));
-        builder.z('pagetitle', gettext('Collection Details'));
 
         var slug = args[0];
-        builder.start('feed/feed_collection.html', {
+        builder.start('feed/collection.html', {
             slug: slug
         });
 

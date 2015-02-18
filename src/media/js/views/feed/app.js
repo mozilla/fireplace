@@ -1,16 +1,15 @@
-define('views/feed/feed_app',
-    ['jquery', 'l10n', 'utils', 'z'],
-    function($, l10n, utils, z) {
+define('views/feed/app',
+    ['l10n', 'utils'],
+    function(l10n, utils) {
     'use strict';
     var gettext = l10n.gettext;
 
     return function(builder, args) {
         builder.z('type', 'leaf');
         builder.z('title', gettext('Loading...'));
-        builder.z('pagetitle', gettext('App Details'));
 
         var slug = args[0];
-        builder.start('feed/feed_app.html', {
+        builder.start('feed/app.html', {
             landing: true,
             slug: slug
         });

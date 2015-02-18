@@ -2,7 +2,7 @@
 
 {% defer (url=anonApi('feed-brand', [slug]), pluck='apps', as='app',
           id='brand') %}
-  {{ brand_landing(response) }}
+  {{ collection_landing(response) }}
 {% placeholder %}
   <p class="spinner alt spaced"></p>
 {% except %}

@@ -1,16 +1,15 @@
-define('views/feed/feed_shelf',
-    ['jquery', 'l10n', 'utils', 'z'],
-    function($, l10n, utils, z) {
+define('views/feed/shelf',
+    ['l10n', 'utils'],
+    function(l10n, utils) {
     'use strict';
     var gettext = l10n.gettext;
 
     return function(builder, args) {
         builder.z('type', 'leaf shelf-landing');
         builder.z('title', gettext('Loading...'));
-        builder.z('pagetitle', gettext('Operator Shelf Details'));
 
         var slug = args[0];
-        builder.start('feed/feed_shelf.html', {
+        builder.start('feed/shelf.html', {
             slug: slug
         });
 
