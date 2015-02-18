@@ -390,9 +390,6 @@ define('mobilenetwork',
 
         user.update_settings(newSettings);
 
-        // Send the changed region to GA/UA.
-        tracking.setVar(11, region);
-
         // Potential sources used by detectMobileNetwork() are defined below:
 
         // Get mobile region and carrier information passed via mcc/mnc/spn

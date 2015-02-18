@@ -20,9 +20,36 @@ casper.test.begin('Test base site', {
 });
 
 
+casper.test.begin('Test UA region dimension set', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            // Provided by consumer_info from the mock API.
+            helpers.assertUATracking(test, ['dimension11', 'us']);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test UA region dimension set specified region', {
+    test: function(test) {
+        helpers.startCasper('/?region=br');
+
+        helpers.waitForPageLoaded(function() {
+            helpers.assertUATracking(test, ['dimension11', 'br']);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
 casper.test.begin('Test footer at tablet width', {
     test: function(test) {
-        helpers.startCasper({path: '/', viewport: 'tablet'});
+        helpers.startCasper({viewport: 'tablet'});
 
         helpers.waitForPageLoaded(function() {
             test.assertVisible('#site-footer');
