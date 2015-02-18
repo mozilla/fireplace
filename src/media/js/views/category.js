@@ -1,8 +1,7 @@
 define('views/category',
-    ['categories', 'models', 'tracking', 'underscore', 'urls', 'utils', 'z'],
-    function(categories, models, tracking, _, urls, utils, z) {
+    ['categories', 'underscore', 'urls', 'utils', 'z'],
+    function(categories, _, urls, utils, z) {
     'use strict';
-    var app_models = models('app');
 
     return function(builder, args, params) {
         params = params || {};
@@ -27,9 +26,8 @@ define('views/category',
             endpoint: urls.api.unsigned.url('category_landing', [slug], params),
             endpoint_name: 'category_landing',
             sort: params.sort,
-            app_cast: app_models.cast
         });
 
-        tracking.setPageVar(5, slug);
+        require('tracking_events').trackCategoryHit(slug);
     };
 });
