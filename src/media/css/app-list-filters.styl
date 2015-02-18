@@ -27,7 +27,7 @@ App listing filters.
     width: 100%;
 
     a {
-        color: $greyscale-black;
+        color: $action-positive;
         display: inline-block;
         ellipsis();
         font-size: 15px;
@@ -43,11 +43,12 @@ App listing filters.
         vertical-align: middle;
 
         &:hover {
-            border-bottom: 2px solid $greyscale-light-grey;
+            text-decoration: underline;
         }
         &.active {
-            border-bottom: 2px solid $filters-link;
+            color: $greyscale-black;
             pointer-events: none;
+            cursor: default;
         }
         &.active:before,
         &.active:after {
