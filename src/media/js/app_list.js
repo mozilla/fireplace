@@ -17,7 +17,7 @@ define('app_list',
         if (expanded !== undefined) {
             expand = expanded;
         }
-        $('.app-list').toggleClass('expanded', expanded).addClass('show');
+        $('.app-list').toggleClass('expanded', expanded);
         $('.app-list-filters-expand-toggle')
             .toggleClass('active', expand)
             .addClass('show');
