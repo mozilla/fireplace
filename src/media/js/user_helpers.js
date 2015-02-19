@@ -1,5 +1,6 @@
-define('user_helpers', ['regions', 'core/user', 'core/utils'],
-       function(regions, user, utils) {
+define('user_helpers',
+    ['regions', 'core/user', 'core/utils'],
+    function(regions, user, utils) {
 
     var initialArgs = utils.getVars();
 

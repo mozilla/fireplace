@@ -1,4 +1,4 @@
-e*
+/*
     Preview trays which holds previews and screenshots.
     On mobile, uses Flipsnap which enables touch-drag.
     On desktop, adds prev/next buttons to navigate images.

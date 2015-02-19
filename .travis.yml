@@ -27,6 +27,9 @@ before_script:
   - "gem install gist"
 # Create an installation.
   - "make install"
+# Setup xvfb for karma.
+  - 'export DISPLAY=:99.0'
+  - 'sh -e /etc/init.d/xvfb start'
 script:
 # Lint the installation.
 # - "commonplace lint"
@@ -39,6 +42,8 @@ script:
 # Start the webserver.
   - "API=mocklocal make serve &"
   - "sleep 10"
+# Run unit tests.
+  - "./node_modules/karma/bin/karma start --single-run"
 # Run UI tests.
   - "make test"
 # Upload captures.
