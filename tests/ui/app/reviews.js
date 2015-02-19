@@ -76,18 +76,47 @@ casper.test.begin('Test app review page', {
 });
 
 
-casper.test.begin('Test flag review on app review page', {
+casper.test.begin('Test flag review', {
     test: function(test) {
-        helpers.startCasper({path: '/app/can_rate/ratings'});
-        helpers.fake_login();
+        helpers.startCasper({path: '/app/someapp/ratings'});
 
-        casper.waitForSelector('.review-button', function() {
-            casper.click('.review-actions .flag');
+        helpers.waitForPageLoaded(function() {
+            test.assertNotVisible('.review-has-flagged');
+            casper.click('.review:first-child [data-action="report"]');
         });
 
-        casper.waitForUrl(/\/app\/can_rate\/ratings/, function() {
-            helpers.assertContainsText('.review-button');
-            test.assertVisible('.flag-review-form ul li');
+        casper.waitForSelector('.flag-review-form', function() {
+            casper.click('.flag-review-form .reasons a');
+        });
+
+        casper.waitForSelector('[data-review-has-flagged="true"]', function() {
+            test.assertDoesntExist('.flag-review-form');
+
+            // Navigate back and forward to check that we cache-busted the
+            // review and marked it as has_flagged. When we return, it should
+            // still be flagged.
+            casper.click('.back-to-app');
+        });
+
+        casper.waitForSelector('[data-page-type~="detail"]', function() {
+            casper.back();
+        });
+
+        casper.waitForSelector('.reviews-listing', function() {
+            test.assertExists('[data-review-has-flagged="true"]');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test cannot flag review on own review', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/has_rated/ratings'});
+
+        helpers.waitForPageLoaded(function() {
+            test.assertNotVisible('.review:first-child .review-flag');
         });
 
         helpers.done(test);

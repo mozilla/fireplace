@@ -241,6 +241,23 @@ mkt-prompt[data-modal="flag-review"] {
     }
 }
 
+.review .review-has-flagged {
+    display: none;
+}
+
+.review[data-review-has-flagged="true"] {
+    .review-flag {
+        display: none;
+    }
+    .review-has-flagged {
+        display: inline-block;
+    }
+}
+
+[data-review-is-author="true"] .review-flag {
+    display: none;
+}
+
 .placeholder + section.full.reviews-listing {
     margin-top: 0;
 }
