@@ -84,11 +84,10 @@
           </section>
         {% endif %}
 
-        {% if this.is_packaged %}
-          <section class="prose package-version">
-            <h3>{{ _('Version') }}</h3>
-            <p>{{ _('Latest version: {version}',
-                    version=this.current_version) }}</p>
+        {% if this.is_packaged and this.last_updated %}
+          <section class="prose package-last-updated">
+            <h3>{{ _('Last updated') }}</h3>
+            <p>{{ this.last_updated|date }}</p>
           </section>
         {% endif %}
 

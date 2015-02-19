@@ -8,6 +8,36 @@ define('helpers_local',
     var filters = nunjucks.require('filters');
     var globals = nunjucks.require('globals');
 
+    // developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+    // toLocaleDateString() is unreliable ; on Firefox Android and FxOS, it
+    // will return the date in m/d/Y format, even if you try to pass custom
+    // locale and/or options!.
+    // To avoid having to ship a full re-implementation, we use
+    // Intl.DateTimeFormat(), which is equivalent but only present if the
+    // underlying platform has a full implementation, and fall back to Y-m-d.
+    // This gives us a pretty date format (e.g. Saturday, February 15, 2014) on
+    // desktop, and leaves something somewhat universal on phones (2014-02-15).
+    var dateFormat;
+    if (typeof Intl !== 'undefined' &&
+        typeof Intl.DateTimeFormat !== 'undefined') {
+        var formatting = Intl.DateTimeFormat(user_helpers.lang(), {
+            year: 'numeric', month: 'long', day: 'numeric'
+        });
+        dateFormat = formatting.format.bind(formatting);
+    } else {
+        dateFormat = function(date) {
+            return [
+                date.getFullYear(),
+                padDate(date.getMonth() + 1),
+                padDate(date.getDate()),
+            ].join('-');
+        };
+    }
+
+    function padDate(d) {
+        return (d < 10) ? '0' + d : d;
+    }
+
     var rewriteCdnUrlMappings = [
         {
             name: 'Privacy Policy',
@@ -23,7 +53,7 @@ define('helpers_local',
 
     /* Register filters. */
     filters.date = function(date) {
-        return new Date(date).toLocaleDateString();
+        return dateFormat(new Date(date));
     };
 
     filters.json = JSON.stringify;

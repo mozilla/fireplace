@@ -116,7 +116,13 @@ casper.test.begin('Test app detail tests for packaged apps', {
         helpers.startCasper({path: '/app/packaged'});
         helpers.waitForPageLoaded(function() {
             test.assertUrlMatch(/\/app\/packaged/);
-            test.assertSelectorHasText('.package-version', 'Latest version: 1.0');
+            test.assertExists('.package-last-updated h3');
+            // Date is either in Y-m-d format or in Month, Day, Year
+            // format depending on what is available. We simply try to parse it
+            // to see if it's a valid date.
+            test.assertTruthy(
+                Date.parse(casper.fetchText('.package-last-updated p')),
+               'Last updated text is a valid date');
         });
         helpers.done(test);
     }
