@@ -55,6 +55,10 @@ define('webactivities', ['capabilities', 'log', 'login', 'urls', 'utils', 'z'], 
                 z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
                 break;
             case 'marketplace-search':
+                if (data.type === 'firefox-os-app-stats') {
+                    z.page.trigger('navigate', urls.reverse('usage'));
+                    break;
+                }
                 // Load up a search.
                 z.page.trigger('search', {q: data.query, src: src});
                 break;
