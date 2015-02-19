@@ -2,13 +2,15 @@
 {% from "_macros/market_button.html" import market_button %}
 {% from "_macros/stars.html" import stars %}
 
-{% macro app_tile(app, feed_app=None, is_detail=False, tray=False, src=None) %}
+{% macro app_tile(app, feed_app=None, is_detail=False, tray=False, src=None,
+                  price_only=False) %}
   {#
       app -- app object
       feed_app - feed-app specific data
       is_detail - whether part of a detail page
       tray -- whether or not to attach a preview/screenshot tray
       src -- if tile is a link, attach a src param for analytics purposes
+      price_only -- for Feed if only want to show price, no install
   #}
   {% set tag = 'div' if is_detail else 'a' %}
   <{{ tag }} class="product mkt-tile{{ ' feed-app' if feed_app }}"
@@ -38,7 +40,8 @@
 
         {% if app.slug %}
           {{ market_button(app, data_attrs={'manifest_url': app.manifest_url,
-                                            'slug': app.slug}) }}
+                                            'slug': app.slug},
+                           price_only=price_only) }}
         {% endif %}
 
         {{ rating_link() if not is_detail }}

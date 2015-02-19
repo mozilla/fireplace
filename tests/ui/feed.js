@@ -166,3 +166,17 @@ casper.test.begin('Test Feed navigation and tracking events', {
         helpers.done(test);
     }
 });
+
+
+casper.test.begin('Test brand grid install buttons disabled', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            test.assertDoesntExist('.feed-brand.feed-layout-grid .install:not([disabled])',
+                                   'Check all install buttons disabled for grid');
+        });
+
+        helpers.done(test);
+    }
+});

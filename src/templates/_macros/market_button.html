@@ -15,17 +15,22 @@
                  {{ 'paid' if app.payment_required }}
                  {{ 'incompatible' if app_incompat(app) }}"
           {{ data_attrs|make_data_attrs }}
-          {{ 'disabled' if app_incompat(app) or (app.role == 'langpack' and installed) }}
+          {{ 'disabled' if price_only or app_incompat(app) or
+                           (app.role == 'langpack' and installed) }}
           data-product="{{ app|json }}">
     <em>
-      {% if installed and app.role == 'langpack' %}
-        {{ _('Installed') }}
-      {% elif installed and not price_only %}
-        {{ _('Open') }}
-      {% elif not price_only and user.has_installed(app.id) or user.has_purchased(app.id) %}
-        {{ _('Install') }}
-      {% else %}
+      {% if price_only %}
         {{ price }}
+      {% else %}
+        {% if installed and app.role == 'langpack' %}
+          {{ _('Installed') }}
+        {% elif installed %}
+          {{ _('Open') }}
+        {% elif user.has_installed(app.id) or user.has_purchased(app.id) %}
+          {{ _('Install') }}
+        {% else %}
+          {{ price }}
+        {% endif %}
       {% endif %}
     </em>
     <span class="spin"></span>

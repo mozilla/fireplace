@@ -36,8 +36,8 @@
       </section>
     {% else %}
       {{ app_tile(feed_app.app,
-                     feed_app=feed_app,
-                     src=feed_app.src) }}
+                  feed_app=feed_app,
+                  src=feed_app.src) }}
     {% endif %}
   </a>
 {% endmacro %}
@@ -60,7 +60,7 @@
     <ul>
       {% for app in brand.apps %}
         {% if loop.index0 < max_apps %}
-          {{ app_tile(app, src=brand.src) }}
+          {{ app_tile(app, src=brand.src, price_only=True) }}
         {% endif %}
       {% endfor %}
     </ul>
