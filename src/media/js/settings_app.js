@@ -1,6 +1,8 @@
 define('settings_app',
-    ['core/capabilities', 'core/l10n', 'core/settings', 'settings_local', 'core/storage'],
-    function(capabilities, l10n, settings, settings_local, storage) {
+    ['core/capabilities', 'core/l10n', 'core/settings', 'settings_local',
+     'core/storage'],
+    function(capabilities, l10n, settings, settings_local,
+             storage) {
     var gettext = l10n.gettext;
 
     var base_settings = JSON.parse(document.body.getAttribute('data-settings') || '{}');

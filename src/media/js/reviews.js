@@ -287,7 +287,7 @@ define('reviews',
             forms.toggleSubmitFormState($this, true);
             notify({message: gettext('Sorry, there was an issue editing your review. Please try again later')});
         });
-    }))
+    }));
 
     return {
         _rewriter: rewriter

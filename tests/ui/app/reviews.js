@@ -413,6 +413,8 @@ casper.test.begin('Test delete review', {
             helpers.fake_login();
         });
 
+        helpers.waitForLoggedIn();
+
         var reviewCount;
         var reviewCountModelCache;
         casper.waitForSelector('.reviews-listing', function() {

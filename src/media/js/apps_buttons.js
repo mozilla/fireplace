@@ -3,7 +3,7 @@ define('apps_buttons',
      'core/log', 'core/login', 'core/models', 'core/notification', 'payments',
      'core/requests', 'core/settings', 'tracking_events', 'core/urls',
      'core/user', 'core/utils', 'core/views', 'core/z'],
-    function(apps, cache, capabilities, defer, l10n,
+    function(apps, cache, caps, defer, l10n,
              log, login, models, notification, payments,
              requests, settings, tracking_events, urls, user, utils,
              views, z) {

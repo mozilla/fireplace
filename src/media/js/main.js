@@ -8,15 +8,10 @@ console.log('   (C)Copyright Mozilla Corp 1998-2015');
 console.log('');
 console.log('64K High Memory Area is available.');
 
-// Wait for init to load commonplace and initialize it before we continue.
 define('main', ['init'], function() {
 require([
     'underscore',
     'jquery',
-    'core/polyfill', // Must be early.
-    'document-register-element',
-    'core/helpers',  // Must come before mostly everything else.
-    'helpers_local',
     'apps_buttons',
     'app_list',
     'core/cache',
@@ -32,10 +27,8 @@ require([
     'lightbox',
     'core/log',
     'core/login',
-    'marketplace-elements',
     'core/models',
     'navbar',
-    'core/navigation',
     'newsletter',
     'overlay',
     'perf_events',

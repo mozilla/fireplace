@@ -1,4 +1,4 @@
-e*
+/*
     Preview trays which holds previews and screenshots.
     On mobile, uses Flipsnap which enables touch-drag.
     On desktop, adds prev/next buttons to navigate images.
@@ -23,7 +23,7 @@ define('previews',
     var mediaSwitch = '(min-width:' + dimensions.breakpoint + 'px)';
     var sliders = [];
     var winWidth = z.win.width();
-    var isDesktop = !!(caps.device_type() == 'desktop');
+    var isDesktop = caps.device_type() == 'desktop';
     var isDesktopInitialized = false;
 
     var desktopMarginLeft = 0;  // Keep track of left offset.
@@ -131,9 +131,9 @@ define('previews',
 
     // Reinitialize Flipsnap positions on resize.
     z.doc.on('saferesize.tray', function() {
-        for (var i = 0, e; e = sliders[i++];) {
-            e.refresh();
-        }
+        sliders.forEach(function(slider) {
+            slider.refresh();
+        });
     });
 
     z.win.resize(_.debounce(function() {
@@ -153,9 +153,9 @@ define('previews',
 
     // We're leaving the page, so destroy Flipsnap.
     z.win.on('unloading.tray', function() {
-        for (var i = 0, e; e = sliders[i++];) {
-            e.destroy();
-        }
+        sliders.forEach(function(slider) {
+            slider.destroy();
+        });
         sliders = [];
         desktopMarginLeft = 0;
     });

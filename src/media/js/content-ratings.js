@@ -139,7 +139,7 @@ define('content-ratings',
     names.ratings.usk = names.ratings.generic;
 
     // Language icons.
-    if (window.navigator.l10n.language == 'es') {
+    if (utils.lang() == 'es') {
         rating_icons.esrb = {
             '0': _rating_path('esrb_e_spa.png'),
             '10': _rating_path('esrb_e10_spa.png'),

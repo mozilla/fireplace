@@ -84,7 +84,7 @@ casper.test.begin('Test mark uninstalled apps on visibilitychange', {
         casper.waitForSelector('.launch', function() {
             casper.evaluate(function() {
                 window.navigator.mozApps._resetInstalled();
-                window.require('z').doc.trigger('visibilitychange');
+                window.require('core/z').doc.trigger('visibilitychange');
             });
 
         });
