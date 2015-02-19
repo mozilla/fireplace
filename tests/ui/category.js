@@ -4,6 +4,7 @@
 */
 var helpers = require('../lib/helpers');
 
+
 casper.test.begin('Category app list sort tests', {
     test: function(test) {
         helpers.startCasper({path: '/category/games'});
@@ -25,6 +26,19 @@ casper.test.begin('Category app list sort tests', {
             casper.click('[data-app-list-sort-popular]');
             test.assert(casper.getCurrentUrl().indexOf('sort=reviewed') === -1);
             test.assertSelectorExists('[data-app-list-sort-popular].active');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Category UA tracking tests', {
+    test: function(test) {
+        helpers.startCasper({path: '/category/games'});
+
+        helpers.waitForPageLoaded(function() {
+            helpers.assertUATrackingPageVar(test, 'dimension5', 'games');
         });
 
         helpers.done(test);

@@ -1,4 +1,4 @@
-/* Centralized UA tracking events.
+/* Centralized UA tracking events, or Fireplace application of tracking.js.
    Note: UA events are [category, action, label, value].
 
    Other tracking events are found in other files:
@@ -15,8 +15,10 @@
      999999998 -- editorial brand element.
 */
 define('tracking_events',
-    ['jquery', 'log', 'navigation', 'settings', 'tracking', 'utils', 'z'],
-    function($, log, navigation, settings, tracking, utils, z) {
+    ['consumer_info', 'jquery', 'log', 'navigation', 'settings', 'tracking',
+     'utils', 'user_helpers', 'z'],
+    function(consumer_info, $, log, navigation, settings, tracking,
+             utils, user_helpers, z) {
     'use strict';
     var logger = log('tracking_events');
 
@@ -24,16 +26,37 @@ define('tracking_events',
     var setVar = tracking.setVar;
     var setPageVar = tracking.setPageVar;
 
+    var DIMENSIONS = {
+        isLoggedIn: 1,
+        siteSection: 3,
+        categoryName: 5,
+        appName: 6,
+        appId: 7,
+        appDeveloper: 8,
+        appViewSource: 9,
+        appPremiumType: 10,
+        region: 11,
+        searchQueryAppView: 12,  // Using this for reviews.
+        searchQueryAppInstall: 13,  // Using this for search query to app view.
+        simulatorTraffic: 14,
+        isPackaged: 15,
+    };
+
     var FEATURED_APP_VALUE = 999999999;
     var EDITORIAL_BRAND_VALUE = 999999998;
+
+    // Track region.
+    consumer_info.promise.done(function() {
+        setVar(DIMENSIONS.region, user_helpers.region());
+    });
 
     // Track package version in UA.
     var packageVersion = settings.package_version;
     if (packageVersion) {
-        setVar(15, packageVersion);
+        setVar(DIMENSIONS.isPackaged, packageVersion);
     } else {
         // Set package version to 0 for hosted.
-        setVar(15, 0);
+        setVar(DIMENSIONS.isPackaged, 0);
     }
 
     // Navigation tabs.
@@ -162,7 +185,7 @@ define('tracking_events',
             'Successful review'
         );
         trackEvent('Write a Review', 'click', slug, rating);
-        setVar(12, 'Reviewer');
+        setVar(DIMENSIONS.searchQueryAppView, 'Reviewer');
     }));
 
     if (tracking.actions_enabled) {
@@ -173,6 +196,20 @@ define('tracking_events',
                 this.parentNode.getAttribute('data-tracking')
             );
         });
+    }
+
+    function trackAppHit(app) {
+        // Set page vars for app.
+        if (!app) {
+            return;
+        }
+        tracking.setPageVar(DIMENSIONS.appName, app.name);
+        tracking.setPageVar(DIMENSIONS.appId, app.id + '');
+        tracking.setPageVar(DIMENSIONS.appDeveloper, app.author);
+        tracking.setPageVar(DIMENSIONS.appViewSource,
+                            utils.getVars().src || 'direct');
+        tracking.setPageVar(DIMENSIONS.appPremiumType,
+                            app.payment_required ? 'paid' : 'free');
     }
 
     // Tracking methods for specific events.
@@ -233,7 +270,12 @@ define('tracking_events',
         );
     }
 
+    function trackCategoryHit(slug) {
+        tracking.setPageVar(DIMENSIONS.categoryName, slug);
+    }
+
     return {
+        DIMENSIONS: DIMENSIONS,
         track_search_term: function(page) {
             // page -- whether the search query is being tracked for page view.
             var nav_stack = navigation.stack();
@@ -245,14 +287,16 @@ define('tracking_events',
                 logger.log('Found search in nav stack, tracking search term:',
                            item.params.search_query);
                 tracking[page ? 'setPageVar' : 'setVar'](
-                    13, item.params.search_query);
+                    DIMENSIONS.searchQueryAppInstall, item.params.search_query);
                 return;
             }
             logger.log('No associated search term to track.');
         },
+        trackAppHit: trackAppHit,
         track_app_launch: track_app_launch,
         track_app_install_begin: track_app_install_begin,
         track_app_install_success: track_app_install_success,
-        track_app_install_fail: track_app_install_fail
+        track_app_install_fail: track_app_install_fail,
+        trackCategoryHit: trackCategoryHit,
     };
 });
