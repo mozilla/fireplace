@@ -7,7 +7,6 @@ define('reviews',
              _, utils, urls, user, z) {
     var gettext = l10n.gettext;
     var notify = notification.notification;
-    var open_rating = false;
 
     function rewriter(app, processor) {
         var base_url = urls.api.base.url('reviews');
@@ -27,7 +26,7 @@ define('reviews',
         $modal = $('mkt-prompt[data-modal="flag-review"]');
 
         $modal.one('click', '.reasons a', utils._pd(function(e) {
-            var $actionEl = $review.find('.review-actions .flag');
+            var $actionEl = $review.find('.review-actions .review-flag');
             $modal[0].dismissModal();
 
             // L10n: The report is an abuse report for reviews.
@@ -35,8 +34,16 @@ define('reviews',
 
             var endpoint = settings.api_url + urls.api.sign($review.data('report-uri'));
             requests.post(endpoint, {flag: $(e.target).data('reason')}).done(function() {
+                $review.attr('data-review-has-flagged', true);
                 notify({message: gettext('This review has been successfully flagged. Thanks!')});
-                $actionEl.remove();
+
+                // Cache-bust so the report link doesn't show up in session.
+                var slug = $('[data-slug]').data('slug');
+                var endpoint = urls.api.params('reviews', {app: slug});
+                var index = $('.review').index($review);
+                var appReviewsCache = cache.get(endpoint);
+                appReviewsCache.objects[index].has_flagged = true;
+                cache.set(endpoint, appReviewsCache);
             }).fail(function() {
                 notify({message: gettext('Sorry, there was an issue flagging the review. Please try again later.')});
             });
@@ -87,19 +94,15 @@ define('reviews',
         // Prompt user to login, then open up review forms on post-login.
         function onLoginSuccess() {
             if (!z.body.hasClass('logged-in')) {
+                // Login window was cancelled.
                 return;
             }
 
             var reviewButton = document.querySelector('.review-buttons .review-button');
-            /*
             if (!reviewButton) {
-                setTimeout(function() {
-                    // Bump this notification ahead of the login one.
-                    notification.notification({
-                        message: gettext('Sorry, you must purchase this app before reviewing'),
-                    });
-                });
-            */
+                // Can't review paid app without purchasing.
+                return;
+            }
             if (caps.widescreen()) {
                 addReview.apply(reviewButton);
             } else {
@@ -107,7 +110,7 @@ define('reviews',
             }
         }
 
-        login.login().done(onLoginSuccess);
+        login.login();
         z.page.one('loaded', onLoginSuccess);
         return;
     }

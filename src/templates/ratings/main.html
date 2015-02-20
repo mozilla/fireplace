@@ -6,7 +6,8 @@
 
 {% include "_includes/back_to_app.html" %}
 
-<section class="main full detail app-reviews reviews-listing">
+<section class="main full detail app-reviews reviews-listing"
+         data-slug="{{ slug }}">
   <div>
     {% defer (url=apiParams('reviews', {'app': slug}), pluck='objects',
               id='ratings', paginate='.reviews-wrapper') %}

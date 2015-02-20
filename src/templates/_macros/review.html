@@ -1,7 +1,9 @@
 {% include "_macros/stars.html" %}
 
 {% macro review(this, detailpage=false, slug=slug, current_version=None) %}
-<li class="review {{ 'flagged' if this.is_flagged }} c"
+<li class="review c"
+    data-review-has-flagged="{{ this.has_flagged }}"
+    data-review-is-author="{{ this.is_author }}"
     data-report-uri="{{ this.report_spam }}" data-rating="{{ this.rating }}"
     itemprop="review" itemscope itemtype="http://schema.org/Review">
   <span class="review-author" itemprop="author">
@@ -17,10 +19,7 @@
     {{ this.body|escape|nl2br }}
   </div>
   {% if not detailpage %}
-    <ul class="review-actions only-if-logged-in">
-      {% if this.is_flagged %}
-        <li class="flagged">{{ _('Flagged for review') }}</li>
-      {% endif %}
+    <ul class="review-actions">
       {% if this.is_author or user.get_permission('reviewer') %}
         <li>
           <a class="review-button" data-edit-review data-text="{{ _('Edit') }}"
@@ -38,9 +37,11 @@
           </a>
         </li>
       {% endif %}
-      {% if not this.is_author and not this.has_flagged %}
-        <li><a class="flag post" data-action="report" href="#">{{ _('Report') }}</a></li>
-      {% endif %}
+      <li class="review-flag">
+        <a class="post" data-action="report" href="#">
+          {{ _('Report') }}</a>
+      </li>
+      <li class="review-has-flagged">{{ _('Flagged for review') }}</li>
     </ul>
     <time itemprop="datePublished">{{ this.created|date }}</time>
   {% endif %}
