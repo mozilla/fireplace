@@ -94,6 +94,7 @@ define('reviews',
         // Prompt user to login, then open up review forms on post-login.
         function onLoginSuccess() {
             if (!z.body.hasClass('logged-in')) {
+                // Login window was cancelled.
                 return;
             }
 
@@ -109,7 +110,7 @@ define('reviews',
             }
         }
 
-        login.login().done(onLoginSuccess);
+        login.login();
         z.page.one('loaded', onLoginSuccess);
         return;
     }
