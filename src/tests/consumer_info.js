@@ -24,7 +24,7 @@ function mockConsumerInfoRequestFailure(data) {
     };
 }
 
-xtest('consumer_info automatically set region when required', function(done, fail) {
+test('consumer_info automatically set region when required', function(done, fail) {
     var geoip_region = null;
     var settings = {
         api_cdn_whitelist: {}
@@ -41,8 +41,9 @@ xtest('consumer_info automatically set region when required', function(done, fai
             user: {logged_in: function() { return false; }},
             settings: settings,
             user_helpers: {
-                region: function(x, y) { return ''; },
                 carrier: function() { return ''; },
+                lang: function() { return ''; },
+                region: function(x, y) { return ''; },
                 set_region_geoip: function(r) { geoip_region = r; }
             }
         },
@@ -70,8 +71,9 @@ test('consumer_info automatically does not reset region if already present', fun
             user: {logged_in: function() { return false; }},
             settings: settings,
             user_helpers: {
-                region: function(x, y) { return 'previous_region'; },
                 carrier: function() { return ''; },
+                lang: function() { return ''; },
+                region: function(x, y) { return 'previous_region'; },
                 set_region_geoip: function(r) { geoip_region = r; }
             }
         },
@@ -87,7 +89,7 @@ test('consumer_info automatically does not reset region if already present', fun
     );
 });
 
-xtest('consumer_info automatically sets region to restofworld if API call fails', function(done, fail) {
+test('consumer_info automatically sets region to restofworld if API call fails', function(done, fail) {
     var geoip_region = null;
     var settings = {
         api_cdn_whitelist: {}
@@ -99,8 +101,9 @@ xtest('consumer_info automatically sets region to restofworld if API call fails'
             requests: {get: mockConsumerInfoRequestFailure()},
             settings: settings,
             user_helpers: {
-                region: function(x, y) { return ''; },
                 carrier: function() { return ''; },
+                lang: function() { return ''; },
+                region: function(x, y) { return ''; },
                 set_region_geoip: function(r) { geoip_region = r; }
             }
         },
@@ -128,8 +131,9 @@ test('consumer_info API is not called if unnecessary', function(done, fail) {
             settings: settings,
             user: {logged_in: function() { return false; }},
             user_helpers: {
-                region: function(x, y) { return 'fr'; },
                 carrier: function() { return ''; },
+                lang: function() { return ''; },
+                region: function(x, y) { return 'fr'; },
                 set_region_geoip: function() { fail(); }
             }
         },
@@ -155,8 +159,9 @@ test('consumer_info API is not called if region is present in the body', functio
             settings: settings,
             user: {logged_in: function() { return false; }},
             user_helpers: {
-                region: function(x, y) { return ''; },
                 carrier: function() { return ''; },
+                lang: function() { return ''; },
+                region: function(x, y) { return ''; },
                 set_region_geoip: function(r) { geoip_region = r; }
             },
             z: {
@@ -182,7 +187,7 @@ test('consumer_info API is not called if region is present in the body', functio
     );
 });
 
-xtest('consumer_info API is called if user is logged in', function(done, fail) {
+test('consumer_info API is called if user is logged in', function(done, fail) {
     var geoip_region = null;
     var settings = {
         api_cdn_whitelist: {}
@@ -217,8 +222,9 @@ xtest('consumer_info API is called if user is logged in', function(done, fail) {
                 }
             },
             user_helpers: {
-                region: function(x, y) { return 'fr'; },
                 carrier: function() { return ''; },
+                lang: function() { return ''; },
+                region: function(x, y) { return 'fr'; },
                 set_region_geoip: function() { fail(); }  // We already had a region.
             }
         },
