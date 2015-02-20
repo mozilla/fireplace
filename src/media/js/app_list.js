@@ -5,24 +5,16 @@ define('app_list',
 
     // If we've set this value in localStorage before, then always use it.
     var expand = !!storage.getItem('expand-listings');
-    if (expand === null) {
-        // Default to the graphical view at desktop widths and traditional
-        // list view at lesser widths.
-        expand = caps.widescreen();
-    }
 
-    function setTrays(expanded) {
-        // Handle tray state and populate preview thumbs.
-        // Preserve the tray expand state in localStorage.
-        if (expanded !== undefined) {
-            expand = expanded;
-        }
-        $('.app-list').toggleClass('expanded', expanded);
+    function initTileState() {
+        // Handle tile expanded state and populate preview thumbs.
+        // Preserve the tile expand state in localStorage.
+        $('.app-list').toggleClass('expanded', expand);
         $('.app-list-filters-expand-toggle')
             .toggleClass('active', expand)
             .addClass('show');
-        storage.setItem('expand-listings', !!expanded);
-        if (expanded) {
+        storage.setItem('expand-listings', !!expand);
+        if (expand) {
             z.page.trigger('populatetray');
             // Set the `src` for hidden images so they get loaded.
             $('.mkt-tile img[data-src]:not([src])').each(function() {
@@ -33,14 +25,14 @@ define('app_list',
 
     z.body.on('click', '.app-list-filters-expand-toggle', utils._pd(function() {
         expand = !expand;
-        setTrays(expand);
+        initTileState();
         z.doc.trigger('scroll');  // For defer image loading.
     }));
 
     z.page.on('loaded reloaded_chrome', function() {
-        // On load - set the tray state on available app lists.
+        // On load - set the tile expand state on available app lists.
         if ($('.main:not(.feed-landing-apps) .app-list').length) {
-            setTrays(expand);
+            initTileState();
         }
     });
 
