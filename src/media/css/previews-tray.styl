@@ -4,7 +4,7 @@ $bar-height = 3px;
 $tray-height = 170px;
 $thumbnail-height = 150px;
 $full-shot-height = 520px;
-$desktop-tray-height = 560px;
+$desktop-tray-height = 540px;
 
 // Previews tray.
 .expanded .previews-tray {
@@ -129,9 +129,14 @@ $desktop-tray-height = 560px;
 }
 
 [data-page-type~="detail"] .previews-tray {
-    height: 193px;
+    height: $tray-height + $bar-height;
     margin-left: -10px;
+    top: 0;
     width: unquote('calc(100% + 20px)')
+
+    .previews-bars {
+        margin-top: 10px;
+    }
 }
 
 @media $base-desktop {
