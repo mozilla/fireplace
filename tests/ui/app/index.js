@@ -26,8 +26,8 @@ casper.test.begin('Test app detail', {
             test.assert(href.indexOf('/search?author') !== -1);
             test.assertSelectorHasText('.mkt-tile .install em', 'Free');
             test.assertVisible('.mkt-tile .install');
-            test.assertVisible('.previews');
-            test.assertExists('.previews img');
+            test.assertVisible('.previews-tray');
+            test.assertExists('.previews-tray img');
 
             // Test app info section.
             helpers.assertContainsText('[itemprop="description"]');
@@ -49,11 +49,11 @@ casper.test.begin('Test app detail previews', {
     test: function(test) {
         helpers.startCasper({path: '/app/abc'});
 
-        casper.waitForSelector('.previews img', function() {
-            casper.click('.previews');
-            casper.click('.previews li:first-child');
-            casper.click('.previews li:first-child .screenshot');
-            casper.click('.previews li:first-child .screenshot img');
+        casper.waitForSelector('.previews-tray img', function() {
+            casper.click('.previews-tray');
+            casper.click('.previews-tray li:first-child');
+            casper.click('.previews-tray li:first-child .screenshot');
+            casper.click('.previews-tray li:first-child .screenshot img');
         });
 
         casper.waitForSelector('#lightbox.show', function() {
@@ -240,10 +240,9 @@ casper.test.begin('Test app detail mobile previews', {
         helpers.startCasper({path: '/app/something'});
 
         helpers.waitForPageLoaded(function() {
-            test.assertVisible('.previews .content');
-            test.assertVisible('.content li:first-child img');
-            test.assertNotVisible('.tray .bars');
-            test.assertNotVisible('.tray .arrow-button');
+            test.assertVisible('.previews-content');
+            test.assertVisible('.previews-bars');
+            test.assertNotVisible('.previews-tray .arrow-button');
         });
 
         helpers.done(test);
@@ -255,10 +254,10 @@ casper.test.begin('Test app detail desktop previews', {
         helpers.startCasper({path: '/app/something', viewport: 'desktop'});
 
         helpers.waitForPageLoaded(function() {
-            test.assertVisible('.previews .desktop-content');
-            test.assertVisible('.desktop-content li:first-child img');
-            test.assertVisible('.tray .bars');
-            test.assertVisible('.tray .arrow-button');
+            test.assertVisible('.previews-tray .previews-desktop-content');
+            test.assertVisible('.previews-tray li:first-child img');
+            test.assertVisible('.previews-tray .previews-bars');
+            test.assertVisible('.previews-tray .arrow-button');
         });
 
         helpers.done(test);

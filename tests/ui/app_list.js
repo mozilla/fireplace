@@ -352,14 +352,14 @@ appListPages.forEach(function(appListPage) {
                 waitForAppListPage(appListPage, function() {
                     // Expand listings.
                     casper.click('.app-list-filters-expand-toggle');
-                    test.assertVisible('.previews li:first-child img');
-                    test.assertNotVisible('.tray .bars');
-                    test.assertNotVisible('.tray .arrow-button');
+                    test.assertVisible('.previews-tray li:first-child img');
+                    test.assertVisible('.previews-tray .previews-bars');
+                    test.assertNotVisible('.previews-tray .arrow-button');
 
                     // Collapse listings.
                     casper.click('.app-list-filters-expand-toggle');
                     test.assertExists('.app-list:not(.expanded)');
-                    test.assertNotVisible('.app-list-app .preview');
+                    test.assertNotVisible('.app-list-app .previews-tray');
                 });
 
                 helpers.done(test);
@@ -371,14 +371,14 @@ appListPages.forEach(function(appListPage) {
                 waitForAppListPage(appListPage, function() {
                     // Expand listings.
                     casper.click('.app-list-filters-expand-toggle');
-                    test.assertVisible('.previews li:first-child img');
-                    test.assertVisible('.tray .bars');
-                    test.assertVisible('.tray .arrow-button');
+                    test.assertVisible('.previews-tray li:first-child img');
+                    test.assertVisible('.previews-tray .previews-bars');
+                    test.assertVisible('.previews-tray .arrow-button');
 
                     // Collapse listings.
                     casper.click('.app-list-filters-expand-toggle');
                     test.assertExists('.app-list:not(.expanded)');
-                    test.assertNotVisible('.app-list-app .preview');
+                    test.assertNotVisible('.app-list-app .previews-tray');
                 }, {viewport: 'desktop'});
 
                 helpers.done(test);
@@ -418,7 +418,7 @@ casper.test.begin('Test collection detail page for app tile expanded state.', {
         casper.thenOpen(helpers.makeUrl('/feed/collection/top-games'), function() {
             helpers.waitForPageLoaded(function() {
                 test.assertDoesntExist('.app-list.expanded');
-                test.assertDoesntExist('.previews');
+                test.assertDoesntExist('.previews-tray');
             });
         });
         helpers.done(test);
