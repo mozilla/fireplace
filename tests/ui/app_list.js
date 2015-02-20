@@ -102,7 +102,7 @@ appList.appListPages.forEach(function(appListPage) {
 
                 casper.waitForSelector(toggleLink + '.active', function() {
                     test.assertExists('.app-list.expanded');
-                    helpers.assertUATracking(test, [
+                    helpers.assertUASendEvent(test, [
                         'View type interactions',
                         'click',
                         'Expanded view'
@@ -112,7 +112,7 @@ appList.appListPages.forEach(function(appListPage) {
                     casper.click(toggleLink);
                     test.assertExists(toggleLink + ':not(.active)');
                     test.assertExists('.app-list:not(.expanded)');
-                    helpers.assertUATracking(test, [
+                    helpers.assertUASendEvent(test, [
                         'View type interactions',
                         'click',
                         'List view'

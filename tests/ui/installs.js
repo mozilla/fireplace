@@ -107,7 +107,7 @@ casper.test.begin('Test UA when installing from app details page', {
             app = appList.getAppData('.install');
             casper.click('.install');
 
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'Click to install app',
                 'free',
                 app.UALabel,
@@ -116,7 +116,7 @@ casper.test.begin('Test UA when installing from app details page', {
         });
 
         casper.waitForSelector('.launch', function() {
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'Successful app install',
                 'free',
                 app.UALabel,
@@ -139,7 +139,7 @@ casper.test.begin('Test UA when installing from listing page', {
             app = appList.getAppData(sel);
             casper.click(sel);
 
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'Click to install app',
                 'free',
                 app.UALabel,
@@ -148,7 +148,7 @@ casper.test.begin('Test UA when installing from listing page', {
         });
 
         casper.waitForSelector('.launch', function() {
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'Successful app install',
                 'free',
                 app.UALabel,
@@ -171,7 +171,7 @@ casper.test.begin('Test UA when installing from listing page', {
             app = appList.getAppData(sel);
             casper.click(sel);
 
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'Click to install app',
                 'free',
                 app.UALabel,
@@ -180,7 +180,7 @@ casper.test.begin('Test UA when installing from listing page', {
         });
 
         casper.waitForSelector('.launch', function() {
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'Successful app install',
                 'free',
                 app.UALabel,

@@ -22,9 +22,9 @@ define('tracking_events',
     'use strict';
     var logger = log('tracking_events');
 
-    var trackEvent = tracking.trackEvent;
-    var setVar = tracking.setVar;
+    var sendEvent = tracking.sendEvent;
     var setPageVar = tracking.setPageVar;
+    var setSessionVar = tracking.setSessionVar;
 
     var DIMENSIONS = {
         isLoggedIn: 1,
@@ -47,21 +47,21 @@ define('tracking_events',
 
     // Track region.
     consumer_info.promise.done(function() {
-        setVar(DIMENSIONS.region, user_helpers.region());
+        setSessionVar(DIMENSIONS.region, user_helpers.region());
     });
 
     // Track package version in UA.
     var packageVersion = settings.package_version;
     if (packageVersion) {
-        setVar(DIMENSIONS.isPackaged, packageVersion);
+        setSessionVar(DIMENSIONS.isPackaged, packageVersion);
     } else {
         // Set package version to 0 for hosted.
-        setVar(DIMENSIONS.isPackaged, 0);
+        setSessionVar(DIMENSIONS.isPackaged, 0);
     }
 
     // Navigation tabs.
     z.body.on('click', '.navbar > li > a', function() {
-        trackEvent(
+        sendEvent(
             'Nav Click',
             'click',
             $(this).closest('li').data('tab')
@@ -70,7 +70,7 @@ define('tracking_events',
 
     // App list expand toggle (expanded)
     .on('click', '.app-list-filters-expand-toggle:not(.active)', function() {
-        trackEvent(
+        sendEvent(
             'View type interactions',
             'click',
             'Expanded view'
@@ -79,7 +79,7 @@ define('tracking_events',
 
     // App list expand toggle (contracted)
     .on('click', '.app-list-filters-expand-toggle.active', function() {
-        trackEvent(
+        sendEvent(
             'View type interactions',
             'click',
             'List view'
@@ -89,13 +89,13 @@ define('tracking_events',
     // Lightbox open (previews, screenshots).
     .on('lightbox-open', function() {
         if (z.context.type.split(' ').indexOf('detail') !== -1) {
-            trackEvent(
+            sendEvent(
                 'App view interactions',
                 'click',
                 'Screenshot view'
             );
         } else {
-            trackEvent(
+            sendEvent(
                 'Category view interactions',
                 'click',
                 'Screenshot view'
@@ -105,7 +105,7 @@ define('tracking_events',
 
     // Navigate from collection tile to collection detail.
     z.page.on('click', '.feed-collection .view-all-tab', function() {
-        trackEvent(
+        sendEvent(
             'View Collection',
             'click',
              $(this).closest('.feed-collection').data('tracking')
@@ -114,7 +114,7 @@ define('tracking_events',
 
     // Navigate from collection tile to app detail.
     .on('click', '.feed-collection .mkt-tile', function() {
-        trackEvent(
+        sendEvent(
             'View App from Collection Element',
             'click',
             $(this).closest('.feed-collection').data('tracking')
@@ -123,7 +123,7 @@ define('tracking_events',
 
     // Navigate from featured app tile to app detail.
     .on('click', '.featured-app', function() {
-        trackEvent(
+        sendEvent(
             'View App from Featured App Element',
             'click',
             $(this).data('tracking')
@@ -132,7 +132,7 @@ define('tracking_events',
 
     // Navigate from brand tile to brand detail.
     .on('click', '.brand-header, .feed-brand .view-all-tab', function() {
-        trackEvent(
+        sendEvent(
             'View Branded Editorial Element',
             'click',
             $(this).closest('.feed-brand').data('tracking')
@@ -141,7 +141,7 @@ define('tracking_events',
 
     // Navigate from brand tile to app detail.
     .on('click', '.feed-brand .mkt-tile', function() {
-        trackEvent(
+        sendEvent(
             'View App from Branded Editorial Element',
             'click',
             $(this).closest('.feed-brand').data('tracking')
@@ -150,7 +150,7 @@ define('tracking_events',
 
     // Navigate from operator shelf tile to operator shelf detail.
     .on('click', '.op-shelf', function() {
-        trackEvent(
+        sendEvent(
             'View Operator Shelf Element',
             'click',
             $(this).data('tracking')
@@ -159,7 +159,7 @@ define('tracking_events',
 
     // Navigate from operator shelf detail to app detail.
     .on('click', '[data-shelf-landing-carrier] .mkt-tile', function() {
-        trackEvent(
+        sendEvent(
             'View App from Operator Shelf Element',
             'click',
             $('[data-tracking]').data('tracking')
@@ -167,7 +167,7 @@ define('tracking_events',
     })
 
     .on('click', '.description-wrapper + .truncate-toggle', function() {
-        trackEvent(
+        sendEvent(
             'App view interactions',
             'click',
             'Toggle description'
@@ -179,18 +179,18 @@ define('tracking_events',
         var slug = this.elements.app.value;
         var rating = this.elements.rating.value;
 
-        trackEvent(
+        sendEvent(
             'App view interactions',
             'click',
             'Successful review'
         );
-        trackEvent('Write a Review', 'click', slug, rating);
-        setVar(DIMENSIONS.searchQueryAppView, 'Reviewer');
+        sendEvent('Write a Review', 'click', slug, rating);
+        setSessionVar(DIMENSIONS.searchQueryAppView, 'Reviewer');
     }));
 
     if (tracking.actions_enabled) {
         z.page.on('click', '.app-support .button', function() {
-            trackEvent(
+            sendEvent(
                 'App view interaction',
                 'click',
                 this.parentNode.getAttribute('data-tracking')
@@ -215,7 +215,7 @@ define('tracking_events',
     // Tracking methods for specific events.
     function track_app_launch(product) {
         // Track app launch.
-        trackEvent(
+        sendEvent(
             'Launch app',
             product.payment_required ? 'Paid' : 'Free',
             product.slug
@@ -242,7 +242,7 @@ define('tracking_events',
 
     function track_app_install_begin(product, $install_btn) {
         // Track app install start.
-        trackEvent(
+        sendEvent(
             'Click to install app',
             product.receipt_required ? 'paid' : 'free',
             product.name + ':' + product.id,
@@ -252,7 +252,7 @@ define('tracking_events',
 
     function track_app_install_success(product, $install_btn) {
         // Track app install finish.
-        trackEvent(
+        sendEvent(
             'Successful app install',
             product.receipt_required ? 'paid' : 'free',
             product.name + ':' + product.id,
@@ -262,7 +262,7 @@ define('tracking_events',
 
     function track_app_install_fail(product, $install_btn) {
         // Track app install fail.
-        trackEvent(
+        sendEvent(
             'App failed to install',
             product.receipt_required ? 'paid' : 'free',
             product.name + ':' + product.id,
@@ -286,7 +286,7 @@ define('tracking_events',
                 }
                 logger.log('Found search in nav stack, tracking search term:',
                            item.params.search_query);
-                tracking[page ? 'setPageVar' : 'setVar'](
+                tracking[page ? 'setPageVar' : 'setSessionVar'](
                     DIMENSIONS.searchQueryAppInstall, item.params.search_query);
                 return;
             }

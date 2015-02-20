@@ -185,17 +185,28 @@ function checkValidity(selector) {
 }
 
 
-function assertUATracking(test, trackArgs) {
+function assertUASendEvent(test, trackArgs) {
     // Check that a UA tracking event or variable change was made
     // by checking the tracking logs.
     // If trackArgs is a string, it will just check the first argument.
-    var isString = false;
-    if (trackArgs.constructor === String) {
-        isString = true;
+    if (trackArgs.constructor !== String) {
+        trackArgs = ['send', 'event'].concat(trackArgs);
     }
+    return assertUATrackingLog(test, trackArgs);
+}
 
-    var trackExists = casper.evaluate(function(trackArgs, isString) {
-        var track_log = require('tracking').track_log;
+
+function assertUASetSessionVar(test, trackArgs) {
+    if (trackArgs.constructor !== String) {
+        trackArgs = ['set'].concat(trackArgs);
+    }
+    return assertUATrackingLog(test, trackArgs);
+}
+
+
+function assertUATrackingLog(test, trackArgs) {
+    var trackExists = casper.evaluate(function(trackArgs) {
+        var trackLog = require('tracking').trackLog;
 
         // Compare two arrays.
         function arraysAreEqual(arrA, arrB) {
@@ -205,29 +216,19 @@ function assertUATracking(test, trackArgs) {
                 });
         }
 
-        return track_log.filter(function(log) {
-            if (isString) {
-                return log[0] == trackArgs;
+        return trackLog.filter(function(log) {
+            if (trackArgs.constructor === String) {
+                // Just compare event name for convenience.
+                return log[2] == trackArgs;
             }
             return arraysAreEqual(log, trackArgs);
         }).length !== 0;
-    }, trackArgs, isString);
+    }, trackArgs);
 
     if (!trackExists) {
         console.log(trackArgs);
     }
     test.assert(trackExists, 'Tracking event exists');
-}
-
-
-function assertUATrackingPageVar(test, key, val) {
-    test.assert(casper.evaluate(function(key, val) {
-        var uaPageVars = window.require('tracking').track_page_vars;
-        if (uaPageVars[key] != val) {
-            console.log('[debug] ' + uaPageVars[key] + ' != ' + val);
-        }
-        return uaPageVars[key] == val;
-    }, key, val), 'Check UA page var ' + key + ' == ' + val);
 }
 
 
@@ -356,8 +357,8 @@ module.exports = {
     assertAPICallWasMade: assertAPICallWasMade,
     assertContainsText: assertContainsText,
     assertHasFocus: assertHasFocus,
-    assertUATracking: assertUATracking,
-    assertUATrackingPageVar: assertUATrackingPageVar,
+    assertUASendEvent: assertUASendEvent,
+    assertUASetSessionVar: assertUASetSessionVar,
     assertWaitForSelector: assertWaitForSelector,
     capture: capture,
     checkValidity: checkValidity,

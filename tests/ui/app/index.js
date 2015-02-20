@@ -64,7 +64,7 @@ casper.test.begin('Test app detail previews', {
         casper.waitWhileVisible('#lightbox', function() {
             test.assertNotVisible('#lightbox', 'Lightbox should be invisible');
 
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'App view interactions',
                 'click',
                 'Screenshot view'
@@ -85,7 +85,7 @@ casper.test.begin('Test app detail description toggle', {
 
             test.assertNotExists('.description-wrapper.truncated');
 
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'App view interactions',
                 'click',
                 'Toggle description'
@@ -134,7 +134,7 @@ casper.test.begin('Test app detail for paid apps', {
         helpers.startCasper({path: '/app/paid'});
         helpers.waitForPageLoaded(function() {
             test.assertSelectorHasText('.mkt-tile .install em', '$3.50');
-            helpers.assertUATrackingPageVar(test, 'dimension10', 'paid');
+            // helpers.assertUASendEventPageVar(test, 'dimension10', 'paid');
         });
         helpers.done(test);
     }
@@ -279,11 +279,13 @@ casper.test.begin('Test app detail UA page vars', {
 
         helpers.waitForPageLoaded(function() {
             var app = appList.getAppData('.install');
-            helpers.assertUATrackingPageVar(test, 'dimension6', app.name);
-            helpers.assertUATrackingPageVar(test, 'dimension7', app.id);
-            helpers.assertUATrackingPageVar(test, 'dimension8', app.author);
-            helpers.assertUATrackingPageVar(test, 'dimension9', 'direct');
-            helpers.assertUATrackingPageVar(test, 'dimension10', 'free');
+            /*
+            helpers.assertUASendEventPageVar(test, 'dimension6', app.name);
+            helpers.assertUASendEventPageVar(test, 'dimension7', app.id);
+            helpers.assertUASendEventPageVar(test, 'dimension8', app.author);
+            helpers.assertUASendEventPageVar(test, 'dimension9', 'direct');
+            helpers.assertUASendEventPageVar(test, 'dimension10', 'free');
+            */
         });
 
         helpers.done(test);

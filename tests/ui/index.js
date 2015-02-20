@@ -20,13 +20,26 @@ casper.test.begin('Test base site', {
 });
 
 
+casper.test.begin('Test UA package dimension set', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            helpers.assertUASetSessionVar(test, ['dimension15', 0]);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
 casper.test.begin('Test UA region dimension set', {
     test: function(test) {
         helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
             // Provided by consumer_info from the mock API.
-            helpers.assertUATracking(test, ['dimension11', 'us']);
+            helpers.assertUASetSessionVar(test, ['dimension11', 'us']);
         });
 
         helpers.done(test);
@@ -39,7 +52,7 @@ casper.test.begin('Test UA region dimension set specified region', {
         helpers.startCasper('/?region=br');
 
         helpers.waitForPageLoaded(function() {
-            helpers.assertUATracking(test, ['dimension11', 'br']);
+            helpers.assertUASetSessionVar(test, ['dimension11', 'br']);
         });
 
         helpers.done(test);

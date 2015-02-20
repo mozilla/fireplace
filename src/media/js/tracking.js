@@ -1,3 +1,9 @@
+/*
+    UA tracking library.
+    Pushes events and session variables to UA.
+    All UA pushes are kept track of in trackLog as an array of tuples.
+    Page views are sent on z.win.on('navigating').
+*/
 define('tracking',
     ['core/log', 'core/settings', 'core/storage', 'underscore', 'core/utils', 'core/z'],
     function(log, settings, storage, _, utils, z) {
@@ -6,9 +12,8 @@ define('tracking',
     var enabled = settings.tracking_enabled;
     var action_tracking_enabled = settings.action_tracking_enabled;
 
-    var track_log = [];
-    var track_vars = {};
-    var track_page_vars = {};
+    var trackLog = [];
+    var pageVars = {};
 
     var clientID = storage.getItem('clientID');
     if (!clientID && enabled) {
@@ -20,12 +25,11 @@ define('tracking',
         return {
             enabled: false,
             action_enabled: false,
-            track_log: [],
-            track_vars: [],
-            track_page_vars: {},
-            setVar: function() {},
+            trackLog: [],
+            pageVars: {},
+            sendEvent: function() {},
+            setSessionVar: function() {},
             setPageVar: function() {},
-            trackEvent: function() {}
         };
     }
 
@@ -62,6 +66,8 @@ define('tracking',
     function ua_push() {
         var data = _.toArray(arguments);
         var queued;
+
+        trackLog.push(data);
 
         if (settings.potatolytics_enabled) {
             if (data[0] === settings.ua_tracking_id) {
@@ -141,14 +147,17 @@ define('tracking',
     logger.log('UA tracking initialized');
 
     z.win.on('navigating', function(e, popped) {
-        // Otherwise we'll track back button hits etc.
-        if (!popped) {
-            var url = get_url();
-            // Pass page vars to UA
-            logger.log('UA-tracking page view', url);
-            var uadata = _.extend({'page': url, 'title': document.title}, track_page_vars);
-            ua_push('send', 'pageview', uadata);
-            track_page_vars = {};
+        // Since we are single-page, send pageviews manually.
+        // Only sends hits *after* we navigate away from the page.
+        // b/c in some cases, have to wait for data to load to get page vars.
+        if (!popped) {  // Don't track back button hits.
+            // Pass page vars to UA.
+            ua_push('send', 'pageview', _.extend({
+                'page': get_url(),
+                'title': document.title
+            }, pageVars));
+            // Then reset page vars.
+            pageVars = {};
         }
     });
 
@@ -162,25 +171,19 @@ define('tracking',
     return {
         enabled: true,
         action_enabled: action_tracking_enabled,
-        track_log: track_log,
-        track_page_vars: track_page_vars,
-        track_vars: track_vars,
-        setVar: actionWrap(function(index, value) {
-            var dimension = 'dimension' + index;
-            ua_push('set', dimension, value);
-            track_log.push([dimension, value]);
-            track_vars[dimension + index] = value;
-        }),
-        setPageVar: actionWrap(function(index, value) {
-            var dimension = 'dimension' + index;
-            track_log.push([dimension, value]);
-            track_page_vars[dimension] = value;
-        }),
-        trackEvent: actionWrap(function() {
+        pageVars: pageVars,
+        sendEvent: actionWrap(function() {
             var args = Array.prototype.slice.call(arguments, 0);
             ua_push.apply(this, ['send', 'event'].concat(args));
-            track_log.push(args);
             return args;
-        })
+        }),
+        setPageVar: actionWrap(function(index, value) {
+            pageVars['dimension' + index] = value;
+        }),
+        setSessionVar: actionWrap(function(index, value) {
+            var dimension = 'dimension' + index;
+            ua_push('set', dimension, value);
+        }),
+        trackLog: trackLog,
     };
 });
