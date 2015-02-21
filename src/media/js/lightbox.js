@@ -16,7 +16,7 @@ define('lightbox',
     var previews;
     var slider;
 
-    $lightbox.addClass('shots');
+    $lightbox.addClass('shots previews-slider');
 
     function showLightbox() {
         logger.log('Opening lightbox');
@@ -24,7 +24,7 @@ define('lightbox',
 
         var $this = $(this);
         var which = $this.closest('li').index();
-        var $tray = $this.closest('.tray');
+        var $tray = $this.closest('.previews-tray');
         var $tile = $tray.siblings('.mkt-tile');
 
         if (!$tile.length) {
@@ -157,7 +157,7 @@ define('lightbox',
     z.win.on('resize', _.debounce(resize, 200));
 
     // If a tray thumbnail is clicked, load up our lightbox.
-    z.page.on('click', '.tray ul a', utils._pd(showLightbox));
+    z.page.on('click', '.previews-tray .screenshot', utils._pd(showLightbox));
 
     // Dismiss the lighbox when we click outside it or on the close button.
     $lightbox.on('click', function(e) {

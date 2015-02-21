@@ -68,7 +68,7 @@
   {% endif %}
 
   {% if tray and len(app.previews) %}
-    <div class="tray previews full {{ 'single' if len(app.previews) == 1 }}">
+    <div class="previews-tray full {{ 'single-preview' if len(app.previews) == 1 }}">
       {{ preview_tray(app, src) }}
     </div>
   {% endif %}
@@ -76,8 +76,8 @@
 
 
 {% macro preview_tray(app, src) %}
-  <div class="slider shots">
-    <ul class="content">
+  <div class="previews-slider">
+    <ul class="previews-content">
       {% for preview in app.previews %}
         <li itemscope itemtype="http://schema.org/ImageObject">
           <a class="screenshot thumbnail" href="{{ preview.image_url }}">
@@ -87,9 +87,9 @@
       {% endfor %}
     </ul>
   </div>
-  <div class="bars">
+  <div class="previews-bars">
     {% for preview in app.previews %}
-      <b class="bar"></b>
+      <b></b>
     {% endfor %}
   </div>
 {% endmacro %}
