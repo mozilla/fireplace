@@ -26,7 +26,7 @@ define('app_list',
     z.body.on('click', '.app-list-filters-expand-toggle', utils._pd(function() {
         expand = !expand;
         initTileState();
-        z.doc.trigger('scroll');  // For defer image loading.
+        z.doc.trigger('image-deferrer--load');
     }));
 
     z.page.on('loaded reloaded_chrome', function() {

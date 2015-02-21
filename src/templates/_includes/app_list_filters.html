@@ -1,12 +1,13 @@
 <div class="app-list-filters">
   <div class="app-list-filters-content">
+
     <div class="app-list-filters-sort">
-      <a {% if not sort %}class="active"{% endif %} href="{{ popular_url }}"
+      <a {% if not sort %}class="active"{% endif %} href="{{ popularUrl }}"
          data-app-list-sort-popular data-preserve-scroll>
          {{ _('Popular') }}
       </a>
       {# L10n: "New" translates to mean "Recent". Make it short (space constraints). #}
-      <a {% if sort == 'reviewed' %}class="active"{% endif %} href="{{ new_url }}"
+      <a {% if sort == 'reviewed' %}class="active"{% endif %} href="{{ newUrl }}"
          data-app-list-sort-new data-preserve-scroll>
          {{ _('New') }}
       </a>

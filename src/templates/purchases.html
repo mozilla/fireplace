@@ -17,7 +17,7 @@
       <ul class="app-list only-logged-in {{ 'paginated' if response.meta.next }}">
         {% for app in this %}
           <li class="item result app-list-app">
-            {{ app_tile(app, tray=true, src='myapps') }}
+            {{ app_tile(app, tray=true, src=trackingEvents.SRCS.purchases) }}
           </li>
         {% endfor %}
 

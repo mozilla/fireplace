@@ -90,7 +90,7 @@ define('tracking',
         } else if (window.ga) {
             window.ga.apply(this, data);
         } else {
-            console.error('Potatolytics is disabled but window.ga is absent!');
+            logger.error('Potatolytics is disabled but window.ga is absent!');
         }
     }
 
@@ -177,11 +177,10 @@ define('tracking',
             ua_push.apply(this, ['send', 'event'].concat(args));
             return args;
         }),
-        setPageVar: actionWrap(function(index, value) {
-            pageVars['dimension' + index] = value;
+        setPageVar: actionWrap(function(dimension, value) {
+            pageVars[dimension] = value;
         }),
-        setSessionVar: actionWrap(function(index, value) {
-            var dimension = 'dimension' + index;
+        setSessionVar: actionWrap(function(dimension, value) {
             ua_push('set', dimension, value);
         }),
         trackLog: trackLog,

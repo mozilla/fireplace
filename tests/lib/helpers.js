@@ -206,27 +206,22 @@ function assertUASetSessionVar(test, trackArgs) {
 
 function assertUATrackingLog(test, trackArgs) {
     var trackExists = casper.evaluate(function(trackArgs) {
-        var trackLog = require('tracking').trackLog;
-
-        // Compare two arrays.
-        function arraysAreEqual(arrA, arrB) {
-            return arrA.length == arrB.length &&
-                arrA.every(function(element, index) {
-                    return element === arrB[index];
-                });
-        }
+        var _ = window.require('underscore');
+        var trackLog = window.require('tracking').trackLog;
 
         return trackLog.filter(function(log) {
+            console.log(JSON.stringify(log));
+            console.log(JSON.stringify(trackArgs));
             if (trackArgs.constructor === String) {
                 // Just compare event name for convenience.
                 return log[2] == trackArgs;
             }
-            return arraysAreEqual(log, trackArgs);
+            return _.isEqual(log, trackArgs);
         }).length !== 0;
     }, trackArgs);
 
     if (!trackExists) {
-        console.log(trackArgs);
+        console.log(JSON.stringify(trackArgs));
     }
     test.assert(trackExists, 'Tracking event exists');
 }

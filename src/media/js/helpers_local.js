@@ -2,23 +2,21 @@ define('helpers_local',
     ['apps', 'categories', 'compat_filter', 'content-ratings',
      'core/format', 'core/helpers', 'core/models', 'core/nunjucks',
      'core/settings', 'core/urls', 'core/utils', 'core/z', 'feed', 'regions',
-     'user_helpers', 'utils_local'],
-    function(apps, categories, compat_filter, iarc,
+     'tracking_events', 'user_helpers', 'utils_local'],
+    function(apps, categories, compatFilter, iarc,
              format, base_helpers, models, nunjucks,
              settings, urls, utils, z, feed, regions,
-             user_helpers, utils_local) {
+             trackingEvents, user_helpers, utils_local) {
     var filters = nunjucks.require('filters');
     var globals = nunjucks.require('globals');
 
     // developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
-    // toLocaleDateString() is unreliable ; on Firefox Android and FxOS, it
-    // will return the date in m/d/Y format, even if you try to pass custom
-    // locale and/or options!.
-    // To avoid having to ship a full re-implementation, we use
-    // Intl.DateTimeFormat(), which is equivalent but only present if the
-    // underlying platform has a full implementation, and fall back to Y-m-d.
-    // This gives us a pretty date format (e.g. Saturday, February 15, 2014) on
-    // desktop, and leaves something somewhat universal on phones (2014-02-15).
+    // toLocaleDateString() on FxAndroid and FxOS returns m/d/Y even if passing
+    // custom locale + options! To not ship full re-implementation, use
+    // Intl.DateTimeFormat(), which is equivalent, but only present if
+    // underlying platform has full implementation. Else fall back to Y-m-d.
+    // Pretty date format (e.g. Saturday, February 15, 2014) on desktop
+    // Something more universal (2014-02-15) on phones.
     var dateFormat;
     if (typeof Intl !== 'undefined' &&
         typeof Intl.DateTimeFormat !== 'undefined') {
@@ -94,14 +92,15 @@ define('helpers_local',
 
     /* Global variables, provided in default context. */
     globals.CATEGORIES = categories;
-    globals.DEVICE_CHOICES = compat_filter.DEVICE_CHOICES;
+    globals.DEVICE_CHOICES = compatFilter.DEVICE_CHOICES;
     globals.feed = feed;
     globals.iarc_names = iarc.names;
     globals.NEWSLETTER_LANGUAGES = settings.NEWSLETTER_LANGUAGES;
     globals.REGIONS = regions.REGION_CHOICES_SLUG;
     globals.user_helpers = user_helpers;
     globals.PLACEHOLDER_ICON = urls.media('fireplace/img/icons/placeholder.svg');
-    globals.compat_filter = compat_filter;
+    globals.compat_filter = compatFilter;
+    globals.trackingEvents = trackingEvents;
 
     /* Helpers functions, provided in the default context. */
     function indexOf(arr, val) {

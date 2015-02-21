@@ -90,7 +90,7 @@ define('image-deferrer', ['underscore', 'core/urls', 'core/z'], function(_, urls
         }
 
         // Defer image loading.
-        z.win.on('scroll resize', scrollListener);
+        z.win.on('scroll resize image-deferrer--load', scrollListener);
 
         function loadImages() {
             // Calculate viewport loading boundaries (vertical).

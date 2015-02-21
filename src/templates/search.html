@@ -35,7 +35,7 @@
       <ul class="app-list {{ 'paginated' if response.meta.next }}">
         {% for result in processor(this) %}
           <li class="item result app-list-app">
-            {{ app_tile(result, src='search', tray=True) }}
+            {{ app_tile(result, tray=True, src=trackingEvents.SRCS.search) }}
           </li>
         {% endfor %}
 

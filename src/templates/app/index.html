@@ -36,7 +36,8 @@
      data-slug="{{ slug }}">
 {% defer (url=endpoint, as='app', key=slug, id='app-data') %}
   <section class="main full app-header expanded"><div>
-    {{ app_tile(this, is_detail=True, tray=True, src='detail') }}
+    {{ app_tile(this, is_detail=True, tray=True,
+                src=trackingEvents.SRCS.detail) }}
   </div></section>
 {% placeholder %}
   <section class="main full app-header expanded"><div>

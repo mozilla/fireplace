@@ -1,16 +1,6 @@
 {% include '_macros/app_tile.html' %}
 {% include '_macros/more_button.html' %}
 
-{% set source = category or 'all' %}
-
-{% set category_url = url('category', [category]) if category else url('homepage') %}
-
-{% set popular_url = category_url|urlparams(src='category-popular') %}
-{% set new_url = category_url|urlparams(sort='reviewed', src='category-new') %}
-
-{% set search_url = url('search')|urlparams(cat=category) if category else url('search') %}
-{% set search_url = search_url|urlparams(sort=sort) if sort == 'reviewed' else search_url %}
-
 <section class="main">
   <div class="subheader cat-header">
     <h1 class="category-header-icon cat-{{ category }} cat-icon">
@@ -27,7 +17,7 @@
   <ul class="app-list {{ 'paginated' if response.meta.next }}">
     {% for app in this %}
       <li class="item result app-list-app">
-        {{ app_tile(app, src=source + '-' + (sort or 'popular'), tray=True) }}
+        {{ app_tile(app, tray=True, src=source) }}
       </li>
     {% endfor %}
 

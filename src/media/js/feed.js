@@ -3,9 +3,11 @@
 */
 define('feed',
     ['collection_colors', 'edbrands', 'core/l10n', 'core/nunjucks',
-     'core/urls', 'core/utils', 'underscore', 'utils_local'],
+     'core/urls', 'core/utils', 'tracking_events', 'underscore',
+     'utils_local'],
     function(colors, brands, l10n, nunjucks,
-             urls, utils, _, utils_local) {
+             urls, utils, trackingEvents, _,
+             utils_local) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -47,12 +49,12 @@ define('feed',
                         feedItem.isPreview = true;
                         break;
                 }
-                feedItem.src = 'featured-app';
+                feedItem.src = trackingEvents.SRCS.featuredApp;
                 break;
             case 'brand':
                 feedItem.color = get_brand_color_class(feedItem);
                 feedItem.name = brands.get_brand_type(feedItem.type, feedItem.apps.length);
-                feedItem.src = 'branded-editorial-element';
+                feedItem.src = trackingEvents.SRCS.brand;
                 break;
             case 'collection':
                 if (feedItem.type == 'promo') {
@@ -60,10 +62,10 @@ define('feed',
                 } else {
                     feedItem.isCollListing = true;
                 }
-                feedItem.src = 'collection-element';
+                feedItem.src = trackingEvents.SRCS.collection;
                 break;
             case 'shelf':
-                feedItem.src = 'operator-shelf-element';
+                feedItem.src = trackingEvents.SRCS.shelf;
                 break;
         }
 

@@ -1,24 +1,114 @@
-/* Centralized UA tracking events, or Fireplace application of tracking.js.
-   Note: UA events are [category, action, label, value].
+/* UA tracking for Fireplace, an application of tracking.js.
+   Note: UA events are [category, action, label, customDimensions or value].
 
-   Other tracking events are found in other files:
-     mobilenetwork.js -- region change.
+   Tracking events that are coded within other modules:
+     all page views -- automatically tracked on 'navigating'.
      views/search.js -- no results event.
-     /popular page views -- automatically tracked on 'navigating'.
-     /new page views -- automatically tracked on 'navigating'.
-     /category/X page views -- automatically tracked on 'navigating'.
 
-   UA `value`s for app installs.
-     0 -- app detail page (because it's the first/only install button)
-     x -- index/position on listing of apps
-     999999999 -- featured app element.
-     999999998 -- editorial brand element.
+   UA Custom Dimensions
+   --------------------
+
+   1 - Logged In Status
+   ======================
+   Whether or not the user is logged in.
+   Used as session variable.
+
+   2 - Currently-selected Platform Filter
+   ======================================
+   What the user has selected as active platform filter.
+   Used as session variable.
+
+   3 - Site Section (Consumer or Developer)
+   ========================================
+   Whether the user is on consumer pages or developer pages.
+   Used as session variable, and will be set to 'consumer' here.
+
+   4 -  Open
+   =========
+   This dimension is currently inactive.
+
+   5 - Category Name
+   =================
+   Slug of the category the user has visited.
+   Used as a page variable for pageview.
+
+   6 - App Name
+   ============
+   App name. Possibly varying if developer localized it.
+   Used as a page variable for pageview and passed with events.
+
+   7 - App ID
+   ==========
+   App ID, a number representing it in our database.
+   Used as a page variable for pageview and passed with events.
+
+   8 - App Developer
+   =================
+   App developer name.
+   Used as a page variable for pageview and passed with events.
+
+   9 - App View Source
+   ===================
+   The source from where the user was led to the app detail page. This will
+   usually track only the immediately previous page. It is done by setting a
+   src query parameter in the URL on app tile links. In some cases, such
+   as the Desktop Promo Carousel which leads to a Collection page, we override
+   the src to given correct attribution to the Desktop Promo Carousel and not
+   the Collection page.
+   Used as a page variable for pageview and passed with events.
+
+   10 - App Type (Free or Paid)
+   ============================
+   Whether or not the app is `free` or `paid`.
+   Used as a page variable for pageview and passed with events.
+
+   11 - Marketplace Region
+   =======================
+   Region from which the user is browsing the Marketplace.
+   Used as a session variable.
+
+   12 - Keywords that Lead to an App View
+   ======================================
+   Search query that leads to an app detail page view.
+   Used as a page variable for pageview.
+
+   13 - Keywords that Lead to an App Install
+   =========================================
+   Search query that leads to an app install.
+   Passed with events (app install event).
+
+   14 - Simulator Traffic
+   ======================
+   Originally meant to be simulatorTraffic. Actually used in App Submission
+   flow to determine which platforms the developer selected for what the app
+   was compatible with.
+
+   15 - Marketplace Version
+   ========================
+   Version of the Marketplace app. This will be 0 if it is hosted/iframed as it
+   is in the browser. It will be the package version if it is a true packaged
+   app such as for Tarako.
+   Used as a session variable.
+
+   16 - Install Attribution for Page
+   =================================
+   From which page an app was installed. Note this is different from Dimension
+   9: App View Source which tracks from which page led the user to the detail
+   page.
+   Passed with events (app install event).
+
+   17 - Install Attribution for Feed Element
+   =========================================
+   From which Feed Element an app was installed. The value will be the slug of
+   the Feed Element. This will be set whether it is on the homepage Feed or
+   from a collection page.
+   Passed with events (app install event).
 */
 define('tracking_events',
-    ['consumer_info', 'jquery', 'core/log', 'core/navigation', 'core/settings',
-     'tracking', 'core/utils', 'user_helpers', 'core/z'],
-    function(consumer_info, $, log, navigation, settings,
-             tracking, utils, user_helpers, z) {
+    ['consumer_info', 'core/log', 'core/settings', 'core/utils', 'jquery',
+     'tracking', 'user_helpers', 'core/z'],
+    function(consumer_info, log, settings, utils, $,
+             tracking, user_helpers, z) {
     'use strict';
     var logger = log('tracking_events');
 
@@ -27,23 +117,40 @@ define('tracking_events',
     var setSessionVar = tracking.setSessionVar;
 
     var DIMENSIONS = {
-        isLoggedIn: 1,
-        siteSection: 3,
-        categoryName: 5,
-        appName: 6,
-        appId: 7,
-        appDeveloper: 8,
-        appViewSource: 9,
-        appPremiumType: 10,
-        region: 11,
-        searchQueryAppView: 12,  // Using this for reviews.
-        searchQueryAppInstall: 13,  // Using this for search query to app view.
-        simulatorTraffic: 14,
-        isPackaged: 15,
+        isLoggedIn: 'dimension1',
+        platformFilter: 'dimension2',
+        siteSection: 'dimension3',
+        categoryName: 'dimension5',
+        appName: 'dimension6',
+        appId: 'dimension7',
+        appDeveloper: 'dimension8',
+        appViewSource: 'dimension9',
+        appPremiumType: 'dimension10',
+        region: 'dimension11',
+        searchQueryAppView: 'dimension12',
+        searchQueryAppInstall: 'dimension13',
+        isPackaged: 'dimension15',
+        installAttribution: 'dimension16',
+        installAttributionSlug: 'dimension17',
     };
 
-    var FEATURED_APP_VALUE = 999999999;
-    var EDITORIAL_BRAND_VALUE = 999999998;
+    var SRCS = {
+        // {0} replaced by category slug.
+        categoryNew: '{0}-new',
+        categoryPopular: '{0}-popular',
+        detail: 'detail',
+        new: 'new',
+        popular: 'popular',
+        purchases: 'myapps',
+        recommended: 'reco',
+        search: 'search',
+        // Feed.
+        featuredApp: 'featured-app',
+        brand: 'branded-editorial-element',
+        collection: 'collection-element',
+        shelf: 'operator-shelf-element',
+        desktopPromo: 'desktop-promo',
+    };
 
     // Track region.
     consumer_info.promise.done(function() {
@@ -185,7 +292,6 @@ define('tracking_events',
             'Successful review'
         );
         sendEvent('Write a Review', 'click', slug, rating);
-        setSessionVar(DIMENSIONS.searchQueryAppView, 'Reviewer');
     }));
 
     if (tracking.actions_enabled) {
@@ -198,75 +304,91 @@ define('tracking_events',
         });
     }
 
-    function trackAppHit(app) {
+    function getAppDimensions($installBtn) {
+        // Given install button, return an object with appropriate custom UA
+        // dimensions set.
+        var custom = {};
+        var app = $installBtn.data('product');
+
+        custom[DIMENSIONS.appName] = app.name;
+        custom[DIMENSIONS.appId] = app.id + '';
+        custom[DIMENSIONS.appDeveloper] = app.author;
+        custom[DIMENSIONS.appPremiumType] = app.payment_required ? 'paid' :
+                                                                   'free';
+
+        if ($('[data-page-type~="detail"]').length) {
+            // Track how we arrived at the app detail page.
+            var src = utils.getVars().src || 'direct';
+            custom[DIMENSIONS.appViewSource] = src;
+        }
+
+        // Attach from where the app was installed.
+        custom[DIMENSIONS.installAttribution] = $installBtn.data('source');
+
+        // If from a feed element, attach the feed element's slug.
+        var $trackingSlug = $installBtn.closest('[data-tracking]');
+        if ($trackingSlug.length) {
+            custom[DIMENSIONS.installAttributionSlug] =
+                $trackingSlug.data('tracking');
+        }
+
+        return custom;
+    }
+
+    function trackAppHit($installBtn) {
         // Set page vars for app.
-        if (!app) {
+        $installBtn = $installBtn || $('.install');
+        if (!$installBtn.length) {
             return;
         }
-        tracking.setPageVar(DIMENSIONS.appName, app.name);
-        tracking.setPageVar(DIMENSIONS.appId, app.id + '');
-        tracking.setPageVar(DIMENSIONS.appDeveloper, app.author);
-        tracking.setPageVar(DIMENSIONS.appViewSource,
-                            utils.getVars().src || 'direct');
-        tracking.setPageVar(DIMENSIONS.appPremiumType,
-                            app.payment_required ? 'paid' : 'free');
+
+        Object.keys(getAppDimensions($installBtn)).forEach(function(dim) {
+            tracking.setPageVar(dim, dimensions[dim]);
+        });
     }
 
     // Tracking methods for specific events.
-    function track_app_launch(product) {
-        // Track app launch.
+    function track_app_launch($installBtn) {
+        var app = $installBtn.data('product');
+
         sendEvent(
             'Launch app',
-            product.payment_required ? 'Paid' : 'Free',
-            product.slug
+            app.payment_required ? 'paid' : 'free',
+            app.slug,
+            getAppDimensions($installBtn)
         );
     }
 
-    function _get_app_install_value($install_btn) {
-        // Given install button, get the appropriate UA value.
-        if ($install_btn.closest('.featured-app').length) {
-            // Fixed value for apps.
-            return FEATURED_APP_VALUE;
-        }
-        if ($install_btn.closest('.feed-brand').length) {
-            // Fixed value for brands.
-            return EDITORIAL_BRAND_VALUE;
-        }
-        if ($install_btn.closest('.feed-collection').length) {
-            // Only get position within the listing collection.
-            return $('.feed-collection .button.product').index($install_btn);
-        }
-        // Position within app listing.
-        return $('.button.install').index($install_btn);
-    }
+    function trackAppInstallBegin($installBtn) {
+        var app = $installBtn.data('product');
 
-    function track_app_install_begin(product, $install_btn) {
-        // Track app install start.
         sendEvent(
             'Click to install app',
-            product.receipt_required ? 'paid' : 'free',
-            product.name + ':' + product.id,
-            _get_app_install_value($install_btn)
+            app.receipt_required ? 'paid' : 'free',
+            app.name + ':' + app.id,
+            getAppDimensions($installBtn)
         );
     }
 
-    function track_app_install_success(product, $install_btn) {
-        // Track app install finish.
+    function trackAppInstallSuccess($installBtn) {
+        var app = $installBtn.data('product');
+
         sendEvent(
             'Successful app install',
-            product.receipt_required ? 'paid' : 'free',
-            product.name + ':' + product.id,
-            _get_app_install_value($install_btn)
+            app.receipt_required ? 'paid' : 'free',
+            app.name + ':' + app.id,
+            getAppDimensions($installBtn)
         );
     }
 
-    function track_app_install_fail(product, $install_btn) {
-        // Track app install fail.
+    function trackAppInstallFail($installBtn) {
+        var app = $installBtn.data('product');
+
         sendEvent(
             'App failed to install',
-            product.receipt_required ? 'paid' : 'free',
-            product.name + ':' + product.id,
-            _get_app_install_value($install_btn)
+            app.receipt_required ? 'paid' : 'free',
+            app.name + ':' + app.id,
+            getAppDimensions($installBtn)
         );
     }
 
@@ -276,8 +398,10 @@ define('tracking_events',
 
     return {
         DIMENSIONS: DIMENSIONS,
+        SRCS: SRCS,
         track_search_term: function(page) {
             // page -- whether the search query is being tracked for page view.
+            var navigation = require('core/navigation');
             var nav_stack = navigation.stack();
             for (var i = 0; i < nav_stack.length; i++) {
                 var item = nav_stack[i];
@@ -287,16 +411,17 @@ define('tracking_events',
                 logger.log('Found search in nav stack, tracking search term:',
                            item.params.search_query);
                 tracking[page ? 'setPageVar' : 'setSessionVar'](
-                    DIMENSIONS.searchQueryAppInstall, item.params.search_query);
+                    DIMENSIONS.searchQueryAppInstall,
+                    item.params.search_query);
                 return;
             }
             logger.log('No associated search term to track.');
         },
         trackAppHit: trackAppHit,
         track_app_launch: track_app_launch,
-        track_app_install_begin: track_app_install_begin,
-        track_app_install_success: track_app_install_success,
-        track_app_install_fail: track_app_install_fail,
+        trackAppInstallBegin: trackAppInstallBegin,
+        trackAppInstallSuccess: trackAppInstallSuccess,
+        trackAppInstallFail: trackAppInstallFail,
         trackCategoryHit: trackCategoryHit,
     };
 });
