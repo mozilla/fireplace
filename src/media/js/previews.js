@@ -50,7 +50,7 @@ define('previews',
 
     function isDesktopDetail() {
         return $('[data-page-type~="detail"]').length &&
-            isDesktop && window.matchMedia(mediaSwitch).matches;
+                window.matchMedia(mediaSwitch).matches;
     }
 
     function initTrays() {
@@ -119,7 +119,9 @@ define('previews',
 
         initUpdatePosition($bars, slider);
         sliders.push(slider);
-        handles.attachHandles(slider, $slider);
+        if (isDesktop) {
+            handles.attachHandles(slider, $slider);
+        }
     }
 
     // Reinitialize Flipsnap positions on resize.
