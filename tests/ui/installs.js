@@ -22,7 +22,7 @@ casper.test.begin('Test mozApps mock', {
 });
 
 
-casper.test.begin('Test install button changes to launch', {
+casper.test.begin('Test install app', {
     test: function(test) {
         helpers.startCasper('/app/free');
 
@@ -45,6 +45,10 @@ casper.test.begin('Test install button changes to launch', {
         // Test that it is still a launch button.
         casper.waitForSelector('.launch', function() {
             test.assertSelectorHasText('.launch', 'Open');
+
+            test.assert(casper.evaluate(function() {
+                return window.require('z').apps.length == 1;
+            }), 'Test install recorded in z.apps');
         });
 
         helpers.done(test);

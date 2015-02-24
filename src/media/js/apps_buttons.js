@@ -288,6 +288,10 @@ define('apps_buttons',
             logger.log('Marking as installed', manifest_url);
             $button = get_button(manifest_url);
         }
+        if ($button.data('price-only')) {
+            // Feed only want to show price and not install status.
+            return;
+        }
         if ($button.data('product').role === 'langpack') {
             // Never show the 'Open' text for installed langpacks. Instead, say
             // "Installed" and disable it.
