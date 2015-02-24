@@ -141,7 +141,7 @@ define('reviews',
                     endpoint = urls.api.host(endpoint) + endpoint;
                 } else {
                     endpoint = urls.api.params('reviews', {
-                        app: $('[data-app]').data('slug'),
+                        app: $('[data-app]').data('app'),
                         user: 'mine'
                     });
                 }
