@@ -211,7 +211,7 @@ define('reviews',
         var data = utils.getVars($this.serialize());
         var slug = data.app;
 
-        // This must be below `.serialize()`. Disabled form controls aren't posted.
+        // Must be below `.serialize()`.  Disabled form controls aren't posted.
         forms.toggleSubmitFormState($this);
 
         requests.post(urls.api.url('reviews'), data).done(function(new_review) {

@@ -155,6 +155,7 @@ define('previews',
             e.destroy();
         }
         sliders = [];
+        desktopMarginLeft = 0;
     });
 
     z.page.on('populatetray', function() {
