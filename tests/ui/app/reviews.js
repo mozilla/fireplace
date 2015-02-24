@@ -1,7 +1,7 @@
 /*
     Tests for app reviews.
 */
-var helpers = require('../lib/helpers');
+var helpers = require('../../lib/helpers');
 
 function testAddReviewForm(test) {
     // Checks review form existence and validation.
@@ -211,6 +211,15 @@ casper.test.begin('Test edit review on review page', {
         casper.waitForSelector('.edit-review-form', function() {
             test.assertUrlMatch(/\/app\/has_rated\/ratings\/edit/);
             testEditReviewForm(test);
+
+            helpers.assertAPICallWasMade('/api/v2/apps/rating/', {
+                _user: 'mocktoken',
+                app: 'has_rated',
+                lang: 'en-US',
+                limit: '24',
+                region: 'us',
+                user: 'mine'
+            });
         });
 
         helpers.done(test);
