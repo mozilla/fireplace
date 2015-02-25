@@ -16,13 +16,13 @@
           id='searchresults') %}
   <section class="main">
     <div class="subheader">
-      <h1 class="search-results-header hide-on-mobile">
+      <h1 class="search-results-header search-results-header-mobile">
         {{ _plural('<b>"{search_query}"</b> returned {n} result',
                    '<b>"{search_query}"</b> returned {n} results',
                    search_query=raw_query|escape,
                    n=response.meta.total_count) }}
       </h1>
-      <h1 class="search-results-header hide-on-desktop">
+      <h1 class="search-results-header search-results-header-desktop">
         {{ _plural('<b>{n}</b> Result', '<b>{n}</b> Results', n=response.meta.total_count) }}
         <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
       </h1>
