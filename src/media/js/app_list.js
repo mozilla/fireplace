@@ -34,9 +34,8 @@ define('app_list',
         if ($('.main:not(.feed-landing-apps) .app-list').length) {
             initTileState();
         }
-    });
-
-    z.page.on('loaded_more', function() {
+        $('.app-list').addClass('show-app-list');
+    }).on('loaded_more', function() {
         // Remove paginated class from app lists if .loadmore goes away.
         if (!$('.loadmore').length) {
             $('.app-list').removeClass('paginated');

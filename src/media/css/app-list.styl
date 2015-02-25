@@ -25,6 +25,7 @@ $desktop-tile-padding = 20px 50px;
 
 .app-list {
     list-style: none;
+    opacity: 0;
 
     // Masking element to cover the last row's bottom border.
     &:after {
@@ -40,6 +41,9 @@ $desktop-tile-padding = 20px 50px;
     }
     &.expanded .app-list-app {
         padding-bottom: 40px;
+    }
+    &.show-app-list {
+        opacity: 1;
     }
 }
 
