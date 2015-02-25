@@ -1,5 +1,5 @@
 /*
-    Compatibility filtering.
+    Compatibility filtering. Also sets some default API arguments.
 
     Note that endpoint_name must be passed to views looking to use
     compatiibility filtering since the `select`s need an endpoint_name.
@@ -157,6 +157,7 @@ define('compatibility_filtering',
         DEVICE_CHOICES: DEVICE_CHOICES,
         device_filter_name: device_filter_name,
         feature_profile: feature_profile,
+        limit: limit,
         is_preference_selected: is_preference_selected,
         set_preference: set_preference
     };
