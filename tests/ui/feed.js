@@ -216,3 +216,21 @@ casper.test.begin('Test brand does not show collection app icons', {
         helpers.done(test);
     }
 });
+
+
+casper.test.begin('Test clicking on brand sets correct src', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('[data-tracking="brand-grid"] .feed-view-all-tab');
+        });
+
+        casper.waitForSelector('[data-brand-landing]', function() {
+            test.assertUrlMatch(
+                /feed\/editorial\/brand-grid\?src=branded-editorial-element/);
+        });
+
+        helpers.done(test);
+    }
+});
