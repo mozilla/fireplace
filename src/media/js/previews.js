@@ -4,8 +4,8 @@
     On desktop, adds prev/next buttons to navigate images.
 */
 define('previews',
-    ['flipsnap', 'log', 'capabilities', 'shothandles', 'z'],
-    function(flipsnap, log, caps, handles, z) {
+    ['flipsnap', 'log', 'capabilities', 'shothandles', 'underscore', 'z'],
+    function(flipsnap, log, caps, handles, _, z) {
     var logger = log('previews');
 
     // Padded size of preview images (in pixels).
@@ -24,6 +24,8 @@ define('previews',
     var isDesktop = !!(caps.device_type() == 'desktop');
     var isDesktopInitialized = false;
 
+    var desktopMarginLeft = 0;  // Keep track of left offset.
+
     function setActiveBar($bars, position) {
         $bars.filter('.current').removeClass('current');
         $bars.eq(position).addClass('current');
@@ -39,13 +41,14 @@ define('previews',
     }
 
     function refreshDesktopTray() {
-        winWidth = z.win.width();
-        $('.previews-tray').css({
-            // Resize tray to winWidth then shift left by half the margin.
-            left: -(winWidth - dimensions.contentWidth) / 2 + 'px',
-            width: winWidth + 'px'
-        });
-        logger.log('resized');
+        var $tray = $('.previews-tray');
+
+        $tray.css('width', z.win.width() + 'px');
+
+        // Realign the preview tray to the window.
+        var offset = $tray.offset();
+        desktopMarginLeft += -1 * offset.left;
+        $tray.css('margin-left', desktopMarginLeft + 'px');
     }
 
     function isDesktopDetail() {
@@ -129,6 +132,9 @@ define('previews',
         for (var i = 0, e; e = sliders[i++];) {
             e.refresh();
         }
+    });
+
+    z.win.resize(_.debounce(function() {
         if (isDesktopDetail()) {
             // If the desktop tray exists only refresh its position and size.
             // Otherwise create the desktop tray.
@@ -139,8 +145,9 @@ define('previews',
             }
         } else {
             $('.previews-tray').attr('style', '');
+            desktopMarginLeft = 0;
         }
-    });
+    }));
 
     // We're leaving the page, so destroy Flipsnap.
     z.win.on('unloading.tray', function() {
@@ -148,6 +155,7 @@ define('previews',
             e.destroy();
         }
         sliders = [];
+        desktopMarginLeft = 0;
     });
 
     z.page.on('populatetray', function() {

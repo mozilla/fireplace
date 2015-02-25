@@ -168,13 +168,67 @@ casper.test.begin('Test Feed navigation and tracking events', {
 });
 
 
-casper.test.begin('Test brand grid install buttons disabled', {
+casper.test.begin('Test grid layout install buttons disabled', {
     test: function(test) {
         helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
             test.assertDoesntExist('.feed-brand.feed-layout-grid .install:not([disabled])',
                                    'Check all install buttons disabled for grid');
+
+            casper.click('.feed-brand.feed-layout-grid .mkt-tile');
+        });
+
+        casper.waitForSelector('[data-page-type~="detail"]', function() {
+            casper.click('.install');
+        });
+
+        casper.waitForSelector('.launch', function() {
+            casper.back();
+        });
+
+        casper.waitForSelector('.feed-brand.feed-layout-grid', function() {
+            casper.evaluate(function() {
+                window.require('apps_buttons').mark_btns_as_installed();
+            });
+
+            casper.wait(250, function() {
+                test.assertDoesntExist('.feed-brand.feed-layout-grid .install:not([disabled])',
+                                       'Check all install buttons disabled for grid');
+                test.assertSelectorDoesntHaveText('.install em', 'Open');
+            });
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test brand does not show collection app icons', {
+    test: function(test) {
+        helpers.startCasper('/feed/editorial/brand-grid');
+
+        helpers.waitForPageLoaded(function() {
+            test.assertExists('[data-brand-landing]');
+            test.assertDoesntExist('.feed-landing-app-icons');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test clicking on brand sets correct src', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('[data-tracking="brand-grid"] .feed-view-all-tab');
+        });
+
+        casper.waitForSelector('[data-brand-landing]', function() {
+            test.assertUrlMatch(
+                /feed\/editorial\/brand-grid\?src=branded-editorial-element/);
         });
 
         helpers.done(test);

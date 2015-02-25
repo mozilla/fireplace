@@ -15,6 +15,7 @@
                  {{ 'paid' if app.payment_required }}
                  {{ 'incompatible' if app_incompat(app) }}"
           {{ data_attrs|make_data_attrs }}
+          {{ 'data-price-only="true"' if price_only }}
           {{ 'disabled' if price_only or app_incompat(app) or
                            (app.role == 'langpack' and installed) }}
           data-product="{{ app|json }}">
