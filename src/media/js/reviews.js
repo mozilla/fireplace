@@ -210,8 +210,6 @@ define('reviews',
         var $this = $(this);
         var data = utils.getVars($this.serialize());
         var slug = data.app;
-
-        // Must be below `.serialize()`.  Disabled form controls aren't posted.
         forms.toggleSubmitFormState($this);
 
         requests.post(urls.api.url('reviews'), data).done(function(new_review) {
@@ -249,15 +247,44 @@ define('reviews',
                 info: {average: new_rating, slug: slug},
                 objects: [new_review]
             });
+
             notify({message: gettext('Your review was successfully posted. Thanks!')});
-
             z.page.trigger('navigate', urls.reverse('app', [slug]));
-
         }).fail(function() {
             forms.toggleSubmitFormState($this, true);
             notify({message: gettext('Sorry, there was an error posting your review. Please try again later.')});
         });
     }));
+
+    z.doc.on('submit', '.edit-review-form', utils._pd(function(e) {
+        var $this = $(this);
+        var resource_uri = $this.data('uri');
+        var uri = settings.api_url + urls.api.sign(resource_uri);
+        var data = utils.getVars($this.serialize());
+        var slug = data.app;
+        forms.toggleSubmitFormState($this);
+
+        requests.put(uri, data).done(function(editedReview) {
+            // Rewrite cache with edited review.
+            cache.set(settings.api_url + editedReview.resource_uri, editedReview);
+
+            rewriter(slug, function(reviews) {
+                reviews.objects.forEach(function(obj, i) {
+                    if (reviews.objects[i].resource_uri === resource_uri) {
+                        reviews.objects[i].body = data.body;
+                        reviews.objects[i].rating = data.rating;
+                    }
+                });
+                return reviews;
+            });
+
+            notify({message: gettext('Your review was successfully edited')});
+            z.page.trigger('navigate', urls.reverse('app', [slug]));
+        }).fail(function() {
+            forms.toggleSubmitFormState($this, true);
+            notify({message: gettext('Sorry, there was an issue editing your review. Please try again later')});
+        });
+    }))
 
     return {
         _rewriter: rewriter

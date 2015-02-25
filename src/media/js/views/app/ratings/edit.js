@@ -1,41 +1,7 @@
 define('views/app/ratings/edit',
-    ['cache', 'forms', 'l10n', 'notification', 'requests', 'reviews',
-     'settings', 'urls', 'user', 'utils', 'z'],
-    function(cache, forms, l10n, notification, requests, reviews,
-             settings, urls, user, utils, z) {
+    ['l10n', 'urls', 'user', 'utils', 'z'],
+    function(l10n, urls, user, utils, z) {
     var gettext = l10n.gettext;
-    var notify = notification.notification;
-
-    z.doc.on('submit', '.edit-review-form', utils._pd(function(e) {
-        var $this = $(this);
-        var resource_uri = $this.data('uri');
-        var uri = settings.api_url + urls.api.sign(resource_uri);
-        var data = utils.getVars($this.serialize());
-        var slug = data.app;
-
-        forms.toggleSubmitFormState($this);
-
-        requests.put(uri, data).done(function(data) {
-            notify({message: gettext('Your review was successfully edited')});
-
-            // Rewrite cache with new review.
-            cache.set(uri, data);
-            reviews._rewriter(slug, function(_reviews) {
-                _reviews.objects.forEach(function(obj, i) {
-                    if (_reviews.objects[i].resource_uri === resource_uri) {
-                        _reviews.objects[i].body = data.body;
-                        _reviews.objects[i].rating = data.rating;
-                    }
-                });
-                return _reviews;
-            });
-
-            z.page.trigger('navigate', urls.reverse('app', [slug]));
-        }).fail(function() {
-            forms.toggleSubmitFormState($this, true);
-            notify({message: gettext('Sorry, there was an issue editing your review. Please try again later')});
-        });
-    }))
 
     function normalize(inbound) {
         // Normalizes the inbound API response in case list is returned.
