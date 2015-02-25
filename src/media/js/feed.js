@@ -15,7 +15,7 @@ define('feed',
         if (feedItem.app) {
             feedItem.isApp = true;
             feedItem.itemType = 'app';
-        } else if (feedItem.layout && !feedItem.name) {
+        } else if (feedItem.layout) {
             feedItem.isBrand = true;
             feedItem.itemType = 'brand';
         } else if (feedItem.carrier) {

@@ -202,3 +202,17 @@ casper.test.begin('Test grid layout install buttons disabled', {
         helpers.done(test);
     }
 });
+
+
+casper.test.begin('Test brand does not show collection app icons', {
+    test: function(test) {
+        helpers.startCasper('/feed/editorial/brand-grid');
+
+        helpers.waitForPageLoaded(function() {
+            test.assertExists('[data-brand-landing]');
+            test.assertDoesntExist('.feed-landing-app-icons');
+        });
+
+        helpers.done(test);
+    }
+});
