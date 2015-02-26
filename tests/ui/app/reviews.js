@@ -1,6 +1,7 @@
 /*
     Tests for app reviews.
 */
+var constants = require('../../lib/constants');
 var helpers = require('../../lib/helpers');
 
 function testAddReviewForm(test) {
@@ -103,6 +104,44 @@ casper.test.begin('Test flag review', {
         });
 
         casper.waitForSelector('.reviews-listing', function() {
+            test.assertExists('[data-review-has-flagged="true"]');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test flag review on loadmore', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/someapp/ratings'});
+
+        helpers.waitForPageLoaded(function() {
+            casper.click(constants.LOADMORE_SEL);
+        });
+
+        casper.waitForSelector('.review:nth-child(25)', function() {
+            casper.click('.review:nth-child(25) [data-action="report"]');
+        });
+
+        casper.waitForSelector('.flag-review-form', function() {
+            casper.click('.flag-review-form .reasons a');
+        });
+
+        casper.waitForSelector('[data-review-has-flagged="true"]', function() {
+            test.assertDoesntExist('.flag-review-form');
+
+            // Navigate back and forward to check that we cache-busted the
+            // review and marked it as has_flagged. When we return, it should
+            // still be flagged.
+            casper.click('.back-to-app');
+        });
+
+        casper.waitForSelector('[data-page-type~="detail"]', function() {
+            casper.back();
+        });
+
+        casper.waitForSelector('.review:nth-child(25)', function() {
             test.assertExists('[data-review-has-flagged="true"]');
         });
 
@@ -442,6 +481,32 @@ casper.test.begin('Test login to review if already reviewed on desktop detail', 
 
         helpers.waitForPageLoaded(function() {
             test.assertExists('.edit-review-form');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test review pagination cache rewrite', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/someapp/ratings'});
+
+        helpers.waitForPageLoaded(function() {
+            casper.click(constants.LOADMORE_SEL);
+        });
+
+        var sel = '.review:nth-child(' + (constants.PAGINATION_LIMIT + 1) + ')';
+        casper.waitForSelector(sel, function() {
+            casper.click('.back-to-app');
+        });
+
+        casper.waitForSelector('[data-page-type~="detail"] .review-buttons', function() {
+            casper.click('.review-buttons li:last-child a');
+        });
+
+        casper.waitForSelector('.reviews-listing', function() {
+            test.assertExists(sel);
         });
 
         helpers.done(test);

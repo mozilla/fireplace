@@ -12,6 +12,7 @@ casper.test.begin('Test search results header', {
         helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
+            test.assertNotVisible('.search-results-header-desktop');
             casper.fill('.search', {q: 'test'}, true);
         });
 
@@ -122,6 +123,20 @@ casper.test.begin('Test search potato', {
             // Test search results count in header.
             test.assertSelectorHasText('.search-results-header',
                                        '":paid" returned 42 results');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test search results header desktop', {
+    test: function(test) {
+        helpers.startCasper({path: '/search?q=abc', viewport: 'tablet'});
+
+        helpers.waitForPageLoaded(function() {
+            test.assertNotVisible('.search-results-header-mobile');
+            test.assertVisible('.search-results-header-desktop');
         });
 
         helpers.done(test);

@@ -1,10 +1,10 @@
 define('reviews',
-    ['cache', 'capabilities', 'forms', 'jquery', 'l10n', 'login', 'models',
-     'notification', 'nunjucks', 'ratingwidget', 'requests', 'settings',
-     'underscore', 'utils', 'urls', 'user', 'z'],
-    function(cache, caps, forms, $, l10n, login, models,
-             notification, nunjucks, ratingwidget, requests, settings,
-             _, utils, urls, user, z) {
+    ['cache', 'capabilities', 'compatibility_filtering', 'forms', 'jquery',
+     'l10n', 'login', 'models', 'notification', 'nunjucks', 'ratingwidget',
+     'requests', 'settings', 'underscore', 'utils', 'urls', 'user', 'z'],
+    function(cache, caps, compat, forms, $,
+             l10n, login, models, notification, nunjucks, ratingwidget,
+             requests, settings, _, utils, urls, user, z) {
     var gettext = l10n.gettext;
     var notify = notification.notification;
 
@@ -38,12 +38,13 @@ define('reviews',
                 notify({message: gettext('This review has been successfully flagged. Thanks!')});
 
                 // Cache-bust so the report link doesn't show up in session.
-                var slug = $('[data-slug]').data('slug');
-                var endpoint = urls.api.params('reviews', {app: slug});
+                var reviewsEndpoint = urls.api.params('reviews', {
+                    app: $('[data-slug]').data('slug')
+                });
                 var index = $('.review').index($review);
-                var appReviewsCache = cache.get(endpoint);
+                var appReviewsCache = cache.get(reviewsEndpoint);
                 appReviewsCache.objects[index].has_flagged = true;
-                cache.set(endpoint, appReviewsCache);
+                cache.set(reviewsEndpoint, appReviewsCache);
             }).fail(function() {
                 notify({message: gettext('Sorry, there was an issue flagging the review. Please try again later.')});
             });

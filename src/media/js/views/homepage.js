@@ -66,14 +66,6 @@ define('views/homepage',
 
         builder.onload('feed-items', function(data) {
             utils_local.initSalvattore(document.querySelector('.home-feed'));
-
-            z.page.one('loaded', function() {
-                // Undo preserve scroll until we correctly auto-inject
-                // already-loaded pages of Feed when clicking back.
-                setTimeout(function() {
-                    z.body.css('min-height', 'auto');
-                });
-            });
         });
     };
 });

@@ -1,3 +1,8 @@
+/*
+    Cache rewriters. Mostly used to rewrite the first page of paginated
+    endpoints such that when the user revisits the page, other pages are
+    automatically loaded.
+*/
 define('rewriters',
     ['log', 'settings', 'underscore', 'urls', 'utils'],
     function(log, settings, _, urls, utils) {
@@ -37,17 +42,16 @@ define('rewriters',
         return [];
     }
 
-    return [
-        // My Apps pagination rewriter.
-        pagination(urls.api.base.url('installed')),
-
-        // Recommended pagination rewriter.
-        pagination(urls.api.base.url('recommended')),
-
-        // Search pagination rewriter.
-        pagination(urls.api.base.url('search')),
-
-        // Langpacks rewriter.
-        pagination(urls.api.base.url('langpacks')),
+    var rewriteEndpoints = [
+        'feed',
+        'installed',
+        'recommended',
+        'reviews',
+        'search',
+        'langpacks'
     ];
+
+    return rewriteEndpoints.map(function(endpoint) {
+        return pagination(urls.api.base.url(endpoint));
+    });
 });
