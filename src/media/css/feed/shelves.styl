@@ -25,7 +25,7 @@ $mtn_color = #CD6723;
 
 shelf_curve_color($color) {
     // For the 300px shelf tile.
-    .curve {
+    .feed-item-curve {
         background: rgba($color, 0.55);
     }
     .feed-landing-header-mobile .curve {
@@ -48,7 +48,7 @@ shelf_curve_color($color) {
 .shelf {
     height: 90px;
 
-    .curve {
+    .feed-item-curve {
         background-color: rgba($default_shelf_color, 0.55);
         top: 50px;
     }
@@ -57,10 +57,10 @@ shelf_curve_color($color) {
         margin-top: 60px;
         z-index: 15;
     }
-    .desc,
-    .author {
-        display: none;
-    }
+}
+
+.feed-landing-header-mobile .shelf .feed-item-curve {
+    top: 80px;
 }
 
 [data-carrier="telefonica"] {

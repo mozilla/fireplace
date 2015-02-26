@@ -152,54 +152,6 @@
     position: relative;
     width: $mobile-tile-width;
 
-    .curve,
-    .alt-curve {
-        border-radius: 50% 50% 0 0;
-        left: -50px;
-        position: absolute;
-        top: 23px;
-        width: 400px;
-        z-index: 10;
-    }
-    .curve {
-        height: 60px;
-    }
-    .alt-curve {
-        height: 53px;
-        margin-top: -10px;
-        position: relative;
-        top: 0;
-    }
-    .info {
-        margin-top: 90px;
-        padding: 0 0 20px;
-        text-align: center;
-        width: $mobile-tile-width;
-
-        .name,
-        .author {
-            max-width: $mobile-tile-width;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .desc {
-            max-width: $mobile-tile-width;
-            padding: 0 10px;
-            type_body($white);
-        }
-    }
-    h1 {
-        font-size: 20px;
-        font-weight: 300;
-        line-height: 25px;
-    }
-    .author {
-        font-size: 12px;
-        line-height: $vertical-margin;
-    }
-    h1,
-    .author,
     img {
         color: $white;
     }
@@ -222,33 +174,80 @@
                 margin-right: 0;
             }
         }
-        + .curve {
+        + .feed-item-curve {
+            height: 60px;
             top: 30px;
         }
     }
-    &.full.has-background .info {
-        margin-top: 83px;
+    &.has-desc .feed-item-curve {
+        height: 60px;
+        top: 75px;
+    }
+    .app-icons + .feed-item-curve {
+        top: 30px;
+    }
+}
 
-        .desc {
-            padding: 10px;
-        }
-    }
-    &.full.has-background {
-        .info {
-            position: relative;
-            top: 10px;
-            z-index: 15;
-        }
-        .curve {
-            top: 75px;
-        }
-        .curve-bottom {
-            height: 200px;
-            position: absolute;
-            top: 60px;
-            width: 400px;
-        }
-    }
+// Promo tile classes.
+.feed-item-info {
+    margin-top: 90px;
+    padding: 0 10px 20px;
+    position: relative;
+    text-align: center;
+    width: $mobile-tile-width;
+    z-index: 10;
+}
+.feed-item-author {
+    line-height: $vertical-margin;
+}
+.feed-item-name {
+    color: $white;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 25px;
+}
+.feed-item-name,
+.feed-item-author {
+    ellipsis();
+    position: relative;
+    top: 8px;
+}
+.feed-item-author,
+.feed-item-desc {
+    type_body($white);
+}
+.feed-item-desc {
+    margin-top: 20px;
+}
+.feed-item-mask {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 5;
+}
+.feed-item-curve {
+    border-radius: 50% 50% 0 0;
+    height: 80px;
+    left: -50px;
+    position: absolute;
+    top: 80px;
+    width: 400px;
+    z-index: 10;
+}
+.feed-item-mask + .feed-item-curve {
+    top: 75px;
+}
+
+// Featured app authors have a smaller font size.
+.featured-app .feed-item-author {
+    font-size: 12px;
+}
+
+// Op shelf names are not a child of feed-item-info.
+.shelf .feed-item-name {
+    padding: 0 10px;
+    text-align: center;
+    top: 0;
 }
 
 [data-feed-app-has-background]:not([data-feed-app-type-icon]) .info {
@@ -263,5 +262,13 @@ section.full.feed-item {
     &:hover,
     &:active {
         text-decoration: none;
+    }
+}
+
+// Resize based on percentages after mobile widths.
+@media (min-width: 360px) {
+    .feed-item-curve {
+        left: -15%;
+        width: 130%;
     }
 }
