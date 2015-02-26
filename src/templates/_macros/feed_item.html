@@ -26,12 +26,15 @@
                                  feed_app.app.name|translate(feed_app.app)) }}</li>
           </ul>
         {% endif %}
-        <div class="feed-curve curve"
+        <div class="feed-item-curve"
              style="background-color: {{ feed_app.inline_color|hex2rgba('.85') }}">
         </div>
-        <div class="info" style="background-color: {{ feed_app.inline_color|hex2rgba('.85') }}">
-          <h1 class="name">{{ feed_app.app.name|translate(feed_app) }}</h1>
-          <p class="author">{{ feed_app.app.author }}</p>
+        <div class="feed-item-info"
+          {% if feed_app.isIcon %}
+            style="background-color: {{ feed_app.inline_color|hex2rgba('.85') }}"
+          {% endif %}>
+          <h1 class="feed-item-name">{{ feed_app.app.name|translate(feed_app) }}</h1>
+          <p class="feed-item-author">{{ feed_app.app.author }}</p>
         </div>
       </section>
     {% else %}
@@ -89,7 +92,7 @@
   {% set coll = feed.transformer(coll) %}
   {% set desc = coll.description|translate(coll) %}
 
-  <section class="feed-item feed-collection full
+  <section class="feed-item feed-collection
                   {{ 'has-desc' if desc }}
                   {{ 'has-background deferred-background' if coll.background_image}}"
            data-tracking="{{ coll.slug }}"
@@ -106,21 +109,26 @@
         {% endfor %}
       </ul>
     {% endif %}
-    <div class="feed-curve curve"
-         style="background-color: {{ coll.inline_color|hex2rgba('.85') }}">
-      {% if coll.background_image %}
-        <div class="curve-bottom"
-             style="background-color: {{ coll.inline_color|hex2rgba('.85') }}">
-        </div>
-      {% endif %}
-    </div>
-    <div class="info"
-      {% if not coll.background_image %}
+    {% if coll.background_image %}
+      <div class="feed-item-mask"
+           style="background-color: {{ coll.inline_color|hex2rgba('.5') }}"></div>
+      <div class="feed-item-curve"
+           style="background-color: {{ coll.inline_color }}">
+      </div>
+    {% else %}
+      <div class="feed-item-curve"
+           style="background-color: {{ coll.inline_color|hex2rgba('.85') }}">
+      </div>
+    {% endif %}
+    <div class="feed-item-info"
+      {% if coll.background_image and desc %}
+        style="background-color: {{ coll.inline_color }}"
+      {% else %}
         style="background-color: {{ coll.inline_color|hex2rgba('.85') }}"
       {% endif %}>
-      <h1 class="name">{{ coll.name|translate(coll)|safe }}</h1>
+      <h1 class="feed-item-name">{{ coll.name|translate(coll)|safe }}</h1>
       {% if desc %}
-        <p class="desc">{{ desc }}</p>
+        <p class="feed-item-desc">{{ desc }}</p>
       {% endif %}
     </div>
   </section>
@@ -265,9 +273,9 @@
            data-src="{{ shelf.background_image_landing if landing else
                         shelf.background_image }}"
            data-carrier="{{ shelf.carrier }}" data-region="{{ shelf.region }}">
-    <div class="feed-curve curve"></div>
+    <div class="feed-item-curve"></div>
     <div class="info">
-      <h1 class="name">{{ shelf.name|translate(shelf)|safe }}</h1>
+      <h1 class="feed-item-name">{{ shelf.name|translate(shelf)|safe }}</h1>
     </div>
   </section>
 {% endmacro %}

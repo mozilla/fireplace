@@ -89,6 +89,10 @@ App listing filters.
     display: none;
 }
 
+.app-list-filters + .app-list .app-list-app:first-child {
+    padding-top: 0;
+}
+
 @media $base-tablet {
     .app-list-filters {
         bottom: 0;
@@ -124,5 +128,8 @@ App listing filters.
     // Hide the mobile toggle (child of the mobile header).
     .app-list-filters-expand-toggle.show {
         display: none;
+    }
+    .app-list-filters + .app-list .app-list-app:first-child {
+        padding-top: 15px;
     }
 }

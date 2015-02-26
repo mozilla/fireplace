@@ -14,9 +14,11 @@
     }
     label {
         _h3();
+        ellipsis();
         color: $filters-label;
         display: inline-block;
         margin-right: 5px;
+        max-width: 20%;
         vertical-align: middle;
     }
     .pretty-select:before {
@@ -33,5 +35,8 @@
 @media $base-tablet {
     .compat-filter .pretty-select:before {
         background-color: transparent;
+    }
+    .compat-filter label {
+        max-width: none;
     }
 }

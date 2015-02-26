@@ -73,6 +73,31 @@ casper.test.begin('Test install packaged app', {
 });
 
 
+casper.test.begin('Test mark uninstalled apps on visibilitychange', {
+    test: function(test) {
+        helpers.startCasper('/app/someapp');
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('.install');
+        });
+
+        casper.waitForSelector('.launch', function() {
+            casper.evaluate(function() {
+                window.navigator.mozApps._resetInstalled();
+                window.require('z').doc.trigger('visibilitychange');
+            });
+
+        });
+
+        casper.waitWhileSelector('.launch', function() {
+            test.assertDoesntExist('.launch');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
 casper.test.begin('Test UA when installing from app details page', {
     test: function(test) {
         helpers.startCasper('/app/free');

@@ -2,19 +2,35 @@ define('apps_buttons',
     ['apps', 'cache', 'capabilities', 'defer', 'l10n', 'log', 'login',
      'models', 'notification', 'payments', 'requests', 'settings',
      'tracking_events', 'urls', 'user', 'utils', 'views', 'z'],
-    function(apps, cache, capabilities, defer, l10n, log, login, models,
-             notification, payments, requests, settings,
-             tracking_events, urls, user, utils, views, z) {
+    function(apps, cache, caps, defer, l10n, log, login, models, notification,
+             payments, requests, settings, tracking_events, urls, user, utils,
+             views, z) {
     var logger = log('buttons');
     var gettext = l10n.gettext;
     var apps_model = models('app');
 
-    function setButton($button, text, cls) {
+    z.page.one('iframe-install-loaded', function() {
+        markBtnsAsInstalled();
+    })
+
+    .on('loaded loaded_more', function() {
+        markBtnsAsInstalled();
+    });
+
+    z.doc.on('visibilitychange', function() {
+        markBtnsAsUninstalled();
+    });
+
+    function setInstallBtnState($button, text, cls) {
+        // Sets install button state (its text and its classes, which
+        // currently determines its click handler).
         revertButton($button, text);
         $button.addClass(cls);
     }
 
     function revertButton($button, text) {
+        // Revert button from a state of installing or a state of being
+        // installed.
         $button.removeClass('purchasing installing error spinning');
         text = text || $button.data('old-text');
         $button.find('em').text(text);
@@ -50,7 +66,7 @@ define('apps_buttons',
             logger.log('Purchase suspended; user needs to log in');
 
             // Create a blank window here so we can pass it to the login func;
-            loginPopup = (!capabilities.navPay) ? utils.openWindow() : undefined;
+            loginPopup = (!caps.navPay) ? utils.openWindow() : undefined;
 
             return login.login({popupWindow: loginPopup}).done(function() {
                 // Once login completes, just call this function again with
@@ -93,8 +109,9 @@ define('apps_buttons',
         if (product.payment_required) {
             // The app requires a payment.
             logger.log('Starting payment flow for', product.name);
-            $this.data('old-text', $this.find('em').text());  // Save the old text of the button.
-            setButton($this, gettext('Purchasing'), 'purchasing');
+            // Save the old text of the button.
+            $this.data('old-text', $this.find('em').text());
+            setInstallBtnState($this, gettext('Purchasing'), 'purchasing');
 
             var purchaseOpts = {
                 // This will be undefined unless a window was created
@@ -105,8 +122,9 @@ define('apps_buttons',
                 logger.log('Purchase flow completed for', product.name);
 
                 // Update the button to say Install.
-                setButton($this, gettext('Install'), 'purchased');
-                $this.data('old-text', $this.find('em').text());  // Save the old text of the button.
+                setInstallBtnState($this, gettext('Install'), 'purchased');
+                // Save the old text of the button.
+                $this.data('old-text', $this.find('em').text());
 
                 // Update the cache to show that the app was purchased.
                 user.update_purchased(product.id);
@@ -122,7 +140,7 @@ define('apps_buttons',
                 });
 
                 def.always(function() {
-                    // Do a reload to show any reviews privilege changes for bug 838848.
+                    // Reload to show reviews privilege changes (bug 838848).
                     views.reload();
                 });
 
@@ -134,7 +152,7 @@ define('apps_buttons',
                 def.reject();
             }).always(function() {
                 if (loginPopup) {
-                    // If we created the popup for a login and re-used it for a payment
+                    // If we created popup for login and re-used it for payment
                     // we now need to close it.
                     logger.log('Closing the popup window');
                     loginPopup.close();
@@ -185,7 +203,7 @@ define('apps_buttons',
 
             // This is the data needed to record the app's install.
             var api_endpoint = urls.api.url('record_' + (product.receipt_required ? 'paid' : 'free'));
-            var post_data = {app: product.id, chromeless: +capabilities.chromeless};
+            var post_data = {app: product.id, chromeless: +caps.chromeless};
 
             // If we don't need a receipt to perform the installation...
             if (!product.receipt_required) {
@@ -213,7 +231,7 @@ define('apps_buttons',
                 do_install({data: {'receipts': [response.receipt]}});
 
             }).fail(function() {
-                // L10n: The app's installation has failed, but the problem is temporary.
+                // L10n: App's install failed, but problem is temporary.
                 notification.notification({
                     message: gettext('Install failed. Please try again later.')
                 });
@@ -238,7 +256,8 @@ define('apps_buttons',
                 if (error) {
                     notification.notification({message: error});
                 }
-                logger.log('App install deferred was rejected for ', product.name);
+                logger.log('App install deferred was rejected for ',
+                           product.name);
                 def.reject();
             });
         }
@@ -253,7 +272,7 @@ define('apps_buttons',
             // Show the box on how to run the app.
             var $postInstallMsg = $('.post-install-message').show();
             var $postInstallMsgPlat = $postInstallMsg.find(
-                '.post-install-message-' + capabilities.os.slug);
+                '.post-install-message-' + caps.os.slug);
             if ($postInstallMsgPlat.length) {
                 $postInstallMsg.show();
                 $postInstallMsgPlat.show();
@@ -276,7 +295,8 @@ define('apps_buttons',
     }
 
     z.page.on('click', '.product.launch', launchHandler)
-          .on('click', '.button.product:not(.launch):not(.incompatible)', _handler(install));
+          .on('click', '.button.product:not(.launch):not(.incompatible)',
+              _handler(install));
 
     function get_button(manifest_url) {
         return $('.button[data-manifest_url="' + manifest_url.replace(/"/, '\\"') + '"]');
@@ -301,43 +321,51 @@ define('apps_buttons',
             // L10n: "Open" as in "Open the app".
             text = gettext('Open');
         }
-        setButton($button, text, 'launch install');
-        apps.getInstalled();
+        setInstallBtnState($button, text, 'launch install');
     }
 
-    function mark_btns_as_installed() {
+    function markBtnsAsInstalled() {
         /* For each installed app, look for respective buttons and mark as
            ready to launch ("Open"). */
-        setTimeout(function() {
-            z.apps.forEach(function(app, i) {
-                $button = get_button(app);
-                if ($button.length) {
-                    mark_installed(null, $button);
+        if (!caps.webApps) {
+            return;
+        }
+        apps.getInstalled().done(function(installedApps) {
+            setTimeout(function() {
+                for (var i = 0; i < installedApps.length; i++) {
+                    $button = get_button(installedApps[i]);
+                    if ($button.length) {
+                        mark_installed(null, $button);
+                    }
                 }
             });
         });
     }
 
-    function mark_btns_as_uninstalled() {
+    function markBtnsAsUninstalled() {
         /* If an app was uninstalled, revert state of install buttons from
            "Launch" to "Install". */
-        apps.getInstalled();
-        $('.button.product').each(function(i, button) {
-            var $button = $(button);
-            // For each install button, check if its respective app is installed.
-            if (z.apps.indexOf($button.data('manifest_url')) === -1) {
-                // If it is no longer installed, revert button.
-                if ($button.hasClass('launch')) {
-                    revertButton($button, gettext('Install'));
+        if (!caps.webApps) {
+            return;
+        }
+        apps.getInstalled().done(function(installedApps) {
+            $('.install').each(function(i, button) {
+                var $button = $(button);
+                // For each install button, check if respective app is installed.
+                if (z.apps.indexOf($button.data('manifest_url')) === -1) {
+                    // If it is no longer installed, revert button.
+                    if ($button.hasClass('launch')) {
+                        revertButton($button, gettext('Install'));
+                    }
+                    $button.removeClass('launch');
                 }
-                $button.removeClass('launch');
-            }
+            });
         });
     }
 
     return {
         install: install,
-        mark_btns_as_installed: mark_btns_as_installed,
-        mark_btns_as_uninstalled: mark_btns_as_uninstalled,
+        markBtnsAsInstalled: markBtnsAsInstalled,
+        markBtnsAsUninstalled: markBtnsAsUninstalled,
     };
 });
