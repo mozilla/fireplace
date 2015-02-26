@@ -2,11 +2,12 @@
     Provides the apps module, a wrapper around navigator.mozApps
 */
 define('apps',
-    ['capabilities', 'defer', 'installer_direct', 'installer_iframe', 'l10n', 'log', 'nunjucks', 'settings', 'underscore', 'utils'],
-    function(capabilities, defer, installer_direct, installer_iframe, l10n, log, nunjucks, settings, _, utils) {
+    ['capabilities', 'defer', 'installer_direct', 'installer_iframe', 'l10n',
+     'nunjucks', 'settings', 'underscore', 'utils'],
+    function(capabilities, defer, installer_direct, installer_iframe, l10n,
+             nunjucks, settings, _, utils) {
     'use strict';
     var gettext = l10n.gettext;
-    var console = log('apps');
     var installer;
 
     /*
@@ -35,10 +36,10 @@ define('apps',
 
            See also: https://developer.mozilla.org/docs/DOM/Apps.install
 
-           data -- optional dict to pass as navigator.apps.install(url, data, ...)
+           data -- optional dict to pass as navigator.apps.install(url, data)
            success -- optional callback for when app installation was successful
-           error -- optional callback for when app installation resulted in error
-           navigator -- something other than the global navigator, useful for testing
+           error -- optional callback for when app install resulted in error
+           navigator -- something other than global navigator, for testing
         */
         var def = defer.Deferred();
 
@@ -115,6 +116,8 @@ define('apps',
         launch: launch,
         incompat: incompat,
         install: install,
-        _use_compat_cache: function(val) {use_compat_cache = val;}
+        _use_compat_cache: function(val) {
+            use_compat_cache = val;
+        }
     };
 });
