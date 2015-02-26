@@ -61,10 +61,8 @@ define(
     ],
 function(_) {
     var apps = require('apps');
-    var buttons = require('apps_buttons');
     var capabilities = require('capabilities');
     var consumer_info = require('consumer_info');
-    var flipsnap = require('flipsnap');
     var format = require('format');
     var $ = require('jquery');
     var settings = require('settings');
@@ -148,22 +146,15 @@ function(_) {
     }
 
     if (capabilities.webApps) {
-        // Mark installed apps, look for Marketplace update. If in packaged
-        // app, wait for the iframe to load. Else we use direct installer and
-        // just need to wait for normal loaded event.
+        // Look for Marketplace update.
         var is_packaged_app = window.location.protocol === 'app:';
-        var is_iframed_app = window.top !== window.self;  //  Good enough.
-        var event_for_apps = is_packaged_app ? 'iframe-install-loaded' : 'loaded';
-        z.page.one(event_for_apps, function() {
-            apps.getInstalled().done(function() {
-                z.page.trigger('mozapps_got_installed');
-                buttons.mark_btns_as_installed();
-            });
-
+        var is_iframed_app = window.top !== window.self;
+        var appEvent = is_packaged_app ? 'iframe-install-loaded' : 'loaded';
+        z.page.one(appEvent, function() {
             var manifest_url = settings.manifest_url;
             var email = user.get_setting('email') || '';
-            // Need the manifest url to check for update.  Only want to show
-            // update notification banner if inside an app. Only to mozilla.com
+            // Need manifest URL to check for update. Only want to show
+            // update notification banner if inside app. Only to mozilla.com
             // users for now.
             if (manifest_url && (is_packaged_app || is_iframed_app) &&
                 email.substr(-12) === '@mozilla.com') {
@@ -194,12 +185,9 @@ function(_) {
 
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden) {
-                // Refresh list of installed apps in case user uninstalled apps
-                // and switched back.
                 if (user.logged_in()) {
                     consumer_info.fetch(true);
                 }
-                apps.getInstalled().done(buttons.mark_btns_as_uninstalled);
             }
         }, false);
     }

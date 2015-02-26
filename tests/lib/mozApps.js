@@ -77,6 +77,10 @@ function initialize() {
 
                 return request;
             },
+            _resetInstalled: function() {
+                // Helper to clear installed apps. Not a part of the API.
+                manifests = [];
+            }
         };
 
         window.navigator.mozApps.installPackage = window.navigator.mozApps.install;
