@@ -260,11 +260,13 @@ $narrower-than-tablet = unquote('(max-width: 699px)');
     }
 
     .tab-categories {
-        padding-bottom: 30px;  // Increase hover area.
         cursor: pointer;
 
         // `link-clicked` class gets set in JS when a category link is clicked.
         // When a category link is pressed, "Categories" no longer is blue.
+        &:hover {
+            padding-bottom: 30px;  // Increase hover area.
+        }
         &:not(.link-clicked):hover {
             .tab-link {
                 color: $breezy-blue;
