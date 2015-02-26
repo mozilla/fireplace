@@ -38,16 +38,12 @@ define('reviews',
                 notify({message: gettext('This review has been successfully flagged. Thanks!')});
 
                 // Cache-bust so the report link doesn't show up in session.
+                var reviewsEndpoint = urls.api.params('reviews', {
+                    app: $('[data-slug]').data('slug')
+                });
                 var index = $('.review').index($review);
-                var offset = Math.floor(index / compat.limit) * compat.limit;
-                var params = {app: $('[data-slug]').data('slug')};
-                if (offset) {
-                    params.offset = offset;
-                }
-                var reviewsEndpoint = cache.searchUrl(
-                    urls.api.params('reviews', params));
                 var appReviewsCache = cache.get(reviewsEndpoint);
-                appReviewsCache.objects[index - offset].has_flagged = true;
+                appReviewsCache.objects[index].has_flagged = true;
                 cache.set(reviewsEndpoint, appReviewsCache);
             }).fail(function() {
                 notify({message: gettext('Sorry, there was an issue flagging the review. Please try again later.')});
