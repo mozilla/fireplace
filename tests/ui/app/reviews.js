@@ -1,6 +1,7 @@
 /*
     Tests for app reviews.
 */
+var constants = require('../../lib/constants');
 var helpers = require('../../lib/helpers');
 
 function testAddReviewForm(test) {
@@ -116,7 +117,7 @@ casper.test.begin('Test flag review on loadmore', {
         helpers.startCasper({path: '/app/someapp/ratings'});
 
         helpers.waitForPageLoaded(function() {
-            casper.click('.loadmore .button');
+            casper.click(constants.LOADMORE_SEL);
         });
 
         casper.waitForSelector('.review:nth-child(25)', function() {
@@ -138,10 +139,6 @@ casper.test.begin('Test flag review on loadmore', {
 
         casper.waitForSelector('[data-page-type~="detail"]', function() {
             casper.back();
-        });
-
-        casper.waitForSelector('.reviews-listing', function() {
-            casper.click('.loadmore .button');
         });
 
         casper.waitForSelector('.review:nth-child(25)', function() {
@@ -484,6 +481,32 @@ casper.test.begin('Test login to review if already reviewed on desktop detail', 
 
         helpers.waitForPageLoaded(function() {
             test.assertExists('.edit-review-form');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test review pagination cache rewrite', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/someapp/ratings'});
+
+        helpers.waitForPageLoaded(function() {
+            casper.click(constants.LOADMORE_SEL);
+        });
+
+        var sel = '.review:nth-child(' + (constants.PAGINATION_LIMIT + 1) + ')';
+        casper.waitForSelector(sel, function() {
+            casper.click('.back-to-app');
+        });
+
+        casper.waitForSelector('[data-page-type~="detail"] .review-buttons', function() {
+            casper.click('.review-buttons li:last-child a');
+        });
+
+        casper.waitForSelector('.reviews-listing', function() {
+            test.assertExists(sel);
         });
 
         helpers.done(test);

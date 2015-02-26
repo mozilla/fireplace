@@ -1,6 +1,7 @@
 /*
     Tests for the Feed and Feed detail pages.
 */
+var constants = require('../lib/constants');
 var helpers = require('../lib/helpers');
 
 var _ = require('../../node_modules/underscore');
@@ -77,7 +78,7 @@ casper.test.begin('Test Feed pagination', {
         helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
-            casper.click('.loadmore .button');
+            casper.click(constants.LOADMORE_SEL);
         });
 
         helpers.assertWaitForSelector(test, '.feed-item-item:nth-child(30)');
@@ -229,6 +230,31 @@ casper.test.begin('Test clicking on brand sets correct src', {
         casper.waitForSelector('[data-brand-landing]', function() {
             test.assertUrlMatch(
                 /feed\/editorial\/brand-grid\?src=branded-editorial-element/);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test Feed pagination cache rewrite', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            casper.click(constants.LOADMORE_SEL);
+        });
+
+        casper.waitForSelector('.feed-item-item:nth-child(15)', function() {
+            casper.click('.mkt-tile');
+        });
+
+        casper.waitForSelector('[data-page-type~="detail"]', function() {
+            casper.back();
+        });
+
+        casper.waitForSelector('[data-page-type~="homepage"]', function() {
+            test.assertExists('.feed-item-item:nth-child(15)');
         });
 
         helpers.done(test);
