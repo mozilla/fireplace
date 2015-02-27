@@ -1,9 +1,6 @@
 /*
     Tests for app reviews.
 */
-var constants = require('../../lib/constants');
-var helpers = require('../../lib/helpers');
-
 function testAddReviewForm(test) {
     // Checks review form existence and validation.
     casper.waitForSelector('.mkt-prompt form', function() {
@@ -482,8 +479,13 @@ casper.test.begin('Test login to review if already reviewed on desktop detail', 
 
         helpers.waitForPageLoaded(function() {
             casper.click('.review-button');
+        });
+
+        casper.then(function() {
             helpers.fake_login();
         });
+
+        helpers.waitForLoggedIn();
 
         waitForReviewsLoaded(function() {
             test.assertExists('.edit-review-form');

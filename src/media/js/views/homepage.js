@@ -36,7 +36,11 @@ define('views/homepage',
             if (data.meta.next) {
                 $btn_clone.find('button').attr('data-url',
                     urls.api.base.host(data.meta.next) + data.meta.next);
-                homeFeed.parentNode.insertBefore($btn_clone[0], homeFeed.nextSibling);
+
+                if (homeFeed) {
+                    homeFeed.parentNode.insertBefore($btn_clone[0],
+                                                     homeFeed.nextSibling);
+                }
             }
 
             z.page.trigger('fragment_loaded');

@@ -96,7 +96,7 @@ require(
         $('#site-footer').html(
             nunjucks.env.render('footer.html', context));
 
-        if (!navigator.mozApps && !navigator.userAgent.match(/googlebot/i)) {
+        if (!caps.webApps && !navigator.userAgent.match(/googlebot/i)) {
             if (!document.getElementById('incompatibility-banner')) {
                 logger.log('Adding incompatibility banner');
                 $('#site-nav').after(nunjucks.env.render('incompatible.html'));

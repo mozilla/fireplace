@@ -1,6 +1,3 @@
-var helpers = require('../lib/helpers');
-
-
 function restoreOnlineState() {
     casper.echo('Changing window.__mockOffLine -> false', 'INFO');
     casper.evaluate(function() {

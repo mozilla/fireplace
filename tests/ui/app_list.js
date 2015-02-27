@@ -6,12 +6,7 @@
     If you are testing something that can be found throughout all or most
     app list pages, here is a good place to put it for ultimate coverage.
 */
-var appList = require('../lib/app_list');
-var constants = require('../lib/constants');
-var helpers = require('../lib/helpers');
-
-var _ = require('../../node_modules/underscore');
-var jsuri = require('../../node_modules/jsuri');
+var jsuri = localRequire('node_modules/jsuri/Uri');
 
 var appNthChild = appList.appNthChild;
 var waitForAppListPage = appList.waitForAppListPage;
@@ -47,7 +42,7 @@ appList.appListPages.forEach(function(appListPage) {
                 } else {
                     // If no src is configured, it means this app list does not
                     // contain any links.
-                    test.assertEqual(href, '', 'Assert href is empty');
+                    test.assert(!href, 'Assert href is empty');
                 }
 
                 // Test authors are not a link.
@@ -138,13 +133,14 @@ appList.appListPages.forEach(function(appListPage) {
 
                         // Test model cache after load more.
                         if (!appListPage.noModelCache) {
-                            var modelCount = casper.evaluate(function() {
+                            var modelKeys = casper.evaluate(function() {
                                 return Object.keys(
                                     window.require('core/models')('app')
-                                        .data_store.app).length;
+                                        .data_store.app);
                             });
+                            casper.echo(modelKeys);
                             test.assertEqual(
-                                modelCount,
+                                modelKeys.length,
                                 APP_LIMIT_LOADMORE,
                                 'Assert model cache after Load more');
                         }
@@ -227,8 +223,10 @@ appList.appListPages.forEach(function(appListPage) {
     if (!appListPage.noAppInstall) {
         casper.test.begin(appListPage.name + ' app install tests', {
             test: function(test) {
-                waitForAppListPage(appListPage, function() {
-                    casper.click('.app-list-app:first-child .install');
+                var installButton = '.app-list-app:first-child .install';
+                waitForAppListPage(appListPage);
+                casper.waitForSelector(installButton, function() {
+                    casper.click(installButton);
 
                     casper.waitForSelector('.launch', function() {
                         test.assertSelectorHasText(
@@ -253,11 +251,10 @@ casper.test.begin('Test collection detail page for app tile expanded state.', {
         });
 
         // Visit a collection details page and check it's not expanded.
-        casper.thenOpen(helpers.makeUrl('/feed/collection/top-games'), function() {
-            helpers.waitForPageLoadedAgain(function() {
-                test.assertDoesntExist('.app-list.expanded');
-                test.assertDoesntExist('.previews-tray');
-            });
+        casper.thenOpen(helpers.makeUrl('/feed/collection/top-games'));
+        helpers.waitForPageLoadedAgain(function() {
+            test.assertDoesntExist('.app-list.expanded');
+            test.assertDoesntExist('.previews-tray');
         });
         helpers.done(test);
     }

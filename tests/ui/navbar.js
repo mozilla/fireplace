@@ -1,5 +1,3 @@
-var helpers = require('../lib/helpers');
-
 casper.test.begin('Test navbar', {
     test: function(test) {
         helpers.startCasper();

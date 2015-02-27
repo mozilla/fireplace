@@ -3,7 +3,6 @@
     In some cases the form is a modal, in others it is a page.
     TODO: add more tests once we get Phantom to recognize our custom elements.
 */
-var helpers = require('../lib/helpers');
 
 function testFeedbackForm(test) {
     test.assertElementCount('.feedback-form', 1,

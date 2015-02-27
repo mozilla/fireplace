@@ -2,10 +2,18 @@
      Test for the update banner states, using the mozApps mock to pretend
      Marketplace app is installed/has an update available/etc.
  */
-var helpers = require('../lib/helpers');
-
 var bannerSelector = '#marketplace-update-banner';
 var downloadButtonSelector = bannerSelector + ' .download-button';
+
+function assertNoUpdateBanner() {
+    // Wait a little before checking if the banner exists, but not long
+    // since our mozApps mock makes the whole thing quick.
+    // casper.waitWhileSelector would not work because it would
+    // immediately resolve since the selector doesn't initially exist.
+    casper.wait(500, function() {
+        casper.test.assertNotExists('#marketplace-update-banner');
+    });
+}
 
 
 casper.test.begin('Test manifest_url', {
@@ -28,8 +36,9 @@ casper.test.begin('Test show banner and click download button', {
             casper.evaluate(function() {
                 var manifest = window.require('core/settings').manifest_url;
                 window.require('core/capabilities').iframed = true;
-                window.navigator.mozApps.install(manifest);
-                window.navigator.mozApps._setDownloadAvailable(manifest, true);
+                var apps = window.require('apps');
+                apps.install(manifest);
+                apps.installer._setDownloadAvailable(manifest, true);
                 window.require('update_banner').showIfNeeded();
             });
 
@@ -43,8 +52,6 @@ casper.test.begin('Test show banner and click download button', {
                     'The next time you start the Firefox Marketplace app');
                 test.assertNotExists(downloadButtonSelector);
             });
-
-
         });
         helpers.done(test);
     }
@@ -58,17 +65,11 @@ casper.test.begin('Test banner is not shown if no download is available', {
             casper.evaluate(function() {
                 var manifest = window.require('core/settings').manifest_url;
                 window.require('core/capabilities').iframed = true;
-                window.navigator.mozApps.install(manifest);
+                window.require('apps').install(manifest);
                 window.require('update_banner').showIfNeeded();
             });
 
-            // Wait a little before checking if the banner exists, but not long
-            // since our mozApps mock makes the whole thing synchronous.
-            // casper.waitWhileSelector would not work because it would
-            // immediately resolve since the selector doesn't initially exist.
-            casper.wait(250, function() {
-                test.assertNotExists('#marketplace-update-banner');
-            });
+            assertNoUpdateBanner();
         });
         helpers.done(test);
     }
@@ -82,18 +83,13 @@ casper.test.begin('Test banner is not shown if not in iframed/packaged app', {
                 var manifest = window.require('core/settings').manifest_url;
                 window.require('core/capabilities').iframed = false;
                 window.require('core/capabilities').packaged = false;
-                window.navigator.mozApps.install(manifest);
-                window.navigator.mozApps._setDownloadAvailable(manifest, true);
+                var apps = window.require('apps');
+                apps.install(manifest);
+                apps.installer._setDownloadAvailable(manifest, true);
                 window.require('update_banner').showIfNeeded();
             });
 
-            // Wait a little before checking if the banner exists, but not long
-            // since our mozApps mock makes the whole thing synchronous.
-            // casper.waitWhileSelector would not work because it would
-            // immediately resolve since the selector doesn't initially exist.
-            casper.wait(250, function() {
-                test.assertNotExists('#marketplace-update-banner');
-            });
+            assertNoUpdateBanner();
         });
         helpers.done(test);
     }

@@ -1,6 +1,3 @@
-var helpers = require('../lib/helpers');
-var _ = require('../../node_modules/underscore');
-
 casper.test.begin('Test settings', {
     test: function(test) {
         helpers.startCasper({path: '/settings'});
@@ -9,8 +6,13 @@ casper.test.begin('Test settings', {
             test.assertNotVisible('.account-settings .logout');
             test.assertNotVisible('.account-settings-save button[type="submit"]');
             test.assertNotVisible('.account-settings .email');
-            test.assertNotVisible('.account-settings input[name="display_name"]');
-            test.assertNotVisible('.account-settings input[name="enable_recommendations"]');
+            // This elements are not directly hidden which doesn't play nicely
+            // with test.assertNotVisible. See https://github.com/mozilla/fireplace/pull/1050#discussion-diff-25678912
+            // for the discussion. This may work in casperjs > 1.1.0-beta3.
+            test.assertExists('.account-settings .display-name input[name="display_name"]');
+            test.assertNotVisible('.account-settings .display-name');
+            test.assertExists('.account-settings .recommendations input[name="enable_recommendations"]');
+            test.assertNotVisible('.account-settings .recommendations');
             helpers.fake_login();
         });
 

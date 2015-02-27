@@ -2,10 +2,6 @@
     Test for app installs using the mozApps mock.
     Such as button states, UA tracking.
 */
-var appList = require('../lib/app_list');
-var helpers = require('../lib/helpers');
-var mozApps = require('../lib/mozApps');
-var _ = require('../../node_modules/underscore');
 
 
 var installAttributionTestDefs = [
@@ -92,8 +88,14 @@ casper.test.begin('Test mozApps mock', {
 
         helpers.waitForPageLoaded(function() {
             test.assert(casper.evaluate(function() {
-                return window.require('core/capabilities').webApps;
-            }), 'Check mozApps mock is working');
+                var caps = window.require('core/capabilities');
+                return caps.webApps && caps.packagedWebApps;
+            }), 'Check webApps capability');
+            test.assert(casper.evaluate(function() {
+                var InstallerMock = window.require('installer_mock');
+                var apps = window.require('apps');
+                return InstallerMock.prototype.isPrototypeOf(apps.installer);
+            }), 'Check installer_mock is used');
         });
 
         helpers.done(test);
@@ -141,7 +143,7 @@ casper.test.begin('Test markBtnsAsInstalled if many apps are already installed',
 
         helpers.waitForPageLoaded(function() {
             casper.evaluate(function() {
-                window.navigator.mozApps._populateInstalledApps();
+                window.require('apps').installer._populateInstalledApps();
             });
 
             casper.click('.mkt-tile:first-child .install');
@@ -189,7 +191,7 @@ casper.test.begin('Test mark uninstalled apps on visibilitychange', {
 
         casper.waitForSelector('.launch', function() {
             casper.evaluate(function() {
-                window.navigator.mozApps._resetInstalled();
+                window.require('apps').installer._clearInstalled();
                 window.require('core/z').doc.trigger('visibilitychange');
             });
 

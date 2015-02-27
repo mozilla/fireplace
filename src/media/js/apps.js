@@ -3,10 +3,11 @@
 */
 define('apps',
     ['core/capabilities', 'core/defer', 'installer_direct', 'installer_iframe',
-     'core/l10n', 'core/nunjucks', 'core/settings', 'underscore',
-     'core/utils', 'core/z'],
+     'installer_mock', 'core/l10n', 'core/nunjucks', 'core/settings',
+     'underscore', 'core/utils', 'core/z'],
     function(capabilities, defer, installer_direct, installer_iframe,
-             l10n, nunjucks, settings, _, utils, z) {
+             InstallerMock, l10n, nunjucks, settings,
+             _, utils, z) {
     'use strict';
     var gettext = l10n.gettext;
     var installer;
@@ -29,6 +30,9 @@ define('apps',
         z.page.one('iframe-install-loaded', function() {
             installer_def.resolve();
         });
+    } else if (capabilities.phantom || settings.mockWebApps) {
+        installer = new InstallerMock();
+        installer_def.resolve();
     } else {
         installer = installer_direct;
         installer_def.resolve();
@@ -123,6 +127,7 @@ define('apps',
         install: install,
         launch: launch,
         promise: installer_def.promise(),
+        installer: installer,
         _use_compat_cache: function(val) {
             use_compat_cache = val;
         }

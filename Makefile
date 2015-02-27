@@ -11,6 +11,8 @@ iframe_package:
 REPO = "fireplace"
 UUID = "e6a59937-29e4-456a-b636-b69afa8693b4"
 CASPERJS_BIN ?= 'casperjs'
+SLIMERJSLAUNCHER ?= '/Applications/Firefox.app/Contents/MacOS/firefox'
+UITEST_FILE ?= 'tests/ui/'
 
 DOMAIN?=marketplace.firefox.com
 SERVER?=prod
@@ -18,17 +20,30 @@ SERVER?=prod
 test:
 	make jshint && make unittest && make uitest
 
-uitest: css templates
-	PATH=node_modules/.bin:${PATH} LC_ALL=en-US $(CASPERJS_BIN) test tests/ui/
+uitest:
+	make uitest-phantom && make uitest-slimer
 
-unittest:
+uitest-phantom: css templates
+	PATH=node_modules/.bin:${PATH} LC_ALL=en-US $(CASPERJS_BIN) test ${UITEST_FILE} --includes=tests/lib/shim.js --engine=phantomjs
+
+uitest-slimer: css templates
+	SLIMERJSLAUNCHER=${SLIMERJSLAUNCHER} PATH=slimerjs:node_modules/.bin:${PATH} LC_ALL=en-US $(CASPERJS_BIN) test ${UITEST_FILE} --includes=tests/lib/shim.js --engine=slimerjs
+
+unittest: templates
 	@node_modules/karma/bin/karma start --single-run
 
-unittest-watch:
+unittest-watch: templates
 	@node_modules/karma/bin/karma start
 
 jshint:
 	@node_modules/.bin/gulp lint
+
+test-langpacks:
+	commonplace langpacks
+
+test-package:
+	make package
+	test -f package/builds/_prod/media/js/include.js
 
 deploy:
 	git fetch && git reset --hard origin/master && npm install && make includes
@@ -78,6 +93,16 @@ approve_log_stage:
 	DOMAIN='marketplace.allizom.org' make approve_log
 approve_log_dev:
 	DOMAIN='marketplace-dev.allizom.org' make approve_log
+
+upload-captures:
+	gem install gist
+	bash tests/upload-captures.sh
+	exit 0
+
+install-slimer:
+	curl -O 'http://download.slimerjs.org/nightlies/latest-slimerjs-master/slimerjs-0.10.0pre.zip'
+	unzip slimerjs-0.10.0pre.zip
+	mv slimerjs-0.10.0pre slimerjs
 
 log:
 	@echo "This command has been removed. Use 'make iframe_package' instead."
