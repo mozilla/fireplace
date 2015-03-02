@@ -1,4 +1,4 @@
-define('webactivities', ['capabilities', 'log', 'login', 'urls', 'utils', 'z'], function(capabilities, log, login, urls, utils, z) {
+define('webactivities', ['core/capabilities', 'core/log', 'core/login', 'core/urls', 'core/utils', 'core/z'], function(capabilities, log, login, urls, utils, z) {
 
     // See https://github.com/mozilla/fireplace/wiki/Web-Activities
     //

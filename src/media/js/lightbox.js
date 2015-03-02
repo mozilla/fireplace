@@ -3,8 +3,8 @@
     within a preview tray on an app detail page.
 */
 define('lightbox',
-    ['keys', 'log', 'models', 'navigation', 'utils', 'shothandles', 'tracking',
-     'underscore', 'z'],
+    ['keys', 'core/log', 'core/models', 'core/navigation', 'core/utils', 'shothandles', 'tracking',
+     'underscore', 'core/z'],
     function(keys, log, models, navigation, utils, handles, tracking,
              _, z) {
     var logger = log('lightbox');

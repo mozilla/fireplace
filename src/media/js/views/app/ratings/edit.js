@@ -1,5 +1,5 @@
 define('views/app/ratings/edit',
-    ['l10n', 'urls', 'user', 'utils', 'z'],
+    ['core/l10n', 'core/urls', 'core/user', 'core/utils', 'core/z'],
     function(l10n, urls, user, utils, z) {
     var gettext = l10n.gettext;
 

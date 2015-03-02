@@ -1,5 +1,10 @@
-define('content-ratings', ['format', 'l10n', 'urls', 'utils', 'z'],
-    function(format, l10n, urls, utils, z) {
+// This needs to depend on routes and settings_app to ensure that urls.media
+// will load the correct URL.
+define('content-ratings',
+    ['core/format', 'core/l10n', 'core/urls', 'core/utils', 'core/z',
+     'routes', 'settings_app'],
+    function(format, l10n, urls, utils, z,
+             routes, appSettings) {
     'use strict';
 
     format = format.format;
@@ -134,7 +139,7 @@ define('content-ratings', ['format', 'l10n', 'urls', 'utils', 'z'],
     names.ratings.usk = names.ratings.generic;
 
     // Language icons.
-    if (window.navigator.l10n.language == 'es') {
+    if (utils.lang() == 'es') {
         rating_icons.esrb = {
             '0': _rating_path('esrb_e_spa.png'),
             '10': _rating_path('esrb_e10_spa.png'),

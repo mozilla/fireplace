@@ -14,10 +14,6 @@ function initialize() {
     }, 50);
 
     function _initialize() {
-        if (document.readyState !== 'complete') {
-            return false;
-        }
-
         // Keep track of installed apps.
         var manifests = [];
 
@@ -85,7 +81,13 @@ function initialize() {
 
         window.navigator.mozApps.installPackage = window.navigator.mozApps.install;
         console.log('[mozApps] Mock mozApps initialized');
-        return true;
+
+        // Keep mocking it until it won't get overriden.
+        if (document.readyState !== 'complete') {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 

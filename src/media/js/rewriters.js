@@ -4,8 +4,8 @@
     automatically loaded.
 */
 define('rewriters',
-    ['log', 'settings', 'underscore', 'urls', 'utils'],
-    function(log, settings, _, urls, utils) {
+    ['core/log', 'core/settings', 'underscore', 'core/urls', 'core/utils', 'routes'],
+    function(log, settings, _, urls, utils, routes) {
     var logger = log('rewriters');
 
     function pagination(url) {

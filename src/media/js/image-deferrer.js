@@ -1,4 +1,4 @@
-define('image-deferrer', ['underscore', 'urls', 'z'], function(_, urls, z) {
+define('image-deferrer', ['underscore', 'core/urls', 'core/z'], function(_, urls, z) {
     'use strict';
     /*
        <img class="deferred" data-src="{{ image.src }}" src="{{ placeholderSrc }}">

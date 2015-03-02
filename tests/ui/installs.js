@@ -13,7 +13,7 @@ casper.test.begin('Test mozApps mock', {
 
         helpers.waitForPageLoaded(function() {
             test.assert(casper.evaluate(function() {
-                return window.require('capabilities').webApps;
+                return window.require('core/capabilities').webApps;
             }), 'Check mozApps mock is working');
         });
 
@@ -47,7 +47,7 @@ casper.test.begin('Test install app', {
             test.assertSelectorHasText('.launch', 'Open');
 
             test.assert(casper.evaluate(function() {
-                return window.require('z').apps.length == 1;
+                return window.require('core/z').apps.length == 1;
             }), 'Test install recorded in z.apps');
         });
 
@@ -84,7 +84,7 @@ casper.test.begin('Test mark uninstalled apps on visibilitychange', {
         casper.waitForSelector('.launch', function() {
             casper.evaluate(function() {
                 window.navigator.mozApps._resetInstalled();
-                window.require('z').doc.trigger('visibilitychange');
+                window.require('core/z').doc.trigger('visibilitychange');
             });
 
         });

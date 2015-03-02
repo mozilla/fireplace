@@ -13,11 +13,10 @@ function waitForAppListPage(appListPage, cb, opts) {
     if (appListPage.login) {
         helpers.waitForPageLoaded(function() {
             helpers.fake_login();
-            casper.waitUntilVisible('.app-list', cb);
         });
-    } else {
-        casper.waitUntilVisible('.app-list', cb);
+        helpers.waitForLoggedIn();
     }
+    casper.waitUntilVisible('.app-list', cb);
 }
 
 function waitForLoadMore(cb) {

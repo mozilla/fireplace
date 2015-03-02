@@ -2,10 +2,12 @@
     Provides the apps module, a wrapper around navigator.mozApps
 */
 define('apps',
-    ['capabilities', 'defer', 'installer_direct', 'installer_iframe', 'l10n',
-     'nunjucks', 'settings', 'underscore', 'utils'],
-    function(capabilities, defer, installer_direct, installer_iframe, l10n,
-             nunjucks, settings, _, utils) {
+    ['core/capabilities', 'core/defer', 'installer_direct', 'installer_iframe',
+     'core/l10n', 'core/nunjucks', 'core/settings', 'underscore',
+     'core/utils'],
+    function(capabilities, defer, installer_direct, installer_iframe,
+             l10n, nunjucks, settings, _,
+             utils) {
     'use strict';
     var gettext = l10n.gettext;
     var installer;

@@ -5,7 +5,7 @@
     compatiibility filtering since the `select`s need an endpoint_name.
 */
 define('compatibility_filtering',
-    ['capabilities', 'l10n', 'log', 'storage', 'underscore', 'utils', 'z'],
+    ['core/capabilities', 'core/l10n', 'core/log', 'core/storage', 'underscore', 'core/utils', 'core/z'],
     function(capabilities, l10n, log, storage, _, utils, z) {
     'use strict';
     var logger = log('compatibility_filtering');

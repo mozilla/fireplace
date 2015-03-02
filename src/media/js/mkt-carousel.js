@@ -20,7 +20,7 @@
 * </div>
 */
 
-define('mkt-carousel', ['defer'], function (defer) {
+define('mkt-carousel', ['core/defer'], function (defer) {
     function initialize() {
         var root = document.querySelector('.desktop-promo');
         var desktopPromo = root.querySelector('.desktop-promo-items');
