@@ -1,5 +1,5 @@
 define('views/langpacks',
-    ['l10n', 'log', 'models', 'urls', 'z'],
+    ['core/l10n', 'core/log', 'core/models', 'core/urls', 'core/z'],
     function(l10n, log, models, urls, z) {
     'use strict';
     /*

@@ -1,5 +1,6 @@
-define('user_helpers', ['regions', 'user', 'utils'],
-       function(regions, user, utils) {
+define('user_helpers',
+    ['regions', 'core/user', 'core/utils'],
+    function(regions, user, utils) {
 
     var initialArgs = utils.getVars();
 
@@ -28,15 +29,8 @@ define('user_helpers', ['regions', 'user', 'utils'],
                '';
     }
 
-    function lang() {
-        return (navigator.l10n && navigator.l10n.language) ||
-            navigator.language ||
-            navigator.userLanguage;
-    }
-
     return {
         carrier: carrier,
-        lang: lang,
         region: region,
         set_region_geoip: function(region) {
             region_geoip = region;

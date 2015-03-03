@@ -15,8 +15,17 @@ CASPERJS_BIN ?= 'casperjs'
 DOMAIN?=marketplace.firefox.com
 SERVER?=prod
 
-test: css templates
-	LC_ALL=en-US $(CASPERJS_BIN) test tests/ui/
+test:
+	make jshint && make unittest && make uitest
+
+uitest: css templates
+	PATH=node_modules/.bin:${PATH} LC_ALL=en-US $(CASPERJS_BIN) test tests/ui/
+
+unittest:
+	@node_modules/karma/bin/karma start --single-run
+
+jshint:
+	@node_modules/.bin/gulp lint
 
 deploy:
 	git fetch && git reset --hard origin/master && npm install && make includes

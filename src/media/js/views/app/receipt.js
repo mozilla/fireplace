@@ -1,6 +1,6 @@
 define('views/app/receipt',
-    ['capabilities', 'l10n', 'login', 'notification', 'templates', 'urls',
-     'user', 'z'],
+    ['core/capabilities', 'core/l10n', 'core/login', 'core/notification', 'templates', 'core/urls',
+     'core/user', 'core/z'],
     function(caps, l10n, login, notification, nunjucks, urls,
              user, z) {
     var gettext = l10n.gettext;

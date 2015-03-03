@@ -176,7 +176,7 @@ appListPages.forEach(function(appListPage) {
                     // Test model cache.
                     var modelCount = casper.evaluate(function() {
                         return Object.keys(
-                            window.require('models')('app')
+                            window.require('core/models')('app')
                                   .data_store.app).length;
                     });
                     test.assertEqual(modelCount,
@@ -192,14 +192,20 @@ appListPages.forEach(function(appListPage) {
     if (!appListPage.noExpandToggle) {
         casper.test.begin(appListPage.name + ' page app list expand toggle', {
             test: function(test) {
-                waitForAppListPage(appListPage, function() {
-                    // Test expand toggle.
-                    var toggleLink = '.app-list-filters-expand-toggle';
-                    test.assertVisible(toggleLink);
+                var toggleLink = '.app-list-filters-expand-toggle';
 
-                    // Expanded view.
-                    casper.click(toggleLink);
-                    test.assertExists(toggleLink + '.active');
+                waitForAppListPage(appListPage);
+
+                // Wait for the button to be intialized.
+                casper.waitForSelector(toggleLink + '.show', function() {
+                    // Test expand toggle.
+                    test.assertExists(toggleLink + ':not(.active)');
+                });
+
+                // Expanded view.
+                casper.thenClick(toggleLink);
+
+                casper.waitForSelector(toggleLink + '.active', function() {
                     test.assertExists('.app-list.expanded');
                     helpers.assertUATracking(test, [
                         'View type interactions',
@@ -239,7 +245,7 @@ appListPages.forEach(function(appListPage) {
                         if (!appListPage.noModelCache) {
                             var modelCount = casper.evaluate(function() {
                                 return Object.keys(
-                                    window.require('models')('app')
+                                    window.require('core/models')('app')
                                         .data_store.app).length;
                             });
                             test.assertEqual(
@@ -268,11 +274,14 @@ appListPages.forEach(function(appListPage) {
                     test.assertExists(appNthChild(appListPage.appLimit - 1));
                     test.assertNotExists(appNthChild(appListPage.appLimit + 1));
 
-                    waitForLoadMore(function() {
-                        casper.click('.wordmark');
+                    waitForLoadMore();
+                    casper.thenClick('.wordmark');
+
+                    // Wait for the homepage to load before moving back.
+                    helpers.waitForFeedItem(function() {
                         casper.back();
-                        casper.waitUntilVisible(appNthChild(APP_LIMIT_LOADMORE));
                     });
+                    casper.waitUntilVisible(appNthChild(APP_LIMIT_LOADMORE));
                 });
 
                 helpers.done(test);
@@ -416,7 +425,7 @@ casper.test.begin('Test collection detail page for app tile expanded state.', {
 
         // Visit a collection details page and check it's not expanded.
         casper.thenOpen(helpers.makeUrl('/feed/collection/top-games'), function() {
-            helpers.waitForPageLoaded(function() {
+            helpers.waitForPageLoadedAgain(function() {
                 test.assertDoesntExist('.app-list.expanded');
                 test.assertDoesntExist('.previews-tray');
             });

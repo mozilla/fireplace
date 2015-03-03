@@ -1,6 +1,6 @@
 define('views/settings',
-    ['cache', 'jquery', 'l10n', 'notification', 'requests', 'urls', 'user',
-     'utils', 'z'],
+    ['core/cache', 'jquery', 'core/l10n', 'core/notification', 'core/requests', 'core/urls', 'core/user',
+     'core/utils', 'core/z'],
     function(cache, $, l10n, notification, requests, urls, user,
              utils, z) {
     var _pd = utils._pd;

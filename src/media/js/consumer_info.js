@@ -5,8 +5,8 @@
    On subsequent page loads, the promise will resolve from the cache.
 */
 define('consumer_info',
-    ['defer', 'log', 'mobilenetwork', 'requests', 'settings', 'urls', 'user',
-     'user_helpers', 'z'],
+    ['core/defer', 'core/log', 'mobilenetwork', 'core/requests', 'core/settings', 'core/urls', 'core/user',
+     'user_helpers', 'core/z'],
     function(defer, log, mobilenetwork, requests, settings, urls, user,
              user_helpers, z) {
     var logger = log('consumer_info');

@@ -1,5 +1,5 @@
 define('views/popular',
-    ['l10n', 'log', 'urls', 'utils'],
+    ['core/l10n', 'core/log', 'core/urls', 'core/utils'],
     function(l10n, log, urls, utils) {
     'use strict';
     var gettext = l10n.gettext;
