@@ -136,7 +136,7 @@ define('previews',
         });
     });
 
-    z.win.resize(_.debounce(function() {
+    z.win.on('resize', _.debounce(function() {
         if (isDesktopDetail()) {
             // If the desktop tray exists only refresh its position and size.
             // Otherwise create the desktop tray.
@@ -149,15 +149,10 @@ define('previews',
             $('.previews-tray').attr('style', '');
             desktopMarginLeft = 0;
         }
-    }));
-
-    // Don't treat the trays as draggable (bug 1138396).
-    z.page.on('dragstart', '.previews-tray', function(e) {
-        e.preventDefault();
-    });
+    }))
 
     // We're leaving the page, so destroy Flipsnap.
-    z.win.on('unloading.tray', function() {
+    .on('unloading.tray', function() {
         sliders.forEach(function(slider) {
             slider.destroy();
         });
@@ -165,7 +160,13 @@ define('previews',
         desktopMarginLeft = 0;
     });
 
-    z.page.on('populatetray', function() {
+    // Don't treat the trays as draggable (bug 1138396).
+    z.page.on('dragstart', '.previews-tray', function(e) {
+        e.preventDefault();
+    })
+
+    // Tha main event that initializes the preview trays.
+    .on('populatetray', function() {
         logger.log('Initializing trays');
 
         if (isDesktopDetail()) {
