@@ -151,6 +151,11 @@ define('previews',
         }
     }));
 
+    // Don't treat the trays as draggable (bug 1138396).
+    z.page.on('dragstart', '.previews-tray', function(e) {
+        e.preventDefault();
+    });
+
     // We're leaving the page, so destroy Flipsnap.
     z.win.on('unloading.tray', function() {
         sliders.forEach(function(slider) {
