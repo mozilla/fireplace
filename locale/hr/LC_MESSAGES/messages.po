@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-18T17:02:53.193Z\n"
+"POT-Creation-Date: 2015-03-04T17:14:10.313Z\n"
 "PO-Revision-Date: 2014-05-24 12:31+0000\n"
 "Last-Translator: Mihovil <mihovil.stanic@gmail.com>\n"
 "Language-Team: none\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1400934660.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:17 /templates/purchases.html:7 /templates/search.html:26
+#: /templates/app_list.html:7 /templates/category.html:17 /templates/purchases.html:7 /templates/search.html:20
 msgid "Expand"
 msgstr "Proširi"
 
@@ -22,7 +22,7 @@ msgstr "Proširi"
 msgid "No apps found."
 msgstr ""
 
-#: /templates/app_list.html:39 /templates/category.html:49 /templates/langpacks.html:41 /templates/purchases.html:39
+#: /templates/app_list.html:39 /templates/category.html:49 /templates/langpacks.html:41 /templates/purchases.html:36
 msgid "An internal server error occurred. Please try again later."
 msgstr "Dogodila se interna greška. Pokušajte ponovno kasnije."
 
@@ -33,18 +33,6 @@ msgstr "U ovoj kategoriji nema aplikacija"
 #: /templates/category.html:47
 msgid "The category you requested does not exist."
 msgstr "Kategorija koju ste tražili ne postoji."
-
-#: /templates/confirmation.html:0
-msgid "Close"
-msgstr "Zatvori"
-
-#: /templates/confirmation.html:3
-msgid "No"
-msgstr "Ne"
-
-#: /templates/confirmation.html:4
-msgid "Yes"
-msgstr "Da"
 
 #: /templates/credits.html:3 /media/js/views/credits.js:10
 msgid "Credits"
@@ -78,6 +66,26 @@ msgstr ""
 msgid "Android Tablet Apps"
 msgstr ""
 
+#: /templates/confirmation.html:0
+msgid "Close"
+msgstr "Zatvori"
+
+#: /templates/confirmation.html:3
+msgid "No"
+msgstr "Ne"
+
+#: /templates/confirmation.html:4
+msgid "Yes"
+msgstr "Da"
+
+#: /templates/desktop-promo.html:1
+msgid "Previous"
+msgstr ""
+
+#: /templates/desktop-promo.html:10
+msgid "Next"
+msgstr ""
+
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
 msgstr ""
@@ -101,14 +109,6 @@ msgstr ""
 #: /templates/feedback.html:28 /templates/feedback.html:31
 msgid "Get Help"
 msgstr "Potražite pomoć"
-
-#: /templates/desktop-promo.html:1
-msgid "Previous"
-msgstr ""
-
-#: /templates/desktop-promo.html:10
-msgid "Next"
-msgstr ""
 
 #: /templates/footer.html:6 /templates/nav.html:31 /templates/_includes/settings_hover_desktop.html:16 /media/js/views/feedback.js:56
 msgid "Feedback"
@@ -142,12 +142,12 @@ msgstr ""
 "Sadržaj na ovoj stranici je licenciran pod <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike licencom v3.0</a> ili novijoj, osim ako nije drugačije <a href="
 "\"{legal_url}\" target=\"_blank\">navedeno</a>."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:68 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:68 /templates/app/index.html:116 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
 #: /media/js/views/app/privacy.js:7
 msgid "Privacy Policy"
 msgstr "Politika privatnosti"
 
-#: /templates/footer.html:40 /templates/settings.html:69 /templates/terms.html:2 /media/js/views/terms.js:10
+#: /templates/footer.html:40 /templates/terms.html:2 /templates/settings.html:69 /media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Uvjeti korištenja"
 
@@ -171,11 +171,11 @@ msgstr ""
 msgid "Clear"
 msgstr "Očisti"
 
-#: /templates/header.html:26 /templates/purchases.html:47 /templates/settings.html:41
+#: /templates/header.html:26 /templates/purchases.html:44 /templates/settings.html:41
 msgid "Sign In"
 msgstr "Prijava"
 
-#: /templates/header.html:27 /templates/purchases.html:46 /templates/settings.html:40
+#: /templates/header.html:27 /templates/purchases.html:43 /templates/settings.html:40
 msgid "Register"
 msgstr ""
 
@@ -194,6 +194,44 @@ msgstr ""
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr ""
+
+#: /templates/purchases.html:6 /templates/nav.html:30 /templates/_includes/settings_hover_desktop.html:12 /media/js/views/purchases.js:10
+msgid "My Apps"
+msgstr "Moje aplikacije"
+
+#: /templates/purchases.html:42
+msgid "You must be signed in to view your apps."
+msgstr "Morate biti prijavljeni za pregled vaših aplikacija."
+
+#: /templates/purchases.html:31
+msgid "You have no apps"
+msgstr "Nemate aplikacija"
+
+#: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:51
+msgid "Oh no!"
+msgstr "O, ne!"
+
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> rezultat"
+msgstr[1] "<b>{n}</b> rezultata"
+msgstr[2] "<b>{n}</b> rezultata"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Nema rezultata"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Nema rezultata, pokušajte ponovno kasnije"
 
 #: /templates/marketplace-update.html:2
 msgid "An update to Marketplace is available."
@@ -219,7 +257,7 @@ msgstr "Popularne"
 msgid "Recommended"
 msgstr ""
 
-#: /templates/nav.html:20 /templates/nav.html:21 /templates/app/index.html:219 /media/js/views/categories.js:9
+#: /templates/nav.html:20 /templates/nav.html:21 /templates/app/index.html:218 /media/js/views/categories.js:9
 msgid "Categories"
 msgstr ""
 
@@ -227,12 +265,20 @@ msgstr ""
 msgid "My Account"
 msgstr ""
 
-#: /templates/nav.html:30 /templates/purchases.html:6 /templates/purchases.html:31 /templates/_includes/settings_hover_desktop.html:12 /media/js/views/purchases.js:10
-msgid "My Apps"
-msgstr "Moje aplikacije"
-
 #: /templates/nav.html:36
 msgid "Back to Marketplace"
+msgstr ""
+
+#: /templates/usage.html:3 /media/js/views/usage.js:9
+msgid "App Statistics"
+msgstr ""
+
+#: /templates/usage.html:10
+msgid "App usage statistics"
+msgstr ""
+
+#: /templates/usage.html:11
+msgid "Not enough statistics to show."
 msgstr ""
 
 #: /templates/newsletter.html:3
@@ -262,40 +308,6 @@ msgstr ""
 #: /templates/newsletter.html:43
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr ""
-
-#: /templates/purchases.html:45
-msgid "You must be signed in to view your apps."
-msgstr "Morate biti prijavljeni za pregled vaših aplikacija."
-
-#: /templates/purchases.html:34
-msgid "You have no apps"
-msgstr "Nemate aplikacija"
-
-#: /templates/purchases.html:38 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:51
-msgid "Oh no!"
-msgstr "O, ne!"
-
-#: /templates/search.html:19
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#: /templates/search.html:25
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> rezultat"
-msgstr[1] "<b>{n}</b> rezultata"
-msgstr[2] "<b>{n}</b> rezultata"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Nema rezultata"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Nema rezultata, pokušajte ponovno kasnije"
 
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
@@ -349,14 +361,6 @@ msgstr ""
 msgid "Get Involved"
 msgstr ""
 
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr ""
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr ""
-
 #: /templates/_includes/back_to_app.html:5
 msgid "Back to {app}"
 msgstr ""
@@ -379,6 +383,44 @@ msgstr ""
 msgid "Learn how to change them."
 msgstr ""
 
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr ""
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr ""
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: /templates/_macros/app_tile.html:114 /templates/_macros/app_tile.html:117
+msgid "{app_name} screenshot"
+msgstr "{app_name} slika zaslona"
+
+#: /templates/_macros/app_tile.html:132
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: /templates/_macros/app_tile.html:136
+msgid "Not yet reviewed"
+msgstr ""
+
+#: /templates/_includes/settings_hover_desktop.html:10
+msgid "Edit Account Settings"
+msgstr "Uredi postavke računa"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:167
+msgid "View all apps"
+msgstr ""
+
 #: /templates/_includes/post_install_message.html:2
 msgid "Installed!"
 msgstr "Instalirano!"
@@ -394,6 +436,157 @@ msgstr "Pokrenite ovu aplikaciju s <b>Windows radne površine</b> ili izbornika 
 #: /templates/_includes/post_install_message.html:11
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Pokrenite ovu aplikaciju iz <b>dasha</b> ili <b>Izbornika aplikacija</b>."
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr ""
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:8
+msgid "Unavailable"
+msgstr "Nedostupno"
+
+#: /templates/_macros/market_button.html:10
+msgid "Free"
+msgstr "Besplatno"
+
+#: /templates/_macros/market_button.html:26 /media/js/apps_buttons.js:320
+msgid "Installed"
+msgstr ""
+
+#: /templates/_macros/market_button.html:28 /media/js/apps_buttons.js:324
+msgid "Open"
+msgstr ""
+
+#: /templates/_macros/market_button.html:30 /media/js/apps_buttons.js:127 /media/js/apps_buttons.js:360
+msgid "Install"
+msgstr "Instaliraj"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr ""
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Uredi"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Obriši"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Prijavi"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Označeno za recenziju"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr ""
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Ocijenjeno sa {stars} od {maxstars} zvijezdica"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr ""
+
+#: /templates/app/abuse.html:6
+msgid "Let us know if you find any issues regarding abuse about this app."
+msgstr ""
+
+#: /templates/app/abuse.html:13
+msgid "Submit Report"
+msgstr ""
+
+#: /templates/app/abuse.html:21 /templates/app/index.html:251 /media/js/views/app/abuse.js:51
+msgid "Report Abuse"
+msgstr "Prijava zloporabe"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:61
+msgid "Description"
+msgstr "Opis"
+
+#: /templates/app/index.html:67 /templates/app/index.html:81
+msgid "View All"
+msgstr "Prikaži sve"
+
+#: /templates/app/index.html:77
+msgid "Updates"
+msgstr "Nadogradnje"
+
+#: /templates/app/index.html:88
+msgid "Last updated"
+msgstr ""
+
+#: /templates/app/index.html:97
+msgid "Email Support"
+msgstr ""
+
+#: /templates/app/index.html:104
+msgid "Support Site"
+msgstr "Stranica podrške"
+
+#: /templates/app/index.html:110
+msgid "Homepage"
+msgstr "Web stranica"
+
+#: /templates/app/index.html:123
+msgid "Statistics"
+msgstr "Statistike"
+
+#: /templates/app/index.html:130
+msgid "Edit Listing"
+msgstr "Uredi nabrajanje"
+
+#: /templates/app/index.html:138
+msgid "Approve / Reject"
+msgstr "Odobri / Odbaci"
+
+#: /templates/app/index.html:139
+msgid "Review History"
+msgstr "Povijest recenzija"
+
+#: /templates/app/index.html:156 /templates/ratings/main.html:15 /media/js/views/app/ratings.js:10
+msgid "Reviews"
+msgstr "Recenzije"
+
+#: /templates/app/index.html:167
+msgid "App not yet reviewed"
+msgstr ""
+
+#: /templates/app/index.html:186
+msgid "Premium version available"
+msgstr "Dostupna je premium inačica"
+
+#: /templates/app/index.html:204
+msgid "More Information"
+msgstr ""
+
+#: /templates/app/index.html:207
+msgid "Developer"
+msgstr ""
+
+#: /templates/app/index.html:211
+msgid "Compatibility"
+msgstr ""
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:214 /templates/app/index.html:222
+msgid ","
+msgstr ""
+
+#: /templates/app/index.html:228
+msgid "File Size"
+msgstr ""
+
+#: /templates/app/index.html:233
+msgid "Most Recent Version"
+msgstr ""
 
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
@@ -415,119 +608,6 @@ msgstr ""
 msgid "Read all reviews"
 msgstr ""
 
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr ""
-
-#: /templates/app/abuse.html:6
-msgid "Let us know if you find any issues regarding abuse about this app."
-msgstr ""
-
-#: /templates/app/abuse.html:13
-msgid "Submit Report"
-msgstr ""
-
-#: /templates/app/abuse.html:21 /templates/app/index.html:252 /media/js/views/app/abuse.js:51
-msgid "Report Abuse"
-msgstr "Prijava zloporabe"
-
-#: /templates/_includes/settings_hover_desktop.html:10
-msgid "Edit Account Settings"
-msgstr "Uredi postavke računa"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:61
-msgid "Description"
-msgstr "Opis"
-
-#: /templates/app/index.html:67 /templates/app/index.html:81
-msgid "View All"
-msgstr "Prikaži sve"
-
-#: /templates/app/index.html:77
-msgid "Updates"
-msgstr "Nadogradnje"
-
-#: /templates/app/index.html:88
-msgid "Version"
-msgstr "Inačica"
-
-#: /templates/app/index.html:89
-msgid "Latest version: {version}"
-msgstr "Najnovija inačica: {version}"
-
-#: /templates/app/index.html:98
-msgid "Email Support"
-msgstr ""
-
-#: /templates/app/index.html:105
-msgid "Support Site"
-msgstr "Stranica podrške"
-
-#: /templates/app/index.html:111
-msgid "Homepage"
-msgstr "Web stranica"
-
-#: /templates/app/index.html:124
-msgid "Statistics"
-msgstr "Statistike"
-
-#: /templates/app/index.html:131
-msgid "Edit Listing"
-msgstr "Uredi nabrajanje"
-
-#: /templates/app/index.html:139
-msgid "Approve / Reject"
-msgstr "Odobri / Odbaci"
-
-#: /templates/app/index.html:140
-msgid "Review History"
-msgstr "Povijest recenzija"
-
-#: /templates/app/index.html:157 /templates/ratings/main.html:14 /media/js/views/app/ratings.js:10
-msgid "Reviews"
-msgstr "Recenzije"
-
-#: /templates/app/index.html:168
-msgid "App not yet reviewed"
-msgstr ""
-
-#: /templates/app/index.html:187
-msgid "Premium version available"
-msgstr "Dostupna je premium inačica"
-
-#: /templates/app/index.html:205
-msgid "More Information"
-msgstr ""
-
-#: /templates/app/index.html:208
-msgid "Developer"
-msgstr ""
-
-#: /templates/app/index.html:212
-msgid "Compatibility"
-msgstr ""
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:215 /templates/app/index.html:223
-msgid ","
-msgstr ""
-
-#: /templates/app/index.html:229
-msgid "File Size"
-msgstr ""
-
-#: /templates/app/index.html:234
-msgid "Most Recent Version"
-msgstr ""
-
 #: /templates/app/privacy.html:8
 msgid "Back to app"
 msgstr "Povratak na aplikaciju"
@@ -536,85 +616,13 @@ msgstr "Povratak na aplikaciju"
 msgid "Loading Privacy Policy..."
 msgstr "Učitavanje politike privatnosti..."
 
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Hvala na kupnji"
-
-#: /templates/_macros/app_tile.html:111 /templates/_macros/app_tile.html:114
-msgid "{app_name} screenshot"
-msgstr "{app_name} slika zaslona"
-
-#: /templates/_macros/app_tile.html:129
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#: /templates/_macros/app_tile.html:133
-msgid "Not yet reviewed"
-msgstr ""
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr ""
-
-#: /templates/_macros/feed_item.html:70 /templates/_macros/feed_item.html:159
-msgid "View all apps"
-msgstr ""
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:8
-msgid "Unavailable"
-msgstr "Nedostupno"
-
-#: /templates/_macros/market_button.html:10
-msgid "Free"
-msgstr "Besplatno"
-
-#: /templates/_macros/market_button.html:21 /media/js/apps_buttons.js:294
-msgid "Installed"
-msgstr ""
-
-#: /templates/_macros/market_button.html:23 /media/js/apps_buttons.js:298
-msgid "Open"
-msgstr ""
-
-#: /templates/_macros/market_button.html:25 /media/js/apps_buttons.js:108 /media/js/apps_buttons.js:327
-msgid "Install"
-msgstr "Instaliraj"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr ""
-
-#: /templates/_macros/review.html:12
-msgid "For previous version {version}"
-msgstr ""
-
-#: /templates/_macros/review.html:21
-msgid "Flagged for review"
-msgstr "Označeno za recenziju"
-
-#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
-msgid "Edit"
-msgstr "Uredi"
-
-#: /templates/_macros/review.html:36
-msgid "Delete"
-msgstr "Obriši"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Prijavi"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Ocijenjeno sa {stars} od {maxstars} zvijezdica"
-
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
 msgstr "Stranica koju ste tražili nije pronađena."
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Hvala na kupnji"
 
 #: /templates/errors/date-error.html:2
 msgid "System Date Incorrect"
@@ -648,7 +656,7 @@ msgstr ""
 msgid "Try Again"
 msgstr "Pokušajte ponovno"
 
-#: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:48
+#: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
 msgid "Edit Review"
 msgstr "Uredi recenziju"
 
@@ -676,6 +684,10 @@ msgstr ""
 msgid "Submit Review"
 msgstr ""
 
+#: /templates/ratings/main.html:39
+msgid "This app has no reviews."
+msgstr ""
+
 #: /templates/ratings/flag.html:3 /templates/ratings/flag.html:26
 msgid "Flag Review"
 msgstr ""
@@ -696,31 +708,9 @@ msgstr "Neprimjereni rječnik/komentar"
 msgid "Misplaced bug report or support request"
 msgstr "Prijava greške ili zahtjev za podrškom na krivom mjestu"
 
-#: /templates/ratings/main.html:38
-msgid "This app has no reviews."
-msgstr ""
-
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Recenzija aplikacije"
-
-#: /media/js/apps_buttons.js:63 /media/js/apps_buttons.js:132 /media/js/payments.js:131
-msgid "Payment cancelled."
-msgstr "Plaćanje otkazano."
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:97
-msgid "Purchasing"
-msgstr "Kupnja u tijeku"
-
-#: /media/js/apps_buttons.js:173 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr ""
-
-#. The app's installation has failed, but the problem is temporary.
-#: /media/js/apps_buttons.js:218
-msgid "Install failed. Please try again later."
-msgstr "Instalacija nije uspjela. Molim pokušajte ponovno."
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -794,13 +784,31 @@ msgstr "Putovanja"
 msgid "Utilities"
 msgstr "Pomagala"
 
-#: /media/js/apps.js:99
+#: /media/js/apps.js:102
 msgid "Not available for your region"
 msgstr ""
 
-#: /media/js/apps.js:104
+#: /media/js/apps.js:107
 msgid "Not available for your platform"
 msgstr ""
+
+#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:152 /media/js/payments.js:131
+msgid "Payment cancelled."
+msgstr "Plaćanje otkazano."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:116
+msgid "Purchasing"
+msgstr "Kupnja u tijeku"
+
+#: /media/js/apps_buttons.js:193 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr ""
+
+#. App's install failed, but problem is temporary.
+#: /media/js/apps_buttons.js:238
+msgid "Install failed. Please try again later."
+msgstr "Instalacija nije uspjela. Molim pokušajte ponovno."
 
 #: /media/js/compatibility_filtering.js:15
 msgid "Android Mobile"
@@ -819,43 +827,43 @@ msgid "Firefox OS"
 msgstr ""
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:98
+#: /media/js/content-ratings.js:103
 msgid "For ages {0}+"
 msgstr "Za starost {0}+"
 
-#: /media/js/content-ratings.js:104
+#: /media/js/content-ratings.js:109
 msgid "Generic"
 msgstr "Općenito"
 
-#: /media/js/content-ratings.js:111
+#: /media/js/content-ratings.js:116
 msgid "For all ages"
 msgstr "Za sve dobne skupine"
 
-#: /media/js/content-ratings.js:120
+#: /media/js/content-ratings.js:125
 msgid "Rating Pending"
 msgstr "U očekivanju ocjene"
 
-#: /media/js/content-ratings.js:121
+#: /media/js/content-ratings.js:126
 msgid "Rating Refused"
 msgstr "Ocjena odbijena"
 
-#: /media/js/content-ratings.js:124
+#: /media/js/content-ratings.js:129
 msgid "Everyone"
 msgstr "Svi"
 
-#: /media/js/content-ratings.js:125
+#: /media/js/content-ratings.js:130
 msgid "Everyone 10+"
 msgstr "Svi 10+"
 
-#: /media/js/content-ratings.js:126
+#: /media/js/content-ratings.js:131
 msgid "Teen"
 msgstr "Tinejdžeri"
 
-#: /media/js/content-ratings.js:127
+#: /media/js/content-ratings.js:132
 msgid "Mature 17+"
 msgstr "Zreli 17+"
 
-#: /media/js/content-ratings.js:128
+#: /media/js/content-ratings.js:133
 msgid "Adults Only 18+"
 msgstr "Samo odrasli 18+"
 
@@ -1257,7 +1265,7 @@ msgstr[0] "Budite produktivniji"
 msgstr[1] "Budite produktivniji"
 msgstr[2] "Budite produktivniji"
 
-#: /media/js/helpers_local.js:85
+#: /media/js/helpers_local.js:117
 msgid "Works offline"
 msgstr ""
 
@@ -1269,7 +1277,7 @@ msgstr ""
 msgid "App install error: {error}"
 msgstr "Greška pri instalaciji aplikacije: {error}"
 
-#: /media/js/main.js:182
+#: /media/js/main.js:169
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr ""
 
@@ -1295,89 +1303,89 @@ msgstr[1] "{n} zvjezdice"
 msgstr[2] "{n} zvjezdica"
 
 #. The report is an abuse report for reviews.
-#: /media/js/reviews.js:34
+#: /media/js/reviews.js:35
 msgid "Flagging review..."
 msgstr ""
 
-#: /media/js/reviews.js:38
+#: /media/js/reviews.js:40
 msgid "This review has been successfully flagged. Thanks!"
 msgstr ""
 
-#: /media/js/reviews.js:41
+#: /media/js/reviews.js:51
 msgid "Sorry, there was an issue flagging the review. Please try again later."
 msgstr ""
 
-#: /media/js/reviews.js:49
+#: /media/js/reviews.js:59
 msgid "This review has been successfully deleted"
 msgstr ""
 
-#: /media/js/reviews.js:80
+#: /media/js/reviews.js:90
 msgid "Write a Review"
 msgstr ""
 
-#: /media/js/reviews.js:82
+#: /media/js/reviews.js:92
 msgid "Sorry, there was a problem deleting the review"
 msgstr ""
 
-#: /media/js/reviews.js:145 /media/js/views/app.js:25 /media/js/views/app.js:31 /media/js/views/app.js:32 /media/js/views/app.js:37 /media/js/views/app.js:38 /media/js/views/feed/app.js:9
+#: /media/js/reviews.js:151 /media/js/views/app.js:25 /media/js/views/app.js:31 /media/js/views/app.js:32 /media/js/views/app.js:37 /media/js/views/app.js:38 /media/js/views/feed/app.js:9
 #: /media/js/views/feed/collection.js:9 /media/js/views/feed/editorial.js:9 /media/js/views/feed/shelf.js:9
 msgid "Loading..."
 msgstr "Učitavanje..."
 
-#: /media/js/reviews.js:249
+#: /media/js/reviews.js:254
 msgid "Your review was successfully posted. Thanks!"
 msgstr ""
 
-#: /media/js/reviews.js:255
+#: /media/js/reviews.js:258
 msgid "Sorry, there was an error posting your review. Please try again later."
 msgstr ""
 
-#: /media/js/settings.js:99
+#: /media/js/reviews.js:284
+msgid "Your review was successfully edited"
+msgstr ""
+
+#: /media/js/reviews.js:288
+msgid "Sorry, there was an issue editing your review. Please try again later"
+msgstr ""
+
+#: /media/js/settings_app.js:101
 msgid "English"
 msgstr ""
 
-#: /media/js/settings.js:100
+#: /media/js/settings_app.js:102
 msgid "French"
 msgstr ""
 
-#: /media/js/settings.js:101
+#: /media/js/settings_app.js:103
 msgid "German"
 msgstr ""
 
-#: /media/js/settings.js:102
+#: /media/js/settings_app.js:104
 msgid "Hungarian"
 msgstr ""
 
-#: /media/js/settings.js:103
+#: /media/js/settings_app.js:105
 msgid "Indonesian"
 msgstr ""
 
-#: /media/js/settings.js:104
+#: /media/js/settings_app.js:106
 msgid "Polish"
 msgstr ""
 
-#: /media/js/settings.js:105
+#: /media/js/settings_app.js:107
 msgid "Portuguese"
 msgstr ""
 
-#: /media/js/settings.js:106
+#: /media/js/settings_app.js:108
 msgid "Russian"
 msgstr ""
 
-#: /media/js/settings.js:107
+#: /media/js/settings_app.js:109
 msgid "Spanish"
 msgstr ""
 
-#: /media/js/settings.js:133
+#: /media/js/settings_app.js:135
 msgid "Sorry, you are currently offline. Please try again later."
-msgstr ""
-
-#: /media/js/views/langpacks.js:29
-msgid "Language Packs"
-msgstr ""
-
-#: /media/js/views/langpacks.js:41
-msgid "Firefox OS {version}"
 msgstr ""
 
 #: /media/js/views/feedback.js:23
@@ -1387,6 +1395,14 @@ msgstr "Povratna informacija je poslana. Hvala!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Došlo je do greške pri slanju vaše povratne informacije. Pokušajte ponovno kasnije."
+
+#: /media/js/views/langpacks.js:29
+msgid "Language Packs"
+msgstr ""
+
+#: /media/js/views/langpacks.js:41
+msgid "Firefox OS {version}"
+msgstr ""
 
 #: /media/js/views/search.js:164
 msgid "Search Results"
@@ -1415,20 +1431,3 @@ msgstr "Prijavite se kako biste vidjeli račun"
 #: /media/js/views/app/receipt.js:21
 msgid "Receipt"
 msgstr "Račun"
-
-#: /media/js/views/commonplace/hello_world.js:9
-msgid "Hello World!"
-msgstr "Pozdrav svijetu!"
-
-#. Page not found (404)
-#: /media/js/views/commonplace/not_found.js:9
-msgid "Not Found"
-msgstr "Nije pronađeno"
-
-#: /media/js/views/app/ratings/edit.js:19
-msgid "Your review was successfully edited"
-msgstr ""
-
-#: /media/js/views/app/ratings/edit.js:36
-msgid "Sorry, there was an issue editing your review. Please try again later"
-msgstr ""
