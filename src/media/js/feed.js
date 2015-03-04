@@ -2,10 +2,10 @@
     Helpers for displaying the Feed.
 */
 define('feed',
-    ['collection_colors', 'edbrands', 'core/l10n', 'core/nunjucks', 'underscore',
-     'utils_local'],
-    function(colors, brands, l10n, nunjucks, _,
-             utils_local) {
+    ['collection_colors', 'edbrands', 'core/l10n', 'core/nunjucks',
+     'core/urls', 'core/utils', 'underscore', 'utils_local'],
+    function(colors, brands, l10n, nunjucks,
+             urls, utils, _, utils_local) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -18,6 +18,7 @@ define('feed',
         } else if (feedItem.layout) {
             feedItem.isBrand = true;
             feedItem.itemType = 'brand';
+            feedItem.itemTypeSlug = 'editorial';
         } else if (feedItem.carrier) {
             feedItem.isShelf = true;
             feedItem.itemType = 'shelf';
@@ -65,6 +66,19 @@ define('feed',
                 feedItem.src = 'operator-shelf-element';
                 break;
         }
+
+        // Get the Feed detail page URL for the item.
+        if (feedItem.isApp) {
+            feedItem.landingUrl = urls.reverse('app', [feedItem.app.slug]);
+        } else {
+            feedItem.landingUrl = urls.reverse('feed_landing', [
+                feedItem.itemTypeSlug || feedItem.itemType,
+                feedItem.slug
+            ]);
+        }
+        feedItem.landingUrl = utils.urlparams(feedItem.landingUrl, {
+            src: feedItem.src
+        });
 
         // Attach hex color (deprecated).
         feedItem.color = feedItem.color || 'sapphire';

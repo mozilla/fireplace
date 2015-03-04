@@ -6,7 +6,7 @@
   {% set feed_app = feed.transformer(feed_app) %}
   {% set desc = feed_app.description|translate(feed_app) %}
 
-  <a href="{{ url('app', [feed_app.app.slug])|urlparams(src=feed_app.src) }}"
+  <a href="{{ feed_app.landingUrl }}"
      class="featured-app app-link" data-tracking="{{ feed_app.app.slug }}">
     {% if feed_app.isIcon or feed_app.isImage %}
       <section class="feed-item {{ 'deferred-background' if feed_app.background_image }}"
@@ -48,7 +48,7 @@
 {% macro brand_header(brand) %}
   <a class="brand-header"
      data-feed-color="{{ brand.color }}" data-brand-type="{{ brand.type }}"
-     href="{{ url('feed/editorial', [brand.slug])|urlparams(src=brand.src) }}">
+     href="{{ brand.landingUrl }}">
     <h3>{{ brand.name }}</h3>
   </a>
 {% endmacro %}
@@ -69,7 +69,7 @@
     </ul>
 
     {% if brand.app_count > 4 %}
-      <a href="{{ url('feed/editorial', [brand.slug])|urlparams(src=brand.src) }}"
+      <a href="{{ brand.landingUrl }}"
          class="view-all-tab feed-view-all-tab">
         {{ _('View all apps') }}
       </a>
@@ -80,7 +80,7 @@
 {% macro collection(coll) %}
   {% set coll = feed.transformer(coll) %}
   {% if coll.isCollPromo %}
-    <a href="{{ url('feed/collection', [coll.slug])|urlparams(src=coll.src) }}">
+    <a href="{{ coll.landingUrl }}">
       {{ collection_promo(coll) }}
     </a>
   {% else %}
@@ -136,7 +136,7 @@
 
 {% macro collection_listing_header(coll) %}
    <a class="collection-listing-header"
-      href="{{ url('feed/collection', [coll.slug])|urlparams(src=coll.src) }}">
+      href="{{ coll.landingUrl }}">
      <h3>{{ coll.name|translate(coll)|safe }}</h3>
   </a>
   {% if coll.description %}
@@ -163,7 +163,7 @@
     </ul>
 
     {% if coll.app_count > 4 %}
-      <a href="{{ url('feed/collection', [coll.slug])|urlparams(src=coll.src) }}"
+      <a href="{{ coll.landingUrl }}"
          class="view-all-tab feed-view-all-tab">
         {{ _('View all apps') }}
       </a>
@@ -293,7 +293,7 @@
     {{ collection(feed_item) }}
 
   {% else %}
-    <a href="{{ url('feed/shelf', [obj.shelf.slug])|urlparams(src=feed_item.src) }}"
+    <a href="{{ feed_item.landingUrl }}"
        class="op-shelf" data-tracking="{{ obj.shelf.slug }}">
       {{ shelf(feed_item) }}
     </a>
