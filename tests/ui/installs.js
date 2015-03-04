@@ -323,3 +323,68 @@ installAttributionTestDefs.forEach(function(testDef) {
         }
     });
 });
+
+
+casper.test.begin('Test install langpack', {
+    test: function(test) {
+        helpers.startCasper('/langpacks/2.2');
+
+        helpers.waitForPageLoaded(function() {
+
+            // Initially all install buttons should be disabled because our
+            // device is not compatible.
+            casper.waitForSelector('.install:disabled', function() {
+                test.assertSelectorHasText('.install', 'Install');
+
+                casper.evaluate(function() {
+                    require('apps')._use_compat_cache(false);
+                    require('core/capabilities').device_type = function() {
+                        return 'firefoxos';
+                    };
+                    require('core/views').reload();
+                });
+            });
+        });
+
+        // Wait for reload to be over. There should not be any disabled buttons
+        // any more.
+        casper.waitForSelector('.install:not(:disabled)', function() {
+            test.assertSelectorHasText('.install', 'Install');
+
+            // Click on first install button.
+            casper.click('.mkt-tile:first-child .install');
+        });
+
+        // Test that it changed to a launch button. It should now be disabled
+        // because you can't actually launch langpacks, and the text should
+        // also reflect that and just say "Installed".
+        casper.waitForSelector('.mkt-tile:first-child .launch', function() {
+            test.assertExists('.mkt-tile:first-child .launch:disabled');
+            test.assertSelectorHasText('.mkt-tile:first-child .launch', 'Installed');
+
+            // Navigate away...
+            casper.click('.popular a');
+        });
+
+        casper.waitForSelector('[data-page-type~="popular"]', function() {
+            // And back.
+            casper.back();
+        });
+
+        casper.waitForSelector('[data-page-type~="langpacks"]', function() {
+            // Now that we are back on the langpacks page, test that the button
+            // we clicked didn't change.
+            casper.waitForSelector('.mkt-tile:first-child .launch', function() {
+                test.assertExists('.mkt-tile:first-child .launch:disabled');
+                test.assertSelectorHasText('.mkt-tile:first-child .launch', 'Installed');
+
+                test.assert(casper.evaluate(function() {
+                    return window.require('core/z').apps.length == 1;
+                }), 'Test install recorded in z.apps');
+            });
+        });
+
+        // Done!
+        helpers.done(test);
+    }
+});
