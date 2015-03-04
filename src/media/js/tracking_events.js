@@ -166,6 +166,19 @@ define('tracking_events',
         setSessionVar(DIMENSIONS.isPackaged, 0);
     }
 
+    // Add review.
+    z.doc.on('submit', '.add-review-form', utils._pd(function() {
+        var slug = this.elements.app.value;
+        var rating = this.elements.rating.value;
+
+        sendEvent(
+            'App view interactions',
+            'click',
+            'Successful review'
+        );
+        sendEvent('Write a Review', 'click', slug, rating);
+    }));
+
     // Navigation tabs.
     z.body.on('click', '.navbar > li > a', function() {
         sendEvent(
@@ -279,30 +292,24 @@ define('tracking_events',
             'click',
             'Toggle description'
         );
-    });
+    })
 
-    // Add review.
-    z.doc.on('submit', '.add-review-form', utils._pd(function() {
-        var slug = this.elements.app.value;
-        var rating = this.elements.rating.value;
-
+    .on('click', '.app-support .button', function() {
         sendEvent(
-            'App view interactions',
+            'App view interaction',
             'click',
-            'Successful review'
+            this.parentNode.getAttribute('data-tracking')
         );
-        sendEvent('Write a Review', 'click', slug, rating);
-    }));
+    })
 
-    if (tracking.actions_enabled) {
-        z.page.on('click', '.app-support .button', function() {
-            sendEvent(
-                'App view interaction',
-                'click',
-                this.parentNode.getAttribute('data-tracking')
-            );
-        });
-    }
+    // Desktop promo click.
+    .on('click', '.desktop-promo-item', function() {
+        sendEvent(
+            'View Desktop Promo Item',
+            'click',
+            this.getAttribute('data-tracking')
+        );
+    });
 
     function getAppDimensions($installBtn) {
         // Given install button, return an object with appropriate custom UA

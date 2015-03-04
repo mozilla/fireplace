@@ -20,6 +20,35 @@ casper.test.begin('Test base site', {
 });
 
 
+casper.test.begin('Test UA desktop promo click event', {
+    test: function(test) {
+        helpers.startCasper({viewport: 'desktop'});
+
+        var trackingSlug;
+        helpers.waitForPageLoaded(function() {
+            test.assertExists('.desktop-promo');
+
+            var itemSel = '.desktop-promo-item:first-child';
+            trackingSlug = casper.evaluate(function(itemSel) {
+                return $(itemSel).data('tracking');
+            }, itemSel);
+
+            casper.click('.desktop-promo-item:first-child');
+        });
+
+        casper.waitWhileSelector('[data-page-type~="homepage"]', function() {
+            helpers.assertUASendEvent(test, [
+                'View Desktop Promo Item',
+                'click',
+                trackingSlug
+            ]);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
 casper.test.begin('Test UA package dimension set', {
     test: function(test) {
         helpers.startCasper();
