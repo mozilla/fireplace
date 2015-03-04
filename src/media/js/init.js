@@ -1,10 +1,10 @@
 define('init',
-    ['core/cache', 'core/init', 'core/log', 'document-register-element',
-     'helpers_local', 'marketplace-elements', 'rewriters', 'routes',
-     'settings_app'],
-    function(cache, init, log, documentRegisterElement,
-             helpers_local, elements, rewriters, routes,
-             settingsApp) {
+    ['compatibility_filtering', 'core/cache', 'core/init', 'core/log',
+     'core/router', 'document-register-element', 'helpers_local', 'rewriters',
+     'route_api_args', 'user_helpers'],
+    function(compatibility_filtering, cache, init, log,
+             router, documentRegisterElement, helpers_local, rewriters,
+             user_helpers) {
 
     log('init').log('dependencies loaded');
 

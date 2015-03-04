@@ -1,8 +1,6 @@
 define('settings_app',
-    ['core/capabilities', 'core/l10n', 'core/settings', 'settings_local',
-     'core/storage'],
-    function(capabilities, l10n, settings, settings_local,
-             storage) {
+    ['core/capabilities', 'core/l10n', 'core/settings', 'settings_local'],
+    function(capabilities, l10n, settings, settings_local) {
     var gettext = l10n.gettext;
 
     var base_settings = JSON.parse(document.body.getAttribute('data-settings') || '{}');
@@ -12,7 +10,9 @@ define('settings_app',
         window.location.search || '').indexOf('preview=true') > 0 ? ['pro'] : null;
 
     function offline_cache_enabled() {
-        if (storage.getItem('offline_cache_disabled') || capabilities.phantom) {
+        // We have a "circular" dependency on core/storage because storage
+        // wants settings.storage_version to exist at load time.
+        if (require('core/storage').getItem('offline_cache_disabled') || capabilities.phantom) {
             return false;
         }
         return window.location.search.indexOf('cache=false') === -1;

@@ -8,7 +8,8 @@ console.log('   (C)Copyright Mozilla Corp 1998-2015');
 console.log('');
 console.log('64K High Memory Area is available.');
 
-define('main', ['init'], function() {
+define('main', ['routes', 'settings_app'], function() {
+require(['init'], function() {
 require([
     'underscore',
     'jquery',
@@ -28,6 +29,7 @@ require([
     'core/log',
     'core/login',
     'core/models',
+    'marketplace-elements',
     'navbar',
     'newsletter',
     'overlay',
@@ -283,5 +285,6 @@ require([
     });
 
     logger.log('Initialization complete');
+});
 });
 });

@@ -1,9 +1,7 @@
-define('routes', [
-    'compatibility_filtering',
-    'core/router',
-    'user_helpers',
-    'core/utils',
-], function(compatibility_filtering, router, user_helpers, utils) {
+define('routes',
+    ['core/router'],
+    function(router) {
+
     router.addRoutes([
         {'pattern': '^/(app.html|index.html)?$', 'view_name': 'homepage'},
         {'pattern': '^/app/([^/<>"\']+)/?$', 'view_name': 'app'},
@@ -72,14 +70,5 @@ define('routes', [
         'search': '/api/v2/fireplace/search/?cache=1&vary=0',
         'settings': '/api/v2/account/settings/mine/',
         'site-config': '/api/v2/services/config/site/?cache=1&serializer=commonplace&vary=0',
-    });
-
-    router.api.addProcessor(function(endpoint) {
-        // Ask compatibility_filtering module for the base args to use, then
-        // add a few extra generic ones.
-        var args = compatibility_filtering.api_args(endpoint);
-        args.region = user_helpers.region(undefined, true);
-        args.carrier = user_helpers.carrier();
-        return args;
     });
 });
