@@ -152,6 +152,12 @@ define('tracking_events',
         desktopPromo: 'desktop-promo',
     };
 
+    // Srcs that should be persistent all the way through to the app detail
+    // page. This handles cases like Desktop Promo -> Collection -> App where
+    // Desktop Promo should receive attribution.
+    var PERSISTENT_SRCS = {};
+    PERSISTENT_SRCS[SRCS.desktopPromo] = true;
+
     // Track region.
     consumer_info.promise.done(function() {
         setSessionVar(DIMENSIONS.region, user_helpers.region());
@@ -405,6 +411,7 @@ define('tracking_events',
 
     return {
         DIMENSIONS: DIMENSIONS,
+        PERSISTENT_SRCS: PERSISTENT_SRCS,
         SRCS: SRCS,
         track_search_term: function(page) {
             // page -- whether the search query is being tracked for page view.

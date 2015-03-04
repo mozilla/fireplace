@@ -69,6 +69,11 @@ define('feed',
                 break;
         }
 
+        // Some cases, we want to persist the previous src, like Desktop Promo.
+        if (utils.getVars().src in trackingEvents.PERSISTENT_SRCS) {
+            feedItem.src = utils.getVars().src;
+        }
+
         // Get the Feed detail page URL for the item.
         if (feedItem.isApp) {
             feedItem.landingUrl = urls.reverse('app', [feedItem.app.slug]);
