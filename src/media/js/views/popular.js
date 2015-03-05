@@ -12,7 +12,7 @@ define('views/popular',
         builder.z('title', title);
 
         builder.start('app_list.html', {
-            endpoint_name: 'new_popular_search',
+            endpoint_name: 'search',
             source: 'popular',
             title: title
         });

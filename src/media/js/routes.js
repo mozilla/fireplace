@@ -41,7 +41,7 @@ define('routes',
         'app': '/api/v2/fireplace/app/{0}/?cache=1&vary=0',
         'app/privacy': '/api/v2/apps/app/{0}/privacy/?cache=1&vary=0',
         'app_abuse': '/api/v2/abuse/app/',
-        'category_landing': '/api/v2/fireplace/search/?cat={0}&cache=1&vary=0',
+        'category': '/api/v2/fireplace/search/?cat={0}&cache=1&vary=0',
         // consumer_info should be cached by the browser, never served by the
         // CDN, we can keep the Vary header.
         'consumer_info': '/api/v2/fireplace/consumer-info/?cache=1',
@@ -56,9 +56,6 @@ define('routes',
         'langpacks': '/api/v2/langpacks/?cache=1&vary=0',
         'login': '/api/v2/account/login/',
         'logout': '/api/v2/account/logout/',
-        // New / Popular pages use a regular search API call, but we need
-        // device filtering depending on the page group, so we need an alias.
-        'new_popular_search': '/api/v2/fireplace/search/?cache=1&vary=0',
         'newsletter': '/api/v2/account/newsletter/',
         'payments_status': '/api/v2/webpay/status/{0}/',
         'prepare_nav_pay': '/api/v2/webpay/prepare/',

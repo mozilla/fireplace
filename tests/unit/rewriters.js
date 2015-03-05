@@ -1,14 +1,14 @@
 define('tests/unit/rewriters',
     ['tests/unit/helpers'],
-    function(h) {
+    function(helpers) {
 
     describe('rewriter pagination cache', function() {
         it('rewrites pagination stuff',
-           h.injector()
+           helpers.injector()
            .mock('core/settings', {cache_rewriting_enabled: true,
                                    api_url: 'https://foo.com'})
            .run(['core/urls', 'rewriters', 'route_api_args', 'routes'],
-                function(urls, rewriters, route_api_args, routes) {
+                function(urls, rewriters, apiArgs, routes) {
 
                 var cache = {};
                 var first_result = cache[urls.api.params('search', {q: 'foo'})] = {

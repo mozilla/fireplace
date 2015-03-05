@@ -19,113 +19,8 @@ var waitForLoadMore = appList.waitForLoadMore;
 var APP_LIMIT = constants.APP_LIMIT;
 var APP_LIMIT_LOADMORE = constants.APP_LIMIT_LOADMORE;
 
-function getEndpointParams(appListPage, extend) {
-    var endpointParams = _.extend({
-        cache: '1', vary: '0', lang: 'en-US', region: 'us',
-        limit: APP_LIMIT + ''
-    }, appListPage.endpointParams || {});
 
-    if (appListPage.noCache) {
-        delete endpointParams.cache;
-    }
-    if (appListPage.noVary) {
-        delete endpointParams.vary;
-    }
-
-    return _.extend(endpointParams, extend || {});
-}
-
-var appListPages = [
-    {
-        endpoint: '/api/v2/fireplace/search/',
-        endpointParams: {sort: 'reviewed'},
-        name: 'New',
-        path: '/new',
-        src: 'new',
-    },
-    {
-        endpoint: '/api/v2/fireplace/search/',
-        name: 'Popular',
-        path: '/popular',
-        src: 'popular',
-    },
-    {
-        endpoint: '/api/v2/apps/recommend/',
-        name: 'Recommended',
-        path: '/recommended',
-        src: 'reco',
-        noVary: true,
-    },
-    {
-        endpoint: '/api/v2/fireplace/search/',
-        endpointParams: {q: 'games'},
-        name: 'Search',
-        path: '/search?q=games',
-        src: 'search'
-    },
-    {
-        endpoint: '/api/v2/fireplace/search/',
-        endpointParams: {cat: 'games'},
-        name: 'Category',
-        path: '/category/games',
-        src: 'games-popular'
-    },
-    {
-        endpoint: '/api/v2/account/installed/mine/',
-        endpointParams: {_user: 'mocktoken'},
-        login: true,
-        name: 'Purchases',
-        noCache: true,
-        noCompatFiltering: true,
-        noVary: true,
-        path: '/purchases',
-        src: 'myapps',
-    },
-    {
-        appLimit: 6,
-        endpoint: '/api/v2/fireplace/feed/collections/top-games/',
-        name: 'Collection',
-        noCompatFiltering: true,
-        noExpandToggle: true,
-        noLoadMore: true,
-        path: '/feed/collection/top-games',
-        src: 'collection-element',
-    },
-    {
-        appLimit: 6,
-        endpoint: '/api/v2/fireplace/feed/brands/fun-games/',
-        name: 'Brand',
-        noCompatFiltering: true,
-        noExpandToggle: true,
-        noLoadMore: true,
-        path: '/feed/editorial/fun-games',
-        src: 'branded-editorial-element',
-    },
-    {
-        appLimit: 6,
-        endpoint: '/api/v2/fireplace/feed/shelves/telefonica-games/',
-        name: 'Shelf',
-        noCompatFiltering: true,
-        noExpandToggle: true,
-        noLoadMore: true,
-        path: '/feed/shelf/telefonica-games',
-        src: 'operator-shelf-element',
-    },
-    {
-        endpoint: '/api/v2/langpacks/',
-        endpointParams: {fxos_version: '2.2'},
-        name: 'Langpacks',
-        noAppInstall: true,
-        noCompatFiltering: true,
-        noDetailPage: true,
-        noExpandToggle: true,
-        noLoadMore: false,
-        noModelCache: true,
-        path: '/langpacks/2.2',
-    }
-];
-
-appListPages.forEach(function(appListPage) {
+appList.appListPages.forEach(function(appListPage) {
     if (!appListPage.appLimit) {
         appListPage.appLimit = APP_LIMIT;
     }
@@ -140,7 +35,7 @@ appListPages.forEach(function(appListPage) {
                 test.assertNotExists(appNthChild(appListPage.appLimit + 1));
 
                 // Test API call.
-                var endpointParams = getEndpointParams(appListPage);
+                var endpointParams = appList.getEndpointParams(appListPage);
                 helpers.assertAPICallWasMade(appListPage.endpoint, endpointParams);
 
                 // Test app src.
@@ -236,8 +131,8 @@ appListPages.forEach(function(appListPage) {
                     // Test `Load more` button.
                     waitForLoadMore(function() {
                         // Test API call.
-                        var endpointParams = getEndpointParams(appListPage);
-                        getEndpointParams.offset = appListPage.appLimit + '';
+                        var endpointParams = appList.getEndpointParams(appListPage);
+                        endpointParams.offset = appListPage.appLimit + '';
                         helpers.assertAPICallWasMade(appListPage.endpoint,
                                                      endpointParams);
 
@@ -283,72 +178,6 @@ appListPages.forEach(function(appListPage) {
                     });
                     casper.waitUntilVisible(appNthChild(APP_LIMIT_LOADMORE));
                 });
-
-                helpers.done(test);
-            }
-        });
-    }
-
-    if (!appListPage.noCompatFiltering) {
-        casper.test.begin(appListPage.name + ' page compatibility filtering tests', {
-            test: function(test) {
-                waitForAppListPage(appListPage, function() {
-                    test.assertField('compatibility_filtering', 'all');
-                });
-
-                if (!appListPage.noLoadMore) {
-                    waitForLoadMore(function() {
-                        // Test compatibility filtering after load more.
-                        test.assertField('compatibility_filtering', 'all');
-                    });
-                }
-
-                helpers.done(test);
-            }
-        });
-
-        casper.test.begin(appListPage.name + ' compatibility filtering tests', {
-            test: function(test) {
-                helpers.startCasper({
-                    path: new jsuri(appListPage.path).addQueryParam(
-                        'device_override', 'desktop')
-                });
-
-                if (appListPage.login) {
-                    helpers.waitForPageLoaded(function() {
-                        helpers.fake_login();
-                        helpers.waitForPageLoaded(testCompatFiltering);
-                    });
-                } else {
-                    helpers.waitForPageLoaded(testCompatFiltering);
-                }
-
-                function testCompatFiltering() {
-                    // Test field is correct if device filtering present in params.
-                    test.assertVisible('.compat-select-wrapper');
-                    test.assertField('compatibility_filtering', 'desktop');
-
-                    // Test API call.
-                    var endpointParams = getEndpointParams(appListPage, {
-                        dev: 'desktop'
-                    });
-                    if (['Category', 'Search'].indexOf(appListPage.name) !== -1) {
-                        // utils.urlparams attaches any params from w.location.
-                        endpointParams.device_override = 'desktop';
-                    }
-                    helpers.assertAPICallWasMade(appListPage.endpoint,
-                                                 endpointParams);
-
-                    // Test basic count during device filtering.
-                    test.assertExists(appNthChild(appListPage.appLimit - 1));
-                    test.assertNotExists(appNthChild(appListPage.appLimit + 1));
-
-                    if (!appListPage.noLoadMore) {
-                        appList.waitForLoadMore(function() {
-                            test.assertField('compatibility_filtering', 'desktop');
-                        });
-                    }
-                }
 
                 helpers.done(test);
             }

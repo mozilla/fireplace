@@ -34,27 +34,6 @@ casper.test.begin('Test search results header', {
     }
 });
 
-casper.test.begin('Test search device filtering', {
-    test: function(test) {
-        helpers.startCasper({path: '/search?q=test&device_override=desktop'});
-
-        helpers.waitForPageLoaded(function() {
-            test.assertField('compatibility_filtering', 'desktop');
-
-            casper.fill('.search', {q: 'test'}, true);
-
-            // New search during dev. filter clears filter.
-            casper.waitForSelector('.app-list', function() {
-                casper.waitForUrl(/\/search\?q=test$/, function() {
-                    test.assertField('compatibility_filtering', 'all');
-                });
-            });
-        });
-
-        helpers.done(test);
-    }
-});
-
 
 casper.test.begin('Test search empty', {
     test: function(test) {

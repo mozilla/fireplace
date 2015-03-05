@@ -23,8 +23,7 @@ define('views/category',
         builder.start('category.html', {
             category: slug,
             category_name: name,
-            endpoint: urls.api.unsigned.url('category_landing', [slug], params),
-            endpoint_name: 'category_landing',
+            endpoint: urls.api.unsigned.url('category', [slug], params),
             sort: params.sort,
         });
 
