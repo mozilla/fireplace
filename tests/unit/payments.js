@@ -4,17 +4,6 @@ define('tests/unit/payments',
 
     var logger = log('tests/payments');
 
-    function FakeFxPay() {}
-
-    FakeFxPay.prototype.init = function(opt) {
-        opt.oninit();
-    };
-
-    FakeFxPay.prototype.purchase = function(productId, callback) {
-        callback();
-    };
-
-
     function FakeRequests() {
         this.webpayJWT = this._makeJWT({typ: 'mozilla/payments/pay/v1'});
         this.promiseToPost = null;
@@ -134,6 +123,7 @@ define('tests/unit/payments',
 
 
     describe('payments', function() {
+
         it('completes payment successfully', function(done) {
             setupMocks().require(['payments'], function(payments) {
                 var product = new FakeProduct();
@@ -162,6 +152,24 @@ define('tests/unit/payments',
                     logger.error('payment.purchase() failed:', reason);
                     done(new Error(reason));
                 });
+            });
+        });
+
+        it('defines a configurable adapter', function(done) {
+            var adapterConfigured = false;
+
+            setupMocks().mock('fxpay', {
+                init: function(opt) {
+                    // This simulates how fxpay will configure
+                    // the Marketplace adapter when fxpay.init()
+                    // is called.
+                    opt.adapter.configure({});
+                    adapterConfigured = true;
+                },
+                configure: function() {},
+            }).require(['payments'], function(payments) {
+                assert.equal(adapterConfigured, true);
+                done();
             });
         });
 

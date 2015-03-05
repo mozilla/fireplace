@@ -12,8 +12,18 @@ define('payments',
         //
         // fxpay adapter for making app purchases.
         //
-        logger.log('using Firefox Marketplace app adapter');
     }
+
+    MarketplaceAdapter.prototype.configure = function(/* fxpaySettings */) {
+        //
+        // A hook to make changes to the adapter when fxpay settings are changed.
+        //
+        logger.log('configuring Firefox Marketplace app adapter');
+    };
+
+    MarketplaceAdapter.prototype.toString = function() {
+      return '<MarketplaceAdapter from payments.js>';
+    };
 
     MarketplaceAdapter.prototype.init = function(callback) {
         // Nothing special needs to happen during fxpay initialization.
