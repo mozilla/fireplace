@@ -14,7 +14,8 @@ define('desktop_promo',
         promoItems: [
             {
                 name: 'games',
-                url: urls.reverse('feed/collection', ['games-ent-appsdesktop']),
+                url: urls.reverse('feed_landing', ['collection',
+                                                   'games-ent-appsdesktop']),
                 text: gettext('Games & Entertainment Apps—Desktop Essentials'),
             },
             {
@@ -29,7 +30,8 @@ define('desktop_promo',
             },
             {
                 name: 'productivity',
-                url: urls.reverse('feed/collection', ['productivity-appsdesktop']),
+                url: urls.reverse('feed_landing', ['collection',
+                                                   'productivity-appsdesktop']),
                 text: gettext('Productivity Apps—Desktop Essentials'),
             },
             {
