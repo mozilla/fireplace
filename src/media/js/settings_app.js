@@ -4,6 +4,7 @@ define('settings_app',
     var gettext = l10n.gettext;
 
     var base_settings = JSON.parse(document.body.getAttribute('data-settings') || '{}');
+    settings._extend(base_settings);
 
     // When in "preview mode", don't send the feature profile to the API.
     var param_blacklist = (
