@@ -1,6 +1,7 @@
-var helpers = require('../lib/helpers');
+var helpers = require('../../lib/helpers');
 
-casper.test.begin('App abuse tests', {
+
+casper.test.begin('Test app abuse', {
     test: function(test) {
         helpers.startCasper({path: '/app/foo/abuse'});
 
@@ -12,6 +13,24 @@ casper.test.begin('App abuse tests', {
             casper.fill('.abuse-form', {'text': 'test'});
             casper.click('.abuse-form button');
             test.assertUrlMatch(/\/app\/foo/);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test UA app abuse', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/foo/'});
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('.app-report-abuse .button');
+            helpers.assertUASendEvent(test, [
+                'App view interaction',
+                'click',
+                'Report abuse'
+            ]);
         });
 
         helpers.done(test);

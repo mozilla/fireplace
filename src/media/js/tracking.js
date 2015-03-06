@@ -1,12 +1,21 @@
 /*
-    UA tracking library.
-    Pushes events and session variables to UA.
+    UA tracking library.  Pushes pageviews, events and session variables to UA.
     All UA pushes are kept track of in trackLog as an array of tuples.
-    Page views are sent on z.win.on('navigating').
+    Pageviews are sent on z.win.on('navigating').
+
+    Dimensions are attributes that can be used to filter pageviews and events
+    so we can create reports for analysis.
+
+    For pageviews, we send ['send', 'pageview', {DIMENSIONS}].
+    For events , we send ['send', 'event', <CATEGORY>, <ACTION>, <LABEL>,
+                          {DIMENSIONS}].
+    For session vars, we send ['set', 'var', <DIMENSION>, <VAL>].
 */
 define('tracking',
-    ['core/log', 'core/settings', 'core/storage', 'underscore', 'core/utils', 'core/z'],
-    function(log, settings, storage, _, utils, z) {
+    ['core/log', 'core/settings', 'core/storage', 'core/utils', 'core/z',
+     'underscore'],
+    function(log, settings, storage, utils, z,
+             _) {
     var logger = log('tracking');
 
     var enabled = settings.tracking_enabled;
@@ -147,18 +156,18 @@ define('tracking',
     logger.log('UA tracking initialized');
 
     z.win.on('navigating', function(e, popped) {
-        // Since we are single-page, send pageviews manually.
-        // Only sends hits *after* we navigate away from the page.
-        // b/c in some cases, have to wait for data to load to get page vars.
-        if (!popped) {  // Don't track back button hits.
-            // Pass page vars to UA.
-            ua_push('send', 'pageview', _.extend({
-                'page': get_url(),
-                'title': document.title
-            }, pageVars));
-            // Then reset page vars.
-            pageVars = {};
-        }
+        /*
+           Since we are single-page, send pageviews manually.
+           Only sends hits *after* we navigate away from the page.
+           b/c in some cases, have to wait for data to load to get page vars.
+        */
+        // Pass page vars to UA.
+        ua_push('send', 'pageview', _.extend({
+            'page': get_url(),
+            'title': document.title
+        }, pageVars));
+        // Then reset page vars.
+        pageVars = {};
     });
 
     function actionWrap(func) {

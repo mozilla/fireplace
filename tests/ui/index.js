@@ -101,3 +101,21 @@ casper.test.begin('Test footer at tablet width', {
         helpers.done(test);
     }
 });
+
+
+casper.test.begin('Test UA pageview on initial navigation', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('.popular .tab-link');
+        });
+
+        casper.waitForSelector('.app-list', function() {
+            test.assert(helpers.filterUALogs(['send', 'pageview']).length > 0,
+                        'Check page view tracked on initial navigation');
+        });
+
+        helpers.done(test);
+    }
+});

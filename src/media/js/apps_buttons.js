@@ -5,11 +5,11 @@ define('apps_buttons',
      'core/user', 'core/utils', 'core/views', 'core/z'],
     function(apps, cache, caps, defer, l10n,
              log, login, models, notification, payments,
-             requests, settings, tracking_events, urls, user, utils,
+             requests, settings, trackingEvents, urls, user, utils,
              views, z) {
     var logger = log('buttons');
     var gettext = l10n.gettext;
-    var apps_model = models('app');
+    var appModel = models('app');
 
     z.page.one('iframe-install-loaded', function() {
         markBtnsAsInstalled();
@@ -45,7 +45,7 @@ define('apps_buttons',
 
             // Fetch the product from either model cache or data attr.
             var $btn = $(this);
-            var product = apps_model.lookup($btn.closest('[data-slug]').data('slug')) ||
+            var product = appModel.lookup($btn.closest('[data-slug]').data('slug')) ||
                           $btn.data('product');
             func.call(this, product);
         };
@@ -53,7 +53,7 @@ define('apps_buttons',
 
     var launchHandler = _handler(function(product) {
         apps.launch(product.manifest_url);
-        tracking_events.track_app_launch(product);
+        trackingEvents.trackAppLaunch(product);
     });
 
     function install(product, $button, loginPopup) {
@@ -175,9 +175,7 @@ define('apps_buttons',
         }
 
         function start_install() {
-            // Track the search term used to find this app, if applicable.
-            tracking_events.track_search_term();
-            tracking_events.trackAppInstallBegin($button);
+            trackingEvents.trackAppInstallBegin($button);
 
             // Make the button a spinner.
             $button.data('old-text', $button.find('em').text())
@@ -286,11 +284,11 @@ define('apps_buttons',
                 // multiple instances of the same button on the page.
                 mark_installed(product.manifest_url);
             });
-            tracking_events.trackAppInstallSuccess($button);
+            trackingEvents.trackAppInstallSuccess($button);
             logger.log('Successful install for', product.name);
         }, function() {
             revertButton($button);
-            tracking_events.trackAppInstallFail($button);
+            trackingEvents.trackAppInstallFail($button);
             logger.log('Unsuccessful install for', product.name);
         });
 

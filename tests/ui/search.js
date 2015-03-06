@@ -121,3 +121,51 @@ casper.test.begin('Test search results header desktop', {
         helpers.done(test);
     }
 });
+
+
+casper.test.begin('Test UA track keyword leading to app view', {
+    test: function(test) {
+        helpers.startCasper('/search?q=abc');
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('.mkt-tile');
+        });
+
+        casper.waitForSelector('[data-page-type~="detail"]', function() {
+            casper.click('.wordmark');
+        });
+
+        casper.waitWhileSelector('[data-page-type~="detail"]', function() {
+            var dimensions = helpers.filterUALogs(['send', 'pageview'])[0][2];
+            test.assertEquals(dimensions.dimension12, 'abc');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test UA track keyword leading to app install on detail', {
+    test: function(test) {
+        helpers.startCasper('/search?q=abc');
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('.mkt-tile');
+        });
+
+        casper.waitForSelector('[data-page-type~="detail"]', function() {
+            casper.click('.install');
+        });
+
+        casper.waitForSelector('.launch', function() {
+            var beginInstallDimensions = helpers.filterUALogs(
+                ['send', 'event', 'Click to install app'])[0][5];
+            var doneInstallDimensions = helpers.filterUALogs(
+                ['send', 'event', 'Successful app install'])[0][5];
+            test.assertEquals(beginInstallDimensions.dimension13, 'abc');
+            test.assertEquals(doneInstallDimensions.dimension13, 'abc');
+        });
+
+        helpers.done(test);
+    }
+});

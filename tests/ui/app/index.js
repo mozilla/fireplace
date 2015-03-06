@@ -273,19 +273,24 @@ casper.test.begin('Test app detail desktop previews', {
     }
 });
 
-casper.test.begin('Test app detail UA page vars', {
+casper.test.begin('Test app detail page view', {
     test: function(test) {
         helpers.startCasper('/app/lol');
 
+        var app;
         helpers.waitForPageLoaded(function() {
-            var app = appList.getAppData('.install');
-            /*
-            helpers.assertUASendEventPageVar(test, 'dimension6', app.name);
-            helpers.assertUASendEventPageVar(test, 'dimension7', app.id);
-            helpers.assertUASendEventPageVar(test, 'dimension8', app.author);
-            helpers.assertUASendEventPageVar(test, 'dimension9', 'direct');
-            helpers.assertUASendEventPageVar(test, 'dimension10', 'free');
-            */
+            app = appList.getAppData('.install');
+            casper.click('.wordmark');
+        });
+
+        casper.waitWhileSelector('[data-page-type~="detail"]', function() {
+            var dims = helpers.filterUALogs(['send', 'pageview'])[0][2];
+            test.assertEquals(dims.hitType, 'pageview');
+            test.assertEquals(dims.dimension6, app.name);
+            test.assertEquals(dims.dimension7, app.id + '');
+            test.assertEquals(dims.dimension8, app.author);
+            test.assertEquals(dims.dimension9, 'direct');
+            test.assertEquals(dims.dimension10, 'free');
         });
 
         helpers.done(test);

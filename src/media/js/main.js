@@ -271,7 +271,14 @@ require([
     consumer_info.promise.done(function() {
         logger.log('Triggering initial navigation');
         if (!z.spaceheater) {
-            z.page.trigger('navigate', [window.location.pathname + window.location.search]);
+            var navigateArgs = [window.location.pathname +
+                                window.location.search];
+            var searchQuery = utils.getVars().q;
+            if (window.location.pathname == urls.reverse('search') &&
+                searchQuery) {
+                navigateArgs.push({search_query: searchQuery});
+            }
+            z.page.trigger('navigate', navigateArgs);
         } else {
             z.page.trigger('loaded');
         }

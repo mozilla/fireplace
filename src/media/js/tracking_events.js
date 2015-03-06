@@ -69,12 +69,15 @@
 
    12 - Keywords that Lead to an App View
    ======================================
-   Search query that leads to an app detail page view.
-   Used as a page variable for pageview.
+   Search query that leads to an app detail page view. Meaning the user
+   searches for an app, and then clicks on one of the app tiles.
+   Passed with events and used as a page variable for pageview.
 
    13 - Keywords that Lead to an App Install
    =========================================
-   Search query that leads to an app install.
+   Search query that leads to an app install. Meaning the user searches for an
+   app, and either installs it from the search listing page OR navigates into
+   an app detail page and installs the app from there.
    Passed with events (app install event).
 
    14 - Simulator Traffic
@@ -105,9 +108,9 @@
    Passed with events (app install event).
 */
 define('tracking_events',
-    ['consumer_info', 'core/log', 'core/settings', 'core/utils', 'jquery',
-     'tracking', 'user_helpers', 'core/z'],
-    function(consumer_info, log, settings, utils, $,
+    ['consumer_info', 'core/log', 'core/navigation', 'core/settings',
+     'core/utils', 'jquery', 'tracking', 'user_helpers', 'core/z'],
+    function(consumer_info, log, navigation, settings, utils, $,
              tracking, user_helpers, z) {
     'use strict';
     var logger = log('tracking_events');
@@ -300,10 +303,11 @@ define('tracking_events',
         );
     })
 
-    .on('click', '.app-support .button', function() {
+    .on('click', '.app-support .button, .app-report-abuse .button', function() {
         sendEvent(
             'App view interaction',
             'click',
+            this.getAttribute('data-tracking') ||
             this.parentNode.getAttribute('data-tracking')
         );
     })
@@ -317,9 +321,10 @@ define('tracking_events',
         );
     });
 
-    function getAppDimensions($installBtn) {
+    function getAppDimensions($installBtn, opts) {
         // Given install button, return an object with appropriate custom UA
         // dimensions set.
+        opts = opts || {};
         var custom = {};
         var app = $installBtn.data('product');
 
@@ -345,23 +350,50 @@ define('tracking_events',
                 $trackingSlug.data('tracking');
         }
 
+        if (opts.installing || opts.viewing) {
+            // Track keywords that lead to an app install or app hit.
+            // The opts that determine this are passing from tracking functions
+            // like trackAppInstallBegin or trackAppHit.
+            var query = _getSearchQueryFromStack();
+            if (query) {
+                var dim = opts.installing ? DIMENSIONS.searchQueryAppInstall :
+                                            DIMENSIONS.searchQueryAppView;
+                custom[dim] = query;
+            }
+        }
+
         return custom;
     }
 
+    function _getSearchQueryFromStack() {
+        // Checks the top two items of the navigation stack to see if a search
+        // query was involved. If a search query param can be found on the top
+        // of the stack, then the user is on a search page. If it is on the
+        // second from the top, then the user is on the detail page FROM the
+        // first page.
+        var stack = navigation.stack();
+        for (var i = 0; i < stack.length; i++) {
+            if (stack[i].params && stack[i].params.search_query) {
+                logger.log('Search query:', stack[i].params.search_query);
+                return stack[i].params.search_query;
+            }
+        }
+    }
+
     function trackAppHit($installBtn) {
-        // Set page vars for app.
+        // Set page vars for app using all the dimensions we can infer from
+        // the install button.
         $installBtn = $installBtn || $('.install');
         if (!$installBtn.length) {
             return;
         }
-
-        Object.keys(getAppDimensions($installBtn)).forEach(function(dim) {
-            tracking.setPageVar(dim, dimensions[dim]);
+        var dims = getAppDimensions($installBtn, {viewing: true});
+        Object.keys(dims).forEach(function(dim) {
+            tracking.setPageVar(dim, dims[dim]);
         });
     }
 
-    // Tracking methods for specific events.
-    function track_app_launch($installBtn) {
+    function trackAppLaunch($installBtn) {
         var app = $installBtn.data('product');
 
         sendEvent(
@@ -379,7 +411,7 @@ define('tracking_events',
             'Click to install app',
             app.receipt_required ? 'paid' : 'free',
             app.name + ':' + app.id,
-            getAppDimensions($installBtn)
+            getAppDimensions($installBtn, {installing: true})
         );
     }
 
@@ -390,7 +422,7 @@ define('tracking_events',
             'Successful app install',
             app.receipt_required ? 'paid' : 'free',
             app.name + ':' + app.id,
-            getAppDimensions($installBtn)
+            getAppDimensions($installBtn, {installing: true})
         );
     }
 
@@ -401,7 +433,7 @@ define('tracking_events',
             'App failed to install',
             app.receipt_required ? 'paid' : 'free',
             app.name + ':' + app.id,
-            getAppDimensions($installBtn)
+            getAppDimensions($installBtn, {installing: true})
         );
     }
 
@@ -432,7 +464,7 @@ define('tracking_events',
             logger.log('No associated search term to track.');
         },
         trackAppHit: trackAppHit,
-        track_app_launch: track_app_launch,
+        trackAppLaunch: trackAppLaunch,
         trackAppInstallBegin: trackAppInstallBegin,
         trackAppInstallSuccess: trackAppInstallSuccess,
         trackAppInstallFail: trackAppInstallFail,

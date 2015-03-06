@@ -227,6 +227,19 @@ function assertUATrackingLog(test, trackArgs) {
 }
 
 
+function filterUALogs(trackArgs) {
+    // Given an array, filter UA log that matches the array.
+    return casper.evaluate(function(trackArgs) {
+        var _ = window.require('underscore');
+        var trackLog = window.require('tracking').trackLog.reverse();
+
+        return trackLog.filter(function(log) {
+            return _.isEqual(log.slice(0, trackArgs.length), trackArgs);
+        });
+    }, trackArgs);
+}
+
+
 function parseQueryString(qs) {
     var vars = {}, param, params;
     if (qs === undefined) {
@@ -359,6 +372,7 @@ module.exports = {
     checkValidity: checkValidity,
     done: done,
     fake_login: fake_login,
+    filterUALogs: filterUALogs,
     makeUrl: makeUrl,
     selectOption: selectOption,
     startCasper: startCasper,

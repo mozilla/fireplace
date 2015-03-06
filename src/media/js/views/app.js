@@ -1,8 +1,8 @@
 define('views/app',
-    ['core/capabilities', 'content-ratings', 'core/l10n', 'core/log',
-     'core/settings', 'tracking', 'core/utils', 'core/z'],
-    function(caps, iarc, l10n, log,
-             settings, tracking, utils, z) {
+    ['content-ratings', 'core/capabilities', 'core/l10n', 'core/log',
+     'core/settings', 'core/utils', 'core/z', 'tracking_events'],
+    function(iarc, caps, l10n, log,
+             settings, utils, z, trackingEvents) {
     'use strict';
     var gettext = l10n.gettext;
     var logger = log('app');
@@ -52,10 +52,6 @@ define('views/app',
             }
         });
 
-        // tracking_events requires navigation > views > views/app
-        // All deps should have been resolved by the time this executes.
-        require('tracking_events').track_search_term(true);
-
         builder.onload('app-data', function(app) {
             // Called after app defer block is finished loading.
             builder.z('title', utils.translate(app.name));
@@ -70,7 +66,7 @@ define('views/app',
                 }
             });
 
-            require('tracking_events').trackAppHit(app);
+            trackingEvents.trackAppHit();
         });
     };
 });
