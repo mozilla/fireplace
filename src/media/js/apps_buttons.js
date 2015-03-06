@@ -327,17 +327,29 @@ define('apps_buttons',
     }
 
     function markBtnsAsInstalled() {
-        /* For each installed app, look for respective buttons and mark as
-           ready to launch ("Open"). */
+        /*
+            For each install button, check if its manifest URL is installed
+            according to mozApps. If so, mark it as installed to say Open.
+            This is more scalable than looping through all installed apps,
+            querying the DOM for each manifest URL, and checking if its
+            installed.
+        */
         if (!caps.webApps) {
             return;
         }
         apps.getInstalled().done(function(installedApps) {
+            // Create a map to get O(1) lookup.
+            var installedAppsMap = {};
+            installedApps.forEach(function(installedApp) {
+                installedAppsMap[installedApp.replace(/"/, '\\"')] = true;
+            });
             setTimeout(function() {
-                for (var i = 0; i < installedApps.length; i++) {
-                    $button = get_button(installedApps[i]);
-                    if ($button.length) {
-                        mark_installed(null, $button);
+                // Loop through every install button on page to see if
+                // installed using the map.
+                var btns = document.querySelectorAll('.install');
+                for (var i = 0; i < btns.length; i++) {
+                    if (installedAppsMap[btns[i].dataset.manifest_url]) {
+                        mark_installed(null, $(btns[i]));
                     }
                 }
             });
