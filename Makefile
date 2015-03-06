@@ -24,6 +24,9 @@ uitest: css templates
 unittest:
 	@node_modules/karma/bin/karma start --single-run
 
+unittest-watch:
+	@node_modules/karma/bin/karma start
+
 jshint:
 	@node_modules/.bin/gulp lint
 
