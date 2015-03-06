@@ -1,87 +1,62 @@
-<section class="main infobox prose" id="debug-page">
+<section class="main">
+  <div class="subheader">
+    <h1>Debug</h1>
+  </div>
+</section>
+
+<section class="main full debug">
   <div>
-    <style>
-      dt {
-        clear: left;
-        float: left;
-      }
-      dd {
-        float: left;
-      }
-      #debug-page label {
-        font-size: 18px;
-      }
-      #debug-page select {
-        margin-left: 10px;
-      }
-    </style>
-    <h2>Debug</h2>
-    <p>
-      <button class="button" id="submit-debug">Submit logs</button>
-    </p>
-
-    <p>
-      <button class="button" id="clear-localstorage">Clear <code>localStorage</code></button>
-    </p>
-
+    <button class="button" id="submit-debug">Submit logs</button>
+    <button class="button" id="clear-localstorage">
+      Clear <code>localStorage</code>
+    </button>
     {% if settings.offline_cache_enabled() %}
-      <p>
-        <button class="button" id="disable-offline-cache">Disable offline cache</button>
-      </p>
+      <button class="button" id="disable-offline-cache">Disable offline cache</button>
     {% else %}
-      <p>
-        <button class="button" id="enable-offline-cache">Enable offline cache</button>
-      </p>
+      <button class="button" id="enable-offline-cache">Enable offline cache</button>
     {% endif %}
+    <button class="button" id="clear-offline-cache">Clear offline cache</button>
+    <button class="button" id="clear-cookies">Clear cookies</button>
+    <a class="button" href="{{ url('debug_features') }}">
+      View feature profile information</a>
 
-    <p>
-      <button class="button" id="clear-offline-cache">Clear offline cache</button>
-    </p>
+    <label for="debug-region">Region Override</label>
+    <select name="region" id="debug-region">
+      {% set user_region = user.get_setting('region_override') %}
+      <option value="" {{ 'selected' if not user_region }}>---</option>
+      {% for code, region in REGIONS.items() %}
+        <option value="{{ code }}" {{ 'selected' if code == user_region }}>
+          {{ region }}</option>
+      {% endfor %}
+    </select>
 
-    <p>
-      <button class="button" id="clear-cookies">Clear cookies</button>
-    </p>
+    <label for="debug-carrier">Carrier Override</label>
+    <select name="carrier" id="debug-carrier">
+      {% set user_carrier = user.get_setting('carrier_override') %}
+      <option value="" {{ 'selected' if not user_carrier }}>---</option>
+      {% for carrier in carriers %}
+        <option {{ 'selected' if carrier == user_carrier }}>{{ carrier }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</section>
 
-    <p>
-      <button class="button" id="nukecounter">Clear <code>newscounter</code></button>
-    </p>
-
-    <p>
-      <label>
-        Region Override
-        <select name="region" id="region">
-          {% set user_region = user.get_setting('region_override') %}
-          <option value=""{{ ' selected' if not user_region }}>---</option>
-          {% for code, region in REGIONS.items() %}
-            <option value="{{ code }}"{{ ' selected' if code == user_region }}>
-              {{ region }}</option>
-          {% endfor %}
-        </select>
-      </label>
-    </p>
-
-    <p>
-      <label>
-        Carrier Override
-        <select name="carrier" id="carrier">
-          {% set user_carrier = user.get_setting('carrier_override') %}
-          <option value=""{{ ' selected' if not user_carrier }}>---</option>
-          {% for carrier in carriers %}
-            <option{{ ' selected' if carrier == user_carrier }}>{{ carrier }}</option>
-          {% endfor %}
-        </select>
-      </label>
-    </p>
-
+<section class="main full prose debug">
+  <div>
     <h3>Site Settings</h3>
 
     <dl class="site-settings c">
       {% for setting in settings.items() %}
         <dt>{{ setting[0] }}</dt>
-        <dd>{{ '—— truncated ——' if setting[0] == 'persona_site_logo' else setting[1] or '——' }}</dd>
+        <dd>{{ '—— truncated ——' if
+               setting[0] == 'persona_site_logo' else setting[1] or '——' }}</dd>
       {% endfor %}
     </dl>
+  </div>
+</section>
 
+<section class="main full prose debug">
+  <div>
     <h3>User Settings</h3>
 
     <dl class="user-settings c">
@@ -90,22 +65,30 @@
         <dd>{{ setting[1] or '––' }}</dd>
       {% endfor %}
     </dl>
+  </div>
+</section>
 
+<section class="main full prose debug">
+  <div>
     <h3>Capabilities</h3>
 
     <dl class="capabilities c">
       {% for cap in capabilities.items() %}
         <dt>{{ cap[0] }}</dt>
-        <dd>{{ cap[1] }}</dd>
+        <dd>{{ callIfFunction(cap[1]) }}</dd>
       {% endfor %}
       {% for k, v in screen.items() %}
         <dt>window.screen.{{ k }}</dt>
         <dd>{{ v }}</dd>
       {% endfor %}
       <dt>Feature Profile</dt>
-      <dd>{{ profile }} (<a href="/debug/features">view feature profile information</a>)</dd>
+      <dd>{{ profile }}</dd>
     </dl>
+  </div>
+</section>
 
+<section class="main full prose debug">
+  <div>
     <h3>Cache</h3>
 
     <pre id="cache-inspector"></pre>
@@ -115,14 +98,22 @@
         <li><a href="#" data-url="{{ k }}">{{ filter(k) }}</a></li>
       {% endfor %}
     </ul>
+  </div>
+</section>
 
+<section class="main full prose debug">
+  <div>
     <h3>Recent Logs</h3>
     <ol class="debug-log">
       {% for entry in recent_logs %}
         <li>{% for piece in entry %}{{ piece }} {% endfor %}</li>
       {% endfor %}
     </ol>
+  </div>
+</section>
 
+<section class="main full prose debug">
+  <div>
     <h3>Persistent Logs</h3>
     {% for log_type, logs in persistent_logs.items() %}
       <h4>{{ log_type }}</h4>
@@ -132,7 +123,11 @@
         {% endfor %}
       </ol>
     {% endfor %}
+  </div>
+</section>
 
+<section class="main full prose debug">
+  <div>
     <h3>Offline Cache</h3>
     <ol>
       {% for url, response in request_cache.items() %}
