@@ -77,7 +77,12 @@ We use CasperJS to write tests.
 
 ### Running Unit Tests
 
-Load [http://localhost:8675/tests](http://localhost:8675/tests) in your browser.
+```bash
+make unittest
+```
+
+This will launch the [karma test runner](https://karma-runner.github.io/) that
+will run the unit tests in a new instance of firefox.
 
 ### Running Functional and UI Tests
 
