@@ -2,9 +2,14 @@
 
 .no-results {
     color: $action-neutral;
-    font-weight: 500;
-    padding: 50px;
+    font-weight: 400;
+    padding: 30px;
     text-align: center;
+}
+
+.search-empty .no-results {
+    color: $greyscale-black;
+    font-weight: 300;
 }
 
 .search-results-header b {
@@ -20,20 +25,17 @@
     margin-top: -3px;
 }
 
-.empty-search .app-list-filters {
+.search-empty .app-list-filters {
     bottom: -5px;
 }
 
-.empty-search .app-list-filters-expand-wrapper {
-    display: none;
-}
-
+.search-empty .app-list-filters-expand-wrapper,
 .search-results-header-desktop {
     display: none;
 }
 
 @media $base-tablet {
-    .empty-search .app-list-filters {
+    .search-empty .app-list-filters {
         bottom: inherit;
     }
     .search-results-header-mobile {
@@ -41,6 +43,9 @@
     }
     .search-results-header-desktop {
         display: block;
+    }
+    .search-empty .no-results {
+        padding: 0 50px 50px;
     }
 }
 
