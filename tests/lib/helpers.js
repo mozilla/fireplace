@@ -38,9 +38,14 @@ casper.on('step.error', function() {
 });
 
 
-if (system.env.SHOW_TEST_CONSOLE) {
+if (system.env.SHOW_TEST_CONSOLE || system.env.TEST_CONSOLE_FILTER) {
+    // Show client console logs. Setting TEST_CONSOLE_FILTER to a value with
+    // match and filter console logs for debugging.
     casper.on('remote.message', function(message) {
-        casper.echo(message, 'INFO');
+        if (!system.env.TEST_CONSOLE_FILTER ||
+            message.indexOf(system.env.TEST_CONSOLE_FILTER) !== -1) {
+            casper.echo(message, 'INFO');
+        }
     });
     casper.on('page.error', function(message) {
         casper.echo(message, 'ERROR');
