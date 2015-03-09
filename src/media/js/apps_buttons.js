@@ -5,11 +5,11 @@ define('apps_buttons',
      'core/user', 'core/utils', 'core/views', 'core/z'],
     function(apps, cache, caps, defer, l10n,
              log, login, models, notification, payments,
-             requests, settings, tracking_events, urls, user, utils,
+             requests, settings, trackingEvents, urls, user, utils,
              views, z) {
     var logger = log('buttons');
     var gettext = l10n.gettext;
-    var apps_model = models('app');
+    var appModel = models('app');
 
     z.page.one('iframe-install-loaded', function() {
         markBtnsAsInstalled();
@@ -45,7 +45,7 @@ define('apps_buttons',
 
             // Fetch the product from either model cache or data attr.
             var $btn = $(this);
-            var product = apps_model.lookup($btn.closest('[data-slug]').data('slug')) ||
+            var product = appModel.lookup($btn.closest('[data-slug]').data('slug')) ||
                           $btn.data('product');
             func.call(this, product);
         };
@@ -53,7 +53,7 @@ define('apps_buttons',
 
     var launchHandler = _handler(function(product) {
         apps.launch(product.manifest_url);
-        tracking_events.track_app_launch(product);
+        trackingEvents.trackAppLaunch(product);
     });
 
     function install(product, $button, loginPopup) {
@@ -99,7 +99,7 @@ define('apps_buttons',
         var def = defer.Deferred();
 
         // Create a reference to the button.
-        var $this = $button || $(this);
+        $button = $button || $(this);
         var _timeout;
 
         // If the user has already purchased the app, we do need to generate
@@ -111,9 +111,10 @@ define('apps_buttons',
         if (product.payment_required) {
             // The app requires a payment.
             logger.log('Starting payment flow for', product.name);
+
             // Save the old text of the button.
             $this.data('old-text', $this.find('em').text());
-            setInstallBtnState($this, gettext('Purchasing'), 'purchasing');
+            setInstallBtnState($button, gettext('Purchasing'), 'purchasing');
 
             var purchaseOpts = {
                 // This will be undefined unless a window was created
@@ -124,9 +125,9 @@ define('apps_buttons',
                 logger.log('Purchase flow completed for', product.name);
 
                 // Update the button to say Install.
-                setInstallBtnState($this, gettext('Install'), 'purchased');
+                setInstallBtnState($button, gettext('Install'), 'purchased');
                 // Save the old text of the button.
-                $this.data('old-text', $this.find('em').text());
+                $this.data('old-text', $button.find('em').text());
 
                 // Update the cache to show that the app was purchased.
                 user.update_purchased(product.id);
@@ -174,21 +175,19 @@ define('apps_buttons',
         }
 
         function start_install() {
-            // Track the search term used to find this app, if applicable.
-            tracking_events.track_search_term();
-            tracking_events.track_app_install_begin(product, $this);
+            trackingEvents.trackAppInstallBegin($button);
 
             // Make the button a spinner.
-            $this.data('old-text', $this.find('em').text())
+            $button.data('old-text', $button.find('em').text())
                  .addClass('spinning');
 
             // Temporary timeout for hosted apps until we catch the appropriate
             // download error event for hosted apps (in iframe).
             if (!product.is_packaged && !product.payment_required) {
                 _timeout = setTimeout(function() {
-                    if ($this.hasClass('spinning')) {
+                    if ($button.hasClass('spinning')) {
                         logger.log('Spinner timeout for ', product.name);
-                        revertButton($this);
+                        revertButton($button);
                         notification.notification({
                             message: gettext('Sorry, we had trouble fetching this app\'s data. Please try again later.')
                         });
@@ -253,7 +252,7 @@ define('apps_buttons',
                     cache.bust(urls.api.url('installed'));
                 }
 
-                def.resolve(installer, product, $this);
+                def.resolve(installer, product, $button);
             }).fail(function(error) {
                 if (error) {
                     notification.notification({message: error});
@@ -285,11 +284,11 @@ define('apps_buttons',
                 // multiple instances of the same button on the page.
                 mark_installed(product.manifest_url);
             });
-            tracking_events.track_app_install_success(product, $this);
+            trackingEvents.trackAppInstallSuccess($button);
             logger.log('Successful install for', product.name);
         }, function() {
-            revertButton($this);
-            tracking_events.track_app_install_fail(product, $this);
+            revertButton($button);
+            trackingEvents.trackAppInstallFail($button);
             logger.log('Unsuccessful install for', product.name);
         });
 

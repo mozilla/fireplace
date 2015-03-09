@@ -2,8 +2,9 @@
     Content for the desktop promo carousel.
 */
 define('desktop_promo',
-    ['core/capabilities', 'core/l10n', 'core/urls', 'core/utils',],
-    function(caps, l10n, urls, utils) {
+    ['core/capabilities', 'core/l10n', 'core/urls', 'core/utils',
+     'tracking_events'],
+    function(caps, l10n, urls, utils, trackingEvents) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -40,8 +41,10 @@ define('desktop_promo',
                 text: gettext('Store and share any type of file with Box.'),
             },
         ].map(function(item) {
-          item.url = utils.urlparams(item.url, {src: 'desktop-promo'});
-          return item;
+            item.url = utils.urlparams(item.url, {
+                src: trackingEvents.SRCS.desktopPromo
+            });
+            return item;
         })
     };
 });

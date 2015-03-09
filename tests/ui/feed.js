@@ -91,12 +91,9 @@ casper.test.begin('Test Feed pagination', {
 casper.test.begin('Test Feed navigation and tracking events', {
     test: function(test) {
         casper.waitForSelector('.home-feed', function() {
-            // Package version.
-            helpers.assertUATracking(test, ['dimension15', 0]);
-
             casper.click('.feed-collection[data-tracking="coll-listing"] .view-all-tab');
             helpers.assertWaitForSelector(test, '.app-list');
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'View Collection',
                 'click',
                 'coll-listing'
@@ -106,28 +103,8 @@ casper.test.begin('Test Feed navigation and tracking events', {
         });
 
         casper.waitForSelector('.home-feed', function() {
-            casper.click('.feed-collection[data-tracking="coll-listing"] .mkt-tile');
-            helpers.assertWaitForSelector(test, '[data-page-type~="detail"]');
-            helpers.assertUATracking(test, [
-                'View App from Collection Element',
-                'click',
-                'coll-listing'
-            ]);
-
-            casper.back();
-        });
-
-        casper.waitForSelector('.home-feed', function() {
-            casper.click('.featured-app');
-            helpers.assertUATracking(test, 'View App from Featured App Element');
-
-            casper.back();
-        });
-
-        casper.waitForSelector('.home-feed', function() {
             casper.click('[data-tracking="brand-grid"] .view-all-tab');
-            helpers.assertWaitForSelector(test, '.app-list');
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'View Branded Editorial Element',
                 'click',
                 'brand-grid',
@@ -139,7 +116,7 @@ casper.test.begin('Test Feed navigation and tracking events', {
         casper.waitForSelector('.home-feed', function() {
             casper.click('.feed-brand .mkt-tile');
             helpers.assertWaitForSelector(test, '[data-page-type~="detail"]');
-            helpers.assertUATracking(test, 'View App from Branded Editorial Element');
+            helpers.assertUASendEvent(test, 'View App from Branded Editorial Element');
 
             casper.back();
         });
@@ -147,7 +124,7 @@ casper.test.begin('Test Feed navigation and tracking events', {
         casper.waitForSelector('.home-feed', function() {
             casper.click('.feed-brand .mkt-tile');
             helpers.assertWaitForSelector(test, '[data-page-type~="detail"]');
-            helpers.assertUATracking(test, 'View App from Branded Editorial Element');
+            helpers.assertUASendEvent(test, 'View App from Branded Editorial Element');
 
             casper.back();
         });
@@ -155,12 +132,12 @@ casper.test.begin('Test Feed navigation and tracking events', {
         casper.waitForSelector('.home-feed', function() {
             casper.click('.op-shelf');
             casper.waitForSelector('.app-list');
-            helpers.assertUATracking(test, 'View Operator Shelf Element');
+            helpers.assertUASendEvent(test, 'View Operator Shelf Element');
 
             casper.waitForSelector('[data-page-type~="shelf-landing"] .mkt-tile', function() {
                 casper.click('.mkt-tile');
                 helpers.assertWaitForSelector(test, '[data-page-type~="detail"]');
-                helpers.assertUATracking(test, 'View App from Operator Shelf Element');
+                helpers.assertUASendEvent(test, 'View App from Operator Shelf Element');
             });
         });
 

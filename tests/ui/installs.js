@@ -5,6 +5,85 @@
 var appList = require('../lib/app_list');
 var helpers = require('../lib/helpers');
 var mozApps = require('../lib/mozApps');
+var _ = require('../../node_modules/underscore');
+
+
+var installAttributionTestDefs = [
+    // Definitions for testing that install attributions are sent as a custom
+    // dimension for app installs.
+    {
+        name: 'Category New',
+        path: '/category/games/?sort=reviewed',
+        attribution: 'games-new',
+    },
+    {
+        name: 'Category Popular',
+        path: '/category/games/',
+        attribution: 'games-popular',
+    },
+    {
+        name: 'Detail',
+        path: '/app/tracking/',
+        attribution: 'detail',
+        src: 'direct',
+    },
+    {
+        name: 'New',
+        path: '/new/',
+        attribution: 'new',
+    },
+    {
+        name: 'Popular',
+        path: '/popular/',
+        attribution: 'popular',
+    },
+    {
+        name: 'Recommended',
+        path: '/recommended/',
+        attribution: 'reco',
+    },
+    {
+        name: 'Search',
+        path: '/search/',
+        attribution: 'search',
+    },
+    {
+        name: 'Brand landing',
+        path: '/feed/editorial/brand-slug',
+        attribution: 'branded-editorial-element',
+        attributionSlug: 'brand-slug'
+    },
+    {
+        name: 'Collection landing',
+        path: '/feed/collection/coll-slug',
+        attribution: 'collection-element',
+        attributionSlug: 'coll-slug'
+    },
+    {
+        name: 'Shelf landing',
+        path: '/feed/shelf/shelf-slug',
+        attribution: 'operator-shelf-element',
+        attributionSlug: 'shelf-slug'
+    },
+];
+
+
+function assertUAInstall(test, name, app, dimensions) {
+    // Helper assert that attaches static dimensions relative to the app.
+    dimensions = _.extend({
+        dimension6: app.name,
+        dimension7: app.id + '',
+        dimension8: app.author,
+        dimension10: app.payment_required ? 'paid' : 'free',
+    }, dimensions || {});
+
+    helpers.assertUASendEvent(test, [
+        name,
+        dimensions.dimension10,
+        app.UALabel,
+        dimensions
+    ]);
+}
 
 
 casper.test.begin('Test mozApps mock', {
@@ -100,27 +179,37 @@ casper.test.begin('Test mark uninstalled apps on visibilitychange', {
 
 casper.test.begin('Test UA when installing from app details page', {
     test: function(test) {
-        helpers.startCasper('/app/free');
+        helpers.startCasper('/app/tracking');
+
+        // Manually do the dimensions here for better coverage.
+        var dimensions = {
+            dimension6: 'Tracking',
+            dimension7: '1234',
+            dimension8: 'Tracking',
+            dimension9: 'direct',
+            dimension10: 'free',
+            dimension16: 'detail'
+        };
 
         var app;
         helpers.waitForPageLoaded(function() {
             app = appList.getAppData('.install');
             casper.click('.install');
 
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'Click to install app',
                 'free',
                 app.UALabel,
-                0
+                dimensions
             ]);
         });
 
         casper.waitForSelector('.launch', function() {
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'Successful app install',
                 'free',
                 app.UALabel,
-                0
+                dimensions
             ]);
         });
 
@@ -129,65 +218,81 @@ casper.test.begin('Test UA when installing from app details page', {
 });
 
 
-casper.test.begin('Test UA when installing from listing page', {
-    test: function(test) {
-        helpers.startCasper('/search');
+installAttributionTestDefs.forEach(function(testDef) {
+    casper.test.begin('Test UA when installing from ' + testDef.name, {
+        test: function(test) {
+            helpers.startCasper(testDef.path);
 
-        var app;
-        helpers.waitForPageLoaded(function() {
-            var sel = '.app-list-app:nth-child(2) .install';
-            app = appList.getAppData(sel);
-            casper.click(sel);
+            var customDimensions = {
+                dimension16: testDef.attribution
+            };
+            if (testDef.src) {
+                customDimensions.dimension9 = testDef.src;
+            }
+            if (testDef.attributionSlug) {
+                customDimensions.dimension17 = testDef.attributionSlug;
+            }
 
-            helpers.assertUATracking(test, [
-                'Click to install app',
-                'free',
-                app.UALabel,
-                1
-            ]);
-        });
+            var app;
+            helpers.waitForPageLoaded(function() {
+                app = appList.getAppData('.install');
+                casper.click('.install');
 
-        casper.waitForSelector('.launch', function() {
-            helpers.assertUATracking(test, [
-                'Successful app install',
-                'free',
-                app.UALabel,
-                1
-            ]);
-        });
+                assertUAInstall(test,
+                    'Click to install app',
+                    app,
+                    customDimensions
+                );
+            });
 
-        helpers.done(test);
-    }
+            casper.waitForSelector('.launch', function() {
+                assertUAInstall(test,
+                    'Click to install app',
+                    app,
+                    customDimensions
+                );
+            });
+
+            helpers.done(test);
+        }
+    });
 });
 
 
-casper.test.begin('Test UA when installing from listing page', {
-    test: function(test) {
-        helpers.startCasper('/search');
+installAttributionTestDefs.forEach(function(testDef) {
+    casper.test.begin('Test UA source when following ' + testDef.name + ' to detail page', {
+        test: function(test) {
+            helpers.startCasper(testDef.path);
 
-        var app;
-        helpers.waitForPageLoaded(function() {
-            var sel = '.app-list-app:nth-child(5) .install';
-            app = appList.getAppData(sel);
-            casper.click(sel);
+            var customDimensions = {
+                dimension9: testDef.src ? 'direct' : testDef.attribution,
+                dimension16: 'detail',
+            };
 
-            helpers.assertUATracking(test, [
-                'Click to install app',
-                'free',
-                app.UALabel,
-                4  // nth-child(5).
-            ]);
-        });
+            var app;
+            helpers.waitForPageLoaded(function() {
+                app = appList.getAppData('.mkt-tile:first-child .install');
+                casper.click('.mkt-tile:first-child');
+            });
 
-        casper.waitForSelector('.launch', function() {
-            helpers.assertUATracking(test, [
-                'Successful app install',
-                'free',
-                app.UALabel,
-                4  // nth-child(5).
-            ]);
-        });
+            casper.waitForSelector('[data-page-type~="detail"] .install', function() {
+                casper.click('.install');
+                assertUAInstall(test,
+                    'Click to install app',
+                    app,
+                    customDimensions
+                );
+            });
 
-        helpers.done(test);
-    }
+            casper.waitForSelector('.launch', function() {
+                assertUAInstall(test,
+                    'Click to install app',
+                    app,
+                    customDimensions
+                );
+            });
+
+            helpers.done(test);
+        }
+    });
 });

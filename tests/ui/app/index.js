@@ -64,7 +64,7 @@ casper.test.begin('Test app detail previews', {
         casper.waitWhileVisible('#lightbox', function() {
             test.assertNotVisible('#lightbox', 'Lightbox should be invisible');
 
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'App view interactions',
                 'click',
                 'Screenshot view'
@@ -85,7 +85,7 @@ casper.test.begin('Test app detail description toggle', {
 
             test.assertNotExists('.description-wrapper.truncated');
 
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'App view interactions',
                 'click',
                 'Toggle description'
@@ -134,7 +134,7 @@ casper.test.begin('Test app detail for paid apps', {
         helpers.startCasper({path: '/app/paid'});
         helpers.waitForPageLoaded(function() {
             test.assertSelectorHasText('.mkt-tile .install em', '$3.50');
-            helpers.assertUATrackingPageVar(test, 'dimension10', 'paid');
+            // helpers.assertUASendEventPageVar(test, 'dimension10', 'paid');
         });
         helpers.done(test);
     }
@@ -273,17 +273,24 @@ casper.test.begin('Test app detail desktop previews', {
     }
 });
 
-casper.test.begin('Test app detail UA page vars', {
+casper.test.begin('Test app detail page view', {
     test: function(test) {
         helpers.startCasper('/app/lol');
 
+        var app;
         helpers.waitForPageLoaded(function() {
-            var app = appList.getAppData('.install');
-            helpers.assertUATrackingPageVar(test, 'dimension6', app.name);
-            helpers.assertUATrackingPageVar(test, 'dimension7', app.id);
-            helpers.assertUATrackingPageVar(test, 'dimension8', app.author);
-            helpers.assertUATrackingPageVar(test, 'dimension9', 'direct');
-            helpers.assertUATrackingPageVar(test, 'dimension10', 'free');
+            app = appList.getAppData('.install');
+            casper.click('.wordmark');
+        });
+
+        casper.waitWhileSelector('[data-page-type~="detail"]', function() {
+            var dims = helpers.filterUALogs(['send', 'pageview'])[0][2];
+            test.assertEquals(dims.hitType, 'pageview');
+            test.assertEquals(dims.dimension6, app.name);
+            test.assertEquals(dims.dimension7, app.id + '');
+            test.assertEquals(dims.dimension8, app.author);
+            test.assertEquals(dims.dimension9, 'direct');
+            test.assertEquals(dims.dimension10, 'free');
         });
 
         helpers.done(test);

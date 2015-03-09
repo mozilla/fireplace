@@ -39,9 +39,12 @@
         {% endif %}
 
         {% if app.slug %}
-          {{ market_button(app, data_attrs={'manifest_url': app.manifest_url,
-                                            'slug': app.slug},
-                           price_only=price_only) }}
+          {{ market_button(app, data_attrs={
+                 'manifest_url': app.manifest_url,
+                 'source': src,
+                 'slug': app.slug
+             }, price_only=price_only)
+          }}
         {% endif %}
 
         {{ rating_link() if not is_detail }}

@@ -1,12 +1,16 @@
 <div class="desktop-promo">
-  <div class="desktop-promo-nav-left arrow-button prev" data-navigate="prev">{{ _('Previous') }}</div>
+  <div class="desktop-promo-nav-left arrow-button prev"
+       data-navigate="prev">{{ _('Previous') }}</div>
+
   <div class="desktop-promo-items" data-action="start">
     {% for promo in promoItems %}
-      <a class="desktop-promo-item" data-promo="{{ promo.name }}"
-        href="{{ promo.url }}">
+      <a class="desktop-promo-item" href="{{ promo.url }}"
+         data-promo="{{ promo.name }}" data-tracking="{{ promo.name }}">
         <span class="desktop-promo-item-text">{{ promo.text }}</span>
       </a>
     {% endfor %}
   </div>
-  <div class="desktop-promo-nav-right arrow-button next" data-navigate="next">{{ _('Next') }}</div>
+
+  <div class="desktop-promo-nav-right arrow-button next"
+       data-navigate="next">{{ _('Next') }}</div>
 </div>

@@ -1,6 +1,8 @@
 define('views/category',
-    ['categories', 'underscore', 'core/urls', 'core/utils', 'core/z'],
-    function(categories, _, urls, utils, z) {
+    ['categories', 'core/format', 'core/urls', 'core/utils', 'core/z',
+     'underscore', 'tracking_events'],
+    function(categories, format, urls, utils, z,
+             _, trackingEvents) {
     'use strict';
 
     return function(builder, args, params) {
@@ -20,13 +22,25 @@ define('views/category',
             delete params.src;
         }
 
+        var popularSrc = format.format(trackingEvents.SRCS.categoryPopular,
+                                       slug);
+        var newSrc = format.format(trackingEvents.SRCS.categoryNew, slug);
+
         builder.start('category.html', {
             category: slug,
             category_name: name,
             endpoint: urls.api.unsigned.url('category', [slug], params),
+            popularUrl: utils.urlparams(urls.reverse('category', [slug]), {
+                src: popularSrc
+            }),
+            newUrl: utils.urlparams(urls.reverse('category', [slug]), {
+                sort: 'reviewed',
+                src: newSrc
+            }),
             sort: params.sort,
+            source: params.sort ? newSrc: popularSrc,
         });
 
-        require('tracking_events').trackCategoryHit(slug);
+        trackingEvents.trackCategoryHit(slug);
     };
 });

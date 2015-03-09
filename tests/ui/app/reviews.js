@@ -29,7 +29,7 @@ function testAddReviewForm(test) {
 
     casper.waitWhileVisible('.mkt-prompt form', function() {
         // Post review stuff.
-        helpers.assertUATracking(test, [
+        helpers.assertUASendEvent(test, [
             'App view interactions',
             'click',
             'Successful review'

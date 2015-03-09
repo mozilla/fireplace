@@ -52,7 +52,7 @@ casper.test.begin('Test navbar tracking events', {
     test: function(test) {
         helpers.waitForPageLoaded(function() {
             casper.click('.navbar [data-tab="popular"] a');
-            helpers.assertUATracking(test, [
+            helpers.assertUASendEvent(test, [
                 'Nav Click',
                 'click',
                 'popular'

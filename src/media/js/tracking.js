@@ -1,14 +1,28 @@
+/*
+    UA tracking library.  Pushes pageviews, events and session variables to UA.
+    All UA pushes are kept track of in trackLog as an array of tuples.
+    Pageviews are sent on z.win.on('navigating').
+
+    Dimensions are attributes that can be used to filter pageviews and events
+    so we can create reports for analysis.
+
+    For pageviews, we send ['send', 'pageview', {DIMENSIONS}].
+    For events , we send ['send', 'event', <CATEGORY>, <ACTION>, <LABEL>,
+                          {DIMENSIONS}].
+    For session vars, we send ['set', 'var', <DIMENSION>, <VAL>].
+*/
 define('tracking',
-    ['core/log', 'core/settings', 'core/storage', 'underscore', 'core/utils', 'core/z'],
-    function(log, settings, storage, _, utils, z) {
+    ['core/log', 'core/settings', 'core/storage', 'core/utils', 'core/z',
+     'underscore'],
+    function(log, settings, storage, utils, z,
+             _) {
     var logger = log('tracking');
 
     var enabled = settings.tracking_enabled;
     var action_tracking_enabled = settings.action_tracking_enabled;
 
-    var track_log = [];
-    var track_vars = {};
-    var track_page_vars = {};
+    var trackLog = [];
+    var pageVars = {};
 
     var clientID = storage.getItem('clientID');
     if (!clientID && enabled) {
@@ -20,12 +34,11 @@ define('tracking',
         return {
             enabled: false,
             action_enabled: false,
-            track_log: [],
-            track_vars: [],
-            track_page_vars: {},
-            setVar: function() {},
+            trackLog: [],
+            pageVars: {},
+            sendEvent: function() {},
+            setSessionVar: function() {},
             setPageVar: function() {},
-            trackEvent: function() {}
         };
     }
 
@@ -63,6 +76,8 @@ define('tracking',
         var data = _.toArray(arguments);
         var queued;
 
+        trackLog.push(data);
+
         if (settings.potatolytics_enabled) {
             if (data[0] === settings.ua_tracking_id) {
                 // If data[0] is our tracking_id, then we need to ensure it's
@@ -84,7 +99,7 @@ define('tracking',
         } else if (window.ga) {
             window.ga.apply(this, data);
         } else {
-            console.error('Potatolytics is disabled but window.ga is absent!');
+            logger.error('Potatolytics is disabled but window.ga is absent!');
         }
     }
 
@@ -141,15 +156,18 @@ define('tracking',
     logger.log('UA tracking initialized');
 
     z.win.on('navigating', function(e, popped) {
-        // Otherwise we'll track back button hits etc.
-        if (!popped) {
-            var url = get_url();
-            // Pass page vars to UA
-            logger.log('UA-tracking page view', url);
-            var uadata = _.extend({'page': url, 'title': document.title}, track_page_vars);
-            ua_push('send', 'pageview', uadata);
-            track_page_vars = {};
-        }
+        /*
+           Since we are single-page, send pageviews manually.
+           Only sends hits *after* we navigate away from the page.
+           b/c in some cases, have to wait for data to load to get page vars.
+        */
+        // Pass page vars to UA.
+        ua_push('send', 'pageview', _.extend({
+            'page': get_url(),
+            'title': document.title
+        }, pageVars));
+        // Then reset page vars.
+        pageVars = {};
     });
 
     function actionWrap(func) {
@@ -162,25 +180,18 @@ define('tracking',
     return {
         enabled: true,
         action_enabled: action_tracking_enabled,
-        track_log: track_log,
-        track_page_vars: track_page_vars,
-        track_vars: track_vars,
-        setVar: actionWrap(function(index, value) {
-            var dimension = 'dimension' + index;
-            ua_push('set', dimension, value);
-            track_log.push([dimension, value]);
-            track_vars[dimension + index] = value;
-        }),
-        setPageVar: actionWrap(function(index, value) {
-            var dimension = 'dimension' + index;
-            track_log.push([dimension, value]);
-            track_page_vars[dimension] = value;
-        }),
-        trackEvent: actionWrap(function() {
+        pageVars: pageVars,
+        sendEvent: actionWrap(function() {
             var args = Array.prototype.slice.call(arguments, 0);
             ua_push.apply(this, ['send', 'event'].concat(args));
-            track_log.push(args);
             return args;
-        })
+        }),
+        setPageVar: actionWrap(function(dimension, value) {
+            pageVars[dimension] = value;
+        }),
+        setSessionVar: actionWrap(function(dimension, value) {
+            ua_push('set', dimension, value);
+        }),
+        trackLog: trackLog,
     };
 });

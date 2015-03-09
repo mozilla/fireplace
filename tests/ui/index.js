@@ -20,13 +20,55 @@ casper.test.begin('Test base site', {
 });
 
 
+casper.test.begin('Test UA desktop promo click event', {
+    test: function(test) {
+        helpers.startCasper({viewport: 'desktop'});
+
+        var trackingSlug;
+        helpers.waitForPageLoaded(function() {
+            test.assertExists('.desktop-promo');
+
+            var itemSel = '.desktop-promo-item:first-child';
+            trackingSlug = casper.evaluate(function(itemSel) {
+                return $(itemSel).data('tracking');
+            }, itemSel);
+
+            casper.click('.desktop-promo-item:first-child');
+        });
+
+        casper.waitWhileSelector('[data-page-type~="homepage"]', function() {
+            helpers.assertUASendEvent(test, [
+                'View Desktop Promo Item',
+                'click',
+                trackingSlug
+            ]);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test UA package dimension set', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            helpers.assertUASetSessionVar(test, ['dimension15', 0]);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
 casper.test.begin('Test UA region dimension set', {
     test: function(test) {
         helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
             // Provided by consumer_info from the mock API.
-            helpers.assertUATracking(test, ['dimension11', 'us']);
+            helpers.assertUASetSessionVar(test, ['dimension11', 'us']);
         });
 
         helpers.done(test);
@@ -39,7 +81,7 @@ casper.test.begin('Test UA region dimension set specified region', {
         helpers.startCasper('/?region=br');
 
         helpers.waitForPageLoaded(function() {
-            helpers.assertUATracking(test, ['dimension11', 'br']);
+            helpers.assertUASetSessionVar(test, ['dimension11', 'br']);
         });
 
         helpers.done(test);
@@ -54,6 +96,24 @@ casper.test.begin('Test footer at tablet width', {
         helpers.waitForPageLoaded(function() {
             test.assertVisible('#site-footer');
             test.assertNotVisible('#newsletter-footer');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test UA pageview on initial navigation', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            casper.click('.popular .tab-link');
+        });
+
+        casper.waitForSelector('.app-list', function() {
+            test.assert(helpers.filterUALogs(['send', 'pageview']).length > 0,
+                        'Check page view tracked on initial navigation');
         });
 
         helpers.done(test);

@@ -185,49 +185,58 @@ function checkValidity(selector) {
 }
 
 
-function assertUATracking(test, trackArgs) {
+function assertUASendEvent(test, trackArgs) {
     // Check that a UA tracking event or variable change was made
     // by checking the tracking logs.
     // If trackArgs is a string, it will just check the first argument.
-    var isString = false;
-    if (trackArgs.constructor === String) {
-        isString = true;
+    if (trackArgs.constructor !== String) {
+        trackArgs = ['send', 'event'].concat(trackArgs);
     }
+    return assertUATrackingLog(test, trackArgs);
+}
 
-    var trackExists = casper.evaluate(function(trackArgs, isString) {
-        var track_log = require('tracking').track_log;
 
-        // Compare two arrays.
-        function arraysAreEqual(arrA, arrB) {
-            return arrA.length == arrB.length &&
-                arrA.every(function(element, index) {
-                    return element === arrB[index];
-                });
-        }
+function assertUASetSessionVar(test, trackArgs) {
+    if (trackArgs.constructor !== String) {
+        trackArgs = ['set'].concat(trackArgs);
+    }
+    return assertUATrackingLog(test, trackArgs);
+}
 
-        return track_log.filter(function(log) {
-            if (isString) {
-                return log[0] == trackArgs;
+
+function assertUATrackingLog(test, trackArgs) {
+    var trackExists = casper.evaluate(function(trackArgs) {
+        var _ = window.require('underscore');
+        var trackLog = window.require('tracking').trackLog;
+
+        return trackLog.filter(function(log) {
+            console.log(JSON.stringify(log));
+            console.log(JSON.stringify(trackArgs));
+            if (trackArgs.constructor === String) {
+                // Just compare event name for convenience.
+                return log[2] == trackArgs;
             }
-            return arraysAreEqual(log, trackArgs);
+            return _.isEqual(log, trackArgs);
         }).length !== 0;
-    }, trackArgs, isString);
+    }, trackArgs);
 
     if (!trackExists) {
-        console.log(trackArgs);
+        console.log(JSON.stringify(trackArgs));
     }
     test.assert(trackExists, 'Tracking event exists');
 }
 
 
-function assertUATrackingPageVar(test, key, val) {
-    test.assert(casper.evaluate(function(key, val) {
-        var uaPageVars = window.require('tracking').track_page_vars;
-        if (uaPageVars[key] != val) {
-            console.log('[debug] ' + uaPageVars[key] + ' != ' + val);
-        }
-        return uaPageVars[key] == val;
-    }, key, val), 'Check UA page var ' + key + ' == ' + val);
+function filterUALogs(trackArgs) {
+    // Given an array, filter UA log that matches the array.
+    return casper.evaluate(function(trackArgs) {
+        var _ = window.require('underscore');
+        var trackLog = window.require('tracking').trackLog.reverse();
+
+        return trackLog.filter(function(log) {
+            return _.isEqual(log.slice(0, trackArgs.length), trackArgs);
+        });
+    }, trackArgs);
 }
 
 
@@ -356,13 +365,14 @@ module.exports = {
     assertAPICallWasMade: assertAPICallWasMade,
     assertContainsText: assertContainsText,
     assertHasFocus: assertHasFocus,
-    assertUATracking: assertUATracking,
-    assertUATrackingPageVar: assertUATrackingPageVar,
+    assertUASendEvent: assertUASendEvent,
+    assertUASetSessionVar: assertUASetSessionVar,
     assertWaitForSelector: assertWaitForSelector,
     capture: capture,
     checkValidity: checkValidity,
     done: done,
     fake_login: fake_login,
+    filterUALogs: filterUALogs,
     makeUrl: makeUrl,
     selectOption: selectOption,
     startCasper: startCasper,

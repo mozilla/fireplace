@@ -19,7 +19,9 @@
     {% include "_includes/app_list_filters.html" %}
     <ul class="app-list {{ 'paginated' if response.meta.next }}">
       {% for app in this %}
-        <li class="app-list-app">{{ app_tile(app, src=source, tray=True) }}</li>
+        <li class="app-list-app">
+          {{ app_tile(app, tray=True, src=trackingEvents.SRCS[appListType]) }}
+        </li>
       {% endfor %}
       {% if response.meta.next %}
         {# Render the more button if there's another page of results #}
