@@ -59,6 +59,14 @@ var viewports = {
 };
 
 
+function selectOption(sel, val) {
+    // Equivalent to clicking an option on the dropdown.
+    casper.evaluate(function(sel, val) {
+        $(sel).val(val).change();
+    }, sel, val);
+}
+
+
 function startCasper(path, opts) {
     if (path && path.constructor === Object) {
         opts = path;
@@ -356,6 +364,7 @@ module.exports = {
     done: done,
     fake_login: fake_login,
     makeUrl: makeUrl,
+    selectOption: selectOption,
     startCasper: startCasper,
     tearDown: tearDown,
     waitForAppDetail: waitForAppDetail,

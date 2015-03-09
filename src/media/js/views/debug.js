@@ -1,8 +1,8 @@
 define('views/debug',
-    ['core/cache', 'core/capabilities', 'compatibility_filtering', 'core/log',
+    ['core/cache', 'core/capabilities', 'compat_filter', 'core/log',
      'core/models', 'core/notification', 'core/requests', 'core/settings',
      'core/storage', 'core/user', 'core/utils', 'core/z', 'regions'],
-    function(cache, capabilities, compatibility_filtering, log,
+    function(cache, capabilities, compatFilter, log,
              models, notification, requests, settings,
              storage, user, utils, z, regions) {
     'use strict';
@@ -73,7 +73,7 @@ define('views/debug',
             capabilities: capabilities,
             settings: settings,
             report_version: 1.0,
-            profile: compatibility_filtering.feature_profile
+            profile: compatFilter.featureProfile
         })};
 
         var ashesUrl = 'https://ashes.paas.allizom.org/post_report';
@@ -83,7 +83,7 @@ define('views/debug',
         });
     })
 
-    .on('change', '#debug-page select[name=region]', function(e) {
+    .on('change', '#debug-region', function(e) {
         var val = $(this).val();
         var current_region = user.get_setting('region_override');
         if (current_region !== val) {
@@ -97,7 +97,7 @@ define('views/debug',
                      (regions.REGION_CHOICES_SLUG[val] || '---')});
     })
 
-    .on('change', '#debug-page select[name=carrier]', function(e) {
+    .on('change', '#debug-carrier', function(e) {
         var val = $(this).val();
         var current_carrier = user.get_setting('carrier_override');
         if (current_carrier !== val) {
@@ -126,7 +126,7 @@ define('views/debug',
             carriers: require('mobilenetwork').carriers,
             filter: log.filter,
             persistent_logs: log.persistent.all,
-            profile: compatibility_filtering.feature_profile,
+            profile: compatFilter.featureProfile,
             recent_logs: log.get_recent(100),
             request_cache: storage.getItem('request_cache') || {}
         });

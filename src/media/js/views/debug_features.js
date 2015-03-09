@@ -1,17 +1,17 @@
 define('views/debug_features',
-    ['compatibility_filtering', 'core/settings', 'core/urls'],
-    function(compatibility_filtering, settings, urls) {
+    ['compat_filter', 'core/settings', 'core/urls'],
+    function(compatFilter, settings, urls) {
     'use strict';
 
     return function(builder, args, params) {
         params = params || {};
 
         // Force feature profile to be sent even if it's blacklisted.
-        params.pro = compatibility_filtering.feature_profile;
+        params.pro = compatFilter.featureProfile;
 
         builder.start('debug_features.html', {
             endpoint: urls.api.unsigned.url('features', [], params),
-            profile: compatibility_filtering.feature_profile
+            profile: params.pro
         });
     };
 });
