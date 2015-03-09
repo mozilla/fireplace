@@ -13,30 +13,20 @@ function assertSelectedDevice(test, device) {
 }
 
 
+function clearLS() {
+    casper.evaluate(function() {
+        window.require('core/storage').clear();
+    });
+}
+
+
 appList.appListPages.forEach(function(appListPage) {
     if (!appListPage.appLimit) {
         appListPage.appLimit = constants.APP_LIMIT;
     }
 
     if (!appListPage.noCompatFiltering) {
-        casper.test.begin(appListPage.name + ' page compatibility filtering tests', {
-            test: function(test) {
-                appList.waitForAppListPage(appListPage, function() {
-                    test.assertField('compat_filter', 'all');
-                });
-
-                if (!appListPage.noLoadMore) {
-                    appList.waitForLoadMore(function() {
-                        // Test compatibility filtering after load more.
-                        test.assertField('compat_filter', 'all');
-                    });
-                }
-
-                helpers.done(test);
-            }
-        });
-
-        casper.test.begin(appListPage.name + ' compatibility filtering tests', {
+        casper.test.begin('Test ' + appListPage.name + ' compat filter', {
             test: function(test) {
                 helpers.startCasper({
                     path: new jsuri(appListPage.path)
@@ -81,7 +71,8 @@ appList.appListPages.forEach(function(appListPage) {
                 }
 
                 helpers.done(test);
-            }
+            },
+            tearDown: clearLS
         });
     }
 });
@@ -115,7 +106,8 @@ casper.test.begin('Test compat filter dropdown change', {
         });
 
         helpers.done(test);
-    }
+    },
+    tearDown: clearLS
 });
 
 
@@ -138,11 +130,12 @@ casper.test.begin('Test compat filter dropdown persist for site', {
         });
 
         helpers.done(test);
-    }
+    },
+    tearDown: clearLS
 });
 
 
-casper.test.begin('Test compat filter dropdown no persist between sessions', {
+casper.test.begin('Test compat filter dropdown persists between sessions', {
     test: function(test) {
         helpers.startCasper(new jsuri('/search').addQueryParam('q', 'foo'));
 
@@ -152,11 +145,12 @@ casper.test.begin('Test compat filter dropdown no persist between sessions', {
         });
 
         casper.waitForSelector('[data-page-type~="popular"]', function() {
-            assertSelectedDevice(test, '');
+            assertSelectedDevice(test, 'firefoxos');
         });
 
         helpers.done(test);
-    }
+    },
+    tearDown: clearLS
 });
 
 
@@ -178,5 +172,6 @@ casper.test.begin('Test compat filtering persists after search', {
         });
 
         helpers.done(test);
-    }
+    },
+    tearDown: clearLS
 });
