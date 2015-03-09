@@ -11,7 +11,7 @@
   <header class="secondary-header">
     <h2>{{ subtitle }}</h2>
   </header>
-  {% defer (url=anonApiParams(endpoint_name, params), pluck='objects', paginate='.app-list') %}
+  {% defer (url=anonApiParams('langpacks', params), pluck='objects', paginate='.app-list') %}
     <ul class="app-list {{ 'paginated' if response.meta.next }}">
       {% for langpack in this %}
         {% set app = transform_to_app(langpack) %}

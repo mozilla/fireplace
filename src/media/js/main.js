@@ -18,7 +18,6 @@ require([
     'core/cache',
     'core/capabilities',
     'consumer_info',
-    'compatibility_filtering_select',
     'content-ratings',
     'flipsnap',
     'core/forms',
