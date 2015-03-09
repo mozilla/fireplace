@@ -83,7 +83,7 @@ define('views/debug',
         });
     })
 
-    .on('change', '#debug-page select[name=region]', function(e) {
+    .on('change', '#debug-region', function(e) {
         var val = $(this).val();
         var current_region = user.get_setting('region_override');
         if (current_region !== val) {
@@ -97,7 +97,7 @@ define('views/debug',
                      (regions.REGION_CHOICES_SLUG[val] || '---')});
     })
 
-    .on('change', '#debug-page select[name=carrier]', function(e) {
+    .on('change', '#debug-carrier', function(e) {
         var val = $(this).val();
         var current_carrier = user.get_setting('carrier_override');
         if (current_carrier !== val) {
