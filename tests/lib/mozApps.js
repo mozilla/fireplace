@@ -76,6 +76,13 @@ function initialize() {
             _resetInstalled: function() {
                 // Helper to clear installed apps. Not a part of the API.
                 manifests = [];
+            },
+            _populateInstalledApps: function(n) {
+                // Helper to populate installed app list with random apps.
+                // Not a part of the API.
+                for (var i = 0; i < (n || 200); i++) {
+                    manifests.push('http://randommanifest' + i + '.com');
+                }
             }
         };
 

@@ -135,6 +135,33 @@ casper.test.begin('Test install app', {
 });
 
 
+casper.test.begin('Test markBtnsAsInstalled if many apps are already installed', {
+    test: function(test) {
+        helpers.startCasper('/popular');
+
+        helpers.waitForPageLoaded(function() {
+            casper.evaluate(function() {
+                window.navigator.mozApps._populateInstalledApps();
+            });
+
+            casper.click('.mkt-tile:first-child .install');
+            casper.click('.mkt-tile:first-child');
+        });
+
+        casper.waitForSelector('[data-page-type~="detail"]', function() {
+            test.assertExists('.launch');
+            casper.back();
+        });
+
+        casper.waitForSelector('.app-list', function() {
+            test.assertSelectorHasText('.mkt-tile:first-child .launch', 'Open');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
 casper.test.begin('Test install packaged app', {
     test: function(test) {
         helpers.startCasper('/app/packaged');
