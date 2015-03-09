@@ -52,7 +52,8 @@ define('compat_filter',
     var actualPlatform = caps.device_platform();
     var actualFormFactor = caps.device_formfactor();
     var filterDeviceLSKey = 'filter-device';
-    var filterDevice = storage.getItem(filterDeviceLSKey) || caps.device_type();
+    var filterDeviceFromLS = storage.getItem(filterDeviceLSKey);
+    var filterDevice = filterDeviceFromLS || caps.device_type();
 
     z.body.on('change', '#compat-filter', function() {
         // Update device preferences and reload view to refresh changes.
@@ -72,7 +73,7 @@ define('compat_filter',
     if (actualPlatform == 'desktop') {
         actualPlatform = '';
 
-        if (!storage.getItem(filterDeviceLSKey)) {
+        if (!filterDeviceFromLS) {
             filterDevice = '';
         }
     }
