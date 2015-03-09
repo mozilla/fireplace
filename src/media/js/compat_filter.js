@@ -51,11 +51,13 @@ define('compat_filter',
     ];
     var actualPlatform = caps.device_platform();
     var actualFormFactor = caps.device_formfactor();
-    var filterDevice = caps.device_type();
+    var filterDeviceLSKey = 'filter-device';
+    var filterDevice = storage.getItem(filterDeviceLSKey) || caps.device_type();
 
     z.body.on('change', '#compat-filter', function() {
         // Update device preferences and reload view to refresh changes.
         filterDevice = this[this.selectedIndex].value;
+        storage.setItem(filterDeviceLSKey, filterDevice);
         logger.log('Filtering: ' + filterDevice);
         views.reload();
     });
@@ -69,7 +71,10 @@ define('compat_filter',
     // On desktop, the default is no filtering.
     if (actualPlatform == 'desktop') {
         actualPlatform = '';
-        filterDevice = '';
+
+        if (!storage.getItem(filterDeviceLSKey)) {
+            filterDevice = '';
+        }
     }
 
     // For mobile, set limit to 10.
