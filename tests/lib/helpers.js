@@ -38,12 +38,12 @@ casper.on('step.error', function() {
 });
 
 
-if (system.env.SHOW_TEST_CONSOLE || system.env.TEST_CONSOLE_FILTER) {
-    // Show client console logs. Setting TEST_CONSOLE_FILTER to a value with
+if (system.env.SHOW_TEST_CONSOLE || system.env.FILTER_TEST_CONSOLE) {
+    // Show client console logs. Setting FILTER_TEST_CONSOLE to a value with
     // match and filter console logs for debugging.
     casper.on('remote.message', function(message) {
-        if (!system.env.TEST_CONSOLE_FILTER ||
-            message.indexOf(system.env.TEST_CONSOLE_FILTER) !== -1) {
+        if (!system.env.FILTER_TEST_CONSOLE ||
+            message.indexOf(system.env.FILTER_TEST_CONSOLE) !== -1) {
             casper.echo(message, 'INFO');
         }
     });

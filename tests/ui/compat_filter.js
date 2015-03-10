@@ -175,3 +175,28 @@ casper.test.begin('Test compat filtering persists after search', {
     },
     tearDown: clearLS
 });
+
+
+casper.test.begin('Test UA compat filter change', {
+    test: function(test) {
+        helpers.startCasper('/popular');
+
+        helpers.waitForPageLoaded(function() {
+            helpers.assertUASetSessionVar(test, ['dimension2', '']);
+
+            helpers.selectOption('#compat-filter', 'firefoxos');
+            test.assert(helpers.filterUALogs([
+                'send',
+                'event',
+                'Change platform filter',
+                'click',
+                'firefoxos'
+            ]).length > 0, 'Test change platform filter event');
+
+            helpers.assertUASetSessionVar(test, ['dimension2', 'firefoxos']);
+        });
+
+        helpers.done(test);
+    },
+    tearDown: clearLS
+});
