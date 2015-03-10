@@ -1,7 +1,11 @@
 /*
-    UA tracking library.  Pushes pageviews, events and session variables to UA.
+    UA tracking library. Sends pageviews, events, and session variables to UA.
     All UA pushes are kept track of in trackLog as an array of tuples.
-    Pageviews are sent on z.win.on('navigating').
+
+    Pageviews are sent on z.win.on('navigating unload').
+    Use setPageVar to send custom dimensions along with the pageview. Page
+    vars for pageviews exist only for the current page; after the user
+    navigates away, page vars are cleared.
 
     Dimensions are attributes that can be used to filter pageviews and events
     so we can create reports for analysis.
@@ -147,18 +151,17 @@ define('tracking',
                 }
             });
         } else {
-            logger.log('Initializing UA tracking without iframe');
+            logger.log('Initializing UA tracking');
             setupUATracking(settings.ua_tracking_id, get_url(), clientID,
-                            settings.tracking_site_section, settings.tracking_site_section_index);
+                            settings.tracking_site_section,
+                            settings.tracking_site_section_index);
         }
     }
 
-    logger.log('UA tracking initialized');
-
-    z.win.on('navigating', function(e, popped) {
+    z.win.on('navigating unload', function(e, popped) {
         /*
            Since we are single-page, send pageviews manually.
-           Only sends hits *after* we navigate away from the page.
+           Only sends hits *after* we navigate (or unload) away from the page.
            b/c in some cases, have to wait for data to load to get page vars.
         */
         // Pass page vars to UA.
@@ -166,6 +169,7 @@ define('tracking',
             'page': get_url(),
             'title': document.title
         }, pageVars));
+
         // Then reset page vars.
         pageVars = {};
     });
