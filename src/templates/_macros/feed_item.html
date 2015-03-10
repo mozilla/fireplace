@@ -211,7 +211,8 @@
           {% endfor %}
         </ul>
       {% endif %}
-      <div class="feed-curve feed-landing-curve">
+      <div class="feed-curve feed-landing-curve
+                  {{ 'brand-landing-curve' if feed_item.isBrand }}">
         {% if feed_item.isBrand %}
           <div class="brand-landing-header">
             <div class="brand-landing-icon" data-brand-type="{{ feed_item.type }}">
