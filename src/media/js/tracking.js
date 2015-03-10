@@ -22,52 +22,46 @@ define('tracking',
              _) {
     var logger = log('tracking');
 
-    var enabled = settings.tracking_enabled;
-    var action_tracking_enabled = settings.action_tracking_enabled;
-
     var trackLog = [];
     var pageVars = {};
 
     var clientID = storage.getItem('clientID');
-    if (!clientID && enabled) {
-        storage.setItem('clientID', clientID = (Date.now() + Math.random()).toString(36));
+    if (!clientID) {
+        storage.setItem('clientID',
+                        clientID = (Date.now() + Math.random()).toString(36));
     }
 
-    if (!enabled) {
-        logger.log('UA tracking disabled');
-        return {
-            enabled: false,
-            action_enabled: false,
-            trackLog: [],
-            pageVars: {},
-            sendEvent: function() {},
-            setSessionVar: function() {},
-            setPageVar: function() {},
-        };
+    function GA() {
+        // Wrapper for window.ga to keep track of everything we push.
+        var args = _.toArray(arguments);
+        trackLog.push(args);
+        if (window.ga) {
+            return window.ga.call(this, args);
+        } else {
+            logger.error('window.ga not found');
+        }
     }
 
-    function setupUATracking(id, initial_url, clientID, sect, sect_index) {
+    function setupUATracking() {
+        // The unminified version of the UA tracking code that Google hands us.
         window.GoogleAnalyticsObject = 'ga';
         window.ga = window.ga || function() {
             (window.ga.q = window.ga.q || []).push(arguments);
         };
         window.ga.l = 1 * new Date();
+        var UAScript = document.createElement('script');
+        UAScript.type = 'text/javascript';
+        UAScript.async = true;
+        UAScript.src = 'https://www.google-analytics.com/analytics.js';
+        document.body.appendChild(UAScript);
 
-        var ua = document.createElement('script');
-        ua.type = 'text/javascript';
-        ua.async = true;
-        ua.src = 'https://www.google-analytics.com/analytics.js';
-        document.body.appendChild(ua);
-
-        window.ga('create', id, {
+        GA('create', settings.ua_tracking_id, {
             storage: 'none',
             clientId: clientID,
         });
-        if (sect) {
-            window.ga('set', 'dimension' + sect_index, sect);
-        }
-        window.ga('set', 'checkProtocolTask', function(){});
-        window.ga('send', 'pageview', initial_url);
+
+        // Don't abort if not http/https.
+        GA('set', 'checkProtocolTask', function() {});
     }
 
     var build_id;
@@ -76,11 +70,9 @@ define('tracking',
     var potato_iframe;
     var potato_queue = [];
 
-    function ua_push() {
+    function UAPush() {
+        // Send data to UA. If Potatolytics, post-message. Else, window.ga.
         var data = _.toArray(arguments);
-        var queued;
-
-        trackLog.push(data);
 
         if (settings.potatolytics_enabled) {
             if (data[0] === settings.ua_tracking_id) {
@@ -93,21 +85,23 @@ define('tracking',
             }
 
             if (potato_initialized) {
-                // If potatolytics is enabled, then we send what's in the queue,
-                // starting from the top.
+                // If potatolytics enabled, send what's in the queue from top.
+                var queued;
                 while ((queued = potato_queue.shift())) {
                     queued.name = 'potatolytics-tracking';
-                    potato_iframe.contentWindow.postMessage(queued, iframe_src);
+                    potato_iframe.contentWindow.postMessage(queued,
+                                                            iframe_src);
+                    trackLog.push(queued);
                 }
             }
-        } else if (window.ga) {
-            window.ga.apply(this, data);
         } else {
-            logger.error('Potatolytics is disabled but window.ga is absent!');
+            GA.apply(this, data);
         }
+
+        return data;
     }
 
-    function get_url() {
+    function getUrl() {
         return window.location.pathname + window.location.search;
     }
 
@@ -122,7 +116,7 @@ define('tracking',
                     cache: 31536000
                 });
             }
-            logger.log('Initializing UA tracking through iframe');
+            logger.log('UA iframe init');
             potato_iframe = document.createElement('iframe');
             potato_iframe.id = 'iframe-potatolytics';
             potato_iframe.src = iframe_src;
@@ -142,19 +136,15 @@ define('tracking',
                         // console.warn('[echo] ' + e.data);
                         break;
                     case 'potatolytics-loaded':
-                        logger.log('UA tracking iframe loaded');
+                        logger.log('UA iframe loaded');
                         potato_initialized = true;
-                        ua_push(settings.ua_tracking_id, get_url(), clientID,
-                            settings.tracking_site_section,
-                            settings.tracking_site_section_index);
+                        setupUATracking();
                         break;
                 }
             });
         } else {
-            logger.log('Initializing UA tracking');
-            setupUATracking(settings.ua_tracking_id, get_url(), clientID,
-                            settings.tracking_site_section,
-                            settings.tracking_site_section_index);
+            logger.log('UA tracking init');
+            setupUATracking();
         }
     }
 
@@ -165,8 +155,8 @@ define('tracking',
            b/c in some cases, have to wait for data to load to get page vars.
         */
         // Pass page vars to UA.
-        ua_push('send', 'pageview', _.extend({
-            'page': get_url(),
+        UAPush('send', 'pageview', _.extend({
+            'page': getUrl(),
             'title': document.title
         }, pageVars));
 
@@ -174,28 +164,25 @@ define('tracking',
         pageVars = {};
     });
 
-    function actionWrap(func) {
-        if (!action_tracking_enabled) {
-            return function() {};
-        }
-        return func;
-    }
-
     return {
-        enabled: true,
-        action_enabled: action_tracking_enabled,
         pageVars: pageVars,
-        sendEvent: actionWrap(function() {
-            var args = Array.prototype.slice.call(arguments, 0);
-            ua_push.apply(this, ['send', 'event'].concat(args));
-            return args;
-        }),
-        setPageVar: actionWrap(function(dimension, value) {
+        sendEvent: function() {
+            // Push a `send, event` to UA. UAPush expects the args to be
+            // applied.
+            var args = _.toArray(arguments);
+            return UAPush.apply(this, ['send', 'event'].concat(args));
+        },
+        setPageVar: function(dimension, value) {
+            // Set a page variable in the scope of the current page to be used
+            // in `send, pageview`. After navigation or unload, pageVars is
+            // reset.
             pageVars[dimension] = value;
-        }),
-        setSessionVar: actionWrap(function(dimension, value) {
-            ua_push('set', dimension, value);
-        }),
+            return pageVars;
+        },
+        setSessionVar: function(dimension, value) {
+            // Push a `set` to UA. UAPush expects the args to be applied.
+            return UAPush.apply(this, ['set', dimension, value]);
+        },
         trackLog: trackLog,
     };
 });

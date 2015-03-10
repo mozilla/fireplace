@@ -1,6 +1,19 @@
 var helpers = require('../lib/helpers');
 
 
+casper.test.begin('Test UA site section dimension set', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            helpers.assertUASetSessionVar(test, ['dimension3', 'Consumer']);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
 casper.test.begin('Test UA platform dimension set', {
     test: function(test) {
         helpers.startCasper();

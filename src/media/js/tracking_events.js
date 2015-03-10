@@ -166,6 +166,9 @@ define('tracking_events',
     var PERSISTENT_SRCS = {};
     PERSISTENT_SRCS[SRCS.desktopPromo] = true;
 
+    // Track site section.
+    setSessionVar(DIMENSIONS.siteSection, 'Consumer');
+
     // Track selected active platform filter.
     setSessionVar(DIMENSIONS.platformFilter, compatFilter.filterDevice);
 
