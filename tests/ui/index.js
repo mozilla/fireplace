@@ -20,28 +20,13 @@ casper.test.begin('Test base site', {
 });
 
 
-casper.test.begin('Test UA desktop promo click event', {
+casper.test.begin('Test footer at tablet width', {
     test: function(test) {
-        helpers.startCasper({viewport: 'desktop'});
+        helpers.startCasper({viewport: 'tablet'});
 
-        var trackingSlug;
         helpers.waitForPageLoaded(function() {
-            test.assertExists('.desktop-promo');
-
-            var itemSel = '.desktop-promo-item:first-child';
-            trackingSlug = casper.evaluate(function(itemSel) {
-                return $(itemSel).data('tracking');
-            }, itemSel);
-
-            casper.click('.desktop-promo-item:first-child');
-        });
-
-        casper.waitWhileSelector('[data-page-type~="homepage"]', function() {
-            helpers.assertUASendEvent(test, [
-                'View Desktop Promo Item',
-                'click',
-                trackingSlug
-            ]);
+            test.assertVisible('#site-footer');
+            test.assertNotVisible('#newsletter-footer');
         });
 
         helpers.done(test);
@@ -49,12 +34,15 @@ casper.test.begin('Test UA desktop promo click event', {
 });
 
 
-casper.test.begin('Test UA package dimension set', {
+casper.test.begin('Test UA platform dimension set', {
     test: function(test) {
         helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
-            helpers.assertUASetSessionVar(test, ['dimension15', 0]);
+            var platform = casper.evaluate(function() {
+                return window.require('core/capabilities').device_type();
+            });
+            helpers.assertUASetSessionVar(test, ['dimension4', platform]);
         });
 
         helpers.done(test);
@@ -89,13 +77,12 @@ casper.test.begin('Test UA region dimension set specified region', {
 });
 
 
-casper.test.begin('Test footer at tablet width', {
+casper.test.begin('Test UA package dimension set', {
     test: function(test) {
-        helpers.startCasper({viewport: 'tablet'});
+        helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
-            test.assertVisible('#site-footer');
-            test.assertNotVisible('#newsletter-footer');
+            helpers.assertUASetSessionVar(test, ['dimension15', 0]);
         });
 
         helpers.done(test);

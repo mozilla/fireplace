@@ -139,6 +139,7 @@ define('compat_filter',
         DEVICE_FILTER_CHOICES: DEVICE_FILTER_CHOICES,
         apiArgs: apiArgs,
         featureProfile: featureProfile,
+        filterDevice: filterDevice,
         isDeviceSelected: isDeviceSelected,
         limit: limit,
     };

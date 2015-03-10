@@ -15,7 +15,7 @@
 
    2 - Currently-selected Platform Filter
    ======================================
-   What the user has selected as active platform filter.
+   User's selected active platform filter (e.g., firefoxos, android-tablet).
    Used as session variable.
 
    3 - Site Section (Consumer or Developer)
@@ -23,9 +23,11 @@
    Whether the user is on consumer pages or developer pages.
    Used as session variable, and will be set to 'consumer' here.
 
-   4 -  Open
-   =========
-   This dimension is currently inactive.
+   4 - Detected User Platform
+   ==========================
+   The user's detected user platform (.e.g, all, desktop, android-mobile).
+   Adds extra info upon Dimension 2 (Currently-selected Platform Filter).
+   Used as session variable.
 
    5 - Category Name
    =================
@@ -108,10 +110,12 @@
    Passed with events (app install event).
 */
 define('tracking_events',
-    ['consumer_info', 'core/log', 'core/navigation', 'core/settings',
-     'core/utils', 'jquery', 'tracking', 'user_helpers', 'core/z'],
-    function(consumer_info, log, navigation, settings, utils, $,
-             tracking, user_helpers, z) {
+    ['compat_filter', 'consumer_info', 'core/capabilities', 'core/log',
+     'core/navigation', 'core/settings', 'core/utils', 'core/z', 'jquery',
+     'tracking', 'user_helpers'],
+    function(compatFilter, consumerInfo, caps, log,
+             navigation, settings, utils, z, $,
+             tracking, userHelpers) {
     'use strict';
     var logger = log('tracking_events');
 
@@ -123,6 +127,7 @@ define('tracking_events',
         isLoggedIn: 'dimension1',
         platformFilter: 'dimension2',
         siteSection: 'dimension3',
+        platform: 'dimension4',
         categoryName: 'dimension5',
         appName: 'dimension6',
         appId: 'dimension7',
@@ -161,9 +166,15 @@ define('tracking_events',
     var PERSISTENT_SRCS = {};
     PERSISTENT_SRCS[SRCS.desktopPromo] = true;
 
+    // Track selected active platform filter.
+    setSessionVar(DIMENSIONS.platformFilter, compatFilter.filterDevice);
+
+    // Track detected platform.
+    setSessionVar(DIMENSIONS.platform, caps.device_type());
+
     // Track region.
-    consumer_info.promise.done(function() {
-        setSessionVar(DIMENSIONS.region, user_helpers.region());
+    consumerInfo.promise.done(function() {
+        setSessionVar(DIMENSIONS.region, userHelpers.region());
     });
 
     // Track package version in UA.
@@ -230,6 +241,17 @@ define('tracking_events',
                 'Screenshot view'
             );
         }
+    })
+
+    // Change platform filtering options.
+    .on('change', '#compat-filter', function() {
+        var filterDevice = this[this.selectedIndex].value;
+        setSessionVar(DIMENSIONS.platformFilter, filterDevice);
+        sendEvent(
+            'Change platform filter',
+            'click',
+            filterDevice
+        );
     });
 
     // Navigate from collection tile to collection detail.

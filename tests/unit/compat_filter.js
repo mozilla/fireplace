@@ -79,6 +79,7 @@ define('tests/unit/compat_filter',
                     pro: undefined
                 });
                 assert.equal(compatFilter.isDeviceSelected('android-mobile'), true);
+                assert.equal(compatFilter.filterDevice, 'android-mobile');
             }));
 
         it('set device android tablet',
@@ -92,6 +93,7 @@ define('tests/unit/compat_filter',
                     pro: undefined
                 });
                 assert.equal(compatFilter.isDeviceSelected('android-tablet'), true);
+                assert.equal(compatFilter.filterDevice, 'android-tablet');
             }));
 
         it('set device to firefoxos',
@@ -105,6 +107,7 @@ define('tests/unit/compat_filter',
                     pro: compatFilter.featureProfile
                 });
                 assert.equal(compatFilter.isDeviceSelected('firefoxos'), true);
+                assert.equal(compatFilter.filterDevice, 'firefoxos');
             }));
 
         it('set feature profiles',
@@ -121,6 +124,7 @@ define('tests/unit/compat_filter',
                     pro: 'dummy-profile'
                 });
                 assert.equal(compatFilter.isDeviceSelected('firefoxos'), true);
+                assert.equal(compatFilter.filterDevice, 'firefoxos');
 
                 // No profile if endpoint not supported.
                 assert.equal(compatFilter.apiArgs('').pro, undefined);
