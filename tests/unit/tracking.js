@@ -25,7 +25,7 @@ define('tests/unit/tracking',
         });
     }
 
-    describe.only('tracking', function() {
+    describe('tracking', function() {
         it('initializes with client ID',
             helpers
             .injector(settingsTracking, storageWithClientId)
