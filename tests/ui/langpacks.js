@@ -10,6 +10,8 @@ casper.test.begin('Test langpacks results', {
                                        'Firefox OS 2.2');
             test.assertUrlMatch(/\/langpacks\/2.2/);
             test.assertDoesntExist('.app-list-filters', 'Check compatibility filtering is not found');
+
+            test.assertSelectorHasText('.langpacks .install em', 'Install');
         });
 
         helpers.done(test);

@@ -1,7 +1,14 @@
 {% macro market_button(app, data_attrs, price_only) %}
   {# price_only -- used for Feed where we only want to show the price label. #}
 
-  {% set installed = has_installed(app.manifest_url) %}
+  {# Is the app installed locally? Allows us to display "Open" button #}
+  {% set installed_locally = has_installed(app.manifest_url) %}
+
+  {# Was the app ever installed ? Allows us to display "Install" button #}
+  {% set installed_or_purchased_before = user.has_installed(app.id) or user.has_purchased(app.id) %}
+
+  {# Is the app compatible with our device ? #}
+  {% set incompatible = app_incompat(app) %}
 
   {% if app.payment_required and not app.price %}
     {# An app would otherwise cost money in another region but there is no tier in the user's region. #}
@@ -11,23 +18,27 @@
     {% set price = app.price_locale if app.price and app.price != '0.00' else _('Free') %}
   {% endif %}
 
-  <button class="button product install {{ 'launch' if installed }}
+  <button class="button product install {{ 'launch' if installed_locally }}
                  {{ 'paid' if app.payment_required }}
-                 {{ 'incompatible' if app_incompat(app) }}"
+                 {{ 'incompatible' if incompatible }}"
           {{ data_attrs|make_data_attrs }}
           {{ 'data-price-only="true"' if price_only }}
-          {{ 'disabled' if price_only or app_incompat(app) or
-                           (app.role == 'langpack' and installed) }}
+          {{ 'disabled' if price_only or incompatible or
+                           (app.role == 'langpack' and installed_locally) }}
           data-product="{{ app|json }}">
     <em>
       {% if price_only %}
         {{ price }}
-      {% else %}
-        {% if installed and app.role == 'langpack' %}
+      {% elif app.role == 'langpack' %}
+        {% if installed_locally %}
           {{ _('Installed') }}
-        {% elif installed %}
+        {% else %}
+          {{ _('Install') }}
+        {% endif %}
+      {% else %}
+        {% if installed_locally %}
           {{ _('Open') }}
-        {% elif user.has_installed(app.id) or user.has_purchased(app.id) %}
+        {% elif installed_or_purchased_before %}
           {{ _('Install') }}
         {% else %}
           {{ price }}

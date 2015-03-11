@@ -285,7 +285,6 @@ casper.test.begin('Test app detail page view', {
 
         casper.waitWhileSelector('[data-page-type~="detail"]', function() {
             var dims = helpers.filterUALogs(['send', 'pageview'])[0][2];
-            test.assertEquals(dims.hitType, 'pageview');
             test.assertEquals(dims.dimension6, app.name);
             test.assertEquals(dims.dimension7, app.id + '');
             test.assertEquals(dims.dimension8, app.author);

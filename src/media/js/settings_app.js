@@ -81,8 +81,6 @@ define('settings_app',
 
         // Switches for features.
         payments_enabled: true,
-        tracking_enabled: true,
-        action_tracking_enabled: true,
         upsell_enabled: true,
         cache_rewriting_enabled: true,
         potatolytics_enabled: false,
@@ -95,8 +93,6 @@ define('settings_app',
 
         // The UA tracking ID for this app.
         ua_tracking_id: 'UA-36116321-6',
-        tracking_section: 'Consumer',
-        tracking_section_index: 3,
 
         NEWSLETTER_LANGUAGES: {
             'en': gettext('English'),
