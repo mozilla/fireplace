@@ -1,8 +1,8 @@
 define('views/app',
     ['core/capabilities', 'content-ratings', 'core/l10n', 'core/log', 'core/settings', 'tracking',
-     'core/utils', 'core/z'],
+     'core/utils', 'core/z', 'views/app/abuse'],
     function(caps, iarc, l10n, log, settings, tracking,
-             utils, z) {
+             utils, z, abuseView) {
     'use strict';
     var gettext = l10n.gettext;
     var logger = log('app');

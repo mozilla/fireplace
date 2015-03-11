@@ -25,7 +25,7 @@ define('views/app/abuse',
         });
     }));
 
-    z.body.on('click', 'a.abuse', function(e) {
+    z.body.on('click', '.app-report-abuse .button', function(e) {
         // When clicking on Report Abuse link on detail pagje.
         //   - On mobile, navigate to report abuse page.
         //   - On desktop, show report abuse modal.
