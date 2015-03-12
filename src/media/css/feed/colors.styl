@@ -12,6 +12,26 @@ feed_background_color($color) {
     }
 }
 
+brand_background_colors($color) {
+    .brand-landing-icon {
+        background-color: $color;
+    }
+    .brand-landing-curve {
+        background-color: rgba($color, 0.75);
+
+        // Heavyhanded mask for the curve bottom padding.
+        &:after {
+            background-color: rgba($color, 0.55);
+            bottom: -45px;
+            content: "";
+            height: 45px;
+            left: 0;
+            position: absolute;
+            width: 100%;
+        }
+    }
+}
+
 [data-feed-landing-color],
 [data-shelf-landing-carrier] {
     h1,
@@ -20,27 +40,35 @@ feed_background_color($color) {
     }
 }
 [data-feed-landing-color="amber"] {
+    brand_background_colors($color-collection--amber);
     collection_background_colors($color-collection--amber);
 }
 [data-feed-landing-color="garnet"] {
+    brand_background_colors($color-collection--garnet);
     collection_background_colors($color-collection--garnet);
 }
 [data-feed-landing-color="topaz"] {
+    brand_background_colors($color-collection--topaz);
     collection_background_colors($color-collection--topaz);
 }
 [data-feed-landing-color="amethyst"] {
+    brand_background_colors($color-collection--amethyst);
     collection_background_colors($color-collection--amethyst);
 }
 [data-feed-landing-color="sapphire"] {
+    brand_background_colors($color-collection--sapphire);
     collection_background_colors($color-collection--sapphire);
 }
 [data-feed-landing-color="emerald"] {
+    brand_background_colors($color-collection--emerald);
     collection_background_colors($color-collection--emerald);
 }
 [data-feed-landing-color="ruby"] {
+    brand_background_colors($color-collection--ruby);
     collection_background_colors($color-collection--ruby);
 }
 [data-feed-landing-color="aquamarine"] {
+    brand_background_colors($color-collection--aquamarine);
     collection_background_colors($color-collection--aquamarine);
 }
 

@@ -19,7 +19,7 @@
     position: relative;
     right: 10px;
     text-align: center;
-    width: unquote('calc(100% + 20px)');
+    width: width-calc('100% + 20px');
 
     &:hover {
         text-decoration: none;
@@ -28,13 +28,14 @@
         color: $white;
         font-size: 20px;
         font-weight: 300;
-        margin-top: 75px;
+        margin-top: 80px;
         margin-bottom: 10px;
     }
     h3:before {
-        background-color: rgba($greyscale-light-grey, .8);
-        left: unquote('calc(50% - 30px)');
+        border-radius: 50%;
+        border: 2px solid $white;
         height: 60px;
+        left: width-calc('50% - 30px');
         top: 15px;
         width: 60px;
     }
@@ -59,7 +60,9 @@
     width: 64px;
 
     h3:before {
-        left: unquote('calc(50% - 32px)');
+        border-radius: 50%;
+        border: 2px solid $white;
+        left: width-calc('50% - 32px');
         height: 64px;
         width: 64px;
     }
