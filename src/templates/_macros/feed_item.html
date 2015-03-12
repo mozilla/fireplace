@@ -2,6 +2,7 @@
 {% from '_macros/stars.html' import stars %}
 
 {% macro feed_app(feed_app) %}
+  {# Don't forget _macros/feed_app_tile is a part of this too. #}
   {% set feed_app = feed.transformer(feed_app) %}
   {% set desc = feed_app.description|translate(feed_app) %}
 

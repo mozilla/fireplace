@@ -1,6 +1,6 @@
 {% macro feed_app_tile(feed_app) %}
   <div class="tile-footer {{ feed_app.type }}"
-       {% if feed_app.isQuote %}style="background: {{ feed_app.background_color }};"{% endif %}>
+       {% if feed_app.isQuote %}style="background: {{ feed_app.inline_color }};"{% endif %}>
     {% if feed_app.isDescription %}
       <p class="desc">{{ feed_app.description|translate(feed_app.description)|safe }}</p>
     {% elif feed_app.isQuote %}
@@ -21,7 +21,7 @@
       <div class="preview-container
                   {{ 'vertical' if feed_app.preview.thumbnail_size and
                      feed_app.preview.thumbnail_size[1] > feed_app.preview.thumbnail_size[0] }}"
-           style="background-color: {{ feed_app.background_color }}">
+           style="background-color: {{ feed_app.inline_color }}">
         <div class="feed-app-preview deferred-background"
              style="background-image: url({{ PLACEHOLDER_ICON }});"
              data-src="{{ feed_app.preview.thumbnail_url }}"></div>
