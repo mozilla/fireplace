@@ -55,20 +55,19 @@
 
 {% macro brand(brand) %}
   {% set brand = feed.transformer(brand) %}
-  {% set max_apps = 4 %}
 
   <section class="feed-brand feed-layout-{{ brand.layout }} multi-app-tile c"
            data-tracking="{{ brand.slug }}">
     {{ brand_header(brand) }}
     <ul>
       {% for app in brand.apps %}
-        {% if loop.index0 < max_apps %}
+        {% if loop.index0 < brand.maxApps %}
           {{ app_tile(app, src=brand.src, price_only=True) }}
         {% endif %}
       {% endfor %}
     </ul>
 
-    {% if brand.app_count > 4 %}
+    {% if brand.app_count > brand.maxApps %}
       <a href="{{ brand.landingUrl }}"
          class="view-all-tab feed-view-all-tab">
         {{ _('View all apps') }}
@@ -148,7 +147,6 @@
 
 {% macro collection_listing(coll) %}
   {% set coll = feed.transformer(coll) %}
-  {% set max_apps = 4 %}
 
   <section class="feed-collection feed-collection-listing feed-layout-list
                   multi-app-tile mkt-tile c"
@@ -156,13 +154,13 @@
     {{ collection_listing_header(coll) }}
     <ul>
       {% for app in coll.apps %}
-        {% if loop.index0 < max_apps %}
+        {% if loop.index0 < coll.maxApps %}
           {{ app_tile(app, src=coll.src) }}
         {% endif %}
       {% endfor %}
     </ul>
 
-    {% if coll.app_count > 4 %}
+    {% if coll.app_count > coll.maxApps %}
       <a href="{{ coll.landingUrl }}"
          class="view-all-tab feed-view-all-tab">
         {{ _('View all apps') }}
