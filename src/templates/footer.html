@@ -2,8 +2,8 @@
   {% include "newsletter.html" %}
 </div>
 
-<div id="footer">
-  <ul class="support-navigation">
+<div id="footer" class="footer">
+  <ul class="footer-support-navigation">
     <li><a href="#" class="submit-feedback">{{ _('Feedback') }}</a></li>
     {% if capabilities.device_type() == 'desktop' %}
       <li>
@@ -29,14 +29,14 @@
       <li><a href="/lookup/" rel="external" class="only-logged-in">{{ _('Lookup Tool') }}</a></li>
     {% endif %}
   </ul>
-  <div class="pad">
-    <h1 id="footzilla"><a href="https://www.mozilla.org/" target="_blank">mozilla</a></h1>
+  <div class="footer-content">
+    <h1 class="footzilla"><a href="https://www.mozilla.org/" target="_blank">mozilla</a></h1>
     <p>
       {{ _('Except where otherwise <a href="{legal_url}" target="_blank">noted</a>, content on this site is licensed under the <a href="{cc_url}" target="_blank">Creative Commons Attribution Share-Alike License v3.0</a> or any later version.',
            legal_url='http://www.mozilla.org/about/legal.html#site',
            cc_url='http://creativecommons.org/licenses/by-sa/3.0/') }}
     </p>
-    <ul>
+    <ul class="footer-extras">
       <li><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>
       <li><a href="{{ url('terms') }}">{{ _('Terms of Use') }}</a></li>
       <li><a href="https://www.mozilla.org/legal/fraud-report/index.html" target="_blank">
