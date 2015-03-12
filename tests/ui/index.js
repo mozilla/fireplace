@@ -32,3 +32,35 @@ casper.test.begin('Test footer at tablet width', {
         helpers.done(test);
     }
 });
+
+
+casper.test.begin('Test l10n initialized', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            var lang = casper.evaluate(function() {
+                return window.navigator.l10n.language;
+            });
+            test.assertEquals(lang, 'en-US');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test l10n initialized for non en-US', {
+    test: function(test) {
+        helpers.startCasper('/?lang=es');
+
+        helpers.waitForPageLoaded(function() {
+            var lang = casper.evaluate(function() {
+                return window.navigator.l10n.language;
+            });
+            test.assertEquals(lang, 'es');
+        });
+
+        helpers.done(test);
+    }
+});
