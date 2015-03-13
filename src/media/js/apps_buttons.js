@@ -113,7 +113,7 @@ define('apps_buttons',
             logger.log('Starting payment flow for', product.name);
 
             // Save the old text of the button.
-            $this.data('old-text', $this.find('em').text());
+            $button.data('old-text', $button.find('em').text());
             setInstallBtnState($button, gettext('Purchasing'), 'purchasing');
 
             var purchaseOpts = {
@@ -127,7 +127,7 @@ define('apps_buttons',
                 // Update the button to say Install.
                 setInstallBtnState($button, gettext('Install'), 'purchased');
                 // Save the old text of the button.
-                $this.data('old-text', $button.find('em').text());
+                $button.data('old-text', $button.find('em').text());
 
                 // Update the cache to show that the app was purchased.
                 user.update_purchased(product.id);
