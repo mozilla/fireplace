@@ -175,4 +175,8 @@ define('previews',
             $('.expanded .previews-tray:not(.single-preview)').each(initTrays);
         }
     });
+
+    return {
+        refreshDesktopTray: refreshDesktopTray
+    };
 });

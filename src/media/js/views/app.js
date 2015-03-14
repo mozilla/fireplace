@@ -1,9 +1,10 @@
 define('views/app',
     ['content-ratings', 'core/capabilities', 'core/l10n', 'core/log',
-     'core/settings', 'core/utils', 'core/z', 'tracking_events',
+     'core/settings', 'core/utils', 'core/z', 'previews', 'tracking_events',
      'views/app/abuse'],
     function(iarc, caps, l10n, log,
-             settings, utils, z, trackingEvents, abuseView) {
+             settings, utils, z, previews, trackingEvents,
+             abuseView) {
     'use strict';
     var gettext = l10n.gettext;
     var logger = log('app');
@@ -45,6 +46,9 @@ define('views/app',
             },
             slug: slug
         });
+
+        // Make preview tray full width on desktop while loading.
+        previews.refreshDesktopTray();
 
         z.page.one('fragment_load_failed', function(e, data) {
             // Can be fragments errs for each defer block. Listen to first one.
