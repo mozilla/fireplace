@@ -207,7 +207,7 @@
         <div class="app-more-metadata">
           <dl>
             <dt>{{ _('Developer') }}</dt>
-            <dd>{{ this.author }}</dd>
+            <dd><a href="{{ url('search')|urlparams(author=this.author) }}">{{ this.author }}</a></dd>
           </dl>
           <dl>
             <dt>{{ _('Compatibility') }}</dt>
