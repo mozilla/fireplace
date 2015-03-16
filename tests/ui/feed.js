@@ -266,7 +266,6 @@ casper.test.begin('Test Feed endpoint', {
         helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
-            /*
             helpers.assertAPICallWasMade('/api/v2/feed/get/', {
                 cache: "21600",
                 lang: "en-US",
@@ -274,7 +273,6 @@ casper.test.begin('Test Feed endpoint', {
                 region: "us",
                 vary: "0",
             });
-            */
 
             casper.click('.popular a');
         });
@@ -294,8 +292,6 @@ casper.test.begin('Test Feed endpoint', {
                     return require('core/settings').api_url;
                 });
 
-                console.log(url);
-                console.log(params);
                 if (baseUrl + '/api/v2/feed/get/' == url &&
                     utils.equals(helpers.parseQueryString(params), {
                         cache: "21600",
