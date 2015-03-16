@@ -103,7 +103,7 @@ casper.test.begin('Test Feed navigation and tracking events', {
         });
 
         casper.waitForSelector('.home-feed', function() {
-            casper.click('[data-tracking="brand-grid"] .view-all-tab');
+            casper.click('[data-tracking="brand-grid"] .brand-header');
             helpers.assertUASendEvent(test, [
                 'View Branded Editorial Element',
                 'click',
@@ -201,7 +201,7 @@ casper.test.begin('Test clicking on brand sets correct src', {
         helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
-            casper.click('[data-tracking="brand-grid"] .feed-view-all-tab');
+            casper.click('[data-tracking="brand-grid"] .brand-header');
         });
 
         casper.waitForSelector('[data-brand-landing]', function() {
