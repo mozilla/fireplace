@@ -55,6 +55,9 @@ define('feed',
                 feedItem.color = get_brand_color_class(feedItem);
                 feedItem.name = brands.get_brand_type(feedItem.type, feedItem.apps.length);
                 feedItem.src = trackingEvents.SRCS.brand;
+                feedItem.isGridLayout = feedItem.layout == 'grid';
+                feedItem.isListLayout = feedItem.layout == 'listing';
+                feedItem.maxApps = feedItem.isGridLayout ? 6 : 4;
                 break;
             case 'collection':
                 if (feedItem.type == 'promo') {

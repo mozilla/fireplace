@@ -62,8 +62,8 @@
     {{ brand_header(brand) }}
     <ul>
       {% for app in brand.apps %}
-        {% if loop.index0 < max_apps %}
-          {{ app_tile(app, src=brand.src, price_only=True) }}
+        {% if loop.index0 < brand.maxApps %}
+          {{ app_tile(app, src=brand.src, price_only=brand.isGridLayout) }}
         {% endif %}
       {% endfor %}
     </ul>
