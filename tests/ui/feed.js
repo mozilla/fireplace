@@ -146,6 +146,23 @@ casper.test.begin('Test Feed navigation and tracking events', {
 });
 
 
+casper.test.begin('Test list layout install buttons enabled', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            test.assertDoesntExist('.feed-brand.feed-layout-list .install[disabled]',
+                                   'Check all install buttons enabled for grid');
+            casper.click('.feed-brand.feed-layout-list .mkt-tile:first-child .install');
+        });
+
+        casper.waitForSelector('.feed-brand.feed-layout-list .mkt-tile:first-child .launch');
+
+        helpers.done(test);
+    }
+});
+
+
 casper.test.begin('Test grid layout install buttons disabled', {
     test: function(test) {
         helpers.startCasper();
