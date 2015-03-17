@@ -14,6 +14,8 @@
     For events , we send ['send', 'event', <CATEGORY>, <ACTION>, <LABEL>,
                           {DIMENSIONS}].
     For session vars, we send ['set', 'var', <DIMENSION>, <VAL>].
+
+    Make sure to verify by installing Page Analytics Chrome Extension.
 */
 define('tracking',
     ['core/log', 'core/settings', 'core/storage', 'core/utils', 'core/z',
@@ -36,7 +38,7 @@ define('tracking',
         var args = _.toArray(arguments);
         trackLog.push(args);
         if (window.ga) {
-            return window.ga.call(this, args);
+            return window.ga.apply(this, args);
         } else {
             logger.error('window.ga not found');
         }
@@ -62,6 +64,9 @@ define('tracking',
 
         // Don't abort if not http/https.
         GA('set', 'checkProtocolTask', function() {});
+
+        // Must send initial pageview for analytics to initialize.
+        GA('send', 'pageview');
     }
 
     var build_id;
