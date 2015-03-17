@@ -146,6 +146,23 @@ casper.test.begin('Test Feed navigation and tracking events', {
 });
 
 
+casper.test.begin('Test list layout install buttons enabled', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            test.assertDoesntExist('.feed-brand.feed-layout-list .install[disabled]',
+                                   'Check all install buttons enabled for list');
+            casper.click('.feed-brand.feed-layout-list .mkt-tile:first-child .install');
+        });
+
+        casper.waitForSelector('.feed-brand.feed-layout-list .mkt-tile:first-child .launch');
+
+        helpers.done(test);
+    }
+});
+
+
 casper.test.begin('Test grid layout install buttons disabled', {
     test: function(test) {
         helpers.startCasper();
@@ -232,6 +249,61 @@ casper.test.begin('Test Feed pagination cache rewrite', {
 
         casper.waitForSelector('[data-page-type~="homepage"]', function() {
             test.assertExists('.feed-item-item:nth-child(15)');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test Feed endpoint', {
+    test: function(test) {
+        var resources = [];
+        casper.on('resource.received', function(resource) {
+            resources.push(resource);
+        });
+
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            helpers.assertAPICallWasMade('/api/v2/feed/get/', {
+                cache: "21600",
+                lang: "en-US",
+                limit: "10",
+                region: "us",
+                vary: "0",
+            });
+
+            casper.click('.popular a');
+        });
+
+        casper.waitForSelector('.app-list', function() {
+            helpers.selectOption('#compat-filter', 'firefoxos');
+            casper.click('.wordmark');
+        });
+
+        casper.waitForSelector('.home-feed', function() {
+            resources.forEach(function(resource) {
+                var target = resource.url;
+                var url = target.split('?')[0];
+                var params = target.split('?')[1];
+
+                var baseUrl = casper.evaluate(function() {
+                    return require('core/settings').api_url;
+                });
+
+                if (baseUrl + '/api/v2/feed/get/' == url &&
+                    utils.equals(helpers.parseQueryString(params), {
+                        cache: "21600",
+                        lang: "en-US",
+                        limit: "10",
+                        region: "us",
+                        vary: "0",
+                        dev: "firefoxos"
+                    })) {
+                    test.fail('Feed resource with dev=firefoxos was found');
+                }
+            });
         });
 
         helpers.done(test);

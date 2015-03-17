@@ -98,7 +98,7 @@ define('compat_filter',
         var args = {};
         var pref = filterDevice;
 
-        if (pref) {
+        if (pref && endpoint !== 'feed') {
             // If have device filter preference, extract it.
             pref = pref.split('-');
             if (pref.length > 1) {

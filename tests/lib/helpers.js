@@ -374,6 +374,7 @@ module.exports = {
     fake_login: fake_login,
     filterUALogs: filterUALogs,
     makeUrl: makeUrl,
+    parseQueryString: parseQueryString,
     selectOption: selectOption,
     startCasper: startCasper,
     tearDown: tearDown,
