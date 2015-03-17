@@ -355,6 +355,9 @@ casper.test.setUp(function() {
 
 function tearDown() {
     viewportSize = mobileViewportSize;
+    casper.evaluate(function() {
+        window.require('core/storage').clear();
+    });
 }
 
 
