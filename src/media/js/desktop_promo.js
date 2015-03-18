@@ -14,20 +14,22 @@ define('desktop_promo',
         },
         promoItems: [
             {
+                name: '8tracks',
+                url: urls.reverse('app', ['8tracks']),
+                text: gettext('Enjoy curated playlists from around the world.'),
+                imageName: 'generic',
+            },
+            {
                 name: 'games',
                 url: urls.reverse('feed_landing', ['collection',
                                                    'games-ent-appsdesktop']),
                 text: gettext('Games & Entertainment Apps—Desktop Essentials'),
             },
             {
-                name: 'soundcloud',
-                url: urls.reverse('app', ['soundcloud']),
-                text: gettext('Discover, share, and enjoy music with SoundCloud.'),
-            },
-            {
-                name: 'hexrace',
-                url: urls.reverse('app', ['hexgl-1']),
-                text: gettext('Play Hex Race—a thrill ride from the future!'),
+                name: 'pasjanssolitaire',
+                url: urls.reverse('app', ['pasjanssolitaire']),
+                text: gettext('Play multiple versions of the classic card game.'),
+                imageName: 'generic',
             },
             {
                 name: 'productivity',
@@ -36,9 +38,10 @@ define('desktop_promo',
                 text: gettext('Productivity Apps—Desktop Essentials'),
             },
             {
-                name: 'box',
-                url: urls.reverse('app', ['box']),
-                text: gettext('Store and share any type of file with Box.'),
+                name: 'pinterest',
+                url: urls.reverse('app', ['pinterest']),
+                text: gettext('Explore and catalog your favorite things on the web.'),
+                imageName: 'generic',
             },
         ].map(function(item) {
             item.url = utils.urlparams(item.url, {

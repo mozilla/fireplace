@@ -5,7 +5,9 @@
   <div class="desktop-promo-items" data-action="start">
     {% for promo in promoItems %}
       <a class="desktop-promo-item" href="{{ promo.url }}"
-         data-promo="{{ promo.name }}" data-tracking="{{ promo.name }}">
+         data-promo="{{ promo.name }}"
+         data-promo-image="{{ promo.imageName or promo.name }}"
+         data-tracking="{{ promo.name }}">
         <span class="desktop-promo-item-text">{{ promo.text }}</span>
       </a>
     {% endfor %}
