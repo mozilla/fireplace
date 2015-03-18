@@ -17,12 +17,35 @@ function initialize() {
         // Keep track of installed apps.
         var manifests = [];
 
+        // Fake for which apps "downloadAvailable" should return true.
+        var availableDownloads = {};
+
+        var _app_download = function() {
+            var app = this;
+            setTimeout(function() {
+                if (app.ondownloadsuccess &&
+                        app.ondownloadsuccess.constructor === Function) {
+                    app.ondownloadsuccess();
+                }
+            });
+            console.log('[mozApps] Downloading update for ' + app.manifestURL);
+        };
+
+        var _app_checkForUpdate = function() {
+            var app = this;
+            console.log('[mozApps] Checking for update of ' + app.manifestURL);
+            return {};
+        };
+
         window.navigator.mozApps = {
             // Mock app installs.
             getInstalled: function() {
                 var request = {
                     result: manifests.map(function(manifest) {
                         return {
+                            checkForUpdate: _app_checkForUpdate,
+                            download: _app_download,
+                            downloadAvailable: !!availableDownloads[manifest],
                             manifestURL: manifest,
                             launch: function() {
                                 console.log('[mozApps] Launching ' + manifest);
@@ -32,7 +55,8 @@ function initialize() {
                 };
 
                 setTimeout(function() {
-                    if (request.onsuccess && request.onsuccess.constructor === Function) {
+                    if (request.onsuccess &&
+                            request.onsuccess.constructor === Function) {
                         request.onsuccess();
                     }
                 });
@@ -43,7 +67,8 @@ function initialize() {
                 var request = {};
 
                 setTimeout(function() {
-                    if (request.onsuccess && request.onsuccess.constructor === Function) {
+                    if (request.onsuccess &&
+                            request.onsuccess.constructor === Function) {
                         request.onsuccess();
                     }
                 });
@@ -64,7 +89,8 @@ function initialize() {
                 };
 
                 setTimeout(function() {
-                    if (request.onsuccess && request.onsuccess.constructor === Function) {
+                    if (request.onsuccess &&
+                            request.onsuccess.constructor === Function) {
                         request.onsuccess();
                     }
                 });
@@ -83,6 +109,11 @@ function initialize() {
                 for (var i = 0; i < (n || 200); i++) {
                     manifests.push('http://randommanifest' + i + '.com');
                 }
+            },
+            _setDownloadAvailable: function(manifest, val) {
+                // Helper to set downloadAvailable on an app.
+                // Not a part of the API.
+                availableDownloads[manifest] = val;
             }
         };
 

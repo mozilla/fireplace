@@ -4,13 +4,13 @@
 define('apps',
     ['core/capabilities', 'core/defer', 'installer_direct', 'installer_iframe',
      'core/l10n', 'core/nunjucks', 'core/settings', 'underscore',
-     'core/utils'],
+     'core/utils', 'core/z'],
     function(capabilities, defer, installer_direct, installer_iframe,
-             l10n, nunjucks, settings, _,
-             utils) {
+             l10n, nunjucks, settings, _, utils, z) {
     'use strict';
     var gettext = l10n.gettext;
     var installer;
+    var installer_def = defer.Deferred();
 
     /*
       Determine which installer to use.
@@ -26,8 +26,12 @@ define('apps',
     if (window.location.protocol === 'app:') {
         installer = installer_iframe;
         installer.initialize_iframe();
+        z.page.one('iframe-install-loaded', function() {
+            installer_def.resolve();
+        });
     } else {
         installer = installer_direct;
+        installer_def.resolve();
     }
 
     function install(product, opt) {
@@ -115,9 +119,10 @@ define('apps',
         applyUpdate: applyUpdate,
         checkForUpdate: checkForUpdate,
         getInstalled: getInstalled,
-        launch: launch,
         incompat: incompat,
         install: install,
+        launch: launch,
+        promise: installer_def.promise(),
         _use_compat_cache: function(val) {
             use_compat_cache = val;
         }
