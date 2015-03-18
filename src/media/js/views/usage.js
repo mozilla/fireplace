@@ -1,5 +1,5 @@
 define('views/usage',
-    ['l10n'],
+    ['core/l10n'],
     function(l10n) {
         'use strict';
         var gettext = l10n.gettext;

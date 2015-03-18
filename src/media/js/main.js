@@ -8,122 +8,49 @@ console.log('   (C)Copyright Mozilla Corp 1998-2015');
 console.log('');
 console.log('64K High Memory Area is available.');
 
-define('main', ['routes', 'settings_app'], function() {
-require(['init'], function() {
-require([
-    'underscore',
-    'jquery',
-    'apps_buttons',
-    'app_list',
-    'core/cache',
-    'core/capabilities',
-    'consumer_info',
-    'content-ratings',
-    'flipsnap',
-    'core/forms',
-    'image-deferrer',
-    'image-deferrer-mkt',
-    'core/l10n',
-    'lightbox',
-    'core/log',
-    'core/login',
-    'core/models',
-    'marketplace-elements',
-    'navbar',
-    'newsletter',
-    'overlay',
-    'perf_events',
-    'perf_helper',
-    'previews',
-    'regions',
-    'core/requests',
-    'reviews',
-    'core/settings',
-    'core/site_config',
-    'core/storage',
-    'templates',
-    'tracking',
-    'tracking_events',
-    'update_banner',
-    'core/urls',
-    'core/user',
-    'user_helpers',
-    'core/utils',
-    'utils_local',
-    'core/views',
-    // These views register global event handlers.
-    'views/feedback',
-    'views/search',
-    'webactivities',
-    'core/z'
-], function(_) {
-    var apps = require('apps');
-    var cache = require('core/cache');
-    var capabilities = require('core/capabilities');
-    var consumer_info = require('consumer_info');
-    var format = require('core/format');
-    var $ = require('jquery');
-    var settings = require('core/settings');
-    var siteConfig = require('core/site_config');
-    var l10n = require('core/l10n');
-    var newsletter = require('newsletter');
-    var nunjucks = require('templates');
-    var regions = require('regions');
-    var update_banner = require('update_banner');
-    var urls = require('core/urls');
-    var user = require('core/user');
-    var utils = require('core/utils');
-    var utils_local = require('utils_local');
-    var z = require('core/z');
-
-    var logger = require('core/log')('mkt');
-    var gettext = l10n.gettext;
+define('main', ['init'], function(init) {
+init.done(function() {
+require(
+    [// Modules actually used in main.
+     'apps', 'core/cache', 'core/capabilities', 'core/format', 'core/log',
+     'core/navigation', 'core/nunjucks', 'core/requests', 'core/settings',
+     'core/site_config', 'core/l10n', 'core/urls', 'core/utils', 'core/user',
+     'core/z', 'consumer_info', 'jquery', 'newsletter', 'regions', 'rewriters',
+     'underscore', 'update_banner', 'user_helpers', 'utils_local',
+     // Modules we require to initialize global stuff.
+     'apps_buttons', 'app_list', 'content-ratings', 'core/forms', 'flipsnap',
+     'image-deferrer-mkt', 'lightbox', 'core/login', 'core/models',
+     'marketplace-elements', 'navbar', 'overlay', 'perf_events', 'perf_helper',
+     'previews', 'reviews', 'startup_errors', 'tracking_events',
+     'views/feedback', 'views/search', 'webactivities'],
+    function(apps, cache, caps, format, log,
+             navigation, nunjucks, requests, settings,
+             siteConfig, l10n, urls, utils, user,
+             z, consumerInfo, $, newsletter, regions, rewriters,
+             _, updateBanner, userHelpers, utilsLocal) {
+    'use strict';
+    var logger = log('mkt');
 
     logger.log('Package version: ' + (settings.package_version || 'N/A'));
 
-    if (capabilities.device_type() === 'desktop') {
+    rewriters.forEach(function(rewriter) {
+        cache.addRewriter(rewriter);
+    });
+
+    if (caps.device_type() === 'desktop') {
         z.body.addClass('desktop');
     }
-
-    var start_time = performance.now();
-
     z.body.addClass('html-' + l10n.getDirection());
-
     if (settings.body_classes) {
         z.body.addClass(settings.body_classes);
     }
 
-    if (!utils.isSystemDateRecent()) {
-        // System date checking.
-        z.body.addClass('error-overlaid')
-            .append(nunjucks.env.render('errors/date-error.html'))
-            .on('click', '.system-date .try-again', function() {
-                if (utils.isSystemDateRecent()) {
-                    window.location.reload();
-                }
-            });
-    } else {
-        utils_local.checkOnline().fail(function() {
-            logger.log('We are offline. Showing offline message');
-            z.body.addClass('error-overlaid')
-                .append(nunjucks.env.render('errors/offline-error.html'))
-                .on('click', '.offline .try-again', function() {
-                    logger.log('Re-checking online status');
-                    utils_local.checkOnline().done(function(){
-                        logger.log('Reloading');
-                        window.location.reload();
-                     }).fail(function() {
-                        logger.log('Still offline');
-                    });
-                });
-        });
-    }
-
+    var startTime = performance.now();
     z.page.one('loaded', function() {
         if (z.context.hide_splash !== false) {
             // Remove the splash screen.
             logger.log('Hiding splash screen (' +
-                        ((performance.now() - start_time) / 1000).toFixed(6) +
+                        ((performance.now() - startTime) / 1000).toFixed(6) +
                         's)');
             var splash = $('#splash-overlay').addClass('hide');
             z.body.removeClass('overlayed').addClass('loaded');
@@ -136,7 +63,7 @@ require([
     });
 
     // This lets you refresh within the app by holding down command + R.
-    if (capabilities.chromeless) {
+    if (caps.chromeless) {
         window.addEventListener('keydown', function(e) {
             if (e.keyCode == 82 && e.metaKey) {
                 window.location.reload();
@@ -144,13 +71,13 @@ require([
         });
     }
 
-    if (capabilities.webApps) {
+    if (caps.webApps) {
         // If Marketplace comes back to the front, refresh the list of apps
         // installed/developed/purchased by the user.
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden) {
                 if (user.logged_in()) {
-                    consumer_info.fetch(true);
+                    consumerInfo.fetch(true);
                 }
             }
         }, false);
@@ -159,9 +86,8 @@ require([
     // Do some last minute template compilation.
     z.page.on('reload_chrome', function() {
         logger.log('Reloading chrome');
-        var user_helpers = require('user_helpers');
         var context = {
-            user_region: user_helpers.region('restofworld'),
+            user_region: userHelpers.region('restofworld'),
             z: z
         };
         _.extend(context, newsletter.context());
@@ -175,23 +101,21 @@ require([
                 logger.log('Adding incompatibility banner');
                 $('#site-nav').after(nunjucks.env.render('incompatible.html'));
             }
-        } else if (capabilities.osXInstallIssues) {
+        } else if (caps.osXInstallIssues) {
             if ($('mkt-banner[name="mac-banner"]').length === 0) {
                 $('#site-nav').after(
                     nunjucks.env.render('_includes/os_x_banner.html'));
             }
         }
 
-        update_banner.showIfNeeded();
+        updateBanner.showIfNeeded();
 
-        var logged_in = user.logged_in();
-
-        if (!logged_in) {
+        if (!user.logged_in()) {
             z.body.removeClass('show-recommendations');
         }
 
         siteConfig.promise.then(function() {
-            if (capabilities.nativeFxA() || capabilities.yulelogFxA()) {
+            if (caps.nativeFxA() || caps.yulelogFxA()) {
                 // Might want to style things differently for native FxA,
                 // like log out through settings instead of Marketplace
                 // (bug 1073177), but wait for switches to load.
@@ -199,9 +123,9 @@ require([
             }
         });
 
-        consumer_info.promise.then(function() {
+        consumerInfo.promise.then(function() {
             // Re-render footer region if necessary.
-            var current_region = user_helpers.region('restofworld');
+            var current_region = userHelpers.region('restofworld');
             if (current_region !== context.user_region) {
                 logger.log('Region has changed from ' + context.user_region +
                             ' to ' + current_region + ' since we rendered ' +
@@ -212,12 +136,13 @@ require([
                     .text(regions.REGION_CHOICES_SLUG[current_region]);
             }
             // To show or not to show the recommendations nav.
-            if (logged_in && user.get_setting('enable_recommendations')) {
+            if (user.logged_in() &&
+                user.get_setting('enable_recommendations')) {
                 z.body.addClass('show-recommendations');
             }
         });
 
-        z.body.toggleClass('logged-in', logged_in);
+        z.body.toggleClass('logged-in', user.logged_in());
         z.page.trigger('reloaded_chrome');
     }).trigger('reload_chrome');
 
@@ -228,7 +153,7 @@ require([
     z.body.on('click', '.site-header .back', function(e) {
         e.preventDefault();
         logger.log('← button pressed');
-        require('core/navigation').back();
+        navigation.back();
     });
 
     window.addEventListener(
@@ -237,8 +162,8 @@ require([
         false
     );
 
-    consumer_info.promise.done(function() {
-        logger.log('Triggering initial navigation');
+    consumerInfo.promise.done(function() {
+        logger.log('Initial navigation');
         if (!z.spaceheater) {
             var navigateArgs = [window.location.pathname +
                                 window.location.search];
@@ -253,13 +178,13 @@ require([
         }
     });
 
-    require('core/requests').on('deprecated', function() {
+    requests.on('deprecated', function() {
         // Divert the user to the deprecated view.
         z.page.trigger('divert', [urls.reverse('deprecated')]);
         throw new Error('Cancel navigation; deprecated client');
     });
 
-    logger.log('Initialization complete');
+    logger.log('Done');
 });
 });
 });

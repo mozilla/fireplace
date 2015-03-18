@@ -61,6 +61,7 @@ require.config({
         'regions': 'lib/regions',
         'salvattore': 'lib/salvattore',
         'Squire': bowerPath('squire/src/Squire'),
+        'templates': '../../templates',
         'tests': '../../../tests',
         'underscore': 'lib/underscore',
     },
