@@ -13,13 +13,6 @@ function assertSelectedDevice(test, device) {
 }
 
 
-function clearLS() {
-    casper.evaluate(function() {
-        window.require('core/storage').clear();
-    });
-}
-
-
 appList.appListPages.forEach(function(appListPage) {
     if (!appListPage.appLimit) {
         appListPage.appLimit = constants.APP_LIMIT;
@@ -71,8 +64,7 @@ appList.appListPages.forEach(function(appListPage) {
                 }
 
                 helpers.done(test);
-            },
-            tearDown: clearLS
+            }
         });
     }
 });
@@ -106,8 +98,7 @@ casper.test.begin('Test compat filter dropdown change', {
         });
 
         helpers.done(test);
-    },
-    tearDown: clearLS
+    }
 });
 
 
@@ -130,8 +121,7 @@ casper.test.begin('Test compat filter dropdown persist for site', {
         });
 
         helpers.done(test);
-    },
-    tearDown: clearLS
+    }
 });
 
 
@@ -149,8 +139,7 @@ casper.test.begin('Test compat filter dropdown persists between sessions', {
         });
 
         helpers.done(test);
-    },
-    tearDown: clearLS
+    }
 });
 
 
@@ -172,8 +161,7 @@ casper.test.begin('Test compat filtering persists after search', {
         });
 
         helpers.done(test);
-    },
-    tearDown: clearLS
+    }
 });
 
 
@@ -197,6 +185,5 @@ casper.test.begin('Test UA compat filter change', {
         });
 
         helpers.done(test);
-    },
-    tearDown: clearLS
+    }
 });

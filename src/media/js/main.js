@@ -44,6 +44,7 @@ require([
     'templates',
     'tracking',
     'tracking_events',
+    'update_banner',
     'core/urls',
     'core/user',
     'user_helpers',
@@ -68,6 +69,7 @@ require([
     var newsletter = require('newsletter');
     var nunjucks = require('templates');
     var regions = require('regions');
+    var update_banner = require('update_banner');
     var urls = require('core/urls');
     var user = require('core/user');
     var utils = require('core/utils');
@@ -143,43 +145,8 @@ require([
     }
 
     if (capabilities.webApps) {
-        // Look for Marketplace update.
-        var is_packaged_app = window.location.protocol === 'app:';
-        var is_iframed_app = window.top !== window.self;
-        var appEvent = is_packaged_app ? 'iframe-install-loaded' : 'loaded';
-        z.page.one(appEvent, function() {
-            var manifest_url = settings.manifest_url;
-            var email = user.get_setting('email') || '';
-            // Need manifest URL to check for update. Only want to show
-            // update notification banner if inside app. Only to mozilla.com
-            // users for now.
-            if (manifest_url && (is_packaged_app || is_iframed_app) &&
-                email.substr(-12) === '@mozilla.com') {
-                apps.checkForUpdate(manifest_url).done(function(result) {
-                    if (!result) {
-                        return;
-                    }
-                    z.body.on('click', '#marketplace-update-banner .button', utils._pd(function() {
-                        var $button = $(this);
-                        // Deactivate "remember" on dismiss button so that it
-                        // shows up for next update if user clicks on it now
-                        // they chose to apply the update.
-                        $button.closest('mkt-banner').get(0).dismiss = '';
-                        $button.addClass('spin');
-                        apps.applyUpdate(manifest_url).done(function() {
-                            $('#marketplace-update-banner span').text(gettext(
-                                'The next time you start the Firefox Marketplace app, you’ll see the updated version!'));
-                            $button.remove();
-                        });
-                    }));
-                    $('#site-nav').after(nunjucks.env.render('marketplace-update.html'));
-                });
-            } else {
-                logger.log('Not in app or manifest_url is absent, ' +
-                            'or not a mozilla.com user, skipping update check.');
-            }
-        });
-
+        // If Marketplace comes back to the front, refresh the list of apps
+        // installed/developed/purchased by the user.
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden) {
                 if (user.logged_in()) {
@@ -214,6 +181,8 @@ require([
                     nunjucks.env.render('_includes/os_x_banner.html'));
             }
         }
+
+        update_banner.showIfNeeded();
 
         var logged_in = user.logged_in();
 
