@@ -9,7 +9,6 @@ $support-nav-height = 55px;
 @media $base-tablet {
     .footzilla {
         background: url(../img/logos/footzilla.svg) no-repeat;
-        float: left;
 
         a {
             display: block;
@@ -34,9 +33,9 @@ $support-nav-height = 55px;
             list-style: none;
         }
         p {
-            float: left;
+            flex-grow: 1;
             font-size: 16px;
-            padding: 0 0 0 1em;
+            padding: 0 20px;
             width: 60%;
         }
         li + li {
@@ -47,17 +46,15 @@ $support-nav-height = 55px;
         }
     }
     .footer-content {
+        display: flex;
         margin: 0 auto;
         max-width: $max-site-width;
         padding: 22px 20px;
     }
     .footer-extras {
-        float: right;
         font-size: 14px;
         line-height: 1.3;
         margin: 0;
-        padding-left: 1em;
-        width: 20%;
     }
     .footer-support-navigation {
         border-bottom: 1px solid $footer-border;
