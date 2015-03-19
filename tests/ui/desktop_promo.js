@@ -1,6 +1,3 @@
-var helpers = require('../lib/helpers');
-
-
 casper.test.begin('Test UA desktop promo src persists to app detail page', {
     test: function(test) {
         helpers.startCasper({viewport: 'desktop'});

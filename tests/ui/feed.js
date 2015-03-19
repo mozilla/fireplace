@@ -1,11 +1,6 @@
 /*
     Tests for the Feed and Feed detail pages.
 */
-var constants = require('../lib/constants');
-var helpers = require('../lib/helpers');
-
-var _ = require('../../node_modules/underscore');
-
 var feedDetailPages = [
     {
         name: 'Shelf',
@@ -184,7 +179,7 @@ casper.test.begin('Test grid layout install buttons disabled', {
 
         casper.waitForSelector('.feed-brand.feed-layout-grid', function() {
             casper.evaluate(function() {
-                window.require('apps_buttons').mark_btns_as_installed();
+                window.require('apps_buttons').markBtnsAsInstalled();
             });
 
             casper.wait(250, function() {

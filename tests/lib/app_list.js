@@ -1,9 +1,6 @@
 /*
     Helpers related to app lists. Prominently used in app_list.js.
 */
-var constants = require('./constants');
-
-var _ = require('../../node_modules/underscore');
 
 
 var appListPages = [

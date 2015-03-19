@@ -1,6 +1,3 @@
-var helpers = require('../lib/helpers');
-
-
 casper.test.begin('Test UA site section dimension set', {
     test: function(test) {
         helpers.startCasper();

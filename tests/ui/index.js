@@ -1,6 +1,3 @@
-var helpers = require('../lib/helpers');
-
-
 casper.test.begin('Test base site', {
     test: function(test) {
         helpers.startCasper();

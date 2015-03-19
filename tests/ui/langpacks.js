@@ -1,6 +1,3 @@
-var helpers = require('../lib/helpers');
-
-
 casper.test.begin('Test langpacks results', {
     test: function(test) {
         helpers.startCasper({path: '/langpacks/2.2'});

@@ -2,8 +2,6 @@
     Test for category pages.
     Note that most stuff is already tested in app_list.js.
 */
-var helpers = require('../lib/helpers');
-
 
 casper.test.begin('Category app list sort tests', {
     test: function(test) {

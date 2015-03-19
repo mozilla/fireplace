@@ -181,7 +181,7 @@ define('views/search',
 
             // Tell GA when no results (bug 890314).
             if (!results.objects.length) {
-                tracking.trackEvent('No results found', 'Search', query);
+                tracking.sendEvent('No results found', 'Search', query);
             }
         });
     };

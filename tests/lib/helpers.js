@@ -1,17 +1,15 @@
 var system = require('system');
-var require = patchRequire(require);
+if (!require.config) {
+    // PhantomJS
+    require = patchRequire(require);
+}
 var utils = require('utils');
-
-var _ = require('../../node_modules/underscore');
-
-var mozApps = require('./mozApps');
 
 var baseTestUrl = 'http://localhost:8675';
 var mobileViewportSize = [320, 480];
 var viewportSize = mobileViewportSize;
 var pageAlreadyLoaded = false;
 var _currTestId;
-
 
 casper.on('viewport.changed', function(dimensions) {
     casper.echo('Viewport dimensions changed to: ' +
@@ -38,6 +36,12 @@ casper.on('step.error', function() {
 });
 
 
+function clearLocalStorage() {
+    casper.evaluate(function() {
+        window.require('core/storage').clear();
+    });
+}
+
 if (system.env.SHOW_TEST_CONSOLE || system.env.FILTER_TEST_CONSOLE) {
     // Show client console logs. Setting FILTER_TEST_CONSOLE to a value with
     // match and filter console logs for debugging.
@@ -47,10 +51,18 @@ if (system.env.SHOW_TEST_CONSOLE || system.env.FILTER_TEST_CONSOLE) {
             casper.echo(message, 'INFO');
         }
     });
-    casper.on('page.error', function(message) {
-        casper.echo(message, 'ERROR');
-    });
 }
+
+
+casper.on('page.error', function(message) {
+    var igonredMessages = [
+        "TypeError: 'undefined' is not a function (evaluating " +
+            "'this.window.console.error.bind(this.window.console)')",
+    ];
+    if (igonredMessages.indexOf(message) === -1) {
+        casper.echo(message, 'ERROR');
+    }
+});
 
 
 var viewports = {
@@ -68,7 +80,8 @@ function selectOption(sel, val) {
 
 
 function startCasper(path, opts) {
-    if (path && path.constructor === Object) {
+    // Verify that `path` isn't some path object like jsuri.
+    if (_.isObject(path) && path.constructor.name === 'Object') {
         opts = path;
         path = opts.path || opts.url || '/';
     } else if (path === undefined) {
@@ -84,8 +97,6 @@ function startCasper(path, opts) {
         viewports[opts.viewport]();
     }
     setViewport();
-
-    mozApps.initialize();
 
     if (opts.headers) {
         casper.echo(JSON.stringify(opts.headers));
@@ -355,9 +366,7 @@ casper.test.setUp(function() {
 
 function tearDown() {
     viewportSize = mobileViewportSize;
-    casper.evaluate(function() {
-        window.require('core/storage').clear();
-    });
+    clearLocalStorage();
 }
 
 

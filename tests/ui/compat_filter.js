@@ -1,8 +1,4 @@
-var appList = require('../lib/app_list');
-var constants = require('../lib/constants');
-var helpers = require('../lib/helpers');
-
-var jsuri = require('../../node_modules/jsuri');
+var jsuri = localRequire('node_modules/jsuri/Uri');
 
 
 function assertSelectedDevice(test, device) {
