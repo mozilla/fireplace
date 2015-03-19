@@ -20,7 +20,7 @@ module.exports = function(config) {
             {pattern: 'bower_components/marketplace-core-modules/core/**/*.js', included: false},
             {pattern: 'bower_components/squire/src/Squire.js', included: false},
             {pattern: 'src/media/js/**/*.js', included: false},
-            {pattern: 'src/media/js/**/*.js', included: false},
+            {pattern: 'src/templates.js', included: false},
             {pattern: 'tests/unit/*.js', included: false},
         ],
 

@@ -1,31 +1,29 @@
 define('settings_app',
     ['core/capabilities', 'core/l10n', 'core/settings', 'settings_local'],
-    function(capabilities, l10n, settings, settings_local) {
+    function(caps, l10n, settings, settings_local) {
     var gettext = l10n.gettext;
 
-    var base_settings = JSON.parse(document.body.getAttribute('data-settings') || '{}');
+    var base_settings = JSON.parse(
+        document.body.getAttribute('data-settings') || '{}');
     settings._extend(base_settings);
 
     // When in "preview mode", don't send the feature profile to the API.
     var param_blacklist = (
-        window.location.search || '').indexOf('preview=true') > 0 ? ['pro'] : null;
+        window.location.search || '').indexOf('preview=true') > 0 ? ['pro'] :
+                                                                    null;
 
     function offline_cache_enabled() {
         // We have a "circular" dependency on core/storage because storage
         // wants settings.storage_version to exist at load time.
-        if (require('core/storage').getItem('offline_cache_disabled') || capabilities.phantom) {
+        if (require('core/storage').getItem('offline_cache_disabled') ||
+            caps.phantom) {
             return false;
         }
         return window.location.search.indexOf('cache=false') === -1;
     }
 
     settings._extend({
-        app_name: 'fireplace',
-        init_module: 'main',
-        default_locale: 'en-US',
-        api_url: 'http://' + window.location.hostname,  // No trailing slash, please./
-        local_html: document.body.hasAttribute('data-local-html'),  // Exists or not.
-
+        api_url: 'http://' + window.location.hostname,
         package_version: null,
 
         // The version number for localStorage data. Bump when the schema for
@@ -57,10 +55,6 @@ define('settings_app',
             'feed-brand': 'slug',
             'feed-collection': 'slug',
             'feed-shelf': 'slug',
-
-            // Dummy prototypes to facilitate testing:
-            'dummy': 'id',
-            'dummy2': 'id'
         },
 
         // These are the only URLs that should be cached
@@ -105,20 +99,6 @@ define('settings_app',
             'ru': gettext('Russian'),
             'es': gettext('Spanish'),
         },
-
-        // A data URI of the project logo (shown when logging in via Persona).
-        persona_site_logo: base_settings.media_url + '/fireplace/img/logos/128.png',
-        persona_tos: null,
-        persona_privacy: null,
-
-        // The Persona unverified issuer origin. Used by login.js.
-        persona_unverified_issuer: 'login.persona.org',
-
-        // How long to wait before giving up on loading Persona's include.js.
-        persona_timeout: 30000,  // 30 seconds
-
-        // URL to Persona's include.js.
-        persona_shim_url: 'https://login.persona.org/include.js',
 
         // The string to suffix page titles with. Used by builder.js.
         title_suffix: 'Firefox Marketplace',
