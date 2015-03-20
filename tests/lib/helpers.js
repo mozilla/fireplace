@@ -55,11 +55,11 @@ if (system.env.SHOW_TEST_CONSOLE || system.env.FILTER_TEST_CONSOLE) {
 
 
 casper.on('page.error', function(message) {
-    var igonredMessages = [
+    var ignoredMessages = [
         "TypeError: 'undefined' is not a function (evaluating " +
             "'this.window.console.error.bind(this.window.console)')",
     ];
-    if (igonredMessages.indexOf(message) === -1) {
+    if (ignoredMessages.indexOf(message) === -1) {
         casper.echo(message, 'ERROR');
     }
 });
