@@ -3,7 +3,7 @@
     <div class="content-ratings-wrapper {{ this.body }}">
       <div class="infobox-wrapper c">
         {# L10n: (es) Classificacao Indicativa. #}
-        <h3>{{ _('Content Rating') }}</h3>
+        <h3 id="content-ratings-header">{{ _('Content Rating') }}</h3>
         <div class="content-ratings-left">
           <div class="content-rating c">
             {# Content rating. #}
@@ -70,7 +70,7 @@
         </div>
       </div>
 
-      <div class="full">
+      <div class="content-ratings-button-wrap">
         {% set rating_detail_link = iarc.detail_links[this.body] %}
         {% if rating_detail_link %}
           <a href="{{ rating_detail_link }}" class="button" target="_blank">
