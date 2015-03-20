@@ -86,9 +86,10 @@ will run the unit tests in a new instance of Firefox.
 
 ### Running Functional and UI Tests
 
-Before running the functional and UI tests, your ```settings_local.js``` should
-contain the same API and media URL found in [settings_travis.js](https://github.com/mozilla/fireplace/blob/master/tests/settings_travis.js).
-You can easily achieve this by setting the `API` environment variable when calling
+Before running the functional and UI tests, your `settings_local.js` should have
+`api_url` and `media_url` pointing to an instance of
+[marketplace-api-mock](https://github.com/mozilla/marketplace-api-mock). You can
+easily achieve this by setting the `API` environment variable when calling
 `make serve`, this will overwrite your current `api_url` and `media_url` settings.
 
 First, start a server with:
