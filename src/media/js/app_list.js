@@ -1,6 +1,8 @@
 define('app_list',
-    ['core/capabilities', 'core/storage', 'tracking', 'core/utils', 'core/z'],
-    function(caps, storage, tracking, utils, z) {
+    ['core/capabilities', 'core/storage', 'core/utils', 'core/z', 'previews',
+     'tracking'],
+    function(caps, storage, utils, z, previews,
+             tracking) {
     'use strict';
 
     // If we've set this value in localStorage before, then always use it.
@@ -15,7 +17,7 @@ define('app_list',
             .addClass('show');
         storage.setItem('expand-listings', !!expand);
         if (expand) {
-            z.page.trigger('populatetray');
+            previews.initialize();
             // Set the `src` for hidden images so they get loaded.
             $('.mkt-tile img[data-src]:not([src])').each(function() {
                 this.src = this.getAttribute('data-src');

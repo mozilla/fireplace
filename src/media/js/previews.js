@@ -163,10 +163,10 @@ define('previews',
     // Don't treat the trays as draggable (bug 1138396).
     z.page.on('dragstart', '.previews-tray', function(e) {
         e.preventDefault();
-    })
+    });
 
-    // Tha main event that initializes the preview trays.
-    .on('populatetray', function() {
+    function initialize() {
+        // Main event that initializes preview trays.
         logger.log('Initializing trays');
 
         if (isDesktopDetail()) {
@@ -174,9 +174,10 @@ define('previews',
         } else {
             $('.expanded .previews-tray:not(.single-preview)').each(initTrays);
         }
-    });
+    }
 
     return {
+        initialize: initialize,
         refreshDesktopTray: refreshDesktopTray
     };
 });

@@ -61,7 +61,8 @@ define('views/app',
             // Called after app defer block is finished loading.
             builder.z('title', utils.translate(app.name));
 
-            z.page.trigger('populatetray');
+            previews.initialize();
+            previews.refreshDesktopTray();
 
             $('.truncated-wrapper').each(function() {
                 // 'truncated' class applied by default, remove if unneeded.

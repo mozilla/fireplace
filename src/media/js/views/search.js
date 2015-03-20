@@ -1,8 +1,8 @@
 define('views/search',
-    ['core/capabilities', 'core/l10n', 'core/navigation', 'core/urls',
-     'core/utils', 'core/z', 'tracking'],
-    function(capabilities, l10n, navigation, urls,
-             utils, z, tracking) {
+    ['core/l10n', 'core/navigation', 'core/urls', 'core/utils', 'core/z',
+     'previews', 'tracking'],
+    function(l10n, navigation, urls, utils, z,
+             previews, tracking) {
     'use strict';
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -126,7 +126,7 @@ define('views/search',
     })
 
     .on('loaded_more', function() {
-        z.page.trigger('populatetray');
+        previews.initialize();
         // Update "Showing 1-{total}" text.
         z.page.find('.total-results').text(z.page.find('.item.app').length);
     })
