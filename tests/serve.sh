@@ -7,5 +7,6 @@ pip install --user --exists-action=w --download-cache=/tmp/pip-cache -r requirem
 python main.py &
 popd
 mv src/media/js/settings_local_test.js src/media/js/settings_local.js
-make serve &
+make build
+MKT_COMPILED=1 make serve &
 sleep 10
