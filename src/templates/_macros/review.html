@@ -10,11 +10,11 @@
     {{ this.user.display_name }}
   </span>
   {{ stars(this.rating, detailpage=detailpage, aggregate=False) }}
-  <p class="review-previous-version">
-    {% if this.version and current_version and current_version != this.version.version %}
+  {% if this.version and current_version and current_version != this.version.version %}
+    <p class="review-previous-version">
       {{ _('For previous version {version}', version=this.version.version) }}
-    {% endif %}
-  </p>
+    </p>
+  {% endif %}
   <div class="review-body" itemprop="reviewBody">
     {{ this.body|escape|nl2br }}
   </div>
