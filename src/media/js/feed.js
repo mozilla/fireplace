@@ -52,12 +52,12 @@ define('feed',
                 feedItem.src = trackingEvents.SRCS.featuredApp;
                 break;
             case 'brand':
-                feedItem.color = get_brand_color_class(feedItem);
                 feedItem.name = brands.get_brand_type(feedItem.type, feedItem.apps.length);
                 feedItem.src = trackingEvents.SRCS.brand;
                 feedItem.isGridLayout = feedItem.layout == 'grid';
                 feedItem.isListLayout = feedItem.layout == 'listing';
                 feedItem.maxApps = feedItem.isGridLayout ? 6 : 4;
+                feedItem.color = getBrandColorClass(feedItem);
                 break;
             case 'collection':
                 if (feedItem.type == 'promo') {
@@ -98,18 +98,21 @@ define('feed',
         return feedItem;
     }
 
-    function get_brand_color_class(brand) {
+    function getBrandColorClass(brand) {
         /*
         Passed the JSON representation of an editorial brand, returns a random
         CSS class to be used to colorify that brand's display.
         */
-
         function identifier(brand) {
-            // Generate a unique identifier from the brand.
+            // Generate a unique identifier from the brand using its apps.
             var brand_id = brand.type;
-            _.each(brand.apps, function(app) {
-                brand_id += '_' + app.slug;
-            });
+
+            var i = 0;
+            while(i < 4 && i < brand.apps.length - 1) {
+                // Only do 4 apps at most since Feed vs Landing app count.
+                brand_id += '_' + brand.apps[i].slug;
+                i++;
+            }
             return brand_id;
         }
 
