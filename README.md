@@ -73,7 +73,7 @@ located
 
 ## Tests
 
-We use CasperJS to write tests.
+We use CasperJS to write UI tests and mocha, chai and sinon for unit tests.
 
 ### Running Unit Tests
 
@@ -82,21 +82,48 @@ make unittest
 ```
 
 This will launch the [karma test runner](https://karma-runner.github.io/) that
-will run the unit tests in a new instance of firefox.
+will run the unit tests in a new instance of Firefox.
 
 ### Running Functional and UI Tests
 
 Before running the functional and UI tests, your ```settings_local.js``` should
 contain the same API and media URL found in [settings_travis.js](https://github.com/mozilla/fireplace/blob/master/tests/settings_travis.js).
+You can easily achieve this by setting the `API` environment variable when calling
+`make serve`, this will overwrite your current `api_url` and `media_url` settings.
+
+First, start a server with:
 
 ```bash
-make test
+API=mock make serve
+```
+
+Then, run the tests against it. We support both PhantomJS and SlimerJS to run tests in
+WebKit and Gecko, respectively. To run both use `make uitest`, if you just want to run
+them in one browser `make uitest-phantom` or `make uitest-slimer`.
+
+```bash
+make uitest-phantom
+```
+
+### Running Functional and UI Tests in SlimerJS
+
+SlimerJS requires a path to a `firefox` binary. `make uitest-slimer` will try to use
+`/Applications/Firefox.app/Contents/MacOS/firefox` which is the path to your default
+Firefox on Mac. This path might not work for you and best results are achieved by using
+Firefox 30. You can download a copy of Firefox 30 on
+[ftp.mozilla.org](http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/30.0/). To
+set the path to your `firefox` use the `SLIMERJSLAUNCHER` environment variable. You
+might want to call `export SLIMERJSLAUNCHER=/path/to/firefox` in your shell's setup
+script.
+
+```bash
+SLIMERJSLAUNCHER=/Applications/Firefox-30.app/Contents/MacOS/firefox make uitest-slimer
 ```
 
 ### Running a Single Functional or UI Test
 
 ```bash
-casperjs test tests/ui/<PATH_TO_TEST_FILE>
+UITEST_FILE=tests/ui/<PATH_TO_TEST_FILE> make uitest
 ```
 
 
