@@ -20,9 +20,9 @@ require(
      'underscore', 'update_banner', 'user_helpers', 'utils_local',
      // Modules we require to initialize global stuff.
      'apps_buttons', 'app_list', 'content-ratings', 'core/forms', 'flipsnap',
-     'image-deferrer-mkt', 'lightbox', 'core/login', 'core/models',
-     'marketplace-elements', 'navbar', 'overlay', 'perf_events', 'perf_helper',
-     'previews', 'reviews', 'startup_errors', 'tracking_events',
+     'helpers_local', 'image-deferrer-mkt', 'lightbox', 'core/login',
+     'core/models', 'marketplace-elements', 'navbar', 'overlay', 'perf_events',
+     'perf_helper', 'previews', 'reviews', 'startup_errors', 'tracking_events',
      'views/feedback', 'views/search', 'webactivities'],
     function(apps, cache, caps, format, log,
              navigation, nunjucks, requests, settings,
