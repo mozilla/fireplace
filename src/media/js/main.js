@@ -9,6 +9,7 @@ console.log('');
 console.log('64K High Memory Area is available.');
 
 define('main', ['init'], function(init) {
+var startTime = performance.now();
 init.done(function() {
 require(
     [// Modules actually used in main.
@@ -33,10 +34,6 @@ require(
 
     logger.log('Package version: ' + (settings.package_version || 'N/A'));
 
-    rewriters.forEach(function(rewriter) {
-        cache.addRewriter(rewriter);
-    });
-
     if (caps.device_type() === 'desktop') {
         z.body.addClass('desktop');
     }
@@ -45,7 +42,6 @@ require(
         z.body.addClass(settings.body_classes);
     }
 
-    var startTime = performance.now();
     z.page.one('loaded', function() {
         if (z.context.hide_splash !== false) {
             // Remove the splash screen.
