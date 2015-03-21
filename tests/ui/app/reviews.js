@@ -520,3 +520,30 @@ casper.test.begin('Test review pagination cache rewrite', {
         helpers.done(test);
     }
 });
+
+
+
+casper.test.begin('Test review older version on app detail page', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/old-reviews/'});
+
+        helpers.waitForPageLoaded(function() {
+            test.assertVisible('.review-previous-version');
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test review older version on review page', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/old-reviews/ratings'});
+
+        helpers.waitForPageLoaded(function() {
+            test.assertVisible('.review-previous-version');
+        });
+
+        helpers.done(test);
+    }
+});

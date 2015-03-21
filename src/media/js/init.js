@@ -1,12 +1,16 @@
 /*
     Contains things to initialize before we kick off the app.
+    core/init, routes, and settings_app should be among the first modules
+    required.
     Exposes a promise that the `main` module should wait on.
 */
 define('init',
-    ['core/cache', 'core/init', 'document-register-element', 'rewriters',
-     'routes', 'route_api_args', 'settings_app', 'templates'],
-    function(cache, init, documentRegisterElement, rewriters,
-             routes, routeApiArgs, settingsApp) {
+    ['core/init', 'routes', 'settings_app', 'templates',
+     'core/cache', 'document-register-element', 'route_api_args', 'rewriters',
+     'helpers_local'],
+    function(init, routes, settingsApp, templates,
+             cache, elements, routeApiArgs, rewriters,
+             helpersLocal) {
 
     rewriters.forEach(function(rewriter) {
         cache.addRewriter(rewriter);
