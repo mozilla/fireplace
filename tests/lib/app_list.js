@@ -1,7 +1,7 @@
 /*
     Helpers related to app lists. Prominently used in app_list.js.
 */
-
+var constants = helpers.load('constants');
 
 var appListPages = [
     {

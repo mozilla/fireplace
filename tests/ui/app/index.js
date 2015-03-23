@@ -1,6 +1,8 @@
 /*
     Tests for the app detail page.
 */
+var appList = helpers.load('app_list');
+
 casper.test.begin('Test app detail', {
     test: function(test) {
         helpers.startCasper({path: '/app/free'});

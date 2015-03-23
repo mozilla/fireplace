@@ -6,6 +6,9 @@
     If you are testing something that can be found throughout all or most
     app list pages, here is a good place to put it for ultimate coverage.
 */
+var appList = helpers.load('app_list');
+var constants = helpers.load('constants');
+
 var appNthChild = appList.appNthChild;
 var waitForAppListPage = appList.waitForAppListPage;
 var waitForLoadMore = appList.waitForLoadMore;

@@ -1,6 +1,8 @@
 /*
     Test scroll states upon navigation.
 */
+var appList = helpers.load('app_list');
+
 function getScrollY() {
     return casper.evaluate(function() {
         return window.scrollY;
