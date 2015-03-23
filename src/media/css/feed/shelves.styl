@@ -121,3 +121,22 @@ shelf_curve_color($color) {
 [data-shelf-landing-carrier="mtn"] {
     collection_background_colors($mtn_color);
 }
+
+@media $base-tablet {
+    [data-shelf-landing-carrier="telefonica"] {
+        .feed-landing-header {
+            padding: 0;
+        }
+        .feed-landing-curve {
+            border-radius: 0;
+            padding: 40px 0;
+        }
+        .feed-landing-header-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+            width: $feed-column-width;
+        }
+    }
+}
