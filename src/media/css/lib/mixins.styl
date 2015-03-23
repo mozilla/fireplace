@@ -3,49 +3,6 @@ grain() {
     background-image: $grain-src;
 }
 
-transform($tform) {
-    -webkit-transform: $tform;
-    -moz-transform: $tform;
-    -ms-transform: $tform;
-    transform: $tform;
-}
-
-transform-origin($x, $y) {
-    -moz-transform-origin: $x $y;
-    -webkit-transform-origin: $x $y;
-    -ms-transform-origin: $x $y;
-    transform-origin: $x $y;
-}
-
-transition($property) {
-    -webkit-transition: $property;
-    transition: $property;
-}
-
-transition-property($property) {
-    -webkit-transition-property: $property;
-    transition-property: $property;
-}
-
-transition-duration($duration = 2s) {
-    -webkit-transition-duration: $duration;
-    transition-duration: $duration;
-}
-
-transition-delay($delay = 1s) {
-    -webkit-transition-delay: $delay;
-    transition-delay: $delay;
-}
-
-text-columns($count, $gap = 1em) {
-    column-count: $count;
-    -moz-column-count: $count;
-    -webkit-column-count: $count;
-    column-gap: $gap;
-    -moz-column-gap: $gap;
-    -webkit-column-gap: $gap;
-}
-
 ellipsis() {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -59,39 +16,6 @@ hidetext() {
     text-indent: 101%;
     white-space: nowrap;
 }
-
-animation($animation) {
-    -webkit-animation: $animation;
-    animation: $animation;
-}
-
-animation-delay($delay) {
-    -webkit-animation-delay: $delay;
-    animation-delay: $delay;
-}
-
-gradientLinear($gradient) {
-    background-image: -webkit-linear-gradient($gradient);
-    background-image:         linear-gradient($gradient);
-}
-
-gradientLeft($gradient) {
-    background-image: -webkit-linear-gradient(left, $gradient);
-    background-image:         linear-gradient(to right, $gradient);
-}
-
-gradientTop($gradient) {
-    background-image: -webkit-linear-gradient(top, $gradient);
-    background-image:         linear-gradient(to bottom, $gradient);
-}
-
-gradient-two-color($color1, $color2) {
-    background-color: $color2;
-    background-image: -webkit-gradient(linear, left bottom, left top, from($color1), to($color2));
-    background-image: -webkit-linear-gradient($color1, $color2);
-    background-image:         linear-gradient($color1, $color2);
-}
-
 
 // Depressed button/link styles
 depressed() {
@@ -114,7 +38,7 @@ webkit-spin() {
 
 // Spinners!
 spinner-base() {
-    animation(unquote('0.9s spin infinite steps(30)'));
+    animation: 0.9s spin infinite steps(30);
     height: 30px;
     margin: 0 auto;
     spinner-base-image();
@@ -184,110 +108,6 @@ spinner(type = '') {
     }
 }
 
-// Flex Box (trim me!)
-
-display-flex() {
-    display: -ms-box;
-    display: -moz-box;
-    display: -webkit-box;
-    display: flex;
-    display: -ms-flex;
-    display: -ms-flexbox;
-    display: -moz-flex;
-    display: -webkit-flex;
-}
-
-flex-stack() {
-    flex-direction: column;
-    -ms-flex-direction: column;
-    -moz-flex-direction: column;
-    -webkit-flex-direction: column;
-    -ms-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -webkit-box-orient: vertical;
-}
-
-flex-line() {
-    flex-direction: row;
-    -ms-flex-direction: row;
-    -moz-flex-direction: row;
-    -webkit-flex-direction: row;
-    -ms-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-    -webkit-box-orient: horizontal;
-}
-
-flex-center() {
-    -ms-box-align: center;
-    -ms-flex-align: center;
-    -moz-box-align: center;
-    -webkit-box-align: center;
-    align-self: center;
-    -ms-align-self: center;
-    -moz-align-self: center;
-    -webkit-align-self: center;
-}
-
-flex-grow($int) {
-    -webkit-box-flex: $int;
-    -webkit-flex-grow: $int;
-    -moz-flex-grow: $int;
-    -ms-flex-positive: $int;
-    flex-grow: $int;
-}
-
-flex-vertical-center() {
-    // Old way.
-    display-flex();
-    flex-center();
-
-    // New way.
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-
-flex($flex) {
-    -ms-box-flex: $flex;
-    -moz-box-flex: $flex;
-    -webkit-box-flex: $flex;
-    flex: $flex;
-    -ms-flex: $flex;
-    -moz-flex: $flex;
-    -webkit-flex: $flex;
-}
-
-flex-wrap($wrap) {
-    flex-wrap: $wrap;
-    -moz-flex-wrap: $wrap;
-    -webkit-flex-wrap: $wrap;
-    -ms-flex-wrap: $wrap;
-    if $wrap == nowrap {
-        -ms-flex-wrap: none;
-    }
-}
-
-justify-content($value) {
-    if $value == flex-start {
-        -webkit-box-pack: start;
-        -ms-flex-pack: start;
-    } else if $value == flex-end {
-        -webkit-box-pack: end;
-        -ms-flex-pack: end;
-    } else if $value == space-between {
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-    } else if $value == space-around {
-        -ms-flex-pack: distribute;
-    } else {
-        -webkit-box-pack: $value;
-        -ms-flex-pack: $value;
-    }
-    -webkit-justify-content: $value;
-    -moz-justify-content: $value;
-    justify-content: $value;
-}
-
 dropdown() {
     background: url(../img/pretty/dropdown.svg) 0 50% no-repeat;
     background-size: 24px auto;
@@ -300,21 +120,6 @@ dropdown() {
     right: 10px;
     top: 15px;
     width: 25px;
-}
-
-disable-user-select() {
-    -khtml-user-select: none;
-    -moz-user-select: -moz-none;
-    -o-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-width-fit-content() {
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: -ms-fit-content;
-    width: fit-content;
 }
 
 width-calc($width) {

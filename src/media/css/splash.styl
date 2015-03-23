@@ -9,7 +9,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    transition(unquote('.3s opacity ease-out'));
+    transition: .3s opacity ease-out;
     width: 100%;
     z-index: 101;
 
@@ -50,25 +50,25 @@
 }
 
 .throbber > b {
-    animation(unquote('throbber 1s infinite ease-in'));
+    animation: throbber 1s infinite ease-in;
     background: $light-gray;
     border-radius: 2px;
     display: inline-block;
     height: 17px;
     margin-left: 10px;
     opacity: .5;
-    transition(unquote('opacity .5s ease-in-out'));
+    transition: opacity .5s ease-in-out;
     width: 17px;
 
     &:nth-child(1) {
-        animation-delay(0s);
+        animation-delay: 0s;
         margin: 0;
     }
     &:nth-child(2) {
-        animation-delay(.16s);
+        animation-delay: .16s;
     }
     &:nth-child(3) {
-        animation-delay(.24s);
+        animation-delay: .24s;
     }
 }
 

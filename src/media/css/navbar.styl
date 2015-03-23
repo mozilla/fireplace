@@ -19,8 +19,6 @@ $narrower-than-tablet = unquote('(max-width: 699px)');
     position: relative;
     text-align: center;
     text-transform: uppercase;
-    width: -moz-fit-content;
-    width: -webkit-fit-content;
     width: fit-content;
 }
 
@@ -92,7 +90,7 @@ $narrower-than-tablet = unquote('(max-width: 699px)');
         height: 50px;
         overflow: hidden;
         position: relative;
-        transition(unquote('bottom .5s, margin-bottom .5s'));
+        transition: bottom .5s, margin-bottom .5s;
 
         // act-tray is link to Settings tabs (e.g., Settings, Purchases).
         // mkt-tray is link to Marketplace tabs (e.g., Home, New, Popular).
@@ -101,13 +99,13 @@ $narrower-than-tablet = unquote('(max-width: 699px)');
             background-color: $cloud-gray;
             border: 1px solid $cement-gray;
             height: 51px;
-            transition(right .4s);
+            transition: right .4s;
             width: 56px;
             z-index: 2;
 
             &.active {
                 right: 0;
-                transition(right .2s .6s);
+                transition: right .2s .6s;
             }
             .header-button {
                 background-size: 30px auto;
@@ -150,13 +148,13 @@ $narrower-than-tablet = unquote('(max-width: 699px)');
     }
 
     .navbar {
-        disable-user-select();
         display: inline-block;
         opacity: 1;
         padding: 8px 0;
         position: absolute;
         top: 0;
-        transition(unquote('right .5s ease-out, left .3s ease-in'));
+        transition: right .5s ease-out, left .3s ease-in;
+        user-select: none;
         white-space: nowrap;
         width: 100%;
 
@@ -208,7 +206,6 @@ $narrower-than-tablet = unquote('(max-width: 699px)');
         z-index: 25;
     }
     .navbar {
-        disable-user-select();
         display: inline-block;
         margin: 0 auto;
         left: 0;
@@ -218,9 +215,8 @@ $narrower-than-tablet = unquote('(max-width: 699px)');
         right: 0 !important;  // navbar.js sets rule on `style`, so override.
         text-align: center;
         top: 0;
+        user-select: none;
         white-space: nowrap;
-        width: -moz-fit-content;
-        width: -webkit-fit-content;
         width: fit-content;
     }
 
