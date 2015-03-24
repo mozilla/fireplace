@@ -36,6 +36,11 @@ define('compat_filter',
     ];
     var featureProfile = utils.getVars().pro || '7fffffffffff0.51.6';
 
+    // Don't do device filtering for these endpoints.
+    var ENDPOINT_DEVICE_FILTER_REDLIST = [
+        'feed', 'feed-app', 'feed-brand', 'feed-collection'
+    ];
+
     var DEVICE_CHOICES = {
         'android-mobile': gettext('Android Mobile'),
         'android-tablet': gettext('Android Tablet'),
@@ -98,7 +103,7 @@ define('compat_filter',
         var args = {};
         var pref = filterDevice;
 
-        if (pref && endpoint !== 'feed') {
+        if (pref && ENDPOINT_DEVICE_FILTER_REDLIST.indexOf(endpoint) === -1) {
             // If have device filter preference, extract it.
             pref = pref.split('-');
             if (pref.length > 1) {

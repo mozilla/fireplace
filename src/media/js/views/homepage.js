@@ -27,7 +27,7 @@ define('views/homepage',
             });
 
             // Insert elements with Salvattore.
-            var homeFeed = document.querySelector('.home-feed');
+            var homeFeed = document.querySelector('.feed-home');
             if (homeFeed) {
                 salvattore.append_elements(homeFeed, elements);
             }
@@ -69,7 +69,7 @@ define('views/homepage',
         }
 
         builder.onload('feed-items', function(data) {
-            utils_local.initSalvattore(document.querySelector('.home-feed'));
+            utils_local.initSalvattore(document.querySelector('.feed-home'));
         });
     };
 });
