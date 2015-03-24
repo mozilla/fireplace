@@ -9,7 +9,7 @@
 {% endif %}
 
 {% defer (url=anonApi('feed')|urlparams(limit=10), id='feed-items') %}
-  <div class="feed feed-items home-feed c" data-columns>
+  <div class="feed feed-items feed-home c" data-columns>
     {% for item in this.objects %}
       <div class="feed-item-item">{{ feed_item(item) }}</div>
     {% endfor %}

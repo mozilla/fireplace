@@ -85,7 +85,7 @@ casper.test.begin('Test Feed pagination', {
 
 casper.test.begin('Test Feed navigation and tracking events', {
     test: function(test) {
-        casper.waitForSelector('.home-feed', function() {
+        casper.waitForSelector('.feed-home', function() {
             casper.click('.feed-collection[data-tracking="coll-listing"] .view-all-tab');
             helpers.assertWaitForSelector(test, '.app-list');
             helpers.assertUASendEvent(test, [
@@ -97,7 +97,7 @@ casper.test.begin('Test Feed navigation and tracking events', {
             casper.back();
         });
 
-        casper.waitForSelector('.home-feed', function() {
+        casper.waitForSelector('.feed-home', function() {
             casper.click('[data-tracking="brand-grid"] .brand-header');
             helpers.assertUASendEvent(test, [
                 'View Branded Editorial Element',
@@ -108,7 +108,7 @@ casper.test.begin('Test Feed navigation and tracking events', {
             casper.back();
         });
 
-        casper.waitForSelector('.home-feed', function() {
+        casper.waitForSelector('.feed-home', function() {
             casper.click('.feed-brand .mkt-tile');
             helpers.assertWaitForSelector(test, '[data-page-type~="detail"]');
             helpers.assertUASendEvent(test, 'View App from Branded Editorial Element');
@@ -116,7 +116,7 @@ casper.test.begin('Test Feed navigation and tracking events', {
             casper.back();
         });
 
-        casper.waitForSelector('.home-feed', function() {
+        casper.waitForSelector('.feed-home', function() {
             casper.click('.feed-brand .mkt-tile');
             helpers.assertWaitForSelector(test, '[data-page-type~="detail"]');
             helpers.assertUASendEvent(test, 'View App from Branded Editorial Element');
@@ -124,7 +124,7 @@ casper.test.begin('Test Feed navigation and tracking events', {
             casper.back();
         });
 
-        casper.waitForSelector('.home-feed', function() {
+        casper.waitForSelector('.feed-home', function() {
             casper.click('.op-shelf');
             casper.waitForSelector('.app-list');
             helpers.assertUASendEvent(test, 'View Operator Shelf Element');
@@ -262,11 +262,11 @@ casper.test.begin('Test Feed endpoint', {
 
         helpers.waitForPageLoaded(function() {
             helpers.assertAPICallWasMade('/api/v2/feed/get/', {
-                cache: "21600",
-                lang: "en-US",
-                limit: "10",
-                region: "us",
-                vary: "0",
+                cache: '21600',
+                lang: 'en-US',
+                limit: '10',
+                region: 'us',
+                vary: '0',
             });
 
             casper.click('.popular a');
@@ -277,7 +277,7 @@ casper.test.begin('Test Feed endpoint', {
             casper.click('.wordmark');
         });
 
-        casper.waitForSelector('.home-feed', function() {
+        casper.waitForSelector('.feed-home', function() {
             resources.forEach(function(resource) {
                 var target = resource.url;
                 var url = target.split('?')[0];
@@ -289,14 +289,75 @@ casper.test.begin('Test Feed endpoint', {
 
                 if (baseUrl + '/api/v2/feed/get/' == url &&
                     utils.equals(helpers.parseQueryString(params), {
-                        cache: "21600",
-                        lang: "en-US",
-                        limit: "10",
-                        region: "us",
-                        vary: "0",
-                        dev: "firefoxos"
+                        cache: '21600',
+                        lang: 'en-US',
+                        limit: '10',
+                        region: 'us',
+                        vary: '0',
+                        dev: 'firefoxos'
                     })) {
                     test.fail('Feed resource with dev=firefoxos was found');
+                }
+            });
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test Feed collection endpoint', {
+    test: function(test) {
+        var resources = [];
+        casper.on('resource.received', function(resource) {
+            resources.push(resource);
+        });
+
+        helpers.startCasper('/feed/collection/grouped');
+
+        helpers.waitForPageLoaded(function() {
+            helpers.assertAPICallWasMade(
+                '/api/v2/fireplace/feed/collections/grouped/', {
+                    cache: '1',
+                    lang: 'en-US',
+                    limit: '24',
+                    region: 'us',
+                    vary: '0',
+                }
+            );
+
+            casper.click('.popular a');
+        });
+
+        casper.waitForSelector('.app-list', function() {
+            helpers.selectOption('#compat-filter', 'firefoxos');
+            casper.click('.wordmark');
+        });
+
+        casper.waitForSelector('[data-tracking="grouped"]', function() {
+            casper.click('[data-tracking="grouped"]');
+        });
+
+        casper.waitForSelector('.app-list', function() {
+            resources.forEach(function(resource) {
+                var target = resource.url;
+                var url = target.split('?')[0];
+                var params = target.split('?')[1];
+
+                var baseUrl = casper.evaluate(function() {
+                    return require('core/settings').api_url;
+                });
+
+                if (baseUrl + '/api/v2/feed/collections/grouped' == url &&
+                    utils.equals(helpers.parseQueryString(params), {
+                        cache: '',
+                        lang: 'en-US',
+                        limit: '10',
+                        region: 'us',
+                        vary: '0',
+                        dev: 'firefoxos'
+                    })) {
+                    test.fail('Feed coll resource with dev=firefoxos found');
                 }
             });
         });
