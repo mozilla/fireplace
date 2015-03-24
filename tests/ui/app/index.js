@@ -41,37 +41,6 @@ casper.test.begin('Test app detail', {
 });
 
 
-casper.test.begin('Test app detail previews', {
-    test: function(test) {
-        helpers.startCasper({path: '/app/abc'});
-
-        casper.waitForSelector('.previews-tray img', function() {
-            casper.click('.previews-tray');
-            casper.click('.previews-tray li:first-child');
-            casper.click('.previews-tray li:first-child .screenshot');
-            casper.click('.previews-tray li:first-child .screenshot img');
-        });
-
-        casper.waitForSelector('#lightbox.show', function() {
-            test.assertExists('#lightbox.show', 'Lightbox is visible');
-            casper.back();
-        });
-
-        casper.waitWhileVisible('#lightbox', function() {
-            test.assertNotVisible('#lightbox', 'Lightbox should be invisible');
-
-            helpers.assertUASendEvent(test, [
-                'App view interactions',
-                'click',
-                'Screenshot view'
-            ]);
-        });
-
-        helpers.done(test);
-    }
-});
-
-
 casper.test.begin('Test app detail description toggle', {
     test: function(test) {
         helpers.startCasper({path: '/app/abc'});
@@ -231,43 +200,6 @@ casper.test.begin('Test app detail reviews if user has rated', {
     }
 });
 
-casper.test.begin('Test app detail mobile previews', {
-    test: function(test) {
-        helpers.startCasper({path: '/app/something'});
-
-        helpers.waitForPageLoaded(function() {
-            test.assertVisible('.previews-content');
-            test.assertVisible('.previews-bars');
-            test.assertNotVisible('.previews-tray .arrow-button');
-        });
-
-        helpers.done(test);
-    }
-});
-
-casper.test.begin('Test app detail desktop previews', {
-    test: function(test) {
-        helpers.startCasper({path: '/app/something', viewport: 'desktop'});
-
-        helpers.waitForPageLoaded(function() {
-            test.assertVisible('.previews-tray .previews-desktop-content');
-            test.assertVisible('.previews-tray .previews-bars');
-            test.assertVisible('.previews-tray .arrow-button');
-
-            // Check that the first image is visible, if the image takes too
-            // long to load this test will be skipped.
-            var imageSelector = '.previews-tray li:first-child img';
-            var imageUrl = casper.getElementAttribute(imageSelector, 'src');
-            casper.waitForResource(imageUrl, function() {
-                test.assertVisible(imageSelector);
-            }, function() {
-                test.skip(1, 'did not load image in time, skipping');
-            });
-        });
-
-        helpers.done(test);
-    }
-});
 
 casper.test.begin('Test app detail page view', {
     test: function(test) {

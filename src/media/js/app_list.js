@@ -11,7 +11,7 @@ define('app_list',
     function initTileState() {
         // Handle tile expanded state and populate preview thumbs.
         // Preserve the tile expand state in localStorage.
-        $('.app-list').toggleClass('expanded', expand);
+        $('.app-list').toggleClass('previews-expanded', expand);
         $('.app-list-filters-expand-toggle')
             .toggleClass('active', expand)
             .addClass('show');

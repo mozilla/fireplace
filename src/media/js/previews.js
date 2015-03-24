@@ -1,53 +1,177 @@
 /*
     Preview trays which holds previews and screenshots.
-    On mobile, uses Flipsnap which enables touch-drag.
-    On desktop, adds prev/next buttons to navigate images.
+    On mobile, only Flipsnap (touch-drag) used to navigate images.
+    On desktop form factor, previous/next buttons added to navigate images.
+    On desktop detail, we CSS-toggle between a mobile tray and desktop tray
+    so it's not true responsive since both trays need different logic.
+
+    Previews contain several components:
+        - Bottom scroll bars.
+        - Previous/next buttons for desktop.
+        - Lightbox modal.
+
+    - We have logic that calculates how many previews are visible in the tray,
+      and add scrollbars/buttons only when there is more to see. The previews
+      only scrolls as far as it needs.
+    - Detail page on desktop is detected by using a media query.
+    - Use capabilities.device_type() only to determine whether to add buttons.
 */
 define('previews',
-    ['flipsnap', 'core/log', 'core/capabilities', 'shothandles', 'underscore',
-     'core/z'],
-    function(flipsnap, log, caps, handles, _,
-             z) {
+    ['core/capabilities', 'core/log', 'core/utils', 'core/z', 'flipsnap',
+     'previews-buttons', 'previews-lightbox', 'underscore'],
+    function(caps, log, utils, z, Flipsnap,
+             previewButtons, previewsLightbox, _) {
     var logger = log('previews');
+
+    // Keep track of all sliders on the page to do stuff on resize.
+    var sliders = [];
 
     // Padded size of preview images (in pixels).
     var dimensions = {
         thumb: 160,
-        full: 550,
+        minWidth: 300,
+        full: 520,
         breakpoint: 1050,  // Width when desktop trays appear.
-        contentWidth: 1070,  // Max width of desktop content.
         // Technically the left margin of each preview in tray.
-        padding: 10
+        padding: 10,
+        paddingFull: 30
     };
-
     var mediaSwitch = '(min-width:' + dimensions.breakpoint + 'px)';
-    var sliders = [];
-    var winWidth = z.win.width();
-    var isDesktop = caps.device_type() == 'desktop';
-    var isDesktopInitialized = false;
 
     var desktopMarginLeft = 0;  // Keep track of left offset.
 
-    function setActiveBar($bars, position) {
-        $bars.filter('.current').removeClass('current');
-        $bars.eq(position).addClass('current');
+    function initPreviewTray(e) {
+        // Handler to initialize preview trays.
+        var tray = this;
+        var $tray = $(tray);
+        if ($tray.data('previews-initialized')) {
+            return;
+        }
+
+        var $previewsContent = $tray.find('.previews-content');
+        var $slider = $tray.find('.previews-slider');
+        var numPreviews = $tray.find('.screenshot').length;
+        var isDesktopDetailTray = isDesktopDetailTrayFn(tray);
+        if (isDesktopDetailTray) {
+            resizeDesktopDetailTray();
+        }
+
+        // Create bars.
+        var $bars = initializeBars(tray);
+
+        // Set the width of the tray.
+        var previewWidth = isDesktopDetailTray ?
+            (dimensions.full + dimensions.paddingFull) : dimensions.thumb;
+        $previewsContent.css({
+            width: numPreviews * previewWidth - dimensions.padding + 'px'
+        });
+
+        // Mark as initialized.
+        resizeDesktopDetailTray();
+        $tray.attr('data-previews-initialized', true);
+
+        if (numPreviews > 2) {
+            // FlipSnap it.
+            var slider = Flipsnap($previewsContent[0],
+                                  {distance: previewWidth});
+
+            // Store sliders and trays for later use.
+            // Keep track of the scroll subtract to use for button states.
+            slider.tray = tray;
+            slider.numBars = calcNumBars(tray);
+            tray.slider = slider;
+            sliders.push(slider);
+
+            // Initialize the bar position.
+            updatePreviewBar($bars, slider);
+
+            // Add scroll buttons.
+            previewButtons.attach(slider, $slider);
+        }
     }
 
-    function initUpdatePosition($bars, slider) {
-        // Listener to update the colored bar position.
+    function initialize() {
+        // Main event that initializes preview trays.
+        logger.log('Initializing trays');
+        $('.previews-expanded .previews-tray').each(initPreviewTray);
+    }
+
+    function calcNumBars(tray) {
+        // Calculate the limit of how far we should be able to scroll.
+        var $tray = $(tray);
+        var isDesktopDetailTray = isDesktopDetailTrayFn(tray);
+        var isDetailTray = $tray.data('previews-detail');
+        var numPreviews = $tray.find('.screenshot').length;
+
+        // The number of previews full visible is the tray width divided by
+        // preview width, floored.
+        var trayWidth = Math.max($tray.width(), dimensions.minWidth);
+        var previewWidth = isDesktopDetailTray ? dimensions.full :
+                                                 dimensions.thumb;
+        var numPreviewsFit = Math.floor(
+            (trayWidth + dimensions.padding * 2) / previewWidth);
+
+        // The number of bars to show is how many previews are not visible,
+        // add one since only 1 bar means no scroll.
+        var numBars = numPreviews - numPreviewsFit + 1;
+        if (numBars === 1) {
+            numBars = 0;
+        }
+        return numBars;
+    }
+
+    function initializeBars(tray) {
+        // Create scroll bars at bottom of the tray.
+        var numPreviews = tray.querySelectorAll('.screenshot').length;
+        var numBars = calcNumBars(tray);
+
+        var barsContainer = tray.querySelector('.previews-bars');
+        for (var i = 0; i < numBars; i++) {
+            barsContainer.appendChild(document.createElement('b'));
+        }
+        return $(barsContainer.querySelectorAll('b'));
+    }
+
+    var refreshSliders = _.debounce(function() {
+        // Remove bars and buttons from each slider, then recalculate.
+        sliders.forEach(function(slider) {
+            // Remove bars.
+            var tray = slider.tray;
+            var trayBars = tray.querySelector('.previews-bars');
+            while (trayBars.firstChild) {
+                trayBars.removeChild(trayBars.firstChild);
+            }
+            // Reset slider.
+            slider.moveToPoint(0);
+            // Reinitialize bars.
+            updatePreviewBar(initializeBars(tray), slider);
+            slider.numBars = calcNumBars(tray);
+            // Update button states.
+            $(tray).trigger('previews--button-update');
+        });
+    }, 250);
+
+    function updatePreviewBar($bars, slider) {
+        // Listener to update the colored scroll bar position.
+        function setActiveBar($bars, position) {
+            // Only show bars if more than two screenshots.
+            $bars.filter('.current').removeClass('current');
+            $bars.eq(position).addClass('current');
+        }
         slider.element.addEventListener('fsmoveend', function() {
             setActiveBar($bars, slider.currentPoint);
         }, false);
-
         setActiveBar($bars, slider.currentPoint);
     }
 
-    function refreshDesktopTray() {
-        var $tray = $('.previews-tray');
+    function resizeDesktopDetailTray() {
+        // Fit and realign the preview tray to the window.
+        var $tray = $('.previews-tray[data-previews-desktop]');
+        if ($tray.length === 0) {
+            return;
+        }
 
         $tray.css('width', z.win.width() + 'px');
-
-        // Realign the preview tray to the window.
         var offset = $tray.offset();
         desktopMarginLeft += -1 * offset.left;
         $tray.css('margin-left', desktopMarginLeft + 'px');
@@ -58,101 +182,24 @@ define('previews',
                 window.matchMedia(mediaSwitch).matches;
     }
 
-    function initTrays() {
-        var $tray = $(this);
-        var numPreviews = $tray.find('.screenshot').length;
-        var $previewsContent = $tray.find('.previews-content');
-        var $bars = $tray.find('.previews-bars b');
-        var slider = {};
-
-        $previewsContent.css({
-            width: numPreviews * dimensions.thumb - dimensions.padding + 'px'
-        });
-
-        // Init Flipsnap itself!
-        slider = flipsnap($previewsContent[0], {distance: dimensions.thumb});
-
-        // Expose slider on the tray node. Used for arrow navigation.
-        this.slider = slider;
-
-        initUpdatePosition($bars, slider);
-        sliders.push(slider);
-
-        if (isDesktop) {
-            handles.attachHandles(slider, $tray.find('.previews-slider'));
-        }
+    function isDesktopDetailTrayFn(tray) {
+        return tray.getAttribute('data-previews-desktop') &&
+               tray.getAttribute('data-previews-detail');
     }
-
-    function initDesktopDetailsTray() {
-        var $tray = $(this);
-        var numPreviews = $tray.find('.screenshot').length;
-        var $previewsContent = $tray.find('.previews-content');
-        var $bars = $tray.find('.previews-bars b');
-        var slider = {};
-        var $desktopContent = $('<ul class="previews-desktop-content">');
-        var $slider = $tray.find('.previews-slider');
-
-        refreshDesktopTray();
-
-        // Populate the new desktop content in memory.
-        $previewsContent.find('li').each(function(i, elm) {
-            var imageSrc = elm.querySelector('a').href;
-            var $newShot = $(elm).clone();
-            $newShot.find('img').removeClass('deferred').attr('src', imageSrc);
-            $desktopContent.append($newShot);
-        });
-
-        $desktopContent.css({
-            width: numPreviews * dimensions.full - dimensions.padding + 'px'
-        });
-
-        // Add new content to the DOM.
-        $slider.append($desktopContent);
-
-        isDesktopInitialized = true;
-
-        // Single preview tray. No need to init flipsnap.
-        if (numPreviews === 1) {
-            return;
-        }
-
-        // Init Flipsnap itself!
-        slider = flipsnap($desktopContent[0], {distance: dimensions.full});
-
-        // Expose slider on the tray node. Used for arrow navigation.
-        this.slider = slider;
-
-        initUpdatePosition($bars, slider);
-        sliders.push(slider);
-        if (isDesktop) {
-            handles.attachHandles(slider, $slider);
-        }
-    }
-
-    // Reinitialize Flipsnap positions on resize.
-    z.doc.on('saferesize.tray', function() {
-        sliders.forEach(function(slider) {
-            slider.refresh();
-        });
-    });
 
     z.win.on('resize', _.debounce(function() {
-        if (isDesktopDetail()) {
-            // If the desktop tray exists only refresh its position and size.
-            // Otherwise create the desktop tray.
-            if (isDesktopInitialized) {
-                refreshDesktopTray();
-            } else {
-                $('.previews-tray:not(.single-preview)').each(initDesktopDetailsTray);
-            }
+        refreshSliders();
+        if ($('[data-page-type~="detail"] ' +
+              '[data-previews-desktop][data-previews-initialized]').length) {
+            resizeDesktopDetailTray();
         } else {
             $('.previews-tray').attr('style', '');
             desktopMarginLeft = 0;
         }
     }))
 
-    // We're leaving the page, so destroy Flipsnap.
     .on('unloading.tray', function() {
+        // We're leaving the page, so destroy Flipsnap.
         sliders.forEach(function(slider) {
             slider.destroy();
         });
@@ -160,24 +207,22 @@ define('previews',
         desktopMarginLeft = 0;
     });
 
-    // Don't treat the trays as draggable (bug 1138396).
     z.page.on('dragstart', '.previews-tray', function(e) {
+        // Don't treat the trays as draggable (bug 1138396).
         e.preventDefault();
-    });
+    })
 
-    function initialize() {
-        // Main event that initializes preview trays.
-        logger.log('Initializing trays');
-
-        if (isDesktopDetail()) {
-            $('.previews-tray').each(initDesktopDetailsTray);
-        } else {
-            $('.expanded .previews-tray:not(.single-preview)').each(initTrays);
+    .on('click', '.previews-tray .screenshot', utils._pd(function() {
+        // If a tray thumbnail is clicked, open lightbox.
+        // Don't show on desktop detail since it'd show the previews at
+        // the same size.
+        if (!isDesktopDetail()) {
+            previewsLightbox.show(this);
         }
-    }
+    }));
 
     return {
         initialize: initialize,
-        refreshDesktopTray: refreshDesktopTray
+        resizeDesktopDetailTray: resizeDesktopDetailTray
     };
 });

@@ -1,5 +1,6 @@
 {% from "_macros/feed_app_tile.html" import feed_app_tile %}
 {% from "_macros/market_button.html" import market_button %}
+{% from "_macros/previews.html" import preview_tray %}
 {% from "_macros/stars.html" import stars %}
 
 {% macro app_tile(app, feed_app=None, is_detail=False, tray=False, src=None,
@@ -71,30 +72,8 @@
   {% endif %}
 
   {% if tray and len(app.previews) %}
-    <div class="previews-tray full {{ 'single-preview' if len(app.previews) == 1 }}">
-      {{ preview_tray(app, src) }}
-    </div>
+    {{ preview_tray(app, src, is_detail) }}
   {% endif %}
-{% endmacro %}
-
-
-{% macro preview_tray(app, src) %}
-  <div class="previews-slider">
-    <ul class="previews-content">
-      {% for preview in app.previews %}
-        <li itemscope itemtype="http://schema.org/ImageObject">
-          <a class="screenshot thumbnail" href="{{ preview.image_url }}">
-            {{ deferred_screenshot(preview.thumbnail_url) }}
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div class="previews-bars">
-    {% for preview in app.previews %}
-      <b></b>
-    {% endfor %}
-  </div>
 {% endmacro %}
 
 
@@ -111,36 +90,25 @@
 {% endmacro %}
 
 
-{% macro deferred_screenshot(src) %}
-  {% if not imgAlreadyDeferred(src) %}
-    {# Defer image loading. Don't change data-src to src. #}
-    <img class="deferred" src="{{ PLACEHOLDER_ICON }}"
-         data-src="{{ src }}" alt="{{ _('{app_name} screenshot', app_name=app.name) }}"
-         draggable="false" itemprop="contentURL">
-  {% else %}
-    <img src="{{ src }}" alt="{{ _('{app_name} screenshot', app_name=app.name) }}"
-         draggable="false" itemprop="contentURL">
-  {% endif %}
-{% endmacro %}
-
-
 {% macro rating_link(is_detail=False) %}
   <div class="rating vital{{ ' unrated' if not app.ratings.count }}"
-       itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+       itemscope itemprop="aggregateRating"
+       itemtype="http://schema.org/AggregateRating">
     {# Detail page ratings link to the ratings list page. #}
     {% if is_detail %}
       {% if app.ratings.count %}
         <a href="{{ url('app/ratings', [app.slug]) }}" class="rating-link">
-            {{ stars(app.ratings.average) }}
-            <span class="cnt long">
-              {{ app.ratings.count|numberfmt }} {{ _plural('Review', 'Reviews', n=app.ratings.count) }}
-            </span>
+          {{ stars(app.ratings.average) }}
+          <span class="cnt long">
+            {{ app.ratings.count|numberfmt }} {{ _plural('Review', 'Reviews',
+                                                         n=app.ratings.count) }}
+          </span>
+        </a>
       {% else %}
         <span class="rating-link">
           <span class="cnt long">{{ _('Not yet reviewed') }}</span>
         </span>
       {% endif %}
-      </a>
     {% else %}
       {# Stars-only rating (member of an app listing). #}
       {{ stars(app.ratings.average) }}

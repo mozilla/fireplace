@@ -6,8 +6,6 @@
     If you are testing something that can be found throughout all or most
     app list pages, here is a good place to put it for ultimate coverage.
 */
-var jsuri = localRequire('node_modules/jsuri/Uri');
-
 var appNthChild = appList.appNthChild;
 var waitForAppListPage = appList.waitForAppListPage;
 var waitForLoadMore = appList.waitForLoadMore;
@@ -96,7 +94,7 @@ appList.appListPages.forEach(function(appListPage) {
                 casper.thenClick(toggleLink);
 
                 casper.waitForSelector(toggleLink + '.active', function() {
-                    test.assertExists('.app-list.expanded');
+                    test.assertExists('.app-list.previews-expanded');
                     helpers.assertUASendEvent(test, [
                         'View type interactions',
                         'click',
@@ -106,7 +104,7 @@ appList.appListPages.forEach(function(appListPage) {
                     // List view.
                     casper.click(toggleLink);
                     test.assertExists(toggleLink + ':not(.active)');
-                    test.assertExists('.app-list:not(.expanded)');
+                    test.assertExists('.app-list:not(.previews-expanded)');
                     helpers.assertUASendEvent(test, [
                         'View type interactions',
                         'click',
@@ -180,46 +178,6 @@ appList.appListPages.forEach(function(appListPage) {
         });
     }
 
-    if (!appListPage.noExpandToggle) {
-        casper.test.begin(appListPage.name + ' mobile previews tests', {
-            test: function(test) {
-                waitForAppListPage(appListPage, function() {
-                    // Expand listings.
-                    casper.click('.app-list-filters-expand-toggle');
-                    test.assertVisible('.previews-tray li:first-child img');
-                    test.assertVisible('.previews-tray .previews-bars');
-                    test.assertNotVisible('.previews-tray .arrow-button');
-
-                    // Collapse listings.
-                    casper.click('.app-list-filters-expand-toggle');
-                    test.assertExists('.app-list:not(.expanded)');
-                    test.assertNotVisible('.app-list-app .previews-tray');
-                });
-
-                helpers.done(test);
-            }
-        });
-
-        casper.test.begin(appListPage.name + ' desktop previews tests', {
-            test: function(test) {
-                waitForAppListPage(appListPage, function() {
-                    // Expand listings.
-                    casper.click('.app-list-filters-expand-toggle');
-                    test.assertVisible('.previews-tray li:first-child img');
-                    test.assertVisible('.previews-tray .previews-bars');
-                    test.assertVisible('.previews-tray .arrow-button');
-
-                    // Collapse listings.
-                    casper.click('.app-list-filters-expand-toggle');
-                    test.assertExists('.app-list:not(.expanded)');
-                    test.assertNotVisible('.app-list-app .previews-tray');
-                }, {viewport: 'desktop'});
-
-                helpers.done(test);
-            },
-        });
-    }
-
     if (!appListPage.noAppInstall) {
         casper.test.begin(appListPage.name + ' app install tests', {
             test: function(test) {
@@ -238,24 +196,5 @@ appList.appListPages.forEach(function(appListPage) {
                 helpers.done(test);
             },
         });
-    }
-});
-
-
-casper.test.begin('Test collection detail page for app tile expanded state.', {
-    test: function(test) {
-        // Visit the popular page and click expand.
-        helpers.startCasper({path: '/popular'});
-        helpers.waitForPageLoaded(function() {
-            casper.click('.app-list-filters-expand-toggle');
-        });
-
-        // Visit a collection details page and check it's not expanded.
-        casper.thenOpen(helpers.makeUrl('/feed/collection/top-games'));
-        helpers.waitForPageLoadedAgain(function() {
-            test.assertDoesntExist('.app-list.expanded');
-            test.assertDoesntExist('.previews-tray');
-        });
-        helpers.done(test);
     }
 });
