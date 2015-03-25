@@ -99,6 +99,7 @@ define('helpers_local',
     globals.REGIONS = regions.REGION_CHOICES_SLUG;
     globals.user_helpers = user_helpers;
     globals.PLACEHOLDER_ICON = urls.media('fireplace/img/icons/placeholder.svg');
+    globals.PLACEHOLDER_PREVIEW = urls.media('fireplace/img/icons/placeholder_preview.svg');
     globals.compat_filter = compatFilter;
     globals.trackingEvents = trackingEvents;
 

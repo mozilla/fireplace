@@ -48,7 +48,7 @@ define('views/app',
         });
 
         // Make preview tray full width on desktop while loading.
-        previews.refreshDesktopTray();
+        previews.resizeDesktopDetailTray();
 
         z.page.one('fragment_load_failed', function(e, data) {
             // Can be fragments errs for each defer block. Listen to first one.
@@ -62,7 +62,7 @@ define('views/app',
             builder.z('title', utils.translate(app.name));
 
             previews.initialize();
-            previews.refreshDesktopTray();
+            previews.resizeDesktopDetailTray();
 
             $('.truncated-wrapper').each(function() {
                 // 'truncated' class applied by default, remove if unneeded.

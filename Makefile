@@ -23,10 +23,10 @@ test:
 uitest:
 	make uitest-phantom && make uitest-slimer
 
-uitest-phantom: css templates
+uitest-phantom:
 	PATH=node_modules/.bin:${PATH} LC_ALL=en-US $(CASPERJS_BIN) test ${UITEST_FILE} --includes=tests/lib/shim.js --engine=phantomjs
 
-uitest-slimer: css templates
+uitest-slimer:
 	SLIMERJSLAUNCHER=${SLIMERJSLAUNCHER} PATH=slimerjs:node_modules/.bin:${PATH} LC_ALL=en-US $(CASPERJS_BIN) test ${UITEST_FILE} --includes=tests/lib/shim.js --engine=slimerjs
 
 unittest: templates

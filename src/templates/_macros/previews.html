@@ -1,0 +1,38 @@
+{% macro preview_tray(app, src, is_detail) %}
+   {{ _preview_tray(app, src, is_detail, False) }}
+   {% if is_detail %}
+     {{ _preview_tray(app, src, is_detail, True) }}
+   {% endif %}
+{% endmacro %}
+
+{% macro _preview_tray(app, src, is_detail, is_desktop) %}
+  <div class="previews-tray full"
+       {% if is_desktop %}data-previews-desktop="true"{% endif %}
+       {% if is_detail %}data-previews-detail="true"{% endif %}>
+    <div class="previews-slider">
+      <ul class="previews-content">
+        {% for preview in app.previews %}
+          <li itemscope itemtype="http://schema.org/ImageObject">
+            <a class="screenshot thumbnail" href="{{ preview.image_url }}">
+              {{ deferred_preview(preview.image_url if is_desktop else
+                                     preview.thumbnail_url) }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="previews-bars"></div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro deferred_preview(src) %}
+  {% if not imgAlreadyDeferred(src) %}
+    {# Defer image loading. Don't change data-src to src. #}
+    <img class="deferred" src="{{ PLACEHOLDER_PREVIEW }}"
+         data-src="{{ src }}" alt="{{ _('{app_name} screenshot', app_name=app.name) }}"
+         draggable="false" itemprop="contentURL">
+  {% else %}
+    <img src="{{ src }}" alt="{{ _('{app_name} screenshot', app_name=app.name) }}"
+         draggable="false" itemprop="contentURL">
+  {% endif %}
+{% endmacro %}
