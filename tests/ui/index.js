@@ -7,7 +7,7 @@ casper.test.begin('Test base site', {
             test.assertVisible('.wordmark');
             test.assertVisible('.header-button.settings');
             test.assertVisible('#search-q');
-            test.assertVisible('.home-feed');
+            test.assertVisible('.feed-home');
             test.assertDoesntExist('.mkt-tile .tray');
             test.assertNotVisible('.app-list-filters-expand-toggle');
         });
