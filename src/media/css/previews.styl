@@ -7,7 +7,7 @@ $full-shot-height = 520px;
 $desktop-tray-height = 540px;
 
 // Previews tray.
-.expanded .previews-tray {
+.previews-expanded .previews-tray {
     display: block;
 }
 
@@ -67,31 +67,6 @@ $desktop-tray-height = 540px;
     padding-top: 10px;
 }
 
-.mkt-tile + .single-preview li {
-    width: 100%;
-}
-
-.single-preview .previews-desktop-content > li {
-    width: 100%;
-
-    .thumbnail {
-        height: $full-shot-height;
-        padding: 0;
-    }
-}
-
-.single-preview .previews-content {
-    width: 100%;
-
-    > li {
-        width: 100%;
-    }
-    .thumbnail {
-        height: 150px;
-        padding: 0;
-    }
-}
-
 .previews-bars {
     background: $white;
     display-flex();
@@ -111,26 +86,29 @@ $desktop-tray-height = 540px;
     }
 }
 
-.previews-desktop-content,
-.previews-tray .arrow-button {
-    display: none;
-}
+.previews-slider {
+    position: relative;
 
-.single-preview .previews-content {
-    width: 100%;
-
-    > li {
-        width: 100%;
+    .arrow-btn {
+        display: block;
+        margin-top: -10px;
+        outline: 0;
+        position: absolute;
+        top: 50%;
+        z-index: 16;
     }
-    .thumbnail {
-        height: 150px;
-        padding: 0;
+    .arrow-btn-prev {
+        left: 20px;
+    }
+    .arrow-btn-next {
+        right: 20px;
     }
 }
 
 [data-page-type~="detail"] .previews-tray {
     height: $tray-height + $bar-height;
     margin-left: -10px;
+    position: relative;
     top: 0;
     width: unquote('calc(100% + 20px)')
 
@@ -139,47 +117,37 @@ $desktop-tray-height = 540px;
     }
 }
 
-@media $base-desktop {
-    .previews-slider {
-        position: relative;
+.loading .previews-bars {
+    display: none;
+}
 
-        .arrow-button {
-            display: block;
-            margin-top: -10px;
-            outline: 0;
-            position: absolute;
-            top: 50%;
-            z-index: 16;
-        }
-        .next {
-            right: 20px;
-        }
-        .prev {
-            left: 20px;
-        }
-    }
-    [data-page-type~="detail"] .previews-tray {
-        height: $desktop-tray-height + $bar-height;
-        margin: 0 auto;
-        margin-left: 0;
-        position: relative;
+.previews-tray[data-previews-desktop] {
+    display: none;
+}
 
-        .previews-content {
-            display: none;
-        }
-        .previews-desktop-content {
-            display: block;
-        }
-    }
-    .previews-tray .previews-desktop-content {
+[data-page-type~="detail"] .previews-tray[data-previews-desktop] {
+    // Make it bigger on desktop detail.
+    height: $desktop-tray-height + $bar-height;
+    margin: 0 auto;
+    margin-left: 0;
+
+    .previews-content {
         height: $full-shot-height;
-    }
-    .previews-desktop-content li {
-        height: $full-shot-height;
-        width: $full-shot-height;
+
+        li {
+            height: $full-shot-height;
+            width: $full-shot-height;
+        }
     }
 }
 
-.loading .previews-bars {
-    display: none;
+@media $base-desktop {
+    [data-page-type~="detail"] .previews-tray {
+        &:not([data-previews-desktop]) {
+            display: none;
+        }
+        &[data-previews-desktop] {
+            display: block;
+        }
+    }
 }

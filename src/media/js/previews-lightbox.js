@@ -2,12 +2,12 @@
     Previews and screenshots modal, triggered on click of a preview
     within a preview tray on an app detail page.
 */
-define('lightbox',
-    ['keys', 'core/log', 'core/models', 'core/navigation', 'core/utils', 'shothandles', 'tracking',
-     'underscore', 'core/z'],
-    function(keys, log, models, navigation, utils, handles, tracking,
-             _, z) {
-    var logger = log('lightbox');
+define('previews-lightbox',
+    ['core/log', 'core/models', 'core/navigation', 'core/utils', 'core/z',
+     'keys', 'previews-buttons', 'tracking', 'underscore'],
+    function(log, models, navigation, utils, z,
+             keys, previewButtons, tracking, _) {
+    var logger = log('previews-lightbox');
 
     var $lightbox = $(document.getElementById('lightbox'));
     var $section = $lightbox.find('section');
@@ -18,13 +18,13 @@ define('lightbox',
 
     $lightbox.addClass('shots previews-slider');
 
-    function showLightbox() {
+    function show(clickedPreview) {
         logger.log('Opening lightbox');
         z.body.trigger('lightbox-open');
 
-        var $this = $(this);
-        var which = $this.closest('li').index();
-        var $tray = $this.closest('.previews-tray');
+        var $preview = $(clickedPreview);
+        var position = $preview.closest('li').index();
+        var $tray = $preview.closest('.previews-tray');
         var $tile = $tray.siblings('.mkt-tile');
 
         if (!$tile.length) {
@@ -47,7 +47,7 @@ define('lightbox',
         z.body.addClass('overlayed');
         $lightbox.show();
         setTimeout(function() {
-            slider.moveToPoint(which);
+            slider.moveToPoint(position);
             resize();
             $lightbox.addClass('show');
         }, 0);
@@ -89,8 +89,8 @@ define('lightbox',
             // Let's fail elegantly when our images don't load.
             // Videos on the other hand will always be injected.
             if (p.filetype == 'video/webm') {
-                // TODO: Check for `HTMLMediaElement.NETWORK_NO_SOURCE` on vid's
-                // `networkState` property.
+                // TODO: Check for `HTMLMediaElement.NETWORK_NO_SOURCE` on
+                // vid's `networkState` property.
                 var v = $('<video src="' + p.image_url + '" controls></video>');
                 $el.removeClass('loading');
                 $el.append(v);
@@ -115,7 +115,9 @@ define('lightbox',
         if ($content.length) {
             slider = Flipsnap($content[0]);
             slider.element.addEventListener('fsmoveend', pauseVideos, false);
-            handles.attachHandles(slider, $section);
+            previewButtons.attach(slider, $section, {
+                isLightbox: true
+            });
         }
     }
 
@@ -135,10 +137,10 @@ define('lightbox',
 
     function hideLightbox() {
         navigation.closeModal('lightbox');
-        closeLightbox();
+        close();
     }
 
-    function closeLightbox() {
+    function close() {
         z.body.removeClass('overlayed');
         pauseVideos();
         $lightbox.removeClass('show');
@@ -156,23 +158,27 @@ define('lightbox',
     // We need to adjust the scroll distances on resize.
     z.win.on('resize', _.debounce(resize, 200));
 
-    // If a tray thumbnail is clicked, load up our lightbox.
-    z.page.on('click', '.previews-tray .screenshot', utils._pd(showLightbox));
-
     // Dismiss the lighbox when we click outside it or on the close button.
     $lightbox.on('click', function(e) {
         if ($(e.target).is('#lightbox li')) {
             hideLightbox();
             e.preventDefault();
         }
-    }).on('dragstart', function(e) {
+    })
+    .on('dragstart', function(e) {
         e.preventDefault();
-    });
-    $lightbox.find('.close').on('click', utils._pd(hideLightbox));
+    })
+    .find('.close')
+    .on('click', utils._pd(hideLightbox));
 
     z.win.on('closeModal', function (e, modalName) {
         if (modalName === 'lightbox') {
-            closeLightbox();
+            close();
         }
     });
+
+    return {
+        close: close,
+        show: show
+    };
 });

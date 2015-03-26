@@ -1,6 +1,6 @@
 @import 'lib';
 
-$arrow-button-size = 30px;
+$arrow-btn-size = 30px;
 
 // Install button width.
 $btn-install-width = 90px;
@@ -93,16 +93,16 @@ a.button {
     }
 }
 
-.arrow-button {
+.arrow-btn {
     background: $action-positive url(../img/pretty/arrow-l.svg) no-repeat 5px 50% / 15px 15px;
     border: 1px solid $white;
     border-radius: 50%;
     color: transparent;
     cursor: pointer;
     font-size: 0;
-    height: $arrow-button-size;
+    height: $arrow-btn-size;
     transition: 150ms;
-    width: $arrow-button-size;
+    width: $arrow-btn-size;
 
     &:hover {
         background-color: $action-positive-hover;
@@ -110,11 +110,11 @@ a.button {
     &:active {
         background: $action-positive-tapped url(../img/pretty/arrow-l.svg) no-repeat 5px 50% / 15px 15px;
     }
-    &.next {
+    &.arrow-btn-next {
         background-position: 5px 50%;
         transform(scaleX(-1));
     }
-    &.disabled {
+    &.arrow-btn-disabled {
         background-color: $action-disabled;
         cursor: default;
     }
