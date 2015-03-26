@@ -67,3 +67,7 @@ approve_log_dev:
 
 log:
 	@echo "This command has been removed. Use 'make iframe_package' instead."
+
+test-package:
+	make package
+	test -f package/builds/_prod/media/js/include.js
