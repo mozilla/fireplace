@@ -3,7 +3,7 @@
     These tests assume that app lists apps will have exactly 4 previews
     unless mocked otherwise.
 */
-var jsuri = localRequire('node_modules/jsuri/Uri');
+var jsuri = helpers.npm('jsuri/Uri');
 
 var PREVIEW_SCROLL_TEST_DEFS = [
     // [PAGE TYPE, VIEWPORT, NUM PREVIEWS, ASSERT NUMBER OF BARS].
