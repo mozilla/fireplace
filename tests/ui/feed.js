@@ -1,6 +1,8 @@
 /*
     Tests for the Feed and Feed detail pages.
 */
+var constants = helpers.load('constants');
+
 var feedDetailPages = [
     {
         name: 'Shelf',

@@ -1,6 +1,8 @@
 /*
     Tests for app reviews.
 */
+var constants = helpers.load('constants');
+
 function testAddReviewForm(test) {
     // Checks review form existence and validation.
     casper.waitForSelector('.mkt-prompt form', function() {

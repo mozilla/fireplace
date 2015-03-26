@@ -2,6 +2,7 @@
     Test for app installs using the mozApps mock.
     Such as button states, UA tracking.
 */
+var appList = helpers.load('app_list');
 
 
 var installAttributionTestDefs = [
