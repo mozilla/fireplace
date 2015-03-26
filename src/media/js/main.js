@@ -120,17 +120,6 @@ require(
         });
 
         consumerInfo.promise.then(function() {
-            // Re-render footer region if necessary.
-            var current_region = userHelpers.region('restofworld');
-            if (current_region !== context.user_region) {
-                logger.log('Region has changed from ' + context.user_region +
-                            ' to ' + current_region + ' since we rendered ' +
-                            'the footer, updating region in footer.');
-                $('#site-footer span.region')
-                    .removeClass('region-' + context.user_region)
-                    .addClass('region-' + current_region)
-                    .text(regions.REGION_CHOICES_SLUG[current_region]);
-            }
             // To show or not to show the recommendations nav.
             if (user.logged_in() &&
                 user.get_setting('enable_recommendations')) {
