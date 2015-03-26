@@ -32,8 +32,6 @@ before_script:
   - 'sh -e /etc/init.d/xvfb start'
 # Start the server if needed
   - 'if [ $START_SERVER ]; then bash tests/serve.sh; fi'
-# Make sure flue is ready.
-  - 'if [ $START_SERVER ]; then curl http://localhost:5000/api/v2/services/config/site/; fi'
 # Make the langpacks if needed.
   - 'if [ $MAKE_LANGPACKS ]; then commonplace langpacks; fi'
 # Install the latest slimer if we're running slimer.
