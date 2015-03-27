@@ -13,17 +13,18 @@ body {
     background: $white;
     border-top: 1px solid $salt-flat-white;
     border-bottom: 1px solid $seavan-salt-white;
-    display-flex();
+    display: flex;
     height: $header-height;
     max-height: $header-height;
     position: relative;
     width: 100%;
 
     > * {
-        flex-center();
+        align-self: center;
     }
-    .flex-shift, .title {
-        flex(1);
+    .flex-shift,
+    .title {
+        flex: 1;
         padding-left: 10px;
     }
     .title {
@@ -52,13 +53,13 @@ body {
     }
     > nav {
         height: $header-height;
-        display-flex();
+        display: flex;
         position: relative;
         text-align: left;
         width: 100%;
 
         > * {
-            flex-center();
+            align-self: center;
             display: block;
         }
     }
@@ -95,7 +96,7 @@ body {
     margin-right: 10px;
     position: relative;
     top: -1px;
-    transition(.3s all);
+    transition: .3s all;
     width: 230px;
 
     label {
@@ -112,7 +113,7 @@ body {
     height: 34px;
     outline: none;
     padding: 2px 10px 1px 34px;
-    transition(unquote('.18s background-position, .2s border-color, .2s padding'));
+    transition: .18s background-position, .2s border-color, .2s padding;
     width: 100%;
     z-index: 2;
 
@@ -126,7 +127,7 @@ body {
         color: $greyscale-grey;
     }
     ~ .search-clear {
-        transition(unquote('.3s opacity, .3s visibility'));
+        transition: 3s opacity, .3s visibility;
     }
     &:invalid ~ .search-clear {
         // Hide the X icon when the search field is empty.
@@ -286,7 +287,7 @@ body {
         bottom: -2px;
         content: "";
         display: block;
-        gradientLinear(unquote('to top, rgba(15,15,15,0) 0%, rgba(15,15,15,.3) 100%'));
+        background-image: linear-gradient(to top, rgba(15,15,15,0) 0%, rgba(15,15,15,.3) 100%);
         height: 2px;
         position: absolute;
         width: 100%;
@@ -338,7 +339,7 @@ body {
     }
     .flex-span {
         display: block;
-        flex(1);
+        flex: 1;
     }
 }
 
@@ -346,7 +347,7 @@ body {
     // TODO: get rid of this media query.
     .site-header {
         .search {
-            flex(1);
+            flex: 1;
             width: auto;
         }
     }
