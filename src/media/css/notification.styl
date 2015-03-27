@@ -16,16 +16,16 @@
     right: 0;
     // If this duration is increased update the duration in notification.js
     // to ensure hiding the notification only happens when transition is complete.
-    transition-duration(.3s);
+    transition-duration: .3s;
     // Using bottom here rather than translateY as the latter causes problems
     // on FF b2g (bug 886334)
-    transition-property(bottom);
+    transition-property: bottom;
     width: 100%;
     z-index: 9999;
     &.show {
         bottom: 0;
-        transition-duration(.3s);
-        transition-property(bottom);
+        transition-duration: .3s;
+        transition-property: bottom;
     }
     &.hidden {
         display: none;

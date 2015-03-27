@@ -30,9 +30,9 @@
 
 .truncated:after {
     // Fade away at the end of truncated elements.
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
     bottom: 0;
     content: '';
-    gradientTop(unquote('rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%'));
     height: 6.5em;
     left: 0;
     pointer-events: none;
@@ -64,8 +64,8 @@
         margin-top: 82px;
     }
     .detail-flex-wrap {
-        display-flex();
-        justify-content(center);
+        display: flex;
+        justify-content: center;
         position: relative;
         width: 100%;
     }
@@ -94,8 +94,8 @@
         overflow: hidden;
     }
     .secondary-header .leading {
+        background-image: linear-gradient($greyscale-white, $greyscale-light-grey);
         font-size: 24px;
-        gradient-two-color(#fff, #e1e1e1);
         line-height: 24px;
         max-width: 100%;
         padding: 15px;

@@ -39,8 +39,8 @@
     padding-bottom: 10px;
     pointer-events: none;
     position: absolute;
-    transform(unquote('translateX(-90%)'));
-    transition(unquote('all .3s cubic-bezier(.25, 1, .35, 1)'));
+    transform: translateX(-90%);
+    transition: all .3s cubic-bezier(.25, 1, .35, 1);
     top: 48px;
     visibility: hidden;
 
@@ -113,7 +113,7 @@
         visibility: visible;
     }
     .tab-categories:hover .hovercats {
-        transform(unquote('translateX(-90%)'));
+        transform: translateX(-90%);
     }
     .cat-overlay {
         width: 500px;
@@ -123,11 +123,11 @@
 
 @media (max-width: 800px) {
     .tab-categories:hover .hovercats {
-        transform(unquote('translateX(-100%)'));
+        transform: translateX(-100%);
     }
     .hovercats {
         left: 100%;
-        transform(unquote('translateX(-100%)'));
+        transform: translateX(-100%);
 
         &:after {
             left: 80%;
@@ -138,13 +138,13 @@
 @media $wide-desktop {
     /* Category drop-down menu grows at wide-desktop width. */
     .tab-categories:hover .hovercats {
-        transform(unquote('scale(1) translateX(-50%)'));
+        transform: scale(1) translateX(-50%);
         top: 48px;
     }
     .hovercats {
         left: 50%;
-        transform(unquote('scale(0) translateX(-50%)'));
-        transform-origin(top, left);
+        transform: scale(0) translateX(-50%);
+        transform-origin: top left;
         top: 38px;
 
         &:after {

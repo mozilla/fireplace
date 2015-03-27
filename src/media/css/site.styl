@@ -7,7 +7,6 @@
 @import 'lib';
 
 * {
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     //text-rendering: optimizeLegibility;
     word-wrap: break-word;
@@ -21,7 +20,6 @@ body {
     overflow-x: hidden;
     transform-origin: 50% 400px;
     transition: transform 1s;
-    -webkit-transition: -webkit-transform 1s;
 }
 
 #page {
@@ -200,17 +198,13 @@ noscript {
     }
 }
 
-@-webkit-keyframes spin {
-    from { -webkit-transform: rotate(0turn); }
-    to { -webkit-transform: rotate(1turn); }
-}
 @keyframes spin {
     from { transform: rotate(0turn); }
     to { transform: rotate(1turn); }
 }
 
 .roll {
-    animation(unquote('0.9s spin 1 steps(30)'));
+    animation: 0.9s spin 1 steps(30);
 }
 
 .region {
