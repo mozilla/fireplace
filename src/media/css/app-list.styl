@@ -11,6 +11,10 @@ $desktop-tile-padding = 20px 50px;
 
 .app-list-page {
     padding: 10px 0;
+
+    &.full > div {
+        padding-top: 15px;
+    }
 }
 
 [data-page-type~=app-list] {
@@ -134,6 +138,10 @@ section.langpacks > div {
 @media $base-desktop {
     .app-list-page {
         padding: 0;
+
+        &.full > div {
+            padding-top: 30px;
+        }
     }
     .app-list {
         max-width: $desktop-content;
@@ -166,7 +174,7 @@ section.langpacks > div {
         }
     }
     .app-list-app {
-        width: (100/3)%;
+        width: (100 / 3)%;
 
         &:nth-child(2n),
         &:nth-child(2n + 1) {
