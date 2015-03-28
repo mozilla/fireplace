@@ -10,6 +10,12 @@ define('navbar',
     var NAV_SETTINGS_BASE_OFFSET = 0;
     var NAV_LINK_VISIBLE_WIDTH = 50;
 
+    if (settings.mktNavEnabled) {
+        return {
+            render: function() {}
+        };
+    }
+
     function initNavbarButtons() {
         // Navbar settings + Marketplace buttons.
         var $mktNav = $('.nav-mkt');
@@ -270,6 +276,6 @@ define('navbar',
     z.win.on('resize', _.debounce(render, 100));
 
     return {
-        'render': render,
+        render: render,
     };
 });

@@ -14,7 +14,7 @@ define('views/category',
             builder.z('title', name);
         }
 
-        builder.z('type', 'leaf');
+        builder.z('type', 'leaf category');
         builder.z('show_cats', true);
         builder.z('cat', slug);
 

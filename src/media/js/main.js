@@ -3,9 +3,7 @@
     Only put initialization code in here. Everything else should go into
     separate and appropriate modules. This is not your diaper.
 */
-console.log('Mozilla(R) FP-MKT (R) 1.0');
-console.log('   (C)Copyright Mozilla Corp 1998-2015');
-console.log('');
+console.log('Mozilla(R) FP-MKT (R) 2.0');
 console.log('64K High Memory Area is available.');
 
 define('main', ['init'], function(init) {
@@ -13,22 +11,24 @@ var startTime = performance.now();
 init.done(function() {
 require(
     [// Modules actually used in main.
-     'apps', 'core/cache', 'core/capabilities', 'core/format', 'core/log',
-     'core/navigation', 'core/nunjucks', 'core/requests', 'core/settings',
-     'core/site_config', 'core/l10n', 'core/urls', 'core/utils', 'core/user',
-     'core/z', 'consumer_info', 'jquery', 'newsletter', 'regions', 'rewriters',
-     'underscore', 'update_banner', 'user_helpers', 'utils_local',
+     'apps', 'categories', 'core/cache', 'core/capabilities', 'core/format',
+     'core/log', 'core/navigation', 'core/nunjucks', 'core/requests',
+     'core/settings', 'core/site_config', 'core/l10n', 'core/urls',
+     'core/utils', 'core/user', 'core/z', 'consumer_info', 'jquery',
+     'newsletter', 'regions', 'underscore', 'update_banner', 'user_helpers',
+     'utils_local',
      // Modules we require to initialize global stuff.
-     'apps_buttons', 'app_list', 'content-ratings', 'core/forms', 'flipsnap',
-     'image-deferrer-mkt', 'core/login', 'core/models', 'marketplace-elements',
-     'navbar', 'overlay', 'perf_events', 'perf_helper', 'previews', 'reviews',
-     'startup_errors', 'tracking_events', 'views/feedback', 'views/search',
-     'webactivities'],
-    function(apps, cache, caps, format, log,
-             navigation, nunjucks, requests, settings,
-             siteConfig, l10n, urls, utils, user,
-             z, consumerInfo, $, newsletter, regions, rewriters,
-             _, updateBanner, userHelpers, utilsLocal) {
+     'apps_buttons', 'app_list', 'content-ratings', 'core/forms',
+     'elements/nav', 'flipsnap', 'header_footer', 'image-deferrer-mkt',
+     'core/login', 'core/models', 'marketplace-elements', 'navbar', 'overlay',
+     'perf_events', 'perf_helper', 'previews', 'reviews', 'startup_errors',
+     'tracking_events', 'views/feedback', 'views/search', 'webactivities'],
+    function(apps, categories, cache, caps, format,
+             log, navigation, nunjucks, requests,
+             settings, siteConfig, l10n, urls,
+             utils, user, z, consumerInfo, $,
+             newsletter, regions, _, updateBanner, userHelpers,
+             utilsLocal) {
     'use strict';
     var logger = log('mkt');
 
@@ -79,18 +79,9 @@ require(
         }, false);
     }
 
-    // Do some last minute template compilation.
     z.page.on('reload_chrome', function() {
+        // Do some last minute template compilation.
         logger.log('Reloading chrome');
-        var context = {
-            user_region: userHelpers.region('restofworld'),
-            z: z
-        };
-        _.extend(context, newsletter.context());
-        $('#site-header').html(
-            nunjucks.env.render('header.html', context));
-        $('#site-footer').html(
-            nunjucks.env.render('footer.html', context));
 
         if (!caps.webApps && !navigator.userAgent.match(/googlebot/i)) {
             if (!document.getElementById('incompatibility-banner')) {

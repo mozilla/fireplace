@@ -1,0 +1,413 @@
+/*
+    Marketplace Nav.
+
+    - Adapted from mozilla/marketplace-style-guide which runs on a separate
+      Stylus codebase.
+    - Styles put here should be agnostic such that it can be re-used for
+      other Marketplace frontend projects. For Fireplace, additional components
+      such as Search, Platform Filtering, User Settings, etc, should be placed
+      in a project-specific stylesheet. But upstream stuff here if it's
+      generic enough.
+
+    Image URLs currently assume development. Turn them all to ../ when we're
+    ready.
+*/
+@import ('lib');
+
+$color--nav--child-bg = #1A95FC;
+$color--nav--child-hover = #40ADFF;
+$color--nav--child-border = darken($color--nav--child-bg, 25%);
+$color--nav--child-back = #28A0FC;
+$color--nav--child-back-border = darken($color--nav--child-back, 25%);
+$color--nav--root-link = #333;
+$color--nav--gradient = linear-gradient(0deg, #9E1455, #601E78, #052659);
+$nav--header-height = 60px;
+$nav--subnav-to-shift = 'mkt-nav-root';
+$nav--transition = 'transform cubic-bezier(0.455, 0.03, 0.515, 0.955) 250ms';
+$nav--to-shift = '#site-header, main, $site-footer';
+$nav--width = 260px;
+$zindex--nav-hamburger-child = 20;
+$zindex--nav-hamburger-root = 30;
+$zindex--main = 50;
+$zindex--nav-normal-child = 60;
+$zindex--header = 70;
+$zindex--nav-normal-root = 70;
+$zindex--page-overlay = 100;
+
+image-replacement(src, width, height) {
+    background: url(src) no-repeat 0 0;
+    background-size: width height;
+    display: inline-block;
+    height: height;
+    overflow: hidden;
+    text-indent: -999em;
+    width: width;
+}
+
+#page {
+    min-height: 480px;
+}
+
+#page:after {
+    // Disable main content interaction when nav is visible.
+    content: '';
+    left: 0;
+    height: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity cubic-bezier(0.455, 0.03, 0.515, 0.955) 250ms;
+    width: 100%;
+    z-index: $zindex--page-overlay;
+}
+
+[data-mkt-nav--enabled] {
+    // TODO: move these to respective stylesheets when we flip the switch.
+    padding-top: 0;
+
+    &.mkt-nav--visible {
+        // Disable scroll on main content when nav is visible.
+        overflow-y: hidden;
+    }
+    &.mkt-nav--visible #page {
+        position: relative;
+
+        &:after {
+            background: rgba($greyscale-dark-grey, .8);
+            height: 100%;
+            opacity: 1;
+        }
+    }
+    .site-header {
+        border-bottom: 0;
+    }
+    .site-header .site {
+        width: auto;
+    }
+    main {
+        background: $greyscale-light-grey;
+        z-index: $zindex--main;
+    }
+    main,
+    #site-header {
+        transition: unquote('transform cubic-bezier(0.86, 0, 0.07, 1) 333ms');
+    }
+    &[data-page-type~="leaf"] #site-header {
+        .hamburger {
+            display: none;
+        }
+    }
+}
+
+mkt-nav {
+    display: none;
+    font-size: 18px;
+    height: 100%;
+    left: 0;
+    overflow-y: scroll;
+    position: fixed;
+    top: 0;
+    transition: unquote($nav--transition);
+    width: 260px;
+}
+
+mkt-nav-root,
+mkt-nav-child {
+    display: block;
+    height: 100%;
+    left: 0;
+    list-style: none inside;
+    overflow-y: scroll;
+    position: fixed;
+    top: 0;
+    width: 260px;
+}
+
+mkt-nav-root {
+    background: url(../img/nav/full-white.svg) no-repeat 30px 30px / 182px 35px,
+                $color--nav--gradient;
+    height: 100%;
+    padding: 75px 30px 30px 21px;
+    transition: unquote($nav--transition);
+    z-index: $zindex--nav-hamburger-root;
+
+    &:after {
+        background: rgba($greyscale-black, .25);
+        content: '';
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 2px;
+        z-index: $zindex--nav-hamburger-root;
+    }
+    .mkt-nav--active {
+        background: $color--nav--child-bg;
+        color: $greyscale-white;
+    }
+}
+
+mkt-nav-child {
+    background: $color--nav--child-bg;
+    border-right: 2px solid $color--nav--child-border;
+    display: none;
+    padding: $nav--header-height 30px 30px;
+    z-index: $zindex--nav-hamburger-child;
+
+    .mkt-nav--active {
+        background: $greyscale-white;
+        color: $color--nav--child-bg;
+    }
+}
+
+.mkt-nav--item {
+    margin: 25px 0;
+}
+
+.mkt-nav--link {
+    border-radius: 5px;
+    color: $greyscale-white;
+    font-weight: 300;
+    line-height: 1;
+    padding: 9px 9px 6px;
+}
+
+.mkt-nav--back {
+    background: $color--nav--child-back;
+    border: 2px solid $color--nav--child-back-border;
+    border-width: 0 2px 0 0;
+    cursor pointer
+    display: block;
+    height: $nav--header-height;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    padding-top: $nav--header-height;
+    top: 0;
+    width: $nav--width;
+    z-index: $zindex--nav-hamburger-child;
+
+    &:before {
+        content: url(../img/nav/back.svg);
+        height: 25px;
+        position: absolute;
+        top: (($nav--header-height - 25px) / 2);
+        right: 15px;
+        width: 25px
+    }
+}
+
+{$nav--to-shift} {
+    transform: translateX(0);
+}
+
+{$nav--subnav-to-shift} {
+    transform: translateX(0);
+}
+
+[data-mkt-nav--enabled] #site-header {
+    align-items: center;
+    background: $color--header--background;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: 60px;
+    padding: 0 5px;
+    position: relative;
+    z-index: $zindex--header;
+
+    h1 {
+        align-items: center;
+        display: flex;
+        height: 50px;
+        order: 2;
+    }
+    // Marketplace logo.
+    .wordmark {
+        image-replacement('../img/nav/rocket-color.svg', 26px, 40px);
+    }
+    // Project name, appearing to the right of the Marketplace logo.
+    .site-name {
+        border-left: 1px solid $color--header--separator;
+        color: $color--header--site-name;
+        display: none;
+        font-size: 16px;
+        font-weight: 300;
+        margin-left: 8px;
+        padding: 4px 0 4px 12px;
+        position: relative;
+        top 1px;  // Aligns baseline the wordmark's baseline;
+    }
+    // Hamburger icon that toggles the menu visibility at smaller screen sizes.
+    .hamburger {
+        image-replacement('../img/nav/menu.svg', 40px, 40px);
+        background-position: 0 0;
+        background-size: 40px 140px;
+        appearance: none;
+        border: 0;
+        cursor: pointer;
+        display: inline-block;
+        left: 5px;
+        order: 1;
+        position: relative;
+
+        &:hover {
+            background-position: 0 -50px;
+        }
+        &:active {
+            background-position: 0 -100px;
+        }
+    }
+    .shim {
+        display: inline-block;
+        order: 3;
+        width: 40px;
+    }
+}
+
+.mkt-nav--visible {
+    main,
+    #site-header {
+        transform: translateX(260px);
+    }
+    {$nav--to-shift} {
+        transform: translateX($nav--width);
+    }
+    #site-header .hamburger {
+        background-position: 0 -100px;
+    }
+    mkt-nav {
+        display: inline;
+    }
+    mkt-nav-child {
+        display: block;
+    }
+}
+
+.mkt-nav--subnav-visible {
+    {$nav--subnav-to-shift} {
+        transform: translateX($nav--width);
+    }
+}
+
+@media $wide-tablet {
+    [data-mkt-nav--enabled].mkt-nav--visible {
+        overflow-y: auto;
+    }
+    [data-mkt-nav--enabled].mkt-nav--visible #page:after {
+        display: none;
+    }
+    [data-mkt-nav--enabled] #site-header {
+        min-height: 60px;
+        padding: 0 20px;
+
+        .hamburger {
+            display: none;
+            order: 3;
+        }
+    }
+    mkt-nav {
+        display: inline;
+        font-size: 16px;
+        position: static;
+
+        .mkt-nav--item {
+            margin: 0;
+        }
+        .mkt-nav--home,
+        .mkt-nav--back {
+            display: none;
+        }
+    }
+    mkt-nav-root,
+    mkt-nav-child {
+        align-items: center;
+        flex-wrap: wrap;
+        display: flex;
+        height: $nav--header-height;
+        justify-content: center;
+        width: 100%;
+
+        &:after {
+            display: none;
+        }
+        .mkt-nav--item {
+            margin: 0 20px;
+        }
+    }
+    mkt-nav-root {
+        background: transparent;
+        border: none;
+        margin-bottom: -1 * $nav--header-height
+        left 7%;
+        padding: 10px 0;
+        position: relative;
+        top: -1 * $nav--header-height
+        width: 86%;
+        z-index: $zindex--nav-normal-root;
+
+        .mkt-nav--link {
+            color: $color--nav--root-link;
+            transition: unquote('background-color .05s linear, color .05s linear');
+
+            &:hover,
+            &.mkt-nav--showing-child {
+                background-color: $color--nav--child-hover;
+                color: $greyscale-white;
+                text-decoration: none;
+            }
+            &.mkt-nav--active {
+                background: $color--nav--child-bg;
+                color: $greyscale-white;
+            }
+        }
+    }
+    mkt-nav-child {
+        display: flex;
+        height: auto;
+        left: 0;
+        min-height: $nav--header-height;
+        padding: 10px 5%;
+        position: absolute;
+        visibility: hidden;
+        top: $nav--header-height;
+        transform: translateY(-100%);
+        transition: unquote($nav--transition);
+        z-index: $zindex--nav-normal-child;
+
+        .mkt-nav--item {
+            margin: 10px 20px;
+        }
+        .mkt-nav--link.active {
+            background: $greyscale-white;
+        }
+    }
+    {$nav--to-shift} {
+        transform: translateX(8);
+    }
+    {$nav--subnav-to-shift} {
+        transform: translateX(0);
+    }
+    .mkt-nav--visible {
+        {$nav--to-shift} {
+            transform: translateX(0);
+        }
+        mkt-nav-child {
+            display: flex;
+            visibility: visible;
+        }
+    }
+    .mkt-nav--subnav-visible {
+        mkt-nav-root .mkt-nav--link.mkt-nav--active {
+            background: transparent;
+            color: $color--nav--root-link;
+        }
+        {$nav--subnav-to-shift} {
+            transform: translateX(0);
+        }
+        mkt-nav-child.mkt-nav--visible {
+            transform: translateY(0);
+        }
+    }
+}
