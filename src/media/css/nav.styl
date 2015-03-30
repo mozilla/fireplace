@@ -92,15 +92,12 @@ image-replacement(src, width, height) {
     #site-header {
         transition: unquote('transform cubic-bezier(0.86, 0, 0.07, 1) 333ms');
     }
-    &[data-page-type~="leaf"] #site-header {
-        .hamburger {
-            display: none;
-        }
+    &[data-page-type~="leaf"] #site-header .hamburger {
+        display: none;
     }
 }
 
 mkt-nav {
-    display: none;
     font-size: 18px;
     height: 100%;
     left: 0;
@@ -181,12 +178,15 @@ mkt-nav-child {
     height: $nav--header-height;
     left: 0;
     overflow: hidden;
-    position: fixed;
     padding-top: $nav--header-height;
+    position: fixed;
     top: 0;
     width: $nav--width;
     z-index: $zindex--nav-hamburger-child;
 
+    &:active:not([disabled]) {
+        background: $color--nav--child-back;
+    }
     &:before {
         content: url(../img/nav/back.svg);
         height: 25px;
@@ -276,9 +276,6 @@ mkt-nav-child {
     }
     #site-header .hamburger {
         background-position: 0 -100px;
-    }
-    mkt-nav {
-        display: inline;
     }
     mkt-nav-child {
         display: block;
