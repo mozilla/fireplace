@@ -57,6 +57,7 @@ define('previews',
         }
 
         // Create bars.
+        var numBars = calcNumBars(tray);
         var $bars = initializeBars(tray);
 
         // Set the width of the tray.
@@ -72,13 +73,15 @@ define('previews',
 
         if (numPreviews > 2) {
             // FlipSnap it.
-            var slider = Flipsnap($previewsContent[0],
-                                  {distance: previewWidth});
+            var slider = Flipsnap($previewsContent[0], {
+                distance: previewWidth,
+                maxPoint: numBars - 1
+            });
 
             // Store sliders and trays for later use.
             // Keep track of the scroll subtract to use for button states.
             slider.tray = tray;
-            slider.numBars = calcNumBars(tray);
+            slider.numBars = numBars;
             tray.slider = slider;
             sliders.push(slider);
 
