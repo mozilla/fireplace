@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18T16:02:55.276Z\n"
+"POT-Creation-Date: 2015-03-30T21:00:09.203Z\n"
 "PO-Revision-Date: 2015-03-25 15:33+0000\n"
 "Last-Translator: Francesco <francesco.lodolo@mozillaitalia.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,16 +14,17 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1427297595.0\n"
 
-#: /templates/compat_filter.html:3
-msgid "Show"
-msgstr "Wone"
-
-#: /templates/category.html:7
-#: /templates/purchases.html:7
-#: /templates/search.html:20
-#: /templates/app_list.html:7
+#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:20
 msgid "Expand"
 msgstr "Lemmi"
+
+#: /templates/app_list.html:34 /templates/app_list.html:39
+msgid "No apps found."
+msgstr "Gisul benn jëfekaay."
+
+#: /templates/app_list.html:41 /templates/category.html:39 /templates/langpacks.html:41 /templates/purchases.html:36
+msgid "An internal server error occurred. Please try again later."
+msgstr "Am na njuumate cëraakon. Jéemaatal ci kanam."
 
 #: /templates/category.html:32
 msgid "No apps in this category"
@@ -33,91 +34,17 @@ msgstr "Amul benn jëfekaay ci wàll wii"
 msgid "The category you requested does not exist."
 msgstr "Wàll wi ngay sàkku amu fi."
 
-#: /templates/category.html:39
-#: /templates/langpacks.html:41
-#: /templates/purchases.html:36
-#: /templates/app_list.html:41
-msgid "An internal server error occurred. Please try again later."
-msgstr "Am na njuumate cëraakon. Jéemaatal ci kanam."
-
-#: /templates/confirmation.html:0
-msgid "Close"
-msgstr "Tëj"
-
-#: /templates/confirmation.html:3
-msgid "No"
-msgstr "Déedet"
-
-#: /templates/confirmation.html:4
-msgid "Yes"
-msgstr "Waaw"
+#: /templates/compat_filter.html:3
+msgid "Show"
+msgstr "Wone"
 
 #: /templates/desktop-promo.html:2
 msgid "Previous"
 msgstr "Li weesu"
 
-#: /templates/desktop-promo.html:14
+#: /templates/desktop-promo.html:16
 msgid "Next"
 msgstr "Li ci topp"
-
-#: /templates/footer.html:6
-#: /templates/nav.html:31
-#: /templates/_includes/settings_hover_desktop.html:16
-#: /media/js/views/feedback.js:56
-msgid "Feedback"
-msgstr "Wax sa xalaat"
-
-#: /templates/footer.html:9
-#: /templates/footer.html:13
-#: /templates/footer.html:17
-msgid "Support"
-msgstr "Ndimbal"
-
-#: /templates/footer.html:20
-msgid "Develop Apps"
-msgstr "Defar Jëfekaay"
-
-#: /templates/footer.html:22
-#: /templates/_includes/settings_hover_desktop.html:14
-msgid "My Submissions"
-msgstr "Yi ma Dugal"
-
-#: /templates/footer.html:25
-#: /templates/settings.html:72
-msgid "Reviewer Tools"
-msgstr "Jumtukaayi Jàngatkat"
-
-#: /templates/footer.html:28
-msgid "Lookup Tool"
-msgstr "Jumtukaayu Seet"
-
-#: /templates/footer.html:34
-msgid "Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike License v3.0</a> or any later version."
-msgstr ""
-"Ba mu des <a href=\"{legal_url}\" target=\"_blank\">bi ñu wax</a>, ëmbiit li ci "
-"dal bii dafa am sañ-sañu <a href=\"{cc_url}\" target=\"_blank\">Creative Commons "
-"Attribution Share-Alike License v3.0</a> walla beneen sumb bu ci topp."
-
-#: /templates/footer.html:39
-#: /templates/privacy.html:2
-#: /templates/settings.html:68
-#: /templates/app/privacy.html:2
-#: /templates/app/index.html:117
-#: /media/js/views/privacy.js:10
-#: /media/js/views/app/privacy.js:7
-msgid "Privacy Policy"
-msgstr "Sàrti Sutura"
-
-#: /templates/footer.html:40
-#: /templates/settings.html:69
-#: /templates/terms.html:2
-#: /media/js/views/terms.js:10
-msgid "Terms of Use"
-msgstr "Sàrti Jëfandikoo"
-
-#: /templates/footer.html:42
-msgid "Report Trademark Abuse"
-msgstr "Nettali Ëppal ci Turu-liggéey"
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -127,16 +54,11 @@ msgstr "Bëgg nanu di am say xibaar!"
 msgid "Give us your feedback. Let us know whether we are awesome or buggy."
 msgstr "Wax nu say xalaat. Wax nu ndax nu ngi jaarale mbir yi yoon am déet."
 
-#: /templates/feedback.html:7
-#: /templates/app/abuse.html:7
+#: /templates/feedback.html:7 /templates/app/abuse.html:7
 msgid "Let us know..."
 msgstr "Wax nu rek..."
 
-#: /templates/feedback.html:11
-#: /templates/newsletter.html:36
-#: /templates/app/abuse.html:12
-#: /templates/ratings/add.html:30
-#: /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:30 /templates/ratings/flag.html:17
 msgid "Cancel"
 msgstr "Bàyyi"
 
@@ -144,38 +66,80 @@ msgstr "Bàyyi"
 msgid "Submit Feedback"
 msgstr "Joxeel sa Xalaat"
 
-#: /templates/feedback.html:28
-#: /templates/feedback.html:31
+#: /templates/feedback.html:28 /templates/feedback.html:31
 msgid "Get Help"
 msgstr "Wut Ndimbal"
 
-#: /templates/header.html:1
-#: /templates/header.html:2
+#: /templates/footer.html:6 /templates/nav.html:31 /templates/_includes/settings_hover_desktop.html:16 /media/js/views/feedback.js:56
+msgid "Feedback"
+msgstr "Wax sa xalaat"
+
+#: /templates/footer.html:9 /templates/footer.html:13 /templates/footer.html:17
+msgid "Support"
+msgstr "Ndimbal"
+
+#: /templates/footer.html:20
+msgid "Develop Apps"
+msgstr "Defar Jëfekaay"
+
+#: /templates/footer.html:22 /templates/_includes/settings_hover_desktop.html:14
+msgid "My Submissions"
+msgstr "Yi ma Dugal"
+
+#: /templates/footer.html:25 /templates/settings.html:72
+msgid "Reviewer Tools"
+msgstr "Jumtukaayi Jàngatkat"
+
+#: /templates/footer.html:28
+msgid "Lookup Tool"
+msgstr "Jumtukaayu Seet"
+
+#: /templates/footer.html:34
+msgid ""
+"Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
+"Alike License v3.0</a> or any later version."
+msgstr ""
+"Ba mu des <a href=\"{legal_url}\" target=\"_blank\">bi ñu wax</a>, ëmbiit li ci dal bii dafa am sañ-sañu <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike License "
+"v3.0</a> walla beneen sumb bu ci topp."
+
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:68 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
+#: /media/js/views/app/privacy.js:7
+msgid "Privacy Policy"
+msgstr "Sàrti Sutura"
+
+#: /templates/footer.html:40 /templates/settings.html:69 /templates/terms.html:2 /media/js/views/terms.js:10
+msgid "Terms of Use"
+msgstr "Sàrti Jëfandikoo"
+
+#: /templates/footer.html:42
+msgid "Report Trademark Abuse"
+msgstr "Nettali Ëppal ci Turu-liggéey"
+
+#: /templates/header.html:7 /templates/header.html:8 /templates/header.html:16 /templates/header.html:17
 msgid "Back"
 msgstr "Dellu"
 
-#: /templates/header.html:13
+#: /templates/header.html:11
+msgid "Toggle Menu"
+msgstr ""
+
+#: /templates/header.html:28
 msgid "Search"
 msgstr "Seet"
 
-#: /templates/header.html:18
+#: /templates/header.html:33
 msgid "Search the Marketplace"
 msgstr "Seetal Marketplace bi"
 
-#: /templates/header.html:20
-#: /templates/header.html:20
+#: /templates/header.html:35
 msgid "Clear"
 msgstr "Faase"
 
-#: /templates/header.html:26
-#: /templates/purchases.html:44
-#: /templates/settings.html:41
+#: /templates/header.html:41 /templates/purchases.html:44 /templates/settings.html:41
 msgid "Sign In"
 msgstr "Dugg"
 
-#: /templates/header.html:27
-#: /templates/purchases.html:43
-#: /templates/settings.html:40
+#: /templates/header.html:42 /templates/purchases.html:43 /templates/settings.html:40
 msgid "Register"
 msgstr "Bindu"
 
@@ -183,65 +147,47 @@ msgstr "Bindu"
 msgid "More to Explore"
 msgstr "Gis ci Yeneen Mbir"
 
+#: /templates/langpacks.html:34 /templates/langpacks.html:39
+msgid "No language packs found."
+msgstr "Gisul benn limu làkk."
+
 #: /templates/marketplace-update.html:2
 msgid "An update to Marketplace is available."
 msgstr "Ab yeesal ci Marketplace jàppandi na."
 
-#: /templates/marketplace-update.html:4
-#: /templates/incompatible.html:2
+#: /templates/marketplace-update.html:4 /templates/incompatible.html:2
 msgid "Download"
 msgstr "Yebbi"
 
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Danga war a jëfandikoo Firefox ngir samp jëfekaayi Firefox."
-
-#: /templates/langpacks.html:34
-#: /templates/langpacks.html:39
-msgid "No language packs found."
-msgstr "Gisul benn limu làkk."
-
-#: /templates/nav.html:7
-#: /templates/_includes/settings_hover_desktop.html:2
-msgid "Settings"
-msgstr "Jekkal yi"
-
-#: /templates/nav.html:14
+#: /templates/mkt_nav.html:12 /templates/nav.html:14
 msgid "Home"
 msgstr "Ëtt"
 
-#: /templates/nav.html:15
-#: /templates/_includes/app_list_filters.html:11
-#: /media/js/views/new.js:8
-msgid "New"
-msgstr "Bees"
-
-#: /templates/nav.html:16
-#: /templates/_includes/app_list_filters.html:6
-#: /media/js/views/popular.js:9
+#: /templates/mkt_nav.html:13 /templates/nav.html:16 /templates/_includes/app_list_filters.html:6 /media/js/views/popular.js:9
 msgid "Popular"
 msgstr "Yu siiw yi"
 
-#: /templates/nav.html:17
-#: /media/js/views/recommended.js:15
+#: /templates/mkt_nav.html:14 /templates/nav.html:15 /templates/_includes/app_list_filters.html:11 /media/js/views/new.js:8
+msgid "New"
+msgstr "Bees"
+
+#: /templates/mkt_nav.html:15 /templates/nav.html:17 /media/js/views/recommended.js:15
 msgid "Recommended"
 msgstr "Yiñ digle"
 
-#: /templates/nav.html:20
-#: /templates/nav.html:21
-#: /templates/app/index.html:219
-#: /media/js/views/categories.js:9
+#: /templates/mkt_nav.html:16 /templates/nav.html:20 /templates/nav.html:21 /templates/app/index.html:219 /media/js/views/categories.js:9
 msgid "Categories"
 msgstr "Wàll yi"
+
+#: /templates/nav.html:7 /templates/_includes/settings_hover_desktop.html:2
+msgid "Settings"
+msgstr "Jekkal yi"
 
 #: /templates/nav.html:29
 msgid "My Account"
 msgstr "Sama Sàq"
 
-#: /templates/nav.html:30
-#: /templates/purchases.html:6
-#: /templates/_includes/settings_hover_desktop.html:12
-#: /media/js/views/purchases.js:10
+#: /templates/nav.html:30 /templates/purchases.html:6 /templates/_includes/settings_hover_desktop.html:12 /media/js/views/purchases.js:10
 msgid "My Apps"
 msgstr "Samay Jëfekaay"
 
@@ -261,16 +207,13 @@ msgstr "Wut xibaari Firefox! Bindul ci sunu bataaxalu-xibaar"
 msgid "Email"
 msgstr "Bataaxal"
 
-#: /templates/newsletter.html:8
-#: /templates/newsletter.html:35
+#: /templates/newsletter.html:8 /templates/newsletter.html:35
 msgid "Sign me up"
 msgstr "Bind ma"
 
 #: /templates/newsletter.html:30
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
-msgstr ""
-"Ànd naa ci Mozilla di jëfandikoo samay leeral ci anam wi ñu wax ci <a "
-"href=\"{privacy_policy_url}\" target=\"_blank\">bii Sàrtu Sutura</a>."
+msgstr "Ànd naa ci Mozilla di jëfandikoo samay leeral ci anam wi ñu wax ci <a href=\"{privacy_policy_url}\" target=\"_blank\">bii Sàrtu Sutura</a>."
 
 #: /templates/newsletter.html:42
 msgid "Thanks for signing up!"
@@ -278,9 +221,19 @@ msgstr "Jërëjëf ci sag bindu!"
 
 #: /templates/newsletter.html:43
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
-msgstr ""
-"Dinga jot bataaxal bu bawoo mozilla@e.mozilla.org, seetal sa boyetu bataaxal "
-"ngir bataaxal biñu la njëkk a yónnee. Soo ko gisul, nga seet ci spam yi."
+msgstr "Dinga jot bataaxal bu bawoo mozilla@e.mozilla.org, seetal sa boyetu bataaxal ngir bataaxal biñu la njëkk a yónnee. Soo ko gisul, nga seet ci spam yi."
+
+#: /templates/confirmation.html:0 /media/js/lib/marketplace-elements.js:106
+msgid "Close"
+msgstr "Tëj"
+
+#: /templates/confirmation.html:3
+msgid "No"
+msgstr "Déedet"
+
+#: /templates/confirmation.html:4
+msgid "Yes"
+msgstr "Waaw"
 
 #: /templates/purchases.html:42
 msgid "You must be signed in to view your apps."
@@ -290,10 +243,7 @@ msgstr "Danga war a dugg ngir wone say jëfekaay."
 msgid "You have no apps"
 msgstr "Amoo benn jëfekaay"
 
-#: /templates/purchases.html:35
-#: /templates/errors/404.html:8
-#: /templates/errors/fragment.html:1
-#: /media/js/views/app.js:56
+#: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:56
 msgid "Oh no!"
 msgstr "Déet waay!"
 
@@ -317,8 +267,7 @@ msgstr "Gisul benn njuréef"
 msgid "No results found, try again later"
 msgstr "Gisul benn njuréef, jéemaatal ci kanam"
 
-#: /templates/settings.html:2
-#: /media/js/views/settings.js:54
+#: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
 msgstr "Jekkali Sàq"
 
@@ -340,9 +289,7 @@ msgstr "Digal yi"
 
 #: /templates/settings.html:28
 msgid "Yes, show me recommendations based on my installed apps. <a href=\"{url}\" target=\"_blank\">Learn more</a>"
-msgstr ""
-"Waaw, won ma ndigal yi aju ci jëfekaay yi ma samp. <a href=\"{url}\" "
-"target=\"_blank\">Yeneen leeral</a>"
+msgstr "Waaw, won ma ndigal yi aju ci jëfekaay yi ma samp. <a href=\"{url}\" target=\"_blank\">Yeneen leeral</a>"
 
 #: /templates/settings.html:33
 msgid "Region"
@@ -352,8 +299,7 @@ msgstr "Diwaan"
 msgid "Save Changes"
 msgstr "Denc Coppite yi"
 
-#: /templates/settings.html:42
-#: /templates/_includes/settings_hover_desktop.html:17
+#: /templates/settings.html:42 /templates/_includes/settings_hover_desktop.html:17
 msgid "Sign Out"
 msgstr "Génn"
 
@@ -373,8 +319,7 @@ msgstr "Bindu ci sunu bataaxalu-xibaar."
 msgid "Get Involved"
 msgstr "Bokk Ci"
 
-#: /templates/usage.html:3
-#: /media/js/views/usage.js:9
+#: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "Xaymay Jëfekaay"
 
@@ -386,10 +331,76 @@ msgstr "Xaymay jëfandikoog jëfekaay"
 msgid "Not enough statistics to show."
 msgstr "Amul xayma yu doy yu muy wone."
 
-#: /templates/app_list.html:34
-#: /templates/app_list.html:39
-msgid "No apps found."
-msgstr "Gisul benn jëfekaay."
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Jàngat"
+msgstr[1] "Jàngat yi"
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "Jàngatagu ñu ko"
+
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Danga war a jëfandikoo Firefox ngir samp jëfekaayi Firefox."
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "Wone jëfekaay yépp"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:15
+msgid "Unavailable"
+msgstr "Jàppandiwul"
+
+#: /templates/_macros/market_button.html:17
+msgid "Free"
+msgstr "Maye"
+
+#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
+msgid "Installed"
+msgstr "Sampu na"
+
+#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
+msgid "Install"
+msgstr "Samp"
+
+#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
+msgid "Open"
+msgstr "Ubbi"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Yab yeneen mbir"
+
+#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
+msgid "{app_name} screenshot"
+msgstr "nataalu seetub {app_name}"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Ngir sumbu {version} yi weesu"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Soppali"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Far"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Nettali"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Am na raaya jàngat"
 
 #: /templates/_includes/app_list_filters.html:16
 msgid "Display as"
@@ -415,9 +426,7 @@ msgstr "Leerali Natt gi"
 
 #: /templates/_includes/os_x_banner.html:2
 msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr ""
-"Say jekkali Mac mën nañu la teree samp jëfekaay yi jogeewul ci Mac App "
-"Store."
+msgstr "Say jekkali Mac mën nañu la teree samp jëfekaay yi jogeewul ci Mac App Store."
 
 #: /templates/_includes/os_x_banner.html:5
 msgid "Learn how to change them."
@@ -433,15 +442,11 @@ msgstr "Taaleel jëfekaay bii ci sa barabu <b>Jëfekaay yi</b>."
 
 #: /templates/_includes/post_install_message.html:8
 msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr ""
-"Taaleel jëfekaay bi ci sa <b>biro Windows</b> walla <b>Door &#9658; Tëriin "
-"Yépp</b>."
+msgstr "Taaleel jëfekaay bi ci sa <b>biro Windows</b> walla <b>Door &#9658; Tëriin Yépp</b>."
 
 #: /templates/_includes/post_install_message.html:11
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr ""
-"Taaleel jëfekaay bi sa <b>dash</b>, <b>Tànnukaayu jëfekaay</b>, walla "
-"<b>Njëlu jëfekaay</b>."
+msgstr "Taaleel jëfekaay bi sa <b>dash</b>, <b>Tànnukaayu jëfekaay</b>, walla <b>Njëlu jëfekaay</b>."
 
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
@@ -469,63 +474,9 @@ msgid_plural "{numReviews} Reviews"
 msgstr[0] "1 Njàngat"
 msgstr[1] "{numReviews} Njàngat"
 
-#: /templates/_macros/app_tile.html:117
-#: /templates/_macros/app_tile.html:120
-msgid "{app_name} screenshot"
-msgstr "nataalu seetub {app_name}"
-
-#: /templates/_macros/app_tile.html:135
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Jàngat"
-msgstr[1] "Jàngat yi"
-
-#: /templates/_macros/app_tile.html:139
-msgid "Not yet reviewed"
-msgstr "Jàngatagu ñu ko"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:73
-#: /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "Wone jëfekaay yépp"
-
 #: /templates/_includes/settings_hover_desktop.html:10
 msgid "Edit Account Settings"
 msgstr "Soppali Jekkali Sàq"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:15
-msgid "Unavailable"
-msgstr "Jàppandiwul"
-
-#: /templates/_macros/market_button.html:17
-msgid "Free"
-msgstr "Maye"
-
-#: /templates/_macros/market_button.html:33
-#: /media/js/apps_buttons.js:319
-msgid "Installed"
-msgstr "Sampu na"
-
-#: /templates/_macros/market_button.html:35
-#: /templates/_macros/market_button.html:41
-#: /media/js/apps_buttons.js:128
-#: /media/js/apps_buttons.js:371
-msgid "Install"
-msgstr "Samp"
-
-#: /templates/_macros/market_button.html:39
-#: /media/js/apps_buttons.js:323
-msgid "Open"
-msgstr "Ubbi"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Yab yeneen mbir"
 
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
@@ -543,144 +494,16 @@ msgstr "Sudee daa am lu la jëfekaay bi yàqal, wax nu ko."
 msgid "Submit Report"
 msgstr "Dugalal Nettali bi"
 
-#: /templates/app/abuse.html:21
-#: /templates/app/index.html:252
-#: /media/js/views/app/abuse.js:51
+#: /templates/app/abuse.html:21 /templates/app/index.html:252 /media/js/views/app/abuse.js:51
 msgid "Report Abuse"
 msgstr "Nettali Ëppal"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Ngir sumbu {version} yi weesu"
-
-#: /templates/_macros/review.html:24
-#: /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Soppali"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Far"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Nettali"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "Am na raaya jàngat"
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Dellu ci jëfekaay"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Mi ngi yab Sàrti Sutura..."
-
-#: /templates/errors/404.html:9
-msgid "The page you were looking for was not found."
-msgstr "Gisu nu xët wi ñu doon seet."
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Jërëjëf ci li nga jënd"
-
-#: /templates/errors/date-error.html:2
-msgid "System Date Incorrect"
-msgstr "Taarixu Noste gi Baaxal"
-
-#: /templates/errors/date-error.html:3
-msgid "Sorry, your device clock appears to be set incorrectly."
-msgstr "Jéggalu, waxtu wi ci sa montar jaarul yoon."
-
-#: /templates/errors/date-error.html:4
-msgid "Please set today's date and time in your device settings to access the Marketplace."
-msgstr ""
-"Jéemal a jubbanti bis bi ak waxtu wi ci jekkali jëfandaay bi ngir mën a yegg "
-"ci Marketplace."
-
-#: /templates/errors/date-error.html:5
-#: /templates/errors/offline-error.html:4
-msgid "Try again"
-msgstr "Jéemaatal"
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Njuumte am na."
-
-#: /templates/errors/offline-error.html:2
-msgid "Currently Offline"
-msgstr "Nekkoo ci Internet"
-
-#: /templates/errors/offline-error.html:3
-msgid "Sorry, you need to be online to access the Marketplace."
-msgstr "Jéggalu, danga war a nekk ci internet ngir yegg ci Marketplace."
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Jéemaatal"
-
-#: /templates/ratings/add.html:8
-#: /templates/ratings/edit.html:3
-#: /media/js/views/app/ratings/edit.js:14
-msgid "Edit Review"
-msgstr "Soppali Njàngat"
-
-#: /templates/ratings/add.html:8
-#: /templates/ratings/add.html:39
-#: /media/js/views/app/ratings/add.js:22
-msgid "Leave a Review"
-msgstr "Bàyyi fi ab Njàngat"
-
-#: /templates/ratings/add.html:11
-msgid "Rate:"
-msgstr "Natt:"
-
-#: /templates/ratings/add.html:22
-msgid "Tell us what you love about this app!"
-msgstr "Wax nu li la neex ci jëfekaay bii!"
-
-#: /templates/ratings/add.html:27
-msgid "Only users that are logged in may submit reviews."
-msgstr "Jëfandikukat yi dugg rek ñoo mën a amal ay njàngat."
-
-#: /templates/ratings/add.html:31
-msgid "Update Review"
-msgstr "Yeesal Njàngat"
-
-#: /templates/ratings/add.html:31
-msgid "Submit Review"
-msgstr "Dugal Njàngat"
-
-#: /templates/ratings/flag.html:3
-#: /templates/ratings/flag.html:26
-msgid "Flag Review"
-msgstr "Def raaya Njàngat"
-
-#: /templates/ratings/flag.html:4
-msgid "See an issue with this review? Select a reason below."
-msgstr "Danga gis jafe-jafe ci njàngat bii? Tànnal fii li ko waral."
-
-#: /templates/ratings/flag.html:7
-msgid "Spam or otherwise non-review content"
-msgstr "Spam walla yeneen ëmbiit yu amul njàngat"
-
-#: /templates/ratings/flag.html:10
-msgid "Inappropriate language/dialog"
-msgstr "Boyet/làkk wu jaarul yoon"
-
-#: /templates/ratings/flag.html:13
-msgid "Misplaced bug report or support request"
-msgstr "Netalig bëg walla càkkutéefu ndimbal bu fi warul nekk"
 
 #. delimiter to separate list of words (e.g., "eggs, ham, cheese").
 #: /templates/app/index.html:62
 msgid "Description"
 msgstr "Tektal"
 
-#: /templates/app/index.html:68
-#: /templates/app/index.html:82
+#: /templates/app/index.html:68 /templates/app/index.html:82
 msgid "View All"
 msgstr "Wone Lépp"
 
@@ -720,9 +543,7 @@ msgstr "Nangu / Bañ"
 msgid "Review History"
 msgstr "Jaar-jaaru Jàngat"
 
-#: /templates/app/index.html:157
-#: /templates/ratings/main.html:15
-#: /media/js/views/app/ratings.js:10
+#: /templates/app/index.html:157 /templates/ratings/main.html:15 /media/js/views/app/ratings.js:10
 msgid "Reviews"
 msgstr "Jàngat yi"
 
@@ -747,8 +568,7 @@ msgid "Compatibility"
 msgstr "Mën-ànd"
 
 #. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:215
-#: /templates/app/index.html:223
+#: /templates/app/index.html:215 /templates/app/index.html:223
 msgid ","
 msgstr ","
 
@@ -760,26 +580,119 @@ msgstr "Dayo Taxañ"
 msgid "Most Recent Version"
 msgstr "Sumb bi Gën a Bees"
 
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Dellu ci jëfekaay"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Mi ngi yab Sàrti Sutura..."
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Jërëjëf ci li nga jënd"
+
+#: /templates/errors/404.html:9
+msgid "The page you were looking for was not found."
+msgstr "Gisu nu xët wi ñu doon seet."
+
+#: /templates/errors/date-error.html:2
+msgid "System Date Incorrect"
+msgstr "Taarixu Noste gi Baaxal"
+
+#: /templates/errors/date-error.html:3
+msgid "Sorry, your device clock appears to be set incorrectly."
+msgstr "Jéggalu, waxtu wi ci sa montar jaarul yoon."
+
+#: /templates/errors/date-error.html:4
+msgid "Please set today's date and time in your device settings to access the Marketplace."
+msgstr "Jéemal a jubbanti bis bi ak waxtu wi ci jekkali jëfandaay bi ngir mën a yegg ci Marketplace."
+
+#: /templates/errors/date-error.html:5 /templates/errors/offline-error.html:4
+msgid "Try again"
+msgstr "Jéemaatal"
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Jéemaatal"
+
+#: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
+msgid "Edit Review"
+msgstr "Soppali Njàngat"
+
+#: /templates/ratings/add.html:8 /templates/ratings/add.html:39 /media/js/views/app/ratings/add.js:22
+msgid "Leave a Review"
+msgstr "Bàyyi fi ab Njàngat"
+
+#: /templates/ratings/add.html:11
+msgid "Rate:"
+msgstr "Natt:"
+
+#: /templates/ratings/add.html:22
+msgid "Tell us what you love about this app!"
+msgstr "Wax nu li la neex ci jëfekaay bii!"
+
+#: /templates/ratings/add.html:27
+msgid "Only users that are logged in may submit reviews."
+msgstr "Jëfandikukat yi dugg rek ñoo mën a amal ay njàngat."
+
+#: /templates/ratings/add.html:31
+msgid "Update Review"
+msgstr "Yeesal Njàngat"
+
+#: /templates/ratings/add.html:31
+msgid "Submit Review"
+msgstr "Dugal Njàngat"
+
+#: /templates/ratings/flag.html:3 /templates/ratings/flag.html:26
+msgid "Flag Review"
+msgstr "Def raaya Njàngat"
+
+#: /templates/ratings/flag.html:4
+msgid "See an issue with this review? Select a reason below."
+msgstr "Danga gis jafe-jafe ci njàngat bii? Tànnal fii li ko waral."
+
+#: /templates/ratings/flag.html:7
+msgid "Spam or otherwise non-review content"
+msgstr "Spam walla yeneen ëmbiit yu amul njàngat"
+
+#: /templates/ratings/flag.html:10
+msgid "Inappropriate language/dialog"
+msgstr "Boyet/làkk wu jaarul yoon"
+
+#: /templates/ratings/flag.html:13
+msgid "Misplaced bug report or support request"
+msgstr "Netalig bëg walla càkkutéefu ndimbal bu fi warul nekk"
+
 #: /templates/ratings/main.html:39
 msgid "This app has no reviews."
 msgstr "Jëfekaay bi amul benn njàngat."
 
-#: /templates/ratings/rating.html:4
-#: /media/js/views/app/ratings/rating.js:13
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Njàngatu Jëfekaay"
 
-#: /media/js/apps.js:106
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Njuumte am na."
+
+#: /templates/errors/offline-error.html:2
+msgid "Currently Offline"
+msgstr "Nekkoo ci Internet"
+
+#: /templates/errors/offline-error.html:3
+msgid "Sorry, you need to be online to access the Marketplace."
+msgstr "Jéggalu, danga war a nekk ci internet ngir yegg ci Marketplace."
+
+#: /media/js/apps.js:110
 msgid "Not available for your region"
 msgstr "Jàppandiwul ci sa diwaan"
 
-#: /media/js/apps.js:111
+#: /media/js/apps.js:115
 msgid "Not available for your platform"
 msgstr "Jàppandiwul ci sa yebbikaay"
 
-#: /media/js/apps_buttons.js:81
-#: /media/js/apps_buttons.js:153
-#: /media/js/payments.js:141
+#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:141
 msgid "Payment cancelled."
 msgstr "Bàyyi nañu fay gi."
 
@@ -788,8 +701,7 @@ msgstr "Bàyyi nañu fay gi."
 msgid "Purchasing"
 msgstr "Njënd"
 
-#: /media/js/apps_buttons.js:192
-#: /media/js/installer_direct.js:178
+#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr "Jéggalu, mënu nu gis njoxe jëfekaay bii. Jéemaatal ci kanam."
 
@@ -797,6 +709,46 @@ msgstr "Jéggalu, mënu nu gis njoxe jëfekaay bii. Jéemaatal ci kanam."
 #: /media/js/apps_buttons.js:237
 msgid "Install failed. Please try again later."
 msgstr "Samp gi yeggul. Jéemaatal ci kanam."
+
+#: /media/js/compat_filter.js:45
+msgid "Android Mobile"
+msgstr "Telefonu Android"
+
+#: /media/js/compat_filter.js:46
+msgid "Android Tablet"
+msgstr "Tabletu Android"
+
+#: /media/js/compat_filter.js:47
+msgid "Desktop"
+msgstr "Biro"
+
+#: /media/js/compat_filter.js:48
+msgid "Firefox OS"
+msgstr "Firefox OS"
+
+#: /media/js/compat_filter.js:51
+msgid "All Apps"
+msgstr "Jëfekaay Yépp"
+
+#: /media/js/compat_filter.js:52
+msgid "Desktop Apps"
+msgstr "Jëfekaayi Biro"
+
+#: /media/js/compat_filter.js:53
+msgid "Firefox OS Apps"
+msgstr "Jëfekaayi Firefox OS"
+
+#: /media/js/compat_filter.js:54
+msgid "Android Mobile Apps"
+msgstr "Jëfekaayi Telefonu Android"
+
+#: /media/js/compat_filter.js:55
+msgid "Android Tablet Apps"
+msgstr "Jëfekaayi Tabletu Android"
+
+#: /media/js/compat_filter.js:74
+msgid "Apps for My Device"
+msgstr "Jëfekaay ngir Sama Jëfandaay"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -870,46 +822,6 @@ msgstr "Tukki"
 msgid "Utilities"
 msgstr "Njariñal yi"
 
-#: /media/js/compat_filter.js:40
-msgid "Android Mobile"
-msgstr "Telefonu Android"
-
-#: /media/js/compat_filter.js:41
-msgid "Android Tablet"
-msgstr "Tabletu Android"
-
-#: /media/js/compat_filter.js:42
-msgid "Desktop"
-msgstr "Biro"
-
-#: /media/js/compat_filter.js:43
-msgid "Firefox OS"
-msgstr "Firefox OS"
-
-#: /media/js/compat_filter.js:46
-msgid "All Apps"
-msgstr "Jëfekaay Yépp"
-
-#: /media/js/compat_filter.js:47
-msgid "Desktop Apps"
-msgstr "Jëfekaayi Biro"
-
-#: /media/js/compat_filter.js:48
-msgid "Firefox OS Apps"
-msgstr "Jëfekaayi Firefox OS"
-
-#: /media/js/compat_filter.js:49
-msgid "Android Mobile Apps"
-msgstr "Jëfekaayi Telefonu Android"
-
-#: /media/js/compat_filter.js:50
-msgid "Android Tablet Apps"
-msgstr "Jëfekaayi Tabletu Android"
-
-#: /media/js/compat_filter.js:69
-msgid "Apps for My Device"
-msgstr "Jëfekaay ngir Sama Jëfandaay"
-
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
 msgid "For ages {0}+"
@@ -951,25 +863,25 @@ msgstr "Ñi am 17 jëm kaw"
 msgid "Adults Only 18+"
 msgstr "Ñi am 18 jëm kaw Kese"
 
-#: /media/js/desktop_promo.js:20
+#: /media/js/desktop_promo.js:19
+msgid "Enjoy curated playlists from around the world."
+msgstr ""
+
+#: /media/js/desktop_promo.js:26
 msgid "Games & Entertainment Apps—Desktop Essentials"
 msgstr "Jëfekaayi Po ak Bégal xol—Yi Am solo ci Biro"
 
-#: /media/js/desktop_promo.js:25
-msgid "Discover, share, and enjoy music with SoundCloud."
-msgstr "Gis, séddoo ak bànneexoo misik ci SoundCloud."
+#: /media/js/desktop_promo.js:31
+msgid "Play multiple versions of the classic card game."
+msgstr ""
 
-#: /media/js/desktop_promo.js:30
-msgid "Play Hex Race—a thrill ride from the future!"
-msgstr "Fowal ak Hex Race—dawal gu raglu ci amul fenn!"
-
-#: /media/js/desktop_promo.js:36
+#: /media/js/desktop_promo.js:38
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Jëfekaayi Defar—Yi Am solo ci Biro"
 
-#: /media/js/desktop_promo.js:41
-msgid "Store and share any type of file with Box."
-msgstr "Denc ak séddoo bépp xeetu taxañ ak Box."
+#: /media/js/desktop_promo.js:43
+msgid "Explore and catalog your favorite things on the web."
+msgstr ""
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1295,18 +1207,17 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "Jëfekaayu Liggéey ak Wut xaalis"
 msgstr[1] "Jëfekaayi Liggéey ak Wut xaalis"
 
-#: /media/js/helpers_local.js:116
+#: /media/js/helpers_local.js:117
 msgid "Works offline"
 msgstr "Dox gu laajul net"
-
-#: /media/js/installer_iframe.js:111
-#: /media/js/installer_direct.js:180
-msgid "App install error: {error}"
-msgstr "Njuumte sampug jëfekaay: {error}"
 
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
 msgstr "Mënul samp jëfekaay yi nekk ci boyet"
+
+#: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
+msgid "App install error: {error}"
+msgstr "Njuumte sampug jëfekaay: {error}"
 
 #: /media/js/newsletter.js:64
 msgid "There was an error submitting your newsletter sign up request"
@@ -1327,52 +1238,6 @@ msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n} biddéew"
 msgstr[1] "{n} biddéew"
-
-#: /media/js/settings_app.js:98
-msgid "English"
-msgstr "Wu àngale"
-
-#: /media/js/settings_app.js:99
-msgid "French"
-msgstr "Wu faraase"
-
-#: /media/js/settings_app.js:100
-msgid "German"
-msgstr "Wu almaañ"
-
-#: /media/js/settings_app.js:101
-msgid "Hungarian"
-msgstr "Wu ongri"
-
-#: /media/js/settings_app.js:102
-msgid "Indonesian"
-msgstr "Wu indonesi"
-
-#: /media/js/settings_app.js:103
-msgid "Polish"
-msgstr "Wu poloñ"
-
-#: /media/js/settings_app.js:104
-msgid "Portuguese"
-msgstr "Wu portigaal"
-
-#: /media/js/settings_app.js:105
-msgid "Russian"
-msgstr "Wu risi"
-
-#: /media/js/settings_app.js:106
-msgid "Spanish"
-msgstr "Wu espaañ"
-
-#: /media/js/settings_app.js:132
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "Jéggalu, nekkoo ci internet fimne nii. Jéemaatal ci kanam."
-
-#: /media/js/update_banner.js:24
-msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr ""
-"Beneen yoon sooy taal jëfekaayu Firefox Marketplace, dinga gis sumb biñ "
-"yeesal!"
 
 #. The report is an abuse report for reviews.
 #: /media/js/reviews.js:35
@@ -1399,13 +1264,7 @@ msgstr "Bind ab Jàngat"
 msgid "Sorry, there was a problem deleting the review"
 msgstr "Jéggalu, njuumte am na ci farug njàngat bi"
 
-#: /media/js/reviews.js:151
-#: /media/js/views/app.js:27
-#: /media/js/views/app.js:33
-#: /media/js/views/app.js:34
-#: /media/js/views/app.js:39
-#: /media/js/views/app.js:40
-#: /media/js/views/feed_landing.js:15
+#: /media/js/reviews.js:151 /media/js/views/app.js:27 /media/js/views/app.js:33 /media/js/views/app.js:34 /media/js/views/app.js:39 /media/js/views/app.js:40 /media/js/views/feed_landing.js:15
 msgid "Loading..."
 msgstr "Mingi yab..."
 
@@ -1425,6 +1284,194 @@ msgstr "Sa soppalig njàngat jaar na yoon"
 msgid "Sorry, there was an issue editing your review. Please try again later"
 msgstr "Jéggalu, njuumte am na ci sa soppalig njàngat. Jéemaatal ci kanam"
 
+#: /media/js/settings_app.js:92
+msgid "English"
+msgstr "Wu àngale"
+
+#: /media/js/settings_app.js:93
+msgid "French"
+msgstr "Wu faraase"
+
+#: /media/js/settings_app.js:94
+msgid "German"
+msgstr "Wu almaañ"
+
+#: /media/js/settings_app.js:95
+msgid "Hungarian"
+msgstr "Wu ongri"
+
+#: /media/js/settings_app.js:96
+msgid "Indonesian"
+msgstr "Wu indonesi"
+
+#: /media/js/settings_app.js:97
+msgid "Polish"
+msgstr "Wu poloñ"
+
+#: /media/js/settings_app.js:98
+msgid "Portuguese"
+msgstr "Wu portigaal"
+
+#: /media/js/settings_app.js:99
+msgid "Russian"
+msgstr "Wu risi"
+
+#: /media/js/settings_app.js:100
+msgid "Spanish"
+msgstr "Wu espaañ"
+
+#: /media/js/settings_app.js:112
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "Jéggalu, nekkoo ci internet fimne nii. Jéemaatal ci kanam."
+
+#: /media/js/update_banner.js:24
+msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
+msgstr "Beneen yoon sooy taal jëfekaayu Firefox Marketplace, dinga gis sumb biñ yeesal!"
+
+#: /media/js/lib/regions.js:21
+msgid "Guatemala"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Colombia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "China"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Chile"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "South Africa"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Ecuador"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Czech Republic"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Argentina"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "India"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Costa Rica"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Galicia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Spain"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Venezuela"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Nicaragua"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Serbia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Lithuania"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Panama"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Rest of World"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Peru"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Italy"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Philippines"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Poland"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Bangladesh"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "France"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Russia"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Germany"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Japan"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Hungary"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Brazil"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Greece"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Montenegro"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Uruguay"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "El Salvador"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "United States"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "United Kingdom"
+msgstr ""
+
+#: /media/js/lib/regions.js:21
+msgid "Mexico"
+msgstr ""
+
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
 msgstr "Joxe nga xaalaat. Jërëjëf!"
@@ -1441,10 +1488,6 @@ msgstr "Limi Làkk"
 msgid "Firefox OS {version}"
 msgstr "Firefox OS {version}"
 
-#: /media/js/views/search.js:166
-msgid "Search Results"
-msgstr "Seet Njuréef"
-
 #: /media/js/views/settings.js:40
 msgid "Your settings have been successfully saved"
 msgstr "Dencug say jekkal jaar na yoon"
@@ -1452,6 +1495,30 @@ msgstr "Dencug say jekkal jaar na yoon"
 #: /media/js/views/settings.js:46
 msgid "Settings could not be saved"
 msgstr "Kenn mënul denc jekkal yi"
+
+#: /media/js/views/search.js:166
+msgid "Search Results"
+msgstr "Seet Njuréef"
+
+#: /media/js/lib/marketplace-core-modules/login.js:22
+msgid "You have been signed out"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:26
+msgid "You have been signed in"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:72
+msgid "Sign in failed"
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/login.js:178
+msgid "FxA login failed. A server error was encountered."
+msgstr ""
+
+#: /media/js/lib/marketplace-core-modules/navigation.js:33
+msgid "No internet connection"
+msgstr ""
 
 #: /media/js/views/app/abuse.js:18
 msgid "Abuse report submitted. Thanks!"
@@ -1468,3 +1535,15 @@ msgstr "Duggal ngir wone rësi bi"
 #: /media/js/views/app/receipt.js:21
 msgid "Receipt"
 msgstr "Rësi"
+
+#. {n} is the number of characters left.
+#: /media/js/lib/marketplace-core-modules/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
+
+#. Page not found (404)
+#: /media/js/lib/marketplace-core-modules/views/not_found.js:9
+msgid "Not Found"
+msgstr ""
