@@ -74,9 +74,10 @@ define('previews',
         if (numPreviews > 2) {
             // FlipSnap it.
             var slider = Flipsnap($previewsContent[0], {
-                distance: previewWidth,
-                maxPoint: numBars - 1
+                distance: previewWidth
             });
+            // TODO: pass in as opts when upgrade Flipsnap.
+            slider._maxPoint = numBars > 1 ? numBars - 1 : 0;
 
             // Store sliders and trays for later use.
             // Keep track of the scroll subtract to use for button states.
@@ -149,6 +150,7 @@ define('previews',
             // Reinitialize bars.
             updatePreviewBar(initializeBars(tray), slider);
             slider.numBars = calcNumBars(tray);
+            slider._maxPoint = slider.numBars > 1 ? slider.numBars - 1 : 0;
             // Update button states.
             $(tray).trigger('previews--button-update');
         });
