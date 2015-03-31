@@ -2,6 +2,7 @@ var appList = helpers.load('app_list');
 var constants = helpers.load('constants');
 var jsuri = helpers.npm('jsuri/Uri');
 
+
 function assertSelectedDevice(test, device) {
     // Ask the module if our device filter is active.
     test.assert(casper.evaluate(function(device) {
