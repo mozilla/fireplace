@@ -14,10 +14,10 @@ define('desktop_promo',
         },
         promoItems: [
             {
-                name: '8tracks',
+                // Avoid using the number 8 since stylus doesn't agree with it.
+                name: 'eighttracks',
                 url: urls.reverse('app', ['8tracks']),
                 text: gettext('Enjoy curated playlists from around the world.'),
-                imageName: 'generic',
             },
             {
                 name: 'games',
@@ -29,7 +29,6 @@ define('desktop_promo',
                 name: 'pasjanssolitaire',
                 url: urls.reverse('app', ['pasjanssolitaire']),
                 text: gettext('Play multiple versions of the classic card game.'),
-                imageName: 'generic',
             },
             {
                 name: 'productivity',
@@ -41,7 +40,6 @@ define('desktop_promo',
                 name: 'pinterest',
                 url: urls.reverse('app', ['pinterest']),
                 text: gettext('Explore and catalog your favorite things on the web.'),
-                imageName: 'generic',
             },
         ].map(function(item) {
             item.url = utils.urlparams(item.url, {
