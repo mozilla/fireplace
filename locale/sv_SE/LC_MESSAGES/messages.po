@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Firefox Marketplace Front End\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18T16:02:55.276Z\n"
+"POT-Creation-Date: 2015-04-01T16:02:08.073Z\n"
 "PO-Revision-Date: 2015-03-31 15:30+0000\n"
 "Last-Translator: Martin <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -14,13 +14,17 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1427815816.0\n"
 
-#: /templates/compat_filter.html:3
-msgid "Show"
-msgstr "Visa"
-
-#: /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:20 /templates/app_list.html:7
+#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:20
 msgid "Expand"
 msgstr "Expandera"
+
+#: /templates/app_list.html:34 /templates/app_list.html:39
+msgid "No apps found."
+msgstr "Inga appar hittades."
+
+#: /templates/app_list.html:41 /templates/category.html:39 /templates/langpacks.html:41 /templates/purchases.html:36
+msgid "An internal server error occurred. Please try again later."
+msgstr "Ett internt serverfel inträffade. Försök igen senare."
 
 #: /templates/category.html:32
 msgid "No apps in this category"
@@ -30,9 +34,9 @@ msgstr "Inga appar i denna kategori"
 msgid "The category you requested does not exist."
 msgstr "Kategorin som du söker finns inte."
 
-#: /templates/category.html:39 /templates/langpacks.html:41 /templates/purchases.html:36 /templates/app_list.html:41
-msgid "An internal server error occurred. Please try again later."
-msgstr "Ett internt serverfel inträffade. Försök igen senare."
+#: /templates/compat_filter.html:3
+msgid "Show"
+msgstr "Visa"
 
 #: /templates/confirmation.html:0
 msgid "Close"
@@ -50,9 +54,33 @@ msgstr "Ja"
 msgid "Previous"
 msgstr "Föregående"
 
-#: /templates/desktop-promo.html:14
+#: /templates/desktop-promo.html:16
 msgid "Next"
 msgstr "Nästa"
+
+#: /templates/feedback.html:5
+msgid "We want to hear from you!"
+msgstr "Vi vill gärna höra från dig!"
+
+#: /templates/feedback.html:6
+msgid "Give us your feedback. Let us know whether we are awesome or buggy."
+msgstr "Ge oss dina synpunkter. Låt oss veta om vi är fantastiska eller buggiga."
+
+#: /templates/feedback.html:7 /templates/app/abuse.html:7
+msgid "Let us know..."
+msgstr "Låt oss veta..."
+
+#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:30 /templates/ratings/flag.html:17
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: /templates/feedback.html:12
+msgid "Submit Feedback"
+msgstr "Skicka in feedback"
+
+#: /templates/feedback.html:28 /templates/feedback.html:31
+msgid "Get Help"
+msgstr "Få hjälp"
 
 #: /templates/footer.html:6 /templates/nav.html:31 /templates/_includes/settings_hover_desktop.html:16 /media/js/views/feedback.js:56
 msgid "Feedback"
@@ -86,12 +114,12 @@ msgstr ""
 "Om inget annat <a href=\"{legal_url}\" target=\"_blank\">anges</a>, är innehållet på denna sida licenserat under <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike "
 "License v3.0</a> eller någon senare version."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:68 /templates/app/privacy.html:2 /templates/app/index.html:117 /media/js/views/privacy.js:10
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:68 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
 #: /media/js/views/app/privacy.js:7
 msgid "Privacy Policy"
 msgstr "Sekretesspolicy"
 
-#: /templates/footer.html:40 /templates/settings.html:69 /templates/terms.html:2 /media/js/views/terms.js:10
+#: /templates/footer.html:40 /templates/terms.html:2 /templates/settings.html:69 /media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Användarvillkor"
 
@@ -99,51 +127,31 @@ msgstr "Användarvillkor"
 msgid "Report Trademark Abuse"
 msgstr "Rapportera varumärkesintrång"
 
-#: /templates/feedback.html:5
-msgid "We want to hear from you!"
-msgstr "Vi vill gärna höra från dig!"
-
-#: /templates/feedback.html:6
-msgid "Give us your feedback. Let us know whether we are awesome or buggy."
-msgstr "Ge oss dina synpunkter. Låt oss veta om vi är fantastiska eller buggiga."
-
-#: /templates/feedback.html:7 /templates/app/abuse.html:7
-msgid "Let us know..."
-msgstr "Låt oss veta..."
-
-#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:30 /templates/ratings/flag.html:17
-msgid "Cancel"
-msgstr "Avbryt"
-
-#: /templates/feedback.html:12
-msgid "Submit Feedback"
-msgstr "Skicka in feedback"
-
-#: /templates/feedback.html:28 /templates/feedback.html:31
-msgid "Get Help"
-msgstr "Få hjälp"
-
-#: /templates/header.html:1 /templates/header.html:2
+#: /templates/header.html:7 /templates/header.html:8 /templates/header.html:16 /templates/header.html:17
 msgid "Back"
 msgstr "Tillbaka"
 
-#: /templates/header.html:13
+#: /templates/header.html:11
+msgid "Toggle Menu"
+msgstr ""
+
+#: /templates/header.html:28
 msgid "Search"
 msgstr "Sök"
 
-#: /templates/header.html:18
+#: /templates/header.html:33
 msgid "Search the Marketplace"
 msgstr "Sök i Marketplace"
 
-#: /templates/header.html:20
+#: /templates/header.html:35
 msgid "Clear"
 msgstr "Rensa"
 
-#: /templates/header.html:26 /templates/purchases.html:44 /templates/settings.html:41
+#: /templates/header.html:41 /templates/purchases.html:44 /templates/settings.html:41
 msgid "Sign In"
 msgstr "Logga in"
 
-#: /templates/header.html:27 /templates/purchases.html:43 /templates/settings.html:40
+#: /templates/header.html:42 /templates/purchases.html:43 /templates/settings.html:40
 msgid "Register"
 msgstr "Registrera"
 
@@ -151,45 +159,45 @@ msgstr "Registrera"
 msgid "More to Explore"
 msgstr "Mer att utforska"
 
-#: /templates/marketplace-update.html:2
-msgid "An update to Marketplace is available."
-msgstr "En uppdatering för Marketplace är tillgänglig."
-
-#: /templates/marketplace-update.html:4 /templates/incompatible.html:2
-msgid "Download"
-msgstr "Hämta"
-
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
 msgstr "Du måste använda Firefox för att installera Firefox appar."
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "Hämta"
 
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "Inga språkpaket hittades."
 
-#: /templates/nav.html:7 /templates/_includes/settings_hover_desktop.html:2
-msgid "Settings"
-msgstr "Inställningar"
+#: /templates/marketplace-update.html:2
+msgid "An update to Marketplace is available."
+msgstr "En uppdatering för Marketplace är tillgänglig."
 
-#: /templates/nav.html:14
+#: /templates/mkt_nav.html:12 /templates/nav.html:14
 msgid "Home"
 msgstr "Hem"
 
-#: /templates/nav.html:15 /templates/_includes/app_list_filters.html:11 /media/js/views/new.js:8
-msgid "New"
-msgstr "Nya"
-
-#: /templates/nav.html:16 /templates/_includes/app_list_filters.html:6 /media/js/views/popular.js:9
+#: /templates/mkt_nav.html:13 /templates/nav.html:16 /templates/_includes/app_list_filters.html:6 /media/js/views/popular.js:9
 msgid "Popular"
 msgstr "Populära"
 
-#: /templates/nav.html:17 /media/js/views/recommended.js:15
+#: /templates/mkt_nav.html:14 /templates/nav.html:15 /templates/_includes/app_list_filters.html:11 /media/js/views/new.js:8
+msgid "New"
+msgstr "Nya"
+
+#: /templates/mkt_nav.html:15 /templates/nav.html:17 /media/js/views/recommended.js:15
 msgid "Recommended"
 msgstr "Rekommenderad"
 
-#: /templates/nav.html:20 /templates/nav.html:21 /templates/app/index.html:219 /media/js/views/categories.js:9
+#: /templates/mkt_nav.html:16 /templates/nav.html:20 /templates/nav.html:21 /templates/app/index.html:219 /media/js/views/categories.js:9
 msgid "Categories"
 msgstr "Kategorier"
+
+#: /templates/nav.html:7 /templates/_includes/settings_hover_desktop.html:2
+msgid "Settings"
+msgstr "Inställningar"
 
 #: /templates/nav.html:29
 msgid "My Account"
@@ -327,139 +335,6 @@ msgstr "Användarstatistik för app"
 msgid "Not enough statistics to show."
 msgstr "Inte tillräckligt med statistik för att visa något."
 
-#: /templates/app_list.html:34 /templates/app_list.html:39
-msgid "No apps found."
-msgstr "Inga appar hittades."
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Display as"
-msgstr "Visa som"
-
-#: /templates/_includes/app_list_filters.html:17
-msgid "Toggle App Previews"
-msgstr "Växla förhandsvisning av app"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Tillbaks till {app}"
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Innehållsklassificering"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Betygsdetaljer"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr ""
-"Dina Mac-inställningar kan hindra dig från att installera appar som inte "
-"kommer från Mac App Store."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Lär dig hur du ändrar dem."
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Installerad!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Starta appen från din <b>program</b>-katalog."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Starta appen från ditt <b>skrivbord i Windows</b> eller <b>Start &#9658; Alla program</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Starta appen från din <b>panel</b>, <b>programväljare</b> eller <b>programmeny</b>."
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Redigera din recension"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Redigera din recension"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Skriv en recension"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Logga in för att granska"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Läs alla recensioner"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 recension"
-msgstr[1] "{numReviews} recensioner"
-
-#: /templates/_macros/app_tile.html:117 /templates/_macros/app_tile.html:120
-msgid "{app_name} screenshot"
-msgstr "{app_name} skärmdump"
-
-#: /templates/_macros/app_tile.html:135
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Omdöme"
-msgstr[1] "Omdömen"
-
-#: /templates/_macros/app_tile.html:139
-msgid "Not yet reviewed"
-msgstr "Ännu inget omdöme"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&ndash; {attribution}"
-
-#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "Visa alla appar"
-
-#: /templates/_includes/settings_hover_desktop.html:10
-msgid "Edit Account Settings"
-msgstr "Redigera kontoinställningar"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:15
-msgid "Unavailable"
-msgstr "Otillgänglig"
-
-#: /templates/_macros/market_button.html:17
-msgid "Free"
-msgstr "Gratis"
-
-#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
-msgid "Installed"
-msgstr "Installerad"
-
-#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
-msgid "Install"
-msgstr "Installera"
-
-#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
-msgid "Open"
-msgstr "Öppna"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Ladda mer"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Betyg {stars} av {maxstars} stjärnor"
-
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
 msgstr "Behöver du rapportera något?"
@@ -475,122 +350,6 @@ msgstr "Skicka in rapport"
 #: /templates/app/abuse.html:21 /templates/app/index.html:252 /media/js/views/app/abuse.js:51
 msgid "Report Abuse"
 msgstr "Rapportera missbruk"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "För tidigare version {version}"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Redigera"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Ta bort"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Rapportera"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "Flaggad för omdöme"
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Tillbaka till app"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Laddar sekretesspolicy..."
-
-#: /templates/errors/404.html:9
-msgid "The page you were looking for was not found."
-msgstr "Sidan du letade efter kunde inte hittas."
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Tack för ditt köp"
-
-#: /templates/errors/date-error.html:2
-msgid "System Date Incorrect"
-msgstr "Systemets datum felaktigt"
-
-#: /templates/errors/date-error.html:3
-msgid "Sorry, your device clock appears to be set incorrectly."
-msgstr "Tyvärr verkar din enhets klocka vara felaktigt inställd."
-
-#: /templates/errors/date-error.html:4
-msgid "Please set today's date and time in your device settings to access the Marketplace."
-msgstr "Ange dagens datum och tid i dina enhetsinställningar för att komma åt Marketplace."
-
-#: /templates/errors/date-error.html:5 /templates/errors/offline-error.html:4
-msgid "Try again"
-msgstr "Försök igen"
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Ett fel inträffade."
-
-#: /templates/errors/offline-error.html:2
-msgid "Currently Offline"
-msgstr "För närvarande nedkopplad"
-
-#: /templates/errors/offline-error.html:3
-msgid "Sorry, you need to be online to access the Marketplace."
-msgstr "Tyvärr, du måste vara ansluten för att få tillgång till Marketplace."
-
-#: /templates/errors/pagination.html:2
-msgid "Try Again"
-msgstr "Försök igen"
-
-#: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
-msgid "Edit Review"
-msgstr "Redigera omdöme"
-
-#: /templates/ratings/add.html:8 /templates/ratings/add.html:39 /media/js/views/app/ratings/add.js:22
-msgid "Leave a Review"
-msgstr "Lämna ett omdöme"
-
-#: /templates/ratings/add.html:11
-msgid "Rate:"
-msgstr "Betyg:"
-
-#: /templates/ratings/add.html:22
-msgid "Tell us what you love about this app!"
-msgstr "Berätta vad du gillar med denna app!"
-
-#: /templates/ratings/add.html:27
-msgid "Only users that are logged in may submit reviews."
-msgstr "Endast användare som är inloggade kan lämna recensioner."
-
-#: /templates/ratings/add.html:31
-msgid "Update Review"
-msgstr "Uppdatera recension"
-
-#: /templates/ratings/add.html:31
-msgid "Submit Review"
-msgstr "Skicka in recension"
-
-#: /templates/ratings/flag.html:3 /templates/ratings/flag.html:26
-msgid "Flag Review"
-msgstr "Flagga recension"
-
-#: /templates/ratings/flag.html:4
-msgid "See an issue with this review? Select a reason below."
-msgstr "Ser du ett problem med det här omdömet? Välj orsak nedan."
-
-#: /templates/ratings/flag.html:7
-msgid "Spam or otherwise non-review content"
-msgstr "Skräpkommentar eller annat irrelevant innehåll"
-
-#: /templates/ratings/flag.html:10
-msgid "Inappropriate language/dialog"
-msgstr "Opassande språk"
-
-#: /templates/ratings/flag.html:13
-msgid "Misplaced bug report or support request"
-msgstr "Felplacerad buggrapport eller supportfråga"
 
 #. delimiter to separate list of words (e.g., "eggs, ham, cheese").
 #: /templates/app/index.html:62
@@ -674,6 +433,173 @@ msgstr "Filstorlek"
 msgid "Most Recent Version"
 msgstr "Senaste version"
 
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Tillbaka till app"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Laddar sekretesspolicy..."
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Tack för ditt köp"
+
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Omdöme"
+msgstr[1] "Omdömen"
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "Ännu inget omdöme"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&ndash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "Visa alla appar"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:15
+msgid "Unavailable"
+msgstr "Otillgänglig"
+
+#: /templates/_macros/market_button.html:17
+msgid "Free"
+msgstr "Gratis"
+
+#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
+msgid "Installed"
+msgstr "Installerad"
+
+#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
+msgid "Install"
+msgstr "Installera"
+
+#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
+msgid "Open"
+msgstr "Öppna"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Ladda mer"
+
+#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
+msgid "{app_name} screenshot"
+msgstr "{app_name} skärmdump"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Betyg {stars} av {maxstars} stjärnor"
+
+#: /templates/errors/404.html:9
+msgid "The page you were looking for was not found."
+msgstr "Sidan du letade efter kunde inte hittas."
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "För tidigare version {version}"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Redigera"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Ta bort"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Rapportera"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Flaggad för omdöme"
+
+#: /templates/errors/date-error.html:2
+msgid "System Date Incorrect"
+msgstr "Systemets datum felaktigt"
+
+#: /templates/errors/date-error.html:3
+msgid "Sorry, your device clock appears to be set incorrectly."
+msgstr "Tyvärr verkar din enhets klocka vara felaktigt inställd."
+
+#: /templates/errors/date-error.html:4
+msgid "Please set today's date and time in your device settings to access the Marketplace."
+msgstr "Ange dagens datum och tid i dina enhetsinställningar för att komma åt Marketplace."
+
+#: /templates/errors/date-error.html:5 /templates/errors/offline-error.html:4
+msgid "Try again"
+msgstr "Försök igen"
+
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Ett fel inträffade."
+
+#: /templates/errors/offline-error.html:2
+msgid "Currently Offline"
+msgstr "För närvarande nedkopplad"
+
+#: /templates/errors/offline-error.html:3
+msgid "Sorry, you need to be online to access the Marketplace."
+msgstr "Tyvärr, du måste vara ansluten för att få tillgång till Marketplace."
+
+#: /templates/errors/pagination.html:2
+msgid "Try Again"
+msgstr "Försök igen"
+
+#: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
+msgid "Edit Review"
+msgstr "Redigera omdöme"
+
+#: /templates/ratings/add.html:8 /templates/ratings/add.html:39 /media/js/views/app/ratings/add.js:22
+msgid "Leave a Review"
+msgstr "Lämna ett omdöme"
+
+#: /templates/ratings/add.html:11
+msgid "Rate:"
+msgstr "Betyg:"
+
+#: /templates/ratings/add.html:22
+msgid "Tell us what you love about this app!"
+msgstr "Berätta vad du gillar med denna app!"
+
+#: /templates/ratings/add.html:27
+msgid "Only users that are logged in may submit reviews."
+msgstr "Endast användare som är inloggade kan lämna recensioner."
+
+#: /templates/ratings/add.html:31
+msgid "Update Review"
+msgstr "Uppdatera recension"
+
+#: /templates/ratings/add.html:31
+msgid "Submit Review"
+msgstr "Skicka in recension"
+
+#: /templates/ratings/flag.html:3 /templates/ratings/flag.html:26
+msgid "Flag Review"
+msgstr "Flagga recension"
+
+#: /templates/ratings/flag.html:4
+msgid "See an issue with this review? Select a reason below."
+msgstr "Ser du ett problem med det här omdömet? Välj orsak nedan."
+
+#: /templates/ratings/flag.html:7
+msgid "Spam or otherwise non-review content"
+msgstr "Skräpkommentar eller annat irrelevant innehåll"
+
+#: /templates/ratings/flag.html:10
+msgid "Inappropriate language/dialog"
+msgstr "Opassande språk"
+
+#: /templates/ratings/flag.html:13
+msgid "Misplaced bug report or support request"
+msgstr "Felplacerad buggrapport eller supportfråga"
+
 #: /templates/ratings/main.html:39
 msgid "This app has no reviews."
 msgstr "Denna app har inga recensioner."
@@ -682,13 +608,121 @@ msgstr "Denna app har inga recensioner."
 msgid "App Review"
 msgstr "App-omdömen"
 
-#: /media/js/apps.js:106
-msgid "Not available for your region"
-msgstr "Inte tillgänglig för din region"
+#: /templates/_includes/app_list_filters.html:16
+msgid "Display as"
+msgstr "Visa som"
 
-#: /media/js/apps.js:111
-msgid "Not available for your platform"
-msgstr "Inte tillgänglig för din plattform"
+#: /templates/_includes/app_list_filters.html:17
+msgid "Toggle App Previews"
+msgstr "Växla förhandsvisning av app"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Tillbaks till {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Innehållsklassificering"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Betygsdetaljer"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Dina Mac-inställningar kan hindra dig från att installera appar som inte kommer från Mac App Store."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Lär dig hur du ändrar dem."
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Installerad!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Starta appen från din <b>program</b>-katalog."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Starta appen från ditt <b>skrivbord i Windows</b> eller <b>Start &#9658; Alla program</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Starta appen från din <b>panel</b>, <b>programväljare</b> eller <b>programmeny</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Redigera din recension"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Redigera din recension"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Skriv en recension"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Logga in för att granska"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Läs alla recensioner"
+
+#: /templates/_includes/settings_hover_desktop.html:10
+msgid "Edit Account Settings"
+msgstr "Redigera kontoinställningar"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 recension"
+msgstr[1] "{numReviews} recensioner"
+
+#: /media/js/compat_filter.js:45
+msgid "Android Mobile"
+msgstr "Android mobil"
+
+#: /media/js/compat_filter.js:46
+msgid "Android Tablet"
+msgstr "Android surfplatta"
+
+#: /media/js/compat_filter.js:47
+msgid "Desktop"
+msgstr "Skrivbord"
+
+#: /media/js/compat_filter.js:48
+msgid "Firefox OS"
+msgstr "Firefox OS"
+
+#: /media/js/compat_filter.js:51
+msgid "All Apps"
+msgstr "Alla appar"
+
+#: /media/js/compat_filter.js:52
+msgid "Desktop Apps"
+msgstr "Skrivbordsappar"
+
+#: /media/js/compat_filter.js:53
+msgid "Firefox OS Apps"
+msgstr "Firefox OS appar"
+
+#: /media/js/compat_filter.js:54
+msgid "Android Mobile Apps"
+msgstr "Android-appar till mobil"
+
+#: /media/js/compat_filter.js:55
+msgid "Android Tablet Apps"
+msgstr "Android-appar till surfplatta"
+
+#: /media/js/compat_filter.js:74
+msgid "Apps for My Device"
+msgstr "Appar för min enhet"
 
 #: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:141
 msgid "Payment cancelled."
@@ -707,6 +741,14 @@ msgstr "Tyvärr uppstod problem med att hämta denna apps data. Försök igen se
 #: /media/js/apps_buttons.js:237
 msgid "Install failed. Please try again later."
 msgstr "Installation misslyckades. Försök igen senare."
+
+#: /media/js/apps.js:110
+msgid "Not available for your region"
+msgstr "Inte tillgänglig för din region"
+
+#: /media/js/apps.js:115
+msgid "Not available for your platform"
+msgstr "Inte tillgänglig för din plattform"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -780,45 +822,25 @@ msgstr "Resa"
 msgid "Utilities"
 msgstr "Verktyg"
 
-#: /media/js/compat_filter.js:40
-msgid "Android Mobile"
-msgstr "Android mobil"
+#: /media/js/desktop_promo.js:20
+msgid "Enjoy curated playlists from around the world."
+msgstr ""
 
-#: /media/js/compat_filter.js:41
-msgid "Android Tablet"
-msgstr "Android surfplatta"
+#: /media/js/desktop_promo.js:26
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Spel och underhållningsappar—Oumbärliga för skrivbordet"
 
-#: /media/js/compat_filter.js:42
-msgid "Desktop"
-msgstr "Skrivbord"
+#: /media/js/desktop_promo.js:31
+msgid "Play multiple versions of the classic card game."
+msgstr ""
 
-#: /media/js/compat_filter.js:43
-msgid "Firefox OS"
-msgstr "Firefox OS"
+#: /media/js/desktop_promo.js:37
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "Produktivitetsappar—Oumbärliga för skrivbordet"
 
-#: /media/js/compat_filter.js:46
-msgid "All Apps"
-msgstr "Alla appar"
-
-#: /media/js/compat_filter.js:47
-msgid "Desktop Apps"
-msgstr "Skrivbordsappar"
-
-#: /media/js/compat_filter.js:48
-msgid "Firefox OS Apps"
-msgstr "Firefox OS appar"
-
-#: /media/js/compat_filter.js:49
-msgid "Android Mobile Apps"
-msgstr "Android-appar till mobil"
-
-#: /media/js/compat_filter.js:50
-msgid "Android Tablet Apps"
-msgstr "Android-appar till surfplatta"
-
-#: /media/js/compat_filter.js:69
-msgid "Apps for My Device"
-msgstr "Appar för min enhet"
+#: /media/js/desktop_promo.js:42
+msgid "Explore and catalog your favorite things on the web."
+msgstr ""
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
@@ -861,25 +883,9 @@ msgstr "Vuxen 17+"
 msgid "Adults Only 18+"
 msgstr "Endast vuxna 18+"
 
-#: /media/js/desktop_promo.js:20
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Spel och underhållningsappar—Oumbärliga för skrivbordet"
-
-#: /media/js/desktop_promo.js:25
-msgid "Discover, share, and enjoy music with SoundCloud."
-msgstr "Upptäck, dela och njuta av musik med Soundcloud."
-
-#: /media/js/desktop_promo.js:30
-msgid "Play Hex Race—a thrill ride from the future!"
-msgstr "Spela Hex Race—en spännande resa från framtiden!"
-
-#: /media/js/desktop_promo.js:36
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "Produktivitetsappar—Oumbärliga för skrivbordet"
-
-#: /media/js/desktop_promo.js:41
-msgid "Store and share any type of file with Box."
-msgstr "Lagra och dela alla typer av filer med Box."
+#: /media/js/helpers_local.js:117
+msgid "Works offline"
+msgstr "Fungerar i nedkopplat läge"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1205,10 +1211,6 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "App för arbete och näringsliv"
 msgstr[1] "Appar för arbete och näringsliv"
 
-#: /media/js/helpers_local.js:116
-msgid "Works offline"
-msgstr "Fungerar i nedkopplat läge"
-
 #: /media/js/installer_iframe.js:111 /media/js/installer_direct.js:180
 msgid "App install error: {error}"
 msgstr "App-installationsfel: {error}"
@@ -1236,50 +1238,6 @@ msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n} stjärna"
 msgstr[1] "{n} stjärnor"
-
-#: /media/js/settings_app.js:98
-msgid "English"
-msgstr "Engelska"
-
-#: /media/js/settings_app.js:99
-msgid "French"
-msgstr "Franska"
-
-#: /media/js/settings_app.js:100
-msgid "German"
-msgstr "Tysk"
-
-#: /media/js/settings_app.js:101
-msgid "Hungarian"
-msgstr "Ungerska"
-
-#: /media/js/settings_app.js:102
-msgid "Indonesian"
-msgstr "Indonesiska"
-
-#: /media/js/settings_app.js:103
-msgid "Polish"
-msgstr "Polska"
-
-#: /media/js/settings_app.js:104
-msgid "Portuguese"
-msgstr "Portugisiska"
-
-#: /media/js/settings_app.js:105
-msgid "Russian"
-msgstr "Ryska"
-
-#: /media/js/settings_app.js:106
-msgid "Spanish"
-msgstr "Spanska"
-
-#: /media/js/settings_app.js:132
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "Tyvärr, du är inte ansluten till internet. Försök igen senare."
-
-#: /media/js/update_banner.js:24
-msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr "Nästa gång du startar appen Firefox Marketplace, kommer du att se den uppdaterade versionen!"
 
 #. The report is an abuse report for reviews.
 #: /media/js/reviews.js:35
@@ -1325,6 +1283,50 @@ msgstr "Din recension har redigerats"
 #: /media/js/reviews.js:288
 msgid "Sorry, there was an issue editing your review. Please try again later"
 msgstr "Tyvärr, det uppstod ett problem med att redigera din recension. Försök igen senare"
+
+#: /media/js/settings_app.js:92
+msgid "English"
+msgstr "Engelska"
+
+#: /media/js/settings_app.js:93
+msgid "French"
+msgstr "Franska"
+
+#: /media/js/settings_app.js:94
+msgid "German"
+msgstr "Tysk"
+
+#: /media/js/settings_app.js:95
+msgid "Hungarian"
+msgstr "Ungerska"
+
+#: /media/js/settings_app.js:96
+msgid "Indonesian"
+msgstr "Indonesiska"
+
+#: /media/js/settings_app.js:97
+msgid "Polish"
+msgstr "Polska"
+
+#: /media/js/settings_app.js:98
+msgid "Portuguese"
+msgstr "Portugisiska"
+
+#: /media/js/settings_app.js:99
+msgid "Russian"
+msgstr "Ryska"
+
+#: /media/js/settings_app.js:100
+msgid "Spanish"
+msgstr "Spanska"
+
+#: /media/js/settings_app.js:112
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "Tyvärr, du är inte ansluten till internet. Försök igen senare."
+
+#: /media/js/update_banner.js:24
+msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
+msgstr "Nästa gång du startar appen Firefox Marketplace, kommer du att se den uppdaterade versionen!"
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
