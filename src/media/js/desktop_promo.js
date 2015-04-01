@@ -8,6 +8,25 @@ define('desktop_promo',
     'use strict';
     var gettext = l10n.gettext;
 
+    // This are just included so that we have more time to localize the text.
+    var nextPromoItems = [
+        {
+            name: 'pacman',
+            url: urls.reverse('app', ['pacman-canvas']),
+            text: gettext('Play an updated version of the classic arcade game.'),
+        },
+        {
+            name: 'yelp',
+            url: urls.reverse('app', ['yelp']),
+            text: gettext('Find everything—from shoes to sushi.'),
+        },
+        {
+            name: 'outlook',
+            url: urls.reverse('app', ['outlook-com']),
+            text: gettext('Access Outlook from anywhere.'),
+        },
+    ];
+
     return {
         isDesktop: function() {
             return caps.device_type() === 'desktop';
