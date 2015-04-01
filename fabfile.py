@@ -62,6 +62,8 @@ def deploy_jenkins():
 
     deploy_build_id('fireplace')
 
+    rpm.clean()
+
 
 @task
 def update():
