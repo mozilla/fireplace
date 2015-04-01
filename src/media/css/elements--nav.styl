@@ -20,7 +20,7 @@ $color--nav--child-border = darken($color--nav--child-bg, 25%);
 $color--nav--child-back = #28A0FC;
 $color--nav--child-back-border = darken($color--nav--child-back, 25%);
 $color--nav--root-link = #333;
-$color--nav--gradient = linear-gradient(0deg, #9E1455, #601E78, #052659);
+$color--nav--gradient = linear-gradient(to top, #9E1455, #601E78, #052659);
 $nav--header-height = 60px;
 $nav--subnav-to-shift = 'mkt-nav-root';
 $nav--transition = 'transform cubic-bezier(0.455, 0.03, 0.515, 0.955) 250ms';
@@ -106,6 +106,16 @@ mkt-nav {
     top: 0;
     transition: unquote($nav--transition);
     width: 260px;
+
+    &:before {
+        background: url(../img/nav/full-white.svg) no-repeat 30px 30px / 182px 35px;
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        z-index: $zindex--nav-normal-child;
+    }
 }
 
 mkt-nav-root,
@@ -121,9 +131,7 @@ mkt-nav-child {
 }
 
 mkt-nav-root {
-    background: url(../img/nav/full-white.svg) no-repeat 30px 30px / 182px 35px,
-                $color--nav--gradient;
-    height: 100%;
+    background: $color--nav--gradient;
     padding: 75px 30px 30px 21px;
     transition: unquote($nav--transition);
     z-index: $zindex--nav-hamburger-root;
