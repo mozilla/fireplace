@@ -11,9 +11,9 @@ define('desktop_promo',
     // This are just included so that we have more time to localize the text.
     var nextPromoItems = [
         {
-            name: 'pacman',
-            url: urls.reverse('app', ['pacman-canvas']),
-            text: gettext('Play an updated version of the classic arcade game.'),
+            name: 'zirma',
+            url: urls.reverse('app', ['zirma']),
+            text: gettext('Build, explore, and fight to become the ruler of Zirma.'),
         },
         {
             name: 'yelp',
