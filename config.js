@@ -42,9 +42,6 @@ var localConfig = extend(true, {
             'flipsnap': {
                 'exports': 'Flipsnap'
             },
-            'fxpay': {
-                'exports': 'fxpay'
-            },
             'marketplace-elements': {
                 'exports': 'window.document.registerElement',
                 'deps': ['document-register-element'],

@@ -22,13 +22,7 @@ define('payments',
     };
 
     MarketplaceAdapter.prototype.toString = function() {
-      return '<MarketplaceAdapter from payments.js>';
-    };
-
-    MarketplaceAdapter.prototype.init = function(callback) {
-        // Nothing special needs to happen during fxpay initialization.
-        logger.log('initializing app adapter');
-        callback();
+      return '[MarketplaceAdapter from payments.js]';
     };
 
     MarketplaceAdapter.prototype.startTransaction = function(opt, callback) {
@@ -90,13 +84,7 @@ define('payments',
     extraProviderUrls = _.defaults(extraProviderUrls,
                                    settings.local_pay_providers || {});
 
-    fxpay.init({
-        onerror: function(error) {
-            logger.error('fxpay initialized with error:', error);
-        },
-        oninit: function() {
-            logger.log('fxpay initialized OK');
-        },
+    fxpay.configure({
         adapter: new MarketplaceAdapter(),
         log: {
             error: fxpayLog.error,
@@ -126,41 +114,45 @@ define('payments',
             fxpay.configure(opt.fxpaySettings);
         }
 
-        fxpay.purchase(product.slug, function(error) {
-            if (error) {
-                var msg;
-                logger.error('fxpay error:', error);
-                if (error === 'APP_ALREADY_PURCHASED') {
-                    return purchase.resolve(product);
-                }
-                switch (error) {
-                    // Sent from webpay.
-                    case 'USER_CANCELLED':
-                    // Sent from the trusted-ui on cancellation.
-                    case 'DIALOG_CLOSED_BY_USER':
-                        msg = gettext('Payment cancelled.');
-                        break;
-                    case 'MKT_SERVER_ERROR':
-                        // L10n: This error is raised when we are unable to fetch a JWT from the payments API.
-                        msg = gettext('Error while communicating with server. Try again later.');
-                        break;
-                    default:
-                        msg = gettext('Payment failed. Try again later.');
-                        break;
-                }
-
-                notify({
-                    classes: 'error',
-                    message: msg,
-                    timeout: 5000
-                });
-
-                purchase.reject(null, product, 'MKT_CANCELLED');
-            } else {
-                logger.log('payment completed successfully');
-                purchase.resolve(product);
+        fxpay.purchase(product.slug, {
+            paymentWindow: opt.paymentWindow,
+        }).then(function(purchasedProduct) {
+            logger.log('payment completed successfully for', purchasedProduct.productId);
+            purchase.resolve(product);
+        }).catch(function(error) {
+            var msg;
+            logger.error('fxpay error:', error.toString());
+            var errorCode = error.code || error;
+            if (errorCode === 'APP_ALREADY_PURCHASED') {
+                return purchase.resolve(product);
             }
-        }, {paymentWindow: opt.paymentWindow});
+            switch (errorCode) {
+                // Sent from webpay.
+                case 'USER_CANCELLED':
+                // Sent from the trusted-ui on cancellation.
+                case 'DIALOG_CLOSED_BY_USER':
+                    msg = gettext('Payment cancelled.');
+                    break;
+                case 'MKT_SERVER_ERROR':
+                    // L10n: This error is raised when we are unable to fetch a JWT from the payments API.
+                    msg = gettext('Error while communicating with server. Try again later.');
+                    break;
+                default:
+                    msg = gettext('Payment failed. Try again later.');
+                    break;
+            }
+
+            notify({
+                classes: 'error',
+                message: msg,
+                timeout: 5000
+            });
+
+            purchase.reject(null, product, 'MKT_CANCELLED');
+        }).catch(function(error) {
+            logger.error('uncaught exception:', error.toString());
+            purchase.reject(null, product, 'MKT_CANCELLED');
+        });
 
         return purchase.promise();
     }

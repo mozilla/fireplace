@@ -1,6 +1,6 @@
 define('tests/unit/payments',
-    ['core/defer', 'core/log', 'tests/unit/helpers'],
-    function(defer, log, h) {
+    ['fxpay', 'core/defer', 'core/log', 'tests/unit/helpers'],
+    function(realFxPay, defer, log, h) {
 
     var logger = log('tests/payments');
 
@@ -114,9 +114,6 @@ define('tests/unit/payments',
                 mozApps: null,
                 mozPay: null,
                 window: opt.fakeWindow || new FakeFireplaceWindow(),
-                // On Firefox there is some difference in fxpay's scope
-                // that causes fxpay.init() not to clear this. Hmm.
-                initError: null,
             }
         };
     }
@@ -159,14 +156,12 @@ define('tests/unit/payments',
             var adapterConfigured = false;
 
             setupMocks().mock('fxpay', {
-                init: function(opt) {
+                configure: function(opt) {
                     // This simulates how fxpay will configure
-                    // the Marketplace adapter when fxpay.init()
-                    // is called.
+                    // the Marketplace adapter.
                     opt.adapter.configure({});
                     adapterConfigured = true;
                 },
-                configure: function() {},
             }).require(['payments'], function(payments) {
                 assert.equal(adapterConfigured, true);
                 done();
@@ -191,7 +186,7 @@ define('tests/unit/payments',
 
         it('handles unpurchasable products', function(done) {
             setupMocks().mock('fxpay', {
-                init: function() {},
+                configure: function() {},
                 purchase: function() {
                     throw new Error('fxpay.purchase() should not be called');
                 }
@@ -266,10 +261,11 @@ define('tests/unit/payments',
         it('handles an unknown fxpay error', function(done) {
             setupMocks().mock('fxpay', {
                 configure: function() {},
-                init: function() {},
                 purchase: function(productId, callback) {
-                    // Simulate an arbitrary fxpay error.
-                    callback('SOME_FXPAY_ERROR');
+                    return new Promise(function(resolve, reject) {
+                        // Simulate an arbitrary fxpay error.
+                        reject(realFxPay.errors.FxPayError());
+                    });
                 }
             }).require(['payments'], function(payments) {
                 var product = new FakeProduct();
@@ -279,6 +275,32 @@ define('tests/unit/payments',
                 }).fail(function(_, product, reason) {
                     logger.log('payment.purchase() failed:', reason);
                     assert.equal(reason, 'MKT_CANCELLED');
+                    done();
+                });
+            });
+        });
+
+        it('handles dialog closed by user', function(done) {
+            var notifyArgs = {};
+
+            setupMocks().mock('fxpay', {
+                configure: function() {},
+                purchase: function(productId, callback) {
+                    return new Promise(function(resolve, reject) {
+                        reject(realFxPay.errors.PayWindowClosedByUser());
+                    });
+                }
+            }).mock('core/notification', {
+                notification: function(callArgs) {
+                    notifyArgs = callArgs;
+                }
+            }).require(['payments'], function(payments) {
+                var product = new FakeProduct();
+                payments.purchase(product, purchaseOptions()).done(function() {
+                    done(new Error('unexpected success'));
+                }).fail(function(_, product, reason) {
+                    assert.equal(reason, 'MKT_CANCELLED');
+                    assert.equal(notifyArgs.message, 'Payment cancelled.');
                     done();
                 });
             });
