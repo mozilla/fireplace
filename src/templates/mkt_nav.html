@@ -1,7 +1,7 @@
 {% macro nav_item(href, title, slug, toggle) %}
   <li class="mkt-nav--item">
-    <a class="mkt-nav--link" href="{{ href }}" title="{{ title }}"
-       data-mkt-nav--link="{{ slug }}"
+    <a class="mkt-nav--link mkt-nav--link-{{ slug }}" href="{{ href }}"
+       title="{{ title }}" data-mkt-nav--link="{{ slug }}"
        {% if toggle %}data-toggle-subnav="{{ toggle }}"{% endif %}>
       {{ title }}
     </a>
@@ -17,7 +17,7 @@
     {{ nav_item('#', _('Categories'), 'categories', 'categories') }}
   </mkt-nav-root>
 
-  <mkt-nav-child id="categories">
+  <mkt-nav-child id="categories" class="category-list">
     {% for category in categories %}
       {{ nav_item(url('category', [category.slug]), category.name,
                   category.slug) }}
