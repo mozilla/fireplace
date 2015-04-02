@@ -50,13 +50,13 @@ image-replacement(src, width, height) {
 
 main:after {
     // Disable main content interaction when nav is visible.
+    background: rgba($greyscale-dark-grey, .8);
     content: '';
     left: 0;
-    height: 0;
-    opacity: 0;
+    display: none;
+    height: 100%;
     position: absolute;
     top: 0;
-    transition: opacity cubic-bezier(0.455, 0.03, 0.515, 0.955) 250ms;
     width: 100%;
     z-index: $zindex--page-overlay;
 }
@@ -73,9 +73,7 @@ main:after {
         position: relative;
 
         &:after {
-            background: rgba($greyscale-dark-grey, .8);
-            height: 100%;
-            opacity: 1;
+            display: block;
         }
     }
     .site-header {

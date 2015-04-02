@@ -16,7 +16,7 @@
         - Slide-down subnavs
 */
 define('elements/nav',
-    ['core/log', 'core/z', 'jquery'],
+    ['core/log', 'core/z', 'jquery', 'underscore'],
     function(log, z, $) {
 
     // TODO: come up with better names for these, and explain them with comments.
@@ -29,30 +29,25 @@ define('elements/nav',
 
     var MktNavElement = document.registerElement('mkt-nav', {
         prototype: Object.create(HTMLElement.prototype, {
-            /*
-            Toggle the class specified by this.statusVisibleClass on
-            this.statusElement. If an optional argument is passed, it will
-            force the class to be added or removed based on the truthiness of
-            that value.
-
-            Return `this`, for chaining.
-            */
             toggle: {
+                /*
+                Toggle the class specified by this.statusVisibleClass on
+                this.statusElement. If an optional argument is passed, it will
+                force the class to be added or removed based on the truthiness
+                of that value.
+                */
                 value: function(bool) {
                     this.$statusElement.toggleClass(VISIBLE, bool);
                     return this;
                 },
             },
-
-            /*
-            Toggle the class specified by this.statusSubnavVisibleClass on
-            this.statusElement. If an optional argument is passed, it will
-            force the class to be added or removed based on the truthiness of
-            that value.
-
-            Return `this`, for chaining.
-            */
             toggleSubnav: {
+                /*
+                    Toggle the class specified by this.statusSubnavVisibleClass
+                    on this.statusElement. If an optional argument is passed,
+                    it will force the class to be added or removed based on the
+                    truthiness of that value.
+                */
                 value: function(bool) {
                     this.$statusElement.toggleClass(SUBNAV_VISIBLE, bool);
                     if (!bool) {
@@ -63,21 +58,18 @@ define('elements/nav',
                     return this;
                 },
             },
-
-            // Return the element on which status classes are stored.
             $statusElement: {
+                // Return the element on which status classes are stored.
                 value: $(document.body),
             },
-
-            // Return the child <mkt-nav-root> element.
             root: {
+                // Return the child <mkt-nav-root> element.
                 get: function() {
                     return this.querySelectorAll('mkt-nav-root');
                 },
             },
-
-            // Return all child <mkt-nav-child> elements.
             subnavs: {
+                // Return all child <mkt-nav-child> elements.
                 get: function() {
                     return this.querySelectorAll('mkt-nav-child');
                 },
@@ -91,8 +83,9 @@ define('elements/nav',
 
     var MktNavChildElement = document.registerElement('mkt-nav-child', {
         prototype: Object.create(MktNavRootElement.prototype, {
-            // Show this subnav and hide all sibling <mkt-nav-child> elements.
             hide: {
+                // Show this subnav and hide all sibling <mkt-nav-child>
+                // elements.
                 value: function() {
                     this.classList.remove(VISIBLE);
                     return this;
@@ -109,20 +102,22 @@ define('elements/nav',
         }),
     });
 
-    // Toggle the <mkt-nav> element with the specified id when elements with the
-    // data-toggle-nav attribute are clicked.
     z.body.on('click', '[data-toggle-nav]', function(evt) {
+        // Toggle the <mkt-nav> element with the specified id when elements
+        // with the // data-toggle-nav attribute are clicked.
         evt.preventDefault();
         evt.stopPropagation();
         var navId = $(this).data('toggle-nav');
         $('#' + navId).get(0).toggle();
     })
 
-    // Toggle the <mkt-nav-child> element with the specified id when elements
-    // with the data-toggle-nav attribute are clicked. If the value of that
-    // attribute is empty, attempt to toggle the parent's subnav if it is an
-    // <mkt-nav> element.
     .on('click', '[data-toggle-subnav]', function(evt) {
+        /*
+            Toggle the <mkt-nav-child> element with the specified id when
+            elements with the data-toggle-nav attribute are clicked. If the
+            value of that attribute is empty, attempt to toggle the parent's
+            subnav if it is an <mkt-nav> element.
+        */
         evt.preventDefault();
         evt.stopPropagation();
         var $this = $(this);
@@ -179,10 +174,21 @@ define('elements/nav',
         $('.' + SHOWING).removeClass(SHOWING);
     });
 
+    function setMainMinHeight() {
+        // So the nav doesn't appear when the page isn't tall enough.
+        // CSS solutions wouldn't work since min-height with a percentage
+        // wouldn't apply unless <html>/<body> had heights, and setting to
+        // 100% height would mess up the page since our <footer> isn't part of
+        // <main>. Could be resolved if we made <footer> a part of <main>.
+        document.querySelector('main').style.minHeight = screen.height + 'px';
+    }
+
+    z.win.on('resize', _.debounce(setMainMinHeight, 250));
+    setMainMinHeight();
+
     return {
         'MktNavElement': MktNavElement,
         'MktNavRootElement': MktNavRootElement,
         'MktNavChildElement': MktNavChildElement,
     };
-
 });
