@@ -161,7 +161,7 @@ define('views/search',
         }
         var query = params.full_q || params.q || params.author;
 
-        builder.z('type', 'search app-list');
+        builder.z('type', 'search leaf app-list');
         builder.z('search', query);
         builder.z('title', query || gettext('Search Results'));
 

@@ -182,3 +182,32 @@ casper.test.begin('Test mkt-nav subnavs desktop', {
         helpers.done(test);
     }
 });
+
+
+casper.test.begin('Test mkt-nav back', {
+    test: function(test) {
+        helpers.startCasper('/app/foo');
+
+        navSetUp(function() {
+            test.assertVisible('.mkt-header--back');
+            casper.click('.mkt-header--back');
+        });
+
+        casper.waitForSelector('[data-page-type~="homepage"]');
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Test mkt-nav back not on desktop', {
+    test: function(test) {
+        helpers.startCasper('/app/foo', {viewport: 'desktop'});
+
+        navSetUp(function() {
+            test.assertNotVisible('.mkt-header--back');
+        });
+
+        helpers.done(test);
+    }
+});

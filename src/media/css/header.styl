@@ -325,11 +325,6 @@ body {
     display: none;
 }
 
-// When holding down on debug page, don't allow clicking logo to go back home.
-[data-page-type~=debug] .header .wordmark {
-    pointer-events: none;
-}
-
 [data-page-type~=search],
 [data-page-type~=leaf] {
     .back, .expand {
@@ -538,11 +533,10 @@ body {
     // How does the header look for the various page "types"?
     [data-page-type~=search],
     [data-page-type~=leaf] {
-        .back,
         .site {
             display: block;
         }
-        .back,
+        .header--back,
         .flex-span {
             display: none;
         }
@@ -552,6 +546,12 @@ body {
     }
     .desktop .wordmark {
         background: url(../img/pretty/marketplace-beta-logo.png) no-repeat 0 50% / 231px auto;
+    }
+}
+
+@media $wide-tablet {
+    [data-page-type~=leaf] .mkt-header--back {
+        display: none;
     }
 }
 
