@@ -106,16 +106,6 @@ mkt-nav {
     top: 0;
     transition: unquote($nav--transition);
     width: 260px;
-
-    &:before {
-        background: url(../img/nav/full-white.svg) no-repeat 30px 30px / 182px 35px;
-        content: '';
-        display: block;
-        height: 100%;
-        position: absolute;
-        width: 100%;
-        z-index: $zindex--nav-normal-child;
-    }
 }
 
 mkt-nav-root,
@@ -131,7 +121,9 @@ mkt-nav-child {
 }
 
 mkt-nav-root {
-    background: $color--nav--gradient;
+    background: url(../img/nav/full-white.svg) no-repeat 30px 30px,
+                $color--nav--gradient;
+    background-size: 182px 35px, cover;
     padding: 75px 30px 30px 21px;
     transition: unquote($nav--transition);
     z-index: $zindex--nav-hamburger-root;
@@ -346,6 +338,7 @@ mkt-nav-child {
         border: none;
         margin-bottom: -1 * $nav--header-height
         left 7%;
+        overflow: hidden;
         padding: 10px 0;
         position: relative;
         top: -1 * $nav--header-height
