@@ -6,11 +6,9 @@
 */
 define('init',
     ['core/init', 'routes', 'settings_app', 'templates',
-     'core/cache', 'document-register-element', 'route_api_args', 'rewriters',
-     'helpers_local'],
+     'core/cache', 'document-register-element', 'route_api_args', 'rewriters'],
     function(init, routes, settingsApp, templates,
-             cache, elements, routeApiArgs, rewriters,
-             helpersLocal) {
+             cache, elements, routeApiArgs, rewriters) {
 
     rewriters.forEach(function(rewriter) {
         cache.addRewriter(rewriter);

@@ -56,6 +56,11 @@ casper.test.begin('Test l10n initialized for non en-US', {
                 return window.navigator.l10n.language;
             });
             test.assertEquals(lang, 'es');
+
+            var games = casper.evaluate(function() {
+                return window.require('core/l10n').gettext('Games');
+            });
+            test.assertNotEquals(games, 'Games');
         });
 
         helpers.done(test);
