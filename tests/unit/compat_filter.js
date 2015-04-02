@@ -159,5 +159,21 @@ define('tests/unit/compat_filter',
                 // No profile if endpoint not supported.
                 assert.equal(compatFilter.apiArgs('').pro, undefined);
             }));
+
+        it('sets initialDeviceText',
+            helpers
+            .injector(firefoxOSCapabilities, noStorage)
+            .run(['compat_filter'], function(compatFilter) {
+                assert.equal(compatFilter.initialDeviceText,
+                             'Apps for My Device');
+            }));
+
+        it('sets initialDeviceText for Android',
+            helpers
+            .injector(androidCapabilities('tablet'), noStorage)
+            .run(['compat_filter'], function(compatFilter) {
+                assert.equal(compatFilter.initialDeviceText,
+                             'Apps for My Device');
+            }));
     });
 });

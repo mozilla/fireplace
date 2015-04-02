@@ -163,12 +163,20 @@ define('compat_filter',
         return filterDevice;
     }
 
+    var initialDeviceText;
+    DEVICE_FILTER_CHOICES.forEach(function(choice) {
+        if (choice[0] == filterDevice) {
+            initialDeviceText = choice[1];
+        }
+    });
+
     return {
         DEVICE_CHOICES: DEVICE_CHOICES,
         DEVICE_FILTER_CHOICES: DEVICE_FILTER_CHOICES,
         apiArgs: apiArgs,
         featureProfile: featureProfile,
         getFilterDevice: getFilterDevice,
+        initialDeviceText: initialDeviceText,
         isDeviceSelected: isDeviceSelected,
         limit: limit,
     };

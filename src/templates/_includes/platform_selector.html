@@ -1,7 +1,7 @@
 <mkt-select class="compat-filter">
   <mkt-selected><p>
     {{ _('Show me apps for <mkt-selected-text>{selectedPlatform}</mkt-selected-text>')
-       |format(selectedPlatform=compat_filter.DEVICE_CHOICES[compat_filter.getFilterDevice()])
+       |format(selectedPlatform=compat_filter.initialDeviceText)
        |safe }}
   </p></mkt-selected>
   <optgroup>
