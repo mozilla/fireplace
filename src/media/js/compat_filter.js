@@ -165,7 +165,7 @@ define('compat_filter',
 
     var initialDeviceText;
     DEVICE_FILTER_CHOICES.forEach(function(choice) {
-        if (choice[0] == filterDevice) {
+        if (choice[0] == (filterDevice || 'all')) {
             initialDeviceText = choice[1];
         }
     });
