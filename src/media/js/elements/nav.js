@@ -19,16 +19,26 @@ define('elements/nav',
     ['core/log', 'core/z', 'jquery', 'underscore'],
     function(log, z, $) {
 
-    // TODO: come up with better names for these, and explain them with comments.
+    // Active link / nav item. Set on <a class="mkt-nav--item">.
     var ACTIVE = 'mkt-nav--active';
+    // Showing subnav.
     var SHOWING = 'mkt-nav--showing-child';
+    // Displaying the nav on mobile. Set on <body>.
     var VISIBLE = 'mkt-nav--visible';
+    // Showing subnav.
     var SUBNAV_VISIBLE = 'mkt-nav--subnav-visible';
+    // Hide when not VISIBLE. Set on <mkt-nav> itself.
+    var BACKGROUND_HIDDEN = 'mkt-nav--background-hidden';
 
     var logger = log('elements/nav');
 
     var MktNavElement = document.registerElement('mkt-nav', {
         prototype: Object.create(HTMLElement.prototype, {
+            createdCallback: {
+                value: function() {
+                    this.classList.add(BACKGROUND_HIDDEN);
+                }
+            },
             toggle: {
                 /*
                 Toggle the class specified by this.statusVisibleClass on
@@ -37,8 +47,20 @@ define('elements/nav',
                 of that value.
                 */
                 value: function(bool) {
-                    this.$statusElement.toggleClass(VISIBLE, bool);
-                    return this;
+                    var root = this;
+                    if (this.$statusElement.hasClass(VISIBLE)) {
+                        // Have to hide since Android/Flame will flicker the
+                        // Nav when scrolling despite it being z-indexed
+                        // behind main content. But don't want to hide it
+                        // right away, so we set a timeout.
+                        setTimeout(function() {
+                            root.classList.add(BACKGROUND_HIDDEN);
+                        }, 500);
+                    } else {
+                        root.classList.remove(BACKGROUND_HIDDEN);
+                    }
+                    root.$statusElement.toggleClass(VISIBLE, bool);
+                    return root;
                 },
             },
             toggleSubnav: {
