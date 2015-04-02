@@ -19,7 +19,8 @@
 
   <mkt-nav-child id="categories">
     {% for category in categories %}
-      {{ nav_item(url('category', [category.slug]), category.name, category.slug) }}
+      {{ nav_item(url('category', [category.slug]), category.name,
+                  category.slug) }}
     {% endfor %}
   </mkt-nav-child>
 

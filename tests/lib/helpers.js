@@ -46,6 +46,12 @@ function assertUATrackingLog(test, trackArgs) {
 }
 
 
+var browser = {
+    isPhantom: navigator.userAgent.toLowerCase().indexOf('phantom') > -1,
+    isSlimer: navigator.userAgent.toLowerCase().indexOf('firefox') > -1,
+};
+
+
 function filterUALogs(trackArgs) {
     // Given an array, filter UA log that matches the array.
     return casper.evaluate(function(trackArgs) {
@@ -77,6 +83,7 @@ function waitForFeedItem(cb) {
 module.exports = {
     assertUASendEvent: assertUASendEvent,
     assertUASetSessionVar: assertUASetSessionVar,
+    browser: browser,
     filterUALogs: filterUALogs,
     waitForAppDetail: waitForAppDetail,
     waitForAppList: waitForAppList,

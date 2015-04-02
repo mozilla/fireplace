@@ -1,0 +1,90 @@
+/*
+    Marketplace Select.
+
+    Prominently used by the Platform Selector.
+*/
+@import 'lib';
+
+$color--select = #006DBF;
+$color--option1 = #197CC6;
+$color--option2 = #4C99D1;
+$color--option3 = #7FB5DD;
+$color--option4 = lighten(#7FB5DD, 30%);
+$zindex--mkt-select = 40;
+
+mkt-select {
+    color: $greyscale-white;
+    cursor: pointer;
+    position: relative;
+    z-index: $zindex--mkt-select;
+}
+
+mkt-option,
+mkt-selected {
+    align-items: center;
+    font-weight: 300;
+    width: 100%;
+}
+
+mkt-selected {
+    background: $color--select;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+}
+
+mkt-selected:after {
+    bottom: 2px;
+    content: '\25BE';
+    display: inline-block;
+    font-size: 12px;
+    margin-left: 6px;
+    position: relative;
+    transition: transform .2s linear;
+}
+
+mkt-optgroup {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 0;
+    overflow-y: hidden;
+    transition: max-height .4s ease-out 0s;
+}
+
+mkt-option {
+    background: $color--option1;
+    display: flex;
+    height: 40px;
+    justify-content: flex-start;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+mkt-option[selected] {
+    // Don't show selected option in the list.
+    display: none;
+}
+
+[data-mkt-option--index="0"] {
+    background: $color--option1;
+}
+[data-mkt-option--index="1"] {
+    background: $color--option2;
+}
+[data-mkt-option--index="2"] {
+    background: $color--option3;
+}
+[data-mkt-option--index="3"] {
+    background: $color--option4;
+}
+
+.mkt-select--visible {
+    mkt-optgroup {
+        max-height: 1000px;
+    }
+    mkt-selected:after {
+        transform: rotate(180deg);
+    }
+}

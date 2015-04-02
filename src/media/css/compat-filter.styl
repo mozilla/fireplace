@@ -1,6 +1,13 @@
 @import "lib";
 
-.compat-filter {
+[data-mkt-nav--enabled] {
+    &:not([data-page-type~="app-list"]) .compat-filter,
+    div.compat-filter {
+        display: none;
+    }
+}
+
+div.compat-filter {
     display: block;
     margin: 0 auto;
     right: 0;
