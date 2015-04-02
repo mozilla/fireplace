@@ -2,8 +2,9 @@
     Render header and footer.
 */
 define('header_footer',
-    ['categories', 'core/nunjucks', 'core/settings', 'core/z', 'newsletter'],
-    function(categories, nunjucks, settings, z, newsletter) {
+    ['categories', 'compat_filter', 'core/nunjucks', 'core/settings', 'core/z',
+     'newsletter'],
+    function(categories, compatFilter, nunjucks, settings, z, newsletter) {
 
     function renderHeader() {
         if (settings.mktNavEnabled) {
