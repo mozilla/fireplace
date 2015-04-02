@@ -148,8 +148,8 @@ define('elements/nav',
 
     .on('click', function(e) {
         if (this.classList.contains(VISIBLE) &&
-            e.target == document.querySelector('#page') &&
-            $('#page').offset().left >= $('mkt-nav').width()) {
+            e.target == document.querySelector('main') &&
+            $('main').offset().left >= $('mkt-nav').width()) {
             document.querySelector('mkt-nav').toggle();
         }
     });
