@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: marketplace-fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01T16:02:08.073Z\n"
+"POT-Creation-Date: 2015-04-02T15:44:29.991Z\n"
 "PO-Revision-Date: 2015-04-01 15:24+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: Português (Brasil) <dev-l10n-pt-br@lists.mozilla.org>\n"
@@ -122,7 +122,7 @@ msgstr ""
 msgid "Privacy Policy"
 msgstr "Política de privacidade"
 
-#: /templates/footer.html:40 /templates/terms.html:2 /templates/settings.html:69 /media/js/views/terms.js:10
+#: /templates/footer.html:40 /templates/settings.html:69 /templates/terms.html:2 /media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Termos de uso"
 
@@ -338,6 +338,86 @@ msgstr "Estatísticas de uso de aplicativos"
 msgid "Not enough statistics to show."
 msgstr "Não o suficiente para mostrar as estatísticas."
 
+#: /templates/_includes/app_list_filters.html:16
+msgid "Display as"
+msgstr "Exibir como"
+
+#: /templates/_includes/app_list_filters.html:17
+msgid "Toggle App Previews"
+msgstr "Ativar/Desativar a pré-visualização de aplicativos"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Voltar para {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Classificação Indicativa"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Detalhes da classificação"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Suas configurações do Mac podem impedir a instalação de aplicativos que não vêm a partir do Mac App Store."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Saiba como alterá-las."
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Instalado!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Abra esse aplicativo na sua pasta <b>Aplicativos</b>."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Abra esse aplicativo na sua <b>Área de trabalho do Windows</b> ou <b>Iniciar &#9658; Todos os programas</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Abra este aplicativo a partir do <b>painel</b>, <b>seletor de aplicativos</b> ou <b>menu de aplicativos</b>."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me apps for <mkt-selected-text>{selectedPlatform}</mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Edite a sua avaliação"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Edite a sua avaliação"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Escreva uma avaliação"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Entre para poder avaliar"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Ler todas as avaliações"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "Uma avaliação"
+msgstr[1] "{numReviews} avaliações"
+
+#: /templates/_includes/settings_hover_desktop.html:10
+msgid "Edit Account Settings"
+msgstr "Editar configurações da conta"
+
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
 msgstr "Tem algo a relatar?"
@@ -495,14 +575,6 @@ msgstr "Carregar mais"
 msgid "{app_name} screenshot"
 msgstr "{app_name} captura de tela"
 
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Avaliado em {stars} de {maxstars} estrelas"
-
-#: /templates/errors/404.html:9
-msgid "The page you were looking for was not found."
-msgstr "A página que você está procurando não foi encontrada."
-
 #: /templates/_macros/review.html:14
 msgid "For previous version {version}"
 msgstr "Para a versão anterior {version}"
@@ -522,6 +594,14 @@ msgstr "Relatar"
 #: /templates/_macros/review.html:43
 msgid "Flagged for review"
 msgstr "Marcado para avaliação"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Avaliado em {stars} de {maxstars} estrelas"
+
+#: /templates/errors/404.html:9
+msgid "The page you were looking for was not found."
+msgstr "A página que você está procurando não foi encontrada."
 
 #: /templates/errors/date-error.html:2
 msgid "System Date Incorrect"
@@ -611,121 +691,13 @@ msgstr "Esse aplicativo não tem avaliações"
 msgid "App Review"
 msgstr "Avaliações do aplicativo"
 
-#: /templates/_includes/app_list_filters.html:16
-msgid "Display as"
-msgstr "Exibir como"
+#: /media/js/apps.js:110
+msgid "Not available for your region"
+msgstr "Não disponível na sua região"
 
-#: /templates/_includes/app_list_filters.html:17
-msgid "Toggle App Previews"
-msgstr "Ativar/Desativar a pré-visualização de aplicativos"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Voltar para {app}"
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Classificação Indicativa"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Detalhes da classificação"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Suas configurações do Mac podem impedir a instalação de aplicativos que não vêm a partir do Mac App Store."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Saiba como alterá-las."
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Instalado!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Abra esse aplicativo na sua pasta <b>Aplicativos</b>."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Abra esse aplicativo na sua <b>Área de trabalho do Windows</b> ou <b>Iniciar &#9658; Todos os programas</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Abra este aplicativo a partir do <b>painel</b>, <b>seletor de aplicativos</b> ou <b>menu de aplicativos</b>."
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Edite a sua avaliação"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Edite a sua avaliação"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Escreva uma avaliação"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Entre para poder avaliar"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Ler todas as avaliações"
-
-#: /templates/_includes/settings_hover_desktop.html:10
-msgid "Edit Account Settings"
-msgstr "Editar configurações da conta"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "Uma avaliação"
-msgstr[1] "{numReviews} avaliações"
-
-#: /media/js/compat_filter.js:45
-msgid "Android Mobile"
-msgstr "Celular Android"
-
-#: /media/js/compat_filter.js:46
-msgid "Android Tablet"
-msgstr "Tablet Android"
-
-#: /media/js/compat_filter.js:47
-msgid "Desktop"
-msgstr "Computador"
-
-#: /media/js/compat_filter.js:48
-msgid "Firefox OS"
-msgstr "Firefox OS"
-
-#: /media/js/compat_filter.js:51
-msgid "All Apps"
-msgstr "Todos os Aplicativos"
-
-#: /media/js/compat_filter.js:52
-msgid "Desktop Apps"
-msgstr "Apps para desktop"
-
-#: /media/js/compat_filter.js:53
-msgid "Firefox OS Apps"
-msgstr "Apps para Firefox OS"
-
-#: /media/js/compat_filter.js:54
-msgid "Android Mobile Apps"
-msgstr "Apps para smartphones Android"
-
-#: /media/js/compat_filter.js:55
-msgid "Android Tablet Apps"
-msgstr "Apps para tablets Android"
-
-#: /media/js/compat_filter.js:74
-msgid "Apps for My Device"
-msgstr "Apps para o meu aparelho"
+#: /media/js/apps.js:115
+msgid "Not available for your platform"
+msgstr "Não disponível na sua plataforma"
 
 #: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:141
 msgid "Payment cancelled."
@@ -745,13 +717,53 @@ msgstr "Desculpe, tivemos problemas para coletar os dados deste aplicativo. Por 
 msgid "Install failed. Please try again later."
 msgstr "A instalação falhou. Por favor, tente mais tarde."
 
-#: /media/js/apps.js:110
-msgid "Not available for your region"
-msgstr "Não disponível na sua região"
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
+msgid "All Platforms"
+msgstr ""
 
-#: /media/js/apps.js:115
-msgid "Not available for your platform"
-msgstr "Não disponível na sua plataforma"
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:67
+msgid "Android Mobile"
+msgstr "Celular Android"
+
+#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:68
+msgid "Android Tablet"
+msgstr "Tablet Android"
+
+#: /media/js/compat_filter.js:48 /media/js/compat_filter.js:65
+msgid "Desktop"
+msgstr "Computador"
+
+#: /media/js/compat_filter.js:49 /media/js/compat_filter.js:66
+msgid "Firefox OS"
+msgstr "Firefox OS"
+
+#: /media/js/compat_filter.js:55
+msgid "All Apps"
+msgstr "Todos os Aplicativos"
+
+#: /media/js/compat_filter.js:59
+msgid "My Device"
+msgstr ""
+
+#: /media/js/compat_filter.js:60
+msgid "Apps for My Device"
+msgstr "Apps para o meu aparelho"
+
+#: /media/js/compat_filter.js:72
+msgid "Desktop Apps"
+msgstr "Apps para desktop"
+
+#: /media/js/compat_filter.js:73
+msgid "Firefox OS Apps"
+msgstr "Apps para Firefox OS"
+
+#: /media/js/compat_filter.js:74
+msgid "Android Mobile Apps"
+msgstr "Apps para smartphones Android"
+
+#: /media/js/compat_filter.js:75
+msgid "Android Tablet Apps"
+msgstr "Apps para tablets Android"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -825,26 +837,6 @@ msgstr "Viagens"
 msgid "Utilities"
 msgstr "Utilidades"
 
-#: /media/js/desktop_promo.js:20
-msgid "Enjoy curated playlists from around the world."
-msgstr "Aproveite playlists do mundo inteiro."
-
-#: /media/js/desktop_promo.js:26
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Jogos e entretenimento: aplicativos fundamentais para desktop"
-
-#: /media/js/desktop_promo.js:31
-msgid "Play multiple versions of the classic card game."
-msgstr "Jogue várias versões do clássico jogo de cartas."
-
-#: /media/js/desktop_promo.js:37
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "Produtividade: aplicativos fundamentais para desktop"
-
-#: /media/js/desktop_promo.js:42
-msgid "Explore and catalog your favorite things on the web."
-msgstr "Explorar e catalogar suas coisas favoritas na web."
-
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
 msgid "For ages {0}+"
@@ -886,9 +878,37 @@ msgstr "Maiores de 17 anos"
 msgid "Adults Only 18+"
 msgstr "Maiores de 18 anos"
 
-#: /media/js/helpers_local.js:117
-msgid "Works offline"
-msgstr "Funciona offline"
+#: /media/js/desktop_promo.js:16
+msgid "Build, explore, and fight to become the ruler of Zirma."
+msgstr ""
+
+#: /media/js/desktop_promo.js:21
+msgid "Find everything—from shoes to sushi."
+msgstr ""
+
+#: /media/js/desktop_promo.js:26
+msgid "Access Outlook from anywhere."
+msgstr ""
+
+#: /media/js/desktop_promo.js:39
+msgid "Enjoy curated playlists from around the world."
+msgstr "Aproveite playlists do mundo inteiro."
+
+#: /media/js/desktop_promo.js:45
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Jogos e entretenimento: aplicativos fundamentais para desktop"
+
+#: /media/js/desktop_promo.js:50
+msgid "Play multiple versions of the classic card game."
+msgstr "Jogue várias versões do clássico jogo de cartas."
+
+#: /media/js/desktop_promo.js:56
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "Produtividade: aplicativos fundamentais para desktop"
+
+#: /media/js/desktop_promo.js:61
+msgid "Explore and catalog your favorite things on the web."
+msgstr "Explorar e catalogar suas coisas favoritas na web."
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1214,13 +1234,17 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "Seja pontual"
 msgstr[1] "Seja pontual"
 
-#: /media/js/installer_iframe.js:111 /media/js/installer_direct.js:180
-msgid "App install error: {error}"
-msgstr "Erro ao instalar o aplicativo: {error}"
+#: /media/js/helpers_local.js:117
+msgid "Works offline"
+msgstr "Funciona offline"
 
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
 msgstr "Não é possível instalar aplicativos empacotados"
+
+#: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
+msgid "App install error: {error}"
+msgstr "Erro ao instalar o aplicativo: {error}"
 
 #: /media/js/newsletter.js:64
 msgid "There was an error submitting your newsletter sign up request"
