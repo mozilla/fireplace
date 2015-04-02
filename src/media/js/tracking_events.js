@@ -170,7 +170,7 @@ define('tracking_events',
     setSessionVar(DIMENSIONS.siteSection, 'Consumer');
 
     // Track selected active platform filter.
-    setSessionVar(DIMENSIONS.platformFilter, compatFilter.filterDevice);
+    setSessionVar(DIMENSIONS.platformFilter, compatFilter.getFilterDevice());
 
     // Track detected platform.
     setSessionVar(DIMENSIONS.platform, caps.device_type());
@@ -247,8 +247,8 @@ define('tracking_events',
     })
 
     // Change platform filtering options.
-    .on('change', '#compat-filter', function() {
-        var filterDevice = this[this.selectedIndex].value;
+    .on('change', '#compat-filter, .compat-filter', function() {
+        var filterDevice = this.value;
         setSessionVar(DIMENSIONS.platformFilter, filterDevice);
         sendEvent(
             'Change platform filter',

@@ -20,11 +20,11 @@ $color--nav--child-border = darken($color--nav--child-bg, 25%);
 $color--nav--child-back = #28A0FC;
 $color--nav--child-back-border = darken($color--nav--child-back, 25%);
 $color--nav--root-link = #333;
-$color--nav--gradient = linear-gradient(0deg, #9E1455, #601E78, #052659);
+$color--nav--gradient = linear-gradient(to top, #9E1455, #601E78, #052659);
 $nav--header-height = 60px;
 $nav--subnav-to-shift = 'mkt-nav-root';
 $nav--transition = 'transform cubic-bezier(0.455, 0.03, 0.515, 0.955) 250ms';
-$nav--to-shift = '#site-header, main, $site-footer';
+$nav--to-shift = '#site-header, main, #site-footer, [data-mkt-nav--shift]';
 $nav--width = 260px;
 $zindex--nav-hamburger-child = 20;
 $zindex--nav-hamburger-root = 30;
@@ -48,7 +48,7 @@ image-replacement(src, width, height) {
     min-height: 480px;
 }
 
-#page:after {
+main:after {
     // Disable main content interaction when nav is visible.
     content: '';
     left: 0;
@@ -69,7 +69,7 @@ image-replacement(src, width, height) {
         // Disable scroll on main content when nav is visible.
         overflow-y: hidden;
     }
-    &.mkt-nav--visible #page {
+    &.mkt-nav--visible main {
         position: relative;
 
         &:after {
@@ -87,10 +87,6 @@ image-replacement(src, width, height) {
     main {
         background: $greyscale-light-grey;
         z-index: $zindex--main;
-    }
-    main,
-    #site-header {
-        transition: unquote('transform cubic-bezier(0.86, 0, 0.07, 1) 333ms');
     }
     &[data-page-type~="leaf"] #site-header .hamburger {
         display: none;
@@ -121,9 +117,9 @@ mkt-nav-child {
 }
 
 mkt-nav-root {
-    background: url(../img/nav/full-white.svg) no-repeat 30px 30px / 182px 35px,
+    background: url(../img/nav/full-white.svg) no-repeat 30px 30px,
                 $color--nav--gradient;
-    height: 100%;
+    background-size: 182px 35px, cover;
     padding: 75px 30px 30px 21px;
     transition: unquote($nav--transition);
     z-index: $zindex--nav-hamburger-root;
@@ -199,6 +195,7 @@ mkt-nav-child {
 
 {$nav--to-shift} {
     transform: translateX(0);
+    transition: unquote($nav--transition);
 }
 
 {$nav--subnav-to-shift} {
@@ -267,10 +264,6 @@ mkt-nav-child {
 }
 
 .mkt-nav--visible {
-    main,
-    #site-header {
-        transform: translateX(260px);
-    }
     {$nav--to-shift} {
         transform: translateX($nav--width);
     }
@@ -292,7 +285,7 @@ mkt-nav-child {
     [data-mkt-nav--enabled].mkt-nav--visible {
         overflow-y: auto;
     }
-    [data-mkt-nav--enabled].mkt-nav--visible #page:after {
+    [data-mkt-nav--enabled].mkt-nav--visible main:after {
         display: none;
     }
     [data-mkt-nav--enabled] #site-header {
@@ -338,6 +331,7 @@ mkt-nav-child {
         border: none;
         margin-bottom: -1 * $nav--header-height
         left 7%;
+        overflow: hidden;
         padding: 10px 0;
         position: relative;
         top: -1 * $nav--header-height
@@ -365,6 +359,7 @@ mkt-nav-child {
         height: auto;
         left: 0;
         min-height: $nav--header-height;
+        overflow: hidden;
         padding: 10px 5%;
         position: absolute;
         visibility: hidden;

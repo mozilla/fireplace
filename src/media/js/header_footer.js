@@ -22,13 +22,22 @@ define('header_footer',
         ));
     }
 
+    function renderPlatformSelector() {
+        if (settings.mktNavEnabled) {
+            $(nunjucks.env.render('_includes/platform_selector.html'))
+                .insertBefore('#page');
+        }
+    }
+
     z.page.on('reload_chrome', function() {
         renderHeader();
         renderFooter();
+        renderPlatformSelector();
     });
 
     return {
         renderHeader: renderHeader,
         renderFooter: renderFooter,
+        renderPlatformSelector: renderPlatformSelector
     };
 });

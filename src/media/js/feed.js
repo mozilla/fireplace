@@ -95,6 +95,13 @@ define('feed',
         feedItem.color = feedItem.color || 'sapphire';
         feedItem.inline_color = colors.COLLECTION_COLORS[feedItem.color];
 
+        // TODO: deserialize image_url (bug 1148509).
+        if (feedItem.isApp) {
+            feedItem.preview.thumbnail_url = feedItem.preview.thumbnail_url
+                                                     .replace(/\/thumbs\//,
+                                                              '/full/');
+        }
+
         return feedItem;
     }
 
