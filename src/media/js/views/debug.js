@@ -23,6 +23,7 @@ define('views/debug',
     .on('click', '#enable-mkt-nav', function() {
         settings.mktNavEnabled = true;
         headerFooter.renderHeader();
+        headerFooter.renderPlatformSelector();
         z.page.trigger('navigate');
     })
 
