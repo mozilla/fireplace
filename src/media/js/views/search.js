@@ -1,8 +1,8 @@
 define('views/search',
-    ['core/l10n', 'core/navigation', 'core/urls', 'core/utils', 'core/z',
-     'previews', 'tracking'],
-    function(l10n, navigation, urls, utils, z,
-             previews, tracking) {
+    ['core/l10n', 'core/navigation', 'core/settings', 'core/urls',
+     'core/utils', 'core/z', 'previews', 'tracking'],
+    function(l10n, navigation, settings, urls,
+             utils, z, previews, tracking) {
     'use strict';
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -100,7 +100,8 @@ define('views/search',
         return query;
     }
 
-    z.body.on('submit', '#search', _pd(function(e) {
+    z.body.on('submit', '#search', function(e) {
+        e.preventDefault();
         e.stopPropagation();
         var $q = $('#search-q');
         var query = $q.val();
@@ -117,12 +118,15 @@ define('views/search',
         }
         $q.trigger('blur');
         z.page.trigger('search', {q: query});
-    }));
+        return;
+    });
 
     z.page.on('loaded', function() {
-        var $q = $('#search-q');
-        $q.val(z.context.search);
-        // If this is a search results or "my apps" page.
+        if (!settings.mktNavEnabled) {
+            var $q = $('#search-q');
+            $q.val(z.context.search);
+            // If this is a search results or "my apps" page.
+        }
     })
 
     .on('loaded_more', function() {
