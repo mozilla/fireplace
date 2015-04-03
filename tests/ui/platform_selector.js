@@ -101,9 +101,9 @@ casper.test.begin('Test platform selector selected text', {
         }
 
         platformSelectorSetUp(function() {
-            test.assertSelectorHasText('mkt-selected-text', 'All Platforms');
+            test.assertSelectorHasText('mkt-selected-text', 'All Apps');
             selectOption('desktop');
-            test.assertSelectorHasText('mkt-selected-text', 'Desktop');
+            test.assertSelectorHasText('mkt-selected-text', 'Desktop Apps');
         });
 
         helpers.done(test);
