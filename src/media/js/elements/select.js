@@ -97,6 +97,9 @@ define('elements/select',
                     // Update indices (for colors).
                     root.updateOptionIndices();
 
+                    // Set <mkt-selected-text>.
+                    root.updateSelectedText();
+
                     // Align options with <mkt-selected-text>.
                     if (root.alignOptions() > 0) {
                         root.setAttribute('data-mkt-select--aligned', true);
@@ -125,17 +128,13 @@ define('elements/select',
             },
             toggle: {
                 // Toggles visibility of the <mkt-option>s.
-                value: function(bool) {
+                value: function() {
                     if (!this.getAttribute('data-mkt-select--aligned')) {
                         if (this.alignOptions() > 0) {
                             this.setAttribute('data-mkt-select--aligned', true);
                         }
                     }
-                    if (bool) {
-                        this.classList.toggle(VISIBLE, bool);
-                    } else {
-                        this.classList.toggle(VISIBLE);
-                    }
+                    this.classList.toggle(VISIBLE);
                     return this;
                 },
             },
@@ -162,8 +161,7 @@ define('elements/select',
                     }
 
                     // Change text.
-                    root.querySelector('mkt-selected-text').innerHTML =
-                        selectedOption.innerHTML;
+                    root.updateSelectedText(selectedOption);
 
                     // Change [selected] of <mkt-option>s.
                     var mktOptions = root.querySelectorAll('mkt-option');
@@ -182,6 +180,18 @@ define('elements/select',
                     var offset = $('mkt-selected-text', this).position().left;
                     $('mkt-option', this).css('padding-left', offset);
                     return offset;
+                }
+            },
+            updateSelectedText: {
+                value: function(selectedOption) {
+                    // Updates the displayed selected option text.
+                    var root = this;
+                    selectedOption = selectedOption || root.querySelector(
+                        'mkt-option[selected]');
+
+                    // Change text.
+                    root.querySelector('mkt-selected-text').innerHTML =
+                        selectedOption.innerHTML;
                 }
             },
             updateOptionIndices: {
@@ -263,6 +273,9 @@ define('elements/select',
     }, 100));
 
     return {
+        classes: {
+            VISIBLE: VISIBLE
+        },
         MktOptGroupElement: MktOptGroupElement,
         MktOptionElement: MktOptionElement,
         MktSelectElement: MktSelectElement,

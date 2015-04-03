@@ -2,7 +2,7 @@ define('tests/unit/elements--nav',
     ['elements/nav', 'tests/unit/helpers'],
     function(nav, helpers) {
 
-    describe.only('mkt-nav', function() {
+    describe('mkt-nav', function() {
         it('toggles', function() {
                 var mktNav = document.createElement('mkt-nav');
                 mktNav.toggle();
