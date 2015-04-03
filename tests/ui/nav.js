@@ -11,11 +11,16 @@ function navSetUp(cb) {
 
             settings.mktNavEnabled = true;
             headerFooter.renderHeader();
-            z.page.trigger('navigate');
         });
     });
 
-    return casper.waitForSelector('mkt-nav', cb);
+    return casper.waitForSelector('mkt-nav', function() {
+        casper.evaluate(function() {
+            var z = window.require('core/z');
+            z.page.trigger('navigate');
+        });
+        cb();
+    });
 }
 
 
@@ -114,6 +119,7 @@ casper.test.begin('Test mkt-nav subnavs', {
                 test.assertDoesntExist('.mkt-nav--subnav-visible');
             });
             test.assertExists('[data-mkt-nav--link="games"].mkt-nav--active');
+            test.assertDoesntExist('[data-mkt-nav--link="music"].mkt-nav--active');
         });
 
         helpers.done(test);
@@ -177,6 +183,7 @@ casper.test.begin('Test mkt-nav subnavs desktop', {
                 test.assertDoesntExist('.mkt-nav--subnav-visible');
             });
             test.assertExists('[data-mkt-nav--link="games"].mkt-nav--active');
+            test.assertDoesntExist('[data-mkt-nav--link="music"].mkt-nav--active');
         });
 
         helpers.done(test);
