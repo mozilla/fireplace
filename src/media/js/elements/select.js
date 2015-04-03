@@ -131,7 +131,11 @@ define('elements/select',
                             this.setAttribute('data-mkt-select--aligned', true);
                         }
                     }
-                    this.classList.toggle(VISIBLE, bool);
+                    if (bool) {
+                        this.classList.toggle(VISIBLE, bool);
+                    } else {
+                        this.classList.toggle(VISIBLE);
+                    }
                     return this;
                 },
             },
