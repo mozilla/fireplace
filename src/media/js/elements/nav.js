@@ -16,8 +16,8 @@
         - Slide-down subnavs
 */
 define('elements/nav',
-    ['core/log', 'core/z', 'jquery', 'underscore'],
-    function(log, z, $) {
+    ['core/log', 'core/settings', 'core/z', 'jquery', 'underscore'],
+    function(log, settings, z, $) {
 
     // Active link / nav item. Set on <a class="mkt-nav--item">.
     var ACTIVE = 'mkt-nav--active';
@@ -202,7 +202,12 @@ define('elements/nav',
         // wouldn't apply unless <html>/<body> had heights, and setting to
         // 100% height would mess up the page since our <footer> isn't part of
         // <main>. Could be resolved if we made <footer> a part of <main>.
-        document.querySelector('main').style.minHeight = screen.height + 'px';
+        if (settings.mktNavEnabled) {
+            var main = document.querySelector('main');
+            if (main) {
+                main.style.minHeight = screen.height + 'px';
+            }
+        }
     }
 
     z.win.on('resize', _.debounce(setMainMinHeight, 250));
