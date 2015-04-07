@@ -130,15 +130,20 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 // also used as standalone "card" on detail pages.
 .mkt-tile .rating {
     color: $sailor-blue;
-    display: block;
+    display: inline-block;
     font-size: 12px;
     padding: 8px 0;
 
     a {
+        display: flex;
+        flex-direction: row-reverse;
         text-decoration: none;
 
         &:hover .cnt {
             text-decoration: underline;
+        }
+        +rtl() {
+            justify-content: flex-end;
         }
     }
     .cnt {
