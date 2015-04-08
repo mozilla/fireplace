@@ -90,11 +90,18 @@ App listing filters.
     display: none;
 }
 
-.app-list-filters + .app-list {
+body:not([data-mkt-nav--enabled]) .app-list-filters + .app-list {
     margin-top: -15px;
 }
 
+[data-mkt-nav--enabled] .app-list-filters {
+    display: none;
+}
+
 @media $base-tablet {
+    [data-mkt-nav--enabled] .app-list-filters {
+        display: block;
+    }
     .app-list-filters {
         bottom: 0;
         border-bottom: 2px solid $greyscale-light-grey;
