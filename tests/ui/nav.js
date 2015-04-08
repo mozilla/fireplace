@@ -59,7 +59,7 @@ casper.test.begin('Test mkt-nav toggle', {
             // It closes when click link.
             casper.click('.mkt-nav--toggle');
             test.assertExists('.mkt-nav--visible mkt-nav');
-            casper.click('[data-mkt-nav--link="popular"]');
+            casper.click('[data-mkt-nav--item="popular"] a');
             test.assertDoesntExist('.mkt-nav--visible mkt-nav');
         });
 
@@ -74,24 +74,24 @@ casper.test.begin('Test mkt-nav navigation', {
 
         navSetUp(function() {
             casper.click('.mkt-nav--toggle');
-            test.assertExists('[data-mkt-nav--link="homepage"].mkt-nav--active');
-            casper.click('[data-mkt-nav--link="new"]');
+            test.assertExists('[data-mkt-nav--item="homepage"] .mkt-nav--active');
+            casper.click('[data-mkt-nav--item="new"] a');
         });
 
         casper.waitForSelector('[data-page-type~="new"]', function() {
-            test.assertExists('[data-mkt-nav--link="new"].mkt-nav--active');
+            test.assertExists('[data-mkt-nav--item="new"] .mkt-nav--active');
             casper.click('.mkt-nav--toggle');
-            casper.click('[data-mkt-nav--link="popular"]');
+            casper.click('[data-mkt-nav--item="popular"] a');
         });
 
         casper.waitForSelector('[data-page-type~="popular"]', function() {
-            test.assertExists('[data-mkt-nav--link="popular"].mkt-nav--active');
+            test.assertExists('[data-mkt-nav--item="popular"] .mkt-nav--active');
             casper.click('.mkt-nav--toggle');
-            casper.click('[data-mkt-nav--link="homepage"]');
+            casper.click('[data-mkt-nav--item="homepage"] a');
         });
 
         casper.waitForSelector('[data-page-type~="homepage"]', function() {
-            test.assertExists('[data-mkt-nav--link="homepage"].mkt-nav--active');
+            test.assertExists('[data-mkt-nav--item="homepage"] .mkt-nav--active');
         });
 
         helpers.done(test);
@@ -107,10 +107,10 @@ casper.test.begin('Test mkt-nav subnavs', {
             casper.click('.mkt-nav--toggle');
             test.assertDoesntExist('.mkt-nav--subnav-visible');
 
-            casper.click('[data-mkt-nav--link="categories"]');
+            casper.click('[data-mkt-nav--item="categories"] a');
             test.assertExists('.mkt-nav--subnav-visible');
 
-            casper.click('[data-mkt-nav--link="games"]');
+            casper.click('[data-mkt-nav--item="games"] a');
         });
 
         casper.waitForSelector('[data-page-type~="category"]', function() {
@@ -118,8 +118,8 @@ casper.test.begin('Test mkt-nav subnavs', {
                 test.assertDoesntExist('.mkt-nav--visible');
                 test.assertDoesntExist('.mkt-nav--subnav-visible');
             });
-            test.assertExists('[data-mkt-nav--link="games"].mkt-nav--active');
-            test.assertDoesntExist('[data-mkt-nav--link="music"].mkt-nav--active');
+            test.assertExists('[data-mkt-nav--item="games"] .mkt-nav--active');
+            test.assertDoesntExist('[data-mkt-nav--item="music"] .mkt-nav--active');
         });
 
         helpers.done(test);
@@ -132,22 +132,22 @@ casper.test.begin('Test mkt-nav navigation desktop', {
         helpers.startCasper({viewport: 'desktop'});
 
         navSetUp(function() {
-            test.assertExists('[data-mkt-nav--link="homepage"].mkt-nav--active');
-            casper.click('[data-mkt-nav--link="new"]');
+            test.assertExists('[data-mkt-nav--item="homepage"] .mkt-nav--active');
+            casper.click('[data-mkt-nav--item="new"] a');
         });
 
         casper.waitForSelector('[data-page-type~="new"]', function() {
-            test.assertExists('[data-mkt-nav--link="new"].mkt-nav--active');
-            casper.click('[data-mkt-nav--link="popular"]');
+            test.assertExists('[data-mkt-nav--item="new"] .mkt-nav--active');
+            casper.click('[data-mkt-nav--item="popular"] a');
         });
 
         casper.waitForSelector('[data-page-type~="popular"]', function() {
-            test.assertExists('[data-mkt-nav--link="popular"].mkt-nav--active');
-            casper.click('[data-mkt-nav--link="homepage"]');
+            test.assertExists('[data-mkt-nav--item="popular"] .mkt-nav--active');
+            casper.click('[data-mkt-nav--item="homepage"] a');
         });
 
         casper.waitForSelector('[data-page-type~="homepage"]', function() {
-            test.assertExists('[data-mkt-nav--link="homepage"].mkt-nav--active');
+            test.assertExists('[data-mkt-nav--item="homepage"] .mkt-nav--active');
         });
 
         helpers.done(test);
@@ -162,28 +162,28 @@ casper.test.begin('Test mkt-nav subnavs desktop', {
         navSetUp(function() {
             // Starts not visible.
             test.assertDoesntExist('.mkt-nav--subnav-visible');
-            test.assertDoesntExist('[data-mkt-nav--link="categories"].mkt-nav--showing-child');
+            test.assertDoesntExist('[data-mkt-nav--item="categories"] .mkt-nav--showing-child');
 
             // Subnav toggle to show.
-            casper.click('[data-mkt-nav--link="categories"]');
-            test.assertExists('[data-mkt-nav--link="categories"].mkt-nav--showing-child');
+            casper.click('[data-mkt-nav--item="categories"] a');
+            test.assertExists('[data-mkt-nav--item="categories"] .mkt-nav--showing-child');
             test.assertExists('.mkt-nav--subnav-visible');
 
             // Subnav toggle to hide.
-            casper.click('[data-mkt-nav--link="categories"]');
+            casper.click('[data-mkt-nav--item="categories"] a');
             test.assertDoesntExist('.mkt-nav--subnav-visible');
 
             // Navigate using subnav.
-            casper.click('[data-mkt-nav--link="categories"]');
-            casper.click('[data-mkt-nav--link="games"]');
+            casper.click('[data-mkt-nav--item="categories"] a');
+            casper.click('[data-mkt-nav--item="games"] a');
         });
 
         casper.waitForSelector('[data-page-type~="category"]', function() {
             casper.wait(250, function() {
                 test.assertDoesntExist('.mkt-nav--subnav-visible');
             });
-            test.assertExists('[data-mkt-nav--link="games"].mkt-nav--active');
-            test.assertDoesntExist('[data-mkt-nav--link="music"].mkt-nav--active');
+            test.assertExists('[data-mkt-nav--item="games"] .mkt-nav--active');
+            test.assertDoesntExist('[data-mkt-nav--item="music"] .mkt-nav--active');
         });
 
         helpers.done(test);

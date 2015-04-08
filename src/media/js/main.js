@@ -125,6 +125,15 @@ require(
 
     z.page.on('before_login before_logout', function() {
         cache.purge();
+    })
+
+    .on('logged_in logged_out', function() {
+        var nav = document.querySelector('mkt-nav');
+        if (nav) {
+            setTimeout(function() {
+                nav.toggle(false);
+            }, 50);
+        }
     });
 
     z.body.on('click', '.site-header .back', function(e) {

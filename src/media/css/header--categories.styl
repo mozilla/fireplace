@@ -50,10 +50,14 @@ $color--nav--child-bg = #1A95FC;
 }
 
 for $cat in $categories {
-    .mkt-nav--link.mkt-nav--active.mkt-nav--link-{$cat}:before,
-    .mkt-nav--link.mkt-nav--link-{$cat}:hover:before,
-    .mkt-nav--link.mkt-nav--link-{$cat}:before,
-    .category-list:hover .mkt-nav--active.mkt-nav--link.mkt-nav--link-{$cat}:before {
+    [data-mkt-nav--item=\"{$cat}\"] {
+        .mkt-nav--link.mkt-nav--active:before,
+        .mkt-nav--link:hover:before,
+        .mkt-nav--link:before {
+            category-icon-position($cat);
+        }
+    }
+    .category-list:hover [data-mkt-nav--item=\"{$cat}\"] .mkt-nav--active.mkt-nav--link:before {
         category-icon-position($cat);
     }
 }
