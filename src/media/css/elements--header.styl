@@ -1,0 +1,50 @@
+/*
+    Marketplace Header.
+*/
+@import 'lib';
+
+$color--header--child-bg = #1A95FC;
+$header--height = 60px;
+$header--transition = 'transform cubic-bezier(0.455, 0.03, 0.515, 0.955) 250ms';
+$zindex--header-child = 60;
+
+
+mkt-header-child {
+    background: $color--header--child-bg;
+    display: flex;
+    height: auto;
+    left: 0;
+    height: $header--height;
+    opacity: 0;
+    overflow: hidden;
+    padding: 10px 5%;
+    position: absolute;
+    top: 60px;
+    transform: translateY(-100%);
+    transition: unquote($header--transition + ', opacity 0s linear 300ms');
+    width: 100%;
+    z-index: $zindex--header-child;
+
+    &.mkt-header-child--visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: unquote($header--transition);
+    }
+    &[data-header-child--input] input {
+        line-height: normal;
+    }
+}
+
+.mkt-nav--visible mkt-header-child {
+    display: none;
+}
+
+mkt-header-child-toggle {
+    cursor: pointer;
+}
+
+@media $wide-tablet {
+    .mkt-nav--visible mkt-header-child {
+        display: flex;
+    }
+}

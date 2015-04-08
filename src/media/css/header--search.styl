@@ -1,0 +1,43 @@
+@import 'lib';
+
+.header--search-toggle {
+    image-replacement('../img/nav/search.svg', 40px, 40px);
+    background-size: 40px 140px;
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    display: inline-block;
+    order: 4;
+    position: relative;
+
+    &.mkt-header-child--visible {
+        background-position: 0 -100px;
+    }
+}
+
+.header--search {
+    padding: 0 5%;
+    justify-content: center;
+}
+
+.header--search-form {
+    height: 100%;
+}
+
+.header--search-input {
+    background: transparent url(../img/nav/search.svg) 0 -92px / 40px 140px no-repeat;
+    border: 0;
+    border-radius: 5px;
+    color: $greyscale-white;
+    font: 300 26px/28px $primary-font-family;
+    height: 100%;
+    min-width: $mobile-content-width + 10;
+    padding: 15px 0 15px 50px;
+    outline: none;
+    width: 50%;
+    z-index: 2;
+
+    &::placeholder {
+        color: $greyscale-white;
+    }
+}

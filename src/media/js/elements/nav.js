@@ -14,29 +14,32 @@
     On desktop:
         - Header bar at the top
         - Slide-down subnavs
+
+    <mkt-nav-top-child> is similar to <mkt-nav-child> except that when it
+    is toggled, it will not toggle the whole nav. It is intended to just
+    slide-down from underneath the nav rather than slide out the whole page
+    (e.g., search bar that slides down).
 */
 define('elements/nav',
-    ['core/log', 'core/settings', 'core/z', 'jquery', 'underscore'],
-    function(log, settings, z, $) {
+    ['core/settings', 'core/z', 'jquery', 'underscore'],
+    function(settings, z, $, _) {
 
     // Active link / nav item. Set on <a class="mkt-nav--item">.
     var ACTIVE = 'mkt-nav--active';
-    // Showing subnav.
+    // Showing subnav (set on <mkt-nav-child>).
     var SHOWING = 'mkt-nav--showing-child';
-    // Displaying the nav on mobile. Set on <body>.
+    // Displaying the nav on mobile.
     var VISIBLE = 'mkt-nav--visible';
-    // Showing subnav.
+    // Showing a subnav (set on the status element).
     var SUBNAV_VISIBLE = 'mkt-nav--subnav-visible';
-    // Hide when not VISIBLE. Set on <mkt-nav> itself.
+    // Hide when not VISIBLE. Set on <mkt-nav-root>s itself.
     var BACKGROUND_HIDDEN = 'mkt-nav--background-hidden';
-
-    var logger = log('elements/nav');
 
     var MktNavElement = document.registerElement('mkt-nav', {
         prototype: Object.create(HTMLElement.prototype, {
             createdCallback: {
                 value: function() {
-                    this.classList.add(BACKGROUND_HIDDEN);
+                    this.toggleBackgroundHidden(true);
                 }
             },
             statusElement: {
@@ -74,17 +77,25 @@ define('elements/nav',
                         root.statusElement.classList.toggle(VISIBLE);
                     }
 
-                    if (this.statusElement.classList.contains(VISIBLE)) {
+                    if (root.statusElement.classList.contains(VISIBLE)) {
                         // Have to hide since Android/Flame will flicker the
                         // Nav when scrolling despite it being z-indexed
                         // behind main content. But don't want to hide it
                         // right away, so we set a timeout.
-                        root.classList.remove(BACKGROUND_HIDDEN);
+                        root.toggleBackgroundHidden(false);
                     } else {
                         setTimeout(function() {
-                            root.classList.add(BACKGROUND_HIDDEN);
+                            root.toggleBackgroundHidden(true);
                         }, 500);
                     }
+
+                    if (root.statusElement.classList.contains(VISIBLE)) {
+                        var header = document.querySelector('mkt-header');
+                        if (header) {
+                            header.hideHeaderChildren();
+                        }
+                    }
+
                     return root;
                 },
             },
@@ -116,11 +127,36 @@ define('elements/nav',
                     return root;
                 },
             },
+            toggleBackgroundHidden: {
+                // Toggle a class that covers the nav with a grey background
+                // so it isn't visible (flickrs) while scrolling on mobile
+                // devices.
+                value: function(bool) {
+                    var root = this;
+                    if (bool !== undefined) {
+                        if (bool) {
+                            root.classList.add(BACKGROUND_HIDDEN);
+                        } else {
+                            root.classList.remove(BACKGROUND_HIDDEN);
+                        }
+                    } else {
+                        root.classList.toggle(BACKGROUND_HIDDEN);
+                    }
+                }
+            },
             hideSubnavs: {
                 value: function() {
-                    var subnavs = this.querySelectorAll('.' + SHOWING);
+                    var root = this;
+                    var subnavs = root.querySelectorAll('.' + SHOWING);
+                    root.toggleSubnav(false);
                     for (i = 0; subnavs && (i < subnavs.length); i++) {
                         subnavs[i].classList.remove(SHOWING);
+                    }
+
+                    // TODO: <mkt-nav-child-toggle> element.
+                    var toggles = document.querySelectorAll('[data-toggle-subnavs]');
+                    for (var i = 0; toggles && (i < toggles.length); i++) {
+                        toggles.classList.remove(SHOWING);
                     }
                 }
             },
@@ -172,13 +208,16 @@ define('elements/nav',
         }),
     });
 
+    var MktNavHeaderChildElement = document.registerElement('mkt-nav-header-child', {
+        prototype: Object.create(MktNavChildElement.prototype)
+    });
+
     z.body.on('click', '[data-toggle-nav]', function(evt) {
         // Toggle the <mkt-nav> element with the specified id when elements
         // with the // data-toggle-nav attribute are clicked.
         evt.preventDefault();
         evt.stopPropagation();
-        var navId = this.getAttribute('data-toggle-nav');
-        document.getElementById(navId).toggle();
+        document.getElementById(this.getAttribute('data-toggle-nav')).toggle();
     })
 
     .on('click', '[data-toggle-subnav]', function(evt) {
@@ -220,9 +259,8 @@ define('elements/nav',
     z.page.on('navigate', function() {
         // Close all menus. The try/catch block is necessary because navigate
         // gets triggered before the custom element is registered with the DOM.
-        var navs = document.querySelectorAll('mkt-nav');
-        for (i = 0; navs && (i < navs.length); i++) {
-            var nav = navs[i];
+        var nav = document.querySelector('mkt-nav');
+        if (nav) {
             try {
                 nav.updateActiveNode();
                 nav.toggle(false);

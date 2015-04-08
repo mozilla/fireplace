@@ -1,20 +1,29 @@
 /*
-    Render header and footer.
+    Render non-content templates such as header and footer.
+    Set up event handlers related to components in the header and footer.
 */
 define('header_footer',
     ['categories', 'compat_filter', 'core/nunjucks', 'core/settings', 'core/z',
      'newsletter'],
-    function(categories, compatFilter, nunjucks, settings, z, newsletter) {
+    function(categories, compatFilter, nunjucks, settings, z,
+             newsletter) {
 
     function renderHeader() {
         if (settings.mktNavEnabled) {
+            $('#site-header').remove();
+
+            $(nunjucks.env.render('header.html')).insertBefore('main');
+
             $(nunjucks.env.render('mkt_nav.html', {
                 categories: categories
             })).insertAfter('#site-header');
+
             z.body.attr('data-mkt-nav--enabled', true);
+
             $('main #site-nav').remove();
+        } else {
+            $('#site-header').html(nunjucks.env.render('header.html'));
         }
-        $('#site-header').html(nunjucks.env.render('header.html'));
     }
 
     function renderFooter() {
