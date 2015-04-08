@@ -1,3 +1,20 @@
+casper.test.begin('Test UA logged in dimension set', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded(function() {
+            helpers.fake_login();
+        });
+
+        casper.waitForSelector('.logged-in', function() {
+            helpers.assertUASetSessionVar(test, ['dimension1', true]);
+        });
+
+        helpers.done(test);
+    }
+});
+
+
 casper.test.begin('Test UA site section dimension set', {
     test: function(test) {
         helpers.startCasper();

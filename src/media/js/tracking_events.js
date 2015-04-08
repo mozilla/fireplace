@@ -111,11 +111,11 @@
 */
 define('tracking_events',
     ['compat_filter', 'consumer_info', 'core/capabilities', 'core/log',
-     'core/navigation', 'core/settings', 'core/utils', 'core/z', 'jquery',
-     'tracking', 'user_helpers'],
+     'core/navigation', 'core/settings', 'core/user', 'core/utils', 'core/z',
+     'jquery', 'tracking', 'user_helpers'],
     function(compatFilter, consumerInfo, caps, log,
-             navigation, settings, utils, z, $,
-             tracking, userHelpers) {
+             navigation, settings, user, utils, z,
+             $, tracking, userHelpers) {
     'use strict';
     var logger = log('tracking_events');
 
@@ -165,6 +165,12 @@ define('tracking_events',
     // Desktop Promo should receive attribution.
     var PERSISTENT_SRCS = {};
     PERSISTENT_SRCS[SRCS.desktopPromo] = true;
+
+    // Track logged in.
+    setSessionVar(DIMENSIONS.isLoggedIn, user.logged_in());
+    z.page.on('logged_in logged_out', function() {
+        setSessionVar(DIMENSIONS.isLoggedIn, user.logged_in());
+    });
 
     // Track site section.
     setSessionVar(DIMENSIONS.siteSection, 'Consumer');

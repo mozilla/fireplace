@@ -34,16 +34,6 @@ $zindex--header = 70;
 $zindex--nav-normal-root = 70;
 $zindex--page-overlay = 100;
 
-image-replacement(src, width, height) {
-    background: url(src) no-repeat 0 0;
-    background-size: width height;
-    display: inline-block;
-    height: height;
-    overflow: hidden;
-    text-indent: -999em;
-    width: width;
-}
-
 #page {
     min-height: 480px;
 }
@@ -246,11 +236,6 @@ mkt-nav-child {
         left: 5px;
         order: 1;
         position: relative;
-    }
-    .shim {
-        display: inline-block;
-        order: 3;
-        width: 40px;
     }
 }
 
