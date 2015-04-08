@@ -44,6 +44,7 @@ define('elements/header',
                     var headerChildren = root.querySelectorAll(
                         'mkt-header-child');
                     for (var i = 0; i < headerChildren.length; i++) {
+                        headerChildren[i].header = root;
                         root.parentNode.insertBefore(headerChildren[i],
                                                      root.nextSibling);
                     }
@@ -95,6 +96,7 @@ define('elements/header',
                 value: function(bool) {
                     // Toggle visibility.
                     var root = this;
+
                     if (bool !== undefined) {
                         if (bool) {
                             root.classList.add(CHILD_VISIBLE);
@@ -124,6 +126,14 @@ define('elements/header',
                     }
 
                     return root;
+                }
+            },
+            header: {
+                set: function(header) {
+                    this._header = header;
+                },
+                get: function() {
+                    return this._header;
                 }
             },
             visible: {
@@ -195,12 +205,14 @@ define('elements/header',
         })
     });
 
-    z.page.on('navigate', function() {
+    z.page.on('navigate logged_out', function() {
         var header = document.querySelector('mkt-header');
         if (header) {
             try {
                 // Catch in case header hasn't yet been initialized.
-                header.hideHeaderChildren();
+                setTimeout(function() {
+                    header.hideHeaderChildren();
+                }, 50);
             } catch(e) {}
         }
     });
