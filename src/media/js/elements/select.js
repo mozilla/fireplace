@@ -110,7 +110,7 @@ define('elements/select',
                         root.toggle();
                         if (e.target.tagName == 'MKT-OPTION') {
                             // Change value if click on option.
-                            root.value = e.target.value;
+                            root.value = e.target.getAttribute('value');
                         }
                     });
                 }
