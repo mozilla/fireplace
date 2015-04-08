@@ -12,7 +12,7 @@
     Image URLs currently assume development. Turn them all to ../ when we're
     ready.
 */
-@import ('lib');
+@import 'lib';
 
 $color--nav--child-bg = #1A95FC;
 $color--nav--child-hover = #40ADFF;
@@ -122,6 +122,9 @@ mkt-nav-root {
         width: 2px;
         z-index: $zindex--nav-hamburger-root;
     }
+    .mkt-nav--item {
+        margin: 25px 0;
+    }
     .mkt-nav--active {
         background: $color--nav--child-bg;
         color: $greyscale-white;
@@ -132,17 +135,15 @@ mkt-nav-child {
     background: $color--nav--child-bg;
     border-right: 2px solid $color--nav--child-border;
     display: none;
-    padding: $nav--header-height 30px 30px;
+    padding: $nav--header-height 10px;
     z-index: $zindex--nav-hamburger-child;
 
-    .mkt-nav--active {
+    .mkt-nav--active,
+    .mkt-nav--link:hover {
         background: $greyscale-white;
         color: $color--nav--child-bg;
+        text-decoration: none;
     }
-}
-
-.mkt-nav--item {
-    margin: 25px 0;
 }
 
 .mkt-nav--link {
@@ -282,9 +283,6 @@ mkt-nav-child {
         font-size: 16px;
         position: static;
 
-        .mkt-nav--item {
-            margin: 0;
-        }
         .mkt-nav--home,
         .mkt-nav--back {
             display: none;
@@ -303,7 +301,7 @@ mkt-nav-child {
             display: none;
         }
         .mkt-nav--item {
-            margin: 0 20px;
+            margin: 8px;
         }
     }
     mkt-nav-root {
@@ -318,6 +316,9 @@ mkt-nav-child {
         width: 86%;
         z-index: $zindex--nav-normal-root;
 
+        .mkt-nav--item {
+            margin: 0 20px;
+        }
         .mkt-nav--link {
             color: $color--nav--root-link;
             transition: unquote('background-color .05s linear, color .05s linear');
@@ -340,20 +341,13 @@ mkt-nav-child {
         left: 0;
         min-height: $nav--header-height;
         overflow: hidden;
-        padding: 10px 5%;
+        padding: 8px;
         position: absolute;
         visibility: hidden;
         top: $nav--header-height;
         transform: translateY(-100%);
         transition: unquote($nav--transition);
         z-index: $zindex--nav-normal-child;
-
-        .mkt-nav--item {
-            margin: 10px 20px;
-        }
-        .mkt-nav--link.active {
-            background: $greyscale-white;
-        }
     }
     {$nav--to-shift} {
         transform: translateX(8);
