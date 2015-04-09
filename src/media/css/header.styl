@@ -8,6 +8,15 @@ body {
     padding-top: $header-height;
 }
 
+// We hide the recommendations tab by default and enable it via JS if user is
+// logged in and opted in to recommendations.
+[data-mkt-nav--item~="recommended"] {
+    display: none;
+}
+.show-recommendations [data-mkt-nav--item="recommended"] {
+    display: inline-block;
+}
+
 // Usable on any header.
 .header {
     background: $white;
