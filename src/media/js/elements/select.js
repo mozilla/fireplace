@@ -177,8 +177,17 @@ define('elements/select',
             alignOptions: {
                 value: function() {
                     // Aligns options with the selected/visible top option.
-                    var offset = $('mkt-selected-text', this).position().left;
-                    $('mkt-option', this).css('padding-left', offset);
+                    var mediaSwitch = '(min-width: 799px)';
+
+                    var offset;
+                    if (window.matchMedia(mediaSwitch).matches) {
+                        offset = $('mkt-selected-text', this).position().left;
+                        $('mkt-option', this).css('padding-left', offset)
+                                             .removeClass('mkt-option--center');
+                    } else {
+                        $('mkt-option', this).css('padding-left', 0)
+                                             .addClass('mkt-option--center');
+                    }
                     return offset;
                 }
             },
