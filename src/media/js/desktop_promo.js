@@ -8,35 +8,15 @@ define('desktop_promo',
     'use strict';
     var gettext = l10n.gettext;
 
-    // This are just included so that we have more time to localize the text.
-    var nextPromoItems = [
-        {
-            name: 'zirma',
-            url: urls.reverse('app', ['zirma']),
-            text: gettext('Build, explore, and fight to become the ruler of Zirma.'),
-        },
-        {
-            name: 'yelp',
-            url: urls.reverse('app', ['yelp']),
-            text: gettext('Find everything—from shoes to sushi.'),
-        },
-        {
-            name: 'outlook',
-            url: urls.reverse('app', ['outlook-com']),
-            text: gettext('Access Outlook from anywhere.'),
-        },
-    ];
-
     return {
         isDesktop: function() {
             return caps.device_type() === 'desktop';
         },
         promoItems: [
             {
-                // Avoid using the number 8 since stylus doesn't agree with it.
-                name: 'eighttracks',
-                url: urls.reverse('app', ['8tracks']),
-                text: gettext('Enjoy curated playlists from around the world.'),
+                name: 'zirma',
+                url: urls.reverse('app', ['zirma']),
+                text: gettext('Build, explore, and fight to become the ruler of Zirma.'),
             },
             {
                 name: 'games',
@@ -45,9 +25,9 @@ define('desktop_promo',
                 text: gettext('Games & Entertainment Apps—Desktop Essentials'),
             },
             {
-                name: 'pasjanssolitaire',
-                url: urls.reverse('app', ['pasjanssolitaire']),
-                text: gettext('Play multiple versions of the classic card game.'),
+                name: 'outlook',
+                url: urls.reverse('app', ['outlook-com']),
+                text: gettext('Access Outlook from anywhere.'),
             },
             {
                 name: 'productivity',
@@ -56,9 +36,9 @@ define('desktop_promo',
                 text: gettext('Productivity Apps—Desktop Essentials'),
             },
             {
-                name: 'pinterest',
-                url: urls.reverse('app', ['pinterest']),
-                text: gettext('Explore and catalog your favorite things on the web.'),
+                name: 'yelp',
+                url: urls.reverse('app', ['yelp']),
+                text: gettext('Find everything—from shoes to sushi.'),
             },
         ].map(function(item) {
             item.url = utils.urlparams(item.url, {
