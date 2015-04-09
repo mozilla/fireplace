@@ -103,12 +103,28 @@ define('views/search',
     z.body.on('submit', '#search', function(e) {
         e.preventDefault();
         e.stopPropagation();
+        // A mapping of query => view name that can be used to navigate to a
+        // specific view via search box. Mostly used for automated testing.
+        var potato_views = {
+            ':categories': 'categories',
+            ':debug': 'debug',
+            ':debug_features': 'debug_features',
+            ':feedback': 'feedback',
+            ':homepage': 'homepage',
+            ':new_apps': 'new',
+            ':newsletter': 'newsletter_signup',
+            ':popular_apps': 'popular',
+            ':privacy': 'privacy',
+            ':recommended': 'recommended',
+            ':settings': 'settings',
+            ':terms': 'terms',
+        };
         var $q = $('#search-q');
         var query = $q.val();
         if (query === 'do a barrel roll') {
             z.body.toggleClass('roll');
-        } else if (query === ':debug') {
-            z.page.trigger('navigate', urls.reverse('debug'));
+        } else if (Object.keys(potato_views).indexOf(query) > -1) {
+            z.page.trigger('navigate', urls.reverse(potato_views[query]));
             $q.val('');
             return;
         } else if (query === ':' || query === ':help') {
