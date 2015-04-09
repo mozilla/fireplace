@@ -15,6 +15,7 @@ mkt-header-child {
     height: auto;
     left: 0;
     height: $header--height;
+    justify-content: center;
     opacity: 0;
     overflow: hidden;
     padding: 10px 5%;
@@ -33,6 +34,34 @@ mkt-header-child {
     &[data-header-child--input] input {
         line-height: normal;
     }
+    ul {
+        display: flex;
+        list-style: none;
+        justify-content: space-around;
+        width: 100%;
+    }
+}
+
+.mkt-header-child--item {
+    display: inline-block;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+.mkt-header-child--link {
+    background: transparent;
+    border-radius: 5px;
+    color: $greyscale-white;
+    font-weight: 300;
+    line-height: 1;
+    padding: 9px 9px 6px;
+    transition: all .1s linear;
+
+    &:hover {
+        color: $action-positive;
+        background: $greyscale-white;
+        text-decoration: none;
+    }
 }
 
 .mkt-nav--visible mkt-header-child {
@@ -43,8 +72,45 @@ mkt-header-child-toggle {
     cursor: pointer;
 }
 
+.mkt-header--actions {
+    display: flex;
+    margin-right: 20px;
+    order: 5;
+
+    mkt-header-child-toggle:not(:first-child) {
+        margin-left: 30px;
+    }
+}
+
+.mkt-header--actions-link {
+    border-radius: 5px;
+    border: 2px solid $action-positive;
+    display: none;
+    padding: 10px;
+    order: 2;
+    transition: all .1s linear;
+
+    &:hover {
+        color: $greyscale-white;
+        background: $action-positive;
+        text-decoration: none;
+    }
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+}
+
 @media $wide-tablet {
     .mkt-nav--visible mkt-header-child {
         display: flex;
+    }
+    .mkt-header--actions-link {
+        display: inline-block;
+    }
+}
+
+@media $base-desktop {
+    mkt-header-child ul {
+        padding: 0 250px;
     }
 }

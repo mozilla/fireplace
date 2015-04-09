@@ -1,3 +1,12 @@
+{% macro mkt_header_child_item(href, title, slug, link_classes) %}
+  <li class="mkt-header-child--item" data-mkt-header-child--item="{{ slug }}">
+    <a class="mkt-header-child--link {{ link_classes or '' }}" href="{{ href }}"
+       title="{{ title }}">
+      {{ title }}
+    </a>
+  </li>
+{% endmacro %}
+
 {% if settings.mktNavEnabled %}
 <mkt-header id="site-header" class="header site-header">
   {# TODO: remove IDs and classes when we stop using <header>. #}
@@ -13,9 +22,21 @@
   <button class="mkt-nav--toggle hamburger" data-toggle-nav="nav"
           title="{{ _('Toggle Menu') }}"></button>
 
-  <mkt-header-child-toggle class="header--search-toggle" for="header--search"
-                           title="{{ _('Toggle Search') }}">
-  </mkt-header-child-toggle>
+  <div class="mkt-header--actions">
+    <mkt-header-child-toggle class="header--search-toggle" for="header--search"
+                             title="{{ _('Toggle Search') }}">
+    </mkt-header-child-toggle>
+    <mkt-header-child-toggle class="header--settings-toggle header--settings--logged-in"
+                             for="header--settings"
+                             title="{{ _('Toggle Settings Menu') }}">
+    </mkt-header-child-toggle>
+    <a href="#" class="mkt-header--actions-link persona register">
+      {{ _('Register') }}</a>
+    <a href="#" class="mkt-header--actions-link persona">
+      {{ _('Sign In') }}</a>
+  </div>
+
+  <!--Search form.-->
   <mkt-header-child id="header--search" class="header--search"
                     data-header-child--input>
     <form id="search" class="header--search-form" action="{{ url('search') }}"
@@ -26,6 +47,16 @@
              placeholder="{{ _('Search Marketplace&hellip;')|safe }}"
              required value="">
     </form>
+  </mkt-header-child>
+
+  <!--User settings menu.-->
+  <mkt-header-child id="header--settings" class="header--settings">
+    <ul>
+      {{ mkt_header_child_item(url('feedback'), _('Feedback'), 'feedback') }}
+      {{ mkt_header_child_item(url('settings'), _('Settings'), 'settings') }}
+      {{ mkt_header_child_item(url('purchases'), _('My Apps'), 'purchases') }}
+      {{ mkt_header_child_item('#', _('Sign Out'), 'logout', 'logout') }}
+    </ul>
   </mkt-header-child>
 </mkt-header>
 {% else %}
