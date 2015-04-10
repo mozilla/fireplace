@@ -33,6 +33,7 @@ define('header_footer',
 
     function renderPlatformSelector() {
         if (settings.mktNavEnabled) {
+            $('mkt-select.compat-filter').remove();
             $(nunjucks.env.render('_includes/platform_selector.html'))
                 .insertBefore('#page');
         }
