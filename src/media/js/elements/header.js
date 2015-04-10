@@ -92,6 +92,9 @@ define('elements/header',
                     }
                 }
             },
+            statusElement: {
+                value: document.body,
+            },
             toggle: {
                 value: function(bool) {
                     // Toggle visibility.
@@ -106,6 +109,9 @@ define('elements/header',
                     } else {
                         root.classList.toggle(CHILD_VISIBLE);
                     }
+
+                    root.statusElement.classList.toggle(
+                        CHILD_VISIBLE, root.classList.contains(CHILD_VISIBLE));
 
                     // TODO: use events.
                     var toggleButton = document.querySelector(
