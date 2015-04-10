@@ -113,3 +113,33 @@ casper.test.begin('Test that the banner is last on desktop without mkt-nav', {
         helpers.done(test);
     },
 });
+
+casper.test.begin('Test that there is only ever one platform select', {
+    test: function(test) {
+        function reloadChrome() {
+        }
+
+        helpers.startCasper('/debug', {viewport: 'desktop'});
+
+        helpers.waitForPageLoaded();
+        casper.thenClick('#enable-mkt-nav');
+        casper.waitForSelector('.mkt-nav--wrapper');
+
+        casper.then(function() {
+            casper.evaluate(function() {
+                window.require('core/z').page.trigger('reload_chrome');
+            });
+            casper.wait(100);
+        });
+
+        casper.then(function() {
+            var platformSelectCount = casper.evaluate(function() {
+                return document.querySelectorAll('mkt-select.compat-filter')
+                               .length;
+            });
+            test.assertEqual(platformSelectCount, 1);
+        });
+
+        helpers.done(test);
+    },
+});
