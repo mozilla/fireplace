@@ -87,11 +87,11 @@ require(
         if (!caps.webApps && !navigator.userAgent.match(/googlebot/i)) {
             if (!document.getElementById('incompatibility-banner')) {
                 logger.log('Adding incompatibility banner');
-                $('#site-nav').after(nunjucks.env.render('incompatible.html'));
+                $('#banners').append(nunjucks.env.render('incompatible.html'));
             }
         } else if (caps.osXInstallIssues) {
             if ($('mkt-banner[name="mac-banner"]').length === 0) {
-                $('#site-nav').after(
+                $('#banners').append(
                     nunjucks.env.render('_includes/os_x_banner.html'));
             }
         }

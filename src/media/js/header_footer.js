@@ -10,17 +10,16 @@ define('header_footer',
 
     function renderHeader() {
         if (settings.mktNavEnabled) {
-            $('#site-header').remove();
+            $('#mkt-nav--site-header, #site-header, main #site-nav').remove();
 
-            $(nunjucks.env.render('header.html')).insertBefore('main');
-
-            $(nunjucks.env.render('mkt_nav.html', {
-                categories: categories
-            })).insertAfter('#site-header');
+            $('<div id="mkt-nav--site-header" class="mkt-nav--wrapper"></div>')
+                .append(nunjucks.env.render('header.html'))
+                .append(nunjucks.env.render('mkt_nav.html', {
+                    categories: categories
+                }))
+                .insertBefore('main');
 
             z.body.attr('data-mkt-nav--enabled', true);
-
-            $('main #site-nav').remove();
         } else {
             $('#site-header').html(nunjucks.env.render('header.html'));
         }
@@ -39,10 +38,29 @@ define('header_footer',
         }
     }
 
+    function renderBanners() {
+        var bannerDiv = $('#banners');
+
+        if (bannerDiv.length === 0) {
+            bannerDiv = '<div id="banners"></div>';
+        }
+
+        if (settings.mktNavEnabled) {
+            if (window.matchMedia('(min-width: 800px)').matches) {
+                $('#mkt-nav--site-header').before(bannerDiv);
+            } else {
+                $('#page').before(bannerDiv);
+            }
+        } else {
+            $('#page').before(bannerDiv);
+        }
+    }
+
     z.page.on('reload_chrome', function() {
         renderHeader();
         renderFooter();
         renderPlatformSelector();
+        renderBanners();
     });
 
     return {
