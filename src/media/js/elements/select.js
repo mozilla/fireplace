@@ -225,34 +225,70 @@ define('elements/select',
         return dest;
     }
 
-    function proxyElement(destObj, sourceObj, key) {
-        // Proxy a's properties/interface to b[key].
-        Object.getOwnPropertyNames(sourceObj).forEach(function(prop) {
+    function proxyElement(destObj, properties, methods, key) {
+        properties.forEach(function(prop) {
             if (Object.getOwnPropertyDescriptor(destObj, prop)) {
                 // Already defined.
                 return;
             }
-            if (Object.getOwnPropertyDescriptor(sourceObj, prop).get) {
-                // Set a property.
-                Object.defineProperty(destObj, prop, {
-                    get: function() {
-                        return this[key][prop];
-                    }
-                });
-            } else {
-                // Set a method.
-                Object.defineProperty(destObj, prop, {
-                    value: function() {
-                        return this[key][prop]();
-                    }
-                });
-            }
+            // Set a property.
+            Object.defineProperty(destObj, prop, {
+                get: function() {
+                    return this[key][prop];
+                }
+            });
+        });
+
+        methods.forEach(function(method) {
+            // Set a method.
+            Object.defineProperty(destObj, method, {
+                value: function() {
+                    return this[key][method].call(arguments);
+                }
+            });
         });
     }
 
-    proxyElement(MktSelectElement.prototype, HTMLSelectElement.prototype, 'select');
-    proxyElement(MktOptGroupElement.prototype, HTMLOptGroupElement.prototype, 'optGroup');
-    proxyElement(MktOptionElement.prototype, HTMLOptionElement.prototype, 'option');
+    proxyElement(MktSelectElement.prototype, [
+        'autofocus',
+        'disabled',
+        'form',
+        'labels',
+        'length',
+        'multiple',
+        'name',
+        'onchange',
+        'options',
+        'required',
+        'selectedIndex',
+        'size',
+        'type',
+        'validationMessage',
+        'validity',
+        'willValidate',
+    ], [
+        'add',
+        'blur',
+        'checkValidity',
+        'focus',
+        'item',
+        'namedItem',
+        'remove',
+        'setCustomValidity',
+    ], 'select');
+    proxyElement(MktOptGroupElement.prototype, [
+        'disabled',
+    ], [], 'optGroup');
+    proxyElement(MktOptionElement.prototype, [
+        'defaultSelected',
+        'disabled',
+        'form',
+        'index',
+        'label',
+        'selected',
+        'text',
+        'value',
+    ], [], 'option');
 
     z.win.on('resize', _.debounce(function() {
         // Re-align options on resize.
