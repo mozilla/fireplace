@@ -38,11 +38,8 @@
                          'nav--settings--logged-in', 'logout') }}
   </mkt-nav-root>
 
-  <mkt-nav-child id="categories" class="category-list">
-    {% for category in categories %}
-      {{ nav_item(url('category', [category.slug]), category.name,
-                  category.slug) }}
-    {% endfor %}
+  <mkt-nav-child id="categories">
+    <mkt-category-list></mkt-category-list>
   </mkt-nav-child>
 
   <button class="mkt-nav--back" data-toggle-subnav></button>

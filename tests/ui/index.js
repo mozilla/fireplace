@@ -75,7 +75,7 @@ casper.test.begin('Test that the banner is first on desktop', {
         casper.thenClick('#enable-mkt-nav');
         casper.waitForSelector('.mkt-nav--wrapper');
         casper.then(function() {
-            test.assertExists('#banners ~ #mkt-nav--site-header');
+            test.assertExists('.banners ~ #mkt-nav--site-header');
         });
 
         helpers.done(test);
@@ -91,8 +91,8 @@ casper.test.begin('Test that the banner is last on mobile', {
         casper.waitForSelector('.mkt-nav--wrapper');
         casper.then(function() {
             test.assertExists('#mkt-nav--site-header ~ main mkt-select.compat-filter');
-            test.assertExists('#mkt-nav--site-header ~ main #banners');
-            test.assertExists('mkt-select.compat-filter + #banners');
+            test.assertExists('#mkt-nav--site-header ~ main .banners');
+            test.assertExists('mkt-select.compat-filter + .banners');
         });
 
         helpers.done(test);
@@ -106,8 +106,8 @@ casper.test.begin('Test that the banner is last on desktop without mkt-nav', {
         helpers.waitForPageLoaded();
         casper.then(function() {
             test.assertExists('#site-header ~ main #site-nav');
-            test.assertExists('#site-header ~ main #banners');
-            test.assertExists('#site-nav + #banners');
+            test.assertExists('#site-header ~ main .banners');
+            test.assertExists('#site-nav + .banners');
         });
 
         helpers.done(test);
