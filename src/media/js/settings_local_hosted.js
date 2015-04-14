@@ -4,6 +4,7 @@ define('settings_local',
 
     // Require polyfill to set window.location.origin.
     var origin = window.location.origin;
+
     return {
         api_url: origin,
         manifest_url: origin + '/packaged.webapp',
@@ -12,5 +13,6 @@ define('settings_local',
         iframe_potatolytics_src: origin + '/potatolytics.html',
         potatolytics_enabled: false,
         tracking_enabled: true,
+        mktNavEnabled: true
     };
 });
