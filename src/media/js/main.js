@@ -19,11 +19,12 @@ require(
      'utils_local',
      // Modules we require to initialize global stuff.
      'apps_buttons', 'app_list', 'content-ratings', 'core/forms',
-     'elements/header', 'elements/nav', 'elements/select', 'flipsnap',
-     'header_footer', 'helpers_local', 'image-deferrer-mkt', 'core/login',
-     'core/models', 'marketplace-elements', 'navbar', 'overlay', 'perf_events',
-     'perf_helper', 'previews', 'reviews', 'startup_errors', 'tracking_events',
-     'views/feedback', 'views/search', 'webactivities'],
+     'elements/categories', 'elements/header', 'elements/nav',
+     'elements/select', 'flipsnap', 'header_footer', 'helpers_local',
+     'image-deferrer-mkt', 'core/login', 'core/models', 'marketplace-elements',
+     'navbar', 'overlay', 'perf_events', 'perf_helper', 'previews', 'reviews',
+     'startup_errors', 'tracking_events', 'views/feedback', 'views/search',
+     'webactivities'],
     function(apps, categories, cache, caps, format,
              log, navigation, nunjucks, requests,
              settings, siteConfig, l10n, urls,
@@ -87,11 +88,11 @@ require(
         if (!caps.webApps && !navigator.userAgent.match(/googlebot/i)) {
             if (!document.getElementById('incompatibility-banner')) {
                 logger.log('Adding incompatibility banner');
-                $('#banners').append(nunjucks.env.render('incompatible.html'));
+                $('.banners').append(nunjucks.env.render('incompatible.html'));
             }
         } else if (caps.osXInstallIssues) {
             if ($('mkt-banner[name="mac-banner"]').length === 0) {
-                $('#banners').append(
+                $('.banners').append(
                     nunjucks.env.render('_includes/os_x_banner.html'));
             }
         }

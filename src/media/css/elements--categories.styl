@@ -1,0 +1,115 @@
+@import 'lib';
+
+// Originally from elements--nav.styl.
+$color--nav--child-bg = #1A95FC;
+
+mkt-category-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    list-style: none;
+    width: 100%;
+
+    +media--wide-tablet() {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+mkt-category-item {
+    width: 100%;
+
+    +media--wide-tablet() {
+        margin: 8px;
+        width: auto;
+    }
+}
+
+.mkt-category-link {
+    color: $greyscale-white;
+    font-weight: 300;
+    display: inline-block;
+    line-height: $cat-icon-size-default;
+    margin: 5px 0;
+    padding: 10px;
+    transition: none;
+
+    // Set hover bg on the :after to download it but make it invisible.
+    &:after {
+        category-sprite-alt();
+        content: '';
+        display: inline-block;
+        height: 0;
+        opacity: 0;
+        width: 0;
+    }
+    &:before {
+        category-sprite();
+        content: '';
+        display: inline-block;
+        margin: 0 10px 0 0;
+        vertical-align: middle;
+    }
+    &:hover:before {
+        category-sprite-alt();
+    }
+    &:hover {
+        background-color: $greyscale-white;
+        color: $color--nav--child-bg;
+        text-decoration: none;
+
+        &:before {
+            category-sprite-alt();
+        }
+    }
+    +media--wide-tablet() {
+        border: 1px solid rgba($greyscale-white, 0.2);
+        margin: 0;
+
+        &:hover {
+            border-color: $greyscale-white;
+        }
+    }
+}
+
+.mkt-category-link--active {
+    // Active styles, same as hover style on non-active.
+    background-color: $greyscale-white;
+    color: $color--nav--child-bg;
+
+    &:before {
+        category-sprite-alt();
+    }
+}
+
+mkt-category-list:hover .mkt-category-link--active {
+    // Hide all active-ness when hovering over the category list.
+    background-color: transparent;
+    color: $greyscale-white;
+
+    &:before {
+        category-sprite();
+    }
+    &:hover {
+        background-color: $greyscale-white;
+        color: $color--nav--child-bg;
+
+        &:before {
+            category-sprite-alt();
+        }
+    }
+}
+
+for $cat in $categories {
+    // Get correct icon.
+    [data-mkt-category-slug=\"{$cat}\"] .mkt-category-link {
+        &:before,
+        &:hover:before,
+        &.mkt-category-link--active:before {
+            category-icon-position($cat);
+        }
+    }
+    mkt-category-list:hover [data-mkt-category-slug=\"{$cat}\"] .mkt-category-link--active:before {
+        category-icon-position($cat);
+    }
+}

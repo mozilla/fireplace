@@ -1,5 +1,5 @@
 /*
-    Marketplace Nav.
+    Marketplace Nav (for mobile).
 
     - Adapted from mozilla/marketplace-style-guide which runs on a separate
       Stylus codebase.
@@ -8,9 +8,6 @@
       such as Search, Platform Filtering, User Settings, etc, should be placed
       in a project-specific stylesheet. But upstream stuff here if it's
       generic enough.
-
-    Image URLs currently assume development. Turn them all to ../ when we're
-    ready.
 */
 @import 'lib';
 
@@ -94,6 +91,10 @@ mkt-nav {
     top: 0;
     transition: unquote($nav--transition);
     width: 260px;
+
+    +media--wide-tablet() {
+        display: none;
+    }
 }
 
 mkt-nav-root,
@@ -200,55 +201,6 @@ mkt-nav-child {
     transform: translateX(0);
 }
 
-[data-mkt-nav--enabled] #site-header {
-    align-items: center;
-    background: $color--header--background;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    min-height: 60px;
-    padding: 0 5px;
-    position: relative;
-    z-index: $zindex--header;
-
-    h1 {
-        align-items: center;
-        display: flex;
-        height: 50px;
-        order: 2;
-    }
-    // Marketplace logo.
-    .wordmark {
-        image-replacement('../img/nav/rocket-color.svg', 26px, 40px);
-    }
-    // Project name, appearing to the right of the Marketplace logo.
-    .site-name {
-        border-left: 1px solid $color--header--separator;
-        color: $color--header--site-name;
-        display: none;
-        font-size: 16px;
-        font-weight: 300;
-        margin-left: 8px;
-        padding: 4px 0 4px 12px;
-        position: relative;
-        top 1px;  // Aligns baseline the wordmark's baseline;
-    }
-    // Hamburger icon that toggles the menu visibility at smaller screen sizes.
-    .hamburger {
-        image-replacement('../img/nav/menu.svg', 40px, 40px);
-        background-position: 0 0;
-        background-size: 40px 140px;
-        appearance: none;
-        border: 0;
-        cursor: pointer;
-        display: inline-block;
-        left: 5px;
-        order: 1;
-        position: relative;
-    }
-}
-
 .mkt-nav--visible {
     {$nav--to-shift} {
         transform: translateX($nav--width);
@@ -294,116 +246,16 @@ mkt-nav-child {
             order: 3;
         }
     }
-    mkt-nav {
-        display: inline;
-        font-size: 16px;
-        position: static;
-
-        .mkt-nav--home,
-        .mkt-nav--back {
-            display: none;
-        }
-    }
-    mkt-nav-root,
-    mkt-nav-child {
-        align-items: center;
-        flex-wrap: wrap;
-        display: flex;
-        height: $nav--header-height;
-        justify-content: center;
-        width: 100%;
-
-        &:after {
-            display: none;
-        }
-        .mkt-nav--item {
-            margin: 8px;
-        }
-    }
-    mkt-nav-root {
-        background: transparent;
-        border: none;
-        margin: 0 auto;
-        margin-bottom: -1 * $nav--header-height
-        overflow: hidden;
-        padding: 10px 0;
-        position: relative;
-        top: -1 * $nav--header-height
-        width: fit-content;
-        z-index: $zindex--nav-normal-root;
-
-        .mkt-nav--item {
-            margin: 0 20px;
-        }
-        .mkt-nav--link {
-            color: $color--nav--root-link;
-            transition: unquote('background-color .05s linear, color .05s linear');
-
-            &:hover,
-            &.mkt-nav--showing-child {
-                background-color: $color--nav--child-hover;
-                color: $greyscale-white;
-                text-decoration: none;
-            }
-            &.mkt-nav--active {
-                background: $color--nav--child-bg;
-                color: $greyscale-white;
-            }
-        }
-    }
-    .mkt-nav--link {
-        padding: 10px;
-    }
-    mkt-nav-child {
-        display: flex;
-        height: auto;
-        left: 0;
-        min-height: $nav--header-height;
-        overflow: hidden;
-        padding: 8px;
-        position: absolute;
-        visibility: hidden;
-        top: $nav--header-height;
-        transform: translateY(-100%);
-        transition: unquote($nav--transition);
-        z-index: $zindex--nav-normal-child;
-    }
     {$nav--to-shift} {
         transform: translateX(8);
     }
     {$nav--subnav-to-shift} {
         transform: translateX(0);
     }
-    .mkt-nav--visible {
-        {$nav--to-shift} {
-            transform: translateX(0);
-        }
-        mkt-nav-child {
-            display: flex;
-            visibility: visible;
-        }
+    .mkt-nav--visible {$nav--to-shift} {
+        transform: translateX(0);
     }
-    .mkt-nav--subnav-visible {
-        mkt-nav-root .mkt-nav--link.mkt-nav--active {
-            background: transparent;
-            color: $color--nav--root-link;
-        }
-        {$nav--subnav-to-shift} {
-            transform: translateX(0);
-        }
-        mkt-nav-child.mkt-nav--visible {
-            transform: translateY(0);
-        }
+    .mkt-nav--subnav-visible {$nav--subnav-to-shift} {
+        transform: translateX(0);
     }
-    .mkt-nav--background-hidden {
-        display: inline;
-    }
-    .mkt-nav-root--divider {
-        display: none;
-    }
-}
-
-.mkt-header-child--visible mkt-nav-root .mkt-nav--active {
-    background: transparent;
-    color: $color--nav--root-link;
 }

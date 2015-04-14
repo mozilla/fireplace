@@ -21,8 +21,9 @@
     (e.g., search bar that slides down).
 */
 define('elements/nav',
-    ['core/settings', 'core/z', 'jquery', 'underscore'],
-    function(settings, z, $, _) {
+    ['core/settings', 'core/z', 'document-register-element', 'jquery',
+     'underscore'],
+    function(settings, z, dre, $, _) {
 
     // Active link / nav item. Set on <a class="mkt-nav--item">.
     var ACTIVE = 'mkt-nav--active';
@@ -87,13 +88,6 @@ define('elements/nav',
                         setTimeout(function() {
                             root.toggleBackgroundHidden(true);
                         }, 500);
-                    }
-
-                    if (root.statusElement.classList.contains(VISIBLE)) {
-                        var header = document.querySelector('mkt-header');
-                        if (header) {
-                            header.hideHeaderChildren();
-                        }
                     }
 
                     return root;
@@ -174,7 +168,9 @@ define('elements/nav',
                     var activeLinks = root.querySelectorAll(
                         'a[href="' + (path || window.location.pathname) + '"]');
                     for (i = 0; activeLinks && (i < activeLinks.length); i++) {
-                        activeLinks[i].classList.add(ACTIVE);
+                        if (!activeLinks[i].hasAttribute('data-nav-no-active-node')) {
+                            activeLinks[i].classList.add(ACTIVE);
+                        }
                     }
                 }
             },
@@ -206,10 +202,6 @@ define('elements/nav',
                 },
             }
         }),
-    });
-
-    var MktNavHeaderChildElement = document.registerElement('mkt-nav-header-child', {
-        prototype: Object.create(MktNavChildElement.prototype)
     });
 
     z.body.on('click', '[data-toggle-nav]', function(evt) {
