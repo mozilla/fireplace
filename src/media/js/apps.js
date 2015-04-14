@@ -99,12 +99,12 @@ define('apps',
         var reasons = [];
         var device = capabilities.device_type();
         if (product.payment_required && !product.price) {
-            reasons.push(gettext('Not available for your region'));
+            reasons.push(gettext('not available for your region'));
         }
         if (!capabilities.webApps ||
             (!capabilities.packagedWebApps && product.is_packaged) ||
             !_.contains(product.device_types, device)) {
-            reasons.push(gettext('Not available for your platform'));
+            reasons.push(gettext('not available for your platform'));
         }
 
         product[COMPAT_REASONS] = reasons.length ? reasons : undefined;
