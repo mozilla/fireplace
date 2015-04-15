@@ -218,28 +218,28 @@ mkt-nav-child {
 }
 
 {$nav--to-shift} {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
     transition: unquote($nav--transition);
 
     +media--wide-tablet() {
-        transform: translateX(8);
+        transform: translate3d(8, 0, 0);
     }
 }
 
 {$nav--subnav-to-shift} {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
 
     +media--wide-tablet() {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 .mkt-nav--visible {
     {$nav--to-shift} {
-        transform: translateX($nav--width);
+        transform: translate3d($nav--width, 0, 0);
 
         +media--wide-tablet() {
-            transform: translateX(0);
+            transform: translate3d(0, 0, 0);
         }
     }
     #site-header .hamburger {
@@ -252,10 +252,10 @@ mkt-nav-child {
 
 .mkt-nav--subnav-visible {
     {$nav--subnav-to-shift} {
-        transform: translateX($nav--width);
+        transform: translate3d($nav--width, 0, 0);
 
         +media--wide-tablet() {
-            transform: translateX(0);
+            transform: translate3d(0, 0, 0);
         }
     }
 }
