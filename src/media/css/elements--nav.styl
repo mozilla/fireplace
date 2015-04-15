@@ -59,6 +59,9 @@ main:after {
     &.mkt-nav--visible {
         // Disable scroll on main content when nav is visible.
         overflow-y: hidden;
+        // overflow: hidden doesn't work properly on fennec so set
+        // position: fixed also. (bug 1153203).
+        position: fixed;
     }
     &.mkt-nav--visible main {
         position: relative;
@@ -233,6 +236,8 @@ mkt-nav-child {
 @media $wide-tablet {
     [data-mkt-nav--enabled].mkt-nav--visible {
         overflow-y: auto;
+        // We had to set position: fixed for fennec (bug 1153203).
+        position: static;
     }
     [data-mkt-nav--enabled].mkt-nav--visible main:after {
         display: none;
