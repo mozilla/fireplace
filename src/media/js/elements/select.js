@@ -1,6 +1,55 @@
 /*
-    Marketplace Selector element. Extends the <select> element, externally
-    acts like a <select> element, while being much more stylizable.
+    Marketplace Select element. Truly extends the <select> element.
+
+    <mkt-select>
+        Acts exactly like a <select> element. Wraps optgroups, options,
+        selecteds, selectedTexts.
+
+        createdCallback - initializes everything.
+            - Transforms <option>s in <mkt-options> and into <mkt-optgroup>.
+            - Moves the original <option>s into an internal <select> element.
+            - Copies all attributes from itself to the <select> element.
+            - Initializes <mkt-selected-text>.
+            - Visually aligns options to <mkt-selected-text> if on desktop.
+            - Sets click handlers on the <mkt-options>.
+
+        select - internal select element. One-way data-binding is set, and all
+                 HTMLSelectElement interface is proxied to this element.
+
+        toggle - toggle visibility of the options. Akin to clicking on a
+                 <select> element and seeing the options.
+
+        value - the value of the selected option. It is also settable, which is
+                the required method for updating the value. When the value is
+                changed, everything will be updated, and onchange's will fire.
+
+        alignOptions - visually align options for desktop.
+
+        updateOptionIndices - sets indices on all visible options to help
+                              set colors.
+
+    <mkt-option>
+        Acts exactly like a <option> element. Although more stylizable.
+
+        option - internal option element. All HTMLOptionElement interface is
+                 proxied to this element.
+
+        update - update attributes based on internal option element.
+
+    <mkt-optgroup>
+        Acts exactly like a <optgroup> element.
+
+        optgroup - internal optgroup element.
+
+    <mkt-selected>
+        The visible portion of the <mkt-select> element when it is toggled off.
+        Somewhat like a <label>.
+
+    <mkt-selected-text>
+        Shows the innerHTML of the currently selected option. Will
+        automatically update on change.
+
+    Additional notes:
 
     - Markup expects a <mkt-selected>, and <option>s within an <optgroup>. The
       <mkt-selected> element displays the current selection where
@@ -26,44 +75,12 @@ define('elements/select',
     'use strict';
     var logger = log('elements/select');
 
-    var VISIBLE = 'mkt-select--visible';
+    var el = {};
+    var cl = {
+        VISIBLE: 'mkt-select--visible'
+    };
 
-    var MktOptionElement = document.registerElement('mkt-option', {
-        prototype: Object.create(HTMLOptionElement.prototype, {
-            option: {
-                // Actual <option> element to proxy to, steal its interface.
-                // Value set in <mkt-select>'s createdCallback.
-                get: function() {
-                    return this._option;
-                },
-                set: function(option) {
-                    this.innerHTML = option.innerHTML;
-                    this._option = option;
-                    this.update();
-                }
-            },
-            update: {
-                value: function() {
-                    // Update attrs on self, notably [selected].
-                    this.removeAttribute('selected');
-                    copyAttrs(this, this._option);
-                }
-            }
-        })
-    });
-
-    var MktOptGroupElement = document.registerElement('mkt-optgroup', {
-        prototype: Object.create(HTMLOptGroupElement.prototype, {
-            optGroup: {
-                // Actual <optgroup> element to proxy to, steal its interface.
-                // Value set in <mkt-select>'s createdCallback.
-                value: null,
-                writable: true
-            }
-        })
-    });
-
-    var MktSelectElement = document.registerElement('mkt-select', {
+    el.MktSelectElement = document.registerElement('mkt-select', {
         prototype: Object.create(HTMLSelectElement.prototype, {
             createdCallback: {
                 value: function() {
@@ -134,7 +151,7 @@ define('elements/select',
                             this.setAttribute('data-mkt-select--aligned', true);
                         }
                     }
-                    this.classList.toggle(VISIBLE);
+                    this.classList.toggle(cl.VISIBLE);
                     return this;
                 },
             },
@@ -225,11 +242,46 @@ define('elements/select',
         }),
     });
 
-    var MktSelectedElement = document.registerElement('mkt-selected', {
+    el.MktOptionElement = document.registerElement('mkt-option', {
+        prototype: Object.create(HTMLOptionElement.prototype, {
+            option: {
+                // Actual <option> element to proxy to, steal its interface.
+                // Value set in <mkt-select>'s createdCallback.
+                get: function() {
+                    return this._option;
+                },
+                set: function(option) {
+                    this.innerHTML = option.innerHTML;
+                    this._option = option;
+                    this.update();
+                }
+            },
+            update: {
+                value: function() {
+                    // Update attrs on self, notably [selected].
+                    this.removeAttribute('selected');
+                    copyAttrs(this, this._option);
+                }
+            }
+        })
+    });
+
+    el.MktOptGroupElement = document.registerElement('mkt-optgroup', {
+        prototype: Object.create(HTMLOptGroupElement.prototype, {
+            optGroup: {
+                // Actual <optgroup> element to proxy to, steal its interface.
+                // Value set in <mkt-select>'s createdCallback.
+                value: null,
+                writable: true
+            }
+        })
+    });
+
+    el.MktSelectedElement = document.registerElement('mkt-selected', {
         prototype: Object.create(HTMLElement.prototype, {})
     });
 
-    var MktSelectedTextElement = document.registerElement('mkt-selected-text', {
+    el.MktSelectedTextElement = document.registerElement('mkt-selected-text', {
         prototype: Object.create(HTMLElement.prototype, {})
     });
 
@@ -268,7 +320,7 @@ define('elements/select',
         });
     }
 
-    proxyElement(MktSelectElement.prototype, [
+    proxyElement(el.MktSelectElement.prototype, [
         'autofocus',
         'disabled',
         'form',
@@ -295,10 +347,10 @@ define('elements/select',
         'remove',
         'setCustomValidity',
     ], 'select');
-    proxyElement(MktOptGroupElement.prototype, [
+    proxyElement(el.MktOptGroupElement.prototype, [
         'disabled',
     ], [], 'optGroup');
-    proxyElement(MktOptionElement.prototype, [
+    proxyElement(el.MktOptionElement.prototype, [
         'defaultSelected',
         'disabled',
         'form',
@@ -313,18 +365,14 @@ define('elements/select',
         // Re-align options on resize.
         var mktSelects = document.querySelectorAll('mkt-select');
         for (var i = 0; i < mktSelects.length; i++ ) {
-            mktSelects[i].alignOptions();
+            if (mktSelects[i].alignOptions) {
+                mktSelects[i].alignOptions();
+            }
         }
     }, 100));
 
     return {
-        classes: {
-            VISIBLE: VISIBLE
-        },
-        MktOptGroupElement: MktOptGroupElement,
-        MktOptionElement: MktOptionElement,
-        MktSelectElement: MktSelectElement,
-        MktSelectedElement: MktSelectedElement,
-        MktSelectTextElement: MktSelectedTextElement
+        classes: cl,
+        elements: el
     };
 });

@@ -30,8 +30,9 @@
      title="{{ _('Back') }}">
     <b>{{ _('Back') }}</b>
   </a>
-  <button class="mkt-nav--toggle hamburger" data-toggle-nav="nav"
-          title="{{ _('Toggle Menu') }}"></button>
+  <mkt-nav-toggle for="nav">
+    <button class="hamburger" title="{{ _('Toggle Menu') }}"></button>
+  </mkt-nav-toggle>
 
   <h1 class="site">
     <a href="{{ url('homepage') }}" class="wordmark"><span>Firefox Marketplace</span></a>

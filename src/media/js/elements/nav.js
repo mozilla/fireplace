@@ -1,40 +1,70 @@
 /*
-    Marketplace Nav element.
+    Marketplace Nav element. Only for mobile as a slide-out hamburger menu.
 
-    - Nav state is kept as classes on mktNav.statusElement, the body.
-    - Keeps state of currently-selected nav item.
-    - Clicking an element with [data-toggle-nav="X"] will toggle the nav
-      element with ID "X".
+    <mkt-nav>
+        Wrapper.
 
-    On mobile:
-        - Activated by clicking the hamburger icon
-        - Slide-out hamburger menu nav
-        - Slide-out subnavs within the main nav
+        statusElement - element on which status classes are set. Returns
+                        document.body since <main> needs to know the status to
+                        determine whether to translateX.
+        root - returns <mkt-nav-root>.
+        subnavs - returns <mkt-nav-child>ren.
+        toggle - toggles the visibility of the nav, primary by setting classes
+                 on statusElement.
+        toggleChildren - toggles subnav given an ID. If ID is `false`, hide
+                         all subnavs.
+        updateActiveNode - sets the active link based on the current path.
 
-    On desktop:
-        - Header bar at the top
-        - Slide-down subnavs
+    <mkt-nav-root>
+        Contains the primary navigation links and toggles.
 
-    <mkt-nav-top-child> is similar to <mkt-nav-child> except that when it
-    is toggled, it will not toggle the whole nav. It is intended to just
-    slide-down from underneath the nav rather than slide out the whole page
-    (e.g., search bar that slides down).
+    <mkt-nav-child>
+        Subnavs. Toggled by <mkt-nav-child-toggle>
+
+        toggle - toggle visibility.
+        visible - whether or not the child is visible.
+
+    <mkt-nav-toggle>
+        Toggles visibility of nav on click.
+
+        createdCallback - sets click handler to toggle nav.
+
+    <mkt-nav-child-toggle>
+        Toggles visibility of nav child on click. Hides all nav children if
+        [for] is not set.
+
+        createdCallback - sets event listener that toggles respective nav child
+                          on click. It is paired with the child by setting
+                          [for] contains the child's [id].
+        navChild - returns the paired nav child..
+
+    z.win.resize
+        Set <main>'s min-height so the overlay can cover the nav. And that the
+        nav won't appear from underneath.
+
+    z.body.click
+        If nav is toggled on, and main is clicked, hide the nav.
+
+    z.page.navigate
+        Update active node. Hide children.
 */
 define('elements/nav',
     ['core/settings', 'core/z', 'document-register-element', 'jquery',
      'underscore'],
     function(settings, z, dre, $, _) {
+    'use strict';
 
-    // Active link / nav item. Set on <a class="mkt-nav--item">.
-    var ACTIVE = 'mkt-nav--active';
-    // Showing subnav (set on <mkt-nav-child>).
-    var SHOWING = 'mkt-nav--showing-child';
-    // Displaying the nav on mobile.
-    var VISIBLE = 'mkt-nav--visible';
-    // Showing a subnav (set on the status element).
-    var SUBNAV_VISIBLE = 'mkt-nav--subnav-visible';
+    var el = {};
+    var cl = {
+        // Active link / nav item. Set on <a class="mkt-nav--item">.
+        ACTIVE: 'mkt-nav--active',
+        // Displaying the nav (set on body).
+        VISIBLE: 'mkt-nav--visible',
+        // Showing a subnav (set on body).
+        SHOWING_CHILD: 'mkt-nav--subnav-visible'
+    };
 
-    var MktNavElement = document.registerElement('mkt-nav', {
+    el.MktNavElement = document.registerElement('mkt-nav', {
         prototype: Object.create(HTMLElement.prototype, {
             statusElement: {
                 // Return the element on which status classes are stored.
@@ -46,76 +76,49 @@ define('elements/nav',
                     return this.querySelectorAll('mkt-nav-root');
                 },
             },
-            subnavs: {
+            navChildren: {
                 // Return all child <mkt-nav-child> elements.
                 get: function() {
                     return this.querySelectorAll('mkt-nav-child');
                 },
             },
             toggle: {
-                /*
-                Toggle the class specified by this.statusVisibleClass on
-                this.statusElement. If an optional argument is passed, it will
-                force the class to be added or removed based on the truthiness
-                of that value.
-                */
                 value: function(bool) {
                     var root = this;
                     if (bool !== undefined) {
                         if (bool) {
-                            root.statusElement.classList.add(VISIBLE);
+                            root.statusElement.classList.add(cl.VISIBLE);
                         } else {
-                            root.statusElement.classList.remove(VISIBLE);
+                            root.statusElement.classList.remove(cl.VISIBLE);
                         }
                     } else {
-                        root.statusElement.classList.toggle(VISIBLE);
+                        root.statusElement.classList.toggle(cl.VISIBLE);
                     }
 
                     return root;
                 },
             },
-            toggleSubnav: {
-                /*
-                    Toggle the class specified by this.statusSubnavVisibleClass
-                    on this.statusElement. If an optional argument is passed,
-                    it will force the class to be added or removed based on the
-                    truthiness of that value.
-                */
-                value: function(bool) {
+            toggleChildren: {
+                value: function(arg) {
+                    // If arg is false, toggle all children off.
+                    // Else arg is an ID, toggle only that child on.
                     var root = this;
-                    if (bool !== undefined) {
-                        if (bool) {
-                            root.statusElement.classList.add(SUBNAV_VISIBLE);
+                    var navChildren = root.navChildren;
+
+                    var showingChild = false;
+                    for (var i = 0; i < navChildren.length; i++) {
+                        var child = navChildren[i];
+
+                        if (child.id === arg) {
+                            child.toggle();
+                            showingChild = child.visible;
                         } else {
-                            root.statusElement.classList.remove(
-                                SUBNAV_VISIBLE);
+                            navChildren[i].toggle(false);
                         }
-                    } else {
-                        root.statusElement.classList.toggle(SUBNAV_VISIBLE);
-                    }
-                    if (!root.statusElement.classList
-                                           .contains(SUBNAV_VISIBLE)) {
-                        for (var i = 0; i < this.subnavs.length; i++) {
-                            root.subnavs[i].hide();
-                        }
-                    }
-                    return root;
-                },
-            },
-            hideSubnavs: {
-                value: function() {
-                    var root = this;
-                    var subnavs = root.querySelectorAll('.' + SHOWING);
-                    root.toggleSubnav(false);
-                    for (i = 0; subnavs && (i < subnavs.length); i++) {
-                        subnavs[i].classList.remove(SHOWING);
                     }
 
-                    // TODO: <mkt-nav-child-toggle> element.
-                    var toggles = document.querySelectorAll('[data-toggle-subnavs]');
-                    for (var i = 0; toggles && (i < toggles.length); i++) {
-                        toggles.classList.remove(SHOWING);
-                    }
+                    root.statusElement.classList.toggle(cl.SHOWING_CHILD,
+                                                        showingChild);
                 }
             },
             updateActiveNode: {
@@ -123,17 +126,18 @@ define('elements/nav',
                     var root = this;
 
                     // Remove highlights from formerly-active nodes.
-                    var links = root.querySelectorAll('a.' + ACTIVE);
+                    var links = root.querySelectorAll('a.' + cl.ACTIVE);
                     for (var i = 0; links && (i < links.length); i++) {
-                        links[i].classList.remove(ACTIVE);
+                        links[i].classList.remove(cl.ACTIVE);
                     }
 
                     // Highlight new active nodes based on current page.
                     var activeLinks = root.querySelectorAll(
                         'a[href="' + (path || window.location.pathname) + '"]');
                     for (i = 0; activeLinks && (i < activeLinks.length); i++) {
-                        if (!activeLinks[i].hasAttribute('data-nav-no-active-node')) {
-                            activeLinks[i].classList.add(ACTIVE);
+                        if (!activeLinks[i].hasAttribute(
+                            'data-nav-no-active-node')) {
+                            activeLinks[i].classList.add(cl.ACTIVE);
                         }
                     }
                 }
@@ -141,74 +145,86 @@ define('elements/nav',
         }),
     });
 
-    var MktNavRootElement = document.registerElement('mkt-nav-root', {
+    el.MktNavRootElement = document.registerElement('mkt-nav-root', {
         prototype: Object.create(HTMLUListElement.prototype, {}),
     });
 
-    var MktNavChildElement = document.registerElement('mkt-nav-child', {
-        prototype: Object.create(MktNavRootElement.prototype, {
-            hide: {
-                // Show this subnav and hide all sibling <mkt-nav-child>
-                // elements.
-                value: function() {
-                    this.classList.remove(VISIBLE);
-                    return this;
-                },
-            },
-            show: {
-                value: function() {
-                    var siblings = this.parentNode.querySelectorAll('.' + VISIBLE);
-                    for (var i = 0 ; i < siblings.length; i++) {
-                        siblings[i].classList.remove(VISIBLE);
+    el.MktNavChildElement = document.registerElement('mkt-nav-child', {
+        prototype: Object.create(el.MktNavRootElement.prototype, {
+            toggle: {
+                value: function(bool) {
+                    var root = this;
+
+                    if (bool !== undefined) {
+                        if (bool) {
+                            root.classList.add(cl.VISIBLE);
+                        } else {
+                            root.classList.remove(cl.VISIBLE);
+                        }
+                    } else {
+                        root.classList.toggle(cl.VISIBLE);
                     }
-                    this.classList.add(VISIBLE);
-                    return this;
-                },
+
+                    return root;
+                }
+            },
+            visible: {
+                get: function() {
+                    return this.classList.contains(cl.VISIBLE);
+                }
             }
-        }),
+        })
     });
 
-    z.body.on('click', '[data-toggle-nav]', function(evt) {
-        // Toggle the <mkt-nav> element with the specified id when elements
-        // with the // data-toggle-nav attribute are clicked.
-        evt.preventDefault();
-        evt.stopPropagation();
-        document.getElementById(this.getAttribute('data-toggle-nav')).toggle();
-    })
-
-    .on('click', '[data-toggle-subnav]', function(evt) {
-        /*
-            Toggle the <mkt-nav-child> element with the specified id when
-            elements with the data-toggle-nav attribute are clicked. If the
-            value of that attribute is empty, attempt to toggle the parent's
-            subnav if it is an <mkt-nav> element.
-        */
-        evt.preventDefault();
-        evt.stopPropagation();
-        var id = this.getAttribute('data-toggle-subnav');
-        if (id) {
-            var subnav = document.getElementById(id);
-            if (this.classList.contains(SHOWING)) {
-                subnav.hide();
-                subnav.parentNode.toggleSubnav(false);
-                this.classList.remove(SHOWING);
-            } else {
-                subnav.show();
-                subnav.parentNode.toggle(true).toggleSubnav(true);
-                this.classList.add(SHOWING);
+    el.MktNavToggleElement = document.registerElement('mkt-nav-toggle', {
+        prototype: Object.create(HTMLElement.prototype, {
+            createdCallback: {
+                value: function() {
+                    var root = this;
+                    root.addEventListener('click', function() {
+                        document.querySelector('mkt-nav').toggle();
+                    });
+                }
             }
-        } else {
-            var targetParent = this.parentNode;
-            if (targetParent.tagName == 'MKT-NAV') {
-                targetParent.toggleSubnav();
-            }
-        }
-    })
+        })
+    });
 
-    .on('click', VISIBLE + ' main', function(e) {
+    el.MktNavChildToggleElement = document.registerElement('mkt-nav-child-toggle', {
+        prototype: Object.create(HTMLElement.prototype, {
+            createdCallback: {
+                value: function() {
+                    /*
+                        Toggle the <mkt-nav-child> element with the specified
+                        id when elements with the data-toggle-nav attribute are
+                        clicked.
+                    */
+                    var root = this;
+                    root.addEventListener('click', function() {
+                        // On click, toggle navChild.
+                        var navChild = root.navChild;
+
+                        if (!navChild) {
+                            // If [for] not specified, just hide all.
+                            return document.querySelector('mkt-nav')
+                                           .toggleChildren(false);
+                        }
+
+                        navChild.parentNode.toggleChildren(navChild.id);
+                    });
+                }
+            },
+            navChild: {
+                get: function() {
+                    return document.getElementById(this.getAttribute('for'));
+                }
+            }
+        })
+    });
+
+    z.doc.on('click', '.' + cl.VISIBLE + ' main', function(e) {
         // Toggle nav off when clicking in the main area when it's toggled.
         var nav = document.querySelector('mkt-nav');
-        if (nav) {
+        if (nav && nav.toggle) {
             nav.toggle();
         }
     });
@@ -222,10 +238,9 @@ define('elements/nav',
                 nav.updateActiveNode();
                 nav.toggle(false);
                 setTimeout(function() {
-                    // Timeout so that the subnav doesn't hide too soon.
-                    nav.toggleSubnav(false);
+                    // Timeout so that the child doesn't hide too soon.
+                    nav.toggleChildren(false);
                 }, 250);
-                nav.hideSubnavs();
             } catch(e) {}
         }
     });
@@ -254,14 +269,7 @@ define('elements/nav',
     setMainMinHeight();
 
     return {
-        classes: {
-            ACTIVE: ACTIVE,
-            SHOWING: SHOWING,
-            VISIBLE: VISIBLE,
-            SUBNAV_VISIBLE: SUBNAV_VISIBLE,
-        },
-        MktNavElement: MktNavElement,
-        MktNavRootElement: MktNavRootElement,
-        MktNavChildElement: MktNavChildElement,
+        classes: cl,
+        elements: el
     };
 });
