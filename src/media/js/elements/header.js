@@ -107,11 +107,8 @@ define('elements/header',
                         // If main element is input, then hide child on blur.
                         var input = root.input;
                         input.onblur = function() {
-                            setTimeout(function() {
-                                // setTimeout to queue behind toggle button.
-                                document.querySelector('mkt-header')
-                                        .toggleChildren(root.id);
-                            }, 50);
+                            document.querySelector('mkt-header')
+                                    .toggleChildren(root.id);
                         };
                         // Clear input on submit.
                         $(root.querySelector('form')).submit(function(e) {
