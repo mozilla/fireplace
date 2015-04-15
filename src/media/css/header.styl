@@ -64,6 +64,15 @@ body {
         order: 0;
         position: relative;
     }
+    +media--wide-tablet() {
+        min-height: 60px;
+        padding: 0 20px;
+
+        .hamburger {
+            display: none;
+            order: 3;
+        }
+    }
 }
 
 [data-mkt-nav--enabled] .banners mkt-banner {

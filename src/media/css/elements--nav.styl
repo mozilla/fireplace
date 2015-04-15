@@ -31,6 +31,13 @@ $zindex--header = 70;
 $zindex--nav-normal-root = 70;
 $zindex--page-overlay = 100;
 
+nav--visible() {
+    .mkt-nav--visible & {
+        {block}
+    }
+}
+
+
 #page {
     min-height: 480px;
 }
@@ -89,12 +96,17 @@ mkt-nav {
     font-size: 18px;
     height: 100%;
     left: 0;
+    opacity: 0;
     overflow-y: scroll;
     position: fixed;
     top: 0;
-    transition: unquote($nav--transition);
+    transition: unquote($nav--transition + ', opacity 0s linear 300ms');
     width: 260px;
 
+    +nav--visible() {
+        opacity: 1;
+        transition: unquote($nav--transition);
+    }
     +media--wide-tablet() {
         display: none;
     }
@@ -222,10 +234,6 @@ mkt-nav-child {
     }
 }
 
-.mkt-nav--background-hidden {
-    display: none;
-}
-
 .mkt-nav-root--divider {
     border: 1px solid $greyscale-white;
     left: 10px;
@@ -241,15 +249,6 @@ mkt-nav-child {
     }
     [data-mkt-nav--enabled].mkt-nav--visible main:after {
         display: none;
-    }
-    [data-mkt-nav--enabled] #site-header {
-        min-height: 60px;
-        padding: 0 20px;
-
-        .hamburger {
-            display: none;
-            order: 3;
-        }
     }
     {$nav--to-shift} {
         transform: translateX(8);
