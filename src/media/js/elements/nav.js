@@ -239,7 +239,13 @@ define('elements/nav',
         if (settings.mktNavEnabled) {
             var main = document.querySelector('main');
             if (main) {
-                main.style.minHeight = screen.height + 'px';
+                // Hide the sidebar nav behind <main> by setting min-height on
+                // <main>. Only do this if the sidebar nav is being used.
+                if (window.matchMedia('(min-width: 800px)').matches) {
+                    main.style.minHeight = null;
+                } else {
+                    main.style.minHeight = screen.height + 'px';
+                }
             }
         }
     }
