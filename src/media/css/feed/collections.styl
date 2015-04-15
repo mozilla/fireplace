@@ -35,10 +35,15 @@
     padding: 10px 10px 0;
 }
 
-[data-page-type~="homepage"] .collection-listing-header {
+.feed-home .collection-listing-header {
     bottom: 15px;
     right: 10px;
     width: unquote('calc(100% + 20px)');
+
+    +rtl() {
+        left: 10px;
+        right: inherit;
+    }
 }
 
 .feed-collection-listing .desc {
