@@ -17,6 +17,68 @@ body {
     display: inline;
 }
 
+[data-mkt-nav--enabled] #site-header {
+    align-items: center;
+    background: $color--header--background;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: 60px;
+    padding: 0 5px;
+    position: relative;
+    z-index: $zindex--header;
+
+    h1 {
+        align-items: center;
+        display: flex;
+        height: 50px;
+        order: 1;
+    }
+    // Marketplace logo.
+    .wordmark {
+        image-replacement('../img/nav/rocket-color.svg', 26px, 40px);
+    }
+    // Project name, appearing to the right of the Marketplace logo.
+    .site-name {
+        border-left: 1px solid $color--header--separator;
+        color: $color--header--site-name;
+        display: none;
+        font-size: 16px;
+        font-weight: 300;
+        margin-left: 8px;
+        padding: 4px 0 4px 12px;
+        position: relative;
+        top 1px;  // Aligns baseline the wordmark's baseline;
+    }
+    // Hamburger icon that toggles the menu visibility at smaller screen sizes.
+    .hamburger {
+        image-replacement('../img/nav/menu.svg', 40px, 40px);
+        background-position: 0 0;
+        background-size: 40px 140px;
+        appearance: none;
+        border: 0;
+        cursor: pointer;
+        display: inline-block;
+        left: 5px;
+        order: 0;
+        position: relative;
+    }
+    +media--wide-tablet() {
+        min-height: 60px;
+        padding: 0 20px;
+
+        .hamburger {
+            display: none;
+            order: 3;
+        }
+    }
+}
+
+[data-mkt-nav--enabled] .banners mkt-banner {
+    z-index: 70;
+}
+
 // Usable on any header.
 .header {
     background: $white;
@@ -52,13 +114,9 @@ body {
     position: fixed;
     text-align: center;
     top: 0;
-    z-index: 20;
 
     &:before {
         display: none;
-    }
-    > * {
-        display: block;
     }
     > nav {
         height: $header-height;
@@ -92,6 +150,15 @@ body {
     }
     .header-button {
         display: none;
+    }
+}
+
+body:not([data-mkt-nav--enabled]) {
+    .site-header {
+        z-index: 20;
+    }
+    .site-header > nav {
+        display: flex;
     }
 }
 
@@ -433,6 +500,9 @@ body {
 }
 
 @media $base-tablet {
+    body:not([data-mkt-nav--enabled]) .site-header {
+        z-index: 30;
+    }
     .subheader {
         h1,
         a {
@@ -468,9 +538,7 @@ body {
     .featured-header {
         padding: 15px 15px 5px;
     }
-    .site-header {
-        z-index: 30;
-    }
+
     body {
       padding-top: 0;
     }

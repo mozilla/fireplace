@@ -1,21 +1,82 @@
 /*
-    Marketplace Header.
+    Marketplace Header. Acts as a nav for desktop.
 */
 @import 'lib';
 
 $color--header--child-bg = #1A95FC;
+$color--nav--child-bg = #1A95FC;
+$color--nav--child-hover = #40ADFF;
+$color--nav--root-link = $greyscale-black;
 $header--height = 60px;
 $header--transition = 'transform cubic-bezier(0.455, 0.03, 0.515, 0.955) 250ms';
 $zindex--header-child = 60;
+$zindex--header-nav= 70;
 
+mkt-header--showing-child() {
+    .mkt-header--showing-child & {
+        {block}
+    }
+}
+
+
+mkt-header {
+    z-index: $zindex--header-nav;
+}
+
+mkt-header-nav {
+    align-items: center;
+    flex-grow: 2;
+    flex-wrap: wrap;
+    display: none;
+    height: $nav--header-height;
+    margin: 0 auto;
+    max-width: 1000px;
+    list-style: none inside;
+    justify-content: space-around;
+    order: 3;
+    overflow: hidden;
+    padding: 10px 30px;
+    position: relative;
+    width: fit-content;
+
+    +media--wide-tablet() {
+        display: flex;
+    }
+}
+
+.mkt-header-nav--link {
+    background: transparent;
+    border-radius: 5px;
+    color: $color--nav--root-link;
+    font-weight: 300;
+    line-height: 1;
+    padding: 10px;
+    transition: background-color .05s linear, color .05s linear;
+
+    &:hover {
+        background-color: $color--nav--child-hover;
+        color: $greyscale-white;
+        text-decoration: none;
+    }
+    &.mkt-header-nav--link-active {
+        background: $color--nav--child-bg;
+        color: $greyscale-white;
+
+        +mkt-header--showing-child() {
+            background: transparent;
+            color: $color--nav--root-link;
+        }
+    }
+}
 
 mkt-header-child {
     background: $color--header--child-bg;
     display: flex;
+    flex-wrap: wrap;
     height: auto;
     left: 0;
-    height: $header--height;
     justify-content: center;
+    min-height: $header--height;
     opacity: 0;
     overflow: hidden;
     padding: 10px 5%;
@@ -31,12 +92,17 @@ mkt-header-child {
         transform: translateY(0);
         transition: unquote($header--transition);
     }
-    ul {
+    > ul {
+        align-items: center;
         display: flex;
-        list-style: none;
-        justify-content: space-around;
-        width: 100%;
     }
+}
+
+.mkt-header-child--link-list {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    width: 100%;
 }
 
 [data-header-child--input] input,
@@ -104,6 +170,11 @@ mkt-header-child-toggle {
     cursor: pointer;
 }
 
+mkt-header-nav mkt-header-child-toggle.mkt-header-child--visible .mkt-header-nav--link {
+    background: $color--nav--child-bg;
+    color: $greyscale-white;
+}
+
 .mkt-header--actions {
     display: flex;
     margin-right: 5px;
@@ -145,7 +216,7 @@ mkt-header-child-toggle {
 }
 
 @media $base-desktop {
-    mkt-header-child ul {
+    .mkt-header-child--link-list {
         padding: 0 250px;
     }
 }

@@ -21,8 +21,9 @@
     (e.g., search bar that slides down).
 */
 define('elements/nav',
-    ['core/settings', 'core/z', 'jquery', 'underscore'],
-    function(settings, z, $, _) {
+    ['core/settings', 'core/z', 'document-register-element', 'jquery',
+     'underscore'],
+    function(settings, z, dre, $, _) {
 
     // Active link / nav item. Set on <a class="mkt-nav--item">.
     var ACTIVE = 'mkt-nav--active';
@@ -32,19 +33,12 @@ define('elements/nav',
     var VISIBLE = 'mkt-nav--visible';
     // Showing a subnav (set on the status element).
     var SUBNAV_VISIBLE = 'mkt-nav--subnav-visible';
-    // Hide when not VISIBLE. Set on <mkt-nav-root>s itself.
-    var BACKGROUND_HIDDEN = 'mkt-nav--background-hidden';
 
     var MktNavElement = document.registerElement('mkt-nav', {
         prototype: Object.create(HTMLElement.prototype, {
-            createdCallback: {
-                value: function() {
-                    this.toggleBackgroundHidden(true);
-                }
-            },
             statusElement: {
                 // Return the element on which status classes are stored.
-                value: document.body,
+                value: document.body
             },
             root: {
                 // Return the child <mkt-nav-root> element.
@@ -75,25 +69,6 @@ define('elements/nav',
                         }
                     } else {
                         root.statusElement.classList.toggle(VISIBLE);
-                    }
-
-                    if (root.statusElement.classList.contains(VISIBLE)) {
-                        // Have to hide since Android/Flame will flicker the
-                        // Nav when scrolling despite it being z-indexed
-                        // behind main content. But don't want to hide it
-                        // right away, so we set a timeout.
-                        root.toggleBackgroundHidden(false);
-                    } else {
-                        setTimeout(function() {
-                            root.toggleBackgroundHidden(true);
-                        }, 500);
-                    }
-
-                    if (root.statusElement.classList.contains(VISIBLE)) {
-                        var header = document.querySelector('mkt-header');
-                        if (header) {
-                            header.hideHeaderChildren();
-                        }
                     }
 
                     return root;
@@ -127,23 +102,6 @@ define('elements/nav',
                     return root;
                 },
             },
-            toggleBackgroundHidden: {
-                // Toggle a class that covers the nav with a grey background
-                // so it isn't visible (flickrs) while scrolling on mobile
-                // devices.
-                value: function(bool) {
-                    var root = this;
-                    if (bool !== undefined) {
-                        if (bool) {
-                            root.classList.add(BACKGROUND_HIDDEN);
-                        } else {
-                            root.classList.remove(BACKGROUND_HIDDEN);
-                        }
-                    } else {
-                        root.classList.toggle(BACKGROUND_HIDDEN);
-                    }
-                }
-            },
             hideSubnavs: {
                 value: function() {
                     var root = this;
@@ -174,7 +132,9 @@ define('elements/nav',
                     var activeLinks = root.querySelectorAll(
                         'a[href="' + (path || window.location.pathname) + '"]');
                     for (i = 0; activeLinks && (i < activeLinks.length); i++) {
-                        activeLinks[i].classList.add(ACTIVE);
+                        if (!activeLinks[i].hasAttribute('data-nav-no-active-node')) {
+                            activeLinks[i].classList.add(ACTIVE);
+                        }
                     }
                 }
             },
@@ -206,10 +166,6 @@ define('elements/nav',
                 },
             }
         }),
-    });
-
-    var MktNavHeaderChildElement = document.registerElement('mkt-nav-header-child', {
-        prototype: Object.create(MktNavChildElement.prototype)
     });
 
     z.body.on('click', '[data-toggle-nav]', function(evt) {
@@ -249,10 +205,11 @@ define('elements/nav',
         }
     })
 
-    .on('click', 'main', function(e) {
-        if (document.body.classList.contains(VISIBLE) &&
-            $('main').offset().left >= $('mkt-nav').width()) {
-            document.querySelector('mkt-nav').toggle();
+    .on('click', VISIBLE + ' main', function(e) {
+        // Toggle nav off when clicking in the main area when it's toggled.
+        var nav = document.querySelector('mkt-nav');
+        if (nav) {
+            nav.toggle();
         }
     });
 
@@ -296,7 +253,6 @@ define('elements/nav',
             SHOWING: SHOWING,
             VISIBLE: VISIBLE,
             SUBNAV_VISIBLE: SUBNAV_VISIBLE,
-            BACKGROUND_HIDDEN: BACKGROUND_HIDDEN
         },
         MktNavElement: MktNavElement,
         MktNavRootElement: MktNavRootElement,

@@ -56,30 +56,6 @@ define('tests/unit/elements--nav',
             assert.ok(link2.classList.contains(nav.classes.ACTIVE));
             assert.notOk(link1.classList.contains(nav.classes.ACTIVE));
         });
-
-        it('is covered while not visible', function(done) {
-            var mktNav = document.createElement('mkt-nav');
-            assert.ok(mktNav.classList
-                            .contains(nav.classes.BACKGROUND_HIDDEN),
-                      'Cover is on initially');
-            mktNav.toggle();
-            assert.notOk(mktNav.classList
-                               .contains(nav.classes.BACKGROUND_HIDDEN),
-                         'Cover is off when toggled');
-            mktNav.toggleSubnav();
-            assert.notOk(mktNav.classList
-                               .contains(nav.classes.BACKGROUND_HIDDEN),
-                         'Cover is still off during subnav');
-
-            mktNav.toggle();
-
-            setTimeout(function() {
-                assert.ok(mktNav.classList
-                                .contains(nav.classes.BACKGROUND_HIDDEN),
-                          'Cover is back on');
-                done();
-            }, 500);
-        });
     });
 
     describe('mkt-nav-child', function() {

@@ -1,30 +1,50 @@
-define('tests/unit/elements--header',
-    ['elements/header', 'jquery', 'tests/unit/helpers'],
-    function(Header, $, helpers) {
+/*
+   Module named with underscores since Karma can't find it when it has hyphens
+   for some reason.
+*/
+define('tests/unit/elements__header',
+    ['elements/header', 'jquery'],
+    function(Header, $) {
 
     function createMktHeader(cb) {
+        if (document.body.querySelector('#mkt-test-wrapper')) {
+            document.body.removeChild(
+                document.querySelector('#mkt-test-wrapper'));
+        }
+
         var div = document.createElement('div');
+        div.setAttribute('id', 'mkt-test-wrapper');
         div.innerHTML = '<mkt-header>' +
           '<mkt-header-child-toggle for="foo-child">' +
           '</mkt-header-child-toggle>' +
+          '<mkt-header-child-toggle for="bar-child">' +
+          '</mkt-header-child-toggle>' +
+          '<mkt-header-nav> ' +
+            '<a id="foo-link" href="/foo"></a>' +
+            '<a id="bar-link" href="/bar"></a>' +
+          '</mkt-header-nav>' +
           '<mkt-header-child id="foo-child" data-header-child--input>' +
             '<form>' +
               '<input type="search">' +
             '</form>' +
           '</mkt-header-child>' +
+          '<mkt-header-child id="bar-child"></mkt-header-child>' +
         '</mkt-header>';
-        document.body.appendChild(div);
         var mktHeader = div.querySelector('mkt-header');
+
+        document.body.appendChild(div);
 
         var interval = setInterval(function() {
             // Wait for mkt-select to initialize.
-            if (!mktHeader.querySelector('mkt-header-child') &&
+            if (!mktHeader.querySelectorAll('mkt-header-child').length &&
                 mktHeader.headerChildren) {
-                var mktHeaderChild = document.querySelector(
-                    'mkt-header-child');
-                var mktHeaderChildToggle = document.querySelector(
+                var mktHeaderChildToggle = div.querySelector(
                     'mkt-header-child-toggle');
-                cb(mktHeader, mktHeaderChild, mktHeaderChildToggle);
+                var mktHeaderNav = document.body.querySelector('mkt-header-nav');
+                var mktHeaderChild = document.body.querySelector('#foo-child');
+                var mktHeaderChild2 = document.body.querySelector('#bar-child');
+                cb(mktHeader, mktHeaderChild, mktHeaderChildToggle,
+                   mktHeaderNav, mktHeaderChild2);
                 clearInterval(interval);
             }
         }, 100);
@@ -35,24 +55,80 @@ define('tests/unit/elements--header',
             createMktHeader(function(header, child, toggle) {
                 assert.notOk(header.querySelector('mkt-header-child'));
                 assert.ok(header.querySelector('mkt-header-child-toggle'));
-                assert.ok(document.body.querySelector(
+                assert.ok(header.parentNode.querySelector(
                           'mkt-header + mkt-header-child'));
                 done();
             });
         });
 
         it('returns children', function(done) {
-            createMktHeader(function(header, child, toggle) {
-                assert.equal(header.headerChildren[0], child);
+            createMktHeader(function(header, child, toggle, nav, child2) {
+                assert.equal(header.headerChildren[0], child2);
+                assert.equal(header.headerChildren[1], child);
                 done();
             });
         });
 
-        it('hides children', function(done) {
-            createMktHeader(function(header, child, toggle) {
+        it('toggles children off', function(done) {
+            createMktHeader(function(header, child, toggle, nav, child2) {
                 child.toggle(true);
-                header.hideHeaderChildren();
+                header.toggleChildren(false);
                 assert.notOk(child.visible);
+                done();
+            });
+        });
+
+        it('toggles children one at a time', function(done) {
+            createMktHeader(function(header, child, toggle, nav, child2) {
+                header.toggleChildren(child.id);
+                assert.ok(child.visible);
+
+                header.toggleChildren(child2.id);
+                assert.ok(child2.visible);
+                assert.notOk(child.visible);
+                done();
+            });
+        });
+
+        it('toggles children off and on', function(done) {
+            createMktHeader(function(header, child, toggle, nav, child2) {
+                header.toggleChildren(child.id);
+                assert.ok(child.visible);
+                header.toggleChildren(child.id);
+                assert.notOk(child.visible);
+                done();
+            });
+        });
+
+        it('sets showing child class on statusElement', function(done) {
+            createMktHeader(function(header, child, toggle, nav, child2) {
+                assert.notOk(header.parentNode.classList.contains(
+                             Header.classes.SHOWING_CHILD));
+                header.toggleChildren(child.id);
+                assert.ok(header.parentNode.classList.contains(
+                          Header.classes.SHOWING_CHILD));
+                header.toggleChildren(child.id);
+                assert.notOk(header.parentNode.classList.contains(
+                             Header.classes.SHOWING_CHILD));
+                done();
+            });
+        });
+    });
+
+    describe('mkt-header-nav', function() {
+        it('updates active node', function(done) {
+            createMktHeader(function(header, child, toggle, nav) {
+                nav.updateActiveNode('/bar');
+                assert.ok(nav.querySelector('#bar-link')
+                             .classList.contains(Header.classes.LINK_ACTIVE));
+                assert.notOk(nav.querySelector('#foo-link')
+                             .classList.contains(Header.classes.LINK_ACTIVE));
+
+                nav.updateActiveNode('/foo');
+                assert.notOk(nav.querySelector('#bar-link')
+                             .classList.contains(Header.classes.LINK_ACTIVE));
+                assert.ok(nav.querySelector('#foo-link')
+                             .classList.contains(Header.classes.LINK_ACTIVE));
                 done();
             });
         });
@@ -128,13 +204,6 @@ define('tests/unit/elements--header',
     });
 
     describe('mkt-header-child-toggle', function() {
-        it('has headerChild', function(done) {
-            createMktHeader(function(header, child, toggle) {
-                assert.equal(toggle.headerChild, child);
-                done();
-            });
-        });
-
         it('toggles child open', function(done) {
             createMktHeader(function(header, child, toggle) {
                 assert.notOk(child.visible);

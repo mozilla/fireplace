@@ -49,7 +49,7 @@ define('tests/unit/apps',
             var results = apps.incompat(product);
             assert(results);
             assert.equal(results.length, 1);
-            assert.equal(results[0], 'Not available for your region');
+            assert.equal(results[0], 'not available for your region');
         }));
 
 
@@ -63,7 +63,7 @@ define('tests/unit/apps',
             var results = apps.incompat(product);
             assert(results);
             assert.equal(results.length, 1);
-            assert.equal(results[0], 'Not available for your platform');
+            assert.equal(results[0], 'not available for your platform');
         }));
 
 
@@ -77,7 +77,7 @@ define('tests/unit/apps',
             var results = apps.incompat(product);
             assert(results);
             assert.equal(results.length, 1);
-            assert.equal(results[0], 'Not available for your platform');
+            assert.equal(results[0], 'not available for your platform');
         }));
 
 
@@ -90,7 +90,7 @@ define('tests/unit/apps',
             var results = apps.incompat(product);
             assert(results);
             assert.equal(results.length, 1);
-            assert.equal(results[0], 'Not available for your region');
+            assert.equal(results[0], 'not available for your region');
         }));
 
 
@@ -106,7 +106,7 @@ define('tests/unit/apps',
 
             // Only return the first one. Both don't make sense.
             assert.equal(results.length, 1);
-            assert.equal(results[0], 'Not available for your platform');
+            assert.equal(results[0], 'not available for your platform');
         }));
     });
 });

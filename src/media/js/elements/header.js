@@ -6,6 +6,8 @@
 
         createdCallback - moves <mkt-header-child>ren out to be its siblings
                           so that the z-index can hide children being parent.
+        toggleChildren - toggle one visible child at a time, updates body class
+                         to let nav know that a child is being shown.
 
     <mkt-header-child>
         Like subheaders, can be toggled from under the nav.
@@ -24,14 +26,16 @@
         - Toggle all header children closed.
 */
 define('elements/header',
-    ['core/z', 'jquery', 'underscore'],
-    function(z, $, _) {
+    ['core/z', 'document-register-element', 'jquery', 'underscore'],
+    function(z, dre, $, _) {
     'use strict';
 
     // Set on <mkt-header-child> saying that it is visible.
     var CHILD_VISIBLE = 'mkt-header-child--visible';
     // Data attribute for whether the header child contains an input.
     var CHILD_INPUT = 'data-header-child--input';
+    var LINK_ACTIVE = 'mkt-header-nav--link-active';
+    var SHOWING_CHILD = 'mkt-header--showing-child';
 
     var MktHeaderElement = document.registerElement('mkt-header', {
         prototype: Object.create(HTMLElement.prototype, {
@@ -44,23 +48,50 @@ define('elements/header',
                     var headerChildren = root.querySelectorAll(
                         'mkt-header-child');
                     for (var i = 0; i < headerChildren.length; i++) {
-                        headerChildren[i].header = root;
-                        root.parentNode.insertBefore(headerChildren[i],
-                                                     root.nextSibling);
+                        if (root.nextSibling) {
+                            root.parentNode.insertBefore(headerChildren[i],
+                                                         root.nextSibling);
+                        } else {
+                            root.parentNode.appendChild(headerChildren[i]);
+                        }
                     }
                 }
             },
             headerChildren: {
                 get: function() {
-                    return document.querySelectorAll('mkt-header-child');
+                    return this.parentNode.querySelectorAll(
+                        'mkt-header-child');
                 }
             },
-            hideHeaderChildren: {
-                value: function() {
-                    var headerChildren = this.headerChildren;
+            statusElement: {
+                get: function() {
+                    return this.parentNode;
+                }
+            },
+            toggleChildren: {
+                value: function(arg) {
+                    // If arg is false, toggle all children off.
+                    // Else arg is an ID, toggle only that child on.
+                    var root = this;
+                    var headerChildren = root.headerChildren;
+
+                    var showingChild = false;
                     for (var i = 0; i < headerChildren.length; i++) {
-                        headerChildren[i].toggle(false);
+                        var child = headerChildren[i];
+
+                        if (child.id == arg) {
+                            child.toggle();
+
+                            if (child.visible) {
+                                showingChild = true;
+                            }
+                        } else {
+                            headerChildren[i].toggle(false);
+                        }
                     }
+
+                    root.statusElement.classList.toggle(SHOWING_CHILD,
+                                                        showingChild);
                 }
             }
         })
@@ -76,12 +107,10 @@ define('elements/header',
                         // If main element is input, then hide child on blur.
                         var input = root.input;
                         input.onblur = function() {
-                            setTimeout(function() {
-                                // setTimeout to queue behind toggle button.
-                                root.toggle(false);
-                            }, 50);
+                            document.querySelector('mkt-header')
+                                    .toggleChildren(root.id);
                         };
-                        // Clear input on submit;
+                        // Clear input on submit.
                         $(root.querySelector('form')).submit(function(e) {
                             e.preventDefault();
                             setTimeout(function() {
@@ -92,13 +121,17 @@ define('elements/header',
                     }
                 }
             },
-            statusElement: {
-                value: document.body,
-            },
             toggle: {
                 value: function(bool) {
                     // Toggle visibility.
                     var root = this;
+
+                    if (root.isInput && root.visible && bool) {
+                        /* If child is input, and it is already visible, don't
+                           do anything. The input already has onblur attached
+                           which will toggle the child. */
+                        return;
+                    }
 
                     if (bool !== undefined) {
                         if (bool) {
@@ -110,9 +143,6 @@ define('elements/header',
                         root.classList.toggle(CHILD_VISIBLE);
                     }
 
-                    root.statusElement.classList.toggle(
-                        CHILD_VISIBLE, root.classList.contains(CHILD_VISIBLE));
-
                     // TODO: use events.
                     var toggleButton = document.querySelector(
                         'mkt-header-child-toggle[for="' + root.id + '"]');
@@ -120,26 +150,12 @@ define('elements/header',
                         toggleButton.toggle(root.visible);
                     }
 
-                    if (root.visible) {
-                        var nav = document.querySelector('mkt-nav');
-                        if (nav) {
-                            nav.hideSubnavs();
-                        }
-
-                        if (root.isInput) {
-                            root.input.focus();
-                        }
+                    if (root.visible && root.isInput) {
+                        // Auto-focus the input.
+                        root.input.focus();
                     }
 
                     return root;
-                }
-            },
-            header: {
-                set: function(header) {
-                    this._header = header;
-                },
-                get: function() {
-                    return this._header;
                 }
             },
             visible: {
@@ -170,20 +186,10 @@ define('elements/header',
                     var root = this;
 
                     root.addEventListener('click', function() {
-                        // On click, find headerChild to toggle.
-                        var headerChild = root.headerChild;
-                        if (headerChild.isInput) {
-                            // If child is input, and it is already visible,
-                            // don't do anything. The input already has an
-                            // onblur attached which will toggle the child.
-                            // Else this click event and the onblur event will
-                            // conflict.
-                            if (!headerChild.visible) {
-                                headerChild.toggle(true);
-                            }
-                        } else {
-                            headerChild.toggle();
-                        }
+                        // On click, toggle headerChild.
+                        var id = root.getAttribute('for');
+                        document.querySelector('mkt-header')
+                                .toggleChildren(id);
                     });
                 }
             },
@@ -202,12 +208,30 @@ define('elements/header',
                     }
                     return root;
                 }
-            },
-            headerChild: {
-                get: function() {
-                    return document.getElementById(this.getAttribute('for'));
+            }
+        })
+    });
+
+    var MktHeaderNavElement = document.registerElement('mkt-header-nav', {
+        prototype: Object.create(HTMLUListElement.prototype, {
+            updateActiveNode: {
+                value: function(path) {
+                    var root = this;
+
+                    // Remove highlights from formerly-active nodes.
+                    var links = root.querySelectorAll('a.' + LINK_ACTIVE);
+                    for (var i = 0; links && (i < links.length); i++) {
+                        links[i].classList.remove(LINK_ACTIVE);
+                    }
+
+                    // Highlight new active nodes based on current page.
+                    var activeLinks = root.querySelectorAll(
+                        'a[href="' + (path || window.location.pathname) + '"]');
+                    for (i = 0; activeLinks && (i < activeLinks.length); i++) {
+                        activeLinks[i].classList.add(LINK_ACTIVE);
+                    }
                 }
-            },
+            }
         })
     });
 
@@ -217,8 +241,18 @@ define('elements/header',
             try {
                 // Catch in case header hasn't yet been initialized.
                 setTimeout(function() {
-                    header.hideHeaderChildren();
+                    header.toggleChildren(false);
                 }, 50);
+            } catch(e) {}
+        }
+    })
+
+    .on('navigate loaded', function() {
+        var headerNav = document.querySelector('mkt-header-nav');
+        if (headerNav) {
+            try {
+                // Catch in case header hasn't yet been initialized.
+                headerNav.updateActiveNode();
             } catch(e) {}
         }
     });
@@ -226,7 +260,9 @@ define('elements/header',
     return {
         classes: {
             CHILD_INPUT: CHILD_INPUT,
-            CHILD_VISIBLE: CHILD_VISIBLE
+            CHILD_VISIBLE: CHILD_VISIBLE,
+            LINK_ACTIVE: LINK_ACTIVE,
+            SHOWING_CHILD: SHOWING_CHILD
         }
     };
 });

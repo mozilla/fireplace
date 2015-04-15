@@ -21,8 +21,8 @@
     - To change <mkt-select>'s value, do mktSelect.value = 'newValue';
 */
 define('elements/select',
-    ['core/log', 'core/z', 'jquery', 'underscore'],
-    function(log, z, $, _) {
+    ['core/log', 'core/z', 'document-register-element', 'jquery', 'underscore'],
+    function(log, z, dre, $, _) {
     'use strict';
     var logger = log('elements/select');
 

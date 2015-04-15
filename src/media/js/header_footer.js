@@ -3,9 +3,9 @@
     Set up event handlers related to components in the header and footer.
 */
 define('header_footer',
-    ['categories', 'compat_filter', 'core/nunjucks', 'core/settings', 'core/z',
+    ['compat_filter', 'core/nunjucks', 'core/settings', 'core/z',
      'newsletter'],
-    function(categories, compatFilter, nunjucks, settings, z,
+    function(compatFilter, nunjucks, settings, z,
              newsletter) {
 
     function renderHeader() {
@@ -13,10 +13,11 @@ define('header_footer',
             $('#mkt-nav--site-header, #site-header, main #site-nav').remove();
 
             $('<div id="mkt-nav--site-header" class="mkt-nav--wrapper"></div>')
-                .append(nunjucks.env.render('header.html'))
-                .append(nunjucks.env.render('mkt_nav.html', {
-                    categories: categories
+                .append(nunjucks.env.render('header.html', {
+                    // TODO: remove after waffle.
+                    categories: require('categories')
                 }))
+                .append(nunjucks.env.render('mkt_nav.html'))
                 .insertBefore('main');
 
             z.body.attr('data-mkt-nav--enabled', true);
@@ -40,10 +41,9 @@ define('header_footer',
     }
 
     function renderBanners() {
-        var bannerDiv = $('#banners');
-
-        if (bannerDiv.length === 0) {
-            bannerDiv = '<div id="banners"></div>';
+        var bannerDiv = $('.banners');
+        if (!bannerDiv.length) {
+            bannerDiv = '<div class="banners"></div>';
         }
 
         if (settings.mktNavEnabled) {
