@@ -1,9 +1,10 @@
 {% macro nav_item(href, title, slug, toggle) %}
   <li class="mkt-nav--item" data-mkt-nav--item="{{ slug }}">
-    <a class="mkt-nav--link" href="{{ href }}" title="{{ title }}"
-       {% if toggle %}data-toggle-subnav="{{ toggle }}"{% endif %}>
+    {% if toggle %}<mkt-nav-child-toggle for="{{ toggle }}">{% endif %}
+    <a class="mkt-nav--link" href="{{ href }}" title="{{ title }}">
       {{ title }}
     </a>
+    {% if toggle %}</mkt-nav-child-toggle>{% endif %}
   </li>
 {% endmacro %}
 
@@ -24,7 +25,9 @@
     {{ nav_item(url('new'), _('New'), 'new') }}
     {{ nav_item(url('recommended'), _('Recommended'), 'recommended') }}
     {{ nav_item('#', _('Categories'), 'categories', 'categories') }}
+
     <li class="mkt-nav-root--divider"></li>
+
     {{ nav_item_settings(url('feedback'), _('Feedback'), 'feedback') }}
     {{ nav_item_settings('#', _('Register'), 'register',
                          'nav--settings--logged-out', 'persona register') }}
@@ -42,5 +45,7 @@
     <mkt-category-list></mkt-category-list>
   </mkt-nav-child>
 
-  <button class="mkt-nav--back" data-toggle-subnav></button>
+  <mkt-nav-child-toggle>
+    <button class="mkt-nav--back"></button>
+  </mkt-nav-child-toggle>
 </mkt-nav>

@@ -30,14 +30,17 @@ define('elements/header',
     function(z, dre, $, _) {
     'use strict';
 
-    // Set on <mkt-header-child> saying that it is visible.
-    var CHILD_VISIBLE = 'mkt-header-child--visible';
-    // Data attribute for whether the header child contains an input.
-    var CHILD_INPUT = 'data-header-child--input';
-    var LINK_ACTIVE = 'mkt-header-nav--link-active';
-    var SHOWING_CHILD = 'mkt-header--showing-child';
+    var el = {};
+    var cl = {
+         // Set on <mkt-header-child> saying that it is visible.
+        CHILD_VISIBLE: 'mkt-header-child--visible',
+        // Data attribute for whether the header child contains an input.
+        CHILD_INPUT: 'data-header-child--input',
+        LINK_ACTIVE: 'mkt-header-nav--link-active',
+        SHOWING_CHILD: 'mkt-header--showing-child'
+    };
 
-    var MktHeaderElement = document.registerElement('mkt-header', {
+    el.MktHeaderElement = document.registerElement('mkt-header', {
         prototype: Object.create(HTMLElement.prototype, {
             createdCallback: {
                 value: function() {
@@ -69,7 +72,7 @@ define('elements/header',
                 }
             },
             toggleChildren: {
-                value: function(arg) {
+                value: function(arg, bool) {
                     // If arg is false, toggle all children off.
                     // Else arg is an ID, toggle only that child on.
                     var root = this;
@@ -79,25 +82,22 @@ define('elements/header',
                     for (var i = 0; i < headerChildren.length; i++) {
                         var child = headerChildren[i];
 
-                        if (child.id == arg) {
-                            child.toggle();
-
-                            if (child.visible) {
-                                showingChild = true;
-                            }
+                        if (child.id === arg) {
+                            child.toggle(bool);
+                            showingChild = child.visible;
                         } else {
                             headerChildren[i].toggle(false);
                         }
                     }
 
-                    root.statusElement.classList.toggle(SHOWING_CHILD,
+                    root.statusElement.classList.toggle(cl.SHOWING_CHILD,
                                                         showingChild);
                 }
             }
         })
     });
 
-    var MktHeaderChildElement = document.registerElement('mkt-header-child', {
+    el.MktHeaderChildElement = document.registerElement('mkt-header-child', {
         prototype: Object.create(HTMLElement.prototype, {
             createdCallback: {
                 value: function() {
@@ -106,9 +106,18 @@ define('elements/header',
                     if (root.isInput) {
                         // If main element is input, then hide child on blur.
                         var input = root.input;
-                        input.onblur = function() {
+                        input.onblur = function(e) {
+                            if (e) {
+                                var target = e.explicitOriginalTarget ||
+                                             document.activeElement;
+                                if (target.getAttribute('for') == root.id) {
+                                    // Don't trigger if blurring on toggle.
+                                    return;
+                                }
+                            }
+
                             document.querySelector('mkt-header')
-                                    .toggleChildren(root.id);
+                                    .toggleChildren(root.id, false);
                         };
                         // Clear input on submit.
                         $(root.querySelector('form')).submit(function(e) {
@@ -126,21 +135,14 @@ define('elements/header',
                     // Toggle visibility.
                     var root = this;
 
-                    if (root.isInput && root.visible && bool) {
-                        /* If child is input, and it is already visible, don't
-                           do anything. The input already has onblur attached
-                           which will toggle the child. */
-                        return;
-                    }
-
                     if (bool !== undefined) {
                         if (bool) {
-                            root.classList.add(CHILD_VISIBLE);
+                            root.classList.add(cl.CHILD_VISIBLE);
                         } else {
-                            root.classList.remove(CHILD_VISIBLE);
+                            root.classList.remove(cl.CHILD_VISIBLE);
                         }
                     } else {
-                        root.classList.toggle(CHILD_VISIBLE);
+                        root.classList.toggle(cl.CHILD_VISIBLE);
                     }
 
                     // TODO: use events.
@@ -160,7 +162,7 @@ define('elements/header',
             },
             visible: {
                 get: function() {
-                    return this.classList.contains(CHILD_VISIBLE);
+                    return this.classList.contains(cl.CHILD_VISIBLE);
                 }
             },
             input: {
@@ -173,13 +175,13 @@ define('elements/header',
             },
             isInput: {
                 get: function() {
-                    return this.hasAttribute(CHILD_INPUT);
+                    return this.hasAttribute(cl.CHILD_INPUT);
                 }
             }
         })
     });
 
-    var MktHeaderChildToggleElement = document.registerElement('mkt-header-child-toggle', {
+    el.MktHeaderChildToggleElement = document.registerElement('mkt-header-child-toggle', {
         prototype: Object.create(HTMLElement.prototype, {
             createdCallback: {
                 value: function() {
@@ -199,12 +201,12 @@ define('elements/header',
                     var root = this;
                     if (bool !== undefined) {
                         if (bool) {
-                            root.classList.add(CHILD_VISIBLE);
+                            root.classList.add(cl.CHILD_VISIBLE);
                         } else {
-                            root.classList.remove(CHILD_VISIBLE);
+                            root.classList.remove(cl.CHILD_VISIBLE);
                         }
                     } else {
-                        root.classList.toggle(CHILD_VISIBLE);
+                        root.classList.toggle(cl.CHILD_VISIBLE);
                     }
                     return root;
                 }
@@ -212,23 +214,23 @@ define('elements/header',
         })
     });
 
-    var MktHeaderNavElement = document.registerElement('mkt-header-nav', {
+    el.MktHeaderNavElement = document.registerElement('mkt-header-nav', {
         prototype: Object.create(HTMLUListElement.prototype, {
             updateActiveNode: {
                 value: function(path) {
                     var root = this;
 
                     // Remove highlights from formerly-active nodes.
-                    var links = root.querySelectorAll('a.' + LINK_ACTIVE);
+                    var links = root.querySelectorAll('a.' + cl.LINK_ACTIVE);
                     for (var i = 0; links && (i < links.length); i++) {
-                        links[i].classList.remove(LINK_ACTIVE);
+                        links[i].classList.remove(cl.LINK_ACTIVE);
                     }
 
                     // Highlight new active nodes based on current page.
                     var activeLinks = root.querySelectorAll(
                         'a[href="' + (path || window.location.pathname) + '"]');
                     for (i = 0; activeLinks && (i < activeLinks.length); i++) {
-                        activeLinks[i].classList.add(LINK_ACTIVE);
+                        activeLinks[i].classList.add(cl.LINK_ACTIVE);
                     }
                 }
             }
@@ -249,20 +251,13 @@ define('elements/header',
 
     .on('navigate loaded', function() {
         var headerNav = document.querySelector('mkt-header-nav');
-        if (headerNav) {
-            try {
-                // Catch in case header hasn't yet been initialized.
-                headerNav.updateActiveNode();
-            } catch(e) {}
+        if (headerNav && headerNav.updateActiveNode) {
+            headerNav.updateActiveNode();
         }
     });
 
     return {
-        classes: {
-            CHILD_INPUT: CHILD_INPUT,
-            CHILD_VISIBLE: CHILD_VISIBLE,
-            LINK_ACTIVE: LINK_ACTIVE,
-            SHOWING_CHILD: SHOWING_CHILD
-        }
+        classes: cl,
+        elements: el
     };
 });

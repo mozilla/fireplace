@@ -57,6 +57,15 @@ main:after {
     top: 0;
     width: 100%;
     z-index: $zindex--page-overlay;
+
+    +nav--visible() {
+        display: block;
+    }
+    +media--wide-tablet() {
+        +nav--visible() {
+            display: none;
+        }
+    }
 }
 
 [data-mkt-nav--enabled] {
@@ -69,13 +78,14 @@ main:after {
         // overflow: hidden doesn't work properly on fennec so set
         // position: fixed also. (bug 1153203).
         position: fixed;
+
+        +media--wide-tablet() {
+            overflow-y: auto;
+            position: static;
+        }
     }
     &.mkt-nav--visible main {
         position: relative;
-
-        &:after {
-            display: block;
-        }
     }
     .site-header {
         border-bottom: 0;
@@ -87,7 +97,7 @@ main:after {
         background: $greyscale-light-grey;
         z-index: $zindex--main;
     }
-    &[data-page-type~="leaf"] #site-header .hamburger {
+    &[data-page-type~="leaf"] #site-header mkt-nav-toggle {
         display: none;
     }
 }
@@ -210,15 +220,27 @@ mkt-nav-child {
 {$nav--to-shift} {
     transform: translateX(0);
     transition: unquote($nav--transition);
+
+    +media--wide-tablet() {
+        transform: translateX(8);
+    }
 }
 
 {$nav--subnav-to-shift} {
     transform: translateX(0);
+
+    +media--wide-tablet() {
+        transform: translateX(0);
+    }
 }
 
 .mkt-nav--visible {
     {$nav--to-shift} {
         transform: translateX($nav--width);
+
+        +media--wide-tablet() {
+            transform: translateX(0);
+        }
     }
     #site-header .hamburger {
         background-position: 0 -100px;
@@ -231,6 +253,10 @@ mkt-nav-child {
 .mkt-nav--subnav-visible {
     {$nav--subnav-to-shift} {
         transform: translateX($nav--width);
+
+        +media--wide-tablet() {
+            transform: translateX(0);
+        }
     }
 }
 
@@ -239,27 +265,4 @@ mkt-nav-child {
     left: 10px;
     position: relative;
     width: 195px;
-}
-
-@media $wide-tablet {
-    [data-mkt-nav--enabled].mkt-nav--visible {
-        overflow-y: auto;
-        // We had to set position: fixed for fennec (bug 1153203).
-        position: static;
-    }
-    [data-mkt-nav--enabled].mkt-nav--visible main:after {
-        display: none;
-    }
-    {$nav--to-shift} {
-        transform: translateX(8);
-    }
-    {$nav--subnav-to-shift} {
-        transform: translateX(0);
-    }
-    .mkt-nav--visible {$nav--to-shift} {
-        transform: translateX(0);
-    }
-    .mkt-nav--subnav-visible {$nav--subnav-to-shift} {
-        transform: translateX(0);
-    }
 }

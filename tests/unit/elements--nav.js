@@ -13,30 +13,51 @@ define('tests/unit/elements--nav',
                                .classList.contains(nav.classes.VISIBLE));
         });
 
-        it('toggles subnav class', function() {
+        it('toggles showing child class', function() {
             var mktNav = document.createElement('mkt-nav');
-            mktNav.toggleSubnav();
+            var mktNavChild1 = document.createElement('mkt-nav-child');
+            mktNavChild1.id = 'foo';
+            mktNav.appendChild(mktNavChild1);
+
+            mktNav.toggleChildren('foo');
             assert.ok(mktNav.statusElement.classList
-                            .contains(nav.classes.SUBNAV_VISIBLE));
-            mktNav.toggleSubnav();
+                            .contains(nav.classes.SHOWING_CHILD));
+            mktNav.toggleChildren('foo');
             assert.notOk(mktNav.statusElement.classList
-                               .contains(nav.classes.SUBNAV_VISIBLE));
+                               .contains(nav.classes.SHOWING_CHILD));
         });
 
-        it('toggles subnavs off', function() {
+        it('toggles children', function() {
+            var mktNav = document.createElement('mkt-nav');
+            var mktNavChild1 = document.createElement('mkt-nav-child');
+            var mktNavChild2 = document.createElement('mkt-nav-child');
+            mktNavChild1.id = 'foo';
+            mktNavChild2.id = 'bar';
+
+            mktNav.appendChild(mktNavChild1);
+            mktNav.appendChild(mktNavChild2);
+
+            mktNav.toggleChildren('foo');
+            assert.ok(mktNavChild1.visible);
+            assert.notOk(mktNavChild2.visible);
+
+            mktNav.toggleChildren('bar');
+            assert.notOk(mktNavChild1.visible);
+            assert.ok(mktNavChild2.visible);
+        });
+
+        it('toggles children off', function() {
             var mktNav = document.createElement('mkt-nav');
             var mktNavChild1 = document.createElement('mkt-nav-child');
             var mktNavChild2 = document.createElement('mkt-nav-child');
             mktNav.appendChild(mktNavChild1);
             mktNav.appendChild(mktNavChild2);
 
-            mktNavChild1.show();
+            mktNavChild1.toggle(true);
 
-            mktNav.toggleSubnav(false);
-            assert.notOk(mktNavChild1.classList
-                                     .contains(nav.classes.VISIBLE));
-            assert.notOk(mktNavChild2.classList
-                                     .contains(nav.classes.VISIBLE));
+            mktNav.toggleChildren(false);
+            assert.notOk(mktNavChild1.visible);
+            assert.notOk(mktNavChild2.visible);
         });
 
         it('updates active nodes', function() {
@@ -59,37 +80,73 @@ define('tests/unit/elements--nav',
     });
 
     describe('mkt-nav-child', function() {
+        it('has visible status', function() {
+            var mktNavChild = document.createElement('mkt-nav-child');
+            assert.notOk(mktNavChild.visible);
+            mktNavChild.classList.add(nav.classes.VISIBLE);
+            assert.ok(mktNavChild.visible);
+        });
+
         it('toggles', function() {
             var mktNav = document.createElement('mkt-nav');
             var mktNavChild = document.createElement('mkt-nav-child');
             mktNav.appendChild(mktNavChild);
 
-            mktNavChild.show();
-            assert.ok(mktNavChild.classList
-                                 .contains(nav.classes.VISIBLE));
-            mktNavChild.hide();
-            assert.notOk(mktNavChild.classList
-                                    .contains(nav.classes.VISIBLE));
+            mktNavChild.toggle();
+            assert.ok(mktNavChild.visible);
+            mktNavChild.toggle();
+            assert.notOk(mktNavChild.visibile);
+            mktNavChild.toggle(true);
+            assert.ok(mktNavChild.visible);
+            mktNavChild.toggle(false);
+            assert.notOk(mktNavChild.visibile);
         });
+    });
 
-        it('only shows one at a time', function() {
+    describe('mkt-nav-toggle', function() {
+        it('toggles nav', function() {
             var mktNav = document.createElement('mkt-nav');
-            var mktNavChild1 = document.createElement('mkt-nav-child');
-            var mktNavChild2 = document.createElement('mkt-nav-child');
-            mktNav.appendChild(mktNavChild1);
-            mktNav.appendChild(mktNavChild2);
+            mktNav.id = 'nav';
+            var mktNavToggle = document.createElement('mkt-nav-toggle');
+            mktNavToggle.setAttribute('for', 'nav');
+            document.body.appendChild(mktNav);
+            document.body.appendChild(mktNavToggle);
 
-            mktNavChild1.show();
-            assert.ok(mktNavChild1.classList
-                                  .contains(nav.classes.VISIBLE));
-            assert.notOk(mktNavChild2.classList
-                                     .contains(nav.classes.VISIBLE));
+            assert.notOk(mktNav.statusElement.classList.contains(
+                         nav.classes.VISIBLE));
 
-            mktNavChild2.show();
-            assert.ok(mktNavChild2.classList
-                                  .contains(nav.classes.VISIBLE));
-            assert.notOk(mktNavChild1.classList
-                                     .contains(nav.classes.VISIBLE));
+            mktNavToggle.click();
+
+            assert.ok(mktNav.statusElement.classList.contains(
+                      nav.classes.VISIBLE));
+
+            document.body.removeChild(mktNav);
+            document.body.removeChild(mktNavToggle);
+        });
+    });
+
+    describe('mkt-nav-child-toggle', function() {
+        it('toggles nav child', function() {
+            var mktNav = document.createElement('mkt-nav');
+
+            var mktNavChild = document.createElement('mkt-nav-child');
+            mktNavChild.id = 'foo-child';
+
+            var mktNavChildToggle = document.createElement(
+                'mkt-nav-child-toggle');
+            mktNavChildToggle.setAttribute('for', 'foo-child');
+
+            mktNav.appendChild(mktNavChild);
+
+            document.body.appendChild(mktNav);
+            document.body.appendChild(mktNavChildToggle);
+
+            assert.notOk(mktNavChild.visible);
+            mktNavChildToggle.click();
+            assert.ok(mktNavChild.visible);
+
+            document.body.removeChild(mktNav);
+            document.body.removeChild(mktNavChildToggle);
         });
     });
 });
