@@ -101,52 +101,39 @@ for $name in generic games productivity outlook yelp zirma {
 }
 
 // Offsets
-// IMPORTANT: This section is duplicated because we are using an outdated
-//            version of stylus that doesn't support variables in @media
-//            queries. Please update both if you update something.
-@media (min-width: 1024px) {
-    $promo-width = 1024px
-    $base-offset = ($promo-width - $image-width - 2 * $image-padding) * (1 / 2);
+for $promo-width in 1024px 1280px {
+    @media (min-width: $promo-width) {
+        $base-offset = ($promo-width - $image-width - 2 * $image-padding) * (1 / 2);
 
-    .desktop-promo {
-        width: $promo-width;
-    }
+        .desktop-promo {
+            width: $promo-width;
+        }
 
-    .desktop-promo-items {
-        transform: translateX($base-offset);
-    }
+        .desktop-promo-items {
+            transform: translateX($base-offset);
 
-    .desktop-promo-items[data-action="center"],
-    .desktop-promo-items[data-action="start"] {
-        transform: translateX(-($image-width + 2 * $image-padding) * 1 + $base-offset);
-    }
+            +rtl() {
+                transform: translateX(-1 * $base-offset);
+            }
+        }
 
-    .desktop-promo-items[data-action="left"],
-    .desktop-promo-items[data-action="right"] {
-        transform: translateX(-($image-width + 2 * $image-padding) * 2 + $base-offset);
-    }
-}
+        .desktop-promo-items[data-action="center"],
+        .desktop-promo-items[data-action="start"] {
+            transform: translateX(-($image-width + 2 * $image-padding) * 1 + $base-offset);
 
-@media (min-width: 1280px) {
-    $promo-width = 1280px
-    $base-offset = ($promo-width - $image-width - 2 * $image-padding) * (1 / 2);
+            +rtl() {
+                transform: translateX(($image-width + 2 * $image-padding) * 1 - $base-offset);
+            }
+        }
 
-    .desktop-promo {
-        width: $promo-width;
-    }
+        .desktop-promo-items[data-action="left"],
+        .desktop-promo-items[data-action="right"] {
+            transform: translateX(-($image-width + 2 * $image-padding) * 2 + $base-offset);
 
-    .desktop-promo-items {
-        transform: translateX($base-offset);
-    }
-
-    .desktop-promo-items[data-action="center"],
-    .desktop-promo-items[data-action="start"] {
-        transform: translateX(-($image-width + 2 * $image-padding) * 1 + $base-offset);
-    }
-
-    .desktop-promo-items[data-action="left"],
-    .desktop-promo-items[data-action="right"] {
-        transform: translateX(-($image-width + 2 * $image-padding) * 2 + $base-offset);
+            +rtl() {
+                transform: translateX(($image-width + 2 * $image-padding) * 2 - $base-offset);
+            }
+        }
     }
 }
 
