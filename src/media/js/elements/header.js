@@ -110,7 +110,8 @@ define('elements/header',
                             if (e) {
                                 var target = e.explicitOriginalTarget ||
                                              document.activeElement;
-                                if (target.getAttribute('for') == root.id) {
+                                if (target.getAttribute &&
+                                    target.getAttribute('for') == root.id) {
                                     // Don't trigger if blurring on toggle.
                                     return;
                                 }
