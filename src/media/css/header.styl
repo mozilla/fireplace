@@ -32,6 +32,10 @@ body {
     padding: 0 5px;
     position: relative;
     z-index: $zindex--header;
+    +rtl-root() {
+        // Keep the back and menu button on the left when RTL.
+        flex-direction: row-reverse;
+    }
 
     h1 {
         align-items: center;

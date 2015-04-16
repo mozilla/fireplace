@@ -186,8 +186,25 @@ category-icon-position($slug, $scale=1) {
     background-position: ($positions[0] * $cat-icon-size-default * $scale * -1) ($positions[1] * $cat-icon-size-default * $scale * -1);
 }
 
+ltr() {
+    .html-ltr & {
+        {block}
+    }
+}
+ltr-root() {
+    .html-ltr& {
+        {block}
+    }
+}
+
+
 rtl() {
     .html-rtl & {
+        {block}
+    }
+}
+rtl-root() {
+    .html-rtl& {
         {block}
     }
 }

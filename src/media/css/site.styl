@@ -20,6 +20,9 @@ body {
     overflow-x: hidden;
     transform-origin: 50% 400px;
     transition: transform 1s;
+    // When the mobile nav is open the body width becomes 340px when the screen
+    // is 320px wide. I don't know why that happens. This fixes it. (mstriemer)
+    width: 100%;
 }
 
 #page {
