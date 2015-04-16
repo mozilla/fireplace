@@ -10,7 +10,11 @@ define('header_footer',
 
     function renderHeader() {
         if (settings.mktNavEnabled) {
-            $('#mkt-nav--site-header, #site-header, main #site-nav').remove();
+            if (document.querySelector('mkt-header')) {
+                return;
+            }
+
+            $('#site-header, main #site-nav').remove();
 
             $('<div id="mkt-nav--site-header" class="mkt-nav--wrapper"></div>')
                 .append(nunjucks.env.render('header.html', {
