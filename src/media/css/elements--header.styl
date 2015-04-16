@@ -80,15 +80,15 @@ mkt-header-child {
     overflow: hidden;
     padding: 10px 5%;
     position: absolute;
-    top: 0;
-    transform: translateY(-100%);
+    top: 60px;
+    transform: translateY(-200%);
     transition: unquote($header--transition + ', opacity 0s linear 300ms');
     width: 100%;
     z-index: $zindex--header-child;
 
     &.mkt-header-child--visible {
         opacity: 1;
-        transform: translateY(100%);
+        transform: translateY(0);
         transition: unquote($header--transition);
     }
     > ul {
