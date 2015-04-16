@@ -5,7 +5,7 @@ casper.test.begin('Test settings', {
         casper.waitUntilVisible('.account-settings .persona', function() {
             test.assertNotVisible('.account-settings .logout');
             test.assertNotVisible('.account-settings-save button[type="submit"]');
-            test.assertNotVisible('.account-settings .email');
+            test.assertNotVisible('.account-settings .settings-email');
             // This elements are not directly hidden which doesn't play nicely
             // with test.assertNotVisible. See https://github.com/mozilla/fireplace/pull/1050#discussion-diff-25678912
             // for the discussion. This may work in casperjs > 1.1.0-beta3.
@@ -19,7 +19,7 @@ casper.test.begin('Test settings', {
         casper.waitUntilVisible('.account-settings .logout', function() {
             test.assertNotVisible('.account-settings .persona');
             test.assertVisible('.account-settings-save button[type="submit"]');
-            test.assertVisible('.account-settings .email');
+            test.assertVisible('.account-settings .settings-email');
             test.assertVisible('.account-settings input[name="display_name"]');
             test.assertVisible('.account-settings input[name="enable_recommendations"]');
             casper.fill('.account-settings', {

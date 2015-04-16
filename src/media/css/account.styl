@@ -48,7 +48,7 @@
     input[type=checkbox] {
         margin-right: 5px;
     }
-    .display-name {
+    .settings-display-name {
         width: 100%;
     }
     [name="display_name"] {
@@ -66,6 +66,11 @@
 
         span {
             color: $greyscale-black;
+
+            +rtl() {
+                background-position: 100% 1px;
+                padding-right: 25px;
+            }
         }
     }
     .newsletter-info {
@@ -104,15 +109,16 @@
             display: inline-block;
         }
     }
-    .account-settings {
-        .email,
-        .display-name {
-            float: left;
-            width: (100 / 3)%;
-        }
-        .display-name + div {
-            clear: both;
-        }
+    .settings-info-container {
+        display: flex;
+        flex-direction: row;
+    }
+    .settings-email,
+    .setings-display-name {
+        width: (100 / 3)%;
+    }
+    .settings-display-name + div {
+        clear: both;
     }
     .account-settings-links div {
         .button {
@@ -124,12 +130,8 @@
         margin: 0;
     }
     .account-settings-save .button {
+        margin: 0 10px;
         width: $mobile-content-width;
-
-        &:nth-child(1),
-        &:nth-child(2) {
-            margin-right: 10px;
-        }
     }
     .account-settings-save,
     .account-settings-links div {

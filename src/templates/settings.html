@@ -9,16 +9,18 @@
     <div>
       <h3>{{ _('General settings') }}</h3>
 
-      <div class="email account-field hide-logged-out">
-        <label>{{ _('Email Address') }}</label>
-        <p>{{ user.get_setting('email') }}</p>
-      </div>
+      <div class="settings-info-container">
+        <div class="settings-email account-field hide-logged-out">
+          <label>{{ _('Email Address') }}</label>
+          <p>{{ user.get_setting('email') }}</p>
+        </div>
 
-      <div class="display-name account-field hide-logged-out">
-        <label for="display_name">{{ _('Display Name') }}</label>
-        <input name="display_name" id="display_name"
-               pattern="[^\s].*|\s+\S.+" value="{{ user.get_setting('display_name') }}"
-               maxlength="50" type="text" required>
+        <div class="display-name account-field hide-logged-out">
+          <label for="display_name">{{ _('Display Name') }}</label>
+          <input name="display_name" id="display_name"
+                 pattern="[^\s].*|\s+\S.+" value="{{ user.get_setting('display_name') }}"
+                 maxlength="50" type="text" required>
+        </div>
       </div>
 
       <div class="recommendations account-field hide-logged-out">
