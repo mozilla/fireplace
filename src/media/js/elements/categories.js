@@ -18,9 +18,12 @@
         - Toggle active-ness of <mkt-category-link>s.
 */
 define('elements/categories',
-    ['categories', 'core/format', 'core/nunjucks', 'core/urls', 'core/z',
-     'document-register-element', 'jquery', 'underscore'],
-    function(categories, format, nunjucks, urls, z, dre, $, _) {
+    ['categories', 'core/element_utils', 'core/format', 'core/nunjucks',
+     'core/urls', 'core/z', 'document-register-element', 'jquery',
+     'underscore'],
+    function(categories, eUtils, format, nunjucks,
+             urls, z, dre, $,
+             _) {
     'use strict';
 
     var el = {};
@@ -52,20 +55,7 @@ define('elements/categories',
             },
             updateActiveNode: {
                 value: function(path) {
-                    var root = this;
-
-                    // Remove highlights from formerly-active nodes.
-                    var links = root.querySelectorAll('a.' + cl.LINK_ACTIVE);
-                    for (var i = 0; links && (i < links.length); i++) {
-                        links[i].classList.remove(cl.LINK_ACTIVE);
-                    }
-
-                    // Highlight new active nodes based on current page.
-                    var activeLinks = root.querySelectorAll(
-                        'a[href="' + (path || window.location.pathname) + '"]');
-                    for (i = 0; activeLinks && (i < activeLinks.length); i++) {
-                        activeLinks[i].classList.add(cl.LINK_ACTIVE);
-                    }
+                    return eUtils.updateActiveNode(this, cl.LINK_ACTIVE, path);
                 }
             }
         })

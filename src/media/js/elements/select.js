@@ -70,10 +70,11 @@
     - To change <mkt-select>'s value, do mktSelect.value = 'newValue';
 */
 define('elements/select',
-    ['core/log', 'core/z', 'document-register-element', 'jquery', 'underscore'],
-    function(log, z, dre, $, _) {
+    ['core/element_utils', 'core/z', 'document-register-element', 'jquery',
+     'underscore'],
+    function(eUtils, z, dre, $,
+             _) {
     'use strict';
-    var logger = log('elements/select');
 
     var el = {};
     var cl = {
@@ -94,14 +95,12 @@ define('elements/select',
                     // Create <mkt-option>/<mkt-optgroup> using <option>s.
                     var mktOptGroup = document.createElement('mkt-optgroup');
                     var optGroup = root.querySelector('optgroup');
-                    var options = root.querySelectorAll('option');
-                    for (var i = 0; i < options.length; i++) {
-                        var option = options[i];
-
+                    eUtils.each(root.querySelectorAll('option'),
+                                function(option) {
                         var mktOption = document.createElement('mkt-option');
                         mktOption.option = option;
                         mktOptGroup.appendChild(mktOption);
-                    }
+                    });
 
                     // Add the <optgroup>s.
                     root.appendChild(mktOptGroup);
@@ -167,24 +166,24 @@ define('elements/select',
 
                     // Change [selected] of <option>s.
                     var selectedOption;
-                    var options = select.querySelectorAll('option');
-                    for (var i = 0; i < options.length; i++) {
-                        if (options[i].value === value) {
-                            options[i].setAttribute('selected', '');
-                            selectedOption = options[i];
+                    eUtils.each(select.querySelectorAll('option'),
+                                function(option) {
+                        if (option.value === value) {
+                            option.setAttribute('selected', '');
+                            selectedOption = option;
                         } else {
-                            options[i].removeAttribute('selected');
+                            option.removeAttribute('selected');
                         }
-                    }
+                    });
 
                     // Change text.
                     root.updateSelectedText(selectedOption);
 
                     // Change [selected] of <mkt-option>s.
-                    var mktOptions = root.querySelectorAll('mkt-option');
-                    for (i = 0; i < mktOptions.length; i++) {
-                        mktOptions[i].update();
-                    }
+                    eUtils.each(root.querySelectorAll('mkt-option'),
+                                function(mktOption) {
+                        mktOption.update();
+                    });
 
                     // Update [data-mkt-option--index]es.
                     this.updateOptionIndices();
@@ -225,10 +224,9 @@ define('elements/select',
                     // Sets a data-index on each mkt-option that is not
                     // [selected]. Prominently used to set colors since we
                     // don't have CSS4 nth-match.
-                    var mktOptions = this.querySelectorAll('mkt-option');
                     var visibleIndex = 0;
-                    for (var i = 0; i < mktOptions.length; i++) {
-                        var mktOption = mktOptions[i];
+                    eUtils.each(this.querySelectorAll('mkt-option'),
+                                function(mktOption) {
                         if (mktOption.hasAttribute('selected')) {
                             mktOption.removeAttribute(
                                 'data-mkt-option--index');
@@ -236,7 +234,7 @@ define('elements/select',
                             mktOption.setAttribute('data-mkt-option--index',
                                                    visibleIndex++);
                         }
-                    }
+                    });
                 }
             }
         }),
@@ -296,31 +294,7 @@ define('elements/select',
         return dest;
     }
 
-    function proxyElement(destObj, properties, methods, key) {
-        properties.forEach(function(prop) {
-            if (Object.getOwnPropertyDescriptor(destObj, prop)) {
-                // Already defined.
-                return;
-            }
-            // Set a property.
-            Object.defineProperty(destObj, prop, {
-                get: function() {
-                    return this[key][prop];
-                }
-            });
-        });
-
-        methods.forEach(function(method) {
-            // Set a method.
-            Object.defineProperty(destObj, method, {
-                value: function() {
-                    return this[key][method].call(arguments);
-                }
-            });
-        });
-    }
-
-    proxyElement(el.MktSelectElement.prototype, [
+    eUtils.proxyInterface(el.MktSelectElement.prototype, [
         'autofocus',
         'disabled',
         'form',
@@ -347,10 +321,10 @@ define('elements/select',
         'remove',
         'setCustomValidity',
     ], 'select');
-    proxyElement(el.MktOptGroupElement.prototype, [
+    eUtils.proxyInterface(el.MktOptGroupElement.prototype, [
         'disabled',
     ], [], 'optGroup');
-    proxyElement(el.MktOptionElement.prototype, [
+    eUtils.proxyInterface(el.MktOptionElement.prototype, [
         'defaultSelected',
         'disabled',
         'form',
@@ -363,12 +337,12 @@ define('elements/select',
 
     z.win.on('resize', _.debounce(function() {
         // Re-align options on resize.
-        var mktSelects = document.querySelectorAll('mkt-select');
-        for (var i = 0; i < mktSelects.length; i++ ) {
-            if (mktSelects[i].alignOptions) {
-                mktSelects[i].alignOptions();
+        eUtils.each(document.querySelectorAll('mkt-select'),
+                    function(mktSelect) {
+            if (mktSelect.alignOptions) {
+                mktSelect.alignOptions();
             }
-        }
+        });
     }, 100));
 
     return {

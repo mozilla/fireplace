@@ -26,8 +26,10 @@
         - Toggle all header children closed.
 */
 define('elements/header',
-    ['core/z', 'document-register-element', 'jquery', 'underscore'],
-    function(z, dre, $, _) {
+    ['core/element_utils', 'core/z', 'document-register-element', 'jquery',
+     'underscore'],
+    function(eUtils, z, dre, $,
+             _) {
     'use strict';
 
     var el = {};
@@ -48,16 +50,15 @@ define('elements/header',
 
                     // Move <mkt-header-child>ren out since we need to z-index
                     // them below <mkt-header>.
-                    var headerChildren = root.querySelectorAll(
-                        'mkt-header-child');
-                    for (var i = 0; i < headerChildren.length; i++) {
+                    eUtils.each(root.querySelectorAll('mkt-header-child'),
+                                function(headerChild) {
                         if (root.nextSibling) {
-                            root.parentNode.insertBefore(headerChildren[i],
+                            root.parentNode.insertBefore(headerChild,
                                                          root.nextSibling);
                         } else {
-                            root.parentNode.appendChild(headerChildren[i]);
+                            root.parentNode.appendChild(headerChild);
                         }
-                    }
+                    });
                 }
             },
             headerChildren: {
@@ -76,19 +77,16 @@ define('elements/header',
                     // If arg is false, toggle all children off.
                     // Else arg is an ID, toggle only that child on.
                     var root = this;
-                    var headerChildren = root.headerChildren;
 
                     var showingChild = false;
-                    for (var i = 0; i < headerChildren.length; i++) {
-                        var child = headerChildren[i];
-
+                    eUtils.each(root.headerChildren, function(child) {
                         if (child.id === arg) {
                             child.toggle(bool);
                             showingChild = child.visible;
                         } else {
-                            headerChildren[i].toggle(false);
+                            child.toggle(false);
                         }
-                    }
+                    });
 
                     root.statusElement.classList.toggle(cl.SHOWING_CHILD,
                                                         showingChild);
@@ -136,15 +134,7 @@ define('elements/header',
                     // Toggle visibility.
                     var root = this;
 
-                    if (bool !== undefined) {
-                        if (bool) {
-                            root.classList.add(cl.CHILD_VISIBLE);
-                        } else {
-                            root.classList.remove(cl.CHILD_VISIBLE);
-                        }
-                    } else {
-                        root.classList.toggle(cl.CHILD_VISIBLE);
-                    }
+                    eUtils.toggleClass(root, cl.CHILD_VISIBLE, bool);
 
                     // TODO: use events.
                     var toggleButton = document.querySelector(
@@ -199,17 +189,7 @@ define('elements/header',
             toggle: {
                 value: function(bool) {
                     // Toggle visibility.
-                    var root = this;
-                    if (bool !== undefined) {
-                        if (bool) {
-                            root.classList.add(cl.CHILD_VISIBLE);
-                        } else {
-                            root.classList.remove(cl.CHILD_VISIBLE);
-                        }
-                    } else {
-                        root.classList.toggle(cl.CHILD_VISIBLE);
-                    }
-                    return root;
+                    return eUtils.toggleClass(this, cl.CHILD_VISIBLE, bool);
                 }
             }
         })
@@ -219,20 +199,7 @@ define('elements/header',
         prototype: Object.create(HTMLUListElement.prototype, {
             updateActiveNode: {
                 value: function(path) {
-                    var root = this;
-
-                    // Remove highlights from formerly-active nodes.
-                    var links = root.querySelectorAll('a.' + cl.LINK_ACTIVE);
-                    for (var i = 0; links && (i < links.length); i++) {
-                        links[i].classList.remove(cl.LINK_ACTIVE);
-                    }
-
-                    // Highlight new active nodes based on current page.
-                    var activeLinks = root.querySelectorAll(
-                        'a[href="' + (path || window.location.pathname) + '"]');
-                    for (i = 0; activeLinks && (i < activeLinks.length); i++) {
-                        activeLinks[i].classList.add(cl.LINK_ACTIVE);
-                    }
+                    return eUtils.updateActiveNode(this, cl.LINK_ACTIVE, path);
                 }
             }
         })

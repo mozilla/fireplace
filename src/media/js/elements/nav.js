@@ -49,9 +49,10 @@
         Update active node. Hide children.
 */
 define('elements/nav',
-    ['core/settings', 'core/z', 'document-register-element', 'jquery',
-     'underscore'],
-    function(settings, z, dre, $, _) {
+    ['core/element_utils', 'core/settings', 'core/z',
+     'document-register-element', 'jquery', 'underscore'],
+    function(eUtils, settings, z,
+             dre, $, _) {
     'use strict';
 
     var el = {};
@@ -84,18 +85,8 @@ define('elements/nav',
             },
             toggle: {
                 value: function(bool) {
-                    var root = this;
-                    if (bool !== undefined) {
-                        if (bool) {
-                            root.statusElement.classList.add(cl.VISIBLE);
-                        } else {
-                            root.statusElement.classList.remove(cl.VISIBLE);
-                        }
-                    } else {
-                        root.statusElement.classList.toggle(cl.VISIBLE);
-                    }
-
-                    return root;
+                    return eUtils.toggleClass(this.statusElement, cl.VISIBLE,
+                                              bool);
                 },
             },
             toggleChildren: {
@@ -103,19 +94,16 @@ define('elements/nav',
                     // If arg is false, toggle all children off.
                     // Else arg is an ID, toggle only that child on.
                     var root = this;
-                    var navChildren = root.navChildren;
 
                     var showingChild = false;
-                    for (var i = 0; i < navChildren.length; i++) {
-                        var child = navChildren[i];
-
+                    eUtils.each(root.navChildren, function(child) {
                         if (child.id === arg) {
                             child.toggle();
                             showingChild = child.visible;
                         } else {
-                            navChildren[i].toggle(false);
+                            child.toggle(false);
                         }
-                    }
+                    });
 
                     root.statusElement.classList.toggle(cl.SHOWING_CHILD,
                                                         showingChild);
@@ -123,23 +111,7 @@ define('elements/nav',
             },
             updateActiveNode: {
                 value: function(path) {
-                    var root = this;
-
-                    // Remove highlights from formerly-active nodes.
-                    var links = root.querySelectorAll('a.' + cl.ACTIVE);
-                    for (var i = 0; links && (i < links.length); i++) {
-                        links[i].classList.remove(cl.ACTIVE);
-                    }
-
-                    // Highlight new active nodes based on current page.
-                    var activeLinks = root.querySelectorAll(
-                        'a[href="' + (path || window.location.pathname) + '"]');
-                    for (i = 0; activeLinks && (i < activeLinks.length); i++) {
-                        if (!activeLinks[i].hasAttribute(
-                            'data-nav-no-active-node')) {
-                            activeLinks[i].classList.add(cl.ACTIVE);
-                        }
-                    }
+                    return eUtils.updateActiveNode(this, cl.ACTIVE, path);
                 }
             },
         }),
@@ -153,19 +125,7 @@ define('elements/nav',
         prototype: Object.create(el.MktNavRootElement.prototype, {
             toggle: {
                 value: function(bool) {
-                    var root = this;
-
-                    if (bool !== undefined) {
-                        if (bool) {
-                            root.classList.add(cl.VISIBLE);
-                        } else {
-                            root.classList.remove(cl.VISIBLE);
-                        }
-                    } else {
-                        root.classList.toggle(cl.VISIBLE);
-                    }
-
-                    return root;
+                    return eUtils.toggleClass(this, cl.VISIBLE, bool);
                 }
             },
             visible: {
