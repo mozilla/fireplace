@@ -96,7 +96,7 @@ define('feed',
         feedItem.inline_color = colors.COLLECTION_COLORS[feedItem.color];
 
         // TODO: deserialize image_url (bug 1148509).
-        if (feedItem.isApp) {
+        if (feedItem.isApp && feedItem.preview) {
             feedItem.preview.thumbnail_url = feedItem.preview.thumbnail_url
                                                      .replace(/\/thumbs\//,
                                                               '/full/');
