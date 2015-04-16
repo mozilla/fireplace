@@ -10,10 +10,12 @@ body {
 
 // We hide the recommendations tab by default and enable it via JS if user is
 // logged in and opted in to recommendations.
-[data-mkt-nav--item~="recommended"] {
+[data-mkt-nav--item~="recommended"],
+[data-mkt-header-nav--item~="recommended"] {
     display: none;
 }
-.show-recommendations [data-mkt-nav--item="recommended"] {
+.show-recommendations [data-mkt-nav--item="recommended"],
+.show-recommendations [data-mkt-header-nav--item="recommended"] {
     display: inline;
 }
 
