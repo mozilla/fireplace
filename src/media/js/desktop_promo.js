@@ -8,6 +8,25 @@ define('desktop_promo',
     'use strict';
     var gettext = l10n.gettext;
 
+    // TODO: There is an ordering update, see bug 1155001#c0 for details.
+    var nextPromoItems = [
+        {
+            name: 'evernote',
+            url: urls.reverse('app', ['evernote-web']),
+            text: gettext('Get organized with Evernote.'),
+        },
+        {
+            name: 'cut-the-rope',
+            url: urls.reverse('app', ['cut-the-rope']),
+            text: gettext('Om Nom needs candy!'),
+        },
+        {
+            name: 'sprint-club-nitro',
+            url: urls.reverse('app', ['sprint-club-nitro']),
+            text: gettext('Race across nine increasingly difficult levels.'),
+        },
+    ];
+
     return {
         isDesktop: function() {
             return caps.device_type() === 'desktop';
