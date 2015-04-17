@@ -22,6 +22,9 @@ env:
   - RUN_TEST=unittest
   - RUN_TEST=test-langpacks
   - RUN_TEST=test-package
+matrix:
+  allow_failures:
+    - env: RUN_TEST=uitest-phantom START_SERVER=1 UPLOAD_CAPTURES=1 MAKE_LANGPACKS=1
 before_script:
   - "export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'"
   - 'export SLIMERJSLAUNCHER=$(which firefox)'
