@@ -1,12 +1,12 @@
 define('views/debug',
     ['core/cache', 'core/capabilities', 'compat_filter', 'core/log',
      'core/models', 'core/notification', 'core/requests', 'core/settings',
-     'core/storage', 'core/user', 'core/utils', 'core/z', 'header_footer',
-     'regions', 'utils_local', 'underscore'],
+     'core/storage', 'core/user', 'core/utils', 'core/z', 'regions',
+     'utils_local', 'underscore'],
     function(cache, capabilities, compatFilter, log,
              models, notification, requests, settings,
-             storage, user, utils, z, headerFooter,
-             regions, utilsLocal, _) {
+             storage, user, utils, z, regions,
+             utilsLocal, _) {
     'use strict';
 
     var persistent_console_debug = log.persistent('debug', 'change');
@@ -18,11 +18,6 @@ define('views/debug',
         storage.clear();
         notification.notification({message: 'localStorage cleared',
                                    timeout: 1000});
-    })
-
-    .on('click', '#enable-mkt-nav', function() {
-        settings.mktNavEnabled = true;
-        z.page.trigger('reload_chrome').trigger('navigate');
     })
 
     .on('click', '#enable-offline-cache', function() {

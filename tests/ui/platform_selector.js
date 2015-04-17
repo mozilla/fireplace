@@ -1,10 +1,3 @@
-/*
-    Will replaces compat_filter.js tests alongside release of new navigation.
-    Platform selector manually rendered while settings.mktNavEnabled flag is
-    default to off.
-    Many tests skipped by Phantom since its HTMLSelectElement prototype is
-    not to spec, preventing the set up of <mkt-select>.
-*/
 var appList = helpers.load('app_list');
 var constants = helpers.load('constants');
 var jsuri = helpers.npm('jsuri/Uri');
@@ -26,18 +19,8 @@ function phantomSkip(test) {
 
 function platformSelectorSetUp(cb) {
     helpers.waitForPageLoaded(function() {
-        casper.evaluate(function() {
-            var settings = window.require('core/settings');
-            var z = window.require('core/z');
-            var headerFooter = window.require('header_footer');
-
-            settings.mktNavEnabled = true;
-            headerFooter.renderPlatformSelector();
-            z.page.trigger('navigate');
-        });
+        casper.waitForSelector('mkt-select', cb);
     });
-
-    return casper.waitForSelector('mkt-select', cb);
 }
 
 
@@ -75,10 +58,6 @@ casper.test.begin('Test platform selector dropdown toggle', {
     test: function(test) {
         helpers.startCasper(new jsuri('/search').addQueryParam('q', 'foo'));
 
-        if (phantomSkip(test)) {
-            return;
-        }
-
         platformSelectorSetUp(function() {
             test.assertDoesntExist('.compat-filter.mkt-select--visible');
             casper.click('.compat-filter mkt-selected');
@@ -101,9 +80,9 @@ casper.test.begin('Test platform selector selected text', {
         }
 
         platformSelectorSetUp(function() {
-            test.assertSelectorHasText('mkt-selected-text', 'All Apps');
+            test.assertSelectorHasText('mkt-selected-text', 'All Platforms');
             selectOption('desktop');
-            test.assertSelectorHasText('mkt-selected-text', 'Desktop Apps');
+            test.assertSelectorHasText('mkt-selected-text', 'Desktop');
         });
 
         helpers.done(test);
@@ -178,7 +157,7 @@ casper.test.begin('Test platform selector dropdown persist for site', {
         });
 
         casper.waitForSelector('[data-page-type~="homepage"]', function() {
-            casper.click('.popular a');
+            casper.click('[data-mkt-nav--item="popular"] a');
         });
 
         casper.waitForSelector('.app-list', function() {
@@ -224,7 +203,7 @@ casper.test.begin('Test platform selectoring persists after search', {
             selectOption('desktop');
             assertSelectedDevice(test, 'desktop');
 
-            casper.fill('.search', {q: 'test'}, true);
+            casper.fill('.header--search-form', {q: 'test'}, true);
 
             casper.waitForSelector('.app-list', function() {
                 casper.waitForUrl(/\/search\?q=test$/, function() {

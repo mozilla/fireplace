@@ -10,7 +10,7 @@ casper.test.begin('Test search results header', {
 
         helpers.waitForPageLoaded(function() {
             test.assertNotVisible('.search-results-header-desktop');
-            casper.fill('.search', {q: 'test'}, true);
+            casper.fill('.header--search-form', {q: 'test'}, true);
         });
 
         // Test search results count in header.
@@ -37,7 +37,7 @@ casper.test.begin('Test search empty', {
         helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
-            casper.fill('.search', {q: 'empty'}, true);
+            casper.fill('.header--search-form', {q: 'empty'}, true);
         });
 
         casper.waitWhileVisible('.placeholder .spinner', function() {
@@ -75,8 +75,6 @@ casper.test.begin('Test search author', {
 
         casper.waitForSelector('.app-list', function() {
             test.assertUrlMatch(/\/search\?author=test$/);
-            // Test search results count in header.
-            test.assertField('q', 'test');
 
             // Test search results count in header.
             test.assertSelectorHasText('.search-results-header',
@@ -93,9 +91,6 @@ casper.test.begin('Test search potato', {
         helpers.startCasper({path: '/search?q=%3Apaid'});
 
         casper.waitForSelector('.app-list', function() {
-            // Test search results count in input.
-            test.assertField('q', ':paid');
-
             // Test search results count in header.
             test.assertSelectorHasText('.search-results-header',
                                        '":paid" returned 42 results');

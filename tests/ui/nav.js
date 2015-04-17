@@ -1,43 +1,8 @@
-/*
-    Test the mkt-nav element.
-    Currently flagged so render it manually for now.
-*/
 function navSetUp(cb) {
     helpers.waitForPageLoaded(function() {
-        casper.evaluate(function() {
-            var settings = window.require('core/settings');
-            var z = window.require('core/z');
-            var headerFooter = window.require('header_footer');
-
-            settings.mktNavEnabled = true;
-            headerFooter.renderHeader();
-        });
-    });
-
-    return casper.waitForSelector('mkt-nav', function() {
-        casper.evaluate(function() {
-            var z = window.require('core/z');
-            z.page.trigger('navigate');
-        });
-        cb();
+        casper.waitForSelector('mkt-nav', cb);
     });
 }
-
-
-casper.test.begin('Test mkt-nav settings flag', {
-    test: function(test) {
-        helpers.startCasper();
-
-        helpers.waitForPageLoaded(function() {
-            test.assertDoesntExist('mkt-nav');
-            test.assertDoesntExist('mkt-nav-root');
-            test.assertDoesntExist('mkt-nav-child');
-            test.assertExists('main #site-nav');
-        });
-
-        helpers.done(test);
-    }
-});
 
 
 casper.test.begin('Test mkt-nav toggle', {
@@ -104,6 +69,10 @@ casper.test.begin('Test mkt-nav subnavs', {
         helpers.startCasper();
 
         navSetUp(function() {
+            casper.evaluate(function() {
+                document.body.classList.remove('mkt-nav--subnav-visible');
+            });
+
             casper.click('mkt-nav-toggle');
             test.assertDoesntExist('.mkt-nav--subnav-visible');
 

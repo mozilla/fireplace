@@ -365,8 +365,8 @@ casper.test.begin('Test install langpack', {
             test.assertExists('.mkt-tile:first-child .launch:disabled');
             test.assertSelectorHasText('.mkt-tile:first-child .launch', 'Installed');
 
-            // Navigate away...
-            casper.click('.popular a');
+            // Navigate away.
+            casper.click('[data-mkt-nav--item="popular"] a');
         });
 
         casper.waitForSelector('[data-page-type~="popular"]', function() {

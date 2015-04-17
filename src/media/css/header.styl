@@ -23,7 +23,7 @@ body {
     width: 38px;
 }
 
-[data-mkt-nav--enabled] #site-header {
+#site-header {
     align-items: center;
     background: $color--header--background;
     display: flex;
@@ -81,7 +81,7 @@ body {
     }
 }
 
-[data-mkt-nav--enabled] .banners mkt-banner {
+.banners mkt-banner {
     z-index: 70;
 }
 
@@ -156,15 +156,6 @@ body {
     }
     .header-button {
         display: none;
-    }
-}
-
-body:not([data-mkt-nav--enabled]) {
-    .site-header {
-        z-index: 20;
-    }
-    .site-header > nav {
-        display: flex;
     }
 }
 
@@ -506,9 +497,6 @@ body:not([data-mkt-nav--enabled]) {
 }
 
 @media $base-tablet {
-    body:not([data-mkt-nav--enabled]) .site-header {
-        z-index: 30;
-    }
     .subheader {
         h1,
         a {

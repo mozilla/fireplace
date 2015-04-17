@@ -99,6 +99,7 @@ define('elements/select',
                                 function(option) {
                         var mktOption = document.createElement('mkt-option');
                         mktOption.option = option;
+                        mktOption.mktSelect = root;
                         mktOptGroup.appendChild(mktOption);
                     });
 
@@ -124,10 +125,6 @@ define('elements/select',
                     // Set up click handlers.
                     root.addEventListener('click', function(e) {
                         root.toggle();
-                        if (e.target.tagName == 'MKT-OPTION') {
-                            // Change value if click on option.
-                            root.value = e.target.getAttribute('value');
-                        }
                     });
                 }
             },
@@ -242,6 +239,22 @@ define('elements/select',
 
     el.MktOptionElement = document.registerElement('mkt-option', {
         prototype: Object.create(HTMLOptionElement.prototype, {
+            createdCallback: {
+                value: function() {
+                    var root = this;
+                    root.addEventListener('click', function() {
+                        root.mktSelect.value = root.getAttribute('value');
+                    });
+                }
+            },
+            mktSelect: {
+                get: function() {
+                    return this._mktSelect;
+                },
+                set: function(mktSelect) {
+                    this._mktSelect = mktSelect;
+                }
+            },
             option: {
                 // Actual <option> element to proxy to, steal its interface.
                 // Value set in <mkt-select>'s createdCallback.

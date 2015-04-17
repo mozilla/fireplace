@@ -211,16 +211,14 @@ define('elements/nav',
         // wouldn't apply unless <html>/<body> had heights, and setting to
         // 100% height would mess up the page since our <footer> isn't part of
         // <main>. Could be resolved if we made <footer> a part of <main>.
-        if (settings.mktNavEnabled) {
-            var main = document.querySelector('main');
-            if (main) {
-                // Hide the sidebar nav behind <main> by setting min-height on
-                // <main>. Only do this if the sidebar nav is being used.
-                if (window.matchMedia('(min-width: 800px)').matches) {
-                    main.style.minHeight = null;
-                } else {
-                    main.style.minHeight = screen.height + 'px';
-                }
+        var main = document.querySelector('main');
+        if (main) {
+            // Hide the sidebar nav behind <main> by setting min-height on
+            // <main>. Only do this if the sidebar nav is being used.
+            if (window.matchMedia('(min-width: 800px)').matches) {
+                main.style.minHeight = null;
+            } else {
+                main.style.minHeight = screen.height + 'px';
             }
         }
     }

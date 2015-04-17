@@ -22,7 +22,7 @@ require(
      'elements/categories', 'elements/header', 'elements/nav',
      'elements/select', 'flipsnap', 'header_footer', 'helpers_local',
      'image-deferrer-mkt', 'core/login', 'core/models', 'marketplace-elements',
-     'navbar', 'overlay', 'perf_events', 'perf_helper', 'previews', 'reviews',
+     'overlay', 'perf_events', 'perf_helper', 'previews', 'reviews',
      'startup_errors', 'tracking_events', 'views/feedback', 'views/search',
      'webactivities'],
     function(apps, categories, cache, caps, format,

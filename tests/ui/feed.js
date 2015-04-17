@@ -271,7 +271,7 @@ casper.test.begin('Test Feed endpoint', {
                 vary: '0',
             });
 
-            casper.click('.popular a');
+            casper.click('[data-mkt-nav--item="popular"] a');
         });
 
         casper.waitForSelector('.app-list', function() {
@@ -328,7 +328,7 @@ casper.test.begin('Test Feed collection endpoint', {
                 }
             );
 
-            casper.click('.popular a');
+            casper.click('[data-mkt-nav--item="popular"] a');
         });
 
         casper.waitForSelector('.app-list', function() {
