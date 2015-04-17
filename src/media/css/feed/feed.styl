@@ -47,7 +47,7 @@
 .feed-app {
     background-color: $white;
     margin-bottom: 0;
-    padding: 0 15px 10px;
+    padding: 0 10px 10px;
     position: relative;
 
     .heading {
@@ -71,11 +71,15 @@
     }
     .quote {
         color: $white;
-        left: -10px;
+        left: -5px;
         padding: 5px 0 15px;
         position: relative;
         top: 15px;
         width: $mobile-tile-width;
+
+        +rtl() {
+            left: 10px;
+        }
     }
     .preview {
         .desc {
@@ -116,16 +120,8 @@
 }
 
 .feed-view-all-tab.view-all-tab {
-    margin: $vertical-margin auto 5px 50%;
-    padding-bottom: 5px;
-    transform: translate(-50%, 0);
-}
-
-.feed-layout-list .feed-view-all-tab {
-    bottom: 5px;
-}
-.feed-layout-grid .feed-view-all-tab {
-    bottom: 10px;
+    display: block;
+    margin: $vertical-margin auto 5px;
 }
 
 .multi-app-tile {
@@ -156,18 +152,20 @@
         color: $white;
     }
     .app-icons {
+        display: flex;
+        flex-direction: row;
         height: 60px;
+        justify-content: space-between;
         left: 50%;
         position: absolute;
         top: 15px;
         transform: translate(-50%, 0);
-        white-space: nowrap;
+        width: 220px;
         z-index: 15;
 
         li {
             display: inline-block;
             height: 60px;
-            margin-right: 20px;
             width: 60px;
 
             &:last-child {

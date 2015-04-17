@@ -14,7 +14,7 @@
       price_only -- for Feed if only want to show price, no install
   #}
   {% set tag = 'div' if is_detail else 'a' %}
-  <{{ tag }} class="product mkt-tile{{ ' feed-app' if feed_app }}"
+  <{{ tag }} class="product mkt-tile{{ ' feed-app c' if feed_app }}"
              data-slug="{{ app.slug }}" data-id="{{ app.id }}"
              {% if not is_detail %}
                href="{{ app.url or url('app', [app.slug])|urlparams(src=src) }}"

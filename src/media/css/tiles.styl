@@ -14,7 +14,6 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 // Base class.
 .mkt-tile {
     color: $castle-skull-gray;
-    display: block;
     overflow: hidden;
     position: relative;
     // Any layer may overlap this.
@@ -25,7 +24,6 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         text-decoration: none;
     }
     .icon {
-        float: left;
         height: $icon-size;
         width: $icon-size;
     }
@@ -53,13 +51,16 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         padding-top: 12px;
     }
     .heading {
+        display: flex;
         position: relative;
     }
     .info {
-        padding-left: $icon-size + 10;
-        position: absolute;
+        padding: 12px 0 0 10px;
         width: 100%;
 
+        +rtl() {
+            padding: 12px 10px 0 0;
+        }
         + .bad-app {
             padding-top: 8px;
         }
@@ -72,11 +73,14 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     }
     .preview-container {
         height: 150px;
-        margin: 0 0 -15px -10px;  // To ignore parent's padding.
+        margin: 0 0 -15px -5px;  // To ignore parent's padding.
         overflow: hidden;
         padding-bottom: 5px;
         width: 300px;
 
+        +rtl() {
+            margin-right: -10px;
+        }
         &.vertical {
             height: 240px;
         }
