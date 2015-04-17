@@ -1,17 +1,7 @@
 function headerSetUp(cb) {
     helpers.waitForPageLoaded(function() {
-        casper.evaluate(function() {
-            var settings = window.require('core/settings');
-            var z = window.require('core/z');
-            var headerFooter = window.require('header_footer');
-
-            settings.mktNavEnabled = true;
-            headerFooter.renderHeader();
-            z.page.trigger('navigate');
-        });
+        casper.waitForSelector('mkt-header', cb);
     });
-
-    return casper.waitForSelector('mkt-header', cb);
 }
 
 

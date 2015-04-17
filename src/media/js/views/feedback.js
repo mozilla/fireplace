@@ -42,12 +42,6 @@ define('views/feedback',
 
     z.body.on('click', '.submit-feedback', function(e) {
         e.preventDefault();
-        e.stopPropagation();
-        // Focus the form if we're on the feedback page.
-        if ($('.main.feedback').length) {
-            $('.feedback textarea').trigger('focus');
-            return;
-        }
         addFeedbackModalDesktop();
     });
 

@@ -3,31 +3,22 @@
     Set up event handlers related to components in the header and footer.
 */
 define('header_footer',
-    ['compat_filter', 'core/nunjucks', 'core/settings', 'core/z',
-     'newsletter'],
-    function(compatFilter, nunjucks, settings, z,
-             newsletter) {
+    ['compat_filter', 'core/nunjucks', 'core/z', 'newsletter'],
+    function(compatFilter, nunjucks, z, newsletter) {
 
     function renderHeader() {
-        if (settings.mktNavEnabled) {
-            if (document.querySelector('mkt-header')) {
-                return;
-            }
-
-            $('#site-header, main #site-nav').remove();
-
-            $('<div id="mkt-nav--site-header" class="mkt-nav--wrapper"></div>')
-                .append(nunjucks.env.render('header.html', {
-                    // TODO: remove after waffle.
-                    categories: require('categories')
-                }))
-                .append(nunjucks.env.render('mkt_nav.html'))
-                .insertBefore('main');
-
-            z.body.attr('data-mkt-nav--enabled', true);
-        } else {
-            $('#site-header').html(nunjucks.env.render('header.html'));
+        if (document.querySelector('mkt-header')) {
+            return;
         }
+
+        $('#site-header, main #site-nav').remove();
+
+        $('<div id="mkt-nav--site-header" class="mkt-nav--wrapper"></div>')
+            .append(nunjucks.env.render('header.html'))
+            .append(nunjucks.env.render('nav.html'))
+            .insertBefore('main');
+
+        z.body.attr('data-mkt-nav--enabled', true);
     }
 
     function renderFooter() {
@@ -37,11 +28,12 @@ define('header_footer',
     }
 
     function renderPlatformSelector() {
-        if (settings.mktNavEnabled) {
-            $('mkt-select.compat-filter').remove();
-            $(nunjucks.env.render('_includes/platform_selector.html'))
-                .insertBefore('#page');
+        if (document.querySelector('mkt-select.compat-filter')) {
+            return;
         }
+
+        $(nunjucks.env.render('_includes/platform_selector.html'))
+            .insertBefore('#page');
     }
 
     function renderBanners() {
@@ -50,12 +42,8 @@ define('header_footer',
             bannerDiv = '<div class="banners"></div>';
         }
 
-        if (settings.mktNavEnabled) {
-            if (window.matchMedia('(min-width: 800px)').matches) {
-                $('#mkt-nav--site-header').before(bannerDiv);
-            } else {
-                $('#page').before(bannerDiv);
-            }
+        if (window.matchMedia('(min-width: 800px)').matches) {
+            $('#mkt-nav--site-header').before(bannerDiv);
         } else {
             $('#page').before(bannerDiv);
         }

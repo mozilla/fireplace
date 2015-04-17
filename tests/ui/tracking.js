@@ -89,7 +89,7 @@ casper.test.begin('Test UA pageview on initial navigation', {
         helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
-            casper.click('.popular .tab-link');
+            casper.click('[data-mkt-nav--item="popular"] a');
         });
 
         casper.waitForSelector('.app-list', function() {

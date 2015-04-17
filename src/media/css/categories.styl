@@ -1,63 +1,17 @@
 // Styles for the categories index page.
 @import 'lib';
 
-.category-index {
-    margin-top: 20px;
-    text-align: center;
-    width: 100%;
-
-    a {
-        display: inline-block;
-        height: 90px;
-        margin: 0 8px 20px;
-        width: 90px;
+.category {
+    .app-list {
+        margin-top: 0;
     }
-    .cat-icon {
-        border: 1px solid $greyscale-light-grey-tapped;
-        border-radius: 65px;
-        color: $greyscale-grey;
+    .app-list-filters,
+    .app-list-filters-sort {
         display: inline-block;
-        height: 50px;
-        position: relative;
-        vertical-align: middle;
-        width: 50px;
-
-        &:before {
-            background-size: 90px;
-            display: inline-block;
-            height: 30px;
-            left: 5px;
-            position: relative;
-            top: unquote('calc(50% - 15px)');
-            width: 30px;
-        }
-        p {
-            color: $greyscale-black;
-            font-size: 11px;
-            position: relative;
-            right: 40%;
-            text-align: center;
-            text-transform: uppercase;
-            top: 25px;
-            width: 180%;
-        }
     }
-}
-
-.category .app-list {
-    margin-top: 0;
-}
-
-.category .app-list-filters-sort {
-    display: inline-block;
-}
-
-.category .app-list-filters {
-    min-height: 80px;
-}
-
-.category .compat-filter {
-    top: 60px;
+    .app-list-filters {
+        padding-bottom: 0;
+    }
 }
 
 @media $base-tablet {
@@ -108,60 +62,54 @@
     }
 }
 
-[data-mkt-nav--enabled] {
-    .subheader.cat-header h1 {
-        position: relative;
-    }
-    // FIXME: Remove doubled-up class when old nav/cats are removed.
-    .category-header-icon.category-header-icon:before {
-        category-sprite-alt();
-        content: '';
-        display: inline-block;
-        margin: ($cat-icon-size-default / -4) 10px ($cat-icon-size-default / -4) 0;
-    }
-    for $cat in $categories {
-        // FIXME: Remove doubled-up class when old nav/cats are removed.
-        .cat-{$cat}.cat-{$cat}:before {
-            category-icon-position($cat);
-        }
+.subheader.cat-header h1 {
+    position: relative;
+}
+
+.category-header-icon:before {
+    category-sprite-alt();
+    content: '';
+    display: inline-block;
+    margin: ($cat-icon-size-default / -4) 10px ($cat-icon-size-default / -4) 0;
+}
+for $cat in $categories {
+    .cat-{$cat}:before {
+        category-icon-position($cat);
     }
 }
 
 @media $base-tablet {
-    [data-mkt-nav--enabled] {
-        // FIXME: Remove doubled-up class when old nav/cats are removed.
-        .category-header-icon.category-header-icon {
-            for $cat in $categories {
-                &.cat-{$cat}:after {
-                    category-icon-position($cat, 2);
-                }
-            }
-            &:after {
-                category-sprite(2);
-                content: '';
-                display: inline-block;
-                left: 0;
-                margin: ($cat-icon-size-default / -2) ($cat-icon-size-default / 2);
-                opacity: 1;
-                position: absolute;
-            }
-            &:before {
-                background: $action-positive;
-                border-radius: 50%;
-                content: '';
-                display: inline-block;
-                opacity: 1;
+    .category-header-icon {
+        for $cat in $categories {
+            &.cat-{$cat}:after {
+                category-icon-position($cat, 2);
             }
         }
-        .subheader.cat-header h1 {
-            margin: 0 0 0 20px;
-            padding: 48px 0;
-        }
-        .cat-header .cat-icon:before {
+        &:after {
+            category-sprite(2);
+            content: '';
             display: inline-block;
-            height: 28px * 3;
-            margin: -28px 20px -28px 0;
-            width: 28px * 3;
+            left: 0;
+            margin: ($cat-icon-size-default / -2) ($cat-icon-size-default / 2);
+            opacity: 1;
+            position: absolute;
         }
+        &:before {
+            background: $action-positive;
+            border-radius: 50%;
+            content: '';
+            display: inline-block;
+            opacity: 1;
+        }
+    }
+    .subheader.cat-header h1 {
+        margin: 0 0 0 20px;
+        padding: 48px 0;
+    }
+    .cat-header .cat-icon:before {
+        display: inline-block;
+        height: 28px * 3;
+        margin: -28px 20px -28px 0;
+        width: 28px * 3;
     }
 }

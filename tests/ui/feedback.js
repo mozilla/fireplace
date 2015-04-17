@@ -1,9 +1,7 @@
 /*
     Tests for the feedback form on both desktop and mobile.
     In some cases the form is a modal, in others it is a page.
-    TODO: add more tests once we get Phantom to recognize our custom elements.
 */
-
 function testFeedbackForm(test) {
     test.assertElementCount('.feedback-form', 1,
                             'Only one feedback form/modal exists');
@@ -55,8 +53,6 @@ casper.test.begin('Test feedback page on desktop', {
 
         helpers.waitForPageLoaded(function() {
             testFeedbackForm(test);
-            casper.click('.submit-feedback');
-            helpers.assertHasFocus('.feedback-form textarea');
         });
 
         helpers.done(test);

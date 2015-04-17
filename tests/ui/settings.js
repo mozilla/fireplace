@@ -75,7 +75,7 @@ casper.test.begin('Test settings recommendations', {
             );
 
             // Test the recommendations tab is visible.
-            test.assertVisible('.navbar [data-tab="recommended"]');
+            test.assertVisible('[data-mkt-nav--item="recommended"]');
 
             // Test that disabling recommendations hides the tab.
             toggleRecommendations();
@@ -84,7 +84,7 @@ casper.test.begin('Test settings recommendations', {
         casper.waitForSelector('body:not(.show-recommendations)', function() {
             // Test the body class has been removed and the tab is hidden.
             test.assertNotExists('body.show-recommendations');
-            test.assertNotVisible('.navbar [data-tab="recommended"]');
+            test.assertNotVisible('[data-mkt-nav--item="recommended"]');
 
             // Re-enable recommendations.
             toggleRecommendations();

@@ -137,15 +137,7 @@ define('views/search',
         return;
     });
 
-    z.page.on('loaded', function() {
-        if (!settings.mktNavEnabled) {
-            var $q = $('#search-q');
-            $q.val(z.context.search);
-            // If this is a search results or "my apps" page.
-        }
-    })
-
-    .on('loaded_more', function() {
+    z.page.on('loaded_more', function() {
         previews.initialize();
         // Update "Showing 1-{total}" text.
         z.page.find('.total-results').text(z.page.find('.item.app').length);

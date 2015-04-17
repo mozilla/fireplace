@@ -51,30 +51,18 @@ define('compat_filter',
 
     // Calculate device filter choices.
     var DEVICE_FILTER_CHOICES = [
-        ['all', settings.mktNavEnabled ? gettext('All Platforms') :
-                                         gettext('All Apps')],
+        ['all', gettext('All Platforms')]
     ];
     if (caps.firefoxOS || caps.firefoxAndroid) {
         DEVICE_FILTER_CHOICES.splice(1, 0, [caps.device_type(),
-            settings.mktNavEnabled ? gettext('My Device') :
-                                     gettext('Apps for My Device')
-        ]);
+                                            gettext('My Device')]);
     } else {
-        if (settings.mktNavEnabled) {
-            DEVICE_FILTER_CHOICES = DEVICE_FILTER_CHOICES.concat([
-                ['desktop', gettext('Desktop')],
-                ['firefoxos', gettext('Firefox OS')],
-                ['android-mobile', gettext('Android Mobile')],
-                ['android-tablet', gettext('Android Tablet')]
-            ]);
-        } else {
-            DEVICE_FILTER_CHOICES = DEVICE_FILTER_CHOICES.concat([
-                ['desktop', gettext('Desktop Apps')],
-                ['firefoxos', gettext('Firefox OS Apps')],
-                ['android-mobile', gettext('Android Mobile Apps')],
-                ['android-tablet', gettext('Android Tablet Apps')]
-            ]);
-        }
+        DEVICE_FILTER_CHOICES = DEVICE_FILTER_CHOICES.concat([
+            ['desktop', gettext('Desktop')],
+            ['firefoxos', gettext('Firefox OS')],
+            ['android-mobile', gettext('Android Mobile')],
+            ['android-tablet', gettext('Android Tablet')]
+        ]);
     }
 
     var actualPlatform = caps.device_platform();

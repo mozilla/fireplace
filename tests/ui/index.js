@@ -4,9 +4,7 @@ casper.test.begin('Test base site', {
 
         helpers.waitForPageLoaded(function() {
             test.assertTitle('Firefox Marketplace');
-            test.assertVisible('.wordmark');
-            test.assertVisible('.header-button.settings');
-            test.assertVisible('#search-q');
+            test.assertVisible('mkt-header');
             test.assertVisible('.feed-home');
             test.assertDoesntExist('.mkt-tile .tray');
             test.assertNotVisible('.app-list-filters-expand-toggle');
@@ -69,12 +67,9 @@ casper.test.begin('Test l10n initialized for non en-US', {
 
 casper.test.begin('Test that the banner is first on desktop', {
     test: function(test) {
-        helpers.startCasper('/debug', {viewport: 'desktop'});
+        helpers.startCasper({viewport: 'desktop'});
 
-        helpers.waitForPageLoaded();
-        casper.thenClick('#enable-mkt-nav');
-        casper.waitForSelector('.mkt-nav--wrapper');
-        casper.then(function() {
+        helpers.waitForPageLoaded(function() {
             test.assertExists('.banners ~ #mkt-nav--site-header');
         });
 
@@ -82,14 +77,12 @@ casper.test.begin('Test that the banner is first on desktop', {
     },
 });
 
+
 casper.test.begin('Test that the banner is last on mobile', {
     test: function(test) {
-        helpers.startCasper('/debug');
+        helpers.startCasper();
 
-        helpers.waitForPageLoaded();
-        casper.thenClick('#enable-mkt-nav');
-        casper.waitForSelector('.mkt-nav--wrapper');
-        casper.then(function() {
+        helpers.waitForPageLoaded(function() {
             test.assertExists('#mkt-nav--site-header ~ main mkt-select.compat-filter');
             test.assertExists('#mkt-nav--site-header ~ main .banners');
             test.assertExists('mkt-select.compat-filter + .banners');
@@ -99,40 +92,19 @@ casper.test.begin('Test that the banner is last on mobile', {
     },
 });
 
-casper.test.begin('Test that the banner is last on desktop without mkt-nav', {
-    test: function(test) {
-        helpers.startCasper('/debug', {viewport: 'desktop'});
-
-        helpers.waitForPageLoaded();
-        casper.then(function() {
-            test.assertExists('#site-header ~ main #site-nav');
-            test.assertExists('#site-header ~ main .banners');
-            test.assertExists('#site-nav + .banners');
-        });
-
-        helpers.done(test);
-    },
-});
 
 casper.test.begin('Test that there is only ever one platform select', {
     test: function(test) {
-        function reloadChrome() {
-        }
+        helpers.startCasper({viewport: 'desktop'});
 
-        helpers.startCasper('/debug', {viewport: 'desktop'});
-
-        helpers.waitForPageLoaded();
-        casper.thenClick('#enable-mkt-nav');
-        casper.waitForSelector('.mkt-nav--wrapper');
-
-        casper.then(function() {
+        helpers.waitForPageLoaded(function() {
             casper.evaluate(function() {
                 window.require('core/z').page.trigger('reload_chrome');
             });
             casper.wait(100);
         });
 
-        casper.then(function() {
+        casper.wait(100, function() {
             var platformSelectCount = casper.evaluate(function() {
                 return document.querySelectorAll('mkt-select.compat-filter')
                                .length;

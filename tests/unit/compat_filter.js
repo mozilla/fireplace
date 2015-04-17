@@ -165,7 +165,7 @@ define('tests/unit/compat_filter',
             .injector(firefoxOSCapabilities, noStorage)
             .run(['compat_filter'], function(compatFilter) {
                 assert.equal(compatFilter.initialDeviceText,
-                             'Apps for My Device');
+                             'My Device');
             }));
 
         it('sets initialDeviceText for Android',
@@ -173,7 +173,7 @@ define('tests/unit/compat_filter',
             .injector(androidCapabilities('tablet'), noStorage)
             .run(['compat_filter'], function(compatFilter) {
                 assert.equal(compatFilter.initialDeviceText,
-                             'Apps for My Device');
+                             'My Device');
             }));
     });
 });

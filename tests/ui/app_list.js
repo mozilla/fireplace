@@ -24,8 +24,6 @@ appList.appListPages.forEach(function(appListPage) {
     casper.test.begin(appListPage.name + ' page app list main tests', {
         test: function(test) {
             waitForAppListPage(appListPage, function() {
-                test.assertVisible('.search');
-
                 // Test app count.
                 test.assertExists(appNthChild(appListPage.appLimit - 1));
                 test.assertNotExists(appNthChild(appListPage.appLimit + 1));
