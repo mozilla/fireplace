@@ -49,6 +49,10 @@ mkt-category-item {
         display: inline-block;
         margin: 0 10px 0 0;
         vertical-align: middle;
+
+        +rtl() {
+            margin: 0 0 0 10px;
+        }
     }
     &:hover:before {
         category-sprite-alt();

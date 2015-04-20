@@ -159,7 +159,9 @@ define('elements/nav',
                         clicked.
                     */
                     var root = this;
-                    root.addEventListener('click', function() {
+                    root.addEventListener('click', function(e) {
+                        e.preventDefault();
+
                         // On click, toggle navChild.
                         var navChild = root.navChild;
 
