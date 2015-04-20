@@ -47,7 +47,6 @@ mkt-header-nav {
     background: transparent;
     border-radius: 5px;
     color: $color--header--root-link;
-    font-weight: 300;
     line-height: 1;
     padding: 10px;
     transition: background-color .05s linear, color .05s linear;
@@ -98,15 +97,20 @@ mkt-header-child {
     > ul {
         align-items: center;
         display: flex;
+        justify-content: space-around;
+        width: 75%;
     }
 }
 
 .mkt-header-child--link-list {
-    display: flex;
+    display: none;
     list-style: none;
     justify-content: space-around;
     width: 100%;
 
+    +media--wide-tablet() {
+        display: flex;
+    }
     +media--base-desktop() {
         .mkt-header-child--link-list {
             padding: 0 250px;
@@ -159,7 +163,6 @@ mkt-header-child {
     background: transparent;
     border-radius: 5px;
     color: $greyscale-white;
-    font-weight: 300;
     line-height: 1;
     padding: 9px 9px 6px;
     transition: all .1s linear;
