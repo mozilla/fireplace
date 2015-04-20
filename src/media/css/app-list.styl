@@ -7,7 +7,9 @@ App listing.
 @import 'lib';
 
 $border = 1px solid $tile-border;
-$desktop-tile-padding = 20px 50px;
+$tile-padding-x = 50px;
+$tile-padding-y = 20px;
+$desktop-tile-padding = $tile-padding-y $tile-padding-x;
 
 .app-list-page {
     padding: 10px 0;
@@ -100,6 +102,12 @@ section.langpacks > div {
             border-right: 0;
             padding: 20px 0 40px;
             width: 100%;
+
+            // Specificity concession.
+            +rtl() {
+                border-right: 0;
+                padding: 20px 0 40px;
+            }
         }
         &:after {
             bottom: 0;
@@ -116,10 +124,20 @@ section.langpacks > div {
 
         &:nth-child(2n) {
             border-right: 0;
-            padding-right: 0;
+            padding: $tile-padding-y 0 $tile-padding-y $tile-padding-x;
+
+            +rtl() {
+                border-right: $border;
+                padding: $tile-padding-y $tile-padding-x $tile-padding-y 0;
+            }
         }
         &:nth-child(2n + 1) {
-            padding-left: 0;
+            padding: $tile-padding-y $tile-padding-x $tile-padding-y 0;
+
+            +rtl() {
+                border-right: 0;
+                padding: $tile-padding-y 0 $tile-padding-y $tile-padding-x;
+            }
         }
         &:last-child {
             border-right: 0;
@@ -156,8 +174,17 @@ section.langpacks > div {
                 padding: 20px 10px 50px 0;
                 width: 50%;
 
+                +rtl() {
+                    border-left: 0;
+                    padding: 20px 0 50px 10px;
+                }
                 &:nth-child(2n) {
                     padding: 20px 0 20px 10px;
+
+                    +rtl() {
+                        border-left: 0;
+                        padding: 20px 10px 20px 0;
+                    }
                 }
             }
             .loadmore {
@@ -176,15 +203,31 @@ section.langpacks > div {
     .app-list-app {
         width: (100 / 3)%;
 
+        +rtl() {
+            border-left: $border;
+        }
         &:nth-child(2n),
         &:nth-child(2n + 1) {
             padding: $desktop-tile-padding;
+
+            // Specificity concession from tablet.
+            +rtl() {
+                padding: $desktop-tile-padding;
+            }
         }
         &:nth-child(2n) {
             border-right: $border;
+
+            +rtl() {
+                border-right: 0;
+            }
         }
         &:nth-child(3n) {
             border-right: 0;
+
+            +rtl() {
+                border-left: 0;
+            }
         }
         &:last-child {
             border-right: 0;
