@@ -46,19 +46,18 @@
     {{ mkt_header_nav_item('#', _('Categories'), 'categories', 'categories') }}
   </mkt-header-nav>
 
-  <div class="mkt-header--actions">
-    <mkt-header-child-toggle class="header--search-toggle" for="header--search"
-                             title="{{ _('Toggle Search') }}">
-    </mkt-header-child-toggle>
-    <mkt-header-child-toggle class="header--settings-toggle header--settings--logged-in"
-                             for="header--settings"
-                             title="{{ _('Toggle Settings Menu') }}">
-    </mkt-header-child-toggle>
-    <a href="#" class="mkt-header--actions-link persona register">
-      {{ _('Register') }}</a>
-    <a href="#" class="mkt-header--actions-link persona">
-      {{ _('Sign In') }}</a>
-  </div>
+  <mkt-header-child-toggle class="header--search-toggle" for="header--search"
+                           title="{{ _('Toggle Search') }}">
+  </mkt-header-child-toggle>
+  <mkt-header-child-toggle class="header--settings-toggle header--settings--logged-in"
+                           for="header--settings"
+                           title="{{ _('Toggle Settings Menu') }}">
+  </mkt-header-child-toggle>
+
+  <a href="#" class="mkt-header--actions-link mkt-header--register persona register">
+    {{ _('Register') }}</a>
+  <a href="#" class="mkt-header--actions-link mkt-header--login persona">
+    {{ _('Sign In') }}</a>
 
   <!--Categories menu.-->
   <mkt-header-child id="header--categories">

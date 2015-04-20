@@ -3,6 +3,32 @@
 */
 @import 'lib';
 
+.hamburger {
+    order: 0;
+}
+.wordmark {
+    order: 1;
+}
+mkt-header-nav {
+    order: 2;
+}
+.header--search-toggle {
+    order: 3;
+
+    +media--wide-tablet() {
+        margin-right: 60px;
+    }
+}
+.header--settings-toggle {
+    order: 4;
+}
+.mkt-header--register {
+    order: 5;
+}
+.mkt-header--login {
+    order: 6;
+}
+
 // Add header's height back as padding. Overridden when header not fixed.
 body {
     padding-top: $header-height;
@@ -43,7 +69,6 @@ body {
         align-items: center;
         display: flex;
         height: 50px;
-        order: 1;
     }
     // Marketplace logo.
     .wordmark {
@@ -71,16 +96,14 @@ body {
         cursor: pointer;
         display: inline-block;
         left: 5px;
-        order: 0;
         position: relative;
     }
     +media--wide-tablet() {
         min-height: 60px;
-        padding: 0 20px;
+        padding: 0 40px;
 
         .hamburger {
             display: none;
-            order: 3;
         }
     }
 }
@@ -563,9 +586,6 @@ body {
             background-size: auto 46px;
             max-width: 232px;
             width: 232px;
-        }
-        .persona {
-            display: block;
         }
         .act-tray {
             display: none;

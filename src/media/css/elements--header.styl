@@ -34,7 +34,7 @@ mkt-header-nav {
     justify-content: space-around;
     order: 3;
     overflow: hidden;
-    padding: 10px 30px;
+    padding: 10px 0;
     position: relative;
     width: fit-content;
 
@@ -183,25 +183,11 @@ mkt-header-nav mkt-header-child-toggle.mkt-header-child--visible .mkt-header-nav
     color: $greyscale-white;
 }
 
-.mkt-header--actions {
-    display: flex;
-    margin-right: 5px;
-    order: 5;
-
-    +media--wide-tablet() {
-        margin-right: 20px;
-    }
-    mkt-header-child-toggle:not(:first-child) {
-        margin-left: 30px;
-    }
-}
-
 .mkt-header--actions-link {
     border-radius: 5px;
     border: 2px solid $action-positive;
     display: none;
     padding: 10px;
-    order: 2;
     transition: all .1s linear;
 
     &:hover {
