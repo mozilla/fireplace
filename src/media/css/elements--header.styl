@@ -70,7 +70,7 @@ mkt-header-nav {
 
 mkt-header-child {
     background: $color--header--child-bg;
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     height: auto;
     left: 0;
@@ -91,6 +91,10 @@ mkt-header-child {
         transform: translateY(0);
         transition: unquote($header--transition);
     }
+    +media--wide-tablet() {
+        display: flex;
+    }
+
     > ul {
         align-items: center;
         display: flex;
