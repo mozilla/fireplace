@@ -7,10 +7,14 @@
     }
     .app-list-filters,
     .app-list-filters-sort {
-        display: inline-block;
+        display: block;
     }
     .app-list-filters {
         padding-bottom: 0;
+
+        +media--wide-tablet() {
+            padding-bottom: 15px;
+        }
     }
 }
 
