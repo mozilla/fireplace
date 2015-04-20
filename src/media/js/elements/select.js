@@ -81,6 +81,9 @@ define('elements/select',
         VISIBLE: 'mkt-select--visible'
     };
 
+   // Keep track if win resize when mkt-select not visible to align options.
+    var queueAlign = false;
+
     el.MktSelectElement = document.registerElement('mkt-select', {
         prototype: Object.create(HTMLSelectElement.prototype, {
             createdCallback: {
@@ -141,14 +144,14 @@ define('elements/select',
             },
             toggle: {
                 // Toggles visibility of the <mkt-option>s.
-                value: function() {
-                    if (!this.getAttribute('data-mkt-select--aligned')) {
-                        if (this.alignOptions() > 0) {
-                            this.setAttribute('data-mkt-select--aligned', true);
+                value: function(bool) {
+                    var root = this;
+                    if (!root.getAttribute('data-mkt-select--aligned')) {
+                        if (root.alignOptions() > 0) {
+                            root.setAttribute('data-mkt-select--aligned', true);
                         }
                     }
-                    this.classList.toggle(cl.VISIBLE);
-                    return this;
+                    return eUtils.toggleClass(root, cl.VISIBLE, bool);
                 },
             },
             value: {
@@ -353,10 +356,31 @@ define('elements/select',
         eUtils.each(document.querySelectorAll('mkt-select'),
                     function(mktSelect) {
             if (mktSelect.alignOptions) {
-                mktSelect.alignOptions();
+                if (mktSelect.offsetParent === null) {
+                    queueAlign = true;
+                } else {
+                    mktSelect.alignOptions();
+                }
             }
         });
     }, 100));
+
+    z.page.on('navigate', function() {
+        eUtils.each(document.querySelectorAll('mkt-select'),
+                    function(mktSelect) {
+            if (mktSelect.toggle) {
+                mktSelect.toggle(false);
+            }
+        });
+
+        if (queueAlign) {
+            eUtils.each(document.querySelectorAll('mkt-select'),
+                        function(mktSelect) {
+                mktSelect.alignOptions();
+                queueAlign = false;
+            });
+        }
+    });
 
     return {
         classes: cl,
