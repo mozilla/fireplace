@@ -1,0 +1,80 @@
+webkit-spin() {
+    // Because WebKit can't figure out how to animate PNGs.
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-name: spin;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+
+spinner-base() {
+    // Spinners!
+    animation: 0.9s spin infinite steps(30);
+    height: 30px;
+    margin: 0 auto;
+    spinner-base-image();
+    width: 30px;
+}
+
+spinner-abs() {
+    left: 50%;
+    margin-left: -15px;
+    position: absolute;
+}
+
+spinner-alt-image(type = '') {
+    if (type == 'retina') {
+        background-image: url(../img/btn_spinner_alt_2x.png);
+        background-size: 30px auto;
+
+    } else {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAAnFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4jUzeAAAANHRSTlMoDw0uDAsqISceLQkIKyUHFxsdHy8SDhQVGCQiJhoQLAUxChwGFikREwQgGTAjMgIDATMALVRcswAAASBJREFUeNp109eWgjAARVEVKwioFBWklyCkQf7/3yYzgRUZzHnd6z7eFZsq72GSYYzdV1WyqYlzNMhg/o9vw6xoxrQe5lWSpUIUNU2E4FDTTxaqN5TJJBcYc20lztjIMPd2ISMfsizDDlNwCiHMTKpi4LoQekzFhea6CVUy0jWtZUq2El2/qDlIkgSoGZmmGas53O/3DzW3db0qvknf/3J3PB4DomT/xfO/KI/z27KswFnOiWDWBQEKHwslRLCNUHho73Olbzoya7g6J49I7N+pZHbleiu6nEx4tv+YCSYd12vUVfHubBu7zdawS85MMPcn5+55qR73BsT+Nj+XKf28QXyNRvYE0/mJUvAcGaw3u7JnkkXU8IEH4vUmTzmO/QBhgZ0/tlb0mAAAAABJRU5ErkJggg==');
+    }
+}
+
+spinner-base-image(type = '') {
+    if (type == 'retina') {
+        background-image: url(../img/btn_spinner_2x.png);
+        background-size: 30px auto;
+
+    } else {
+        background: url(../img/btn_spinner.png) no-repeat center;
+    }
+}
+
+spinner-install-image(type = '') {
+    if (type == 'retina') {
+        background-image: url(../img/btn_spinner_18_2x.png);
+        background-size: 18px auto;
+
+    } else {
+        background: url(../img/btn_spinner_18.png) no-repeat center;
+    }
+}
+
+spinner-loading-image() {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAEfklEQVRIib3Wa2wUVRQH8AHEAiICJgRJ2W7fj91Cl93ug+22S7u7pRADwYj6oTFRP2AMLwnEiNg1xg9ghARjQiOkCrizc2fm3pldbBCJq+ycc6bFiERjYjBBQQ0+Y1R8RHD9QJFHC2mx6z85H+bemfvLSe69GUkaRWYf7J9Rns7f71SsneVpOFwuw9lyGc6WyXC2LA0fOVLWgfmytbFUzgdGs95N45Rzzsq01VepQKFSgUKFAoWKNBTKh8o5VA7ZulCWgnPzU9bx0hSsvWWwSoFktYKFKgUKVUNo5QhomQwXHTKcd8jWGUfKQocMrHTv4dlj664vN7OGwYkahoVqhoXL8NVoxdVoagR0J5s6VvCDWoaFmqGqVq7AFWk4XZG2djlT1gannI86U8dWOmTocchW2iFbZ+anrCOlB/LRMXVZy+B4LYMLNQz/vgxf6hZOVMljXGyU4NY6Ff6oZ/hnHYO/ahS8WMuwUKNActwxSZKkCmY5Ghj8Uq/i+ToGv1+BrYeLAkqSJLkUeMXF8Kd6FX5uYPhrHcPfalV4pnggy01vYPBdA8MfXAx+HMI/Lhp4Cc0vdat4zq3BN24Vvm1Q8XuXgg8VFXUza3Ojil82qvCVW4OvXRp8WlRQkiSpUYXtCzQ6vUDDz90qfOFW4dX/AcV9C1U8tVDFU40afubWYF0RmAnXPDVpaDTp9Mm/peET404mkxOvR1/0aHTSo9HJJp0+XKjRmqKjHg2f9ej0vkfD4006Di7ScMc4kxMkxiZdi+rQ7dERPRqCV0NrEaf+cSWTyYnRZO62a8a8zGpZpON7Po7venV6x8fxqFeFxHiZ3t7eyd7e3snXDWan+Tge9el0pFnHwz5O/T6O+8ZFZGxStC83ZRgqSZLk1WGTT6c3mzlm/RyNgE6an9N/vewnRFlueojhVBdjtw+bXcBhjp+j0cxJ93NkAU5yQOD+oE7hW+KSyYnLD+Vnxdjbd92bzU7r2t1fMuJ7zRqt9nNUggLfCHB8PcTtfQFu7wlyWjUWr2t3f8kyNjg3wWFOVORmJva/dUe0Lzflhh8EOWwNcnwtKGhvgNt7Qjq93CLopYigLYsFNN0Mi/blpsRNa95yTvXLdChbxgbnLj+UnxVluek3Rb292WlBQT2XwZBBO1sEbW8R9HxE2NsiAje0CkhEBPrbdSiLcapfkrFc7QYuTmQG2jsF+jszg65EZqC8Uz92TyfD2WHTunPYOR0JDgl7fVjYu8KGvSPM6YUWQT1tBj0dMXFz1LTXtwt6vN2gx+LC7o5laHUsY6+IZ7EjYVAgwcHdJaAyblrzOvjA3SPu3BtlsYBEi6CeiGE/FxH2tlbDfqpV2JuWGLQuatKajgw+Ghd2d4dBD3SIgZUxg2JLswOhmIGNnSZWJTjMGXYpjCZNIjczwmFFG6cn2wRtaTNoY5ugtVGT1sRMfCQu7O6EaT8YM2lVp4lL4yaFuwy7oeugPWPM2PWp2t1f0qrZ1RGdwm3cji/htCom7PtiGXtFhzEQiZuWL8YsR4jhqH6y/wGjN55P0DKcoQAAAABJRU5ErkJggg==') no-repeat center;
+    background-size: 18px auto;
+}
+
+spinner(type = '') {
+    spinner-base();
+    if (type == 'absolute') {
+        spinner-abs();
+    } else if (type == 'absolute alt') {
+        spinner-abs();
+        spinner-alt-image();
+    } else if (type == 'alt') {
+        spinner-alt-image();
+    } else if (type == 'install') {
+        height: 18px;
+        margin: 3px 0;
+        spinner-install-image();
+        width: 18px;
+    } else if (type == 'loading') {
+        height: 18px;
+        margin: 2px 0;
+        spinner-loading-image();
+        width: 18px;
+    }
+}
+
