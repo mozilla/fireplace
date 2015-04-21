@@ -180,7 +180,7 @@ define('previews',
         var offset = $tray.offset();
 
         // LTR or RTL?
-        if ($('body.html-rtl').length) {
+        if (document.documentElement.getAttribute('dir') === 'rtl') {
             desktopSideMargin += offset.left;
             $tray.css('margin-right', desktopSideMargin + 'px');
         } else {
