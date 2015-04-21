@@ -38,7 +38,7 @@ define('previews',
     };
     var mediaSwitch = '(min-width:' + dimensions.breakpoint + 'px)';
 
-    var desktopMarginLeft = 0;  // Keep track of left offset.
+    var desktopSideMargin = 0;  // Keep track of tray offset.
 
     function initPreviewTray(e) {
         // Handler to initialize preview trays.
@@ -178,8 +178,15 @@ define('previews',
 
         $tray.css('width', z.win.width() + 'px');
         var offset = $tray.offset();
-        desktopMarginLeft += -1 * offset.left;
-        $tray.css('margin-left', desktopMarginLeft + 'px');
+
+        // LTR or RTL?
+        if ($('body.html-rtl').length) {
+            desktopSideMargin += offset.left;
+            $tray.css('margin-right', desktopSideMargin + 'px');
+        } else {
+            desktopSideMargin += -1 * offset.left;
+            $tray.css('margin-left', desktopSideMargin + 'px');
+        }
     }
 
     function isDesktopDetail() {
@@ -199,7 +206,7 @@ define('previews',
             resizeDesktopDetailTray();
         } else {
             $('.previews-tray').attr('style', '');
-            desktopMarginLeft = 0;
+            desktopSideMargin = 0;
         }
     }))
 
@@ -209,7 +216,7 @@ define('previews',
             slider.destroy();
         });
         sliders = [];
-        desktopMarginLeft = 0;
+        desktopSideMargin = 0;
     });
 
     z.page.on('dragstart', '.previews-tray', function(e) {

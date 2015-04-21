@@ -111,11 +111,11 @@
                 padding: 18px 0;
             }
             .cnt {
-                float: left;
-                margin-right: 10px;
-            }
-            .stars {
-                float: right;
+                margin: 0 10px 0 0;
+
+                +rtl-root() {
+                    margin: 0 0 0 10px;
+                }
             }
         }
         .button.install {
@@ -130,10 +130,6 @@
                 height: $btn-small;
                 line-height: $btn-small;
             }
-        }
-        .rating-link {
-            display: table;
-            width-fit-content();
         }
     }
 }

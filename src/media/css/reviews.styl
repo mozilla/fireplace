@@ -18,6 +18,11 @@ select[name=rating] {
         position: absolute;
         right: 0;
         top: 1px;
+
+        +rtl() {
+            position: static;
+            margin: 3px 5px 0 0;
+        }
     }
     .timestamp {
         font-size: 12px;
@@ -108,20 +113,20 @@ mkt-prompt .simple-field.rating {
 .stars {
     background: url(../img/pretty/stars.svg) no-repeat;
     background-size: 130px auto;
-
     display: inline-block;
     hidetext();
     vertical-align: top;
     width: 64px;
+
+    +rtl() {
+        margin: 0 0 0 4px;
+        transform: scaleX(-1);
+    }
     &.stars-4 { background-position: -13px 0; }
     &.stars-3 { background-position: -26px 0; }
     &.stars-2 { background-position: -39px 0; }
     &.stars-1 { background-position: -52px 0; }
     &.stars-0 { background-position: -65px 0; }
-}
-
-.html-rtl .stars {
-    margin: 0 0 0 4px;
 }
 
 .stars.ratingwidget {
