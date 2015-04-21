@@ -105,18 +105,20 @@ define('elements/header',
                         // If main element is input, then hide child on blur.
                         var input = root.input;
                         input.onblur = function(e) {
-                            if (e) {
-                                var target = e.explicitOriginalTarget ||
-                                             document.activeElement;
-                                if (target.getAttribute &&
-                                    target.getAttribute('for') == root.id) {
-                                    // Don't trigger if blurring on toggle.
-                                    return;
+                            setTimeout(function() {
+                                if (e) {
+                                    var target = e.explicitOriginalTarget ||
+                                                 document.activeElement;
+                                    if (target.getAttribute &&
+                                        target.getAttribute('for') == root.id) {
+                                        // Don't trigger if blurring on toggle.
+                                        return;
+                                    }
                                 }
-                            }
 
-                            document.querySelector('mkt-header')
-                                    .toggleChildren(root.id, false);
+                                document.querySelector('mkt-header')
+                                        .toggleChildren(root.id, false);
+                            }, 150);
                         };
                         // Clear input on submit.
                         $(root.querySelector('form')).submit(function(e) {
