@@ -376,8 +376,10 @@ define('elements/select',
         if (queueAlign) {
             eUtils.each(document.querySelectorAll('mkt-select'),
                         function(mktSelect) {
-                mktSelect.alignOptions();
-                queueAlign = false;
+                if (mktSelect.offsetParent !== null) {
+                    mktSelect.alignOptions();
+                    queueAlign = false;
+                }
             });
         }
     });
