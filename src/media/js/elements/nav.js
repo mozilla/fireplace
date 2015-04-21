@@ -141,7 +141,10 @@ define('elements/nav',
             createdCallback: {
                 value: function() {
                     var root = this;
-                    root.addEventListener('click', function() {
+                    root.addEventListener('click', function(e) {
+                        // Stop propagation so that this click doesn't get
+                        // handled later and close the nav.
+                        e.stopPropagation();
                         document.querySelector('mkt-nav').toggle();
                     });
                 }
@@ -183,11 +186,13 @@ define('elements/nav',
         })
     });
 
-    z.doc.on('click', '.' + cl.VISIBLE + ' main', function(e) {
-        // Toggle nav off when clicking in the main area when it's toggled.
-        var nav = document.querySelector('mkt-nav');
-        if (nav && nav.toggle) {
-            nav.toggle();
+    z.doc.on('click', '.' + cl.VISIBLE, function(e) {
+        if ($(e.target).parents('mkt-nav').length === 0) {
+            // Toggle nav off when clicking outside of it when it's toggled.
+            var nav = document.querySelector('mkt-nav');
+            if (nav && nav.toggle) {
+                nav.toggle();
+            }
         }
     });
 
