@@ -136,14 +136,14 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 
     a {
         display: flex;
-        flex-direction: row-reverse;
         text-decoration: none;
 
+        +rtl() {
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
         &:hover .cnt {
             text-decoration: underline;
-        }
-        +rtl() {
-            justify-content: flex-end;
         }
     }
     .cnt {
