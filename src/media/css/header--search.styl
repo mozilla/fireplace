@@ -25,6 +25,11 @@ mkt-header-child.header--search {
 
 .header--search-form {
     height: 100%;
+    width: 100%;
+
+    +media--wide-tablet() {
+        width: auto;
+    }
 }
 
 
@@ -36,7 +41,7 @@ mkt-header-child.header--search {
     content: '';
     display: inline-block;
     height: 40px;
-    margin: 15px 0;
+    margin: 15px 10px;
     width: 40px;
     position: absolute;
     top: -10px;
