@@ -1,0 +1,49 @@
+$categories = {
+    /* Unused */
+    entertainment: (1 0),
+    books: (2 0),
+    /* Unused */
+    productivity: (4 0),
+    /* Unused */
+    education: (1 1),
+    games: (2 1),
+    /* Unused */
+    health-fitness: (4 1),
+    /* Unused */
+    /* Unused */
+    lifestyle: (1 2),
+    /* Unused */
+    maps-navigation: (3 2),
+    /* Unused */
+    music: (0 3),
+    news-weather: (1 3),
+    photo-video: (2 3),
+    shopping: (3 3),
+    sports: (4 3),
+    social: (0 4),
+    utilities: (1 4),
+    travel: (2 4),
+    business: (3 4),
+    reference: (4 4)
+};
+
+$cat-icon-size-default = 28px;
+
+category-sprite($scale=1) {
+    background: url(../img/pretty/categories-sprite.svg) no-repeat;
+    background-size: 140px * $scale;
+    height: $cat-icon-size-default * $scale;
+    width: $cat-icon-size-default * $scale;
+}
+
+category-sprite-alt($scale=1) {
+    background: url(../img/pretty/categories-sprite-alt.svg) no-repeat;
+    background-size: 140px * $scale;
+    height: $cat-icon-size-default * $scale;
+    width: $cat-icon-size-default * $scale;
+}
+
+category-icon-position($slug, $scale=1) {
+    $positions = $categories[$slug];
+    background-position: ($positions[0] * $cat-icon-size-default * $scale * -1) ($positions[1] * $cat-icon-size-default * $scale * -1);
+}

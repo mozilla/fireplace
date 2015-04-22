@@ -23,20 +23,25 @@ $nav--subnav-to-shift = 'mkt-nav-root';
 $nav--transition = 'transform cubic-bezier(0.455, 0.03, 0.515, 0.955) 250ms';
 $nav--to-shift = '#site-header, main';
 $nav--width = 260px;
-$zindex--nav-hamburger-child = 20;
-$zindex--nav-hamburger-root = 30;
 $zindex--main = 50;
 $zindex--nav-normal-child = 60;
 $zindex--header = 70;
+$zindex--page-overlay = 70;
 $zindex--nav-normal-root = 70;
-$zindex--page-overlay = 100;
+$zindex--nav-hamburger = 80;
+$zindex--nav-hamburger-child = 90;
 
 nav--visible() {
-    .mkt-nav--visible & {
+    body.mkt-nav--visible & {
         {block}
     }
 }
 
+nav--subnav-visible() {
+    body.mkt-nav--subnav-visible & {
+        {block}
+    }
+}
 
 #page {
     min-height: 480px;
@@ -46,7 +51,8 @@ nav--visible() {
     position: relative;
 }
 
-main:after {
+main:after,
+.mkt-nav--wrapper:after {
     // Disable main content interaction when nav is visible.
     background: rgba($greyscale-dark-grey, .8);
     content: '';
@@ -105,16 +111,16 @@ body {
 mkt-nav {
     font-size: 18px;
     height: 100%;
-    left: 0;
-    opacity: 0;
+    left: -1 * $nav--width;
     overflow-y: scroll;
     position: fixed;
     top: 0;
     transition: unquote($nav--transition + ', opacity 0s linear 300ms');
-    width: 260px;
+    width: $nav--width;
+    z-index: $zindex--nav-hamburger;
 
     +nav--visible() {
-        opacity: 1;
+        transform: translate3d($nav--width, 0, 0);
         transition: unquote($nav--transition);
     }
     +media--wide-tablet() {
@@ -126,12 +132,13 @@ mkt-nav-root,
 mkt-nav-child {
     display: block;
     height: 100%;
-    left: 0;
+    left: -1 * $nav--width;
     list-style: none inside;
     overflow-y: scroll;
-    position: fixed;
+    position: absolute;
     top: 0;
-    width: 260px;
+    transition: unquote($nav--transition);
+    width: $nav--width;
 }
 
 mkt-nav-root {
@@ -140,9 +147,10 @@ mkt-nav-root {
     background-attachment: local, fixed;
     background-size: 182px 35px, cover;
     padding: 75px 21px 30px;
-    transition: unquote($nav--transition);
-    z-index: $zindex--nav-hamburger-root;
 
+    +nav--visible() {
+        transform: translate3d($nav--width, 0, 0);
+    }
     &:after {
         background: rgba($greyscale-black, .25);
         content: '';
@@ -151,7 +159,7 @@ mkt-nav-root {
         right: 0;
         top: 0;
         width: 2px;
-        z-index: $zindex--nav-hamburger-root;
+        z-index: $zindex--nav-hamburger;
     }
     .mkt-nav--item {
         margin: 25px 0;
@@ -165,10 +173,12 @@ mkt-nav-root {
 mkt-nav-child {
     background: $color--nav--child-bg;
     border-right: 2px solid $color--nav--child-border;
-    display: none;
     padding: $nav--header-height 10px;
     z-index: $zindex--nav-hamburger-child;
 
+    +nav--subnav-visible() {
+        transform: translate3d($nav--width, 0, 0);
+    }
     .mkt-nav--active,
     .mkt-nav--link:hover {
         background: $greyscale-white;
@@ -196,11 +206,12 @@ mkt-nav-child {
     cursor pointer
     display: block;
     height: $nav--header-height;
-    left: 0;
+    left: -1 * $nav--width;
     overflow: hidden;
+    position: absolute;
     padding-top: $nav--header-height;
-    position: fixed;
     top: 0;
+    transition: unquote($nav--transition);
     width: $nav--width;
     z-index: $zindex--nav-hamburger-child;
 
@@ -215,48 +226,14 @@ mkt-nav-child {
         right: 15px;
         width: 25px
     }
-}
-
-{$nav--to-shift} {
-    transform: translate3d(0, 0, 0);
-    transition: unquote($nav--transition);
-
-    +media--wide-tablet() {
-        transform: translate3d(8, 0, 0);
-    }
-}
-
-{$nav--subnav-to-shift} {
-    transform: translate3d(0, 0, 0);
-
-    +media--wide-tablet() {
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-.mkt-nav--visible {
-    {$nav--to-shift} {
+    +nav--subnav-visible() {
         transform: translate3d($nav--width, 0, 0);
-
-        +media--wide-tablet() {
-            transform: translate3d(0, 0, 0);
-        }
     }
-    #site-header .hamburger {
+}
+
+#site-header .hamburger {
+    +nav--visible() {
         background-position: 0 -100px;
-    }
-    mkt-nav-child {
-        display: block;
-    }
-}
-
-.mkt-nav--subnav-visible {
-    {$nav--subnav-to-shift} {
-        transform: translate3d($nav--width, 0, 0);
-
-        +media--wide-tablet() {
-            transform: translate3d(0, 0, 0);
-        }
     }
 }
 

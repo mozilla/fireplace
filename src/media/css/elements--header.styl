@@ -6,6 +6,7 @@
 $color--header--child-bg = #1A95FC;
 $color--header--child-hover = #40ADFF;
 $color--header--root-link = $greyscale-black;
+$header-child--input-width = $mobile-content-width + 100;
 $header--height = 60px;
 $header--transition = 'transform cubic-bezier(0.455, 0.03, 0.515, 0.955) 250ms';
 $zindex--header-child = 60;
@@ -34,7 +35,7 @@ mkt-header-nav {
     justify-content: space-around;
     order: 3;
     overflow: hidden;
-    padding: 10px 30px;
+    padding: 10px 0;
     position: relative;
     width: fit-content;
 
@@ -128,29 +129,47 @@ mkt-header-child {
 [data-header-child--input] input {
     border: 0;
     border-radius: 5px;
-    height: 100%;
-    min-width: $mobile-content-width + 10;
-    padding: 15px 0 15px 40px;
+    height: 70px;
+    padding: 15px 40px;
     outline: none;
-    width: 50%;
+    width: 100%;
     z-index: 2;
 
+    +media--wide-tablet() {
+        width: $header-child--input-width;
+    }
+
     &:valid + .header-child--input-placeholder {
-        display: none;
+        color: transparent;
     }
 }
 
 .header-child--input-placeholder {
     display: inline;
-    left: 50%;
-    margin: 0 0 0 25px;
-    min-width: 250px;
+    line-height: 40px;
+    margin: 0;
     opacity: .75;
+    padding: 15px 0;
     position: absolute;
-    text-align: center;
     top: 50%;
-    transform: translate(-50%, -50%);
+    width: 100%;
     z-index: 3;
+
+    +media--base-tablet() {
+        width: $header-child--input-width;
+    }
+    +ltr() {
+        margin-left: 25px;
+        padding-left: 45px;
+        right: 50%;
+        transform: translate(50%, -50%);
+    }
+    +rtl() {
+        left: 50%;
+        margin-right: 25px;
+        padding-right: 45px;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .mkt-header-child--item {
@@ -183,25 +202,11 @@ mkt-header-nav mkt-header-child-toggle.mkt-header-child--visible .mkt-header-nav
     color: $greyscale-white;
 }
 
-.mkt-header--actions {
-    display: flex;
-    margin-right: 5px;
-    order: 5;
-
-    +media--wide-tablet() {
-        margin-right: 20px;
-    }
-    mkt-header-child-toggle:not(:first-child) {
-        margin-left: 30px;
-    }
-}
-
 .mkt-header--actions-link {
     border-radius: 5px;
     border: 2px solid $action-positive;
     display: none;
     padding: 10px;
-    order: 2;
     transition: all .1s linear;
 
     &:hover {

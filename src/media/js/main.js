@@ -39,7 +39,6 @@ require(
     if (caps.device_type() === 'desktop') {
         z.body.addClass('desktop');
     }
-    z.body.addClass('html-' + l10n.getDirection());
     if (settings.body_classes) {
         z.body.addClass(settings.body_classes);
     }
