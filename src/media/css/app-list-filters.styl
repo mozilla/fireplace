@@ -56,7 +56,12 @@ App listing filters.
             background-color: $white;
         }
         + a {
-            margin-left: 30px;
+            +ltr() {
+                margin-left: 30px;
+            }
+            +rtl() {
+                margin-right: 30px;
+            }
         }
     }
 }
