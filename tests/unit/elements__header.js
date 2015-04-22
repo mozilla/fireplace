@@ -187,7 +187,7 @@ define('tests/unit/elements__header',
                 setTimeout(function() {
                     assert.notOk(child.visible, 'No longer visible');
                     done();
-                }, 100);
+                }, 500);
             });
         });
 
