@@ -144,7 +144,9 @@ require(
 
     window.addEventListener(
         'resize',
-        _.debounce(function() {z.doc.trigger('saferesize');}, 200),
+        _.debounce(function() {
+            document.dispatchEvent(new CustomEvent('saferesize'));
+        }, 200),
         false
     );
 
