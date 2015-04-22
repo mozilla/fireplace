@@ -21,7 +21,7 @@
                  data-src="{{ feed_app.background_image }}"
                {% endif %}>
         {% if feed_app.isIcon %}
-          <ul class="app-icons">
+          <ul class="app-icons single">
             <li>{{ deferred_icon(feed_app.app.icons[64],
                                  feed_app.app.name|translate(feed_app.app)) }}</li>
           </ul>
@@ -103,7 +103,7 @@
            style="background-color: {{ coll.inline_color|hex2rgba('.35') }}"
        {% endif %}>
     {% if not coll.background_image %}
-      <ul class="app-icons">
+      <ul class="app-icons {{ 'single' if coll.apps.length == 1 }}">
         {% for app in coll.apps.slice(0, 3) %}
           <li>{{ deferred_icon(app.icons[64], app.name|translate(app)) }}</li>
         {% endfor %}
