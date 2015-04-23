@@ -14,20 +14,9 @@ define('views/search',
         return new_value;
     }
 
-    // Clear search field on 'cancel' search suggestions.
-    $('#site-header').on('click', '.header-button.cancel', _pd(function() {
-        $('#search-q').val('');
-    }))
-
-    .on('click', '.header-button, .search-clear', _pd(function() {
-        if ($(this).hasClass('search-clear')) {
-            $('#search-q').val('').trigger('focus');
-        }
-    }));
-
     function parsePotatoSearch(query) {
-        // This handles PotatoSearch queries:
-        // https://github.com/mozilla/fireplace/wiki/QuickSearch-(PotatoSearch%E2%84%A2)
+        // PotatoSearch queries: github.com/mozilla/fireplace/wiki/
+        // QuickSearch-(PotatoSearch%E2%84%A2)
         query = query || {q: ''};
 
         // We keep track of the full query separately, since we don't want
@@ -45,11 +34,16 @@ define('views/search',
                 } else if (value === 'free' || value === 'free-inapp') {
                     query.premium_types = append(query.premium_types, value);
                 } else if (value === 'premium' || value === 'paid') {
-                    query.premium_types = append(query.premium_types, 'premium');
-                } else if (value === 'premium-inapp' || value === 'paid-inapp') {
-                    query.premium_types = append(query.premium_types, 'premium-inapp');
-                } else if (value === 'premium-other' || value === 'paid-other') {
-                    query.premium_types = append(query.premium_types, 'premium-other');
+                    query.premium_types = append(query.premium_types,
+                                                 'premium');
+                } else if (value === 'premium-inapp' ||
+                           value === 'paid-inapp') {
+                    query.premium_types = append(query.premium_types,
+                                                 'premium-inapp');
+                } else if (value === 'premium-other' ||
+                           value === 'paid-other') {
+                    query.premium_types = append(query.premium_types,
+                                                 'premium-other');
                 } else if (value.indexOf('cat=') === 0) {
                     query.cat = value.split('=')[1];
                 } else if (value === 'desktop' || value === 'firefoxos') {
@@ -74,7 +68,8 @@ define('views/search',
                            value.indexOf('language=') === 0 ||
                            value.indexOf('langs=') === 0 ||
                            value.indexOf('lang=') === 0) {
-                    query.languages = append(query.languages, value.split('=')[1]);
+                    query.languages = append(query.languages,
+                                             value.split('=')[1]);
                 } else if (value.indexOf('region=') === 0) {
                     query.region = value.split('=')[1];
                 } else if (value.indexOf('offline') === 0) {
@@ -85,22 +80,23 @@ define('views/search',
                     query.tag = 'tarako';
                 }
             } else {
-                // Include anything that's not a keyword in the `q` search term.
+                // Include anything not a keyword in the `q` search term.
                 query.q.push(value);
             }
         });
 
-        query.q = query.q.join(' ');  // This is what gets sent to the API.
+        // What gets sent to the API.
+        query.q = query.q.join(' ');
 
-        // There were no keywords, so remove full_q.
         if (query.q === query.full_q) {
+            // No keywords, remove full_q.
             delete query.full_q;
         }
 
         return query;
     }
 
-    z.body.on('submit', '#search', function(e) {
+    z.body.on('submit', '.header--search-form', function(e) {
         e.preventDefault();
         e.stopPropagation();
         // A mapping of query => view name that can be used to navigate to a
@@ -121,14 +117,13 @@ define('views/search',
         };
         var $q = $('#search-q');
         var query = $q.val();
-        if (query === 'do a barrel roll') {
-            z.body.toggleClass('roll');
-        } else if (Object.keys(potato_views).indexOf(query) > -1) {
+        if (Object.keys(potato_views).indexOf(query) > -1) {
             z.page.trigger('navigate', urls.reverse(potato_views[query]));
             $q.val('');
             return;
         } else if (query === ':' || query === ':help') {
-            window.open('https://github.com/mozilla/fireplace/wiki/QuickSearch-(PotatoSearch™)');
+            window.open('https://github.com/mozilla/fireplace/wiki/' +
+                        'QuickSearch-(PotatoSearch™)');
             $q.val('');
             return;
         }
@@ -151,17 +146,9 @@ define('views/search',
     }));
 
     function processor(query) {
+        // Whimsy or extras go here.
         query = query ? query.toLowerCase() : '';
         return function(data) {
-            switch (query) {
-                case 'what does the fox say?':
-                    var base = function(name) {return {name: name, author: 'The Fox', 'previews': [], 'icons': {'64': urls.media('fireplace/img/logos/firefox-256.png')}};};
-                    data.unshift(base('Joff-tchoff-tchoffo-tchoffo-tchoff!'));
-                    data.unshift(base('Hatee-hatee-hatee-ho!'));
-                    data.unshift(base('Wa-pa-pa-pa-pa-pa-pow!'));
-                    data.unshift(base('Ring-ding-ding-ding-dingeringeding!'));
-                    break;
-            }
             return data;
         };
     }
@@ -188,7 +175,8 @@ define('views/search',
             if (params.manifest_url && results.objects.length === 1) {
                 z.page.trigger(
                     'divert',
-                    [urls.reverse('app', [results.objects[0].slug]) + '?src=' + params.src]);
+                    [urls.reverse('app', [results.objects[0].slug]) +
+                     '?src=' + params.src]);
             }
 
             // Tell GA when no results (bug 890314).
