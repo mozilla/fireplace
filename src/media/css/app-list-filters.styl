@@ -62,6 +62,7 @@ App listing filters.
 }
 
 .app-list-filters-content {
+    display: flex;
     height: 40px;
     line-height: 40px;
 }
@@ -75,6 +76,10 @@ App listing filters.
     margin-left: 8px;
     width: 84px;
 
+    +rtl() {
+        float: left;
+        margin: 0 8px 0 0;
+    }
     &.active {
         background-position: 0 -40px;
     }
@@ -123,7 +128,7 @@ App listing filters.
     }
     // App list expand toggle.
     .app-list-filters-expand-wrapper {
-        display: block;
+        display: flex;
         margin: 0 30px;
 
         .app-list-filters-expand-toggle.show {
