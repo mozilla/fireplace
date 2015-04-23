@@ -7,12 +7,11 @@
           {% endif %}>
       {% if isModal %}
         <h3>{{ existingReview and _('Edit Review') or _('Leave a Review') }}</h3>
-	<p class="text-small">
-           {{ _('Please read the <a href="https://developer.mozilla.org/en-US/Marketplace/User_Review_Guidelines">Review Guidelines</a> for more details about rating apps.
+	<p class="reviews--guideline">
+          {{ _('Please read the <a href="{url}">Review Guidelines</a> for more details about rating apps.
            Reviews that do not meet these guidelines may be removed by our
-           moderation team without notice.') }}
+           moderation team without notice.') | format(url='https://developer.mozilla.org/Marketplace/User_Review_Guidelines') }}
         </p>
-        <hr/>
       {% endif %}
       <p class="simple-field rating">
         <label for="review-rating">{{ _('Rate:') }}</label>
