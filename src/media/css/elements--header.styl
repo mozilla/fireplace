@@ -130,7 +130,7 @@ mkt-header-child {
     border: 0;
     border-radius: 5px;
     height: 70px;
-    padding: 15px 40px;
+    padding: 15px 50px;
     outline: none;
     width: 100%;
     z-index: 2;
@@ -155,19 +155,19 @@ mkt-header-child {
     width: 100%;
     z-index: 3;
 
-    +media--base-tablet() {
+    +media--wide-tablet() {
         width: $header-child--input-width;
     }
     +ltr() {
         margin-left: 25px;
-        padding-left: 45px;
+        padding-left: 50px;
         right: 50%;
         transform: translate(50%, -50%);
     }
     +rtl() {
         left: 50%;
         margin-right: 25px;
-        padding-right: 45px;
+        padding-right: 50px;
         transform: translate(-50%, -50%);
     }
 }
