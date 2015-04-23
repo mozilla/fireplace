@@ -9,6 +9,11 @@ beforeEach(function() {
 afterEach(function() {
     sinon.restore();
     sinon = realSinon;
+
+    // Ensure that body is empty for the next test.
+    Array.prototype.forEach.call(document.body.children, function(child) {
+        document.body.removeChild(child);
+    });
 });
 
 function withSettings(changes, test) {
