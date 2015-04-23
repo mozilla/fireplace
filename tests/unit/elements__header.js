@@ -190,17 +190,6 @@ define('tests/unit/elements__header',
                 }, 500);
             });
         });
-
-        it('clears on form submit', function(done) {
-            createMktHeader(function(header, child, toggle) {
-                child.input.value = 'lol';
-                $(child.querySelector('form')).trigger('submit');
-                setTimeout(function() {
-                    assert.equal(child.input.value, '');
-                    done();
-                }, 50);
-            });
-        });
     });
 
     describe('mkt-header-child-toggle', function() {
