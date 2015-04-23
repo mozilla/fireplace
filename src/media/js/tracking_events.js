@@ -209,11 +209,20 @@ define('tracking_events',
     }));
 
     // Navigation tabs.
-    z.body.on('click', '.navbar > li > a', function() {
+    z.body.on('click', 'mkt-nav a', function() {
         sendEvent(
             'Nav Click',
             'click',
-            $(this).closest('li').data('tab')
+            $(this).closest('li').data('mkt-nav--item')
+        );
+    })
+    .on('click', 'mkt-header a', function() {
+        var $li = $(this).closest('li');
+        sendEvent(
+            'Nav Click',
+            'click',
+            $li.data('mkt-header-nav--item') ||
+            $li.data('mkt-header-child--item')
         );
     })
 
