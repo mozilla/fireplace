@@ -117,8 +117,6 @@ body > .banners mkt-banner {
 // Usable on any header.
 .header {
     background: $white;
-    border-top: 1px solid $salt-flat-white;
-    border-bottom: 1px solid $seavan-salt-white;
     display: flex;
     height: $header-height;
     max-height: $header-height;
@@ -127,18 +125,6 @@ body > .banners mkt-banner {
 
     > * {
         align-self: center;
-    }
-    .flex-shift,
-    .title {
-        flex: 1;
-        padding-left: 10px;
-    }
-    .title {
-        color: $castle-skull-gray;
-        font-size: 18px;
-        font-weight: 400;
-        line-height: $header-height;
-        z-index: 10;
     }
 }
 
@@ -152,18 +138,6 @@ body > .banners mkt-banner {
 
     &:before {
         display: none;
-    }
-    > nav {
-        height: $header-height;
-        display: flex;
-        position: relative;
-        text-align: left;
-        width: 100%;
-
-        > * {
-            align-self: center;
-            display: block;
-        }
     }
     .site {
         height: $header-height;
@@ -188,69 +162,6 @@ body > .banners mkt-banner {
     }
 }
 
-.act-tray {
-    height: 47px;
-    position: relative;
-    width: 34px;  // 24px + 10px margin
-}
-
-.site-header .search {
-    margin-right: 10px;
-    position: relative;
-    top: -1px;
-    transition: .3s all;
-    width: 230px;
-
-    label {
-        display: none;
-    }
-}
-
-.search-q {
-    background: $white url(../img/pretty/search.svg) 8px 50% no-repeat;
-    border: 1px solid $greyscale-white-tapped;
-    border-radius: 5px;
-    color: $greyscale-black;
-    font: 300 20px/28px $open-stack;
-    height: 34px;
-    outline: none;
-    padding: 2px 10px 1px 34px;
-    transition: .18s background-position, .2s border-color, .2s padding;
-    width: 100%;
-    z-index: 2;
-
-    &:-moz-placeholder {
-        color: $greyscale-grey;
-    }
-    &::-moz-placeholder {
-        color: $greyscale-grey;
-    }
-    &::-webkit-input-placeholder {
-        color: $greyscale-grey;
-    }
-    ~ .search-clear {
-        transition: 3s opacity, .3s visibility;
-    }
-    &:invalid ~ .search-clear {
-        // Hide the X icon when the search field is empty.
-        opacity: 0;
-        visibility: hidden;
-    }
-    &:valid {
-        // Pad for the X icon.
-        padding-right: 34px;
-        ~ .search-clear {
-            opacity: 1;
-            visibility: visible;
-        }
-    }
-    &:focus {
-        background-position: -18px 50%;
-        border-color: $action-positive;
-        padding-left: 10px;
-    }
-}
-
 .close {
     background: url(../img/pretty/close.svg) 50% no-repeat;
     background-size: 18px auto;
@@ -260,10 +171,10 @@ body > .banners mkt-banner {
     right: 0;
     top: 0;
     width: 40px;
-}
 
-.close:active {
-    background: url(../img/pretty/close_active.svg) 50% no-repeat;
+    &:active {
+        background: url(../img/pretty/close_active.svg) 50% no-repeat;
+    }
 }
 
 // Buttons that appear in headers.
@@ -285,23 +196,6 @@ body > .banners mkt-banner {
             display: block;
         }
     }
-    &.cancel:after {
-        background-position: 0 -24px;
-        height: 24px;
-        left: 13px;
-        position: absolute;
-        top: 12px;
-        width: 24px;
-    }
-    &.settings {
-        background: url(../img/pretty/settings_gear.svg) 50% 50% no-repeat;
-        background-size: 24px auto;
-        display: block;
-        height: 80px;
-        position: absolute;
-        right: 20px;
-        width: 40px;
-    }
     &.back {
         hidetext();
         background: url(../img/pretty/back_arrow.svg) center no-repeat;
@@ -311,35 +205,6 @@ body > .banners mkt-banner {
 
         &:hover {
             background-image: url(../img/pretty/back_arrow_active.svg);
-        }
-    }
-    &.persona {
-        // 'Sign In' or 'Register'.
-        color: $action-positive;
-        font-weight: 500;
-        cursor: wait;
-        display: none;
-        margin-left: 15px;
-        word-break: keep-all;
-        word-wrap: normal;
-
-        &:hover {
-            color: $action-positive-hover;
-            text-decoration: none;
-        }
-        &.loading-submit {
-            border-bottom: 0;
-            box-shadow: none;
-            // Make text transparent to keep the width the same.
-            color: transparent;
-            outline: 0;
-            spinner('loading');
-            margin-left: 15px;
-            width: auto;
-
-            &:after {
-                display: none;
-            }
         }
     }
 }
@@ -432,59 +297,8 @@ body > .banners mkt-banner {
     .back, .expand {
         display: block;
     }
-    .site, .flex-shift {
+    .site {
         display: none;
-    }
-    .flex-span {
-        display: block;
-        flex: 1;
-    }
-}
-
-@media (max-width: 699px) {
-    // TODO: get rid of this media query.
-    .site-header {
-        .search {
-            flex: 1;
-            width: auto;
-        }
-    }
-    [data-page-type~=root] {
-        .site-header {
-            .site, .wordmark {
-                width: 35px;
-            }
-            .flex-shift {
-                display: none;
-            }
-        }
-    }
-    [data-page-type~=search],
-    [data-page-type~=leaf] {
-        .flex-span {
-            display: none;
-        }
-    }
-
-    .site-header.suggestions {
-        nav > *:not(.search) {
-            display: none;
-        }
-        .search {
-            position: relative;
-            width: 100%;
-            left: auto;
-        }
-        .search-clear {
-            display: block;
-        }
-    }
-}
-
-@media (max-width: 709px) {
-    [data-page-type~="detail"] .header {
-        // Make the border lighter since there's no secondary header on this page.
-        border-bottom-color: $salt-flat-white;
     }
 }
 
@@ -510,18 +324,8 @@ body > .banners mkt-banner {
 }
 
 @media (min-width: 710px) {
-    .site-header {
-        border-bottom: 1px solid $cloud-gray;
-        border-top: 0;
-
-        &:before, &:after {
-            display: none;
-        }
-    }
-    [data-page-type] main {
-        &:before {
-            display: none;
-        }
+    [data-page-type] main:before {
+        display: none;
     }
 }
 
@@ -604,41 +408,14 @@ body > .banners mkt-banner {
     .active .account-links {
         display: block;
     }
-    .site-header .search,
-    .search-q {
-        width: 270px;
-    }
-    .search-q {
-        background-position: 10px 50%;
-        border-width: 1px;
-        font-size: 18px;
-        height: 46px;
-        line-height: 40px;
-        padding: 6px 15px 4px 34px;
-
-        &:valid {
-            // Adjust width for padding for the X icon.
-            padding-right: 42px;
-        }
-        &:focus {
-            padding-right: 15px;
-        }
-    }
-    .search-clear {
-        top: 6px;
-    }
     // How does the header look for the various page "types"?
     [data-page-type~=search],
     [data-page-type~=leaf] {
         .site {
             display: block;
         }
-        .header--back,
-        .flex-span {
+        .header--back {
             display: none;
-        }
-        .flex-shift {
-            display: block;
         }
     }
     .desktop .wordmark {
@@ -649,13 +426,6 @@ body > .banners mkt-banner {
 @media $wide-tablet {
     [data-page-type~=leaf] .mkt-header--back {
         display: none;
-    }
-}
-
-@media $base-desktop {
-    .site-header .search,
-    .search-q {
-        width: 340px;
     }
 }
 
