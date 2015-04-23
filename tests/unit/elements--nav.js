@@ -119,9 +119,6 @@ define('tests/unit/elements--nav',
 
             assert.ok(mktNav.statusElement.classList.contains(
                       nav.classes.VISIBLE));
-
-            document.body.removeChild(mktNav);
-            document.body.removeChild(mktNavToggle);
         });
     });
 
@@ -144,9 +141,6 @@ define('tests/unit/elements--nav',
             assert.notOk(mktNavChild.visible);
             mktNavChildToggle.click();
             assert.ok(mktNavChild.visible);
-
-            document.body.removeChild(mktNav);
-            document.body.removeChild(mktNavChildToggle);
         });
     });
 });
