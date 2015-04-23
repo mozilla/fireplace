@@ -120,14 +120,6 @@ define('elements/header',
                                         .toggleChildren(root.id, false);
                             }, 150);
                         };
-                        // Clear input on submit.
-                        $(root.querySelector('form')).submit(function(e) {
-                            e.preventDefault();
-                            setTimeout(function() {
-                                input.value = '';
-                                return false;
-                            }, 50);
-                        });
                     }
                 }
             },
@@ -217,6 +209,14 @@ define('elements/header',
                 }, 50);
             } catch(e) {}
         }
+
+        // Clear inputs on submit.
+        eUtils.each(document.querySelectorAll(
+                    '[data-header-child--input] input'), function(input) {
+            setTimeout(function() {
+                input.value = '';
+            }, 50);
+        });
     })
 
     .on('navigate loaded', function() {
