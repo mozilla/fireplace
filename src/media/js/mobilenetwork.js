@@ -1,33 +1,9 @@
 define('mobilenetwork',
-    ['core/l10n', 'core/log', 'regions', 'tracking', 'core/user', 'core/utils'],
-    function(l10n, log, regions, tracking, user, utils) {
+    ['carriers', 'core/l10n', 'core/log', 'regions', 'tracking', 'core/user', 'core/utils'],
+    function(carriers, l10n, log, regions, tracking, user, utils) {
     var console = log('mobilenetwork');
     var persistent_console = log.persistent('mobilenetwork', 'change');
     var gettext = l10n.gettext;
-
-    var carriers = [
-        'america_movil',
-        'carrierless',
-        'china_unicom',
-        'congstar',
-        'deutsche_telekom',
-        'etisalat',
-        'grameenphone',
-        'hutchinson_three_group',
-        'kddi',
-        'kt',
-        'megafon',
-        'mtn',
-        'qtel',
-        'singtel',
-        'smart',
-        'sprint',
-        'telecom_italia_group',
-        'telefonica',
-        'telenor',
-        'tmn',
-        'vimpelcom'
-    ];
 
     var carriersRegions = {
         // Missing [ "208", "222", "234", "404", "405" ]
@@ -129,6 +105,11 @@ define('mobilenetwork',
             20: 'america_movil'
         },
 
+        // Jordan
+        416: {
+            77: 'orange'
+        },
+
         // Japan
         440: {
             7: 'kddi',
@@ -162,6 +143,86 @@ define('mobilenetwork',
         // Bangladesh
         470: {
             1: 'grameenphone'
+        },
+
+        // Vanuatu
+        541: {
+            1: 'orange'
+        },
+
+        // Egypt
+        602: {
+            1: 'orange'
+        },
+
+        // Tunisia
+        605: {
+            1: 'orange'
+        },
+
+        // Senegal
+        608: {
+            1: 'orange'
+        },
+
+        // Mali
+        610: {
+            2: 'orange'
+        },
+
+        // Guinea-Conakry
+        611: {
+            1: 'orange'
+        },
+
+        // Côte d'Ivoire
+        612: {
+            3: 'orange'
+        },
+
+        // Niger
+        614: {
+            4: 'orange'
+        },
+
+        // Mauritius
+        617: {
+            1: 'orange'
+        },
+
+        // Central African Republic
+        623: {
+            3: 'orange'
+        },
+
+        // Cameroon
+        624: {
+            2: 'orange'
+        },
+
+        // Guinea Bissau
+        632: {
+            3: 'orange'
+        },
+
+        // Kenya
+        639: {
+            7: 'orange'
+        },
+
+        // Tanzania
+        640: {
+            2: 'orange'
+        },
+
+        // Madagascar
+        646: {
+            2: 'orange'
+        },
+
+        // Botswana
+        652: {
+            2: 'orange'
         },
 
         // South Africa
@@ -453,7 +514,7 @@ define('mobilenetwork',
 
     return {
         carriersRegions: carriersRegions,
-        carriers: carriers,
+        carriers: carriers.CARRIER_SLUGS,
         detectMobileNetwork: detectMobileNetwork,
         getNetwork: getNetwork,
         regions: regions.MOBILE_CODES,

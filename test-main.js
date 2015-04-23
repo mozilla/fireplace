@@ -51,6 +51,7 @@ require.config({
     baseUrl: '/base/src/media/js',
 
     paths: {
+        'carriers': 'lib/carriers',
         'collection_colors': 'lib/collection_colors',
         'core': bowerPath('marketplace-core-modules/core'),
         'document-register-element': 'lib/document-register-element.max',

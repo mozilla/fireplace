@@ -13,6 +13,7 @@ var localConfig = extend(true, {
         'marketplace-constants/dist/css/collection_colors.styl': 'src/media/css/lib/',
         'marketplace-constants/dist/js/collection_colors.js': config.LIB_DEST_PATH,
         'marketplace-constants/dist/css/regions.styl': 'src/media/css/lib/',
+        'marketplace-constants/dist/js/carriers.js': config.LIB_DEST_PATH,
         'marketplace-constants/dist/js/regions.js': config.LIB_DEST_PATH,
         'marketplace-constants/dist/img/regions/*': 'src/media/img/icons/regions/',
         'marketplace-elements/marketplace-elements.js': config.LIB_DEST_PATH,
@@ -27,11 +28,12 @@ var localConfig = extend(true, {
         // RequireJS configuration for development, notably files in lib/.
         // [Module name]: [Module path].
         paths: {
+            'carriers': 'lib/carriers',
+            'collection_colors': 'lib/collection_colors',
             'document-register-element': 'lib/document-register-element.max',
             'flipsnap': 'lib/flipsnap',
             'fxpay': 'lib/fxpay.min',
             'marketplace-elements': 'lib/marketplace-elements',
-            'collection_colors': 'lib/collection_colors',
             'regions': 'lib/regions',
             'salvattore': 'lib/salvattore',
         },
