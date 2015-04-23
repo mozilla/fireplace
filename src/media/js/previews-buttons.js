@@ -53,6 +53,11 @@ define('previews-buttons',
         setPreviewBtnState();
         $container[0].slider = slider;
         $container.append($previewBtns);
+
+        return {
+            prevBtn: $prevBtn[0],
+            nextBtn: $nextBtn[0],
+        };
     }
 
     z.body.on('click', '.arrow-btn:not(.arrow-btn-disabled)', function(e) {
