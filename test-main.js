@@ -9,6 +9,11 @@ beforeEach(function() {
 afterEach(function() {
     sinon.restore();
     sinon = realSinon;
+
+    // Ensure that body is empty for the next test.
+    Array.prototype.forEach.call(document.body.children, function(child) {
+        document.body.removeChild(child);
+    });
 });
 
 function withSettings(changes, test) {
@@ -51,6 +56,7 @@ require.config({
     baseUrl: '/base/src/media/js',
 
     paths: {
+        'carriers': 'lib/carriers',
         'collection_colors': 'lib/collection_colors',
         'core': bowerPath('marketplace-core-modules/core'),
         'document-register-element': 'lib/document-register-element.max',

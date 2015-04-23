@@ -17,6 +17,7 @@ define('previews-lightbox',
     var slider;
 
     $lightbox.addClass('shots previews-slider');
+    $lightbox.attr('dir', 'ltr');
 
     function show(clickedPreview) {
         logger.log('Opening lightbox');
