@@ -130,14 +130,11 @@ mkt-header-child {
     border: 0;
     border-radius: 5px;
     height: 70px;
-    padding: 15px 50px;
+    padding: 15px 0 15px 20px;
+    position: relative;
     outline: none;
     width: 100%;
     z-index: 2;
-
-    +media--wide-tablet() {
-        width: $header-child--input-width;
-    }
 
     &:valid + .header-child--input-placeholder {
         color: transparent;
@@ -152,22 +149,16 @@ mkt-header-child {
     padding: 15px 0;
     position: absolute;
     top: 50%;
-    width: 100%;
+    white-space: nowrap;
+    width: fit-content;
     z-index: 3;
 
-    +media--wide-tablet() {
-        width: $header-child--input-width;
-    }
     +ltr() {
-        margin-left: 25px;
-        padding-left: 50px;
         right: 50%;
         transform: translate(50%, -50%);
     }
     +rtl() {
         left: 50%;
-        margin-right: 25px;
-        padding-right: 50px;
         transform: translate(-50%, -50%);
     }
 }
