@@ -150,6 +150,10 @@ a.button {
     position: absolute;
     right: 0;
 
+    +rtl() {
+        left: 0;
+        right: inherit;
+    }
     em {
         // This em becomes the visual button.
         btn_color($action-positive, $action-positive-tapped, $action-positive-hover, true);
@@ -178,7 +182,7 @@ a.button {
     &.spinning,
     &.purchasing {
         background: $action-positive-tapped;
-        bottom: 12px;
+        bottom: 0;
         height: $btn-tiny;
 
         em {

@@ -22,11 +22,15 @@ $loadmore-desktop-width = 300px;
             bottom: 1px;
             content: "";
             display: inline-block;
-            margin-right: 10px;
+            margin: 0 10px 0 0;
             width: 16px;
             height: 16px;
             position: relative;
             vertical-align: middle;
+
+            +rtl() {
+                margin: 0 0 0 10px;
+            }
         }
     }
     &.loading .button:before {
