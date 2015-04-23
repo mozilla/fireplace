@@ -32,6 +32,10 @@
         width: 30px;
         z-index: 20;
 
+        +rtl() {
+            left: 20px;
+            right: auto;
+        }
         &:active {
             background-color: $action-positive-tapped;
             background-image: url(../img/pretty/close_lightbox.svg);
