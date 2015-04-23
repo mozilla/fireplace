@@ -70,7 +70,6 @@
     width: 100%;
 }
 
-
 .feed-landing-apps .app-list {
     margin-top: 0;
 }
@@ -87,9 +86,15 @@
         padding-top: 30px;
     }
     .feed-landing-header {
-        left: -10%;
         position: relative;
         width: 120%;
+
+        +ltr() {
+            left: -10%;
+        }
+        +rtl() {
+            right: -10%;
+        }
     }
     .feed-landing-header-mobile {
         display: none;
@@ -127,7 +132,12 @@
 
             h1,
             p {
-                text-align: left;
+                +ltr() {
+                    text-align: left;
+                }
+                +rtl() {
+                    text-align: right;
+                }
             }
         }
     }
