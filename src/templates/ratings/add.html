@@ -8,9 +8,9 @@
       {% if isModal %}
         <h3>{{ existingReview and _('Edit Review') or _('Leave a Review') }}</h3>
 	<p class="reviews--guideline">
-          {{ _('Please read the <a href="{url}">Review Guidelines</a> for more details about rating apps.
+          {{ _('Please read the <a href="{url}" target="_blank">Review Guidelines</a> for more details about rating apps.
            Reviews that do not meet these guidelines may be removed by our
-           moderation team without notice.') | format(url='https://developer.mozilla.org/Marketplace/User_Review_Guidelines') }}
+           moderation team without notice.')|format(url='https://developer.mozilla.org/Marketplace/User_Review_Guidelines') }}
         </p>
       {% endif %}
       <p class="simple-field rating">
@@ -25,7 +25,7 @@
         </select>
       </p>
       <textarea id="review-body" rows="2" cols="40" name="body"
-                placeholder="{{ _('Tell us what you like about this app. Write like you’re telling a friend about your experience with the app. Give specific details, for example, What features did you like or dislike?') }}"
+                placeholder="{{ _('Tell us what you love about this app!') }}"
                 required maxlength="150">{{ existingReview.body }}</textarea>
       <div class="char-count" data-for="review-body"></div>
       <input type="hidden" name="app" value="{{ slug }}" required>
