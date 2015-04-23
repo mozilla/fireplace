@@ -49,7 +49,8 @@ define('previews',
         }
 
         var $previewsContent = $tray.find('.previews-content');
-        var $slider = $tray.find('.previews-slider');
+        // Set to LTR so we can manually lay it out ourselves.
+        var $slider = $tray.find('.previews-slider').attr('dir', 'ltr');
         var numPreviews = $tray.find('.screenshot').length;
         var isDesktopDetailTray = isDesktopDetailTrayFn(tray);
         if (isDesktopDetailTray) {
@@ -90,7 +91,14 @@ define('previews',
             updatePreviewBar($bars, slider);
 
             // Add scroll buttons.
-            previewButtons.attach(slider, $slider);
+            var buttons = previewButtons.attach(slider, $slider);
+
+            if (document.documentElement.getAttribute('dir') === 'rtl') {
+                for (var i = 0; i < numBars - 1; i++) {
+                    // Start at the end for RTL.
+                    buttons.nextBtn.click();
+                }
+            }
         }
     }
 
