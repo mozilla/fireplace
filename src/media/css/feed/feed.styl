@@ -76,6 +76,10 @@
         position: relative;
         top: 15px;
         width: $mobile-tile-width;
+
+        +rtl() {
+            left: 15px;
+        }
     }
     .preview {
         .desc {
@@ -116,16 +120,8 @@
 }
 
 .feed-view-all-tab.view-all-tab {
-    margin: $vertical-margin auto 5px 50%;
-    padding-bottom: 5px;
-    transform: translate(-50%, 0);
-}
-
-.feed-layout-list .feed-view-all-tab {
-    bottom: 5px;
-}
-.feed-layout-grid .feed-view-all-tab {
-    bottom: 10px;
+    display: block;
+    margin: $vertical-margin auto 5px;
 }
 
 .multi-app-tile {
@@ -156,18 +152,19 @@
         color: $white;
     }
     .app-icons {
+        display: flex;
         height: 60px;
+        justify-content: space-between;
         left: 50%;
         position: absolute;
         top: 15px;
         transform: translate(-50%, 0);
-        white-space: nowrap;
+        width: 220px;
         z-index: 15;
 
         li {
             display: inline-block;
             height: 60px;
-            margin-right: 20px;
             width: 60px;
 
             &:last-child {
@@ -177,6 +174,9 @@
         + .feed-item-curve {
             height: 60px;
             top: 30px;
+        }
+        &.single {
+            justify-content: center;
         }
     }
     &.has-desc .feed-item-curve {

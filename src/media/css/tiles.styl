@@ -3,6 +3,7 @@
 $icon-size = 60px;
 $detail-icon-size = 64px;
 $info-height = 96px;
+$info-width = 220px;
 
 // Detail page.
 $app-title-size = 20px;
@@ -14,7 +15,6 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 // Base class.
 .mkt-tile {
     color: $castle-skull-gray;
-    display: block;
     overflow: hidden;
     position: relative;
     // Any layer may overlap this.
@@ -25,7 +25,6 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         text-decoration: none;
     }
     .icon {
-        float: left;
         height: $icon-size;
         width: $icon-size;
     }
@@ -53,13 +52,16 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         padding-top: 12px;
     }
     .heading {
+        display: flex;
         position: relative;
     }
     .info {
-        padding-left: $icon-size + 10;
-        position: absolute;
-        width: 100%;
+        padding: 12px 0 0 10px;
+        width: $info-width;
 
+        +rtl() {
+            padding: 12px 10px 0 0;
+        }
         + .bad-app {
             padding-top: 8px;
         }
@@ -77,6 +79,9 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         padding-bottom: 5px;
         width: 300px;
 
+        +rtl() {
+            margin-right: -15px;
+        }
         &.vertical {
             height: 240px;
         }
@@ -117,9 +122,6 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         height: $detail-icon-size;
         padding-top: 0;
     }
-    .info {
-        padding-left: $detail-icon-size + 10;
-    }
     .rating-link .long {
         margin-left: 12px;
     }
@@ -136,10 +138,10 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 
     a {
         display: flex;
+        flex-direction: row-reverse;
         text-decoration: none;
 
         +rtl() {
-            flex-direction: row-reverse;
             justify-content: flex-end;
         }
         &:hover .cnt {
@@ -206,8 +208,13 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 }
 
 @media $base-tablet {
-    .detail .rating-link .long {
-        margin-left: 0;
+    .detail {
+        .rating-link .long {
+            margin-left: 0;
+        }
+        .mkt-tile .info {
+            width: 100%;
+        }
     }
 }
 
