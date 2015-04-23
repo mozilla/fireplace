@@ -1,6 +1,9 @@
 // Styles for the categories index page.
 @import 'lib';
 
+$header-padding = 48px;
+$header-icon-size = $cat-icon-size-default * 5;
+
 .category {
     .app-list {
         margin-top: 0;
@@ -37,8 +40,17 @@
         background-size: 180px auto;
         border-radius: 50px;
         height: 75px;
-        margin: 0 20px;
+        margin: 0;
+        position: absolute;
+        top: $cat-icon-size-default;
         width: 75px;
+
+        +ltr() {
+            left: $cat-icon-size-default;
+        }
+        +rtl() {
+            right: $cat-icon-size-default;
+        }
     }
     .category-header-desktop {
         margin: 0 auto 20px;
@@ -74,7 +86,14 @@
     category-sprite-alt();
     content: '';
     display: inline-block;
-    margin: ($cat-icon-size-default / -4) 10px ($cat-icon-size-default / -4) 0;
+    margin: ($cat-icon-size-default / -4) 10px;
+
+    +ltr() {
+        margin-left: 0;
+    }
+    +rtl() {
+        margin-right: 0;
+    }
 }
 for $cat in $categories {
     .cat-{$cat}:before {
@@ -93,10 +112,17 @@ for $cat in $categories {
             category-sprite(2);
             content: '';
             display: inline-block;
-            left: 0;
-            margin: ($cat-icon-size-default / -2) ($cat-icon-size-default / 2);
+            margin: 0;
             opacity: 1;
             position: absolute;
+            top: $cat-icon-size-default * 1.5;
+
+            +ltr() {
+                left: $cat-icon-size-default * 1.5;
+            }
+            +rtl() {
+                right: $cat-icon-size-default * 1.5;
+            }
         }
         &:before {
             background: $action-positive;
@@ -107,13 +133,22 @@ for $cat in $categories {
         }
     }
     .subheader.cat-header h1 {
-        margin: 0 0 0 20px;
-        padding: 48px 0;
+        line-height: $header-icon-size - $header-padding * 2;
+        margin: 0;
+        min-height: $header-icon-size;
+        padding: $header-padding 20px;
+
+        +ltr() {
+            padding-left: $header-icon-size;
+        }
+        +rtl() {
+            padding-right: $header-icon-size;
+        }
     }
     .cat-header .cat-icon:before {
         display: inline-block;
-        height: 28px * 3;
-        margin: -28px 20px -28px 0;
-        width: 28px * 3;
+        height: $cat-icon-size-default * 3;
+        margin: 0;
+        width: $cat-icon-size-default * 3;
     }
 }
