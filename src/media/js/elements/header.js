@@ -97,32 +97,6 @@ define('elements/header',
 
     el.MktHeaderChildElement = document.registerElement('mkt-header-child', {
         prototype: Object.create(HTMLElement.prototype, {
-            createdCallback: {
-                value: function() {
-                    var root = this;
-
-                    if (root.isInput) {
-                        // If main element is input, then hide child on blur.
-                        var input = root.input;
-                        input.onblur = function(e) {
-                            setTimeout(function() {
-                                if (e) {
-                                    var target = e.explicitOriginalTarget ||
-                                                 document.activeElement;
-                                    if (target.getAttribute &&
-                                        target.getAttribute('for') == root.id) {
-                                        // Don't trigger if blurring on toggle.
-                                        return;
-                                    }
-                                }
-
-                                document.querySelector('mkt-header')
-                                        .toggleChildren(root.id, false);
-                            }, 150);
-                        };
-                    }
-                }
-            },
             toggle: {
                 value: function(bool) {
                     // Toggle visibility.
