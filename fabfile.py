@@ -53,15 +53,8 @@ def deploy_jenkins():
                             app_dir='fireplace')
 
     rpm.local_install()
-
-    # do not perform a package update in dev, altdev and prod
-    if settings.ZAMBONI_DIR and settings.ENV not in ['dev', 'altdev', 'prod']:
-        package_update(os.path.join(rpm.install_to, 'fireplace'))
-
     rpm.remote_install(['web'])
-
     deploy_build_id('fireplace')
-
     rpm.clean()
 
 
@@ -72,13 +65,7 @@ def update():
         local('make install')
         local('cp src/media/js/settings_local_hosted.js '
               'src/media/js/settings_local.js')
-
-        # do not perform a package update in prod
-        if settings.ZAMBONI_DIR and settings.ENV != 'prod':
-            package_update()
-
         local('make build')
-
         local('node_modules/.bin/commonplace langpacks')
 
 
