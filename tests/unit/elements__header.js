@@ -178,18 +178,6 @@ define('tests/unit/elements__header',
                 done();
             });
         });
-
-        it('toggles off on blur', function(done) {
-            createMktHeader(function(header, child, toggle) {
-                child.toggle(true);
-                assert.ok(child.visible, 'Initially visible');
-                child.input.onblur();
-                setTimeout(function() {
-                    assert.notOk(child.visible, 'No longer visible');
-                    done();
-                }, 500);
-            });
-        });
     });
 
     describe('mkt-header-child-toggle', function() {
