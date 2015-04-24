@@ -71,7 +71,7 @@ define('compat_filter',
     var filterDeviceFromLS = storage.getItem(filterDeviceLSKey);
     var filterDevice = filterDeviceFromLS || caps.device_type();
 
-    z.body.on('change', '#compat-filter, .compat-filter', function() {
+    z.body.on('change', '.compat-filter', function() {
         // Update device preferences and reload view to refresh changes.
         if (this.value === undefined) {
             return;
