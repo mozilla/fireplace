@@ -25,43 +25,9 @@ mkt-header-child.header--search {
 
 .header--search-form {
     height: 100%;
-    width: auto;
+    width: 100%;
 }
 
 .header--search-input {
     background: transparent;
-
-    +ltr() {
-        left: 28px;
-    }
-    +rtl() {
-        right: 50px;
-    }
-}
-
-.header-child--input-placeholder {
-    +ltr() {
-        padding-left: 40px;
-    }
-    +rtl() {
-        padding-right: 40px;
-    }
-}
-
-.header-child--input-placeholder:after {
-    background: transparent url(../img/nav/search.svg) 0 -92px / 40px 140px no-repeat;
-    content: '';
-    display: inline-block;
-    height: 40px;
-    margin: 15px 0;
-    width: 40px;
-    position: absolute;
-    top: -10px;
-
-    +ltr() {
-        left: 0;
-    }
-    +rtl() {
-        right: 0;
-    }
 }
