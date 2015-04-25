@@ -258,9 +258,7 @@ gulp.task('iframe_package_js', ['iframe_package_clean'], function() {
 gulp.task('iframe_package_manifest', ['iframe_package_clean'], function() {
     // Build iframe package manifest. Swap in the name, origin, version.
     var name = config.packageConfig[server].name;
-    if (server !== 'prod') {
-        name = 'i' + name;
-    }
+
     return gulp.src(path.join(IFRAME_SRC_PATH, 'manifest.webapp'))
         .pipe(replace(/{name}/, name))
         .pipe(replace(/{origin}/, config.packageConfig[server].iframe_origin))
