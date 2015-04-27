@@ -10,7 +10,7 @@ define('mobilenetwork',
 
         // Greece
         202: {
-            // This actually belongs to Vodafone, which DT owns.
+            // This is Cosmote, but our contract is with DT, the owner
             5: 'deutsche_telekom'
         },
 
