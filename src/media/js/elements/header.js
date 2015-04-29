@@ -97,6 +97,21 @@ define('elements/header',
 
     el.MktHeaderChildElement = document.registerElement('mkt-header-child', {
         prototype: Object.create(HTMLElement.prototype, {
+            createdCallback: {
+                value: function() {
+                    var input = this.input;
+                    var label = this.querySelector('label');
+                    if (this.isInput && label) {
+                        var setInputWidth = function() {
+                            input.style.width = input.value ?
+                                null : label.clientWidth + 'px';
+                        };
+                        setInputWidth();
+                        input.addEventListener('input', setInputWidth);
+                        document.addEventListener('saferesize', setInputWidth);
+                    }
+                }
+            },
             toggle: {
                 value: function(bool) {
                     // Toggle visibility.
@@ -189,6 +204,7 @@ define('elements/header',
                     '[data-header-child--input] input'), function(input) {
             setTimeout(function() {
                 input.value = '';
+                input.dispatchEvent(new InputEvent('input'));
             }, 50);
         });
     })

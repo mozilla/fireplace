@@ -7,6 +7,7 @@ $color--header--child-bg = #1A95FC;
 $color--header--child-hover = #40ADFF;
 $color--header--root-link = $greyscale-black;
 $header-child--input-width = $mobile-content-width + 100;
+$header-child--input-padding = 15px 5px;
 $header--height = 60px;
 $header--transition = 'transform cubic-bezier(0.455, 0.03, 0.515, 0.955) 250ms';
 $zindex--header-child = 60;
@@ -130,14 +131,26 @@ mkt-header-child {
     border: 0;
     border-radius: 5px;
     height: 70px;
-    padding: 15px 0 15px 20px;
-    position: relative;
     outline: none;
+    padding: $header-child--input-padding;
+    position: relative;
     width: 100%;
     z-index: 3;
 
+    +ltr() {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    +rtl() {
+        right: 50%;
+        transform: translateX(50%);
+    }
+    &:valid {
+        text-align: center;
+    }
     &:valid + .header-child--input-placeholder {
-        color: transparent;
+        opacity: 0;
+        transition: 100ms;
     }
 }
 
@@ -145,10 +158,13 @@ mkt-header-child {
     display: inline;
     line-height: 40px;
     margin: 0;
+    max-width: 100%;
     opacity: .75;
-    padding: 15px 0;
+    overflow: hidden;
+    padding: $header-child--input-padding;
     position: absolute;
     top: 50%;
+    transition: 250ms;
     white-space: nowrap;
     width: fit-content;
     z-index: 2;
