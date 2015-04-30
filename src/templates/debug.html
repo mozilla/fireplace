@@ -27,8 +27,8 @@
     <select name="region" id="debug-region">
       {% set user_region = user.get_setting('region_override') %}
       <option value="" {{ 'selected' if not user_region }}>---</option>
-      {% for code, region in regions %}
-        <option value="{{ code }}" {{ 'selected' if code == user_region }}>
+      {% for region in regions %}
+        <option value="{{ region }}" {{ 'selected' if region == user_region }}>
           {{ region }}</option>
       {% endfor %}
     </select>

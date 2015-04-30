@@ -96,7 +96,6 @@ define('helpers_local',
     globals.feed = feed;
     globals.iarc_names = iarc.names;
     globals.NEWSLETTER_LANGUAGES = settings.NEWSLETTER_LANGUAGES;
-    globals.REGIONS = regions.REGION_CHOICES_SLUG;
     globals.user_helpers = user_helpers;
     globals.PLACEHOLDER_ICON = urls.media('fireplace/img/icons/placeholder.svg');
     globals.PLACEHOLDER_PREVIEW = urls.media('fireplace/img/icons/placeholder_preview.svg');
