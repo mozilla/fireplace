@@ -37,10 +37,18 @@ define('newsletter',
         var $form = $(this);
         var $success = $form.siblings('.success');
         var $processing = $form.siblings('.processing');
+        var $invalid = $form.find(':invalid');
         var data = utils.getVars($form.serialize());
 
         $form.addClass('submitted-once');
-        if ($form.find(':invalid').length) {
+        if ($invalid.length) {
+            $form.find('.error-message-wrapper').remove();
+            $invalid.each(function(i, invalid) {
+                $(invalid).before(
+                    $('<div class="error-message-wrapper"/>').append(
+                        $('<div class="error-message"/>').append(
+                            $('<span/>').text(invalid.validationMessage))));
+            });
             return;
         }
 

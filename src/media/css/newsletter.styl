@@ -1,5 +1,7 @@
 @import 'lib';
 
+$arrow-size = 10px;
+
 .newsletter-footer {
     background: $navbar-gray;
     display: none;
@@ -59,6 +61,32 @@
 
         input {
             margin: 0;
+        }
+    }
+
+    .error-message {
+        background-color: $action-error;
+        border: 1px solid darken($action-error, 50%);
+        border-radius: 2px;
+        color: $white;
+        display: inline-block;
+        margin-bottom: $arrow-size;
+        padding: $arrow-size;
+        position: relative;
+
+        &:after {
+            background-color: $action-error;
+            border: 1px solid darken($action-error, 50%);
+            border-radius: 2px;
+            border-width: 0 1px 1px 0;
+            bottom: ($arrow-size / 2) * -1 - 1;
+            content: '';
+            display: inline-block;
+            height: $arrow-size;
+            left: $arrow-size;
+            position: absolute;
+            transform: rotate(45deg);
+            width: $arrow-size;
         }
     }
 }
