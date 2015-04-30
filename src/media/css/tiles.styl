@@ -122,12 +122,20 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         height: $detail-icon-size;
         padding-top: 0;
     }
-    .rating-link .long:not(.unrated) {
+    .rating-link .long {
         +ltr() {
             margin-left: 12px;
         }
         +rtl() {
             margin-right: 12px;
+        }
+    }
+    .unrated .long {
+        +ltr() {
+            margin-left: 0;
+        }
+        +rtl() {
+            margin-right: 0;
         }
     }
 }
