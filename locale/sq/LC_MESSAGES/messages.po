@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22T21:25:47.513Z\n"
+"POT-Creation-Date: 2015-05-01T15:20:34.726Z\n"
 "PO-Revision-Date: 2015-04-06 16:06+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,38 @@ msgstr "Nuk u gjetën aplikacione."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Ndodhi një gabim i brendshëm shërbyesi. Ju lutemi, riprovoni më vonë."
 
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "E mëparshmja"
+
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "Pasuesi"
+
+#: /templates/feedback.html:5
+msgid "We want to hear from you!"
+msgstr "Dëshirojmë të dëgjojmë mendimet tuaja!"
+
+#: /templates/feedback.html:6
+msgid "Give us your feedback. Let us know whether we are awesome or buggy."
+msgstr "Na jepni përshtypjet tuaja. Na bëni të ditur nëse jemi të mrekullueshëm apo me të meta."
+
+#: /templates/feedback.html:7 /templates/app/abuse.html:7
+msgid "Let us know..."
+msgstr "Na e bëni të ditur..."
+
+#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+msgid "Cancel"
+msgstr "Anuloje"
+
+#: /templates/feedback.html:12
+msgid "Submit Feedback"
+msgstr "Parashtrojini Përshtypjet"
+
+#: /templates/feedback.html:28 /templates/feedback.html:31
+msgid "Get Help"
+msgstr "Merrni ndihmë"
+
 #: /templates/category.html:32
 msgid "No apps in this category"
 msgstr "Kjo kategori s’ka aplikacione"
@@ -34,29 +66,62 @@ msgstr "Kjo kategori s’ka aplikacione"
 msgid "The category you requested does not exist."
 msgstr "Kategoria që kërkuat nuk ekziston."
 
-#: /templates/compat_filter.html:3
-msgid "Show"
-msgstr "Shfaq"
+#: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
+msgid "Feedback"
+msgstr "Përshtypje"
 
-#: /templates/confirmation.html:0
-msgid "Close"
-msgstr "Mbylle"
+#: /templates/footer.html:9 /templates/footer.html:13 /templates/footer.html:17
+msgid "Support"
+msgstr "Asistencë"
 
-#: /templates/confirmation.html:3
-msgid "No"
-msgstr "Jo"
+#: /templates/footer.html:20
+msgid "Develop Apps"
+msgstr "Zhvilloni Aplikacione"
 
-#: /templates/confirmation.html:4
-msgid "Yes"
-msgstr "Po"
+#: /templates/footer.html:22
+msgid "My Submissions"
+msgstr "Parashtrimet e Mia"
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "E mëparshmja"
+#: /templates/footer.html:25 /templates/settings.html:74
+msgid "Reviewer Tools"
+msgstr "Mjete Shqyrtuesi"
 
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "Pasuesi"
+#: /templates/footer.html:28
+msgid "Lookup Tool"
+msgstr "Mjet Kërkimesh"
+
+#: /templates/footer.html:34
+msgid ""
+"Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
+"Alike License v3.0</a> or any later version."
+msgstr ""
+"Hiq atje ku <a href=\"{legal_url}\" target=\"_blank\">shënohet</a> ndryshe, lënda e këtij sajti qarkullon sipas licencës <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
+"Alike License v3.0</a> ose cilitdo version të mëvonshëm."
+
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:70 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
+#: /media/js/views/app/privacy.js:7
+msgid "Privacy Policy"
+msgstr "Rregulla Privatësie"
+
+#: /templates/footer.html:40 /templates/settings.html:71 /templates/terms.html:2 /media/js/views/terms.js:10
+msgid "Terms of Use"
+msgstr "Kushte Përdorimi"
+
+#: /templates/footer.html:42
+msgid "Report Trademark Abuse"
+msgstr "Njoftoni Dhunim Shenjash Tregtare"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Më Tepër Për Eksplorim"
+
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Që të instaloni një aplikacion Firefox, duhet të përdorni Firefox-in."
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "Shkarkojeni"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -106,98 +171,17 @@ msgstr "Hyni"
 msgid "Search Marketplace&hellip;"
 msgstr ""
 
-#: /templates/header.html:84 /templates/nav.html:35 /templates/_includes/settings_hover_desktop.html:2
+#: /templates/header.html:84 /templates/nav.html:35
 msgid "Settings"
 msgstr "Rregullime"
 
-#: /templates/header.html:85 /templates/nav.html:37 /templates/purchases.html:6 /templates/_includes/settings_hover_desktop.html:12 /media/js/views/purchases.js:10
+#: /templates/header.html:85 /templates/nav.html:37 /templates/purchases.html:6 /media/js/views/purchases.js:10
 msgid "My Apps"
 msgstr "Aplikacionet e Mia"
 
-#: /templates/header.html:86 /templates/footer.html:6 /templates/nav.html:30 /templates/_includes/settings_hover_desktop.html:16 /media/js/views/feedback.js:50
-msgid "Feedback"
-msgstr "Përshtypje"
-
-#: /templates/header.html:87 /templates/nav.html:39 /templates/settings.html:44 /templates/_includes/settings_hover_desktop.html:17
+#: /templates/header.html:87 /templates/nav.html:39 /templates/settings.html:44
 msgid "Sign Out"
 msgstr "Dilni"
-
-#: /templates/feedback.html:5
-msgid "We want to hear from you!"
-msgstr "Dëshirojmë të dëgjojmë mendimet tuaja!"
-
-#: /templates/feedback.html:6
-msgid "Give us your feedback. Let us know whether we are awesome or buggy."
-msgstr "Na jepni përshtypjet tuaja. Na bëni të ditur nëse jemi të mrekullueshëm apo me të meta."
-
-#: /templates/feedback.html:7 /templates/app/abuse.html:7
-msgid "Let us know..."
-msgstr "Na e bëni të ditur..."
-
-#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:30 /templates/ratings/flag.html:17
-msgid "Cancel"
-msgstr "Anuloje"
-
-#: /templates/feedback.html:12
-msgid "Submit Feedback"
-msgstr "Parashtrojini Përshtypjet"
-
-#: /templates/feedback.html:28 /templates/feedback.html:31
-msgid "Get Help"
-msgstr "Merrni ndihmë"
-
-#: /templates/footer.html:9 /templates/footer.html:13 /templates/footer.html:17
-msgid "Support"
-msgstr "Asistencë"
-
-#: /templates/footer.html:20
-msgid "Develop Apps"
-msgstr "Zhvilloni Aplikacione"
-
-#: /templates/footer.html:22 /templates/_includes/settings_hover_desktop.html:14
-msgid "My Submissions"
-msgstr "Parashtrimet e Mia"
-
-#: /templates/footer.html:25 /templates/settings.html:74
-msgid "Reviewer Tools"
-msgstr "Mjete Shqyrtuesi"
-
-#: /templates/footer.html:28
-msgid "Lookup Tool"
-msgstr "Mjet Kërkimesh"
-
-#: /templates/footer.html:34
-msgid ""
-"Except where otherwise <a href=\"{legal_url}\" target=\"_blank\">noted</a>, content on this site is licensed under the <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
-"Alike License v3.0</a> or any later version."
-msgstr ""
-"Hiq atje ku <a href=\"{legal_url}\" target=\"_blank\">shënohet</a> ndryshe, lënda e këtij sajti qarkullon sipas licencës <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
-"Alike License v3.0</a> ose cilitdo version të mëvonshëm."
-
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:70 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
-#: /media/js/views/app/privacy.js:7
-msgid "Privacy Policy"
-msgstr "Rregulla Privatësie"
-
-#: /templates/footer.html:40 /templates/settings.html:71 /templates/terms.html:2 /media/js/views/terms.js:10
-msgid "Terms of Use"
-msgstr "Kushte Përdorimi"
-
-#: /templates/footer.html:42
-msgid "Report Trademark Abuse"
-msgstr "Njoftoni Dhunim Shenjash Tregtare"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Më Tepër Për Eksplorim"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Që të instaloni një aplikacion Firefox, duhet të përdorni Firefox-in."
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "Shkarkojeni"
 
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
@@ -247,6 +231,26 @@ msgstr "Nuk keni aplikacione"
 msgid "Oh no!"
 msgstr "Mooos!"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Përfundim"
+msgstr[1] "<b>{n}</b> Përfundime"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> dha {n} përfundim"
+msgstr[1] "<b>\"{search_query}\"</b> dha {n} përfundime"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Nuk u gjetën përfundime"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Nuk u gjetën përfundime, riprovoni më vonë"
+
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
 msgstr "Rregullime Llogarie"
@@ -294,26 +298,6 @@ msgstr "Pajtohuni te buletini ynë."
 #: /templates/settings.html:68
 msgid "Get Involved"
 msgstr "Përfshihuni"
-
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Përfundim"
-msgstr[1] "<b>{n}</b> Përfundime"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> dha {n} përfundim"
-msgstr[1] "<b>\"{search_query}\"</b> dha {n} përfundime"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Nuk u gjetën përfundime"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Nuk u gjetën përfundime, riprovoni më vonë"
 
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
@@ -425,16 +409,6 @@ msgstr "Madhësi Kartele"
 msgid "Most Recent Version"
 msgstr "Versioni Më i Ri"
 
-#: /templates/_macros/app_tile.html:102
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Shqyrtim"
-msgstr[1] "Shqyrtime"
-
-#: /templates/_macros/app_tile.html:108
-msgid "Not yet reviewed"
-msgstr "Ende i pashqyrtuar"
-
 #: /templates/app/privacy.html:8
 msgid "Back to app"
 msgstr "Mbrapsht te aplikacioni"
@@ -447,9 +421,23 @@ msgstr "Po ngarkohen Rregullat e Privatësisë..."
 msgid "Thank you for purchasing"
 msgstr "Faleminderit për blerjen"
 
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Shqyrtim"
+msgstr[1] "Shqyrtime"
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "Ende i pashqyrtuar"
+
 #: /templates/_macros/feed_app_tile.html:14
 msgid "&mdash; {attribution}"
 msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "Shihni krejt aplikacionet"
 
 #. This app is unavailable for purchase.
 #: /templates/_macros/market_button.html:15
@@ -504,57 +492,29 @@ msgstr "Me shenjë për shqyrtim"
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Vlerësuar me {stars} nga {maxstars} yje gjithsej"
 
-#: /templates/_includes/app_list_filters.html:16
+#: /templates/_includes/app_list_filters.html:15
 msgid "Display as"
 msgstr "Shfaqe si"
 
-#: /templates/_includes/app_list_filters.html:17
+#: /templates/_includes/app_list_filters.html:16
 msgid "Toggle App Previews"
 msgstr "Shfaqni/fshihni Paraparje Aplikacioni"
-
-#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "Shihni krejt aplikacionet"
 
 #: /templates/_includes/back_to_app.html:5
 msgid "Back to {app}"
 msgstr "Mbrapsht te {app}"
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Vlerësim Lënde"
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Rregullimet tuaja në Mac mund t’jua pengojnë instalimin e aplikacioneve që nuk janë prej Mac App Store."
 
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Hollësi Vlerësimi"
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Mësoni si t’i ndryshoni."
 
 #: /templates/_includes/platform_selector.html:2
 msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
 msgstr ""
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "U instalua!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Niseni këtë aplikacion nga drejtoria juaj <b>Aplikacione</b>."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Niseni këtë aplikacion nga <b>desktopi juaj Windows</b> ose nga <b>Start &#9658; All Programs</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Niseni këtë aplikacion nga <b>pulti</b> juaj, <b>zgjedhësi i Aplikacionit</b>, ose <b>menuja e Aplikacioneve</b>."
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 Shqyrtim"
-msgstr[1] "{numReviews} Shqyrtime"
 
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
@@ -580,10 +540,6 @@ msgstr "Lexojini krejt shqyrtimet"
 msgid "The page you were looking for was not found."
 msgstr "Faqja që po kërkonit nuk i gjet."
 
-#: /templates/_includes/settings_hover_desktop.html:10
-msgid "Edit Account Settings"
-msgstr "Përpunoni Rregullime Llogarie"
-
 #: /templates/errors/date-error.html:2
 msgid "System Date Incorrect"
 msgstr "Datë Sistemi e Pasaktë"
@@ -600,13 +556,9 @@ msgstr "Ju lutemi, që të përdorni Marketplace-in, rregulloni te pajisja juaj 
 msgid "Try again"
 msgstr "Riprovoni"
 
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Rregullimet tuaja në Mac mund t’jua pengojnë instalimin e aplikacioneve që nuk janë prej Mac App Store."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Mësoni si t’i ndryshoni."
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Ndodhi një gabim."
 
 #: /templates/errors/offline-error.html:2
 msgid "Currently Offline"
@@ -620,35 +572,47 @@ msgstr "Na ndjeni, lypset të jeni i lidhur në linjë për të përdorur Market
 msgid "Try Again"
 msgstr "Riprovoni"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Ndodhi një gabim."
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 Shqyrtim"
+msgstr[1] "{numReviews} Shqyrtime"
 
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
 msgid "Edit Review"
 msgstr "Përpunoni Shqyrtimin"
 
-#: /templates/ratings/add.html:8 /templates/ratings/add.html:39 /media/js/views/app/ratings/add.js:22
+#: /templates/ratings/add.html:8 /templates/ratings/add.html:45 /media/js/views/app/ratings/add.js:22
 msgid "Leave a Review"
 msgstr "Lini një Shqyrtim"
 
-#: /templates/ratings/add.html:11
+#: /templates/ratings/add.html:10
+msgid ""
+"Please read the <a href=\"{url}\" target=\"_blank\">Review Guidelines</a> for more details about rating apps. Reviews that do not meet these guidelines may be removed by our moderation team without "
+"notice."
+msgstr ""
+
+#: /templates/ratings/add.html:16
 msgid "Rate:"
 msgstr "Vlerësoni:"
 
-#: /templates/ratings/add.html:22
+#: /templates/ratings/add.html:26
+msgid "Please select a star rating."
+msgstr ""
+
+#: /templates/ratings/add.html:28
 msgid "Tell us what you love about this app!"
 msgstr "Na tregoni se ç’ju pëlqen te ky aplikacion!"
 
-#: /templates/ratings/add.html:27
+#: /templates/ratings/add.html:33
 msgid "Only users that are logged in may submit reviews."
 msgstr "Shqyrtime mund të parashtrojnë vetëm përdoruesit që kanë bërë hyrjen."
 
-#: /templates/ratings/add.html:31
+#: /templates/ratings/add.html:37
 msgid "Update Review"
 msgstr "Përditësojeni Shqyrtimin"
 
-#: /templates/ratings/add.html:31
+#: /templates/ratings/add.html:37
 msgid "Submit Review"
 msgstr "Parashtrojeni Shqyrtimin"
 
@@ -679,6 +643,32 @@ msgstr "Nuk ka shqyrtime të këtij aplikacioni."
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Shqyrtim Aplikacioni"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Vlerësim Lënde"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Hollësi Vlerësimi"
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "U instalua!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Niseni këtë aplikacion nga drejtoria juaj <b>Aplikacione</b>."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Niseni këtë aplikacion nga <b>desktopi juaj Windows</b> ose nga <b>Start &#9658; All Programs</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Niseni këtë aplikacion nga <b>pulti</b> juaj, <b>zgjedhësi i Aplikacionit</b>, ose <b>menuja e Aplikacioneve</b>."
 
 #: /media/js/apps.js:110
 msgid "not available for your region"
@@ -1199,7 +1189,7 @@ msgstr "Nuk instalon dot aplikacione të paketuar"
 msgid "App install error: {error}"
 msgstr "Gabim instalimi aplikacioni: {error}"
 
-#: /media/js/newsletter.js:64
+#: /media/js/newsletter.js:72
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Pati një gabim gjatë parashtrimit të kërkesës suaj për pajtim te buletini"
 
@@ -1244,7 +1234,7 @@ msgstr "Shkruani një Shqyrtim"
 msgid "Sorry, there was a problem deleting the review"
 msgstr "Na ndjeni, pati një problem në fshirjen e shqyrtimit"
 
-#: /media/js/reviews.js:151 /media/js/views/feed_landing.js:15 /media/js/views/app.js:27 /media/js/views/app.js:33 /media/js/views/app.js:34 /media/js/views/app.js:39 /media/js/views/app.js:40
+#: /media/js/reviews.js:151 /media/js/views/app.js:27 /media/js/views/app.js:33 /media/js/views/app.js:34 /media/js/views/app.js:39 /media/js/views/app.js:40 /media/js/views/feed_landing.js:15
 msgid "Loading..."
 msgstr "Po ngarkohet..."
 
@@ -1324,7 +1314,7 @@ msgstr "Paketa Gjuhësore"
 msgid "Firefox OS {version}"
 msgstr "Firefox OS {version}"
 
-#: /media/js/views/search.js:178
+#: /media/js/views/search.js:165
 msgid "Search Results"
 msgstr "Përfundime Kërkimi"
 
