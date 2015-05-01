@@ -194,14 +194,24 @@ define('elements/select',
                 value: function() {
                     // Aligns options with the selected/visible top option.
                     var mediaSwitch = '(min-width: 799px)';
+                    var htmlDir = document.documentElement.getAttribute('dir');
+                    var styleAttr = htmlDir == 'rtl' ?
+                        'padding-right' : 'padding-left';
 
                     var offset;
                     if (window.matchMedia(mediaSwitch).matches) {
-                        offset = $('mkt-selected-text', this).position().left;
-                        $('mkt-option', this).css('padding-left', offset)
+                        var $selectedText = $('mkt-selected-text', this);
+                        offset = $selectedText.position().left;
+                        if (htmlDir === 'rtl') {
+                            offset += $selectedText.width();
+                            if (offset > 0) {
+                                offset = window.innerWidth - offset;
+                            }
+                        }
+                        $('mkt-option', this).css(styleAttr, offset)
                                              .removeClass('mkt-option--center');
                     } else {
-                        $('mkt-option', this).css('padding-left', 0)
+                        $('mkt-option', this).css(styleAttr, 0)
                                              .addClass('mkt-option--center');
                     }
                     return offset;
