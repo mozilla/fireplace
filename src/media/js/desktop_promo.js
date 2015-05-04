@@ -14,20 +14,22 @@ define('desktop_promo',
         },
         promoItems: [
             {
-                name: 'evernote',
-                url: urls.reverse('app', ['evernote-web']),
-                text: gettext('Get organized with Evernote.'),
+                name: 'puzzle-games',
+                url: urls.reverse(
+                    'feed_landing',
+                    ['collection', 'puzzle-gamesdesktop-essentials']),
+                text: gettext('Puzzle Games—Desktop Essentials'),
             },
             {
-                name: 'sprint-club-nitro',
-                url: urls.reverse('app', ['sprint-club-nitro']),
-                text: gettext('Race across nine increasingly difficult levels.'),
+                name: 'littlealchemy',
+                url: urls.reverse('app', ['littlealchemy']),
+                text: gettext('Play the addicting game of elements.'),
             },
             {
-                name: 'games',
-                url: urls.reverse('feed_landing', ['collection',
-                                                   'games-ent-appsdesktop']),
-                text: gettext('Games & Entertainment Apps—Desktop Essentials'),
+                name: 'cut-the-rope',
+                url: urls.reverse('app', ['cut-the-rope']),
+                text: gettext('Om Nom needs candy!'),
+
             },
             {
                 name: 'productivity',
@@ -36,9 +38,10 @@ define('desktop_promo',
                 text: gettext('Productivity Apps—Desktop Essentials'),
             },
             {
-                name: 'cut-the-rope',
-                url: urls.reverse('app', ['cut-the-rope']),
-                text: gettext('Om Nom needs candy!'),
+                name: 'games',
+                url: urls.reverse('feed_landing', ['collection',
+                                                   'games-ent-appsdesktop']),
+                text: gettext('Games & Entertainment Apps—Desktop Essentials'),
             },
         ].map(function(item) {
             item.url = utils.urlparams(item.url, {
