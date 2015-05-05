@@ -205,7 +205,7 @@ define('elements/select',
                         if (htmlDir === 'rtl') {
                             offset += $selectedText.width();
                             if (offset > 0) {
-                                offset = window.innerWidth - offset;
+                                offset = document.body.clientWidth - offset;
                             }
                         }
                         $('mkt-option', this).css(styleAttr, offset)
