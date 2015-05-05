@@ -8,14 +8,6 @@
     <input type="email" class="email newsletter-email-field" name="email" placeholder="{{ _('Email') }}" value="{{ user_email }}" required>
     <button class="button s newsletter-signup-button action newsletter-desktop">{{ _('Sign me up') }}</button>
     <div class="newsletter-details collapsed">
-      <select name="region" class="newsletter-select">
-        {% for code, region in REGIONS.items() %}
-          {% if code != 'None' %}
-            <option value="{{ code }}"{{ ' selected' if code == user_region }}>
-              {{ region }}</option>
-          {% endif %}
-        {% endfor %}
-      </select>
       <select name="lang" class="newsletter-select">
         {% for code, language in NEWSLETTER_LANGUAGES.items() %}
           {% if code != 'None' %}
