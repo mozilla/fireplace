@@ -204,7 +204,7 @@ define('elements/header',
                     '[data-header-child--input] input'), function(input) {
             setTimeout(function() {
                 input.value = '';
-                input.dispatchEvent(new InputEvent('input'));
+                input.dispatchEvent(new Event('input'));
             }, 50);
         });
     })
