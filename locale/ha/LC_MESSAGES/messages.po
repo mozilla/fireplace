@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01T15:20:34.726Z\n"
+"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
 "PO-Revision-Date: 2015-04-16 15:50+0000\n"
 "Last-Translator: ha-NG03_Bashir <bashirmudi2020@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,13 +26,13 @@ msgstr "Ba'a sami aikace-aikace ba."
 msgid "An internal server error occurred. Please try again later."
 msgstr "An sami kuskuren ciki na uwar garke. Sake gwadawa nan gaba."
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "Wanda ya gabata"
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "Babu aikace-aikace a wannan jinsi "
 
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "Na gaba"
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "Jinsin da ka nema ba ya samuwa."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -46,7 +46,7 @@ msgstr "Bamu amsarka. Sanar da mu ko mun kyautata ko mun munana."
 msgid "Let us know..."
 msgstr "Sanar da mu..."
 
-#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 msgid "Cancel"
 msgstr "Soke"
 
@@ -58,13 +58,13 @@ msgstr "Aika da amsa"
 msgid "Get Help"
 msgstr "Sami Taimako"
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "Babu aikace-aikace a wannan jinsi "
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "Wanda ya gabata"
 
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "Jinsin da ka nema ba ya samuwa."
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "Na gaba"
 
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
@@ -110,18 +110,6 @@ msgstr "Sharuɗɗa da za'a yi amfani da su"
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "Kai rahoton saɓa Alamar kasuwanci"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Ƙarin abin da za'a gano"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Dole kayi amfani da Firefox domin saka aikace-aikacen Firefox."
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "Sauke"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -183,6 +171,18 @@ msgstr "Aikace-aikace na"
 msgid "Sign Out"
 msgstr "Fita"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Dole kayi amfani da Firefox domin saka aikace-aikacen Firefox."
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "Sauke"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Ƙarin abin da za'a gano"
+
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "Ba'a sami ƙunshin yaruka ba."
@@ -203,19 +203,19 @@ msgstr "Sami labaran Firefox! Yi rijista domin wasiƙarmu ta labarai"
 msgid "Email"
 msgstr "Imel"
 
-#: /templates/newsletter.html:8 /templates/newsletter.html:35
+#: /templates/newsletter.html:8 /templates/newsletter.html:27
 msgid "Sign me up"
 msgstr "Yi min rijista"
 
-#: /templates/newsletter.html:30
+#: /templates/newsletter.html:22
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
 msgstr "Na yarda da yadda Mozilla ke gudanar da bayanai na kamar yadda aka yi bayani a <a href=\"{privacy_policy_url}\"target=\"_blank\">wannan manufa ta ƙashin kai</a> "
 
-#: /templates/newsletter.html:42
+#: /templates/newsletter.html:34
 msgid "Thanks for signing up!"
 msgstr "Mun gode da ka yi rijista! "
 
-#: /templates/newsletter.html:43
+#: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Za ka sami imel daga mozilla@e.mozilla.org, duba abin da ke cikin akwatinka domin saƙonka na farko daga garemu. Idan ba ka ganshi ba, duba rariyar tarkace."
 
@@ -230,26 +230,6 @@ msgstr "Ba ka da aikace-aikace"
 #: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:56
 msgid "Oh no!"
 msgstr "Ayya!"
-
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Sakamako<b>{n}</b> Sakamako"
-msgstr[1] ""
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "b>\"{search_query}\"</b> sakamako {n} da aka dawo da shi<b>\"{search_query}\"</b> sakamako {n} da aka dawo da su"
-msgstr[1] ""
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Ba'a sami sakamako ba"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Ba'a sami sakamako ba, sake gwadawa nan gaba"
 
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
@@ -299,6 +279,26 @@ msgstr "Yi rijista domin wasiƙarmu ta labarai."
 msgid "Get Involved"
 msgstr "Shiga a dama da kai"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Sakamako<b>{n}</b> Sakamako"
+msgstr[1] ""
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "b>\"{search_query}\"</b> sakamako {n} da aka dawo da shi<b>\"{search_query}\"</b> sakamako {n} da aka dawo da su"
+msgstr[1] ""
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Ba'a sami sakamako ba"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Ba'a sami sakamako ba, sake gwadawa nan gaba"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "Ƙididdigar Aikace-aikace"
@@ -310,6 +310,153 @@ msgstr "Ƙididdigar amfani da aikace-aikace"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Babu isasshiyar ƙididdiga da za'a nuna."
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "Nuna a matsayin"
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "Yawata Misalin Aikace-aikace"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Koma {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Tantance abin da ke ciki"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Bayanan Tantancewa"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Saitunanka na Mac na iya tsareka daga saka aikace-aikace waɗanda basu zo daga Ma'ajiyar Aikace-aikacen Mac ba."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Koyi yadda za ka canja su."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "As saka!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Ƙaddamar da wannan aikace-aikce daga <b>Aikace-aikace</b>jerin adireshi."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Ƙaddamar da aikace-aikace daga <b> fuskar kwamfuta ta Windows</b>Fara &#9658; Duk Shirye-shirye</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Ƙaddamar da wannan aikace-aikace daga <b>dash</b>mai ɗaukar aikace-aikace</b>, ko <b>Jerin bayanan Aikace-aikace.</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Gyara Nazarinka"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Gyara nazarinka"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Rubuta nazari"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Yi rijista domin nazari"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Karanta duk nazarce-nazarce"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "Nazari 1{numReviews} Nazarce-nazarce"
+msgstr[1] ""
+
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Sake nazari"
+msgstr[1] ""
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "Ba'a sake nazari ba"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "Kalli duk aikace-aikace"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:15
+msgid "Unavailable"
+msgstr "Ba'a samu ba"
+
+#: /templates/_macros/market_button.html:17
+msgid "Free"
+msgstr "Kyauta"
+
+#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
+msgid "Installed"
+msgstr "An saka"
+
+#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
+msgid "Install"
+msgstr "Saka"
+
+#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
+msgid "Open"
+msgstr "Buɗe"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Ƙara lodi"
+
+#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
+msgid "{app_name} screenshot"
+msgstr "{app_name} hoton allon fuskar kwamfuta"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Domin yayi wanda ya gabata {version}"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Gyara"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Goge"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Rahoto"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Saka alamar tuta domin nazari"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "An tantace {stars} daga cikin {maxstars} taurari"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -421,121 +568,6 @@ msgstr "Yana ɗora Manufa ta Ƙashin kai..."
 msgid "Thank you for purchasing"
 msgstr "Mun gode da siyayyarka"
 
-#: /templates/_macros/app_tile.html:102
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Sake nazari"
-msgstr[1] ""
-
-#: /templates/_macros/app_tile.html:108
-msgid "Not yet reviewed"
-msgstr "Ba'a sake nazari ba"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "Kalli duk aikace-aikace"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:15
-msgid "Unavailable"
-msgstr "Ba'a samu ba"
-
-#: /templates/_macros/market_button.html:17
-msgid "Free"
-msgstr "Kyauta"
-
-#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
-msgid "Installed"
-msgstr "An saka"
-
-#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
-msgid "Install"
-msgstr "Saka"
-
-#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
-msgid "Open"
-msgstr "Buɗe"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Ƙara lodi"
-
-#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
-msgid "{app_name} screenshot"
-msgstr "{app_name} hoton allon fuskar kwamfuta"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Domin yayi wanda ya gabata {version}"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Gyara"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Goge"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Rahoto"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "Saka alamar tuta domin nazari"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "An tantace {stars} daga cikin {maxstars} taurari"
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "Nuna a matsayin"
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "Yawata Misalin Aikace-aikace"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Koma {app}"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Saitunanka na Mac na iya tsareka daga saka aikace-aikace waɗanda basu zo daga Ma'ajiyar Aikace-aikacen Mac ba."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Koyi yadda za ka canja su."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Gyara Nazarinka"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Gyara nazarinka"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Rubuta nazari"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Yi rijista domin nazari"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Karanta duk nazarce-nazarce"
-
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
 msgstr "Shafin da ka ke nema ba'a same shi ba."
@@ -571,12 +603,6 @@ msgstr "Yi haƙuri, ka na bukatar kasancewa a kan layi domin shiga Marketplace."
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Sake gwadawa"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "Nazari 1{numReviews} Nazarce-nazarce"
-msgstr[1] ""
 
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
 msgid "Edit Review"
@@ -644,32 +670,6 @@ msgstr "Wannan aikin ba shi da nazari"
 msgid "App Review"
 msgstr "Nazarin aiki"
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Tantance abin da ke ciki"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Bayanan Tantancewa"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "As saka!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Ƙaddamar da wannan aikace-aikce daga <b>Aikace-aikace</b>jerin adireshi."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Ƙaddamar da aikace-aikace daga <b> fuskar kwamfuta ta Windows</b>Fara &#9658; Duk Shirye-shirye</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Ƙaddamar da wannan aikace-aikace daga <b>dash</b>mai ɗaukar aikace-aikace</b>, ko <b>Jerin bayanan Aikace-aikace.</b>."
-
 #: /media/js/apps.js:110
 msgid "not available for your region"
 msgstr ""
@@ -677,6 +677,24 @@ msgstr ""
 #: /media/js/apps.js:115
 msgid "not available for your platform"
 msgstr ""
+
+#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "An soke biya."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:117
+msgid "Purchasing"
+msgstr "Siyayya"
+
+#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Yi haƙuri, mun sami matsala wajen ɗauko bayanin wannan aikace-aikace. Sake gwadawa nan gaba."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/apps_buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "Sakawa ta gagara. Sake gwadawa nan gaba."
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -750,24 +768,6 @@ msgstr "Tafiye-tafiye"
 msgid "Utilities"
 msgstr "Kayayyaki"
 
-#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "An soke biya."
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:117
-msgid "Purchasing"
-msgstr "Siyayya"
-
-#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Yi haƙuri, mun sami matsala wajen ɗauko bayanin wannan aikace-aikace. Sake gwadawa nan gaba."
-
-#. App's install failed, but problem is temporary.
-#: /media/js/apps_buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "Sakawa ta gagara. Sake gwadawa nan gaba."
-
 #: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
 msgid "All Platforms"
 msgstr "Duk dandali"
@@ -833,25 +833,25 @@ msgstr "Balagaggu 17+"
 msgid "Adults Only 18+"
 msgstr "Manya Kawai 18+"
 
-#: /media/js/desktop_promo.js:19
-msgid "Get organized with Evernote."
+#: /media/js/desktop_promo.js:21
+msgid "Puzzle Games—Desktop Essentials"
 msgstr ""
 
-#: /media/js/desktop_promo.js:24
-msgid "Race across nine increasingly difficult levels."
+#: /media/js/desktop_promo.js:26
+msgid "Play the addicting game of elements."
 msgstr ""
 
-#: /media/js/desktop_promo.js:30
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Aikace-aikacen Wasanni & Ɗebe kewa—Mahimman Fuskar Kwamfuta"
+#: /media/js/desktop_promo.js:31
+msgid "Om Nom needs candy!"
+msgstr ""
 
-#: /media/js/desktop_promo.js:36
+#: /media/js/desktop_promo.js:38
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Aikace-aikacen Haɓakawa—Jiga-jigan Fuskar kwamfuta"
 
-#: /media/js/desktop_promo.js:41
-msgid "Om Nom needs candy!"
-msgstr ""
+#: /media/js/desktop_promo.js:44
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Aikace-aikacen Wasanni & Ɗebe kewa—Mahimman Fuskar Kwamfuta"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"

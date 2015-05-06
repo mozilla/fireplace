@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01T15:20:34.726Z\n"
+"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
 "PO-Revision-Date: 2015-03-31 17:51+0000\n"
 "Last-Translator: Selim <selim@sum.lu>\n"
 "Language-Team: none\n"
@@ -26,13 +26,13 @@ msgstr "Hiç uygulama bulunamadı."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Bir iç sunucu hatası oluştu. Lütfen sonra tekrar deneyin."
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "Önceki"
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "Bu kategoride uygulama yok"
 
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "İleri"
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "İstediğiniz kategori mevcut değil."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -46,7 +46,7 @@ msgstr "Geri bildiriminizi bizimle paylaşın. Her şey yolunda mı, hatalarım�
 msgid "Let us know..."
 msgstr ""
 
-#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 msgid "Cancel"
 msgstr "İptal"
 
@@ -58,13 +58,13 @@ msgstr ""
 msgid "Get Help"
 msgstr "Yardım alın"
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "Bu kategoride uygulama yok"
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "Önceki"
 
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "İstediğiniz kategori mevcut değil."
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "İleri"
 
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
@@ -110,18 +110,6 @@ msgstr "Kullanım Koşulları"
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "Tescilli marka suistimali bildir"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Keşfedilecek şeyler"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Firefox uygulamalarını yüklemek için Firefox kullanmalısınız."
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "İndir"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -183,6 +171,18 @@ msgstr "Uygulamalarım"
 msgid "Sign Out"
 msgstr "Oturumu kapat"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Firefox uygulamalarını yüklemek için Firefox kullanmalısınız."
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "İndir"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Keşfedilecek şeyler"
+
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "Hiç dil paketi bulunamadı."
@@ -203,19 +203,19 @@ msgstr "Firefox haberlerini alın! Bültenimize kaydolun"
 msgid "Email"
 msgstr "E-posta"
 
-#: /templates/newsletter.html:8 /templates/newsletter.html:35
+#: /templates/newsletter.html:8 /templates/newsletter.html:27
 msgid "Sign me up"
 msgstr "Kaydol"
 
-#: /templates/newsletter.html:30
+#: /templates/newsletter.html:22
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
 msgstr "Mozilla'nın bilgilerimi<a href=\"{privacy_policy_url}\" target=\"_blank\">bu Gizlilik İlkelerinde</a> açıklandığı şekilde kullanmasına izin veriyorum."
 
-#: /templates/newsletter.html:42
+#: /templates/newsletter.html:34
 msgid "Thanks for signing up!"
 msgstr "Kaydolduğunuz için teşekkürler!"
 
-#: /templates/newsletter.html:43
+#: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "mozilla@e.mozilla.org adresinden bir e-posta alacaksınız. Lütfen gelen kutunuzu kontrol edin. E-postayı göremezseniz spam filtrenizi kontrol edin."
 
@@ -230,25 +230,6 @@ msgstr "Hiç uygulamanız yok"
 #: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:56
 msgid "Oh no!"
 msgstr "Olamaz!"
-
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> sonuç"
-msgstr[1] "<b>{n}</b> sonuç"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> için {n} sonuç"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Sonuç bulunamadı"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Sonuç bulunamadı. Daha sonra tekrar deneyin."
 
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
@@ -298,6 +279,25 @@ msgstr "Bültenimize kaydolun."
 msgid "Get Involved"
 msgstr "Aramıza Katılın"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> sonuç"
+msgstr[1] "<b>{n}</b> sonuç"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> için {n} sonuç"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Sonuç bulunamadı"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Sonuç bulunamadı. Daha sonra tekrar deneyin."
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "Uygulama istatistikleri"
@@ -309,6 +309,151 @@ msgstr "Uygulama kullanım istatistikleri"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Gösterilecek kadar istatistik yok."
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr ""
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr ""
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "{app} uygulamasına dön"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "İçerik uygunluğu"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Puanlama ayrıntıları"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Mac ayarlarınız Mac App Store'dan gelmeyen uygulamaları yüklemenizi engelliyor olabilir."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Nasıl değiştirebileceğinizi öğrenin."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Yüklendi!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Bu uygulamayı <b>Uygulamalar</b> klasörünüzden çalıştırın."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Bu uygulamayı <b>Windows masaüstünüzden</b> veya <b>Başlat &#9658; Tüm Programlar</b>'dan çalıştırın."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Bu uygulamayı <b>dock</b>'unuzdan, <b>Uygulama seçiciden</b> veya <b>Uygulamalar menüsünden</b> çalıştırın."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "İncelemenizi düzenleyin"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "İncelemenizi düzenleyin"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "İnceleme yazın"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "İncelemek için oturum açın"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Tüm incelemeleri oku"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "{numReviews} inceleme"
+
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "İnceleme"
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "Henüz incelenmedi"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "Tüm uygulamaları gör"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:15
+msgid "Unavailable"
+msgstr "Kullanılamaz"
+
+#: /templates/_macros/market_button.html:17
+msgid "Free"
+msgstr "Ücretsiz"
+
+#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
+msgid "Installed"
+msgstr "Yüklendi"
+
+#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
+msgid "Install"
+msgstr "Yükle"
+
+#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
+msgid "Open"
+msgstr "Aç"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Daha fazla yükle"
+
+#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
+msgid "{app_name} screenshot"
+msgstr "{app_name} ekran görüntüsü"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Eski {version} sürümü için"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Düzenle"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Sil"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Raporla"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "İncelenmek üzere işaretlendi"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "{maxstars} üzerinden {stars} puan almış"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -420,120 +565,6 @@ msgstr "Gizlilik ilkeleri yükleniyor..."
 msgid "Thank you for purchasing"
 msgstr "Satın aldığınız için teşekkürler"
 
-#: /templates/_macros/app_tile.html:102
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "İnceleme"
-
-#: /templates/_macros/app_tile.html:108
-msgid "Not yet reviewed"
-msgstr "Henüz incelenmedi"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "Tüm uygulamaları gör"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:15
-msgid "Unavailable"
-msgstr "Kullanılamaz"
-
-#: /templates/_macros/market_button.html:17
-msgid "Free"
-msgstr "Ücretsiz"
-
-#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
-msgid "Installed"
-msgstr "Yüklendi"
-
-#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
-msgid "Install"
-msgstr "Yükle"
-
-#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
-msgid "Open"
-msgstr "Aç"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Daha fazla yükle"
-
-#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
-msgid "{app_name} screenshot"
-msgstr "{app_name} ekran görüntüsü"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Eski {version} sürümü için"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Düzenle"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Sil"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Raporla"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "İncelenmek üzere işaretlendi"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "{maxstars} üzerinden {stars} puan almış"
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr ""
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr ""
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "{app} uygulamasına dön"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Mac ayarlarınız Mac App Store'dan gelmeyen uygulamaları yüklemenizi engelliyor olabilir."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Nasıl değiştirebileceğinizi öğrenin."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "İncelemenizi düzenleyin"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "İncelemenizi düzenleyin"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "İnceleme yazın"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "İncelemek için oturum açın"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Tüm incelemeleri oku"
-
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
 msgstr "Aradığınız sayfa bulunamadı."
@@ -569,11 +600,6 @@ msgstr "Üzgünüz, Marketplace'e erişmek için çevrimiçi olmalısınız."
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Tekrar dene"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "{numReviews} inceleme"
 
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
 msgid "Edit Review"
@@ -641,32 +667,6 @@ msgstr ""
 msgid "App Review"
 msgstr "Uygulama incelemesi"
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "İçerik uygunluğu"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Puanlama ayrıntıları"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Yüklendi!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Bu uygulamayı <b>Uygulamalar</b> klasörünüzden çalıştırın."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Bu uygulamayı <b>Windows masaüstünüzden</b> veya <b>Başlat &#9658; Tüm Programlar</b>'dan çalıştırın."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Bu uygulamayı <b>dock</b>'unuzdan, <b>Uygulama seçiciden</b> veya <b>Uygulamalar menüsünden</b> çalıştırın."
-
 #: /media/js/apps.js:110
 msgid "not available for your region"
 msgstr ""
@@ -674,6 +674,24 @@ msgstr ""
 #: /media/js/apps.js:115
 msgid "not available for your platform"
 msgstr ""
+
+#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Ödeme iptal edildi."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:117
+msgid "Purchasing"
+msgstr "Satın alınıyor"
+
+#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Bu uygulamanın verilerini çekerken bir sorun yaşadık. Lütfen daha sonra tekrar deneyin."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/apps_buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "Yükleme başarısız oldu. Lütfen daha sonra tekrar deneyin."
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -747,24 +765,6 @@ msgstr "Seyahat"
 msgid "Utilities"
 msgstr "Araçlar"
 
-#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Ödeme iptal edildi."
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:117
-msgid "Purchasing"
-msgstr "Satın alınıyor"
-
-#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Bu uygulamanın verilerini çekerken bir sorun yaşadık. Lütfen daha sonra tekrar deneyin."
-
-#. App's install failed, but problem is temporary.
-#: /media/js/apps_buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "Yükleme başarısız oldu. Lütfen daha sonra tekrar deneyin."
-
 #: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
 msgid "All Platforms"
 msgstr ""
@@ -830,24 +830,24 @@ msgstr "Yetişkinlikler 17+"
 msgid "Adults Only 18+"
 msgstr "Yalnızca yetişkinler 18+"
 
-#: /media/js/desktop_promo.js:19
-msgid "Get organized with Evernote."
+#: /media/js/desktop_promo.js:21
+msgid "Puzzle Games—Desktop Essentials"
 msgstr ""
 
-#: /media/js/desktop_promo.js:24
-msgid "Race across nine increasingly difficult levels."
+#: /media/js/desktop_promo.js:26
+msgid "Play the addicting game of elements."
 msgstr ""
 
-#: /media/js/desktop_promo.js:30
-msgid "Games & Entertainment Apps—Desktop Essentials"
+#: /media/js/desktop_promo.js:31
+msgid "Om Nom needs candy!"
 msgstr ""
 
-#: /media/js/desktop_promo.js:36
+#: /media/js/desktop_promo.js:38
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Verimlilik uygulamaları—Masaüstü için şart"
 
-#: /media/js/desktop_promo.js:41
-msgid "Om Nom needs candy!"
+#: /media/js/desktop_promo.js:44
+msgid "Games & Entertainment Apps—Desktop Essentials"
 msgstr ""
 
 #: /media/js/edbrands.js:33

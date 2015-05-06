@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01T15:20:34.726Z\n"
+"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
 "PO-Revision-Date: 2015-05-02 21:03+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -26,13 +26,13 @@ msgstr "没有找到应用。"
 msgid "An internal server error occurred. Please try again later."
 msgstr "内部服务器出错，请稍后再试。"
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "上一页"
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "此类别下无应用"
 
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "下一页"
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "您请求的类别不存在。"
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -46,7 +46,7 @@ msgstr "请留下您的意见。让我们知道我们哪里做得好或不够好
 msgid "Let us know..."
 msgstr "让我们知道..."
 
-#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 msgid "Cancel"
 msgstr "取消"
 
@@ -58,13 +58,13 @@ msgstr "提交反馈"
 msgid "Get Help"
 msgstr "获取帮助"
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "此类别下无应用"
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "上一页"
 
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "您请求的类别不存在。"
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "下一页"
 
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
@@ -108,18 +108,6 @@ msgstr "使用条款"
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "报告商标侵权。"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "更多可探索的东西"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "您必须使用 Firefox 才能安装 Firefox 应用程序。"
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "下载"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -181,6 +169,18 @@ msgstr "我的应用"
 msgid "Sign Out"
 msgstr "退出"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "您必须使用 Firefox 才能安装 Firefox 应用程序。"
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "下载"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "更多可探索的东西"
+
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "没有找到语言包。"
@@ -201,19 +201,19 @@ msgstr "获得 Firefox 新闻！注册我们的新闻通讯"
 msgid "Email"
 msgstr "电子邮件"
 
-#: /templates/newsletter.html:8 /templates/newsletter.html:35
+#: /templates/newsletter.html:8 /templates/newsletter.html:27
 msgid "Sign me up"
 msgstr "我要注册"
 
-#: /templates/newsletter.html:30
+#: /templates/newsletter.html:22
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
 msgstr "我同意 Mozilla 按照<a href=\"{privacy_policy_url}\" target=\"_blank\">隐私政策</a>中所述的方式处理我的信息。"
 
-#: /templates/newsletter.html:42
+#: /templates/newsletter.html:34
 msgid "Thanks for signing up!"
 msgstr "感谢您的注册！"
 
-#: /templates/newsletter.html:43
+#: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "您会收到一封来自 mozilla@e.mozilla.org 的邮件，请检查您的收件箱，找到我们发给您的第一封邮件。如果找不到，记得检查你的垃圾邮件过滤器。"
 
@@ -228,24 +228,6 @@ msgstr "您尚无应用"
 #: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:56
 msgid "Oh no!"
 msgstr "噢不！"
-
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b>条结果"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> 返回了 {n} 条结果"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "找不到结果"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "未找到结果，请稍后再试"
 
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
@@ -295,6 +277,24 @@ msgstr "注册我们的新闻通讯。"
 msgid "Get Involved"
 msgstr "参与我们"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b>条结果"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> 返回了 {n} 条结果"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "找不到结果"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "未找到结果，请稍后再试"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "应用统计信息"
@@ -306,6 +306,151 @@ msgstr "应用使用量统计"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "没有足够的统计信息可供显示。"
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "显示为"
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "切换应用预览"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "返回 {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "内容评级"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "评级详情"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "您的 Mac 设置可能阻止了您从 Mac 应用商店以外的地方安装应用。"
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "了解如何更改它们。"
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "为我显示 <mkt-selected-text></mkt-selected-text> 的所有内容"
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "安装完成！"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "从您的<b>应用程序</b> 目录中启动此应用。"
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "从您的 <b>Windows桌面</b> 或 <b>开始菜单 &#9658; 所有程序</b> 中启动此应用。"
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "从您的<b>dash</b>、<b>应用程序选择器</b>或者<b>应用程序菜单</b>中启动此应用。"
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "编辑您的评论"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "编辑您的评论"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "撰写评论"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "登录以评论"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "阅读所有评论"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "{numReviews} 条评论"
+
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "评论"
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "尚无评论"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "查看所有应用"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:15
+msgid "Unavailable"
+msgstr "不可用"
+
+#: /templates/_macros/market_button.html:17
+msgid "Free"
+msgstr "免费版"
+
+#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
+msgid "Installed"
+msgstr "已安装"
+
+#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
+msgid "Install"
+msgstr "安装"
+
+#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
+msgid "Open"
+msgstr "打开"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "载入更多"
+
+#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
+msgid "{app_name} screenshot"
+msgstr "{app_name} 屏幕截图"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "以前的版本 {version}"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "编辑"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "删除"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "报告"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "已标记评论"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "评{stars}星（满分{maxstars}星）"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -417,120 +562,6 @@ msgstr "正在加载隐私权政策..."
 msgid "Thank you for purchasing"
 msgstr "感谢您的购买"
 
-#: /templates/_macros/app_tile.html:102
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "评论"
-
-#: /templates/_macros/app_tile.html:108
-msgid "Not yet reviewed"
-msgstr "尚无评论"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "查看所有应用"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:15
-msgid "Unavailable"
-msgstr "不可用"
-
-#: /templates/_macros/market_button.html:17
-msgid "Free"
-msgstr "免费版"
-
-#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
-msgid "Installed"
-msgstr "已安装"
-
-#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
-msgid "Install"
-msgstr "安装"
-
-#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
-msgid "Open"
-msgstr "打开"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "载入更多"
-
-#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
-msgid "{app_name} screenshot"
-msgstr "{app_name} 屏幕截图"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "以前的版本 {version}"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "编辑"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "删除"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "报告"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "已标记评论"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "评{stars}星（满分{maxstars}星）"
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "显示为"
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "切换应用预览"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "返回 {app}"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "您的 Mac 设置可能阻止了您从 Mac 应用商店以外的地方安装应用。"
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "了解如何更改它们。"
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "为我显示 <mkt-selected-text></mkt-selected-text> 的所有内容"
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "编辑您的评论"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "编辑您的评论"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "撰写评论"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "登录以评论"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "阅读所有评论"
-
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
 msgstr "找不到您想开启的页面。"
@@ -567,11 +598,6 @@ msgstr "抱歉，您需要在线才能访问应用市场。"
 msgid "Try Again"
 msgstr "重试"
 
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "{numReviews} 条评论"
-
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
 msgid "Edit Review"
 msgstr "编辑评论"
@@ -584,9 +610,7 @@ msgstr "留下一条评论"
 msgid ""
 "Please read the <a href=\"{url}\" target=\"_blank\">Review Guidelines</a> for more details about rating apps. Reviews that do not meet these guidelines may be removed by our moderation team without "
 "notice."
-msgstr ""
-"请阅读<a href=\"{url}\" "
-"target=\"_blank\">评论指南</a>了解更多有关评论应用的信息。不符合这些准则的评论可能被我们的管理团队不经通知直接移除。"
+msgstr "请阅读<a href=\"{url}\" target=\"_blank\">评论指南</a>了解更多有关评论应用的信息。不符合这些准则的评论可能被我们的管理团队不经通知直接移除。"
 
 #: /templates/ratings/add.html:16
 msgid "Rate:"
@@ -640,32 +664,6 @@ msgstr "此应用尚无评论。"
 msgid "App Review"
 msgstr "应用评价"
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "内容评级"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "评级详情"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "安装完成！"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "从您的<b>应用程序</b> 目录中启动此应用。"
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "从您的 <b>Windows桌面</b> 或 <b>开始菜单 &#9658; 所有程序</b> 中启动此应用。"
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "从您的<b>dash</b>、<b>应用程序选择器</b>或者<b>应用程序菜单</b>中启动此应用。"
-
 #: /media/js/apps.js:110
 msgid "not available for your region"
 msgstr "您的区域不可用"
@@ -673,6 +671,24 @@ msgstr "您的区域不可用"
 #: /media/js/apps.js:115
 msgid "not available for your platform"
 msgstr "您的平台不可用"
+
+#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "付款已取消。"
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:117
+msgid "Purchasing"
+msgstr "正在购买"
+
+#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "抱歉，获取此应用的数据时遇到问题。请稍候再试。"
+
+#. App's install failed, but problem is temporary.
+#: /media/js/apps_buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "安装失败。请稍后重试。"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -746,24 +762,6 @@ msgstr "旅行"
 msgid "Utilities"
 msgstr "工具"
 
-#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "付款已取消。"
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:117
-msgid "Purchasing"
-msgstr "正在购买"
-
-#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "抱歉，获取此应用的数据时遇到问题。请稍候再试。"
-
-#. App's install failed, but problem is temporary.
-#: /media/js/apps_buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "安装失败。请稍后重试。"
-
 #: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
 msgid "All Platforms"
 msgstr "所有平台"
@@ -829,25 +827,25 @@ msgstr "17岁以上"
 msgid "Adults Only 18+"
 msgstr "18岁以上成人"
 
-#: /media/js/desktop_promo.js:19
-msgid "Get organized with Evernote."
-msgstr "协助管理 Evernote。"
+#: /media/js/desktop_promo.js:21
+msgid "Puzzle Games—Desktop Essentials"
+msgstr ""
 
-#: /media/js/desktop_promo.js:24
-msgid "Race across nine increasingly difficult levels."
-msgstr "难度逐渐增加，九个级别的挑战。"
+#: /media/js/desktop_promo.js:26
+msgid "Play the addicting game of elements."
+msgstr ""
 
-#: /media/js/desktop_promo.js:30
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "游戏和娱乐应用—桌面版精选"
+#: /media/js/desktop_promo.js:31
+msgid "Om Nom needs candy!"
+msgstr "小怪物想吃糖！"
 
-#: /media/js/desktop_promo.js:36
+#: /media/js/desktop_promo.js:38
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "生产力应用—桌面版精选"
 
-#: /media/js/desktop_promo.js:41
-msgid "Om Nom needs candy!"
-msgstr "小怪物想吃糖！"
+#: /media/js/desktop_promo.js:44
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "游戏和娱乐应用—桌面版精选"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"

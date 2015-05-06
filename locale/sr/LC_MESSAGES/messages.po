@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01T15:20:34.726Z\n"
+"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
 "PO-Revision-Date: 2015-03-20 20:39+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: none\n"
@@ -26,13 +26,13 @@ msgstr "Нису пронађене апликације."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Догодила се грешка на серверу. Молимо Вас покушајте касније."
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "Претходно"
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "Нема апликација у овој категорији"
 
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "Следећа"
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "Категорија коју сте затражили не постоји."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -46,7 +46,7 @@ msgstr "Дајте нам повратне информације. Јавите 
 msgid "Let us know..."
 msgstr "Реците нам..."
 
-#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 msgid "Cancel"
 msgstr "Откажи"
 
@@ -58,13 +58,13 @@ msgstr "Пошаљи повратне информације"
 msgid "Get Help"
 msgstr "Добави помоћ"
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "Нема апликација у овој категорији"
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "Претходно"
 
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "Категорија коју сте затражили не постоји."
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "Следећа"
 
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
@@ -110,18 +110,6 @@ msgstr "Услови коришћења"
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "Пријави злоупотребу робне марке"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Још за истраживање"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Морате користити Firefox како би инсталирали Firefox апликације."
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "Преузми"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -183,6 +171,18 @@ msgstr "Моје апликације"
 msgid "Sign Out"
 msgstr "Одјави се"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Морате користити Firefox како би инсталирали Firefox апликације."
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "Преузми"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Још за истраживање"
+
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "Нису пронађени језички пакети."
@@ -203,19 +203,19 @@ msgstr "Добијајте Firefox вести! Пријавите се за на
 msgid "Email"
 msgstr "Адреса е-поште"
 
-#: /templates/newsletter.html:8 /templates/newsletter.html:35
+#: /templates/newsletter.html:8 /templates/newsletter.html:27
 msgid "Sign me up"
 msgstr "Пријави ме"
 
-#: /templates/newsletter.html:30
+#: /templates/newsletter.html:22
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
 msgstr "Слажем се са тим да Mozilla користи моје информације као што је објашњено у <a href=\"{privacy_policy_url}\" target=\"_blank\">овој полиси приватности</a>."
 
-#: /templates/newsletter.html:42
+#: /templates/newsletter.html:34
 msgid "Thanks for signing up!"
 msgstr "Хвала Вам што сте се пријавили!"
 
-#: /templates/newsletter.html:43
+#: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Примићете е-пошту од mozilla@e.mozilla.org, молимо Вас проверите Ваше сандуче за Вашу прву е-пошту од нас. Ако је не видите, проверите спам филтер."
 
@@ -230,28 +230,6 @@ msgstr "Немате апликација"
 #: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:56
 msgid "Oh no!"
 msgstr "Ох, не!"
-
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> резултат"
-msgstr[1] "<b>{n}</b> резултатa"
-msgstr[2] "<b>{n}</b> резултатa"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> је вратио {n} резултат"
-msgstr[1] "<b>\"{search_query}\"</b> је вратио {n} резултата"
-msgstr[2] "<b>\"{search_query}\"</b> је вратио {n} резултата"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Нема резултата"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Нема резултата - покушајте касније"
 
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
@@ -301,6 +279,28 @@ msgstr "Пријавите се за наш билтен."
 msgid "Get Involved"
 msgstr "Прикључите се"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> резултат"
+msgstr[1] "<b>{n}</b> резултатa"
+msgstr[2] "<b>{n}</b> резултатa"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> је вратио {n} резултат"
+msgstr[1] "<b>\"{search_query}\"</b> је вратио {n} резултата"
+msgstr[2] "<b>\"{search_query}\"</b> је вратио {n} резултата"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Нема резултата"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Нема резултата - покушајте касније"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "Статистике апликације"
@@ -312,6 +312,155 @@ msgstr "Статистике коришћења апликације"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Нема довољно статистика да би се приказало."
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "Прикажи као"
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "Прикажи приказе апликација"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Назад на {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Оцена садржаја"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Информације о оцењивању"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Ваше Mac поставке ће Вас можда спречити од инсталирања апликација које не долазе са Mac App Store."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Научите како да их промените."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Инсталирано!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Покрените ову апликацију из фасцикле <b>Апликације</b>."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Покрените ову апликацију са своје <b>Windows радне површине</b> или <b>Start &#9658; All Program</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Покрените ову апликацију са своје <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Уредите Вашу рецензију"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Уредите Вашу рецензију"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Напишите рецензију"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Пријавите се да бисте обавили рецензију"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Прочитај све рецензије"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 рецензија"
+msgstr[1] "{numReviews} рецензије"
+msgstr[2] "{numReviews} рецензија"
+
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Преглед"
+msgstr[1] "Прегледа"
+msgstr[2] "Прегледа"
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "Није још прегледано"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "Прикажи све апликације"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:15
+msgid "Unavailable"
+msgstr "Недоступна"
+
+#: /templates/_macros/market_button.html:17
+msgid "Free"
+msgstr "Бесплатно"
+
+#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
+msgid "Installed"
+msgstr "Инсталирано"
+
+#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
+msgid "Install"
+msgstr "Инсталирај"
+
+#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
+msgid "Open"
+msgstr "Отвори"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Учитај више"
+
+#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
+msgid "{app_name} screenshot"
+msgstr "{app_name} снимак екрана"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "За претходну верзију {version}"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Измени"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Обриши"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Пријави"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Означено за преглед"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Оцењено са {stars} од {maxstars} звездица"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -423,122 +572,6 @@ msgstr "Учитавање полисе о приватности..."
 msgid "Thank you for purchasing"
 msgstr "Хвала на куповини"
 
-#: /templates/_macros/app_tile.html:102
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Преглед"
-msgstr[1] "Прегледа"
-msgstr[2] "Прегледа"
-
-#: /templates/_macros/app_tile.html:108
-msgid "Not yet reviewed"
-msgstr "Није још прегледано"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "Прикажи све апликације"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:15
-msgid "Unavailable"
-msgstr "Недоступна"
-
-#: /templates/_macros/market_button.html:17
-msgid "Free"
-msgstr "Бесплатно"
-
-#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
-msgid "Installed"
-msgstr "Инсталирано"
-
-#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
-msgid "Install"
-msgstr "Инсталирај"
-
-#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
-msgid "Open"
-msgstr "Отвори"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Учитај више"
-
-#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
-msgid "{app_name} screenshot"
-msgstr "{app_name} снимак екрана"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "За претходну верзију {version}"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Измени"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Обриши"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Пријави"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "Означено за преглед"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Оцењено са {stars} од {maxstars} звездица"
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "Прикажи као"
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "Прикажи приказе апликација"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Назад на {app}"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Ваше Mac поставке ће Вас можда спречити од инсталирања апликација које не долазе са Mac App Store."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Научите како да их промените."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Уредите Вашу рецензију"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Уредите Вашу рецензију"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Напишите рецензију"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Пријавите се да бисте обавили рецензију"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Прочитај све рецензије"
-
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
 msgstr "Страница коју сте тражили није пронађена."
@@ -574,13 +607,6 @@ msgstr "Жао нам је, морате бити на мрежи да бист�
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Покушај поново"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 рецензија"
-msgstr[1] "{numReviews} рецензије"
-msgstr[2] "{numReviews} рецензија"
 
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
 msgid "Edit Review"
@@ -648,32 +674,6 @@ msgstr "Ова апликација нема рецензије."
 msgid "App Review"
 msgstr "Рецензија апликације"
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Оцена садржаја"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Информације о оцењивању"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Инсталирано!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Покрените ову апликацију из фасцикле <b>Апликације</b>."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Покрените ову апликацију са своје <b>Windows радне површине</b> или <b>Start &#9658; All Program</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Покрените ову апликацију са своје <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-
 #: /media/js/apps.js:110
 msgid "not available for your region"
 msgstr ""
@@ -681,6 +681,24 @@ msgstr ""
 #: /media/js/apps.js:115
 msgid "not available for your platform"
 msgstr ""
+
+#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Плаћање је отказано."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:117
+msgid "Purchasing"
+msgstr "Куповина"
+
+#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Жао нам је, имали смо проблема при прикупљању података ове апликације. Молимо Вас покушајте касније."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/apps_buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "Инсталација није успешна. Молимо Вас покушајте касније."
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -754,24 +772,6 @@ msgstr "Путовањa"
 msgid "Utilities"
 msgstr "Услужне апликације"
 
-#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Плаћање је отказано."
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:117
-msgid "Purchasing"
-msgstr "Куповина"
-
-#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Жао нам је, имали смо проблема при прикупљању података ове апликације. Молимо Вас покушајте касније."
-
-#. App's install failed, but problem is temporary.
-#: /media/js/apps_buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "Инсталација није успешна. Молимо Вас покушајте касније."
-
 #: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
 msgid "All Platforms"
 msgstr ""
@@ -837,25 +837,25 @@ msgstr "Зрели 17+"
 msgid "Adults Only 18+"
 msgstr "Одрасли само 18+"
 
-#: /media/js/desktop_promo.js:19
-msgid "Get organized with Evernote."
+#: /media/js/desktop_promo.js:21
+msgid "Puzzle Games—Desktop Essentials"
 msgstr ""
 
-#: /media/js/desktop_promo.js:24
-msgid "Race across nine increasingly difficult levels."
+#: /media/js/desktop_promo.js:26
+msgid "Play the addicting game of elements."
 msgstr ""
 
-#: /media/js/desktop_promo.js:30
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Игрице и апликације за забаву — Основне десктоп"
+#: /media/js/desktop_promo.js:31
+msgid "Om Nom needs candy!"
+msgstr ""
 
-#: /media/js/desktop_promo.js:36
+#: /media/js/desktop_promo.js:38
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Апликације за продуктивност—Основне десктоп"
 
-#: /media/js/desktop_promo.js:41
-msgid "Om Nom needs candy!"
-msgstr ""
+#: /media/js/desktop_promo.js:44
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Игрице и апликације за забаву — Основне десктоп"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"

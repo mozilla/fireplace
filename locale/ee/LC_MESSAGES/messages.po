@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01T15:20:34.726Z\n"
+"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
 "PO-Revision-Date: 2015-04-16 11:50+0000\n"
 "Last-Translator: ee-GH01_Edzordzi <edzordzigh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,13 +26,13 @@ msgstr "Womekpɔ appwo o."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Vodada aɖe va. Meɖekuku gawoe emegbe."
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "Si va yi"
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "App aɖeke mele ɖoɖo sia me o."
 
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "Si gbɔna"
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "Ɖoɖo si ne bia la meli o."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -46,7 +46,7 @@ msgstr "Nami wo nutsotso. Na ne mianya be enyo paa alo menye nenema o."
 msgid "Let us know..."
 msgstr "Na mianya…"
 
-#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 msgid "Cancel"
 msgstr "Tefli ɖeme"
 
@@ -58,13 +58,13 @@ msgstr "Ɖo wo nutsotsoɖa"
 msgid "Get Help"
 msgstr "Xɔ kpeɖeŋu"
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "App aɖeke mele ɖoɖo sia me o."
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "Si va yi"
 
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "Ɖoɖo si ne bia la meli o."
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "Si gbɔna"
 
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
@@ -110,18 +110,6 @@ msgstr "Zaza ƒe ɖoɖowo"
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "Na nutsotso le Trademark si wo abuse ŋu"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Bubuwo li na le ŋku ɖo"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Edzebe naza Firefox akɔ install Firefox ƒe appwo."
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "Download"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -183,6 +171,18 @@ msgstr "App nye wo"
 msgid "Sign Out"
 msgstr "Do le eme"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Edzebe naza Firefox akɔ install Firefox ƒe appwo."
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "Download"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Bubuwo li na le ŋku ɖo"
+
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "Womekpɔ gbegbɔgblɔ aɖeke o."
@@ -203,19 +203,19 @@ msgstr "Xɔ Firefox nya dzɔdzɔwo. Ɖemɔ na exɔxɔ."
 msgid "Email"
 msgstr "Email"
 
-#: /templates/newsletter.html:8 /templates/newsletter.html:35
+#: /templates/newsletter.html:8 /templates/newsletter.html:27
 msgid "Sign me up"
 msgstr "Ɖemɔ nam"
 
-#: /templates/newsletter.html:30
+#: /templates/newsletter.html:22
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
 msgstr "Mozilla ateŋu handle nye info abe alesi wo ɖe emee ene le <a href=\"{privacy_policy_url}\" target=\"_blank\">private policy sia</a>."
 
-#: /templates/newsletter.html:42
+#: /templates/newsletter.html:34
 msgid "Thanks for signing up!"
 msgstr "Akpe na wo be sign up!"
 
-#: /templates/newsletter.html:43
+#: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Axɔ email tso mozilla@e.mozilla.org gbɔ, meɖekuku tsa wo inbox me ne na kpɔ email gbatɔ si tso mia gbɔ la. Ne mekpɔe o la, le ŋku ɖe wo spam ƒe filter ŋu."
 
@@ -230,26 +230,6 @@ msgstr "Appwo mele asiwo o"
 #: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:56
 msgid "Oh no!"
 msgstr "Oo, ao!"
-
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Numetsonu"
-msgstr[1] "<b>{n}</b> Numetsonuwo"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> na {n} numetsonu"
-msgstr[1] "<b>\"{search_query}\"</b> na {n} numetsonuwo"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Womekpɔ numetsonu aɖeke o"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Womekpɔ nuɖoɖo aɖeke o. Gawoe emegbe."
 
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
@@ -299,6 +279,26 @@ msgstr "Ɖemɔ naxɔ miaƒe nyadzɔdzɔgbale."
 msgid "Get Involved"
 msgstr "Nɔ involved"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Numetsonu"
+msgstr[1] "<b>{n}</b> Numetsonuwo"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> na {n} numetsonu"
+msgstr[1] "<b>\"{search_query}\"</b> na {n} numetsonuwo"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Womekpɔ numetsonu aɖeke o"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Womekpɔ nuɖoɖo aɖeke o. Gawoe emegbe."
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "App ƒe statisticwo"
@@ -310,6 +310,153 @@ msgstr "App zaza ƒe statisticwo"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Statisticwo mesɔgbɔ ne woa ɖee fia o"
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "Fia abe"
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "Toggle App ƒe previewwo"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Trɔ yi {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr " Emenuwo ƒe Rating"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Detailwo rating"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Wo Mac ƒe ɖoɖowo ateŋu axe mɔ na wo be mateŋu ainstall app siwo metso Mac App Store o."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Srɔ alesi na ɖɔwo ɖo."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Wo instali!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Ɖo app sia ɖi tso wo <b>Applications</b> directory."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Ɖo app sia ɖi tso wo <b>Windows desktop</b> alo <b>Start &#9658; Programwokatã</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Ɖo app sia ɖi tso wo<b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Trɔ asi le wo review ŋu"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Trɔ asi le wo review ŋu"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "ŋlɔ review"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Geɖeme ne na review"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Xle rewiewwo katã"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "Review ɖeka"
+msgstr[1] "Review {numReviews}"
+
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Review"
+msgstr[1] "Reviewwo"
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "Wome reviewii haɖe o"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "Kpɔ appwo katã"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:15
+msgid "Unavailable"
+msgstr "Meli o"
+
+#: /templates/_macros/market_button.html:17
+msgid "Free"
+msgstr "Femaxe"
+
+#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
+msgid "Installed"
+msgstr "Wo intalli"
+
+#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
+msgid "Install"
+msgstr "Install"
+
+#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
+msgid "Open"
+msgstr "ʋu"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Load bubu wo"
+
+#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
+msgid "{app_name} screenshot"
+msgstr "{app_name} screenshot"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Na version xoxo {version}"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Trɔ"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Tutu"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Bɔ"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Wo tɔe na review"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "{stars} siwo wo rate le{maxstars} me"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -421,121 +568,6 @@ msgstr "Privacy ƒe policy le loadim…"
 msgid "Thank you for purchasing"
 msgstr "Akpe nawo be eƒlee"
 
-#: /templates/_macros/app_tile.html:102
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Review"
-msgstr[1] "Reviewwo"
-
-#: /templates/_macros/app_tile.html:108
-msgid "Not yet reviewed"
-msgstr "Wome reviewii haɖe o"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "Kpɔ appwo katã"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:15
-msgid "Unavailable"
-msgstr "Meli o"
-
-#: /templates/_macros/market_button.html:17
-msgid "Free"
-msgstr "Femaxe"
-
-#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
-msgid "Installed"
-msgstr "Wo intalli"
-
-#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
-msgid "Install"
-msgstr "Install"
-
-#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
-msgid "Open"
-msgstr "ʋu"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Load bubu wo"
-
-#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
-msgid "{app_name} screenshot"
-msgstr "{app_name} screenshot"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Na version xoxo {version}"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Trɔ"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Tutu"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Bɔ"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "Wo tɔe na review"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "{stars} siwo wo rate le{maxstars} me"
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "Fia abe"
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "Toggle App ƒe previewwo"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Trɔ yi {app}"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Wo Mac ƒe ɖoɖowo ateŋu axe mɔ na wo be mateŋu ainstall app siwo metso Mac App Store o."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Srɔ alesi na ɖɔwo ɖo."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Trɔ asi le wo review ŋu"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Trɔ asi le wo review ŋu"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "ŋlɔ review"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Geɖeme ne na review"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Xle rewiewwo katã"
-
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
 msgstr "Wo mekpɔ axa si dzim nele la o."
@@ -571,12 +603,6 @@ msgstr "Taflatse, edzebe nanɔ online hafi woasi nasu Marketplace dzi."
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Gawoe ke"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "Review ɖeka"
-msgstr[1] "Review {numReviews}"
 
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
 msgid "Edit Review"
@@ -644,32 +670,6 @@ msgstr "Reviewwo mele app sia si o."
 msgid "App Review"
 msgstr "App ƒe review"
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr " Emenuwo ƒe Rating"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Detailwo rating"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Wo instali!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Ɖo app sia ɖi tso wo <b>Applications</b> directory."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Ɖo app sia ɖi tso wo <b>Windows desktop</b> alo <b>Start &#9658; Programwokatã</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Ɖo app sia ɖi tso wo<b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-
 #: /media/js/apps.js:110
 msgid "not available for your region"
 msgstr ""
@@ -677,6 +677,24 @@ msgstr ""
 #: /media/js/apps.js:115
 msgid "not available for your platform"
 msgstr ""
+
+#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Wotɔ fexexe"
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:117
+msgid "Purchasing"
+msgstr "Ele nu ƒlem"
+
+#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Taflatse, heheɖemegbe va esi mienɔ app sia ƒe data tsɔm ve. Meɖekuku gawoe ake emegbe."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/apps_buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "Install medzedzi o. Meɖekuku gawoe ake emegbe."
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -750,24 +768,6 @@ msgstr "Mɔzɔzɔ"
 msgid "Utilities"
 msgstr "Nuzazawo"
 
-#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Wotɔ fexexe"
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:117
-msgid "Purchasing"
-msgstr "Ele nu ƒlem"
-
-#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Taflatse, heheɖemegbe va esi mienɔ app sia ƒe data tsɔm ve. Meɖekuku gawoe ake emegbe."
-
-#. App's install failed, but problem is temporary.
-#: /media/js/apps_buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "Install medzedzi o. Meɖekuku gawoe ake emegbe."
-
 #: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
 msgid "All Platforms"
 msgstr "Platformwo kata"
@@ -833,25 +833,25 @@ msgstr "Ametsitsi si xɔ ƒe wiandre kple edzi vɔ"
 msgid "Adults Only 18+"
 msgstr "Ametsitsi si xɔ ƒe wienyi kple edzi vɔ ko"
 
-#: /media/js/desktop_promo.js:19
-msgid "Get organized with Evernote."
+#: /media/js/desktop_promo.js:21
+msgid "Puzzle Games—Desktop Essentials"
 msgstr ""
 
-#: /media/js/desktop_promo.js:24
-msgid "Race across nine increasingly difficult levels."
+#: /media/js/desktop_promo.js:26
+msgid "Play the addicting game of elements."
 msgstr ""
 
-#: /media/js/desktop_promo.js:30
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Fefe kple modzakaɖenuwo ƒe appwo —Desktop nuzaza veviwo"
+#: /media/js/desktop_promo.js:31
+msgid "Om Nom needs candy!"
+msgstr ""
 
-#: /media/js/desktop_promo.js:36
+#: /media/js/desktop_promo.js:38
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Productivity ƒe appwo—Desktop nuzaza veviwo"
 
-#: /media/js/desktop_promo.js:41
-msgid "Om Nom needs candy!"
-msgstr ""
+#: /media/js/desktop_promo.js:44
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Fefe kple modzakaɖenuwo ƒe appwo —Desktop nuzaza veviwo"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"

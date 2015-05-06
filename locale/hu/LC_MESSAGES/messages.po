@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01T15:20:34.726Z\n"
+"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
 "PO-Revision-Date: 2015-05-03 11:29+0000\n"
 "Last-Translator: Gábor <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -27,13 +27,13 @@ msgstr "Nincsenek appok."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Belső kiszolgálóhiba történt. Próbálja meg újra."
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "Vissza"
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "Nincs app ebben a kategóriában"
 
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "Tovább"
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "A kért kategória nem létezik."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -47,7 +47,7 @@ msgstr "Adjon visszajelzést. Szeretnénk tudni, hogy nagyszerűek vagyunk-e vag
 msgid "Let us know..."
 msgstr "Mondja el…"
 
-#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -59,13 +59,13 @@ msgstr "Visszajelzés elküldése"
 msgid "Get Help"
 msgstr "Segítség"
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "Nincs app ebben a kategóriában"
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "Vissza"
 
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "A kért kategória nem létezik."
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "Tovább"
 
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
@@ -111,18 +111,6 @@ msgstr "Felhasználási feltételek"
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "Védjeggyel való visszaélés jelentése"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Felfedezni valók"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "A Firefoxot kell használnia Firefox appok telepítéséhez."
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "Letöltés"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -184,6 +172,18 @@ msgstr "Saját appok"
 msgid "Sign Out"
 msgstr "Kijelentkezés"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "A Firefoxot kell használnia Firefox appok telepítéséhez."
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "Letöltés"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Felfedezni valók"
+
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "Nem található nyelvi csomag."
@@ -204,19 +204,19 @@ msgstr "Firefox hírekért iratkozzon fel hírlevelünkre!"
 msgid "Email"
 msgstr "E-mail"
 
-#: /templates/newsletter.html:8 /templates/newsletter.html:35
+#: /templates/newsletter.html:8 /templates/newsletter.html:27
 msgid "Sign me up"
 msgstr "Feliratkozás"
 
-#: /templates/newsletter.html:30
+#: /templates/newsletter.html:22
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
 msgstr "Egyetértek azzal, hogy a Mozilla adataimat ezen <a href=\"{privacy_policy_url}\" target=\"_blank\">Adatvédelmi irányelveknek</a> megfelelően kezelje."
 
-#: /templates/newsletter.html:42
+#: /templates/newsletter.html:34
 msgid "Thanks for signing up!"
 msgstr "Köszönjük, hogy feliratkozott!"
 
-#: /templates/newsletter.html:43
+#: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Kapni fog egy e-mailt a mozilla@e.mozilla.org címről, nézze meg postaládáját. Ha nem kapta meg az első e-mailt tőlünk, nézze meg a levélszemét közt."
 
@@ -231,26 +231,6 @@ msgstr "Nincsenek saját appok"
 #: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:56
 msgid "Oh no!"
 msgstr "Jaj, ne!"
-
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> találat"
-msgstr[1] "<b>{n}</b> találat"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>„{search_query}”</b> {n} találatot adott"
-msgstr[1] "<b>„{search_query}”</b> {n} találatot adott"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Nincs találat"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Nincs találat, próbálja újra később"
 
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
@@ -300,6 +280,26 @@ msgstr "Iratkozzon fel hírlevelünkre."
 msgid "Get Involved"
 msgstr "Vegyen részt"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> találat"
+msgstr[1] "<b>{n}</b> találat"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>„{search_query}”</b> {n} találatot adott"
+msgstr[1] "<b>„{search_query}”</b> {n} találatot adott"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Nincs találat"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Nincs találat, próbálja újra később"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "Appstatisztika"
@@ -311,6 +311,153 @@ msgstr "Apphasználati statisztika"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Nincs elég megjeleníthető statisztika."
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "Megjelenítés mint"
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "App előnézetek be/ki"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Vissza: {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Tartalom értékelése"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Értékelés részletei"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "A Mac beállításai megakadályozhatják azon appok telepítését, amelyek nem a Mac App Store-ból származnak."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Ismerje meg, hogyan módosíthatók."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "Minden erre: <mkt-selected-text></mkt-selected-text>"
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Telepítve!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Az app elindítható az <b>Applications</b> könyvtárból."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Az app elindítható a <b>Windows asztaláról</b> vagy a <b>Start &#9658; Minden program</b> menüből."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Az app elindítható <b>helyből</b>, az <b>Alkalmazásválasztóból</b>, vagy az <b>Alkalmazások menüből</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Értékelés szerkesztése"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Értékelés szerkesztése"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Értékelés írása"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Jelentkezzen be az értékeléshez"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Minden értékelés olvasása"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 értékelés"
+msgstr[1] "{numReviews} értékelés"
+
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Értékelés"
+msgstr[1] "Értékelés"
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "Még nincs értékelve"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&ndash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "Minden app"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:15
+msgid "Unavailable"
+msgstr "Nem érhető el"
+
+#: /templates/_macros/market_button.html:17
+msgid "Free"
+msgstr "Ingyenes"
+
+#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
+msgid "Installed"
+msgstr "Telepítve"
+
+#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
+msgid "Install"
+msgstr "Telepítés"
+
+#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
+msgid "Open"
+msgstr "Megnyitás"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Több betöltése"
+
+#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
+msgid "{app_name} screenshot"
+msgstr "{app_name} képernyőkép"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "A korábbi {version} verzióhoz"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Törlés"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Jelentés"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Vizsgálatra jelölve"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Értékelés: {stars} / {maxstars}"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -422,121 +569,6 @@ msgstr "Adatvédelmi irányelvek betöltése..."
 msgid "Thank you for purchasing"
 msgstr "Köszönjük a vásárlást"
 
-#: /templates/_macros/app_tile.html:102
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Értékelés"
-msgstr[1] "Értékelés"
-
-#: /templates/_macros/app_tile.html:108
-msgid "Not yet reviewed"
-msgstr "Még nincs értékelve"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&ndash; {attribution}"
-
-#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "Minden app"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:15
-msgid "Unavailable"
-msgstr "Nem érhető el"
-
-#: /templates/_macros/market_button.html:17
-msgid "Free"
-msgstr "Ingyenes"
-
-#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
-msgid "Installed"
-msgstr "Telepítve"
-
-#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
-msgid "Install"
-msgstr "Telepítés"
-
-#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
-msgid "Open"
-msgstr "Megnyitás"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Több betöltése"
-
-#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
-msgid "{app_name} screenshot"
-msgstr "{app_name} képernyőkép"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "A korábbi {version} verzióhoz"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Szerkesztés"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Törlés"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Jelentés"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "Vizsgálatra jelölve"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Értékelés: {stars} / {maxstars}"
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "Megjelenítés mint"
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "App előnézetek be/ki"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Vissza: {app}"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "A Mac beállításai megakadályozhatják azon appok telepítését, amelyek nem a Mac App Store-ból származnak."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Ismerje meg, hogyan módosíthatók."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "Minden erre: <mkt-selected-text></mkt-selected-text>"
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Értékelés szerkesztése"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Értékelés szerkesztése"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Értékelés írása"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Jelentkezzen be az értékeléshez"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Minden értékelés olvasása"
-
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
 msgstr "A keresett oldal nem található."
@@ -573,12 +605,6 @@ msgstr "Elnézést, a Marketplace eléréséhez internetkapcsolat szükséges."
 msgid "Try Again"
 msgstr "Próbálja újra"
 
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 értékelés"
-msgstr[1] "{numReviews} értékelés"
-
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
 msgid "Edit Review"
 msgstr "Értékelés szerkesztése"
@@ -592,9 +618,8 @@ msgid ""
 "Please read the <a href=\"{url}\" target=\"_blank\">Review Guidelines</a> for more details about rating apps. Reviews that do not meet these guidelines may be removed by our moderation team without "
 "notice."
 msgstr ""
-"Olvassa el az <a href=\"{url}\" target=\"_blank\">Értékelési irányelveket</a> az "
-"appok értékelésével kapcsolatos további részletekért. Az irányelveknek nem "
-"megfelelő értékeléseket a moderátori csapatunk értesítés nélkül törölheti."
+"Olvassa el az <a href=\"{url}\" target=\"_blank\">Értékelési irányelveket</a> az appok értékelésével kapcsolatos további részletekért. Az irányelveknek nem megfelelő értékeléseket a moderátori "
+"csapatunk értesítés nélkül törölheti."
 
 #: /templates/ratings/add.html:16
 msgid "Rate:"
@@ -648,32 +673,6 @@ msgstr "Az app még nincs értékelve."
 msgid "App Review"
 msgstr "App értékelés"
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Tartalom értékelése"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Értékelés részletei"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Telepítve!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Az app elindítható az <b>Applications</b> könyvtárból."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Az app elindítható a <b>Windows asztaláról</b> vagy a <b>Start &#9658; Minden program</b> menüből."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Az app elindítható <b>helyből</b>, az <b>Alkalmazásválasztóból</b>, vagy az <b>Alkalmazások menüből</b>."
-
 #: /media/js/apps.js:110
 msgid "not available for your region"
 msgstr "nem érhető el ezen a területen"
@@ -681,6 +680,24 @@ msgstr "nem érhető el ezen a területen"
 #: /media/js/apps.js:115
 msgid "not available for your platform"
 msgstr "nem érhető el ezen a rendszeren"
+
+#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Fizetés törölve."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:117
+msgid "Purchasing"
+msgstr "Vásárlás"
+
+#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Elnézést, hiba történt az app adatainak letöltésekor. Próbálja újra később."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/apps_buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "A telepítés sikertelen. Próbálja meg később."
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -754,24 +771,6 @@ msgstr "Utazás"
 msgid "Utilities"
 msgstr "Eszközök"
 
-#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Fizetés törölve."
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:117
-msgid "Purchasing"
-msgstr "Vásárlás"
-
-#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Elnézést, hiba történt az app adatainak letöltésekor. Próbálja újra később."
-
-#. App's install failed, but problem is temporary.
-#: /media/js/apps_buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "A telepítés sikertelen. Próbálja meg később."
-
 #: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
 msgid "All Platforms"
 msgstr "Minden rendszer"
@@ -837,25 +836,25 @@ msgstr "Felnőtt 17+"
 msgid "Adults Only 18+"
 msgstr "Csak felnőtt 18+"
 
-#: /media/js/desktop_promo.js:19
-msgid "Get organized with Evernote."
-msgstr "Legyen rendezett az Evernote-tal."
+#: /media/js/desktop_promo.js:21
+msgid "Puzzle Games—Desktop Essentials"
+msgstr ""
 
-#: /media/js/desktop_promo.js:24
-msgid "Race across nine increasingly difficult levels."
-msgstr "Versenyezzen kilenc egyre nehezebb szinten keresztül."
+#: /media/js/desktop_promo.js:26
+msgid "Play the addicting game of elements."
+msgstr ""
 
-#: /media/js/desktop_promo.js:30
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Játékok és szórakozás – Asztali kötelezők"
+#: /media/js/desktop_promo.js:31
+msgid "Om Nom needs candy!"
+msgstr "Om Nom cukrot akar!"
 
-#: /media/js/desktop_promo.js:36
+#: /media/js/desktop_promo.js:38
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Üzleti appok – Asztali kötelezők"
 
-#: /media/js/desktop_promo.js:41
-msgid "Om Nom needs candy!"
-msgstr "Om Nom cukrot akar!"
+#: /media/js/desktop_promo.js:44
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Játékok és szórakozás – Asztali kötelezők"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"

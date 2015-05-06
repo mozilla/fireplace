@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01T15:20:34.726Z\n"
+"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
 "PO-Revision-Date: 2015-05-01 18:13-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -26,13 +26,13 @@ msgstr "アプリは見つかりませんでした。"
 msgid "An internal server error occurred. Please try again later."
 msgstr "内部サーバエラーが発生しました。また後で試してください。"
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "前へ"
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "このカテゴリのアプリはありません"
 
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "次へ"
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "リクエストされたカテゴリは存在しません。"
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -46,7 +46,7 @@ msgstr "フィードバックをお寄せください。このサイトに満足
 msgid "Let us know..."
 msgstr "意見を送る..."
 
-#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -58,13 +58,13 @@ msgstr "フィードバックを送信"
 msgid "Get Help"
 msgstr "サポート"
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "このカテゴリのアプリはありません"
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "前へ"
 
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "リクエストされたカテゴリは存在しません。"
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "次へ"
 
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
@@ -110,18 +110,6 @@ msgstr "利用規約"
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "商標不正使用報告"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "他のアプリを見る"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Firefox アプリをインストールするには Firefox を使ってください。"
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "ダウンロード"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -183,6 +171,18 @@ msgstr "自分のアプリ"
 msgid "Sign Out"
 msgstr "ログアウト"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Firefox アプリをインストールするには Firefox を使ってください。"
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "ダウンロード"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "他のアプリを見る"
+
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "言語パックが選択されていません。"
@@ -203,19 +203,19 @@ msgstr "Firefox の最新情報をお届けします！ ニュースレターを
 msgid "Email"
 msgstr "メール"
 
-#: /templates/newsletter.html:8 /templates/newsletter.html:35
+#: /templates/newsletter.html:8 /templates/newsletter.html:27
 msgid "Sign me up"
 msgstr "購読開始"
 
-#: /templates/newsletter.html:30
+#: /templates/newsletter.html:22
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
 msgstr "Mozilla が <a href=\"{privacy_policy_url}\" target=\"_blank\">プライバシーポリシー</a> に従って私の個人情報を扱うことに同意します。"
 
-#: /templates/newsletter.html:42
+#: /templates/newsletter.html:34
 msgid "Thanks for signing up!"
 msgstr "購読ありがとうございます！"
 
-#: /templates/newsletter.html:43
+#: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "mozilla@e.mozilla.org からメールが送られますので、受信トレイを開いてその最初のメールを見つけてください。もし届いていない場合、迷惑メールとして振り分けられていないか確認してください。"
 
@@ -230,26 +230,6 @@ msgstr "まだインストールしたアプリはありません"
 #: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:56
 msgid "Oh no!"
 msgstr "ページが見つかりません"
-
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> 件の結果"
-msgstr[1] "<b>{n}</b> 件の結果"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> の検索結果: {n} 件"
-msgstr[1] "<b>\"{search_query}\"</b> の検索結果: {n} 件"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "該当するアプリはありません"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "該当するアプリはありません。また後日見に来てください"
 
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
@@ -299,6 +279,26 @@ msgstr "ニュースレターを購読"
 msgid "Get Involved"
 msgstr "参加しよう"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> 件の結果"
+msgstr[1] "<b>{n}</b> 件の結果"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> の検索結果: {n} 件"
+msgstr[1] "<b>\"{search_query}\"</b> の検索結果: {n} 件"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "該当するアプリはありません"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "該当するアプリはありません。また後日見に来てください"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "アプリ統計"
@@ -310,6 +310,153 @@ msgstr "アプリ使用統計"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "表示できる十分な統計情報がありません。"
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "表示:"
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "アプリのプレビューを切り替える"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "{app} のページへ戻る"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "コンテンツレーティング"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "レーティングの詳細"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "お使いの Mac は Mac App Store 以外から配信されたアプリのインストールを禁止する設定になっているかもしれません。"
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "設定の変更方法はこちら。"
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "<mkt-selected-text></mkt-selected-text> 向けのアプリをすべて表示"
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "インストールが完了しました。"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "このアプリは Mac の <b>アプリケーション</b> ディレクトリから起動できます。"
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "このアプリは Windows の <b>デスクトップ</b> か <b>スタート &#9658; すべてのプログラム</b> から起動できます。"
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "このアプリは、<b>ダッシュ</b>、<b>アプリケーションピッカー</b> もしくは <b>アプリケーションメニュー</b> から起動できます。"
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "レビューを編集"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "レビューを編集"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "レビューを投稿"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "ログインしてレビューを投稿"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "すべてのレビューを見る"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 件のレビュー"
+msgstr[1] "{numReviews} 件のレビュー"
+
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "レビュー"
+msgstr[1] "レビュー"
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "まだ審査を受けていません"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "すべてのアプリを見る"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:15
+msgid "Unavailable"
+msgstr "購入不可"
+
+#: /templates/_macros/market_button.html:17
+msgid "Free"
+msgstr "無料"
+
+#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
+msgid "Installed"
+msgstr "インストール済み"
+
+#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
+msgid "Install"
+msgstr "インストール"
+
+#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
+msgid "Open"
+msgstr "開く"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "さらに読み込む"
+
+#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
+msgid "{app_name} screenshot"
+msgstr "{app_name} スクリーンショット"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "旧バージョン {version} 向け"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "編集"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "削除"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "報告"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "レビュー報告済み"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "評価: {maxstars} つ星のうち {stars}"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -421,121 +568,6 @@ msgstr "プライバシーポリシーを読み込んでいます..."
 msgid "Thank you for purchasing"
 msgstr "お買い上げありがとうございます"
 
-#: /templates/_macros/app_tile.html:102
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "レビュー"
-msgstr[1] "レビュー"
-
-#: /templates/_macros/app_tile.html:108
-msgid "Not yet reviewed"
-msgstr "まだ審査を受けていません"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "すべてのアプリを見る"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:15
-msgid "Unavailable"
-msgstr "購入不可"
-
-#: /templates/_macros/market_button.html:17
-msgid "Free"
-msgstr "無料"
-
-#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
-msgid "Installed"
-msgstr "インストール済み"
-
-#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
-msgid "Install"
-msgstr "インストール"
-
-#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
-msgid "Open"
-msgstr "開く"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "さらに読み込む"
-
-#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
-msgid "{app_name} screenshot"
-msgstr "{app_name} スクリーンショット"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "旧バージョン {version} 向け"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "編集"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "削除"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "報告"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "レビュー報告済み"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "評価: {maxstars} つ星のうち {stars}"
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "表示:"
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "アプリのプレビューを切り替える"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "{app} のページへ戻る"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "お使いの Mac は Mac App Store 以外から配信されたアプリのインストールを禁止する設定になっているかもしれません。"
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "設定の変更方法はこちら。"
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "<mkt-selected-text></mkt-selected-text> 向けのアプリをすべて表示"
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "レビューを編集"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "レビューを編集"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "レビューを投稿"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "ログインしてレビューを投稿"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "すべてのレビューを見る"
-
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
 msgstr "お探しのページは見つかりませんでした。"
@@ -572,12 +604,6 @@ msgstr "申し訳ありませんが、Marketplace へアクセスするにはイ
 msgid "Try Again"
 msgstr "再読み込み"
 
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 件のレビュー"
-msgstr[1] "{numReviews} 件のレビュー"
-
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
 msgid "Edit Review"
 msgstr "レビューを編集"
@@ -591,8 +617,8 @@ msgid ""
 "Please read the <a href=\"{url}\" target=\"_blank\">Review Guidelines</a> for more details about rating apps. Reviews that do not meet these guidelines may be removed by our moderation team without "
 "notice."
 msgstr ""
-"アプリの評価に関する詳細は <a href=\"{url}\" target=\"_blank\">レビューガイドライン</a> をご覧ください。"
-"これらのガイドラインに沿わないレビューはモデレーターチームによって予告なく削除されることもあります。"
+"アプリの評価に関する詳細は <a href=\"{url}\" target=\"_blank\">レビューガイドライン</a> をご覧ください。これらのガイドラインに沿わないレビューはモデレーターチームによって予告なく削除されることもあり"
+"ます。"
 
 #: /templates/ratings/add.html:16
 msgid "Rate:"
@@ -646,32 +672,6 @@ msgstr "このアプリにはまだレビューが書かれていません。"
 msgid "App Review"
 msgstr "アプリのレビュー"
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "コンテンツレーティング"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "レーティングの詳細"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "インストールが完了しました。"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "このアプリは Mac の <b>アプリケーション</b> ディレクトリから起動できます。"
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "このアプリは Windows の <b>デスクトップ</b> か <b>スタート &#9658; すべてのプログラム</b> から起動できます。"
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "このアプリは、<b>ダッシュ</b>、<b>アプリケーションピッカー</b> もしくは <b>アプリケーションメニュー</b> から起動できます。"
-
 #: /media/js/apps.js:110
 msgid "not available for your region"
 msgstr "お住まいの地域では利用できません"
@@ -679,6 +679,24 @@ msgstr "お住まいの地域では利用できません"
 #: /media/js/apps.js:115
 msgid "not available for your platform"
 msgstr "お使いの OS には対応していません"
+
+#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "決済がキャンセルされました"
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:117
+msgid "Purchasing"
+msgstr "購入中"
+
+#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "申し訳ありませんが、このアプリのデータ取得中に問題が発生しました。また後で試してください。"
+
+#. App's install failed, but problem is temporary.
+#: /media/js/apps_buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "インストールに失敗しました。また後で試してください。"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -752,24 +770,6 @@ msgstr "旅行"
 msgid "Utilities"
 msgstr "ユーティリティ"
 
-#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "決済がキャンセルされました"
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:117
-msgid "Purchasing"
-msgstr "購入中"
-
-#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "申し訳ありませんが、このアプリのデータ取得中に問題が発生しました。また後で試してください。"
-
-#. App's install failed, but problem is temporary.
-#: /media/js/apps_buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "インストールに失敗しました。また後で試してください。"
-
 #: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
 msgid "All Platforms"
 msgstr "すべてのプラットフォーム"
@@ -835,25 +835,25 @@ msgstr "17 歳以上"
 msgid "Adults Only 18+"
 msgstr "成人向け、18 歳以上"
 
-#: /media/js/desktop_promo.js:19
-msgid "Get organized with Evernote."
-msgstr "Evernote で情報を整理しよう。"
+#: /media/js/desktop_promo.js:21
+msgid "Puzzle Games—Desktop Essentials"
+msgstr ""
 
-#: /media/js/desktop_promo.js:24
-msgid "Race across nine increasingly difficult levels."
-msgstr "難易度の異なる 9 つのコースでレースに挑戦。"
+#: /media/js/desktop_promo.js:26
+msgid "Play the addicting game of elements."
+msgstr ""
 
-#: /media/js/desktop_promo.js:30
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "ゲーム＆エンタテインメント関連のデスクトップ向け必須アプリ"
+#: /media/js/desktop_promo.js:31
+msgid "Om Nom needs candy!"
+msgstr "Om Nom がキャンディーを欲しがっています！"
 
-#: /media/js/desktop_promo.js:36
+#: /media/js/desktop_promo.js:38
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "生産性向上関連のデスクトップ向け必須アプリ"
 
-#: /media/js/desktop_promo.js:41
-msgid "Om Nom needs candy!"
-msgstr "Om Nom がキャンディーを欲しがっています！"
+#: /media/js/desktop_promo.js:44
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "ゲーム＆エンタテインメント関連のデスクトップ向け必須アプリ"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01T15:20:34.726Z\n"
+"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
 "PO-Revision-Date: 2015-04-29 09:57+0000\n"
 "Last-Translator: Hyeonseok <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,13 +26,13 @@ msgstr "앱을 찾을수 없습니다."
 msgid "An internal server error occurred. Please try again later."
 msgstr "내부 서버 오류가 발생하였습니다. 나중에 다시 시도해 주세요."
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "이전"
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "이 카테고리에 앱 없음"
 
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "다음"
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "요청한 카테고리가 존재하지 않습니다."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -46,7 +46,7 @@ msgstr "의견을 말씀해 주세요. 잘 작동하는지 문제가 있는지 �
 msgid "Let us know..."
 msgstr "알려주세요..."
 
-#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 msgid "Cancel"
 msgstr "취소"
 
@@ -58,13 +58,13 @@ msgstr "피드백 제출"
 msgid "Get Help"
 msgstr "도움 받기"
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "이 카테고리에 앱 없음"
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "이전"
 
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "요청한 카테고리가 존재하지 않습니다."
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "다음"
 
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
@@ -110,18 +110,6 @@ msgstr "이용 약관"
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "상표권 침해 신고하기"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "더 살펴볼만 한 앱"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Firefox 앱을 설치하려면 Firefox를 사용해야 합니다."
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "다운로드"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -183,6 +171,18 @@ msgstr "내 앱"
 msgid "Sign Out"
 msgstr "로그아웃"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Firefox 앱을 설치하려면 Firefox를 사용해야 합니다."
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "다운로드"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "더 살펴볼만 한 앱"
+
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "언어팩이 없습니다."
@@ -203,19 +203,19 @@ msgstr "Firefox 뉴스를 구독하세요! 뉴스레터를 신청하세요."
 msgid "Email"
 msgstr "이메일"
 
-#: /templates/newsletter.html:8 /templates/newsletter.html:35
+#: /templates/newsletter.html:8 /templates/newsletter.html:27
 msgid "Sign me up"
 msgstr "신청하기"
 
-#: /templates/newsletter.html:30
+#: /templates/newsletter.html:22
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
 msgstr "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">개인 정보 보호 정책</a>에 명시된 대로 Mozilla가 내 정보를 다루는 것에 동의 합니다."
 
-#: /templates/newsletter.html:42
+#: /templates/newsletter.html:34
 msgid "Thanks for signing up!"
 msgstr "가입해주셔서 감사합니다!"
 
-#: /templates/newsletter.html:43
+#: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "mozilla@e.mozilla.org에서 메일을 발송할 것입니다. 받은 편지함을 살펴보세요. 받지 못했다면 스팸 편지함을 확인해 보세요."
 
@@ -230,24 +230,6 @@ msgstr "앱이 없음"
 #: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:56
 msgid "Oh no!"
 msgstr "오, 이런!"
-
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "결과 <b>{n}</b>개"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b>로 검색한 결과 {n} 개"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "결과 없음"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "결과가 없습니다. 나중에 다시 시도해 주세요."
 
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
@@ -297,6 +279,24 @@ msgstr "뉴스레터를 신청하세요."
 msgid "Get Involved"
 msgstr "참여"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "결과 <b>{n}</b>개"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b>로 검색한 결과 {n} 개"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "결과 없음"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "결과가 없습니다. 나중에 다시 시도해 주세요."
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "앱 통계"
@@ -308,6 +308,151 @@ msgstr "앱 사용 통계"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "충분한 통계 자료가 없습니다."
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "보기 설정"
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "앱 프리뷰"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "{app} 페이지로 돌아가기"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "콘텐츠 등급"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "등급 정보"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Mac이 Mac App Store 이외의 장소에 있는 앱은 설치가 안되도록 설정되어 있습니다."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "변경 방법을 살펴보세요."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "<mkt-selected-text></mkt-selected-text> 앱 모두 보기"
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "설치되었습니다!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "<b>어플리케이션</b> 디렉토리에서 앱을 실행하세요."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "<b>윈도우즈 데스크탑</b>이나 <b>시작 &#9658; 모든 프로그램</b>에서 앱을 실행하세요."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "<b>대시</b>나 <b>어플리케이션 피커</b>, <b>어플리케이션 메뉴</b>에서 앱을 실행하세요."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "리뷰 수정"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "리뷰 수정"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "리뷰 작성"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "리뷰 작성을 위해서 로그인"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "전체 리뷰 보기"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "{numReviews} 리뷰"
+
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "리뷰"
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "검토 안됨"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "모든 앱 보기"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:15
+msgid "Unavailable"
+msgstr "유효하지 않음"
+
+#: /templates/_macros/market_button.html:17
+msgid "Free"
+msgstr "무료"
+
+#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
+msgid "Installed"
+msgstr "설치됨"
+
+#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
+msgid "Install"
+msgstr "설치"
+
+#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
+msgid "Open"
+msgstr "열기"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "더 보기"
+
+#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
+msgid "{app_name} screenshot"
+msgstr "{app_name} 스크린샷"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "이전 버전 {version}"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "수정"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "삭제"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "보고"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "사용자 평가에 플래그 달기"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "{maxstars}점 만점 중 {stars}점으로 평가됨"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -419,120 +564,6 @@ msgstr "개인 정보 보호 정책 로딩중..."
 msgid "Thank you for purchasing"
 msgstr "구매해 주셔서 감사합니다."
 
-#: /templates/_macros/app_tile.html:102
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "리뷰"
-
-#: /templates/_macros/app_tile.html:108
-msgid "Not yet reviewed"
-msgstr "검토 안됨"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "모든 앱 보기"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:15
-msgid "Unavailable"
-msgstr "유효하지 않음"
-
-#: /templates/_macros/market_button.html:17
-msgid "Free"
-msgstr "무료"
-
-#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
-msgid "Installed"
-msgstr "설치됨"
-
-#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
-msgid "Install"
-msgstr "설치"
-
-#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
-msgid "Open"
-msgstr "열기"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "더 보기"
-
-#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
-msgid "{app_name} screenshot"
-msgstr "{app_name} 스크린샷"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "이전 버전 {version}"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "수정"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "삭제"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "보고"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "사용자 평가에 플래그 달기"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "{maxstars}점 만점 중 {stars}점으로 평가됨"
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "보기 설정"
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "앱 프리뷰"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "{app} 페이지로 돌아가기"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Mac이 Mac App Store 이외의 장소에 있는 앱은 설치가 안되도록 설정되어 있습니다."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "변경 방법을 살펴보세요."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "<mkt-selected-text></mkt-selected-text> 앱 모두 보기"
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "리뷰 수정"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "리뷰 수정"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "리뷰 작성"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "리뷰 작성을 위해서 로그인"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "전체 리뷰 보기"
-
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
 msgstr "찾으시는 페이지가 없습니다."
@@ -568,11 +599,6 @@ msgstr "Marketplace 사용을 위해서 인터넷 연결이 필요합니다."
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "다시 시도"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "{numReviews} 리뷰"
 
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
 msgid "Edit Review"
@@ -640,32 +666,6 @@ msgstr "리뷰가 없습니다."
 msgid "App Review"
 msgstr "앱 사용자 평가"
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "콘텐츠 등급"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "등급 정보"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "설치되었습니다!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "<b>어플리케이션</b> 디렉토리에서 앱을 실행하세요."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "<b>윈도우즈 데스크탑</b>이나 <b>시작 &#9658; 모든 프로그램</b>에서 앱을 실행하세요."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "<b>대시</b>나 <b>어플리케이션 피커</b>, <b>어플리케이션 메뉴</b>에서 앱을 실행하세요."
-
 #: /media/js/apps.js:110
 msgid "not available for your region"
 msgstr "현재 거주 지역에서는 사용할 수 없음"
@@ -673,6 +673,24 @@ msgstr "현재 거주 지역에서는 사용할 수 없음"
 #: /media/js/apps.js:115
 msgid "not available for your platform"
 msgstr "현재 플랫폼에서는 사용할 수 없음"
+
+#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "지불이 취소되었습니다."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:117
+msgid "Purchasing"
+msgstr "구매"
+
+#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "앱의 데이터를 가져오는데 문제가 발생했습니다. 잠시 후에 다시 시도해 주세요."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/apps_buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "모든 플랫폼"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -746,24 +764,6 @@ msgstr "여행"
 msgid "Utilities"
 msgstr "유틸리티"
 
-#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "지불이 취소되었습니다."
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:117
-msgid "Purchasing"
-msgstr "구매"
-
-#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "앱의 데이터를 가져오는데 문제가 발생했습니다. 잠시 후에 다시 시도해 주세요."
-
-#. App's install failed, but problem is temporary.
-#: /media/js/apps_buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "모든 플랫폼"
-
 #: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
 msgid "All Platforms"
 msgstr "모든 플랫폼"
@@ -829,25 +829,25 @@ msgstr "17세 이상+"
 msgid "Adults Only 18+"
 msgstr "18세 이상 성인+"
 
-#: /media/js/desktop_promo.js:19
-msgid "Get organized with Evernote."
-msgstr "Evernote로 정리해보세요."
+#: /media/js/desktop_promo.js:21
+msgid "Puzzle Games—Desktop Essentials"
+msgstr ""
 
-#: /media/js/desktop_promo.js:24
-msgid "Race across nine increasingly difficult levels."
-msgstr "점점 어려워지는 9개의 레벨을 달려보세요."
+#: /media/js/desktop_promo.js:26
+msgid "Play the addicting game of elements."
+msgstr ""
 
-#: /media/js/desktop_promo.js:30
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "게임 & 엔터테인 앱—데스크탑 필수 앱"
+#: /media/js/desktop_promo.js:31
+msgid "Om Nom needs candy!"
+msgstr "옴놈에게 사탕을 주세요!"
 
-#: /media/js/desktop_promo.js:36
+#: /media/js/desktop_promo.js:38
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "생산성 앱—데스크탑 필수 앱"
 
-#: /media/js/desktop_promo.js:41
-msgid "Om Nom needs candy!"
-msgstr "옴놈에게 사탕을 주세요!"
+#: /media/js/desktop_promo.js:44
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "게임 & 엔터테인 앱—데스크탑 필수 앱"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"

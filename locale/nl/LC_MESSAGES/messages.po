@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01T15:20:34.726Z\n"
+"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
 "PO-Revision-Date: 2015-05-02 07:25+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: none\n"
@@ -26,13 +26,13 @@ msgstr "Geen apps gevonden."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Er is een interne serverfout opgetreden. Probeer het later nog eens."
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "Vorige"
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "Geen apps in deze categorie"
 
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "Volgende"
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "De door u gevraagde categorie bestaat niet."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -46,7 +46,7 @@ msgstr "Geef uw feedback. Laat ons weten of we geweldig zijn of fouten maken."
 msgid "Let us know..."
 msgstr "Laat het ons weten…"
 
-#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -58,13 +58,13 @@ msgstr "Feedback indienen"
 msgid "Get Help"
 msgstr "Hulp verkrijgen"
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "Geen apps in deze categorie"
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "Vorige"
 
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "De door u gevraagde categorie bestaat niet."
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "Volgende"
 
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
@@ -110,18 +110,6 @@ msgstr "Gebruiksvoorwaarden"
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "Misbruik van handelsmerk melden"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Meer te ontdekken"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "U moet Firefox gebruiken om Firefox-apps te installeren."
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "Downloaden"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -183,6 +171,18 @@ msgstr "Mijn apps"
 msgid "Sign Out"
 msgstr "Afmelden"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "U moet Firefox gebruiken om Firefox-apps te installeren."
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "Downloaden"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Meer te ontdekken"
+
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "Geen taalpakketten gevonden."
@@ -203,19 +203,19 @@ msgstr "Ontvang Firefox-nieuws! Schrijf u in voor onze nieuwsbrief"
 msgid "Email"
 msgstr "E-mailadres"
 
-#: /templates/newsletter.html:8 /templates/newsletter.html:35
+#: /templates/newsletter.html:8 /templates/newsletter.html:27
 msgid "Sign me up"
 msgstr "Inschrijven"
 
-#: /templates/newsletter.html:30
+#: /templates/newsletter.html:22
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
 msgstr "Ik ben het eens met hoe Mozilla met mijn gegevens omgaat, zoals uitgelegd in <a href=\"{privacy_policy_url}\" target=\"_blank\">dit privacybeleid</a>."
 
-#: /templates/newsletter.html:42
+#: /templates/newsletter.html:34
 msgid "Thanks for signing up!"
 msgstr "Bedankt voor het inschrijven!"
 
-#: /templates/newsletter.html:43
+#: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "U ontvangt een e-mailbericht van mozilla@e.mozilla.org; controleer uw Postvak IN op ons eerste e-mailbericht. Als u dit niet ziet, controleer dan uw spamfilter."
 
@@ -230,26 +230,6 @@ msgstr "U hebt geen apps"
 #: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:56
 msgid "Oh no!"
 msgstr "Oh nee!"
-
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> resultaat"
-msgstr[1] "<b>{n}</b> resultaten"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>‘{search_query}’</b> gaf {n} resultaat"
-msgstr[1] "<b>‘{search_query}’</b> gaf {n} resultaten"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Geen resultaten gevonden"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Geen resultaten, probeer het later nog eens"
 
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
@@ -299,6 +279,26 @@ msgstr "Schrijf u in voor onze nieuwsbrief."
 msgid "Get Involved"
 msgstr "Meewerken"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> resultaat"
+msgstr[1] "<b>{n}</b> resultaten"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>‘{search_query}’</b> gaf {n} resultaat"
+msgstr[1] "<b>‘{search_query}’</b> gaf {n} resultaten"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Geen resultaten gevonden"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Geen resultaten, probeer het later nog eens"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "App-statistieken"
@@ -310,6 +310,153 @@ msgstr "Statistieken van app-gebruik"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Onvoldoende statistieken te tonen."
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "Weergeven als"
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "App-voorbeelden in-/uitschakelen"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Terug naar {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Inhoudsclassificatie"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Details over classificatie"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Uw Mac-instellingen zorgen er mogelijk voor dat u geen apps die niet van de Mac App Store afkomstig zijn kunt installeren."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Lees hoe u ze kunt wijzigen."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "Alles tonen voor <mkt-selected-text></mkt-selected-text>"
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Geïnstalleerd!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Start deze app vanuit uw map <b>Applicaties</b>."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Start deze app vanaf uw <b>Windows-bureaublad</b> of <b>Start &#9658; Alle programma’s</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Start deze app vanaf uw <b>dashboard</b>, <b>Toepassingskiezer</b> of <b>menu Toepassingen</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Uw beoordeling bewerken"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Uw beoordeling bewerken"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Een beoordeling schrijven"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Meld u aan om te beoordelen"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Alle beoordelingen lezen"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 beoordeling"
+msgstr[1] "{numReviews} beoordelingen"
+
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "beoordeling"
+msgstr[1] "beoordelingen"
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "Nog niet beoordeeld"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&ndash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "Alle apps weergeven"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:15
+msgid "Unavailable"
+msgstr "Niet beschikbaar"
+
+#: /templates/_macros/market_button.html:17
+msgid "Free"
+msgstr "Gratis"
+
+#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
+msgid "Installed"
+msgstr "Geïnstalleerd"
+
+#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
+msgid "Install"
+msgstr "Installeren"
+
+#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
+msgid "Open"
+msgstr "Openen"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Meer laden"
+
+#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
+msgid "{app_name} screenshot"
+msgstr "{app_name}-schermafbeelding"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Voor vorige versie {version}"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Bewerken"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Rapporteren"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Gemarkeerd voor beoordeling"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Waardering: {stars} van {maxstars} sterren"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -421,121 +568,6 @@ msgstr "Privacybeleid laden…"
 msgid "Thank you for purchasing"
 msgstr "Bedankt voor uw aankoop"
 
-#: /templates/_macros/app_tile.html:102
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "beoordeling"
-msgstr[1] "beoordelingen"
-
-#: /templates/_macros/app_tile.html:108
-msgid "Not yet reviewed"
-msgstr "Nog niet beoordeeld"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&ndash; {attribution}"
-
-#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "Alle apps weergeven"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:15
-msgid "Unavailable"
-msgstr "Niet beschikbaar"
-
-#: /templates/_macros/market_button.html:17
-msgid "Free"
-msgstr "Gratis"
-
-#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
-msgid "Installed"
-msgstr "Geïnstalleerd"
-
-#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
-msgid "Install"
-msgstr "Installeren"
-
-#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
-msgid "Open"
-msgstr "Openen"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Meer laden"
-
-#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
-msgid "{app_name} screenshot"
-msgstr "{app_name}-schermafbeelding"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Voor vorige versie {version}"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Bewerken"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Verwijderen"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Rapporteren"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "Gemarkeerd voor beoordeling"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Waardering: {stars} van {maxstars} sterren"
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "Weergeven als"
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "App-voorbeelden in-/uitschakelen"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Terug naar {app}"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Uw Mac-instellingen zorgen er mogelijk voor dat u geen apps die niet van de Mac App Store afkomstig zijn kunt installeren."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Lees hoe u ze kunt wijzigen."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "Alles tonen voor <mkt-selected-text></mkt-selected-text>"
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Uw beoordeling bewerken"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Uw beoordeling bewerken"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Een beoordeling schrijven"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Meld u aan om te beoordelen"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Alle beoordelingen lezen"
-
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
 msgstr "De door u gezochte pagina is niet gevonden."
@@ -572,12 +604,6 @@ msgstr "Sorry, u dient online te zijn om de Marketplace te bezoeken."
 msgid "Try Again"
 msgstr "Probeer het opnieuw"
 
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 beoordeling"
-msgstr[1] "{numReviews} beoordelingen"
-
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
 msgid "Edit Review"
 msgstr "Beoordeling bewerken"
@@ -591,10 +617,8 @@ msgid ""
 "Please read the <a href=\"{url}\" target=\"_blank\">Review Guidelines</a> for more details about rating apps. Reviews that do not meet these guidelines may be removed by our moderation team without "
 "notice."
 msgstr ""
-"Lees de <a href=\"{url}\" target=\"_blank\">beoordelingsrichtlijnen</a> voor "
-"meer details over het beoordelen van apps. Beoordelingen die niet aan deze "
-"richtlijnen voldoen kunnen zonder melding door ons moderatieteam worden "
-"verwijderd."
+"Lees de <a href=\"{url}\" target=\"_blank\">beoordelingsrichtlijnen</a> voor meer details over het beoordelen van apps. Beoordelingen die niet aan deze richtlijnen voldoen kunnen zonder melding "
+"door ons moderatieteam worden verwijderd."
 
 #: /templates/ratings/add.html:16
 msgid "Rate:"
@@ -648,32 +672,6 @@ msgstr "Deze app heeft geen beoordelingen."
 msgid "App Review"
 msgstr "App-beoordeling"
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Inhoudsclassificatie"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Details over classificatie"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Geïnstalleerd!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Start deze app vanuit uw map <b>Applicaties</b>."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Start deze app vanaf uw <b>Windows-bureaublad</b> of <b>Start &#9658; Alle programma’s</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Start deze app vanaf uw <b>dashboard</b>, <b>Toepassingskiezer</b> of <b>menu Toepassingen</b>."
-
 #: /media/js/apps.js:110
 msgid "not available for your region"
 msgstr "niet beschikbaar voor uw regio"
@@ -681,6 +679,24 @@ msgstr "niet beschikbaar voor uw regio"
 #: /media/js/apps.js:115
 msgid "not available for your platform"
 msgstr "niet beschikbaar voor uw platform"
+
+#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Betaling geannuleerd."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:117
+msgid "Purchasing"
+msgstr "Aankopen"
+
+#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Sorry, er waren problemen bij het ophalen van de gegevens over deze app. Probeer het later nog eens."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/apps_buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "Installatie mislukt. Probeer het later nog eens."
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -754,24 +770,6 @@ msgstr "Reizen"
 msgid "Utilities"
 msgstr "Hulpprogramma’s"
 
-#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Betaling geannuleerd."
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:117
-msgid "Purchasing"
-msgstr "Aankopen"
-
-#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Sorry, er waren problemen bij het ophalen van de gegevens over deze app. Probeer het later nog eens."
-
-#. App's install failed, but problem is temporary.
-#: /media/js/apps_buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "Installatie mislukt. Probeer het later nog eens."
-
 #: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
 msgid "All Platforms"
 msgstr "Alle platformen"
@@ -837,25 +835,25 @@ msgstr "17 jaar en ouder"
 msgid "Adults Only 18+"
 msgstr "Alleen volwassenen 18+"
 
-#: /media/js/desktop_promo.js:19
-msgid "Get organized with Evernote."
-msgstr "Organiseer uw werk met Evernote."
+#: /media/js/desktop_promo.js:21
+msgid "Puzzle Games—Desktop Essentials"
+msgstr ""
 
-#: /media/js/desktop_promo.js:24
-msgid "Race across nine increasingly difficult levels."
-msgstr "Race met negen steeds moeilijkere niveaus."
+#: /media/js/desktop_promo.js:26
+msgid "Play the addicting game of elements."
+msgstr ""
 
-#: /media/js/desktop_promo.js:30
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Apps voor spellen en entertainment – Desktop Essentials"
+#: /media/js/desktop_promo.js:31
+msgid "Om Nom needs candy!"
+msgstr "Om Nom wil snoep!"
 
-#: /media/js/desktop_promo.js:36
+#: /media/js/desktop_promo.js:38
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Apps voor productiviteit – Desktop Essentials"
 
-#: /media/js/desktop_promo.js:41
-msgid "Om Nom needs candy!"
-msgstr "Om Nom wil snoep!"
+#: /media/js/desktop_promo.js:44
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Apps voor spellen en entertainment – Desktop Essentials"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"

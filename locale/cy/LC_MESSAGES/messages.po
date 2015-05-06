@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01T15:20:34.726Z\n"
+"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
 "PO-Revision-Date: 2015-02-26 11:25+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,13 +26,13 @@ msgstr "Heb ganfod apiau."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Digwyddodd gwall gweinydd. Ceisiwch eto."
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "Blaenorol"
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "Dim apiau yn y categori hwn"
 
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "Nesaf"
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "Nid yw'r categori rydych wedi gofyn amdano yn bodoli."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -46,7 +46,7 @@ msgstr "Rhowch eich adborth. Gadewch i ni wybod os ydym yn wych neu'n wael."
 msgid "Let us know..."
 msgstr "Gadewch i ni wybod..."
 
-#: /templates/feedback.html:11 /templates/newsletter.html:36 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:12 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 msgid "Cancel"
 msgstr "Diddymu"
 
@@ -58,13 +58,13 @@ msgstr "Cyflwyno Adborth"
 msgid "Get Help"
 msgstr "Cael Cymorh"
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "Dim apiau yn y categori hwn"
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "Blaenorol"
 
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "Nid yw'r categori rydych wedi gofyn amdano yn bodoli."
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "Nesaf"
 
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
@@ -110,18 +110,6 @@ msgstr "Amodau Defnydd"
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "Adrodd ar Gamddefnydd o Nod Masnachu"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Rhagor i'w Harchwilio"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Rhaid defnyddio Firefox i osod apiau Firefox."
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "Llwytho i Lawr"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -183,6 +171,18 @@ msgstr "Fy Apiau"
 msgid "Sign Out"
 msgstr "Allgofnodi"
 
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Rhaid defnyddio Firefox i osod apiau Firefox."
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "Llwytho i Lawr"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Rhagor i'w Harchwilio"
+
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "Heb ganfod pecynnau iaith."
@@ -203,19 +203,19 @@ msgstr "Derbyn newyddion Firefox! Gofynnwch am ein taflen newyddion"
 msgid "Email"
 msgstr "E-bost"
 
-#: /templates/newsletter.html:8 /templates/newsletter.html:35
+#: /templates/newsletter.html:8 /templates/newsletter.html:27
 msgid "Sign me up"
 msgstr "Cofrestrwch fi"
 
-#: /templates/newsletter.html:30
+#: /templates/newsletter.html:22
 msgid "I'm okay with Mozilla handling my info as explained in <a href=\"{privacy_policy_url}\" target=\"_blank\">this Privacy Policy</a>."
 msgstr "Rwy'n hapus gyda Mozilla'n trin fy manylion yn unol â'u <a href=\"{privacy_policy_url}\" target=\"_blank\">Polis Preifatrwydd</a>."
 
-#: /templates/newsletter.html:42
+#: /templates/newsletter.html:34
 msgid "Thanks for signing up!"
 msgstr "Diolch am gofrestru!"
 
-#: /templates/newsletter.html:43
+#: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Byddwch yn derbyn e-bost gan mozilla@e.mozilla.org, gwiriwch eich blwch derbyn am eich e-bost cyntaf gennym ni. Os nad yw wedi cyrraedd, gwiriwch eich hidl sbam."
 
@@ -230,30 +230,6 @@ msgstr "Nid oes gennych apiau"
 #: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:56
 msgid "Oh no!"
 msgstr "O na!"
-
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Canlyniad"
-msgstr[1] "<b>{n}</b> Canlyniad"
-msgstr[2] "<b>{n}</b> Canlyniad"
-msgstr[3] "<b>{n}</b> Canlyniad"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "Dychwelodd <b>\"{search_query}\"</b> {n} canlyniad"
-msgstr[1] "Dychwelodd <b>\"{search_query}\"</b> {n} canlyniad"
-msgstr[2] "Dychwelodd <b>\"{search_query}\"</b> {n} canlyniad"
-msgstr[3] "Dychwelodd <b>\"{search_query}\"</b> {n} canlyniad"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Heb ganfod canlyniadau"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Heb ganfod canlyniadau, ceisiwch eto"
 
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
@@ -303,6 +279,30 @@ msgstr "Cofrestrwch am ein taflen newyddion."
 msgid "Get Involved"
 msgstr "Ymunwch"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Canlyniad"
+msgstr[1] "<b>{n}</b> Canlyniad"
+msgstr[2] "<b>{n}</b> Canlyniad"
+msgstr[3] "<b>{n}</b> Canlyniad"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "Dychwelodd <b>\"{search_query}\"</b> {n} canlyniad"
+msgstr[1] "Dychwelodd <b>\"{search_query}\"</b> {n} canlyniad"
+msgstr[2] "Dychwelodd <b>\"{search_query}\"</b> {n} canlyniad"
+msgstr[3] "Dychwelodd <b>\"{search_query}\"</b> {n} canlyniad"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Heb ganfod canlyniadau"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Heb ganfod canlyniadau, ceisiwch eto"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr ""
@@ -314,6 +314,157 @@ msgstr ""
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr ""
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "Dangos fel"
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "Toglo'r Rhagolwg Apiau"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Nôl i {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Graddio'r Cynnwys"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Manylion Graddio"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Dysgu sut i'w newid nhw."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Gosodwyd!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Cychwynnwch yr ap hwn o'ch cyfeiriadur <b>Rhaglenni</b>."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Cychwynnwch yr ap hwn o'ch <b>bwrdd gwaith Windows</b> neu <b>Cychwyn &#9658; Pob Rhaglen</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Cychwynnwch yr ap hwn o'ch <b>bwrdd gwaith</b>, <b>Dewisydd rhaglenni</b> neu <b>Ddewislen rhaglenni</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Golygu eich Adolygiad"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Golygu eich adolygiad"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Ysgrifennu adolygiad"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Mewngofnodwch i adolygu"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Darllenwch yr holl adolygiadau"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 Adolygiad"
+msgstr[1] "{numReviews} Adolygiad"
+msgstr[2] "{numReviews} Adolygiad"
+msgstr[3] "{numReviews} Adolygiad"
+
+#: /templates/_macros/app_tile.html:102
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Adolygiad"
+msgstr[1] "Adolygiadau"
+msgstr[2] "Adolygiadau"
+msgstr[3] "Adolygiadau"
+
+#: /templates/_macros/app_tile.html:108
+msgid "Not yet reviewed"
+msgstr "Heb ei adolygu"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
+msgid "View all apps"
+msgstr "Gweld yr holl apiau"
+
+#. This app is unavailable for purchase.
+#: /templates/_macros/market_button.html:15
+msgid "Unavailable"
+msgstr "Dim ar gael"
+
+#: /templates/_macros/market_button.html:17
+msgid "Free"
+msgstr "Am Ddim"
+
+#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
+msgid "Installed"
+msgstr "Wedi eu Gosod"
+
+#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
+msgid "Install"
+msgstr "Gosod"
+
+#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
+msgid "Open"
+msgstr "Agor"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Llwytho rhagor"
+
+#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
+msgid "{app_name} screenshot"
+msgstr "Llun sgrin {app_name}"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Ar gyfer fersiwn blaenorol {version}"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Golygu"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Dileu"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Adrodd"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Nodwyd ar gyfer adolygiad"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Graddiwyd {stars} allan o {maxstars} seren"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -425,123 +576,6 @@ msgstr "Llwytho Polisi Preifatrwydd..."
 msgid "Thank you for purchasing"
 msgstr "Diolch am brynu"
 
-#: /templates/_macros/app_tile.html:102
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Adolygiad"
-msgstr[1] "Adolygiadau"
-msgstr[2] "Adolygiadau"
-msgstr[3] "Adolygiadau"
-
-#: /templates/_macros/app_tile.html:108
-msgid "Not yet reviewed"
-msgstr "Heb ei adolygu"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:73 /templates/_macros/feed_item.html:166
-msgid "View all apps"
-msgstr "Gweld yr holl apiau"
-
-#. This app is unavailable for purchase.
-#: /templates/_macros/market_button.html:15
-msgid "Unavailable"
-msgstr "Dim ar gael"
-
-#: /templates/_macros/market_button.html:17
-msgid "Free"
-msgstr "Am Ddim"
-
-#: /templates/_macros/market_button.html:33 /media/js/apps_buttons.js:319
-msgid "Installed"
-msgstr "Wedi eu Gosod"
-
-#: /templates/_macros/market_button.html:35 /templates/_macros/market_button.html:41 /media/js/apps_buttons.js:128 /media/js/apps_buttons.js:371
-msgid "Install"
-msgstr "Gosod"
-
-#: /templates/_macros/market_button.html:39 /media/js/apps_buttons.js:323
-msgid "Open"
-msgstr "Agor"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Llwytho rhagor"
-
-#: /templates/_macros/previews.html:31 /templates/_macros/previews.html:34
-msgid "{app_name} screenshot"
-msgstr "Llun sgrin {app_name}"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Ar gyfer fersiwn blaenorol {version}"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Golygu"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Dileu"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Adrodd"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "Nodwyd ar gyfer adolygiad"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Graddiwyd {stars} allan o {maxstars} seren"
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "Dangos fel"
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "Toglo'r Rhagolwg Apiau"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Nôl i {app}"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr ""
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Dysgu sut i'w newid nhw."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Golygu eich Adolygiad"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Golygu eich adolygiad"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Ysgrifennu adolygiad"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Mewngofnodwch i adolygu"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Darllenwch yr holl adolygiadau"
-
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
 msgstr "Heb ganfod y dudalen roeddech yn chwilio amdani."
@@ -577,14 +611,6 @@ msgstr "Ymddiheuriadau, rhaid i chi fod ar-lein i fynd i'r Farchnad."
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Ceisiwch Eto"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 Adolygiad"
-msgstr[1] "{numReviews} Adolygiad"
-msgstr[2] "{numReviews} Adolygiad"
-msgstr[3] "{numReviews} Adolygiad"
 
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
 msgid "Edit Review"
@@ -652,32 +678,6 @@ msgstr "Nid oes gan yr ap adolygiadau."
 msgid "App Review"
 msgstr "Adolygu Apiau"
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Graddio'r Cynnwys"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Manylion Graddio"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Gosodwyd!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Cychwynnwch yr ap hwn o'ch cyfeiriadur <b>Rhaglenni</b>."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Cychwynnwch yr ap hwn o'ch <b>bwrdd gwaith Windows</b> neu <b>Cychwyn &#9658; Pob Rhaglen</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Cychwynnwch yr ap hwn o'ch <b>bwrdd gwaith</b>, <b>Dewisydd rhaglenni</b> neu <b>Ddewislen rhaglenni</b>."
-
 #: /media/js/apps.js:110
 msgid "not available for your region"
 msgstr ""
@@ -685,6 +685,24 @@ msgstr ""
 #: /media/js/apps.js:115
 msgid "not available for your platform"
 msgstr ""
+
+#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Diddymwud y taliad."
+
+#. "Open" as in "Open the app".
+#: /media/js/apps_buttons.js:117
+msgid "Purchasing"
+msgstr "Prynu"
+
+#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Ymddiheuriadau, mae gennym broblem wrth estyn data'r ap. Ceisiwch eto'n hwyrach."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/apps_buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "Methodd y gosod. Ceisiwch eto."
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -758,24 +776,6 @@ msgstr "Teithio"
 msgid "Utilities"
 msgstr "Gwasanaethau"
 
-#: /media/js/apps_buttons.js:81 /media/js/apps_buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Diddymwud y taliad."
-
-#. "Open" as in "Open the app".
-#: /media/js/apps_buttons.js:117
-msgid "Purchasing"
-msgstr "Prynu"
-
-#: /media/js/apps_buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Ymddiheuriadau, mae gennym broblem wrth estyn data'r ap. Ceisiwch eto'n hwyrach."
-
-#. App's install failed, but problem is temporary.
-#: /media/js/apps_buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "Methodd y gosod. Ceisiwch eto."
-
 #: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
 msgid "All Platforms"
 msgstr ""
@@ -841,25 +841,25 @@ msgstr "Aeddfed 17+"
 msgid "Adults Only 18+"
 msgstr "Oedolion yn Unig 18+"
 
-#: /media/js/desktop_promo.js:19
-msgid "Get organized with Evernote."
+#: /media/js/desktop_promo.js:21
+msgid "Puzzle Games—Desktop Essentials"
 msgstr ""
 
-#: /media/js/desktop_promo.js:24
-msgid "Race across nine increasingly difficult levels."
+#: /media/js/desktop_promo.js:26
+msgid "Play the addicting game of elements."
 msgstr ""
 
-#: /media/js/desktop_promo.js:30
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Apiau Gemau a Difyrrwch—Hanfodion y Bwrdd Gwaith"
+#: /media/js/desktop_promo.js:31
+msgid "Om Nom needs candy!"
+msgstr ""
 
-#: /media/js/desktop_promo.js:36
+#: /media/js/desktop_promo.js:38
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Apiau Cynhyrchiol—Hanfodion y Bwrdd Gwaith"
 
-#: /media/js/desktop_promo.js:41
-msgid "Om Nom needs candy!"
-msgstr ""
+#: /media/js/desktop_promo.js:44
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Apiau Gemau a Difyrrwch—Hanfodion y Bwrdd Gwaith"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
