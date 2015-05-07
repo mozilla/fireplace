@@ -71,7 +71,7 @@
     {% include "_includes/post_install_message.html" %}
   {% endif %}
 
-  {% if tray and len(app.previews) %}
+  {% if tray and app.previews and len(app.previews) %}
     {{ preview_tray(app, src, is_detail) }}
   {% endif %}
 {% endmacro %}
