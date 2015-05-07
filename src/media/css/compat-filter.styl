@@ -1,14 +1,14 @@
 @import "lib";
 
-[data-mkt-nav--enabled] {
-    &:not([data-page-type~="app-list"]) .compat-filter,
+[data-page-type~="app-list"],
+[data-page-type~="homepage"] {
     div.compat-filter {
-        display: none;
+        display: block;
     }
 }
 
 div.compat-filter {
-    display: block;
+    display: none;
     margin: 0 auto;
     right: 0;
     text-align: center;
