@@ -12,7 +12,7 @@ casper.test.begin('Test UA desktop promo src persists to app detail page', {
                 });
                 return slug;
             });
-            casper.click('[data-tracking="' + slug + '"]');
+            casper.click('[data-tracking="' + slug + '"] span');
         });
 
         casper.waitForSelector('.app-list', function() {
