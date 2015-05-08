@@ -22,7 +22,6 @@ casper.test.begin('Test app detail', {
             helpers.assertContainsText('.mkt-tile [itemprop="creator"]');
             var href = this.getElementAttribute('.mkt-tile .author a', 'href');
             test.assert(href.indexOf('/search?author') !== -1);
-            test.assertSelectorHasText('.mkt-tile .install em', 'Free');
             test.assertVisible('.mkt-tile .install');
             test.assertVisible('.previews-tray');
             test.assertExists('.previews-tray img');

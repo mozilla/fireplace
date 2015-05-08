@@ -1,9 +1,9 @@
 define('helpers_local',
-    ['apps', 'categories', 'compat_filter', 'content-ratings',
+    ['apps', 'buttons', 'categories', 'compat_filter', 'content-ratings',
      'core/format', 'core/helpers', 'core/models', 'core/nunjucks',
      'core/settings', 'core/urls', 'core/utils', 'core/z', 'feed', 'regions',
      'tracking_events', 'user_helpers', 'utils_local'],
-    function(apps, categories, compatFilter, iarc,
+    function(apps, buttons, categories, compatFilter, iarc,
              format, base_helpers, models, nunjucks,
              settings, urls, utils, z, feed, regions,
              trackingEvents, user_helpers, utils_local) {
@@ -86,11 +86,8 @@ define('helpers_local',
         return text;
     };
 
-    function has_installed(manifestURL) {
-        return z.apps.indexOf(manifestURL) !== -1;
-    }
-
     /* Global variables, provided in default context. */
+    globals.buttons = buttons;
     globals.CATEGORIES = categories;
     globals.DEVICE_CHOICES = compatFilter.DEVICE_CHOICES;
     globals.feed = feed;
@@ -129,12 +126,10 @@ define('helpers_local',
     }
 
     var helpers = {
-        app_incompat: apps.incompat,
         app_notices: app_notices,
         cast_app: models('app').cast,
         format: format.format,
         getReviewId: getReviewId,
-        has_installed: has_installed,
         numberfmt: nunjucks.require('filters').numberfmt,
         indexOf: indexOf
     };

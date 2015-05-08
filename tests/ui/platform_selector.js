@@ -80,9 +80,9 @@ casper.test.begin('Test platform selector selected text', {
         }
 
         platformSelectorSetUp(function() {
-            test.assertSelectorHasText('mkt-selected-text', 'All Platforms');
-            selectOption('desktop');
             test.assertSelectorHasText('mkt-selected-text', 'Desktop');
+            selectOption('all');
+            test.assertSelectorHasText('mkt-selected-text', 'All Platforms');
         });
 
         helpers.done(test);
@@ -134,7 +134,7 @@ casper.test.begin('Test platform selector dropdown change', {
         }
 
         platformSelectorSetUp(function() {
-            assertSelectedDevice(test, '');
+            assertSelectedDevice(test, 'desktop');
             selectOption('firefoxos');
             assertSelectedDevice(test, 'firefoxos');
         });
@@ -226,7 +226,7 @@ casper.test.begin('Test UA platform selector change', {
         }
 
         platformSelectorSetUp(function() {
-            helpers.assertUASetSessionVar(test, ['dimension2', '']);
+            helpers.assertUASetSessionVar(test, ['dimension2', 'desktop']);
 
             selectOption('firefoxos');
             test.assert(helpers.filterUALogs([
