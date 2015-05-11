@@ -4,48 +4,11 @@
 [data-page-type~="brand-landing"],
 [data-page-type~="collection-landing"],
 [data-page-type~="homepage"] {
-    div.compat-filter {
+    .compat-filter {
         display: block;
     }
 }
 
-div.compat-filter {
+.compat-filter {
     display: none;
-    margin: 0 auto;
-    right: 0;
-    text-align: center;
-    text-transform: none;
-
-    select {
-        font-size: 15px;
-        vertical-align: middle;
-        width: 229px;
-    }
-    label {
-        _h3();
-        ellipsis();
-        color: $filters-label;
-        display: inline-block;
-        margin-right: 5px;
-        max-width: 20%;
-        vertical-align: middle;
-    }
-    .pretty-select:before {
-        background-color: $white;
-        height: 25px;
-        right: 0px;
-    }
-}
-
-.compat-select-wrapper {
-    vertical-align: middle;
-}
-
-@media $base-tablet {
-    .compat-filter .pretty-select:before {
-        background-color: transparent;
-    }
-    .compat-filter label {
-        max-width: none;
-    }
 }
