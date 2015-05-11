@@ -1,7 +1,7 @@
 define('views/settings',
     ['core/cache', 'jquery', 'core/l10n', 'core/notification', 'core/requests', 'core/urls', 'core/user',
-     'core/utils', 'core/z'],
-    function(cache, $, l10n, notification, requests, urls, user,
+     'user_helpers', 'core/utils', 'core/z'],
+    function(cache, $, l10n, notification, requests, urls, user, user_helpers,
              utils, z) {
     var _pd = utils._pd;
     var gettext = l10n.gettext;

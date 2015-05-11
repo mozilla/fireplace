@@ -32,11 +32,12 @@
         </label>
       </div>
 
-      <div class="region account-field">
-        <label>{{ _('Region') }}</label>
-        <span class="region region-{{ user_helpers.region('restofworld') }}">
-          {{ REGIONS[user_helpers.region('restofworld')] }}</span>
-      </div>
+      {% defer (url=anonApi('region', [user_helpers.region()])) %}
+        <div class="region account-field">
+          <label>{{ _('Region') }}</label>
+          <span class="region region-{{ this.slug }}">{{ this.name }}</span>
+        </div>
+      {% end %}
 
       <div class="account-settings-save">
         <button class="button hide-logged-out" type="submit">{{ _('Save Changes') }}</button>

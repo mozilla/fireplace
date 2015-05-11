@@ -1,12 +1,12 @@
 define('views/debug',
-    ['core/cache', 'core/capabilities', 'compat_filter', 'core/log',
-     'core/models', 'core/notification', 'core/requests', 'core/settings',
-     'core/storage', 'core/user', 'core/utils', 'core/z', 'regions',
-     'utils_local', 'underscore'],
-    function(cache, capabilities, compatFilter, log,
-             models, notification, requests, settings,
-             storage, user, utils, z, regions,
-             utilsLocal, _) {
+    ['core/cache', 'core/capabilities', 'carriers', 'compat_filter',
+     'core/log', 'core/models', 'core/notification', 'core/requests',
+     'core/settings', 'core/storage', 'core/user', 'core/utils', 'core/z',
+     'regions', 'utils_local', 'underscore'],
+    function(cache, capabilities, carriers, compatFilter,
+             log, models, notification, requests,
+             settings, storage, user, utils, z,
+             regions, utilsLocal, _) {
     'use strict';
 
     var persistent_console_debug = log.persistent('debug', 'change');
@@ -94,9 +94,7 @@ define('views/debug',
         }
         user.update_settings({region_override: val});
         z.page.trigger('reload_chrome');
-        notification.notification({
-            message: 'Region updated to ' +
-                     (regions.REGION_CHOICES_SLUG[val] || '---')});
+        notification.notification({message: 'Region updated to ' + val});
     })
 
     .on('change', '#debug-carrier', function(e) {
@@ -125,15 +123,12 @@ define('views/debug',
             cache: cache.raw,
             callIfFunction: callIfFunction,
             capabilities: capabilities,
-            carriers: require('mobilenetwork').carriers,
+            carriers: carriers.CARRIER_SLUGS.sort(),
             filter: log.filter,
             persistent_logs: log.persistent.all,
             profile: compatFilter.featureProfile,
-            regions: _.sortBy(utilsLocal.items(regions.REGION_CHOICES_SLUG),
-                function(r) {
-                    return r[1];
-                }
-            ),
+            regions: (regions.REGION_SLUGS ||
+                      Object.keys(regions.REGION_CHOICES_SLUG)).sort(),
             recent_logs: log.get_recent(100),
             request_cache: storage.getItem('request_cache') || {}
         });

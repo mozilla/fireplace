@@ -7,9 +7,7 @@ define('user_helpers',
     var region_geoip = null;
 
     function region(default_, ignore_geoip) {
-        if ('region' in initialArgs &&
-            initialArgs.region &&
-            regions.REGION_CHOICES_SLUG[initialArgs.region]) {
+        if ('region' in initialArgs) {
             return initialArgs.region;
         }
         return user.get_setting('region_override') ||

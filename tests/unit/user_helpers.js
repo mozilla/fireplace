@@ -40,12 +40,6 @@ define('tests/unit/user_helpers',
             assert.equal(user_helpers.region(null, false), 'myregiongeoip');
             assert.equal(user_helpers.region('defaultregion', false), 'myregiongeoip');
 
-            initial_args.region = 'fakeregion';
-            assert.equal(user_helpers.region(null, true), '');
-            assert.equal(user_helpers.region('defaultregion', true), 'defaultregion');
-            assert.equal(user_helpers.region(null, false), 'myregiongeoip');
-            assert.equal(user_helpers.region('defaultregion', false), 'myregiongeoip');
-
             settings.region_sim = 'de';
             assert.equal(user_helpers.region(null, true), 'de');
             assert.equal(user_helpers.region('defaultregion', true), 'de');
