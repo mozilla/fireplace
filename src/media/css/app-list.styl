@@ -31,7 +31,6 @@ $desktop-tile-padding = $tile-padding-y $tile-padding-x;
 
 .app-list {
     list-style: none;
-    opacity: 0;
 
     // Masking element to cover the last row's bottom border.
     &:after {
@@ -47,9 +46,6 @@ $desktop-tile-padding = $tile-padding-y $tile-padding-x;
     }
     &.previews-expanded .app-list-app {
         padding-bottom: 40px;
-    }
-    &.show-app-list {
-        opacity: 1;
     }
 }
 
@@ -93,6 +89,7 @@ section.langpacks > div {
     .app-list {
         flex-wrap: wrap;
         margin-top: 30px;
+        opacity: 0;
         position: relative;
 
         &.paginated .app-list-app:last-child {
@@ -111,6 +108,9 @@ section.langpacks > div {
         }
         &:after {
             bottom: 0;
+        }
+        &.show-app-list {
+            opacity: 1;
         }
     }
     .paginated:after {

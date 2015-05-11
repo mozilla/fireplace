@@ -1,8 +1,6 @@
 define('app_list',
-    ['core/capabilities', 'core/storage', 'core/utils', 'core/z', 'previews',
-     'tracking'],
-    function(caps, storage, utils, z, previews,
-             tracking) {
+    ['core/capabilities', 'core/storage', 'core/utils', 'core/z', 'previews'],
+    function(caps, storage, utils, z, previews) {
     'use strict';
 
     // If we've set this value in localStorage before, then always use it.
