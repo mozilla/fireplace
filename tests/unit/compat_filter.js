@@ -7,10 +7,10 @@ define('tests/unit/compat_filter',
     function testApiArgs(compatFilter, expectedArgs) {
         TEST_ENDPOINTS.forEach(function(endpoint) {
             var args = compatFilter.apiArgs(endpoint);
-            assert.equal(args.dev, expectedArgs.dev);
-            assert.equal(args.device, expectedArgs.device);
-            assert.equal(args.limit, expectedArgs.limit);
-            assert.equal(args.pro, expectedArgs.pro);
+            assert.equal(args.dev, expectedArgs.dev, 'dev');
+            assert.equal(args.device, expectedArgs.device, 'device');
+            assert.equal(args.limit, expectedArgs.limit, 'limit');
+            assert.equal(args.pro, expectedArgs.pro, 'pro');
         });
     }
 
@@ -62,12 +62,12 @@ define('tests/unit/compat_filter',
             .injector(desktopCapabilities, noStorage, noUtilsVars)
             .run(['compat_filter'], function(compatFilter) {
                 testApiArgs(compatFilter, {
-                    dev: '',
+                    dev: 'desktop',
                     device: '',
                     limit: 24,
                     pro: undefined
                 });
-                assert.equal(compatFilter.isDeviceSelected('all'), true);
+                assert.equal(compatFilter.isDeviceSelected('desktop'), true);
             }));
 
         it('set device to android mobile',
