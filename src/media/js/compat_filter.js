@@ -80,15 +80,6 @@ define('compat_filter',
         views.reload();
     });
 
-    // On desktop, the default is no filtering.
-    if (actualPlatform == 'desktop') {
-        actualPlatform = '';
-
-        if (!filterDeviceFromLS) {
-            filterDevice = '';
-        }
-    }
-
     // For mobile, set limit to 10.
     if (actualFormFactor == 'mobile' || actualPlatform == 'firefoxos') {
         limit = 10;
