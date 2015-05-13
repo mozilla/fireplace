@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
+"POT-Creation-Date: 2015-05-13T15:38:33.238Z\n"
 "PO-Revision-Date: 2015-05-06 19:33+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1430940789.0\n"
 
@@ -34,6 +33,14 @@ msgstr "В цій категорії немає програм"
 #: /templates/category.html:37
 msgid "The category you requested does not exist."
 msgstr "Категорія, яку ви запитали не існує."
+
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "Назад"
+
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "Далі"
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -59,14 +66,6 @@ msgstr "Відправити відгук"
 msgid "Get Help"
 msgstr "Отримати допомогу"
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "Назад"
-
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "Далі"
-
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
 msgstr "Зворотній зв'язок"
@@ -83,7 +82,7 @@ msgstr "Розробити програми"
 msgid "My Submissions"
 msgstr "Мої представлення"
 
-#: /templates/footer.html:25 /templates/settings.html:74
+#: /templates/footer.html:25 /templates/settings.html:75
 msgid "Reviewer Tools"
 msgstr "Інструменти рецензента"
 
@@ -99,18 +98,22 @@ msgstr ""
 "За виключенням вмісту з <a href=\"{legal_url}\" target=\"_blank\">явно зазначеною ліцензією</a>, вміст цього сайту ліцензовано на умовах <a href=\"{cc_url}\" target=\"_blank\">Creative Commons "
 "Attribution зі збереженням умов версії 3.0</a> або пізнішої."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:70 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
 #: /media/js/views/app/privacy.js:7
 msgid "Privacy Policy"
 msgstr "Політика приватності"
 
-#: /templates/footer.html:40 /templates/settings.html:71 /templates/terms.html:2 /media/js/views/terms.js:10
+#: /templates/footer.html:40 /templates/settings.html:72 /templates/terms.html:2 /media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Умови використання"
 
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "Повідомити про зловживання торговою маркою"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Переглянути більше"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -148,11 +151,11 @@ msgstr "Перемкнути пошук"
 msgid "Toggle Settings Menu"
 msgstr "Перемкнути меню налаштувань"
 
-#: /templates/header.html:57 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:42
+#: /templates/header.html:57 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "Зареєструватись"
 
-#: /templates/header.html:59 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:43
+#: /templates/header.html:59 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr "Увійти"
 
@@ -168,7 +171,7 @@ msgstr "Налаштування"
 msgid "My Apps"
 msgstr "Мої програми"
 
-#: /templates/header.html:87 /templates/nav.html:39 /templates/settings.html:44
+#: /templates/header.html:87 /templates/nav.html:39 /templates/settings.html:45
 msgid "Sign Out"
 msgstr "Вийти"
 
@@ -179,10 +182,6 @@ msgstr "Ви повинні використовувати Firefox для вст
 #: /templates/incompatible.html:2 /templates/marketplace-update.html:4
 msgid "Download"
 msgstr "Завантажити"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Переглянути більше"
 
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
@@ -232,6 +231,28 @@ msgstr "У вас немає програм"
 msgid "Oh no!"
 msgstr "О ні!"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> результат"
+msgstr[1] "<b>{n}</b> результи"
+msgstr[2] "<b>{n}</b> результатів"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> повернув {n} результат"
+msgstr[1] "<b>\"{search_query}\"</b> повернув {n} результати"
+msgstr[2] "<b>\"{search_query}\"</b> повернув {n} результатів"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Результатів не знайдено"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Результатів не знайдено, спробуйте знову пізніше"
+
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
 msgstr "Налаштування облікового запису"
@@ -256,51 +277,29 @@ msgstr "Рекомендації"
 msgid "Yes, show me recommendations based on my installed apps. <a href=\"{url}\" target=\"_blank\">Learn more</a>"
 msgstr "Так, відображати рекомендації, на основі моїх встановлених програм. <a href=\"{url}\" target=\"_blank\">Детальніше</a>"
 
-#: /templates/settings.html:35
-msgid "Region"
-msgstr "Регіон"
-
-#: /templates/settings.html:41
+#: /templates/settings.html:42
 msgid "Save Changes"
 msgstr "Зберегти зміни"
 
-#: /templates/settings.html:51
+#: /templates/settings.html:52
 msgid "Newsletter"
 msgstr "Інформаційний бюлетень"
 
-#: /templates/settings.html:56
+#: /templates/settings.html:57
 msgid "Get Firefox News."
 msgstr "Отримуйте новини про Firefox."
 
-#: /templates/settings.html:58
+#: /templates/settings.html:59
 msgid "Sign up for our newsletter."
 msgstr "Підписатись на наш інформаційний бюлетень."
 
-#: /templates/settings.html:68
+#: /templates/settings.html:69
 msgid "Get Involved"
 msgstr "Долучитися"
 
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> результат"
-msgstr[1] "<b>{n}</b> результи"
-msgstr[2] "<b>{n}</b> результатів"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> повернув {n} результат"
-msgstr[1] "<b>\"{search_query}\"</b> повернув {n} результати"
-msgstr[2] "<b>\"{search_query}\"</b> повернув {n} результатів"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Результатів не знайдено"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Результатів не знайдено, спробуйте знову пізніше"
+#: /templates/settings.html:36
+msgid "Region"
+msgstr "Регіон"
 
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
@@ -313,83 +312,6 @@ msgstr "Статистика використання програми"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Недостатньо даних для показу статистики."
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "Показати як"
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "Перемкнути попередні перегляди програм"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Повернутися до {app}"
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Оцінка вмісту"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Докладніше про рейтинг"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Налаштування вашого Mac можуть не дозволяти вам встановлення програм не з Mac App Store."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Дізнайтесь, як їх змінити."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "Показати мені все для <mkt-selected-text></mkt-selected-text>"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Встановлено!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Запустити цю програму зі свого каталогу <b>Програми</b>."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Запустити цю програму зі свого <b>робочого столу Windows</b> або <b>Пуск &#9658; Всі програми</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Запустити цю програму зі свого <b>dash</b>, <b>Панелі вибору програм</b>, або <b>Меню програм</b>."
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Редагувати ваш відгук"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Редагувати ваш відгук"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Написати відгук"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Увійти, щоб залишити відгук"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Читати всі відгуки"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 відгук"
-msgstr[1] "{numReviews} відгуки"
-msgstr[2] "{numReviews} відгуків"
 
 #: /templates/_macros/app_tile.html:102
 msgid "Review"
@@ -572,6 +494,83 @@ msgstr "Завантаження політики приватності..."
 #: /templates/app/receipt.html:2
 msgid "Thank you for purchasing"
 msgstr "Дякуємо за покупку"
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "Показати як"
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "Перемкнути попередні перегляди програм"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Повернутися до {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Оцінка вмісту"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Докладніше про рейтинг"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Налаштування вашого Mac можуть не дозволяти вам встановлення програм не з Mac App Store."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Дізнайтесь, як їх змінити."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "Показати мені все для <mkt-selected-text></mkt-selected-text>"
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Встановлено!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Запустити цю програму зі свого каталогу <b>Програми</b>."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Запустити цю програму зі свого <b>робочого столу Windows</b> або <b>Пуск &#9658; Всі програми</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Запустити цю програму зі свого <b>dash</b>, <b>Панелі вибору програм</b>, або <b>Меню програм</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Редагувати ваш відгук"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Редагувати ваш відгук"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Написати відгук"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Увійти, щоб залишити відгук"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Читати всі відгуки"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 відгук"
+msgstr[1] "{numReviews} відгуки"
+msgstr[2] "{numReviews} відгуків"
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -775,27 +774,27 @@ msgstr "Подорожі"
 msgid "Utilities"
 msgstr "Утиліти"
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
 msgid "All Platforms"
 msgstr "Всі платформи"
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:63
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
 msgid "Android Mobile"
 msgstr "Смартфон Android"
 
-#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:64
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
 msgid "Android Tablet"
 msgstr "Планшет Android"
 
-#: /media/js/compat_filter.js:48 /media/js/compat_filter.js:61
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
 msgid "Desktop"
 msgstr "Настільний комп'ютер"
 
-#: /media/js/compat_filter.js:49 /media/js/compat_filter.js:62
+#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: /media/js/compat_filter.js:58
+#: /media/js/compat_filter.js:56
 msgid "My Device"
 msgstr "Мій пристрій"
 
@@ -840,23 +839,24 @@ msgstr "Для 17+"
 msgid "Adults Only 18+"
 msgstr "Тільки для дорослих 18+"
 
-#: /media/js/desktop_promo.js:21
+#. Puzzle Games collection desktop promo (bug 1160327).
+#: /media/js/desktop_promo.js:22
 msgid "Puzzle Games—Desktop Essentials"
 msgstr "Ігри в Пазли—Невід'ємна частина Десктопу"
 
-#: /media/js/desktop_promo.js:26
+#: /media/js/desktop_promo.js:28
 msgid "Play the addicting game of elements."
 msgstr "Грайте в захопливу гру елементів."
 
-#: /media/js/desktop_promo.js:31
+#: /media/js/desktop_promo.js:34
 msgid "Om Nom needs candy!"
 msgstr "Ом Ном хоче цукерку!"
 
-#: /media/js/desktop_promo.js:38
+#: /media/js/desktop_promo.js:41
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Програми для продуктивності—Основні настільні"
 
-#: /media/js/desktop_promo.js:44
+#: /media/js/desktop_promo.js:48
 msgid "Games & Entertainment Apps—Desktop Essentials"
 msgstr "Програми для ігор та розваг—Основні настільні"
 
@@ -1238,7 +1238,7 @@ msgstr[0] "Програма з категорії робота і бізнес"
 msgstr[1] "Програми з категорії робота і бізнес"
 msgstr[2] "Програми з категорії робота і бізнес"
 
-#: /media/js/helpers_local.js:117
+#: /media/js/helpers_local.js:116
 msgid "Works offline"
 msgstr "Працює поза мережею"
 

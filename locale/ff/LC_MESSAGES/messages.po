@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
+"POT-Creation-Date: 2015-05-13T15:38:33.238Z\n"
 "PO-Revision-Date: 2015-03-14 17:07+0000\n"
 "Last-Translator: Ibrahima <ibrahima.sarr@pulaagu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,6 +34,14 @@ msgstr "Alaa jaaɓɗe e ndee fedde"
 msgid "The category you requested does not exist."
 msgstr "Taƴre nde ɗaɓɓit-ɗaa ndee woodaani."
 
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "Caggal"
+
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "Yeeso"
+
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
 msgstr "Amin katojini e miijooji maa!"
@@ -58,14 +66,6 @@ msgstr "Naatnu Miijo Maa"
 msgid "Get Help"
 msgstr "Heɓ Ballal"
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "Caggal"
-
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "Yeeso"
-
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
 msgstr "Duttine"
@@ -82,7 +82,7 @@ msgstr "Topo Jaaɓɗe"
 msgid "My Submissions"
 msgstr "Naatnanɗe am"
 
-#: /templates/footer.html:25 /templates/settings.html:74
+#: /templates/footer.html:25 /templates/settings.html:75
 msgid "Reviewer Tools"
 msgstr "Kuutorɗe Ƴeewtiyaŋke"
 
@@ -98,18 +98,22 @@ msgstr ""
 "So wonaa ɗo <a href=\"{legal_url}\" target=\"_blank\">sifaa</a> nokku goɗɗo, loowdi ndee lowre ko keeroraandi tugnaade e jamirol <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution "
 "Share-Alike License v3.0</a> walla kala yamre sakkitiinde ɗum."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:70 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
 #: /media/js/views/app/privacy.js:7
 msgid "Privacy Policy"
 msgstr "Dawirgol Suturo"
 
-#: /templates/footer.html:40 /templates/settings.html:71 /templates/terms.html:2 /media/js/views/terms.js:10
+#: /templates/footer.html:40 /templates/settings.html:72 /templates/terms.html:2 /media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Sarɗiiji kuutorgol"
 
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "Jaŋto Nguyka Marke"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Ƴeew ɗee Goɗɗe"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -147,11 +151,11 @@ msgstr ""
 msgid "Toggle Settings Menu"
 msgstr ""
 
-#: /templates/header.html:57 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:42
+#: /templates/header.html:57 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "Windito"
 
-#: /templates/header.html:59 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:43
+#: /templates/header.html:59 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr "Seŋo"
 
@@ -167,7 +171,7 @@ msgstr "Teelte"
 msgid "My Apps"
 msgstr "Jaaɓɗe Am"
 
-#: /templates/header.html:87 /templates/nav.html:39 /templates/settings.html:44
+#: /templates/header.html:87 /templates/nav.html:39 /templates/settings.html:45
 msgid "Sign Out"
 msgstr "Seŋto"
 
@@ -178,10 +182,6 @@ msgstr "Alaa e sago kuutoro-ɗaa Firefox ngam aafde jaaɓɗe Firefox."
 #: /templates/incompatible.html:2 /templates/marketplace-update.html:4
 msgid "Download"
 msgstr "Aawto"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Ƴeew ɗee Goɗɗe"
 
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
@@ -231,6 +231,26 @@ msgstr "A alaa jaaɓɗe"
 msgid "Oh no!"
 msgstr "Ee'boh!"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "Njaltudi <b>{n}</b>"
+msgstr[1] "<b>{ón}</b> Njaltudi"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> artirii njaltudi {n}"
+msgstr[1] "<b>\"{search_query}\"</b> artirii {n} njaltudi"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Alaa njaltudi yiytaa"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Alaa njaltudi yiytaa, eto kadi"
+
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
 msgstr "Teelte Konte"
@@ -255,49 +275,29 @@ msgstr "Wasiyaaji"
 msgid "Yes, show me recommendations based on my installed apps. <a href=\"{url}\" target=\"_blank\">Learn more</a>"
 msgstr "Eey, hollu basiyaaji tugnaade e jaaɓɗe am aafaaɗe. <a href=\"{url}\" target=\"_blank\">Ɓeydu humpito</a>"
 
-#: /templates/settings.html:35
-msgid "Region"
-msgstr "Diiwaan"
-
-#: /templates/settings.html:41
+#: /templates/settings.html:42
 msgid "Save Changes"
 msgstr "Danndu bayle"
 
-#: /templates/settings.html:51
+#: /templates/settings.html:52
 msgid "Newsletter"
 msgstr "Ɓataake habrirde"
 
-#: /templates/settings.html:56
+#: /templates/settings.html:57
 msgid "Get Firefox News."
 msgstr "Heɓ Kabaruuji Firefox."
 
-#: /templates/settings.html:58
+#: /templates/settings.html:59
 msgid "Sign up for our newsletter."
 msgstr "Winndito e ɓataake habirde amen."
 
-#: /templates/settings.html:68
+#: /templates/settings.html:69
 msgid "Get Involved"
 msgstr "Addu ballal maa"
 
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "Njaltudi <b>{n}</b>"
-msgstr[1] "<b>{ón}</b> Njaltudi"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> artirii njaltudi {n}"
-msgstr[1] "<b>\"{search_query}\"</b> artirii {n} njaltudi"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Alaa njaltudi yiytaa"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Alaa njaltudi yiytaa, eto kadi"
+#: /templates/settings.html:36
+msgid "Region"
+msgstr "Diiwaan"
 
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
@@ -310,82 +310,6 @@ msgstr "Limlimtooje kuutoragol jaaɓɗe"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Limlimtooje timmaani hollireede."
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "Jaytin hono"
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "Toggilo Jiytindagol Jaaɓngal"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Rutto to {app}"
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Jeɗgol Loowdi"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Humpito Jeyɗngol"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr ""
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Humpito no ɗum waylirtee."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Aafaama!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Hutmin ngal jaaɓngal e runngere <b>Jaaɓɗe</b> maa."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Hurmin ngal jaaɓngal e <b>ordinateer Windows</b> walla <b>Fuɗɗo &#9658; Topirɗe Fof</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Hurmin ngal jaaɓngal e <b>daarde</b>, <b>Suɓorde jaaɓɗe laa</b>, walla <b>Dosol jaaɓɗe</b> maa."
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Taƴto Korndol maa"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Taƴto korndol maa"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Winndu korndol"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Winndito ngam horndaade"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Tar korndaali fof"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "Horndaango 1"
-msgstr[1] "Korndaali {numReviews}"
 
 #: /templates/_macros/app_tile.html:102
 msgid "Review"
@@ -567,6 +491,82 @@ msgstr "Nana loowa Dawirgol Suturo..."
 #: /templates/app/receipt.html:2
 msgid "Thank you for purchasing"
 msgstr "A jaaraama e coodgu"
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "Jaytin hono"
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "Toggilo Jiytindagol Jaaɓngal"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Rutto to {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Jeɗgol Loowdi"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Humpito Jeyɗngol"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Humpito no ɗum waylirtee."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Aafaama!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Hutmin ngal jaaɓngal e runngere <b>Jaaɓɗe</b> maa."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Hurmin ngal jaaɓngal e <b>ordinateer Windows</b> walla <b>Fuɗɗo &#9658; Topirɗe Fof</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Hurmin ngal jaaɓngal e <b>daarde</b>, <b>Suɓorde jaaɓɗe laa</b>, walla <b>Dosol jaaɓɗe</b> maa."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Taƴto Korndol maa"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Taƴto korndol maa"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Winndu korndol"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Winndito ngam horndaade"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Tar korndaali fof"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "Horndaango 1"
+msgstr[1] "Korndaali {numReviews}"
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -768,27 +768,27 @@ msgstr "Ɗannagol"
 msgid "Utilities"
 msgstr "Naftorɗe"
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
 msgid "All Platforms"
 msgstr ""
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:63
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
 msgid "Android Mobile"
 msgstr "Cinndel Android"
 
-#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:64
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
 msgid "Android Tablet"
 msgstr "Taable Android"
 
-#: /media/js/compat_filter.js:48 /media/js/compat_filter.js:61
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
 msgid "Desktop"
 msgstr "Ordinateer"
 
-#: /media/js/compat_filter.js:49 /media/js/compat_filter.js:62
+#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: /media/js/compat_filter.js:58
+#: /media/js/compat_filter.js:56
 msgid "My Device"
 msgstr ""
 
@@ -833,23 +833,24 @@ msgstr "Kellifaaɗo 17+"
 msgid "Adults Only 18+"
 msgstr "Mawɓe Tan 18+"
 
-#: /media/js/desktop_promo.js:21
+#. Puzzle Games collection desktop promo (bug 1160327).
+#: /media/js/desktop_promo.js:22
 msgid "Puzzle Games—Desktop Essentials"
 msgstr ""
 
-#: /media/js/desktop_promo.js:26
+#: /media/js/desktop_promo.js:28
 msgid "Play the addicting game of elements."
 msgstr ""
 
-#: /media/js/desktop_promo.js:31
+#: /media/js/desktop_promo.js:34
 msgid "Om Nom needs candy!"
 msgstr ""
 
-#: /media/js/desktop_promo.js:38
+#: /media/js/desktop_promo.js:41
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Ko teskini e Jaaɓɗe Paggitorɗe  Ordinateer"
 
-#: /media/js/desktop_promo.js:44
+#: /media/js/desktop_promo.js:48
 msgid "Games & Entertainment Apps—Desktop Essentials"
 msgstr "Ɓurɗe Teskinde e Jaaɓɗe Pije e Fijundaaru Ordinateer"
 
@@ -1177,7 +1178,7 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "Jaaɓngal Golle e Julaŋkaagal"
 msgstr[1] "Jaaɓɗe Golle e Julaŋkaagal"
 
-#: /media/js/helpers_local.js:117
+#: /media/js/helpers_local.js:116
 msgid "Works offline"
 msgstr "Ena golla e ceŋtol"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
+"POT-Creation-Date: 2015-05-13T15:38:33.238Z\n"
 "PO-Revision-Date: 2015-03-20 13:18+0000\n"
 "Last-Translator: ig-NG02_Chigozie <ezeanichigozie@ikolo.com.ng>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,6 +34,14 @@ msgstr "Onweghị app ahụrụ na nkeji a                "
 msgid "The category you requested does not exist."
 msgstr "Nkeji ịchọrọ ịhụ adịghị                "
 
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "Nke bu ụzọ                "
+
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "Ọzọ"
+
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
 msgstr "Anyị chọrọ ịnụ olu gị!                "
@@ -58,14 +66,6 @@ msgstr "Nyefee nzaghachi                "
 msgid "Get Help"
 msgstr "Nweta Enyemaka                "
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "Nke bu ụzọ                "
-
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "Ọzọ"
-
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
 msgstr "Nzaghachi                "
@@ -82,7 +82,7 @@ msgstr "Weputa App ndịọzọ                "
 msgid "My Submissions"
 msgstr "Ihe ndị m nyefere                "
 
-#: /templates/footer.html:25 /templates/settings.html:74
+#: /templates/footer.html:25 /templates/settings.html:75
 msgid "Reviewer Tools"
 msgstr "Iheọrụ onye ntuleghachi                "
 
@@ -98,18 +98,22 @@ msgstr ""
 "ọbụ maọbụ ebe ọpụtara ihe <a href=\"{legal_url}\" ebe elekwasịrị=\"_ghere oghe\">elebara anya</a>, enyefere ikike ihe dị na saịtịa n'aka <a href=\"{cc_url}\" ebe elekwasịrị=\"_ghere oghe\"> Ndị "
 "keputara ikike yiri nke a  v3.0</a> maọbụ vashọn nke pụtara ikpeazụ.                "
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:70 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
 #: /media/js/views/app/privacy.js:7
 msgid "Privacy Policy"
 msgstr "Ikike iwu                "
 
-#: /templates/footer.html:40 /templates/settings.html:71 /templates/terms.html:2 /media/js/views/terms.js:10
+#: /templates/footer.html:40 /templates/settings.html:72 /templates/terms.html:2 /media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Iwu eji mee ihe                "
 
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "Gwaa anyị mmebi ikike azụmahịa                "
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Ihe ndịọzọ aga achọ                "
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -147,11 +151,11 @@ msgstr ""
 msgid "Toggle Settings Menu"
 msgstr ""
 
-#: /templates/header.html:57 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:42
+#: /templates/header.html:57 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "Debanye                "
 
-#: /templates/header.html:59 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:43
+#: /templates/header.html:59 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr " Banye                "
 
@@ -167,7 +171,7 @@ msgstr "Nhazi                "
 msgid "My Apps"
 msgstr "App mụ                "
 
-#: /templates/header.html:87 /templates/nav.html:39 /templates/settings.html:44
+#: /templates/header.html:87 /templates/nav.html:39 /templates/settings.html:45
 msgid "Sign Out"
 msgstr "Pụọ                "
 
@@ -178,10 +182,6 @@ msgstr "ị ga-eji Firefox maka itinye app.                "
 #: /templates/incompatible.html:2 /templates/marketplace-update.html:4
 msgid "Download"
 msgstr "Bupụta                "
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Ihe ndịọzọ aga achọ                "
 
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
@@ -231,6 +231,24 @@ msgstr " Inweghị App                "
 msgid "Oh no!"
 msgstr "Hei!                "
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> ihe si na ya<b>{n}</b> ihe si na ya                "
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> lọghachiri {n} ihe si na ya<b>\"{search_query}\"</b> lọghachiri {n} ihe si na ya                "
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Onweghị ihe ahụrụ                "
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Onweghị ihe ahụrụ, nwaa ọzọ ma emesịa                "
+
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
 msgstr "Ndozigharị akaụntụ                "
@@ -255,47 +273,29 @@ msgstr "Eziama"
 msgid "Yes, show me recommendations based on my installed apps. <a href=\"{url}\" target=\"_blank\">Learn more</a>"
 msgstr "Ee, gosi m nkwenye gị n'adabere na app itinyere.<a href=\"{url}\" target=\"_blank\">mụtakwuo</a>                "
 
-#: /templates/settings.html:35
-msgid "Region"
-msgstr " Mpaghara                "
-
-#: /templates/settings.html:41
+#: /templates/settings.html:42
 msgid "Save Changes"
 msgstr " Chekwaa mgbanwe                "
 
-#: /templates/settings.html:51
+#: /templates/settings.html:52
 msgid "Newsletter"
 msgstr "Ozi"
 
-#: /templates/settings.html:56
+#: /templates/settings.html:57
 msgid "Get Firefox News."
 msgstr "Nweta ozi Firefox                "
 
-#: /templates/settings.html:58
+#: /templates/settings.html:59
 msgid "Sign up for our newsletter."
 msgstr "Dejuo maka akụkọ ozi.                "
 
-#: /templates/settings.html:68
+#: /templates/settings.html:69
 msgid "Get Involved"
 msgstr "Sonye                "
 
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> ihe si na ya<b>{n}</b> ihe si na ya                "
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> lọghachiri {n} ihe si na ya<b>\"{search_query}\"</b> lọghachiri {n} ihe si na ya                "
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Onweghị ihe ahụrụ                "
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Onweghị ihe ahụrụ, nwaa ọzọ ma emesịa                "
+#: /templates/settings.html:36
+msgid "Region"
+msgstr " Mpaghara                "
 
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
@@ -308,81 +308,6 @@ msgstr "Nchịkọta ojiji ngwa"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Enweghị nchịkọta zuru oke igosi."
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "Gosi dịka                "
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "Gosi App maka nhụbiri                "
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Gaa azụ{app}                 "
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Ileru ihe dị ya anya                "
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Ihe ndị ahụrụ                "
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Ntọala Mac gị nwere ike igbochi gị na ịwụnye ngwa ndị na esighi na Ụlọ Ahịa Ngwa Mac."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr " Mụta k'esi agbanwe ha.                "
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Etinyela ya!                "
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Mepee app a site na <b>ihe etinyere na ya</b> nduzi.                "
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Mepee app site ihe a gị  <b>ihu igwe komputa</b> maọbụ <b>Bido&#9658; usoro iheọrụniile</b>.                "
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr " Mepee app site na <b>gbara gaa</b>, <b>ihe mwere ngwaọrụ</b>, maọbụ<b>usoro ngwaọrụ</b>.                "
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr " Dezigharịa ntụleghachi gị                "
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr " Dezigharịa ntụleghachi gị                "
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Dee ntụleghachi gị                "
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Banye maka ịtuleghachi                "
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr " Gụọ ntụleghachi gị                "
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 Ntuleghachi(numReviews)ntuleghachi                "
 
 #: /templates/_macros/app_tile.html:102
 msgid "Review"
@@ -563,6 +488,81 @@ msgstr " Imeela maka ịzụ ahịa                "
 #: /templates/app/receipt.html:2
 msgid "Thank you for purchasing"
 msgstr " Imeela maka ịzụ ahịa                "
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "Gosi dịka                "
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "Gosi App maka nhụbiri                "
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Gaa azụ{app}                 "
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Ileru ihe dị ya anya                "
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Ihe ndị ahụrụ                "
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Ntọala Mac gị nwere ike igbochi gị na ịwụnye ngwa ndị na esighi na Ụlọ Ahịa Ngwa Mac."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr " Mụta k'esi agbanwe ha.                "
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Etinyela ya!                "
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Mepee app a site na <b>ihe etinyere na ya</b> nduzi.                "
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Mepee app site ihe a gị  <b>ihu igwe komputa</b> maọbụ <b>Bido&#9658; usoro iheọrụniile</b>.                "
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr " Mepee app site na <b>gbara gaa</b>, <b>ihe mwere ngwaọrụ</b>, maọbụ<b>usoro ngwaọrụ</b>.                "
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr " Dezigharịa ntụleghachi gị                "
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr " Dezigharịa ntụleghachi gị                "
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Dee ntụleghachi gị                "
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Banye maka ịtuleghachi                "
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr " Gụọ ntụleghachi gị                "
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 Ntuleghachi(numReviews)ntuleghachi                "
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -764,27 +764,27 @@ msgstr "Ime njem                "
 msgid "Utilities"
 msgstr " ịba uru                "
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
 msgid "All Platforms"
 msgstr ""
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:63
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
 msgid "Android Mobile"
 msgstr "Ekwentị Android                "
 
-#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:64
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
 msgid "Android Tablet"
 msgstr "Android Mbadamba                "
 
-#: /media/js/compat_filter.js:48 /media/js/compat_filter.js:61
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
 msgid "Desktop"
 msgstr "Igwe komputa                "
 
-#: /media/js/compat_filter.js:49 /media/js/compat_filter.js:62
+#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
 msgid "Firefox OS"
 msgstr " Firefox OS                "
 
-#: /media/js/compat_filter.js:58
+#: /media/js/compat_filter.js:56
 msgid "My Device"
 msgstr ""
 
@@ -829,23 +829,24 @@ msgstr "Tozuru 17+                "
 msgid "Adults Only 18+"
 msgstr "Okenye naanị18+                "
 
-#: /media/js/desktop_promo.js:21
+#. Puzzle Games collection desktop promo (bug 1160327).
+#: /media/js/desktop_promo.js:22
 msgid "Puzzle Games—Desktop Essentials"
 msgstr ""
 
-#: /media/js/desktop_promo.js:26
+#: /media/js/desktop_promo.js:28
 msgid "Play the addicting game of elements."
 msgstr ""
 
-#: /media/js/desktop_promo.js:31
+#: /media/js/desktop_promo.js:34
 msgid "Om Nom needs candy!"
 msgstr ""
 
-#: /media/js/desktop_promo.js:38
+#: /media/js/desktop_promo.js:41
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "App eji arụpụta ọrụ —ihe ndị na igwe komputa                "
 
-#: /media/js/desktop_promo.js:44
+#: /media/js/desktop_promo.js:48
 msgid "Games & Entertainment Apps—Desktop Essentials"
 msgstr "App gwuregwu ntụrụndụ—ihe ndị dị na igwe komputa                "
 
@@ -1119,7 +1120,7 @@ msgid "Work & Business App"
 msgid_plural "Work & Business Apps"
 msgstr[0] "App ọrụ n’azụmahịa App ọrụ n’azụmahịa                 "
 
-#: /media/js/helpers_local.js:117
+#: /media/js/helpers_local.js:116
 msgid "Works offline"
 msgstr "N’arụ ọrụ mgbe ikike ọrụ anọghị n’ọrụ                 "
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06T15:31:44.903Z\n"
+"POT-Creation-Date: 2015-05-13T15:38:33.238Z\n"
 "PO-Revision-Date: 2015-04-16 11:50+0000\n"
 "Last-Translator: ee-GH01_Edzordzi <edzordzigh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,6 +34,14 @@ msgstr "App aɖeke mele ɖoɖo sia me o."
 msgid "The category you requested does not exist."
 msgstr "Ɖoɖo si ne bia la meli o."
 
+#: /templates/desktop-promo.html:2
+msgid "Previous"
+msgstr "Si va yi"
+
+#: /templates/desktop-promo.html:16
+msgid "Next"
+msgstr "Si gbɔna"
+
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
 msgstr "Miedzi be miase nya aɖe tso gbɔwo!"
@@ -58,14 +66,6 @@ msgstr "Ɖo wo nutsotsoɖa"
 msgid "Get Help"
 msgstr "Xɔ kpeɖeŋu"
 
-#: /templates/desktop-promo.html:2
-msgid "Previous"
-msgstr "Si va yi"
-
-#: /templates/desktop-promo.html:16
-msgid "Next"
-msgstr "Si gbɔna"
-
 #: /templates/footer.html:6 /templates/header.html:86 /templates/nav.html:30 /media/js/views/feedback.js:50
 msgid "Feedback"
 msgstr "Nutsotso"
@@ -82,7 +82,7 @@ msgstr "Tu appwo ɖe dzi"
 msgid "My Submissions"
 msgstr "Nye dɔwo"
 
-#: /templates/footer.html:25 /templates/settings.html:74
+#: /templates/footer.html:25 /templates/settings.html:75
 msgid "Reviewer Tools"
 msgstr "Reviewer ƒe dɔwɔnuwo"
 
@@ -98,18 +98,22 @@ msgstr ""
 "Ne wome gblɔe o la <a href=\"{legal_url}\" target=\"_blank\">noted</a>, menuwo le site sia le lincenced le <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike License "
 "v3.0</a> alo version bubu te."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:70 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/index.html:117 /templates/app/privacy.html:2 /media/js/views/privacy.js:10
 #: /media/js/views/app/privacy.js:7
 msgid "Privacy Policy"
 msgstr "Privacy ƒe sewo"
 
-#: /templates/footer.html:40 /templates/settings.html:71 /templates/terms.html:2 /media/js/views/terms.js:10
+#: /templates/footer.html:40 /templates/settings.html:72 /templates/terms.html:2 /media/js/views/terms.js:10
 msgid "Terms of Use"
 msgstr "Zaza ƒe ɖoɖowo"
 
 #: /templates/footer.html:42
 msgid "Report Trademark Abuse"
 msgstr "Na nutsotso le Trademark si wo abuse ŋu"
+
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Bubuwo li na le ŋku ɖo"
 
 #: /templates/header.html:28 /templates/header.html:29
 msgid "Back"
@@ -147,11 +151,11 @@ msgstr "Toggle Nudidi"
 msgid "Toggle Settings Menu"
 msgstr ""
 
-#: /templates/header.html:57 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:42
+#: /templates/header.html:57 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "Register"
 
-#: /templates/header.html:59 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:43
+#: /templates/header.html:59 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr "Geɖeme"
 
@@ -167,7 +171,7 @@ msgstr "Ɖoɖowo"
 msgid "My Apps"
 msgstr "App nye wo"
 
-#: /templates/header.html:87 /templates/nav.html:39 /templates/settings.html:44
+#: /templates/header.html:87 /templates/nav.html:39 /templates/settings.html:45
 msgid "Sign Out"
 msgstr "Do le eme"
 
@@ -178,10 +182,6 @@ msgstr "Edzebe naza Firefox akɔ install Firefox ƒe appwo."
 #: /templates/incompatible.html:2 /templates/marketplace-update.html:4
 msgid "Download"
 msgstr "Download"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Bubuwo li na le ŋku ɖo"
 
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
@@ -231,6 +231,26 @@ msgstr "Appwo mele asiwo o"
 msgid "Oh no!"
 msgstr "Oo, ao!"
 
+#: /templates/search.html:19
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Numetsonu"
+msgstr[1] "<b>{n}</b> Numetsonuwo"
+
+#: /templates/search.html:23
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> na {n} numetsonu"
+msgstr[1] "<b>\"{search_query}\"</b> na {n} numetsonuwo"
+
+#: /templates/search.html:55
+msgid "No results found"
+msgstr "Womekpɔ numetsonu aɖeke o"
+
+#: /templates/search.html:61
+msgid "No results found, try again later"
+msgstr "Womekpɔ nuɖoɖo aɖeke o. Gawoe emegbe."
+
 #: /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Account Settings"
 msgstr "Account ƒe nuɖoɖowo"
@@ -255,49 +275,29 @@ msgstr "Aɖaŋuwo"
 msgid "Yes, show me recommendations based on my installed apps. <a href=\"{url}\" target=\"_blank\">Learn more</a>"
 msgstr "Ee, fiam aɖaŋu siwo kuɖe app siwo me install la ŋu. <a href=\"{url}\" target=\"_blank\">srɔ bubuwo</a>"
 
-#: /templates/settings.html:35
-msgid "Region"
-msgstr "Nutome"
-
-#: /templates/settings.html:41
+#: /templates/settings.html:42
 msgid "Save Changes"
 msgstr "Le ɖɔɖɔɖowo ɖe anyi"
 
-#: /templates/settings.html:51
+#: /templates/settings.html:52
 msgid "Newsletter"
 msgstr "Nyadzɔdzɔgbale"
 
-#: /templates/settings.html:56
+#: /templates/settings.html:57
 msgid "Get Firefox News."
 msgstr "Xɔ Firefox ƒe nyadzɔdzɔwo."
 
-#: /templates/settings.html:58
+#: /templates/settings.html:59
 msgid "Sign up for our newsletter."
 msgstr "Ɖemɔ naxɔ miaƒe nyadzɔdzɔgbale."
 
-#: /templates/settings.html:68
+#: /templates/settings.html:69
 msgid "Get Involved"
 msgstr "Nɔ involved"
 
-#: /templates/search.html:19
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Numetsonu"
-msgstr[1] "<b>{n}</b> Numetsonuwo"
-
-#: /templates/search.html:23
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> na {n} numetsonu"
-msgstr[1] "<b>\"{search_query}\"</b> na {n} numetsonuwo"
-
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Womekpɔ numetsonu aɖeke o"
-
-#: /templates/search.html:61
-msgid "No results found, try again later"
-msgstr "Womekpɔ nuɖoɖo aɖeke o. Gawoe emegbe."
+#: /templates/settings.html:36
+msgid "Region"
+msgstr "Nutome"
 
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
@@ -310,82 +310,6 @@ msgstr "App zaza ƒe statisticwo"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Statisticwo mesɔgbɔ ne woa ɖee fia o"
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Display as"
-msgstr "Fia abe"
-
-#: /templates/_includes/app_list_filters.html:16
-msgid "Toggle App Previews"
-msgstr "Toggle App ƒe previewwo"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Trɔ yi {app}"
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr " Emenuwo ƒe Rating"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Detailwo rating"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Wo Mac ƒe ɖoɖowo ateŋu axe mɔ na wo be mateŋu ainstall app siwo metso Mac App Store o."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Srɔ alesi na ɖɔwo ɖo."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Wo instali!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Ɖo app sia ɖi tso wo <b>Applications</b> directory."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Ɖo app sia ɖi tso wo <b>Windows desktop</b> alo <b>Start &#9658; Programwokatã</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Ɖo app sia ɖi tso wo<b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Trɔ asi le wo review ŋu"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Trɔ asi le wo review ŋu"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "ŋlɔ review"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Geɖeme ne na review"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Xle rewiewwo katã"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "Review ɖeka"
-msgstr[1] "Review {numReviews}"
 
 #: /templates/_macros/app_tile.html:102
 msgid "Review"
@@ -567,6 +491,82 @@ msgstr "Privacy ƒe policy le loadim…"
 #: /templates/app/receipt.html:2
 msgid "Thank you for purchasing"
 msgstr "Akpe nawo be eƒlee"
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Display as"
+msgstr "Fia abe"
+
+#: /templates/_includes/app_list_filters.html:16
+msgid "Toggle App Previews"
+msgstr "Toggle App ƒe previewwo"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Trɔ yi {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr " Emenuwo ƒe Rating"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Detailwo rating"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Wo Mac ƒe ɖoɖowo ateŋu axe mɔ na wo be mateŋu ainstall app siwo metso Mac App Store o."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Srɔ alesi na ɖɔwo ɖo."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Wo instali!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Ɖo app sia ɖi tso wo <b>Applications</b> directory."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Ɖo app sia ɖi tso wo <b>Windows desktop</b> alo <b>Start &#9658; Programwokatã</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Ɖo app sia ɖi tso wo<b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Trɔ asi le wo review ŋu"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Trɔ asi le wo review ŋu"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "ŋlɔ review"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Geɖeme ne na review"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Xle rewiewwo katã"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "Review ɖeka"
+msgstr[1] "Review {numReviews}"
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -768,27 +768,27 @@ msgstr "Mɔzɔzɔ"
 msgid "Utilities"
 msgstr "Nuzazawo"
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:54
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
 msgid "All Platforms"
 msgstr "Platformwo kata"
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:63
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
 msgid "Android Mobile"
 msgstr "Android ƒe mobile"
 
-#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:64
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
 msgid "Android Tablet"
 msgstr "Android ƒe tablet"
 
-#: /media/js/compat_filter.js:48 /media/js/compat_filter.js:61
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
 msgid "Desktop"
 msgstr "Desktop"
 
-#: /media/js/compat_filter.js:49 /media/js/compat_filter.js:62
+#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: /media/js/compat_filter.js:58
+#: /media/js/compat_filter.js:56
 msgid "My Device"
 msgstr "Nye Mɔ"
 
@@ -833,23 +833,24 @@ msgstr "Ametsitsi si xɔ ƒe wiandre kple edzi vɔ"
 msgid "Adults Only 18+"
 msgstr "Ametsitsi si xɔ ƒe wienyi kple edzi vɔ ko"
 
-#: /media/js/desktop_promo.js:21
+#. Puzzle Games collection desktop promo (bug 1160327).
+#: /media/js/desktop_promo.js:22
 msgid "Puzzle Games—Desktop Essentials"
 msgstr ""
 
-#: /media/js/desktop_promo.js:26
+#: /media/js/desktop_promo.js:28
 msgid "Play the addicting game of elements."
 msgstr ""
 
-#: /media/js/desktop_promo.js:31
+#: /media/js/desktop_promo.js:34
 msgid "Om Nom needs candy!"
 msgstr ""
 
-#: /media/js/desktop_promo.js:38
+#: /media/js/desktop_promo.js:41
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Productivity ƒe appwo—Desktop nuzaza veviwo"
 
-#: /media/js/desktop_promo.js:44
+#: /media/js/desktop_promo.js:48
 msgid "Games & Entertainment Apps—Desktop Essentials"
 msgstr "Fefe kple modzakaɖenuwo ƒe appwo —Desktop nuzaza veviwo"
 
@@ -1177,7 +1178,7 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "Dɔwɔwɔ kple Bizines ƒe App"
 msgstr[1] "Dɔwɔwɔ kple Bizines ƒe Appwo"
 
-#: /media/js/helpers_local.js:117
+#: /media/js/helpers_local.js:116
 msgid "Works offline"
 msgstr "Ewɔa dɔ le offline"
 
