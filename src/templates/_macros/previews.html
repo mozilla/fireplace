@@ -12,12 +12,20 @@
     <div class="previews-slider">
       <ul class="previews-content">
         {% for preview in app.previews %}
-          <li itemscope itemtype="http://schema.org/ImageObject">
-            <a class="screenshot thumbnail" href="{{ preview.image_url }}">
-              {{ deferred_preview(preview.image_url if is_desktop else
-                                     preview.thumbnail_url) }}
-            </a>
-          </li>
+          {% if preview.filetype == 'video/webm' %}
+            <li itemscope itemtype="http://schema.org/VideoObject">
+              <a class="thumbnail">
+                <video src="{{ preview.image_url }}" controls itemprop="contentURL"></video>
+              </a>
+            </li>
+          {% else %}
+            <li itemscope itemtype="http://schema.org/ImageObject">
+              <a class="thumbnail" href="{{ preview.image_url }}">
+                {{ deferred_preview(preview.image_url if is_desktop else
+                                       preview.thumbnail_url) }}
+              </a>
+            </li>
+          {% endif %}
         {% endfor %}
       </ul>
       <div class="previews-bars"></div>
