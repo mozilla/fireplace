@@ -1,12 +1,12 @@
-define('apps_buttons',
-    ['apps', 'core/cache', 'core/capabilities', 'core/defer', 'core/l10n',
-     'core/log', 'core/login', 'core/models', 'core/notification', 'payments',
-     'core/requests', 'core/settings', 'tracking_events', 'core/urls',
-     'core/user', 'core/utils', 'core/views', 'core/z'],
-    function(apps, cache, caps, defer, l10n,
-             log, login, models, notification, payments,
-             requests, settings, trackingEvents, urls, user, utils,
-             views, z) {
+define('buttons',
+    ['apps', 'core/cache', 'core/capabilities', 'core/defer', 'core/format',
+     'core/l10n', 'core/log', 'core/login', 'core/models', 'core/notification',
+     'payments', 'core/requests', 'core/settings', 'tracking_events',
+     'core/urls', 'core/user', 'core/utils', 'core/views', 'core/z'],
+    function(apps, cache, caps, defer, format, l10n,
+             log, login, models, notification,
+             payments, requests, settings, trackingEvents,
+             urls, user, utils, views, z) {
     var logger = log('buttons');
     var gettext = l10n.gettext;
     var appModel = models('app');
@@ -34,20 +34,20 @@ define('apps_buttons',
         // Revert button from a state of installing or a state of being
         // installed.
         $button.removeClass('purchasing installing error spinning');
-        text = text || $button.data('old-text');
+        var text = getBtnText(getAppFromBtn($button));
         $button.find('em').text(text);
+    }
+
+    function getAppFromBtn($btn) {
+        return appModel.lookup($btn.closest('[data-slug]').data('slug')) ||
+               $btn.data('product');
     }
 
     function _handler(func) {
         return function(e) {
             e.preventDefault();
             e.stopPropagation();
-
-            // Fetch the product from either model cache or data attr.
-            var $btn = $(this);
-            var product = appModel.lookup($btn.closest('[data-slug]').data('slug')) ||
-                          $btn.data('product');
-            func.call(this, product);
+            func.call(this, getAppFromBtn($(this)));
         };
     }
 
@@ -295,34 +295,28 @@ define('apps_buttons',
         return def.promise();
     }
 
-    z.page.on('click', '.product.launch', launchHandler)
-          .on('click', '.button.product:not(.launch):not(.incompatible)',
-              _handler(install));
+    z.page.on('click', '.mkt-app-button.launch', launchHandler)
+    .on('click', '.mkt-app-button:not(.launch):not(.incompatible)',
+        _handler(install))
+    .on('click', '.mkt-app-button[disabled]', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    });
 
     function get_button(manifest_url) {
-        return $('.button[data-manifest_url="' + manifest_url.replace(/"/, '\\"') + '"]');
+        return $('.mkt-app-button[data-manifest_url="' +
+                 manifest_url.replace(/"/, '\\"') + '"]');
     }
 
-    function mark_installed(manifest_url, $button) {
-        var text;
-        if (manifest_url) {
-            logger.log('Marking as installed', manifest_url);
-            $button = get_button(manifest_url);
-        }
-        if ($button.data('price-only')) {
-            // Feed only want to show price and not install status.
-            return;
-        }
-        if ($button.data('product').role === 'langpack') {
-            // Never show the 'Open' text for installed langpacks. Instead, say
-            // "Installed" and disable it.
-            text = gettext('Installed');
-            $button.prop('disabled', true);
+    function mark_installed(manifest_url, $btn) {
+        $btn = $btn || get_button(manifest_url);
+        var app = getAppFromBtn($btn);
+
+        if (app.role == 'langpack') {
+            $btn.attr('disabled', true).find('em').text(gettext('Installed'));
         } else {
-            // L10n: "Open" as in "Open the app".
-            text = gettext('Open');
+            setInstallBtnState($btn, app, 'launch install');
         }
-        setInstallBtnState($button, text, 'launch install');
     }
 
     function markBtnsAsInstalled() {
@@ -376,9 +370,58 @@ define('apps_buttons',
         });
     }
 
+    function transformApp(app) {
+        var isLangpack = app.role == 'langpack';
+        var incompatible = apps.incompat(app);
+        var installed = z.apps.indexOf(app.manifest_url) !== -1;
+
+        if (isLangpack) {
+            return _.extend(app, {
+                disabled: incompatible || installed,
+                isLangpack: true,
+            });
+        }
+
+        var priceText = app.price && app.price != '0.00' ? app.price_locale :
+                                                           gettext('free');
+        if (app.payment_required && !app.price) {
+            priceText = gettext('Unavailable');
+        }
+
+        return _.extend(app, {
+            disabled: incompatible,
+            isLangpack: isLangpack,
+            incompatible: incompatible,
+            installed: installed,
+            installedBefore: user.has_installed(app.id) ||
+                             user.has_purchased(app.id),
+            priceText: priceText
+        });
+    }
+
+    function getBtnText(app) {
+        app = transformApp(app);
+
+        if (app.isLangpack) {
+            return app.installed ? gettext('Installed') : gettext('Install');
+        }
+
+        if (app.installed) {
+            return format.format(gettext('Open {appType}'), {
+                appType: gettext('app'),
+            });
+        } else {
+            return format.format(gettext('Install for {price}'), {
+                price: app.priceText
+            });
+        }
+    }
+
     return {
+        getBtnText: getBtnText,
         install: install,
         markBtnsAsInstalled: markBtnsAsInstalled,
         markBtnsAsUninstalled: markBtnsAsUninstalled,
+        transformApp: transformApp
     };
 });

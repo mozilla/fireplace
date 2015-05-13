@@ -59,11 +59,23 @@
   <section class="feed-brand feed-layout-{{ brand.layout }} multi-app-tile c"
            data-tracking="{{ brand.slug }}">
     {{ brand_header(brand) }}
-    <ul>
+    <ul class="icon-app-grid">
       {% for app in brand.apps %}
         {% if loop.index0 < brand.maxApps %}
-          {{ app_tile(app, src=brand.src,
-                      price_only=brand.isGridLayout) }}
+          {% if brand.isGridLayout %}
+            <li>
+              <a class="icon-app-grid__app" href="{{ url('app', [app.slug]) }}">
+                {{ deferred_icon(app.icons['64']) }}
+                <h3 class="icon-app-grid__name">{{ app.name }}</h3>
+                <p class="icon-app-grid__price">
+                  {{ app.price_locale if app.price and app.price != '0.00' else
+                     _('Free') }}
+                </p>
+              </a>
+            </li>
+          {% else %}
+            {{ app_tile(app, src=brand.src) }}
+          {% endif %}
         {% endif %}
       {% endfor %}
     </ul>

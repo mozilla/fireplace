@@ -206,7 +206,7 @@ casper.test.begin('Test add review on app review page', {
         helpers.startCasper({path: '/app/can_rate/ratings'});
 
         helpers.waitForPageLoaded(function() {
-            casper.click('.review-button');
+            casper.click('.review-buttons .review-button');
             helpers.fake_login();
         });
 
@@ -257,6 +257,7 @@ casper.test.begin('Test edit review on review page', {
             helpers.assertAPICallWasMade('/api/v2/apps/rating/', {
                 _user: 'mocktoken',
                 app: 'has_rated',
+                dev: 'desktop',
                 lang: 'en-US',
                 limit: '24',
                 region: 'us',

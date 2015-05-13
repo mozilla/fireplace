@@ -1,3 +1,6 @@
+@import 'layout';
+
+
 ellipsis() {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -35,5 +38,19 @@ ltr() {
 rtl() {
     [dir="rtl"] & {
         {block}
+    }
+}
+
+detail() {
+    [data-page-type~="detail"] & {
+        {block}
+    }
+}
+
+detail--wide() {
+    +media--base-tablet() {
+        +detail() {
+            {block}
+        }
     }
 }

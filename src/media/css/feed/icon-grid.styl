@@ -3,56 +3,47 @@
 */
 @import '../lib';
 
-.feed-layout-grid {
-    .rating,
-    .author,
-    .stars {
-        display: none;
+.icon-app-grid {
+    display: flex;
+    flex-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+        list-style: none;
+        height: 128px;
+        margin-top: 20px;
+        width: 50%;
     }
 }
 
-.feed-layout-grid ul {
-    margin-top: 15px;
-}
+.icon-app-grid__app {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
-.feed-layout-grid .mkt-tile {
-    float: left;
-    height: 128px;
-    margin-bottom: 20px;
-    width: 50%;
-
-    .icon {
-        margin: 0 auto;
-        position: relative;
-    }
-    .info {
-        padding: 12px 0 0;
-        text-align: center;
-        width: 130px;
-    }
-    .install {
-        border-bottom: none;
-        color: $action-positive;
-        font-size: 15px;
-        height: auto;
-        pointer-events: none;
-        position: relative;
-
-        em {
-            background: none !important;
-            border-bottom: none;
-        }
-        &[disabled] em {
-            background: none;
-        }
-    }
-    .heading {
-        flex-direction: column;
-        // For FxOS bug 1158148.
-        min-height: 170px;
+    &:hover {
+        text-decoration: none;
     }
 }
 
-.feed-layout-grid .button.install {
+.icon-app-grid img {
+    max-width: 100%;
+}
+
+.icon-app-grid__name {
+    color: $greyscale-black;
+    ellipsis();
+    font-size: 20px;
+    font-weight: 200;
+    line-height: 50px;
+    max-width: 90%;
+    text-align: center;
+    width: 100%;
+}
+
+.icon-app-grid__price {
     color: $action-positive;
+    line-height: 0;
+    position: relative;
 }

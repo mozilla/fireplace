@@ -108,7 +108,7 @@ function getAppData(installBtnSel) {
 
 function getEndpointParams(appListPage, extend) {
     var endpointParams = _.extend({
-        cache: '1', vary: '0', lang: 'en-US', region: 'us',
+        cache: '1', vary: '0', lang: 'en-US', region: 'us', dev: 'desktop',
         limit: constants.APP_LIMIT + ''
     }, appListPage.endpointParams || {});
 
