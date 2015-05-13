@@ -122,6 +122,20 @@ define('apps',
         return product[COMPAT_REASONS];
     }
 
+    function transform(app) {
+        // Normalize content types.
+        if (app.doc_type == 'website') {
+            app.isWebsite = true;
+            app.name = app.short_name || app.name || app.title;
+            app.previews = [];
+            app.contentType = 'website';
+        } else {
+            app.isApp = true;
+            app.contentType = 'app';
+        }
+        return app;
+    }
+
     return {
         applyUpdate: applyUpdate,
         checkForUpdate: checkForUpdate,
@@ -131,6 +145,7 @@ define('apps',
         launch: launch,
         promise: installer_def.promise(),
         installer: installer,
+        transform: transform,
         _use_compat_cache: function(val) {
             use_compat_cache = val;
         }

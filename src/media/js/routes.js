@@ -1,6 +1,6 @@
 define('routes',
-    ['core/router'],
-    function(router) {
+    ['core/router', 'core/settings'],
+    function(router, settings) {
 
     router.addRoutes([
         {'pattern': '^/(app.html|index.html)?$', 'view_name': 'homepage'},
@@ -34,6 +34,11 @@ define('routes',
         {'pattern': '^/usage$', 'view_name': 'usage'},
     ]);
 
+    var search = '/api/v2/fireplace/search/?cache=1&vary=0';
+    if (settings.meowEnabled) {
+        search = '/api/v2/multi-search/?cache=1&vary=0';
+    }
+
     router.api.addRoutes({
         'account_info': '/api/v2/account/info/{0}',
         'app': '/api/v2/fireplace/app/{0}/?cache=1&vary=0',
@@ -64,7 +69,7 @@ define('routes',
         'regions': '/api/v2/services/region/',
         'review': '/api/v2/apps/rating/{0}/',
         'reviews': '/api/v2/apps/rating/',
-        'search': '/api/v2/fireplace/search/?cache=1&vary=0',
+        'search': search,
         'settings': '/api/v2/account/settings/mine/',
         'site-config': '/api/v2/services/config/site/?cache=1&serializer=commonplace&vary=0',
     });

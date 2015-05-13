@@ -48,8 +48,7 @@ $btn-install-font-size = 12px;
     &.incompatible {
         pointer-events: auto;
     }
-    &.t,
-    &.product {
+    &.t {
         height: $btn-tiny;
     }
     &.s {
@@ -134,9 +133,9 @@ a.button {
 .mkt-app-button {
     align-items: center;
     btn_color(transparent, transparent, transparent, false);
-    border-radius: 5px;
     cursor: pointer;
     display: flex;
+    height: $btn-tiny;
     font-size: $btn-install-font-size;
     height: 34px;
     margin-top: 8px;
@@ -153,6 +152,7 @@ a.button {
         // This em becomes the visual button.
         btn_color($btn-color, $action-positive-tapped,
                   $action-positive-hover, false);
+        border-radius: 5px;
         display: inline-block;
         ellipsis();
         font-style: normal;

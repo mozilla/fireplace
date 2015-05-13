@@ -19,7 +19,8 @@
     {% include "_includes/app_list_filters.html" %}
     <ul class="app-list {{ 'paginated' if response.meta.next }}">
       {% for app in this %}
-        <li class="app-list-app">
+        {% set app = apps.transform(app) %}
+        <li class="app-list-app {{ 'app-list-website' if app.isWebsite }}">
           {{ app_tile(app, tray=True, src=trackingEvents.SRCS[appListType]) }}
         </li>
       {% endfor %}
