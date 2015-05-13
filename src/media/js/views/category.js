@@ -14,7 +14,7 @@ define('views/category',
             builder.z('title', name);
         }
 
-        builder.z('type', 'leaf category app-list');
+        builder.z('type', 'root category app-list');
         builder.z('show_cats', true);
         builder.z('cat', slug);
 
