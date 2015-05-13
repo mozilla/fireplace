@@ -83,10 +83,16 @@ $arrow-size = 10px;
             content: '';
             display: inline-block;
             height: $arrow-size;
-            left: $arrow-size;
             position: absolute;
             transform: rotate(45deg);
             width: $arrow-size;
+
+            +ltr() {
+                left: $arrow-size;
+            }
+            +rtl() {
+                right: $arrow-size;
+            }
         }
     }
 }
