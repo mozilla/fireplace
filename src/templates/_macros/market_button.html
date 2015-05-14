@@ -1,12 +1,15 @@
 {% macro market_button(app, data_attrs) %}
   {% set app = buttons.transformApp(app) %}
-  <button class="button mkt-app-button product install
-               {{ 'launch' if app.installed }}
-               {{ 'paid' if app.payment_required }}
-               {{ 'incompatible' if app.incompatible }}"
+
+  <button class="button mkt-app-button
+                 {{ 'mkt-app-button--install install' if not app.isWebsite }}
+                 {{ 'launch' if app.installed }}
+                 {{ 'paid' if app.payment_required }}
+                 {{ 'incompatible' if app.incompatible }}"
         {{ data_attrs|make_data_attrs }}
         {{ 'disabled' if app.disabled }}
-        data-product="{{ app|json }}">
+        data-product="{{ app|json }}"
+        {% if app.isWebsite %}href="{{ app.url }}"{% endif %}>
     <em>
       <span class="mkt-app-button-text">{{ buttons.getBtnText(app) }}</span>
       <span class="mkt-app-button-spinner spin"></span>

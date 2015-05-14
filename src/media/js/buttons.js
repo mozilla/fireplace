@@ -296,11 +296,16 @@ define('buttons',
     }
 
     z.page.on('click', '.mkt-app-button.launch', launchHandler)
-    .on('click', '.mkt-app-button:not(.launch):not(.incompatible)',
+    .on('click', '.mkt-app-button--install:not(.launch):not(.incompatible)',
         _handler(install))
-    .on('click', '.mkt-app-button[disabled]', function(e) {
+    .on('click', '.mkt-app-button--install[disabled]', function(e) {
         e.preventDefault();
         e.stopPropagation();
+    })
+    .on('click', '.mkt-app-button[href]', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.open(this.getAttribute('href'), '_blank');
     });
 
     function get_button(manifest_url) {
@@ -371,6 +376,11 @@ define('buttons',
     }
 
     function transformApp(app) {
+        if (app.isWebsite) {
+            // Return here, don't need extra information for websites.
+            return app;
+        }
+
         var isLangpack = app.role == 'langpack';
         var incompatible = apps.incompat(app);
         var installed = z.apps.indexOf(app.manifest_url) !== -1;
@@ -406,10 +416,12 @@ define('buttons',
             return app.installed ? gettext('Installed') : gettext('Install');
         }
 
+        if (app.isWebsite) {
+            return gettext('Open website');
+        }
+
         if (app.installed) {
-            return format.format(gettext('Open {appType}'), {
-                appType: gettext('app'),
-            });
+            return gettext('Open app');
         } else {
             return format.format(gettext('Install for {price}'), {
                 price: app.priceText

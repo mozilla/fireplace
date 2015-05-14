@@ -73,6 +73,14 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     }
 }
 
+[data-content-type="website"] .preview-container {
+    display: none;
+
+    +media--base-tablet() {
+        display: block;
+    }
+}
+
 .mkt-tile-info {
     display: flex;
     flex-direction: column;

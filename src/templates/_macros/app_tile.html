@@ -11,12 +11,15 @@
       tray -- whether or not to attach a preview/screenshot tray
       src -- if tile is a link, attach a src param for analytics purposes
   #}
+  {% set app = apps.transform(app) %}
+
   {% set tag = 'div' if is_detail else 'a' %}
-  <{{ tag }} class="product mkt-tile{{ ' feed-app c' if feed_app }}"
+  <{{ tag }} class="mkt-tile{{ ' feed-app c' if feed_app }}"
              data-slug="{{ app.slug }}" data-id="{{ app.id }}"
              {% if not is_detail %}
                href="{{ app.url or url('app', [app.slug])|urlparams(src=src) }}"
              {% endif %}
+             data-content-type="{{ app.contentType }}"
              {{ 'itemscope itemtype="http://schema.org/SoftwareApplication"' if not is_detail }}>
     <span class="mkt-app-heading">
       {{ deferred_icon(app.icons[is_detail and '128' or '64'] or app.icons['64']) }}
@@ -38,16 +41,15 @@
           </div>
         {% endif %}
 
-        {{ rating_link(is_detail=is_detail) }}
-
-        {% if app.slug %}
-          {{ market_button(app, data_attrs={
-                 'manifest_url': app.manifest_url,
-                 'source': src,
-                 'slug': app.slug
-             })
-          }}
+        {% if app.isApp %}
+          {{ rating_link(is_detail=is_detail) }}
         {% endif %}
+
+        {{ market_button(app, data_attrs={
+               'manifest_url': app.manifest_url,
+               'source': src,
+               'slug': app.slug
+           }) }}
       </span>
     </span>
 

@@ -126,6 +126,7 @@ define('helpers_local',
     }
 
     var helpers = {
+        apps: apps,
         app_notices: app_notices,
         cast_app: models('app').cast,
         format: format.format,
