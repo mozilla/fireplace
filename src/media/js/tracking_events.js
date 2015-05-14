@@ -359,6 +359,15 @@ define('tracking_events',
             'click',
             this.getAttribute('data-tracking')
         );
+    })
+
+    .on('click', '[data-content-type="website"] .mkt-app-button', function() {
+        var root = this;
+        sendEvent(
+            'View Website',
+            'click',
+            getAppDimensions($(root), {isWebsite: true})
+        );
     });
 
     function getAppDimensions($installBtn, opts) {
@@ -370,9 +379,12 @@ define('tracking_events',
 
         custom[DIMENSIONS.appName] = app.name;
         custom[DIMENSIONS.appId] = app.id + '';
-        custom[DIMENSIONS.appDeveloper] = app.author;
-        custom[DIMENSIONS.appPremiumType] = app.payment_required ? 'paid' :
-                                                                   'free';
+
+        if (!opts.isWebsite) {
+            custom[DIMENSIONS.appDeveloper] = app.author;
+            custom[DIMENSIONS.appPremiumType] = app.payment_required ? 'paid' :
+                                                                       'free';
+        }
 
         if ($('[data-page-type~="detail"]').length) {
             // Track how we arrived at the app detail page.
