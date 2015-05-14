@@ -1,12 +1,12 @@
 define('helpers_local',
-    ['apps', 'categories', 'compat_filter', 'content-ratings',
-     'core/format', 'core/helpers', 'core/models', 'core/nunjucks',
-     'core/settings', 'core/urls', 'core/utils', 'core/z', 'feed', 'regions',
-     'tracking_events', 'user_helpers', 'utils_local'],
-    function(apps, categories, compatFilter, iarc,
-             format, base_helpers, models, nunjucks,
-             settings, urls, utils, z, feed, regions,
-             trackingEvents, user_helpers, utils_local) {
+    ['apps', 'apps_buttons', 'categories', 'content_filter', 'compat_filter',
+     'content-ratings', 'core/format', 'core/helpers', 'core/models',
+     'core/nunjucks', 'core/settings', 'core/urls', 'core/utils', 'core/z',
+     'feed', 'regions', 'tracking_events', 'user_helpers', 'utils_local'],
+    function(apps, buttons, categories, contentFilter, compatFilter,
+             iarc, format, base_helpers, models,
+             nunjucks, settings, urls, utils, z,
+             feed, regions, trackingEvents, user_helpers, utils_local) {
     var filters = nunjucks.require('filters');
     var globals = nunjucks.require('globals');
 
@@ -131,12 +131,14 @@ define('helpers_local',
     var helpers = {
         app_incompat: apps.incompat,
         app_notices: app_notices,
+        contentFilter: contentFilter,
         cast_app: models('app').cast,
         format: format.format,
         getReviewId: getReviewId,
         has_installed: has_installed,
         numberfmt: nunjucks.require('filters').numberfmt,
-        indexOf: indexOf
+        indexOf: indexOf,
+        settings: settings
     };
 
     for (var i in helpers) {

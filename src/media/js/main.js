@@ -172,6 +172,8 @@ require(
         throw new Error('Cancel navigation; deprecated client');
     });
 
+    z.body.attr('data-meow--enabled', settings.meowEnabled || false);
+
     logger.log('Done');
 });
 });

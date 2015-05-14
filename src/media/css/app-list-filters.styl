@@ -13,11 +13,14 @@ App listing filters.
     position: relative;
     text-transform: uppercase;
 
-    .pretty-select {
-        line-height: 30px;
+    +media--base-tablet() {
+        bottom: 0;
+        border-bottom: 2px solid $greyscale-light-grey;
+        padding: 0 0 30px;
+        max-width: $desktop-content;
 
-        &:before {
-            top: 1px;
+        + .app-list  {
+            margin-top: 25px;
         }
     }
 }
@@ -27,6 +30,10 @@ App listing filters.
     margin-bottom: 5px;
     width: 100%;
 
+    +media--base-tablet() {
+        margin-right: 30px;
+        width: auto;
+    }
     a {
         color: $action-positive;
         display: inline-block;
@@ -43,6 +50,10 @@ App listing filters.
         z-index: 2;
         vertical-align: middle;
 
+        +media--base-tablet() {
+            margin-top: 0;
+            text-shadow: none;
+        }
         &:hover {
             text-decoration: underline;
         }
@@ -70,6 +81,14 @@ App listing filters.
     display: flex;
     height: 40px;
     line-height: 40px;
+
+    +media--base-tablet() {
+        margin-top: 15px;
+
+        > div {
+            float: left;
+        }
+    }
 }
 
 .app-list-filters-expand-toggle {
@@ -93,46 +112,17 @@ App listing filters.
     }
     &.show {
         display: inline-block;
+
+        +media--base-tablet() {
+            display: none;
+        }
     }
 }
 
 .app-list-filters-expand-wrapper {
     display: none;
-}
-
-.app-list-filters {
-    display: none;
 
     +media--base-tablet() {
-        display: block;
-    }
-}
-
-@media $base-tablet {
-    .app-list-filters {
-        bottom: 0;
-        border-bottom: 2px solid $greyscale-light-grey;
-        padding: 0 0 30px;
-        max-width: $desktop-content;
-    }
-    .app-list-filters-sort {
-        margin-right: 30px;
-        width: auto;
-
-        a {
-            margin-top: 0;
-            text-shadow: none;
-        }
-    }
-    .app-list-filters-content {
-        margin-top: 15px;
-
-        > div {
-            float: left;
-        }
-    }
-    // App list expand toggle.
-    .app-list-filters-expand-wrapper {
         display: flex;
         margin: 0 30px;
 
@@ -140,11 +130,8 @@ App listing filters.
             display: block;
         }
     }
-    // Hide the mobile toggle (child of the mobile header).
-    .app-list-filters-expand-toggle.show {
-        display: none;
-    }
-    .app-list-filters + .app-list  {
-        margin-top: 25px;
-    }
+}
+
+[data-meow--enabled="false"] .app-list-filters {
+    display: none;
 }
