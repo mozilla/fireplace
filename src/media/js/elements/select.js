@@ -192,6 +192,10 @@ define('elements/select',
             },
             alignOptions: {
                 value: function() {
+                    if (this.hasAttribute('noalign')) {
+                        return;
+                    }
+
                     // Aligns options with the selected/visible top option.
                     var mediaSwitch = '(min-width: 799px)';
                     var htmlDir = document.documentElement.getAttribute('dir');
