@@ -7,6 +7,12 @@ ellipsis() {
     white-space: nowrap;
 }
 
+no-ellipsis() {
+    overflow: initial;
+    text-overflow: initial;
+    white-space: initial;
+}
+
 hidetext() {
     // Image replacement.
     color: transparent;  // For IE.
@@ -50,6 +56,20 @@ detail() {
 detail--wide() {
     +media--base-tablet() {
         +detail() {
+            {block}
+        }
+    }
+}
+
+website-detail() {
+    [data-page-type~="website"] & {
+        {block}
+    }
+}
+
+website-detail--wide() {
+    +media--base-tablet() {
+        +website-detail() {
             {block}
         }
     }

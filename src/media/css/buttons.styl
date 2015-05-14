@@ -163,6 +163,18 @@ a.button {
         position: relative;
         vertical-align: bottom;
         width: fit-content;
+
+        +website-detail() {
+            font-size: $btn-font-size;
+            height: $btn-medium;
+            line-height: $btn-medium;
+            width: 100%;
+        }
+        +website-detail--wide() {
+            height: $btn-large;
+            line-height: $btn-large;
+            padding: 0 40px;
+        }
     }
     &:hover em {
         background: $action-positive-hover;
@@ -196,6 +208,17 @@ a.button {
     }
     +detail() {
         margin-top: 0;
+        width: fit-content;
+    }
+    +website-detail() {
+        height: $btn-medium;
+        line-height: $btn-medium;
+        width: 100%;
+    }
+    +website-detail--wide() {
+        height: $btn-large;
+        line-height: $btn-large;
+        margin: 30px auto;
         width: fit-content;
     }
     +rtl() {

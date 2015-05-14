@@ -4,6 +4,7 @@
 */
 @import '../lib';
 
+.website-header.full,
 .app-header.full {
     margin-bottom: -10px;
     padding-bottom: 0;
@@ -11,6 +12,15 @@
     > div {
         padding-bottom: 0;
         padding-top: 0;
+    }
+}
+
+.website-header.full {
+    background-color: $greyscale-white;
+    min-height: auto;
+
+    +website-detail--wide() {
+        padding-bottom: 30px;
     }
 }
 

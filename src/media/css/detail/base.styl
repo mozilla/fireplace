@@ -18,7 +18,7 @@
     border-radius: 0;
     padding: 10px;
 
-    section:not(.app-header) h3 {
+    section:not(.app-header):not(.website-header) h3 {
         _h3();
         margin-bottom: 15px;
     }
@@ -47,11 +47,17 @@
     display: none;
 }
 
+.website-report-issue .button,
 .app-report-abuse .button {
     display: block;
     margin: 0 auto;
-    max-width: 100%;
+    width: 100%;
     text-align: center;
+}
+
+.website-report-issue,
+.website-report-issue .button {
+    margin-top: 15px;
 }
 
 .detail-left-side {
@@ -80,6 +86,7 @@
     .truncated-wrapper + a.view-all-tab {
         display: none;
     }
+    .website-report-issue .button,
     .app-report-abuse .button {
         width: $mobile-content-width;
     }

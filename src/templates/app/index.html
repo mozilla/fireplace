@@ -1,50 +1,12 @@
 <!--App detail page.-->
+{% from "_macros/detail.html" import detail_header %}
 {% from "_macros/emaillink.html" import emaillink %}
-{% from "_macros/app_tile.html" import app_tile %}
 {% from "_macros/review.html" import review %}
 {% from "_macros/stars.html" import stars %}
 
 {% set endpoint = api('app', [slug]) %}
 
-{% defer (url=endpoint, as='app', key=slug, id='app-data') %}
-  <section class="main">
-    <div class="subheader">
-      <h1>&nbsp;</h1>
-    </div>
-  </section>
-{% except %}
-  <section class="main">
-    <div class="subheader">
-      <h1>{{ _('Oh no!') }}</h1>
-    </div>
-  </section>
-  <section class="main full"><div>
-    {% if error == 403 %}
-      <p>{{ _('The app requested is not public.') }}</p>
-    {% elif error == 404 %}
-      <p>{{ _('The app requested was not found.') }}</p>
-    {% elif error == 451 %}
-      <p>{{ _('The app requested is not available for your region.') }}</p>
-      <p>{{ _('You may wish to contact the developer if you would like to see a version of this app for your region.') }}</p>
-    {% else %}
-      <p>{{ _('A server error occurred. Please try again later.') }}</p>
-    {% endif %}
-  </div></section>
-{% end %}
-
-<div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication"
-     data-slug="{{ slug }}">
-{% defer (url=endpoint, as='app', key=slug, id='app-data') %}
-  <section class="main full app-header previews-expanded"><div>
-    {{ app_tile(this, is_detail=True, tray=True,
-                src=trackingEvents.SRCS.detail) }}
-  </div></section>
-{% placeholder %}
-  <section class="main full app-header previews-expanded"><div>
-    {{ app_tile(placeholder_app, is_detail=True, tray=True) }}
-  </div></section>
-{% except %}
-{% end %}
+{{ detail_header(url=endpoint, key=slug, content_type='app', placeholder=placeholder_app) }}
 
 {% defer (url=endpoint, as='app', key=slug) %}
   <section class="main full app-info">
@@ -218,11 +180,9 @@
           </dl>
           <dl class="app-metadata-categories">
             <dt>{{ _('Categories') }}</dt>
-            {% for category in CATEGORIES %}
-              {% if indexOf(this.categories, category.slug) != -1 %}
-                {# L10n: delimiter to separate list of words (e.g., "eggs, ham, cheese"). #}
-                <dd data-delimiter="{{ _(',') }}">{{ category.name }}</dd>
-              {% endif %}
+            {% for category in this.categories %}
+              {# L10n: delimiter to separate list of words (e.g., "eggs, ham, cheese"). #}
+              <dd data-delimiter="{{ _(',') }}">{{ category.name }}</dd>
             {% endfor %}
           </dl>
           {% if this.is_packaged and this.file_size %}

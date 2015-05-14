@@ -32,6 +32,7 @@ define('routes',
         {'pattern': '^/settings$', 'view_name': 'settings'},
         {'pattern': '^/terms-of-use$', 'view_name': 'terms'},
         {'pattern': '^/usage$', 'view_name': 'usage'},
+        {'pattern': '^/website/([^/<>"\']+)/?$', 'view_name': 'website'},
     ]);
 
     // When this goes away we can remove settings_app from our deps.
@@ -73,5 +74,6 @@ define('routes',
         'search': search,
         'settings': '/api/v2/account/settings/mine/',
         'site-config': '/api/v2/services/config/site/?cache=1&serializer=commonplace&vary=0',
+        'website': '/api/v2/websites/website/{0}/?cache=1&vary=0',
     });
 });

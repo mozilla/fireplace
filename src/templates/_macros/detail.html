@@ -1,0 +1,46 @@
+{% from "_macros/app_tile.html" import app_tile %}
+
+{% macro detail_header(url, key, content_type, placeholder=None) %}
+  {% defer (url=url, key=key, id=content_type + '-data', as=content_type) %}
+    <section class="main">
+      <div class="subheader">
+        <h1>&nbsp;</h1>
+      </div>
+    </section>
+  {% except %}
+    <section class="main">
+      <div class="subheader">
+        <h1>{{ _('Oh no!') }}</h1>
+      </div>
+    </section>
+    <section class="main full"><div>
+      {% if error == 403 %}
+        <p>{{ _('The requested content is not public.') }}</p>
+      {% elif error == 404 %}
+        <p>{{ _('The requested content was not found.') }}</p>
+      {% elif error == 451 %}
+        <p>{{ _('The requested content is not available for your region.') }}</p>
+        {% if content_type == 'app' %}
+          <p>{{ _('You may wish to contact the developer if you would like to see a version of this app for your region.') }}</p>
+        {% endif %}
+      {% else %}
+        <p>{{ _('A server error occurred. Please try again later.') }}</p>
+      {% endif %}
+    </div></section>
+  {% end %}
+
+  <div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication"
+      data-{{ settings.model_prototypes[content_type] }}="{{ key }}">
+  {% defer (url=url, key=key, id=content_type + '-data', as=content_type) %}
+    <section class="main full {{ content_type }}-header previews-expanded"><div>
+      {{ app_tile(this, is_detail=True, tray=True, src=trackingEvents.SRCS.detail) }}
+    </div></section>
+  {% placeholder %}
+    <section class="main full {{ content_type }}-header previews-expanded"><div>
+        {% if placeholder %}
+            {{ app_tile(placeholder, is_detail=True, tray=True) }}
+        {% endif %}
+    </div></section>
+  {% except %}
+  {% end %}
+{% endmacro %}

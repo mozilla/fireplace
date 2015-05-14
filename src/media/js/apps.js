@@ -2,12 +2,12 @@
     Provides the apps module, a wrapper around navigator.mozApps
 */
 define('apps',
-    ['core/capabilities', 'core/defer', 'installer_direct', 'installer_iframe',
-     'installer_mock', 'core/l10n', 'core/nunjucks', 'core/settings',
-     'underscore', 'core/utils', 'core/z'],
-    function(capabilities, defer, installer_direct, installer_iframe,
-             InstallerMock, l10n, nunjucks, settings,
-             _, utils, z) {
+    ['categories', 'core/capabilities', 'core/defer', 'installer_direct',
+     'installer_iframe', 'installer_mock', 'core/l10n', 'core/nunjucks',
+     'core/settings', 'underscore', 'core/utils', 'core/z'],
+    function(categories, capabilities, defer, installer_direct,
+             installer_iframe, InstallerMock, l10n, nunjucks,
+             settings, _, utils, z) {
     'use strict';
     var gettext = l10n.gettext;
     var installer;
@@ -123,15 +123,22 @@ define('apps',
     }
 
     function transform(app) {
+        if (app.categories) {
+            app.categories = categories.filter(function(category) {
+                return app.categories.indexOf(category.slug) !== -1;
+            });
+        }
         // Normalize content types.
         if (app.doc_type == 'website') {
             app.isWebsite = true;
-            app.name = app.short_name || app.name || app.title;
             app.previews = [];
             app.contentType = 'website';
+            app.key = app.id;
         } else {
             app.isApp = true;
             app.contentType = 'app';
+            app.short_name = app.name;
+            app.key = app.slug;
         }
         return app;
     }

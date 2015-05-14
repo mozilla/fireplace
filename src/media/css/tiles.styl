@@ -14,7 +14,7 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 
 .mkt-tile {
     color: $castle-skull-gray;
-    display: inline-block;
+    display: block;
     overflow: hidden;
     padding-top: 12px;
     position: relative;
@@ -71,6 +71,10 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         margin: 0 auto;
         width: 50%;
     }
+    +website-detail--wide() {
+        height: auto;
+        width: 75%;
+    }
 }
 
 [data-content-type="website"] .preview-container {
@@ -86,7 +90,6 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     flex-direction: column;
     flex-wrap: wrap;
     padding-left: 10px;
-    width: $info-width;
 
     +rtl() {
         padding-right: 10px;
@@ -120,6 +123,9 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         margin-bottom: 20px;
         position: relative;
         text-align: center;
+    }
+    +website-detail() {
+        no-ellipsis();
     }
 }
 
@@ -285,6 +291,10 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         .heading,
         .info {
             height: $detail-icon-size;
+
+            +website-detail() {
+                height: auto;
+            }
         }
         .info {
             padding-left: $detail-icon-size + 10;
