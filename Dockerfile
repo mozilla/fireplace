@@ -13,4 +13,4 @@ ADD bower.json /srv/fireplace/bower.json
 WORKDIR /srv/fireplace
 
 RUN npm install
-RUN node_modules/.bin/bower --allow-root install
+RUN make install
