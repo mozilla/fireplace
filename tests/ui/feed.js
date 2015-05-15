@@ -160,42 +160,6 @@ casper.test.begin('Test list layout install buttons enabled', {
 });
 
 
-casper.test.begin('Test grid layout install buttons disabled', {
-    test: function(test) {
-        helpers.startCasper();
-
-        helpers.waitForPageLoaded(function() {
-            test.assertDoesntExist('.feed-brand.feed-layout-grid .install:not([disabled])',
-                                   'Check all install buttons disabled for grid');
-
-            casper.click('.feed-brand.feed-layout-grid .mkt-tile');
-        });
-
-        casper.waitForSelector('[data-page-type~="detail"]', function() {
-            casper.click('.install');
-        });
-
-        casper.waitForSelector('.launch', function() {
-            casper.back();
-        });
-
-        casper.waitForSelector('.feed-brand.feed-layout-grid', function() {
-            casper.evaluate(function() {
-                window.require('apps_buttons').markBtnsAsInstalled();
-            });
-
-            casper.wait(250, function() {
-                test.assertDoesntExist('.feed-brand.feed-layout-grid .install:not([disabled])',
-                                       'Check all install buttons disabled for grid');
-                test.assertSelectorDoesntHaveText('.install em', 'Open');
-            });
-        });
-
-        helpers.done(test);
-    }
-});
-
-
 casper.test.begin('Test brand does not show collection app icons', {
     test: function(test) {
         helpers.startCasper('/feed/editorial/brand-grid');
@@ -265,6 +229,7 @@ casper.test.begin('Test Feed endpoint', {
         helpers.waitForPageLoaded(function() {
             helpers.assertAPICallWasMade('/api/v2/feed/get/', {
                 cache: '21600',
+                dev: 'desktop',
                 lang: 'en-US',
                 limit: '10',
                 region: 'us',
@@ -321,6 +286,7 @@ casper.test.begin('Test Feed collection endpoint', {
             helpers.assertAPICallWasMade(
                 '/api/v2/fireplace/feed/collections/grouped/', {
                     cache: '1',
+                    dev: 'desktop',
                     lang: 'en-US',
                     limit: '24',
                     region: 'us',

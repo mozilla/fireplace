@@ -1,16 +1,16 @@
 @import 'lib';
 
 $arrow-btn-size = 30px;
-
+$btn-color = $action-positive;
 // Install button width.
 $btn-install-width = 90px;
-
 // Install button font-size.
 $btn-install-font-size = 12px;
 
 .button {
     border: 0;
-    btn_color($action-positive, $action-positive-tapped, $action-positive-hover, true);
+    btn_color($action-positive, $action-positive-tapped,
+              $action-positive-hover, false);
     color: $white;
     display: inline-block;
     ellipsis();
@@ -25,19 +25,13 @@ $btn-install-font-size = 12px;
     &:focus, &:hover, &:active {
         text-decoration: none;
     }
-    &:not([disabled]):active {
-        // Override `button:not([disabled]):active` from site.styl.
-        background: $action-positive-tapped;
-    }
     &.action {
-        btn_color($action-success, $action-success-tapped, $action-success-hover, true);
+        btn_color($action-success, $action-success-tapped,
+                  $action-success-hover, false);
     }
     &.cancel {
-        btn_color($action-error, $action-error-tapped, $action-error-hover, true);
-    }
-    &.disabled,
-    &[disabled] {
-        btn_color($action-disabled, $action-disabled, $action-disabled, false);
+        btn_color($action-error, $action-error-tapped, $action-error-hover,
+                  false);
     }
     &[disabled],
     &.disabled,
@@ -54,8 +48,7 @@ $btn-install-font-size = 12px;
     &.incompatible {
         pointer-events: auto;
     }
-    &.t,
-    &.product {
+    &.t {
         height: $btn-tiny;
     }
     &.s {
@@ -76,9 +69,6 @@ $btn-install-font-size = 12px;
             top: 8px;
         }
     }
-    &.product {
-        padding: 0 32px;
-    }
     .spin {
         display: inline-block;
         spinner('install');
@@ -94,7 +84,8 @@ a.button {
 }
 
 .arrow-btn {
-    background: $action-positive url(../img/pretty/arrow-l.svg) no-repeat 5px 50% / 15px 15px;
+    background: $action-positive url(../img/pretty/arrow-l.svg) no-repeat \
+                5px 50% / 15px 15px;
     border: 1px solid $white;
     border-radius: 50%;
     color: transparent;
@@ -108,7 +99,8 @@ a.button {
         background-color: $action-positive-hover;
     }
     &:active {
-        background: $action-positive-tapped url(../img/pretty/arrow-l.svg) no-repeat 5px 50% / 15px 15px;
+        background: $action-positive-tapped url(../img/pretty/arrow-l.svg) \
+                    no-repeat 5px 50% / 15px 15px;
     }
     &.arrow-btn-next {
         background-position: 5px 50%;
@@ -138,33 +130,39 @@ a.button {
     }
 }
 
-// Install buttons.
-.button.install {
-    // Unset many .button properties to compensate for larger click target.
+.mkt-app-button {
+    align-items: center;
     btn_color(transparent, transparent, transparent, false);
     cursor: pointer;
+    display: flex;
+    height: $btn-tiny;
     font-size: $btn-install-font-size;
-    height: 34px;  // Actual click-target height. Queen Krupa request.
-    min-width: $btn-install-width;
-    padding: 0;
-    position: absolute;
-    right: 0;
+    height: 34px;
+    margin-top: 8px;
+    width: fit-content;
 
+    &.button {
+        padding: 0;
+    }
     +rtl() {
         left: 0;
         right: inherit;
     }
     em {
         // This em becomes the visual button.
-        btn_color($action-positive, $action-positive-tapped, $action-positive-hover, true);
+        btn_color($btn-color, $action-positive-tapped,
+                  $action-positive-hover, false);
+        border-radius: 5px;
         display: inline-block;
         ellipsis();
         font-style: normal;
         height: $btn-tiny;
         line-height: $btn-tiny;
+        min-width: 90px;
         padding: 0 $btn-h-padding;
+        position: relative;
         vertical-align: bottom;
-        width: $btn-install-width;
+        width: fit-content;
     }
     &:hover em {
         background: $action-positive-hover;
@@ -172,25 +170,33 @@ a.button {
     &:active em {
         background: $action-positive-tapped;
     }
+    &[disabled] em {
+        btn_color($greyscale-grey, $greyscale-grey, $greyscale-grey, false);
+    }
     .spin {
         display: none;
     }
-    // Accomodate a better vertical align since this state has no box-shadow.
-    &[disabled] em {
-        btn_color($action-disabled, $action-disabled, $action-disabled, false)
-    }
     &.spinning,
     &.purchasing {
-        background: $action-positive-tapped;
         bottom: 0;
         height: $btn-tiny;
 
-        em {
-            display: none;
+        .mkt-app-button-text {
+            visibility: hidden;
         }
-        .spin {
+        .mkt-app-button-spinner {
+            bottom: 0;
             display: inline-block;
+            left: 0;
+            margin: auto;
+            position: absolute;
+            right: 0;
+            top: 0;
         }
+    }
+    +detail() {
+        margin-top: 0;
+        width: fit-content;
     }
     +rtl() {
         left: 0;
@@ -203,11 +209,12 @@ a.button {
 }
 
 // Install button launch state.
-.button.launch {
+.mkt-app-button.launch {
     btn_color(transparent, transparent, transparent, false);
 
     em {
-        btn_color($action-success, $action-success-tapped, $action-success-hover, true);
+        btn_color($action-success, $action-success-tapped,
+                  $action-success-hover, false);
     }
     &:hover em,
     &:focus em {

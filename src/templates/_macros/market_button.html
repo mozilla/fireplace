@@ -1,50 +1,18 @@
-{% macro market_button(app, data_attrs, price_only) %}
-  {# price_only -- used for Feed where we only want to show the price label. #}
+{% macro market_button(app, data_attrs) %}
+  {% set app = buttons.transformApp(app) %}
 
-  {# Is the app installed locally? Allows us to display "Open" button #}
-  {% set installed_locally = has_installed(app.manifest_url) %}
-
-  {# Was the app ever installed ? Allows us to display "Install" button #}
-  {% set installed_or_purchased_before = user.has_installed(app.id) or user.has_purchased(app.id) %}
-
-  {# Is the app compatible with our device ? #}
-  {% set incompatible = app_incompat(app) %}
-
-  {% if app.payment_required and not app.price %}
-    {# An app would otherwise cost money in another region but there is no tier in the user's region. #}
-    {# L10n: This app is unavailable for purchase. #}
-    {% set price = _('Unavailable') %}
-  {% else %}
-    {% set price = app.price_locale if app.price and app.price != '0.00' else _('Free') %}
-  {% endif %}
-
-  <button class="button product install {{ 'launch' if installed_locally }}
+  <button class="button mkt-app-button
+                 {{ 'mkt-app-button--install install' if not app.isWebsite }}
+                 {{ 'launch' if app.installed }}
                  {{ 'paid' if app.payment_required }}
-                 {{ 'incompatible' if incompatible }}"
-          {{ data_attrs|make_data_attrs }}
-          {{ 'data-price-only="true"' if price_only }}
-          {{ 'disabled' if price_only or incompatible or
-                           (app.role == 'langpack' and installed_locally) }}
-          data-product="{{ app|json }}">
+                 {{ 'incompatible' if app.incompatible }}"
+        {{ data_attrs|make_data_attrs }}
+        {{ 'disabled' if app.disabled }}
+        data-product="{{ app|json }}"
+        {% if app.isWebsite %}href="{{ app.url }}"{% endif %}>
     <em>
-      {% if price_only %}
-        {{ price }}
-      {% elif app.role == 'langpack' %}
-        {% if installed_locally %}
-          {{ _('Installed') }}
-        {% else %}
-          {{ _('Install') }}
-        {% endif %}
-      {% else %}
-        {% if installed_locally %}
-          {{ _('Open') }}
-        {% elif installed_or_purchased_before %}
-          {{ _('Install') }}
-        {% else %}
-          {{ price }}
-        {% endif %}
-      {% endif %}
+      <span class="mkt-app-button-text">{{ buttons.getBtnText(app) }}</span>
+      <span class="mkt-app-button-spinner spin"></span>
     </em>
-    <span class="spin"></span>
   </button>
 {% endmacro %}

@@ -3,33 +3,35 @@
 {% from "_macros/previews.html" import preview_tray %}
 {% from "_macros/stars.html" import stars %}
 
-{% macro app_tile(app, feed_app=None, is_detail=False, tray=False, src=None,
-                  price_only=False) %}
+{% macro app_tile(app, feed_app=None, is_detail=False, tray=False, src=None) %}
   {#
       app -- app object
       feed_app - feed-app specific data
       is_detail - whether part of a detail page
       tray -- whether or not to attach a preview/screenshot tray
       src -- if tile is a link, attach a src param for analytics purposes
-      price_only -- for Feed if only want to show price, no install
   #}
+  {% set app = apps.transform(app) %}
+
   {% set tag = 'div' if is_detail else 'a' %}
-  <{{ tag }} class="product mkt-tile{{ ' feed-app c' if feed_app }}"
+  <{{ tag }} class="mkt-tile{{ ' feed-app c' if feed_app }}"
              data-slug="{{ app.slug }}" data-id="{{ app.id }}"
              {% if not is_detail %}
                href="{{ app.url or url('app', [app.slug])|urlparams(src=src) }}"
              {% endif %}
+             data-content-type="{{ app.contentType }}"
              {{ 'itemscope itemtype="http://schema.org/SoftwareApplication"' if not is_detail }}>
-    <div class="heading">
+    <span class="mkt-app-heading">
       {{ deferred_icon(app.icons[is_detail and '128' or '64'] or app.icons['64']) }}
-      <div class="info">
-        <h3 itemprop="name" title="{{ app.name|translate(app) }}">
+      <span class="info mkt-tile-info">
+        <h3 class="mkt-app-name" itemprop="name"
+            title="{{ app.name|translate(app) }}">
           {{ app.name|translate(app) }}
         </h3>
 
         {% if app.author %}
           {# TODO: When we get user profiles, update to be Person itemprop. #}
-          <div class="author elliflow vital subdetail" itemprop="creator"
+          <div class="author mkt-app-author" itemprop="creator"
                title="{{ app.author }}">
             {% if is_detail -%}
               <a href="{{ url('search')|urlparams(author=app.author) }}">{{ app.author }}</a>
@@ -39,20 +41,18 @@
           </div>
         {% endif %}
 
-        {% if app.slug %}
-          {{ market_button(app, data_attrs={
-                 'manifest_url': app.manifest_url,
-                 'source': src,
-                 'slug': app.slug
-             }, price_only=price_only)
-          }}
+        {% if app.isApp %}
+          {{ rating_link(is_detail=is_detail) }}
         {% endif %}
 
-        {{ rating_link() if not is_detail }}
-      </div>
-    </div>
+        {{ market_button(app, data_attrs={
+               'manifest_url': app.manifest_url,
+               'source': src,
+               'slug': app.slug
+           }) }}
+      </span>
+    </span>
 
-    {{ rating_link(is_detail=True) if is_detail }}
     {{ feed_app_tile(feed_app) if feed_app }}
   </{{ tag }}>
 
@@ -91,7 +91,7 @@
 
 
 {% macro rating_link(is_detail=False) %}
-  <div class="rating vital{{ ' unrated' if not app.ratings.count }}"
+  <span class="rating mkt-app-rating {{ 'unrated' if not app.ratings.count }}"
        itemscope itemprop="aggregateRating"
        itemtype="http://schema.org/AggregateRating">
     {# Detail page ratings link to the ratings list page. #}
@@ -113,5 +113,5 @@
       {# Stars-only rating (member of an app listing). #}
       {{ stars(app.ratings.average) }}
     {% endif %}
-  </div>
+  </span>
 {% endmacro %}

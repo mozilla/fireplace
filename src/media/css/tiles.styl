@@ -2,7 +2,7 @@
 
 $icon-size = 60px;
 $detail-icon-size = 64px;
-$info-height = 96px;
+$info-height = 112px;
 $info-width = 220px;
 
 // Detail page.
@@ -12,10 +12,11 @@ $app-title-size = 20px;
 $greater-than-mobile = unquote('(min-width: 330px)');
 
 
-// Base class.
 .mkt-tile {
     color: $castle-skull-gray;
+    display: inline-block;
     overflow: hidden;
+    padding-top: 12px;
     position: relative;
     // Any layer may overlap this.
     // https://bugzilla.mozilla.org/show_bug.cgi?id=1118367
@@ -28,43 +29,11 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         height: $icon-size;
         width: $icon-size;
     }
-    h3,
-    .subdetail {
-        // subdetail contains .author
-        color: $tile-title;
-        ellipsis();
-        font-size: $app-title-size;
-    }
-    h3 {
-        font-weight: 200;
-        line-height: 20px;
-    }
-    .author {
-        color: $greyscale-dark-grey;
-        font-size: 15px;
-        line-height: 18px;
-        margin-top: 5px;
-        width: 120px;
-    }
-    .heading,
-    .info {
-        height: $info-height;
-        padding-top: 12px;
-    }
     .heading {
         display: flex;
+        height: $info-height;
+        padding-top: 12px;
         position: relative;
-    }
-    .info {
-        padding: 12px 0 0 10px;
-        width: $info-width;
-
-        +rtl() {
-            padding: 12px 10px 0 0;
-        }
-        + .bad-app {
-            padding-top: 8px;
-        }
     }
     .tile-footer {
         clear: both;
@@ -89,38 +58,103 @@ $greater-than-mobile = unquote('(min-width: 330px)');
             margin-top: 5px;
         }
     }
+    +detail() {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    +detail--wide() {
+        display: flex;
+        height: 240px;
+        justify-content: center;
+        padding-bottom: 50px;
+        position: relative;
+        margin: 0 auto;
+        width: 50%;
+    }
+}
+
+[data-content-type="website"] .preview-container {
+    display: none;
+
+    +media--base-tablet() {
+        display: block;
+    }
+}
+
+.mkt-tile-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 10px;
+    width: $info-width;
+
+    +rtl() {
+        padding-right: 10px;
+    }
+    +detail() {
+        height: 102px;
+    }
+    +detail--wide() {
+        flex-direction: row;
+        height: 150px;
+        margin-top: 65px;
+    }
+    + .bad-app {
+        padding-top: 8px;
+    }
+}
+
+.mkt-app-name {
+    color: $tile-title;
+    ellipsis();
+    font-size: $app-title-size;
+    font-weight: 200;
+    line-height: 20px;
+
+    +detail() {
+        font-size: $app-title-size;
+        font-weight: 300;
+        line-height: 1;
+        width: 100%;
+    }
+    +detail--wide() {
+        desktop_mega();
+        line-height: 40px;
+        margin-bottom: 20px;
+        position: relative;
+        text-align: center;
+    }
+}
+
+.mkt-app-author {
+    color: $greyscale-dark-grey;
+    ellipsis();
+    font-size: 15px;
+    line-height: 18px;
+    margin-top: 5px;
+    width: 100%;
+
+    +detail() {
+        padding-left: 1px;
+        width: auto;
+    }
+    +detail--wide() {
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 20px;
+        max-width: 410px;
+        width: 100%;
+    }
 }
 
 // Detail page.
 .detail {
-    .mkt-tile {
-        padding-top: 10px;
-    }
-    .mkt-tile h3 {
-        font-size: $app-title-size;
-        font-weight: 300;
-        line-height: 1;
-    }
-    .author {
-        // Vertically aligns app author to app title on the detail page.
-        // TODO: Explore font rendering properties to address this.
-        padding-left: 1px;
-        width: auto;
-    }
-    .rating {
-        margin-bottom: 2px;
-    }
     .bad-app {
         padding: 14px 0 10px;
     }
     .icon {
         height: $detail-icon-size;
         width: $detail-icon-size;
-    }
-    .heading,
-    .info {
-        height: $detail-icon-size;
-        padding-top: 0;
     }
     .rating-link .long {
         +ltr() {
@@ -140,19 +174,29 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     }
 }
 
-// Listing
-// name + icon + price + rating in a vertical listview.
-// also used as standalone "card" on detail pages.
-.mkt-tile .rating {
+.mkt-app-rating {
     color: $sailor-blue;
     display: inline-block;
     font-size: 12px;
-    padding: 8px 0;
+    padding: 8px 0 16px;
 
+    +detail() {
+        margin-bottom: 2px;
+        padding-bottom: 20px;
+        width: fit-content;
+    }
+    +detail--wide() {
+        font-weight: 300;
+        font-size: 20px;
+        margin-right: auto;
+    }
     a {
         display: flex;
         text-decoration: none;
 
+        +media--base-tablet() {
+            flex-direction: row-reverse;
+        }
         +rtl() {
             justify-content: flex-end;
         }
@@ -199,6 +243,14 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     margin-bottom: 10px;
 }
 
+.mkt-app-heading {
+    display: flex;
+
+    +detail--wide() {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+}
 
 // Language packs
 .mkt-tile.langpack {
@@ -213,12 +265,6 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     }
 }
 
-@media $greater-than-mobile {
-    .mkt-tile .author {
-        width: auto;
-    }
-}
-
 @media $base-tablet {
     .detail {
         .rating-link .long {
@@ -230,29 +276,21 @@ $greater-than-mobile = unquote('(min-width: 330px)');
             width: 100%;
         }
     }
-    .mkt-tile .rating a {
-        flex-direction: row-reverse;
-    }
 }
 
 @media $base-desktop {
     .mkt-tile .rating .cnt {
         top: 1px;
     }
-    .detail {
-        .mkt-tile {
-            padding: 15px;
+    .detail .mkt-tile {
+        padding: 15px;
 
-            .heading,
-            .info {
-                height: $detail-icon-size;
-            }
-            .info {
-                padding-left: $detail-icon-size + 10;
-            }
+        .heading,
+        .info {
+            height: $detail-icon-size;
         }
-        .author {
-            width: auto;
+        .info {
+            padding-left: $detail-icon-size + 10;
         }
     }
 }
