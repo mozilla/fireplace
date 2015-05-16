@@ -16,12 +16,15 @@ define('content_filter',
 
     var CONTENT_FILTER_CHOICES = [
         ['all', gettext('all content')],
-        ['apps', gettext('apps')],
-        ['websites', gettext('websites')]
+        ['webapp', gettext('apps')],
+        ['website', gettext('websites')]
     ];
 
     var filterContentLSKey = 'filter-content';
     var filterContent = storage.getItem(filterContentLSKey) || 'all';
+    if (['webapp', 'website'].indexOf(filterContent)) {
+        filterContent = 'all';
+    }
 
     z.body.on('change', '.content-filter', function() {
         // Update content preferences and reload view to refresh changes.
@@ -36,13 +39,12 @@ define('content_filter',
 
     function apiArgs(endpoint) {
         // Return API args to use for API router's processor.
-        var args = {};
-        var pref = filterContent;
-
-        if (pref && EXCLUDE_CONTENT_FILTER_ENDPOINTS.indexOf(endpoint) === -1) {
-            args.content = '';
+        if (EXCLUDE_CONTENT_FILTER_ENDPOINTS.indexOf(endpoint) !== -1) {
+            return {};
         }
-        return args;
+        return {
+            doc_type: filterContent
+        };
     }
 
     function getFilterContent() {
