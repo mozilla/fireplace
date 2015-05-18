@@ -96,8 +96,9 @@ define('previews',
 
             if (document.documentElement.getAttribute('dir') === 'rtl') {
                 for (var i = 0; i < numBars - 1; i++) {
-                    // Start at the end for RTL.
-                    buttons.nextBtn.click();
+                    // Start at the end for RTL - simulate clicking "next" numBars times.
+                    slider.toNext();
+                    $tray.trigger('previews--button-update');
                 }
             }
         }
