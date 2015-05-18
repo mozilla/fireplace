@@ -416,16 +416,24 @@ define('buttons',
             return app.installed ? gettext('Installed') : gettext('Install');
         }
 
-        if (app.isWebsite) {
-            return gettext('Open website');
-        }
+        if (settings.meowEnabled) {
+            if (app.isWebsite) {
+                return gettext('Open website');
+            }
 
-        if (app.installed) {
-            return gettext('Open app');
+            if (app.installed) {
+                return gettext('Open app');
+            } else {
+                return format.format(gettext('Install for {price}'), {
+                    price: app.priceText
+                });
+            }
         } else {
-            return format.format(gettext('Install for {price}'), {
-                price: app.priceText
-            });
+            if (app.installed) {
+                return gettext('Open');
+            } else {
+                return gettext('Install');
+            }
         }
     }
 
