@@ -11,7 +11,7 @@ define('image-deferrer-mkt',
 
     z.page.one('loaded', function() {
         throttledDeferrer.setImages($('.icon.deferred'));
-        debouncedDeferrer.setImages($('.screenshot .deferred, .deferred-background, .deferred.feed-landing-bg-image'));
+        debouncedDeferrer.setImages($('.previews-thumbnail .deferred, .deferred-background, .deferred.feed-landing-bg-image'));
     }).on('loaded loaded_more navigate fragment_loaded', function() {
         throttledDeferrer.refresh();
         debouncedDeferrer.refresh();

@@ -39,6 +39,7 @@ define('previews',
     var mediaSwitch = '(min-width:' + dimensions.breakpoint + 'px)';
 
     var desktopSideMargin = 0;  // Keep track of tray offset.
+    var previewItemClass = '.previews-thumbnail';
 
     function initPreviewTray(e) {
         // Handler to initialize preview trays.
@@ -51,7 +52,7 @@ define('previews',
         var $previewsContent = $tray.find('.previews-content');
         // Set to LTR so we can manually lay it out ourselves.
         var $slider = $tray.find('.previews-slider').attr('dir', 'ltr');
-        var numPreviews = $tray.find('.screenshot').length;
+        var numPreviews = $tray.find(previewItemClass).length;
         var isDesktopDetailTray = isDesktopDetailTrayFn(tray);
         if (isDesktopDetailTray) {
             resizeDesktopDetailTray();
@@ -113,7 +114,7 @@ define('previews',
         var $tray = $(tray);
         var isDesktopDetailTray = isDesktopDetailTrayFn(tray);
         var isDetailTray = $tray.data('previews-detail');
-        var numPreviews = $tray.find('.screenshot').length;
+        var numPreviews = $tray.find(previewItemClass).length;
 
         // The number of previews full visible is the tray width divided by
         // preview width, floored.
@@ -134,7 +135,7 @@ define('previews',
 
     function initializeBars(tray) {
         // Create scroll bars at bottom of the tray.
-        var numPreviews = tray.querySelectorAll('.screenshot').length;
+        var numPreviews = tray.querySelectorAll(previewItemClass).length;
         var numBars = calcNumBars(tray);
 
         var barsContainer = tray.querySelector('.previews-bars');
@@ -227,19 +228,18 @@ define('previews',
         desktopSideMargin = 0;
     });
 
-    z.page.on('dragstart', '.previews-tray', function(e) {
-        // Don't treat the trays as draggable (bug 1138396).
-        e.preventDefault();
-    })
+    // Don't treat the trays as draggable (bug 1138396).
+    z.page.on('dragstart', '.previews-tray', utils._pd)
 
-    .on('click', '.previews-tray .screenshot', utils._pd(function() {
+    .on('click', '.previews-tray ' + previewItemClass, function(e) {
         // If a tray thumbnail is clicked, open lightbox.
         // Don't show on desktop detail since it'd show the previews at
         // the same size.
         if (!isDesktopDetail()) {
+            e.preventDefault();
             previewsLightbox.show(this);
         }
-    }));
+    });
 
     return {
         initialize: initialize,
