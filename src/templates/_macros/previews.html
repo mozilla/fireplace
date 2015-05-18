@@ -14,13 +14,13 @@
         {% for preview in app.previews %}
           {% if preview.filetype == 'video/webm' %}
             <li itemscope itemtype="http://schema.org/VideoObject">
-              <a class="thumbnail">
+              <a class="previews-thumbnail">
                 <video src="{{ preview.image_url }}" controls itemprop="contentURL"></video>
               </a>
             </li>
           {% else %}
             <li itemscope itemtype="http://schema.org/ImageObject">
-              <a class="thumbnail" href="{{ preview.image_url }}">
+              <a class="previews-thumbnail" href="{{ preview.image_url }}">
                 {{ deferred_preview(preview.image_url if is_desktop else
                                        preview.thumbnail_url) }}
               </a>
