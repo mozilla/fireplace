@@ -129,7 +129,7 @@ define('apps',
             });
         }
         // Normalize content types.
-        if (app.doc_type == 'website') {
+        if (app.url) {
             app.isWebsite = true;
             app.previews = [];
             app.contentType = 'website';
