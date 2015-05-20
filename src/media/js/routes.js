@@ -1,6 +1,6 @@
 define('routes',
-    ['core/router', 'core/settings'],
-    function(router, settings) {
+    ['core/router', 'core/settings', 'settings_app'],
+    function(router, settings, settingsApp) {
 
     router.addRoutes([
         {'pattern': '^/(app.html|index.html)?$', 'view_name': 'homepage'},
@@ -34,6 +34,7 @@ define('routes',
         {'pattern': '^/usage$', 'view_name': 'usage'},
     ]);
 
+    // When this goes away we can remove settings_app from our deps.
     var search = '/api/v2/fireplace/search/?cache=1&vary=0';
     if (settings.meowEnabled) {
         search = '/api/v2/multi-search/?cache=1&vary=0';
