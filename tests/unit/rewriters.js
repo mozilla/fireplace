@@ -5,6 +5,7 @@ define('tests/unit/rewriters',
     describe('rewriter pagination cache', function() {
         it('rewrites pagination stuff',
            helpers.injector()
+           .mock('settings_app', {})
            .mock('core/settings', {cache_rewriting_enabled: true,
                                    api_url: 'https://foo.com'})
            .run(['core/urls', 'rewriters', 'route_api_args', 'routes'],
