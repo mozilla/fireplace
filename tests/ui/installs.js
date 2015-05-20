@@ -126,7 +126,7 @@ casper.test.begin('Test install app', {
 
         // Test that it is still a launch button.
         casper.waitForSelector('.launch', function() {
-            test.assertSelectorHasText('.launch', 'Open app');
+            test.assertSelectorHasText('.launch', 'Open');
 
             test.assert(casper.evaluate(function() {
                 return window.require('core/z').apps.length == 1;
