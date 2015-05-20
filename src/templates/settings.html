@@ -35,7 +35,7 @@
       {% defer (url=anonApi('region', [user_helpers.region()])) %}
         <div class="region account-field">
           <label>{{ _('Region') }}</label>
-          <span class="region region-{{ this.slug }}">{{ this.name }}</span>
+          <img src="{{ media('/fireplace/img/icons/regions/' + this.slug + '.png') }}" alt=""><span>{{ this.name }}</span>
         </div>
       {% end %}
 
