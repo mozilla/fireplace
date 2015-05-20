@@ -232,13 +232,17 @@ define('previews',
     // Don't treat the trays as draggable (bug 1138396).
     z.page.on('dragstart', '.previews-tray', utils._pd)
 
+    // Open lightbox to this preview unless we're on a Desktop details page
+    // or the preview is a Desktop details page video.
     .on('click', '.previews-tray ' + previewItemClass, function(e) {
-        // If a tray thumbnail is clicked, open lightbox.
-        // Don't show on desktop detail since it'd show the previews at
-        // the same size.
-        if (!isDesktopDetail()) {
+        var isVideo = e.target.nodeName === 'VIDEO';
+
+        if (!isVideo || !isDesktopDetail() && isVideo) {
             e.preventDefault();
-            previewsLightbox.show(this);
+
+            if (!isDesktopDetail()) {
+                previewsLightbox.show(this);
+            }
         }
     });
 
