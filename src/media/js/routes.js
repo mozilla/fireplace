@@ -46,7 +46,7 @@ define('routes',
         'app': '/api/v2/fireplace/app/{0}/?cache=1&vary=0',
         'app/privacy': '/api/v2/apps/app/{0}/privacy/?cache=1&vary=0',
         'app_abuse': '/api/v2/abuse/app/',
-        'category': '/api/v2/fireplace/search/?cat={0}&cache=1&vary=0',
+        'category': search + '&cat={0}',
         // consumer_info should be cached by the browser, never served by the
         // CDN, we can keep the Vary header.
         'consumer_info': '/api/v2/fireplace/consumer-info/?cache=1',
