@@ -1,50 +1,53 @@
 sudo: false
 branches:
   only:
-    - master
+  - master
 notifications:
   irc:
     channels:
-      - "irc.mozilla.org#amo-bots"
-      - "irc.mozilla.org#fireplace"
+    - irc.mozilla.org#amo-bots
+    - irc.mozilla.org#fireplace
     on_success: change
     on_failure: change
   email: false
 language: node_js
 python:
-  - "2.7"
+- '2.7'
 node_js:
-  - "0.10"
+- '0.10'
+addons:
+  sauce_connect: true
 env:
+  matrix:
   - RUN_TEST=uitest-phantom START_SERVER=1 UPLOAD_CAPTURES=1 MAKE_LANGPACKS=1
   - RUN_TEST=uitest-slimer START_SERVER=1 UPLOAD_CAPTURES=1 MAKE_LANGPACKS=1
+  - RUN_TEST=sherlocked API=mock START_SERVER=1 MAKE_LANGPACKS=1
   - RUN_TEST=lint
   - RUN_TEST=unittest
   - RUN_TEST=test-langpacks
   - RUN_TEST=test-package
+  global:
+  - secure: ZiW8luJSf9AFCf+ZfMeSeD8Njv4rWjMNrPW31aaZ5axqpdHT1ml23Tsl2H3Lu6sFQ1kYqb/QtXW9PLMkfwsddI7uR52eKDzd1rbrNcyNnt9L2kcrPdK1sJdUEDDlQ3MkdcCQxod3I4hFNYRyD7HbJxOBbgshCYj2T7fv0GVOT2k=
+  - secure: dv/0SujZlQ5d/YS0I3bZm51NHq6Fc1BbVxRMbWF1x77LqjGG938uQu5WTgoGVWNc53cW2PIJWygZM/kCxn48l8zUUhwX81ngpQFUOVTMgirI0fvb8xnzG+i27FmVnGz4CI/4Ll0GWlgPfRPYSm6ZtyzDLQFzwGEEsAQTSgaYrRc=
 matrix:
   allow_failures:
-    - env: RUN_TEST=uitest-phantom START_SERVER=1 UPLOAD_CAPTURES=1 MAKE_LANGPACKS=1
+  - env: RUN_TEST=uitest-phantom START_SERVER=1 UPLOAD_CAPTURES=1 MAKE_LANGPACKS=1
+  - env: RUN_TEST=sherlocked API=mock START_SERVER=1 MAKE_LANGPACKS=1
 before_script:
-  - "export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'"
-  - 'export SLIMERJSLAUNCHER=$(which firefox)'
-# Create an installation.
-  - "make install"
-# Setup xvfb for karma and slimerjs.
-  - 'export DISPLAY=:99.0'
-  - 'sh -e /etc/init.d/xvfb start'
-# Start the server if needed
-  - 'if [ $START_SERVER ]; then bash tests/serve.sh; fi'
-# Make the langpacks if needed.
-  - 'if [ $MAKE_LANGPACKS ]; then commonplace langpacks; fi'
-# Install the latest slimer if we're running slimer.
-  - "if [ $RUN_TEST = 'uitest-slimer' ]; then make install-slimer; fi"
+- export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'
+- export SLIMERJSLAUNCHER=$(which firefox)
+- make install
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- if [ $START_SERVER ]; then bash tests/serve.sh; fi
+- if [ $MAKE_LANGPACKS ]; then commonplace langpacks; fi
+- if [ $RUN_TEST = 'uitest-slimer' ]; then make install-slimer; fi
 script:
-  - 'make $RUN_TEST'
-  - 'if [ $UPLOAD_CAPTURES ]; then make upload-captures; fi'
+- make $RUN_TEST
+- if [ $UPLOAD_CAPTURES ]; then make upload-captures; fi
 cache:
   directories:
-    - /tmp/pip-cache
-    - /tmp/python-env
-    - node_modules
-    - bower_components
+  - "/tmp/pip-cache"
+  - "/tmp/python-env"
+  - node_modules
+  - bower_components
