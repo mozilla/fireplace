@@ -69,5 +69,6 @@ require('sherlocked')
     },
     {
         browserName: 'safari',
+        platform: 'OS X 10.9'
     }
 ]);
