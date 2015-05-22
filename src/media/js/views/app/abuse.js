@@ -15,13 +15,13 @@ define('views/app/abuse',
         forms.toggleSubmitFormState($this);
 
         requests.post(urls.api.url('app_abuse'), data).done(function(data) {
-            notify({message: gettext('Abuse report submitted. Thanks!')});
+            notify({message: gettext('Report submitted. Thanks!')});
             if (!caps.widescreen()) {
                 z.page.trigger('navigate', urls.reverse('app', [slug]));
             }
         }).fail(function() {
             forms.toggleSubmitFormState($this, true);
-            notify({message: gettext('There was an issue submitting your abuse report. Please try again later.')});
+            notify({message: gettext('There was an issue submitting your report. Please try again later.')});
         });
     }));
 

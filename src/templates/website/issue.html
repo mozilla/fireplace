@@ -1,0 +1,26 @@
+{% from "_macros/forms.html" import potato_captcha %}
+
+{% macro issue_prompt(pk) %}
+  <mkt-prompt>
+    <form class="issue-form">
+      <p>{{ _('Let us know if something is missing from this website listing or its information should be updated.') }}</p>
+      <p>{{ _('For information on show to report a copyright or trademark issue <a href="{url}">see here</a>.')|format(url='https://www.mozilla.org/about/legal/report-abuse/') }}</p>
+      <textarea name="text"
+                placeholder="{{ _('Describe the issue here. Please be specific.') }}"
+                required></textarea>
+      <input type="hidden" name="website" value="{{ pk }}">
+      {{ potato_captcha() }}
+      <div>
+        <button>{{ _('Cancel') }}</button>
+        <button>{{ _('Report an issue') }}</button>
+      </div>
+    </form>
+  </mkt-prompt>
+{% endmacro %}
+
+<div class="main abuse">
+  <header class="secondary-header">
+    <h2>{{ _('Report an Issue') }}</h2>
+  </header>
+  {{ issue_prompt(pk) }}
+</div>
