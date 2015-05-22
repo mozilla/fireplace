@@ -43,7 +43,7 @@
           <div>
             {{ _('Is there something wrong or out-of-date with this website listing?') }}
           </div>
-          <button class="button cancel report-issue">{{ _('Report an issue') }}</button>
+          <a href="{{ url('website/issue', [pk]) }}" class="button cancel">{{ _('Report an issue') }}</a>
         </section>
       </div>
     </div>
