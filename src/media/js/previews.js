@@ -17,9 +17,9 @@
     - Use capabilities.device_type() only to determine whether to add buttons.
 */
 define('previews',
-    ['core/capabilities', 'core/log', 'core/utils', 'core/z', 'flipsnap',
+    ['core/capabilities', 'core/log', 'core/z', 'flipsnap',
      'previews-buttons', 'previews-lightbox', 'underscore'],
-    function(caps, log, utils, z, Flipsnap,
+    function(caps, log, z, Flipsnap,
              previewButtons, previewsLightbox, _) {
     var logger = log('previews');
 
@@ -230,7 +230,9 @@ define('previews',
     });
 
     // Don't treat the trays as draggable (bug 1138396).
-    z.page.on('dragstart', '.previews-tray', utils._pd)
+    z.page.on('dragstart', '.previews-tray', function(e) {
+        e.preventDefault();
+    })
 
     .on('click', '.previews-tray ' + previewItemClass, function(e) {
         // If a tray thumbnail is clicked, open lightbox.
