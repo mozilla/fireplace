@@ -21,7 +21,7 @@ define('views/app',
         builder.z('type', 'leaf detail');
         builder.z('title', gettext('Loading...'));
 
-        var slug = args[0];
+        var slug = decodeURIComponent(args[0]);
         builder.start('app/index.html', {
             iarc: iarc,
             placeholder_app: {
