@@ -76,3 +76,6 @@ log:
 test-package:
 	make package
 	test -f package/builds/_prod/media/js/include.js
+
+sherlocked:
+	sleep 10 && node sherlocked.js
