@@ -14,24 +14,18 @@ define('desktop_promo',
         },
         promoItems: [
             {
-                name: 'puzzle-games',
-                url: urls.reverse(
-                    'feed_landing',
-                    ['collection', 'puzzle-gamesdesktop-essentials']),
-                // L10n: Puzzle Games collection desktop promo (bug 1160327).
-                text: gettext('Puzzle Games—Desktop Essentials'),
+                imageName: 'generic',
+                name: 'esc-4-home',
+                url: urls.reverse('app', ['esc-4-home']),
+                // L10n: Esc 4 Home app desktop promo (bug 1166114).
+                text: gettext('Escape from the worst boss ever.'),
             },
             {
-                name: 'littlealchemy',
-                url: urls.reverse('app', ['littlealchemy']),
-                // L10n: Little Alchemy app desktop promo (bug 1160327).
-                text: gettext('Play the addicting game of elements.'),
-            },
-            {
-                name: 'cut-the-rope',
-                url: urls.reverse('app', ['cut-the-rope']),
-                // L10n: Cut the Rope app desktop promo (bug 1155001).
-                text: gettext('Om Nom needs candy!'),
+                imageName: 'generic',
+                name: 'irccloud',
+                url: urls.reverse('app', ['irccloud']),
+                // L10n: IRCCloud app desktop promo (bug 1166114).
+                text: gettext('Manage all your messages in one place.'),
             },
             {
                 name: 'productivity',
@@ -46,6 +40,13 @@ define('desktop_promo',
                                                    'games-ent-appsdesktop']),
                 // L10n: Games & Entertainment collection desktop promo (bug 1108612).
                 text: gettext('Games & Entertainment Apps—Desktop Essentials'),
+            },
+            {
+                imageName: 'generic',
+                name: 'monster-wants-candy',
+                url: urls.reverse('app', ['monster-wants-candy']),
+                // L10n: Monster Wants Candy app desktop promo (bug 1166114).
+                text: gettext('Save the girl, get the candy!'),
             },
         ].map(function(item) {
             item.url = utils.urlparams(item.url, {
