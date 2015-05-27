@@ -7,6 +7,8 @@ define('views/terms', ['core/l10n'], function(l10n) {
         builder.start('terms.html');
 
         builder.z('type', 'leaf');
-        builder.z('title', gettext('Terms of Use'));
+        var title = gettext('Terms of Use');
+        builder.z('title', title);
+        builder.z('header-title', title);
     };
 });

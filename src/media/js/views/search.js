@@ -159,10 +159,13 @@ define('views/search',
             delete params.sort;
         }
         var query = params.full_q || params.q || params.author;
+        var title = gettext('Search Results');
 
         builder.z('type', 'search leaf app-list');
         builder.z('search', query);
-        builder.z('title', query || gettext('Search Results'));
+        builder.z('title', query || title);
+        builder.z('header-title', title);
+
 
         builder.start('search.html', {
             endpoint_name: 'search',

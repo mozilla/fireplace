@@ -20,6 +20,7 @@ define('views/app/ratings/add',
         var slug = args[0];
         builder.z('type', 'leaf');
         builder.z('title', gettext('Leave a Review'));
+        builder.z('header-title', gettext('Write a Review'));
 
         // If the user isn't logged in, redirect them to the detail page.
         if (!user.logged_in()) {
