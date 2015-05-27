@@ -22,7 +22,7 @@ define('views/app',
         builder.z('title', gettext('Loading...'));
         builder.z('header-title', gettext('App Detail'));
 
-        var slug = args[0];
+        var slug = decodeURIComponent(args[0]);
         builder.start('app/index.html', {
             iarc: iarc,
             placeholder_app: {
