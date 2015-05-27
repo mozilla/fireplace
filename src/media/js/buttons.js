@@ -431,7 +431,7 @@ define('buttons',
         } else {
             if (app.installed) {
                 return gettext('Open');
-            } else if (app.price) {
+            } else if (app.priceText) {
                 return app.priceText;
             } else {
                 return gettext('Install');
