@@ -392,8 +392,9 @@ define('buttons',
             });
         }
 
+        var free = settings.meowEnabled ? gettext('free') : gettext('Free');
         var priceText = app.price && app.price != '0.00' ? app.price_locale :
-                                                           gettext('free');
+                                                           free;
         if (app.payment_required && !app.price) {
             priceText = gettext('Unavailable');
         }
@@ -431,10 +432,10 @@ define('buttons',
         } else {
             if (app.installed) {
                 return gettext('Open');
-            } else if (app.priceText) {
-                return app.priceText;
-            } else {
+            } else if (user.has_installed(app.id)) {
                 return gettext('Install');
+            } else {
+                return app.priceText;
             }
         }
     }
