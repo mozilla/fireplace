@@ -8,6 +8,7 @@ define('views/website',
 
         builder.z('type', 'leaf detail website');
         builder.z('title', gettext('Loading...'));
+        builder.z('header-title', gettext('Website Detail'));
 
         var pk = args[0];
         builder.start('website/index.html', {

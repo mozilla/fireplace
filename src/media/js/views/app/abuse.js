@@ -48,7 +48,9 @@ define('views/app/abuse',
         builder.z('type', 'leaf');
         builder.z('parent', urls.reverse('app', [args[0]]));
         // L10n: Report abuse regarding an app.
-        builder.z('title', gettext('Report Abuse'));
+        var title = gettext('Report Abuse');
+        builder.z('title', title);
+        builder.z('header-title', title);
 
         builder.start('app/abuse.html', {
             slug: args[0]

@@ -20,6 +20,7 @@ define('views/app',
 
         builder.z('type', 'leaf detail');
         builder.z('title', gettext('Loading...'));
+        builder.z('header-title', gettext('App Detail'));
 
         var slug = args[0];
         builder.start('app/index.html', {

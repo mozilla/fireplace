@@ -8,6 +8,7 @@ define('views/app/ratings', ['core/l10n', 'core/urls'],
         builder.z('parent', urls.reverse('app', [slug]));
         // L10n: The title for the list of reviews
         builder.z('title', gettext('Reviews'));
+        builder.z('header-title', gettext('Read All Reviews'));
 
         builder.start('ratings/main.html', {
             'slug': slug

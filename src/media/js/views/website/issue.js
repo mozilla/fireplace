@@ -26,7 +26,9 @@ define('views/website/issue',
     return function(builder, args) {
         builder.z('type', 'leaf');
         builder.z('parent', urls.reverse('website', [args[0]]));
-        builder.z('title', gettext('Report an Issue'));
+        var title = gettext('Report an Issue');
+        builder.z('title', title);
+        builder.z('header-title', title);
 
         builder.start('website/issue.html', {
             pk: args[0]
