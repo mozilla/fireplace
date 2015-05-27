@@ -13,6 +13,7 @@ define('views/feed_landing',
 
         builder.z('type', 'leaf ' + feedType + '-landing');
         builder.z('title', gettext('Loading...'));
+        builder.z('header-title', gettext('Collection Detail'));
 
         builder.start('feed/' + feedType + '.html', {
             landing: true,
