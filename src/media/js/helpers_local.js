@@ -110,7 +110,7 @@ define('helpers_local',
         var notices = [];
         // Positive notices.
         if (app.is_offline) {
-            notices.push([gettext('Works offline'), 'positive']);
+            notices.push([gettext('works offline'), 'positive']);
         }
         // Negative notices.
         var incompat_notices = apps.incompat(app) || [];
