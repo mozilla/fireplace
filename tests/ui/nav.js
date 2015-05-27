@@ -90,7 +90,7 @@ casper.test.begin('Test mkt-nav back', {
         helpers.startCasper('/app/foo');
 
         navSetUp(function() {
-            casper.click('.mkt-header--back');
+            casper.click('.hamburger');
         });
 
         casper.waitForSelector('[data-page-type~="homepage"]');
@@ -105,7 +105,7 @@ casper.test.begin('Test mkt-nav back not on desktop', {
         helpers.startCasper('/app/foo', {viewport: 'desktop'});
 
         navSetUp(function() {
-            test.assertNotVisible('.mkt-header--back');
+            test.assertNotVisible('.hamburger');
         });
 
         helpers.done(test);

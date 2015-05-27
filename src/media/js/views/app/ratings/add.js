@@ -1,6 +1,9 @@
 define('views/app/ratings/add',
-    ['core/capabilities', 'core/login', 'core/l10n', 'core/urls', 'core/user', 'core/z'],
-    function(caps, login, l10n, urls, user, z) {
+    ['core/capabilities', 'core/login', 'core/l10n', 'core/urls', 'core/user',
+     'core/z', 'utils_local'],
+    function(caps, login, l10n, urls, user,
+             z, utilsLocal) {
+    'use strict';
     var gettext = l10n.gettext;
 
     z.page.on('click touchend', '.add-review .rating', function() {
@@ -20,7 +23,7 @@ define('views/app/ratings/add',
         var slug = args[0];
         builder.z('type', 'leaf');
         builder.z('title', gettext('Leave a Review'));
-        builder.z('header-title', gettext('Write a Review'));
+        utilsLocal.headerTitle(gettext('Write a Review'));
 
         // If the user isn't logged in, redirect them to the detail page.
         if (!user.logged_in()) {

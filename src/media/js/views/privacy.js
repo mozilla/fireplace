@@ -1,12 +1,16 @@
-define('views/privacy', ['core/l10n'], function(l10n) {
+define('views/privacy',
+    ['core/l10n', 'utils_local'],
+    function(l10n, utilsLocal) {
     'use strict';
 
     var gettext = l10n.gettext;
 
     return function(builder) {
-        builder.start('privacy.html');
+        var title = gettext('Privacy Policy');
 
+        builder.start('privacy.html');
         builder.z('type', 'leaf');
-        builder.z('title', gettext('Privacy Policy'));
+        builder.z('title', title);
+        utilsLocal.headerTitle(title);
     };
 });

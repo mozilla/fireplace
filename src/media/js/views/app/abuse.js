@@ -1,8 +1,8 @@
 define('views/app/abuse',
     ['core/capabilities', 'core/forms', 'core/l10n', 'core/notification', 'core/nunjucks',  'core/requests',
-     'core/urls', 'core/utils', 'core/z'],
+     'core/urls', 'core/utils', 'core/z', 'utils_local'],
     function(caps, forms, l10n, notification, nunjucks, requests, urls,
-             utils, z) {
+             utils, z, utilsLocal) {
     var gettext = l10n.gettext;
     var notify = notification.notification;
 
@@ -50,7 +50,7 @@ define('views/app/abuse',
         // L10n: Report abuse regarding an app.
         var title = gettext('Report Abuse');
         builder.z('title', title);
-        builder.z('header-title', title);
+        utilsLocal.headerTitle(title);
 
         builder.start('app/abuse.html', {
             slug: args[0]

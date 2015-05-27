@@ -1,0 +1,42 @@
+@import 'layout';
+
+hambacker() {
+    display: inline-block;
+    padding: 0 10px;
+
+    b {
+        background: $icon-dark;
+        border-radius: 2px;
+        content: '';
+        display: block;
+        height: $icon-stroke;
+        transition: 250ms;
+    }
+}
+hambacker-menu() {
+    b {
+        margin: 5px 0;
+        width: 75%;
+    }
+    b:first-of-type {
+        width: 100%;
+    }
+    b:last-of-type {
+        width: 90%;
+    }
+}
+hambacker-back() {
+    b:first-of-type {
+        width: 75%;
+        transform: translate(0, $icon-stroke + 1) rotate(-45deg);
+    }
+    b {
+        margin: 0;
+        width: 100%;
+        transform-origin: left;
+    }
+    b:last-of-type {
+        width: 75%;
+        transform: translate(0, -1 * ($icon-stroke + 1)) rotate(45deg);
+    }
+}

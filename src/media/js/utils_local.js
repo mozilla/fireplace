@@ -1,6 +1,8 @@
 define('utils_local',
-    ['core/defer', 'jquery', 'core/log', 'salvattore', 'core/settings', 'underscore', 'core/urls', 'core/z'],
-    function(defer, $, log, salvattore, settings, _, urls, z) {
+    ['core/defer', 'core/log', 'core/settings', 'core/urls', 'core/z',
+     'jquery', 'salvattore', 'underscore'],
+    function(defer, log, settings, urls, z,
+             $, salvattore, _) {
 
     var logger = log('utils_local');
     var check_interval;
@@ -129,9 +131,14 @@ define('utils_local',
         }, 100));
     }
 
+    function headerTitle(title) {
+        document.getElementById('site-header').setAttribute('title', title);
+    }
+
     return {
         build_localized_field: build_localized_field,
         checkOnline: checkOnline,
+        headerTitle: headerTitle,
         initSalvattore: initSalvattore,
         items: items,
         pollOnlineState: pollOnlineState,

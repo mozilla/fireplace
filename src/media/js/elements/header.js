@@ -61,11 +61,24 @@ define('elements/header',
                     });
                 }
             },
+            attributeChangedCallback: {
+                value: function(attr, oldVal, newVal, namespace) {
+                    if (attr === 'title') {
+                        this.setTitle();
+                    }
+                },
+            },
             headerChildren: {
                 get: function() {
                     return this.parentNode.querySelectorAll(
                         'mkt-header-child');
                 }
+            },
+            setTitle: {
+                value: function() {
+                    this.querySelector('.mkt-header--title')
+                        .textContent = this.getAttribute('title');
+                },
             },
             statusElement: {
                 get: function() {
