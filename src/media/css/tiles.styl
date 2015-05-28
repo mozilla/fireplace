@@ -191,7 +191,13 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     +detail--wide() {
         font-weight: 300;
         font-size: 20px;
-        margin-right: auto;
+
+        +ltr() {
+            margin-right: auto;
+        }
+        +rtl() {
+            margin-left: auto;
+        }
     }
     a {
         display: flex;
