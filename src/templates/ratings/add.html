@@ -27,7 +27,7 @@
       <p class="rating-label">{{ _('Please select a star rating.') }}</p>
       <textarea id="review-body" rows="2" cols="40" name="body"
                 placeholder="{{ _('Tell us what you love about this app!') }}"
-                required maxlength="150">{{ existingReview.body }}</textarea>
+                required pattern="^[^\s]+$" maxlength="150">{{ existingReview.body }}</textarea>
       <div class="char-count" data-for="review-body"></div>
       <input type="hidden" name="app" value="{{ slug }}" required>
       <footer class="form-footer only-logged-out c">
