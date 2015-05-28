@@ -136,12 +136,6 @@ require(
         }
     });
 
-    z.body.on('click', '.site-header .back', function(e) {
-        e.preventDefault();
-        logger.log('← button pressed');
-        navigation.back();
-    });
-
     window.addEventListener(
         'resize',
         _.debounce(function() {

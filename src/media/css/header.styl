@@ -3,6 +3,8 @@
 */
 @import 'lib';
 
+$header-button-size = 40px;
+
 .hamburger {
     order: 0;
 }
@@ -45,10 +47,6 @@ body {
     display: inline;
 }
 
-.header-button.back.mkt-header--back {
-    width: 38px;
-}
-
 #site-header {
     align-items: center;
     background: $color--header--background;
@@ -61,6 +59,9 @@ body {
     position: relative;
     z-index: $zindex--header;
 
+    +media--wide-tablet() {
+        padding: 0 40px;
+    }
     +rtl() {
         // Keep the back and menu button on the left when RTL.
         flex-direction: row-reverse;
@@ -70,6 +71,11 @@ body {
         align-items: center;
         display: flex;
         height: 50px;
+        line-height: 50px;
+    }
+    .mkt-header--title {
+        flex-grow: 1;
+        padding-right: $header-button-size;
     }
     // Marketplace logo.
     .wordmark {
@@ -93,31 +99,28 @@ body {
         position: relative;
         top: 1px;  // Aligns baseline the wordmark's baseline;
     }
-    // Hamburger icon that toggles the menu visibility at smaller screen sizes.
-    .hamburger {
-        image-replacement('../img/nav/menu.svg', 40px, 40px);
-        background-position: 0 0;
-        background-size: 40px 140px;
-        appearance: none;
-        border: 0;
-        cursor: pointer;
-        display: inline-block;
-        left: 5px;
-        position: relative;
-    }
-    +media--wide-tablet() {
-        min-height: 60px;
-        padding: 0 40px;
-
-        .hamburger {
-            display: none;
-        }
-    }
 }
 
 // Banners should cover the header children when above the header.
 body > .banners mkt-banner {
     z-index: 70;
+}
+
+.hamburger {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    height: $header-button-size;
+    width: $header-button-size;
+    hambacker();
+    hambacker-menu();
+
+    +media--wide-tablet() {
+        display: none;
+    }
+}
+[data-page-type~=leaf] .hamburger {
+    hambacker-back();
 }
 
 // Usable on any header.
@@ -176,7 +179,7 @@ body > .banners mkt-banner {
     position: absolute;
     right: 0;
     top: 0;
-    width: 40px;
+    width: $header-button-size;
 
     &:active {
         background: url(../img/pretty/close_active.svg) 50% no-repeat;
@@ -200,17 +203,6 @@ body > .banners mkt-banner {
             background-repeat: no-repeat;
             content: "";
             display: block;
-        }
-    }
-    &.back {
-        hidetext();
-        background: url(../img/pretty/back_arrow.svg) center no-repeat;
-        background-size: 12px 24px;
-        margin-right: 2px;
-        width: 50px;
-
-        &:hover {
-            background-image: url(../img/pretty/back_arrow_active.svg);
         }
     }
 }
@@ -298,13 +290,24 @@ body > .banners mkt-banner {
     display: none;
 }
 
-[data-page-type~=search],
+#site-header .mkt-header--title {
+    display: none;
+}
 [data-page-type~=leaf] {
-    .back, .expand {
-        display: block;
-    }
-    .site {
+    #site-header .site,
+    #site-header .header--search-toggle {
         display: none;
+
+        +media--wide-tablet() {
+            display: block;
+        }
+    }
+    #site-header .mkt-header--title {
+        display: block;
+
+        +media--wide-tablet() {
+            display: none;
+        }
     }
 }
 
@@ -426,12 +429,6 @@ body > .banners mkt-banner {
     }
     .desktop .wordmark {
         background: url(../img/pretty/marketplace-beta-logo.png) no-repeat 0 50% / 231px auto;
-    }
-}
-
-@media $wide-tablet {
-    [data-page-type~=leaf] .mkt-header--back {
-        display: none;
     }
 }
 

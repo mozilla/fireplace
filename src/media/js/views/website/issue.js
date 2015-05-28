@@ -1,8 +1,8 @@
 define('views/website/issue',
     ['core/forms', 'core/l10n', 'core/notification', 'core/requests',
-     'core/urls', 'core/utils', 'core/z'],
+     'core/urls', 'core/utils', 'core/z', 'utils_local'],
     function(forms, l10n, notification, requests,
-             urls, utils, z) {
+             urls, utils, z, utilsLocal) {
     var gettext = l10n.gettext;
     var notify = notification.notification;
 
@@ -28,7 +28,7 @@ define('views/website/issue',
         builder.z('parent', urls.reverse('website', [args[0]]));
         var title = gettext('Report an Issue');
         builder.z('title', title);
-        builder.z('header-title', title);
+        utilsLocal.headerTitle(title);
 
         builder.start('website/issue.html', {
             pk: args[0]

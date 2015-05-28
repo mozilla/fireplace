@@ -2,8 +2,8 @@
     Shared feed landing view between Collections, Editorial Brands, Shelves.
 */
 define('views/feed_landing',
-    ['edbrands', 'core/l10n', 'core/utils'],
-    function(brands, l10n, utils) {
+    ['edbrands', 'core/l10n', 'core/utils', 'utils_local'],
+    function(brands, l10n, utils, utilsLocal) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -13,7 +13,7 @@ define('views/feed_landing',
 
         builder.z('type', 'leaf ' + feedType + '-landing');
         builder.z('title', gettext('Loading...'));
-        builder.z('header-title', gettext('Collection Detail'));
+        utilsLocal.headerTitle(gettext('Collection Detail'));
 
         builder.start('feed/' + feedType + '.html', {
             landing: true,
