@@ -47,15 +47,23 @@ require('sherlocked')
 })
 
 .investigate('App Detail on Mobile', function(client) {
-    // App detail page on mobile.
     return mobile(client, 'app/swanky-chocolate-9')
         .waitForExist('.mkt-tile', 60000);
 })
 
 .investigate('App Detail on Desktop', function(client) {
-    // App detail page on desktop.
     return desktop(client, 'app/swanky-chocolate-9')
         .waitForExist('.mkt-tile', 60000);
+})
+
+.investigate('Reviews on Mobile', function(client) {
+    return mobile(client, 'app/swanky-chocolate-9/ratings')
+        .waitForExist('.review', 60000);
+})
+
+.investigate('Reviews on Desktop', function(client) {
+    return desktop(client, 'app/swanky-chocolate-9/ratings')
+        .waitForExist('.review', 60000);
 })
 
 .begin([
