@@ -42,3 +42,37 @@ casper.test.begin('Category UA tracking tests', {
         helpers.done(test);
     }
 });
+
+
+casper.test.begin('Category mobile nav opens categories', {
+    test: function(test) {
+        helpers.startCasper('/category/games');
+
+        helpers.waitForPageLoaded();
+
+        casper.thenClick('mkt-nav-toggle', function() {
+            test.assert(casper.evaluate(function() {
+                return document.getElementById('categories').visible;
+            }));
+        });
+
+        helpers.done(test);
+    }
+});
+
+
+casper.test.begin('Category mobile does not nav open non-categories', {
+    test: function(test) {
+        helpers.startCasper();
+
+        helpers.waitForPageLoaded();
+
+        casper.thenClick('mkt-nav-toggle', function() {
+            test.assertNot(casper.evaluate(function() {
+                return document.getElementById('categories').visible;
+            }));
+        });
+
+        helpers.done(test);
+    }
+});
