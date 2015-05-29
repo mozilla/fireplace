@@ -151,6 +151,13 @@ define('elements/nav',
                         if (this.isLeafPage) {
                             logger.log('hambacker button pressed (back)');
                             navigation.back();
+                        } else if (this.isCategoryPage) {
+                            logger.log('hambacker button pressed (cats)');
+                            var target = document.getElementById('categories');
+                            target.parentNode.toggle();
+                            if (!target.visible) {
+                                target.parentNode.toggleChildren(target.id);
+                            }
                         } else {
                             logger.log('hambacker button pressed (menu)');
                             document.querySelector('mkt-nav').toggle();
@@ -158,11 +165,21 @@ define('elements/nav',
                     });
                 }
             },
+            isCategoryPage: {
+                get: function() {
+                    return this.pageTypes.indexOf('category') !== -1;
+                }
+            },
             isLeafPage: {
                 get: function() {
-                    var pageTypes = z.body.attr('data-page-type') || '';
-                    return pageTypes.split(' ').indexOf('leaf') !== -1;
+                    return this.pageTypes.indexOf('leaf') !== -1;
                 },
+            },
+            pageTypes: {
+                get: function() {
+                    var pageTypes = z.body.attr('data-page-type') || '';
+                    return pageTypes.split(' ');
+                }
             },
         })
     });

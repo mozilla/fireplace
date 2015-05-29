@@ -89,6 +89,7 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    max-width: unquote('calc(100% - 60px)');
     padding-left: 10px;
 
     +rtl() {
@@ -98,6 +99,7 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         flex-direction: row;
         height: 150px;
         margin-top: 65px;
+        max-width: none;
     }
     + .bad-app {
         padding-top: 8px;

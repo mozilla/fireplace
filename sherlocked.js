@@ -28,12 +28,12 @@ require('sherlocked')
 
 .investigate('Collection on Mobile', function(client) {
     return mobile(client, 'feed/editorial/brand-list')
-        .waitForExist('.feed-home', 60000);
+        .waitForExist('.app-list', 60000);
 })
 
 .investigate('Collection on Desktop', function(client) {
     return desktop(client, 'feed/editorial/brand-list')
-        .waitForExist('.feed-home', 60000);
+        .waitForExist('.app-list', 60000);
 })
 
 .investigate('Popular Page on Mobile', function(client) {
