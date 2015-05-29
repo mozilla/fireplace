@@ -125,11 +125,16 @@ define('helpers_local',
         return resourceUri.match(/(\d+)\/$/)[1];
     }
 
+    function htmldir() {
+        return document.documentElement.dir;
+    }
+
     var helpers = {
         apps: apps,
         app_notices: app_notices,
         contentFilter: contentFilter,
         cast_app: models('app').cast,
+        htmldir: htmldir,
         format: format.format,
         getReviewId: getReviewId,
         numberfmt: nunjucks.require('filters').numberfmt,
