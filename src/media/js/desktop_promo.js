@@ -14,14 +14,12 @@ define('desktop_promo',
         },
         promoItems: [
             {
-                imageName: 'generic',
                 name: 'esc-4-home',
                 url: urls.reverse('app', ['esc-4-home']),
                 // L10n: Esc 4 Home app desktop promo (bug 1166114).
                 text: gettext('Escape from the worst boss ever.'),
             },
             {
-                imageName: 'generic',
                 name: 'irccloud',
                 url: urls.reverse('app', ['irccloud']),
                 // L10n: IRCCloud app desktop promo (bug 1166114).
@@ -42,7 +40,6 @@ define('desktop_promo',
                 text: gettext('Games & Entertainment Apps—Desktop Essentials'),
             },
             {
-                imageName: 'generic',
                 name: 'monster-wants-candy',
                 url: urls.reverse('app', ['monster-wants-candy']),
                 // L10n: Monster Wants Candy app desktop promo (bug 1166114).
