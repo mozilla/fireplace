@@ -1,6 +1,6 @@
 <div class="desktop-promo">
   <div class="desktop-promo-nav-left arrow-btn arrow-btn-prev"
-       data-navigate="prev">{{ _('Previous') }}</div>
+       data-navigate="{{ 'prev' if htmldir() == 'ltr' else 'next' }}">{{ _('Previous') }}</div>
 
   <div class="desktop-promo-items" data-action="start">
     {% for promo in promoItems %}
@@ -14,5 +14,5 @@
   </div>
 
   <div class="desktop-promo-nav-right arrow-btn arrow-btn-next"
-       data-navigate="next">{{ _('Next') }}</div>
+       data-navigate="{{ 'next' if htmldir() == 'ltr' else 'prev' }}">{{ _('Next') }}</div>
 </div>
