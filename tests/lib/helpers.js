@@ -65,6 +65,18 @@ function filterUALogs(trackArgs) {
 }
 
 
+function headerTitle() {
+    return casper.fetchText('.mkt-header--title');
+}
+
+
+function isLeafPage() {
+    var pageTypes = casper.getElementAttribute('body', 'data-page-type')
+                          .split(' ');
+    return pageTypes.indexOf('leaf') !== -1;
+}
+
+
 function waitForAppDetail(cb) {
     casper.waitForSelector('[data-page-type~="detail"]', cb);
 }
@@ -85,6 +97,8 @@ module.exports = {
     assertUASetSessionVar: assertUASetSessionVar,
     browser: browser,
     filterUALogs: filterUALogs,
+    headerTitle: headerTitle,
+    isLeafPage: isLeafPage,
     waitForAppDetail: waitForAppDetail,
     waitForAppList: waitForAppList,
     waitForFeedItem: waitForFeedItem,

@@ -158,13 +158,27 @@ define('views/search',
         if ('sort' in params && params.sort === 'relevancy') {
             delete params.sort;
         }
-        var query = params.full_q || params.q || params.author;
+        var queryParams = ['full_q', 'q', 'author'];
+        var queryParam;
+        var query;
         var title = gettext('Search Results');
+        var pageTypes = 'search app-list';
 
-        builder.z('type', 'search app-list');
+        // Get the first valid param and record its type.
+        for (var i = 0; i < queryParams.length; i++) {
+            queryParam = queryParams[i];
+            query = params[queryParam];
+            if (query) break;
+        }
+
+        if (query && queryParam === 'author') {
+            pageTypes += ' leaf';
+            utilsLocal.headerTitle(gettext('Developer Listing'));
+        }
+
+        builder.z('type', pageTypes);
         builder.z('search', query);
         builder.z('title', query || title);
-        utilsLocal.headerTitle(title);
 
 
         builder.start('search.html', {

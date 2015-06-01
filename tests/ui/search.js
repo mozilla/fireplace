@@ -27,6 +27,12 @@ casper.test.begin('Test search results header', {
             });
         });
 
+        // Test that this is not a leaf page.
+        casper.then(function() {
+            // Test that there not a back button.
+            test.assert(!helpers.isLeafPage(), 'is not leaf page');
+        });
+
         helpers.done(test);
     }
 });
@@ -47,6 +53,12 @@ casper.test.begin('Test search empty', {
             test.assertExists('.app-list-filters', 'Check compatibility filtering is found');
             test.assertExists('.no-results', 'Check no-results header is found');
             test.assertNotVisible('.app-list-filters-expand-wrapper');
+
+            // Test that this is not a leaf page.
+            casper.then(function() {
+                // Test that there not a back button.
+                test.assert(!helpers.isLeafPage(), 'is not leaf page');
+            });
         });
 
         helpers.done(test);
@@ -62,6 +74,12 @@ casper.test.begin('Test search XSS', {
 
         helpers.waitForPageLoaded(function() {
             test.assertDoesntExist('#xss-script');
+
+            // Test that this is not a leaf page.
+            casper.then(function() {
+                // Test that there not a back button.
+                test.assert(!helpers.isLeafPage(), 'is not leaf page');
+            });
         });
 
         helpers.done(test);
@@ -79,6 +97,12 @@ casper.test.begin('Test search author', {
             // Test search results count in header.
             test.assertSelectorHasText('.search-results-header',
                                        '"test" returned 42 results');
+
+            // Test that there is a back button.
+            test.assert(helpers.isLeafPage(), 'is leaf page');
+
+            // Test that the header title is set.
+            test.assertEqual(helpers.headerTitle(), 'Developer Listing');
         });
 
         helpers.done(test);
@@ -94,6 +118,12 @@ casper.test.begin('Test search potato', {
             // Test search results count in header.
             test.assertSelectorHasText('.search-results-header',
                                        '":paid" returned 42 results');
+
+            // Test that this is not a leaf page.
+            casper.then(function() {
+                // Test that there not a back button.
+                test.assert(!helpers.isLeafPage(), 'is not leaf page');
+            });
         });
 
         helpers.done(test);
