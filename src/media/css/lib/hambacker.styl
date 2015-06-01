@@ -1,11 +1,8 @@
 @import 'layout';
 
-hambacker() {
-    display: inline-block;
-    padding: 0 10px;
-
+hambacker($color=$icon-dark) {
     b {
-        background: $icon-dark;
+        background: $color;
         border-radius: 2px;
         content: '';
         display: block;
@@ -16,27 +13,27 @@ hambacker() {
 hambacker-menu() {
     b {
         margin: 5px 0;
-        width: 75%;
+        width: $icon-size * .75;
     }
     b:first-of-type {
-        width: 100%;
+        width: $icon-size;
     }
     b:last-of-type {
-        width: 90%;
+        width: $icon-size * .90;
     }
 }
 hambacker-back() {
     b:first-of-type {
-        width: 75%;
+        width: $icon-size * .75;
         transform: translate(0, $icon-stroke + 1) rotate(-45deg);
     }
     b {
         margin: 0;
-        width: 100%;
+        width: $icon-size;
         transform-origin: left;
     }
     b:last-of-type {
-        width: 75%;
+        width: $icon-size * .75;
         transform: translate(0, -1 * ($icon-stroke + 1)) rotate(45deg);
     }
 }
