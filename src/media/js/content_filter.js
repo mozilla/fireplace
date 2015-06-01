@@ -2,10 +2,10 @@
     Content filtering (whether to show apps, websites, or both).
 */
 define('content_filter',
-    ['core/l10n', 'core/log', 'core/settings', 'core/storage', 'core/utils',
-     'core/views', 'core/z', 'underscore'],
-    function(l10n, log, settings, storage, utils,
-             views, z, _) {
+    ['core/capabilities', 'core/l10n', 'core/log', 'core/settings',
+     'core/storage', 'core/utils', 'core/views', 'core/z', 'underscore'],
+    function(caps, l10n, log, settings,
+             storage, utils, views, z, _) {
     'use strict';
     var logger = log('content_filter');
     var gettext = l10n.gettext;
@@ -22,8 +22,12 @@ define('content_filter',
 
     var filterContentLSKey = 'filter-content';
     var filterContent = storage.getItem(filterContentLSKey) || 'all';
-    if (['webapp', 'website'].indexOf(filterContent)) {
+    if (['webapp', 'website'].indexOf(filterContent) === -1) {
         filterContent = 'all';
+    }
+
+    if (caps.device_type() == 'desktop') {
+        filterContent = 'webapp';
     }
 
     z.body.on('change', '.content-filter', function() {
@@ -43,7 +47,7 @@ define('content_filter',
             return {};
         }
         return {
-            doc_type: filterContent
+            doc_type: settings.meowEnabled ? filterContent : 'webapp'
         };
     }
 
