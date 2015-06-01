@@ -15,7 +15,10 @@
           {% if preview.filetype == 'video/webm' %}
             <li itemscope itemtype="http://schema.org/VideoObject">
               <a class="previews-thumbnail">
-                <video src="{{ preview.image_url }}" controls itemprop="contentURL"></video>
+                <video src="{{ preview.image_url }}" controls
+                       itemprop="contentURL"
+                       preload="metadata">
+                </video>
               </a>
             </li>
           {% else %}
