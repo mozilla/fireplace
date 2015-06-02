@@ -29,7 +29,7 @@ casper.test.begin('Test scroll state when hitting back on initial page', {
         helpers.startCasper({path: '/app/appy'});
 
         helpers.waitForPageLoaded(function() {
-            casper.click('.hamburger');
+            casper.click('.back');
         });
 
         casper.waitWhileVisible('[data-page-type~="detail"]', function() {

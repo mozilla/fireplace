@@ -1,8 +1,6 @@
 define('views/newsletter_signup',
-    ['core/l10n', 'core/user', 'newsletter', 'underscore', 'user_helpers',
-     'utils_local'],
-    function(l10n, user, newsletter, underscore, user_helpers,
-             utilsLocal) {
+    ['core/l10n', 'core/user', 'newsletter', 'underscore', 'user_helpers'],
+    function(l10n, user, newsletter, underscore, user_helpers) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -12,10 +10,10 @@ define('views/newsletter_signup',
         };
         _.extend(context, newsletter.context());
         builder.start('newsletter.html', context);
-        builder.z('type', 'leaf settings');
+        builder.z('type', 'root settings');
         var title = gettext('Newsletter Signup');
         builder.z('title', title);
-        utilsLocal.headerTitle(title);
+        builder.z('header-title', title);
 
         // Tapping before scrolling on FxOS 2.0+ will cause you to select an
         // element below the one you tapped. Let's do the initial scroll so

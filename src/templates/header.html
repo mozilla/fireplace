@@ -25,17 +25,18 @@
 
 <mkt-header id="site-header" class="header site-header">
   {# TODO: remove IDs and classes when we stop using <header>. #}
+  <a href="#" class="header-button icon back mkt-header--back"
+     title="{{ _('Back') }}">
+    <b>{{ _('Back') }}</b>
+  </a>
   <mkt-nav-toggle for="nav">
-    <button class="hamburger" title="{{ _('Toggle Menu') }}">
-        <b/><b/><b/>
-    </button>
+    <button class="hamburger" title="{{ _('Toggle Menu') }}"></button>
   </mkt-nav-toggle>
 
   <h1 class="site">
     <a href="{{ url('homepage') }}" class="wordmark"><span>Firefox Marketplace</span></a>
     <a href="{{ url('homepage') }}" class="site-name">Marketplace</a>
   </h1>
-  <h1 class="mkt-header--title"></h1>
 
   <mkt-header-nav>
     {{ mkt_header_nav_item(url('homepage'), _('Home'), 'homepage') }}

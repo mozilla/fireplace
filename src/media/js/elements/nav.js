@@ -9,7 +9,6 @@
                         determine whether to translateX.
         root - returns <mkt-nav-root>.
         subnavs - returns <mkt-nav-child>ren.
-        title - the title to set in the header on leaf pages.
         toggle - toggles the visibility of the nav, primary by setting classes
                  on statusElement.
         toggleChildren - toggles subnav given an ID. If ID is `false`, hide
@@ -26,8 +25,7 @@
         visible - whether or not the child is visible.
 
     <mkt-nav-toggle>
-        Toggles visibility of nav on click. If body[data-page-type]~=leaf then
-        navigate back instead.
+        Toggles visibility of nav on click.
 
         createdCallback - sets click handler to toggle nav.
 
@@ -51,13 +49,12 @@
         Update active node. Hide children.
 */
 define('elements/nav',
-    ['core/element_utils', 'core/log', 'core/navigation', 'core/settings',
-     'core/z', 'document-register-element', 'jquery', 'underscore'],
-    function(eUtils, log, navigation, settings,
-             z, dre, $, _) {
+    ['core/element_utils', 'core/settings', 'core/z',
+     'document-register-element', 'jquery', 'underscore'],
+    function(eUtils, settings, z,
+             dre, $, _) {
     'use strict';
 
-    var logger = log('nav');
     var el = {};
     var cl = {
         // Active link / nav item. Set on <a class="mkt-nav--item">.
@@ -148,22 +145,10 @@ define('elements/nav',
                         // Stop propagation so that this click doesn't get
                         // handled later and close the nav.
                         e.stopPropagation();
-                        if (this.isLeafPage) {
-                            logger.log('hambacker button pressed (back)');
-                            navigation.back();
-                        } else {
-                            logger.log('hambacker button pressed (menu)');
-                            document.querySelector('mkt-nav').toggle();
-                        }
+                        document.querySelector('mkt-nav').toggle();
                     });
                 }
-            },
-            isLeafPage: {
-                get: function() {
-                    var pageTypes = z.body.attr('data-page-type') || '';
-                    return pageTypes.split(' ').indexOf('leaf') !== -1;
-                },
-            },
+            }
         })
     });
 

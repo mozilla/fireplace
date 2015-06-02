@@ -1,6 +1,5 @@
-define('views/app/ratings',
-    ['core/l10n', 'core/urls', 'utils_local'],
-    function(l10n, urls, utilsLocal) {
+define('views/app/ratings', ['core/l10n', 'core/urls'],
+    function(l10n, urls) {
     var gettext = l10n.gettext;
 
     return function(builder, args) {
@@ -9,7 +8,7 @@ define('views/app/ratings',
         builder.z('parent', urls.reverse('app', [slug]));
         // L10n: The title for the list of reviews
         builder.z('title', gettext('Reviews'));
-        utilsLocal.headerTitle(gettext('Read All Reviews'));
+        builder.z('header-title', gettext('Read All Reviews'));
 
         builder.start('ratings/main.html', {
             'slug': slug

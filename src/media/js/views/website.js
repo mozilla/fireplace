@@ -1,6 +1,6 @@
 define('views/website',
-    ['core/utils', 'truncator', 'utils_local'],
-    function(utils, truncator, utilsLocal) {
+    ['core/utils', 'truncator'],
+    function(utils, truncator) {
     'use strict';
 
     return function(builder, args) {
@@ -8,7 +8,7 @@ define('views/website',
 
         builder.z('type', 'leaf detail website');
         builder.z('title', gettext('Loading...'));
-        utilsLocal.headerTitle(gettext('Website Detail'));
+        builder.z('header-title', gettext('Website Detail'));
 
         var pk = args[0];
         builder.start('website/index.html', {

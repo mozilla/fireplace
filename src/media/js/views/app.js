@@ -1,10 +1,10 @@
 define('views/app',
     ['content-ratings', 'core/capabilities', 'core/l10n', 'core/log',
      'core/settings', 'core/utils', 'core/z', 'previews', 'tracking_events',
-     'truncator', 'utils_local', 'views/app/abuse'],
+     'truncator', 'views/app/abuse'],
     function(iarc, caps, l10n, log,
              settings, utils, z, previews, trackingEvents,
-             truncator, utilsLocal, abuseView) {
+             truncator, abuseView) {
     'use strict';
     var gettext = l10n.gettext;
     var logger = log('app');
@@ -20,7 +20,7 @@ define('views/app',
 
         builder.z('type', 'leaf detail');
         builder.z('title', gettext('Loading...'));
-        utilsLocal.headerTitle(gettext('App Detail'));
+        builder.z('header-title', gettext('App Detail'));
 
         var slug = decodeURIComponent(args[0]);
         builder.start('app/index.html', {

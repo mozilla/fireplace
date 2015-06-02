@@ -1,8 +1,8 @@
 define('views/search',
     ['core/l10n', 'core/navigation', 'core/settings', 'core/urls',
-     'core/utils', 'core/z', 'previews', 'tracking', 'utils_local'],
+     'core/utils', 'core/z', 'previews', 'tracking'],
     function(l10n, navigation, settings, urls,
-             utils, z, previews, tracking, utilsLocal) {
+             utils, z, previews, tracking) {
     'use strict';
     var _pd = utils._pd;
     var gettext = l10n.gettext;
@@ -161,10 +161,10 @@ define('views/search',
         var query = params.full_q || params.q || params.author;
         var title = gettext('Search Results');
 
-        builder.z('type', 'search app-list');
+        builder.z('type', 'search leaf app-list');
         builder.z('search', query);
         builder.z('title', query || title);
-        utilsLocal.headerTitle(title);
+        builder.z('header-title', title);
 
 
         builder.start('search.html', {

@@ -1,6 +1,4 @@
-define('views/terms',
-    ['core/l10n', 'utils_local'],
-    function(l10n, utilsLocal) {
+define('views/terms', ['core/l10n'], function(l10n) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -11,6 +9,6 @@ define('views/terms',
         builder.z('type', 'leaf');
         var title = gettext('Terms of Use');
         builder.z('title', title);
-        utilsLocal.headerTitle(title);
+        builder.z('header-title', title);
     };
 });
