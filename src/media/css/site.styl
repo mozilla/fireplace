@@ -210,23 +210,6 @@ noscript {
     animation: 0.9s spin 1 steps(30);
 }
 
-.region {
-    background-repeat: no-repeat;
-    background-size: 20px auto;
-    color: $medium-gray;
-    display: inline-block;
-    margin-top: 6px;
-    min-height: 20px;
-    overflow: visible;
-    padding: 2px 0 2px 28px;
-    text-overflow: normal;
-}
-
-for region in $regions
-    .region-{region} {
-        background-image: url(unquote('../img/icons/regions/' + region + '.png'));
-    }
-
 @media $retina {
     .spinner {
         spinner-base-image('retina');

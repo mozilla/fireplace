@@ -127,8 +127,11 @@ define('views/debug',
             filter: log.filter,
             persistent_logs: log.persistent.all,
             profile: compatFilter.featureProfile,
-            regions: (regions.REGION_SLUGS ||
-                      Object.keys(regions.REGION_CHOICES_SLUG)).sort(),
+            regions: _.sortBy(utilsLocal.items(regions.REGION_CHOICES_SLUG),
+                function(r) {
+                    return r[1];
+                }
+            ),
             recent_logs: log.get_recent(100),
             request_cache: storage.getItem('request_cache') || {}
         });
