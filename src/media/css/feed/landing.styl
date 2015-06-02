@@ -48,10 +48,15 @@
 .feed-landing-bg-image {
     display: inline-block;
     height: 150px;
-    margin-right: 40px;
-    width: auto;
     vertical-align: top;
+    width: auto;
 
+    +ltr() {
+        margin-right: 40px;
+    }
+    +rtl() {
+        margin-left: 40px;
+    }
     + .feed-landing-header-inner {
         // Change some stylings when a background image is present.
         display: inline-block;
