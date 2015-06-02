@@ -15,6 +15,7 @@ define('tests/unit/elements__header',
         var div = document.createElement('div');
         div.setAttribute('id', 'mkt-test-wrapper');
         div.innerHTML = '<mkt-header>' +
+          '<h1 class="mkt-header--title"></h1>' +
           '<mkt-header-child-toggle for="foo-child">' +
           '</mkt-header-child-toggle>' +
           '<mkt-header-child-toggle for="bar-child">' +
@@ -111,6 +112,21 @@ define('tests/unit/elements__header',
                 assert.notOk(header.parentNode.classList.contains(
                              Header.classes.SHOWING_CHILD));
                 done();
+            });
+        });
+
+        it('sets its title', function(done) {
+            createMktHeader(function(header) {
+                var title = header.querySelector('.mkt-header--title');
+
+                assert.ok(title);
+                assert.equal(title.textContent, '');
+
+                header.setAttribute('header-title', 'New title');
+                setTimeout(function() {
+                    assert.equal(title.textContent, 'New title');
+                    done();
+                }, 1);
             });
         });
     });

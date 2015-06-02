@@ -63,7 +63,7 @@ define('elements/header',
             },
             attributeChangedCallback: {
                 value: function(attr, oldVal, newVal, namespace) {
-                    if (attr === 'title') {
+                    if (attr === 'header-title') {
                         this.setTitle();
                     }
                 },
@@ -77,7 +77,7 @@ define('elements/header',
             setTitle: {
                 value: function() {
                     this.querySelector('.mkt-header--title')
-                        .textContent = this.getAttribute('title');
+                        .textContent = this.getAttribute('header-title');
                 },
             },
             statusElement: {
