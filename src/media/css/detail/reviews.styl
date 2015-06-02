@@ -26,6 +26,10 @@
     .stars {
         margin-bottom: 20px;
         transform: scale(2.5);
+
+        +rtl() {
+            transform: scale(-2.5, 2.5)
+        }
     }
     p {
         color: $greyscale-dark-grey;
