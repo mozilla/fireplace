@@ -1,8 +1,10 @@
 {% from "ratings/add.html" import review_prompt %}
 
-<header class="secondary-header">
-  <h2>{{ _('Edit Review') }}</h2>
-</header>
+{% if not settings.meowEnabled %}
+  <header class="secondary-header">
+    <h2>{{ _('Edit Review') }}</h2>
+  </header>
+{% endif %}
 
 {% defer (url=endpoint, id='main') %}
   <div class="main add-review">
