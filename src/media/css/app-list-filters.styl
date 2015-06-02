@@ -31,8 +31,14 @@ App listing filters.
     width: 100%;
 
     +media--base-tablet() {
-        margin-right: 30px;
         width: auto;
+
+        +ltr() {
+            margin-right: 30px;
+        }
+        +rtl() {
+            margin-left: 30px;
+        }
     }
     a {
         color: $action-positive;
