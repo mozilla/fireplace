@@ -56,6 +56,16 @@ require('sherlocked')
         .waitForExist('.mkt-tile', 60000);
 })
 
+.investigate('App Detail on Mobile RTL', function(client) {
+    return mobile(client, 'app/drôle-sandwich-2?lang=ar')
+        .waitForExist('.mkt-tile', 60000);
+})
+
+.investigate('App Detail on Desktop RTL', function(client) {
+    return desktop(client, 'app/drôle-sandwich-2?lang=ar')
+        .waitForExist('.mkt-tile', 60000);
+})
+
 .investigate('Reviews on Mobile', function(client) {
     return mobile(client, 'app/swanky-chocolate-9/ratings')
         .waitForExist('.review', 60000);
