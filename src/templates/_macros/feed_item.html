@@ -59,7 +59,7 @@
   <section class="feed-brand feed-layout-{{ brand.layout }} multi-app-tile c"
            data-tracking="{{ brand.slug }}">
     {{ brand_header(brand) }}
-    <ul class="icon-app-grid">
+    <ul {% if brand.isGridLayout %}class="icon-app-grid"{% endif %}>
       {% for app in brand.apps %}
         {% if loop.index0 < brand.maxApps %}
           {% if brand.isGridLayout %}
