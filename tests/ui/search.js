@@ -27,9 +27,43 @@ casper.test.begin('Test search results header', {
             });
         });
 
-        // Test that this is not a leaf page.
-        casper.then(function() {
-            // Test that there not a back button.
+        helpers.done(test);
+    }
+});
+
+casper.test.begin('Test search results page type meowEnabled:false', {
+    test: function(test) {
+        helpers.startCasper('/');
+
+        // Disable meow.
+        helpers.waitForPageLoaded(function() {
+            casper.evaluate(function() {
+                require('core/settings')._extend({meowEnabled: false});
+            });
+            casper.fill('.header--search-form', {q: 'test'}, true);
+        });
+
+        casper.waitForSelector('.app-list', function() {
+            test.assert(helpers.isLeafPage(), 'is a leaf page');
+        });
+
+        helpers.done(test);
+    }
+});
+
+casper.test.begin('Test search results page type meowEnabled:true', {
+    test: function(test) {
+        helpers.startCasper('/');
+
+        // Enable meow.
+        helpers.waitForPageLoaded(function() {
+            casper.evaluate(function() {
+                require('core/settings')._extend({meowEnabled: true});
+            });
+            casper.fill('.header--search-form', {q: 'test'}, true);
+        });
+
+        casper.waitForSelector('.app-list', function() {
             test.assert(!helpers.isLeafPage(), 'is not leaf page');
         });
 
@@ -53,12 +87,6 @@ casper.test.begin('Test search empty', {
             test.assertExists('.app-list-filters', 'Check compatibility filtering is found');
             test.assertExists('.no-results', 'Check no-results header is found');
             test.assertNotVisible('.app-list-filters-expand-wrapper');
-
-            // Test that this is not a leaf page.
-            casper.then(function() {
-                // Test that there not a back button.
-                test.assert(!helpers.isLeafPage(), 'is not leaf page');
-            });
         });
 
         helpers.done(test);
@@ -74,12 +102,6 @@ casper.test.begin('Test search XSS', {
 
         helpers.waitForPageLoaded(function() {
             test.assertDoesntExist('#xss-script');
-
-            // Test that this is not a leaf page.
-            casper.then(function() {
-                // Test that there not a back button.
-                test.assert(!helpers.isLeafPage(), 'is not leaf page');
-            });
         });
 
         helpers.done(test);
@@ -98,9 +120,6 @@ casper.test.begin('Test search author', {
             test.assertSelectorHasText('.search-results-header',
                                        '"test" returned 42 results');
 
-            // Test that there is a back button.
-            test.assert(helpers.isLeafPage(), 'is leaf page');
-
             // Test that the header title is set.
             test.assertEqual(helpers.headerTitle(), 'Developer Listing');
         });
@@ -110,6 +129,46 @@ casper.test.begin('Test search author', {
 });
 
 
+casper.test.begin('Test developer listing page type meowEnabled:false', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/free'});
+
+        // Disable meow.
+        casper.waitForSelector('.app-reviews', function() {
+            casper.evaluate(function() {
+                require('core/settings')._extend({meowEnabled: false});
+            });
+            casper.click('[itemprop=creator] a');
+        });
+
+        casper.waitForSelector('.app-list', function() {
+            test.assert(helpers.isLeafPage(), 'is a leaf page');
+        });
+
+        helpers.done(test);
+    }
+});
+
+casper.test.begin('Test search results page type meowEnabled:true', {
+    test: function(test) {
+        helpers.startCasper({path: '/app/free'});
+
+        // Enable meow.
+        casper.waitForSelector('.app-reviews', function() {
+            casper.evaluate(function() {
+                require('core/settings')._extend({meowEnabled: true});
+            });
+            casper.click('[itemprop=creator] a');
+        });
+
+        casper.waitForSelector('.app-list', function() {
+            test.assert(helpers.isLeafPage(), 'is a leaf page');
+        });
+
+        helpers.done(test);
+    }
+});
+
 casper.test.begin('Test search potato', {
     test: function(test) {
         helpers.startCasper({path: '/search?q=%3Apaid'});
@@ -118,12 +177,6 @@ casper.test.begin('Test search potato', {
             // Test search results count in header.
             test.assertSelectorHasText('.search-results-header',
                                        '":paid" returned 42 results');
-
-            // Test that this is not a leaf page.
-            casper.then(function() {
-                // Test that there not a back button.
-                test.assert(!helpers.isLeafPage(), 'is not leaf page');
-            });
         });
 
         helpers.done(test);

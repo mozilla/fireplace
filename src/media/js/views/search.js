@@ -174,6 +174,8 @@ define('views/search',
         if (query && queryParam === 'author') {
             pageTypes += ' leaf';
             utilsLocal.headerTitle(gettext('Developer Listing'));
+        } else if (!settings.meowEnabled) {
+            pageTypes += ' leaf';
         }
 
         builder.z('type', pageTypes);
