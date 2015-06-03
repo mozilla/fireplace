@@ -1,4 +1,5 @@
 @import 'layout';
+@import 'mixins';
 
 hambacker($color=$icon-dark) {
     b {
@@ -25,7 +26,13 @@ hambacker-menu() {
 hambacker-back() {
     b:first-of-type {
         width: $icon-size * .75;
-        transform: translate(0, $icon-stroke + 1) rotate(-45deg);
+
+        +ltr() {
+            transform: translate(0, $icon-stroke + 1) rotate(-45deg);
+        }
+        +rtl() {
+            transform: translate($icon-size * -0.25, $icon-stroke + 1) rotate(-45deg);
+        }
     }
     b {
         margin: 0;
@@ -34,6 +41,12 @@ hambacker-back() {
     }
     b:last-of-type {
         width: $icon-size * .75;
-        transform: translate(0, -1 * ($icon-stroke + 1)) rotate(45deg);
+
+        +ltr() {
+            transform: translate(0, -1 * ($icon-stroke + 1)) rotate(45deg);
+        }
+        +rtl() {
+            transform: translate($icon-size * -0.25, -1 * ($icon-stroke + 1)) rotate(45deg);
+        }
     }
 }
