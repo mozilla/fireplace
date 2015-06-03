@@ -40,7 +40,7 @@ define('routes',
     // When this goes away we can remove settings_app from our deps.
     var search = '/api/v2/fireplace/search/?cache=1&vary=0';
     if (settings.meowEnabled) {
-        search = '/api/v2/multi-search/?cache=1&vary=0';
+        search = '/api/v2/fireplace/multi-search/?cache=1&vary=0';
     }
 
     router.api.addRoutes({
