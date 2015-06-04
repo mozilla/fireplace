@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29T20:27:43.181Z\n"
-"PO-Revision-Date: 2015-05-23 03:54+0000\n"
-"Last-Translator: Dennis <ndegwa90@gmail.com>\n"
+"PO-Revision-Date: 2015-06-04 18:46+0000\n"
+"Last-Translator: Stephen <wanjaustev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sw\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);Content-Type: text/plain; charset=utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432353273.0\n"
+"X-POOTLE-MTIME: 1433443617.0\n"
 
 #: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:20
 msgid "Expand"
@@ -230,12 +230,16 @@ msgstr "Lo hapana!"
 #: /templates/search.html:19
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
-msgstr[0] ""
+msgstr[0] "<b>{n}</b> Result<b>{n}</b> Results"
+msgstr[1] ""
 
 #: /templates/search.html:23
 msgid "<b>\"{search_query}\"</b> returned {n} result"
 msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
 msgstr[0] ""
+"<b>\"{search_query}\"</b> imerudisha matokeo {n} <b>\"{search_query}\"</b> "
+"imerudisha matokeo {n} "
+msgstr[1] ""
 
 #: /templates/search.html:55
 msgid "No results found"
@@ -380,7 +384,7 @@ msgstr "Habari Zaidi"
 
 #: /templates/app/index.html:170
 msgid "Developer"
-msgstr "Muendlezi"
+msgstr "Muendelezi"
 
 #: /templates/app/index.html:174
 msgid "Compatibility"
@@ -414,7 +418,8 @@ msgstr "Ahsante kwa kununua"
 #: /templates/_macros/app_tile.html:113
 msgid "Review"
 msgid_plural "Reviews"
-msgstr[0] ""
+msgstr[0] "PitioMapitio"
+msgstr[1] ""
 
 #: /templates/_macros/app_tile.html:119
 msgid "Not yet reviewed"
@@ -475,7 +480,7 @@ msgstr "Geuza Hakikisho la Programu tumizi"
 
 #: /templates/_includes/app_list_filters.html:23
 msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr ""
+msgstr "Onyesha <mkt-selected-text></mkt-selected-text>"
 
 #: /templates/_includes/back_to_app.html:5
 msgid "Back to {app}"
@@ -514,10 +519,14 @@ msgstr "Zindua programu tumizi kutoka kwa saraka ya <b>Programu tumizi</b>."
 #: /templates/_includes/post_install_message.html:8
 msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
 msgstr ""
+"Anzisha programu tumizi hii kutoka kwa <b>Windows desktop</b> au <b>Start "
+"&#9658; Programu Zote</b>"
 
 #: /templates/_includes/post_install_message.html:11
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr ""
+"Anzisha programu tumizi hii kutoka kwa <b>dash</b>,<b>Kichagua programu "
+"rumizi</b>, au <b>Menu ya programu tumizi</b>"
 
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
@@ -542,7 +551,8 @@ msgstr "Soma mapitio yote"
 #: /templates/_includes/reviews_summary.html:9
 msgid "1 Review"
 msgid_plural "{numReviews} Reviews"
-msgstr[0] ""
+msgstr[0] "Pitio 1Mapitio {numReviews}"
+msgstr[1] ""
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -638,7 +648,7 @@ msgstr "Ripoti ya hitilafu iliyopotea au ombi la usaidizi"
 
 #: /templates/ratings/flag.html:13
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Ripoti ya hitilafu au ombi la usaidizi"
 
 #: /templates/ratings/main.html:39
 msgid "This app has no reviews."
@@ -651,31 +661,37 @@ msgstr "Pitio la Programu Tumizi"
 #. This goes before a list of categories.
 #: /templates/website/index.html:31
 msgid "Explore more in"
-msgstr ""
+msgstr "Tazama zaidi katika"
 
 #: /templates/website/index.html:43
 msgid "Is there something wrong or out-of-date with this website listing?"
 msgstr ""
+"Kuna kitu kibaya ama kilichopitwa na wakati katika orodha iliyoko katika "
+"tovuti hii?"
 
 #: /templates/website/index.html:45 /templates/website/issue.html:14
 msgid "Report an issue"
-msgstr ""
+msgstr "Ripoti suala"
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
 msgstr ""
+"Tujulishe ikiwa kuna kitu kinakosa kutoka kwa orodha katika tovuti hii ama "
+"maelezo yake yanafaa kusasishwa."
 
 #: /templates/website/issue.html:6
 msgid "For information on show to report a copyright or trademark issue <a href=\"{url}\">see here</a>."
 msgstr ""
+"Kwa maelezo jinsi ya kuripoti swala la hatimiliki au alama ya biashara<a "
+"href=\"{url}\">tazama hapa</a>."
 
 #: /templates/website/issue.html:8
 msgid "Describe the issue here. Please be specific."
-msgstr ""
+msgstr "Toa maelezo ya swala hapa. Tafdahali kuwa dhahiri."
 
 #: /templates/website/issue.html:22 /media/js/views/website/issue.js:29
 msgid "Report an Issue"
-msgstr ""
+msgstr "Ripoti swala"
 
 #: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
 msgid "Payment cancelled."
@@ -704,7 +720,7 @@ msgstr "Imesakinishwa"
 
 #: /media/js/buttons.js:395
 msgid "free"
-msgstr ""
+msgstr "ya bure"
 
 #: /media/js/buttons.js:399
 msgid "Unavailable"
@@ -712,19 +728,19 @@ msgstr "Haipatikani"
 
 #: /media/js/buttons.js:422
 msgid "Open website"
-msgstr ""
+msgstr "Fungua tovuti"
 
 #: /media/js/buttons.js:426
 msgid "Open app"
-msgstr ""
+msgstr "Fungua programu tumizi"
 
 #: /media/js/buttons.js:428
 msgid "Install for {price}"
-msgstr ""
+msgstr "Sakinisha kwa {price}"
 
 #: /media/js/buttons.js:434
 msgid "Open"
-msgstr ""
+msgstr "Fungua"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -808,19 +824,19 @@ msgstr "haipatikani katika mfumo wako"
 
 #: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
 msgid "All Platforms"
-msgstr ""
+msgstr "Mifumo yote"
 
 #: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
 msgid "Android Mobile"
-msgstr ""
+msgstr "Simu ya Android"
 
 #: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
 msgid "Android Tablet"
-msgstr ""
+msgstr "Kompyuta kibao ya Andoird"
 
 #: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
 msgid "Desktop"
-msgstr ""
+msgstr "Kompyuta"
 
 #: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
 msgid "Firefox OS"
@@ -837,7 +853,7 @@ msgstr "Ya umri {0}+"
 
 #: /media/js/content-ratings.js:109
 msgid "Generic"
-msgstr ""
+msgstr "Sio halisi"
 
 #: /media/js/content-ratings.js:116
 msgid "For all ages"
@@ -873,327 +889,383 @@ msgstr "Watu Wazima Pekee 18+"
 
 #: /media/js/content_filter.js:18
 msgid "all content"
-msgstr ""
+msgstr "maudhui yote"
 
 #: /media/js/content_filter.js:19
 msgid "apps"
-msgstr ""
+msgstr "programu tumizi"
 
 #: /media/js/content_filter.js:20
 msgid "websites"
-msgstr ""
+msgstr "tovuti"
 
 #. Esc 4 Home app desktop promo (bug 1166114).
 #: /media/js/desktop_promo.js:20
 msgid "Escape from the worst boss ever."
-msgstr ""
+msgstr "Toroka kutoka kwa bosi mbaya kupindukia."
 
 #: /media/js/desktop_promo.js:26
 msgid "Manage all your messages in one place."
-msgstr ""
+msgstr "Dhibiti jumbe zako zote katika mahali pamoja."
 
 #: /media/js/desktop_promo.js:33
 msgid "Productivity Apps—Desktop Essentials"
-msgstr ""
+msgstr "Programu Tumizi za Uzalishaji — Ya Maana kwa Kompyuta"
 
 #: /media/js/desktop_promo.js:40
 msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr ""
+msgstr "Programu za Burudani na Michezo — Ya maana kwa Kompyuta"
 
 #: /media/js/desktop_promo.js:46
 msgid "Save the girl, get the candy!"
-msgstr ""
+msgstr "Okoa msichana, pata switi!"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
 msgid_plural "Apps for Albania"
-msgstr[0] ""
+msgstr[0] "Programu tumizi ya Albania"
+msgstr[1] "Programu tumizi za Albania"
 
 #: /media/js/edbrands.js:34
 msgid "App for Argentina"
 msgid_plural "Apps for Argentina"
-msgstr[0] ""
+msgstr[0] "Programu tumizi ya Argentina"
+msgstr[1] "Programu tumizi za Argentina"
 
 #: /media/js/edbrands.js:35
 msgid "App for Bangladesh"
 msgid_plural "Apps for Bangladesh"
-msgstr[0] ""
+msgstr[0] "Programu tumizi ya Bangladesh"
+msgstr[1] "Programu tumizi za Bangladesh"
 
 #: /media/js/edbrands.js:36
 msgid "App for Brazil"
 msgid_plural "Apps for Brazil"
-msgstr[0] ""
+msgstr[0] "Programu tumizi ya Brazil"
+msgstr[1] "Programu tumizi za Brazil"
 
 #: /media/js/edbrands.js:37
 msgid "App for Bulgaria"
 msgid_plural "Apps for Bulgaria"
-msgstr[0] ""
+msgstr[0] "Programu tumizi ya Bulgaria"
+msgstr[1] "Programu tumizi za Bulgaria"
 
 #: /media/js/edbrands.js:38
 msgid "App for Chile"
 msgid_plural "Apps for Chile"
-msgstr[0] ""
+msgstr[0] "Programu tumizi ya Chile"
+msgstr[1] "Programu tumizi za Chile"
 
 #: /media/js/edbrands.js:39
 msgid "App for China"
 msgid_plural "Apps for China"
-msgstr[0] ""
+msgstr[0] "Programu tumizi ya China"
+msgstr[1] "Programu tumizi za China"
 
 #: /media/js/edbrands.js:40
 msgid "App for Colombia"
 msgid_plural "Apps for Colombia"
-msgstr[0] ""
+msgstr[0] "Programu tumizi ya Columbia"
+msgstr[1] "Programu tumizi za Columbia"
 
 #: /media/js/edbrands.js:41
 msgid "App for Costa Rica"
 msgid_plural "Apps for Costa Rica"
-msgstr[0] ""
+msgstr[0] "Programu ya Costarica"
+msgstr[1] "Programu za Costarica"
 
 #: /media/js/edbrands.js:42
 msgid "App for Croatia"
 msgid_plural "Apps for Croatia"
-msgstr[0] ""
+msgstr[0] "Programu ya Croatia"
+msgstr[1] "Programu za Croatia"
 
 #: /media/js/edbrands.js:43
 msgid "App for Czech Republic"
 msgid_plural "Apps for Czech Republic"
-msgstr[0] ""
+msgstr[0] "Programu ya Jamhuri ya Czech "
+msgstr[1] "Programu za Jamhuri ya Czech "
 
 #: /media/js/edbrands.js:44
 msgid "App for Ecuador"
 msgid_plural "Apps for Ecuador"
-msgstr[0] ""
+msgstr[0] "Programu ya Ecuador"
+msgstr[1] "Programu za Ecuador"
 
 #: /media/js/edbrands.js:45
 msgid "App for El Salvador"
 msgid_plural "Apps for El Salvador"
-msgstr[0] ""
+msgstr[0] "Programu ya El Salvador"
+msgstr[1] "Programu za El Salvador"
 
 #: /media/js/edbrands.js:46
 msgid "App for France"
 msgid_plural "Apps for France"
-msgstr[0] ""
+msgstr[0] "Programu ya Ufaransa"
+msgstr[1] "Programu za Ufaransa"
 
 #: /media/js/edbrands.js:47
 msgid "App for Germany"
 msgid_plural "Apps for Germany"
-msgstr[0] ""
+msgstr[0] "Programu ya Ujerumani"
+msgstr[1] "Programu za Ujerumani"
 
 #: /media/js/edbrands.js:48
 msgid "App for Greece"
 msgid_plural "Apps for Greece"
-msgstr[0] ""
+msgstr[0] "Programu ya Ugiriki"
+msgstr[1] "Programu za Ugiriki"
 
 #: /media/js/edbrands.js:49
 msgid "App for Hungary"
 msgid_plural "Apps for Hungary"
-msgstr[0] ""
+msgstr[0] "Programu ya Hungary"
+msgstr[1] "Programu za Hungary"
 
 #: /media/js/edbrands.js:50
 msgid "App for India"
 msgid_plural "Apps for India"
-msgstr[0] ""
+msgstr[0] "Programu ya India"
+msgstr[1] "Programu za India"
 
 #: /media/js/edbrands.js:51
 msgid "App for Italy"
 msgid_plural "Apps for Italy"
-msgstr[0] ""
+msgstr[0] "Programu ya Italia"
+msgstr[1] "Programu za Italia"
 
 #: /media/js/edbrands.js:52
 msgid "App for Japan"
 msgid_plural "Apps for Japan"
-msgstr[0] ""
+msgstr[0] "Programu ya Japani"
+msgstr[1] "Programu za Japani"
 
 #: /media/js/edbrands.js:53
 msgid "App for Macedonia"
 msgid_plural "Apps for Macedonia"
-msgstr[0] ""
+msgstr[0] "Programu ya Masedonia"
+msgstr[1] "Programu za Masedonia"
 
 #: /media/js/edbrands.js:54
 msgid "App for Mexico"
 msgid_plural "Apps for Mexico"
-msgstr[0] ""
+msgstr[0] "Programu ya Mexico"
+msgstr[1] "Programu za Mexico"
 
 #: /media/js/edbrands.js:55
 msgid "App for Montenegro"
 msgid_plural "Apps for Montenegro"
-msgstr[0] ""
+msgstr[0] "Programu ya Montenegro"
+msgstr[1] "Programu za Montenegro"
 
 #: /media/js/edbrands.js:56
 msgid "App for Nicaragua"
 msgid_plural "Apps for Nicaragua"
-msgstr[0] ""
+msgstr[0] "Programu ya Nikaragua"
+msgstr[1] "Programu za Nikaragua"
 
 #: /media/js/edbrands.js:57
 msgid "App for Panama"
 msgid_plural "Apps for Panama"
-msgstr[0] ""
+msgstr[0] "Programu ya Panama"
+msgstr[1] "Programu za Panama"
 
 #: /media/js/edbrands.js:58
 msgid "App for Peru"
 msgid_plural "Apps for Peru"
-msgstr[0] ""
+msgstr[0] "Programu ya Peru"
+msgstr[1] "Programu za Peru"
 
 #: /media/js/edbrands.js:59
 msgid "App for Poland"
 msgid_plural "Apps for Poland"
-msgstr[0] ""
+msgstr[0] "Programu ya Poland"
+msgstr[1] "Programu za Poland"
 
 #: /media/js/edbrands.js:60
 msgid "App for Russia"
 msgid_plural "Apps for Russia"
-msgstr[0] ""
+msgstr[0] "Programu ya Urusi"
+msgstr[1] "Programu za Urusi"
 
 #: /media/js/edbrands.js:61
 msgid "App for Serbia"
 msgid_plural "Apps for Serbia"
-msgstr[0] ""
+msgstr[0] "Programu ya Serbia"
+msgstr[1] "Programu za Serbia"
 
 #: /media/js/edbrands.js:62
 msgid "App for South Africa"
 msgid_plural "Apps for South Africa"
-msgstr[0] ""
+msgstr[0] "Programu ya Afrika Kusini"
+msgstr[1] "Programu za Afrika Kusini"
 
 #: /media/js/edbrands.js:63
 msgid "App for Spain"
 msgid_plural "Apps for Spain"
-msgstr[0] ""
+msgstr[0] "Programu ya Uhispania"
+msgstr[1] "Programu za Uhispania"
 
 #: /media/js/edbrands.js:64
 msgid "App for Uruguay"
 msgid_plural "Apps for Uruguay"
-msgstr[0] ""
+msgstr[0] "Programu ya Uruguay"
+msgstr[1] "Programu za Uruguay"
 
 #: /media/js/edbrands.js:65
 msgid "App for Venezuela"
 msgid_plural "Apps for Venezuela"
-msgstr[0] ""
+msgstr[0] "Programu ya Venezuela"
+msgstr[1] "Programu za Venezuela"
 
 #: /media/js/edbrands.js:66
 msgid "Arts & Entertainment App"
 msgid_plural "Arts & Entertainment Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Sanaa na Burudani"
+msgstr[1] "Programu za Sanaa na Burudani"
 
 #: /media/js/edbrands.js:67
 msgid "Featured Book App"
 msgid_plural "Featured Book Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Kitabu kilichoangaziwa"
+msgstr[1] "Programu za Vitabu vilivyoangaziwa"
 
 #: /media/js/edbrands.js:68
 msgid "Featured Creativity App"
 msgid_plural "Featured Creativity Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Ubunifu iliyoangaziwa"
+msgstr[1] "Programu za Ubunifu zilizoangaziwa"
 
 #: /media/js/edbrands.js:69
 msgid "Featured Education App"
 msgid_plural "Featured Education Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Masomo iliyoangaziwa"
+msgstr[1] "Programu za Masomo zilizoangaziwa"
 
 #: /media/js/edbrands.js:70
 msgid "Featured Game"
 msgid_plural "Featured Games"
-msgstr[0] ""
+msgstr[0] "Mchezo ulioangaziwa"
+msgstr[1] "Michezo iliyoangaziwa"
 
 #: /media/js/edbrands.js:71
 msgid "Groundbreaking App"
 msgid_plural "Groundbreaking Apps"
-msgstr[0] ""
+msgstr[0] "Programu yenye Ushindani"
+msgstr[1] "Programu zenye Ushindani"
 
 #: /media/js/edbrands.js:72
 msgid "Health & Fitness App"
 msgid_plural "Health & Fitness Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Afya na Nguvu"
+msgstr[1] "Programu za Afya na Nguvu"
 
 #: /media/js/edbrands.js:73
 msgid "Hidden Gem"
 msgid_plural "Hidden Gems"
-msgstr[0] ""
+msgstr[0] "Madini yaliyofichwa"
+msgstr[1] "Madini yaliyofichwa"
 
 #: /media/js/edbrands.js:74
 msgid "Featured Lifestyle App"
 msgid_plural "Featured Lifestyle Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Mtindo wa maisha iliyoangaziwa"
+msgstr[1] "Programu za Mtindo wa maisha iliyoangaziwa"
 
 #: /media/js/edbrands.js:75
 msgid "Local Favorite App"
 msgid_plural "Local Favorite Apps"
-msgstr[0] ""
+msgstr[0] "Programu ipendwayo ya mtaa"
+msgstr[1] "Programu zipendwazo ya Mtaa"
 
 #: /media/js/edbrands.js:76
 msgid "Maps & Navigation App"
 msgid_plural "Maps & Navigation Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Ramani na Urambazaji"
+msgstr[1] "Programu za Ramani na Urambazaji"
 
 #: /media/js/edbrands.js:77
 msgid "Featured Music App"
 msgid_plural "Featured Music Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Muziki iliyoangaziwa"
+msgstr[1] "Programu za Muziki zilizoangaziwa"
 
 #: /media/js/edbrands.js:78
 msgid "Mystery App!"
 msgid_plural "Mystery Apps!"
-msgstr[0] ""
+msgstr[0] "Programu ya Siri!"
+msgstr[1] "Programu za Siri!"
 
 #: /media/js/edbrands.js:79
 msgid "News & Weather App"
 msgid_plural "News & Weather Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Habari na Hali ya anga"
+msgstr[1] "Programu za Habari na Hali ya anga"
 
 #: /media/js/edbrands.js:80
 msgid "Photo & Video App"
 msgid_plural "Photo & Video Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Picha na Video"
+msgstr[1] "Programu za Picha na Video"
 
 #: /media/js/edbrands.js:81
 msgid "Featured Shopping App"
 msgid_plural "Featured Shopping Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Ununuzi iliyoangaziwa"
+msgstr[1] "Programu za Ununuzi zilizoangaziwa"
 
 #: /media/js/edbrands.js:82
 msgid "Featured Social App"
 msgid_plural "Featured Social Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Jamii iliyoangaziwa"
+msgstr[1] "Programu za Jamii zilizoangaziwa"
 
 #: /media/js/edbrands.js:83
 msgid "Featured Sports App"
 msgid_plural "Featured Sports Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Michezo iliyoangaziwa"
+msgstr[1] "Programu za Michezi zilizoangaziwa"
 
 #: /media/js/edbrands.js:84
 msgid "Tool & Time Saver"
 msgid_plural "Tools & Time Savers"
-msgstr[0] ""
+msgstr[0] "Kiokozi cha Chombo na Wakati"
+msgstr[1] "Viokozi vya Vyombo na Wakati"
 
 #: /media/js/edbrands.js:85
 msgid "Featured Travel App"
 msgid_plural "Featured Travel Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Usafiri iliyoangaziwa"
+msgstr[1] "Programu za Usafiri zilizoangaziwa"
 
 #: /media/js/edbrands.js:86
 msgid "Work & Business App"
 msgid_plural "Work & Business Apps"
-msgstr[0] ""
+msgstr[0] "Programu ya Kazi na Biashara"
+msgstr[1] "Programu za Kazi na Biashara"
 
 #: /media/js/helpers_local.js:113
 msgid "works offline"
-msgstr ""
+msgstr "inafanya kazi nje ya mtandao"
 
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
-msgstr ""
+msgstr "Haiwezi kusakinisha programu zilizo kwenye kifurushi"
 
 #: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
 msgid "App install error: {error}"
-msgstr ""
+msgstr "Hitilafu ya kusakinisha Programu: {error}"
 
 #: /media/js/newsletter.js:72
 msgid "There was an error submitting your newsletter sign up request"
 msgstr ""
+"Kulikuwa na hitilafu wakati wa kuwasilisha ombi lako la kujiandikisha katika "
+"jarida"
 
 #. This error is raised when we are unable to fetch a JWT from the payments API.
 #: /media/js/payments.js:138
 msgid "Error while communicating with server. Try again later."
-msgstr ""
+msgstr "Hitilafu wakati wa kuwasiliana na seva. Tafadhali jaribu tena."
 
 #: /media/js/payments.js:141
 msgid "Payment failed. Try again later."
@@ -1203,20 +1275,22 @@ msgstr "Malipo hayajafaulu. Jaribu tena baadaye."
 #: /media/js/ratingwidget.js:44
 msgid "{n} star"
 msgid_plural "{n} stars"
-msgstr[0] ""
+msgstr[0] "Nyota {n}"
+msgstr[1] "Nyota {n}"
 
 #. The report is an abuse report for reviews.
 #: /media/js/reviews.js:35
 msgid "Flagging review..."
-msgstr ""
+msgstr "Inaalamisha pitio..."
 
 #: /media/js/reviews.js:40
 msgid "This review has been successfully flagged. Thanks!"
-msgstr ""
+msgstr "Pitio hili limewekwa alama kwa mafanikio. Ahsante!"
 
 #: /media/js/reviews.js:51
 msgid "Sorry, there was an issue flagging the review. Please try again later."
 msgstr ""
+"Pole, kumekuwa na hitilafu kuweka alama katika pitio. Tafadhali jaribu tena."
 
 #: /media/js/reviews.js:59
 msgid "This review has been successfully deleted"
@@ -1265,27 +1339,27 @@ msgstr "Kijerumani"
 
 #: /media/js/settings_app.js:97
 msgid "Hungarian"
-msgstr ""
+msgstr "Kihungari"
 
 #: /media/js/settings_app.js:98
 msgid "Indonesian"
-msgstr ""
+msgstr "Kiindonesia"
 
 #: /media/js/settings_app.js:99
 msgid "Polish"
-msgstr ""
+msgstr "Kipolishi"
 
 #: /media/js/settings_app.js:100
 msgid "Portuguese"
-msgstr ""
+msgstr "Kireno"
 
 #: /media/js/settings_app.js:101
 msgid "Russian"
-msgstr ""
+msgstr "Kirusi"
 
 #: /media/js/settings_app.js:102
 msgid "Spanish"
-msgstr ""
+msgstr "Kihispania"
 
 #: /media/js/settings_app.js:114
 msgid "Sorry, you are currently offline. Please try again later."
@@ -1294,14 +1368,16 @@ msgstr "Samahani, hauko kwenye mtandao kwa sasa. Tafadhali jaribu tena baadaye."
 #: /media/js/update_banner.js:24
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr ""
+"Ukianzisha programu tumizi ya Firefox Marketplace wakati ujao utaona toleo "
+"lililosasishwa!"
 
 #: /media/js/views/app.js:23
 msgid "App Detail"
-msgstr ""
+msgstr "Maelezo ya Programu tumizi"
 
 #: /media/js/views/feed_landing.js:16
 msgid "Collection Detail"
-msgstr ""
+msgstr "Maelezo ya Mkusanyiko"
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1321,7 +1397,7 @@ msgstr "Firefox OS {version}"
 
 #: /media/js/views/newsletter_signup.js:16
 msgid "Newsletter Signup"
-msgstr ""
+msgstr "Kujiandikisha kwa Jarida"
 
 #: /media/js/views/settings.js:40
 msgid "Your settings have been successfully saved"
@@ -1341,19 +1417,20 @@ msgstr "Matokeo ya Utafutaji"
 
 #: /media/js/views/website.js:11
 msgid "Website Detail"
-msgstr ""
+msgstr "Maelezo ya Tovuti"
 
 #: /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
-msgstr ""
+msgstr "Ripoti imewasilishwa. Ahsante!"
 
 #: /media/js/views/app/abuse.js:24 /media/js/views/website/issue.js:22
 msgid "There was an issue submitting your report. Please try again later."
 msgstr ""
+"Kulikuwa na swala wakati wa kuwasilisha ripoti yako. Tafadhali jaribu tena."
 
 #: /media/js/views/app/ratings.js:12
 msgid "Read All Reviews"
-msgstr ""
+msgstr "Soma Maoni yote."
 
 #: /media/js/views/app/receipt.js:13
 msgid "Please sign in to view the receipt"
