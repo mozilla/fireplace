@@ -26,6 +26,16 @@ require('sherlocked')
         .waitForExist('.feed-home', 60000);
 })
 
+.investigate('Home Page on Mobile RTL', function(client) {
+    return mobile(client, '?lang=ar')
+        .waitForExist('.feed-home', 60000);
+})
+
+.investigate('Home Page on Desktop RTL', function(client) {
+    return desktop(client, '?lang=ar')
+        .waitForExist('.feed-home', 60000);
+})
+
 .investigate('Collection on Mobile', function(client) {
     return mobile(client, 'feed/editorial/brand-list')
         .waitForExist('.app-list', 60000);
@@ -53,6 +63,16 @@ require('sherlocked')
 
 .investigate('App Detail on Desktop', function(client) {
     return desktop(client, 'app/swanky-chocolate-9')
+        .waitForExist('.mkt-tile', 60000);
+})
+
+.investigate('App Detail on Mobile RTL', function(client) {
+    return mobile(client, 'app/drôle-sandwich-2?lang=ar')
+        .waitForExist('.mkt-tile', 60000);
+})
+
+.investigate('App Detail on Desktop RTL', function(client) {
+    return desktop(client, 'app/drôle-sandwich-2?lang=ar')
         .waitForExist('.mkt-tile', 60000);
 })
 
