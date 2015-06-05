@@ -132,7 +132,8 @@ define('utils_local',
     }
 
     function headerTitle(title) {
-        document.getElementById('site-header').setAttribute('title', title);
+        document.getElementById('site-header')
+                .setAttribute('header-title', title);
     }
 
     return {
