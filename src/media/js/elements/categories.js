@@ -78,7 +78,6 @@ define('elements/categories',
                     catLink.setAttribute(
                         'href', urls.reverse('category', [slug]));
                     catLink.setAttribute('title', name);
-                    catLink.setAttribute('data-nav-no-active-node', '');
                     catLink.textContent = name;
                     root.appendChild(catLink);
                 }
@@ -87,10 +86,12 @@ define('elements/categories',
     });
 
     z.page.on('loaded navigate', function() {
-        var catList = document.querySelector('mkt-category-list');
-        if (catList && catList.updateActiveNode) {
-            catList.updateActiveNode();
-        }
+        var catLists = document.querySelectorAll('mkt-category-list');
+        eUtils.each(catLists, function(catList) {
+            if (catList.updateActiveNode) {
+                catList.updateActiveNode();
+            }
+        });
     });
 
     return {
