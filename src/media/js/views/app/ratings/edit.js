@@ -1,6 +1,8 @@
 define('views/app/ratings/edit',
-    ['core/l10n', 'core/urls', 'core/user', 'core/utils', 'core/z'],
-    function(l10n, urls, user, utils, z) {
+    ['core/l10n', 'core/urls', 'core/user', 'core/utils', 'core/z',
+     'utils_local'],
+    function(l10n, urls, user, utils, z,
+             utilsLocal) {
     var gettext = l10n.gettext;
 
     function normalize(inbound) {
@@ -10,8 +12,10 @@ define('views/app/ratings/edit',
 
     return function(builder, args) {
         var slug = args[0];
+        var title = gettext('Edit Review');
         builder.z('type', 'leaf');
-        builder.z('title', gettext('Edit Review'));
+        builder.z('title', title);
+        utilsLocal.headerTitle(title);
 
         if (!user.logged_in()) {
             // If user not logged in, divert to app detail page.

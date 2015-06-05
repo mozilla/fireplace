@@ -13,7 +13,9 @@
               id='ratings', paginate='.reviews-wrapper') %}
       <div class="detail-flex-wrap">
         <div class="detail-left-side">
-          <h3>{{ _('Reviews') }}</h3>
+          {% if not settings.meowEnabled %}
+            <h3>{{ _('Reviews') }}</h3>
+          {% endif %}
           {% include "_includes/reviews_summary.html" %}
 
           <ul class="reviews-wrapper">
