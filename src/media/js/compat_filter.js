@@ -25,7 +25,14 @@ define('compat_filter',
              storage, utils, views, z, _) {
     'use strict';
     var logger = log('compat_filter');
-    var gettext = l10n.gettext;
+
+    function gettext(str) {
+        return {
+            toString: function() {
+                return l10n.gettext(str);
+            },
+        };
+    }
 
     var limit = 24;
 
