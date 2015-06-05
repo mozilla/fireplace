@@ -174,7 +174,8 @@ define('elements/header',
                 value: function() {
                     var root = this;
 
-                    root.addEventListener('click', function() {
+                    root.addEventListener('click', function(e) {
+                        e.preventDefault();
                         // On click, toggle headerChild.
                         var id = root.getAttribute('for');
                         document.querySelector('mkt-header')
