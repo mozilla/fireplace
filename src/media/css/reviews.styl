@@ -16,12 +16,13 @@ select[name=rating] {
 
     .stars {
         position: absolute;
-        right: 0;
         top: 1px;
 
+        +ltr() {
+            right: 0;
+        }
         +rtl() {
-            position: static;
-            margin: 3px 5px 0 0;
+            left: 0;
         }
     }
     .timestamp {
@@ -33,7 +34,13 @@ select[name=rating] {
     }
     time {
         position: absolute;
-        right: 0;
+
+        +ltr() {
+            right: 0;
+        }
+        +rtl() {
+            left: 0;
+        }
     }
     ul {
         list-style: none;
@@ -116,10 +123,9 @@ mkt-prompt .simple-field.rating {
     display: inline-block;
     hidetext();
     vertical-align: top;
-    width: 64px;
+    width: 65px;
 
     +rtl() {
-        margin: 0 0 0 4px;
         transform: scaleX(-1);
     }
     &.stars-4 { background-position: -13px 0; }
@@ -275,7 +281,12 @@ mkt-prompt[data-modal="flag-review"] {
 
 @media $base-tablet {
     .review .stars {
-        right: 20px;
+        +ltr() {
+            right: 20px;
+        }
+        +rtl() {
+            left: 20px;
+        }
     }
     .reviews-listing h3 {
         margin-bottom: 30px;
@@ -284,7 +295,12 @@ mkt-prompt[data-modal="flag-review"] {
         margin-top: -30px;  // Offset margin-bottom from reviews.
     }
     .review time {
-        right: 20px;
+        +ltr() {
+            right: 20px;
+        }
+        +rtl() {
+            left: 20px;
+        }
     }
 }
 

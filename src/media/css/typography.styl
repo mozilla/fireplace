@@ -109,9 +109,15 @@ dd {
         display: inline-block;
         font-size: 28px;
         font-weight: 300;
-        margin-right: 10px;
         position: relative;
         top: 3px;
+
+        +ltr() {
+            margin-right: 10px;
+        }
+        +rtl() {
+            margin-left: 10px;
+        }
     }
 }
 
