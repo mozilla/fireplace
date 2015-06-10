@@ -8,6 +8,12 @@ define('desktop_promo',
     'use strict';
     var gettext = l10n.gettext;
 
+    var nextItems = [
+        gettext('Play this fantastic action puzzle game immediately.'),
+        gettext('Enjoy 15,000+ radio programs and podcasts.'),
+        gettext('Run for your life!'),
+    ];
+
     return {
         isDesktop: function() {
             return caps.device_type() === 'desktop';
