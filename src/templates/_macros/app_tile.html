@@ -23,7 +23,7 @@
              data-content-type="{{ app.contentType }}"
              {{ 'itemscope itemtype="http://schema.org/SoftwareApplication"' if not is_detail }}>
     <span class="mkt-app-heading">
-      {{ deferred_icon(app.icons[is_detail and '128' or '64'] or app.icons['64']) }}
+      {{ deferred_icon(app.icons[is_detail and '128' or '64'] or app.icons['64'], name|translate(app)) }}
       <span class="info mkt-tile-info">
         <h3 class="mkt-app-name" itemprop="name"
             title="{{ name|translate(app) }}">
