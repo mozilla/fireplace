@@ -86,3 +86,19 @@ sherlocked:
 install-firefox:
 	curl -O http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/latest-31.0esr/linux-x86_64/en-US/firefox-31.8.0esr.tar.bz2
 	tar jxf firefox-31.8.0esr.tar.bz2
+
+VIRTUALENV_VERSION ?= '13.0.3'
+WEBQA_VENV ?= '.virtualenvs/webqa'
+WEBQA_TESTS ?= 'webqa-tests'
+
+uitest-webqa:
+	${WEBQA_VENV}/bin/py.test -r=fsxXR --verbose -n=5 --baseurl=${TEST_URL} --driver=firefox --destructive -m "not credentials and not action_chains" ${WEBQA_TESTS}/tests/desktop/consumer_pages
+
+install-webqa:
+	curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-${VIRTUALENV_VERSION}.tar.gz
+	tar xvfz virtualenv-${VIRTUALENV_VERSION}.tar.gz
+	test -d ${WEBQA_VENV} || virtualenv-${VIRTUALENV_VERSION}/virtualenv.py ${WEBQA_VENV}
+	${WEBQA_VENV}/bin/pip install -U pytest-timeout pytest-xdist
+	test -d ${WEBQA_TESTS}/.git || git clone --depth 1 https://github.com/mozilla/marketplace-tests/ ${WEBQA_TESTS}
+	git -C ${WEBQA_TESTS} pull
+	${WEBQA_VENV}/bin/pip install -Ur ${WEBQA_TESTS}/requirements.txt
