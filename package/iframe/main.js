@@ -63,7 +63,7 @@
             ['hardware.memory', 512],
             ['hardware.memory', 1024],
             true, // NFC
-            'acl.persist',
+            'acl.version',
             // Don't add any more as long as bug 1172487 is not fixed, it won't
             // work correctly.
         ];
@@ -76,11 +76,11 @@
             else if (typeof key === 'string') {
                 // If the key is a string, then we just need to call
                 // hasFeature()... except for manifest.* properties, to work
-                // around platform bug 1098470, and for acl.persist, which is
+                // around platform bug 1098470, and for acl.version, which is
                 // a special value that needs to be parsed later.
                 if (key.substr(0, 9) !== 'manifest.') {
                     promises.push(navigator.hasFeature(key));
-                } else if (key === 'acl.persist') {
+                } else if (key === 'acl.version') {
                     // We'll need to figure something to pass it to the iframe
                     // later, but for now, we are only interested in its
                     // existence, and ignore the value.
