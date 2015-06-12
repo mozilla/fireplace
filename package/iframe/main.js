@@ -9,6 +9,7 @@
     log('MKT_URL:', MKT_URL);
 
     var activitiesToSend = [];
+    var activitiesInProgress = {};
 
     function postMessage(msg) {
         log('postMessaging to ' + MKT_URL + ': ' + JSON.stringify(msg));
@@ -30,7 +31,15 @@
         };
     }
 
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
     var profile = '';
+
+    // Bump this number every time you add a feature. It must match zamboni's
+    // settings.APP_FEATURES_VERSION.
+    var APP_FEATURES_VERSION = 8;
 
     function buildFeaturesPromises() {
         var promises = [];
@@ -42,16 +51,21 @@
             // ['hardware.memory', 512],  // getFeature() with comparison.
             // 'api.window.MozMobileNetworkInfo',  // hasFeature().
 
-            // We are only interested in 3 features for now. We're already only
-            // doing this if getFeature is present, and it was introduced in
-            // 2.0, so we know we can hardcode anything that comes with 2.0 or
-            // better. This sucks, won't scale, and we need a better long-term
-            // solution, but for now it helps us work the fact that hasFeature
-            // does not exist in 2.0 :(
+            // We are only interested in a few features for now. We're already
+            // only doing this if getFeature() is present, and it was
+            // introduced in 2.0, so we know we can hardcode anything that
+            // comes with 2.0 or better and for which we don't need to know the
+            // exact value. This sucks, won't scale, and we need a better
+            // long-term solution, but for now it helps us work the fact that
+            // hasFeature() does not exist in 2.0 :(
             true, // 'getMobileIdAssertion' in window.navigator || 'api.window.Navigator.getMobileIdAssertion',
             true, // 'manifest.precompile',
             ['hardware.memory', 512],
             ['hardware.memory', 1024],
+            true, // NFC
+            'acl.persist',
+            // Don't add any more as long as bug 1172487 is not fixed, it won't
+            // work correctly.
         ];
 
         features.forEach(function(key) {
@@ -62,14 +76,20 @@
             else if (typeof key === 'string') {
                 // If the key is a string, then we just need to call
                 // hasFeature()... except for manifest.* properties, to work
-                // around platform bug 1098470.
+                // around platform bug 1098470, and for acl.persist, which is
+                // a special value that needs to be parsed later.
                 if (key.substr(0, 9) !== 'manifest.') {
                     promises.push(navigator.hasFeature(key));
+                } else if (key === 'acl.persist') {
+                    // We'll need to figure something to pass it to the iframe
+                    // later, but for now, we are only interested in its
+                    // existence, and ignore the value.
+                    promises.push(navigator.getFeature(key));
                 } else {
-                    // While bug 1098470 is not fixed, hasFeature(manifest.*)
-                    // will fail, where as getFeature(manifest.*) will work.
-                    // When this bug is fixed, the behaviour will be reversed,
-                    // we need to handle both cases to prevent future breakage,
+                    // Because of bug 1098470, hasFeature(manifest.*) can fail,
+                    // while getFeature(manifest.*) will work. On later builds,
+                    // where this bug was fixed, the behaviour is reversed.
+                    // We need to handle both cases to prevent any breakage,
                     // so we call hasFeature() first and *then* getFeature()
                     // if it failed.
                     promises.push(new Promise(function(resolve, reject) {
@@ -123,7 +143,7 @@
                 promises.length + hardcoded_signature_part.length,
                 // Last part is a hardcoded version number, to bump whenever
                 // we make changes.
-                6
+                APP_FEATURES_VERSION
             ].join('.');
 
             log('Generated profile: ' + profile);
@@ -257,9 +277,34 @@
     log('Activity support?', !!navigator.mozSetMessageHandler);
     if (navigator.mozSetMessageHandler) {
         navigator.mozSetMessageHandler('activity', function(req) {
-            log('Activity name:', req.source.name);
-            log('Activity data:', JSON.stringify(req.source.data));
-            activitiesToSend.push({name: req.source.name, data: req.source.data});
+            log('Activity name: ', req.source.name);
+            log('Activity data: ', JSON.stringify(req.source.data));
+            var msg = {
+                name: req.source.name,
+                data: req.source.data
+            };
+            if (req.source.name === 'marketplace-openmobile-acl') {
+                // For each activity expecting a returnValue (at the moment
+                // only "marketplace-openmobile-acl", keep the request around,
+                // generating an unique id. When we receive back a message
+                // saying an activity is done, if the id matches one we have,
+                // post the result back to the activity caller).
+                msg.id = getRandomInt(0, Number.MAX_SAFE_INTEGER);
+                activitiesInProgress[msg.id] = req;
+                log('This activity needs to return, generated id: ', msg.id);
+                // 'marketplace-openmobile-acl' also needs to wait on a
+                // getFeature() promise before sending the activity message.
+                if (typeof navigator.getFeature !== 'undefined') {
+                    navigator.getFeature('acl.version').then(function(val) {
+                        log('Sending activity with acl.version: ', val);
+                        msg.data.acl_version = val;
+                        activitiesToSend.push(msg);
+                    });
+                }
+                // Don't bother sending this one if getFeature() is absent.
+                return;
+            }
+            activitiesToSend.push(msg);
         });
     }
 
@@ -283,7 +328,15 @@
                 onlogout: function() {log('fxa-logout'); postMessage({type: 'fxa-logout'});}
             });
         } else if (e.data.type === 'fxa-request') {
-            navigator.mozId.request({oncancel: function(){postMessage({type: 'fxa-cancel'})}});
+            navigator.mozId.request({oncancel: function(){postMessage({type: 'fxa-cancel'});}});
+        } else if (e.data.type == 'activity-result' && e.data.id && activitiesInProgress[e.data.id]) {
+            log('Posting back result for activity id:', e.data.id);
+            activitiesInProgress[e.data.id].postResult(e.data.result);
+            delete activitiesInProgress[e.data.id];
+        } else if (e.data.type == 'activity-error' && e.data.id && activitiesInProgress[e.data.id]) {
+            log('Posting back error for activity id:', e.data.id);
+            activitiesInProgress[e.data.id].postError(e.data.result);
+            delete activitiesInProgress[e.data.id];
         }
     }, false);
 
