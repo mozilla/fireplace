@@ -86,6 +86,29 @@ require('sherlocked')
         .waitForExist('.review', 60000);
 })
 
+.investigate('Category on Mobile', function(client) {
+    return mobile(client, 'category/music')
+        .waitForExist('.app-list', 60000);
+})
+
+.investigate('Category on Desktop', function(client) {
+    return desktop(client, 'category/music')
+        .waitForExist('.app-list', 60000);
+})
+
+.investigate('Category menu on Mobile', function(client) {
+    return mobile(client)
+        .waitForExist('.feed-home', 60000)
+        .click('mkt-nav-toggle[for=nav]')
+        .click('mkt-nav-child-toggle[for=categories]');
+})
+
+.investigate('Category menu on Desktop', function(client) {
+    return desktop(client)
+        .waitForExist('.feed-home', 60000)
+        .click('mkt-header-child-toggle[for=header--categories]');
+})
+
 .begin([
     {
         browserName: 'firefox',

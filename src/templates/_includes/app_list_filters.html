@@ -1,3 +1,25 @@
+<div class="app-list-filters-content-wrapper">
+  {% if settings.meowEnabled  %}
+  <div class="app-list-filters-content-select">
+      <mkt-select class="content-filter" noalign>
+      <mkt-selected><p>
+      {# L10n: <mkt-selected-text> will be a noun like "apps" or "sites". #}
+      {{ _('Show <mkt-selected-text></mkt-selected-text>')|safe }}
+      </p></mkt-selected>
+      <optgroup>
+          {% for content in contentFilter.CONTENT_FILTER_CHOICES %}
+          <option class="mkt-option--center" value="{{ content[0] }}"
+          {{ 'selected' if content[0] ==
+          contentFilter.getFilterContent() }}>
+          {{ content[1] }}
+          </option>
+          {% endfor %}
+      </optgroup>
+      </mkt-select>
+  </div>
+  {% endif %}
+</div>
+
 <div class="app-list-filters">
   <div class="app-list-filters-content">
     <div class="app-list-filters-sort">
@@ -15,25 +37,5 @@
       {{ _('Display as') }}
       <a class="app-list-filters-expand-toggle" title="{{ _('Toggle App Previews') }}"></a>
     </div>
-
-    {% if settings.meowEnabled %}
-      <div class="app-list-filters-content-select">
-        <mkt-select class="content-filter" noalign>
-          <mkt-selected><p>
-            {# L10n: <mkt-selected-text> will be a noun like "apps" or "sites". #}
-            {{ _('Show <mkt-selected-text></mkt-selected-text>')|safe }}
-          </p></mkt-selected>
-          <optgroup>
-            {% for content in contentFilter.CONTENT_FILTER_CHOICES %}
-              <option class="mkt-option--center" value="{{ content[0] }}"
-                      {{ 'selected' if content[0] ==
-                         contentFilter.getFilterContent() }}>
-                {{ content[1] }}
-              </option>
-            {% endfor %}
-          </optgroup>
-        </mkt-select>
-      </div>
-    {% endif %}
   </div>
 </div>

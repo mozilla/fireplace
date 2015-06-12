@@ -1,19 +1,15 @@
 @import 'lib';
 
-.app-list-filters-content-select {
-    position: relative;
-    text-transform: none;
-    top: 5px;
+.app-list-filters-content-wrapper {
+    display: block;
     width: 100%;
+}
 
-    +media--base-tablet() {
-        margin-left: 50px;
-        max-width: 240px;
-
-        +rtl() {
-            margin-right: 50px;
-        }
-    }
+.app-list-filters-content-select {
+    border-bottom: 1px solid $greyscale-light-grey;
+    text-transform: none;
+    padding: 0 10px 15px;
+    width: 100%;
 }
 
 .content-filter {
@@ -37,11 +33,10 @@
             padding-right: 15px;
         }
         &:after {
-            bottom: none;
             color: $action-positive;
             position: absolute;
-            top: -6px;
-            transform-origin: center 19px;
+            top: 6px;
+            transform-origin: center 6px;
 
             +ltr() {
                 right: 15px;
