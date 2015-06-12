@@ -74,35 +74,33 @@
                 promises.push(key);
             }
             else if (typeof key === 'string') {
-                // If the key is a string, then we just need to call
-                // hasFeature()... except for manifest.* properties, to work
-                // around platform bug 1098470, and for acl.version, which is
-                // a special value that needs to be parsed later.
-                if (key.substr(0, 9) !== 'manifest.') {
-                    promises.push(navigator.hasFeature(key));
-                } else if (key === 'acl.version') {
-                    // We'll need to figure something to pass it to the iframe
-                    // later, but for now, we are only interested in its
-                    // existence, and ignore the value.
-                    promises.push(navigator.getFeature(key));
-                } else {
-                    // Because of bug 1098470, hasFeature(manifest.*) can fail,
-                    // while getFeature(manifest.*) will work. On later builds,
-                    // where this bug was fixed, the behaviour is reversed.
-                    // We need to handle both cases to prevent any breakage,
-                    // so we call hasFeature() first and *then* getFeature()
-                    // if it failed.
+                if (key.substr(0, 9) === 'manifest.' ||
+                    key === 'acl.version') {
+                    // Handle cases where we need to call getFeature() instead
+                    // of just hasFeature().
+                    // It's necessary in 2 cases:
+                    // - The `manifest.*` properties ; Because of bug 1098470,
+                    //   hasFeature(manifest.*) can fail, while
+                    //   getFeature(manifest.*) will work. On later builds,
+                    //   where this bug was fixed, the behaviour is reversed
+                    //   so we call hasFeature() first and *then* getFeature()
+                    //   if it returned a falsy value.
+                    // - The `acl.version` property, which is only available
+                    //   through getFeature().
                     promises.push(new Promise(function(resolve, reject) {
-                        navigator.hasFeature(key).then(function(data) {
-                            if (!data) {
-                                navigator.getFeature(key).then(function(data) {
-                                    resolve(data);
+                        navigator.hasFeature(key).then(function(supported) {
+                            if (!supported) {
+                                navigator.getFeature(key).then(function(feat) {
+                                    resolve(feat);
                                 });
                             } else {
-                                resolve(data);
+                                resolve(supported);
                             }
                         });
                     }));
+                } else {
+                    // Regular case: just call hasFeature().
+                    promises.push(navigator.hasFeature(key));
                 }
             }
             else {
