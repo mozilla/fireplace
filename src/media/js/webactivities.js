@@ -1,4 +1,4 @@
-define('webactivities', ['core/capabilities', 'core/log', 'core/login', 'core/urls', 'core/utils', 'core/z'], function(capabilities, log, login, urls, utils, z) {
+define('webactivities', ['core/capabilities', 'core/defer', 'core/log', 'core/login', 'core/urls', 'core/utils', 'core/z'], function(capabilities, defer, log, login, urls, utils, z) {
 
     // See https://github.com/mozilla/fireplace/wiki/Web-Activities
     //
@@ -16,11 +16,11 @@ define('webactivities', ['core/capabilities', 'core/log', 'core/login', 'core/ur
 
     var console = log('webactivities');
 
-    function handleActivity(name, data) {
+    function handleActivity(name, data, def) {
         console.log('Handled "' + name + '" activity: ' + JSON.stringify(data));
 
         var src = data.src && utils.slugify(data.src) || 'activity-' + name;
-        var url;
+        var url, manifest_url, slug;
 
         switch (name) {
             case 'marketplace-app':
@@ -30,8 +30,8 @@ define('webactivities', ['core/capabilities', 'core/log', 'core/login', 'core/ur
                     break;
                 }
                 // If not, load up an app detail page.
-                var slug = data.slug;
-                var manifest_url = data.manifest_url || data.manifest;
+                slug = data.slug;
+                manifest_url = data.manifest_url || data.manifest;
                 if (slug) {
                     url = urls.reverse('app', [slug]);
                     z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
@@ -62,21 +62,77 @@ define('webactivities', ['core/capabilities', 'core/log', 'core/login', 'core/ur
                 // Load up a search.
                 z.page.trigger('search', {q: data.query, src: src});
                 break;
+            case 'marketplace-openmobile-acl':
+                console.log('Handling openmobile-acl with version',
+                            data.acl_version);
+                // FIXME: Here should be a switch-case with the right app to
+                // redirect to according to the value passed in
+                // data.acl_version.
+                // We need to return something when the install is done.
+                // However, we can't just trigger the install directly and wait
+                // for it, because anyone could trigger this activity, so
+                // that'd be a security issue.
+                // Instead, we have to redirect to the detail page. The problem
+                // is, if we return too soon, Marketplace will lose focus
+                // before the user has installed the app... So we have to wait
+                // for the right install to be made before returning...
+                slug = 'test-app';
+                url = urls.reverse('app', [slug]);
+                z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
+                z.page.one('install-success', function(e, product) {
+                    if (product.slug === slug) {
+                        def.resolve('SUCCESS');
+                    } else {
+                        // Wrong app ? That means the user started doing
+                        // something else, reject the promise to return an
+                        // error.
+                        def.reject('WRONG_APP');
+                    }
+                });
+                break;
         }
     }
 
     if (capabilities.webactivities) {
         navigator.mozSetMessageHandler('activity', function(req) {
-            handleActivity(req.source.name, req.source.data);
+            var def = defer.Deferred();
+            def.promise().done(req.postResult).fail(req.postError);
+            handleActivity(req.source.name, req.source.data, def);
         });
     }
 
     window.addEventListener('message', function(e) {
         // Receive postMessage from the packaged app and do something with it.
         if (e.data && e.data.name && e.data.data) {
+            var def = defer.Deferred();
             console.log('Received post message from ' + e.origin + ': ' + JSON.stringify(e.data));
+            if (e.data.id && e.origin) {
+                def.promise().done(function(result) {
+                    // If the promise is fulfilled, it means we need to call
+                    // postResult... in the packaged app. So postMessage back to
+                    // the parent.
+                    var msg = {
+                        'type': 'activity-result',
+                        'id': e.data.id,
+                        'name': e.data.name,
+                        'result': result
+                    };
+                    window.top.postMessage(msg, e.origin);
+                }).fail(function(result) {
+                    // If the promise is rejected, it means we need to call
+                    // postError... in the packaged app. So postMessage back to
+                    // the parent.
+                    var msg = {
+                        'type': 'activity-error',
+                        'id': e.data.id,
+                        'name': e.data.name,
+                        'result': result
+                    };
+                    window.top.postMessage(msg, e.origin);
+                });
+            }
             try {
-                handleActivity(e.data.name, e.data.data);
+                handleActivity(e.data.name, e.data.data, def);
             } catch(err) {}  // `handleActivity` can fail on bad data.
         }
     }, false);

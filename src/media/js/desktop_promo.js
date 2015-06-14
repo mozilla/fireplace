@@ -8,11 +8,6 @@ define('desktop_promo',
     'use strict';
     var gettext = l10n.gettext;
 
-    var nextItems = [
-        gettext('Play this fantastic action puzzle game immediately.'),
-        gettext('Enjoy 15,000+ radio programs and podcasts.'),
-        gettext('Run for your life!'),
-    ];
 
     return {
         isDesktop: function() {
@@ -20,16 +15,16 @@ define('desktop_promo',
         },
         promoItems: [
             {
-                name: 'esc-4-home',
-                url: urls.reverse('app', ['esc-4-home']),
-                // L10n: Esc 4 Home app desktop promo (bug 1166114).
-                text: gettext('Escape from the worst boss ever.'),
+                name: 'maya',
+                url: urls.reverse('app', ['maya']),
+                // L10n: Maya app desktop promo (bug 1170850).
+                text: gettext('Play this fantastic action puzzle game immediately.'),
             },
             {
-                name: 'irccloud',
-                url: urls.reverse('app', ['irccloud']),
-                // L10n: IRCCloud app desktop promo (bug 1166114).
-                text: gettext('Manage all your messages in one place.'),
+                name: 'stitcher-radio',
+                url: urls.reverse('app', ['stitcher-radio']),
+                // L10n: Stitcher Radio app desktop promo (bug 1170850).
+                text: gettext('Enjoy 15,000+ radio programs and podcasts.'),
             },
             {
                 name: 'productivity',
@@ -46,10 +41,10 @@ define('desktop_promo',
                 text: gettext('Games & Entertainment Apps—Desktop Essentials'),
             },
             {
-                name: 'monster-wants-candy',
-                url: urls.reverse('app', ['monster-wants-candy']),
-                // L10n: Monster Wants Candy app desktop promo (bug 1166114).
-                text: gettext('Save the girl, get the candy!'),
+                name: 'zombie-getaway',
+                url: urls.reverse('app', ['zombie-getaway']),
+                // L10n: Zombie Getaway app desktop promo (bug 1170850).
+                text: gettext('Run for your life!'),
             },
         ].map(function(item) {
             item.url = utils.urlparams(item.url, {

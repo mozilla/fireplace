@@ -5,7 +5,7 @@
 
 {% if response.meta.total_count %}
   <div class="reviews-summary-large">
-    {{ stars(response.info.average, detailpage=true) }}
+    <div class="stars-wrapper">{{ stars(response.info.average, detailpage=true) }}</div>
     <p>
       {{ _plural('1 Review', '{numReviews} Reviews', numReviews=numReviews, n=response.meta.total_count) }}
     </p>

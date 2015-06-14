@@ -77,7 +77,13 @@
     }
     .detail-left-side {
         width: unquote('calc(100% - 300px)');
-        margin-right: 30px;
+
+        +ltr() {
+            margin-right: 30px;
+        }
+        +rtl() {
+            margin-left: 30px;
+        }
     }
     .detail-right-side {
         width: $mobile-content-width;

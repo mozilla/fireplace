@@ -55,6 +55,7 @@ define('apps',
 
         // Bug 996150 for packaged Marketplace installing packaged apps.
         installer.install(product, opt).done(function(result, product) {
+            z.page.trigger('install-success', {slug: product.slug});
             def.resolve(result, product);
             if (z.apps.indexOf(product.manifest_url) === -1) {
                 z.apps.push(product.manifest_url);
