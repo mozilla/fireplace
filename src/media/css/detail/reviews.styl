@@ -50,11 +50,13 @@
         padding-bottom: 30px;
         position: absolute;
         top: 0;
-        right: 110px;
+        width: 163px;
 
+        +ltr() {
+            right: 65px;
+        }
         +rtl() {
-            left: 75px;
-            right: inherit;
+            left: 65px;
         }
     }
     [data-page-type~="detail"] .reviews-summary-large {
