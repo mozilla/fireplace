@@ -94,7 +94,9 @@ define('views/debug',
         }
         user.update_settings({region_override: val});
         z.page.trigger('reload_chrome');
-        notification.notification({message: 'Region updated to ' + val});
+        notification.notification({
+            message: 'Region updated to ' +
+                     (regions.REGION_CHOICES_SLUG[val] || '---')});
     })
 
     .on('change', '#debug-carrier', function(e) {
