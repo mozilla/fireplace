@@ -51,7 +51,7 @@ define('views/settings',
 
     return function(builder) {
         builder.z('type', 'root settings');
-        builder.z('title', gettext('Account Settings'));
+        builder.z('title', gettext('Settings'));
         builder.z('parent', urls.reverse('homepage'));
 
         builder.start('settings.html');
