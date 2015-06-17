@@ -4,7 +4,7 @@
 
 {{ detail_header(url=endpoint, key=pk, content_type='website') }}
 
-{% defer (url=endpoint, key=pk) %}
+{% defer (url=endpoint, as='website', key=pk) %}
   <section class="main full app-info">
     <div class="detail-flex-wrap">
       <div class="detail-left-side">
