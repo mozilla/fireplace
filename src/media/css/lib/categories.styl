@@ -1,44 +1,61 @@
 $categories = {
+    /* --- ROW 0 --- */
     /* Unused */
     entertainment: (1 0),
-    books: (2 0),
+    books-comics: (2 0),
+    business: (3 0),
     /* Unused */
-    productivity: (4 0),
-    /* Unused */
-    education: (1 1),
-    games: (2 1),
-    /* Unused */
-    health-fitness: (4 1),
+    /* --- ROW 1 --- */
+    productivity: (0 1),
     /* Unused */
     /* Unused */
-    lifestyle: (1 2),
+    education: (3 1),
+    food-drink: (4 1),
+    /* --- ROW 2 --- */
+    games: (0 2),
     /* Unused */
-    maps-navigation: (3 2),
+    health-fitness: (2 2),
     /* Unused */
-    music: (0 3),
-    news-weather: (1 3),
-    photo-video: (2 3),
-    shopping: (3 3),
-    sports: (4 3),
-    social: (0 4),
-    utilities: (1 4),
-    travel: (2 4),
-    business: (3 4),
-    reference: (4 4)
+    humor: (4 2),
+    /* --- ROW 3 --- */
+    internet: (0 3),
+    kids: (1 3),
+    lifestyle: (2 3),
+    /* Unused */
+    maps-navigation: (4 3),
+    /* --- ROW 4 --- */
+    /* Unused */
+    music: (1 4),
+    news: (2 4),
+    personalization: (3 4),
+    photo-video: (4 4),
+    /* --- ROW 5 --- */
+    /* Unused */
+    reference: (1 5),
+    science-tech: (2 5),
+    shopping: (3 5),
+    sports: (4 5),
+    /* --- ROW 6 --- */
+    social: (0 6),
+    utilities: (1 6),
+    travel: (2 6),
+    weather: (3 6)
 };
 
-$cat-icon-size-default = 28px;
+$cat-icon-size-default = 24px;
+$cat-sprite-width = $cat-icon-size-default * 5;
+$cat-sprite-height = $cat-icon-size-default * 7;
 
 category-sprite($scale=1) {
     background: url(../img/pretty/categories-sprite.svg) no-repeat;
-    background-size: 140px * $scale;
+    background-size: $cat-sprite-width * $scale $cat-sprite-height * $scale;
     height: $cat-icon-size-default * $scale;
     width: $cat-icon-size-default * $scale;
 }
 
 category-sprite-alt($scale=1) {
     background: url(../img/pretty/categories-sprite-alt.svg) no-repeat;
-    background-size: 140px * $scale;
+    background-size: $cat-sprite-width * $scale $cat-sprite-height * $scale;
     height: $cat-icon-size-default * $scale;
     width: $cat-icon-size-default * $scale;
 }
