@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29T20:27:43.181Z\n"
+"POT-Creation-Date: 2015-06-17T16:39:58.456Z\n"
 "PO-Revision-Date: 2015-05-17 18:35+0100\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -26,14 +26,6 @@ msgstr "Ingen apps fundet."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Der opstod en intern serverfejl. Prøv igen senere."
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "Ingen apps i denne kategori"
-
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "Den ønskede kategori findes ikke."
-
 #: /templates/desktop-promo.html:2
 msgid "Previous"
 msgstr "Forrige"
@@ -41,6 +33,14 @@ msgstr "Forrige"
 #: /templates/desktop-promo.html:16
 msgid "Next"
 msgstr "Næste"
+
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "Ingen apps i denne kategori"
+
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "Den ønskede kategori findes ikke."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -98,7 +98,7 @@ msgstr ""
 "Hvis intet andet er <a href=\"{legal_url}\" target=\"_blank\">angivet</a>, hører indholdet på dette websted under licensen <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
 "Alike License v3.0</a> eller enhver nyere version."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/index.html:79 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/privacy.html:2 /templates/app/index.html:79 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Privatlivspolitik"
@@ -155,7 +155,7 @@ msgstr "Log ind"
 msgid "Search Marketplace&hellip;"
 msgstr "Søg i Marketplace&hellip;"
 
-#: /templates/header.html:83 /templates/nav.html:35 /templates/settings.html:2
+#: /templates/header.html:83 /templates/nav.html:35 /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Settings"
 msgstr "Indstillinger"
 
@@ -179,13 +179,13 @@ msgstr "Du skal bruge Firefox for at installere Firefox-apps."
 msgid "Download"
 msgstr "Hent"
 
-#: /templates/marketplace-update.html:2
-msgid "An update to Marketplace is available."
-msgstr "En opdatering til Marketplace er tilgængelig."
-
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "Ingen sprogpakker fundet."
+
+#: /templates/marketplace-update.html:2
+msgid "An update to Marketplace is available."
+msgstr "En opdatering til Marketplace er tilgængelig."
 
 #: /templates/newsletter.html:3
 msgid "Sign up for our newsletter"
@@ -303,6 +303,87 @@ msgstr ""
 msgid "Not enough statistics to show."
 msgstr ""
 
+#. <mkt-selected-text> will be a noun like "apps" or "sites".
+#: /templates/_includes/app_list_filters.html:14
+msgid "Display as"
+msgstr "Vis som"
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Toggle App Previews"
+msgstr "Vis/skjul app-eksempler"
+
+#: /templates/_includes/app_list_filters.html:23
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Tilbage til {app} "
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Indholdsklassificering"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Detaljer om klassificering"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Din Macs indstillinger kan forhindre dig i at installere apps, der ikke kommer fra Mac App Store."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Læs, hvordan du ændrer dem."
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Installeret!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Start denne app fra mappen <b>Programmer</b>."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Start denne app fra <b>skrivebordet i Windows</b> eller <b>Start &#9658; Alle programmer</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Start denne app fra dit <b>panel</b>, <b>programvælger</b> eller <b>programmenu</b>."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "Vis mig alt til <mkt-selected-text></mkt-selected-text>"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 anmeldelse"
+msgstr[1] "{numReviews} anmeldelser"
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Rediger din anmeldelse"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Rediger din anmeldelse"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Skriv en anmeldelse"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Log ind for at skrive en anmeldelse"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Læs alle anmeldelser"
+
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
 msgstr "Brug for at indberette noget?"
@@ -318,88 +399,6 @@ msgstr "Indsend rapport"
 #: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
 msgid "Report Abuse"
 msgstr "Rapportér misbrug"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:24 /templates/website/index.html:13
-msgid "Description"
-msgstr "Beskrivelse"
-
-#: /templates/app/index.html:30 /templates/app/index.html:44 /templates/website/index.html:19
-msgid "View All"
-msgstr "Vis alle"
-
-#: /templates/app/index.html:40
-msgid "Updates"
-msgstr "Opdateringer"
-
-#: /templates/app/index.html:51
-msgid "Last updated"
-msgstr "Senest opdateret"
-
-#: /templates/app/index.html:60
-msgid "Email Support"
-msgstr "Supportmail"
-
-#: /templates/app/index.html:67
-msgid "Support Site"
-msgstr "Supportwebsted"
-
-#: /templates/app/index.html:73
-msgid "Homepage"
-msgstr "Hjemmeside"
-
-#: /templates/app/index.html:86
-msgid "Statistics"
-msgstr "Statistik"
-
-#: /templates/app/index.html:93
-msgid "Edit Listing"
-msgstr "Rediger oversigt"
-
-#: /templates/app/index.html:101
-msgid "Approve / Reject"
-msgstr "Godkend / Afvis"
-
-#: /templates/app/index.html:102
-msgid "Review History"
-msgstr "Anmeldelseshistorik"
-
-#: /templates/app/index.html:119 /templates/ratings/main.html:15 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "Anmeldelser"
-
-#: /templates/app/index.html:130
-msgid "App not yet reviewed"
-msgstr "App ikke anmeldt endnu"
-
-#: /templates/app/index.html:149
-msgid "Premium version available"
-msgstr "Premium-version tilgængelig"
-
-#: /templates/app/index.html:167
-msgid "More Information"
-msgstr "Mere information"
-
-#: /templates/app/index.html:170
-msgid "Developer"
-msgstr "Udvikler"
-
-#: /templates/app/index.html:174
-msgid "Compatibility"
-msgstr "Kompatibilitet"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:177 /templates/app/index.html:184
-msgid ","
-msgstr ","
-
-#: /templates/app/index.html:189
-msgid "File Size"
-msgstr "Filstørrelse"
-
-#: /templates/app/index.html:194
-msgid "Most Recent Version"
-msgstr "Seneste version"
 
 #: /templates/app/privacy.html:8
 msgid "Back to app"
@@ -439,7 +438,7 @@ msgstr "Vis alle apps"
 msgid "Load more"
 msgstr "Indlæs flere"
 
-#: /templates/_macros/previews.html:39 /templates/_macros/previews.html:42
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
 msgid "{app_name} screenshot"
 msgstr "{app_name} skærmbillede"
 
@@ -466,87 +465,6 @@ msgstr ""
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Bedømmelse: {stars} ud af {maxstars} stjerner"
-
-#. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:14
-msgid "Display as"
-msgstr "Vis som"
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Toggle App Previews"
-msgstr "Vis/skjul app-eksempler"
-
-#: /templates/_includes/app_list_filters.html:23
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Tilbage til {app} "
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Indholdsklassificering"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Detaljer om klassificering"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Din Macs indstillinger kan forhindre dig i at installere apps, der ikke kommer fra Mac App Store."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Læs, hvordan du ændrer dem."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "Vis mig alt til <mkt-selected-text></mkt-selected-text>"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Installeret!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Start denne app fra mappen <b>Programmer</b>."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Start denne app fra <b>skrivebordet i Windows</b> eller <b>Start &#9658; Alle programmer</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Start denne app fra dit <b>panel</b>, <b>programvælger</b> eller <b>programmenu</b>."
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Rediger din anmeldelse"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Rediger din anmeldelse"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Skriv en anmeldelse"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Log ind for at skrive en anmeldelse"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Læs alle anmeldelser"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 anmeldelse"
-msgstr[1] "{numReviews} anmeldelser"
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -584,11 +502,11 @@ msgstr "Du skal være online for at få adgang til Marketplace."
 msgid "Try Again"
 msgstr "Prøv igen"
 
-#: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
+#: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "Rediger anmeldelse"
 
-#: /templates/ratings/add.html:8 /templates/ratings/add.html:45 /media/js/views/app/ratings/add.js:25
+#: /templates/ratings/add.html:8 /templates/ratings/add.html:46 /media/js/views/app/ratings/add.js:25
 msgid "Leave a Review"
 msgstr "Skriv en anmeldelse"
 
@@ -644,13 +562,25 @@ msgstr "Upassende sprogbrug/dialog"
 msgid "Misplaced bug report or support request"
 msgstr "Fejlplaceret fejlrapport eller supportspørgsmål"
 
-#: /templates/ratings/main.html:39
+#: /templates/ratings/main.html:16 /templates/app/index.html:119 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "Anmeldelser"
+
+#: /templates/ratings/main.html:41
 msgid "This app has no reviews."
 msgstr "Denne app har ingen anmeldelser."
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "App-anmeldelse"
+
+#: /templates/website/index.html:13 /templates/app/index.html:24
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: /templates/website/index.html:19 /templates/app/index.html:30 /templates/app/index.html:44
+msgid "View All"
+msgstr "Vis alle"
 
 #. This goes before a list of categories.
 #: /templates/website/index.html:31
@@ -664,6 +594,75 @@ msgstr ""
 #: /templates/website/index.html:45 /templates/website/issue.html:14
 msgid "Report an issue"
 msgstr ""
+
+#: /templates/app/index.html:40
+msgid "Updates"
+msgstr "Opdateringer"
+
+#: /templates/app/index.html:51
+msgid "Last updated"
+msgstr "Senest opdateret"
+
+#: /templates/app/index.html:60
+msgid "Email Support"
+msgstr "Supportmail"
+
+#: /templates/app/index.html:67
+msgid "Support Site"
+msgstr "Supportwebsted"
+
+#: /templates/app/index.html:73
+msgid "Homepage"
+msgstr "Hjemmeside"
+
+#: /templates/app/index.html:86
+msgid "Statistics"
+msgstr "Statistik"
+
+#: /templates/app/index.html:93
+msgid "Edit Listing"
+msgstr "Rediger oversigt"
+
+#: /templates/app/index.html:101
+msgid "Approve / Reject"
+msgstr "Godkend / Afvis"
+
+#: /templates/app/index.html:102
+msgid "Review History"
+msgstr "Anmeldelseshistorik"
+
+#: /templates/app/index.html:130
+msgid "App not yet reviewed"
+msgstr "App ikke anmeldt endnu"
+
+#: /templates/app/index.html:149
+msgid "Premium version available"
+msgstr "Premium-version tilgængelig"
+
+#: /templates/app/index.html:167
+msgid "More Information"
+msgstr "Mere information"
+
+#: /templates/app/index.html:170
+msgid "Developer"
+msgstr "Udvikler"
+
+#: /templates/app/index.html:174
+msgid "Compatibility"
+msgstr "Kompatibilitet"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:177 /templates/app/index.html:184
+msgid ","
+msgstr ","
+
+#: /templates/app/index.html:189
+msgid "File Size"
+msgstr "Filstørrelse"
+
+#: /templates/app/index.html:194
+msgid "Most Recent Version"
+msgstr "Seneste version"
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
@@ -681,62 +680,45 @@ msgstr ""
 msgid "Report an Issue"
 msgstr ""
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Betaling annulleret."
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "ikke tilgængelig til dit område"
 
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "Køber"
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "ikke tilgængelig til din platform"
 
-#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
-msgid "Install"
-msgstr "Installér"
+#: /media/js/compat_filter.js:50 /media/js/compat_filter.js:59
+msgid "All Platforms"
+msgstr "Alle platforme"
 
-#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Beklager, vi havde problemer med at hente denne apps data. Prøv igen senere."
+#: /media/js/compat_filter.js:51 /media/js/compat_filter.js:68
+msgid "Android Mobile"
+msgstr "Android-mobil"
 
-#. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "Installering mislykkedes. Prøv igen senere."
+#: /media/js/compat_filter.js:52 /media/js/compat_filter.js:69
+msgid "Android Tablet"
+msgstr "Android-tablet"
 
-#: /media/js/buttons.js:321 /media/js/buttons.js:417
-msgid "Installed"
-msgstr "Installeret"
+#: /media/js/compat_filter.js:53 /media/js/compat_filter.js:66
+msgid "Desktop"
+msgstr "Computer"
 
-#: /media/js/buttons.js:395
-msgid "free"
-msgstr ""
+#: /media/js/compat_filter.js:54 /media/js/compat_filter.js:67
+msgid "Firefox OS"
+msgstr "Firefox OS"
 
-#: /media/js/buttons.js:399
-msgid "Unavailable"
-msgstr "Ikke tilgængelig"
-
-#: /media/js/buttons.js:422
-msgid "Open website"
-msgstr ""
-
-#: /media/js/buttons.js:426
-msgid "Open app"
-msgstr ""
-
-#: /media/js/buttons.js:428
-msgid "Install for {price}"
-msgstr ""
-
-#: /media/js/buttons.js:434
-msgid "Open"
-msgstr ""
+#: /media/js/compat_filter.js:63
+msgid "My Device"
+msgstr "Min enhed"
 
 #: /media/js/categories.js:6
 msgid "Games"
 msgstr "Spil"
 
 #: /media/js/categories.js:7
-msgid "Books"
-msgstr "Bøger"
+msgid "Books & Comics"
+msgstr ""
 
 #: /media/js/categories.js:8
 msgid "Business"
@@ -751,88 +733,84 @@ msgid "Entertainment"
 msgstr "Underholdning"
 
 #: /media/js/categories.js:11
+msgid "Food & Drink"
+msgstr ""
+
+#: /media/js/categories.js:12
 msgid "Health & Fitness"
 msgstr "Sundhed & fitness"
 
-#: /media/js/categories.js:12
+#: /media/js/categories.js:13
+msgid "Humor"
+msgstr ""
+
+#: /media/js/categories.js:14
+msgid "Internet"
+msgstr ""
+
+#: /media/js/categories.js:15
+msgid "Kids"
+msgstr ""
+
+#: /media/js/categories.js:16
 msgid "Lifestyle"
 msgstr "Livsstil"
 
-#: /media/js/categories.js:13
+#: /media/js/categories.js:17
 msgid "Maps & Navigation"
 msgstr "Kort & navigation"
 
-#: /media/js/categories.js:14
+#: /media/js/categories.js:18
 msgid "Music"
 msgstr "Musik"
 
-#: /media/js/categories.js:15
-msgid "News & Weather"
-msgstr "Nyheder & vejr"
+#: /media/js/categories.js:19
+msgid "News"
+msgstr ""
 
-#: /media/js/categories.js:16
+#: /media/js/categories.js:20
+msgid "Personalization"
+msgstr ""
+
+#: /media/js/categories.js:21
 msgid "Photo & Video"
 msgstr "Fotos & video"
 
-#: /media/js/categories.js:17
+#: /media/js/categories.js:22
 msgid "Productivity"
 msgstr "Produktivitet"
 
-#: /media/js/categories.js:18
+#: /media/js/categories.js:23
 msgid "Reference"
 msgstr "Opslagsværker"
 
-#: /media/js/categories.js:19
+#: /media/js/categories.js:24
+msgid "Science & Tech"
+msgstr ""
+
+#: /media/js/categories.js:25
 msgid "Shopping"
 msgstr "Shopping"
 
-#: /media/js/categories.js:20
+#: /media/js/categories.js:26
 msgid "Social"
 msgstr "Socialt"
 
-#: /media/js/categories.js:21
+#: /media/js/categories.js:27
 msgid "Sports"
 msgstr "Sport"
 
-#: /media/js/categories.js:22
+#: /media/js/categories.js:28
 msgid "Travel"
 msgstr "Rejser"
 
-#: /media/js/categories.js:23
+#: /media/js/categories.js:29
 msgid "Utilities"
 msgstr "Værktøjer"
 
-#: /media/js/apps.js:113
-msgid "not available for your region"
-msgstr "ikke tilgængelig til dit område"
-
-#: /media/js/apps.js:118
-msgid "not available for your platform"
-msgstr "ikke tilgængelig til din platform"
-
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
-msgid "All Platforms"
-msgstr "Alle platforme"
-
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
-msgid "Android Mobile"
-msgstr "Android-mobil"
-
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
-msgid "Android Tablet"
-msgstr "Android-tablet"
-
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
-msgid "Desktop"
-msgstr "Computer"
-
-#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
-msgid "Firefox OS"
-msgstr "Firefox OS"
-
-#: /media/js/compat_filter.js:56
-msgid "My Device"
-msgstr "Min enhed"
+#: /media/js/categories.js:30
+msgid "Weather"
+msgstr ""
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
@@ -887,25 +865,25 @@ msgstr ""
 msgid "websites"
 msgstr ""
 
-#. Esc 4 Home app desktop promo (bug 1166114).
-#: /media/js/desktop_promo.js:20
-msgid "Escape from the worst boss ever."
+#. Maya app desktop promo (bug 1170850).
+#: /media/js/desktop_promo.js:21
+msgid "Play this fantastic action puzzle game immediately."
 msgstr ""
 
-#: /media/js/desktop_promo.js:26
-msgid "Manage all your messages in one place."
+#: /media/js/desktop_promo.js:27
+msgid "Enjoy 15,000+ radio programs and podcasts."
 msgstr ""
 
-#: /media/js/desktop_promo.js:33
+#: /media/js/desktop_promo.js:34
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Produktivitets-apps—Uundværlige til computer"
 
-#: /media/js/desktop_promo.js:40
+#: /media/js/desktop_promo.js:41
 msgid "Games & Entertainment Apps—Desktop Essentials"
 msgstr "Spil- og underholdnings-apps—Uundværlige til computer"
 
-#: /media/js/desktop_promo.js:46
-msgid "Save the girl, get the candy!"
+#: /media/js/desktop_promo.js:47
+msgid "Run for your life!"
 msgstr ""
 
 #: /media/js/edbrands.js:33
@@ -1240,9 +1218,58 @@ msgstr ""
 msgid "Unable to install packaged apps"
 msgstr "Kan ikke installere pakkede apps"
 
+#: /media/js/installer_direct.js:178 /media/js/buttons.js:192
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Beklager, vi havde problemer med at hente denne apps data. Prøv igen senere."
+
 #: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
 msgid "App install error: {error}"
 msgstr "App-installationsfejl: {error}"
+
+#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Betaling annulleret."
+
+#: /media/js/buttons.js:117
+msgid "Purchasing"
+msgstr "Køber"
+
+#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
+msgid "Install"
+msgstr "Installér"
+
+#. App's install failed, but problem is temporary.
+#: /media/js/buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "Installering mislykkedes. Prøv igen senere."
+
+#: /media/js/buttons.js:321 /media/js/buttons.js:417
+msgid "Installed"
+msgstr "Installeret"
+
+#: /media/js/buttons.js:395
+msgid "free"
+msgstr ""
+
+#: /media/js/buttons.js:399
+msgid "Unavailable"
+msgstr "Ikke tilgængelig"
+
+#: /media/js/buttons.js:422
+msgid "Open website"
+msgstr ""
+
+#: /media/js/buttons.js:426
+msgid "Open app"
+msgstr ""
+
+#: /media/js/buttons.js:428
+msgid "Install for {price}"
+msgstr ""
+
+#: /media/js/buttons.js:434
+msgid "Open"
+msgstr ""
 
 #: /media/js/newsletter.js:72
 msgid "There was an error submitting your newsletter sign up request"
@@ -1263,6 +1290,50 @@ msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n} stjerne"
 msgstr[1] "{n} stjerner"
+
+#: /media/js/settings_app.js:94
+msgid "English"
+msgstr "Engelsk"
+
+#: /media/js/settings_app.js:95
+msgid "French"
+msgstr "Fransk"
+
+#: /media/js/settings_app.js:96
+msgid "German"
+msgstr "Tysk"
+
+#: /media/js/settings_app.js:97
+msgid "Hungarian"
+msgstr "Ungarnsk"
+
+#: /media/js/settings_app.js:98
+msgid "Indonesian"
+msgstr "Indonesisk"
+
+#: /media/js/settings_app.js:99
+msgid "Polish"
+msgstr "Polsk"
+
+#: /media/js/settings_app.js:100
+msgid "Portuguese"
+msgstr "Portugisisk"
+
+#: /media/js/settings_app.js:101
+msgid "Russian"
+msgstr "Russisk"
+
+#: /media/js/settings_app.js:102
+msgid "Spanish"
+msgstr "Spansk"
+
+#: /media/js/settings_app.js:114
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "Du er i øjeblikket offline. Prøv igen senere."
+
+#: /media/js/update_banner.js:24
+msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
+msgstr "Næste gang du starter appen Firefox Marketplace, vi du se den opdaterede version!"
 
 #. The report is an abuse report for reviews.
 #: /media/js/reviews.js:35
@@ -1310,50 +1381,6 @@ msgstr "Din anmeldelse blev redigeret"
 msgid "Sorry, there was an issue editing your review. Please try again later"
 msgstr "Beklager, men der var et problem med at redigere din anmeldelse. Prøv igen senere"
 
-#: /media/js/settings_app.js:94
-msgid "English"
-msgstr "Engelsk"
-
-#: /media/js/settings_app.js:95
-msgid "French"
-msgstr "Fransk"
-
-#: /media/js/settings_app.js:96
-msgid "German"
-msgstr "Tysk"
-
-#: /media/js/settings_app.js:97
-msgid "Hungarian"
-msgstr "Ungarnsk"
-
-#: /media/js/settings_app.js:98
-msgid "Indonesian"
-msgstr "Indonesisk"
-
-#: /media/js/settings_app.js:99
-msgid "Polish"
-msgstr "Polsk"
-
-#: /media/js/settings_app.js:100
-msgid "Portuguese"
-msgstr "Portugisisk"
-
-#: /media/js/settings_app.js:101
-msgid "Russian"
-msgstr "Russisk"
-
-#: /media/js/settings_app.js:102
-msgid "Spanish"
-msgstr "Spansk"
-
-#: /media/js/settings_app.js:114
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "Du er i øjeblikket offline. Prøv igen senere."
-
-#: /media/js/update_banner.js:24
-msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr "Næste gang du starter appen Firefox Marketplace, vi du se den opdaterede version!"
-
 #: /media/js/views/app.js:23
 msgid "App Detail"
 msgstr ""
@@ -1378,8 +1405,16 @@ msgstr "Sprogpakker"
 msgid "Firefox OS {version}"
 msgstr "Firefox OS {version}"
 
-#: /media/js/views/newsletter_signup.js:16
+#: /media/js/views/newsletter_signup.js:11
 msgid "Newsletter Signup"
+msgstr ""
+
+#: /media/js/views/search.js:164
+msgid "Search Results"
+msgstr "Søgeresultater"
+
+#: /media/js/views/search.js:176
+msgid "Developer Listing"
 msgstr ""
 
 #: /media/js/views/settings.js:40
@@ -1389,14 +1424,6 @@ msgstr "Dine indstillinger er blevet gemt"
 #: /media/js/views/settings.js:46
 msgid "Settings could not be saved"
 msgstr "Indstillinger kunne ikke gemmes"
-
-#: /media/js/views/settings.js:54
-msgid "Account Settings"
-msgstr "Kontoindstillinger"
-
-#: /media/js/views/search.js:162
-msgid "Search Results"
-msgstr "Søgeresultater"
 
 #: /media/js/views/website.js:11
 msgid "Website Detail"

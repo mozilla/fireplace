@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29T20:27:43.181Z\n"
+"POT-Creation-Date: 2015-06-17T16:39:58.456Z\n"
 "PO-Revision-Date: 2015-03-20 13:52+0000\n"
 "Last-Translator: yo-NG02_Oluwatosin <dir22004@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,14 +26,6 @@ msgstr "                  Kòsí àwọn ìfilọ́lẹ̀.                "
 msgid "An internal server error occurred. Please try again later."
 msgstr "Àṣìṣe apèsè ítánẹ́ẹ̀tì wáyé. Jọ̀wọ́ gbìyànjú nígbà míìràn.                "
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "Kòsí àwọn ìṣàfilọ́lẹ̀ ní Ìsọ̀rí yíì                "
-
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "Kòsí ìsọ̀rí tí o bèèrè fún.                "
-
 #: /templates/desktop-promo.html:2
 msgid "Previous"
 msgstr "Ìṣáájú                "
@@ -41,6 +33,14 @@ msgstr "Ìṣáájú                "
 #: /templates/desktop-promo.html:16
 msgid "Next"
 msgstr "Tókàn                "
+
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "Kòsí àwọn ìṣàfilọ́lẹ̀ ní Ìsọ̀rí yíì                "
+
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "Kòsí ìsọ̀rí tí o bèèrè fún.                "
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -98,7 +98,7 @@ msgstr ""
 "Àyàfi bí a báyàn <a href=\"{legal_url}\" target=\"_blank\">ifoyesi</a>, àkòónú ojúlà yíì ní ìwé àṣẹ lábẹ <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike License "
 "v3.0</a> tàbí ẹ̀yà ọjọ́ iwáájú."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/index.html:79 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/privacy.html:2 /templates/app/index.html:79 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Ìlànà Àdáni                 "
@@ -155,7 +155,7 @@ msgstr "                  Wọlé                "
 msgid "Search Marketplace&hellip;"
 msgstr ""
 
-#: /templates/header.html:83 /templates/nav.html:35 /templates/settings.html:2
+#: /templates/header.html:83 /templates/nav.html:35 /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Settings"
 msgstr "                  Àwọn ààtò                "
 
@@ -179,13 +179,13 @@ msgstr "                  O gbọ́dọ̀ lo Firefox láti ṣàgbékale Firefo
 msgid "Download"
 msgstr "                  Ṣègbàsílẹ̀                "
 
-#: /templates/marketplace-update.html:2
-msgid "An update to Marketplace is available."
-msgstr "                  Kòsí àfikún sí Ibiọja.                "
-
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "                  Akòrí àkópọ̀ èdè.                "
+
+#: /templates/marketplace-update.html:2
+msgid "An update to Marketplace is available."
+msgstr "                  Kòsí àfikún sí Ibiọja.                "
 
 #: /templates/newsletter.html:3
 msgid "Sign up for our newsletter"
@@ -301,6 +301,86 @@ msgstr "Ilò ìṣàfìlọlẹ̀ òǹkà Ìṣirò"
 msgid "Not enough statistics to show."
 msgstr "Kòsí òǹkà ìṣirò tó láti ṣàfihàn."
 
+#. <mkt-selected-text> will be a noun like "apps" or "sites".
+#: /templates/_includes/app_list_filters.html:14
+msgid "Display as"
+msgstr "                  Fihàn bii                "
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Toggle App Previews"
+msgstr "                  Àwọn Àkọwò Ìṣàfilọ́lẹ̀ Ṣípòpadà                "
+
+#: /templates/_includes/app_list_filters.html:23
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "                  Padà sí {ìṣàfilọ́lẹ̀}                "
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "                  Ìgbéléwọ̀n Àkóónú                "
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "                  Ẹ̀kunrẹ́rẹ́ Ìgbéléwọ̀n                "
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Ààtò Mac rẹ ledí ọ lọ́wọ́ láti ṣàgbékalẹ̀ àwọn ìṣàfilólẹ̀ tí kò wá láti Ibi Ìpamọ́ Ìṣàfilọ́lẹ̀ Mac."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "                  Kọ́ bí a tí yí wọn padà.                "
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "                  Ti ṣàgbékalẹ̀!                "
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "                  Ṣí ìṣàfilọ́lẹ̀ yíì láti <b>Ohun èlò</b> àkójọpọ̀ fáìlì rẹ.                "
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "                  Ṣí ìṣàfilọ́lẹ̀ yíì láti <b>Àtẹ iṣẹ Windows</b> tàbí <b>Bẹrẹ &#9658; Gbogbo Ètò rẹ</b>.                "
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "                  Ṣí ìṣàfilọ́lẹ̀ yíì láti <b>Dáàṣì</b>, <b>Olùmú ohun èlò</b>, tàbí <b>Mẹ́nù ohun èlò</b>.                "
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "                  1 Àtúnyẹ́wò{numReviews} Àwọn Àtúnyẹ́wò                "
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "                  Ṣàtúnṣe Àtúnyẹ́wò rẹ                "
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "                  Ṣàtúnṣe àtúnyẹ́wò rẹ                "
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "                  Kọ àtúnyẹ́wò                "
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "                  Wọlé láti ṣàtúnyẹ́wò                "
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "                  Ka gbogbo àwọn àtúnyẹ́wò                "
+
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
 msgstr "                  Nílò láti ṣàfisùn ohun kan?                "
@@ -316,88 +396,6 @@ msgstr "                  Jọ̀wọ́ Ìjábọ̀                "
 #: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
 msgid "Report Abuse"
 msgstr "                  Ìṣàfisùn Àṣìlò                "
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:24 /templates/website/index.html:13
-msgid "Description"
-msgstr "                  Àpèjúwe                "
-
-#: /templates/app/index.html:30 /templates/app/index.html:44 /templates/website/index.html:19
-msgid "View All"
-msgstr "                  Wo Gbogbo rẹ̀                "
-
-#: /templates/app/index.html:40
-msgid "Updates"
-msgstr "                  Àwọn àfikún                "
-
-#: /templates/app/index.html:51
-msgid "Last updated"
-msgstr "Ìṣàgbekalẹ̀ tó kọjá"
-
-#: /templates/app/index.html:60
-msgid "Email Support"
-msgstr "                  Ṣàtìlẹhìn Ímeelì                "
-
-#: /templates/app/index.html:67
-msgid "Support Site"
-msgstr "                  Ojú òpó Ìrànwó                "
-
-#: /templates/app/index.html:73
-msgid "Homepage"
-msgstr "                  Ojúìwéìbẹ̀rẹ̀                "
-
-#: /templates/app/index.html:86
-msgid "Statistics"
-msgstr "                  Òǹkà Ìṣirò                "
-
-#: /templates/app/index.html:93
-msgid "Edit Listing"
-msgstr "                  Ṣàtúnṣe Àtòkọ                "
-
-#: /templates/app/index.html:101
-msgid "Approve / Reject"
-msgstr "                  Bọwọ́lù / Kọ̀                "
-
-#: /templates/app/index.html:102
-msgid "Review History"
-msgstr "                  Àtúnyẹ́wò Ìtàn                "
-
-#: /templates/app/index.html:119 /templates/ratings/main.html:15 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "                  Àwọn Àtúnyẹ́wò                "
-
-#: /templates/app/index.html:130
-msgid "App not yet reviewed"
-msgstr "                  Akòítìṣe àtúnyẹ́wò ìṣàfilọ́lẹ̀                "
-
-#: /templates/app/index.html:149
-msgid "Premium version available"
-msgstr "                  Ẹdà ojúlówó wà                "
-
-#: /templates/app/index.html:167
-msgid "More Information"
-msgstr "Ìwífúnni Sii"
-
-#: /templates/app/index.html:170
-msgid "Developer"
-msgstr "                  Olùmúgbèrú                "
-
-#: /templates/app/index.html:174
-msgid "Compatibility"
-msgstr "                  Ìbáramu                "
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:177 /templates/app/index.html:184
-msgid ","
-msgstr "                  Irú Fáìlì                "
-
-#: /templates/app/index.html:189
-msgid "File Size"
-msgstr "                  Irú Fáìlì                "
-
-#: /templates/app/index.html:194
-msgid "Most Recent Version"
-msgstr "                  Ọ̀nà Ìgbọ̀rọ̀ọ̀sí tó Súnmọ́ Jùlọ̀                "
 
 #: /templates/app/privacy.html:8
 msgid "Back to app"
@@ -436,7 +434,7 @@ msgstr "                  Wo àwọn ìṣàfilọ́lẹ̀                "
 msgid "Load more"
 msgstr "                  Dẹrù si                "
 
-#: /templates/_macros/previews.html:39 /templates/_macros/previews.html:42
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
 msgid "{app_name} screenshot"
 msgstr "                  {app_name} àwòrán aṣàihàn                "
 
@@ -463,86 +461,6 @@ msgstr "                  Pe-àkíyèsí-sí fún àtúnyẹ́wò             
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "                  Tí a wọ̀n {àwọn ìràwọ̀} láàrìn {ọ̀gọ̀rọ̀ ìràwọ̀} àwọn ìràwò                "
-
-#. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:14
-msgid "Display as"
-msgstr "                  Fihàn bii                "
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Toggle App Previews"
-msgstr "                  Àwọn Àkọwò Ìṣàfilọ́lẹ̀ Ṣípòpadà                "
-
-#: /templates/_includes/app_list_filters.html:23
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "                  Padà sí {ìṣàfilọ́lẹ̀}                "
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "                  Ìgbéléwọ̀n Àkóónú                "
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "                  Ẹ̀kunrẹ́rẹ́ Ìgbéléwọ̀n                "
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Ààtò Mac rẹ ledí ọ lọ́wọ́ láti ṣàgbékalẹ̀ àwọn ìṣàfilólẹ̀ tí kò wá láti Ibi Ìpamọ́ Ìṣàfilọ́lẹ̀ Mac."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "                  Kọ́ bí a tí yí wọn padà.                "
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "                  Ti ṣàgbékalẹ̀!                "
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "                  Ṣí ìṣàfilọ́lẹ̀ yíì láti <b>Ohun èlò</b> àkójọpọ̀ fáìlì rẹ.                "
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "                  Ṣí ìṣàfilọ́lẹ̀ yíì láti <b>Àtẹ iṣẹ Windows</b> tàbí <b>Bẹrẹ &#9658; Gbogbo Ètò rẹ</b>.                "
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "                  Ṣí ìṣàfilọ́lẹ̀ yíì láti <b>Dáàṣì</b>, <b>Olùmú ohun èlò</b>, tàbí <b>Mẹ́nù ohun èlò</b>.                "
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "                  Ṣàtúnṣe Àtúnyẹ́wò rẹ                "
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "                  Ṣàtúnṣe àtúnyẹ́wò rẹ                "
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "                  Kọ àtúnyẹ́wò                "
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "                  Wọlé láti ṣàtúnyẹ́wò                "
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "                  Ka gbogbo àwọn àtúnyẹ́wò                "
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "                  1 Àtúnyẹ́wò{numReviews} Àwọn Àtúnyẹ́wò                "
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -580,11 +498,11 @@ msgstr "                  Mábinú, o gbọ́dọ̀ wà lórí ìlà lá
 msgid "Try Again"
 msgstr "                  Gbìyànjú Si                "
 
-#: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
+#: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "                  Ṣàtúnṣe Àtúnyẹ́wò                 "
 
-#: /templates/ratings/add.html:8 /templates/ratings/add.html:45 /media/js/views/app/ratings/add.js:25
+#: /templates/ratings/add.html:8 /templates/ratings/add.html:46 /media/js/views/app/ratings/add.js:25
 msgid "Leave a Review"
 msgstr "                  Fi Àtúnyẹ́wò ránṣẹ́                "
 
@@ -638,13 +556,25 @@ msgstr "                  Èdè tí kòtọ́/ìsọ̀rọ̀gbèsì           
 msgid "Misplaced bug report or support request"
 msgstr "                  Èsì àṣilò bọ́ọ̀gì tàbí ìbéérè tí a kín lẹ́hìn                "
 
-#: /templates/ratings/main.html:39
+#: /templates/ratings/main.html:16 /templates/app/index.html:119 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "                  Àwọn Àtúnyẹ́wò                "
+
+#: /templates/ratings/main.html:41
 msgid "This app has no reviews."
 msgstr "                  Ìṣàfilọ́lẹ̀ náà kòní àwọn àtúnyẹ́wò.                "
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "                  Àtúnyẹ́wò  Ìṣàfilọ́lẹ̀                "
+
+#: /templates/website/index.html:13 /templates/app/index.html:24
+msgid "Description"
+msgstr "                  Àpèjúwe                "
+
+#: /templates/website/index.html:19 /templates/app/index.html:30 /templates/app/index.html:44
+msgid "View All"
+msgstr "                  Wo Gbogbo rẹ̀                "
 
 #. This goes before a list of categories.
 #: /templates/website/index.html:31
@@ -658,6 +588,75 @@ msgstr ""
 #: /templates/website/index.html:45 /templates/website/issue.html:14
 msgid "Report an issue"
 msgstr ""
+
+#: /templates/app/index.html:40
+msgid "Updates"
+msgstr "                  Àwọn àfikún                "
+
+#: /templates/app/index.html:51
+msgid "Last updated"
+msgstr "Ìṣàgbekalẹ̀ tó kọjá"
+
+#: /templates/app/index.html:60
+msgid "Email Support"
+msgstr "                  Ṣàtìlẹhìn Ímeelì                "
+
+#: /templates/app/index.html:67
+msgid "Support Site"
+msgstr "                  Ojú òpó Ìrànwó                "
+
+#: /templates/app/index.html:73
+msgid "Homepage"
+msgstr "                  Ojúìwéìbẹ̀rẹ̀                "
+
+#: /templates/app/index.html:86
+msgid "Statistics"
+msgstr "                  Òǹkà Ìṣirò                "
+
+#: /templates/app/index.html:93
+msgid "Edit Listing"
+msgstr "                  Ṣàtúnṣe Àtòkọ                "
+
+#: /templates/app/index.html:101
+msgid "Approve / Reject"
+msgstr "                  Bọwọ́lù / Kọ̀                "
+
+#: /templates/app/index.html:102
+msgid "Review History"
+msgstr "                  Àtúnyẹ́wò Ìtàn                "
+
+#: /templates/app/index.html:130
+msgid "App not yet reviewed"
+msgstr "                  Akòítìṣe àtúnyẹ́wò ìṣàfilọ́lẹ̀                "
+
+#: /templates/app/index.html:149
+msgid "Premium version available"
+msgstr "                  Ẹdà ojúlówó wà                "
+
+#: /templates/app/index.html:167
+msgid "More Information"
+msgstr "Ìwífúnni Sii"
+
+#: /templates/app/index.html:170
+msgid "Developer"
+msgstr "                  Olùmúgbèrú                "
+
+#: /templates/app/index.html:174
+msgid "Compatibility"
+msgstr "                  Ìbáramu                "
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:177 /templates/app/index.html:184
+msgid ","
+msgstr "                  Irú Fáìlì                "
+
+#: /templates/app/index.html:189
+msgid "File Size"
+msgstr "                  Irú Fáìlì                "
+
+#: /templates/app/index.html:194
+msgid "Most Recent Version"
+msgstr "                  Ọ̀nà Ìgbọ̀rọ̀ọ̀sí tó Súnmọ́ Jùlọ̀                "
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
@@ -675,53 +674,36 @@ msgstr ""
 msgid "Report an Issue"
 msgstr ""
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "                  Ọ̀nà ìsanwó tí a fagilé.                "
-
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "                  Rírà                "
-
-#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
-msgid "Install"
-msgstr "                  Ṣàgbékalẹ̀                "
-
-#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "                  Mábinú, aní ìṣòro láti gba dátà ìṣàfilọ́lẹ̀ yíì. Jòwọ́ gbìyànjú nígbà míìràn.                "
-
-#. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "                  Àgbékalẹ̀ kúnà. Jọ̀wọ́ gbìyànjú nígbà míìràn.                "
-
-#: /media/js/buttons.js:321 /media/js/buttons.js:417
-msgid "Installed"
-msgstr "                  Ṣàgbékalẹ̀                "
-
-#: /media/js/buttons.js:395
-msgid "free"
+#: /media/js/apps.js:114
+msgid "not available for your region"
 msgstr ""
 
-#: /media/js/buttons.js:399
-msgid "Unavailable"
-msgstr "                  Kòsí                "
-
-#: /media/js/buttons.js:422
-msgid "Open website"
+#: /media/js/apps.js:119
+msgid "not available for your platform"
 msgstr ""
 
-#: /media/js/buttons.js:426
-msgid "Open app"
+#: /media/js/compat_filter.js:50 /media/js/compat_filter.js:59
+msgid "All Platforms"
 msgstr ""
 
-#: /media/js/buttons.js:428
-msgid "Install for {price}"
-msgstr ""
+#: /media/js/compat_filter.js:51 /media/js/compat_filter.js:68
+msgid "Android Mobile"
+msgstr "                  Android Alágbeká                "
 
-#: /media/js/buttons.js:434
-msgid "Open"
+#: /media/js/compat_filter.js:52 /media/js/compat_filter.js:69
+msgid "Android Tablet"
+msgstr "                  Android Kọ̀ǹpútà Alogègé                "
+
+#: /media/js/compat_filter.js:53 /media/js/compat_filter.js:66
+msgid "Desktop"
+msgstr "                  Àtẹ iṣẹ́                "
+
+#: /media/js/compat_filter.js:54 /media/js/compat_filter.js:67
+msgid "Firefox OS"
+msgstr "                  Firefox OS                "
+
+#: /media/js/compat_filter.js:63
+msgid "My Device"
 msgstr ""
 
 #: /media/js/categories.js:6
@@ -729,8 +711,8 @@ msgid "Games"
 msgstr "                  Àwọn Eré Ìdárayá                "
 
 #: /media/js/categories.js:7
-msgid "Books"
-msgstr "                  Àwọn Ìwé                "
+msgid "Books & Comics"
+msgstr ""
 
 #: /media/js/categories.js:8
 msgid "Business"
@@ -745,87 +727,83 @@ msgid "Entertainment"
 msgstr "                  Ìdárayá                "
 
 #: /media/js/categories.js:11
+msgid "Food & Drink"
+msgstr ""
+
+#: /media/js/categories.js:12
 msgid "Health & Fitness"
 msgstr "                  Ìlera àti Ìdápé                "
 
-#: /media/js/categories.js:12
+#: /media/js/categories.js:13
+msgid "Humor"
+msgstr ""
+
+#: /media/js/categories.js:14
+msgid "Internet"
+msgstr ""
+
+#: /media/js/categories.js:15
+msgid "Kids"
+msgstr ""
+
+#: /media/js/categories.js:16
 msgid "Lifestyle"
 msgstr "                  Ọ̀nà ìgbé ayé                "
 
-#: /media/js/categories.js:13
+#: /media/js/categories.js:17
 msgid "Maps & Navigation"
 msgstr "                  Máàpù & Ìṣàyípo                "
 
-#: /media/js/categories.js:14
+#: /media/js/categories.js:18
 msgid "Music"
 msgstr "                  Orin                "
 
-#: /media/js/categories.js:15
-msgid "News & Weather"
-msgstr "                  Àwọn Ìròyìn & Ojú Ọjọ́                "
+#: /media/js/categories.js:19
+msgid "News"
+msgstr ""
 
-#: /media/js/categories.js:16
+#: /media/js/categories.js:20
+msgid "Personalization"
+msgstr ""
+
+#: /media/js/categories.js:21
 msgid "Photo & Video"
 msgstr "                  Fọ́tò & Fídíò                "
 
-#: /media/js/categories.js:17
+#: /media/js/categories.js:22
 msgid "Productivity"
 msgstr "                  Ìṣàgbéjádesí                "
 
-#: /media/js/categories.js:18
+#: /media/js/categories.js:23
 msgid "Reference"
 msgstr "                  Ìtọ́kasí                "
 
-#: /media/js/categories.js:19
+#: /media/js/categories.js:24
+msgid "Science & Tech"
+msgstr ""
+
+#: /media/js/categories.js:25
 msgid "Shopping"
 msgstr "Ìrajà"
 
-#: /media/js/categories.js:20
+#: /media/js/categories.js:26
 msgid "Social"
 msgstr "                  Ojúlùmọ̀                "
 
-#: /media/js/categories.js:21
+#: /media/js/categories.js:27
 msgid "Sports"
 msgstr "                  Eré Ìdárayá                "
 
-#: /media/js/categories.js:22
+#: /media/js/categories.js:28
 msgid "Travel"
 msgstr "                  Ìrìnàjò                "
 
-#: /media/js/categories.js:23
+#: /media/js/categories.js:29
 msgid "Utilities"
 msgstr "                  Àwọn Ohun àmúyẹ                "
 
-#: /media/js/apps.js:113
-msgid "not available for your region"
-msgstr ""
-
-#: /media/js/apps.js:118
-msgid "not available for your platform"
-msgstr ""
-
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
-msgid "All Platforms"
-msgstr ""
-
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
-msgid "Android Mobile"
-msgstr "                  Android Alágbeká                "
-
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
-msgid "Android Tablet"
-msgstr "                  Android Kọ̀ǹpútà Alogègé                "
-
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
-msgid "Desktop"
-msgstr "                  Àtẹ iṣẹ́                "
-
-#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
-msgid "Firefox OS"
-msgstr "                  Firefox OS                "
-
-#: /media/js/compat_filter.js:56
-msgid "My Device"
+#: /media/js/categories.js:30
+msgid "Weather"
 msgstr ""
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
@@ -881,25 +859,25 @@ msgstr ""
 msgid "websites"
 msgstr ""
 
-#. Esc 4 Home app desktop promo (bug 1166114).
-#: /media/js/desktop_promo.js:20
-msgid "Escape from the worst boss ever."
+#. Maya app desktop promo (bug 1170850).
+#: /media/js/desktop_promo.js:21
+msgid "Play this fantastic action puzzle game immediately."
 msgstr ""
 
-#: /media/js/desktop_promo.js:26
-msgid "Manage all your messages in one place."
+#: /media/js/desktop_promo.js:27
+msgid "Enjoy 15,000+ radio programs and podcasts."
 msgstr ""
 
-#: /media/js/desktop_promo.js:33
+#: /media/js/desktop_promo.js:34
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "                  Àwọn ìṣàfilọ́lẹ̀ Ìṣàgbéjádesí—Àtẹ iṣẹ́ Pàtàkì                "
 
-#: /media/js/desktop_promo.js:40
+#: /media/js/desktop_promo.js:41
 msgid "Games & Entertainment Apps—Desktop Essentials"
 msgstr "                  Àwọn Eré Ìdárayá & Àwọn ìṣàfilọ́lẹ̀ Ìdárayá—Àtẹ iṣẹ́ Pàtàkì                "
 
-#: /media/js/desktop_promo.js:46
-msgid "Save the girl, get the candy!"
+#: /media/js/desktop_promo.js:47
+msgid "Run for your life!"
 msgstr ""
 
 #: /media/js/edbrands.js:33
@@ -1180,9 +1158,58 @@ msgstr ""
 msgid "Unable to install packaged apps"
 msgstr "Kòle ṣàgbékalẹ̀ àwọn ìṣàfilọ́lẹ̀ ẹrù                "
 
+#: /media/js/installer_direct.js:178 /media/js/buttons.js:192
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "                  Mábinú, aní ìṣòro láti gba dátà ìṣàfilọ́lẹ̀ yíì. Jòwọ́ gbìyànjú nígbà míìràn.                "
+
 #: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
 msgid "App install error: {error}"
 msgstr "Àṣiṣe ìṣàgbékalẹ̀ ìṣàfilọ́lẹ̀: {àṣiṣe}                "
+
+#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "                  Ọ̀nà ìsanwó tí a fagilé.                "
+
+#: /media/js/buttons.js:117
+msgid "Purchasing"
+msgstr "                  Rírà                "
+
+#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
+msgid "Install"
+msgstr "                  Ṣàgbékalẹ̀                "
+
+#. App's install failed, but problem is temporary.
+#: /media/js/buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "                  Àgbékalẹ̀ kúnà. Jọ̀wọ́ gbìyànjú nígbà míìràn.                "
+
+#: /media/js/buttons.js:321 /media/js/buttons.js:417
+msgid "Installed"
+msgstr "                  Ṣàgbékalẹ̀                "
+
+#: /media/js/buttons.js:395
+msgid "free"
+msgstr ""
+
+#: /media/js/buttons.js:399
+msgid "Unavailable"
+msgstr "                  Kòsí                "
+
+#: /media/js/buttons.js:422
+msgid "Open website"
+msgstr ""
+
+#: /media/js/buttons.js:426
+msgid "Open app"
+msgstr ""
+
+#: /media/js/buttons.js:428
+msgid "Install for {price}"
+msgstr ""
+
+#: /media/js/buttons.js:434
+msgid "Open"
+msgstr ""
 
 #: /media/js/newsletter.js:72
 msgid "There was an error submitting your newsletter sign up request"
@@ -1202,6 +1229,50 @@ msgstr "Ọ̀nà ìsanwó kùnà. Tún gbìyànjú si.                "
 msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n} ìràwọ̀{n} àwọn ìràwọ̀                "
+
+#: /media/js/settings_app.js:94
+msgid "English"
+msgstr "Gẹ̀ẹ́sì                "
+
+#: /media/js/settings_app.js:95
+msgid "French"
+msgstr "Faransé                "
+
+#: /media/js/settings_app.js:96
+msgid "German"
+msgstr "German                "
+
+#: /media/js/settings_app.js:97
+msgid "Hungarian"
+msgstr "Hungarian                "
+
+#: /media/js/settings_app.js:98
+msgid "Indonesian"
+msgstr "Indonesian                "
+
+#: /media/js/settings_app.js:99
+msgid "Polish"
+msgstr "Polish                "
+
+#: /media/js/settings_app.js:100
+msgid "Portuguese"
+msgstr "Portuguese                "
+
+#: /media/js/settings_app.js:101
+msgid "Russian"
+msgstr "Russian                "
+
+#: /media/js/settings_app.js:102
+msgid "Spanish"
+msgstr "Spanish                "
+
+#: /media/js/settings_app.js:114
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "Mábinú, o kòsí lójú ìlà báyì. Jọ̀wọ́ gbìyànjú bóyá.                "
+
+#: /media/js/update_banner.js:24
+msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
+msgstr "Nígbà míìràn tí o bẹ̀rẹ̀ Ibiọjà ìṣàfilọ́lẹ̀ Firefox, warí ẹ̀yà tí aṣàfikún!                "
 
 #. The report is an abuse report for reviews.
 #: /media/js/reviews.js:35
@@ -1249,50 +1320,6 @@ msgstr "Àtúnyẹ́wò rẹ ni a túnṣe dáradára                "
 msgid "Sorry, there was an issue editing your review. Please try again later"
 msgstr "Mábinú, ìṣòro àtùnṣe wà nínu àtúnyẹ́wò rẹ. Jọ̀wọ́ gbìyànjú nígbà míìràn                "
 
-#: /media/js/settings_app.js:94
-msgid "English"
-msgstr "Gẹ̀ẹ́sì                "
-
-#: /media/js/settings_app.js:95
-msgid "French"
-msgstr "Faransé                "
-
-#: /media/js/settings_app.js:96
-msgid "German"
-msgstr "German                "
-
-#: /media/js/settings_app.js:97
-msgid "Hungarian"
-msgstr "Hungarian                "
-
-#: /media/js/settings_app.js:98
-msgid "Indonesian"
-msgstr "Indonesian                "
-
-#: /media/js/settings_app.js:99
-msgid "Polish"
-msgstr "Polish                "
-
-#: /media/js/settings_app.js:100
-msgid "Portuguese"
-msgstr "Portuguese                "
-
-#: /media/js/settings_app.js:101
-msgid "Russian"
-msgstr "Russian                "
-
-#: /media/js/settings_app.js:102
-msgid "Spanish"
-msgstr "Spanish                "
-
-#: /media/js/settings_app.js:114
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "Mábinú, o kòsí lójú ìlà báyì. Jọ̀wọ́ gbìyànjú bóyá.                "
-
-#: /media/js/update_banner.js:24
-msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr "Nígbà míìràn tí o bẹ̀rẹ̀ Ibiọjà ìṣàfilọ́lẹ̀ Firefox, warí ẹ̀yà tí aṣàfikún!                "
-
 #: /media/js/views/app.js:23
 msgid "App Detail"
 msgstr ""
@@ -1317,8 +1344,16 @@ msgstr "Àwọn Ìṣàtòpọ̀ Èdè                "
 msgid "Firefox OS {version}"
 msgstr "Firefox OS {ẹ̀yà}                "
 
-#: /media/js/views/newsletter_signup.js:16
+#: /media/js/views/newsletter_signup.js:11
 msgid "Newsletter Signup"
+msgstr ""
+
+#: /media/js/views/search.js:164
+msgid "Search Results"
+msgstr "Ìṣàwárí Àwọn Èsì                "
+
+#: /media/js/views/search.js:176
+msgid "Developer Listing"
 msgstr ""
 
 #: /media/js/views/settings.js:40
@@ -1328,14 +1363,6 @@ msgstr "Ìṣètò rẹ ti pamọ́ dáradára                "
 #: /media/js/views/settings.js:46
 msgid "Settings could not be saved"
 msgstr "Iṣètò ni a kòlè pamọ́                                "
-
-#: /media/js/views/settings.js:54
-msgid "Account Settings"
-msgstr "                  Àwọn ààtò Àkọọ́lẹ̀                "
-
-#: /media/js/views/search.js:162
-msgid "Search Results"
-msgstr "Ìṣàwárí Àwọn Èsì                "
 
 #: /media/js/views/website.js:11
 msgid "Website Detail"

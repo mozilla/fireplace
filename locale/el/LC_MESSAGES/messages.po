@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29T20:27:43.181Z\n"
+"POT-Creation-Date: 2015-06-17T16:39:58.456Z\n"
 "PO-Revision-Date: 2014-11-07 12:17+0000\n"
 "Last-Translator: Joseph <sirios2222@yahoo.gr>\n"
 "Language-Team: el\n"
@@ -26,14 +26,6 @@ msgstr "Δεν βρέθηκαν εφαρμογές."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Παρουσιάστηκε ένα σφάλμα διακομιστή. Παρακαλώ προσπαθήστε ξανά αργότερα."
 
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "Καμία εφαρμογή σε αυτή την κατηγορία"
-
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "Η κατηγορία που ζητήσατε δεν υπάρχει."
-
 #: /templates/desktop-promo.html:2
 msgid "Previous"
 msgstr ""
@@ -41,6 +33,14 @@ msgstr ""
 #: /templates/desktop-promo.html:16
 msgid "Next"
 msgstr "Επόμενο"
+
+#: /templates/category.html:32
+msgid "No apps in this category"
+msgstr "Καμία εφαρμογή σε αυτή την κατηγορία"
+
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "Η κατηγορία που ζητήσατε δεν υπάρχει."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -98,7 +98,7 @@ msgstr ""
 "Εκτός από όπου <a href=\"{legal_url}\" target=\"_blank\">σημειώνεται</a> διαφορετικά, το περιεχόμενο αυτού του ιστότοπου υπόκειται στους όρους της άδειας <a href=\"{cc_url}\" target=\"_blank"
 "\">Creative Commons Attribution Share-Alike License v3.0</a> ή νεότερης έκδοσης."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/index.html:79 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/privacy.html:2 /templates/app/index.html:79 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Πολιτική απορρήτου"
@@ -155,7 +155,7 @@ msgstr "Σύνδεση"
 msgid "Search Marketplace&hellip;"
 msgstr ""
 
-#: /templates/header.html:83 /templates/nav.html:35 /templates/settings.html:2
+#: /templates/header.html:83 /templates/nav.html:35 /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
@@ -179,12 +179,12 @@ msgstr "Πρέπει να χρησιμοποιείτε Firefox για να εγ�
 msgid "Download"
 msgstr "Λήψη"
 
-#: /templates/marketplace-update.html:2
-msgid "An update to Marketplace is available."
-msgstr ""
-
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
+msgstr ""
+
+#: /templates/marketplace-update.html:2
+msgid "An update to Marketplace is available."
 msgstr ""
 
 #: /templates/newsletter.html:3
@@ -303,6 +303,87 @@ msgstr ""
 msgid "Not enough statistics to show."
 msgstr ""
 
+#. <mkt-selected-text> will be a noun like "apps" or "sites".
+#: /templates/_includes/app_list_filters.html:14
+msgid "Display as"
+msgstr ""
+
+#: /templates/_includes/app_list_filters.html:15
+msgid "Toggle App Previews"
+msgstr ""
+
+#: /templates/_includes/app_list_filters.html:23
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr ""
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Βαθμολογία περιεχομένου"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Εγκαταστάθηκε!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Εκκίνηση αυτής της εφαρμογής από τον κατάλογο <b>Εφαρμογές</b>"
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Εκκίνηση της εφαρμογής από την <b> επιφάνεια εργασίας των Windows</b> ή από την <b>Εκκίνηση &#9658; Όλα τα προγράμματα"
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Εκκίνηση της εφαρμογής από την <b>dash</b>, <b>Επιλογή εφαρμογών</b>, ή το <b>Μενού Εφαρμογών</b>."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr ""
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr ""
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr ""
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr ""
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr ""
+
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
 msgstr ""
@@ -318,88 +399,6 @@ msgstr ""
 #: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
 msgid "Report Abuse"
 msgstr "Αναφορά κατάχρησης"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:24 /templates/website/index.html:13
-msgid "Description"
-msgstr "Περιγραφή"
-
-#: /templates/app/index.html:30 /templates/app/index.html:44 /templates/website/index.html:19
-msgid "View All"
-msgstr "Προβολή όλων"
-
-#: /templates/app/index.html:40
-msgid "Updates"
-msgstr "Ενημερώσεις"
-
-#: /templates/app/index.html:51
-msgid "Last updated"
-msgstr ""
-
-#: /templates/app/index.html:60
-msgid "Email Support"
-msgstr ""
-
-#: /templates/app/index.html:67
-msgid "Support Site"
-msgstr "Σελίδα υποστήριξης"
-
-#: /templates/app/index.html:73
-msgid "Homepage"
-msgstr "Αρχική σελίδα"
-
-#: /templates/app/index.html:86
-msgid "Statistics"
-msgstr "Στατιστικά"
-
-#: /templates/app/index.html:93
-msgid "Edit Listing"
-msgstr "Επεξεργασία καταχωρήσεων"
-
-#: /templates/app/index.html:101
-msgid "Approve / Reject"
-msgstr "Έγκριση / Απόρριψη"
-
-#: /templates/app/index.html:102
-msgid "Review History"
-msgstr "Ιστορικό κριτικών"
-
-#: /templates/app/index.html:119 /templates/ratings/main.html:15 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "Κριτικές"
-
-#: /templates/app/index.html:130
-msgid "App not yet reviewed"
-msgstr "Καμία αξιολόγηση για την εφαρμογή"
-
-#: /templates/app/index.html:149
-msgid "Premium version available"
-msgstr "Βασική έκδοση διαθέσιμη"
-
-#: /templates/app/index.html:167
-msgid "More Information"
-msgstr ""
-
-#: /templates/app/index.html:170
-msgid "Developer"
-msgstr ""
-
-#: /templates/app/index.html:174
-msgid "Compatibility"
-msgstr ""
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:177 /templates/app/index.html:184
-msgid ","
-msgstr ""
-
-#: /templates/app/index.html:189
-msgid "File Size"
-msgstr ""
-
-#: /templates/app/index.html:194
-msgid "Most Recent Version"
-msgstr ""
 
 #: /templates/app/privacy.html:8
 msgid "Back to app"
@@ -439,7 +438,7 @@ msgstr "Εμφάνιση όλων"
 msgid "Load more"
 msgstr ""
 
-#: /templates/_macros/previews.html:39 /templates/_macros/previews.html:42
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
 msgid "{app_name} screenshot"
 msgstr "Εικόνα {app_name}"
 
@@ -466,87 +465,6 @@ msgstr "Επισημάνθηκε για αξιολόγηση"
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Βαθμολογήθηκε με {stars} αστέρια από μέγιστο {maxstars}"
-
-#. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:14
-msgid "Display as"
-msgstr ""
-
-#: /templates/_includes/app_list_filters.html:15
-msgid "Toggle App Previews"
-msgstr ""
-
-#: /templates/_includes/app_list_filters.html:23
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr ""
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Βαθμολογία περιεχομένου"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr ""
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr ""
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr ""
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Εγκαταστάθηκε!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Εκκίνηση αυτής της εφαρμογής από τον κατάλογο <b>Εφαρμογές</b>"
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Εκκίνηση της εφαρμογής από την <b> επιφάνεια εργασίας των Windows</b> ή από την <b>Εκκίνηση &#9658; Όλα τα προγράμματα"
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Εκκίνηση της εφαρμογής από την <b>dash</b>, <b>Επιλογή εφαρμογών</b>, ή το <b>Μενού Εφαρμογών</b>."
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr ""
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] ""
-msgstr[1] ""
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -584,11 +502,11 @@ msgstr "Λυπούμαστε, πρέπει να είστε συνδεδεμέν�
 msgid "Try Again"
 msgstr "Δοκιμάστε ξανά"
 
-#: /templates/ratings/add.html:8 /templates/ratings/edit.html:3 /media/js/views/app/ratings/edit.js:14
+#: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "Επεξεργασία κριτικής"
 
-#: /templates/ratings/add.html:8 /templates/ratings/add.html:45 /media/js/views/app/ratings/add.js:25
+#: /templates/ratings/add.html:8 /templates/ratings/add.html:46 /media/js/views/app/ratings/add.js:25
 msgid "Leave a Review"
 msgstr ""
 
@@ -642,13 +560,25 @@ msgstr "Μη έγκυρη γλώσσα/διάλογος"
 msgid "Misplaced bug report or support request"
 msgstr "Εσφαλμένα καταχωρηθείσα αναφορά σφάλματος ή αίτηση υποστήριξης"
 
-#: /templates/ratings/main.html:39
+#: /templates/ratings/main.html:16 /templates/app/index.html:119 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "Κριτικές"
+
+#: /templates/ratings/main.html:41
 msgid "This app has no reviews."
 msgstr ""
 
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Αξιολόγηση εφαρμογής"
+
+#: /templates/website/index.html:13 /templates/app/index.html:24
+msgid "Description"
+msgstr "Περιγραφή"
+
+#: /templates/website/index.html:19 /templates/app/index.html:30 /templates/app/index.html:44
+msgid "View All"
+msgstr "Προβολή όλων"
 
 #. This goes before a list of categories.
 #: /templates/website/index.html:31
@@ -661,6 +591,75 @@ msgstr ""
 
 #: /templates/website/index.html:45 /templates/website/issue.html:14
 msgid "Report an issue"
+msgstr ""
+
+#: /templates/app/index.html:40
+msgid "Updates"
+msgstr "Ενημερώσεις"
+
+#: /templates/app/index.html:51
+msgid "Last updated"
+msgstr ""
+
+#: /templates/app/index.html:60
+msgid "Email Support"
+msgstr ""
+
+#: /templates/app/index.html:67
+msgid "Support Site"
+msgstr "Σελίδα υποστήριξης"
+
+#: /templates/app/index.html:73
+msgid "Homepage"
+msgstr "Αρχική σελίδα"
+
+#: /templates/app/index.html:86
+msgid "Statistics"
+msgstr "Στατιστικά"
+
+#: /templates/app/index.html:93
+msgid "Edit Listing"
+msgstr "Επεξεργασία καταχωρήσεων"
+
+#: /templates/app/index.html:101
+msgid "Approve / Reject"
+msgstr "Έγκριση / Απόρριψη"
+
+#: /templates/app/index.html:102
+msgid "Review History"
+msgstr "Ιστορικό κριτικών"
+
+#: /templates/app/index.html:130
+msgid "App not yet reviewed"
+msgstr "Καμία αξιολόγηση για την εφαρμογή"
+
+#: /templates/app/index.html:149
+msgid "Premium version available"
+msgstr "Βασική έκδοση διαθέσιμη"
+
+#: /templates/app/index.html:167
+msgid "More Information"
+msgstr ""
+
+#: /templates/app/index.html:170
+msgid "Developer"
+msgstr ""
+
+#: /templates/app/index.html:174
+msgid "Compatibility"
+msgstr ""
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:177 /templates/app/index.html:184
+msgid ","
+msgstr ""
+
+#: /templates/app/index.html:189
+msgid "File Size"
+msgstr ""
+
+#: /templates/app/index.html:194
+msgid "Most Recent Version"
 msgstr ""
 
 #: /templates/website/issue.html:5
@@ -679,53 +678,36 @@ msgstr ""
 msgid "Report an Issue"
 msgstr ""
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Η πληρωμή ακυρώθηκε."
-
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "Αγορά"
-
-#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
-msgid "Install"
-msgstr "Εγκατάσταση"
-
-#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+#: /media/js/apps.js:114
+msgid "not available for your region"
 msgstr ""
 
-#. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "Η εγκατάσταση απέτυχε. Δοκιμάστε ξανά αργότερα."
-
-#: /media/js/buttons.js:321 /media/js/buttons.js:417
-msgid "Installed"
+#: /media/js/apps.js:119
+msgid "not available for your platform"
 msgstr ""
 
-#: /media/js/buttons.js:395
-msgid "free"
+#: /media/js/compat_filter.js:50 /media/js/compat_filter.js:59
+msgid "All Platforms"
 msgstr ""
 
-#: /media/js/buttons.js:399
-msgid "Unavailable"
-msgstr "Μη διαθέσιμο"
-
-#: /media/js/buttons.js:422
-msgid "Open website"
+#: /media/js/compat_filter.js:51 /media/js/compat_filter.js:68
+msgid "Android Mobile"
 msgstr ""
 
-#: /media/js/buttons.js:426
-msgid "Open app"
+#: /media/js/compat_filter.js:52 /media/js/compat_filter.js:69
+msgid "Android Tablet"
 msgstr ""
 
-#: /media/js/buttons.js:428
-msgid "Install for {price}"
+#: /media/js/compat_filter.js:53 /media/js/compat_filter.js:66
+msgid "Desktop"
 msgstr ""
 
-#: /media/js/buttons.js:434
-msgid "Open"
+#: /media/js/compat_filter.js:54 /media/js/compat_filter.js:67
+msgid "Firefox OS"
+msgstr ""
+
+#: /media/js/compat_filter.js:63
+msgid "My Device"
 msgstr ""
 
 #: /media/js/categories.js:6
@@ -733,8 +715,8 @@ msgid "Games"
 msgstr "Παιχνίδια"
 
 #: /media/js/categories.js:7
-msgid "Books"
-msgstr "Βιβλία"
+msgid "Books & Comics"
+msgstr ""
 
 #: /media/js/categories.js:8
 msgid "Business"
@@ -749,87 +731,83 @@ msgid "Entertainment"
 msgstr "Ψυχαγωγία"
 
 #: /media/js/categories.js:11
+msgid "Food & Drink"
+msgstr ""
+
+#: /media/js/categories.js:12
 msgid "Health & Fitness"
 msgstr "Υγεία & φυσική κατάσταση"
 
-#: /media/js/categories.js:12
+#: /media/js/categories.js:13
+msgid "Humor"
+msgstr ""
+
+#: /media/js/categories.js:14
+msgid "Internet"
+msgstr ""
+
+#: /media/js/categories.js:15
+msgid "Kids"
+msgstr ""
+
+#: /media/js/categories.js:16
 msgid "Lifestyle"
 msgstr "Lifestyle"
 
-#: /media/js/categories.js:13
+#: /media/js/categories.js:17
 msgid "Maps & Navigation"
 msgstr "Χάρτες & πλοήγηση"
 
-#: /media/js/categories.js:14
+#: /media/js/categories.js:18
 msgid "Music"
 msgstr "Μουσική"
 
-#: /media/js/categories.js:15
-msgid "News & Weather"
-msgstr "Ειδήσεις & καιρός"
+#: /media/js/categories.js:19
+msgid "News"
+msgstr ""
 
-#: /media/js/categories.js:16
+#: /media/js/categories.js:20
+msgid "Personalization"
+msgstr ""
+
+#: /media/js/categories.js:21
 msgid "Photo & Video"
 msgstr "Φωτογραφίες & βίντεο"
 
-#: /media/js/categories.js:17
+#: /media/js/categories.js:22
 msgid "Productivity"
 msgstr "Παραγωγικότητα"
 
-#: /media/js/categories.js:18
+#: /media/js/categories.js:23
 msgid "Reference"
 msgstr "Αναφοράς"
 
-#: /media/js/categories.js:19
+#: /media/js/categories.js:24
+msgid "Science & Tech"
+msgstr ""
+
+#: /media/js/categories.js:25
 msgid "Shopping"
 msgstr "Αγορές"
 
-#: /media/js/categories.js:20
+#: /media/js/categories.js:26
 msgid "Social"
 msgstr "Κοινωνική δικτύωση"
 
-#: /media/js/categories.js:21
+#: /media/js/categories.js:27
 msgid "Sports"
 msgstr "Αθλήματα"
 
-#: /media/js/categories.js:22
+#: /media/js/categories.js:28
 msgid "Travel"
 msgstr "Ταξίδια"
 
-#: /media/js/categories.js:23
+#: /media/js/categories.js:29
 msgid "Utilities"
 msgstr "Βοηθήματα"
 
-#: /media/js/apps.js:113
-msgid "not available for your region"
-msgstr ""
-
-#: /media/js/apps.js:118
-msgid "not available for your platform"
-msgstr ""
-
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
-msgid "All Platforms"
-msgstr ""
-
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
-msgid "Android Mobile"
-msgstr ""
-
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
-msgid "Android Tablet"
-msgstr ""
-
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
-msgid "Desktop"
-msgstr ""
-
-#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
-msgid "Firefox OS"
-msgstr ""
-
-#: /media/js/compat_filter.js:56
-msgid "My Device"
+#: /media/js/categories.js:30
+msgid "Weather"
 msgstr ""
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
@@ -885,26 +863,26 @@ msgstr ""
 msgid "websites"
 msgstr ""
 
-#. Esc 4 Home app desktop promo (bug 1166114).
-#: /media/js/desktop_promo.js:20
-msgid "Escape from the worst boss ever."
-msgstr "Ξεφύγετε από το χειρότερο αφεντικό."
+#. Maya app desktop promo (bug 1170850).
+#: /media/js/desktop_promo.js:21
+msgid "Play this fantastic action puzzle game immediately."
+msgstr ""
 
-#: /media/js/desktop_promo.js:26
-msgid "Manage all your messages in one place."
-msgstr "Διαχειριστείτε όλα σας τα μηνύματα από ένα σημείο. "
+#: /media/js/desktop_promo.js:27
+msgid "Enjoy 15,000+ radio programs and podcasts."
+msgstr ""
 
-#: /media/js/desktop_promo.js:33
+#: /media/js/desktop_promo.js:34
 msgid "Productivity Apps—Desktop Essentials"
 msgstr "Εφαρμογές παραγωγικότητας—Βασικές επιτραπέζιες εφαρμογές"
 
-#: /media/js/desktop_promo.js:40
+#: /media/js/desktop_promo.js:41
 msgid "Games & Entertainment Apps—Desktop Essentials"
 msgstr "Εφαρμογές παιχνιδιών και ψυχαγωγίας—Βασικές επιτραπέζιες εφαρμογές"
 
-#: /media/js/desktop_promo.js:46
-msgid "Save the girl, get the candy!"
-msgstr "Σώστε το κορίτσι, κερδίστε γλυκά!"
+#: /media/js/desktop_promo.js:47
+msgid "Run for your life!"
+msgstr ""
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1238,9 +1216,58 @@ msgstr ""
 msgid "Unable to install packaged apps"
 msgstr "Αδυναμία εγκατάστασης του πακέτου εφαρμογής"
 
+#: /media/js/installer_direct.js:178 /media/js/buttons.js:192
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr ""
+
 #: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
 msgid "App install error: {error}"
 msgstr "Σφάλμα εγκατάστασης εφαρμογής: {error}"
+
+#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Η πληρωμή ακυρώθηκε."
+
+#: /media/js/buttons.js:117
+msgid "Purchasing"
+msgstr "Αγορά"
+
+#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
+msgid "Install"
+msgstr "Εγκατάσταση"
+
+#. App's install failed, but problem is temporary.
+#: /media/js/buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "Η εγκατάσταση απέτυχε. Δοκιμάστε ξανά αργότερα."
+
+#: /media/js/buttons.js:321 /media/js/buttons.js:417
+msgid "Installed"
+msgstr ""
+
+#: /media/js/buttons.js:395
+msgid "free"
+msgstr ""
+
+#: /media/js/buttons.js:399
+msgid "Unavailable"
+msgstr "Μη διαθέσιμο"
+
+#: /media/js/buttons.js:422
+msgid "Open website"
+msgstr ""
+
+#: /media/js/buttons.js:426
+msgid "Open app"
+msgstr ""
+
+#: /media/js/buttons.js:428
+msgid "Install for {price}"
+msgstr ""
+
+#: /media/js/buttons.js:434
+msgid "Open"
+msgstr ""
 
 #: /media/js/newsletter.js:72
 msgid "There was an error submitting your newsletter sign up request"
@@ -1261,6 +1288,50 @@ msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n} αστέρι"
 msgstr[1] "{n} αστέρια"
+
+#: /media/js/settings_app.js:94
+msgid "English"
+msgstr ""
+
+#: /media/js/settings_app.js:95
+msgid "French"
+msgstr ""
+
+#: /media/js/settings_app.js:96
+msgid "German"
+msgstr ""
+
+#: /media/js/settings_app.js:97
+msgid "Hungarian"
+msgstr ""
+
+#: /media/js/settings_app.js:98
+msgid "Indonesian"
+msgstr ""
+
+#: /media/js/settings_app.js:99
+msgid "Polish"
+msgstr ""
+
+#: /media/js/settings_app.js:100
+msgid "Portuguese"
+msgstr ""
+
+#: /media/js/settings_app.js:101
+msgid "Russian"
+msgstr ""
+
+#: /media/js/settings_app.js:102
+msgid "Spanish"
+msgstr ""
+
+#: /media/js/settings_app.js:114
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "Λυπούμαστε αλλά δεν υπάρχει σύνδεση. Προσπαθήστε ξανά αργότερα."
+
+#: /media/js/update_banner.js:24
+msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
+msgstr ""
 
 #. The report is an abuse report for reviews.
 #: /media/js/reviews.js:35
@@ -1308,50 +1379,6 @@ msgstr ""
 msgid "Sorry, there was an issue editing your review. Please try again later"
 msgstr ""
 
-#: /media/js/settings_app.js:94
-msgid "English"
-msgstr ""
-
-#: /media/js/settings_app.js:95
-msgid "French"
-msgstr ""
-
-#: /media/js/settings_app.js:96
-msgid "German"
-msgstr ""
-
-#: /media/js/settings_app.js:97
-msgid "Hungarian"
-msgstr ""
-
-#: /media/js/settings_app.js:98
-msgid "Indonesian"
-msgstr ""
-
-#: /media/js/settings_app.js:99
-msgid "Polish"
-msgstr ""
-
-#: /media/js/settings_app.js:100
-msgid "Portuguese"
-msgstr ""
-
-#: /media/js/settings_app.js:101
-msgid "Russian"
-msgstr ""
-
-#: /media/js/settings_app.js:102
-msgid "Spanish"
-msgstr ""
-
-#: /media/js/settings_app.js:114
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "Λυπούμαστε αλλά δεν υπάρχει σύνδεση. Προσπαθήστε ξανά αργότερα."
-
-#: /media/js/update_banner.js:24
-msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr ""
-
 #: /media/js/views/app.js:23
 msgid "App Detail"
 msgstr ""
@@ -1376,8 +1403,16 @@ msgstr ""
 msgid "Firefox OS {version}"
 msgstr ""
 
-#: /media/js/views/newsletter_signup.js:16
+#: /media/js/views/newsletter_signup.js:11
 msgid "Newsletter Signup"
+msgstr ""
+
+#: /media/js/views/search.js:164
+msgid "Search Results"
+msgstr "Αποτελέσματα αναζήτησης"
+
+#: /media/js/views/search.js:176
+msgid "Developer Listing"
 msgstr ""
 
 #: /media/js/views/settings.js:40
@@ -1387,14 +1422,6 @@ msgstr ""
 #: /media/js/views/settings.js:46
 msgid "Settings could not be saved"
 msgstr "Δεν ήταν δυνατή η αποθήκευση των ρυθμίσεων"
-
-#: /media/js/views/settings.js:54
-msgid "Account Settings"
-msgstr "Ρυθμίσεις λογαριασμού"
-
-#: /media/js/views/search.js:162
-msgid "Search Results"
-msgstr "Αποτελέσματα αναζήτησης"
 
 #: /media/js/views/website.js:11
 msgid "Website Detail"
