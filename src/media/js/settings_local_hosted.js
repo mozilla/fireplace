@@ -13,6 +13,6 @@ define('settings_local',
         iframe_potatolytics_src: origin + '/potatolytics.html',
         potatolytics_enabled: false,
         tracking_enabled: true,
-        meowEnabled: origin.indexOf('altdev') !== -1
+        meowEnabled: origin.indexOf('dev') !== -1
     };
 });
