@@ -26,8 +26,8 @@ App listing filters.
 }
 
 .app-list-filters-sort {
+    border-bottom: 1px solid $greyscale-light-grey;
     display: none;
-    margin-bottom: 5px;
     width: 100%;
 
     +media--base-tablet() {
@@ -46,19 +46,20 @@ App listing filters.
         ellipsis();
         font-size: 15px;
         font-weight: 300;
-        height: 29px;
-        line-height: 29px;
-        margin-top: 7px;
+        height: 40px;
+        line-height: 40px;
         position: relative;
         text-align: center;
         text-decoration: none;
         text-shadow: 0 .5px 1px $white;
-        z-index: 2;
         vertical-align: middle;
+        width: 50%;
+        z-index: 2;
 
         +media--base-tablet() {
             margin-top: 0;
             text-shadow: none;
+            width: auto;
         }
         &:hover {
             text-decoration: underline;
@@ -73,12 +74,14 @@ App listing filters.
             background-color: $white;
         }
         + a {
-            +ltr() {
-                margin-left: 30px;
-            }
-            +rtl() {
-                margin-right: 30px;
-            }
+            +media--base-tablet() {
+                +ltr() {
+                    margin-left: 30px;
+                }
+                +rtl() {
+                    margin-right: 30px;
+                }
+                }
         }
     }
 }
@@ -90,10 +93,6 @@ App listing filters.
 
     +media--base-tablet() {
         margin-top: 15px;
-
-        > div {
-            float: left;
-        }
     }
 }
 
@@ -138,7 +137,7 @@ App listing filters.
     }
 }
 
-[data-meow--enabled="false"] .app-list-filters {
+.app-list-filters {
     display: none;
 
     +media--base-tablet() {
