@@ -201,11 +201,13 @@ mkt-nav-child {
     border-width: 0 2px 0 0;
     cursor pointer
     display: block;
+    hambacker($greyscale-white);
+    hambacker-back();
     height: $nav--header-height;
     left: -1 * $nav--width;
     overflow: hidden;
+    padding: 0 0 0 22px;
     position: absolute;
-    padding-top: $nav--header-height;
     top: 0;
     transition: unquote($nav--transition);
     width: $nav--width;
@@ -213,14 +215,6 @@ mkt-nav-child {
 
     &:active:not([disabled]) {
         background: $color--nav--child-back;
-    }
-    &:before {
-        content: url(../img/nav/back.svg);
-        height: 25px;
-        position: absolute;
-        top: (($nav--header-height - 25px) / 2);
-        right: 15px;
-        width: 25px
     }
     +nav--subnav-visible() {
         transform: translate3d($nav--width, 0, 0);
