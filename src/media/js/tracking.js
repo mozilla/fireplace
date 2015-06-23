@@ -62,6 +62,9 @@ define('tracking',
             clientId: clientID,
         });
 
+        // Anonymize IP address.
+        GA('set', 'anonymizeIp', true);
+
         // Don't abort if not http/https.
         GA('set', 'checkProtocolTask', function() {});
 
