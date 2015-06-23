@@ -20,6 +20,7 @@ define('tests/unit/content_filter',
             device_platform: function() { return 'desktop'; },
             device_formfactor: function() { return ''; },
             device_type: function() { return 'desktop'; },
+            os: {type: 'desktop'},
         });
     }
 
@@ -28,7 +29,8 @@ define('tests/unit/content_filter',
             device_platform: function() { return 'firefoxos'; },
             device_formfactor: function() { return ''; },
             device_type: function() { return 'firefoxos'; },
-            firefoxOS: true
+            firefoxOS: true,
+            os: {},
         });
     }
 
@@ -55,6 +57,28 @@ define('tests/unit/content_filter',
             .run(['content_filter'], function(contentFilter) {
                 var args = contentFilter.apiArgs('search');
                 assert.equal(args.doc_type, 'webapp');
+            }));
+
+        it('is enabled for mobile',
+            helpers
+            .injector(
+                firefoxOSCapabilities,
+                noStorage,
+                helpers.mockSettings({meowEnabled: true})
+            )
+            .run(['content_filter'], function(contentFilter) {
+                assert(contentFilter.enabled, 'content filter on mobile');
+            }));
+
+        it('is disabled for desktop',
+            helpers
+            .injector(
+                desktopCapabilities,
+                noStorage,
+                helpers.mockSettings({meowEnabled: true})
+            )
+            .run(['content_filter'], function(contentFilter) {
+                assert(!contentFilter.enabled, 'content filter off desktop');
             }));
     });
 });
