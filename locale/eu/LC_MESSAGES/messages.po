@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-17T16:39:58.456Z\n"
+"POT-Creation-Date: 2015-06-24T20:27:38.101Z\n"
 "PO-Revision-Date: 2015-06-17 22:23+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: 89578-OEM-7332157-00211\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1434579794.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:20
+#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "Zabaldu"
 
@@ -27,6 +27,14 @@ msgstr "Ez da aplikaziorik aurkitu."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Zerbitzariaren barne-errore bat gertatu da. Saiatu berriro geroago."
 
+#: /templates/category.html:32 /templates/search.html:62
+msgid "No results found"
+msgstr "Ez da emaitzarik aurkitu"
+
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "Eskatutako kategoria ez da existitzen."
+
 #: /templates/desktop-promo.html:2
 msgid "Previous"
 msgstr "Aurrekoa"
@@ -34,14 +42,6 @@ msgstr "Aurrekoa"
 #: /templates/desktop-promo.html:16
 msgid "Next"
 msgstr "Hurrengoa"
-
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "Ez dago aplikaziorik kategoria honetan"
-
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "Eskatutako kategoria ez da existitzen."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -67,7 +67,7 @@ msgstr "Bidali iritzia"
 msgid "Get Help"
 msgstr "Lortu laguntza"
 
-#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:30 /media/js/views/feedback.js:50
+#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
 msgid "Feedback"
 msgstr "Iritzia"
 
@@ -99,7 +99,7 @@ msgstr ""
 "Besterik <a href=\"{legal_url}\" target=\"_blank\">adierazi</a> ezean, gune honetako edukia <a href=\"{cc_url}\" target=\"_blank\">Creative Commonsen Aitortu-PartekatuBerdin v3.0</a> edo beste "
 "edozein bertsio berriagoren lizentziapean dago."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/privacy.html:2 /templates/app/index.html:79 /media/js/views/privacy.js:9
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/index.html:79 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Pribatutasun-politika"
@@ -112,6 +112,10 @@ msgstr "Erabiltzeko baldintzak"
 msgid "Report Trademark Abuse"
 msgstr "Eman markaren erabilera okerraren berri"
 
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Arakatzeko gehiago"
+
 #: /templates/header.html:28
 msgid "Toggle Menu"
 msgstr "Erakutsi/ezkutatu menua"
@@ -120,11 +124,11 @@ msgstr "Erakutsi/ezkutatu menua"
 msgid "Home"
 msgstr "Hasiera"
 
-#: /templates/header.html:41 /templates/nav.html:23 /templates/_includes/app_list_filters.html:5 /media/js/views/popular.js:9
+#: /templates/header.html:41 /templates/nav.html:23 /templates/_includes/app_list_filters.html:27 /media/js/views/popular.js:9
 msgid "Popular"
 msgstr "Ezagunenak"
 
-#: /templates/header.html:42 /templates/nav.html:24 /templates/_includes/app_list_filters.html:10 /media/js/views/new.js:8
+#: /templates/header.html:42 /templates/nav.html:24 /templates/_includes/app_list_filters.html:32 /media/js/views/new.js:8
 msgid "New"
 msgstr "Berriak"
 
@@ -144,11 +148,11 @@ msgstr "Erakutsi/ezkutatu bilatzailea"
 msgid "Toggle Settings Menu"
 msgstr "Erakutsi/ezkutatu ezarpenen menua"
 
-#: /templates/header.html:56 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:43
+#: /templates/header.html:56 /templates/nav.html:30 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "Eman izena"
 
-#: /templates/header.html:58 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:44
+#: /templates/header.html:58 /templates/nav.html:32 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr "Sartu"
 
@@ -156,21 +160,17 @@ msgstr "Sartu"
 msgid "Search Marketplace&hellip;"
 msgstr "Bilatu Marketplace-en&hellip;"
 
-#: /templates/header.html:83 /templates/nav.html:35 /templates/settings.html:2 /media/js/views/settings.js:54
+#: /templates/header.html:83 /templates/nav.html:34 /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Settings"
 msgstr "Ezarpenak"
 
-#: /templates/header.html:84 /templates/nav.html:37 /templates/purchases.html:6 /media/js/views/purchases.js:10
+#: /templates/header.html:84 /templates/nav.html:36 /templates/purchases.html:6 /media/js/views/purchases.js:10
 msgid "My Apps"
 msgstr "Nire aplikazioak"
 
 #: /templates/header.html:86 /templates/nav.html:39 /templates/settings.html:45
 msgid "Sign Out"
 msgstr "Amaitu saioa"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Arakatzeko gehiago"
 
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
@@ -228,23 +228,19 @@ msgstr "Ez duzu aplikaziorik"
 msgid "Oh no!"
 msgstr "O ez!"
 
-#: /templates/search.html:19
+#: /templates/search.html:7
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
 msgstr[0] "Emaitza <b>{n}</b>"
 msgstr[1] "<b>{n}</b> emaitza"
 
-#: /templates/search.html:23
+#: /templates/search.html:11
 msgid "<b>\"{search_query}\"</b> returned {n} result"
 msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
 msgstr[0] "<b>\"{search_query}\"</b> bilaketak emaitza {n} itzuli du"
 msgstr[1] "<b>\"{search_query}\"</b> bilaketak {n} emaitza itzuli ditu"
 
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Ez da emaitzarik aurkitu"
-
-#: /templates/search.html:61
+#: /templates/search.html:68
 msgid "No results found, try again later"
 msgstr "Ez da emaitzarik aurkitu, saiatu berriro geroago"
 
@@ -305,17 +301,17 @@ msgid "Not enough statistics to show."
 msgstr "Ez dago erakusteko behar beste estatistika."
 
 #. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:14
+#: /templates/_includes/app_list_filters.html:6
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr "Erakutsi <mkt-selected-text></mkt-selected-text>"
+
+#: /templates/_includes/app_list_filters.html:36
 msgid "Display as"
 msgstr "Erakutsi honela"
 
-#: /templates/_includes/app_list_filters.html:15
+#: /templates/_includes/app_list_filters.html:37
 msgid "Toggle App Previews"
 msgstr "Erakutsi/ezkutatu aplikazioen aurrebistak"
-
-#: /templates/_includes/app_list_filters.html:23
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr "Erakutsi <mkt-selected-text></mkt-selected-text>"
 
 #: /templates/_includes/back_to_app.html:5
 msgid "Back to {app}"
@@ -339,6 +335,10 @@ msgstr "Baliteke zure Mac-eko konfigurazioak Mac App Store-etik ez datozen aplik
 msgid "Learn how to change them."
 msgstr "Ikasi nola aldatu ezarpenok."
 
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "Erakutsi dena honako: <mkt-selected-text></mkt-selected-text>"
+
 #: /templates/_includes/post_install_message.html:2
 msgid "Installed!"
 msgstr "Instalatuta!"
@@ -354,16 +354,6 @@ msgstr "Abiarazi aplikazio hau <b>Windows-eko mahaigainetik</b> edo <b>Hasi &#96
 #: /templates/_includes/post_install_message.html:11
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Abiarazi aplikazio hau <b>atrakagarri</b>tik, <b>Aplikazio-hautatzailetik</b> edo <b>Aplikazioen menutik</b>."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "Erakutsi dena honako: <mkt-selected-text></mkt-selected-text>"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "Balorazio 1"
-msgstr[1] "{numReviews} balorazio"
 
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
@@ -385,33 +375,11 @@ msgstr "Hasi saioa baloratzeko"
 msgid "Read all reviews"
 msgstr "Irakurri balorazio guztiak"
 
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr "Zerbaiten berri eman nahi?"
-
-#: /templates/app/abuse.html:6
-msgid "Let us know if you find any issues regarding abuse about this app."
-msgstr "Esaguzu aplikazio honen inguruan erabilera okerren bat aurkitzen baduzu."
-
-#: /templates/app/abuse.html:13
-msgid "Submit Report"
-msgstr "Bidali salaketa"
-
-#: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
-msgid "Report Abuse"
-msgstr "Eman erabilera okerren berri"
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Itzuli aplikaziora"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Pribatutasun-politika kargatzen..."
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Eskerrik asko erosteagatik"
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "Balorazio 1"
+msgstr[1] "{numReviews} balorazio"
 
 #: /templates/_macros/app_tile.html:113
 msgid "Review"
@@ -466,6 +434,116 @@ msgstr "Baloratzeko markatua"
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "{maxstars} izarretatik {stars} ditu"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr "Zerbaiten berri eman nahi?"
+
+#: /templates/app/abuse.html:6
+msgid "Let us know if you find any issues regarding abuse about this app."
+msgstr "Esaguzu aplikazio honen inguruan erabilera okerren bat aurkitzen baduzu."
+
+#: /templates/app/abuse.html:13
+msgid "Submit Report"
+msgstr "Bidali salaketa"
+
+#: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
+msgid "Report Abuse"
+msgstr "Eman erabilera okerren berri"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:24 /templates/website/index.html:13
+msgid "Description"
+msgstr "Deskribapena"
+
+#: /templates/app/index.html:30 /templates/app/index.html:44 /templates/website/index.html:19
+msgid "View All"
+msgstr "Ikusi guztiak"
+
+#: /templates/app/index.html:40
+msgid "Updates"
+msgstr "Eguneratzeak"
+
+#: /templates/app/index.html:51
+msgid "Last updated"
+msgstr "Azkena eguneratuak"
+
+#: /templates/app/index.html:60
+msgid "Email Support"
+msgstr "Posta bidezko laguntza"
+
+#: /templates/app/index.html:67
+msgid "Support Site"
+msgstr "Laguntzarako gunea"
+
+#: /templates/app/index.html:73
+msgid "Homepage"
+msgstr "Webgunea"
+
+#: /templates/app/index.html:86
+msgid "Statistics"
+msgstr "Estatistikak"
+
+#: /templates/app/index.html:93
+msgid "Edit Listing"
+msgstr "Zerrendak editatu"
+
+#: /templates/app/index.html:101
+msgid "Approve / Reject"
+msgstr "Onartu / Baztertu"
+
+#: /templates/app/index.html:102
+msgid "Review History"
+msgstr "Balorazioen historia"
+
+#: /templates/app/index.html:119 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "Balorazioak"
+
+#: /templates/app/index.html:130
+msgid "App not yet reviewed"
+msgstr "Aplikazioa oraindik ez da baloratu"
+
+#: /templates/app/index.html:149
+msgid "Premium version available"
+msgstr "Premium bertsioa eskuragarri dago"
+
+#: /templates/app/index.html:167
+msgid "More Information"
+msgstr "Informazio gehiago"
+
+#: /templates/app/index.html:170
+msgid "Developer"
+msgstr "Garatzailea"
+
+#: /templates/app/index.html:174
+msgid "Compatibility"
+msgstr "Bateragarritasuna"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:177 /templates/app/index.html:184
+msgid ","
+msgstr ","
+
+#: /templates/app/index.html:189
+msgid "File Size"
+msgstr "Fitxategi-tamaina"
+
+#: /templates/app/index.html:194
+msgid "Most Recent Version"
+msgstr "Azken bertsioa"
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Eskerrik asko erosteagatik"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Itzuli aplikaziora"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Pribatutasun-politika kargatzen..."
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -563,10 +641,6 @@ msgstr "Hizkera/elkarrizketa desegokia"
 msgid "Misplaced bug report or support request"
 msgstr "Programa-errorearen txostena edo laguntza-eskarera lekuz kanpo dago"
 
-#: /templates/ratings/main.html:16 /templates/app/index.html:119 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "Balorazioak"
-
 #: /templates/ratings/main.html:41
 msgid "This app has no reviews."
 msgstr "Aplikazio honek ez du baloraziorik."
@@ -574,14 +648,6 @@ msgstr "Aplikazio honek ez du baloraziorik."
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Aplikazioaren balorazioa"
-
-#: /templates/website/index.html:13 /templates/app/index.html:24
-msgid "Description"
-msgstr "Deskribapena"
-
-#: /templates/website/index.html:19 /templates/app/index.html:30 /templates/app/index.html:44
-msgid "View All"
-msgstr "Ikusi guztiak"
 
 #. This goes before a list of categories.
 #: /templates/website/index.html:31
@@ -595,75 +661,6 @@ msgstr "Webgune-zerrenda honetan zerbait oker edo eguneratu gabe dago?"
 #: /templates/website/index.html:45 /templates/website/issue.html:14
 msgid "Report an issue"
 msgstr "Eman arazo baten berri"
-
-#: /templates/app/index.html:40
-msgid "Updates"
-msgstr "Eguneratzeak"
-
-#: /templates/app/index.html:51
-msgid "Last updated"
-msgstr "Azkena eguneratuak"
-
-#: /templates/app/index.html:60
-msgid "Email Support"
-msgstr "Posta bidezko laguntza"
-
-#: /templates/app/index.html:67
-msgid "Support Site"
-msgstr "Laguntzarako gunea"
-
-#: /templates/app/index.html:73
-msgid "Homepage"
-msgstr "Webgunea"
-
-#: /templates/app/index.html:86
-msgid "Statistics"
-msgstr "Estatistikak"
-
-#: /templates/app/index.html:93
-msgid "Edit Listing"
-msgstr "Zerrendak editatu"
-
-#: /templates/app/index.html:101
-msgid "Approve / Reject"
-msgstr "Onartu / Baztertu"
-
-#: /templates/app/index.html:102
-msgid "Review History"
-msgstr "Balorazioen historia"
-
-#: /templates/app/index.html:130
-msgid "App not yet reviewed"
-msgstr "Aplikazioa oraindik ez da baloratu"
-
-#: /templates/app/index.html:149
-msgid "Premium version available"
-msgstr "Premium bertsioa eskuragarri dago"
-
-#: /templates/app/index.html:167
-msgid "More Information"
-msgstr "Informazio gehiago"
-
-#: /templates/app/index.html:170
-msgid "Developer"
-msgstr "Garatzailea"
-
-#: /templates/app/index.html:174
-msgid "Compatibility"
-msgstr "Bateragarritasuna"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:177 /templates/app/index.html:184
-msgid ","
-msgstr ","
-
-#: /templates/app/index.html:189
-msgid "File Size"
-msgstr "Fitxategi-tamaina"
-
-#: /templates/app/index.html:194
-msgid "Most Recent Version"
-msgstr "Azken bertsioa"
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
@@ -688,6 +685,55 @@ msgstr "ez dago eskuragarri zure eskualdean"
 #: /media/js/apps.js:119
 msgid "not available for your platform"
 msgstr "ez dago eskuragarri zure plataformarako"
+
+#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Ordainketa bertan behera utzita."
+
+#: /media/js/buttons.js:117
+msgid "Purchasing"
+msgstr "Erosten"
+
+#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
+msgid "Install"
+msgstr "Instalatu"
+
+#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Sentitzen dugu, baina arazoak ditugu aplikazioaren datuak eskuratzean. Saiatu berriz geroago."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "Huts egin du instalatzean. Saiatu berriro geroago."
+
+#: /media/js/buttons.js:321 /media/js/buttons.js:417
+msgid "Installed"
+msgstr "Instalatuta"
+
+#: /media/js/buttons.js:395
+msgid "free"
+msgstr "dohainik"
+
+#: /media/js/buttons.js:399
+msgid "Unavailable"
+msgstr "Ez dago eskuragarri"
+
+#: /media/js/buttons.js:422
+msgid "Open website"
+msgstr "Ireki webgunea"
+
+#: /media/js/buttons.js:426
+msgid "Open app"
+msgstr "Ireki aplikazioa"
+
+#: /media/js/buttons.js:428
+msgid "Install for {price}"
+msgstr "Instalatu {price}gatik"
+
+#: /media/js/buttons.js:434
+msgid "Open"
+msgstr "Ireki"
 
 #: /media/js/compat_filter.js:50 /media/js/compat_filter.js:59
 msgid "All Platforms"
@@ -813,6 +859,39 @@ msgstr "Tresnak"
 msgid "Weather"
 msgstr "Eguraldia"
 
+#. Productivity collection desktop promo (bug 1108612).
+#: /media/js/desktop_promo.js:13
+msgid "Play 45 creative variations of chess."
+msgstr ""
+
+#: /media/js/desktop_promo.js:15
+msgid "Manage projects easily with Basecamp."
+msgstr ""
+
+#: /media/js/desktop_promo.js:17
+msgid "Play GoldNuggets now!"
+msgstr ""
+
+#: /media/js/desktop_promo.js:30
+msgid "Play this fantastic action puzzle game immediately."
+msgstr "Jolastu akziozko puzzle-joko zoragarri honetan berehala."
+
+#: /media/js/desktop_promo.js:36
+msgid "Enjoy 15,000+ radio programs and podcasts."
+msgstr "Gozatu 15.000 irratsaio eta podcast baino gehiagoz."
+
+#: /media/js/desktop_promo.js:43
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "Produktibitaterako aplikazioak—Mahaigainerako ezinbestekoak"
+
+#: /media/js/desktop_promo.js:50
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Jokoak eta entretenimendua—Mahaigainerako ezinbestekoak"
+
+#: /media/js/desktop_promo.js:56
+msgid "Run for your life!"
+msgstr "Egin korrika bizirik irteteko!"
+
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
 msgid "For ages {0}+"
@@ -854,38 +933,17 @@ msgstr "Helduentzat 17+"
 msgid "Adults Only 18+"
 msgstr "Helduentzako soilik 18+"
 
-#: /media/js/content_filter.js:18
+#: /media/js/content_filter.js:20
 msgid "all content"
 msgstr "eduki guztia"
 
-#: /media/js/content_filter.js:19
+#: /media/js/content_filter.js:21
 msgid "apps"
 msgstr "aplikazioak"
 
-#: /media/js/content_filter.js:20
+#: /media/js/content_filter.js:22
 msgid "websites"
 msgstr "webguneak"
-
-#. Maya app desktop promo (bug 1170850).
-#: /media/js/desktop_promo.js:21
-msgid "Play this fantastic action puzzle game immediately."
-msgstr "Jolastu akziozko puzzle-joko zoragarri honetan berehala."
-
-#: /media/js/desktop_promo.js:27
-msgid "Enjoy 15,000+ radio programs and podcasts."
-msgstr "Gozatu 15.000 irratsaio eta podcast baino gehiagoz."
-
-#: /media/js/desktop_promo.js:34
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "Produktibitaterako aplikazioak—Mahaigainerako ezinbestekoak"
-
-#: /media/js/desktop_promo.js:41
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Jokoak eta entretenimendua—Mahaigainerako ezinbestekoak"
-
-#: /media/js/desktop_promo.js:47
-msgid "Run for your life!"
-msgstr "Egin korrika bizirik irteteko!"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1211,7 +1269,7 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "Lan eta negozio aplikazioa"
 msgstr[1] "Lan eta negozio aplikazioak"
 
-#: /media/js/helpers_local.js:113
+#: /media/js/helpers_local.js:113 /media/js/include.js:14
 msgid "works offline"
 msgstr "lineaz kanpo funtzionatzen du"
 
@@ -1219,62 +1277,44 @@ msgstr "lineaz kanpo funtzionatzen du"
 msgid "Unable to install packaged apps"
 msgstr "Ezin izan dira paketatutako aplikazioak instalatu"
 
-#: /media/js/installer_direct.js:178 /media/js/buttons.js:192
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Sentitzen dugu, baina arazoak ditugu aplikazioaren datuak eskuratzean. Saiatu berriz geroago."
-
 #: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
 msgid "App install error: {error}"
 msgstr "Errorea aplikazioa instalatzean: {error}"
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Ordainketa bertan behera utzita."
-
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "Erosten"
-
-#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
-msgid "Install"
-msgstr "Instalatu"
-
-#. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "Huts egin du instalatzean. Saiatu berriro geroago."
-
-#: /media/js/buttons.js:321 /media/js/buttons.js:417
-msgid "Installed"
-msgstr "Instalatuta"
-
-#: /media/js/buttons.js:395
-msgid "free"
-msgstr "dohainik"
-
-#: /media/js/buttons.js:399
-msgid "Unavailable"
-msgstr "Ez dago eskuragarri"
-
-#: /media/js/buttons.js:422
-msgid "Open website"
-msgstr "Ireki webgunea"
-
-#: /media/js/buttons.js:426
-msgid "Open app"
-msgstr "Ireki aplikazioa"
-
-#: /media/js/buttons.js:428
-msgid "Install for {price}"
-msgstr "Instalatu {price}gatik"
-
-#: /media/js/buttons.js:434
-msgid "Open"
-msgstr "Ireki"
-
-#: /media/js/newsletter.js:72
+#: /media/js/include.js:11 /media/js/newsletter.js:72
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Errore bat gertatu da berripaperera harpidetzeko zure eskaera bidaltzean"
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:21
+msgid "You have been signed out"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:25
+msgid "You have been signed in"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:71
+msgid "Sign in failed"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:180
+msgid "FxA login failed. A server error was encountered."
+msgstr ""
+
+#: /media/js/include.js:14 /media/js/ratingwidget.js:44
+msgid "{n} star"
+msgid_plural "{n} stars"
+msgstr[0] "Izar {n}"
+msgstr[1] "{n} izar"
+
+#: /media/js/include.js:16 /media/js/reviews.js:151 /media/js/views/app.js:22 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/app.js:35 /media/js/views/app.js:36
+#: /media/js/views/feed_landing.js:15 /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
+msgid "Loading..."
+msgstr "Kargatzen..."
+
+#: /media/js/include.js:16 /media/js/views/website.js:11
+msgid "Website Detail"
+msgstr "Webgunearen xehetasunak"
 
 #. This error is raised when we are unable to fetch a JWT from the payments API.
 #: /media/js/payments.js:138
@@ -1285,12 +1325,46 @@ msgstr "Errorea zerbitzariarekin komunikatzean. Saiatu berriro geroago."
 msgid "Payment failed. Try again later."
 msgstr "Ordainketak huts egin du. Saiatu berriro geroago."
 
-#. {n} is the number of stars
-#: /media/js/ratingwidget.js:44
-msgid "{n} star"
-msgid_plural "{n} stars"
-msgstr[0] "Izar {n}"
-msgstr[1] "{n} izar"
+#. The report is an abuse report for reviews.
+#: /media/js/reviews.js:35
+msgid "Flagging review..."
+msgstr "Balorazioa salatzen..."
+
+#: /media/js/reviews.js:40
+msgid "This review has been successfully flagged. Thanks!"
+msgstr "Balorazio hau behar bezala salatu da. Milesker!"
+
+#: /media/js/reviews.js:51
+msgid "Sorry, there was an issue flagging the review. Please try again later."
+msgstr "Sentitzen dugu, baina arazo bat gertatu da balorazioa salatzean. Saiatu berriz geroago."
+
+#: /media/js/reviews.js:59
+msgid "This review has been successfully deleted"
+msgstr "Balorazio hau behar bezala ezabatu da"
+
+#: /media/js/reviews.js:90 /media/js/views/app/ratings/add.js:26
+msgid "Write a Review"
+msgstr "Idatzi balorazio bat"
+
+#: /media/js/reviews.js:92
+msgid "Sorry, there was a problem deleting the review"
+msgstr "Sentitzen dugu, baina arazo bat gertatu da balorazioa ezabatzean"
+
+#: /media/js/reviews.js:254
+msgid "Your review was successfully posted. Thanks!"
+msgstr "Balorazioa behar bezala argitaratu da. Milesker!"
+
+#: /media/js/reviews.js:258
+msgid "Sorry, there was an error posting your review. Please try again later."
+msgstr "Sentitzen dugu, baina errore bat gertatu da balorazioa argitaratzean. Saiatu berriz geroago."
+
+#: /media/js/reviews.js:284
+msgid "Your review was successfully edited"
+msgstr "Balorazioa behar bezala editatu da"
+
+#: /media/js/reviews.js:288
+msgid "Sorry, there was an issue editing your review. Please try again later"
+msgstr "Sentitzen dugu, baina arazoren bat egon da balorazioa editatzean. Saiatu berriz geroago"
 
 #: /media/js/settings_app.js:94
 msgid "English"
@@ -1336,51 +1410,9 @@ msgstr "Sentitzen dugu, une honetan lineaz kanpo zaude. Saiatu berriz geroago."
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr "Firefox Marketplace aplikazioa abiarazten duzun hurrengo aldian, bertsio eguneratua ikusiko duzu!"
 
-#. The report is an abuse report for reviews.
-#: /media/js/reviews.js:35
-msgid "Flagging review..."
-msgstr "Balorazioa salatzen..."
-
-#: /media/js/reviews.js:40
-msgid "This review has been successfully flagged. Thanks!"
-msgstr "Balorazio hau behar bezala salatu da. Milesker!"
-
-#: /media/js/reviews.js:51
-msgid "Sorry, there was an issue flagging the review. Please try again later."
-msgstr "Sentitzen dugu, baina arazo bat gertatu da balorazioa salatzean. Saiatu berriz geroago."
-
-#: /media/js/reviews.js:59
-msgid "This review has been successfully deleted"
-msgstr "Balorazio hau behar bezala ezabatu da"
-
-#: /media/js/reviews.js:90 /media/js/views/app/ratings/add.js:26
-msgid "Write a Review"
-msgstr "Idatzi balorazio bat"
-
-#: /media/js/reviews.js:92
-msgid "Sorry, there was a problem deleting the review"
-msgstr "Sentitzen dugu, baina arazo bat gertatu da balorazioa ezabatzean"
-
-#: /media/js/reviews.js:151 /media/js/views/app.js:22 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/app.js:35 /media/js/views/app.js:36 /media/js/views/feed_landing.js:15
-#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
-msgid "Loading..."
-msgstr "Kargatzen..."
-
-#: /media/js/reviews.js:254
-msgid "Your review was successfully posted. Thanks!"
-msgstr "Balorazioa behar bezala argitaratu da. Milesker!"
-
-#: /media/js/reviews.js:258
-msgid "Sorry, there was an error posting your review. Please try again later."
-msgstr "Sentitzen dugu, baina errore bat gertatu da balorazioa argitaratzean. Saiatu berriz geroago."
-
-#: /media/js/reviews.js:284
-msgid "Your review was successfully edited"
-msgstr "Balorazioa behar bezala editatu da"
-
-#: /media/js/reviews.js:288
-msgid "Sorry, there was an issue editing your review. Please try again later"
-msgstr "Sentitzen dugu, baina arazoren bat egon da balorazioa editatzean. Saiatu berriz geroago"
+#: /media/js/lib/marketplace-elements.js:119
+msgid "Close"
+msgstr ""
 
 #: /media/js/views/app.js:23
 msgid "App Detail"
@@ -1426,9 +1458,16 @@ msgstr "Zure ezarpenak behar bezala gorde dira"
 msgid "Settings could not be saved"
 msgstr "Ezarpenak ezin izan dira gorde"
 
-#: /media/js/views/website.js:11
-msgid "Website Detail"
-msgstr "Webgunearen xehetasunak"
+#: /media/js/lib/marketplace-core-modules/navigation.js:33
+msgid "No internet connection"
+msgstr ""
+
+#. {n} is the number of characters left.
+#: /media/js/lib/marketplace-core-modules/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
 
 #: /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
@@ -1449,3 +1488,8 @@ msgstr "Hasi saioa ordainagiria ikusteko"
 #: /media/js/views/app/receipt.js:21
 msgid "Receipt"
 msgstr "Ordainagiria"
+
+#. Page not found (404)
+#: /media/js/lib/marketplace-core-modules/views/not_found.js:9
+msgid "Not Found"
+msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-17T16:39:58.456Z\n"
+"POT-Creation-Date: 2015-06-24T20:27:38.101Z\n"
 "PO-Revision-Date: 2015-03-19 03:13+0000\n"
 "Last-Translator: Jordi <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1426734823.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:20
+#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "Amplia"
 
@@ -27,6 +27,14 @@ msgstr "No s'ha trobat cap aplicació."
 msgid "An internal server error occurred. Please try again later."
 msgstr "S'ha produït un error intern del servidor. Torneu-ho a provar més tard."
 
+#: /templates/category.html:32 /templates/search.html:62
+msgid "No results found"
+msgstr "No s'ha trobat cap resultat"
+
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "La categoria sol·licitada no existeix."
+
 #: /templates/desktop-promo.html:2
 msgid "Previous"
 msgstr "Anterior"
@@ -34,14 +42,6 @@ msgstr "Anterior"
 #: /templates/desktop-promo.html:16
 msgid "Next"
 msgstr "Següent"
-
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "No hi ha aplicacions en la categoria"
-
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "La categoria sol·licitada no existeix."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -67,7 +67,7 @@ msgstr "Envia l'opinió"
 msgid "Get Help"
 msgstr "Obtingueu ajuda"
 
-#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:30 /media/js/views/feedback.js:50
+#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
 msgid "Feedback"
 msgstr "Opinió"
 
@@ -99,7 +99,7 @@ msgstr ""
 "Excepte si <a href=\"{legal_url}\" target=\"_blank\">es diu</a> el contrari, el contingut del lloc es troba sota una llicència <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Atribució "
 "CompartirIgual v3.0</a> o posterior."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/privacy.html:2 /templates/app/index.html:79 /media/js/views/privacy.js:9
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/index.html:79 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Política de privadesa"
@@ -112,6 +112,10 @@ msgstr "Termes d'ús"
 msgid "Report Trademark Abuse"
 msgstr "Informa d'un abús de marca"
 
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Més per explorar"
+
 #: /templates/header.html:28
 msgid "Toggle Menu"
 msgstr ""
@@ -120,11 +124,11 @@ msgstr ""
 msgid "Home"
 msgstr "Inici"
 
-#: /templates/header.html:41 /templates/nav.html:23 /templates/_includes/app_list_filters.html:5 /media/js/views/popular.js:9
+#: /templates/header.html:41 /templates/nav.html:23 /templates/_includes/app_list_filters.html:27 /media/js/views/popular.js:9
 msgid "Popular"
 msgstr "Populars"
 
-#: /templates/header.html:42 /templates/nav.html:24 /templates/_includes/app_list_filters.html:10 /media/js/views/new.js:8
+#: /templates/header.html:42 /templates/nav.html:24 /templates/_includes/app_list_filters.html:32 /media/js/views/new.js:8
 msgid "New"
 msgstr "Noves"
 
@@ -144,11 +148,11 @@ msgstr ""
 msgid "Toggle Settings Menu"
 msgstr ""
 
-#: /templates/header.html:56 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:43
+#: /templates/header.html:56 /templates/nav.html:30 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "Registre"
 
-#: /templates/header.html:58 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:44
+#: /templates/header.html:58 /templates/nav.html:32 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr "Sessió"
 
@@ -156,21 +160,17 @@ msgstr "Sessió"
 msgid "Search Marketplace&hellip;"
 msgstr ""
 
-#: /templates/header.html:83 /templates/nav.html:35 /templates/settings.html:2 /media/js/views/settings.js:54
+#: /templates/header.html:83 /templates/nav.html:34 /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Settings"
 msgstr "Paràmetres"
 
-#: /templates/header.html:84 /templates/nav.html:37 /templates/purchases.html:6 /media/js/views/purchases.js:10
+#: /templates/header.html:84 /templates/nav.html:36 /templates/purchases.html:6 /media/js/views/purchases.js:10
 msgid "My Apps"
 msgstr "Les meves aplicacions"
 
 #: /templates/header.html:86 /templates/nav.html:39 /templates/settings.html:45
 msgid "Sign Out"
 msgstr "Finalitza la sessió"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Més per explorar"
 
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
@@ -228,23 +228,19 @@ msgstr "No teniu cap aplicació"
 msgid "Oh no!"
 msgstr "Oh, no!"
 
-#: /templates/search.html:19
+#: /templates/search.html:7
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
 msgstr[0] "<b>{n}</b> resultat"
 msgstr[1] "<b>{n}</b> resultats"
 
-#: /templates/search.html:23
+#: /templates/search.html:11
 msgid "<b>\"{search_query}\"</b> returned {n} result"
 msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
 msgstr[0] "<b>\"{search_query}\"</b> ha retornat {n} resultat"
 msgstr[1] "<b>\"{search_query}\"</b> ha retornat {n} resultats"
 
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "No s'ha trobat cap resultat"
-
-#: /templates/search.html:61
+#: /templates/search.html:68
 msgid "No results found, try again later"
 msgstr "No s'ha trobat cap resultat, torneu-ho a provar"
 
@@ -305,17 +301,17 @@ msgid "Not enough statistics to show."
 msgstr "No hi ha prou estadístiques per mostrar."
 
 #. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:14
+#: /templates/_includes/app_list_filters.html:6
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/app_list_filters.html:36
 msgid "Display as"
 msgstr "Mostra com a"
 
-#: /templates/_includes/app_list_filters.html:15
+#: /templates/_includes/app_list_filters.html:37
 msgid "Toggle App Previews"
 msgstr "Mostra/oculta les previsualitzacions d'aplicacions"
-
-#: /templates/_includes/app_list_filters.html:23
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr ""
 
 #: /templates/_includes/back_to_app.html:5
 msgid "Back to {app}"
@@ -339,6 +335,10 @@ msgstr "La configuració del Mac pot impedir que instal·leu aplicacions que no 
 msgid "Learn how to change them."
 msgstr "Vegeu com podeu modificar-la."
 
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
 #: /templates/_includes/post_install_message.html:2
 msgid "Installed!"
 msgstr "Instal·lada!"
@@ -354,16 +354,6 @@ msgstr "Executeu l'aplicació de l'<b>escriptori del Windows</b> o des d'<b>Inic
 #: /templates/_includes/post_install_message.html:11
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Executeu l'aplicació des del <b>plafó</b>, el <b>selector d'aplicacions</b> o el <b>menú d'aplicacions</b>."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 valoració"
-msgstr[1] "{numReviews} valoracions"
 
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
@@ -385,33 +375,11 @@ msgstr "Inicieu la sessió per valorar"
 msgid "Read all reviews"
 msgstr "Llegeix totes les valoracions"
 
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr "Voleu notificar alguna cosa?"
-
-#: /templates/app/abuse.html:6
-msgid "Let us know if you find any issues regarding abuse about this app."
-msgstr "Digueu-nos si trobeu algun problema d'abús en aquesta aplicació."
-
-#: /templates/app/abuse.html:13
-msgid "Submit Report"
-msgstr "Envia l'informe"
-
-#: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
-msgid "Report Abuse"
-msgstr "Informa d'un abús"
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Torna a l'aplicació"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "S'està carregant la política de privadesa..."
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Gràcies per la compra"
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 valoració"
+msgstr[1] "{numReviews} valoracions"
 
 #: /templates/_macros/app_tile.html:113
 msgid "Review"
@@ -466,6 +434,116 @@ msgstr "Senyalat per a valorar"
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Puntuat amb {stars} de {maxstars} estrelles"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr "Voleu notificar alguna cosa?"
+
+#: /templates/app/abuse.html:6
+msgid "Let us know if you find any issues regarding abuse about this app."
+msgstr "Digueu-nos si trobeu algun problema d'abús en aquesta aplicació."
+
+#: /templates/app/abuse.html:13
+msgid "Submit Report"
+msgstr "Envia l'informe"
+
+#: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
+msgid "Report Abuse"
+msgstr "Informa d'un abús"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:24 /templates/website/index.html:13
+msgid "Description"
+msgstr "Descripció"
+
+#: /templates/app/index.html:30 /templates/app/index.html:44 /templates/website/index.html:19
+msgid "View All"
+msgstr "Mostra-les totes"
+
+#: /templates/app/index.html:40
+msgid "Updates"
+msgstr "Actualitzacions"
+
+#: /templates/app/index.html:51
+msgid "Last updated"
+msgstr "Última actualització"
+
+#: /templates/app/index.html:60
+msgid "Email Support"
+msgstr "Correu electrònic d'assistència"
+
+#: /templates/app/index.html:67
+msgid "Support Site"
+msgstr "Lloc web de suport"
+
+#: /templates/app/index.html:73
+msgid "Homepage"
+msgstr "Pàgina d'inici"
+
+#: /templates/app/index.html:86
+msgid "Statistics"
+msgstr "Estadístiques"
+
+#: /templates/app/index.html:93
+msgid "Edit Listing"
+msgstr "Edita la llista"
+
+#: /templates/app/index.html:101
+msgid "Approve / Reject"
+msgstr "Aprova / rebutja"
+
+#: /templates/app/index.html:102
+msgid "Review History"
+msgstr "Historial de valoracions"
+
+#: /templates/app/index.html:119 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "Valoracions"
+
+#: /templates/app/index.html:130
+msgid "App not yet reviewed"
+msgstr "Encara no s'ha valorat l'aplicació"
+
+#: /templates/app/index.html:149
+msgid "Premium version available"
+msgstr "Versió Premium disponible"
+
+#: /templates/app/index.html:167
+msgid "More Information"
+msgstr "Més informació"
+
+#: /templates/app/index.html:170
+msgid "Developer"
+msgstr "Desenvolupador"
+
+#: /templates/app/index.html:174
+msgid "Compatibility"
+msgstr "Compatibilitat"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:177 /templates/app/index.html:184
+msgid ","
+msgstr ","
+
+#: /templates/app/index.html:189
+msgid "File Size"
+msgstr "Mida del fitxer"
+
+#: /templates/app/index.html:194
+msgid "Most Recent Version"
+msgstr "Versió més recent"
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Gràcies per la compra"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Torna a l'aplicació"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "S'està carregant la política de privadesa..."
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -561,10 +639,6 @@ msgstr "Llenguatge no apropiat"
 msgid "Misplaced bug report or support request"
 msgstr "Informe d'error o sol·licitud d'ajuda fora de lloc"
 
-#: /templates/ratings/main.html:16 /templates/app/index.html:119 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "Valoracions"
-
 #: /templates/ratings/main.html:41
 msgid "This app has no reviews."
 msgstr "Aquesta aplicació no té cap valoració."
@@ -572,14 +646,6 @@ msgstr "Aquesta aplicació no té cap valoració."
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Valoració de l'aplicació"
-
-#: /templates/website/index.html:13 /templates/app/index.html:24
-msgid "Description"
-msgstr "Descripció"
-
-#: /templates/website/index.html:19 /templates/app/index.html:30 /templates/app/index.html:44
-msgid "View All"
-msgstr "Mostra-les totes"
 
 #. This goes before a list of categories.
 #: /templates/website/index.html:31
@@ -593,75 +659,6 @@ msgstr ""
 #: /templates/website/index.html:45 /templates/website/issue.html:14
 msgid "Report an issue"
 msgstr ""
-
-#: /templates/app/index.html:40
-msgid "Updates"
-msgstr "Actualitzacions"
-
-#: /templates/app/index.html:51
-msgid "Last updated"
-msgstr "Última actualització"
-
-#: /templates/app/index.html:60
-msgid "Email Support"
-msgstr "Correu electrònic d'assistència"
-
-#: /templates/app/index.html:67
-msgid "Support Site"
-msgstr "Lloc web de suport"
-
-#: /templates/app/index.html:73
-msgid "Homepage"
-msgstr "Pàgina d'inici"
-
-#: /templates/app/index.html:86
-msgid "Statistics"
-msgstr "Estadístiques"
-
-#: /templates/app/index.html:93
-msgid "Edit Listing"
-msgstr "Edita la llista"
-
-#: /templates/app/index.html:101
-msgid "Approve / Reject"
-msgstr "Aprova / rebutja"
-
-#: /templates/app/index.html:102
-msgid "Review History"
-msgstr "Historial de valoracions"
-
-#: /templates/app/index.html:130
-msgid "App not yet reviewed"
-msgstr "Encara no s'ha valorat l'aplicació"
-
-#: /templates/app/index.html:149
-msgid "Premium version available"
-msgstr "Versió Premium disponible"
-
-#: /templates/app/index.html:167
-msgid "More Information"
-msgstr "Més informació"
-
-#: /templates/app/index.html:170
-msgid "Developer"
-msgstr "Desenvolupador"
-
-#: /templates/app/index.html:174
-msgid "Compatibility"
-msgstr "Compatibilitat"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:177 /templates/app/index.html:184
-msgid ","
-msgstr ","
-
-#: /templates/app/index.html:189
-msgid "File Size"
-msgstr "Mida del fitxer"
-
-#: /templates/app/index.html:194
-msgid "Most Recent Version"
-msgstr "Versió més recent"
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
@@ -685,6 +682,55 @@ msgstr ""
 
 #: /media/js/apps.js:119
 msgid "not available for your platform"
+msgstr ""
+
+#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "S'ha cancel·lat el pagament."
+
+#: /media/js/buttons.js:117
+msgid "Purchasing"
+msgstr "Compra"
+
+#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
+msgid "Install"
+msgstr "Instal·la"
+
+#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "S'ha produït un error en obtenir les dades de l'aplicació. Torneu-ho a provar més tard."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "La instal·lació ha fallat. Proveu-ho més endavant."
+
+#: /media/js/buttons.js:321 /media/js/buttons.js:417
+msgid "Installed"
+msgstr "Instal·lades"
+
+#: /media/js/buttons.js:395
+msgid "free"
+msgstr ""
+
+#: /media/js/buttons.js:399
+msgid "Unavailable"
+msgstr "No disponible"
+
+#: /media/js/buttons.js:422
+msgid "Open website"
+msgstr ""
+
+#: /media/js/buttons.js:426
+msgid "Open app"
+msgstr ""
+
+#: /media/js/buttons.js:428
+msgid "Install for {price}"
+msgstr ""
+
+#: /media/js/buttons.js:434
+msgid "Open"
 msgstr ""
 
 #: /media/js/compat_filter.js:50 /media/js/compat_filter.js:59
@@ -811,6 +857,39 @@ msgstr "Utilitats"
 msgid "Weather"
 msgstr ""
 
+#. Productivity collection desktop promo (bug 1108612).
+#: /media/js/desktop_promo.js:13
+msgid "Play 45 creative variations of chess."
+msgstr ""
+
+#: /media/js/desktop_promo.js:15
+msgid "Manage projects easily with Basecamp."
+msgstr ""
+
+#: /media/js/desktop_promo.js:17
+msgid "Play GoldNuggets now!"
+msgstr ""
+
+#: /media/js/desktop_promo.js:30
+msgid "Play this fantastic action puzzle game immediately."
+msgstr ""
+
+#: /media/js/desktop_promo.js:36
+msgid "Enjoy 15,000+ radio programs and podcasts."
+msgstr ""
+
+#: /media/js/desktop_promo.js:43
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "Aplicacions de productivitat — Indispensables per a l'escriptori"
+
+#: /media/js/desktop_promo.js:50
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Jocs i aplicacions de lleure — Indispensables per a l'escriptori"
+
+#: /media/js/desktop_promo.js:56
+msgid "Run for your life!"
+msgstr ""
+
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
 msgid "For ages {0}+"
@@ -852,37 +931,16 @@ msgstr "Majors de 17 anys"
 msgid "Adults Only 18+"
 msgstr "Només adults (més de 18 anys)"
 
-#: /media/js/content_filter.js:18
+#: /media/js/content_filter.js:20
 msgid "all content"
 msgstr ""
 
-#: /media/js/content_filter.js:19
+#: /media/js/content_filter.js:21
 msgid "apps"
 msgstr ""
 
-#: /media/js/content_filter.js:20
+#: /media/js/content_filter.js:22
 msgid "websites"
-msgstr ""
-
-#. Maya app desktop promo (bug 1170850).
-#: /media/js/desktop_promo.js:21
-msgid "Play this fantastic action puzzle game immediately."
-msgstr ""
-
-#: /media/js/desktop_promo.js:27
-msgid "Enjoy 15,000+ radio programs and podcasts."
-msgstr ""
-
-#: /media/js/desktop_promo.js:34
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "Aplicacions de productivitat — Indispensables per a l'escriptori"
-
-#: /media/js/desktop_promo.js:41
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Jocs i aplicacions de lleure — Indispensables per a l'escriptori"
-
-#: /media/js/desktop_promo.js:47
-msgid "Run for your life!"
 msgstr ""
 
 #: /media/js/edbrands.js:33
@@ -1209,7 +1267,7 @@ msgid_plural "Work & Business Apps"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /media/js/helpers_local.js:113
+#: /media/js/helpers_local.js:113 /media/js/include.js:14
 msgid "works offline"
 msgstr ""
 
@@ -1217,62 +1275,44 @@ msgstr ""
 msgid "Unable to install packaged apps"
 msgstr ""
 
-#: /media/js/installer_direct.js:178 /media/js/buttons.js:192
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "S'ha produït un error en obtenir les dades de l'aplicació. Torneu-ho a provar més tard."
-
 #: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
 msgid "App install error: {error}"
 msgstr "Error d'instal·lació de l'aplicació: {error}"
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "S'ha cancel·lat el pagament."
-
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "Compra"
-
-#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
-msgid "Install"
-msgstr "Instal·la"
-
-#. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "La instal·lació ha fallat. Proveu-ho més endavant."
-
-#: /media/js/buttons.js:321 /media/js/buttons.js:417
-msgid "Installed"
-msgstr "Instal·lades"
-
-#: /media/js/buttons.js:395
-msgid "free"
-msgstr ""
-
-#: /media/js/buttons.js:399
-msgid "Unavailable"
-msgstr "No disponible"
-
-#: /media/js/buttons.js:422
-msgid "Open website"
-msgstr ""
-
-#: /media/js/buttons.js:426
-msgid "Open app"
-msgstr ""
-
-#: /media/js/buttons.js:428
-msgid "Install for {price}"
-msgstr ""
-
-#: /media/js/buttons.js:434
-msgid "Open"
-msgstr ""
-
-#: /media/js/newsletter.js:72
+#: /media/js/include.js:11 /media/js/newsletter.js:72
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "S'ha produït un error en enviar la sol·licitud de subscripció al butlletí d'informació"
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:21
+msgid "You have been signed out"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:25
+msgid "You have been signed in"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:71
+msgid "Sign in failed"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:180
+msgid "FxA login failed. A server error was encountered."
+msgstr ""
+
+#: /media/js/include.js:14 /media/js/ratingwidget.js:44
+msgid "{n} star"
+msgid_plural "{n} stars"
+msgstr[0] "{n} estrella"
+msgstr[1] "{n} estrelles"
+
+#: /media/js/include.js:16 /media/js/reviews.js:151 /media/js/views/app.js:22 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/app.js:35 /media/js/views/app.js:36
+#: /media/js/views/feed_landing.js:15 /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
+msgid "Loading..."
+msgstr "S'està carregant..."
+
+#: /media/js/include.js:16 /media/js/views/website.js:11
+msgid "Website Detail"
+msgstr ""
 
 #. This error is raised when we are unable to fetch a JWT from the payments API.
 #: /media/js/payments.js:138
@@ -1283,12 +1323,46 @@ msgstr "S'ha produït un error en comunicar amb el servidor. Torneu-ho a provar 
 msgid "Payment failed. Try again later."
 msgstr "Pagament ha fallat. Proveu-ho més tard."
 
-#. {n} is the number of stars
-#: /media/js/ratingwidget.js:44
-msgid "{n} star"
-msgid_plural "{n} stars"
-msgstr[0] "{n} estrella"
-msgstr[1] "{n} estrelles"
+#. The report is an abuse report for reviews.
+#: /media/js/reviews.js:35
+msgid "Flagging review..."
+msgstr ""
+
+#: /media/js/reviews.js:40
+msgid "This review has been successfully flagged. Thanks!"
+msgstr ""
+
+#: /media/js/reviews.js:51
+msgid "Sorry, there was an issue flagging the review. Please try again later."
+msgstr ""
+
+#: /media/js/reviews.js:59
+msgid "This review has been successfully deleted"
+msgstr ""
+
+#: /media/js/reviews.js:90 /media/js/views/app/ratings/add.js:26
+msgid "Write a Review"
+msgstr ""
+
+#: /media/js/reviews.js:92
+msgid "Sorry, there was a problem deleting the review"
+msgstr "S'ha produït un error en suprimir la valoració"
+
+#: /media/js/reviews.js:254
+msgid "Your review was successfully posted. Thanks!"
+msgstr "La valoració s'ha publicat correctament. Gràcies!"
+
+#: /media/js/reviews.js:258
+msgid "Sorry, there was an error posting your review. Please try again later."
+msgstr "S'ha produït un error en publicar la valoració. Torneu-ho a provar més tard."
+
+#: /media/js/reviews.js:284
+msgid "Your review was successfully edited"
+msgstr "La valoració s'ha editat correctament"
+
+#: /media/js/reviews.js:288
+msgid "Sorry, there was an issue editing your review. Please try again later"
+msgstr "S'ha produït un error en editar la valoració. Torneu-ho a provar més tard."
 
 #: /media/js/settings_app.js:94
 msgid "English"
@@ -1334,51 +1408,9 @@ msgstr "Actualment no esteu connectat. Torneu-ho a provar més tard."
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr ""
 
-#. The report is an abuse report for reviews.
-#: /media/js/reviews.js:35
-msgid "Flagging review..."
+#: /media/js/lib/marketplace-elements.js:119
+msgid "Close"
 msgstr ""
-
-#: /media/js/reviews.js:40
-msgid "This review has been successfully flagged. Thanks!"
-msgstr ""
-
-#: /media/js/reviews.js:51
-msgid "Sorry, there was an issue flagging the review. Please try again later."
-msgstr ""
-
-#: /media/js/reviews.js:59
-msgid "This review has been successfully deleted"
-msgstr ""
-
-#: /media/js/reviews.js:90 /media/js/views/app/ratings/add.js:26
-msgid "Write a Review"
-msgstr ""
-
-#: /media/js/reviews.js:92
-msgid "Sorry, there was a problem deleting the review"
-msgstr "S'ha produït un error en suprimir la valoració"
-
-#: /media/js/reviews.js:151 /media/js/views/app.js:22 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/app.js:35 /media/js/views/app.js:36 /media/js/views/feed_landing.js:15
-#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
-msgid "Loading..."
-msgstr "S'està carregant..."
-
-#: /media/js/reviews.js:254
-msgid "Your review was successfully posted. Thanks!"
-msgstr "La valoració s'ha publicat correctament. Gràcies!"
-
-#: /media/js/reviews.js:258
-msgid "Sorry, there was an error posting your review. Please try again later."
-msgstr "S'ha produït un error en publicar la valoració. Torneu-ho a provar més tard."
-
-#: /media/js/reviews.js:284
-msgid "Your review was successfully edited"
-msgstr "La valoració s'ha editat correctament"
-
-#: /media/js/reviews.js:288
-msgid "Sorry, there was an issue editing your review. Please try again later"
-msgstr "S'ha produït un error en editar la valoració. Torneu-ho a provar més tard."
 
 #: /media/js/views/app.js:23
 msgid "App Detail"
@@ -1424,9 +1456,16 @@ msgstr "La configuració s'ha desat correctament"
 msgid "Settings could not be saved"
 msgstr "No s'ha pogut desar la configuració"
 
-#: /media/js/views/website.js:11
-msgid "Website Detail"
+#: /media/js/lib/marketplace-core-modules/navigation.js:33
+msgid "No internet connection"
 msgstr ""
+
+#. {n} is the number of characters left.
+#: /media/js/lib/marketplace-core-modules/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
 
 #: /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
@@ -1447,3 +1486,8 @@ msgstr "Inicieu una sessió per veure el rebut"
 #: /media/js/views/app/receipt.js:21
 msgid "Receipt"
 msgstr "Rebut"
+
+#. Page not found (404)
+#: /media/js/lib/marketplace-core-modules/views/not_found.js:9
+msgid "Not Found"
+msgstr ""

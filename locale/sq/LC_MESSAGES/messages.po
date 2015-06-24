@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-17T16:39:58.456Z\n"
+"POT-Creation-Date: 2015-06-24T20:27:38.101Z\n"
 "PO-Revision-Date: 2015-05-01 19:37+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1425209310.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:20
+#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "Zgjeroje"
 
@@ -26,6 +26,14 @@ msgstr "Nuk u gjetën aplikacione."
 msgid "An internal server error occurred. Please try again later."
 msgstr "Ndodhi një gabim i brendshëm shërbyesi. Ju lutemi, riprovoni më vonë."
 
+#: /templates/category.html:32 /templates/search.html:62
+msgid "No results found"
+msgstr "Nuk u gjetën përfundime"
+
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "Kategoria që kërkuat nuk ekziston."
+
 #: /templates/desktop-promo.html:2
 msgid "Previous"
 msgstr "E mëparshmja"
@@ -33,14 +41,6 @@ msgstr "E mëparshmja"
 #: /templates/desktop-promo.html:16
 msgid "Next"
 msgstr "Pasuesi"
-
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "Kjo kategori s’ka aplikacione"
-
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "Kategoria që kërkuat nuk ekziston."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -66,7 +66,7 @@ msgstr "Parashtrojini Përshtypjet"
 msgid "Get Help"
 msgstr "Merrni ndihmë"
 
-#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:30 /media/js/views/feedback.js:50
+#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
 msgid "Feedback"
 msgstr "Përshtypje"
 
@@ -98,7 +98,7 @@ msgstr ""
 "Hiq atje ku <a href=\"{legal_url}\" target=\"_blank\">shënohet</a> ndryshe, lënda e këtij sajti qarkullon sipas licencës <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
 "Alike License v3.0</a> ose cilitdo version të mëvonshëm."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/privacy.html:2 /templates/app/index.html:79 /media/js/views/privacy.js:9
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/index.html:79 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Rregulla Privatësie"
@@ -111,6 +111,10 @@ msgstr "Kushte Përdorimi"
 msgid "Report Trademark Abuse"
 msgstr "Njoftoni Dhunim Shenjash Tregtare"
 
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Më Tepër Për Eksplorim"
+
 #: /templates/header.html:28
 msgid "Toggle Menu"
 msgstr "Shfaqe/Fshihe Menunë"
@@ -119,11 +123,11 @@ msgstr "Shfaqe/Fshihe Menunë"
 msgid "Home"
 msgstr "Hyrje"
 
-#: /templates/header.html:41 /templates/nav.html:23 /templates/_includes/app_list_filters.html:5 /media/js/views/popular.js:9
+#: /templates/header.html:41 /templates/nav.html:23 /templates/_includes/app_list_filters.html:27 /media/js/views/popular.js:9
 msgid "Popular"
 msgstr "Popullore"
 
-#: /templates/header.html:42 /templates/nav.html:24 /templates/_includes/app_list_filters.html:10 /media/js/views/new.js:8
+#: /templates/header.html:42 /templates/nav.html:24 /templates/_includes/app_list_filters.html:32 /media/js/views/new.js:8
 msgid "New"
 msgstr "Të reja"
 
@@ -143,11 +147,11 @@ msgstr "Shfaqni/Fshihni Kërkimin"
 msgid "Toggle Settings Menu"
 msgstr "Shfaqni/Fshihni Menu Rregullimesh"
 
-#: /templates/header.html:56 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:43
+#: /templates/header.html:56 /templates/nav.html:30 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "Regjistrohuni"
 
-#: /templates/header.html:58 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:44
+#: /templates/header.html:58 /templates/nav.html:32 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr "Hyni"
 
@@ -155,21 +159,17 @@ msgstr "Hyni"
 msgid "Search Marketplace&hellip;"
 msgstr "Kërkoni Në Marketplace&hellip;"
 
-#: /templates/header.html:83 /templates/nav.html:35 /templates/settings.html:2 /media/js/views/settings.js:54
+#: /templates/header.html:83 /templates/nav.html:34 /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Settings"
 msgstr "Rregullime"
 
-#: /templates/header.html:84 /templates/nav.html:37 /templates/purchases.html:6 /media/js/views/purchases.js:10
+#: /templates/header.html:84 /templates/nav.html:36 /templates/purchases.html:6 /media/js/views/purchases.js:10
 msgid "My Apps"
 msgstr "Aplikacionet e Mia"
 
 #: /templates/header.html:86 /templates/nav.html:39 /templates/settings.html:45
 msgid "Sign Out"
 msgstr "Dilni"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Më Tepër Për Eksplorim"
 
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
@@ -227,23 +227,19 @@ msgstr "Nuk keni aplikacione"
 msgid "Oh no!"
 msgstr "Mooos!"
 
-#: /templates/search.html:19
+#: /templates/search.html:7
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
 msgstr[0] "<b>{n}</b> Përfundim"
 msgstr[1] "<b>{n}</b> Përfundime"
 
-#: /templates/search.html:23
+#: /templates/search.html:11
 msgid "<b>\"{search_query}\"</b> returned {n} result"
 msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
 msgstr[0] "<b>\"{search_query}\"</b> dha {n} përfundim"
 msgstr[1] "<b>\"{search_query}\"</b> dha {n} përfundime"
 
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Nuk u gjetën përfundime"
-
-#: /templates/search.html:61
+#: /templates/search.html:68
 msgid "No results found, try again later"
 msgstr "Nuk u gjetën përfundime, riprovoni më vonë"
 
@@ -304,17 +300,17 @@ msgid "Not enough statistics to show."
 msgstr "Pa statistika të mjaftueshme për shfaqje."
 
 #. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:14
+#: /templates/_includes/app_list_filters.html:6
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/app_list_filters.html:36
 msgid "Display as"
 msgstr "Shfaqe si"
 
-#: /templates/_includes/app_list_filters.html:15
+#: /templates/_includes/app_list_filters.html:37
 msgid "Toggle App Previews"
 msgstr "Shfaqni/fshihni Paraparje Aplikacioni"
-
-#: /templates/_includes/app_list_filters.html:23
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr ""
 
 #: /templates/_includes/back_to_app.html:5
 msgid "Back to {app}"
@@ -338,6 +334,10 @@ msgstr "Rregullimet tuaja në Mac mund t’jua pengojnë instalimin e aplikacion
 msgid "Learn how to change them."
 msgstr "Mësoni si t’i ndryshoni."
 
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "Tregomë gjithçka për <mkt-selected-text></mkt-selected-text>"
+
 #: /templates/_includes/post_install_message.html:2
 msgid "Installed!"
 msgstr "U instalua!"
@@ -353,16 +353,6 @@ msgstr "Niseni këtë aplikacion nga <b>desktopi juaj Windows</b> ose nga <b>Sta
 #: /templates/_includes/post_install_message.html:11
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Niseni këtë aplikacion nga <b>pulti</b> juaj, <b>zgjedhësi i Aplikacionit</b>, ose <b>menuja e Aplikacioneve</b>."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "Tregomë gjithçka për <mkt-selected-text></mkt-selected-text>"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 Shqyrtim"
-msgstr[1] "{numReviews} Shqyrtime"
 
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
@@ -384,33 +374,11 @@ msgstr "Hyni, që të bëni shqyrtime"
 msgid "Read all reviews"
 msgstr "Lexojini krejt shqyrtimet"
 
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr "Doni të njoftoni diçka?"
-
-#: /templates/app/abuse.html:6
-msgid "Let us know if you find any issues regarding abuse about this app."
-msgstr "Na e bëni të ditur, nëse gjeni probleme abuzimi lidhur me këtë aplikacion."
-
-#: /templates/app/abuse.html:13
-msgid "Submit Report"
-msgstr "Parashtroni Njoftim"
-
-#: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
-msgid "Report Abuse"
-msgstr "Njoftoni Dhunim"
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Mbrapsht te aplikacioni"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Po ngarkohen Rregullat e Privatësisë..."
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Faleminderit për blerjen"
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 Shqyrtim"
+msgstr[1] "{numReviews} Shqyrtime"
 
 #: /templates/_macros/app_tile.html:113
 msgid "Review"
@@ -465,6 +433,116 @@ msgstr "Me shenjë për shqyrtim"
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Vlerësuar me {stars} nga {maxstars} yje gjithsej"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr "Doni të njoftoni diçka?"
+
+#: /templates/app/abuse.html:6
+msgid "Let us know if you find any issues regarding abuse about this app."
+msgstr "Na e bëni të ditur, nëse gjeni probleme abuzimi lidhur me këtë aplikacion."
+
+#: /templates/app/abuse.html:13
+msgid "Submit Report"
+msgstr "Parashtroni Njoftim"
+
+#: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
+msgid "Report Abuse"
+msgstr "Njoftoni Dhunim"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:24 /templates/website/index.html:13
+msgid "Description"
+msgstr "Përshkrim"
+
+#: /templates/app/index.html:30 /templates/app/index.html:44 /templates/website/index.html:19
+msgid "View All"
+msgstr "Shihini të Tëra"
+
+#: /templates/app/index.html:40
+msgid "Updates"
+msgstr "Përditësime"
+
+#: /templates/app/index.html:51
+msgid "Last updated"
+msgstr "Përditësuar së fundmi"
+
+#: /templates/app/index.html:60
+msgid "Email Support"
+msgstr "Asistencë Me Email"
+
+#: /templates/app/index.html:67
+msgid "Support Site"
+msgstr "Sajt Asistence"
+
+#: /templates/app/index.html:73
+msgid "Homepage"
+msgstr "Faqe hyrëse"
+
+#: /templates/app/index.html:86
+msgid "Statistics"
+msgstr "Statistika"
+
+#: /templates/app/index.html:93
+msgid "Edit Listing"
+msgstr "Përpunoni Listën"
+
+#: /templates/app/index.html:101
+msgid "Approve / Reject"
+msgstr "Miratoni / Hidhni Poshtë"
+
+#: /templates/app/index.html:102
+msgid "Review History"
+msgstr "Historik Shqyrtimesh"
+
+#: /templates/app/index.html:119 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "Shqyrtime"
+
+#: /templates/app/index.html:130
+msgid "App not yet reviewed"
+msgstr "Aplikacion ende i pashqyrtuar"
+
+#: /templates/app/index.html:149
+msgid "Premium version available"
+msgstr "Ka version me pagesë"
+
+#: /templates/app/index.html:167
+msgid "More Information"
+msgstr "Më Tepër të Dhëna"
+
+#: /templates/app/index.html:170
+msgid "Developer"
+msgstr "Zhvillues"
+
+#: /templates/app/index.html:174
+msgid "Compatibility"
+msgstr "Përputhshmëri"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:177 /templates/app/index.html:184
+msgid ","
+msgstr ","
+
+#: /templates/app/index.html:189
+msgid "File Size"
+msgstr "Madhësi Kartele"
+
+#: /templates/app/index.html:194
+msgid "Most Recent Version"
+msgstr "Versioni Më i Ri"
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Faleminderit për blerjen"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Mbrapsht te aplikacioni"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Po ngarkohen Rregullat e Privatësisë..."
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -562,10 +640,6 @@ msgstr "Dialog/gjuhë e papërshtatshme"
 msgid "Misplaced bug report or support request"
 msgstr "Njoftim të metash apo kërkesë për asistencë jo në vendin e duhur"
 
-#: /templates/ratings/main.html:16 /templates/app/index.html:119 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "Shqyrtime"
-
 #: /templates/ratings/main.html:41
 msgid "This app has no reviews."
 msgstr "Nuk ka shqyrtime të këtij aplikacioni."
@@ -573,14 +647,6 @@ msgstr "Nuk ka shqyrtime të këtij aplikacioni."
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Shqyrtim Aplikacioni"
-
-#: /templates/website/index.html:13 /templates/app/index.html:24
-msgid "Description"
-msgstr "Përshkrim"
-
-#: /templates/website/index.html:19 /templates/app/index.html:30 /templates/app/index.html:44
-msgid "View All"
-msgstr "Shihini të Tëra"
 
 #. This goes before a list of categories.
 #: /templates/website/index.html:31
@@ -594,75 +660,6 @@ msgstr ""
 #: /templates/website/index.html:45 /templates/website/issue.html:14
 msgid "Report an issue"
 msgstr ""
-
-#: /templates/app/index.html:40
-msgid "Updates"
-msgstr "Përditësime"
-
-#: /templates/app/index.html:51
-msgid "Last updated"
-msgstr "Përditësuar së fundmi"
-
-#: /templates/app/index.html:60
-msgid "Email Support"
-msgstr "Asistencë Me Email"
-
-#: /templates/app/index.html:67
-msgid "Support Site"
-msgstr "Sajt Asistence"
-
-#: /templates/app/index.html:73
-msgid "Homepage"
-msgstr "Faqe hyrëse"
-
-#: /templates/app/index.html:86
-msgid "Statistics"
-msgstr "Statistika"
-
-#: /templates/app/index.html:93
-msgid "Edit Listing"
-msgstr "Përpunoni Listën"
-
-#: /templates/app/index.html:101
-msgid "Approve / Reject"
-msgstr "Miratoni / Hidhni Poshtë"
-
-#: /templates/app/index.html:102
-msgid "Review History"
-msgstr "Historik Shqyrtimesh"
-
-#: /templates/app/index.html:130
-msgid "App not yet reviewed"
-msgstr "Aplikacion ende i pashqyrtuar"
-
-#: /templates/app/index.html:149
-msgid "Premium version available"
-msgstr "Ka version me pagesë"
-
-#: /templates/app/index.html:167
-msgid "More Information"
-msgstr "Më Tepër të Dhëna"
-
-#: /templates/app/index.html:170
-msgid "Developer"
-msgstr "Zhvillues"
-
-#: /templates/app/index.html:174
-msgid "Compatibility"
-msgstr "Përputhshmëri"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:177 /templates/app/index.html:184
-msgid ","
-msgstr ","
-
-#: /templates/app/index.html:189
-msgid "File Size"
-msgstr "Madhësi Kartele"
-
-#: /templates/app/index.html:194
-msgid "Most Recent Version"
-msgstr "Versioni Më i Ri"
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
@@ -687,6 +684,55 @@ msgstr "jo i passhëm në rajonin tuaj"
 #: /media/js/apps.js:119
 msgid "not available for your platform"
 msgstr "jo i passhëm për platformën tuaj"
+
+#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Pagimi u anulua."
+
+#: /media/js/buttons.js:117
+msgid "Purchasing"
+msgstr "Blerje"
+
+#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
+msgid "Install"
+msgstr "Instaloje"
+
+#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Na ndjeni, patëm probleme me prurjen e të dhënave të këtij aplikacioni. Ju lutemi, riprovoni më vonë."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "Instalimi dështoi. Ju lutemi, riprovoni më vonë."
+
+#: /media/js/buttons.js:321 /media/js/buttons.js:417
+msgid "Installed"
+msgstr "Të instaluara"
+
+#: /media/js/buttons.js:395
+msgid "free"
+msgstr ""
+
+#: /media/js/buttons.js:399
+msgid "Unavailable"
+msgstr "Jo i passhëm"
+
+#: /media/js/buttons.js:422
+msgid "Open website"
+msgstr ""
+
+#: /media/js/buttons.js:426
+msgid "Open app"
+msgstr ""
+
+#: /media/js/buttons.js:428
+msgid "Install for {price}"
+msgstr ""
+
+#: /media/js/buttons.js:434
+msgid "Open"
+msgstr ""
 
 #: /media/js/compat_filter.js:50 /media/js/compat_filter.js:59
 msgid "All Platforms"
@@ -812,6 +858,39 @@ msgstr "Të dobishme"
 msgid "Weather"
 msgstr ""
 
+#. Productivity collection desktop promo (bug 1108612).
+#: /media/js/desktop_promo.js:13
+msgid "Play 45 creative variations of chess."
+msgstr ""
+
+#: /media/js/desktop_promo.js:15
+msgid "Manage projects easily with Basecamp."
+msgstr ""
+
+#: /media/js/desktop_promo.js:17
+msgid "Play GoldNuggets now!"
+msgstr ""
+
+#: /media/js/desktop_promo.js:30
+msgid "Play this fantastic action puzzle game immediately."
+msgstr ""
+
+#: /media/js/desktop_promo.js:36
+msgid "Enjoy 15,000+ radio programs and podcasts."
+msgstr ""
+
+#: /media/js/desktop_promo.js:43
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "Palikacione Produktiviteti—Thelbësore Desktopi"
+
+#: /media/js/desktop_promo.js:50
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Aplikacione Lojëra & Zbavitje—Thelbësore Desktopi"
+
+#: /media/js/desktop_promo.js:56
+msgid "Run for your life!"
+msgstr ""
+
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
 msgid "For ages {0}+"
@@ -853,37 +932,16 @@ msgstr "Për të rritur 17+"
 msgid "Adults Only 18+"
 msgstr "Vetëm për të Rritur 18+"
 
-#: /media/js/content_filter.js:18
+#: /media/js/content_filter.js:20
 msgid "all content"
 msgstr ""
 
-#: /media/js/content_filter.js:19
+#: /media/js/content_filter.js:21
 msgid "apps"
 msgstr ""
 
-#: /media/js/content_filter.js:20
+#: /media/js/content_filter.js:22
 msgid "websites"
-msgstr ""
-
-#. Maya app desktop promo (bug 1170850).
-#: /media/js/desktop_promo.js:21
-msgid "Play this fantastic action puzzle game immediately."
-msgstr ""
-
-#: /media/js/desktop_promo.js:27
-msgid "Enjoy 15,000+ radio programs and podcasts."
-msgstr ""
-
-#: /media/js/desktop_promo.js:34
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "Palikacione Produktiviteti—Thelbësore Desktopi"
-
-#: /media/js/desktop_promo.js:41
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Aplikacione Lojëra & Zbavitje—Thelbësore Desktopi"
-
-#: /media/js/desktop_promo.js:47
-msgid "Run for your life!"
 msgstr ""
 
 #: /media/js/edbrands.js:33
@@ -1210,7 +1268,7 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "Aplikacion Punë & Biznes"
 msgstr[1] "Aplikacione Punë & Biznes"
 
-#: /media/js/helpers_local.js:113
+#: /media/js/helpers_local.js:113 /media/js/include.js:14
 msgid "works offline"
 msgstr ""
 
@@ -1218,62 +1276,44 @@ msgstr ""
 msgid "Unable to install packaged apps"
 msgstr "Nuk instalon dot aplikacione të paketuar"
 
-#: /media/js/installer_direct.js:178 /media/js/buttons.js:192
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Na ndjeni, patëm probleme me prurjen e të dhënave të këtij aplikacioni. Ju lutemi, riprovoni më vonë."
-
 #: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
 msgid "App install error: {error}"
 msgstr "Gabim instalimi aplikacioni: {error}"
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Pagimi u anulua."
-
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "Blerje"
-
-#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
-msgid "Install"
-msgstr "Instaloje"
-
-#. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "Instalimi dështoi. Ju lutemi, riprovoni më vonë."
-
-#: /media/js/buttons.js:321 /media/js/buttons.js:417
-msgid "Installed"
-msgstr "Të instaluara"
-
-#: /media/js/buttons.js:395
-msgid "free"
-msgstr ""
-
-#: /media/js/buttons.js:399
-msgid "Unavailable"
-msgstr "Jo i passhëm"
-
-#: /media/js/buttons.js:422
-msgid "Open website"
-msgstr ""
-
-#: /media/js/buttons.js:426
-msgid "Open app"
-msgstr ""
-
-#: /media/js/buttons.js:428
-msgid "Install for {price}"
-msgstr ""
-
-#: /media/js/buttons.js:434
-msgid "Open"
-msgstr ""
-
-#: /media/js/newsletter.js:72
+#: /media/js/include.js:11 /media/js/newsletter.js:72
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Pati një gabim gjatë parashtrimit të kërkesës suaj për pajtim te buletini"
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:21
+msgid "You have been signed out"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:25
+msgid "You have been signed in"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:71
+msgid "Sign in failed"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:180
+msgid "FxA login failed. A server error was encountered."
+msgstr ""
+
+#: /media/js/include.js:14 /media/js/ratingwidget.js:44
+msgid "{n} star"
+msgid_plural "{n} stars"
+msgstr[0] "{n} yll"
+msgstr[1] "{n} yje"
+
+#: /media/js/include.js:16 /media/js/reviews.js:151 /media/js/views/app.js:22 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/app.js:35 /media/js/views/app.js:36
+#: /media/js/views/feed_landing.js:15 /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
+msgid "Loading..."
+msgstr "Po ngarkohet..."
+
+#: /media/js/include.js:16 /media/js/views/website.js:11
+msgid "Website Detail"
+msgstr ""
 
 #. This error is raised when we are unable to fetch a JWT from the payments API.
 #: /media/js/payments.js:138
@@ -1284,12 +1324,46 @@ msgstr "Gabim gjatë komunikimit me shërbyesin. Ju lutemi, riprovoni më vonë.
 msgid "Payment failed. Try again later."
 msgstr "Pagimi dështoi. Riprovoni më vonë."
 
-#. {n} is the number of stars
-#: /media/js/ratingwidget.js:44
-msgid "{n} star"
-msgid_plural "{n} stars"
-msgstr[0] "{n} yll"
-msgstr[1] "{n} yje"
+#. The report is an abuse report for reviews.
+#: /media/js/reviews.js:35
+msgid "Flagging review..."
+msgstr "Po i vihet shenjë shqyrtimit..."
+
+#: /media/js/reviews.js:40
+msgid "This review has been successfully flagged. Thanks!"
+msgstr "Këtij shqyrtimi iu vu shenjë me sukses. Faleminderit! "
+
+#: /media/js/reviews.js:51
+msgid "Sorry, there was an issue flagging the review. Please try again later."
+msgstr "Na ndjeni, pati një gabim gjatë vënies shenjë postimit tuaj. Ju lutemi, riprovoni më vonë."
+
+#: /media/js/reviews.js:59
+msgid "This review has been successfully deleted"
+msgstr "Ky shqyrtim u fshi me sukses"
+
+#: /media/js/reviews.js:90 /media/js/views/app/ratings/add.js:26
+msgid "Write a Review"
+msgstr "Shkruani një Shqyrtim"
+
+#: /media/js/reviews.js:92
+msgid "Sorry, there was a problem deleting the review"
+msgstr "Na ndjeni, pati një problem në fshirjen e shqyrtimit"
+
+#: /media/js/reviews.js:254
+msgid "Your review was successfully posted. Thanks!"
+msgstr "Shqyrtimi juaj u postua me sukses. Faleminderit!"
+
+#: /media/js/reviews.js:258
+msgid "Sorry, there was an error posting your review. Please try again later."
+msgstr "Na ndjeni, pati një gabim gjatë postimit të shqyrtimit tuaj. Ju lutemi, riprovoni më vonë."
+
+#: /media/js/reviews.js:284
+msgid "Your review was successfully edited"
+msgstr "Shqyrtimi juaj u përditësua me sukses"
+
+#: /media/js/reviews.js:288
+msgid "Sorry, there was an issue editing your review. Please try again later"
+msgstr "Na ndjeni, pati një gabim gjatë përpunimit të shqyrtimit tuaj. Ju lutemi, riprovoni më vonë"
 
 #: /media/js/settings_app.js:94
 msgid "English"
@@ -1335,51 +1409,9 @@ msgstr "Na ndjeni, hëpërhë jeni jashtë linje. Ju lutemi, riprovoni më vonë
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr "Herës tjetër që nisni aplikacionin Firefox Marketplace, do të shihni versionin e përditësuar!"
 
-#. The report is an abuse report for reviews.
-#: /media/js/reviews.js:35
-msgid "Flagging review..."
-msgstr "Po i vihet shenjë shqyrtimit..."
-
-#: /media/js/reviews.js:40
-msgid "This review has been successfully flagged. Thanks!"
-msgstr "Këtij shqyrtimi iu vu shenjë me sukses. Faleminderit! "
-
-#: /media/js/reviews.js:51
-msgid "Sorry, there was an issue flagging the review. Please try again later."
-msgstr "Na ndjeni, pati një gabim gjatë vënies shenjë postimit tuaj. Ju lutemi, riprovoni më vonë."
-
-#: /media/js/reviews.js:59
-msgid "This review has been successfully deleted"
-msgstr "Ky shqyrtim u fshi me sukses"
-
-#: /media/js/reviews.js:90 /media/js/views/app/ratings/add.js:26
-msgid "Write a Review"
-msgstr "Shkruani një Shqyrtim"
-
-#: /media/js/reviews.js:92
-msgid "Sorry, there was a problem deleting the review"
-msgstr "Na ndjeni, pati një problem në fshirjen e shqyrtimit"
-
-#: /media/js/reviews.js:151 /media/js/views/app.js:22 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/app.js:35 /media/js/views/app.js:36 /media/js/views/feed_landing.js:15
-#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
-msgid "Loading..."
-msgstr "Po ngarkohet..."
-
-#: /media/js/reviews.js:254
-msgid "Your review was successfully posted. Thanks!"
-msgstr "Shqyrtimi juaj u postua me sukses. Faleminderit!"
-
-#: /media/js/reviews.js:258
-msgid "Sorry, there was an error posting your review. Please try again later."
-msgstr "Na ndjeni, pati një gabim gjatë postimit të shqyrtimit tuaj. Ju lutemi, riprovoni më vonë."
-
-#: /media/js/reviews.js:284
-msgid "Your review was successfully edited"
-msgstr "Shqyrtimi juaj u përditësua me sukses"
-
-#: /media/js/reviews.js:288
-msgid "Sorry, there was an issue editing your review. Please try again later"
-msgstr "Na ndjeni, pati një gabim gjatë përpunimit të shqyrtimit tuaj. Ju lutemi, riprovoni më vonë"
+#: /media/js/lib/marketplace-elements.js:119
+msgid "Close"
+msgstr ""
 
 #: /media/js/views/app.js:23
 msgid "App Detail"
@@ -1425,9 +1457,16 @@ msgstr "Rregullimet tuaja u ruajtën me sukses"
 msgid "Settings could not be saved"
 msgstr "Rregullimet nuk u ruajtën dot"
 
-#: /media/js/views/website.js:11
-msgid "Website Detail"
+#: /media/js/lib/marketplace-core-modules/navigation.js:33
+msgid "No internet connection"
 msgstr ""
+
+#. {n} is the number of characters left.
+#: /media/js/lib/marketplace-core-modules/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
 
 #: /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
@@ -1448,3 +1487,8 @@ msgstr "Ju lutemi, bëni hyrjen që të shihni dëftesën"
 #: /media/js/views/app/receipt.js:21
 msgid "Receipt"
 msgstr "Dëftesë"
+
+#. Page not found (404)
+#: /media/js/lib/marketplace-core-modules/views/not_found.js:9
+msgid "Not Found"
+msgstr ""

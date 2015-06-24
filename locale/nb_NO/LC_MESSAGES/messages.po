@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-17T16:39:58.456Z\n"
+"POT-Creation-Date: 2015-06-24T20:27:38.101Z\n"
 "PO-Revision-Date: 2015-01-24 23:35+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1422142527.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:20
+#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "Utvid"
 
@@ -26,6 +26,15 @@ msgstr "Ingen apper funnet."
 msgid "An internal server error occurred. Please try again later."
 msgstr "En intern serverfeil oppstod. Prøv igjen senere."
 
+# Resultat eller treff?
+#: /templates/category.html:32 /templates/search.html:62
+msgid "No results found"
+msgstr "Ingen resultater funnet"
+
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "Kategorien finnes ikke."
+
 #: /templates/desktop-promo.html:2
 msgid "Previous"
 msgstr "Forrige"
@@ -33,14 +42,6 @@ msgstr "Forrige"
 #: /templates/desktop-promo.html:16
 msgid "Next"
 msgstr "Neste"
-
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "Ingen apper i denne kategorien"
-
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "Kategorien finnes ikke."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -66,7 +67,7 @@ msgstr ""
 msgid "Get Help"
 msgstr "Få hjelp"
 
-#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:30 /media/js/views/feedback.js:50
+#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
 msgid "Feedback"
 msgstr "Tilbakemelding"
 
@@ -98,7 +99,7 @@ msgstr ""
 "Med mindre annet er <a href=\"{legal_url}\" target=\"_blank\">bemerket</a>, er innhold på dette nettstedet lisensiert under <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Navngivelse-del-"
 "på-samme-vilkår-lisens v3.0</a> eller en senere versjon."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/privacy.html:2 /templates/app/index.html:79 /media/js/views/privacy.js:9
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/index.html:79 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Erklæring om personvern"
@@ -111,6 +112,10 @@ msgstr "Vilkår for bruk"
 msgid "Report Trademark Abuse"
 msgstr "Rapporter varemerkemisbruk"
 
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "Mer å utforske"
+
 #: /templates/header.html:28
 msgid "Toggle Menu"
 msgstr ""
@@ -119,11 +124,11 @@ msgstr ""
 msgid "Home"
 msgstr "Hjem"
 
-#: /templates/header.html:41 /templates/nav.html:23 /templates/_includes/app_list_filters.html:5 /media/js/views/popular.js:9
+#: /templates/header.html:41 /templates/nav.html:23 /templates/_includes/app_list_filters.html:27 /media/js/views/popular.js:9
 msgid "Popular"
 msgstr "Populære"
 
-#: /templates/header.html:42 /templates/nav.html:24 /templates/_includes/app_list_filters.html:10 /media/js/views/new.js:8
+#: /templates/header.html:42 /templates/nav.html:24 /templates/_includes/app_list_filters.html:32 /media/js/views/new.js:8
 msgid "New"
 msgstr "Ny"
 
@@ -143,11 +148,11 @@ msgstr ""
 msgid "Toggle Settings Menu"
 msgstr ""
 
-#: /templates/header.html:56 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:43
+#: /templates/header.html:56 /templates/nav.html:30 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "Registrer"
 
-#: /templates/header.html:58 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:44
+#: /templates/header.html:58 /templates/nav.html:32 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr "Logg inn"
 
@@ -155,21 +160,17 @@ msgstr "Logg inn"
 msgid "Search Marketplace&hellip;"
 msgstr ""
 
-#: /templates/header.html:83 /templates/nav.html:35 /templates/settings.html:2 /media/js/views/settings.js:54
+#: /templates/header.html:83 /templates/nav.html:34 /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Settings"
 msgstr "Innstillinger"
 
-#: /templates/header.html:84 /templates/nav.html:37 /templates/purchases.html:6 /media/js/views/purchases.js:10
+#: /templates/header.html:84 /templates/nav.html:36 /templates/purchases.html:6 /media/js/views/purchases.js:10
 msgid "My Apps"
 msgstr "Mine apper"
 
 #: /templates/header.html:86 /templates/nav.html:39 /templates/settings.html:45
 msgid "Sign Out"
 msgstr "Logg ut"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "Mer å utforske"
 
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
@@ -227,24 +228,19 @@ msgstr "Du har ingen apper"
 msgid "Oh no!"
 msgstr "Å nei!"
 
-#: /templates/search.html:19
+#: /templates/search.html:7
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
 msgstr[0] "<b>{n}</b> resultat"
 msgstr[1] "<b>{n}</b> resultater"
 
-#: /templates/search.html:23
+#: /templates/search.html:11
 msgid "<b>\"{search_query}\"</b> returned {n} result"
 msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
 msgstr[0] ""
 msgstr[1] ""
 
-# Resultat eller treff?
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "Ingen resultater funnet"
-
-#: /templates/search.html:61
+#: /templates/search.html:68
 msgid "No results found, try again later"
 msgstr "Ingen resultater funnet, prøv igjen senere"
 
@@ -305,16 +301,16 @@ msgid "Not enough statistics to show."
 msgstr ""
 
 #. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:14
+#: /templates/_includes/app_list_filters.html:6
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/app_list_filters.html:36
 msgid "Display as"
 msgstr ""
 
-#: /templates/_includes/app_list_filters.html:15
+#: /templates/_includes/app_list_filters.html:37
 msgid "Toggle App Previews"
-msgstr ""
-
-#: /templates/_includes/app_list_filters.html:23
-msgid "Show <mkt-selected-text></mkt-selected-text>"
 msgstr ""
 
 #: /templates/_includes/back_to_app.html:5
@@ -339,6 +335,10 @@ msgstr ""
 msgid "Learn how to change them."
 msgstr ""
 
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
 #: /templates/_includes/post_install_message.html:2
 msgid "Installed!"
 msgstr "Installert!"
@@ -355,16 +355,6 @@ msgstr "Start denne appen fra <b>Windows-skrivebordet</b> eller <b>Start &#9658;
 #: /templates/_includes/post_install_message.html:11
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Start denne appen fra <b>dashbordet</b>, <b>Programvelger</b> eller <b>Programmenyen</b>."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] ""
-msgstr[1] ""
 
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
@@ -386,33 +376,11 @@ msgstr ""
 msgid "Read all reviews"
 msgstr ""
 
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr ""
-
-#: /templates/app/abuse.html:6
-msgid "Let us know if you find any issues regarding abuse about this app."
-msgstr ""
-
-#: /templates/app/abuse.html:13
-msgid "Submit Report"
-msgstr ""
-
-#: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
-msgid "Report Abuse"
-msgstr "Rapporter misbruk"
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Tilbake til app"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Laster erklæring om personvern …"
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Takk for kjøpet"
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] ""
+msgstr[1] ""
 
 #: /templates/_macros/app_tile.html:113
 msgid "Review"
@@ -467,6 +435,118 @@ msgstr "Omtalen vil gjennomgåes"
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "Vurdert {stars} av {maxstars} stjerner"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr ""
+
+#: /templates/app/abuse.html:6
+msgid "Let us know if you find any issues regarding abuse about this app."
+msgstr ""
+
+#: /templates/app/abuse.html:13
+msgid "Submit Report"
+msgstr ""
+
+#: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
+msgid "Report Abuse"
+msgstr "Rapporter misbruk"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:24 /templates/website/index.html:13
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: /templates/app/index.html:30 /templates/app/index.html:44 /templates/website/index.html:19
+msgid "View All"
+msgstr "Vis alle"
+
+#: /templates/app/index.html:40
+msgid "Updates"
+msgstr "Oppdateringer"
+
+#: /templates/app/index.html:51
+msgid "Last updated"
+msgstr ""
+
+#: /templates/app/index.html:60
+msgid "Email Support"
+msgstr ""
+
+#: /templates/app/index.html:67
+msgid "Support Site"
+msgstr "Kundestøtte"
+
+# Apple bruker Utviklernettsted i AppStore, stjeler denne hit.
+#: /templates/app/index.html:73
+msgid "Homepage"
+msgstr "Utviklernettsted"
+
+#: /templates/app/index.html:86
+msgid "Statistics"
+msgstr "Statistikk"
+
+#: /templates/app/index.html:93
+msgid "Edit Listing"
+msgstr "Rediger oppføring"
+
+#: /templates/app/index.html:101
+msgid "Approve / Reject"
+msgstr "Godkjenn / forkast"
+
+#: /templates/app/index.html:102
+msgid "Review History"
+msgstr "Omtalingshistorikk"
+
+#: /templates/app/index.html:119 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "Omtaler"
+
+#: /templates/app/index.html:130
+msgid "App not yet reviewed"
+msgstr "App ennå ikke gjennomgått"
+
+# Premiumversjon? Bedre ord?
+#: /templates/app/index.html:149
+msgid "Premium version available"
+msgstr "Premiumversjon tilgjengelig"
+
+#: /templates/app/index.html:167
+msgid "More Information"
+msgstr ""
+
+#: /templates/app/index.html:170
+msgid "Developer"
+msgstr ""
+
+#: /templates/app/index.html:174
+msgid "Compatibility"
+msgstr ""
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:177 /templates/app/index.html:184
+msgid ","
+msgstr ""
+
+#: /templates/app/index.html:189
+msgid "File Size"
+msgstr ""
+
+#: /templates/app/index.html:194
+msgid "Most Recent Version"
+msgstr ""
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Takk for kjøpet"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Tilbake til app"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Laster erklæring om personvern …"
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -562,10 +642,6 @@ msgstr "Upassende språk/dialog"
 msgid "Misplaced bug report or support request"
 msgstr "Feilplassert feilrapport eller kundestøttehenvendelse"
 
-#: /templates/ratings/main.html:16 /templates/app/index.html:119 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "Omtaler"
-
 #: /templates/ratings/main.html:41
 msgid "This app has no reviews."
 msgstr ""
@@ -573,14 +649,6 @@ msgstr ""
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "App-omtale"
-
-#: /templates/website/index.html:13 /templates/app/index.html:24
-msgid "Description"
-msgstr "Beskrivelse"
-
-#: /templates/website/index.html:19 /templates/app/index.html:30 /templates/app/index.html:44
-msgid "View All"
-msgstr "Vis alle"
 
 #. This goes before a list of categories.
 #: /templates/website/index.html:31
@@ -593,77 +661,6 @@ msgstr ""
 
 #: /templates/website/index.html:45 /templates/website/issue.html:14
 msgid "Report an issue"
-msgstr ""
-
-#: /templates/app/index.html:40
-msgid "Updates"
-msgstr "Oppdateringer"
-
-#: /templates/app/index.html:51
-msgid "Last updated"
-msgstr ""
-
-#: /templates/app/index.html:60
-msgid "Email Support"
-msgstr ""
-
-#: /templates/app/index.html:67
-msgid "Support Site"
-msgstr "Kundestøtte"
-
-# Apple bruker Utviklernettsted i AppStore, stjeler denne hit.
-#: /templates/app/index.html:73
-msgid "Homepage"
-msgstr "Utviklernettsted"
-
-#: /templates/app/index.html:86
-msgid "Statistics"
-msgstr "Statistikk"
-
-#: /templates/app/index.html:93
-msgid "Edit Listing"
-msgstr "Rediger oppføring"
-
-#: /templates/app/index.html:101
-msgid "Approve / Reject"
-msgstr "Godkjenn / forkast"
-
-#: /templates/app/index.html:102
-msgid "Review History"
-msgstr "Omtalingshistorikk"
-
-#: /templates/app/index.html:130
-msgid "App not yet reviewed"
-msgstr "App ennå ikke gjennomgått"
-
-# Premiumversjon? Bedre ord?
-#: /templates/app/index.html:149
-msgid "Premium version available"
-msgstr "Premiumversjon tilgjengelig"
-
-#: /templates/app/index.html:167
-msgid "More Information"
-msgstr ""
-
-#: /templates/app/index.html:170
-msgid "Developer"
-msgstr ""
-
-#: /templates/app/index.html:174
-msgid "Compatibility"
-msgstr ""
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:177 /templates/app/index.html:184
-msgid ","
-msgstr ""
-
-#: /templates/app/index.html:189
-msgid "File Size"
-msgstr ""
-
-#: /templates/app/index.html:194
-msgid "Most Recent Version"
 msgstr ""
 
 #: /templates/website/issue.html:5
@@ -688,6 +685,55 @@ msgstr ""
 
 #: /media/js/apps.js:119
 msgid "not available for your platform"
+msgstr ""
+
+#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Betaling avbrutt."
+
+#: /media/js/buttons.js:117
+msgid "Purchasing"
+msgstr "Kjøper"
+
+#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
+msgid "Install"
+msgstr "Installer"
+
+#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Vi hadde problemer med å hente denne appens data. Prøv igjen senere."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "Installering mislyktes. Prøv igjen senere."
+
+#: /media/js/buttons.js:321 /media/js/buttons.js:417
+msgid "Installed"
+msgstr ""
+
+#: /media/js/buttons.js:395
+msgid "free"
+msgstr ""
+
+#: /media/js/buttons.js:399
+msgid "Unavailable"
+msgstr "Utilgjengelig"
+
+#: /media/js/buttons.js:422
+msgid "Open website"
+msgstr ""
+
+#: /media/js/buttons.js:426
+msgid "Open app"
+msgstr ""
+
+#: /media/js/buttons.js:428
+msgid "Install for {price}"
+msgstr ""
+
+#: /media/js/buttons.js:434
+msgid "Open"
 msgstr ""
 
 #: /media/js/compat_filter.js:50 /media/js/compat_filter.js:59
@@ -814,6 +860,39 @@ msgstr "Verktøy"
 msgid "Weather"
 msgstr ""
 
+#. Productivity collection desktop promo (bug 1108612).
+#: /media/js/desktop_promo.js:13
+msgid "Play 45 creative variations of chess."
+msgstr ""
+
+#: /media/js/desktop_promo.js:15
+msgid "Manage projects easily with Basecamp."
+msgstr ""
+
+#: /media/js/desktop_promo.js:17
+msgid "Play GoldNuggets now!"
+msgstr ""
+
+#: /media/js/desktop_promo.js:30
+msgid "Play this fantastic action puzzle game immediately."
+msgstr ""
+
+#: /media/js/desktop_promo.js:36
+msgid "Enjoy 15,000+ radio programs and podcasts."
+msgstr ""
+
+#: /media/js/desktop_promo.js:43
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "Produktivitets-apper — Essensielle apper for datamaskiner"
+
+#: /media/js/desktop_promo.js:50
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Spill og underholdnings-apper — Essensielle apper for datamaskiner"
+
+#: /media/js/desktop_promo.js:56
+msgid "Run for your life!"
+msgstr ""
+
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
 msgid "For ages {0}+"
@@ -855,37 +934,16 @@ msgstr "17 år eller eldre"
 msgid "Adults Only 18+"
 msgstr "Voksne 18 år eller eldre"
 
-#: /media/js/content_filter.js:18
+#: /media/js/content_filter.js:20
 msgid "all content"
 msgstr ""
 
-#: /media/js/content_filter.js:19
+#: /media/js/content_filter.js:21
 msgid "apps"
 msgstr ""
 
-#: /media/js/content_filter.js:20
+#: /media/js/content_filter.js:22
 msgid "websites"
-msgstr ""
-
-#. Maya app desktop promo (bug 1170850).
-#: /media/js/desktop_promo.js:21
-msgid "Play this fantastic action puzzle game immediately."
-msgstr ""
-
-#: /media/js/desktop_promo.js:27
-msgid "Enjoy 15,000+ radio programs and podcasts."
-msgstr ""
-
-#: /media/js/desktop_promo.js:34
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "Produktivitets-apper — Essensielle apper for datamaskiner"
-
-#: /media/js/desktop_promo.js:41
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Spill og underholdnings-apper — Essensielle apper for datamaskiner"
-
-#: /media/js/desktop_promo.js:47
-msgid "Run for your life!"
 msgstr ""
 
 #: /media/js/edbrands.js:33
@@ -1212,7 +1270,7 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "Arbeid- og forretnings-app"
 msgstr[1] "Arbeid- og forretnings-apper"
 
-#: /media/js/helpers_local.js:113
+#: /media/js/helpers_local.js:113 /media/js/include.js:14
 msgid "works offline"
 msgstr ""
 
@@ -1220,62 +1278,44 @@ msgstr ""
 msgid "Unable to install packaged apps"
 msgstr "Kan ikke installere pakkede apper"
 
-#: /media/js/installer_direct.js:178 /media/js/buttons.js:192
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Vi hadde problemer med å hente denne appens data. Prøv igjen senere."
-
 #: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
 msgid "App install error: {error}"
 msgstr "Appinstalleringsfeil: {error}"
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Betaling avbrutt."
-
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "Kjøper"
-
-#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
-msgid "Install"
-msgstr "Installer"
-
-#. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "Installering mislyktes. Prøv igjen senere."
-
-#: /media/js/buttons.js:321 /media/js/buttons.js:417
-msgid "Installed"
-msgstr ""
-
-#: /media/js/buttons.js:395
-msgid "free"
-msgstr ""
-
-#: /media/js/buttons.js:399
-msgid "Unavailable"
-msgstr "Utilgjengelig"
-
-#: /media/js/buttons.js:422
-msgid "Open website"
-msgstr ""
-
-#: /media/js/buttons.js:426
-msgid "Open app"
-msgstr ""
-
-#: /media/js/buttons.js:428
-msgid "Install for {price}"
-msgstr ""
-
-#: /media/js/buttons.js:434
-msgid "Open"
-msgstr ""
-
-#: /media/js/newsletter.js:72
+#: /media/js/include.js:11 /media/js/newsletter.js:72
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "Det oppstod en feil under innsending av påmeldingen til nyhetsbrevet"
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:21
+msgid "You have been signed out"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:25
+msgid "You have been signed in"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:71
+msgid "Sign in failed"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:180
+msgid "FxA login failed. A server error was encountered."
+msgstr ""
+
+#: /media/js/include.js:14 /media/js/ratingwidget.js:44
+msgid "{n} star"
+msgid_plural "{n} stars"
+msgstr[0] "{n} stjerne"
+msgstr[1] "{n} stjerner"
+
+#: /media/js/include.js:16 /media/js/reviews.js:151 /media/js/views/app.js:22 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/app.js:35 /media/js/views/app.js:36
+#: /media/js/views/feed_landing.js:15 /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
+msgid "Loading..."
+msgstr "Laster …"
+
+#: /media/js/include.js:16 /media/js/views/website.js:11
+msgid "Website Detail"
+msgstr ""
 
 #. This error is raised when we are unable to fetch a JWT from the payments API.
 #: /media/js/payments.js:138
@@ -1286,12 +1326,46 @@ msgstr "Feil under kommunikasjon med serveren. Prøv igjen senere."
 msgid "Payment failed. Try again later."
 msgstr "Betalingen mislyktes. Prøv igjen senere."
 
-#. {n} is the number of stars
-#: /media/js/ratingwidget.js:44
-msgid "{n} star"
-msgid_plural "{n} stars"
-msgstr[0] "{n} stjerne"
-msgstr[1] "{n} stjerner"
+#. The report is an abuse report for reviews.
+#: /media/js/reviews.js:35
+msgid "Flagging review..."
+msgstr ""
+
+#: /media/js/reviews.js:40
+msgid "This review has been successfully flagged. Thanks!"
+msgstr ""
+
+#: /media/js/reviews.js:51
+msgid "Sorry, there was an issue flagging the review. Please try again later."
+msgstr ""
+
+#: /media/js/reviews.js:59
+msgid "This review has been successfully deleted"
+msgstr ""
+
+#: /media/js/reviews.js:90 /media/js/views/app/ratings/add.js:26
+msgid "Write a Review"
+msgstr ""
+
+#: /media/js/reviews.js:92
+msgid "Sorry, there was a problem deleting the review"
+msgstr ""
+
+#: /media/js/reviews.js:254
+msgid "Your review was successfully posted. Thanks!"
+msgstr ""
+
+#: /media/js/reviews.js:258
+msgid "Sorry, there was an error posting your review. Please try again later."
+msgstr ""
+
+#: /media/js/reviews.js:284
+msgid "Your review was successfully edited"
+msgstr ""
+
+#: /media/js/reviews.js:288
+msgid "Sorry, there was an issue editing your review. Please try again later"
+msgstr ""
 
 #: /media/js/settings_app.js:94
 msgid "English"
@@ -1337,50 +1411,8 @@ msgstr "Du er for øyeblikket frakoblet. Prøv igjen senere."
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr "Neste gang du starter Firefox Marketplace-appen, vil du se den oppdaterte versjonen!"
 
-#. The report is an abuse report for reviews.
-#: /media/js/reviews.js:35
-msgid "Flagging review..."
-msgstr ""
-
-#: /media/js/reviews.js:40
-msgid "This review has been successfully flagged. Thanks!"
-msgstr ""
-
-#: /media/js/reviews.js:51
-msgid "Sorry, there was an issue flagging the review. Please try again later."
-msgstr ""
-
-#: /media/js/reviews.js:59
-msgid "This review has been successfully deleted"
-msgstr ""
-
-#: /media/js/reviews.js:90 /media/js/views/app/ratings/add.js:26
-msgid "Write a Review"
-msgstr ""
-
-#: /media/js/reviews.js:92
-msgid "Sorry, there was a problem deleting the review"
-msgstr ""
-
-#: /media/js/reviews.js:151 /media/js/views/app.js:22 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/app.js:35 /media/js/views/app.js:36 /media/js/views/feed_landing.js:15
-#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
-msgid "Loading..."
-msgstr "Laster …"
-
-#: /media/js/reviews.js:254
-msgid "Your review was successfully posted. Thanks!"
-msgstr ""
-
-#: /media/js/reviews.js:258
-msgid "Sorry, there was an error posting your review. Please try again later."
-msgstr ""
-
-#: /media/js/reviews.js:284
-msgid "Your review was successfully edited"
-msgstr ""
-
-#: /media/js/reviews.js:288
-msgid "Sorry, there was an issue editing your review. Please try again later"
+#: /media/js/lib/marketplace-elements.js:119
+msgid "Close"
 msgstr ""
 
 #: /media/js/views/app.js:23
@@ -1427,9 +1459,16 @@ msgstr ""
 msgid "Settings could not be saved"
 msgstr "Innstillingene kunne ikke lagres"
 
-#: /media/js/views/website.js:11
-msgid "Website Detail"
+#: /media/js/lib/marketplace-core-modules/navigation.js:33
+msgid "No internet connection"
 msgstr ""
+
+#. {n} is the number of characters left.
+#: /media/js/lib/marketplace-core-modules/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
 
 #: /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
@@ -1450,3 +1489,8 @@ msgstr "Logg inn for å vise kvitteringen"
 #: /media/js/views/app/receipt.js:21
 msgid "Receipt"
 msgstr "Kvittering"
+
+#. Page not found (404)
+#: /media/js/lib/marketplace-core-modules/views/not_found.js:9
+msgid "Not Found"
+msgstr ""

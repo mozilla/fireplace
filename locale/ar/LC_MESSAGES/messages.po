@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-17T16:39:58.456Z\n"
+"POT-Creation-Date: 2015-06-24T20:27:38.101Z\n"
 "PO-Revision-Date: 2015-06-13 21:34+0000\n"
 "Last-Translator: Mohamed <mohamed7afezz@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1434231296.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:20
+#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "توسيع"
 
@@ -26,6 +26,14 @@ msgstr "لم يتم العثور على أي تطبيق."
 msgid "An internal server error occurred. Please try again later."
 msgstr "حدث خطأ داخلي بالخادم. يرجى المحاولة لاحقاً."
 
+#: /templates/category.html:32 /templates/search.html:62
+msgid "No results found"
+msgstr "لم يتم العثور على نتائج"
+
+#: /templates/category.html:37
+msgid "The category you requested does not exist."
+msgstr "الفئة التي طلبتها غير موجودة."
+
 #: /templates/desktop-promo.html:2
 msgid "Previous"
 msgstr "السابق"
@@ -33,14 +41,6 @@ msgstr "السابق"
 #: /templates/desktop-promo.html:16
 msgid "Next"
 msgstr "التالي"
-
-#: /templates/category.html:32
-msgid "No apps in this category"
-msgstr "ليس هناك تطبيقات في هذه الفئة"
-
-#: /templates/category.html:37
-msgid "The category you requested does not exist."
-msgstr "الفئة التي طلبتها غير موجودة."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -66,7 +66,7 @@ msgstr "إرسال تعليقك"
 msgid "Get Help"
 msgstr "الحصول على مساعدة"
 
-#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:30 /media/js/views/feedback.js:50
+#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
 msgid "Feedback"
 msgstr "الملاحظات و الاقتراحات"
 
@@ -97,7 +97,7 @@ msgid ""
 msgstr ""
 "المحتوى في هذا الموقع مرخص بموجب <a href=\"{cc_url}\" target=\"_blank\">رخصة المشاع الابداعي - رخصةv3.0</a> أو أي إصدار أحدث، إلا إذا ذكر غير ذلك <a href=\"{legal_url}\" target=\"_blank\">هنا</a>."
 
-#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/privacy.html:2 /templates/app/index.html:79 /media/js/views/privacy.js:9
+#: /templates/footer.html:39 /templates/privacy.html:2 /templates/settings.html:71 /templates/app/index.html:79 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "سياسة الخصوصية"
@@ -110,6 +110,10 @@ msgstr "شروط الاستخدام"
 msgid "Report Trademark Abuse"
 msgstr "تقرير اساءة استخدام العلامات التجارية"
 
+#: /templates/homepage.html:7
+msgid "More to Explore"
+msgstr "إكتشف أكثر"
+
 #: /templates/header.html:28
 msgid "Toggle Menu"
 msgstr "القائمة المنبثقة"
@@ -118,11 +122,11 @@ msgstr "القائمة المنبثقة"
 msgid "Home"
 msgstr "الرئيسية"
 
-#: /templates/header.html:41 /templates/nav.html:23 /templates/_includes/app_list_filters.html:5 /media/js/views/popular.js:9
+#: /templates/header.html:41 /templates/nav.html:23 /templates/_includes/app_list_filters.html:27 /media/js/views/popular.js:9
 msgid "Popular"
 msgstr "الشائع"
 
-#: /templates/header.html:42 /templates/nav.html:24 /templates/_includes/app_list_filters.html:10 /media/js/views/new.js:8
+#: /templates/header.html:42 /templates/nav.html:24 /templates/_includes/app_list_filters.html:32 /media/js/views/new.js:8
 msgid "New"
 msgstr "الجديد"
 
@@ -142,11 +146,11 @@ msgstr "البحث"
 msgid "Toggle Settings Menu"
 msgstr "قائمة الإعدادات المنبثقة"
 
-#: /templates/header.html:56 /templates/nav.html:31 /templates/purchases.html:43 /templates/settings.html:43
+#: /templates/header.html:56 /templates/nav.html:30 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "مستخدم جديد"
 
-#: /templates/header.html:58 /templates/nav.html:33 /templates/purchases.html:44 /templates/settings.html:44
+#: /templates/header.html:58 /templates/nav.html:32 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr "تسجيل الدخول"
 
@@ -154,21 +158,17 @@ msgstr "تسجيل الدخول"
 msgid "Search Marketplace&hellip;"
 msgstr "أبحث في سوق التطبيقات&hellip;"
 
-#: /templates/header.html:83 /templates/nav.html:35 /templates/settings.html:2 /media/js/views/settings.js:54
+#: /templates/header.html:83 /templates/nav.html:34 /templates/settings.html:2 /media/js/views/settings.js:54
 msgid "Settings"
 msgstr "الإعدادات"
 
-#: /templates/header.html:84 /templates/nav.html:37 /templates/purchases.html:6 /media/js/views/purchases.js:10
+#: /templates/header.html:84 /templates/nav.html:36 /templates/purchases.html:6 /media/js/views/purchases.js:10
 msgid "My Apps"
 msgstr "تطبيقاتي"
 
 #: /templates/header.html:86 /templates/nav.html:39 /templates/settings.html:45
 msgid "Sign Out"
 msgstr "تسجيل الخروج"
-
-#: /templates/homepage.html:7
-msgid "More to Explore"
-msgstr "إكتشف أكثر"
 
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
@@ -226,7 +226,7 @@ msgstr "لا يوجد لديك تطبيقات"
 msgid "Oh no!"
 msgstr "للأسف!"
 
-#: /templates/search.html:19
+#: /templates/search.html:7
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
 msgstr[0] "<b>{n}</b> نتيجة"
@@ -236,7 +236,7 @@ msgstr[3] "<b>{n}</b> نتائج"
 msgstr[4] "<b>{n}</b> نتائج"
 msgstr[5] "<b>{n}</b> نتائج"
 
-#: /templates/search.html:23
+#: /templates/search.html:11
 msgid "<b>\"{search_query}\"</b> returned {n} result"
 msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
 msgstr[0] "<b>\"{search_query}\"</b> تعطي {n} نتيجه"
@@ -246,11 +246,7 @@ msgstr[3] "<b>\"{search_query}\"</b> تعطي {n} نتيجه"
 msgstr[4] "<b>\"{search_query}\"</b> تعطي {n} نتيجه"
 msgstr[5] "<b>\"{search_query}\"</b> تعطي {n} نتيجه"
 
-#: /templates/search.html:55
-msgid "No results found"
-msgstr "لم يتم العثور على نتائج"
-
-#: /templates/search.html:61
+#: /templates/search.html:68
 msgid "No results found, try again later"
 msgstr "لم يتم العثور على نتائج، يرجى المحاولة لاحقاً"
 
@@ -311,17 +307,17 @@ msgid "Not enough statistics to show."
 msgstr "لا يوجد إحصائيات كافية لعرضها."
 
 #. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:14
+#: /templates/_includes/app_list_filters.html:6
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr "أعرض <mkt-selected-text></mkt-selected-text>"
+
+#: /templates/_includes/app_list_filters.html:36
 msgid "Display as"
 msgstr "أعرض كـ"
 
-#: /templates/_includes/app_list_filters.html:15
+#: /templates/_includes/app_list_filters.html:37
 msgid "Toggle App Previews"
 msgstr "التبديل بين طُرق عرض التطبيقات"
-
-#: /templates/_includes/app_list_filters.html:23
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr "أعرض <mkt-selected-text></mkt-selected-text>"
 
 #: /templates/_includes/back_to_app.html:5
 msgid "Back to {app}"
@@ -345,6 +341,10 @@ msgstr "إعدادات نظام التشغيل ماك الخاص بك قد تم�
 msgid "Learn how to change them."
 msgstr "تعلم كيفية تغييرها."
 
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "أعرض التطبيقات التي تتوافق مع <mkt-selected-text></mkt-selected-text>"
+
 #: /templates/_includes/post_install_message.html:2
 msgid "Installed!"
 msgstr "تم التثبيت!"
@@ -360,20 +360,6 @@ msgstr "شغل هذا التطبيق من <b>سطح المكتب</b> أو <b> ا
 #: /templates/_includes/post_install_message.html:11
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "شغل هذا التطبيق من <b>القائمة</b>، <b>أب بيكر</b>، أو <b>قائمة التطبيقات</b>."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "أعرض التطبيقات التي تتوافق مع <mkt-selected-text></mkt-selected-text>"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "{numReviews} تقييم"
-msgstr[1] "{numReviews} تقييم"
-msgstr[2] "{numReviews} تقييم"
-msgstr[3] "{numReviews} تقييم"
-msgstr[4] "{numReviews} تقييم"
-msgstr[5] "{numReviews} تقييم"
 
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
@@ -395,33 +381,15 @@ msgstr "سجل الدخول لتقييم التطبيق"
 msgid "Read all reviews"
 msgstr "اقرأ جميع التقييمات"
 
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr "هل تريد الإبلاغ عن شيء؟"
-
-#: /templates/app/abuse.html:6
-msgid "Let us know if you find any issues regarding abuse about this app."
-msgstr "أسمح لنا أن نعرف إذا وجدت أي مشاكل تتعلق بإساءة الأستخدام حول هذا التطبيق."
-
-#: /templates/app/abuse.html:13
-msgid "Submit Report"
-msgstr "إرسال التقرير"
-
-#: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
-msgid "Report Abuse"
-msgstr "الإبلاغ عن إساءة الأستخدام"
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "الرجوع إلى التطبيق"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "جاري تحميل سياسة الخصوصية..."
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "شكراً على الشراء"
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "{numReviews} تقييم"
+msgstr[1] "{numReviews} تقييم"
+msgstr[2] "{numReviews} تقييم"
+msgstr[3] "{numReviews} تقييم"
+msgstr[4] "{numReviews} تقييم"
+msgstr[5] "{numReviews} تقييم"
 
 #: /templates/_macros/app_tile.html:113
 msgid "Review"
@@ -480,6 +448,116 @@ msgstr "ضع علامة للمراجعة"
 #: /templates/_macros/stars.html:5
 msgid "Rated {stars} out of {maxstars} stars"
 msgstr "تقييم {stars} من أصل {maxstars} نجوم"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr "هل تريد الإبلاغ عن شيء؟"
+
+#: /templates/app/abuse.html:6
+msgid "Let us know if you find any issues regarding abuse about this app."
+msgstr "أسمح لنا أن نعرف إذا وجدت أي مشاكل تتعلق بإساءة الأستخدام حول هذا التطبيق."
+
+#: /templates/app/abuse.html:13
+msgid "Submit Report"
+msgstr "إرسال التقرير"
+
+#: /templates/app/abuse.html:21 /templates/app/index.html:212 /media/js/views/app/abuse.js:51
+msgid "Report Abuse"
+msgstr "الإبلاغ عن إساءة الأستخدام"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:24 /templates/website/index.html:13
+msgid "Description"
+msgstr "الوصف"
+
+#: /templates/app/index.html:30 /templates/app/index.html:44 /templates/website/index.html:19
+msgid "View All"
+msgstr "إظهار الكل"
+
+#: /templates/app/index.html:40
+msgid "Updates"
+msgstr "التحديثات"
+
+#: /templates/app/index.html:51
+msgid "Last updated"
+msgstr "أخر تحديث"
+
+#: /templates/app/index.html:60
+msgid "Email Support"
+msgstr "البريد الإلكتروني للدعم الفني"
+
+#: /templates/app/index.html:67
+msgid "Support Site"
+msgstr "موقع الدعم الفني"
+
+#: /templates/app/index.html:73
+msgid "Homepage"
+msgstr "موقع التطبيق"
+
+#: /templates/app/index.html:86
+msgid "Statistics"
+msgstr "الإحصائيات"
+
+#: /templates/app/index.html:93
+msgid "Edit Listing"
+msgstr "تعديل القائمة"
+
+#: /templates/app/index.html:101
+msgid "Approve / Reject"
+msgstr "مقبُول/ مرفُض"
+
+#: /templates/app/index.html:102
+msgid "Review History"
+msgstr "مراجعة السجل"
+
+#: /templates/app/index.html:119 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "تقييمات المستخدمين"
+
+#: /templates/app/index.html:130
+msgid "App not yet reviewed"
+msgstr "لا يوجد تقييمات لهذا التطبيق بعد"
+
+#: /templates/app/index.html:149
+msgid "Premium version available"
+msgstr "الإصدار المدفوع متاح"
+
+#: /templates/app/index.html:167
+msgid "More Information"
+msgstr "المزيد من المعلومات"
+
+#: /templates/app/index.html:170
+msgid "Developer"
+msgstr "مطور التطبيق"
+
+#: /templates/app/index.html:174
+msgid "Compatibility"
+msgstr "متوافق مع"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:177 /templates/app/index.html:184
+msgid ","
+msgstr "،"
+
+#: /templates/app/index.html:189
+msgid "File Size"
+msgstr "حجم الملف"
+
+#: /templates/app/index.html:194
+msgid "Most Recent Version"
+msgstr "الإصدارالأخير"
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "شكراً على الشراء"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "الرجوع إلى التطبيق"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "جاري تحميل سياسة الخصوصية..."
 
 #: /templates/errors/404.html:9
 msgid "The page you were looking for was not found."
@@ -575,10 +653,6 @@ msgstr "اللغة أو الحوار غير لائق"
 msgid "Misplaced bug report or support request"
 msgstr "الإبلاغ عن خطأ أو طلب مساعدة الدعم الفني"
 
-#: /templates/ratings/main.html:16 /templates/app/index.html:119 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "تقييمات المستخدمين"
-
 #: /templates/ratings/main.html:41
 msgid "This app has no reviews."
 msgstr "لا يوجد تقييمات لهذا التطبيق."
@@ -586,14 +660,6 @@ msgstr "لا يوجد تقييمات لهذا التطبيق."
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "تقييم التطبيق"
-
-#: /templates/website/index.html:13 /templates/app/index.html:24
-msgid "Description"
-msgstr "الوصف"
-
-#: /templates/website/index.html:19 /templates/app/index.html:30 /templates/app/index.html:44
-msgid "View All"
-msgstr "إظهار الكل"
 
 #. This goes before a list of categories.
 #: /templates/website/index.html:31
@@ -607,75 +673,6 @@ msgstr "هل التصنيفات في هذا الموقع بها شئ خاطئ أ
 #: /templates/website/index.html:45 /templates/website/issue.html:14
 msgid "Report an issue"
 msgstr "الإبلاغ عن مشكلة"
-
-#: /templates/app/index.html:40
-msgid "Updates"
-msgstr "التحديثات"
-
-#: /templates/app/index.html:51
-msgid "Last updated"
-msgstr "أخر تحديث"
-
-#: /templates/app/index.html:60
-msgid "Email Support"
-msgstr "البريد الإلكتروني للدعم الفني"
-
-#: /templates/app/index.html:67
-msgid "Support Site"
-msgstr "موقع الدعم الفني"
-
-#: /templates/app/index.html:73
-msgid "Homepage"
-msgstr "موقع التطبيق"
-
-#: /templates/app/index.html:86
-msgid "Statistics"
-msgstr "الإحصائيات"
-
-#: /templates/app/index.html:93
-msgid "Edit Listing"
-msgstr "تعديل القائمة"
-
-#: /templates/app/index.html:101
-msgid "Approve / Reject"
-msgstr "مقبُول/ مرفُض"
-
-#: /templates/app/index.html:102
-msgid "Review History"
-msgstr "مراجعة السجل"
-
-#: /templates/app/index.html:130
-msgid "App not yet reviewed"
-msgstr "لا يوجد تقييمات لهذا التطبيق بعد"
-
-#: /templates/app/index.html:149
-msgid "Premium version available"
-msgstr "الإصدار المدفوع متاح"
-
-#: /templates/app/index.html:167
-msgid "More Information"
-msgstr "المزيد من المعلومات"
-
-#: /templates/app/index.html:170
-msgid "Developer"
-msgstr "مطور التطبيق"
-
-#: /templates/app/index.html:174
-msgid "Compatibility"
-msgstr "متوافق مع"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:177 /templates/app/index.html:184
-msgid ","
-msgstr "،"
-
-#: /templates/app/index.html:189
-msgid "File Size"
-msgstr "حجم الملف"
-
-#: /templates/app/index.html:194
-msgid "Most Recent Version"
-msgstr "الإصدارالأخير"
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
@@ -700,6 +697,55 @@ msgstr "غير متوفر في بلدك أو منطقتك"
 #: /media/js/apps.js:119
 msgid "not available for your platform"
 msgstr "غير متوفر لنظام تشغيلك"
+
+#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "تم إلغاء الدفع."
+
+#: /media/js/buttons.js:117
+msgid "Purchasing"
+msgstr "شراء"
+
+#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
+msgid "Install"
+msgstr "تثبيت"
+
+#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "عذراً, لدينا مشكلة في جلب بيانات هذا التطبيق. يرجى المحاولة لاحقاً."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/buttons.js:237
+msgid "Install failed. Please try again later."
+msgstr "فشل في التثبيت. يرجى المحاولة لاحقاً."
+
+#: /media/js/buttons.js:321 /media/js/buttons.js:417
+msgid "Installed"
+msgstr "مُثبت"
+
+#: /media/js/buttons.js:395
+msgid "free"
+msgstr "مجاناً"
+
+#: /media/js/buttons.js:399
+msgid "Unavailable"
+msgstr "غير متوفر"
+
+#: /media/js/buttons.js:422
+msgid "Open website"
+msgstr "أفتح الموقع"
+
+#: /media/js/buttons.js:426
+msgid "Open app"
+msgstr "أفتح التطبيق"
+
+#: /media/js/buttons.js:428
+msgid "Install for {price}"
+msgstr "تثبيت بسعر {price}"
+
+#: /media/js/buttons.js:434
+msgid "Open"
+msgstr "فتح"
 
 #: /media/js/compat_filter.js:50 /media/js/compat_filter.js:59
 msgid "All Platforms"
@@ -825,6 +871,39 @@ msgstr "الأدوات المساعدة"
 msgid "Weather"
 msgstr ""
 
+#. Productivity collection desktop promo (bug 1108612).
+#: /media/js/desktop_promo.js:13
+msgid "Play 45 creative variations of chess."
+msgstr ""
+
+#: /media/js/desktop_promo.js:15
+msgid "Manage projects easily with Basecamp."
+msgstr ""
+
+#: /media/js/desktop_promo.js:17
+msgid "Play GoldNuggets now!"
+msgstr ""
+
+#: /media/js/desktop_promo.js:30
+msgid "Play this fantastic action puzzle game immediately."
+msgstr ""
+
+#: /media/js/desktop_promo.js:36
+msgid "Enjoy 15,000+ radio programs and podcasts."
+msgstr ""
+
+#: /media/js/desktop_promo.js:43
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "تطبيقات الإنتاجية—من ضروريات الكمبيوتر"
+
+#: /media/js/desktop_promo.js:50
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "الألعاب و التطبيقات الترفيهية—من ضروريات الكمبيوتر"
+
+#: /media/js/desktop_promo.js:56
+msgid "Run for your life!"
+msgstr ""
+
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
 msgid "For ages {0}+"
@@ -866,38 +945,17 @@ msgstr "للناضج 17+"
 msgid "Adults Only 18+"
 msgstr "للبالغين فقط 18+"
 
-#: /media/js/content_filter.js:18
+#: /media/js/content_filter.js:20
 msgid "all content"
 msgstr "كل المحتوي"
 
-#: /media/js/content_filter.js:19
+#: /media/js/content_filter.js:21
 msgid "apps"
 msgstr "التطبيقات"
 
-#: /media/js/content_filter.js:20
+#: /media/js/content_filter.js:22
 msgid "websites"
 msgstr "المواقع"
-
-#. Maya app desktop promo (bug 1170850).
-#: /media/js/desktop_promo.js:21
-msgid "Play this fantastic action puzzle game immediately."
-msgstr ""
-
-#: /media/js/desktop_promo.js:27
-msgid "Enjoy 15,000+ radio programs and podcasts."
-msgstr ""
-
-#: /media/js/desktop_promo.js:34
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "تطبيقات الإنتاجية—من ضروريات الكمبيوتر"
-
-#: /media/js/desktop_promo.js:41
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "الألعاب و التطبيقات الترفيهية—من ضروريات الكمبيوتر"
-
-#: /media/js/desktop_promo.js:47
-msgid "Run for your life!"
-msgstr ""
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1439,7 +1497,7 @@ msgstr[3] "تطبيق بارز للعمل و النشاط التجاري"
 msgstr[4] "تطبيق بارز للعمل و النشاط التجاري"
 msgstr[5] "تطبيق بارز للعمل و النشاط التجاري"
 
-#: /media/js/helpers_local.js:113
+#: /media/js/helpers_local.js:113 /media/js/include.js:14
 msgid "works offline"
 msgstr "يعمل بدون الإتصال بالأنترنت"
 
@@ -1447,62 +1505,48 @@ msgstr "يعمل بدون الإتصال بالأنترنت"
 msgid "Unable to install packaged apps"
 msgstr "غير قادر على تثبيت حزم التطبيقات"
 
-#: /media/js/installer_direct.js:178 /media/js/buttons.js:192
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "عذراً, لدينا مشكلة في جلب بيانات هذا التطبيق. يرجى المحاولة لاحقاً."
-
 #: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
 msgid "App install error: {error}"
 msgstr "خطأ في تثبيت التطبيق: {error}"
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "تم إلغاء الدفع."
-
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "شراء"
-
-#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
-msgid "Install"
-msgstr "تثبيت"
-
-#. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "فشل في التثبيت. يرجى المحاولة لاحقاً."
-
-#: /media/js/buttons.js:321 /media/js/buttons.js:417
-msgid "Installed"
-msgstr "مُثبت"
-
-#: /media/js/buttons.js:395
-msgid "free"
-msgstr "مجاناً"
-
-#: /media/js/buttons.js:399
-msgid "Unavailable"
-msgstr "غير متوفر"
-
-#: /media/js/buttons.js:422
-msgid "Open website"
-msgstr "أفتح الموقع"
-
-#: /media/js/buttons.js:426
-msgid "Open app"
-msgstr "أفتح التطبيق"
-
-#: /media/js/buttons.js:428
-msgid "Install for {price}"
-msgstr "تثبيت بسعر {price}"
-
-#: /media/js/buttons.js:434
-msgid "Open"
-msgstr "فتح"
-
-#: /media/js/newsletter.js:72
+#: /media/js/include.js:11 /media/js/newsletter.js:72
 msgid "There was an error submitting your newsletter sign up request"
 msgstr "حدث خطأ اثناء تسجيلك في نشرتنا الأخبارية"
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:21
+msgid "You have been signed out"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:25
+msgid "You have been signed in"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:71
+msgid "Sign in failed"
+msgstr ""
+
+#: /media/js/include.js:12 /media/js/lib/marketplace-core-modules/login.js:180
+msgid "FxA login failed. A server error was encountered."
+msgstr ""
+
+#: /media/js/include.js:14 /media/js/ratingwidget.js:44
+msgid "{n} star"
+msgid_plural "{n} stars"
+msgstr[0] "{n} نجمة"
+msgstr[1] "{n} نجمة"
+msgstr[2] "{n} نجوم"
+msgstr[3] "{n} نجوم"
+msgstr[4] "{n} نجوم"
+msgstr[5] "{n} نجوم"
+
+#: /media/js/include.js:16 /media/js/reviews.js:151 /media/js/views/app.js:22 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/app.js:35 /media/js/views/app.js:36
+#: /media/js/views/feed_landing.js:15 /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
+msgid "Loading..."
+msgstr "جاري التحميل..."
+
+#: /media/js/include.js:16 /media/js/views/website.js:11
+msgid "Website Detail"
+msgstr "تفاصيل الموقع"
 
 #. This error is raised when we are unable to fetch a JWT from the payments API.
 #: /media/js/payments.js:138
@@ -1513,16 +1557,46 @@ msgstr "حدث خطأ أثناء الاتصال مع الخادم. يرجى ال
 msgid "Payment failed. Try again later."
 msgstr "فشل في عملية الدفع. يرجى المحاولة لاحقاً."
 
-#. {n} is the number of stars
-#: /media/js/ratingwidget.js:44
-msgid "{n} star"
-msgid_plural "{n} stars"
-msgstr[0] "{n} نجمة"
-msgstr[1] "{n} نجمة"
-msgstr[2] "{n} نجوم"
-msgstr[3] "{n} نجوم"
-msgstr[4] "{n} نجوم"
-msgstr[5] "{n} نجوم"
+#. The report is an abuse report for reviews.
+#: /media/js/reviews.js:35
+msgid "Flagging review..."
+msgstr "جاري مراجعة التقييم..."
+
+#: /media/js/reviews.js:40
+msgid "This review has been successfully flagged. Thanks!"
+msgstr "قد تم وضع علامة على هذا التقيم للمراجعة. شكراً!"
+
+#: /media/js/reviews.js:51
+msgid "Sorry, there was an issue flagging the review. Please try again later."
+msgstr "عذراً، هناك مشكلة في وضع علامة على هذا التقيم. يرجى المحاولة لاحقاً."
+
+#: /media/js/reviews.js:59
+msgid "This review has been successfully deleted"
+msgstr "تم حذف هذا التقييم بنجاح"
+
+#: /media/js/reviews.js:90 /media/js/views/app/ratings/add.js:26
+msgid "Write a Review"
+msgstr "كتابة تقييم"
+
+#: /media/js/reviews.js:92
+msgid "Sorry, there was a problem deleting the review"
+msgstr "عذراً، يوجد مشكلة في حذف التقييم"
+
+#: /media/js/reviews.js:254
+msgid "Your review was successfully posted. Thanks!"
+msgstr "تم نشر تقييمك بنجاح. شكرا!"
+
+#: /media/js/reviews.js:258
+msgid "Sorry, there was an error posting your review. Please try again later."
+msgstr "عذراً، حدث خطأ أثناء نشر تقييمك. يرجى المحاولة لاحقاً."
+
+#: /media/js/reviews.js:284
+msgid "Your review was successfully edited"
+msgstr "تم تعديل تقييمك بنجاح"
+
+#: /media/js/reviews.js:288
+msgid "Sorry, there was an issue editing your review. Please try again later"
+msgstr "عذراً، حدث خطأ أثناء تعديل تقييمك. يرجى المحاولة لاحقاً"
 
 #: /media/js/settings_app.js:94
 msgid "English"
@@ -1568,51 +1642,9 @@ msgstr "عذراً، أنت غير متصل بالإنترنت حالياً. ا�
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr "عندما تقوم بتشغيل سوق التطبيقات المرة القادمة، سوف ترى الإصدار المحدث!"
 
-#. The report is an abuse report for reviews.
-#: /media/js/reviews.js:35
-msgid "Flagging review..."
-msgstr "جاري مراجعة التقييم..."
-
-#: /media/js/reviews.js:40
-msgid "This review has been successfully flagged. Thanks!"
-msgstr "قد تم وضع علامة على هذا التقيم للمراجعة. شكراً!"
-
-#: /media/js/reviews.js:51
-msgid "Sorry, there was an issue flagging the review. Please try again later."
-msgstr "عذراً، هناك مشكلة في وضع علامة على هذا التقيم. يرجى المحاولة لاحقاً."
-
-#: /media/js/reviews.js:59
-msgid "This review has been successfully deleted"
-msgstr "تم حذف هذا التقييم بنجاح"
-
-#: /media/js/reviews.js:90 /media/js/views/app/ratings/add.js:26
-msgid "Write a Review"
-msgstr "كتابة تقييم"
-
-#: /media/js/reviews.js:92
-msgid "Sorry, there was a problem deleting the review"
-msgstr "عذراً، يوجد مشكلة في حذف التقييم"
-
-#: /media/js/reviews.js:151 /media/js/views/app.js:22 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/app.js:35 /media/js/views/app.js:36 /media/js/views/feed_landing.js:15
-#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
-msgid "Loading..."
-msgstr "جاري التحميل..."
-
-#: /media/js/reviews.js:254
-msgid "Your review was successfully posted. Thanks!"
-msgstr "تم نشر تقييمك بنجاح. شكرا!"
-
-#: /media/js/reviews.js:258
-msgid "Sorry, there was an error posting your review. Please try again later."
-msgstr "عذراً، حدث خطأ أثناء نشر تقييمك. يرجى المحاولة لاحقاً."
-
-#: /media/js/reviews.js:284
-msgid "Your review was successfully edited"
-msgstr "تم تعديل تقييمك بنجاح"
-
-#: /media/js/reviews.js:288
-msgid "Sorry, there was an issue editing your review. Please try again later"
-msgstr "عذراً، حدث خطأ أثناء تعديل تقييمك. يرجى المحاولة لاحقاً"
+#: /media/js/lib/marketplace-elements.js:119
+msgid "Close"
+msgstr ""
 
 #: /media/js/views/app.js:23
 msgid "App Detail"
@@ -1658,9 +1690,20 @@ msgstr "تم حفظ إعداداتك بنجاح"
 msgid "Settings could not be saved"
 msgstr "تعذر حفظ الإعدادات"
 
-#: /media/js/views/website.js:11
-msgid "Website Detail"
-msgstr "تفاصيل الموقع"
+#: /media/js/lib/marketplace-core-modules/navigation.js:33
+msgid "No internet connection"
+msgstr ""
+
+#. {n} is the number of characters left.
+#: /media/js/lib/marketplace-core-modules/utils.js:28
+msgid "<b>{n}</b> character left."
+msgid_plural "<b>{n}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
@@ -1681,3 +1724,8 @@ msgstr "يرجى تسجيل الدخول لعرض الإيصال"
 #: /media/js/views/app/receipt.js:21
 msgid "Receipt"
 msgstr "فاتورة"
+
+#. Page not found (404)
+#: /media/js/lib/marketplace-core-modules/views/not_found.js:9
+msgid "Not Found"
+msgstr ""
