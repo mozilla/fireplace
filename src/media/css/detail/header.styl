@@ -4,6 +4,17 @@
 */
 @import '../lib';
 
+[data-page-type~="website"] {
+    +media--wide-tablet() {
+        .mkt-tile {
+            height: 150px;
+        }
+        .mkt-app-button {
+            margin: 0 auto;
+        }
+    }
+}
+
 .website-header.full,
 .app-header.full {
     margin-bottom: -10px;
