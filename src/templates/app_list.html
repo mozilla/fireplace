@@ -15,8 +15,8 @@
                     else apiFn(endpoint_name)|urlparams(limit=24) %}
 
 <section class="main full app-list-page c">
+  {% include "_includes/app_list_filters.html" %}
   {% defer (url=search_url, pluck='objects', as='app', paginate='.app-list') %}
-    {% include "_includes/app_list_filters.html" %}
     <ul class="app-list {{ 'paginated' if response.meta.next }}">
       {% for app in this %}
         {% set app = apps.transform(app) %}

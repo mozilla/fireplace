@@ -1,6 +1,23 @@
 {% include '_macros/app_tile.html' %}
 {% include '_macros/more_button.html' %}
 
+{% macro results_subheader(query, count) %}
+  <section class="main">
+    <div class="subheader">
+      <h1 class="search-results-header search-results-header-mobile">
+        {{ _plural('<b>{n}</b> Result', '<b>{n}</b> Results', n=count) }}
+        <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
+      </h1>
+      <h1 class="search-results-header search-results-header-desktop">
+        {{ _plural('<b>"{search_query}"</b> returned {n} result',
+                   '<b>"{search_query}"</b> returned {n} results',
+                   search_query=query|escape,
+                   n=count) }}
+      </h1>
+    </div>
+  </section>
+{% endmacro %}
+
 {% set api_url = anonApiParams('search', params) %}
 
 {% if params.region %}
@@ -14,20 +31,8 @@
 
 {% defer (url=api_url, pluck='objects', as='app', paginate='.app-list',
           id='searchresults') %}
-  <section class="main">
-    <div class="subheader">
-      <h1 class="search-results-header search-results-header-mobile">
-        {{ _plural('<b>{n}</b> Result', '<b>{n}</b> Results', n=response.meta.total_count) }}
-        <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
-      </h1>
-      <h1 class="search-results-header search-results-header-desktop">
-        {{ _plural('<b>"{search_query}"</b> returned {n} result',
-                   '<b>"{search_query}"</b> returned {n} results',
-                   search_query=raw_query|escape,
-                   n=response.meta.total_count) }}
-      </h1>
-    </div>
-  </section>
+
+  {{ results_subheader(raw_query, response.meta.total_count) }}
 
   <section id="search-results" class="main full app-list-page search-results">
     <div>
@@ -51,7 +56,9 @@
     <p class="spinner spaced alt"></p>
   </section>
 {% empty %}
-  <section class="main search-empty">
+  {{ results_subheader(raw_query, 0) }}
+
+  <section class="main search-empty app-list-page full">
     {% include "_includes/app_list_filters.html" %}
     <h1 class="no-results">{{ _('No results found') }}</h1>
   </section>
