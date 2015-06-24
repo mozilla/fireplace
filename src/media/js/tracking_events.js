@@ -108,6 +108,11 @@
    the Feed Element. This will be set whether it is on the homepage Feed or
    from a collection page.
    Passed with events (app install event).
+
+   18 - Content Type
+   =================
+   e.g., app, website.
+   Passed with events.
 */
 define('tracking_events',
     ['compat_filter', 'consumer_info', 'core/capabilities', 'core/log',
@@ -140,6 +145,7 @@ define('tracking_events',
         isPackaged: 'dimension15',
         installAttribution: 'dimension16',
         installAttributionSlug: 'dimension17',
+        contentType: 'dimension18',
     };
 
     var SRCS = {
@@ -270,6 +276,17 @@ define('tracking_events',
             'click',
             filterDevice
         );
+    })
+
+    // Change content filtering options.
+    .on('change', '.content-filter', function() {
+        var filterContent = this.value;
+        setSessionVar(DIMENSIONS.contentType, filterContent);
+        sendEvent(
+            'Change content filter',
+            'click',
+            filterContent
+        );
     });
 
     // Navigate from collection tile to collection detail.
@@ -361,7 +378,7 @@ define('tracking_events',
         );
     })
 
-    .on('click', '[data-content-type="website"] .mkt-app-button', function() {
+    .on('click', '[data-content-type="website"] + .mkt-app-button', function() {
         var root = this;
         sendEvent(
             'View Website',
@@ -375,15 +392,18 @@ define('tracking_events',
         // dimensions set.
         opts = opts || {};
         var custom = {};
-        var app = $installBtn.data('product');
+        var item = $installBtn.data('product');
 
-        custom[DIMENSIONS.appName] = app.name;
-        custom[DIMENSIONS.appId] = app.id + '';
+        custom[DIMENSIONS.appName] = item.name;
+        custom[DIMENSIONS.appId] = item.id + '';
 
-        if (!opts.isWebsite) {
-            custom[DIMENSIONS.appDeveloper] = app.author;
-            custom[DIMENSIONS.appPremiumType] = app.payment_required ? 'paid' :
-                                                                       'free';
+        if (opts.isWebsite) {
+            custom[DIMENSIONS.contentType] = 'website';
+        } else {
+            custom[DIMENSIONS.appDeveloper] = item.author;
+            custom[DIMENSIONS.appPremiumType] = item.payment_required ?
+                                                'paid' : 'free';
+            custom[DIMENSIONS.contentType] = 'webapp';
         }
 
         if ($('[data-page-type~="detail"]').length) {
