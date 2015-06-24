@@ -124,7 +124,13 @@ define('apps',
     }
 
     function transform(app) {
+        if (app.__transformed) {
+            return app;
+        }
         if (app.categories) {
+            // Transform categories to get a list of objects instead of a list
+            // of slugs, to be able to display the translated category names
+            // on the detail page.
             app.categories = categories.filter(function(category) {
                 return app.categories.indexOf(category.slug) !== -1;
             });
@@ -141,6 +147,7 @@ define('apps',
             app.short_name = app.name;
             app.key = app.slug;
         }
+        app.__transformed = true;
         return app;
     }
 
