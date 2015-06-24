@@ -72,6 +72,7 @@ function assertUAInstall(test, name, app, dimensions) {
         dimension7: app.id + '',
         dimension8: app.author,
         dimension10: app.payment_required ? 'paid' : 'free',
+        dimension18: 'webapp'
     }, dimensions || {});
 
     helpers.assertUASendEvent(test, [
@@ -218,7 +219,8 @@ casper.test.begin('Test UA when installing from app details page', {
             dimension8: 'Tracking',
             dimension9: 'direct',
             dimension10: 'free',
-            dimension16: 'detail'
+            dimension16: 'detail',
+            dimension18: 'webapp'
         };
 
         var app;
@@ -254,7 +256,8 @@ installAttributionTestDefs.forEach(function(testDef) {
             helpers.startCasper(testDef.path);
 
             var customDimensions = {
-                dimension16: testDef.attribution
+                dimension16: testDef.attribution,
+                dimension18: 'webapp'
             };
             if (testDef.src) {
                 customDimensions.dimension9 = testDef.src;
@@ -297,6 +300,7 @@ installAttributionTestDefs.forEach(function(testDef) {
             var customDimensions = {
                 dimension9: testDef.src ? 'direct' : testDef.attribution,
                 dimension16: 'detail',
+                dimension18: 'webapp',
             };
 
             var app;
