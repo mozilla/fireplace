@@ -8,6 +8,15 @@ define('desktop_promo',
     'use strict';
     var gettext = l10n.gettext;
 
+    var newStrings = [
+        // L10n: Chess game desktop promo (bug 1175381).
+        gettext('Play 45 creative variations of chess.'),
+        // L10n: Basecamp program desktop promo (bug 1175381).
+        gettext('Manage projects easily with Basecamp.'),
+        // L10n: GoldNuggets game desktop promo (bug 1175381).
+        gettext('Play GoldNuggets now!'),
+    ];
+
 
     return {
         isDesktop: function() {
