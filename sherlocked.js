@@ -76,6 +76,16 @@ require('sherlocked')
         .waitForExist('.mkt-tile', 60000);
 })
 
+.investigate('Website Detail on Mobile', function(client) {
+    return mobile(client, 'website/funky-monkey-5')
+        .waitForExist('.mkt-tile', 60000);
+})
+
+.investigate('Website Detail on Desktop', function(client) {
+    return desktop(client, 'website/funky-monkey-5')
+        .waitForExist('.mkt-tile', 60000);
+})
+
 .investigate('Reviews on Mobile', function(client) {
     return mobile(client, 'app/swanky-chocolate-9/ratings')
         .waitForExist('.review', 60000);
@@ -96,14 +106,14 @@ require('sherlocked')
         .waitForExist('.app-list', 60000);
 })
 
-.investigate('Category menu on Mobile', function(client) {
+.investigate('Category Menu on Mobile', function(client) {
     return mobile(client)
         .waitForExist('.feed-home', 60000)
         .click('mkt-nav-toggle[for=nav]')
         .click('mkt-nav-child-toggle[for=categories]');
 })
 
-.investigate('Category menu on Desktop', function(client) {
+.investigate('Category Menu on Desktop', function(client) {
     return desktop(client)
         .waitForExist('.feed-home', 60000)
         .click('mkt-header-child-toggle[for=header--categories]');
