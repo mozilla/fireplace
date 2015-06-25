@@ -29,14 +29,16 @@
         {% if website.categories %}
           <section class="prose website-categories">
             <div>
-              {# FIXME: This won't translate well. #}
-              {# L10n: This goes before a list of categories. #}
-              {{ _('Explore more in') }}
-              {% for category in website.categories %}
-                <a href="{{ url('category', [category.slug]) }}" class="website-detail--category-link">
-                  {{ category.name }}
-                </a>{% if loop.last %}.{% else %},{% endif %}
-              {% endfor %}
+              {% set cat_link_format = '<a href="{url}" class="website-detail--category-link">{name}</a>' %}
+              {% set categories = website.categories %}
+              {% if categories.length == 2 %}
+                {{ _('Explore more in {category_one} and {category_two}.')|format(
+                    category_one=cat_link_format|format(url=categories[0].url, name=categories[0].name),
+                    category_two=cat_link_format|format(url=categories[1].url, name=categories[1].name)) }}
+              {% else %}
+                {{ _('Explore more in {category}.')|format(
+                    category=cat_link_format|format(url=categories[0].url, name=categories[0].name)) }}
+              {% endif %}
             </div>
           </section>
         {% endif %}

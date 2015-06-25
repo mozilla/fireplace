@@ -4,10 +4,10 @@
 define('apps',
     ['categories', 'core/capabilities', 'core/defer', 'installer_direct',
      'installer_iframe', 'installer_mock', 'core/l10n', 'core/nunjucks',
-     'core/settings', 'underscore', 'core/utils', 'core/z'],
+     'core/settings', 'underscore', 'core/urls', 'core/utils', 'core/z'],
     function(categories, capabilities, defer, installer_direct,
              installer_iframe, InstallerMock, l10n, nunjucks,
-             settings, _, utils, z) {
+             settings, _, urls, utils, z) {
     'use strict';
     var gettext = l10n.gettext;
     var installer;
@@ -133,6 +133,9 @@ define('apps',
             // on the detail page.
             app.categories = categories.filter(function(category) {
                 return app.categories.indexOf(category.slug) !== -1;
+            }).map(function(category) {
+                return _.extend({url: urls.reverse('category', [category.slug])},
+                                category);
             });
         }
         // Normalize content types.
