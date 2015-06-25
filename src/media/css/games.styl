@@ -1,0 +1,147 @@
+@import 'lib';
+
+
+[data-page-type~="games"] {
+    #page {
+        background: linear-gradient($greyscale-dark-grey-hover,
+                                    $greyscale-dark-grey);
+        min-height: 100%;
+        padding-top: 0;
+    }
+}
+
+.games {
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+
+    > section {
+        padding: 30px 120px;
+        width: 100%;
+    }
+}
+
+.games-title {
+    align-content: center;
+    background: #006DBF;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    width: 100%;
+
+    h1 {
+        color: $greyscale-white;
+        font-weight: 300;
+    }
+}
+
+.games-playarea {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.gamepad {
+    category-sprite(2);
+    category-icon-position('games', 2);
+    background-image: url('../img/pretty/categories-sprite-black.svg');
+    bottom: -55px;
+    position: absolute;
+    transform: rotate(-20deg) scale(2);
+    right: 25px;
+}
+
+.gamescreen-wrapper {
+    background: $greyscale-black;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    position: relative;
+    width: 85%;
+}
+
+.gamescreen {
+    border: 10px solid $greyscale-black;
+    border-radius: 5px;
+    box-shadow: none;
+    display: block;
+    height: auto;
+    min-height: 480px;
+    width: 100%;
+    z-index: 1;
+}
+
+.gamescreen-stand-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.gamescreen-stand {
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 50px solid $greyscale-black;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    margin-bottom: 60px;
+    margin-top: -5px;
+    width: 0;
+}
+
+section.game-information {
+    background: $greyscale-grey;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0;
+}
+
+.game-name,
+.game-author {
+    color: $greyscale-black;
+    font-weight: 300;
+
+    span {
+        font-weight: 400;
+    }
+}
+
+.game-name {
+    font-size: 30px;
+}
+
+.game-author {
+    margin-top: 10px;
+}
+
+.game-link {
+    color: $greyscale-white;
+    background: $action-positive;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.game-install-prompt {
+    span {
+        color: $greyscale-black;
+        margin-right: 15px;
+    }
+}
+
+.games-more-games {
+    background: $greyscale-light-grey;
+}
+
+.game-info {
+    align-items: flex-start;
+    display: flex;
+}
+
+.game-icon {
+    position: relative;
+    top: -20px;
+}

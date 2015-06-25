@@ -1,0 +1,42 @@
+<section class="games">
+  <div class="games-title">
+    <h1>{{ _('Play great games on Firefox Marketplace now!') }}</h1>
+  </div>
+
+  <div class="games-playarea">
+    <div class="gamescreen-wrapper">
+      <iframe class="gamescreen" src="{{ heroGame.url }}"></iframe>
+      <div class="gamepad"></div>
+    </div>
+
+    <div class="gamescreen-stand-wrapper">
+      <div class="gamescreen-stand"></div>
+    </div>
+  </div>
+
+  <section class="game-information">
+    <div class="game-info">
+      <img class="game-icon" src="{{ heroGame.icon }}"
+           alt="{{ heroGame.name }}" title="{{ heroGame.name }}">
+
+      <div class="game-metadata">
+        <h3 class="game-name">
+          {{ _('You are currently playing: <span>{gameName}</span>')
+             |format(gameName=heroGame.name) }}</h3>
+        <h4 class="game-author">
+          {{ _('by <span>{gameAuthor}</span>')
+             |format(gameAuthor=heroGame.author) }}</h4>
+      </div>
+    </div>
+    <div class="game-install-prompt">
+      <span>{{ _('Like this?') }}</span>
+      <a class="game-link" href="{{ heroGame.installLink }}">
+        {{ _('Install it!') }}
+      </a>
+    </div>
+  </section>
+
+  <section class="games-more-games">
+    <span>{{ _('Want more games? Check out our catalogue.') }}</span>
+  </section>
+</section>
