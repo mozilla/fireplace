@@ -29,7 +29,7 @@
   {% set api_url = api_url|urlparams(sort=params.sort) %}
 {% endif %}
 
-{% defer (url=api_url, pluck='objects', as='app', paginate='.app-list',
+{% defer (url=api_url, pluck='objects', as=appOrWebsite, paginate='.app-list',
           id='searchresults') %}
 
   {{ results_subheader(raw_query, response.meta.total_count) }}

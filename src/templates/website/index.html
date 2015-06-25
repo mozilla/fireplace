@@ -4,17 +4,19 @@
 
 {{ detail_header(url=endpoint, key=pk, content_type='website') }}
 
-{% defer (url=endpoint, key=pk) %}
+{% defer (url=endpoint, as='website', key=pk) %}
+  {# Apply transformer to get categories etc. working. #}
+  {% set website = apps.transform(this) %}
   <section class="main full app-info">
     <div class="detail-flex-wrap">
       <div class="detail-left-side">
-        {% if this.description %}
+        {% if website.description %}
           <section class="prose">
             <div>
               <h3>{{ _('Description') }}</h3>
               <div class="description-wrapper truncated-wrapper truncated">
                 <p class="description" itemprop="description">
-                  {{ this.description|translate(this)|nl2br }}
+                  {{ website.description|translate(website)|nl2br }}
                 </p>
               </div>
               <a href="#" class="truncate-toggle view-all-tab">{{ _('View All') }}</a>
@@ -24,13 +26,13 @@
       </div>
 
       <div class="detail-right-side">
-        {% if this.categories %}
+        {% if website.categories %}
           <section class="prose website-categories">
             <div>
               {# FIXME: This won't translate well. #}
               {# L10n: This goes before a list of categories. #}
               {{ _('Explore more in') }}
-              {% for category in this.categories %}
+              {% for category in website.categories %}
                 <a href="{{ url('category', [category.slug]) }}" class="website-detail--category-link">
                   {{ category.name }}
                 </a>{% if loop.last %}.{% else %},{% endif %}

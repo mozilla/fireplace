@@ -9,23 +9,25 @@
 {{ detail_header(url=endpoint, key=slug, content_type='app', placeholder=placeholder_app) }}
 
 {% defer (url=endpoint, as='app', key=slug) %}
+  {# Apply transformer to get categories etc. working. #}
+  {% set app = apps.transform(this) %}
   <section class="main full app-info">
     <div class="detail-flex-wrap">
       <div class="detail-left-side">
-        {% if this.banner_regions and this.banner_message and
-              this.banner_regions.indexOf(user_helpers.region()) != -1 %}
+        {% if app.banner_regions and app.banner_message and
+              app.banner_regions.indexOf(user_helpers.region()) != -1 %}
           <section class="region-banner">
-            <div>{{ this.banner_message|translate(this)|safe }}</div>
+            <div>{{ app.banner_message|translate(app)|safe }}</div>
           </section>
         {% endif %}
 
-        {% if this.description %}
+        {% if app.description %}
           <section class="prose">
             <div>
               <h3>{{ _('Description') }}</h3>
               <div class="description-wrapper truncated-wrapper truncated">
                 <p class="description" itemprop="description">
-                  {{ this.description|translate(this)|nl2br }}
+                  {{ app.description|translate(app)|nl2br }}
                 </p>
               </div>
               <a href="#" class="truncate-toggle view-all-tab">{{ _('View All') }}</a>
@@ -35,59 +37,59 @@
       </div>
 
       <div class="detail-right-side">
-        {% if this.release_notes %}
+        {% if app.release_notes %}
           <section class="prose release-notes">
             <div>
               <h3>{{ _('Updates') }}</h3>
               <div class="truncated-wrapper truncated">
-                <p>{{ this.release_notes|translate(this)|nl2br }}</p>
+                <p>{{ app.release_notes|translate(app)|nl2br }}</p>
               </div>
               <a href="#" class="truncate-toggle view-all-tab">{{ _('View All') }}</a>
             </div>
           </section>
         {% endif %}
 
-        {% if this.is_packaged and this.last_updated %}
+        {% if app.is_packaged and app.last_updated %}
           <section class="prose package-last-updated">
             <h3>{{ _('Last updated') }}</h3>
-            <p>{{ this.last_updated|date }}</p>
+            <p>{{ app.last_updated|date }}</p>
           </section>
         {% endif %}
 
         <section class="app-support">
           <ul>
-            {% if this.support_email %}
+            {% if app.support_email %}
               <li class="support-email" data-tracking="Support email">
-                {{ emaillink(this.support_email, _('Email Support'),
+                {{ emaillink(app.support_email, _('Email Support'),
                              class='button') }}
               </li>
             {% endif %}
-            {% if this.support_url %}
+            {% if app.support_url %}
               <li class="support-url" data-tracking="Support site">
-                <a class="button" rel="external" {{ this.support_url|external_href }}>
+                <a class="button" rel="external" {{ app.support_url|external_href }}>
                   {{ _('Support Site') }}</a>
               </li>
             {% endif %}
-            {% if this.homepage %}
+            {% if app.homepage %}
               <li class="homepage" data-tracking="Homepage">
-                <a class="button" rel="external" {{ this.homepage|external_href }}>
+                <a class="button" rel="external" {{ app.homepage|external_href }}>
                   {{ _('Homepage') }}</a>
               </li>
             {% endif %}
-            {% if this.privacy_policy %}
+            {% if app.privacy_policy %}
               <li class="privacy-policy" data-tracking="Privacy policy">
                 <a class="button" href="{{ url('app/privacy', [slug]) }}">
                   {{ _('Privacy Policy') }}</a>
               </li>
             {% endif %}
-            {% if this.public_stats or user.has_developed(this.id) or
+            {% if app.public_stats or user.has_developed(app.id) or
                   user.get_permission('stats') %}
               <li class="statistics" data-tracking="Statistics">
                 <a class="button view-stats" rel="external" href="/statistics/app/{{ slug }}">
                   {{ _('Statistics') }}</a>
               </li>
             {% endif %}
-            {% if user.has_developed(this.id) or user.get_permission('reviewer') %}
+            {% if user.has_developed(app.id) or user.get_permission('reviewer') %}
               <li>
                 <a class="button action manage" href="/developers/app/{{ slug }}/edit"
                    rel="external">
@@ -99,7 +101,7 @@
               <li>
                 <a class="button action reviewer" href="/reviewers/app/{{ slug }}"
                    rel="external">
-                  {{ _('Approve / Reject') if this.status == 2 or this.status == 13 else
+                  {{ _('Approve / Reject') if app.status == 2 or this.status == 13 else
                      _('Review History') }}
                 </a>
               </li>

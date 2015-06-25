@@ -132,6 +132,9 @@ define('helpers_local',
     var helpers = {
         apps: apps,
         app_notices: app_notices,
+        appOrWebsite: function(obj) {
+            return obj.manifest_url ? 'app' : 'website';
+        },
         contentFilter: contentFilter,
         cast_app: models('app').cast,
         htmldir: htmldir,

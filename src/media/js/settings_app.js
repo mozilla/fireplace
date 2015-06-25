@@ -56,7 +56,7 @@ define('settings_app',
             'feed-collection': 'slug',
             'feed-shelf': 'slug',
 
-            'website': 'pk',
+            'website': 'id',
         },
 
         // These are the only URLs that should be cached
