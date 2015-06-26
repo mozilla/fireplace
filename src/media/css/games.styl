@@ -125,7 +125,7 @@
 }
 
 section.game-information {
-    background: $greyscale-grey;
+    background: $greyscale-grey-hover;
     display: flex;
     justify-content: space-between;
     padding-bottom: 0;
@@ -163,10 +163,6 @@ section.game-information {
     }
 }
 
-.games-more-games {
-    background: $greyscale-light-grey;
-}
-
 .game-info {
     align-items: flex-start;
     display: flex;
@@ -179,9 +175,18 @@ section.game-information {
 }
 
 .games-selector {
+    background: $greyscale-light-grey;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.games-selector-title {
+    color: $greyscale-black;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
 }
 
 .games-item {
@@ -193,5 +198,66 @@ section.game-information {
     &:hover {
         box-shadow: 0px 0px 1px 1px $action-positive;
         cursor: pointer;
+    }
+}
+
+.games-explore-more {
+    background: $action-positive;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    h2 {
+        color: $greyscale-white;
+        font-size: 24px;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+.games-exit-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.games-exit-links a {
+    align-items: center;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    margin: 0 20px;
+    width: 256px;
+
+    &:hover {
+        text-decoration: none;
+    }
+    p {
+        color: $greyscale-white;
+        font-size: 20px;
+    }
+}
+
+.games-exit-link--games {
+    background: radial-gradient($color-collection--aquamarine,
+                                darken($color-collection--aquamarine, 10%));
+
+    &:hover {
+        background: radial-gradient(lighten($color-collection--aquamarine, 20%),
+                                    lighten($color-collection--aquamarine, 10%));
+    }
+}
+
+.games-exit-link--apps {
+    background: radial-gradient($color-collection--sapphire,
+                                darken($color-collection--sapphire, 10%));
+
+    &:hover {
+        background: radial-gradient(lighten($color-collection--sapphire, 20%),
+                                    lighten($color-collection--sapphire, 10%));
     }
 }

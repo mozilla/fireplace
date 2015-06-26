@@ -40,6 +40,7 @@
   </section>
 
   <section class="games-selector">
+    <h2 class="games-selector-title">{{ _('Play another game now!') }}</h2>
     {% for game in heroGames %}
       <div class="games-item" data-game-index="{{ loop.index0 }}"
            data-game-name="{{ game.name }}"
@@ -48,7 +49,15 @@
     {% endfor %}
   </section>
 
-  <section class="games-more-games">
-    <span>{{ _('Want more games? Check out our catalogue.') }}</span>
+  <section class="games-explore-more">
+    <h2>{{ _('Looking for more? Check out our catalogue.') }}</h2>
+    <div class="games-exit-links">
+      <a class="games-exit-link--games" href="{{ url('category', ['games']) }}">
+        <p>{{ _('Games') }}</p>
+      </a>
+      <a class="games-exit-link--apps" href="{{ url('featured') }}">
+        <p>{{ _('Featured Apps') }}</p>
+      </a>
+    </div>
   </section>
 </section>
