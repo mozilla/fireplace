@@ -39,6 +39,14 @@
     </div>
   </section>
 
+  <section class="games-selector">
+    {% for game in heroGames %}
+      <div class="games-item" data-game-index="{{ loop.index0 }}"
+           data-game-url="{{ game.url }}"
+           style="background-image: url('{{ game.imageUrl }}')"></div>
+    {% endfor %}
+  </section>
+
   <section class="games-more-games">
     <span>{{ _('Want more games? Check out our catalogue.') }}</span>
   </section>

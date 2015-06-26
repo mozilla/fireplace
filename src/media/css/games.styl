@@ -57,10 +57,6 @@
     z-index: 0;
 }
 
-hero-games {
-    width: 100%;
-}
-
 .gamescreen-wrapper {
     background: $greyscale-black;
     display: flex;
@@ -152,4 +148,22 @@ section.game-information {
     max-height: 128px;
     position: relative;
     top: -20px;
+}
+
+.games-selector {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.games-item {
+    background-size: cover;
+    height: 128px;
+    margin: 10px 2.5%;
+    width: 20%;
+
+    &:hover {
+        box-shadow: 0px 0px 1px 1px $action-positive;
+        cursor: pointer;
+    }
 }
