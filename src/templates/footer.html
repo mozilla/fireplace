@@ -1,6 +1,8 @@
-<div id="newsletter-footer" class="newsletter-footer c">
-  {% include "newsletter.html" %}
-</div>
+{% if not settings.instantGamesEnabled %}
+  <div id="newsletter-footer" class="newsletter-footer c">
+    {% include "newsletter.html" %}
+  </div>
+{% endif %}
 
 <div id="footer" class="footer">
   <ul class="footer-support-navigation">
