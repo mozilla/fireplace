@@ -42,6 +42,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    position: relative;
     width: 100%;
 }
 
@@ -49,10 +50,11 @@
     category-sprite(2);
     category-icon-position('games', 2);
     background-image: url('../img/pretty/categories-sprite-black.svg');
-    bottom: -55px;
     position: absolute;
+    bottom: 50px;
     transform: rotate(-20deg) scale(2);
-    right: 25px;
+    right: 140px;
+    z-index: 0;
 }
 
 hero-games {
@@ -66,6 +68,7 @@ hero-games {
     margin-top: 30px;
     position: relative;
     width: 85%;
+    z-index: 1;
 }
 
 .gamescreen {
@@ -76,12 +79,12 @@ hero-games {
     height: auto;
     min-height: 480px;
     width: 100%;
-    z-index: 1;
 }
 
 .gamescreen-stand-wrapper {
     display: flex;
     justify-content: center;
+    position: relative;
     width: 100%;
 }
 
@@ -146,6 +149,7 @@ section.game-information {
 }
 
 .game-icon {
+    max-height: 128px;
     position: relative;
     top: -20px;
 }

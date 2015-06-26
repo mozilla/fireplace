@@ -1,3 +1,5 @@
+{% set heroGame = heroGames[0] %}
+
 <section class="games">
   <div class="games-title">
     <h1>{{ _('Play great games on Firefox Marketplace now!') }}</h1>
@@ -5,13 +7,14 @@
 
   <div class="games-playarea">
     <div class="gamescreen-wrapper">
-      <hero-games enabled="false" game='{{ heroGame|json }}' />
-      <div class="gamepad"></div>
+      <hero-games enabled="false" game='{{ heroGame|json }}'/>
     </div>
 
     <div class="gamescreen-stand-wrapper">
       <div class="gamescreen-stand"></div>
     </div>
+
+    <div class="gamepad"></div>
   </div>
 
   <section class="game-information">
