@@ -73,8 +73,36 @@
     box-shadow: none;
     display: block;
     height: auto;
-    min-height: 480px;
+    position: relative;
     width: 100%;
+
+    img {
+        cursor: pointer;
+        width: 100%;
+    }
+
+    &:hover .start-hero-game:before {
+        opacity: 1;
+    }
+
+    .start-hero-game {
+        background: transparent;
+        border: none;
+        position: absolute;
+        left: 50%;
+        bottom: 50px;
+
+        &:before {
+            $icon-height = 30px;
+            content: "";
+            border-color: transparent transparent transparent white;
+            border-style: solid;
+            border-width: $icon-height $icon-height * 1.5;
+            display: block;
+            margin: -1 * $icon-height 0 0 -1 * $icon-height;
+            opacity: 0.8;
+        }
+    }
 }
 
 .gamescreen-stand-wrapper {

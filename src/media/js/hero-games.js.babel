@@ -22,7 +22,11 @@ define('hero-games', [], function() {
             if (this.props.enabled) {
                 return <iframe class="gamescreen" src={this.props.game.url}></iframe>;
             } else {
-                return <img src={this.props.game.imageUrl} class="gamescreen js-enable-hero-game" />;
+                return <div class="gamescreen">
+                    <img src={this.props.game.imageUrl} class="js-enable-hero-game" />
+                    <button class="js-enable-hero-game start-hero-game"></button>
+                </div>;
+
             }
         }
     });

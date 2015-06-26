@@ -52,7 +52,12 @@ define('hero-games', [], function () {
                 if (this.props.enabled) {
                     return React.createElement('iframe', { 'class': 'gamescreen', src: this.props.game.url });
                 } else {
-                    return React.createElement('img', { src: this.props.game.imageUrl, 'class': 'gamescreen js-enable-hero-game' });
+                    return React.createElement(
+                        'div',
+                        { 'class': 'gamescreen' },
+                        React.createElement('img', { src: this.props.game.imageUrl, 'class': 'js-enable-hero-game' }),
+                        React.createElement('button', { 'class': 'js-enable-hero-game start-hero-game' })
+                    );
                 }
             }
         }]);
