@@ -19,6 +19,7 @@ var localConfig = extend(true, {
         'marketplace-elements/marketplace-elements.js': config.LIB_DEST_PATH,
         'marketplace-elements/marketplace-elements.styl': 'src/media/css/',
         'salvattore-moox/dist/salvattore.js': config.LIB_DEST_PATH,
+        'terne/dist/ternex.js': config.LIB_DEST_PATH,
     },
     cssBundles: {
         'splash.css': ['splash.styl.css']
