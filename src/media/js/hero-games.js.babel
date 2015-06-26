@@ -20,7 +20,7 @@ define('hero-games', [], function() {
             return <hero-game enabled={this.props.enabled} game={this.currentGame()} />;
         }
         currentGame() {
-            return this.props.games.find((g) => {
+            return (this.props.games || []).find((g) => {
                 return this.props.activeGame === g.name;
             }) || this.props.games[0];
         }

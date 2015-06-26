@@ -46,7 +46,7 @@ define('hero-games', [], function () {
             value: function currentGame() {
                 var _this2 = this;
 
-                return this.props.games.find(function (g) {
+                return (this.props.games || []).find(function (g) {
                     return _this2.props.activeGame === g.name;
                 }) || this.props.games[0];
             }
