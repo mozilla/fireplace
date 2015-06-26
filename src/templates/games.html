@@ -7,7 +7,7 @@
 
   <div class="games-playarea">
     <div class="gamescreen-wrapper">
-      <hero-games enabled="false" game='{{ heroGame|json }}'/>
+      <hero-games games='{{ heroGames|json }}'/>
     </div>
 
     <div class="gamescreen-stand-wrapper">
@@ -42,6 +42,7 @@
   <section class="games-selector">
     {% for game in heroGames %}
       <div class="games-item" data-game-index="{{ loop.index0 }}"
+           data-game-name="{{ game.name }}"
            data-game-url="{{ game.url }}"
            style="background-image: url('{{ game.imageUrl }}')"></div>
     {% endfor %}

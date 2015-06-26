@@ -7,13 +7,25 @@ define('hero-games', [], function() {
             this.on('click', (e) => {
                 if (e.target.classList.contains('js-enable-hero-game')) {
                     this.props.enabled = true;
-                    Terne.render(this.heroGame(),
-                                 this.querySelector('.hero-games'));
+                    this.renderGame();
                 }
+            });
+            document.body.addEventListener('show-hero-game', (e) => {
+                this.props.enabled = false;
+                this.props.activeGame = e.detail;
+                this.renderGame();
             });
         }
         heroGame() {
-            return <hero-game enabled={this.props.enabled} game={this.props.game} />;
+            return <hero-game enabled={this.props.enabled} game={this.currentGame()} />;
+        }
+        currentGame() {
+            return this.props.games.find((g) => {
+                return this.props.activeGame === g.name;
+            }) || this.props.games[0];
+        }
+        renderGame() {
+            Terne.render(this.heroGame(), this.querySelector('.hero-games'));
         }
     });
 

@@ -27,14 +27,33 @@ define('hero-games', [], function () {
                 this.on('click', function (e) {
                     if (e.target.classList.contains('js-enable-hero-game')) {
                         _this.props.enabled = true;
-                        Terne.render(_this.heroGame(), _this.querySelector('.hero-games'));
+                        _this.renderGame();
                     }
+                });
+                document.body.addEventListener('show-hero-game', function (e) {
+                    _this.props.enabled = false;
+                    _this.props.activeGame = e.detail;
+                    _this.renderGame();
                 });
             }
         }, {
             key: 'heroGame',
             value: function heroGame() {
-                return React.createElement('hero-game', { enabled: this.props.enabled, game: this.props.game });
+                return React.createElement('hero-game', { enabled: this.props.enabled, game: this.currentGame() });
+            }
+        }, {
+            key: 'currentGame',
+            value: function currentGame() {
+                var _this2 = this;
+
+                return this.props.games.find(function (g) {
+                    return _this2.props.activeGame === g.name;
+                }) || this.props.games[0];
+            }
+        }, {
+            key: 'renderGame',
+            value: function renderGame() {
+                Terne.render(this.heroGame(), this.querySelector('.hero-games'));
             }
         }]);
 

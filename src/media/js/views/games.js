@@ -1,6 +1,8 @@
 define('views/games',
-    ['jquery', 'core/l10n', 'core/nunjucks', 'core/urls', 'core/z', 'hero-games'],
-    function($, l10n, nunjucks, urls, z, heroGames) {
+    ['jquery', 'core/element_utils', 'core/l10n', 'core/nunjucks', 'core/urls',
+     'core/z', 'hero-games'],
+    function($, eUtils, l10n, nunjucks, urls,
+             z, heroGamesElements) {
     'use strict';
 
     var heroGames = [
@@ -37,6 +39,11 @@ define('views/games',
             url: 'http://hellorun.helloenjoy.com/',
         },
     ];
+
+    z.page.on('click', '.games-item', function(e) {
+        this.dispatchEvent(eUtils.MktEvent(
+                'show-hero-game', $(this).data('game-name')));
+    });
 
     return function(builder, args, params) {
         builder.z('type', 'root games');
