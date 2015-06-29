@@ -15,7 +15,6 @@ App listing filters.
 
     +media--base-tablet() {
         bottom: 0;
-        border-bottom: 2px solid $greyscale-light-grey;
         padding: 0 0 30px;
         max-width: $desktop-content;
 
@@ -143,5 +142,14 @@ App listing filters.
 
     +media--base-tablet() {
         display: block;
+    }
+}
+
+@media $base-tablet {
+    .app-list-filters {
+        border-bottom: 2px solid $greyscale-light-grey;
+    }
+    .search-empty .app-list-filters {
+        border: 0;
     }
 }
