@@ -19,15 +19,11 @@ var localConfig = extend(true, {
         'marketplace-elements/marketplace-elements.js': config.LIB_DEST_PATH,
         'marketplace-elements/marketplace-elements.styl': 'src/media/css/',
         'salvattore-moox/dist/salvattore.js': config.LIB_DEST_PATH,
-        'terne/dist/ternex.js': config.LIB_DEST_PATH,
     },
     cssBundles: {
         'splash.css': ['splash.styl.css']
     },
     cssExcludes: ['splash.styl.css'],
-    rewriteMiddleware: [
-        {from: '^/media/js/lib/ternex.js$', to: '/terne/dist/ternex.js'},
-    ],
     requireConfig: {
         // RequireJS configuration for development, notably files in lib/.
         // [Module name]: [Module path].
@@ -40,7 +36,6 @@ var localConfig = extend(true, {
             'marketplace-elements': 'lib/marketplace-elements',
             'regions': 'lib/regions',
             'salvattore': 'lib/salvattore',
-            'terne': 'lib/ternex',
         },
         shim: {
             'document-register-element': {
@@ -55,11 +50,7 @@ var localConfig = extend(true, {
             },
             'salvattore': {
                 'exports': 'salvattore'
-            },
-            'terne': {
-                'exports': 'Terne',
-                'deps': ['document-register-element'],
-            },
+            }
         }
     },
     BOWER_PATH: config.BOWER_PATH || 'bower_components/',

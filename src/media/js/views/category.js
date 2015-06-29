@@ -14,8 +14,7 @@ define('views/category',
             builder.z('title', name);
         }
 
-        var pageTypes = ['root', 'category', 'category--' + slug, 'app-list'];
-        builder.z('type', pageTypes.join(' '));
+        builder.z('type', 'root category app-list');
         builder.z('show_cats', true);
         builder.z('cat', slug);
 

@@ -20,13 +20,6 @@ define('views/debug',
                                    timeout: 1000});
     })
 
-    .on('click', '#instant-games', function() {
-        settings.instantGamesEnabled = true;
-        console.log(settings);
-        console.log(settings.instantGamesEnabled);
-        z.page.trigger('navigate', '/');
-    })
-
     .on('click', '#enable-offline-cache', function() {
         storage.removeItem('offline_cache_disabled');
         persistent_console_debug.log('Offline cache enabled:', new Date());
