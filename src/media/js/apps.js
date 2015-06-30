@@ -113,7 +113,7 @@ define('apps',
         if (product.payment_required && !product.price) {
             reasons.push(gettext('not available for your region'));
         }
-        if (!capabilities.webApps ||
+        if (!product.isWebsite && !capabilities.webApps ||
             (!capabilities.packagedWebApps && product.is_packaged) ||
             !_.contains(product.device_types, device)) {
             reasons.push(gettext('not available for your platform'));
