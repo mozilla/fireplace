@@ -26,10 +26,10 @@
         - Toggle all header children closed.
 */
 define('elements/header',
-    ['core/element_utils', 'core/z', 'document-register-element', 'jquery',
+    ['core/element_utils', 'core/z', 'document-register-element',
      'underscore'],
-    function(eUtils, z, dre, $,
-             _) {
+    function(eUtils, z, dre,
+     _) {
     'use strict';
 
     var el = {};
@@ -218,7 +218,7 @@ define('elements/header',
                     '[data-header-child--input] input'), function(input) {
             setTimeout(function() {
                 input.value = '';
-                input.dispatchEvent(new Event('input'));
+                input.dispatchEvent(eUtils.MktEvent('input'));
             }, 50);
         });
     })
