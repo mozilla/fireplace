@@ -9,7 +9,7 @@ define('views/feed_landing',
 
     return function(builder, args) {
         var feedType = args[0];  // collection, editorial, or shelf.
-        var slug = args[1];
+        var slug = decodeURIComponent(args[1]);
 
         builder.z('type', 'leaf ' + feedType + '-landing');
         builder.z('title', gettext('Loading...'));

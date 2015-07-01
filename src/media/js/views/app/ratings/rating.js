@@ -3,7 +3,7 @@ define('views/app/ratings/rating', ['core/l10n', 'core/urls'], function(l10n, ur
     var gettext = l10n.gettext;
 
     return function(builder, args) {
-        var slug = args[0];
+        var slug = decodeURIComponent(args[0]);
         var id = args[1];
 
         builder.start('ratings/rating.html', {'slug': slug, id: id});
