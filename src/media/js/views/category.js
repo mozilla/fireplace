@@ -7,7 +7,7 @@ define('views/category',
 
     return function(builder, args, params) {
         params = params || {};
-        var slug = args[0];
+        var slug = decodeURIComponent(args[0]);
         var category = _.findWhere(categories, {slug: slug});
         var name = category ? category.name : '';
         if (name) {

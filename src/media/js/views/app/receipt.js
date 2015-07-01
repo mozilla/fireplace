@@ -7,7 +7,7 @@ define('views/app/receipt',
     var notify = notification.notification;
 
     return function(builder, args) {
-        var slug = args[0];
+        var slug = decodeURIComponent(args[0]);
         if (!user.logged_in()) {
             // If the user isn't logged in, redirect to detail page.
             notify({message: gettext('Please sign in to view the receipt')});

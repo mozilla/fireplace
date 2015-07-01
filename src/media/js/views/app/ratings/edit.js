@@ -11,7 +11,7 @@ define('views/app/ratings/edit',
     }
 
     return function(builder, args) {
-        var slug = args[0];
+        var slug = decodeURIComponent(args[0]);
         var title = gettext('Edit Review');
         builder.z('type', 'leaf');
         builder.z('title', title);
