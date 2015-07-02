@@ -9,7 +9,7 @@
         {{ data_attrs|make_data_attrs }}
         {{ 'disabled' if app.disabled }}
         data-product="{{ app|json }}"
-        {% if app.isWebsite %}href="{{ app.url }}"{% endif %}>
+        {% if app.isWebsite %}href="{{ app.mobile_url or app.url }}"{% endif %}>
     <em>
       <span class="mkt-app-button-text">{{ buttons.getBtnText(app) }}</span>
       <span class="mkt-app-button-spinner spin"></span>

@@ -8,32 +8,22 @@ define('desktop_promo',
     'use strict';
     var gettext = l10n.gettext;
 
-    var newStrings = [
-        // L10n: Chess game desktop promo (bug 1175381).
-        gettext('Play 45 creative variations of chess.'),
-        // L10n: Basecamp program desktop promo (bug 1175381).
-        gettext('Manage projects easily with Basecamp.'),
-        // L10n: GoldNuggets game desktop promo (bug 1175381).
-        gettext('Play GoldNuggets now!'),
-    ];
-
-
     return {
         isDesktop: function() {
             return caps.device_type() === 'desktop';
         },
         promoItems: [
             {
-                name: 'maya',
-                url: urls.reverse('app', ['maya']),
-                // L10n: Maya app desktop promo (bug 1170850).
-                text: gettext('Play this fantastic action puzzle game immediately.'),
+                name: 'chess-1',
+                url: urls.reverse('app', ['chess-1']),
+                // L10n: Chess game desktop promo (bug 1175381).
+                text: gettext('Play 45 creative variations of chess.'),
             },
             {
-                name: 'stitcher-radio',
-                url: urls.reverse('app', ['stitcher-radio']),
-                // L10n: Stitcher Radio app desktop promo (bug 1170850).
-                text: gettext('Enjoy 15,000+ radio programs and podcasts.'),
+                name: 'basecamp',
+                url: urls.reverse('app', ['basecamp']),
+                // L10n: Basecamp program desktop promo (bug 1175381).
+                text: gettext('Manage projects easily with Basecamp.'),
             },
             {
                 name: 'productivity',
@@ -50,10 +40,10 @@ define('desktop_promo',
                 text: gettext('Games & Entertainment Apps—Desktop Essentials'),
             },
             {
-                name: 'zombie-getaway',
-                url: urls.reverse('app', ['zombie-getaway']),
-                // L10n: Zombie Getaway app desktop promo (bug 1170850).
-                text: gettext('Run for your life!'),
+                name: 'goldnuggets',
+                url: urls.reverse('app', ['goldnuggets']),
+                // L10n: GoldNuggets game desktop promo (bug 1175381).
+                text: gettext('Play GoldNuggets now!'),
             },
         ].map(function(item) {
             item.url = utils.urlparams(item.url, {
