@@ -38,9 +38,15 @@ mkt-selected:after {
     content: '\25BC';  // Black pointing down triangle.
     display: inline-block;
     font-size: 10px;
-    margin-left: 6px;
     position: relative;
     transition: transform .2s linear;
+
+    +ltr() {
+        margin-left: 6px;
+    }
+    +rtl() {
+        margin-right: 6px;
+    }
 }
 
 mkt-optgroup {
