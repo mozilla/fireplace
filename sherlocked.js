@@ -109,6 +109,19 @@ require('sherlocked')
         .click('mkt-header-child-toggle[for=header--categories]');
 })
 
+.investigate('Category menu on Mobile RTL', function(client) {
+    return mobile(client, '?lang=ar')
+        .waitForExist('.feed-home', 60000)
+        .click('mkt-nav-toggle[for=nav]')
+        .click('mkt-nav-child-toggle[for=categories]');
+})
+
+.investigate('Category menu on Desktop RTL', function(client) {
+    return desktop(client, '?lang=ar')
+        .waitForExist('.feed-home', 60000)
+        .click('mkt-header-child-toggle[for=header--categories]');
+})
+
 .begin([
     {
         browserName: 'firefox',
