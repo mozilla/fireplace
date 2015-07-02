@@ -294,10 +294,8 @@
                 // getFeature() promise before sending the activity message.
                 if (typeof navigator.getFeature !== 'undefined') {
                     navigator.getFeature('acl.version').then(function(val) {
-                        var aclVersion = val.split(';')[4];
-                        log('Sending activity with acl.version: ', aclVersion);
-                        // DEVICE;PRODUCT;MODEL;GSL_VERSION;ACL_VERSION
-                        msg.data.acl_version = aclVersion;
+                        log('Sending activity with acl.version: ', val);
+                        msg.data.acl_version = val;
                         activitiesToSend.push(msg);
                     });
                 }
