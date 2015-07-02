@@ -30,21 +30,20 @@
         color: $greyscale-black;
         font-weight: 400;
         height: 30px;
+        justify-content: flex-start;
         position: relative;
 
         +ltr() {
-            justify-content: flex-start;
             padding-left: 15px;
         }
         +rtl() {
-            justify-content: flex-end;
             padding-right: 15px;
         }
         &:after {
             color: $action-positive;
             position: absolute;
             top: 6px;
-            transform-origin: center 6px;
+            transform-origin: center 7px;
 
             +ltr() {
                 right: 15px;
@@ -61,13 +60,12 @@
         color: $greyscale-black;
         font-weight: 400;
         height: 30px;
+        justify-content: flex-start;
 
         +ltr() {
-            justify-content: flex-start;
             padding-left: 15px;
         }
         +rtl() {
-            justify-content: flex-end;
             padding-right: 15px;
         }
         &[data-mkt-option--index="0"] {
