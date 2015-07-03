@@ -9,9 +9,15 @@
     display: none;
     padding: 15px 10px;
     position: relative;
-    right: 10px;
     text-align: center;
     width-calc('100% + 20px');
+
+    +ltr() {
+        right: 10px;
+    }
+    +rtl() {
+        left: 10px;
+    }
 
     b,
     span {
