@@ -76,7 +76,24 @@ define('webactivities', ['core/capabilities', 'core/defer', 'core/log', 'core/lo
                 // is, if we return too soon, Marketplace will lose focus
                 // before the user has installed the app... So we have to wait
                 // for the right install to be made before returning...
-                slug = 'test-app';
+                switch (data.acl_version) {
+                    case 'SPRD7715':
+                        slug = 'maya';
+                        break;
+                    case 'MTK6572':
+                        slug = 'fruit-cut-ninja';
+                        break;
+                    case 'QC8210':
+                        slug = 'cut-the-rope';
+                        break;
+                    default:
+                        console.error('Unknown ACL version', data.acl_version);
+                }
+
+                if (!slug) {
+                    break;
+                }
+
                 url = urls.reverse('app', [slug]);
                 z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
                 z.page.one('install-success', function(e, product) {
