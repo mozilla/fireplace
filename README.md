@@ -49,7 +49,7 @@ This will output a package and output to ```package/archives/```. You can use
 WebIDE to install this package in the device or simulator.
 
 Further details can be found in the
-[Marketplace documentation](http://marketplace.readthedocs.org/latest/topics/package.html).
+[Marketplace documentation](http://marketplace.readthedocs.org/en/latest/topics/packaged-apps.html).
 
 ### Marketplace Mock API
 
