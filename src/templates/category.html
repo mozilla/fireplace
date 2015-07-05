@@ -29,9 +29,9 @@
 {% placeholder %}
   <p class="spinner padded alt"></p>
 {% empty %}
-  <p class="no-results">
+  <h1 class="no-results">
     {{ _('No results found') }}
-  </p>
+  </h1>
 {% except %}
   <p class="no-results">
     {% if error == 400 or error == 404 %}
