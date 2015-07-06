@@ -1,14 +1,19 @@
 @import '../lib';
 
 
-.website-categories {
+.website-categories,
+.website-header.full {
     border-bottom: 1px solid $greyscale-light-grey;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 
     +media--base-tablet() {
         border: 0;
         padding: 0;
     }
+}
+
+section.full.website-detail > div {
+    padding-top: 15px;
 }
 
 [data-page-type~="website"][data-page-type~="detail"] #incompatibility-banner {
