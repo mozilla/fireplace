@@ -58,7 +58,7 @@ body {
     background: $color--header--background;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
     min-height: 60px;
     padding: 0 5px;
@@ -76,6 +76,7 @@ body {
         line-height: 50px;
     }
     .mkt-header--title {
+        ellipsis();
         flex-grow: 1;
         padding-right: $header-button-size;
     }
