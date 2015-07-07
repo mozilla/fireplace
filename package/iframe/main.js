@@ -54,56 +54,38 @@
             // We are only interested in a few features for now. We're already
             // only doing this if getFeature() is present, and it was
             // introduced in 2.0, so we know we can hardcode anything that
-            // comes with 2.0 or better and for which we don't need to know the
-            // exact value. This sucks, won't scale, and we need a better
-            // long-term solution, but for now it helps us work the fact that
-            // hasFeature() does not exist in 2.0 :(
+            // comes with 2.0 and for which we don't need to know the exact
+            // value.
             true, // 'getMobileIdAssertion' in window.navigator || 'api.window.Navigator.getMobileIdAssertion',
             true, // 'manifest.precompile',
             ['hardware.memory', 512],
             ['hardware.memory', 1024],
             true, // NFC
-            'acl.version',
+            'acl.version', // OpenMobile ACL
             // Don't add any more as long as bug 1172487 is not fixed, it won't
             // work correctly.
         ];
 
         features.forEach(function(key) {
             if (typeof key === 'boolean') {
-                // Hardcoded boolean value, just pass it to promises directly.
+                // Hardcoded boolean value, just pass it directly.
                 promises.push(key);
-            }
-            else if (typeof key === 'string') {
-                if (key.substr(0, 9) === 'manifest.' ||
-                    key === 'acl.version') {
-                    // Handle cases where we need to call getFeature() instead
-                    // of just hasFeature().
-                    // It's necessary in 2 cases:
-                    // - The `manifest.*` properties ; Because of bug 1098470,
-                    //   hasFeature(manifest.*) can fail, while
-                    //   getFeature(manifest.*) will work. On later builds,
-                    //   where this bug was fixed, the behaviour is reversed
-                    //   so we call hasFeature() first and *then* getFeature()
-                    //   if it returned a falsy value.
-                    // - The `acl.version` property, which is only available
-                    //   through getFeature().
-                    promises.push(new Promise(function(resolve, reject) {
-                        navigator.hasFeature(key).then(function(supported) {
-                            if (!supported) {
-                                navigator.getFeature(key).then(function(feat) {
-                                    resolve(feat);
-                                });
-                            } else {
-                                resolve(supported);
-                            }
-                        });
-                    }));
-                } else {
-                    // Regular case: just call hasFeature().
+            } else if (typeof key === 'string') {
+                if (key === 'acl.version') {
+                    // This feature has a value, so we need to call
+                    // getFeature(), but we actually only care about the fact
+                    // that it's not empty, so we can just use the getFeature()
+                    // promise directly.
+                    promises.push(navigator.getFeature(key));
+                } else if (typeof navigator.hasFeature !== 'undefined') {
+                    // Regular boolean feature: just call hasFeature().
                     promises.push(navigator.hasFeature(key));
+                } else {
+                    // We should be using hasFeature() but it's absent, return
+                    // false.
+                    promises.push(false);
                 }
-            }
-            else {
+            } else {
                 // We are dealing with a more complex case, where we need to
                 // call getFeature() and compare against a value.
                 var feature = key[0];
