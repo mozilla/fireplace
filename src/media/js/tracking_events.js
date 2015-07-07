@@ -383,9 +383,15 @@ define('tracking_events',
         sendEvent(
             'View Website',
             'click',
+            getWebsiteEventLabel($(root)),
             getAppDimensions($(root), {isWebsite: true})
         );
     });
+
+    function getWebsiteEventLabel($installBtn) {
+        var item = $installBtn.data('product');
+        return item.name + ':' + item.id;
+    }
 
     function getAppDimensions($installBtn, opts) {
         // Given install button, return an object with appropriate custom UA
