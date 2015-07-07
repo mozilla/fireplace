@@ -64,7 +64,7 @@
         {% if loop.index0 < brand.maxApps %}
           {% if brand.isGridLayout %}
             <li>
-              <a class="icon-app-grid__app" href="{{ url('app', [app.slug]) }}">
+              <a class="icon-app-grid__app" href="{{ url('app', [app.slug])|urlparams(src=brand.src) }}">
                 {{ deferred_icon(app.icons['64']) }}
                 <h3 class="icon-app-grid__name">{{ app.name }}</h3>
                 <p class="icon-app-grid__price">
