@@ -76,8 +76,10 @@ define('elements/header',
             },
             setTitle: {
                 value: function() {
-                    this.querySelector('.mkt-header--title')
-                        .textContent = this.getAttribute('header-title');
+                    var titleText = this.getAttribute('header-title');
+                    var title = this.querySelector('.mkt-header--title');
+                    title.textContent = titleText;
+                    title.setAttribute('title', titleText);
                 },
             },
             statusElement: {

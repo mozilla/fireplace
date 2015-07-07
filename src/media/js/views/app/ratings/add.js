@@ -20,7 +20,7 @@ define('views/app/ratings/add',
     });
 
     return function(builder, args) {
-        var slug = args[0];
+        var slug = decodeURIComponent(args[0]);
         builder.z('type', 'leaf');
         builder.z('title', gettext('Leave a Review'));
         utilsLocal.headerTitle(gettext('Write a Review'));

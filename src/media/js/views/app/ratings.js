@@ -4,7 +4,7 @@ define('views/app/ratings',
     var gettext = l10n.gettext;
 
     return function(builder, args) {
-        var slug = args[0];
+        var slug = decodeURIComponent(args[0]);
         builder.z('type', 'leaf');
         builder.z('parent', urls.reverse('app', [slug]));
         // L10n: The title for the list of reviews
