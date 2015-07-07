@@ -64,7 +64,7 @@
         {% if loop.index0 < brand.maxApps %}
           {% if brand.isGridLayout %}
             <li>
-              <a class="icon-app-grid__app" href="{{ url('app', [app.slug]) }}">
+              <a class="icon-app-grid__app" href="{{ url('app', [app.slug])|urlparams(src=brand.src) }}">
                 {{ deferred_icon(app.icons['64']) }}
                 <h3 class="icon-app-grid__name">{{ app.name }}</h3>
                 <p class="icon-app-grid__price">
@@ -238,7 +238,7 @@
                  alt="" draggable="false" itemprop="contentURL">
           {% endif %}
           <div class="feed-landing-header-inner">
-            <h1>{{ feed_item.name|translate(feed_item)|safe }}</h1>
+            <h1>{{ feed_item.name }}</h1>
             {% if feed_item.description %}
               <p class="feed-landing-description">
                 {{ feed_item.description|translate(feed_item)|safe }}</p>
