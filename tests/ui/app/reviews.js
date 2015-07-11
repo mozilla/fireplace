@@ -388,7 +388,7 @@ casper.test.begin('Test reviews page back to app link', {
     test: function(test) {
         helpers.startCasper({
             path: '/app/has_rated/ratings',
-            viewport: 'tablet',
+            viewport: 'desktop',
         });
 
         helpers.waitForPageLoaded(function() {
