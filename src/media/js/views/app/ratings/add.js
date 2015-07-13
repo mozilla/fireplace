@@ -12,11 +12,6 @@ define('views/app/ratings/add',
         if (textarea) {
             textarea.focus();
         }
-
-    }).on('focus', '.add-review textarea', function() {
-        if (window.scrollTo && !caps.widescreen()) {
-            window.scrollTo(0, 200);
-        }
     });
 
     return function(builder, args) {
