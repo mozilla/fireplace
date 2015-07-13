@@ -231,6 +231,7 @@ define('elements/select',
                     // Change text.
                     root.querySelector('mkt-selected-text').innerHTML =
                         selectedOption.innerHTML;
+                        root.alignOptions();
                 }
             },
             updateOptionIndices: {
