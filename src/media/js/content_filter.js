@@ -8,7 +8,7 @@ define('content_filter',
              storage, utils, views, z, _) {
     'use strict';
     var logger = log('content_filter');
-    var gettext = l10n.gettext;
+    var gettext = l10n.gettext_lazy;
     // Use the caps.os for a more fine grained definition of "desktop".
     var isDesktop = caps.os.type === 'desktop';
 

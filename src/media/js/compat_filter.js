@@ -25,15 +25,7 @@ define('compat_filter',
              storage, utils, views, z, _) {
     'use strict';
     var logger = log('compat_filter');
-
-    function gettext(str) {
-        return {
-            toString: function() {
-                return l10n.gettext(str);
-            },
-        };
-    }
-
+    var gettext = l10n.gettext_lazy;
     var limit = 24;
 
     // Endpoints where feat. profile enabled if conditions met. See apiArgs().
