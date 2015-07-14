@@ -31,6 +31,10 @@ mkt-selected {
     display: flex;
     height: 60px;
     justify-content: center;
+
+    p {
+        padding: 0 15px; 
+    }    
 }
 
 mkt-selected:after {
@@ -42,10 +46,12 @@ mkt-selected:after {
     transition: transform .2s linear;
 
     +ltr() {
-        margin-left: 6px;
+        margin-left: 5px;
+        right: 15px;
     }
     +rtl() {
-        margin-right: 6px;
+        left: 15px;
+        margin-right: 5px;
     }
 }
 
