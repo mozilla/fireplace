@@ -39,7 +39,7 @@ define('update_banner',
                     (capabilities.packaged || capabilities.iframed)) {
 
                 apps.checkForUpdate(manifestURL).done(function(result) {
-                    if (result) {
+                    if (result && $(selector).length === 0) {
                         logger.log('Update found, inserting banner.');
                         $('.banners').append(
                             nunjucks.env.render('marketplace-update.html'));
