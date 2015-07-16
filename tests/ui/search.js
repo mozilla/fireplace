@@ -188,7 +188,7 @@ casper.test.begin('Test search results header desktop', {
     test: function(test) {
         helpers.startCasper({path: '/search?q=abc', viewport: 'tablet'});
 
-        helpers.waitForPageLoaded(function() {
+        casper.waitForSelector('.app-list', function() {
             test.assertNotVisible('.search-results-header-mobile');
             test.assertVisible('.search-results-header-desktop');
         });
