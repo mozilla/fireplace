@@ -27,5 +27,17 @@ define('tests/unit/buttons',
                     assert.equal(buttons.getBtnText(app), 'pay me $10.25');
                 });
             }));
+
+        it('is "Install" when paid and purchased', h.injector(
+                h.mockSettings({
+                    meowEnabled: true,
+                    model_prototypes: {app: 'slug'},
+                })
+            ).run(['buttons', 'core/user'], function(buttons, user) {
+                var app = {id: 123, price: '10.25', price_locale: '$10.25'};
+                assert.equal(buttons.getBtnText(app), 'Install for $10.25');
+                user.update_purchased(app.id);
+                assert.equal(buttons.getBtnText(app), 'Install');
+            }));
     });
 });
