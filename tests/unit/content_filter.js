@@ -80,5 +80,23 @@ define('tests/unit/content_filter',
             .run(['content_filter'], function(contentFilter) {
                 assert(!contentFilter.enabled, 'content filter off desktop');
             }));
+
+        it('translates the strings',
+            helpers
+            .injector(
+                firefoxOSCapabilities,
+                noStorage
+            )
+            .run(['content_filter'], function(contentFilter) {
+                var initialStrings = navigator.l10n.strings;
+                try {
+                    var appsString = contentFilter.CONTENT_FILTER_CHOICES[1][1];
+                    assert.equal(appsString, 'apps');
+                    navigator.l10n.strings = {apps: {body: 'applications'}};
+                    assert.equal(appsString, 'applications');
+                } finally {
+                    navigator.l10n.strings = initialStrings;
+                }
+            }));
     });
 });
