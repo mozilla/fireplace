@@ -9,12 +9,6 @@ define('views/app',
     var gettext = l10n.gettext;
     var logger = log('app');
 
-    z.page.on('click', '.app-header .icon', utils._pd(function(e) {
-        // When icon is clicked, append `#id=<id>` to the URL.
-        window.location.hash = 'id=' + $('.product').data('id');
-        e.stopPropagation();
-    }));
-
     return function(builder, args) {
         truncator.init();
 
