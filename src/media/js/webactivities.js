@@ -77,7 +77,7 @@ define('webactivities',
                 // OpenMobile. Then we get WhatsApp and win everything.
                 switch (data.acl_version) {
                     case 'SPRD7715':
-                        slug = 'acl-sp7715';
+                        slug = 'acl-sp7715-zte_open_c2';
                         break;
                     case 'MTK6572':
                         slug = null;
