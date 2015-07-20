@@ -75,6 +75,38 @@ casper.test.begin('Test banner is not shown if no download is available', {
     }
 });
 
+
+casper.test.begin('Test banner is only shown once', {
+    test: function(test) {
+        helpers.startCasper();
+        helpers.waitForPageLoaded(function() {
+            casper.evaluate(function() {
+                var manifest = window.require('core/settings').manifest_url;
+                window.require('core/capabilities').iframed = true;
+                var apps = window.require('apps');
+                apps.install(manifest);
+                apps.installer._setDownloadAvailable(manifest, true);
+                window.require('update_banner').showIfNeeded();
+            });
+        });
+
+        helpers.assertWaitForSelector(test, bannerSelector, function() {
+            test.assertElementCount(downloadButtonSelector, 1,
+                                        'first showIfNeeded');
+            casper.evaluate(function() {
+                window.require('update_banner').showIfNeeded();
+            });
+        });
+
+        casper.wait(25, function() {
+            test.assertElementCount(downloadButtonSelector, 1,
+                                        'second showIfNeeded');
+        });
+
+        helpers.done(test);
+    }
+});
+
 casper.test.begin('Test banner is not shown if not in iframed/packaged app', {
     test: function(test) {
         helpers.startCasper();
