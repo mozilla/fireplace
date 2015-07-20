@@ -1,23 +1,29 @@
-define('webactivities', ['core/capabilities', 'core/defer', 'core/log', 'core/login', 'core/urls', 'core/utils', 'core/z'], function(capabilities, defer, log, login, urls, utils, z) {
+/*
+   See: https://github.com/mozilla/fireplace/wiki/Web-Activities
 
-    // See https://github.com/mozilla/fireplace/wiki/Web-Activities
-    //
-    // Sample usage:
-    //
-    // new MozActivity({
-    //     name: 'marketplace-app',
-    //     data: {manifest_url: 'http://littlealchemy.com/manifest.webapp', src: 'e.me'}
-    // });
-    //
-    // new MozActivity({
-    //     name: 'marketplace-app',
-    //     data: {slug: 'littlealchemy'}
-    // });
+   Sample usage:
 
-    var console = log('webactivities');
+   new MozActivity({
+       name: 'marketplace-app',
+       data: {
+          manifest_url: 'http://littlealchemy.com/manifest.webapp',
+          src: 'e.me'
+       }
+    });
+    new MozActivity({
+       name: 'marketplace-app',
+       data: {slug: 'littlealchemy'}
+    });
+*/
+define('webactivities',
+    ['apps', 'core/capabilities', 'core/defer', 'core/log', 'core/login',
+     'core/requests', 'core/urls', 'core/utils', 'core/z'],
+    function(apps, capabilities, defer, log, login,
+             req, urls, utils, z) {
+    var logger = log('webactivities');
 
     function handleActivity(name, data, def) {
-        console.log('Handled "' + name + '" activity: ' + JSON.stringify(data));
+        logger.log('Handled "' + name + '" activity: ' + JSON.stringify(data));
 
         var src = data.src && utils.slugify(data.src) || 'activity-' + name;
         var url, manifest_url, slug;
@@ -34,9 +40,11 @@ define('webactivities', ['core/capabilities', 'core/defer', 'core/log', 'core/lo
                 manifest_url = data.manifest_url || data.manifest;
                 if (slug) {
                     url = urls.reverse('app', [slug]);
-                    z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
+                    z.page.trigger('navigate',
+                                   [utils.urlparams(url, {src: src})]);
                 } else if (manifest_url) {
-                    z.page.trigger('search', {q: ':manifest=' + manifest_url, src: src});
+                    z.page.trigger('search', {q: ':manifest=' + manifest_url,
+                                              src: src});
                 }
                 break;
             case 'marketplace-app-rating':
@@ -63,49 +71,33 @@ define('webactivities', ['core/capabilities', 'core/defer', 'core/log', 'core/lo
                 z.page.trigger('search', {q: data.query, src: src});
                 break;
             case 'marketplace-openmobile-acl':
-                console.log('Handling openmobile-acl with version',
+                logger.log('Handling openmobile-acl with version',
                             data.acl_version);
-                // FIXME: Here should be a switch-case with the right app to
-                // redirect to according to the value passed in
-                // data.acl_version.
-                // We need to return something when the install is done.
-                // However, we can't just trigger the install directly and wait
-                // for it, because anyone could trigger this activity, so
-                // that'd be a security issue.
-                // Instead, we have to redirect to the detail page. The problem
-                // is, if we return too soon, Marketplace will lose focus
-                // before the user has installed the app... So we have to wait
-                // for the right install to be made before returning...
+                // Based on ACL version, install the respective ACL app for.
+                // OpenMobile. Then we get WhatsApp and win everything.
                 switch (data.acl_version) {
                     case 'SPRD7715':
-                        slug = 'maya';
+                        // slug = 'acl-sp7715-zte_open_c2';
+                        slug = 'acl';
                         break;
                     case 'MTK6572':
-                        slug = 'fruit-cut-ninja';
+                        slug = null;
                         break;
                     case 'QC8210':
-                        slug = 'cut-the-rope';
+                        slug = null;
                         break;
                     default:
-                        console.error('Unknown ACL version', data.acl_version);
+                        logger.error('Unknown ACL version', data.acl_version);
                 }
 
-                if (!slug) {
-                    break;
+                if (slug) {
+                    // Fetch ACL app data for manifest and install.
+                    req
+                      .get(urls.api.url('app', [slug]))
+                      .done(function(app) {
+                          apps.install(app, {});
+                      });
                 }
-
-                url = urls.reverse('app', [slug]);
-                z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
-                z.page.one('install-success', function(e, product) {
-                    if (product.slug === slug) {
-                        def.resolve('SUCCESS');
-                    } else {
-                        // Wrong app ? That means the user started doing
-                        // something else, reject the promise to return an
-                        // error.
-                        def.reject('WRONG_APP');
-                    }
-                });
                 break;
         }
     }
@@ -122,7 +114,8 @@ define('webactivities', ['core/capabilities', 'core/defer', 'core/log', 'core/lo
         // Receive postMessage from the packaged app and do something with it.
         if (e.data && e.data.name && e.data.data) {
             var def = defer.Deferred();
-            console.log('Received post message from ' + e.origin + ': ' + JSON.stringify(e.data));
+            logger.log('Received post message from ' + e.origin + ': ' +
+                       JSON.stringify(e.data));
             if (e.data.id && e.origin) {
                 def.promise().done(function(result) {
                     // If the promise is fulfilled, it means we need to call
@@ -161,8 +154,11 @@ define('webactivities', ['core/capabilities', 'core/defer', 'core/log', 'core/lo
         // Let the target origin be '*' because only in Firefox OS v.1.1+ do
         // we know for certain that the origin of the Marketplace packaged app
         // will be 'app://marketplace.firefox.com'.
-        console.log('postMessaging to *: loaded');
+        logger.log('postMessaging to *: loaded');
         window.top.postMessage('loaded', '*');
     }
 
+    return {
+        handleActivity: handleActivity
+    };
 });
