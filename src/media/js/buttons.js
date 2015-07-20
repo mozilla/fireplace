@@ -34,8 +34,7 @@ define('buttons',
         // Revert button from a state of installing or a state of being
         // installed.
         $button.removeClass('purchasing installing error spinning');
-        var text = getBtnText(getAppFromBtn($button));
-        $button.find('em').text(text);
+        $button.find('em').text(getBtnText(getAppFromBtn($button)));
     }
 
     function getAppFromBtn($btn) {
@@ -424,6 +423,8 @@ define('buttons',
 
             if (app.installed) {
                 return gettext('Open app');
+            } else if (user.has_purchased(app.id)) {
+                return gettext('Install');
             } else {
                 return format.format(gettext('Install for {price}'), {
                     price: app.priceText
