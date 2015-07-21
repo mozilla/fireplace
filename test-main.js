@@ -5,6 +5,7 @@ var TEST_REGEXP = /tests\/.*\.js$/i;
 var realSinon = sinon;
 beforeEach(function() {
     sinon = realSinon.sandbox.create();
+    localStorage.clear();
 });
 afterEach(function() {
     sinon.restore();
