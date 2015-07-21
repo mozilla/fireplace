@@ -123,13 +123,13 @@ define('buttons',
             payments.purchase(product, purchaseOpts).then(function() {
                 logger.log('Purchase flow completed for', product.name);
 
+                // Update the cache to show that the app was purchased.
+                user.update_purchased(product.id);
+
                 // Update the button to say Install.
                 setInstallBtnState($button, gettext('Install'), 'purchased');
                 // Save the old text of the button.
                 $button.data('old-text', $button.find('em').text());
-
-                // Update the cache to show that the app was purchased.
-                user.update_purchased(product.id);
 
                 // Bust the cache for the My Apps page.
                 cache.bust(urls.api.url('installed'));
