@@ -73,17 +73,17 @@ define('webactivities',
             case 'marketplace-openmobile-acl':
                 logger.log('Handling openmobile-acl', data.acl_version);
                 var aclVersionData = data.acl_version.split(';');
-                if (aclVersionData.length < 5) {
-                    logger.log('Invalid ACL version');
+                if (aclVersionData[4]) {
+                    logger.log('ACL already installed', aclVersionData[4]);
                     break;
                 }
-                var aclVersion = aclVersionData[4];
-                logger.log('Parsed openmobile-acl version', aclVersion);
+                var chipsetProduct = aclVersionData[1];
+                logger.log('Parsed openmobile-acl product', chipsetProduct);
 
                 // Based on ACL version, install the respective ACL app for.
                 // OpenMobile. Then we get WhatsApp and win everything.
-                switch (aclVersion) {
-                    case 'SPRD7715':
+                switch (chipsetProduct) {
+                    case 'P172R12':
                         slug = 'acl-sp7715-zte_open_c2';
                         break;
                     case 'MTK6572':
@@ -93,7 +93,7 @@ define('webactivities',
                         slug = null;
                         break;
                     default:
-                        logger.error('Unknown ACL version', data.acl_version);
+                        logger.error('Unknown chipset', chipsetProduct);
                 }
 
                 if (slug) {
