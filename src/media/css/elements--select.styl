@@ -33,16 +33,16 @@ mkt-selected {
     justify-content: center;
 
     p {
-        padding: 0 15px; 
-    }    
+        padding: 0 15px;
+    }
 }
 
 mkt-selected:after {
-    bottom: 1px;
     content: '\25BC';  // Black pointing down triangle.
     display: inline-block;
     font-size: 10px;
-    position: relative;
+    position: absolute;
+    top: 23px;
     transition: transform .2s linear;
 
     +ltr() {
