@@ -1,0 +1,119 @@
+@import '../lib';
+
+
+.games-home {
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+
+    > section {
+        padding: 30px 120px;
+        width: 100%;
+    }
+}
+
+.games-home-title {
+    align-content: center;
+    background: #006DBF;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    width: 100%;
+
+    h1 {
+        color: $greyscale-white;
+        font-size: 30px;
+        font-weight: 600;
+    }
+}
+
+.games-home-primary {
+    background: green;
+    display: flex;
+    flex-direction: column;
+    height: 375px;
+    width: 100%;
+}
+
+.games-home-primary-main {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+
+    .install {
+        border: 1px solid $greyscale-white;
+        border-radius: 2px;
+        font-size: 30px;
+        font-style: italic;
+        font-weight: 500;
+        padding: 17px 20px 45px;
+    }
+}
+
+.games-home-primary-metadata-container {
+    align-self: flex-end;
+    background: $action-success;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    height: 75px;
+    width: 100%;
+}
+
+.games-home-primary-metadata {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
+    width: (100 / 3)%;
+
+    dt {
+        font-size: 12px;
+        font-weight: 300;
+        margin-bottom: 10px;
+    }
+    dd {
+        font-weight: 600;
+        font-size: 20px;
+    }
+    dt,
+    dd {
+        color: $greyscale-white;
+    }
+}
+
+.games-home-secondary-container {
+    display: flex;
+    height: 250px;
+    width: 100%;
+}
+
+.games-home-secondary-container .game {
+    width: (100 / 3)%;
+}
+
+.games-home-more {
+    align-items: center;
+    background: $greyscale-white;
+    color: $action-positive;
+    display: flex;
+    font-size: 20px;
+    font-weight: 500;
+    justify-content: center;
+    margin: 10px 0 30px;
+    height: 50px;
+    width: 100%;
+
+    a {
+        border-bottom: 2px solid $action-positive;
+        padding-bottom: 1px;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

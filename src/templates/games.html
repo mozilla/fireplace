@@ -1,0 +1,77 @@
+{% macro primary_game(game) %}
+  <div class="games-home-primary">
+    <div class="games-home-primary-main">
+      {% if game.url %}
+        <a class="button install" href="{{ game.url }}" target="_blank">
+          {{ _('Play Now!') }}
+        </a>
+      {% else %}
+        <a class="button install" data-product="{{ game }}">
+          {{ _('Install Now!') }}
+        </a>
+      {% endif %}
+    </div>
+    <ul class="games-home-primary-metadata-container">
+      <li class="games-home-primary-metadata">
+        <dt>{{ _('Game') }}</dt>
+        <dd>{{ game.name }}</dd>
+      </li>
+      <li class="games-home-primary-metadata">
+        <dt>{{ _('Developer') }}</dt>
+        <dd>{{ game.author }}</dd>
+      </li>
+      <li class="games-home-primary-metadata">
+        <dt>{{ _('Category') }}</dt>
+        <dd>Featured Action</dd>
+      </li>
+    </ul>
+  </div>
+{% endmacro %}
+
+
+{% macro game_tile(game) %}
+  <li class="game">
+    <div class="game-overlay">
+      <p class="game-overlay-category">Action Game</p>
+      <img class="game-overlay-icon" src="{{ game.icons['128'] }}">
+      <p class="game-overlay-name">{{ game.name }}</p>
+      {% if game.author %}
+        <p class="game-overlay-developer">
+          {{ _('<span>by</span> {author}')|format(author=game.author) }}
+        </p>
+      {% endif %}
+      {% if game.url %}
+        <a class="button game-overlay-button" href="{{ game.url }}"
+           target="_blank">
+          {{ _('Play now!') }}</a>
+      {% else %}
+        <a class="button install game-overlay-button" data-product="{{ game }}">
+          {{ _('Install now!') }}</a>
+      {% endif %}
+    </div>
+    <h3 class="game-name">{{ game.name }}</h3>
+  </li>
+{% endmacro %}
+
+
+{% defer (url=api('games-daily')) %}
+  <section class="games-home">
+    <div class="games-home-title">
+      <h1>{{ _('Play great desktop games') }}</h1>
+    </div>
+
+    {{ primary_game(this[0]) }}
+
+    <ul class="games-home-secondary-container">
+      {% for game in this %}
+        {% if loop.index0 != 0 %}
+          {{ game_tile(game) }}
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <div class="games-home-more">
+      <a>{{ _('Find more great games') }}</a>
+    </div>
+  </section>
+{% end %}

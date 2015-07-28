@@ -1,0 +1,97 @@
+@import '../lib';
+
+
+game--hover() {
+    .game:hover & {
+        {block}
+    }
+}
+
+
+[data-page-type~="games"] {
+    #page {
+        min-height: 100%;
+        padding-top: 0;
+    }
+}
+
+.game {
+    align-items: center;
+    background: red;
+    display: flex;
+    justify-content: center;
+    height: 250px;
+    position: relative;
+
+    &:first-child {
+        background: blue;
+    }
+    &:last-child {
+        background: orange;
+    }
+}
+
+.game-overlay {
+    align-items: center;
+    background: rgba($greyscale-white, .5);
+    color: $greyscale-white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .5s;
+    width: 100%;
+    z-index: 1;
+
+    +game--hover() {
+        opacity: 1;
+    }
+}
+
+.game-overlay-category {
+    font-size: 16px;
+    font-weight: 300;
+    margin: 20px 0;
+}
+
+.game-overlay-icon {
+    height: 64px;
+    margin-bottom: 10px;
+    width: 64px;
+}
+
+.game-overlay-name,
+.game-overlay-developer {
+    color: $greyscale-white;
+    font-size: 24px;
+    font-weight: 500;
+
+    span {
+        font-weight: 300;
+    }
+}
+
+a.game-overlay-button {
+    border: 2px solid $greyscale-white;
+    border-radius: 2px;
+    font-style: italic;
+    height: 30px;
+    margin: 20px 0;
+    padding: 6px 10px 0;
+}
+
+.game-name {
+    color: $greyscale-white;
+    font-size: 24px;
+    font-weight: 500;
+    opacity: 1;
+    transition: opacity .2s;
+
+    +game--hover() {
+        opacity: 0;
+    }
+}
