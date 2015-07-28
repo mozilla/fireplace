@@ -1,4 +1,4 @@
-define('views/games', [], function() {
+define('views/games/games', [], function() {
     'use strict';
 
     return function(builder, args, params) {
@@ -7,7 +7,6 @@ define('views/games', [], function() {
         builder.z('title', '');
         builder.z('type', 'root games');
 
-        builder.start('games.html', {
-        });
+        builder.start('games/index.html');
     };
 });
