@@ -15,13 +15,16 @@ var fs = require('fs');
 var path = require('path');
 
 var archiver = require('archiver');
+var browserify = require('browserify');
 var commonplace = require('commonplace');
 var gulp = require('gulp');
+var envify = require('envify/custom');
 var mergeStream = require('merge-stream');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var rm = require('rimraf');
 var runSequence = require('run-sequence');
+var vinylSource = require('vinyl-source-stream');
 
 
 var packageFilesWhitelist = [
@@ -48,9 +51,9 @@ var packageFilename = server + '_' + versionTimestamp;
 var versionPackageZip = PKG_PATH + packageFilename + '.zip';
 
 var iframePackageFilesWhitelist = [
-    // include.js not included since it is written straight to package folder.
     // Locale files will be dynamically whitelisted later.
     'package/iframe/app-icons/*.png',
+    'package/iframe/bundle.js',
     'package/iframe/index.html',
     'package/iframe/style.css',
 ];
@@ -247,11 +250,14 @@ gulp.task('iframe_whitelist_copy', ['iframe_package_clean'], function() {
 });
 
 
-gulp.task('iframe_package_js', ['iframe_package_clean'], function() {
-    // Build iframe package JS. Swap in the correct domain.
-    return gulp.src(path.join(IFRAME_SRC_PATH, 'main.js'))
-        .pipe(replace(/{domain}/, config.packageConfig[server].domain))
-        .pipe(gulp.dest(iframeLatestPackageFolder));
+gulp.task('iframe_package_js', function() {
+    return browserify('./package/iframe/js/main.js')
+        .transform(envify({
+            MKT_URL: config.packageConfig[server].domain
+        }))
+        .bundle()
+        .pipe(vinylSource('bundle.js'))
+        .pipe(gulp.dest('./package/iframe'));
 });
 
 
