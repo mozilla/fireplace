@@ -3,13 +3,13 @@ define('tests/unit/buttons',
     function(h) {
 
     describe('install button text', function() {
-        it('is "Install for free" when free', h.injector(
+        it('is "Install for {price}" when free', h.injector(
                 h.mockSettings({
                     meowEnabled: true,
                     model_prototypes: {app: 'slug'},
                 })
             ).run(['buttons'], function(buttons) {
-                h.setL10nStrings({'Install for free': 'yo'}, function() {
+                h.setL10nStrings({'Install for {price}': 'yo'}, function() {
                     var app = {};
                     assert.equal(buttons.getBtnText(app), 'yo');
                 });
