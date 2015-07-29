@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-01T15:34:32.357Z\n"
+"POT-Creation-Date: 2015-07-29T20:04:48.073Z\n"
 "PO-Revision-Date: 2015-07-08 07:30+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1436340621.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
+#: /templates/app_list.html:7 /templates/category.html:7 /templates/search.html:8 /templates/purchases.html:7
 msgid "Expand"
 msgstr "Rozbaliť"
 
@@ -143,11 +143,11 @@ msgstr "Prepnúť vyhľadávanie"
 msgid "Toggle Settings Menu"
 msgstr "Prepnúť ponuku nastavení"
 
-#: /templates/header.html:56 /templates/nav.html:30 /templates/purchases.html:43 /templates/settings.html:43
+#: /templates/header.html:56 /templates/nav.html:30 /templates/settings.html:43 /templates/purchases.html:43
 msgid "Register"
 msgstr "Registrácia"
 
-#: /templates/header.html:58 /templates/nav.html:32 /templates/purchases.html:44 /templates/settings.html:44
+#: /templates/header.html:58 /templates/nav.html:32 /templates/settings.html:44 /templates/purchases.html:44
 msgid "Sign In"
 msgstr "Prihlásiť"
 
@@ -215,18 +215,6 @@ msgstr "Ďakujeme za registráciu!"
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Dostanete e-mail z adresy mozilla@e.mozilla.org, skontrolujte si vašu doručenú poštu pre prvý e-mail od nás, prosím. Ak ho tam neuvidíte, skontrolujte si váš spamový filter."
 
-#: /templates/purchases.html:42
-msgid "You must be signed in to view your apps."
-msgstr "Ak chcete zobraziť svoj aplikácie, musíte byť prihlásený."
-
-#: /templates/purchases.html:31
-msgid "You have no apps"
-msgstr "Nemáte žiadne aplikácie"
-
-#: /templates/purchases.html:35 /templates/errors/404.html:8 /templates/errors/fragment.html:1 /media/js/views/app.js:52
-msgid "Oh no!"
-msgstr "Ale nie!"
-
 #: /templates/search.html:7
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
@@ -289,6 +277,18 @@ msgstr "Zapojte sa"
 msgid "Region"
 msgstr "Región"
 
+#: /templates/purchases.html:42
+msgid "You must be signed in to view your apps."
+msgstr "Ak chcete zobraziť svoj aplikácie, musíte byť prihlásený."
+
+#: /templates/purchases.html:31
+msgid "You have no apps"
+msgstr "Nemáte žiadne aplikácie"
+
+#: /templates/purchases.html:35 /templates/errors/fragment.html:1 /media/js/views/app.js:46
+msgid "Oh no!"
+msgstr "Ale nie!"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "Štatistiky aplikácie"
@@ -300,143 +300,6 @@ msgstr "Štatistiky používania aplikácie"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Nedostatok štatistík pre zobrazenie."
-
-#. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:6
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr "Zobraziť <mkt-selected-text></mkt-selected-text>"
-
-#: /templates/_includes/app_list_filters.html:36
-msgid "Display as"
-msgstr "Zobraziť ako"
-
-#: /templates/_includes/app_list_filters.html:37
-msgid "Toggle App Previews"
-msgstr "Prepnúť náhľady aplikácie"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Späť na {app}"
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Hodnotenie obsahu"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Podrobnosti hodnotenia"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Nastavenia vášho Mac-u vám nemôžu brániť v inštalácií aplikácií, ktoré nepochádzajú z Mac App Store."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Prečítajte si, ako to zmeniť."
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "Zobraziť všetko pre <mkt-selected-text></mkt-selected-text>"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Nainštalované!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Spustite túto aplikáciu z vášho priečinka <b>Aplikácie</b>."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Spustite túto aplikáciu z vášho <b>pracovnej plochy Windows</b> alebo ponuky <b>Štart &#9658; Všetky programy</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Spustite túto aplikáciu z vášho <b>Dash</b>, <b>Application picker</b> alebo <b>ponuky Aplikácie</b>."
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Upraviť recenziu"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Upraviť moju recenziu"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Napísať recenziu"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Pre pridanie recenzie sa prihláste"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Čítať všetky recenzie"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 recenzia"
-msgstr[1] "{numReviews} recenzie"
-msgstr[2] "{numReviews} recenzií"
-
-#: /templates/_macros/app_tile.html:113
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Recenzia"
-msgstr[1] "Recenzie"
-msgstr[2] "Recenzií"
-
-#: /templates/_macros/app_tile.html:119
-msgid "Not yet reviewed"
-msgstr "Zatiaľ neskontrolované"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:395
-msgid "Free"
-msgstr "Zadarmo"
-
-#: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
-msgid "View all apps"
-msgstr "Zobraziť všetky aplikácie"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Načítať viac"
-
-#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr "Snímok obrazovky {app_name}"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Z predchádzajúcej verzie {version}"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Upraviť"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Odstrániť"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Nahlásiť"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "Označené na kontrolu"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Ohodnotené {stars} z {maxstars} hviezdičiek"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -548,9 +411,150 @@ msgstr "Načítavajú sa Zásady ochrany súkromia..."
 msgid "Thank you for purchasing"
 msgstr "Ďakujeme za objednávku"
 
-#: /templates/errors/404.html:9
-msgid "The page you were looking for was not found."
-msgstr "Hľadaná stránka nebola nájdená."
+#. <mkt-selected-text> will be a noun like "apps" or "sites".
+#: /templates/_includes/app_list_filters.html:6
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr "Zobraziť <mkt-selected-text></mkt-selected-text>"
+
+#: /templates/_includes/app_list_filters.html:36
+msgid "Display as"
+msgstr "Zobraziť ako"
+
+#: /templates/_includes/app_list_filters.html:37
+msgid "Toggle App Previews"
+msgstr "Prepnúť náhľady aplikácie"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Späť na {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Hodnotenie obsahu"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Podrobnosti hodnotenia"
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "Zobraziť všetko pre <mkt-selected-text></mkt-selected-text>"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Nastavenia vášho Mac-u vám nemôžu brániť v inštalácií aplikácií, ktoré nepochádzajú z Mac App Store."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Prečítajte si, ako to zmeniť."
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Nainštalované!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Spustite túto aplikáciu z vášho priečinka <b>Aplikácie</b>."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Spustite túto aplikáciu z vášho <b>pracovnej plochy Windows</b> alebo ponuky <b>Štart &#9658; Všetky programy</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Spustite túto aplikáciu z vášho <b>Dash</b>, <b>Application picker</b> alebo <b>ponuky Aplikácie</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Upraviť recenziu"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Upraviť moju recenziu"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Napísať recenziu"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Pre pridanie recenzie sa prihláste"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Čítať všetky recenzie"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 recenzia"
+msgstr[1] "{numReviews} recenzie"
+msgstr[2] "{numReviews} recenzií"
+
+#: /templates/_macros/app_tile.html:113
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Recenzia"
+msgstr[1] "Recenzie"
+msgstr[2] "Recenzií"
+
+#: /templates/_macros/app_tile.html:119
+msgid "Not yet reviewed"
+msgstr "Zatiaľ neskontrolované"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:394
+msgid "Free"
+msgstr "Zadarmo"
+
+#: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
+msgid "View all apps"
+msgstr "Zobraziť všetky aplikácie"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Načítať viac"
+
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
+msgstr "Snímok obrazovky {app_name}"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Z predchádzajúcej verzie {version}"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Upraviť"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Odstrániť"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Nahlásiť"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Označené na kontrolu"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Ohodnotené {stars} z {maxstars} hviezdičiek"
+
+#: /templates/errors/404.html:2
+msgid "Content Not Found"
+msgstr ""
+
+#: /templates/errors/404.html:3
+msgid "Whoops! Something went wrong and you ended up here. Sorry!"
+msgstr ""
 
 #: /templates/errors/date-error.html:2
 msgid "System Date Incorrect"
@@ -588,7 +592,7 @@ msgstr "Skúsiť znova"
 msgid "Edit Review"
 msgstr "Upraviť recenziu"
 
-#: /templates/ratings/add.html:8 /templates/ratings/add.html:46 /media/js/views/app/ratings/add.js:25
+#: /templates/ratings/add.html:8 /templates/ratings/add.html:46 /media/js/views/app/ratings/add.js:20
 msgid "Leave a Review"
 msgstr "Napísať recenziu"
 
@@ -609,8 +613,8 @@ msgid "Please select a star rating."
 msgstr "Vyberte počet hviezdičiek pre hodnotenie."
 
 #: /templates/ratings/add.html:28
-msgid "Tell us what you love about this app!"
-msgstr "Napíšte nám, čo sa vám na tejto aplikácií páči najviac!"
+msgid "Tell us what you like about this app. Write like you’re telling a friend about your experience with the app. Give specific details, for example, What features did you like or dislike?"
+msgstr ""
 
 #: /templates/ratings/add.html:33
 msgid "Only users that are logged in may submit reviews."
@@ -648,10 +652,6 @@ msgstr "Nevhodne umiestnená správa o chybe alebo žiadosť o podporu"
 msgid "This app has no reviews."
 msgstr "Táto aplikácia nemá žiadne recenzie."
 
-#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "Recenzia aplikácie"
-
 #: /templates/website/index.html:34
 msgid "Explore more in {category_one} and {category_two}."
 msgstr "Objavte viac v kategóriách {category_one} a {category_two}."
@@ -668,6 +668,10 @@ msgstr "Je tu niečo nesprávne, alebo je tu zastaralý obsah stránky?"
 msgid "Report an issue"
 msgstr "Nahlásiť chybu"
 
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "Recenzia aplikácie"
+
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
 msgstr "Dajte nám vedieť, ak je na tejto stránke niečo chýba, alebo by mala byť aktualizovaná."
@@ -683,6 +687,83 @@ msgstr "Sem prosím podrobne popíšte nájdenú chybu."
 #: /templates/website/issue.html:22 /media/js/views/website/issue.js:29
 msgid "Report an Issue"
 msgstr "Nahlásiť chybu"
+
+#: /media/js/buttons.js:80 /media/js/buttons.js:152 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Platba zrušená."
+
+#: /media/js/buttons.js:116
+msgid "Purchasing"
+msgstr "Prebieha zakúpenie"
+
+#: /media/js/buttons.js:130 /media/js/buttons.js:369 /media/js/buttons.js:418 /media/js/buttons.js:431 /media/js/buttons.js:441
+msgid "Install"
+msgstr "Nainštalovať"
+
+#: /media/js/buttons.js:191 /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Ospravedlňujeme sa, ale počas získavania údajov tejto aplikácie nastali problémy. Vyskúšajte to znova neskôr."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/buttons.js:236
+msgid "Install failed. Please try again later."
+msgstr "Inštalácia zlyhala. Skúste to neskôr."
+
+#: /media/js/buttons.js:320 /media/js/buttons.js:418
+msgid "Installed"
+msgstr "Nainštalované"
+
+#: /media/js/buttons.js:394
+msgid "free"
+msgstr "zadarmo"
+
+#: /media/js/buttons.js:399
+msgid "Unavailable"
+msgstr "Nedostupné"
+
+#: /media/js/buttons.js:423
+msgid "Open website"
+msgstr "Otvoriť stránku"
+
+#: /media/js/buttons.js:427
+msgid "Open app"
+msgstr "Otvoriť aplikáciu"
+
+#: /media/js/buttons.js:429
+msgid "Install for free"
+msgstr ""
+
+#: /media/js/buttons.js:433
+msgid "Install for {price}"
+msgstr "Nainštalovať za {price}"
+
+#: /media/js/buttons.js:439
+msgid "Open"
+msgstr "Otvoriť"
+
+#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+msgid "All Platforms"
+msgstr "Všetky platformy"
+
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:60
+msgid "Android Mobile"
+msgstr "Android (telefón)"
+
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
+msgid "Android Tablet"
+msgstr "Android (tablet)"
+
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:58
+msgid "Desktop"
+msgstr "Počítač"
+
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
+msgid "Firefox OS"
+msgstr "Firefox OS"
+
+#: /media/js/compat_filter.js:55
+msgid "My Device"
+msgstr "Moje zariadenie"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -784,78 +865,38 @@ msgstr "Nástroje"
 msgid "Weather"
 msgstr "Počasie"
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Platba zrušená."
+#. Chess game desktop promo (bug 1175381).
+#: /media/js/desktop_promo.js:20
+msgid "Play 45 creative variations of chess."
+msgstr "Zahrajte si 45 kreatívnych variácií šachu."
 
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "Prebieha zakúpenie"
+#: /media/js/desktop_promo.js:26
+msgid "Manage projects easily with Basecamp."
+msgstr "Spravujte projekty jednoducho z Basecamp."
 
-#: /media/js/buttons.js:128 /media/js/buttons.js:370 /media/js/buttons.js:417 /media/js/buttons.js:436
-msgid "Install"
-msgstr "Nainštalovať"
+#: /media/js/desktop_promo.js:33
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "Aplikácie pre produktivitu—základné aplikácie na ploche"
 
-#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Ospravedlňujeme sa, ale počas získavania údajov tejto aplikácie nastali problémy. Vyskúšajte to znova neskôr."
+#: /media/js/desktop_promo.js:40
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Herné a zábavné aplikácie—základné aplikácie na ploche"
 
-#. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
-msgid "Install failed. Please try again later."
-msgstr "Inštalácia zlyhala. Skúste to neskôr."
+#: /media/js/desktop_promo.js:46
+msgid "Play GoldNuggets now!"
+msgstr "Zahrajte si GoldNuggets!"
 
-#: /media/js/buttons.js:321 /media/js/buttons.js:417
-msgid "Installed"
-msgstr "Nainštalované"
+#: /media/js/content_filter.js:20
+msgid "all content"
+msgstr "celý obsah"
 
-#: /media/js/buttons.js:395
-msgid "free"
-msgstr "zadarmo"
+#: /media/js/content_filter.js:21
+msgid "apps"
+msgstr "aplikácie"
 
-#: /media/js/buttons.js:399
-msgid "Unavailable"
-msgstr "Nedostupné"
-
-#: /media/js/buttons.js:422
-msgid "Open website"
-msgstr "Otvoriť stránku"
-
-#: /media/js/buttons.js:426
-msgid "Open app"
-msgstr "Otvoriť aplikáciu"
-
-#: /media/js/buttons.js:428
-msgid "Install for {price}"
-msgstr "Nainštalovať za {price}"
-
-#: /media/js/buttons.js:434
-msgid "Open"
-msgstr "Otvoriť"
-
-#: /media/js/compat_filter.js:50 /media/js/compat_filter.js:59
-msgid "All Platforms"
-msgstr "Všetky platformy"
-
-#: /media/js/compat_filter.js:51 /media/js/compat_filter.js:68
-msgid "Android Mobile"
-msgstr "Android (telefón)"
-
-#: /media/js/compat_filter.js:52 /media/js/compat_filter.js:69
-msgid "Android Tablet"
-msgstr "Android (tablet)"
-
-#: /media/js/compat_filter.js:53 /media/js/compat_filter.js:66
-msgid "Desktop"
-msgstr "Počítač"
-
-#: /media/js/compat_filter.js:54 /media/js/compat_filter.js:67
-msgid "Firefox OS"
-msgstr "Firefox OS"
-
-#: /media/js/compat_filter.js:63
-msgid "My Device"
-msgstr "Moje zariadenie"
+#: /media/js/content_filter.js:22
+msgid "websites"
+msgstr "webové stránky"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
@@ -898,58 +939,9 @@ msgstr "Dospelí 17+"
 msgid "Adults Only 18+"
 msgstr "Dospelí 18+"
 
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr "nedostupné pre váš región"
-
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr "nedostupné pre vašu platformu"
-
-#: /media/js/content_filter.js:20
-msgid "all content"
-msgstr "celý obsah"
-
-#: /media/js/content_filter.js:21
-msgid "apps"
-msgstr "aplikácie"
-
-#: /media/js/content_filter.js:22
-msgid "websites"
-msgstr "webové stránky"
-
-#. Productivity collection desktop promo (bug 1108612).
-#: /media/js/desktop_promo.js:13
-msgid "Play 45 creative variations of chess."
-msgstr "Zahrajte si 45 kreatívnych variácií šachu."
-
-#: /media/js/desktop_promo.js:15
-msgid "Manage projects easily with Basecamp."
-msgstr "Spravujte projekty jednoducho z Basecamp."
-
-#: /media/js/desktop_promo.js:17
-msgid "Play GoldNuggets now!"
-msgstr "Zahrajte si GoldNuggets!"
-
-#: /media/js/desktop_promo.js:30
-msgid "Play this fantastic action puzzle game immediately."
-msgstr "Zahrajte si fantastickú akčnú a logickú hru."
-
-#: /media/js/desktop_promo.js:36
-msgid "Enjoy 15,000+ radio programs and podcasts."
-msgstr "Užite si viac ako 15 tisíc rádio staníc a podcastov."
-
-#: /media/js/desktop_promo.js:43
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "Aplikácie pre produktivitu—základné aplikácie na ploche"
-
-#: /media/js/desktop_promo.js:50
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Herné a zábavné aplikácie—základné aplikácie na ploche"
-
-#: /media/js/desktop_promo.js:56
-msgid "Run for your life!"
-msgstr "Bežte ako o život!"
+#: /media/js/helpers_local.js:113
+msgid "works offline"
+msgstr "funguje offline"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1329,9 +1321,13 @@ msgstr[0] "Práca a biznis"
 msgstr[1] "Práca a biznis"
 msgstr[2] "Práca a biznis"
 
-#: /media/js/helpers_local.js:113
-msgid "works offline"
-msgstr "funguje offline"
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "nedostupné pre váš región"
+
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "nedostupné pre vašu platformu"
 
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
@@ -1361,52 +1357,6 @@ msgid_plural "{n} stars"
 msgstr[0] "{n} hviezdička"
 msgstr[1] "{n} hviezdičky"
 msgstr[2] "{n} hviezdičiek"
-
-#. The report is an abuse report for reviews.
-#: /media/js/reviews.js:35
-msgid "Flagging review..."
-msgstr "Označenie recenzie..."
-
-#: /media/js/reviews.js:40
-msgid "This review has been successfully flagged. Thanks!"
-msgstr "Recenzia bola úspešne označená. Ďakujeme!"
-
-#: /media/js/reviews.js:51
-msgid "Sorry, there was an issue flagging the review. Please try again later."
-msgstr "Ospravedlňujeme sa, ale pri označení recenzie nastal problém. Vyskúšajte to znova neskôr."
-
-#: /media/js/reviews.js:59
-msgid "This review has been successfully deleted"
-msgstr "Táto recenzia bola úspešne odstránená"
-
-#: /media/js/reviews.js:90 /media/js/views/app/ratings/add.js:26
-msgid "Write a Review"
-msgstr "Napísať recenziu"
-
-#: /media/js/reviews.js:92
-msgid "Sorry, there was a problem deleting the review"
-msgstr "Je nám ľúto, pri odstraňovaní recenzie došlo k chybe"
-
-#: /media/js/reviews.js:151 /media/js/views/app.js:22 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/app.js:35 /media/js/views/app.js:36 /media/js/views/feed_landing.js:15
-#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
-msgid "Loading..."
-msgstr "Načítava sa..."
-
-#: /media/js/reviews.js:254
-msgid "Your review was successfully posted. Thanks!"
-msgstr "Vaša recenzia bola úspešne odoslaná. Ďakujeme!"
-
-#: /media/js/reviews.js:258
-msgid "Sorry, there was an error posting your review. Please try again later."
-msgstr "Ospravedlňujeme sa, ale pri odosielaní recenzie nastal problém. Vyskúšajte to znova neskôr."
-
-#: /media/js/reviews.js:284
-msgid "Your review was successfully edited"
-msgstr "Vaša recenzia bola úspešne upravená"
-
-#: /media/js/reviews.js:288
-msgid "Sorry, there was an issue editing your review. Please try again later"
-msgstr "Počas úpravy vašej recenzie došlo k chybe. Vyskúšajte to prosím znova."
 
 #: /media/js/settings_app.js:94
 msgid "English"
@@ -1452,9 +1402,22 @@ msgstr "Prepáčte, ale momentálne ste v režime offline. Prosím vyskúšajte 
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr "Pri ďalšom spustení aplikácie Firefox Marketplace už uvidíte aktualizovanú verziu!"
 
-#: /media/js/views/app.js:23
+#: /media/js/views/app.js:16 /media/js/views/app.js:23 /media/js/views/app.js:24 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/feed_landing.js:15 /media/js/reviews.js:151
+#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
+msgid "Loading..."
+msgstr "Načítava sa..."
+
+#: /media/js/views/app.js:17
 msgid "App Detail"
 msgstr "Podrobnosti o aplikácii"
+
+#: /media/js/views/langpacks.js:29
+msgid "Language Packs"
+msgstr "Jazykové balíčky"
+
+#: /media/js/views/langpacks.js:41
+msgid "Firefox OS {version}"
+msgstr "Firefox OS {version}"
 
 #: /media/js/views/feed_landing.js:16
 msgid "Collection Detail"
@@ -1468,25 +1431,50 @@ msgstr "Názor bol odoslaný. Ďakujeme."
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Pri odosielaní správy sa vyskytol problém. Skúste to neskôr."
 
-#: /media/js/views/langpacks.js:29
-msgid "Language Packs"
-msgstr "Jazykové balíčky"
-
-#: /media/js/views/langpacks.js:41
-msgid "Firefox OS {version}"
-msgstr "Firefox OS {version}"
-
 #: /media/js/views/newsletter_signup.js:11
 msgid "Newsletter Signup"
 msgstr "Prihlásenie odberu noviniek"
 
-#: /media/js/views/search.js:164
-msgid "Search Results"
-msgstr "Výsledky vyhľadávania"
+#. The report is an abuse report for reviews.
+#: /media/js/reviews.js:35
+msgid "Flagging review..."
+msgstr "Označenie recenzie..."
 
-#: /media/js/views/search.js:176
-msgid "Developer Listing"
-msgstr "Zoznam vývojárov"
+#: /media/js/reviews.js:40
+msgid "This review has been successfully flagged. Thanks!"
+msgstr "Recenzia bola úspešne označená. Ďakujeme!"
+
+#: /media/js/reviews.js:51
+msgid "Sorry, there was an issue flagging the review. Please try again later."
+msgstr "Ospravedlňujeme sa, ale pri označení recenzie nastal problém. Vyskúšajte to znova neskôr."
+
+#: /media/js/reviews.js:59
+msgid "This review has been successfully deleted"
+msgstr "Táto recenzia bola úspešne odstránená"
+
+#: /media/js/reviews.js:90 /media/js/views/app/ratings/add.js:21
+msgid "Write a Review"
+msgstr "Napísať recenziu"
+
+#: /media/js/reviews.js:92
+msgid "Sorry, there was a problem deleting the review"
+msgstr "Je nám ľúto, pri odstraňovaní recenzie došlo k chybe"
+
+#: /media/js/reviews.js:254
+msgid "Your review was successfully posted. Thanks!"
+msgstr "Vaša recenzia bola úspešne odoslaná. Ďakujeme!"
+
+#: /media/js/reviews.js:258
+msgid "Sorry, there was an error posting your review. Please try again later."
+msgstr "Ospravedlňujeme sa, ale pri odosielaní recenzie nastal problém. Vyskúšajte to znova neskôr."
+
+#: /media/js/reviews.js:284
+msgid "Your review was successfully edited"
+msgstr "Vaša recenzia bola úspešne upravená"
+
+#: /media/js/reviews.js:288
+msgid "Sorry, there was an issue editing your review. Please try again later"
+msgstr "Počas úpravy vašej recenzie došlo k chybe. Vyskúšajte to prosím znova."
 
 #: /media/js/views/settings.js:40
 msgid "Your settings have been successfully saved"
@@ -1496,10 +1484,6 @@ msgstr "Vaše nastavenia boli úspešne uložené"
 msgid "Settings could not be saved"
 msgstr "Nastavenia nebolo možné uložiť"
 
-#: /media/js/views/website.js:11
-msgid "Website Detail"
-msgstr "Podrobnosti o stránke"
-
 #: /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
 msgstr "Hlásenie odoslané. Ďakujeme!"
@@ -1507,6 +1491,10 @@ msgstr "Hlásenie odoslané. Ďakujeme!"
 #: /media/js/views/app/abuse.js:24 /media/js/views/website/issue.js:22
 msgid "There was an issue submitting your report. Please try again later."
 msgstr "Pri odosielaní vášho hlásenia došlo k chybe. Skúste to prosím znovu."
+
+#: /media/js/views/website.js:11
+msgid "Website Detail"
+msgstr "Podrobnosti o stránke"
 
 #: /media/js/views/app/ratings.js:12
 msgid "Read All Reviews"
@@ -1519,3 +1507,11 @@ msgstr "Na zobrazenie potvrdenky sa prihláste"
 #: /media/js/views/app/receipt.js:21
 msgid "Receipt"
 msgstr "Potvrdenka"
+
+#: /media/js/views/search.js:164
+msgid "Search Results"
+msgstr "Výsledky vyhľadávania"
+
+#: /media/js/views/search.js:176
+msgid "Developer Listing"
+msgstr "Zoznam vývojárov"
