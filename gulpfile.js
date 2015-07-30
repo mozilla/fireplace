@@ -234,7 +234,8 @@ gulp.task('iframe_package', ['iframe_package_js', 'iframe_package_manifest',
 });
 
 
-gulp.task('iframe_whitelist_copy', ['iframe_package_clean'], function() {
+gulp.task('iframe_whitelist_copy', ['iframe_package_clean',
+                                    'iframe_package_js'], function() {
     // Copy files from whitelist to the folder.
     return gulp.src(iframePackageFilesWhitelist)
         .pipe(gulp.dest(function(file) {
