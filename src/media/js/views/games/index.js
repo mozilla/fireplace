@@ -1,4 +1,4 @@
-define('views/games/games', [], function() {
+define('views/games/index', [], function() {
     'use strict';
 
     return function(builder, args, params) {

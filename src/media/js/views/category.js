@@ -1,11 +1,18 @@
 define('views/category',
-    ['categories', 'core/format', 'core/urls', 'core/utils', 'core/z',
-     'underscore', 'tracking_events'],
-    function(categories, format, urls, utils, z,
-             _, trackingEvents) {
+    ['categories', 'core/capabilities', 'core/format', 'core/settings',
+     'core/urls', 'core/utils', 'core/z', 'underscore', 'tracking_events',
+     'views/games/listing'],
+    function(categories, caps, format, settings,
+             urls, utils, z, _, trackingEvents,
+             gamesListing) {
     'use strict';
 
     return function(builder, args, params) {
+        if (caps.os.type === 'desktop' &&
+            settings.gametimeEnabled) {
+            return gamesListing(builder, ['all'], params);
+        }
+
         params = params || {};
         var slug = decodeURIComponent(args[0]);
         var category = _.findWhere(categories, {slug: slug});

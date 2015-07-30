@@ -1,3 +1,5 @@
+{% from '_macros/market_button.html' import market_button %}
+
 {% macro game_title() %}
   <div class="games-title">
     <h1>{{ _('PLAY GREAT DESKTOP GAMES') }}</h1>
@@ -6,7 +8,7 @@
 
 
 {% macro game_tile(game) %}
-  <li class="game">
+  <li class="game" style="background-image: url({{ game.promo_images.small }})">
     <div class="game-gradient"></div>
     <h3 class="game-name">{{ game.name }}</h3>
     <div class="game-overlay">
@@ -20,14 +22,7 @@
           </p>
         {% endif %}
       </div>
-      {% if game.url %}
-        <a class="button game-overlay-button" href="{{ game.url }}"
-           target="_blank">
-          {{ _('Play now!') }}</a>
-      {% else %}
-        <a class="button install game-overlay-button" data-product="{{ game }}">
-          {{ _('Install now!') }}</a>
-      {% endif %}
+      {{ market_button(game, isGame=True) }}
     </div>
   </li>
 {% endmacro %}
@@ -35,16 +30,10 @@
 
 {% macro primary_game(game) %}
   <div class="games-home-primary">
-    <div class="games-home-primary-main">
-      {% if game.url %}
-        <a class="button install" href="{{ game.url }}" target="_blank">
-          {{ _('Play Now!') }}
-        </a>
-      {% else %}
-        <a class="button install" data-product="{{ game }}">
-          {{ _('Install Now!') }}
-        </a>
-      {% endif %}
+    <div class="games-home-primary-main"
+         style="background-image: url({{ game.promo_images.large }})">
+      <div class="game-gradient"></div>
+      {{ market_button(game, isGame=True) }}
     </div>
     <ul class="games-home-primary-metadata-container">
       <li class="games-home-primary-metadata">

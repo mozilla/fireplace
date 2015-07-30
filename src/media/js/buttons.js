@@ -34,7 +34,8 @@ define('buttons',
         // Revert button from a state of installing or a state of being
         // installed.
         $button.removeClass('purchasing installing error spinning');
-        $button.find('em').text(getBtnText(getAppFromBtn($button)));
+        $button.find('em').text(getBtnText(getAppFromBtn($button),
+                                           $button.data('isGame')));
     }
 
     function getAppFromBtn($btn) {
@@ -411,7 +412,7 @@ define('buttons',
         });
     }
 
-    function getBtnText(app) {
+    function getBtnText(app, isGame) {
         app = transformApp(app);
 
         if (app.isLangpack) {
@@ -420,15 +421,30 @@ define('buttons',
 
         if (settings.meowEnabled) {
             if (app.isWebsite) {
-                return gettext('Open website');
+                if (isGame) {
+                    return gettext('Play now!');
+                } else {
+                    return gettext('Open website');
+                }
             }
-
             if (app.installed) {
-                return gettext('Open app');
+                if (isGame) {
+                    return gettext('Play now!');
+                } else {
+                    return gettext('Open app');
+                }
             } else if (app.isFree) {
-                return gettext('Install for free');
+                if (isGame) {
+                    return gettext('Install now!');
+                } else {
+                    return gettext('Install for free');
+                }
             } else if (user.has_purchased(app.id)) {
-                return gettext('Install');
+                if (isGame) {
+                    return gettext('Install now!');
+                } else {
+                    return gettext('Install');
+                }
             } else {
                 return format.format(gettext('Install for {price}'), {
                     price: app.priceText

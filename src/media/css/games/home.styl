@@ -15,7 +15,6 @@
 }
 
 .games-home-primary {
-    background: green;
     display: flex;
     flex-direction: column;
     height: 375px;
@@ -24,11 +23,17 @@
 
 .games-home-primary-main {
     align-items: center;
+    background-size: cover;
     display: flex;
     flex-grow: 1;
     justify-content: center;
+    position: relative;
 
     .install {
+        height: 64px;
+        z-index: 2;
+    }
+    .install em {
         border: 1px solid $greyscale-white;
         border-radius: 2px;
         font-size: 30px;
@@ -40,7 +45,7 @@
 
 .games-home-primary-metadata-container {
     align-self: flex-end;
-    background: $action-success;
+    background: $color--green;
     display: flex;
     justify-content: space-around;
     list-style: none;
@@ -57,13 +62,21 @@
     width: (100 / 3)%;
 
     dt {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 300;
         margin-bottom: 10px;
+
+        +media--base-tablet() {
+            font-size: 14px;
+        }
     }
     dd {
         font-weight: 600;
-        font-size: 20px;
+        font-size: 14px;
+
+        +media--base-tablet() {
+            font-size: 20px;
+        }
     }
     dt,
     dd {
@@ -73,12 +86,23 @@
 
 .games-home-secondary-container {
     display: flex;
-    height: 250px;
+    flex-direction: column;
     width: 100%;
+
+    +media--base-tablet() {
+        flex-direction: row;
+        height: 250px;
+    }
 }
 
 .games-home-secondary-container .game {
-    width: (100 / 3)%;
+    height: 250px;
+    width: 100%;
+
+    +media--base-tablet() {
+        height: 100%;
+        width: (100 / 3)%;
+    }
 }
 
 .games-home-more {

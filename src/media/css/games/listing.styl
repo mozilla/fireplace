@@ -3,20 +3,27 @@
 
 .web-games-are-awesome {
     align-items: center;
-    background: $action-success-tapped;
+    background: $color--green-dark;
     color: $greyscale-white;
     display: flex;
     flex-direction: column;
     font-weight: 400;
     font-size: 20px;
     justify-content: center;
-    padding: 50px 0 40px;
+    padding: 20px 0;
     width: 100%;
 
+    +media--base-tablet() {
+        padding: 50px 0 40px;
+    }
     p,
     a {
         text-align: center;
-        width: 50%;
+        width: 85%;
+
+        +media--base-tablet() {
+            width: 50%;
+        }
     }
     p {
         margin-bottom: 20px;
@@ -45,7 +52,7 @@
     display: flex;
     flex-direction: column;
     height: 300px;
-    padding: 30px 30px 40px 30px;
+    padding: 30px 30px 40px;
     width: 100%;
 
     +media--base-desktop() {

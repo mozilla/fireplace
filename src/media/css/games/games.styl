@@ -51,13 +51,18 @@ game--hover() {
 
     h1 {
         color: $greyscale-white;
-        font-size: 30px;
+        font-size: 20px;
         font-weight: 600;
+
+        +media--base-tablet() {
+            font-size: 30px;
+        }
     }
 }
 
 .game {
     align-items: center;
+    background-size: cover;
     display: flex;
     justify-content: center;
     height: 250px;
@@ -99,9 +104,10 @@ game--hover() {
 }
 
 .game-gradient {
-    content: '';
+    games-gradient($color--games-green-light, $color--games-green-dark);
     display: block;
-    opacity: .6;
+    opacity: .8;
+    transition: opacity .5s;
     z-index: 1;
 
     +game--hover() {
@@ -112,7 +118,6 @@ game--hover() {
 .game-overlay {
     align-items: center;
     color: $greyscale-white;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -162,18 +167,21 @@ game--hover() {
     }
 }
 
-a.game-overlay-button {
+.game-overlay .mkt-app-button {
+    height: auto;
+}
+
+.game-overlay .mkt-app-button em {
     border: 2px solid $greyscale-white;
     border-radius: 2px;
     font-style: italic;
     height: 30px;
     margin: 20px 0;
-    padding: 6px 10px 0;
 }
 
 .game-name {
-    color: $greyscale-white;
     ellipsis();
+    color: $greyscale-white;
     font-size: 24px;
     font-weight: 500;
     line-height: 30px;
