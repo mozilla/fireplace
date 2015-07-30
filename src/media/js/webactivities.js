@@ -72,9 +72,10 @@ define('webactivities',
                 break;
             case 'marketplace-openmobile-acl':
                 logger.log('Handling openmobile-acl', data.acl_version);
-                var aclVersionData = data.acl_version.split(';');
+                var aclVersionData = (data.acl_version || '').split(';');
                 if (aclVersionData[4]) {
                     logger.log('ACL already installed', aclVersionData[4]);
+                    def.reject('ACL_APP_ALREADY_INSTALLED');
                     break;
                 }
                 var chipsetProduct = aclVersionData[1];
@@ -101,8 +102,14 @@ define('webactivities',
                     req
                       .get(urls.api.url('app', [slug]))
                       .done(function(app) {
-                          apps.install(app, {});
+                          apps.install(app, {}).then(function() {
+                            def.resolve('SUCCESS');
+                          }).fail(function() {
+                            def.reject('COULD_NOT_INSTALL_APP');
+                          });
                       });
+                } else {
+                    def.reject('NO_ACL_APP_FOUND_FOR_THIS_CHIPSET');
                 }
                 break;
         }
@@ -133,6 +140,7 @@ define('webactivities',
                         'name': e.data.name,
                         'result': result
                     };
+                    logger.log('Posting back result for ' + e.data.name);
                     window.top.postMessage(msg, e.origin);
                 }).fail(function(result) {
                     // If the promise is rejected, it means we need to call
@@ -144,6 +152,7 @@ define('webactivities',
                         'name': e.data.name,
                         'result': result
                     };
+                    logger.log('Posting back error for ' + e.data.name);
                     window.top.postMessage(msg, e.origin);
                 });
             }
