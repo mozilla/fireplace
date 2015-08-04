@@ -1,0 +1,55 @@
+{% from '_macros/app_tile.html' import deferred_icon %}
+{% from "_macros/market_button.html" import market_button %}
+
+{% macro website_tabs(websites) %}
+  {% if websites %}
+    <section class="feed-item-item feed-item-website feed-item-website-tabs">
+      <ol>
+        {% for website in websites %}
+          {% set website = apps.transform(website) %}
+          <li class="mkt-tile">
+            <button class="feed-item-website-tabs-tab">
+              {{ deferred_icon(website.icons['64'], website.name) }}
+            </button>
+            <a href="{{ website.url }}" class="feed-item-website-tabs-content">
+              <h1>{{ website.name }}</h1>
+              <p>{{ _('Visit this top site!') }}</p>
+            </a>
+          </li>
+        {% endfor %}
+      </ol>
+    </section>
+  {% endif %}
+{% endmacro %}
+
+{% macro website_carousel(websites) %}
+  {% if websites %}
+    <div class="feed-item-item feed-item-website feed-item-website-carousel">
+      <ol>
+      {% for website in websites %}
+        {% set website = apps.transform(website) %}
+        <li>
+          <a class="mkt-tile" data-slug="{{ website.slug }}" data-id="{{ website.id }}" href="{{ website.url }}" data-content-type="{{ website.contentType }}">
+            <span class="mkt-app-heading">
+              {{ deferred_icon(website.icons['64'], website.name) }}
+              <span class="info mkt-tile-info">
+                <h3 class="mkt-app-name" title="{{ website.name }}">{{ website.name }}</h3>
+                {{ market_button(website, data_attrs={
+                  'manifest_url': website.manifest_url,
+                  'source': src,
+                  'slug': website.slug
+                }) }}
+              </span>
+            </span>
+          </a>
+        </li>
+      {% endfor %}
+      </ol>
+      <a class="feed-item-website-carousel-next" href="#">
+        <span>{{ _('Show me another site') }}</span>
+        <span class="feed-item-website-carousel-counter"></span>
+      </a>
+    </div>
+  {% endif %}
+{% endmacro %}
+
