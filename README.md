@@ -8,13 +8,12 @@ The [Firefox Marketplace](https://marketplace.firefox.com) frontend.
 - [Marketplace documentation](https://marketplace.readthedocs.org)
 - [Marketplace API documentation](https://firefox-marketplace-api.readthedocs.org)
 
-![screenshot of Marketplace homepage](https://cloud.githubusercontent.com/assets/203725/5194189/cd55c5f8-74be-11e4-8272-ce2ab4bc5af7.jpg "screenshot of Marketplace homepage")
+![screenshot of Marketplace homepage](https://cloud.githubusercontent.com/assets/674727/9073521/e84f9a0a-3ab6-11e5-98e5-f10f23ac2850.png)
 
 
 ## Installation and Usage
 
 ```bash
-npm install
 make install
 make serve
 ```

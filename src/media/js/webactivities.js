@@ -162,7 +162,7 @@ define('webactivities',
         }
     }, false);
 
-    if (window.self !== window.top) {
+    if (capabilities.iframed) {
         // If the Marketplace is being iframed, tell the parent window
         // (the packaged app) we've been successfully loaded.
         //
