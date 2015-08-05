@@ -23,22 +23,18 @@
         {% endif %}
       </div>
     {% endif %}
-    {% if this.length >= 6 %}
-      {{ website_carousel(this|sliceArray(3, 12)) }}
-    {% endif %}
-    </div>
-  {% endif %}
-{% placeholder %}
-  <p class="spinner padded alt"></p>
-{% except %}
-  <p class="no-results">
-    {% if error == 400 or error == 404 %}
-      {{ _('The feed is currently empty. Come back later!') }}
-    {% elif error == 500 %}
-      {{ _('An internal server error occurred. Please try again later.') }}
-    {% endif %}
-  </p>
-{% end %}
+  {% placeholder %}
+    <p class="spinner padded alt"></p>
+  {% except %}
+    <p class="no-results">
+      {% if error == 400 or error == 404 %}
+        {{ _('The feed is currently empty. Come back later!') }}
+      {% elif error == 500 %}
+        {{ _('An internal server error occurred. Please try again later.') }}
+      {% endif %}
+    </p>
+  {% end %}
+{% endif %}
 
 {% defer (url=anonApi('feed')|urlparams(limit=10), id='feed-items') %}
   <div class="feed feed-items feed-home c" data-columns>
