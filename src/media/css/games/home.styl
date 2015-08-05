@@ -1,0 +1,128 @@
+@import '../lib';
+
+
+.games-home {
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+
+    > section {
+        padding: 30px 120px;
+        width: 100%;
+    }
+}
+
+.games-home-primary {
+    display: flex;
+    flex-direction: column;
+    height: 375px;
+    width: 100%;
+}
+
+.games-home-primary-main {
+    align-items: center;
+    background-size: cover;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    position: relative;
+
+    .install {
+        height: 64px;
+        z-index: 2;
+    }
+    .install em {
+        border: 1px solid $greyscale-white;
+        border-radius: 2px;
+        font-size: 30px;
+        font-style: italic;
+        font-weight: 500;
+        padding: 17px 20px 45px;
+    }
+}
+
+.games-home-primary-metadata-container {
+    align-self: flex-end;
+    background: $color--green;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    height: 75px;
+    width: 100%;
+}
+
+.games-home-primary-metadata {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
+    width: (100 / 3)%;
+
+    dt {
+        font-size: 12px;
+        font-weight: 300;
+        margin-bottom: 10px;
+
+        +media--base-tablet() {
+            font-size: 14px;
+        }
+    }
+    dd {
+        font-weight: 600;
+        font-size: 14px;
+
+        +media--base-tablet() {
+            font-size: 20px;
+        }
+    }
+    dt,
+    dd {
+        color: $greyscale-white;
+    }
+}
+
+.games-home-secondary-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    +media--base-tablet() {
+        flex-direction: row;
+        height: 250px;
+    }
+}
+
+.games-home-secondary-container .game {
+    height: 250px;
+    width: 100%;
+
+    +media--base-tablet() {
+        height: 100%;
+        width: (100 / 3)%;
+    }
+}
+
+.games-home-more {
+    align-items: center;
+    background: $greyscale-white;
+    color: $action-positive;
+    display: flex;
+    font-size: 20px;
+    font-weight: 500;
+    justify-content: center;
+    margin: 10px 0 30px;
+    height: 50px;
+    width: 100%;
+
+    a {
+        border-bottom: 2px solid $action-positive;
+        padding-bottom: 1px;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

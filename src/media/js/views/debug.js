@@ -20,6 +20,11 @@ define('views/debug',
                                    timeout: 1000});
     })
 
+    .on('click', '#enable-gametime', function() {
+        settings.gametimeEnabled = true;
+        z.page.trigger('navigate', '/');
+    })
+
     .on('click', '#enable-offline-cache', function() {
         storage.removeItem('offline_cache_disabled');
         persistent_console_debug.log('Offline cache enabled:', new Date());
@@ -62,7 +67,6 @@ define('views/debug',
         var data = cache.get($(this).data('url'));
         data = JSON.stringify(data, null, '  ');
         $('#cache-inspector').html(utils.escape_(data));
-
     })
 
     .on('click', '#submit-debug', function(e) {

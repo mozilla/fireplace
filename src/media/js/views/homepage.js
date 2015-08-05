@@ -1,10 +1,12 @@
 define('views/homepage',
-    ['core/capabilities', 'desktop_promo', 'core/format', 'core/l10n', 'core/log', 'jquery',
-     'mkt-carousel', 'core/nunjucks', 'core/requests', 'salvattore', 'core/urls', 'core/utils',
-     'utils_local', 'core/z'],
-    function(capabilities, desktopPromo, format, l10n, log, $,
-             mktCarousel, nunjucks, requests, salvattore, urls, utils,
-             utils_local, z) {
+    ['core/capabilities', 'core/format', 'core/l10n', 'core/log',
+     'core/nunjucks', 'core/requests', 'core/settings', 'core/z',
+     'desktop_promo', 'jquery', 'mkt-carousel', 'salvattore', 'core/urls',
+     'core/utils', 'utils_local', 'views/games/index'],
+    function(capabilities, format, l10n, log,
+             nunjucks, requests, settings, z,
+             desktopPromo, $, mktCarousel, salvattore, urls,
+             utils, utils_local, gamesView) {
     'use strict';
     var logger = log('homepage');
     var gettext = l10n.gettext;
@@ -48,6 +50,11 @@ define('views/homepage',
     });
 
     return function(builder, args, params) {
+        if (capabilities.os.type === 'desktop' &&
+            settings.gametimeEnabled) {
+            return gamesView(builder, args, params);
+        }
+
         var isDesktop = desktopPromo.isDesktop();
 
         params = params || {};
