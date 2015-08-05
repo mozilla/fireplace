@@ -8,30 +8,35 @@
 
 
 {% macro game_tile(game) %}
-  <li class="game" style="background-image: url({{ game.promo_images.small }})">
-    <div class="game-gradient"></div>
-    <h3 class="game-name">{{ game.name }}</h3>
-    <div class="game-overlay">
-      <p class="game-overlay-category">{{ getGameCategory(game) }}</p>
-      <img class="game-overlay-icon" src="{{ game.icons['128'] }}">
-      <div class="game-overlay-info-container">
-        <p class="game-overlay-name">{{ game.name }}</p>
-        {% if game.author %}
-          <p class="game-overlay-developer">
-            {{ _('<span>by</span> {author}')|format(author=game.author) }}
-          </p>
-        {% endif %}
+  <li class="game" style="background-image: url({{ game.promo_imgs['640'] }})">
+    <a href="{{ url(game.doc_type == 'webapp' and 'app' or 'website',
+                    [game.app_slug or game.slug]) }}">
+      <div class="game-gradient"></div>
+      <h3 class="game-name">{{ game.name }}</h3>
+      <div class="game-overlay">
+        <p class="game-overlay-category">{{ getGameCategory(game) }}</p>
+        <img class="game-overlay-icon" src="{{ game.icons['128'] }}">
+        <div class="game-overlay-info-container">
+          <p class="game-overlay-name">{{ game.name }}</p>
+          {% if game.author %}
+            <p class="game-overlay-developer">
+              {{ _('<span>by</span> {author}')|format(author=game.author) }}
+            </p>
+          {% endif %}
+        </div>
+        {{ market_button(game, isGame=True) }}
       </div>
-      {{ market_button(game, isGame=True) }}
-    </div>
+    </a>
   </li>
 {% endmacro %}
 
 
 {% macro primary_game(game) %}
   <div class="games-home-primary">
-    <div class="games-home-primary-main"
-         style="background-image: url({{ game.promo_images.large }})">
+    <a href="{{ url(game.doc_type == 'webapp' and 'app' or 'website',
+                    [game.app_slug or game.slug]) }}"
+       class="games-home-primary-main"
+       style="background-image: url({{ game.promo_imgs['1920'] }})">
       <div class="game-gradient"></div>
       {{ market_button(game, isGame=True) }}
     </div>
@@ -49,7 +54,7 @@
         <dd>{{ getGameCategory(game) }}</dd>
       </li>
     </ul>
-  </div>
+  </a>
 {% endmacro %}
 
 

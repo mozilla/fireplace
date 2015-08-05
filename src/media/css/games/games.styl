@@ -68,6 +68,18 @@ game--hover() {
     height: 250px;
     position: relative;
 
+    > a {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
     &:nth-child(8n) .game-gradient {
         games-gradient($color--games-red-light, $color--games-red-dark);
     }
