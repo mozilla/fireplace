@@ -12,7 +12,7 @@
     <div class="game-gradient"></div>
     <h3 class="game-name">{{ game.name }}</h3>
     <div class="game-overlay">
-      <p class="game-overlay-category">Action Game</p>
+      <p class="game-overlay-category">{{ getGameCategory(game) }}</p>
       <img class="game-overlay-icon" src="{{ game.icons['128'] }}">
       <div class="game-overlay-info-container">
         <p class="game-overlay-name">{{ game.name }}</p>
@@ -46,14 +46,14 @@
       </li>
       <li class="games-home-primary-metadata">
         <dt>{{ _('Category') }}</dt>
-        <dd>Featured Action</dd>
+        <dd>{{ getGameCategory(game) }}</dd>
       </li>
     </ul>
   </div>
 {% endmacro %}
 
 
-{% defer (url=api('games-daily')) %}
+{% defer (url=api('games-daily'), pluck='objects') %}
   <section class="games-home">
     {{ game_title() }}
 
