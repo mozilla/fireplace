@@ -24,7 +24,7 @@
     </ul>
 
     {% defer (url=api('search')|urlparams(tag=currentGameTag),
-              pluck='objects') %}
+              pluck='objects', as=appOrWebsite) %}
       <ul class="games-listing">
         {% for game in this %}
           {{ game_tile(game) }}
