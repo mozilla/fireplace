@@ -6,7 +6,9 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function install() {
+function install(navigator) {
+    navigator = navigator || window.navigator;
+
     logger.log('Activity support?', !!navigator.mozSetMessageHandler);
     if (navigator.mozSetMessageHandler) {
         navigator.mozSetMessageHandler('activity', function(req) {
@@ -22,7 +24,7 @@ function install() {
                 // generating an unique id. When we receive back a message
                 // saying an activity is done, if the id matches one we have,
                 // post the result back to the activity caller).
-                msg.id = getRandomInt(0, Number.MAX_SAFE_INTEGER);
+                msg.id = getRandomInt(0, 9007199254740991);
                 messages.activitiesInProgress[msg.id] = req;
                 logger.log('This activity needs to return, generated id: ', msg.id);
                 // 'marketplace-openmobile-acl' also needs to wait on a

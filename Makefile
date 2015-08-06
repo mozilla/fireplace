@@ -73,9 +73,12 @@ approve_log_dev:
 log:
 	@echo "This command has been removed. Use 'make iframe_package' instead."
 
-test-package:
-	make package
-	test -f package/builds/_prod/media/js/include.js
+test-iframe-package:
+	rm -f package/iframe/bundle.js
+	make iframe_package
+	test -f package/iframe/bundle.js
+	cmp -s package/iframe/bundle.js package/builds/_iframe_prod/bundle.js
+	MKT_URL=testurl ./node_modules/.bin/mocha package/iframe/tests/*
 
 sherlocked:
 	sleep 10 && node sherlocked.js
