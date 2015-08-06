@@ -92,7 +92,7 @@ define('tests/unit/content_filter',
                 try {
                     var appsString = contentFilter.CONTENT_FILTER_CHOICES[1][1];
                     assert.equal(appsString, 'apps');
-                    navigator.l10n.strings = {apps: {body: 'applications'}};
+                    navigator.l10n.strings = {apps: 'applications'};
                     assert.equal(appsString, 'applications');
                 } finally {
                     navigator.l10n.strings = initialStrings;
