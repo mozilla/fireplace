@@ -10,6 +10,10 @@ define('init',
     function(init, routes, settingsApp, templates,
              cache, elements, routeApiArgs, rewriters) {
 
+    ['every', 'forEach', 'map', 'filter', 'reduce', 'reduceRight', 'some'].forEach(function(prop) {
+        NodeList.prototype[prop] = HTMLCollection.prototype[prop] = Array.prototype[prop];
+    });
+
     rewriters.forEach(function(rewriter) {
         cache.addRewriter(rewriter);
     });

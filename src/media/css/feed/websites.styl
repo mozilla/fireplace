@@ -1,0 +1,131 @@
+/*
+    Stylesheet for MOW-related items in the feed.
+*/
+
+@import '../lib';
+
+body.desktop .feed-item-website-tabs,
+body.desktop .feed-item-website-carousel {
+    display: none;
+}
+
+.feed-item-website-tabs {
+    padding-top: 100px;
+    position: relative;
+    li {
+        display: block;
+        padding: 0;
+        position: static;
+        a,
+        button,
+        button:active {
+            background: $color-collection--topaz;
+        }
+        &:first-child a ,
+        &:first-child button,
+        &:first-child button:active{
+            background: $color-collection--sapphire;
+        }
+        &:last-child a,
+        &:last-child button,
+        &:last-child button:active {
+            background: $color-collection--ruby;
+        }
+    }
+    button {
+        border: 0;
+        padding: 20px;
+        text-align: center;
+    }
+}
+
+.feed-item-website-tabs-tab {
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    left: 100px;
+    position: absolute;
+    top: 0;
+    width: 100px;
+    z-index: 10;
+
+    li:first-child & {
+        left: 0;
+        z-index: 5;
+    }
+    li:last-child & {
+        left: 200px;
+        z-index: 1;
+    }
+}
+
+.feed-item-website-tabs-content {
+    color: $white;
+    display: none;
+    padding: 20px 10px;
+    text-align: center;
+    .feed-item-website-tabs-active & {
+        display: block;
+    }
+    &:hover {
+        text-decoration: none;
+        h1:hover {
+            text-decoration: underline;
+        }
+    }
+    h1 {
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 25px;
+    }
+    p {
+        font-size: 15px;
+        line-height: 22px;
+        margin-top: 5px;
+    }
+}
+
+.feed-item-website-carousel {
+    ol {
+        list-style: none;
+    }
+    li {
+        background: $white;
+        display: none;
+        padding: 15px 15px 20px;
+    }
+    .feed-item-website-carousel-active {
+        display: block;
+    }
+}
+
+.feed-item-website-carousel-next {
+    background: $color-collection--amethyst;
+    color: $white;
+    display: block;
+    padding: 15px;
+    text-align: center;
+
+    &:active {
+        background: $color-collection--amethyst;
+        outline: 0;
+    }
+    span {
+        display: block;
+        font-size: 14px;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .feed-item-website-carousel-counter {
+        font-size: 12px;
+        margin-top: 5px;
+        font-style: italic;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
