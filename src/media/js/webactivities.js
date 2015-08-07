@@ -108,6 +108,7 @@ define('webactivities',
                       .get(urls.api.url('app', [slug]))
                       .done(function(app) {
                           apps.install(app, {}).then(function() {
+                            apps.launch(app.manifest_url);
                             def.resolve('SUCCESS');
                           }).fail(function() {
                             def.reject('COULD_NOT_INSTALL_APP');
