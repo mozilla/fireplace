@@ -3,11 +3,11 @@
 */
 define('feed',
     ['collection_colors', 'edbrands', 'core/l10n', 'core/nunjucks',
-     'core/urls', 'core/utils', 'tracking_events', 'underscore',
-     'utils_local'],
+     'core/settings', 'core/urls', 'core/utils',  'core/z', 'feed_websites',
+     'tracking_events', 'underscore', 'utils_local'],
     function(colors, brands, l10n, nunjucks,
-             urls, utils, trackingEvents, _,
-             utils_local) {
+             settings, urls, utils, z, feedWebsites,
+             trackingEvents, _, utils_local) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -174,6 +174,20 @@ define('feed',
         grouped_apps.push(current_group);
 
         return grouped_apps;
+    }
+
+    // MOW-related feed items.
+    if (settings.meowEnabled && settings.homepageWebsitesEnabled) {
+        z.page.on('loaded reloaded_chrome', function(evt) {
+            feedWebsites.tabs.init(evt);
+            feedWebsites.carousel.init(evt);
+        })
+        .on('click', '.feed-item-website-tabs button', function(evt) {
+            feedWebsites.tabs.change(evt);
+        })
+        .on('click', '.feed-item-website-carousel-next', function(evt) {
+            feedWebsites.carousel.change(evt);
+        });
     }
 
     return {

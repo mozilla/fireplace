@@ -64,6 +64,17 @@ define('helpers_local',
 
     filters.items = utils_local.items;
 
+    // Filter to mirror Array.prototype.slice;
+    filters.sliceArray = function sliceArray(array, begin, end) {
+        if (typeof begin === "undefined") {
+            return array.slice();
+        }
+        if (typeof end === "undefined") {
+            return array.slice(begin);
+        }
+        return array.slice(begin, end);
+    };
+
     filters.rewriteCdnUrls = function(text){
         // When we get a page back from legal docs stored on the CDN, we
         // need to rewrite them to work locally within a packaged version

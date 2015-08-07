@@ -9,7 +9,7 @@ define('views/category',
 
     return function(builder, args, params) {
         if (caps.os.type === 'desktop' &&
-            settings.gametimeEnabled) {
+            settings.gametimeEnabled && args[0] == 'games') {
             return gamesListing(builder, ['all'], params);
         }
 

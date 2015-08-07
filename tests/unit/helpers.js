@@ -19,7 +19,7 @@ define('tests/unit/helpers',
         setL10nStrings: function(strings, test) {
             var initialStrings = navigator.l10n.strings;
             var newStrings = Object.keys(strings).reduce(function(memo, id) {
-                memo[id] = {body: strings[id]};
+                memo[id] = strings[id];
                 return memo;
             }, {});
             console.log(format.format('Got l10n strings {strings}', {

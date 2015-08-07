@@ -1,4 +1,5 @@
 {% include '_macros/feed_item.html' %}
+{% include '_macros/feed_websites.html' %}
 {% include '_macros/more_button.html' %}
 
 {% if showPromo %}
@@ -6,6 +7,33 @@
 
   <div class="desktop-promo-separator"></div>
   <p class="desktop-promo-separator-text">{{ _('More to Explore') }}</p>
+{% endif %}
+
+{% if settings.meowEnabled and settings.homepageWebsitesEnabled %}
+  {% defer (url=anonApi('search')|urlparams(limit=11, doc_type='website'), pluck='objects', id='feed-websites') %}
+    {% if this %}
+      <div class="feed feed-items feed-home c" data-columns>
+        {# If there are at least 3 featured sites, let's show the tabbed control. #}
+        {% if this.length >= 3 %}
+          {{ website_tabs(this|sliceArray(0, 3)) }}
+        {% endif %}
+        {# If there are at least 3 more featured sites, let's show the carousel control. #}
+        {% if this.length >= 6 %}
+          {{ website_carousel(this|sliceArray(3, 12)) }}
+        {% endif %}
+      </div>
+    {% endif %}
+  {% placeholder %}
+    <p class="spinner padded alt"></p>
+  {% except %}
+    <p class="no-results">
+      {% if error == 400 or error == 404 %}
+        {{ _('The feed is currently empty. Come back later!') }}
+      {% elif error == 500 %}
+        {{ _('An internal server error occurred. Please try again later.') }}
+      {% endif %}
+    </p>
+  {% end %}
 {% endif %}
 
 {% defer (url=anonApi('feed')|urlparams(limit=10), id='feed-items') %}
