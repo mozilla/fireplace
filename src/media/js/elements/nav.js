@@ -251,13 +251,14 @@ define('elements/nav',
         // 100% height would mess up the page since our <footer> isn't part of
         // <main>. Could be resolved if we made <footer> a part of <main>.
         var main = document.querySelector('main');
+        var minHeight = window.innerHeight - 60;
         if (main) {
             // Hide the sidebar nav behind <main> by setting min-height on
             // <main>. Only do this if the sidebar nav is being used.
             if (window.matchMedia('(min-width: 800px)').matches) {
                 main.style.minHeight = null;
             } else {
-                main.style.minHeight = screen.height + 'px';
+                main.style.minHeight = minHeight + 'px';
             }
         }
     }

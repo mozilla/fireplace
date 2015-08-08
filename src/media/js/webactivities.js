@@ -98,11 +98,17 @@ define('webactivities',
                 }
 
                 if (slug) {
+                    // Navigate to the ACL app detail page, it will be shown
+                    // during the install.
+                    url = urls.reverse('app', [slug]);
+                    z.page.trigger('navigate',
+                                   [utils.urlparams(url, {src: src})]);
                     // Fetch ACL app data for manifest and install.
                     req
                       .get(urls.api.url('app', [slug]))
                       .done(function(app) {
                           apps.install(app, {}).then(function() {
+                            apps.launch(app.manifest_url);
                             def.resolve('SUCCESS');
                           }).fail(function() {
                             def.reject('COULD_NOT_INSTALL_APP');
