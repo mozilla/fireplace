@@ -7,12 +7,13 @@
       <ol>
         {% for website in websites %}
           {% set website = apps.transform(website) %}
+          {% set name = website.name|translate(website) %}
           <li class="mkt-tile">
             <button class="feed-item-website-tabs-tab">
-              {{ deferred_icon(website.icons['64'], website.name) }}
+              {{ deferred_icon(website.icons['64'], name) }}
             </button>
             <a href="{{ website.url }}" class="feed-item-website-tabs-content">
-              <h1>{{ website.name }}</h1>
+              <h1>{{ name }}</h1>
               <p>{{ _('Visit this top site!') }}</p>
             </a>
           </li>
@@ -28,12 +29,13 @@
       <ol>
       {% for website in websites %}
         {% set website = apps.transform(website) %}
+        {% set name = website.name|translate(website) %}
         <li>
           <a class="mkt-tile" data-slug="{{ website.slug }}" data-id="{{ website.id }}" href="{{ website.url }}" data-content-type="{{ website.contentType }}">
             <span class="mkt-app-heading">
-              {{ deferred_icon(website.icons['64'], website.name) }}
+              {{ deferred_icon(website.icons['64'], name) }}
               <span class="info mkt-tile-info">
-                <h3 class="mkt-app-name" title="{{ website.name }}">{{ website.name }}</h3>
+                <h3 class="mkt-app-name" title="{{ name }}">{{ name }}</h3>
                 {{ market_button(website, data_attrs={
                   'manifest_url': website.manifest_url,
                   'source': src,
