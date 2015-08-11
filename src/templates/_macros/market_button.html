@@ -10,7 +10,8 @@
         {{ 'disabled' if app.disabled }}
         data-product="{{ app|json }}"
         {% if isGame %}data-is-game="true"{% endif %}
-        {% if app.isWebsite %}href="{{ app.mobile_url or app.url }}"{% endif %}>
+        {% if app.isWebsite %}href="{{ app.mobile_url or app.url }}"{% endif %}
+        {% if app.manifest_url %}data-manifest_url="{{ app.manifest_url }}"{% endif %}>
     <em>
       <span class="mkt-app-button-text">{{ buttons.getBtnText(app, isGame) }}</span>
       <span class="mkt-app-button-spinner spin"></span>
