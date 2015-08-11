@@ -65,7 +65,7 @@ function buildQS(profile) {
     }
 
     if (profile) {
-        qs.push('pro=' + profile);
+        qs.push('pro=' + encodeURIComponent(profile));
     }
 
     return qs.join('&');
