@@ -302,7 +302,7 @@ define('buttons',
         e.preventDefault();
         e.stopPropagation();
     })
-    .on('click', '.mkt-app-button[href]', function(e) {
+    .on('click', '.mkt-app-button[href], .mkt-website-link[href]', function(e) {
         e.preventDefault();
         e.stopPropagation();
         window.open(this.getAttribute('href'), '_blank');
