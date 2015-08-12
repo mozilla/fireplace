@@ -46,6 +46,7 @@ game--hover() {
     background: #006DBF;
     display: flex;
     justify-content: center;
+    margin-top: 20px;
     padding: 20px 0;
     width: 100%;
 
@@ -146,6 +147,7 @@ game--hover() {
     font-size: 16px;
     font-weight: 300;
     margin: 20px 0;
+    text-transform: uppercase;
 }
 
 .game-overlay-icon {
@@ -163,6 +165,10 @@ game--hover() {
     flex-direction: column;
     align-items: center
     width: 100%;
+}
+
+.game-overlay-name {
+    text-transform: uppercase;
 }
 
 .game-overlay-name,
@@ -192,13 +198,14 @@ game--hover() {
 }
 
 .game-name {
-    ellipsis();
     color: $greyscale-white;
     font-size: 24px;
     font-weight: 500;
     line-height: 30px;
     max-width: 90%;
     opacity: 1;
+    text-align: center;
+    text-transform: uppercase;
     transition: opacity .2s;
     z-index: 2;
 
