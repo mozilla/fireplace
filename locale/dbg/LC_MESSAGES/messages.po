@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29T20:04:48.073Z\n"
+"POT-Creation-Date: 2015-08-12T15:27:57.013Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 
 #: /templates/app_list.html:7
 #: /templates/category.html:7
-#: /templates/search.html:8
 #: /templates/purchases.html:7
+#: /templates/search.html:8
 msgid "Expand"
 msgstr "Ḗẋƥȧƞḓ"
 
@@ -184,15 +184,15 @@ msgstr "Ŧǿɠɠŀḗ Şḗŧŧīƞɠş Ḿḗƞŭ"
 
 #: /templates/header.html:56
 #: /templates/nav.html:30
-#: /templates/settings.html:43
 #: /templates/purchases.html:43
+#: /templates/settings.html:43
 msgid "Register"
 msgstr "Řḗɠīşŧḗř"
 
 #: /templates/header.html:58
 #: /templates/nav.html:32
-#: /templates/settings.html:44
 #: /templates/purchases.html:44
+#: /templates/settings.html:44
 msgid "Sign In"
 msgstr "Şīɠƞ Īƞ"
 
@@ -220,7 +220,7 @@ msgstr "Ḿẏ Ȧƥƥş"
 msgid "Sign Out"
 msgstr "Şīɠƞ Ǿŭŧ"
 
-#: /templates/homepage.html:7
+#: /templates/homepage.html:8
 msgid "More to Explore"
 msgstr "Ḿǿřḗ ŧǿ Ḗẋƥŀǿřḗ"
 
@@ -274,6 +274,20 @@ msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inb
 msgstr ""
 "Ẏǿŭ'ŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ƒřǿḿ mozilla@e.mozilla.org, ƥŀḗȧşḗ ƈħḗƈķ ẏǿŭř īƞƀǿẋ "
 "ƒǿř ẏǿŭř ƒīřşŧ ḗḿȧīŀ ƒřǿḿ ŭş. Īƒ ẏǿŭ ḓǿƞ’ŧ şḗḗ īŧ, ƈħḗƈķ ẏǿŭř şƥȧḿ ƒīŀŧḗř."
+
+#: /templates/purchases.html:42
+msgid "You must be signed in to view your apps."
+msgstr "Ẏǿŭ ḿŭşŧ ƀḗ şīɠƞḗḓ īƞ ŧǿ ṽīḗẇ ẏǿŭř ȧƥƥş."
+
+#: /templates/purchases.html:31
+msgid "You have no apps"
+msgstr "Ẏǿŭ ħȧṽḗ ƞǿ ȧƥƥş"
+
+#: /templates/purchases.html:35
+#: /templates/errors/fragment.html:1
+#: /media/js/views/app.js:46
+msgid "Oh no!"
+msgstr "Ǿħ ƞǿ!"
 
 #: /templates/search.html:7
 msgid "<b>{n}</b> Result"
@@ -337,20 +351,6 @@ msgstr "Ɠḗŧ Īƞṽǿŀṽḗḓ"
 msgid "Region"
 msgstr "Řḗɠīǿƞ"
 
-#: /templates/purchases.html:42
-msgid "You must be signed in to view your apps."
-msgstr "Ẏǿŭ ḿŭşŧ ƀḗ şīɠƞḗḓ īƞ ŧǿ ṽīḗẇ ẏǿŭř ȧƥƥş."
-
-#: /templates/purchases.html:31
-msgid "You have no apps"
-msgstr "Ẏǿŭ ħȧṽḗ ƞǿ ȧƥƥş"
-
-#: /templates/purchases.html:35
-#: /templates/errors/fragment.html:1
-#: /media/js/views/app.js:46
-msgid "Oh no!"
-msgstr "Ǿħ ƞǿ!"
-
 #: /templates/usage.html:3
 #: /media/js/views/usage.js:9
 msgid "App Statistics"
@@ -363,6 +363,93 @@ msgstr "Ȧƥƥ ŭşȧɠḗ şŧȧŧīşŧīƈş"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Ƞǿŧ ḗƞǿŭɠħ şŧȧŧīşŧīƈş ŧǿ şħǿẇ."
+
+#. <mkt-selected-text> will be a noun like "apps" or "sites".
+#: /templates/_includes/app_list_filters.html:6
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr "Şħǿẇ <ḿķŧ-şḗŀḗƈŧḗḓ-ŧḗẋŧ></mkt-selected-text>"
+
+#: /templates/_includes/app_list_filters.html:36
+msgid "Display as"
+msgstr "Ḓīşƥŀȧẏ ȧş"
+
+#: /templates/_includes/app_list_filters.html:37
+msgid "Toggle App Previews"
+msgstr "Ŧǿɠɠŀḗ Ȧƥƥ Ƥřḗṽīḗẇş"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Ɓȧƈķ ŧǿ {ȧƥƥ}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Ƈǿƞŧḗƞŧ Řȧŧīƞɠ"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Řȧŧīƞɠ Ḓḗŧȧīŀş"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr ""
+"Ẏǿŭř Ḿȧƈ şḗŧŧīƞɠş ḿȧẏ ƥřḗṽḗƞŧ ẏǿŭ ƒřǿḿ īƞşŧȧŀŀīƞɠ ȧƥƥş ŧħȧŧ ḓǿ ƞǿŧ ƈǿḿḗ ƒřǿḿ "
+"ŧħḗ Ḿȧƈ Ȧƥƥ Şŧǿřḗ."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Ŀḗȧřƞ ħǿẇ ŧǿ ƈħȧƞɠḗ ŧħḗḿ."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "Şħǿẇ ḿḗ ḗṽḗřẏŧħīƞɠ ƒǿř <ḿķŧ-şḗŀḗƈŧḗḓ-ŧḗẋŧ></mkt-selected-text>"
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Īƞşŧȧŀŀḗḓ!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Ŀȧŭƞƈħ ŧħīş ȧƥƥ ƒřǿḿ ẏǿŭř <b>Ȧƥƥŀīƈȧŧīǿƞş</b> ḓīřḗƈŧǿřẏ."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr ""
+"Ŀȧŭƞƈħ ŧħīş ȧƥƥ ƒřǿḿ ẏǿŭř <b>Ẇīƞḓǿẇş ḓḗşķŧǿƥ</b> ǿř <b>Şŧȧřŧ &#9658; Ȧŀŀ "
+"Ƥřǿɠřȧḿş</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr ""
+"Ŀȧŭƞƈħ ŧħīş ȧƥƥ ƒřǿḿ ẏǿŭř <b>ḓȧşħ</b>, <b>Ȧƥƥŀīƈȧŧīǿƞ ƥīƈķḗř</b>, ǿř <b>"
+"Ȧƥƥŀīƈȧŧīǿƞş ḿḗƞŭ</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Ḗḓīŧ ẏǿŭř Řḗṽīḗẇ"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Ḗḓīŧ ẏǿŭř řḗṽīḗẇ"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Ẇřīŧḗ ȧ řḗṽīḗẇ"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Şīɠƞ īƞ ŧǿ řḗṽīḗẇ"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Řḗȧḓ ȧŀŀ řḗṽīḗẇş"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 Řḗṽīḗẇ"
+msgstr[1] "{ƞŭḿŘḗṽīḗẇş} Řḗṽīḗẇş"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -449,6 +536,7 @@ msgid "More Information"
 msgstr "Ḿǿřḗ Īƞƒǿřḿȧŧīǿƞ"
 
 #: /templates/app/index.html:172
+#: /templates/games/index.html:48
 msgid "Developer"
 msgstr "Ḓḗṽḗŀǿƥḗř"
 
@@ -482,93 +570,6 @@ msgstr "Ŀǿȧḓīƞɠ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ..."
 msgid "Thank you for purchasing"
 msgstr "Ŧħȧƞķ ẏǿŭ ƒǿř ƥŭřƈħȧşīƞɠ"
 
-#. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:6
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr "Şħǿẇ <ḿķŧ-şḗŀḗƈŧḗḓ-ŧḗẋŧ></mkt-selected-text>"
-
-#: /templates/_includes/app_list_filters.html:36
-msgid "Display as"
-msgstr "Ḓīşƥŀȧẏ ȧş"
-
-#: /templates/_includes/app_list_filters.html:37
-msgid "Toggle App Previews"
-msgstr "Ŧǿɠɠŀḗ Ȧƥƥ Ƥřḗṽīḗẇş"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Ɓȧƈķ ŧǿ {ȧƥƥ}"
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Ƈǿƞŧḗƞŧ Řȧŧīƞɠ"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Řȧŧīƞɠ Ḓḗŧȧīŀş"
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "Şħǿẇ ḿḗ ḗṽḗřẏŧħīƞɠ ƒǿř <ḿķŧ-şḗŀḗƈŧḗḓ-ŧḗẋŧ></mkt-selected-text>"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr ""
-"Ẏǿŭř Ḿȧƈ şḗŧŧīƞɠş ḿȧẏ ƥřḗṽḗƞŧ ẏǿŭ ƒřǿḿ īƞşŧȧŀŀīƞɠ ȧƥƥş ŧħȧŧ ḓǿ ƞǿŧ ƈǿḿḗ ƒřǿḿ "
-"ŧħḗ Ḿȧƈ Ȧƥƥ Şŧǿřḗ."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Ŀḗȧřƞ ħǿẇ ŧǿ ƈħȧƞɠḗ ŧħḗḿ."
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Īƞşŧȧŀŀḗḓ!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Ŀȧŭƞƈħ ŧħīş ȧƥƥ ƒřǿḿ ẏǿŭř <b>Ȧƥƥŀīƈȧŧīǿƞş</b> ḓīřḗƈŧǿřẏ."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr ""
-"Ŀȧŭƞƈħ ŧħīş ȧƥƥ ƒřǿḿ ẏǿŭř <b>Ẇīƞḓǿẇş ḓḗşķŧǿƥ</b> ǿř <b>Şŧȧřŧ &#9658; Ȧŀŀ "
-"Ƥřǿɠřȧḿş</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr ""
-"Ŀȧŭƞƈħ ŧħīş ȧƥƥ ƒřǿḿ ẏǿŭř <b>ḓȧşħ</b>, <b>Ȧƥƥŀīƈȧŧīǿƞ ƥīƈķḗř</b>, ǿř <b>"
-"Ȧƥƥŀīƈȧŧīǿƞş ḿḗƞŭ</b>."
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Ḗḓīŧ ẏǿŭř Řḗṽīḗẇ"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Ḗḓīŧ ẏǿŭř řḗṽīḗẇ"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Ẇřīŧḗ ȧ řḗṽīḗẇ"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Şīɠƞ īƞ ŧǿ řḗṽīḗẇ"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Řḗȧḓ ȧŀŀ řḗṽīḗẇş"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 Řḗṽīḗẇ"
-msgstr[1] "{ƞŭḿŘḗṽīḗẇş} Řḗṽīḗẇş"
-
 #: /templates/_macros/app_tile.html:113
 msgid "Review"
 msgid_plural "Reviews"
@@ -584,14 +585,22 @@ msgid "&mdash; {attribution}"
 msgstr "&mdash; {ȧŧŧřīƀŭŧīǿƞ}"
 
 #: /templates/_macros/feed_item.html:71
-#: /media/js/buttons.js:394
+#: /media/js/buttons.js:395
 msgid "Free"
 msgstr "Ƒřḗḗ"
 
 #: /templates/_macros/feed_item.html:85
 #: /templates/_macros/feed_item.html:178
-msgid "View all apps"
-msgstr "Ṽīḗẇ ȧŀŀ ȧƥƥş"
+msgid "View all"
+msgstr "Ṽīḗẇ ȧŀŀ"
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr "Ṽīşīŧ ŧħīş ŧǿƥ şīŧḗ!"
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr "Şħǿẇ ḿḗ ȧƞǿŧħḗř şīŧḗ"
 
 #: /templates/_macros/more_button.html:3
 msgid "Load more"
@@ -670,6 +679,42 @@ msgstr "Şǿřřẏ, ẏǿŭ ƞḗḗḓ ŧǿ ƀḗ ǿƞŀīƞḗ ŧǿ ȧƈƈḗ
 msgid "Try Again"
 msgstr "Ŧřẏ Ȧɠȧīƞ"
 
+#: /templates/games/index.html:4
+msgid "PLAY GREAT DESKTOP GAMES"
+msgstr "ƤĿȦẎ ƓŘḖȦŦ ḒḖŞĶŦǾƤ ƓȦḾḖŞ"
+
+#: /templates/games/index.html:22
+msgid "<span>by</span> {author}"
+msgstr "<span>ƀẏ</span> {ȧŭŧħǿř}"
+
+#: /templates/games/index.html:44
+msgid "Game"
+msgstr "Ɠȧḿḗ"
+
+#: /templates/games/index.html:52
+msgid "Category"
+msgstr "Ƈȧŧḗɠǿřẏ"
+
+#: /templates/games/index.html:76
+msgid "Find more great games"
+msgstr "Ƒīƞḓ ḿǿřḗ ɠřḗȧŧ ɠȧḿḗş"
+
+#: /templates/games/listing.html:8
+msgid "Enjoy instant fun right on your desktop with our handpicked selection of app and browser-based games."
+msgstr ""
+"Ḗƞĵǿẏ īƞşŧȧƞŧ ƒŭƞ řīɠħŧ ǿƞ ẏǿŭř ḓḗşķŧǿƥ ẇīŧħ ǿŭř ħȧƞḓƥīƈķḗḓ şḗŀḗƈŧīǿƞ ǿƒ ȧƥƥ "
+"ȧƞḓ ƀřǿẇşḗř-ƀȧşḗḓ ɠȧḿḗş."
+
+#: /templates/games/listing.html:9
+msgid "Puzzle, action, adventure, and strategy titles&mdash;we're adding new games all the time so check back often."
+msgstr ""
+"Ƥŭzzŀḗ, ȧƈŧīǿƞ, ȧḓṽḗƞŧŭřḗ, ȧƞḓ şŧřȧŧḗɠẏ ŧīŧŀḗş&mdash;ẇḗ'řḗ ȧḓḓīƞɠ ƞḗẇ ɠȧḿḗş "
+"ȧŀŀ ŧħḗ ŧīḿḗ şǿ ƈħḗƈķ ƀȧƈķ ǿƒŧḗƞ."
+
+#: /templates/games/listing.html:12
+msgid "Learn more about why games and Mozilla go so well together."
+msgstr "Ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ ẇħẏ ɠȧḿḗş ȧƞḓ Ḿǿzīŀŀȧ ɠǿ şǿ ẇḗŀŀ ŧǿɠḗŧħḗř."
+
 #: /templates/ratings/add.html:8
 #: /templates/ratings/edit.html:4
 #: /media/js/views/app/ratings/edit.js:15
@@ -741,6 +786,11 @@ msgstr "Ḿīşƥŀȧƈḗḓ ƀŭɠ řḗƥǿřŧ ǿř şŭƥƥǿřŧ řḗɋŭ
 msgid "This app has no reviews."
 msgstr "Ŧħīş ȧƥƥ ħȧş ƞǿ řḗṽīḗẇş."
 
+#: /templates/ratings/rating.html:4
+#: /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "Ȧƥƥ Řḗṽīḗẇ"
+
 #: /templates/website/index.html:34
 msgid "Explore more in {category_one} and {category_two}."
 msgstr "Ḗẋƥŀǿřḗ ḿǿřḗ īƞ {ƈȧŧḗɠǿřẏ_ǿƞḗ} ȧƞḓ {ƈȧŧḗɠǿřẏ_ŧẇǿ}."
@@ -757,11 +807,6 @@ msgstr "Īş ŧħḗřḗ şǿḿḗŧħīƞɠ ẇřǿƞɠ ǿř ǿŭŧ-ǿƒ-ḓ�
 #: /templates/website/issue.html:14
 msgid "Report an issue"
 msgstr "Řḗƥǿřŧ ȧƞ īşşŭḗ"
-
-#: /templates/ratings/rating.html:4
-#: /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "Ȧƥƥ Řḗṽīḗẇ"
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
@@ -784,64 +829,74 @@ msgstr "Ḓḗşƈřīƀḗ ŧħḗ īşşŭḗ ħḗřḗ. Ƥŀḗȧşḗ ƀḗ
 msgid "Report an Issue"
 msgstr "Řḗƥǿřŧ ȧƞ Īşşŭḗ"
 
-#: /media/js/buttons.js:80
-#: /media/js/buttons.js:152
+#: /media/js/buttons.js:81
+#: /media/js/buttons.js:153
 #: /media/js/payments.js:134
 msgid "Payment cancelled."
 msgstr "Ƥȧẏḿḗƞŧ ƈȧƞƈḗŀŀḗḓ."
 
-#: /media/js/buttons.js:116
+#: /media/js/buttons.js:117
 msgid "Purchasing"
 msgstr "Ƥŭřƈħȧşīƞɠ"
 
-#: /media/js/buttons.js:130
-#: /media/js/buttons.js:369
-#: /media/js/buttons.js:418
-#: /media/js/buttons.js:431
-#: /media/js/buttons.js:441
+#: /media/js/buttons.js:131
+#: /media/js/buttons.js:370
+#: /media/js/buttons.js:419
+#: /media/js/buttons.js:446
+#: /media/js/buttons.js:457
 msgid "Install"
 msgstr "Īƞşŧȧŀŀ"
 
-#: /media/js/buttons.js:191
+#: /media/js/buttons.js:192
 #: /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr "Şǿřřẏ, ẇḗ ħȧḓ ŧřǿŭƀŀḗ ƒḗŧƈħīƞɠ ŧħīş ȧƥƥ'ş ḓȧŧȧ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
 
 #. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:236
+#: /media/js/buttons.js:237
 msgid "Install failed. Please try again later."
 msgstr "Īƞşŧȧŀŀ ƒȧīŀḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
 
-#: /media/js/buttons.js:320
-#: /media/js/buttons.js:418
+#: /media/js/buttons.js:321
+#: /media/js/buttons.js:419
 msgid "Installed"
 msgstr "Īƞşŧȧŀŀḗḓ"
 
-#: /media/js/buttons.js:394
+#: /media/js/buttons.js:395
 msgid "free"
 msgstr "ƒřḗḗ"
 
-#: /media/js/buttons.js:399
+#: /media/js/buttons.js:400
 msgid "Unavailable"
 msgstr "Ŭƞȧṽȧīŀȧƀŀḗ"
 
-#: /media/js/buttons.js:423
+#: /media/js/buttons.js:425
+#: /media/js/buttons.js:432
+msgid "Play now!"
+msgstr "Ƥŀȧẏ ƞǿẇ!"
+
+#: /media/js/buttons.js:427
 msgid "Open website"
 msgstr "Ǿƥḗƞ ẇḗƀşīŧḗ"
 
-#: /media/js/buttons.js:427
+#: /media/js/buttons.js:434
 msgid "Open app"
 msgstr "Ǿƥḗƞ ȧƥƥ"
 
-#: /media/js/buttons.js:429
+#: /media/js/buttons.js:438
+#: /media/js/buttons.js:444
+msgid "Install now!"
+msgstr "Īƞşŧȧŀŀ ƞǿẇ!"
+
+#: /media/js/buttons.js:440
 msgid "Install for free"
 msgstr "Īƞşŧȧŀŀ ƒǿř ƒřḗḗ"
 
-#: /media/js/buttons.js:433
+#: /media/js/buttons.js:449
 msgid "Install for {price}"
 msgstr "Īƞşŧȧŀŀ ƒǿř {ƥřīƈḗ}"
 
-#: /media/js/buttons.js:439
+#: /media/js/buttons.js:455
 msgid "Open"
 msgstr "Ǿƥḗƞ"
 
@@ -875,6 +930,7 @@ msgid "My Device"
 msgstr "Ḿẏ Ḓḗṽīƈḗ"
 
 #: /media/js/categories.js:6
+#: /media/js/views/games/listing.js:10
 msgid "Games"
 msgstr "Ɠȧḿḗş"
 
@@ -974,38 +1030,13 @@ msgstr "Ŭŧīŀīŧīḗş"
 msgid "Weather"
 msgstr "Ẇḗȧŧħḗř"
 
-#. Chess game desktop promo (bug 1175381).
-#: /media/js/desktop_promo.js:20
-msgid "Play 45 creative variations of chess."
-msgstr "Ƥŀȧẏ 45 ƈřḗȧŧīṽḗ ṽȧřīȧŧīǿƞş ǿƒ ƈħḗşş."
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř ẏǿŭř řḗɠīǿƞ"
 
-#: /media/js/desktop_promo.js:26
-msgid "Manage projects easily with Basecamp."
-msgstr "Ḿȧƞȧɠḗ ƥřǿĵḗƈŧş ḗȧşīŀẏ ẇīŧħ Ɓȧşḗƈȧḿƥ."
-
-#: /media/js/desktop_promo.js:33
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "Ƥřǿḓŭƈŧīṽīŧẏ Ȧƥƥş—Ḓḗşķŧǿƥ Ḗşşḗƞŧīȧŀş"
-
-#: /media/js/desktop_promo.js:40
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Ɠȧḿḗş & Ḗƞŧḗřŧȧīƞḿḗƞŧ Ȧƥƥş—Ḓḗşķŧǿƥ Ḗşşḗƞŧīȧŀş"
-
-#: /media/js/desktop_promo.js:46
-msgid "Play GoldNuggets now!"
-msgstr "Ƥŀȧẏ ƓǿŀḓȠŭɠɠḗŧş ƞǿẇ!"
-
-#: /media/js/content_filter.js:20
-msgid "all content"
-msgstr "ȧŀŀ ƈǿƞŧḗƞŧ"
-
-#: /media/js/content_filter.js:21
-msgid "apps"
-msgstr "ȧƥƥş"
-
-#: /media/js/content_filter.js:22
-msgid "websites"
-msgstr "ẇḗƀşīŧḗş"
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř ẏǿŭř ƥŀȧŧƒǿřḿ"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
@@ -1048,9 +1079,38 @@ msgstr "Ḿȧŧŭřḗ 17+"
 msgid "Adults Only 18+"
 msgstr "Ȧḓŭŀŧş Ǿƞŀẏ 18+"
 
-#: /media/js/helpers_local.js:113
-msgid "works offline"
-msgstr "ẇǿřķş ǿƒƒŀīƞḗ"
+#: /media/js/content_filter.js:20
+msgid "all content"
+msgstr "ȧŀŀ ƈǿƞŧḗƞŧ"
+
+#: /media/js/content_filter.js:21
+msgid "apps"
+msgstr "ȧƥƥş"
+
+#: /media/js/content_filter.js:22
+msgid "websites"
+msgstr "ẇḗƀşīŧḗş"
+
+#. Chess game desktop promo (bug 1175381).
+#: /media/js/desktop_promo.js:20
+msgid "Play 45 creative variations of chess."
+msgstr "Ƥŀȧẏ 45 ƈřḗȧŧīṽḗ ṽȧřīȧŧīǿƞş ǿƒ ƈħḗşş."
+
+#: /media/js/desktop_promo.js:26
+msgid "Manage projects easily with Basecamp."
+msgstr "Ḿȧƞȧɠḗ ƥřǿĵḗƈŧş ḗȧşīŀẏ ẇīŧħ Ɓȧşḗƈȧḿƥ."
+
+#: /media/js/desktop_promo.js:33
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "Ƥřǿḓŭƈŧīṽīŧẏ Ȧƥƥş—Ḓḗşķŧǿƥ Ḗşşḗƞŧīȧŀş"
+
+#: /media/js/desktop_promo.js:40
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Ɠȧḿḗş & Ḗƞŧḗřŧȧīƞḿḗƞŧ Ȧƥƥş—Ḓḗşķŧǿƥ Ḗşşḗƞŧīȧŀş"
+
+#: /media/js/desktop_promo.js:46
+msgid "Play GoldNuggets now!"
+msgstr "Ƥŀȧẏ ƓǿŀḓȠŭɠɠḗŧş ƞǿẇ!"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1376,13 +1436,29 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "Ẇǿřķ & Ɓŭşīƞḗşş Ȧƥƥ"
 msgstr[1] "Ẇǿřķ & Ɓŭşīƞḗşş Ȧƥƥş"
 
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr "ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř ẏǿŭř řḗɠīǿƞ"
+#: /media/js/feed_websites.js:61
+msgid "{current} of {count}"
+msgstr "{ƈŭřřḗƞŧ} ǿƒ {ƈǿŭƞŧ}"
 
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr "ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř ẏǿŭř ƥŀȧŧƒǿřḿ"
+#: /media/js/helpers_local.js:124
+msgid "works offline"
+msgstr "ẇǿřķş ǿƒƒŀīƞḗ"
+
+#: /media/js/helpers_local.js:144
+msgid "Adventure Game"
+msgstr "Ȧḓṽḗƞŧŭřḗ Ɠȧḿḗ"
+
+#: /media/js/helpers_local.js:145
+msgid "Action Game"
+msgstr "Ȧƈŧīǿƞ Ɠȧḿḗ"
+
+#: /media/js/helpers_local.js:146
+msgid "Puzzle Game"
+msgstr "Ƥŭzzŀḗ Ɠȧḿḗ"
+
+#: /media/js/helpers_local.js:147
+msgid "Strategy Game"
+msgstr "Şŧřȧŧḗɠẏ Ɠȧḿḗ"
 
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
@@ -1413,94 +1489,6 @@ msgid_plural "{n} stars"
 msgstr[0] "{ƞ} şŧȧř"
 msgstr[1] "{ƞ} şŧȧřş"
 
-#: /media/js/settings_app.js:94
-msgid "English"
-msgstr "Ḗƞɠŀīşħ"
-
-#: /media/js/settings_app.js:95
-msgid "French"
-msgstr "Ƒřḗƞƈħ"
-
-#: /media/js/settings_app.js:96
-msgid "German"
-msgstr "Ɠḗřḿȧƞ"
-
-#: /media/js/settings_app.js:97
-msgid "Hungarian"
-msgstr "Ħŭƞɠȧřīȧƞ"
-
-#: /media/js/settings_app.js:98
-msgid "Indonesian"
-msgstr "Īƞḓǿƞḗşīȧƞ"
-
-#: /media/js/settings_app.js:99
-msgid "Polish"
-msgstr "Ƥǿŀīşħ"
-
-#: /media/js/settings_app.js:100
-msgid "Portuguese"
-msgstr "Ƥǿřŧŭɠŭḗşḗ"
-
-#: /media/js/settings_app.js:101
-msgid "Russian"
-msgstr "Řŭşşīȧƞ"
-
-#: /media/js/settings_app.js:102
-msgid "Spanish"
-msgstr "Şƥȧƞīşħ"
-
-#: /media/js/settings_app.js:114
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "Şǿřřẏ, ẏǿŭ ȧřḗ ƈŭřřḗƞŧŀẏ ǿƒƒŀīƞḗ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
-
-#: /media/js/update_banner.js:24
-msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr ""
-"Ŧħḗ ƞḗẋŧ ŧīḿḗ ẏǿŭ şŧȧřŧ ŧħḗ Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ ȧƥƥ, ẏǿŭ’ŀŀ şḗḗ ŧħḗ ŭƥḓȧŧḗḓ "
-"ṽḗřşīǿƞ!"
-
-#: /media/js/views/app.js:16
-#: /media/js/views/app.js:23
-#: /media/js/views/app.js:24
-#: /media/js/views/app.js:29
-#: /media/js/views/app.js:30
-#: /media/js/views/feed_landing.js:15
-#: /media/js/reviews.js:151
-#: /media/js/views/website.js:10
-#: /media/js/views/website.js:16
-#: /media/js/views/website.js:17
-#: /media/js/views/website.js:18
-msgid "Loading..."
-msgstr "Ŀǿȧḓīƞɠ..."
-
-#: /media/js/views/app.js:17
-msgid "App Detail"
-msgstr "Ȧƥƥ Ḓḗŧȧīŀ"
-
-#: /media/js/views/langpacks.js:29
-msgid "Language Packs"
-msgstr "Ŀȧƞɠŭȧɠḗ Ƥȧƈķş"
-
-#: /media/js/views/langpacks.js:41
-msgid "Firefox OS {version}"
-msgstr "Ƒīřḗƒǿẋ ǾŞ {ṽḗřşīǿƞ}"
-
-#: /media/js/views/feed_landing.js:16
-msgid "Collection Detail"
-msgstr "Ƈǿŀŀḗƈŧīǿƞ Ḓḗŧȧīŀ"
-
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "Ƒḗḗḓƀȧƈķ şŭƀḿīŧŧḗḓ. Ŧħȧƞķş!"
-
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ şŭƀḿīŧŧīƞɠ ẏǿŭř ƒḗḗḓƀȧƈķ. Ŧřẏ ȧɠȧīƞ şǿǿƞ."
-
-#: /media/js/views/newsletter_signup.js:11
-msgid "Newsletter Signup"
-msgstr "Ƞḗẇşŀḗŧŧḗř Şīɠƞŭƥ"
-
 #. The report is an abuse report for reviews.
 #: /media/js/reviews.js:35
 msgid "Flagging review..."
@@ -1527,6 +1515,20 @@ msgstr "Ẇřīŧḗ ȧ Řḗṽīḗẇ"
 msgid "Sorry, there was a problem deleting the review"
 msgstr "Şǿřřẏ, ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ḓḗŀḗŧīƞɠ ŧħḗ řḗṽīḗẇ"
 
+#: /media/js/reviews.js:151
+#: /media/js/views/app.js:16
+#: /media/js/views/app.js:23
+#: /media/js/views/app.js:24
+#: /media/js/views/app.js:29
+#: /media/js/views/app.js:30
+#: /media/js/views/feed_landing.js:15
+#: /media/js/views/website.js:10
+#: /media/js/views/website.js:16
+#: /media/js/views/website.js:17
+#: /media/js/views/website.js:18
+msgid "Loading..."
+msgstr "Ŀǿȧḓīƞɠ..."
+
 #: /media/js/reviews.js:254
 msgid "Your review was successfully posted. Thanks!"
 msgstr "Ẏǿŭř řḗṽīḗẇ ẇȧş şŭƈƈḗşşƒŭŀŀẏ ƥǿşŧḗḓ. Ŧħȧƞķş!"
@@ -1543,6 +1545,88 @@ msgstr "Ẏǿŭř řḗṽīḗẇ ẇȧş şŭƈƈḗşşƒŭŀŀẏ ḗḓīŧ
 msgid "Sorry, there was an issue editing your review. Please try again later"
 msgstr "Şǿřřẏ, ŧħḗřḗ ẇȧş ȧƞ īşşŭḗ ḗḓīŧīƞɠ ẏǿŭř řḗṽīḗẇ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř"
 
+#: /media/js/settings_app.js:95
+msgid "English"
+msgstr "Ḗƞɠŀīşħ"
+
+#: /media/js/settings_app.js:96
+msgid "French"
+msgstr "Ƒřḗƞƈħ"
+
+#: /media/js/settings_app.js:97
+msgid "German"
+msgstr "Ɠḗřḿȧƞ"
+
+#: /media/js/settings_app.js:98
+msgid "Hungarian"
+msgstr "Ħŭƞɠȧřīȧƞ"
+
+#: /media/js/settings_app.js:99
+msgid "Indonesian"
+msgstr "Īƞḓǿƞḗşīȧƞ"
+
+#: /media/js/settings_app.js:100
+msgid "Polish"
+msgstr "Ƥǿŀīşħ"
+
+#: /media/js/settings_app.js:101
+msgid "Portuguese"
+msgstr "Ƥǿřŧŭɠŭḗşḗ"
+
+#: /media/js/settings_app.js:102
+msgid "Russian"
+msgstr "Řŭşşīȧƞ"
+
+#: /media/js/settings_app.js:103
+msgid "Spanish"
+msgstr "Şƥȧƞīşħ"
+
+#: /media/js/settings_app.js:115
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "Şǿřřẏ, ẏǿŭ ȧřḗ ƈŭřřḗƞŧŀẏ ǿƒƒŀīƞḗ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
+
+#: /media/js/update_banner.js:24
+msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
+msgstr ""
+"Ŧħḗ ƞḗẋŧ ŧīḿḗ ẏǿŭ şŧȧřŧ ŧħḗ Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ ȧƥƥ, ẏǿŭ’ŀŀ şḗḗ ŧħḗ ŭƥḓȧŧḗḓ "
+"ṽḗřşīǿƞ!"
+
+#: /media/js/views/app.js:17
+msgid "App Detail"
+msgstr "Ȧƥƥ Ḓḗŧȧīŀ"
+
+#: /media/js/views/feed_landing.js:16
+msgid "Collection Detail"
+msgstr "Ƈǿŀŀḗƈŧīǿƞ Ḓḗŧȧīŀ"
+
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "Ƒḗḗḓƀȧƈķ şŭƀḿīŧŧḗḓ. Ŧħȧƞķş!"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ şŭƀḿīŧŧīƞɠ ẏǿŭř ƒḗḗḓƀȧƈķ. Ŧřẏ ȧɠȧīƞ şǿǿƞ."
+
+#: /media/js/views/langpacks.js:29
+msgid "Language Packs"
+msgstr "Ŀȧƞɠŭȧɠḗ Ƥȧƈķş"
+
+#: /media/js/views/langpacks.js:41
+msgid "Firefox OS {version}"
+msgstr "Ƒīřḗƒǿẋ ǾŞ {ṽḗřşīǿƞ}"
+
+#: /media/js/views/newsletter_signup.js:11
+msgid "Newsletter Signup"
+msgstr "Ƞḗẇşŀḗŧŧḗř Şīɠƞŭƥ"
+
+#: /media/js/views/search.js:164
+msgid "Search Results"
+msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
+
+#: /media/js/views/search.js:176
+msgid "Developer Listing"
+msgstr "Ḓḗṽḗŀǿƥḗř Ŀīşŧīƞɠ"
+
 #: /media/js/views/settings.js:40
 msgid "Your settings have been successfully saved"
 msgstr "Ẏǿŭř şḗŧŧīƞɠş ħȧṽḗ ƀḗḗƞ şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ"
@@ -1550,6 +1634,10 @@ msgstr "Ẏǿŭř şḗŧŧīƞɠş ħȧṽḗ ƀḗḗƞ şŭƈƈḗşşƒŭŀ�
 #: /media/js/views/settings.js:46
 msgid "Settings could not be saved"
 msgstr "Şḗŧŧīƞɠş ƈǿŭŀḓ ƞǿŧ ƀḗ şȧṽḗḓ"
+
+#: /media/js/views/website.js:11
+msgid "Website Detail"
+msgstr "Ẇḗƀşīŧḗ Ḓḗŧȧīŀ"
 
 #: /media/js/views/app/abuse.js:18
 #: /media/js/views/website/issue.js:17
@@ -1560,10 +1648,6 @@ msgstr "Řḗƥǿřŧ şŭƀḿīŧŧḗḓ. Ŧħȧƞķş!"
 #: /media/js/views/website/issue.js:22
 msgid "There was an issue submitting your report. Please try again later."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ īşşŭḗ şŭƀḿīŧŧīƞɠ ẏǿŭř řḗƥǿřŧ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
-
-#: /media/js/views/website.js:11
-msgid "Website Detail"
-msgstr "Ẇḗƀşīŧḗ Ḓḗŧȧīŀ"
 
 #: /media/js/views/app/ratings.js:12
 msgid "Read All Reviews"
@@ -1577,10 +1661,22 @@ msgstr "Ƥŀḗȧşḗ şīɠƞ īƞ ŧǿ ṽīḗẇ ŧħḗ řḗƈḗīƥŧ"
 msgid "Receipt"
 msgstr "Řḗƈḗīƥŧ"
 
-#: /media/js/views/search.js:164
-msgid "Search Results"
-msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
+#: /media/js/views/games/listing.js:18
+msgid "All games"
+msgstr "Ȧŀŀ ɠȧḿḗş"
 
-#: /media/js/views/search.js:176
-msgid "Developer Listing"
-msgstr "Ḓḗṽḗŀǿƥḗř Ŀīşŧīƞɠ"
+#: /media/js/views/games/listing.js:19
+msgid "Action"
+msgstr "Ȧƈŧīǿƞ"
+
+#: /media/js/views/games/listing.js:20
+msgid "Puzzle"
+msgstr "Ƥŭzzŀḗ"
+
+#: /media/js/views/games/listing.js:21
+msgid "Strategy"
+msgstr "Şŧřȧŧḗɠẏ"
+
+#: /media/js/views/games/listing.js:22
+msgid "Adventure"
+msgstr "Ȧḓṽḗƞŧŭřḗ"

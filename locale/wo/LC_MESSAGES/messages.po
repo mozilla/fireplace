@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29T20:04:48.073Z\n"
+"POT-Creation-Date: 2015-08-12T15:27:57.013Z\n"
 "PO-Revision-Date: 2015-05-15 08:00+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1431676838.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/search.html:8 /templates/purchases.html:7
+#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "Lemmi"
 
@@ -143,11 +143,11 @@ msgstr "Wane/Nëbb seetukaay bi"
 msgid "Toggle Settings Menu"
 msgstr "Wane/Nëbb Njëlu Jekkal yi"
 
-#: /templates/header.html:56 /templates/nav.html:30 /templates/settings.html:43 /templates/purchases.html:43
+#: /templates/header.html:56 /templates/nav.html:30 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "Bindu"
 
-#: /templates/header.html:58 /templates/nav.html:32 /templates/settings.html:44 /templates/purchases.html:44
+#: /templates/header.html:58 /templates/nav.html:32 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr "Dugg"
 
@@ -167,7 +167,7 @@ msgstr "Samay Jëfekaay"
 msgid "Sign Out"
 msgstr "Génn"
 
-#: /templates/homepage.html:7
+#: /templates/homepage.html:8
 msgid "More to Explore"
 msgstr "Gis ci Yeneen Mbir"
 
@@ -214,6 +214,18 @@ msgstr "Jërëjëf ci sag bindu!"
 #: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Dinga jot bataaxal bu bawoo mozilla@e.mozilla.org, seetal sa boyetu bataaxal ngir bataaxal biñu la njëkk a yónnee. Soo ko gisul, nga seet ci spam yi."
+
+#: /templates/purchases.html:42
+msgid "You must be signed in to view your apps."
+msgstr "Danga war a dugg ngir wone say jëfekaay."
+
+#: /templates/purchases.html:31
+msgid "You have no apps"
+msgstr "Amoo benn jëfekaay"
+
+#: /templates/purchases.html:35 /templates/errors/fragment.html:1 /media/js/views/app.js:46
+msgid "Oh no!"
+msgstr "Déet waay!"
 
 #: /templates/search.html:7
 msgid "<b>{n}</b> Result"
@@ -275,18 +287,6 @@ msgstr "Bokk Ci"
 msgid "Region"
 msgstr "Diwaan"
 
-#: /templates/purchases.html:42
-msgid "You must be signed in to view your apps."
-msgstr "Danga war a dugg ngir wone say jëfekaay."
-
-#: /templates/purchases.html:31
-msgid "You have no apps"
-msgstr "Amoo benn jëfekaay"
-
-#: /templates/purchases.html:35 /templates/errors/fragment.html:1 /media/js/views/app.js:46
-msgid "Oh no!"
-msgstr "Déet waay!"
-
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "Xaymay Jëfekaay"
@@ -298,6 +298,87 @@ msgstr "Xaymay jëfandikoog jëfekaay"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Amul xayma yu doy yu muy wone."
+
+#. <mkt-selected-text> will be a noun like "apps" or "sites".
+#: /templates/_includes/app_list_filters.html:6
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/app_list_filters.html:36
+msgid "Display as"
+msgstr "Wone niki"
+
+#: /templates/_includes/app_list_filters.html:37
+msgid "Toggle App Previews"
+msgstr "Yéegal/Wàcce Njàngati Jëfekaay"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Dellu ci {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Nattug Ëmbiit"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Leerali Natt gi"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Say jekkali Mac mën nañu la teree samp jëfekaay yi jogeewul ci Mac App Store."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Xamal noo leen di soppee."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "Wan ma lépp lu jëm ci <mkt-selected-text></mkt-selected-text>"
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Sampu na!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Taaleel jëfekaay bii ci sa barabu <b>Jëfekaay yi</b> ."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Taaleel jëfekaay bi ci sa <b>biro Windows</b> walla <b>Door &#9658; Tëriin Yépp</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Taaleel jëfekaay bi sa <b>dash</b>, <b>Tànnukaayu jëfekaay</b>, walla <b>Njëlu jëfekaay</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Soppali sa Jàngat"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Soppali sa jàngat"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Bind ab jàngat"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Dugg ngir jàngat"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Jàng jàngat yépp"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 njàngat"
+msgstr[1] "{numReviews} njàngat"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -376,7 +457,7 @@ msgstr "Sumb bi gën jàppandi na"
 msgid "More Information"
 msgstr "Yeneen Leeral"
 
-#: /templates/app/index.html:172
+#: /templates/app/index.html:172 /templates/games/index.html:48
 msgid "Developer"
 msgstr "Defarkat"
 
@@ -409,87 +490,6 @@ msgstr "Mi ngi yab Sàrti Sutura..."
 msgid "Thank you for purchasing"
 msgstr "Jërëjëf ci li nga jënd"
 
-#. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:6
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/app_list_filters.html:36
-msgid "Display as"
-msgstr "Wone niki"
-
-#: /templates/_includes/app_list_filters.html:37
-msgid "Toggle App Previews"
-msgstr "Yéegal/Wàcce Njàngati Jëfekaay"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Dellu ci {app}"
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Nattug Ëmbiit"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Leerali Natt gi"
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "Wan ma lépp lu jëm ci <mkt-selected-text></mkt-selected-text>"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Say jekkali Mac mën nañu la teree samp jëfekaay yi jogeewul ci Mac App Store."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Xamal noo leen di soppee."
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Sampu na!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Taaleel jëfekaay bii ci sa barabu <b>Jëfekaay yi</b> ."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Taaleel jëfekaay bi ci sa <b>biro Windows</b> walla <b>Door &#9658; Tëriin Yépp</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Taaleel jëfekaay bi sa <b>dash</b>, <b>Tànnukaayu jëfekaay</b>, walla <b>Njëlu jëfekaay</b>."
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Soppali sa Jàngat"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Soppali sa jàngat"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Bind ab jàngat"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Dugg ngir jàngat"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Jàng jàngat yépp"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 njàngat"
-msgstr[1] "{numReviews} njàngat"
-
 #: /templates/_macros/app_tile.html:113
 msgid "Review"
 msgid_plural "Reviews"
@@ -504,13 +504,21 @@ msgstr "Jàngatagu ñu ko"
 msgid "&mdash; {attribution}"
 msgstr "&mdash; {attribution}"
 
-#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:394
+#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:395
 msgid "Free"
 msgstr "Maye"
 
 #: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
-msgid "View all apps"
-msgstr "Wone jëfekaay yépp"
+msgid "View all"
+msgstr ""
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr ""
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr ""
 
 #: /templates/_macros/more_button.html:3
 msgid "Load more"
@@ -584,6 +592,38 @@ msgstr "Jéggalu, danga war a nekk ci internet ngir yegg ci Marketplace."
 msgid "Try Again"
 msgstr "Jéemaatal"
 
+#: /templates/games/index.html:4
+msgid "PLAY GREAT DESKTOP GAMES"
+msgstr ""
+
+#: /templates/games/index.html:22
+msgid "<span>by</span> {author}"
+msgstr ""
+
+#: /templates/games/index.html:44
+msgid "Game"
+msgstr ""
+
+#: /templates/games/index.html:52
+msgid "Category"
+msgstr ""
+
+#: /templates/games/index.html:76
+msgid "Find more great games"
+msgstr ""
+
+#: /templates/games/listing.html:8
+msgid "Enjoy instant fun right on your desktop with our handpicked selection of app and browser-based games."
+msgstr ""
+
+#: /templates/games/listing.html:9
+msgid "Puzzle, action, adventure, and strategy titles&mdash;we're adding new games all the time so check back often."
+msgstr ""
+
+#: /templates/games/listing.html:12
+msgid "Learn more about why games and Mozilla go so well together."
+msgstr ""
+
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "Soppali Njàngat"
@@ -648,6 +688,10 @@ msgstr "Netalig bëg walla càkkutéefu ndimbal bu fi warul nekk"
 msgid "This app has no reviews."
 msgstr "Jëfekaay bi amul benn njàngat."
 
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "Njàngatu Jëfekaay"
+
 #: /templates/website/index.html:34
 msgid "Explore more in {category_one} and {category_two}."
 msgstr ""
@@ -663,10 +707,6 @@ msgstr ""
 #: /templates/website/index.html:49 /templates/website/issue.html:14
 msgid "Report an issue"
 msgstr ""
-
-#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "Njàngatu Jëfekaay"
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
@@ -684,56 +724,64 @@ msgstr ""
 msgid "Report an Issue"
 msgstr ""
 
-#: /media/js/buttons.js:80 /media/js/buttons.js:152 /media/js/payments.js:134
+#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
 msgid "Payment cancelled."
 msgstr "Bàyyi nañu fay gi."
 
-#: /media/js/buttons.js:116
+#: /media/js/buttons.js:117
 msgid "Purchasing"
 msgstr "Njënd"
 
-#: /media/js/buttons.js:130 /media/js/buttons.js:369 /media/js/buttons.js:418 /media/js/buttons.js:431 /media/js/buttons.js:441
+#: /media/js/buttons.js:131 /media/js/buttons.js:370 /media/js/buttons.js:419 /media/js/buttons.js:446 /media/js/buttons.js:457
 msgid "Install"
 msgstr "Samp"
 
-#: /media/js/buttons.js:191 /media/js/installer_direct.js:178
+#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr "Jéggalu, mënu nu gis njoxe jëfekaay bii. Jéemaatal ci kanam."
 
 #. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:236
+#: /media/js/buttons.js:237
 msgid "Install failed. Please try again later."
 msgstr "Samp gi yeggul. Jéemaatal ci kanam."
 
-#: /media/js/buttons.js:320 /media/js/buttons.js:418
+#: /media/js/buttons.js:321 /media/js/buttons.js:419
 msgid "Installed"
 msgstr "Sampu na"
 
-#: /media/js/buttons.js:394
+#: /media/js/buttons.js:395
 msgid "free"
 msgstr ""
 
-#: /media/js/buttons.js:399
+#: /media/js/buttons.js:400
 msgid "Unavailable"
 msgstr "Jàppandiwul"
 
-#: /media/js/buttons.js:423
-msgid "Open website"
+#: /media/js/buttons.js:425 /media/js/buttons.js:432
+msgid "Play now!"
 msgstr ""
 
 #: /media/js/buttons.js:427
+msgid "Open website"
+msgstr ""
+
+#: /media/js/buttons.js:434
 msgid "Open app"
 msgstr ""
 
-#: /media/js/buttons.js:429
+#: /media/js/buttons.js:438 /media/js/buttons.js:444
+msgid "Install now!"
+msgstr ""
+
+#: /media/js/buttons.js:440
 msgid "Install for free"
 msgstr ""
 
-#: /media/js/buttons.js:433
+#: /media/js/buttons.js:449
 msgid "Install for {price}"
 msgstr ""
 
-#: /media/js/buttons.js:439
+#: /media/js/buttons.js:455
 msgid "Open"
 msgstr ""
 
@@ -761,7 +809,7 @@ msgstr "Firefox OS"
 msgid "My Device"
 msgstr "Sama Jëfandaay"
 
-#: /media/js/categories.js:6
+#: /media/js/categories.js:6 /media/js/views/games/listing.js:10
 msgid "Games"
 msgstr "Po yi"
 
@@ -861,38 +909,13 @@ msgstr "Njariñal yi"
 msgid "Weather"
 msgstr ""
 
-#. Chess game desktop promo (bug 1175381).
-#: /media/js/desktop_promo.js:20
-msgid "Play 45 creative variations of chess."
-msgstr ""
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "amul ci sab gox"
 
-#: /media/js/desktop_promo.js:26
-msgid "Manage projects easily with Basecamp."
-msgstr ""
-
-#: /media/js/desktop_promo.js:33
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "Jëfekaayi Defar—Yi Am solo ci Biro"
-
-#: /media/js/desktop_promo.js:40
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Jëfekaayi Po ak Bégal xol—Yi Am solo ci Biro"
-
-#: /media/js/desktop_promo.js:46
-msgid "Play GoldNuggets now!"
-msgstr ""
-
-#: /media/js/content_filter.js:20
-msgid "all content"
-msgstr ""
-
-#: /media/js/content_filter.js:21
-msgid "apps"
-msgstr ""
-
-#: /media/js/content_filter.js:22
-msgid "websites"
-msgstr ""
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "amul ci sab dal"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
@@ -935,8 +958,37 @@ msgstr "Ñi am 17 jëm kaw"
 msgid "Adults Only 18+"
 msgstr "Ñi am 18 jëm kaw Kese"
 
-#: /media/js/helpers_local.js:113
-msgid "works offline"
+#: /media/js/content_filter.js:20
+msgid "all content"
+msgstr ""
+
+#: /media/js/content_filter.js:21
+msgid "apps"
+msgstr ""
+
+#: /media/js/content_filter.js:22
+msgid "websites"
+msgstr ""
+
+#. Chess game desktop promo (bug 1175381).
+#: /media/js/desktop_promo.js:20
+msgid "Play 45 creative variations of chess."
+msgstr ""
+
+#: /media/js/desktop_promo.js:26
+msgid "Manage projects easily with Basecamp."
+msgstr ""
+
+#: /media/js/desktop_promo.js:33
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "Jëfekaayi Defar—Yi Am solo ci Biro"
+
+#: /media/js/desktop_promo.js:40
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Jëfekaayi Po ak Bégal xol—Yi Am solo ci Biro"
+
+#: /media/js/desktop_promo.js:46
+msgid "Play GoldNuggets now!"
 msgstr ""
 
 #: /media/js/edbrands.js:33
@@ -1263,13 +1315,29 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "Jëfekaayu Liggéey ak Wut xaalis"
 msgstr[1] "Jëfekaayi Liggéey ak Wut xaalis"
 
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr "amul ci sab gox"
+#: /media/js/feed_websites.js:61
+msgid "{current} of {count}"
+msgstr ""
 
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr "amul ci sab dal"
+#: /media/js/helpers_local.js:124
+msgid "works offline"
+msgstr ""
+
+#: /media/js/helpers_local.js:144
+msgid "Adventure Game"
+msgstr ""
+
+#: /media/js/helpers_local.js:145
+msgid "Action Game"
+msgstr ""
+
+#: /media/js/helpers_local.js:146
+msgid "Puzzle Game"
+msgstr ""
+
+#: /media/js/helpers_local.js:147
+msgid "Strategy Game"
+msgstr ""
 
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
@@ -1299,83 +1367,6 @@ msgid_plural "{n} stars"
 msgstr[0] "{n} biddéew"
 msgstr[1] "{n} biddéew"
 
-#: /media/js/settings_app.js:94
-msgid "English"
-msgstr "Wu àngale"
-
-#: /media/js/settings_app.js:95
-msgid "French"
-msgstr "Wu faraase"
-
-#: /media/js/settings_app.js:96
-msgid "German"
-msgstr "Wu almaañ"
-
-#: /media/js/settings_app.js:97
-msgid "Hungarian"
-msgstr "Wu ongri"
-
-#: /media/js/settings_app.js:98
-msgid "Indonesian"
-msgstr "Wu indonesi"
-
-#: /media/js/settings_app.js:99
-msgid "Polish"
-msgstr "Wu poloñ"
-
-#: /media/js/settings_app.js:100
-msgid "Portuguese"
-msgstr "Wu portigaal"
-
-#: /media/js/settings_app.js:101
-msgid "Russian"
-msgstr "Wu risi"
-
-#: /media/js/settings_app.js:102
-msgid "Spanish"
-msgstr "Wu espaañ"
-
-#: /media/js/settings_app.js:114
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "Jéggalu, nekkoo ci internet fimne nii. Jéemaatal ci kanam."
-
-#: /media/js/update_banner.js:24
-msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr "Beneen yoon sooy taal jëfekaayu Firefox Marketplace, dinga gis sumb biñ yeesal!"
-
-#: /media/js/views/app.js:16 /media/js/views/app.js:23 /media/js/views/app.js:24 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/feed_landing.js:15 /media/js/reviews.js:151
-#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
-msgid "Loading..."
-msgstr "Mingi yab..."
-
-#: /media/js/views/app.js:17
-msgid "App Detail"
-msgstr ""
-
-#: /media/js/views/langpacks.js:29
-msgid "Language Packs"
-msgstr "Limi Làkk"
-
-#: /media/js/views/langpacks.js:41
-msgid "Firefox OS {version}"
-msgstr "Firefox OS {version}"
-
-#: /media/js/views/feed_landing.js:16
-msgid "Collection Detail"
-msgstr ""
-
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "Joxe nga xaalaat. Jërëjëf!"
-
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "Njuumte am na ci sab joxe xalaat. Jéemaatal ci kanam."
-
-#: /media/js/views/newsletter_signup.js:11
-msgid "Newsletter Signup"
-msgstr ""
-
 #. The report is an abuse report for reviews.
 #: /media/js/reviews.js:35
 msgid "Flagging review..."
@@ -1401,6 +1392,11 @@ msgstr "Bind ab Jàngat"
 msgid "Sorry, there was a problem deleting the review"
 msgstr "Jéggalu, njuumte am na ci farug njàngat bi"
 
+#: /media/js/reviews.js:151 /media/js/views/app.js:16 /media/js/views/app.js:23 /media/js/views/app.js:24 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/feed_landing.js:15
+#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
+msgid "Loading..."
+msgstr "Mingi yab..."
+
 #: /media/js/reviews.js:254
 msgid "Your review was successfully posted. Thanks!"
 msgstr "Sa siiwalug njàngat bi jaar na yoon. Jërëjëf!"
@@ -1417,6 +1413,86 @@ msgstr "Sa soppalig njàngat jaar na yoon"
 msgid "Sorry, there was an issue editing your review. Please try again later"
 msgstr "Jéggalu, njuumte am na ci sa soppalig njàngat. Jéemaatal ci kanam"
 
+#: /media/js/settings_app.js:95
+msgid "English"
+msgstr "Wu àngale"
+
+#: /media/js/settings_app.js:96
+msgid "French"
+msgstr "Wu faraase"
+
+#: /media/js/settings_app.js:97
+msgid "German"
+msgstr "Wu almaañ"
+
+#: /media/js/settings_app.js:98
+msgid "Hungarian"
+msgstr "Wu ongri"
+
+#: /media/js/settings_app.js:99
+msgid "Indonesian"
+msgstr "Wu indonesi"
+
+#: /media/js/settings_app.js:100
+msgid "Polish"
+msgstr "Wu poloñ"
+
+#: /media/js/settings_app.js:101
+msgid "Portuguese"
+msgstr "Wu portigaal"
+
+#: /media/js/settings_app.js:102
+msgid "Russian"
+msgstr "Wu risi"
+
+#: /media/js/settings_app.js:103
+msgid "Spanish"
+msgstr "Wu espaañ"
+
+#: /media/js/settings_app.js:115
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "Jéggalu, nekkoo ci internet fimne nii. Jéemaatal ci kanam."
+
+#: /media/js/update_banner.js:24
+msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
+msgstr "Beneen yoon sooy taal jëfekaayu Firefox Marketplace, dinga gis sumb biñ yeesal!"
+
+#: /media/js/views/app.js:17
+msgid "App Detail"
+msgstr ""
+
+#: /media/js/views/feed_landing.js:16
+msgid "Collection Detail"
+msgstr ""
+
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "Joxe nga xaalaat. Jërëjëf!"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "Njuumte am na ci sab joxe xalaat. Jéemaatal ci kanam."
+
+#: /media/js/views/langpacks.js:29
+msgid "Language Packs"
+msgstr "Limi Làkk"
+
+#: /media/js/views/langpacks.js:41
+msgid "Firefox OS {version}"
+msgstr "Firefox OS {version}"
+
+#: /media/js/views/newsletter_signup.js:11
+msgid "Newsletter Signup"
+msgstr ""
+
+#: /media/js/views/search.js:164
+msgid "Search Results"
+msgstr "Seet Njuréef"
+
+#: /media/js/views/search.js:176
+msgid "Developer Listing"
+msgstr ""
+
 #: /media/js/views/settings.js:40
 msgid "Your settings have been successfully saved"
 msgstr "Dencug say jekkal jaar na yoon"
@@ -1425,16 +1501,16 @@ msgstr "Dencug say jekkal jaar na yoon"
 msgid "Settings could not be saved"
 msgstr "Kenn mënul denc jekkal yi"
 
+#: /media/js/views/website.js:11
+msgid "Website Detail"
+msgstr ""
+
 #: /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
 msgstr ""
 
 #: /media/js/views/app/abuse.js:24 /media/js/views/website/issue.js:22
 msgid "There was an issue submitting your report. Please try again later."
-msgstr ""
-
-#: /media/js/views/website.js:11
-msgid "Website Detail"
 msgstr ""
 
 #: /media/js/views/app/ratings.js:12
@@ -1449,10 +1525,22 @@ msgstr "Duggal ngir wone rësi bi"
 msgid "Receipt"
 msgstr "Rësi"
 
-#: /media/js/views/search.js:164
-msgid "Search Results"
-msgstr "Seet Njuréef"
+#: /media/js/views/games/listing.js:18
+msgid "All games"
+msgstr ""
 
-#: /media/js/views/search.js:176
-msgid "Developer Listing"
+#: /media/js/views/games/listing.js:19
+msgid "Action"
+msgstr ""
+
+#: /media/js/views/games/listing.js:20
+msgid "Puzzle"
+msgstr ""
+
+#: /media/js/views/games/listing.js:21
+msgid "Strategy"
+msgstr ""
+
+#: /media/js/views/games/listing.js:22
+msgid "Adventure"
 msgstr ""

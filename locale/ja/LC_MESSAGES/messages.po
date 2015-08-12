@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29T20:04:48.073Z\n"
+"POT-Creation-Date: 2015-08-12T15:27:57.013Z\n"
 "PO-Revision-Date: 2015-07-29 17:09-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1432217398.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/search.html:8 /templates/purchases.html:7
+#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "折りたたむ / 広げる"
 
@@ -143,11 +143,11 @@ msgstr "検索を開く／閉じる"
 msgid "Toggle Settings Menu"
 msgstr "検索メニューを開く／閉じる"
 
-#: /templates/header.html:56 /templates/nav.html:30 /templates/settings.html:43 /templates/purchases.html:43
+#: /templates/header.html:56 /templates/nav.html:30 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "登録"
 
-#: /templates/header.html:58 /templates/nav.html:32 /templates/settings.html:44 /templates/purchases.html:44
+#: /templates/header.html:58 /templates/nav.html:32 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr "ログイン"
 
@@ -167,7 +167,7 @@ msgstr "自分のアプリ"
 msgid "Sign Out"
 msgstr "ログアウト"
 
-#: /templates/homepage.html:7
+#: /templates/homepage.html:8
 msgid "More to Explore"
 msgstr "他のアプリを見る"
 
@@ -214,6 +214,18 @@ msgstr "購読ありがとうございます！"
 #: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "mozilla@e.mozilla.org からメールが送られますので、受信トレイを開いてその最初のメールを見つけてください。もし届いていない場合、迷惑メールとして振り分けられていないか確認してください。"
+
+#: /templates/purchases.html:42
+msgid "You must be signed in to view your apps."
+msgstr "自分のアプリを見るにはログインしてください。"
+
+#: /templates/purchases.html:31
+msgid "You have no apps"
+msgstr "まだインストールしたアプリはありません"
+
+#: /templates/purchases.html:35 /templates/errors/fragment.html:1 /media/js/views/app.js:46
+msgid "Oh no!"
+msgstr "ページが見つかりません"
 
 #: /templates/search.html:7
 msgid "<b>{n}</b> Result"
@@ -275,18 +287,6 @@ msgstr "参加しよう"
 msgid "Region"
 msgstr "地域"
 
-#: /templates/purchases.html:42
-msgid "You must be signed in to view your apps."
-msgstr "自分のアプリを見るにはログインしてください。"
-
-#: /templates/purchases.html:31
-msgid "You have no apps"
-msgstr "まだインストールしたアプリはありません"
-
-#: /templates/purchases.html:35 /templates/errors/fragment.html:1 /media/js/views/app.js:46
-msgid "Oh no!"
-msgstr "ページが見つかりません"
-
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "アプリ統計"
@@ -298,6 +298,86 @@ msgstr "アプリ使用統計"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "表示できる十分な統計情報がありません。"
+
+#. <mkt-selected-text> will be a noun like "apps" or "sites".
+#: /templates/_includes/app_list_filters.html:6
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr "<mkt-selected-text></mkt-selected-text> を表示"
+
+#: /templates/_includes/app_list_filters.html:36
+msgid "Display as"
+msgstr "表示:"
+
+#: /templates/_includes/app_list_filters.html:37
+msgid "Toggle App Previews"
+msgstr "アプリのプレビューを切り替える"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "{app} のページへ戻る"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "コンテンツ評価"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "レーティングの詳細"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "お使いの Mac は Mac App Store 以外から配信されたアプリのインストールを禁止する設定になっているかもしれません。"
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "設定の変更方法はこちら。"
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "<mkt-selected-text></mkt-selected-text> 向けのアプリをすべて表示"
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "インストールが完了しました。"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "このアプリは Mac の <b>アプリケーション</b> ディレクトリから起動できます。"
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "このアプリは Windows の <b>デスクトップ</b> か <b>スタート &#9658; すべてのプログラム</b> から起動できます。"
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "このアプリは、<b>ダッシュ</b>、<b>アプリケーションピッカー</b> もしくは <b>アプリケーションメニュー</b> から起動できます。"
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "レビューを編集"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "レビューを編集"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "レビューを投稿"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "ログインしてレビューを投稿"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "すべてのレビューを見る"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "{numReviews} 件のレビュー"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -376,7 +456,7 @@ msgstr "有料版があります"
 msgid "More Information"
 msgstr "詳しい情報"
 
-#: /templates/app/index.html:172
+#: /templates/app/index.html:172 /templates/games/index.html:48
 msgid "Developer"
 msgstr "開発者"
 
@@ -409,86 +489,6 @@ msgstr "プライバシーポリシーを読み込んでいます..."
 msgid "Thank you for purchasing"
 msgstr "お買い上げありがとうございます"
 
-#. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:6
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr "<mkt-selected-text></mkt-selected-text> を表示"
-
-#: /templates/_includes/app_list_filters.html:36
-msgid "Display as"
-msgstr "表示:"
-
-#: /templates/_includes/app_list_filters.html:37
-msgid "Toggle App Previews"
-msgstr "アプリのプレビューを切り替える"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "{app} のページへ戻る"
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "コンテンツ評価"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "レーティングの詳細"
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "<mkt-selected-text></mkt-selected-text> 向けのアプリをすべて表示"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "お使いの Mac は Mac App Store 以外から配信されたアプリのインストールを禁止する設定になっているかもしれません。"
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "設定の変更方法はこちら。"
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "インストールが完了しました。"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "このアプリは Mac の <b>アプリケーション</b> ディレクトリから起動できます。"
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "このアプリは Windows の <b>デスクトップ</b> か <b>スタート &#9658; すべてのプログラム</b> から起動できます。"
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "このアプリは、<b>ダッシュ</b>、<b>アプリケーションピッカー</b> もしくは <b>アプリケーションメニュー</b> から起動できます。"
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "レビューを編集"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "レビューを編集"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "レビューを投稿"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "ログインしてレビューを投稿"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "すべてのレビューを見る"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "{numReviews} 件のレビュー"
-
 #: /templates/_macros/app_tile.html:113
 msgid "Review"
 msgid_plural "Reviews"
@@ -504,13 +504,21 @@ msgstr "まだレビューを受けていません"
 msgid "&mdash; {attribution}"
 msgstr "&mdash; {attribution}"
 
-#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:394
+#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:395
 msgid "Free"
 msgstr "無料"
 
 #: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
-msgid "View all apps"
-msgstr "すべてのアプリを見る"
+msgid "View all"
+msgstr ""
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr ""
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr ""
 
 #: /templates/_macros/more_button.html:3
 msgid "Load more"
@@ -584,6 +592,38 @@ msgstr "申し訳ありませんが、Marketplace へアクセスするにはイ
 msgid "Try Again"
 msgstr "再読み込み"
 
+#: /templates/games/index.html:4
+msgid "PLAY GREAT DESKTOP GAMES"
+msgstr ""
+
+#: /templates/games/index.html:22
+msgid "<span>by</span> {author}"
+msgstr ""
+
+#: /templates/games/index.html:44
+msgid "Game"
+msgstr ""
+
+#: /templates/games/index.html:52
+msgid "Category"
+msgstr ""
+
+#: /templates/games/index.html:76
+msgid "Find more great games"
+msgstr ""
+
+#: /templates/games/listing.html:8
+msgid "Enjoy instant fun right on your desktop with our handpicked selection of app and browser-based games."
+msgstr ""
+
+#: /templates/games/listing.html:9
+msgid "Puzzle, action, adventure, and strategy titles&mdash;we're adding new games all the time so check back often."
+msgstr ""
+
+#: /templates/games/listing.html:12
+msgid "Learn more about why games and Mozilla go so well together."
+msgstr ""
+
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "レビューを編集"
@@ -648,6 +688,10 @@ msgstr "場違いのバグ報告もしくはサポート依頼"
 msgid "This app has no reviews."
 msgstr "このアプリにはまだレビューが書かれていません。"
 
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "アプリのレビュー"
+
 #: /templates/website/index.html:34
 msgid "Explore more in {category_one} and {category_two}."
 msgstr "{category_one} と {category_two} カテゴリのアプリをもっと見る"
@@ -663,10 +707,6 @@ msgstr "このサイトのアプリ紹介に何か間違いや更新されてい
 #: /templates/website/index.html:49 /templates/website/issue.html:14
 msgid "Report an issue"
 msgstr "問題を報告"
-
-#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "アプリのレビュー"
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
@@ -684,56 +724,64 @@ msgstr "問題をここに記入してください。できるだけ具体的に
 msgid "Report an Issue"
 msgstr "問題を報告"
 
-#: /media/js/buttons.js:80 /media/js/buttons.js:152 /media/js/payments.js:134
+#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
 msgid "Payment cancelled."
 msgstr "決済がキャンセルされました。"
 
-#: /media/js/buttons.js:116
+#: /media/js/buttons.js:117
 msgid "Purchasing"
 msgstr "購入中"
 
-#: /media/js/buttons.js:130 /media/js/buttons.js:369 /media/js/buttons.js:418 /media/js/buttons.js:431 /media/js/buttons.js:441
+#: /media/js/buttons.js:131 /media/js/buttons.js:370 /media/js/buttons.js:419 /media/js/buttons.js:446 /media/js/buttons.js:457
 msgid "Install"
 msgstr "インストール"
 
-#: /media/js/buttons.js:191 /media/js/installer_direct.js:178
+#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr "申し訳ありませんが、このアプリのデータ取得中に問題が発生しました。また後で試してください。"
 
 #. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:236
+#: /media/js/buttons.js:237
 msgid "Install failed. Please try again later."
 msgstr "インストールに失敗しました。また後で試してください。"
 
-#: /media/js/buttons.js:320 /media/js/buttons.js:418
+#: /media/js/buttons.js:321 /media/js/buttons.js:419
 msgid "Installed"
 msgstr "インストール済み"
 
-#: /media/js/buttons.js:394
+#: /media/js/buttons.js:395
 msgid "free"
 msgstr "無料"
 
-#: /media/js/buttons.js:399
+#: /media/js/buttons.js:400
 msgid "Unavailable"
 msgstr "購入不可"
 
-#: /media/js/buttons.js:423
+#: /media/js/buttons.js:425 /media/js/buttons.js:432
+msgid "Play now!"
+msgstr ""
+
+#: /media/js/buttons.js:427
 msgid "Open website"
 msgstr "Web サイトを見る"
 
-#: /media/js/buttons.js:427
+#: /media/js/buttons.js:434
 msgid "Open app"
 msgstr "アプリを開く"
 
-#: /media/js/buttons.js:429
+#: /media/js/buttons.js:438 /media/js/buttons.js:444
+msgid "Install now!"
+msgstr ""
+
+#: /media/js/buttons.js:440
 msgid "Install for free"
 msgstr "無料インストール"
 
-#: /media/js/buttons.js:433
+#: /media/js/buttons.js:449
 msgid "Install for {price}"
 msgstr "{price} でインストール"
 
-#: /media/js/buttons.js:439
+#: /media/js/buttons.js:455
 msgid "Open"
 msgstr "開く"
 
@@ -761,7 +809,7 @@ msgstr "Firefox OS"
 msgid "My Device"
 msgstr "自分の端末"
 
-#: /media/js/categories.js:6
+#: /media/js/categories.js:6 /media/js/views/games/listing.js:10
 msgid "Games"
 msgstr "ゲーム"
 
@@ -861,38 +909,13 @@ msgstr "ユーティリティ"
 msgid "Weather"
 msgstr "天気"
 
-#. Chess game desktop promo (bug 1175381).
-#: /media/js/desktop_promo.js:20
-msgid "Play 45 creative variations of chess."
-msgstr "45 種類のクリエイティブなチェスで遊びましょう。"
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "お住まいの地域では利用できません"
 
-#: /media/js/desktop_promo.js:26
-msgid "Manage projects easily with Basecamp."
-msgstr "Basecamp でプロジェクトを簡単に管理。"
-
-#: /media/js/desktop_promo.js:33
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "生産性向上関連のデスクトップ向け必須アプリ"
-
-#: /media/js/desktop_promo.js:40
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "ゲーム＆エンタテインメント関連のデスクトップ向け必須アプリ"
-
-#: /media/js/desktop_promo.js:46
-msgid "Play GoldNuggets now!"
-msgstr "今すぐ GoldNuggets で遊ぼう！"
-
-#: /media/js/content_filter.js:20
-msgid "all content"
-msgstr "すべてのコンテンツ"
-
-#: /media/js/content_filter.js:21
-msgid "apps"
-msgstr "アプリ"
-
-#: /media/js/content_filter.js:22
-msgid "websites"
-msgstr "Web サイト"
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "お使いの OS には対応していません"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
@@ -935,9 +958,38 @@ msgstr "17 歳以上"
 msgid "Adults Only 18+"
 msgstr "成人向け、18 歳以上"
 
-#: /media/js/helpers_local.js:113
-msgid "works offline"
-msgstr "オフライン対応"
+#: /media/js/content_filter.js:20
+msgid "all content"
+msgstr "すべてのコンテンツ"
+
+#: /media/js/content_filter.js:21
+msgid "apps"
+msgstr "アプリ"
+
+#: /media/js/content_filter.js:22
+msgid "websites"
+msgstr "Web サイト"
+
+#. Chess game desktop promo (bug 1175381).
+#: /media/js/desktop_promo.js:20
+msgid "Play 45 creative variations of chess."
+msgstr "45 種類のクリエイティブなチェスで遊びましょう。"
+
+#: /media/js/desktop_promo.js:26
+msgid "Manage projects easily with Basecamp."
+msgstr "Basecamp でプロジェクトを簡単に管理。"
+
+#: /media/js/desktop_promo.js:33
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "生産性向上関連のデスクトップ向け必須アプリ"
+
+#: /media/js/desktop_promo.js:40
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "ゲーム＆エンタテインメント関連のデスクトップ向け必須アプリ"
+
+#: /media/js/desktop_promo.js:46
+msgid "Play GoldNuggets now!"
+msgstr "今すぐ GoldNuggets で遊ぼう！"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1262,13 +1314,29 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "仕事 & ビジネスアプリ"
 msgstr[1] "仕事 & ビジネスアプリ"
 
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr "お住まいの地域では利用できません"
+#: /media/js/feed_websites.js:61
+msgid "{current} of {count}"
+msgstr ""
 
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr "お使いの OS には対応していません"
+#: /media/js/helpers_local.js:124
+msgid "works offline"
+msgstr "オフライン対応"
+
+#: /media/js/helpers_local.js:144
+msgid "Adventure Game"
+msgstr ""
+
+#: /media/js/helpers_local.js:145
+msgid "Action Game"
+msgstr ""
+
+#: /media/js/helpers_local.js:146
+msgid "Puzzle Game"
+msgstr ""
+
+#: /media/js/helpers_local.js:147
+msgid "Strategy Game"
+msgstr ""
 
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
@@ -1298,83 +1366,6 @@ msgid_plural "{n} stars"
 msgstr[0] "星 {n} つ"
 msgstr[1] "星 {n} つ"
 
-#: /media/js/settings_app.js:94
-msgid "English"
-msgstr "英語"
-
-#: /media/js/settings_app.js:95
-msgid "French"
-msgstr "フランス語"
-
-#: /media/js/settings_app.js:96
-msgid "German"
-msgstr "ドイツ語"
-
-#: /media/js/settings_app.js:97
-msgid "Hungarian"
-msgstr "ハンガリー語"
-
-#: /media/js/settings_app.js:98
-msgid "Indonesian"
-msgstr "インドネシア語"
-
-#: /media/js/settings_app.js:99
-msgid "Polish"
-msgstr "ポーランド語"
-
-#: /media/js/settings_app.js:100
-msgid "Portuguese"
-msgstr "ポルトガル語"
-
-#: /media/js/settings_app.js:101
-msgid "Russian"
-msgstr "ロシア語"
-
-#: /media/js/settings_app.js:102
-msgid "Spanish"
-msgstr "スペイン語"
-
-#: /media/js/settings_app.js:114
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "申し訳ありませんが、現在オフラインです。また後で試してください。"
-
-#: /media/js/update_banner.js:24
-msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr "次回 Firefox Marketplace アプリを起動すると新しいバージョンになります！"
-
-#: /media/js/views/app.js:16 /media/js/views/app.js:23 /media/js/views/app.js:24 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/feed_landing.js:15 /media/js/reviews.js:151
-#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
-msgid "Loading..."
-msgstr "読み込み中..."
-
-#: /media/js/views/app.js:17
-msgid "App Detail"
-msgstr "アプリの詳細"
-
-#: /media/js/views/langpacks.js:29
-msgid "Language Packs"
-msgstr "言語パック"
-
-#: /media/js/views/langpacks.js:41
-msgid "Firefox OS {version}"
-msgstr "Firefox OS {version}"
-
-#: /media/js/views/feed_landing.js:16
-msgid "Collection Detail"
-msgstr "コレクションの詳細"
-
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "フィードバックが送信されました。ありがとうございます。"
-
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "フィードバックの送信中に問題が発生しました。また後で試してください。"
-
-#: /media/js/views/newsletter_signup.js:11
-msgid "Newsletter Signup"
-msgstr "ニュースレターを購読"
-
 #. The report is an abuse report for reviews.
 #: /media/js/reviews.js:35
 msgid "Flagging review..."
@@ -1400,6 +1391,11 @@ msgstr "レビューを投稿"
 msgid "Sorry, there was a problem deleting the review"
 msgstr "申し訳ありませんが、レビューの削除中に問題が発生しました。"
 
+#: /media/js/reviews.js:151 /media/js/views/app.js:16 /media/js/views/app.js:23 /media/js/views/app.js:24 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/feed_landing.js:15
+#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
+msgid "Loading..."
+msgstr "読み込み中..."
+
 #: /media/js/reviews.js:254
 msgid "Your review was successfully posted. Thanks!"
 msgstr "レビューの投稿が完了しました。ありがとうございます！"
@@ -1416,6 +1412,86 @@ msgstr "レビューの編集が完了しました"
 msgid "Sorry, there was an issue editing your review. Please try again later"
 msgstr "申し訳ありませんが、レビューの編集中に問題が発生しました。また後で試してください。"
 
+#: /media/js/settings_app.js:95
+msgid "English"
+msgstr "英語"
+
+#: /media/js/settings_app.js:96
+msgid "French"
+msgstr "フランス語"
+
+#: /media/js/settings_app.js:97
+msgid "German"
+msgstr "ドイツ語"
+
+#: /media/js/settings_app.js:98
+msgid "Hungarian"
+msgstr "ハンガリー語"
+
+#: /media/js/settings_app.js:99
+msgid "Indonesian"
+msgstr "インドネシア語"
+
+#: /media/js/settings_app.js:100
+msgid "Polish"
+msgstr "ポーランド語"
+
+#: /media/js/settings_app.js:101
+msgid "Portuguese"
+msgstr "ポルトガル語"
+
+#: /media/js/settings_app.js:102
+msgid "Russian"
+msgstr "ロシア語"
+
+#: /media/js/settings_app.js:103
+msgid "Spanish"
+msgstr "スペイン語"
+
+#: /media/js/settings_app.js:115
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "申し訳ありませんが、現在オフラインです。また後で試してください。"
+
+#: /media/js/update_banner.js:24
+msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
+msgstr "次回 Firefox Marketplace アプリを起動すると新しいバージョンになります！"
+
+#: /media/js/views/app.js:17
+msgid "App Detail"
+msgstr "アプリの詳細"
+
+#: /media/js/views/feed_landing.js:16
+msgid "Collection Detail"
+msgstr "コレクションの詳細"
+
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "フィードバックが送信されました。ありがとうございます。"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "フィードバックの送信中に問題が発生しました。また後で試してください。"
+
+#: /media/js/views/langpacks.js:29
+msgid "Language Packs"
+msgstr "言語パック"
+
+#: /media/js/views/langpacks.js:41
+msgid "Firefox OS {version}"
+msgstr "Firefox OS {version}"
+
+#: /media/js/views/newsletter_signup.js:11
+msgid "Newsletter Signup"
+msgstr "ニュースレターを購読"
+
+#: /media/js/views/search.js:164
+msgid "Search Results"
+msgstr "検索結果"
+
+#: /media/js/views/search.js:176
+msgid "Developer Listing"
+msgstr "開発者紹介"
+
 #: /media/js/views/settings.js:40
 msgid "Your settings have been successfully saved"
 msgstr "設定の保存が完了しました"
@@ -1424,6 +1500,10 @@ msgstr "設定の保存が完了しました"
 msgid "Settings could not be saved"
 msgstr "設定を保存できませんでした"
 
+#: /media/js/views/website.js:11
+msgid "Website Detail"
+msgstr "Web サイトの詳細"
+
 #: /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
 msgstr "報告が送信されました。ありがとうございます！"
@@ -1431,10 +1511,6 @@ msgstr "報告が送信されました。ありがとうございます！"
 #: /media/js/views/app/abuse.js:24 /media/js/views/website/issue.js:22
 msgid "There was an issue submitting your report. Please try again later."
 msgstr "報告の送信中に問題が発生しました。また後で試してください。"
-
-#: /media/js/views/website.js:11
-msgid "Website Detail"
-msgstr "Web サイトの詳細"
 
 #: /media/js/views/app/ratings.js:12
 msgid "Read All Reviews"
@@ -1448,10 +1524,22 @@ msgstr "レシートを表示するにはログインしてください"
 msgid "Receipt"
 msgstr "レシート"
 
-#: /media/js/views/search.js:164
-msgid "Search Results"
-msgstr "検索結果"
+#: /media/js/views/games/listing.js:18
+msgid "All games"
+msgstr ""
 
-#: /media/js/views/search.js:176
-msgid "Developer Listing"
-msgstr "開発者紹介"
+#: /media/js/views/games/listing.js:19
+msgid "Action"
+msgstr ""
+
+#: /media/js/views/games/listing.js:20
+msgid "Puzzle"
+msgstr ""
+
+#: /media/js/views/games/listing.js:21
+msgid "Strategy"
+msgstr ""
+
+#: /media/js/views/games/listing.js:22
+msgid "Adventure"
+msgstr ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29T20:04:48.073Z\n"
+"POT-Creation-Date: 2015-08-12T15:27:57.013Z\n"
 "PO-Revision-Date: 2015-07-04 15:51+0000\n"
 "Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: none\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1436025061.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/search.html:8 /templates/purchases.html:7
+#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "Развернуть"
 
@@ -143,11 +143,11 @@ msgstr "Поиск"
 msgid "Toggle Settings Menu"
 msgstr "Меню параметров"
 
-#: /templates/header.html:56 /templates/nav.html:30 /templates/settings.html:43 /templates/purchases.html:43
+#: /templates/header.html:56 /templates/nav.html:30 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "Зарегистрироваться"
 
-#: /templates/header.html:58 /templates/nav.html:32 /templates/settings.html:44 /templates/purchases.html:44
+#: /templates/header.html:58 /templates/nav.html:32 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr "Войти"
 
@@ -167,7 +167,7 @@ msgstr "Мои приложения"
 msgid "Sign Out"
 msgstr "Выйти"
 
-#: /templates/homepage.html:7
+#: /templates/homepage.html:8
 msgid "More to Explore"
 msgstr "Показать еще"
 
@@ -214,6 +214,18 @@ msgstr "Спасибо, что подписались!"
 #: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Вы получите сообщение от mozilla@e.mozilla.org. Пожалуйста, проверьте свою почту. Если письма нет, проверьте раздел Спам."
+
+#: /templates/purchases.html:42
+msgid "You must be signed in to view your apps."
+msgstr "Войдите для просмотра ваших приложений."
+
+#: /templates/purchases.html:31
+msgid "You have no apps"
+msgstr "У вас нет приложений"
+
+#: /templates/purchases.html:35 /templates/errors/fragment.html:1 /media/js/views/app.js:46
+msgid "Oh no!"
+msgstr "О нет!"
 
 #: /templates/search.html:7
 msgid "<b>{n}</b> Result"
@@ -277,18 +289,6 @@ msgstr "Принять участие"
 msgid "Region"
 msgstr "Регион"
 
-#: /templates/purchases.html:42
-msgid "You must be signed in to view your apps."
-msgstr "Войдите для просмотра ваших приложений."
-
-#: /templates/purchases.html:31
-msgid "You have no apps"
-msgstr "У вас нет приложений"
-
-#: /templates/purchases.html:35 /templates/errors/fragment.html:1 /media/js/views/app.js:46
-msgid "Oh no!"
-msgstr "О нет!"
-
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "Статистика приложения"
@@ -300,6 +300,88 @@ msgstr "Статистика использования приложения"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Недостаточно статистики для показа."
+
+#. <mkt-selected-text> will be a noun like "apps" or "sites".
+#: /templates/_includes/app_list_filters.html:6
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr "Показать <mkt-selected-text></mkt-selected-text>"
+
+#: /templates/_includes/app_list_filters.html:36
+msgid "Display as"
+msgstr "Показать как"
+
+#: /templates/_includes/app_list_filters.html:37
+msgid "Toggle App Previews"
+msgstr "Сменить вид предпросмотра приложений"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "Вернуться к {app}"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Рейтинг содержания"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Подробнее о рейтинге"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Настройки Mac могут запрещать вам устанавливать приложения, не исходящие из Mac App Store."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "Узнайте, как их изменить."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "Показать мне всё для <mkt-selected-text></mkt-selected-text>"
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "Установлено!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "Запустите это приложение из вашего каталога <b>Приложения</b>."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "Запустите это приложение с вашего <b>Рабочего стола Windows</b> или из <b>Пуск &#9658; Все программы</b>."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "Запустите это приложение из вашего <b>dash</b>, <b>Панели выбора приложений</b> или <b>Меню приложений</b>."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "Редактировать ваш отзыв"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "Редактировать ваш отзыв"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "Написать отзыв"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "Войдите для написания отзыва"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "Прочитать все отзывы"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "{numReviews} отзыв"
+msgstr[1] "{numReviews} отзыва"
+msgstr[2] "{numReviews} отзывов"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -378,7 +460,7 @@ msgstr "Доступна премиум-версия"
 msgid "More Information"
 msgstr "Дополнительная информация"
 
-#: /templates/app/index.html:172
+#: /templates/app/index.html:172 /templates/games/index.html:48
 msgid "Developer"
 msgstr "Разработчик"
 
@@ -411,88 +493,6 @@ msgstr "Загрузка политики приватности..."
 msgid "Thank you for purchasing"
 msgstr "Спасибо за покупку"
 
-#. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:6
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr "Показать <mkt-selected-text></mkt-selected-text>"
-
-#: /templates/_includes/app_list_filters.html:36
-msgid "Display as"
-msgstr "Показать как"
-
-#: /templates/_includes/app_list_filters.html:37
-msgid "Toggle App Previews"
-msgstr "Сменить вид предпросмотра приложений"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "Вернуться к {app}"
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Рейтинг содержания"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Подробнее о рейтинге"
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "Показать мне всё для <mkt-selected-text></mkt-selected-text>"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Настройки Mac могут запрещать вам устанавливать приложения, не исходящие из Mac App Store."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "Узнайте, как их изменить."
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "Установлено!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "Запустите это приложение из вашего каталога <b>Приложения</b>."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "Запустите это приложение с вашего <b>Рабочего стола Windows</b> или из <b>Пуск &#9658; Все программы</b>."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "Запустите это приложение из вашего <b>dash</b>, <b>Панели выбора приложений</b> или <b>Меню приложений</b>."
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "Редактировать ваш отзыв"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "Редактировать ваш отзыв"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "Написать отзыв"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "Войдите для написания отзыва"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "Прочитать все отзывы"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "{numReviews} отзыв"
-msgstr[1] "{numReviews} отзыва"
-msgstr[2] "{numReviews} отзывов"
-
 #: /templates/_macros/app_tile.html:113
 msgid "Review"
 msgid_plural "Reviews"
@@ -508,13 +508,21 @@ msgstr "Ещё не проверено"
 msgid "&mdash; {attribution}"
 msgstr "&mdash; {attribution}"
 
-#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:394
+#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:395
 msgid "Free"
 msgstr "Бесплатно"
 
 #: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
-msgid "View all apps"
-msgstr "Просмотреть все приложения"
+msgid "View all"
+msgstr ""
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr ""
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr ""
 
 #: /templates/_macros/more_button.html:3
 msgid "Load more"
@@ -588,6 +596,38 @@ msgstr "Для доступа к Marketplace вам необходимо под�
 msgid "Try Again"
 msgstr "Попробовать снова"
 
+#: /templates/games/index.html:4
+msgid "PLAY GREAT DESKTOP GAMES"
+msgstr ""
+
+#: /templates/games/index.html:22
+msgid "<span>by</span> {author}"
+msgstr ""
+
+#: /templates/games/index.html:44
+msgid "Game"
+msgstr ""
+
+#: /templates/games/index.html:52
+msgid "Category"
+msgstr ""
+
+#: /templates/games/index.html:76
+msgid "Find more great games"
+msgstr ""
+
+#: /templates/games/listing.html:8
+msgid "Enjoy instant fun right on your desktop with our handpicked selection of app and browser-based games."
+msgstr ""
+
+#: /templates/games/listing.html:9
+msgid "Puzzle, action, adventure, and strategy titles&mdash;we're adding new games all the time so check back often."
+msgstr ""
+
+#: /templates/games/listing.html:12
+msgid "Learn more about why games and Mozilla go so well together."
+msgstr ""
+
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "Редактировать отзыв"
@@ -652,6 +692,10 @@ msgstr "Неуместное сообщение об ошибке или зап�
 msgid "This app has no reviews."
 msgstr "У приложения нет отзывов."
 
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "Отзыв о приложении"
+
 #: /templates/website/index.html:34
 msgid "Explore more in {category_one} and {category_two}."
 msgstr "Ещё больше из {category_one} и {category_two}."
@@ -667,10 +711,6 @@ msgstr "Что-то не так или что-то устарело в этом 
 #: /templates/website/index.html:49 /templates/website/issue.html:14
 msgid "Report an issue"
 msgstr "Сообщить о проблеме"
-
-#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "Отзыв о приложении"
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
@@ -688,56 +728,64 @@ msgstr "Опишите проблему здесь. Пожалуйста, буд
 msgid "Report an Issue"
 msgstr "Сообщить о проблеме"
 
-#: /media/js/buttons.js:80 /media/js/buttons.js:152 /media/js/payments.js:134
+#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
 msgid "Payment cancelled."
 msgstr "Платёж отменён."
 
-#: /media/js/buttons.js:116
+#: /media/js/buttons.js:117
 msgid "Purchasing"
 msgstr "Покупка"
 
-#: /media/js/buttons.js:130 /media/js/buttons.js:369 /media/js/buttons.js:418 /media/js/buttons.js:431 /media/js/buttons.js:441
+#: /media/js/buttons.js:131 /media/js/buttons.js:370 /media/js/buttons.js:419 /media/js/buttons.js:446 /media/js/buttons.js:457
 msgid "Install"
 msgstr "Установить"
 
-#: /media/js/buttons.js:191 /media/js/installer_direct.js:178
+#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr "К сожалению, при получении данных этого приложения  у нас возникли проблемы. Пожалуйста, повторите попытку позже."
 
 #. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:236
+#: /media/js/buttons.js:237
 msgid "Install failed. Please try again later."
 msgstr "Установка не удалась. Пожалуйста, повторите попытку позже."
 
-#: /media/js/buttons.js:320 /media/js/buttons.js:418
+#: /media/js/buttons.js:321 /media/js/buttons.js:419
 msgid "Installed"
 msgstr "Установлено"
 
-#: /media/js/buttons.js:394
+#: /media/js/buttons.js:395
 msgid "free"
 msgstr "бесплатно"
 
-#: /media/js/buttons.js:399
+#: /media/js/buttons.js:400
 msgid "Unavailable"
 msgstr "Недоступно"
 
-#: /media/js/buttons.js:423
+#: /media/js/buttons.js:425 /media/js/buttons.js:432
+msgid "Play now!"
+msgstr ""
+
+#: /media/js/buttons.js:427
 msgid "Open website"
 msgstr "Открыть веб-сайт"
 
-#: /media/js/buttons.js:427
+#: /media/js/buttons.js:434
 msgid "Open app"
 msgstr "Открыть приложение"
 
-#: /media/js/buttons.js:429
+#: /media/js/buttons.js:438 /media/js/buttons.js:444
+msgid "Install now!"
+msgstr ""
+
+#: /media/js/buttons.js:440
 msgid "Install for free"
 msgstr ""
 
-#: /media/js/buttons.js:433
+#: /media/js/buttons.js:449
 msgid "Install for {price}"
 msgstr "Установить — {price}"
 
-#: /media/js/buttons.js:439
+#: /media/js/buttons.js:455
 msgid "Open"
 msgstr "Открыть"
 
@@ -765,7 +813,7 @@ msgstr "Firefox OS"
 msgid "My Device"
 msgstr "Моё устройство"
 
-#: /media/js/categories.js:6
+#: /media/js/categories.js:6 /media/js/views/games/listing.js:10
 msgid "Games"
 msgstr "Игры"
 
@@ -865,38 +913,13 @@ msgstr "Утилиты"
 msgid "Weather"
 msgstr "Погода"
 
-#. Chess game desktop promo (bug 1175381).
-#: /media/js/desktop_promo.js:20
-msgid "Play 45 creative variations of chess."
-msgstr "Сыграйте в 45 креативных вариантов шахмат."
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "недоступно в вашем регионе"
 
-#: /media/js/desktop_promo.js:26
-msgid "Manage projects easily with Basecamp."
-msgstr "Легко управляйте проектами с помощью Basecamp."
-
-#: /media/js/desktop_promo.js:33
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "Приложения для продуктивности"
-
-#: /media/js/desktop_promo.js:40
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "Приложения для игр и развлечений"
-
-#: /media/js/desktop_promo.js:46
-msgid "Play GoldNuggets now!"
-msgstr "Поиграйте в GoldNuggets прямо сейчас!"
-
-#: /media/js/content_filter.js:20
-msgid "all content"
-msgstr "всё содержимое"
-
-#: /media/js/content_filter.js:21
-msgid "apps"
-msgstr "приложения"
-
-#: /media/js/content_filter.js:22
-msgid "websites"
-msgstr "веб-сайты"
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "недоступно для вашей платформы"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
@@ -939,9 +962,38 @@ msgstr "Для подростков 17+"
 msgid "Adults Only 18+"
 msgstr "Только для взрослых 18+"
 
-#: /media/js/helpers_local.js:113
-msgid "works offline"
-msgstr "работает без Интернета"
+#: /media/js/content_filter.js:20
+msgid "all content"
+msgstr "всё содержимое"
+
+#: /media/js/content_filter.js:21
+msgid "apps"
+msgstr "приложения"
+
+#: /media/js/content_filter.js:22
+msgid "websites"
+msgstr "веб-сайты"
+
+#. Chess game desktop promo (bug 1175381).
+#: /media/js/desktop_promo.js:20
+msgid "Play 45 creative variations of chess."
+msgstr "Сыграйте в 45 креативных вариантов шахмат."
+
+#: /media/js/desktop_promo.js:26
+msgid "Manage projects easily with Basecamp."
+msgstr "Легко управляйте проектами с помощью Basecamp."
+
+#: /media/js/desktop_promo.js:33
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "Приложения для продуктивности"
+
+#: /media/js/desktop_promo.js:40
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "Приложения для игр и развлечений"
+
+#: /media/js/desktop_promo.js:46
+msgid "Play GoldNuggets now!"
+msgstr "Поиграйте в GoldNuggets прямо сейчас!"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1321,13 +1373,29 @@ msgstr[0] "Работа и бизнес"
 msgstr[1] "Работа и бизнес"
 msgstr[2] "Работа и бизнес"
 
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr "недоступно в вашем регионе"
+#: /media/js/feed_websites.js:61
+msgid "{current} of {count}"
+msgstr ""
 
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr "недоступно для вашей платформы"
+#: /media/js/helpers_local.js:124
+msgid "works offline"
+msgstr "работает без Интернета"
+
+#: /media/js/helpers_local.js:144
+msgid "Adventure Game"
+msgstr ""
+
+#: /media/js/helpers_local.js:145
+msgid "Action Game"
+msgstr ""
+
+#: /media/js/helpers_local.js:146
+msgid "Puzzle Game"
+msgstr ""
+
+#: /media/js/helpers_local.js:147
+msgid "Strategy Game"
+msgstr ""
 
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
@@ -1358,83 +1426,6 @@ msgstr[0] "{n} звезда"
 msgstr[1] "{n} звезды"
 msgstr[2] "{n} звёзд"
 
-#: /media/js/settings_app.js:94
-msgid "English"
-msgstr "Английский"
-
-#: /media/js/settings_app.js:95
-msgid "French"
-msgstr "Французский"
-
-#: /media/js/settings_app.js:96
-msgid "German"
-msgstr "Немецкий"
-
-#: /media/js/settings_app.js:97
-msgid "Hungarian"
-msgstr "Венгерский"
-
-#: /media/js/settings_app.js:98
-msgid "Indonesian"
-msgstr "Индонезийский"
-
-#: /media/js/settings_app.js:99
-msgid "Polish"
-msgstr "Польский"
-
-#: /media/js/settings_app.js:100
-msgid "Portuguese"
-msgstr "Португальский"
-
-#: /media/js/settings_app.js:101
-msgid "Russian"
-msgstr "Русский"
-
-#: /media/js/settings_app.js:102
-msgid "Spanish"
-msgstr "Испанский"
-
-#: /media/js/settings_app.js:114
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "К сожалению, вы не подключены к сети. Пожалуйста, повторите попытку позже."
-
-#: /media/js/update_banner.js:24
-msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr "В следующий раз, когда вы запустите приложение Firefox Marketplace, вы увидите обновлённую версию!"
-
-#: /media/js/views/app.js:16 /media/js/views/app.js:23 /media/js/views/app.js:24 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/feed_landing.js:15 /media/js/reviews.js:151
-#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
-msgid "Loading..."
-msgstr "Загрузка..."
-
-#: /media/js/views/app.js:17
-msgid "App Detail"
-msgstr "Сведения о приложении"
-
-#: /media/js/views/langpacks.js:29
-msgid "Language Packs"
-msgstr "Пакеты локализаций"
-
-#: /media/js/views/langpacks.js:41
-msgid "Firefox OS {version}"
-msgstr "Firefox OS {version}"
-
-#: /media/js/views/feed_landing.js:16
-msgid "Collection Detail"
-msgstr "Сведения о подборке"
-
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "Отзыв отправлен. Спасибо!"
-
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "При отправке вашего отзыва возникла проблема. Подождите и попробуйте снова."
-
-#: /media/js/views/newsletter_signup.js:11
-msgid "Newsletter Signup"
-msgstr "Подписка на новостную рассылку"
-
 #. The report is an abuse report for reviews.
 #: /media/js/reviews.js:35
 msgid "Flagging review..."
@@ -1460,6 +1451,11 @@ msgstr "Написать отзыв"
 msgid "Sorry, there was a problem deleting the review"
 msgstr "Извините, при удалении отзыва возникла проблема"
 
+#: /media/js/reviews.js:151 /media/js/views/app.js:16 /media/js/views/app.js:23 /media/js/views/app.js:24 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/feed_landing.js:15
+#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
+msgid "Loading..."
+msgstr "Загрузка..."
+
 #: /media/js/reviews.js:254
 msgid "Your review was successfully posted. Thanks!"
 msgstr "Ваш отзыв добавлен. Спасибо!"
@@ -1476,6 +1472,86 @@ msgstr "Отзыв успешно отредактирован"
 msgid "Sorry, there was an issue editing your review. Please try again later"
 msgstr "К сожалению, при редактировании отзыва возникла проблема. Пожалуйста, повторите попытку позже."
 
+#: /media/js/settings_app.js:95
+msgid "English"
+msgstr "Английский"
+
+#: /media/js/settings_app.js:96
+msgid "French"
+msgstr "Французский"
+
+#: /media/js/settings_app.js:97
+msgid "German"
+msgstr "Немецкий"
+
+#: /media/js/settings_app.js:98
+msgid "Hungarian"
+msgstr "Венгерский"
+
+#: /media/js/settings_app.js:99
+msgid "Indonesian"
+msgstr "Индонезийский"
+
+#: /media/js/settings_app.js:100
+msgid "Polish"
+msgstr "Польский"
+
+#: /media/js/settings_app.js:101
+msgid "Portuguese"
+msgstr "Португальский"
+
+#: /media/js/settings_app.js:102
+msgid "Russian"
+msgstr "Русский"
+
+#: /media/js/settings_app.js:103
+msgid "Spanish"
+msgstr "Испанский"
+
+#: /media/js/settings_app.js:115
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "К сожалению, вы не подключены к сети. Пожалуйста, повторите попытку позже."
+
+#: /media/js/update_banner.js:24
+msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
+msgstr "В следующий раз, когда вы запустите приложение Firefox Marketplace, вы увидите обновлённую версию!"
+
+#: /media/js/views/app.js:17
+msgid "App Detail"
+msgstr "Сведения о приложении"
+
+#: /media/js/views/feed_landing.js:16
+msgid "Collection Detail"
+msgstr "Сведения о подборке"
+
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "Отзыв отправлен. Спасибо!"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "При отправке вашего отзыва возникла проблема. Подождите и попробуйте снова."
+
+#: /media/js/views/langpacks.js:29
+msgid "Language Packs"
+msgstr "Пакеты локализаций"
+
+#: /media/js/views/langpacks.js:41
+msgid "Firefox OS {version}"
+msgstr "Firefox OS {version}"
+
+#: /media/js/views/newsletter_signup.js:11
+msgid "Newsletter Signup"
+msgstr "Подписка на новостную рассылку"
+
+#: /media/js/views/search.js:164
+msgid "Search Results"
+msgstr "Результаты поиска"
+
+#: /media/js/views/search.js:176
+msgid "Developer Listing"
+msgstr "Список разработчиков"
+
 #: /media/js/views/settings.js:40
 msgid "Your settings have been successfully saved"
 msgstr "Ваши настройки были успешно сохранены"
@@ -1484,6 +1560,10 @@ msgstr "Ваши настройки были успешно сохранены"
 msgid "Settings could not be saved"
 msgstr "Не удалось сохранить параметры"
 
+#: /media/js/views/website.js:11
+msgid "Website Detail"
+msgstr "Сведения о веб-сайте"
+
 #: /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
 msgstr "Сообщение отправлено. Спасибо!"
@@ -1491,10 +1571,6 @@ msgstr "Сообщение отправлено. Спасибо!"
 #: /media/js/views/app/abuse.js:24 /media/js/views/website/issue.js:22
 msgid "There was an issue submitting your report. Please try again later."
 msgstr "При отправке сообщения возникла проблема. Пожалуйста, повторите попытку позже."
-
-#: /media/js/views/website.js:11
-msgid "Website Detail"
-msgstr "Сведения о веб-сайте"
 
 #: /media/js/views/app/ratings.js:12
 msgid "Read All Reviews"
@@ -1508,10 +1584,22 @@ msgstr "Пожалуйста, войдите, чтобы просмотреть 
 msgid "Receipt"
 msgstr "Чек"
 
-#: /media/js/views/search.js:164
-msgid "Search Results"
-msgstr "Результаты поиска"
+#: /media/js/views/games/listing.js:18
+msgid "All games"
+msgstr ""
 
-#: /media/js/views/search.js:176
-msgid "Developer Listing"
-msgstr "Список разработчиков"
+#: /media/js/views/games/listing.js:19
+msgid "Action"
+msgstr ""
+
+#: /media/js/views/games/listing.js:20
+msgid "Puzzle"
+msgstr ""
+
+#: /media/js/views/games/listing.js:21
+msgid "Strategy"
+msgstr ""
+
+#: /media/js/views/games/listing.js:22
+msgid "Adventure"
+msgstr ""

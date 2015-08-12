@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29T20:04:48.073Z\n"
+"POT-Creation-Date: 2015-08-12T15:27:57.013Z\n"
 "PO-Revision-Date: 2015-04-29 09:57+0000\n"
 "Last-Translator: Hyeonseok <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1430301441.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/search.html:8 /templates/purchases.html:7
+#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "확장"
 
@@ -143,11 +143,11 @@ msgstr "검색"
 msgid "Toggle Settings Menu"
 msgstr "설정 메뉴"
 
-#: /templates/header.html:56 /templates/nav.html:30 /templates/settings.html:43 /templates/purchases.html:43
+#: /templates/header.html:56 /templates/nav.html:30 /templates/purchases.html:43 /templates/settings.html:43
 msgid "Register"
 msgstr "등록"
 
-#: /templates/header.html:58 /templates/nav.html:32 /templates/settings.html:44 /templates/purchases.html:44
+#: /templates/header.html:58 /templates/nav.html:32 /templates/purchases.html:44 /templates/settings.html:44
 msgid "Sign In"
 msgstr "로그인"
 
@@ -167,7 +167,7 @@ msgstr "내 앱"
 msgid "Sign Out"
 msgstr "로그아웃"
 
-#: /templates/homepage.html:7
+#: /templates/homepage.html:8
 msgid "More to Explore"
 msgstr "더 살펴볼만 한 앱"
 
@@ -214,6 +214,18 @@ msgstr "가입해주셔서 감사합니다!"
 #: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "mozilla@e.mozilla.org에서 메일을 발송할 것입니다. 받은 편지함을 살펴보세요. 받지 못했다면 스팸 편지함을 확인해 보세요."
+
+#: /templates/purchases.html:42
+msgid "You must be signed in to view your apps."
+msgstr "내 앱을 보기 위해서는 로그인을 해야 합니다."
+
+#: /templates/purchases.html:31
+msgid "You have no apps"
+msgstr "앱이 없음"
+
+#: /templates/purchases.html:35 /templates/errors/fragment.html:1 /media/js/views/app.js:46
+msgid "Oh no!"
+msgstr "오, 이런!"
 
 #: /templates/search.html:7
 msgid "<b>{n}</b> Result"
@@ -273,18 +285,6 @@ msgstr "참여"
 msgid "Region"
 msgstr "지역"
 
-#: /templates/purchases.html:42
-msgid "You must be signed in to view your apps."
-msgstr "내 앱을 보기 위해서는 로그인을 해야 합니다."
-
-#: /templates/purchases.html:31
-msgid "You have no apps"
-msgstr "앱이 없음"
-
-#: /templates/purchases.html:35 /templates/errors/fragment.html:1 /media/js/views/app.js:46
-msgid "Oh no!"
-msgstr "오, 이런!"
-
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "앱 통계"
@@ -296,6 +296,86 @@ msgstr "앱 사용 통계"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "충분한 통계 자료가 없습니다."
+
+#. <mkt-selected-text> will be a noun like "apps" or "sites".
+#: /templates/_includes/app_list_filters.html:6
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/app_list_filters.html:36
+msgid "Display as"
+msgstr "보기 설정"
+
+#: /templates/_includes/app_list_filters.html:37
+msgid "Toggle App Previews"
+msgstr "앱 프리뷰"
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr "{app} 페이지로 돌아가기"
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "콘텐츠 등급"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "등급 정보"
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr "Mac이 Mac App Store 이외의 장소에 있는 앱은 설치가 안되도록 설정되어 있습니다."
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr "변경 방법을 살펴보세요."
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr "<mkt-selected-text></mkt-selected-text> 앱 모두 보기"
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr "설치되었습니다!"
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr "<b>어플리케이션</b> 디렉토리에서 앱을 실행하세요."
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr "<b>윈도우즈 데스크탑</b>이나 <b>시작 &#9658; 모든 프로그램</b>에서 앱을 실행하세요."
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr "<b>대시</b>나 <b>어플리케이션 피커</b>, <b>어플리케이션 메뉴</b>에서 앱을 실행하세요."
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr "리뷰 수정"
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr "리뷰 수정"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr "리뷰 작성"
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr "리뷰 작성을 위해서 로그인"
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr "전체 리뷰 보기"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "{numReviews} 리뷰"
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -374,7 +454,7 @@ msgstr "프리미엄 버전 있음"
 msgid "More Information"
 msgstr "더 많은 정보"
 
-#: /templates/app/index.html:172
+#: /templates/app/index.html:172 /templates/games/index.html:48
 msgid "Developer"
 msgstr "개발자"
 
@@ -407,86 +487,6 @@ msgstr "개인 정보 보호 정책 로딩중..."
 msgid "Thank you for purchasing"
 msgstr "구매해 주셔서 감사합니다."
 
-#. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:6
-msgid "Show <mkt-selected-text></mkt-selected-text>"
-msgstr ""
-
-#: /templates/_includes/app_list_filters.html:36
-msgid "Display as"
-msgstr "보기 설정"
-
-#: /templates/_includes/app_list_filters.html:37
-msgid "Toggle App Previews"
-msgstr "앱 프리뷰"
-
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
-msgstr "{app} 페이지로 돌아가기"
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "콘텐츠 등급"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "등급 정보"
-
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
-msgstr "<mkt-selected-text></mkt-selected-text> 앱 모두 보기"
-
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
-msgstr "Mac이 Mac App Store 이외의 장소에 있는 앱은 설치가 안되도록 설정되어 있습니다."
-
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
-msgstr "변경 방법을 살펴보세요."
-
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
-msgstr "설치되었습니다!"
-
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
-msgstr "<b>어플리케이션</b> 디렉토리에서 앱을 실행하세요."
-
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
-msgstr "<b>윈도우즈 데스크탑</b>이나 <b>시작 &#9658; 모든 프로그램</b>에서 앱을 실행하세요."
-
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
-msgstr "<b>대시</b>나 <b>어플리케이션 피커</b>, <b>어플리케이션 메뉴</b>에서 앱을 실행하세요."
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr "리뷰 수정"
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr "리뷰 수정"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr "리뷰 작성"
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr "리뷰 작성을 위해서 로그인"
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr "전체 리뷰 보기"
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "{numReviews} 리뷰"
-
 #: /templates/_macros/app_tile.html:113
 msgid "Review"
 msgid_plural "Reviews"
@@ -500,13 +500,21 @@ msgstr "검토 안됨"
 msgid "&mdash; {attribution}"
 msgstr "&mdash; {attribution}"
 
-#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:394
+#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:395
 msgid "Free"
 msgstr "무료"
 
 #: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
-msgid "View all apps"
-msgstr "모든 앱 보기"
+msgid "View all"
+msgstr ""
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr ""
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr ""
 
 #: /templates/_macros/more_button.html:3
 msgid "Load more"
@@ -580,6 +588,38 @@ msgstr "Marketplace 사용을 위해서 인터넷 연결이 필요합니다."
 msgid "Try Again"
 msgstr "다시 시도"
 
+#: /templates/games/index.html:4
+msgid "PLAY GREAT DESKTOP GAMES"
+msgstr ""
+
+#: /templates/games/index.html:22
+msgid "<span>by</span> {author}"
+msgstr ""
+
+#: /templates/games/index.html:44
+msgid "Game"
+msgstr ""
+
+#: /templates/games/index.html:52
+msgid "Category"
+msgstr ""
+
+#: /templates/games/index.html:76
+msgid "Find more great games"
+msgstr ""
+
+#: /templates/games/listing.html:8
+msgid "Enjoy instant fun right on your desktop with our handpicked selection of app and browser-based games."
+msgstr ""
+
+#: /templates/games/listing.html:9
+msgid "Puzzle, action, adventure, and strategy titles&mdash;we're adding new games all the time so check back often."
+msgstr ""
+
+#: /templates/games/listing.html:12
+msgid "Learn more about why games and Mozilla go so well together."
+msgstr ""
+
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "사용자 평가 수정하기"
@@ -642,6 +682,10 @@ msgstr "잘 못 올린 버그이거나 지원 요청"
 msgid "This app has no reviews."
 msgstr "리뷰가 없습니다."
 
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "앱 사용자 평가"
+
 #: /templates/website/index.html:34
 msgid "Explore more in {category_one} and {category_two}."
 msgstr ""
@@ -657,10 +701,6 @@ msgstr ""
 #: /templates/website/index.html:49 /templates/website/issue.html:14
 msgid "Report an issue"
 msgstr ""
-
-#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "앱 사용자 평가"
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
@@ -678,56 +718,64 @@ msgstr ""
 msgid "Report an Issue"
 msgstr ""
 
-#: /media/js/buttons.js:80 /media/js/buttons.js:152 /media/js/payments.js:134
+#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
 msgid "Payment cancelled."
 msgstr "지불이 취소되었습니다."
 
-#: /media/js/buttons.js:116
+#: /media/js/buttons.js:117
 msgid "Purchasing"
 msgstr "구매"
 
-#: /media/js/buttons.js:130 /media/js/buttons.js:369 /media/js/buttons.js:418 /media/js/buttons.js:431 /media/js/buttons.js:441
+#: /media/js/buttons.js:131 /media/js/buttons.js:370 /media/js/buttons.js:419 /media/js/buttons.js:446 /media/js/buttons.js:457
 msgid "Install"
 msgstr "설치"
 
-#: /media/js/buttons.js:191 /media/js/installer_direct.js:178
+#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr "앱의 데이터를 가져오는데 문제가 발생했습니다. 잠시 후에 다시 시도해 주세요."
 
 #. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:236
+#: /media/js/buttons.js:237
 msgid "Install failed. Please try again later."
 msgstr "모든 플랫폼"
 
-#: /media/js/buttons.js:320 /media/js/buttons.js:418
+#: /media/js/buttons.js:321 /media/js/buttons.js:419
 msgid "Installed"
 msgstr "설치됨"
 
-#: /media/js/buttons.js:394
+#: /media/js/buttons.js:395
 msgid "free"
 msgstr ""
 
-#: /media/js/buttons.js:399
+#: /media/js/buttons.js:400
 msgid "Unavailable"
 msgstr "유효하지 않음"
 
-#: /media/js/buttons.js:423
-msgid "Open website"
+#: /media/js/buttons.js:425 /media/js/buttons.js:432
+msgid "Play now!"
 msgstr ""
 
 #: /media/js/buttons.js:427
+msgid "Open website"
+msgstr ""
+
+#: /media/js/buttons.js:434
 msgid "Open app"
 msgstr ""
 
-#: /media/js/buttons.js:429
+#: /media/js/buttons.js:438 /media/js/buttons.js:444
+msgid "Install now!"
+msgstr ""
+
+#: /media/js/buttons.js:440
 msgid "Install for free"
 msgstr ""
 
-#: /media/js/buttons.js:433
+#: /media/js/buttons.js:449
 msgid "Install for {price}"
 msgstr ""
 
-#: /media/js/buttons.js:439
+#: /media/js/buttons.js:455
 msgid "Open"
 msgstr ""
 
@@ -755,7 +803,7 @@ msgstr "Firefox OS"
 msgid "My Device"
 msgstr "내 기기"
 
-#: /media/js/categories.js:6
+#: /media/js/categories.js:6 /media/js/views/games/listing.js:10
 msgid "Games"
 msgstr "게임"
 
@@ -855,38 +903,13 @@ msgstr "유틸리티"
 msgid "Weather"
 msgstr ""
 
-#. Chess game desktop promo (bug 1175381).
-#: /media/js/desktop_promo.js:20
-msgid "Play 45 creative variations of chess."
-msgstr ""
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "현재 거주 지역에서는 사용할 수 없음"
 
-#: /media/js/desktop_promo.js:26
-msgid "Manage projects easily with Basecamp."
-msgstr ""
-
-#: /media/js/desktop_promo.js:33
-msgid "Productivity Apps—Desktop Essentials"
-msgstr "생산성 앱—데스크탑 필수 앱"
-
-#: /media/js/desktop_promo.js:40
-msgid "Games & Entertainment Apps—Desktop Essentials"
-msgstr "게임 & 엔터테인 앱—데스크탑 필수 앱"
-
-#: /media/js/desktop_promo.js:46
-msgid "Play GoldNuggets now!"
-msgstr ""
-
-#: /media/js/content_filter.js:20
-msgid "all content"
-msgstr ""
-
-#: /media/js/content_filter.js:21
-msgid "apps"
-msgstr ""
-
-#: /media/js/content_filter.js:22
-msgid "websites"
-msgstr ""
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "현재 플랫폼에서는 사용할 수 없음"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:103
@@ -929,8 +952,37 @@ msgstr "17세 이상+"
 msgid "Adults Only 18+"
 msgstr "18세 이상 성인+"
 
-#: /media/js/helpers_local.js:113
-msgid "works offline"
+#: /media/js/content_filter.js:20
+msgid "all content"
+msgstr ""
+
+#: /media/js/content_filter.js:21
+msgid "apps"
+msgstr ""
+
+#: /media/js/content_filter.js:22
+msgid "websites"
+msgstr ""
+
+#. Chess game desktop promo (bug 1175381).
+#: /media/js/desktop_promo.js:20
+msgid "Play 45 creative variations of chess."
+msgstr ""
+
+#: /media/js/desktop_promo.js:26
+msgid "Manage projects easily with Basecamp."
+msgstr ""
+
+#: /media/js/desktop_promo.js:33
+msgid "Productivity Apps—Desktop Essentials"
+msgstr "생산성 앱—데스크탑 필수 앱"
+
+#: /media/js/desktop_promo.js:40
+msgid "Games & Entertainment Apps—Desktop Essentials"
+msgstr "게임 & 엔터테인 앱—데스크탑 필수 앱"
+
+#: /media/js/desktop_promo.js:46
+msgid "Play GoldNuggets now!"
 msgstr ""
 
 #: /media/js/edbrands.js:33
@@ -1203,13 +1255,29 @@ msgid "Work & Business App"
 msgid_plural "Work & Business Apps"
 msgstr[0] "일 & 사업 앱"
 
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr "현재 거주 지역에서는 사용할 수 없음"
+#: /media/js/feed_websites.js:61
+msgid "{current} of {count}"
+msgstr ""
 
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr "현재 플랫폼에서는 사용할 수 없음"
+#: /media/js/helpers_local.js:124
+msgid "works offline"
+msgstr ""
+
+#: /media/js/helpers_local.js:144
+msgid "Adventure Game"
+msgstr ""
+
+#: /media/js/helpers_local.js:145
+msgid "Action Game"
+msgstr ""
+
+#: /media/js/helpers_local.js:146
+msgid "Puzzle Game"
+msgstr ""
+
+#: /media/js/helpers_local.js:147
+msgid "Strategy Game"
+msgstr ""
 
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
@@ -1238,83 +1306,6 @@ msgid "{n} star"
 msgid_plural "{n} stars"
 msgstr[0] "{n}점"
 
-#: /media/js/settings_app.js:94
-msgid "English"
-msgstr "영어"
-
-#: /media/js/settings_app.js:95
-msgid "French"
-msgstr "불어"
-
-#: /media/js/settings_app.js:96
-msgid "German"
-msgstr "독일어"
-
-#: /media/js/settings_app.js:97
-msgid "Hungarian"
-msgstr "헝가리어"
-
-#: /media/js/settings_app.js:98
-msgid "Indonesian"
-msgstr "인도네시아어"
-
-#: /media/js/settings_app.js:99
-msgid "Polish"
-msgstr "폴란드어"
-
-#: /media/js/settings_app.js:100
-msgid "Portuguese"
-msgstr "포르투갈어"
-
-#: /media/js/settings_app.js:101
-msgid "Russian"
-msgstr "러시아어"
-
-#: /media/js/settings_app.js:102
-msgid "Spanish"
-msgstr "스페인어"
-
-#: /media/js/settings_app.js:114
-msgid "Sorry, you are currently offline. Please try again later."
-msgstr "죄송합니다. 오프라인 상태이니 나중에 다시 시도해 주십시오."
-
-#: /media/js/update_banner.js:24
-msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
-msgstr "다음에 Firefox Marketplace 앱을 실행할때에 업데이트된 버전이 실행됩니다!"
-
-#: /media/js/views/app.js:16 /media/js/views/app.js:23 /media/js/views/app.js:24 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/feed_landing.js:15 /media/js/reviews.js:151
-#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
-msgid "Loading..."
-msgstr "로딩중"
-
-#: /media/js/views/app.js:17
-msgid "App Detail"
-msgstr ""
-
-#: /media/js/views/langpacks.js:29
-msgid "Language Packs"
-msgstr "언어팩"
-
-#: /media/js/views/langpacks.js:41
-msgid "Firefox OS {version}"
-msgstr "Firefox OS {version}"
-
-#: /media/js/views/feed_landing.js:16
-msgid "Collection Detail"
-msgstr ""
-
-#: /media/js/views/feedback.js:23
-msgid "Feedback submitted. Thanks!"
-msgstr "사용자 의견이 전성되었습니다. 감사합니다!"
-
-#: /media/js/views/feedback.js:27
-msgid "There was a problem submitting your feedback. Try again soon."
-msgstr "사용자 의견을 보내는 중에 오류가 발생하였씁니다. 나중에 다시 시도해 주세요."
-
-#: /media/js/views/newsletter_signup.js:11
-msgid "Newsletter Signup"
-msgstr ""
-
 #. The report is an abuse report for reviews.
 #: /media/js/reviews.js:35
 msgid "Flagging review..."
@@ -1340,6 +1331,11 @@ msgstr "리뷰 작성"
 msgid "Sorry, there was a problem deleting the review"
 msgstr "리뷰 삭제 중에 오류가 발생하였습니다."
 
+#: /media/js/reviews.js:151 /media/js/views/app.js:16 /media/js/views/app.js:23 /media/js/views/app.js:24 /media/js/views/app.js:29 /media/js/views/app.js:30 /media/js/views/feed_landing.js:15
+#: /media/js/views/website.js:10 /media/js/views/website.js:16 /media/js/views/website.js:17 /media/js/views/website.js:18
+msgid "Loading..."
+msgstr "로딩중"
+
 #: /media/js/reviews.js:254
 msgid "Your review was successfully posted. Thanks!"
 msgstr "리뷰가 등록되었습니다. 감사합니다!"
@@ -1356,6 +1352,86 @@ msgstr "리뷰가 수정되었습니다."
 msgid "Sorry, there was an issue editing your review. Please try again later"
 msgstr "리뷰를 수정하는 중에 오류가 발생하였습니다. 잠시 후에 다시 시도해 주세요."
 
+#: /media/js/settings_app.js:95
+msgid "English"
+msgstr "영어"
+
+#: /media/js/settings_app.js:96
+msgid "French"
+msgstr "불어"
+
+#: /media/js/settings_app.js:97
+msgid "German"
+msgstr "독일어"
+
+#: /media/js/settings_app.js:98
+msgid "Hungarian"
+msgstr "헝가리어"
+
+#: /media/js/settings_app.js:99
+msgid "Indonesian"
+msgstr "인도네시아어"
+
+#: /media/js/settings_app.js:100
+msgid "Polish"
+msgstr "폴란드어"
+
+#: /media/js/settings_app.js:101
+msgid "Portuguese"
+msgstr "포르투갈어"
+
+#: /media/js/settings_app.js:102
+msgid "Russian"
+msgstr "러시아어"
+
+#: /media/js/settings_app.js:103
+msgid "Spanish"
+msgstr "스페인어"
+
+#: /media/js/settings_app.js:115
+msgid "Sorry, you are currently offline. Please try again later."
+msgstr "죄송합니다. 오프라인 상태이니 나중에 다시 시도해 주십시오."
+
+#: /media/js/update_banner.js:24
+msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
+msgstr "다음에 Firefox Marketplace 앱을 실행할때에 업데이트된 버전이 실행됩니다!"
+
+#: /media/js/views/app.js:17
+msgid "App Detail"
+msgstr ""
+
+#: /media/js/views/feed_landing.js:16
+msgid "Collection Detail"
+msgstr ""
+
+#: /media/js/views/feedback.js:23
+msgid "Feedback submitted. Thanks!"
+msgstr "사용자 의견이 전성되었습니다. 감사합니다!"
+
+#: /media/js/views/feedback.js:27
+msgid "There was a problem submitting your feedback. Try again soon."
+msgstr "사용자 의견을 보내는 중에 오류가 발생하였씁니다. 나중에 다시 시도해 주세요."
+
+#: /media/js/views/langpacks.js:29
+msgid "Language Packs"
+msgstr "언어팩"
+
+#: /media/js/views/langpacks.js:41
+msgid "Firefox OS {version}"
+msgstr "Firefox OS {version}"
+
+#: /media/js/views/newsletter_signup.js:11
+msgid "Newsletter Signup"
+msgstr ""
+
+#: /media/js/views/search.js:164
+msgid "Search Results"
+msgstr "검색 결과"
+
+#: /media/js/views/search.js:176
+msgid "Developer Listing"
+msgstr ""
+
 #: /media/js/views/settings.js:40
 msgid "Your settings have been successfully saved"
 msgstr "설정이 저장되었습니다."
@@ -1364,16 +1440,16 @@ msgstr "설정이 저장되었습니다."
 msgid "Settings could not be saved"
 msgstr "설정이 저장되지 않음"
 
+#: /media/js/views/website.js:11
+msgid "Website Detail"
+msgstr ""
+
 #: /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
 msgstr ""
 
 #: /media/js/views/app/abuse.js:24 /media/js/views/website/issue.js:22
 msgid "There was an issue submitting your report. Please try again later."
-msgstr ""
-
-#: /media/js/views/website.js:11
-msgid "Website Detail"
 msgstr ""
 
 #: /media/js/views/app/ratings.js:12
@@ -1388,10 +1464,22 @@ msgstr "영수증을 보기 위해서 로그인 해 주세요"
 msgid "Receipt"
 msgstr "영수증"
 
-#: /media/js/views/search.js:164
-msgid "Search Results"
-msgstr "검색 결과"
+#: /media/js/views/games/listing.js:18
+msgid "All games"
+msgstr ""
 
-#: /media/js/views/search.js:176
-msgid "Developer Listing"
+#: /media/js/views/games/listing.js:19
+msgid "Action"
+msgstr ""
+
+#: /media/js/views/games/listing.js:20
+msgid "Puzzle"
+msgstr ""
+
+#: /media/js/views/games/listing.js:21
+msgid "Strategy"
+msgstr ""
+
+#: /media/js/views/games/listing.js:22
+msgid "Adventure"
 msgstr ""
