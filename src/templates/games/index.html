@@ -7,11 +7,12 @@
 {% endmacro %}
 
 
-{% macro game_tile(game) %}
+{% macro game_tile(game, isHome) %}
   <li class="game" data-no-transparent
       style="background-image: url({{ game.promo_imgs['640'] }})">
     <a href="{{ url(game.doc_type == 'webapp' and 'app' or 'website',
-                    [game.app_slug or game.slug]) }}">
+                    [game.app_slug or game.slug])
+                |urlparams(src=isHome and 'games-home' or 'games-listing') }}">
       <div class="game-gradient"></div>
       <h3 class="game-name">{{ game.name }}</h3>
       <div class="game-overlay">
@@ -35,7 +36,8 @@
 {% macro primary_game(game) %}
   <div class="games-home-primary">
     <a href="{{ url(game.doc_type == 'webapp' and 'app' or 'website',
-                    [game.app_slug or game.slug]) }}"
+                    [game.app_slug or game.slug])
+                |urlparams(src='games-home') }}"
        class="games-home-primary-main" data-no-transparent
        style="background-image: url({{ game.promo_imgs['1050'] }})">
       <div class="game-gradient"></div>
@@ -68,7 +70,7 @@
     <ul class="games-home-secondary-container">
       {% for game in this %}
         {% if loop.index0 != 0 %}
-          {{ game_tile(game) }}
+          {{ game_tile(game, isHome=True) }}
         {% endif %}
       {% endfor %}
     </ul>
