@@ -48,10 +48,12 @@
         <dt>{{ _('Game') }}</dt>
         <dd>{{ game.name }}</dd>
       </li>
-      <li class="games-home-primary-metadata">
-        <dt>{{ _('Developer') }}</dt>
-        <dd>{{ game.author }}</dd>
-      </li>
+      {% if game.author %}
+        <li class="games-home-primary-metadata">
+            <dt>{{ _('Developer') }}</dt>
+            <dd>{{ game.author }}</dd>
+        </li>
+      {% endif %}
       <li class="games-home-primary-metadata">
         <dt>{{ _('Category') }}</dt>
         <dd>{{ getGameCategory(game) }}</dd>
