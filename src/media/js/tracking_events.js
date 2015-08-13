@@ -378,7 +378,7 @@ define('tracking_events',
         );
     })
 
-    .on('click', '[data-content-type="website"] + .mkt-app-button', function() {
+    .on('click', '[data-content-type="website"] + .mkt-app-button, .mkt-website-link', function() {
         var root = this;
         sendEvent(
             'View Website',
