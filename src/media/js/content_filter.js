@@ -14,7 +14,8 @@ define('content_filter',
 
     var EXCLUDE_CONTENT_FILTER_ENDPOINTS = [
         // Don't do content filtering for these endpoints.
-        'feed', 'feed-app', 'feed-brand', 'feed-collection', 'feed-shelf'];
+        'feed', 'feed-app', 'feed-brand', 'feed-collection', 'feed-shelf',
+        'games-daily', 'games-listing'];
 
     var CONTENT_FILTER_CHOICES = [
         ['all', gettext('all content')],
