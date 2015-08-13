@@ -24,7 +24,7 @@
       {% endfor %}
     </ul>
 
-    {% defer (url=api('search')|urlparams(tag=currentGameTag),
+    {% defer (url=api('games-listing')|urlparams(tag=currentGameTag),
               pluck='objects', as=appOrWebsite) %}
       <ul class="games-listing">
         {% for game in this %}

@@ -11,7 +11,7 @@
   <li class="game" data-no-transparent
       style="background-image: url({{ game.promo_imgs['640'] }})">
     <a href="{{ url(game.doc_type == 'webapp' and 'app' or 'website',
-                    [game.app_slug or game.slug])
+                    [game.app_slug or game.id])
                 |urlparams(src=isHome and 'games-home' or 'games-listing') }}">
       <div class="game-gradient"></div>
       <h3 class="game-name">{{ game.name }}</h3>
@@ -48,10 +48,12 @@
         <dt>{{ _('Game') }}</dt>
         <dd>{{ game.name }}</dd>
       </li>
-      <li class="games-home-primary-metadata">
-        <dt>{{ _('Developer') }}</dt>
-        <dd>{{ game.author }}</dd>
-      </li>
+      {% if game.author %}
+        <li class="games-home-primary-metadata">
+            <dt>{{ _('Developer') }}</dt>
+            <dd>{{ game.author }}</dd>
+        </li>
+      {% endif %}
       <li class="games-home-primary-metadata">
         <dt>{{ _('Category') }}</dt>
         <dd>{{ getGameCategory(game) }}</dd>
