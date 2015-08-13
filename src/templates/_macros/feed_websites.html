@@ -12,7 +12,7 @@
             <button class="feed-item-website-tabs-tab">
               {{ deferred_icon(website.icons['64'], name) }}
             </button>
-            <a href="{{ website.url }}" class="feed-item-website-tabs-content mkt-website-link">
+            <a href="{{ website.url }}" class="feed-item-website-tabs-content mkt-website-link" data-product="{{ website|json }}">
               <h1>{{ name }}</h1>
               <p>{{ _('Visit this top site!') }}</p>
             </a>
@@ -31,7 +31,7 @@
         {% set website = apps.transform(website) %}
         {% set name = website.name|translate(website) %}
         <li>
-          <a class="mkt-tile mkt-website-link" data-slug="{{ website.slug }}" data-id="{{ website.id }}" href="{{ website.url }}" data-content-type="{{ website.contentType }}">
+          <a class="mkt-tile mkt-website-link" data-slug="{{ website.slug }}" data-id="{{ website.id }}" href="{{ website.url }}" data-content-type="{{ website.contentType }}" data-product="{{ website|json }}">
             <span class="mkt-app-heading">
               {{ deferred_icon(website.icons['64'], name) }}
               <span class="info mkt-tile-info">
