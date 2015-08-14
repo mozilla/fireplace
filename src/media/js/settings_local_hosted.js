@@ -13,6 +13,7 @@ define('settings_local',
         iframe_potatolytics_src: origin + '/potatolytics.html',
         potatolytics_enabled: false,
         tracking_enabled: true,
-        meowEnabled: true
+        meowEnabled: true,
+        gametimeEnabled: true
     };
 });
