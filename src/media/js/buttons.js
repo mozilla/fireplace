@@ -23,19 +23,24 @@ define('buttons',
         markBtnsAsUninstalled();
     });
 
-    function setInstallBtnState($button, text, cls) {
+    function setInstallBtnState($button, css_class) {
         // Sets install button state (its text and its classes, which
         // currently determines its click handler).
-        revertButton($button, text);
-        $button.addClass(cls);
+        revertButton($button);
+        $button.addClass(css_class);
     }
 
-    function revertButton($button, text) {
+    function revertButton($button) {
         // Revert button from a state of installing or a state of being
         // installed.
         $button.removeClass('purchasing installing error spinning');
         $button.find('em').text(getBtnText(getAppFromBtn($button),
                                            $button.data('isGame')));
+    }
+
+    function spinButton($button) {
+        $button.data('old-text', $button.find('em').text())
+               .addClass('spinning');
     }
 
     function getAppFromBtn($btn) {
@@ -114,7 +119,7 @@ define('buttons',
 
             // Save the old text of the button.
             $button.data('old-text', $button.find('em').text());
-            setInstallBtnState($button, gettext('Purchasing'), 'purchasing');
+            setInstallBtnState($button, 'purchasing');
 
             var purchaseOpts = {
                 // This will be undefined unless a window was created
@@ -128,7 +133,7 @@ define('buttons',
                 user.update_purchased(product.id);
 
                 // Update the button to say Install.
-                setInstallBtnState($button, gettext('Install'), 'purchased');
+                setInstallBtnState($button, 'purchased');
                 // Save the old text of the button.
                 $button.data('old-text', $button.find('em').text());
 
@@ -178,8 +183,7 @@ define('buttons',
             trackingEvents.trackAppInstallBegin($button);
 
             // Make the button a spinner.
-            $button.data('old-text', $button.find('em').text())
-                 .addClass('spinning');
+            spinButton($button);
 
             // Temporary timeout for hosted apps until we catch the appropriate
             // download error event for hosted apps (in iframe).
@@ -320,7 +324,7 @@ define('buttons',
         if (app.role == 'langpack') {
             $btn.attr('disabled', true).find('em').text(gettext('Installed'));
         } else {
-            setInstallBtnState($btn, app, 'launch install');
+            setInstallBtnState($btn, 'launch install');
         }
     }
 
@@ -367,7 +371,7 @@ define('buttons',
                 if (z.apps.indexOf($button.data('manifest_url')) === -1) {
                     // If it is no longer installed, revert button.
                     if ($button.hasClass('launch')) {
-                        revertButton($button, gettext('Install'));
+                        revertButton($button);
                     }
                     $button.removeClass('launch');
                 }
@@ -466,6 +470,8 @@ define('buttons',
         install: install,
         markBtnsAsInstalled: markBtnsAsInstalled,
         markBtnsAsUninstalled: markBtnsAsUninstalled,
+        revertButton: revertButton,
+        spinButton: spinButton,
         transformApp: transformApp
     };
 });
