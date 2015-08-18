@@ -16,7 +16,7 @@ $loadmore-desktop-width = 300px;
         margin: auto;
         padding: 0;
         position: relative;
-        width: $loadmore-desktop-width;
+        width: 100%;
 
         &:before {
             background: url('../img/icons/refresh-icon.svg');
@@ -77,5 +77,11 @@ $loadmore-desktop-width = 300px;
     [data-page-type~=homepage],
     [data-page-type~=app-list] {
         padding-bottom: 0;
+    }
+}
+
+@media $base-tablet {
+    .loadmore .button {
+        width: $loadmore-desktop-width;
     }
 }
