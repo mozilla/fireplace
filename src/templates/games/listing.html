@@ -1,3 +1,4 @@
+{% from '_macros/more_button.html' import more_button %}
 {% from "games/index.html" import game_title, game_tile %}
 
 
@@ -25,11 +26,15 @@
     </ul>
 
     {% defer (url=api('games-listing')|urlparams(tag=currentGameTag),
-              pluck='objects', as=appOrWebsite) %}
+              paginate='.games-listing', pluck='objects', as=appOrWebsite) %}
       <ul class="games-listing">
         {% for game in this %}
           {{ game_tile(game) }}
         {% endfor %}
+
+        {% if response.meta.next %}
+          {{ more_button(response.meta.next) }}
+        {% endif %}
       </ul>
     {% end %}
   </div>
