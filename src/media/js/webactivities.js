@@ -16,9 +16,9 @@
     });
 */
 define('webactivities',
-    ['apps', 'core/capabilities', 'core/defer', 'core/log', 'core/login',
+    ['apps', 'buttons', 'core/capabilities', 'core/defer', 'core/log', 'core/login',
      'core/requests', 'core/urls', 'core/utils', 'core/z'],
-    function(apps, capabilities, defer, log, login,
+    function(apps, buttons, capabilities, defer, log, login,
              req, urls, utils, z) {
     var logger = log('webactivities');
 
@@ -100,6 +100,12 @@ define('webactivities',
                 if (slug) {
                     // Navigate to the ACL app detail page, it will be shown
                     // during the install.
+                    var buttonSelector = '.install[data-slug=' + slug + ']';
+                    z.page.one('loaded', function(e) {
+                        // When we load the detail page we are going to, set
+                        // the install button as already spinning.
+                        buttons.spinButton($(buttonSelector));
+                    });
                     url = urls.reverse('app', [slug]);
                     z.page.trigger('navigate',
                                    [utils.urlparams(url, {src: src})]);
@@ -109,8 +115,10 @@ define('webactivities',
                       .done(function(app) {
                           apps.install(app, {}).then(function() {
                             apps.launch(app.manifest_url);
+                            buttons.markBtnsAsInstalled();
                             def.resolve('SUCCESS');
                           }).fail(function() {
+                            buttons.revertButton($(buttonSelector));
                             def.reject('COULD_NOT_INSTALL_APP');
                           });
                       });
