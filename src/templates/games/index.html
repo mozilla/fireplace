@@ -9,8 +9,7 @@
 
 {% macro game_tile(game, isHome) %}
   {% set game = apps.transform(game) %}
-  <li class="game" data-no-transparent
-      style="background-image: url({{ game.promo_imgs['640'] }})">
+  <li class="game" style="background-image: url({{ game.promo_imgs['640'] }})">
     <a href="{{ url(game.isApp and 'app' or 'website', [game.key])
                 |urlparams(src=isHome and 'games-home' or 'games-listing') }}">
       <div class="game-gradient"></div>

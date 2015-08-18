@@ -52,9 +52,9 @@
 
     +media--base-desktop() {
         align-items: flex-start;
+        flex: 0 0 240px;
         height: 320px;
         margin: 5px 5px 0 0;
-        width: 240px;
     }
     li {
         display: inline-block;
@@ -86,9 +86,10 @@
 
 .games-listing {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 30px;
-    flex-wrap: wrap;
+    max-width: 1040px;
 
     +media--base-desktop() {
         justify-content: flex-start;
