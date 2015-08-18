@@ -12,7 +12,7 @@
       src -- if tile is a link, attach a src param for analytics purposes
   #}
   {% set app = apps.transform(app) %}
-  {% set name = app.name if is_detail else app.short_name %}
+  {% set name = app.name if is_detail else app.short_name or app.name %}
 
   {% set tag = 'div' if is_detail else 'a' %}
   <{{ tag }} class="mkt-tile{{ ' feed-app c' if feed_app }}"
