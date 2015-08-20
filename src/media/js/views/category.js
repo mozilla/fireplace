@@ -8,11 +8,6 @@ define('views/category',
     'use strict';
 
     return function(builder, args, params) {
-        if (caps.os.type === 'desktop' &&
-            settings.gametimeEnabled && args[0] == 'games') {
-            return gamesListing(builder, ['all'], params);
-        }
-
         params = params || {};
         var slug = decodeURIComponent(args[0]);
         var category = _.findWhere(categories, {slug: slug});
