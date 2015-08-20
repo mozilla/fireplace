@@ -29,6 +29,7 @@ games--listing() {
 }
 
 game--hover() {
+    .games-home-primary-main:hover &,
     .game:hover & {
         {block}
     }
@@ -85,7 +86,7 @@ game--hover() {
         }
     }
     &:nth-child(8n) .game-gradient {
-        games-gradient($color--games-red-light, $color--games-red-dark);
+        games-gradient($color--games-green-light, $color--games-green-dark);
     }
     &:nth-child(8n + 1) .game-gradient {
         games-gradient($color--games-yellow-light, $color--games-yellow-dark);
@@ -94,7 +95,7 @@ game--hover() {
         games-gradient($color--games-blue-light, $color--games-blue-dark);
     }
     &:nth-child(8n + 3) .game-gradient {
-        games-gradient($color--games-green-light, $color--games-green-dark);
+        games-gradient($color--games-red-light, $color--games-red-dark);
     }
     &:nth-child(8n + 4) .game-gradient {
         games-gradient($color--games-pink-light, $color--games-pink-dark);
