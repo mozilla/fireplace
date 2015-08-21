@@ -145,16 +145,6 @@ define('views/search',
         ]);
     }));
 
-    // FxOS 1.1 return key form submit fix (bug 1186089).
-    z.doc.on('keypress', '#search-q', function(e) {
-        var form = document.getElementById('search');
-
-        if (form && e.which === 13) { // Enter/return key.
-            // Manually trigger delegated event.
-            form.submit();
-        }
-    });
-
     function processor(query) {
         // Whimsy or extras go here.
         query = query ? query.toLowerCase() : '';
