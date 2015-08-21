@@ -38,7 +38,7 @@
     }
     .mkt-app-button em {
         border: 1px solid $greyscale-white;
-        border-radius: 2px;
+        border-radius: 10px;
         font-size: 30px;
         font-style: italic;
         font-weight: 500;
@@ -53,6 +53,7 @@
     justify-content: space-around;
     list-style: none;
     height: 75px;
+    padding: 3px 25%;
     width: 100%;
 }
 
@@ -91,6 +92,7 @@
 .games-home-secondary-container {
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
     width: 100%;
 
     +media--base-tablet() {
@@ -118,13 +120,15 @@
     font-weight: 500;
     justify-content: center;
     margin: 10px 0 30px;
-    height: 50px;
+    height: 100px;
     text-transform: uppercase;
     width: 100%;
 
     a {
         border-bottom: 2px solid $action-positive;
-        padding-bottom: 1px;
+        bottom: 25px;
+        padding: 50px 0 1px;
+        position: relative;
 
         &:hover {
             text-decoration: none;
