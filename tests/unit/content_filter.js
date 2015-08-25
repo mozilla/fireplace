@@ -35,14 +35,6 @@ define('tests/unit/content_filter',
     }
 
     describe('content_filter', function() {
-        it('is webapp on desktop',
-            helpers
-            .injector(desktopCapabilities, noStorage, meowEnabled)
-            .run(['content_filter'], function(contentFilter) {
-                var args = contentFilter.apiArgs('search');
-                assert.equal(args.doc_type, 'webapp');
-            }));
-
         it('is all by default on firefoxos',
             helpers
             .injector(firefoxOSCapabilities, noStorage, meowEnabled)
