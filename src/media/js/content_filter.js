@@ -29,10 +29,6 @@ define('content_filter',
         filterContent = 'all';
     }
 
-    if (isDesktop) {
-        filterContent = 'webapp';
-    }
-
     z.body.on('change', '.content-filter', function() {
         // Update content preferences and reload view to refresh changes.
         if (this.value === undefined) {
