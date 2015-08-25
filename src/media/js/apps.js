@@ -144,14 +144,6 @@ define('apps',
             app.previews = [];
             app.contentType = 'website';
             app.key = app.id;
-
-            if (settings.gametimeEnabled &&
-                app.isWebsite &&
-                app.device_types.indexOf(capabilities.os.type) === -1 &&
-                app.keywords.indexOf('featured-game') !== -1) {
-              // Don't show desktop website games on mobile.
-              app.disabled = true;
-            }
         } else {
             app.isApp = true;
             app.contentType = 'app';
