@@ -4,7 +4,16 @@
   <mkt-prompt {% if isModal %}data-modal="abuse"{% endif %}>
     <form class="abuse-form">
       {% if isModal %}<h3>{{ _('Need to report something?') }}</h3>{% endif %}
-      <p>{{ _('Let us know if you find any issues regarding abuse about this app.') }}</p>
+      <p>
+        {{ _('Let us know if this app is doing something that isn\'t allowed
+              in the <a href="{criteria_url}">review criteria</a> and should be removed from the Marketplace.',
+              criteria_url='https://developer.mozilla.org/Marketplace/Publishing/Marketplace_review_criteria') }}
+      </p>
+      <p>
+        {{ _('Examples of issues to report here are if the app is broken,
+              contains mature content, contains malware, etc. The app developer
+              will not see your comments.') }}
+      </p>
       <textarea name="text" placeholder="{{ _('Let us know...') }}"
                 required></textarea>
       <input type="hidden" name="app" value="{{ slug }}">
@@ -18,8 +27,5 @@
 {% endmacro %}
 
 <div class="main abuse">
-  <header class="secondary-header">
-    <h2>{{ _('Report Abuse') }}</h2>
-  </header>
   {{ abuse_prompt(slug) }}
 </div>

@@ -68,7 +68,7 @@
         'slug': app.slug
       }) }}
     {% endif %}
-    {% set notices = app_notices(app) %}
+    {% set notices = [] if app.loading else app_notices(app) %}
     {% if notices.length %}
       <div class="app-notices full">
         {% for notice in notices %}
