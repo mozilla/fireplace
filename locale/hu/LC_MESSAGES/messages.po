@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12T15:27:57.013Z\n"
+"POT-Creation-Date: 2015-08-26T16:26:19.957Z\n"
 "PO-Revision-Date: 2015-08-18 13:04+0000\n"
 "Last-Translator: Gábor <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -15,17 +15,9 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1439903042.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
+#: /templates/category.html:7 /templates/app_list.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "Kinyitás"
-
-#: /templates/app_list.html:35 /templates/app_list.html:40
-msgid "No apps found."
-msgstr "Nincsenek appok."
-
-#: /templates/app_list.html:42 /templates/category.html:39 /templates/langpacks.html:41 /templates/purchases.html:36
-msgid "An internal server error occurred. Please try again later."
-msgstr "Belső kiszolgálóhiba történt. Próbálja meg újra."
 
 #: /templates/category.html:32 /templates/search.html:62
 msgid "No results found"
@@ -34,6 +26,14 @@ msgstr "Nincs találat"
 #: /templates/category.html:37
 msgid "The category you requested does not exist."
 msgstr "A kért kategória nem létezik."
+
+#: /templates/category.html:39 /templates/app_list.html:42 /templates/langpacks.html:41 /templates/purchases.html:36
+msgid "An internal server error occurred. Please try again later."
+msgstr "Belső kiszolgálóhiba történt. Próbálja meg újra."
+
+#: /templates/app_list.html:35 /templates/app_list.html:40
+msgid "No apps found."
+msgstr "Nincsenek appok."
 
 #: /templates/desktop-promo.html:2
 msgid "Previous"
@@ -63,13 +63,13 @@ msgstr "Mégse"
 msgid "Submit Feedback"
 msgstr "Visszajelzés elküldése"
 
+#: /templates/feedback.html:20 /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
+msgid "Feedback"
+msgstr "Visszajelzés"
+
 #: /templates/feedback.html:28 /templates/feedback.html:31
 msgid "Get Help"
 msgstr "Segítség"
-
-#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
-msgid "Feedback"
-msgstr "Visszajelzés"
 
 #: /templates/footer.html:9 /templates/footer.html:13 /templates/footer.html:17
 msgid "Support"
@@ -288,6 +288,16 @@ msgstr "Vegyen részt"
 msgid "Region"
 msgstr "Régió"
 
+#: /templates/_macros/app_tile.html:113
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Értékelés"
+msgstr[1] "Értékelés"
+
+#: /templates/_macros/app_tile.html:119
+msgid "Not yet reviewed"
+msgstr "Még nincs értékelve"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "Appstatisztika"
@@ -299,6 +309,168 @@ msgstr "Apphasználati statisztika"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Nincs elég megjeleníthető statisztika."
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&ndash; {attribution}"
+
+#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:399
+msgid "Free"
+msgstr "Ingyenes"
+
+#: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
+msgid "View all"
+msgstr "Összes mutatása"
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr "Nézze meg ezt a népszerű oldalt!"
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr "Mutasson másik oldalt"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Több betöltése"
+
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
+msgstr "{app_name} képernyőkép"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "A korábbi {version} verzióhoz"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Törlés"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Jelentés"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Vizsgálatra jelölve"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Értékelés: {stars} / {maxstars}"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr "Szeretne bejelenteni valamit?"
+
+#: /templates/app/abuse.html:6
+msgid "Let us know if you find any issues regarding abuse about this app."
+msgstr "Szeretnénk tudni, ha visszaéléssel kapcsolatos problémákat talált az app körül."
+
+#: /templates/app/abuse.html:13
+msgid "Submit Report"
+msgstr "Jelentés beküldése"
+
+#: /templates/app/abuse.html:21 /templates/app/index.html:214 /media/js/views/app/abuse.js:51
+msgid "Report Abuse"
+msgstr "Visszaélés jelentése"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:26 /templates/website/index.html:15
+msgid "Description"
+msgstr "Leírás"
+
+#: /templates/app/index.html:32 /templates/app/index.html:46 /templates/website/index.html:21
+msgid "View All"
+msgstr "Összes megjelenítése"
+
+#: /templates/app/index.html:42
+msgid "Updates"
+msgstr "Frissítések"
+
+#: /templates/app/index.html:53
+msgid "Last updated"
+msgstr "Utolsó frissítés"
+
+#: /templates/app/index.html:62
+msgid "Email Support"
+msgstr "E-mail támogatás"
+
+#: /templates/app/index.html:69
+msgid "Support Site"
+msgstr "Támogatói oldal"
+
+#: /templates/app/index.html:75
+msgid "Homepage"
+msgstr "Honlap"
+
+#: /templates/app/index.html:88
+msgid "Statistics"
+msgstr "Statisztika"
+
+#: /templates/app/index.html:95
+msgid "Edit Listing"
+msgstr "Megjelenés szerkesztése"
+
+#: /templates/app/index.html:103
+msgid "Approve / Reject"
+msgstr "Elfogadás / Visszautasítás"
+
+#: /templates/app/index.html:104
+msgid "Review History"
+msgstr "Értékelések előzményei"
+
+#: /templates/app/index.html:121 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "Értékelések"
+
+#: /templates/app/index.html:132
+msgid "App not yet reviewed"
+msgstr "Az app még nincs értékelve"
+
+#: /templates/app/index.html:151
+msgid "Premium version available"
+msgstr "Prémium verzió is elérhető"
+
+#: /templates/app/index.html:169
+msgid "More Information"
+msgstr "További információk"
+
+#: /templates/app/index.html:172 /templates/games/index.html:51
+msgid "Developer"
+msgstr "Fejlesztő"
+
+#: /templates/app/index.html:176
+msgid "Compatibility"
+msgstr "Kompatibilitás"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:179 /templates/app/index.html:186
+msgid ","
+msgstr ","
+
+#: /templates/app/index.html:191
+msgid "File Size"
+msgstr "Fájlméret"
+
+#: /templates/app/index.html:196
+msgid "Most Recent Version"
+msgstr "Legutóbbi verzió"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Vissza az apphoz"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Adatvédelmi irányelvek betöltése..."
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Köszönjük a vásárlást"
 
 #. <mkt-selected-text> will be a noun like "apps" or "sites".
 #: /templates/_includes/app_list_filters.html:6
@@ -381,178 +553,6 @@ msgid_plural "{numReviews} Reviews"
 msgstr[0] "1 értékelés"
 msgstr[1] "{numReviews} értékelés"
 
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr "Szeretne bejelenteni valamit?"
-
-#: /templates/app/abuse.html:6
-msgid "Let us know if you find any issues regarding abuse about this app."
-msgstr "Szeretnénk tudni, ha visszaéléssel kapcsolatos problémákat talált az app körül."
-
-#: /templates/app/abuse.html:13
-msgid "Submit Report"
-msgstr "Jelentés beküldése"
-
-#: /templates/app/abuse.html:21 /templates/app/index.html:214 /media/js/views/app/abuse.js:51
-msgid "Report Abuse"
-msgstr "Visszaélés jelentése"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:26 /templates/website/index.html:15
-msgid "Description"
-msgstr "Leírás"
-
-#: /templates/app/index.html:32 /templates/app/index.html:46 /templates/website/index.html:21
-msgid "View All"
-msgstr "Összes megjelenítése"
-
-#: /templates/app/index.html:42
-msgid "Updates"
-msgstr "Frissítések"
-
-#: /templates/app/index.html:53
-msgid "Last updated"
-msgstr "Utolsó frissítés"
-
-#: /templates/app/index.html:62
-msgid "Email Support"
-msgstr "E-mail támogatás"
-
-#: /templates/app/index.html:69
-msgid "Support Site"
-msgstr "Támogatói oldal"
-
-#: /templates/app/index.html:75
-msgid "Homepage"
-msgstr "Honlap"
-
-#: /templates/app/index.html:88
-msgid "Statistics"
-msgstr "Statisztika"
-
-#: /templates/app/index.html:95
-msgid "Edit Listing"
-msgstr "Megjelenés szerkesztése"
-
-#: /templates/app/index.html:103
-msgid "Approve / Reject"
-msgstr "Elfogadás / Visszautasítás"
-
-#: /templates/app/index.html:104
-msgid "Review History"
-msgstr "Értékelések előzményei"
-
-#: /templates/app/index.html:121 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "Értékelések"
-
-#: /templates/app/index.html:132
-msgid "App not yet reviewed"
-msgstr "Az app még nincs értékelve"
-
-#: /templates/app/index.html:151
-msgid "Premium version available"
-msgstr "Prémium verzió is elérhető"
-
-#: /templates/app/index.html:169
-msgid "More Information"
-msgstr "További információk"
-
-#: /templates/app/index.html:172 /templates/games/index.html:48
-msgid "Developer"
-msgstr "Fejlesztő"
-
-#: /templates/app/index.html:176
-msgid "Compatibility"
-msgstr "Kompatibilitás"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:179 /templates/app/index.html:186
-msgid ","
-msgstr ","
-
-#: /templates/app/index.html:191
-msgid "File Size"
-msgstr "Fájlméret"
-
-#: /templates/app/index.html:196
-msgid "Most Recent Version"
-msgstr "Legutóbbi verzió"
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Vissza az apphoz"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Adatvédelmi irányelvek betöltése..."
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Köszönjük a vásárlást"
-
-#: /templates/_macros/app_tile.html:113
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Értékelés"
-msgstr[1] "Értékelés"
-
-#: /templates/_macros/app_tile.html:119
-msgid "Not yet reviewed"
-msgstr "Még nincs értékelve"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&ndash; {attribution}"
-
-#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:395
-msgid "Free"
-msgstr "Ingyenes"
-
-#: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
-msgid "View all"
-msgstr "Összes mutatása"
-
-#: /templates/_macros/feed_websites.html:16
-msgid "Visit this top site!"
-msgstr "Nézze meg ezt a népszerű oldalt!"
-
-#: /templates/_macros/feed_websites.html:50
-msgid "Show me another site"
-msgstr "Mutasson másik oldalt"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Több betöltése"
-
-#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr "{app_name} képernyőkép"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "A korábbi {version} verzióhoz"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Szerkesztés"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Törlés"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Jelentés"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "Vizsgálatra jelölve"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Értékelés: {stars} / {maxstars}"
-
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
 msgstr "Nem található a tartalom"
@@ -597,39 +597,29 @@ msgstr "Próbálja újra"
 msgid "PLAY GREAT DESKTOP GAMES"
 msgstr "JÁTSSZON REMEK ASZTALI JÁTÉKOKKAL"
 
-#: /templates/games/index.html:22
+#: /templates/games/index.html:23
 msgid "<span>by</span> {author}"
 msgstr "<span>szerző</span> {author}"
 
-#: /templates/games/index.html:44
+#: /templates/games/index.html:46
 msgid "Game"
 msgstr "Játék"
 
-#: /templates/games/index.html:52
+#: /templates/games/index.html:56
 msgid "Category"
 msgstr "Kategória"
 
-#: /templates/games/index.html:76
+#: /templates/games/index.html:80
 msgid "Find more great games"
 msgstr "További remek játékok"
 
-#: /templates/games/listing.html:8
-msgid "Enjoy instant fun right on your desktop with our handpicked selection of app and browser-based games."
-msgstr ""
-"Szórakozzon asztali gépén is a kézzel válogatott appjainkkal és böngészős "
-"játékainkkal."
-
 #: /templates/games/listing.html:9
-msgid "Puzzle, action, adventure, and strategy titles&mdash;we're adding new games all the time so check back often."
+msgid "Enjoy instant fun with our handpicked selection of desktop web games you can play right in your browser."
 msgstr ""
-"Logikai, akció, kaland és stratégiai játékok &ndash; folyamatosan érkeznek "
-"új játékok, nézzen vissza később is!"
 
 #: /templates/games/listing.html:12
 msgid "Learn more about why games and Mozilla go so well together."
-msgstr ""
-"Tudjon meg többet arról, hogy a játékok és a Mozilla miért működnek együtt "
-"olyan jól."
+msgstr "Tudjon meg többet arról, hogy a játékok és a Mozilla miért működnek együtt olyan jól."
 
 #: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
@@ -731,90 +721,147 @@ msgstr "Írja le a problémát lényegretörően."
 msgid "Report an Issue"
 msgstr "Probléma jelentése"
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+#: /media/js/buttons.js:86 /media/js/buttons.js:158 /media/js/payments.js:134
 msgid "Payment cancelled."
 msgstr "Fizetés törölve."
 
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "Vásárlás"
-
-#: /media/js/buttons.js:131 /media/js/buttons.js:370 /media/js/buttons.js:419 /media/js/buttons.js:446 /media/js/buttons.js:457
-msgid "Install"
-msgstr "Telepítés"
-
-#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
+#: /media/js/buttons.js:196 /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr "Elnézést, hiba történt az app adatainak letöltésekor. Próbálja újra később."
 
 #. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
+#: /media/js/buttons.js:241
 msgid "Install failed. Please try again later."
 msgstr "A telepítés sikertelen. Próbálja meg később."
 
-#: /media/js/buttons.js:321 /media/js/buttons.js:419
+#: /media/js/buttons.js:325 /media/js/buttons.js:423
 msgid "Installed"
 msgstr "Telepítve"
 
-#: /media/js/buttons.js:395
+#: /media/js/buttons.js:399
 msgid "free"
 msgstr "ingyenes"
 
-#: /media/js/buttons.js:400
+#: /media/js/buttons.js:404
 msgid "Unavailable"
 msgstr "Nem érhető el"
 
-#: /media/js/buttons.js:425 /media/js/buttons.js:432
+#: /media/js/buttons.js:423 /media/js/buttons.js:450 /media/js/buttons.js:461
+msgid "Install"
+msgstr "Telepítés"
+
+#: /media/js/buttons.js:429 /media/js/buttons.js:436
 msgid "Play now!"
 msgstr "Játsszon!"
 
-#: /media/js/buttons.js:427
+#: /media/js/buttons.js:431
 msgid "Open website"
 msgstr "Weboldal megnyitása"
 
-#: /media/js/buttons.js:434
+#: /media/js/buttons.js:438
 msgid "Open app"
 msgstr "App megnyitása"
 
-#: /media/js/buttons.js:438 /media/js/buttons.js:444
+#: /media/js/buttons.js:442 /media/js/buttons.js:448
 msgid "Install now!"
 msgstr "Telepítse!"
 
-#: /media/js/buttons.js:440
+#: /media/js/buttons.js:444
 msgid "Install for free"
 msgstr "Ingyenes telepítés"
 
-#: /media/js/buttons.js:449
+#: /media/js/buttons.js:453
 msgid "Install for {price}"
 msgstr "Telepítés ára: {price}"
 
-#: /media/js/buttons.js:455
+#: /media/js/buttons.js:459
 msgid "Open"
 msgstr "Megnyitás"
 
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "nem érhető el ezen a területen"
+
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "nem érhető el ezen a rendszeren"
+
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
 msgid "All Platforms"
 msgstr "Minden rendszer"
 
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:60
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
 msgid "Android Mobile"
 msgstr "Android mobil"
 
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
 msgid "Android Tablet"
 msgstr "Android tablet"
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:58
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
 msgid "Desktop"
 msgstr "Asztali PC"
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
+#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: /media/js/compat_filter.js:55
+#: /media/js/compat_filter.js:56
 msgid "My Device"
 msgstr "A készülékem"
+
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:103
+msgid "For ages {0}+"
+msgstr "Korosztály: {0}+"
+
+#: /media/js/content-ratings.js:109
+msgid "Generic"
+msgstr "Általános"
+
+#: /media/js/content-ratings.js:116
+msgid "For all ages"
+msgstr "Minden korcsoportnak"
+
+#: /media/js/content-ratings.js:125
+msgid "Rating Pending"
+msgstr "Értékelés függőben"
+
+#: /media/js/content-ratings.js:126
+msgid "Rating Refused"
+msgstr "Értékelés elutasítva"
+
+#: /media/js/content-ratings.js:129
+msgid "Everyone"
+msgstr "Mindenki"
+
+#: /media/js/content-ratings.js:130
+msgid "Everyone 10+"
+msgstr "Mindenki 10+"
+
+#: /media/js/content-ratings.js:131
+msgid "Teen"
+msgstr "Tizenéves"
+
+#: /media/js/content-ratings.js:132
+msgid "Mature 17+"
+msgstr "Felnőtt 17+"
+
+#: /media/js/content-ratings.js:133
+msgid "Adults Only 18+"
+msgstr "Csak felnőtt 18+"
+
+#: /media/js/content_filter.js:21
+msgid "all content"
+msgstr "minden tartalom"
+
+#: /media/js/content_filter.js:22
+msgid "apps"
+msgstr "appok"
+
+#: /media/js/content_filter.js:23
+msgid "websites"
+msgstr "weboldalak"
 
 #: /media/js/categories.js:6 /media/js/views/games/listing.js:10
 msgid "Games"
@@ -915,67 +962,6 @@ msgstr "Eszközök"
 #: /media/js/categories.js:30
 msgid "Weather"
 msgstr "Időjárás"
-
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr "nem érhető el ezen a területen"
-
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr "nem érhető el ezen a rendszeren"
-
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:103
-msgid "For ages {0}+"
-msgstr "Korosztály: {0}+"
-
-#: /media/js/content-ratings.js:109
-msgid "Generic"
-msgstr "Általános"
-
-#: /media/js/content-ratings.js:116
-msgid "For all ages"
-msgstr "Minden korcsoportnak"
-
-#: /media/js/content-ratings.js:125
-msgid "Rating Pending"
-msgstr "Értékelés függőben"
-
-#: /media/js/content-ratings.js:126
-msgid "Rating Refused"
-msgstr "Értékelés elutasítva"
-
-#: /media/js/content-ratings.js:129
-msgid "Everyone"
-msgstr "Mindenki"
-
-#: /media/js/content-ratings.js:130
-msgid "Everyone 10+"
-msgstr "Mindenki 10+"
-
-#: /media/js/content-ratings.js:131
-msgid "Teen"
-msgstr "Tizenéves"
-
-#: /media/js/content-ratings.js:132
-msgid "Mature 17+"
-msgstr "Felnőtt 17+"
-
-#: /media/js/content-ratings.js:133
-msgid "Adults Only 18+"
-msgstr "Csak felnőtt 18+"
-
-#: /media/js/content_filter.js:20
-msgid "all content"
-msgstr "minden tartalom"
-
-#: /media/js/content_filter.js:21
-msgid "apps"
-msgstr "appok"
-
-#: /media/js/content_filter.js:22
-msgid "websites"
-msgstr "weboldalak"
 
 #. Chess game desktop promo (bug 1175381).
 #: /media/js/desktop_promo.js:20

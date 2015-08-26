@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12T15:27:57.013Z\n"
+"POT-Creation-Date: 2015-08-26T16:26:19.957Z\n"
 "PO-Revision-Date: 2015-08-21 08:07+0000\n"
 "Last-Translator: Selim <selim@sum.lu>\n"
 "Language-Team: none\n"
@@ -14,17 +14,9 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1440144460.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
+#: /templates/category.html:7 /templates/app_list.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "Genişlet"
-
-#: /templates/app_list.html:35 /templates/app_list.html:40
-msgid "No apps found."
-msgstr "Hiç uygulama bulunamadı."
-
-#: /templates/app_list.html:42 /templates/category.html:39 /templates/langpacks.html:41 /templates/purchases.html:36
-msgid "An internal server error occurred. Please try again later."
-msgstr "Bir iç sunucu hatası oluştu. Lütfen sonra tekrar deneyin."
 
 #: /templates/category.html:32 /templates/search.html:62
 msgid "No results found"
@@ -33,6 +25,14 @@ msgstr "Sonuç bulunamadı"
 #: /templates/category.html:37
 msgid "The category you requested does not exist."
 msgstr "İstediğiniz kategori mevcut değil."
+
+#: /templates/category.html:39 /templates/app_list.html:42 /templates/langpacks.html:41 /templates/purchases.html:36
+msgid "An internal server error occurred. Please try again later."
+msgstr "Bir iç sunucu hatası oluştu. Lütfen sonra tekrar deneyin."
+
+#: /templates/app_list.html:35 /templates/app_list.html:40
+msgid "No apps found."
+msgstr "Hiç uygulama bulunamadı."
 
 #: /templates/desktop-promo.html:2
 msgid "Previous"
@@ -62,13 +62,13 @@ msgstr "İptal"
 msgid "Submit Feedback"
 msgstr ""
 
+#: /templates/feedback.html:20 /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
+msgid "Feedback"
+msgstr "Geri Bildirim"
+
 #: /templates/feedback.html:28 /templates/feedback.html:31
 msgid "Get Help"
 msgstr "Yardım alın"
-
-#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
-msgid "Feedback"
-msgstr "Geri Bildirim"
 
 #: /templates/footer.html:9 /templates/footer.html:13 /templates/footer.html:17
 msgid "Support"
@@ -286,6 +286,15 @@ msgstr "Aramıza Katılın"
 msgid "Region"
 msgstr "Bölge"
 
+#: /templates/_macros/app_tile.html:113
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "İnceleme"
+
+#: /templates/_macros/app_tile.html:119
+msgid "Not yet reviewed"
+msgstr "Henüz incelenmedi"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "Uygulama istatistikleri"
@@ -297,6 +306,168 @@ msgstr "Uygulama kullanım istatistikleri"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Gösterilecek kadar istatistik yok."
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:399
+msgid "Free"
+msgstr "Ücretsiz"
+
+#: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
+msgid "View all"
+msgstr "Tümünü göster"
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr "Bu siteyi ziyaret edin!"
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr "Başka bir site göster"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Daha fazla yükle"
+
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
+msgstr "{app_name} ekran görüntüsü"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Eski {version} sürümü için"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Düzenle"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Sil"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Raporla"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "İncelenmek üzere işaretlendi"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "{maxstars} üzerinden {stars} puan almış"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr "Bir şeyi rapor etmeniz mi gerekiyor?"
+
+#: /templates/app/abuse.html:6
+msgid "Let us know if you find any issues regarding abuse about this app."
+msgstr ""
+
+#: /templates/app/abuse.html:13
+msgid "Submit Report"
+msgstr ""
+
+#: /templates/app/abuse.html:21 /templates/app/index.html:214 /media/js/views/app/abuse.js:51
+msgid "Report Abuse"
+msgstr "Suistimal bildir"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:26 /templates/website/index.html:15
+msgid "Description"
+msgstr "Açıklama"
+
+#: /templates/app/index.html:32 /templates/app/index.html:46 /templates/website/index.html:21
+msgid "View All"
+msgstr "Tümünü göster"
+
+#: /templates/app/index.html:42
+msgid "Updates"
+msgstr "Güncellemeler"
+
+#: /templates/app/index.html:53
+msgid "Last updated"
+msgstr "Son güncelleme"
+
+#: /templates/app/index.html:62
+msgid "Email Support"
+msgstr ""
+
+#: /templates/app/index.html:69
+msgid "Support Site"
+msgstr "Destek sitesi"
+
+#: /templates/app/index.html:75
+msgid "Homepage"
+msgstr "Web sitesi"
+
+#: /templates/app/index.html:88
+msgid "Statistics"
+msgstr "İstatistikler"
+
+#: /templates/app/index.html:95
+msgid "Edit Listing"
+msgstr "Listelemeyi düzenle"
+
+#: /templates/app/index.html:103
+msgid "Approve / Reject"
+msgstr "Onayla / reddet"
+
+#: /templates/app/index.html:104
+msgid "Review History"
+msgstr "İnceleme geçmişi"
+
+#: /templates/app/index.html:121 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "İncelemeler"
+
+#: /templates/app/index.html:132
+msgid "App not yet reviewed"
+msgstr "Uygulama henüz incelenmedi"
+
+#: /templates/app/index.html:151
+msgid "Premium version available"
+msgstr "Ücretli sürümü mevcut"
+
+#: /templates/app/index.html:169
+msgid "More Information"
+msgstr "Daha fazla bilgi"
+
+#: /templates/app/index.html:172 /templates/games/index.html:51
+msgid "Developer"
+msgstr "Geliştirici"
+
+#: /templates/app/index.html:176
+msgid "Compatibility"
+msgstr "Uyumluluk"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:179 /templates/app/index.html:186
+msgid ","
+msgstr ","
+
+#: /templates/app/index.html:191
+msgid "File Size"
+msgstr "Dosya boyutu"
+
+#: /templates/app/index.html:196
+msgid "Most Recent Version"
+msgstr "En yeni sürüm"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Uygulamaya dön"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Gizlilik ilkeleri yükleniyor..."
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Satın aldığınız için teşekkürler"
 
 #. <mkt-selected-text> will be a noun like "apps" or "sites".
 #: /templates/_includes/app_list_filters.html:6
@@ -378,177 +549,6 @@ msgid "1 Review"
 msgid_plural "{numReviews} Reviews"
 msgstr[0] "{numReviews} inceleme"
 
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr "Bir şeyi rapor etmeniz mi gerekiyor?"
-
-#: /templates/app/abuse.html:6
-msgid "Let us know if you find any issues regarding abuse about this app."
-msgstr ""
-
-#: /templates/app/abuse.html:13
-msgid "Submit Report"
-msgstr ""
-
-#: /templates/app/abuse.html:21 /templates/app/index.html:214 /media/js/views/app/abuse.js:51
-msgid "Report Abuse"
-msgstr "Suistimal bildir"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:26 /templates/website/index.html:15
-msgid "Description"
-msgstr "Açıklama"
-
-#: /templates/app/index.html:32 /templates/app/index.html:46 /templates/website/index.html:21
-msgid "View All"
-msgstr "Tümünü göster"
-
-#: /templates/app/index.html:42
-msgid "Updates"
-msgstr "Güncellemeler"
-
-#: /templates/app/index.html:53
-msgid "Last updated"
-msgstr "Son güncelleme"
-
-#: /templates/app/index.html:62
-msgid "Email Support"
-msgstr ""
-
-#: /templates/app/index.html:69
-msgid "Support Site"
-msgstr "Destek sitesi"
-
-#: /templates/app/index.html:75
-msgid "Homepage"
-msgstr "Web sitesi"
-
-#: /templates/app/index.html:88
-msgid "Statistics"
-msgstr "İstatistikler"
-
-#: /templates/app/index.html:95
-msgid "Edit Listing"
-msgstr "Listelemeyi düzenle"
-
-#: /templates/app/index.html:103
-msgid "Approve / Reject"
-msgstr "Onayla / reddet"
-
-#: /templates/app/index.html:104
-msgid "Review History"
-msgstr "İnceleme geçmişi"
-
-#: /templates/app/index.html:121 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "İncelemeler"
-
-#: /templates/app/index.html:132
-msgid "App not yet reviewed"
-msgstr "Uygulama henüz incelenmedi"
-
-#: /templates/app/index.html:151
-msgid "Premium version available"
-msgstr "Ücretli sürümü mevcut"
-
-#: /templates/app/index.html:169
-msgid "More Information"
-msgstr "Daha fazla bilgi"
-
-#: /templates/app/index.html:172 /templates/games/index.html:48
-msgid "Developer"
-msgstr "Geliştirici"
-
-#: /templates/app/index.html:176
-msgid "Compatibility"
-msgstr "Uyumluluk"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:179 /templates/app/index.html:186
-msgid ","
-msgstr ","
-
-#: /templates/app/index.html:191
-msgid "File Size"
-msgstr "Dosya boyutu"
-
-#: /templates/app/index.html:196
-msgid "Most Recent Version"
-msgstr "En yeni sürüm"
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Uygulamaya dön"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Gizlilik ilkeleri yükleniyor..."
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Satın aldığınız için teşekkürler"
-
-#: /templates/_macros/app_tile.html:113
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "İnceleme"
-
-#: /templates/_macros/app_tile.html:119
-msgid "Not yet reviewed"
-msgstr "Henüz incelenmedi"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:395
-msgid "Free"
-msgstr "Ücretsiz"
-
-#: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
-msgid "View all"
-msgstr "Tümünü göster"
-
-#: /templates/_macros/feed_websites.html:16
-msgid "Visit this top site!"
-msgstr "Bu siteyi ziyaret edin!"
-
-#: /templates/_macros/feed_websites.html:50
-msgid "Show me another site"
-msgstr "Başka bir site göster"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Daha fazla yükle"
-
-#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr "{app_name} ekran görüntüsü"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Eski {version} sürümü için"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Düzenle"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Sil"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Raporla"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "İncelenmek üzere işaretlendi"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "{maxstars} üzerinden {stars} puan almış"
-
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
 msgstr "İçerik bulunamadı"
@@ -593,33 +593,25 @@ msgstr "Tekrar dene"
 msgid "PLAY GREAT DESKTOP GAMES"
 msgstr "MUHTEŞEM MASAÜSTÜ OYUNLARI OYNAYIN"
 
-#: /templates/games/index.html:22
+#: /templates/games/index.html:23
 msgid "<span>by</span> {author}"
 msgstr "<span>geliştiren:</span> {author}"
 
-#: /templates/games/index.html:44
+#: /templates/games/index.html:46
 msgid "Game"
 msgstr "Oyun"
 
-#: /templates/games/index.html:52
+#: /templates/games/index.html:56
 msgid "Category"
 msgstr "Kategori"
 
-#: /templates/games/index.html:76
+#: /templates/games/index.html:80
 msgid "Find more great games"
 msgstr "Daha fazla oyun bulun"
 
-#: /templates/games/listing.html:8
-msgid "Enjoy instant fun right on your desktop with our handpicked selection of app and browser-based games."
-msgstr ""
-"Sizin için seçtiğimiz uygulamalar ve tarayıcı tabanlı oyunlarla "
-"masaüstünüzde eğlencenin keyfini çıkarın."
-
 #: /templates/games/listing.html:9
-msgid "Puzzle, action, adventure, and strategy titles&mdash;we're adding new games all the time so check back often."
+msgid "Enjoy instant fun with our handpicked selection of desktop web games you can play right in your browser."
 msgstr ""
-"Bulmaca, aksiyon, macera ve strateji oyunları... Sürekli yeni oyunlar "
-"ekliyoruz. Sık sık kontrol etmeyi unutmayın."
 
 #: /templates/games/listing.html:12
 msgid "Learn more about why games and Mozilla go so well together."
@@ -723,90 +715,147 @@ msgstr ""
 msgid "Report an Issue"
 msgstr ""
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+#: /media/js/buttons.js:86 /media/js/buttons.js:158 /media/js/payments.js:134
 msgid "Payment cancelled."
 msgstr "Ödeme iptal edildi."
 
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "Satın alınıyor"
-
-#: /media/js/buttons.js:131 /media/js/buttons.js:370 /media/js/buttons.js:419 /media/js/buttons.js:446 /media/js/buttons.js:457
-msgid "Install"
-msgstr "Yükle"
-
-#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
+#: /media/js/buttons.js:196 /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr "Bu uygulamanın verilerini çekerken bir sorun yaşadık. Lütfen daha sonra tekrar deneyin."
 
 #. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
+#: /media/js/buttons.js:241
 msgid "Install failed. Please try again later."
 msgstr "Yükleme başarısız oldu. Lütfen daha sonra tekrar deneyin."
 
-#: /media/js/buttons.js:321 /media/js/buttons.js:419
+#: /media/js/buttons.js:325 /media/js/buttons.js:423
 msgid "Installed"
 msgstr "Yüklendi"
 
-#: /media/js/buttons.js:395
+#: /media/js/buttons.js:399
 msgid "free"
 msgstr ""
 
-#: /media/js/buttons.js:400
+#: /media/js/buttons.js:404
 msgid "Unavailable"
 msgstr "Kullanılamaz"
 
-#: /media/js/buttons.js:425 /media/js/buttons.js:432
+#: /media/js/buttons.js:423 /media/js/buttons.js:450 /media/js/buttons.js:461
+msgid "Install"
+msgstr "Yükle"
+
+#: /media/js/buttons.js:429 /media/js/buttons.js:436
 msgid "Play now!"
 msgstr ""
 
-#: /media/js/buttons.js:427
+#: /media/js/buttons.js:431
 msgid "Open website"
 msgstr ""
 
-#: /media/js/buttons.js:434
+#: /media/js/buttons.js:438
 msgid "Open app"
 msgstr ""
 
-#: /media/js/buttons.js:438 /media/js/buttons.js:444
+#: /media/js/buttons.js:442 /media/js/buttons.js:448
 msgid "Install now!"
 msgstr ""
 
-#: /media/js/buttons.js:440
+#: /media/js/buttons.js:444
 msgid "Install for free"
 msgstr ""
 
-#: /media/js/buttons.js:449
+#: /media/js/buttons.js:453
 msgid "Install for {price}"
 msgstr ""
 
-#: /media/js/buttons.js:455
+#: /media/js/buttons.js:459
 msgid "Open"
 msgstr ""
 
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "bölgenizde kullanılamıyor"
+
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "platformunuzda kullanılamıyor"
+
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
 msgid "All Platforms"
 msgstr ""
 
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:60
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
 msgid "Android Mobile"
 msgstr ""
 
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
 msgid "Android Tablet"
 msgstr ""
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:58
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
 msgid "Desktop"
 msgstr "Masaüstü"
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
+#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: /media/js/compat_filter.js:55
+#: /media/js/compat_filter.js:56
 msgid "My Device"
 msgstr "Cihazım"
+
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:103
+msgid "For ages {0}+"
+msgstr "{0}+ yaş için"
+
+#: /media/js/content-ratings.js:109
+msgid "Generic"
+msgstr "Genel"
+
+#: /media/js/content-ratings.js:116
+msgid "For all ages"
+msgstr "Her yaşa uygun"
+
+#: /media/js/content-ratings.js:125
+msgid "Rating Pending"
+msgstr "Derece bekleniyor"
+
+#: /media/js/content-ratings.js:126
+msgid "Rating Refused"
+msgstr "Derece reddedildi"
+
+#: /media/js/content-ratings.js:129
+msgid "Everyone"
+msgstr "Herkes"
+
+#: /media/js/content-ratings.js:130
+msgid "Everyone 10+"
+msgstr "Herkes 10+"
+
+#: /media/js/content-ratings.js:131
+msgid "Teen"
+msgstr "Gençler"
+
+#: /media/js/content-ratings.js:132
+msgid "Mature 17+"
+msgstr "Yetişkinlikler 17+"
+
+#: /media/js/content-ratings.js:133
+msgid "Adults Only 18+"
+msgstr "Yalnızca yetişkinler 18+"
+
+#: /media/js/content_filter.js:21
+msgid "all content"
+msgstr "tüm içerikleri"
+
+#: /media/js/content_filter.js:22
+msgid "apps"
+msgstr "uygulamaları"
+
+#: /media/js/content_filter.js:23
+msgid "websites"
+msgstr "web sitelerini"
 
 #: /media/js/categories.js:6 /media/js/views/games/listing.js:10
 msgid "Games"
@@ -907,67 +956,6 @@ msgstr "Araçlar"
 #: /media/js/categories.js:30
 msgid "Weather"
 msgstr "Hava Durumu"
-
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr "bölgenizde kullanılamıyor"
-
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr "platformunuzda kullanılamıyor"
-
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:103
-msgid "For ages {0}+"
-msgstr "{0}+ yaş için"
-
-#: /media/js/content-ratings.js:109
-msgid "Generic"
-msgstr "Genel"
-
-#: /media/js/content-ratings.js:116
-msgid "For all ages"
-msgstr "Her yaşa uygun"
-
-#: /media/js/content-ratings.js:125
-msgid "Rating Pending"
-msgstr "Derece bekleniyor"
-
-#: /media/js/content-ratings.js:126
-msgid "Rating Refused"
-msgstr "Derece reddedildi"
-
-#: /media/js/content-ratings.js:129
-msgid "Everyone"
-msgstr "Herkes"
-
-#: /media/js/content-ratings.js:130
-msgid "Everyone 10+"
-msgstr "Herkes 10+"
-
-#: /media/js/content-ratings.js:131
-msgid "Teen"
-msgstr "Gençler"
-
-#: /media/js/content-ratings.js:132
-msgid "Mature 17+"
-msgstr "Yetişkinlikler 17+"
-
-#: /media/js/content-ratings.js:133
-msgid "Adults Only 18+"
-msgstr "Yalnızca yetişkinler 18+"
-
-#: /media/js/content_filter.js:20
-msgid "all content"
-msgstr "tüm içerikleri"
-
-#: /media/js/content_filter.js:21
-msgid "apps"
-msgstr "uygulamaları"
-
-#: /media/js/content_filter.js:22
-msgid "websites"
-msgstr "web sitelerini"
 
 #. Chess game desktop promo (bug 1175381).
 #: /media/js/desktop_promo.js:20

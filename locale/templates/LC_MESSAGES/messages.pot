@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12T15:27:57.013Z\n"
+"POT-Creation-Date: 2015-08-26T16:26:19.957Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,23 +13,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Fireplace L10n Tools 1.0\n"
 
-#: /templates/app_list.html:7
 #: /templates/category.html:7
+#: /templates/app_list.html:7
 #: /templates/purchases.html:7
 #: /templates/search.html:8
 msgid "Expand"
-msgstr ""
-
-#: /templates/app_list.html:35
-#: /templates/app_list.html:40
-msgid "No apps found."
-msgstr ""
-
-#: /templates/app_list.html:42
-#: /templates/category.html:39
-#: /templates/langpacks.html:41
-#: /templates/purchases.html:36
-msgid "An internal server error occurred. Please try again later."
 msgstr ""
 
 #: /templates/category.html:32
@@ -39,6 +27,18 @@ msgstr ""
 
 #: /templates/category.html:37
 msgid "The category you requested does not exist."
+msgstr ""
+
+#: /templates/category.html:39
+#: /templates/app_list.html:42
+#: /templates/langpacks.html:41
+#: /templates/purchases.html:36
+msgid "An internal server error occurred. Please try again later."
+msgstr ""
+
+#: /templates/app_list.html:35
+#: /templates/app_list.html:40
+msgid "No apps found."
 msgstr ""
 
 #: /templates/desktop-promo.html:2
@@ -75,16 +75,17 @@ msgstr ""
 msgid "Submit Feedback"
 msgstr ""
 
-#: /templates/feedback.html:28
-#: /templates/feedback.html:31
-msgid "Get Help"
-msgstr ""
-
+#: /templates/feedback.html:20
 #: /templates/footer.html:6
 #: /templates/header.html:85
 #: /templates/nav.html:38
 #: /media/js/views/feedback.js:50
 msgid "Feedback"
+msgstr ""
+
+#: /templates/feedback.html:28
+#: /templates/feedback.html:31
+msgid "Get Help"
 msgstr ""
 
 #: /templates/footer.html:9
@@ -341,6 +342,16 @@ msgstr ""
 msgid "Region"
 msgstr ""
 
+#: /templates/_macros/app_tile.html:113
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /templates/_macros/app_tile.html:119
+msgid "Not yet reviewed"
+msgstr ""
+
 #: /templates/usage.html:3
 #: /media/js/views/usage.js:9
 msgid "App Statistics"
@@ -354,86 +365,61 @@ msgstr ""
 msgid "Not enough statistics to show."
 msgstr ""
 
-#. <mkt-selected-text> will be a noun like "apps" or "sites".
-#: /templates/_includes/app_list_filters.html:6
-msgid "Show <mkt-selected-text></mkt-selected-text>"
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
 msgstr ""
 
-#: /templates/_includes/app_list_filters.html:36
-msgid "Display as"
+#: /templates/_macros/feed_item.html:71
+#: /media/js/buttons.js:399
+msgid "Free"
 msgstr ""
 
-#: /templates/_includes/app_list_filters.html:37
-msgid "Toggle App Previews"
+#: /templates/_macros/feed_item.html:85
+#: /templates/_macros/feed_item.html:178
+msgid "View all"
 msgstr ""
 
-#: /templates/_includes/back_to_app.html:5
-msgid "Back to {app}"
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
 msgstr ""
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
 msgstr ""
 
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
 msgstr ""
 
-#: /templates/_includes/os_x_banner.html:2
-msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+#: /templates/_macros/previews.html:42
+#: /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
 msgstr ""
 
-#: /templates/_includes/os_x_banner.html:5
-msgid "Learn how to change them."
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
 msgstr ""
 
-#: /templates/_includes/platform_selector.html:2
-msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+#: /templates/_macros/review.html:24
+#: /templates/_macros/review.html:28
+msgid "Edit"
 msgstr ""
 
-#: /templates/_includes/post_install_message.html:2
-msgid "Installed!"
+#: /templates/_macros/review.html:35
+msgid "Delete"
 msgstr ""
 
-#: /templates/_includes/post_install_message.html:5
-msgid "Launch this app from your <b>Applications</b> directory."
+#: /templates/_macros/review.html:41
+msgid "Report"
 msgstr ""
 
-#: /templates/_includes/post_install_message.html:8
-msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
 msgstr ""
 
-#: /templates/_includes/post_install_message.html:11
-msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
 msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:9
-msgid "Edit your Review"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:11
-msgid "Edit your review"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Write a review"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:18
-msgid "Sign in to review"
-msgstr ""
-
-#: /templates/_includes/reviews_sidebar.html:26
-msgid "Read all reviews"
-msgstr ""
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] ""
-msgstr[1] ""
 
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
@@ -520,7 +506,7 @@ msgid "More Information"
 msgstr ""
 
 #: /templates/app/index.html:172
-#: /templates/games/index.html:48
+#: /templates/games/index.html:51
 msgid "Developer"
 msgstr ""
 
@@ -554,71 +540,86 @@ msgstr ""
 msgid "Thank you for purchasing"
 msgstr ""
 
-#: /templates/_macros/app_tile.html:113
-msgid "Review"
-msgid_plural "Reviews"
+#. <mkt-selected-text> will be a noun like "apps" or "sites".
+#: /templates/_includes/app_list_filters.html:6
+msgid "Show <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/app_list_filters.html:36
+msgid "Display as"
+msgstr ""
+
+#: /templates/_includes/app_list_filters.html:37
+msgid "Toggle App Previews"
+msgstr ""
+
+#: /templates/_includes/back_to_app.html:5
+msgid "Back to {app}"
+msgstr ""
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr ""
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:2
+msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
+msgstr ""
+
+#: /templates/_includes/os_x_banner.html:5
+msgid "Learn how to change them."
+msgstr ""
+
+#: /templates/_includes/platform_selector.html:2
+msgid "Show me everything for <mkt-selected-text></mkt-selected-text>"
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:2
+msgid "Installed!"
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:5
+msgid "Launch this app from your <b>Applications</b> directory."
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:8
+msgid "Launch this app from your <b>Windows desktop</b> or <b>Start &#9658; All Programs</b>."
+msgstr ""
+
+#: /templates/_includes/post_install_message.html:11
+msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
+msgstr ""
+
+#: /templates/_includes/reviews_sidebar.html:9
+msgid "Edit your Review"
+msgstr ""
+
+#: /templates/_includes/reviews_sidebar.html:11
+msgid "Edit your review"
+msgstr ""
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Write a review"
+msgstr ""
+
+#: /templates/_includes/reviews_sidebar.html:18
+msgid "Sign in to review"
+msgstr ""
+
+#: /templates/_includes/reviews_sidebar.html:26
+msgid "Read all reviews"
+msgstr ""
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
 msgstr[0] ""
 msgstr[1] ""
-
-#: /templates/_macros/app_tile.html:119
-msgid "Not yet reviewed"
-msgstr ""
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr ""
-
-#: /templates/_macros/feed_item.html:71
-#: /media/js/buttons.js:395
-msgid "Free"
-msgstr ""
-
-#: /templates/_macros/feed_item.html:85
-#: /templates/_macros/feed_item.html:178
-msgid "View all"
-msgstr ""
-
-#: /templates/_macros/feed_websites.html:16
-msgid "Visit this top site!"
-msgstr ""
-
-#: /templates/_macros/feed_websites.html:50
-msgid "Show me another site"
-msgstr ""
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr ""
-
-#: /templates/_macros/previews.html:42
-#: /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr ""
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr ""
-
-#: /templates/_macros/review.html:24
-#: /templates/_macros/review.html:28
-msgid "Edit"
-msgstr ""
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr ""
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr ""
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr ""
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr ""
 
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
@@ -665,28 +666,24 @@ msgstr ""
 msgid "PLAY GREAT DESKTOP GAMES"
 msgstr ""
 
-#: /templates/games/index.html:22
+#: /templates/games/index.html:23
 msgid "<span>by</span> {author}"
 msgstr ""
 
-#: /templates/games/index.html:44
+#: /templates/games/index.html:46
 msgid "Game"
 msgstr ""
 
-#: /templates/games/index.html:52
+#: /templates/games/index.html:56
 msgid "Category"
 msgstr ""
 
-#: /templates/games/index.html:76
+#: /templates/games/index.html:80
 msgid "Find more great games"
 msgstr ""
 
-#: /templates/games/listing.html:8
-msgid "Enjoy instant fun right on your desktop with our handpicked selection of app and browser-based games."
-msgstr ""
-
 #: /templates/games/listing.html:9
-msgid "Puzzle, action, adventure, and strategy titles&mdash;we're adding new games all the time so check back often."
+msgid "Enjoy instant fun with our handpicked selection of desktop web games you can play right in your browser."
 msgstr ""
 
 #: /templates/games/listing.html:12
@@ -797,104 +794,159 @@ msgstr ""
 msgid "Report an Issue"
 msgstr ""
 
-#: /media/js/buttons.js:81
-#: /media/js/buttons.js:153
+#: /media/js/buttons.js:86
+#: /media/js/buttons.js:158
 #: /media/js/payments.js:134
 msgid "Payment cancelled."
 msgstr ""
 
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr ""
-
-#: /media/js/buttons.js:131
-#: /media/js/buttons.js:370
-#: /media/js/buttons.js:419
-#: /media/js/buttons.js:446
-#: /media/js/buttons.js:457
-msgid "Install"
-msgstr ""
-
-#: /media/js/buttons.js:192
+#: /media/js/buttons.js:196
 #: /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr ""
 
 #. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
+#: /media/js/buttons.js:241
 msgid "Install failed. Please try again later."
 msgstr ""
 
-#: /media/js/buttons.js:321
-#: /media/js/buttons.js:419
+#: /media/js/buttons.js:325
+#: /media/js/buttons.js:423
 msgid "Installed"
 msgstr ""
 
-#: /media/js/buttons.js:395
+#: /media/js/buttons.js:399
 msgid "free"
 msgstr ""
 
-#: /media/js/buttons.js:400
+#: /media/js/buttons.js:404
 msgid "Unavailable"
 msgstr ""
 
-#: /media/js/buttons.js:425
-#: /media/js/buttons.js:432
+#: /media/js/buttons.js:423
+#: /media/js/buttons.js:450
+#: /media/js/buttons.js:461
+msgid "Install"
+msgstr ""
+
+#: /media/js/buttons.js:429
+#: /media/js/buttons.js:436
 msgid "Play now!"
 msgstr ""
 
-#: /media/js/buttons.js:427
+#: /media/js/buttons.js:431
 msgid "Open website"
 msgstr ""
 
-#: /media/js/buttons.js:434
+#: /media/js/buttons.js:438
 msgid "Open app"
 msgstr ""
 
-#: /media/js/buttons.js:438
-#: /media/js/buttons.js:444
+#: /media/js/buttons.js:442
+#: /media/js/buttons.js:448
 msgid "Install now!"
 msgstr ""
 
-#: /media/js/buttons.js:440
+#: /media/js/buttons.js:444
 msgid "Install for free"
 msgstr ""
 
-#: /media/js/buttons.js:449
+#: /media/js/buttons.js:453
 msgid "Install for {price}"
 msgstr ""
 
-#: /media/js/buttons.js:455
+#: /media/js/buttons.js:459
 msgid "Open"
 msgstr ""
 
-#: /media/js/compat_filter.js:42
-#: /media/js/compat_filter.js:51
-msgid "All Platforms"
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr ""
+
+#: /media/js/apps.js:119
+msgid "not available for your platform"
 msgstr ""
 
 #: /media/js/compat_filter.js:43
-#: /media/js/compat_filter.js:60
-msgid "Android Mobile"
+#: /media/js/compat_filter.js:52
+msgid "All Platforms"
 msgstr ""
 
 #: /media/js/compat_filter.js:44
 #: /media/js/compat_filter.js:61
-msgid "Android Tablet"
+msgid "Android Mobile"
 msgstr ""
 
 #: /media/js/compat_filter.js:45
-#: /media/js/compat_filter.js:58
-msgid "Desktop"
+#: /media/js/compat_filter.js:62
+msgid "Android Tablet"
 msgstr ""
 
 #: /media/js/compat_filter.js:46
 #: /media/js/compat_filter.js:59
+msgid "Desktop"
+msgstr ""
+
+#: /media/js/compat_filter.js:47
+#: /media/js/compat_filter.js:60
 msgid "Firefox OS"
 msgstr ""
 
-#: /media/js/compat_filter.js:55
+#: /media/js/compat_filter.js:56
 msgid "My Device"
+msgstr ""
+
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:103
+msgid "For ages {0}+"
+msgstr ""
+
+#: /media/js/content-ratings.js:109
+msgid "Generic"
+msgstr ""
+
+#: /media/js/content-ratings.js:116
+msgid "For all ages"
+msgstr ""
+
+#: /media/js/content-ratings.js:125
+msgid "Rating Pending"
+msgstr ""
+
+#: /media/js/content-ratings.js:126
+msgid "Rating Refused"
+msgstr ""
+
+#: /media/js/content-ratings.js:129
+msgid "Everyone"
+msgstr ""
+
+#: /media/js/content-ratings.js:130
+msgid "Everyone 10+"
+msgstr ""
+
+#: /media/js/content-ratings.js:131
+msgid "Teen"
+msgstr ""
+
+#: /media/js/content-ratings.js:132
+msgid "Mature 17+"
+msgstr ""
+
+#: /media/js/content-ratings.js:133
+msgid "Adults Only 18+"
+msgstr ""
+
+#: /media/js/content_filter.js:21
+msgid "all content"
+msgstr ""
+
+#: /media/js/content_filter.js:22
+msgid "apps"
+msgstr ""
+
+#: /media/js/content_filter.js:23
+msgid "websites"
 msgstr ""
 
 #: /media/js/categories.js:6
@@ -996,67 +1048,6 @@ msgstr ""
 
 #: /media/js/categories.js:30
 msgid "Weather"
-msgstr ""
-
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr ""
-
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr ""
-
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:103
-msgid "For ages {0}+"
-msgstr ""
-
-#: /media/js/content-ratings.js:109
-msgid "Generic"
-msgstr ""
-
-#: /media/js/content-ratings.js:116
-msgid "For all ages"
-msgstr ""
-
-#: /media/js/content-ratings.js:125
-msgid "Rating Pending"
-msgstr ""
-
-#: /media/js/content-ratings.js:126
-msgid "Rating Refused"
-msgstr ""
-
-#: /media/js/content-ratings.js:129
-msgid "Everyone"
-msgstr ""
-
-#: /media/js/content-ratings.js:130
-msgid "Everyone 10+"
-msgstr ""
-
-#: /media/js/content-ratings.js:131
-msgid "Teen"
-msgstr ""
-
-#: /media/js/content-ratings.js:132
-msgid "Mature 17+"
-msgstr ""
-
-#: /media/js/content-ratings.js:133
-msgid "Adults Only 18+"
-msgstr ""
-
-#: /media/js/content_filter.js:20
-msgid "all content"
-msgstr ""
-
-#: /media/js/content_filter.js:21
-msgid "apps"
-msgstr ""
-
-#: /media/js/content_filter.js:22
-msgid "websites"
 msgstr ""
 
 #. Chess game desktop promo (bug 1175381).

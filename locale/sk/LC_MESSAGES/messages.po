@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12T15:27:57.013Z\n"
+"POT-Creation-Date: 2015-08-26T16:26:19.957Z\n"
 "PO-Revision-Date: 2015-08-20 12:46+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -14,17 +14,9 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1440074802.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
+#: /templates/category.html:7 /templates/app_list.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "Rozbaliť"
-
-#: /templates/app_list.html:35 /templates/app_list.html:40
-msgid "No apps found."
-msgstr "Žiadna aplikácia"
-
-#: /templates/app_list.html:42 /templates/category.html:39 /templates/langpacks.html:41 /templates/purchases.html:36
-msgid "An internal server error occurred. Please try again later."
-msgstr "Vyskytla sa vnútorná chyba servera. Skúste to znova neskôr."
 
 #: /templates/category.html:32 /templates/search.html:62
 msgid "No results found"
@@ -33,6 +25,14 @@ msgstr "Nenašli sa žiadne výsledky"
 #: /templates/category.html:37
 msgid "The category you requested does not exist."
 msgstr "Požadovaná kategória neexistuje."
+
+#: /templates/category.html:39 /templates/app_list.html:42 /templates/langpacks.html:41 /templates/purchases.html:36
+msgid "An internal server error occurred. Please try again later."
+msgstr "Vyskytla sa vnútorná chyba servera. Skúste to znova neskôr."
+
+#: /templates/app_list.html:35 /templates/app_list.html:40
+msgid "No apps found."
+msgstr "Žiadna aplikácia"
 
 #: /templates/desktop-promo.html:2
 msgid "Previous"
@@ -62,13 +62,13 @@ msgstr "Zrušiť"
 msgid "Submit Feedback"
 msgstr "Odoslať reakciu"
 
+#: /templates/feedback.html:20 /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
+msgid "Feedback"
+msgstr "Vyjadriť názor"
+
 #: /templates/feedback.html:28 /templates/feedback.html:31
 msgid "Get Help"
 msgstr "Získať pomoc"
-
-#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
-msgid "Feedback"
-msgstr "Vyjadriť názor"
 
 #: /templates/footer.html:9 /templates/footer.html:13 /templates/footer.html:17
 msgid "Support"
@@ -289,6 +289,17 @@ msgstr "Zapojte sa"
 msgid "Region"
 msgstr "Región"
 
+#: /templates/_macros/app_tile.html:113
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Recenzia"
+msgstr[1] "Recenzie"
+msgstr[2] "Recenzií"
+
+#: /templates/_macros/app_tile.html:119
+msgid "Not yet reviewed"
+msgstr "Zatiaľ neskontrolované"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "Štatistiky aplikácie"
@@ -300,6 +311,168 @@ msgstr "Štatistiky používania aplikácie"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Nedostatok štatistík pre zobrazenie."
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:399
+msgid "Free"
+msgstr "Zadarmo"
+
+#: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
+msgid "View all"
+msgstr "Zobraziť všetko"
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr ""
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr ""
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Načítať viac"
+
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
+msgstr "Snímok obrazovky {app_name}"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Z predchádzajúcej verzie {version}"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Upraviť"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Odstrániť"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Nahlásiť"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Označené na kontrolu"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Ohodnotené {stars} z {maxstars} hviezdičiek"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr "Chcete nám niečo nahlásiť?"
+
+#: /templates/app/abuse.html:6
+msgid "Let us know if you find any issues regarding abuse about this app."
+msgstr "Dajte nám vedieť, ak ste narazili na nejaký problém, napríklad zneužitie tejto aplikácie."
+
+#: /templates/app/abuse.html:13
+msgid "Submit Report"
+msgstr "Odoslať hlásenie"
+
+#: /templates/app/abuse.html:21 /templates/app/index.html:214 /media/js/views/app/abuse.js:51
+msgid "Report Abuse"
+msgstr "Nahlásiť zneužitie"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:26 /templates/website/index.html:15
+msgid "Description"
+msgstr "Popis"
+
+#: /templates/app/index.html:32 /templates/app/index.html:46 /templates/website/index.html:21
+msgid "View All"
+msgstr "Zobraziť všetky"
+
+#: /templates/app/index.html:42
+msgid "Updates"
+msgstr "Aktualizácie"
+
+#: /templates/app/index.html:53
+msgid "Last updated"
+msgstr "Posledná aktualizácia"
+
+#: /templates/app/index.html:62
+msgid "Email Support"
+msgstr "E-mailová podpora"
+
+#: /templates/app/index.html:69
+msgid "Support Site"
+msgstr "Stránka podpory"
+
+#: /templates/app/index.html:75
+msgid "Homepage"
+msgstr "Domovská stránka"
+
+#: /templates/app/index.html:88
+msgid "Statistics"
+msgstr "Štatistika"
+
+#: /templates/app/index.html:95
+msgid "Edit Listing"
+msgstr "Upraviť údaje"
+
+#: /templates/app/index.html:103
+msgid "Approve / Reject"
+msgstr "Schváliť / Zamietnuť"
+
+#: /templates/app/index.html:104
+msgid "Review History"
+msgstr "História kontrol"
+
+#: /templates/app/index.html:121 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "Recenzie"
+
+#: /templates/app/index.html:132
+msgid "App not yet reviewed"
+msgstr "Aplikácia zatiaľ nebola skontrolovaná"
+
+#: /templates/app/index.html:151
+msgid "Premium version available"
+msgstr "Dostupná prémiová verzia"
+
+#: /templates/app/index.html:169
+msgid "More Information"
+msgstr "Viac informácií"
+
+#: /templates/app/index.html:172 /templates/games/index.html:51
+msgid "Developer"
+msgstr "Vývojár"
+
+#: /templates/app/index.html:176
+msgid "Compatibility"
+msgstr "Kompatibilita"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:179 /templates/app/index.html:186
+msgid ","
+msgstr ","
+
+#: /templates/app/index.html:191
+msgid "File Size"
+msgstr "Veľkosť súboru"
+
+#: /templates/app/index.html:196
+msgid "Most Recent Version"
+msgstr "Najnovšia verzia"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Späť na aplikáciu"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Načítavajú sa Zásady ochrany súkromia..."
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Ďakujeme za objednávku"
 
 #. <mkt-selected-text> will be a noun like "apps" or "sites".
 #: /templates/_includes/app_list_filters.html:6
@@ -383,179 +556,6 @@ msgstr[0] "1 recenzia"
 msgstr[1] "{numReviews} recenzie"
 msgstr[2] "{numReviews} recenzií"
 
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr "Chcete nám niečo nahlásiť?"
-
-#: /templates/app/abuse.html:6
-msgid "Let us know if you find any issues regarding abuse about this app."
-msgstr "Dajte nám vedieť, ak ste narazili na nejaký problém, napríklad zneužitie tejto aplikácie."
-
-#: /templates/app/abuse.html:13
-msgid "Submit Report"
-msgstr "Odoslať hlásenie"
-
-#: /templates/app/abuse.html:21 /templates/app/index.html:214 /media/js/views/app/abuse.js:51
-msgid "Report Abuse"
-msgstr "Nahlásiť zneužitie"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:26 /templates/website/index.html:15
-msgid "Description"
-msgstr "Popis"
-
-#: /templates/app/index.html:32 /templates/app/index.html:46 /templates/website/index.html:21
-msgid "View All"
-msgstr "Zobraziť všetky"
-
-#: /templates/app/index.html:42
-msgid "Updates"
-msgstr "Aktualizácie"
-
-#: /templates/app/index.html:53
-msgid "Last updated"
-msgstr "Posledná aktualizácia"
-
-#: /templates/app/index.html:62
-msgid "Email Support"
-msgstr "E-mailová podpora"
-
-#: /templates/app/index.html:69
-msgid "Support Site"
-msgstr "Stránka podpory"
-
-#: /templates/app/index.html:75
-msgid "Homepage"
-msgstr "Domovská stránka"
-
-#: /templates/app/index.html:88
-msgid "Statistics"
-msgstr "Štatistika"
-
-#: /templates/app/index.html:95
-msgid "Edit Listing"
-msgstr "Upraviť údaje"
-
-#: /templates/app/index.html:103
-msgid "Approve / Reject"
-msgstr "Schváliť / Zamietnuť"
-
-#: /templates/app/index.html:104
-msgid "Review History"
-msgstr "História kontrol"
-
-#: /templates/app/index.html:121 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "Recenzie"
-
-#: /templates/app/index.html:132
-msgid "App not yet reviewed"
-msgstr "Aplikácia zatiaľ nebola skontrolovaná"
-
-#: /templates/app/index.html:151
-msgid "Premium version available"
-msgstr "Dostupná prémiová verzia"
-
-#: /templates/app/index.html:169
-msgid "More Information"
-msgstr "Viac informácií"
-
-#: /templates/app/index.html:172 /templates/games/index.html:48
-msgid "Developer"
-msgstr "Vývojár"
-
-#: /templates/app/index.html:176
-msgid "Compatibility"
-msgstr "Kompatibilita"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:179 /templates/app/index.html:186
-msgid ","
-msgstr ","
-
-#: /templates/app/index.html:191
-msgid "File Size"
-msgstr "Veľkosť súboru"
-
-#: /templates/app/index.html:196
-msgid "Most Recent Version"
-msgstr "Najnovšia verzia"
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Späť na aplikáciu"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Načítavajú sa Zásady ochrany súkromia..."
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Ďakujeme za objednávku"
-
-#: /templates/_macros/app_tile.html:113
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Recenzia"
-msgstr[1] "Recenzie"
-msgstr[2] "Recenzií"
-
-#: /templates/_macros/app_tile.html:119
-msgid "Not yet reviewed"
-msgstr "Zatiaľ neskontrolované"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:395
-msgid "Free"
-msgstr "Zadarmo"
-
-#: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
-msgid "View all"
-msgstr "Zobraziť všetko"
-
-#: /templates/_macros/feed_websites.html:16
-msgid "Visit this top site!"
-msgstr ""
-
-#: /templates/_macros/feed_websites.html:50
-msgid "Show me another site"
-msgstr ""
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Načítať viac"
-
-#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr "Snímok obrazovky {app_name}"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Z predchádzajúcej verzie {version}"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Upraviť"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Odstrániť"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Nahlásiť"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "Označené na kontrolu"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Ohodnotené {stars} z {maxstars} hviezdičiek"
-
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
 msgstr ""
@@ -600,28 +600,24 @@ msgstr "Skúsiť znova"
 msgid "PLAY GREAT DESKTOP GAMES"
 msgstr ""
 
-#: /templates/games/index.html:22
+#: /templates/games/index.html:23
 msgid "<span>by</span> {author}"
 msgstr "<span>od</span> {author}"
 
-#: /templates/games/index.html:44
+#: /templates/games/index.html:46
 msgid "Game"
 msgstr "Hra"
 
-#: /templates/games/index.html:52
+#: /templates/games/index.html:56
 msgid "Category"
 msgstr "Kategória"
 
-#: /templates/games/index.html:76
+#: /templates/games/index.html:80
 msgid "Find more great games"
 msgstr "Hľadať ďalšie výborné hry"
 
-#: /templates/games/listing.html:8
-msgid "Enjoy instant fun right on your desktop with our handpicked selection of app and browser-based games."
-msgstr ""
-
 #: /templates/games/listing.html:9
-msgid "Puzzle, action, adventure, and strategy titles&mdash;we're adding new games all the time so check back often."
+msgid "Enjoy instant fun with our handpicked selection of desktop web games you can play right in your browser."
 msgstr ""
 
 #: /templates/games/listing.html:12
@@ -728,90 +724,147 @@ msgstr "Sem prosím podrobne popíšte nájdenú chybu."
 msgid "Report an Issue"
 msgstr "Nahlásiť chybu"
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+#: /media/js/buttons.js:86 /media/js/buttons.js:158 /media/js/payments.js:134
 msgid "Payment cancelled."
 msgstr "Platba zrušená."
 
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "Prebieha zakúpenie"
-
-#: /media/js/buttons.js:131 /media/js/buttons.js:370 /media/js/buttons.js:419 /media/js/buttons.js:446 /media/js/buttons.js:457
-msgid "Install"
-msgstr "Nainštalovať"
-
-#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
+#: /media/js/buttons.js:196 /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr "Ospravedlňujeme sa, ale počas získavania údajov tejto aplikácie nastali problémy. Vyskúšajte to znova neskôr."
 
 #. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
+#: /media/js/buttons.js:241
 msgid "Install failed. Please try again later."
 msgstr "Inštalácia zlyhala. Skúste to neskôr."
 
-#: /media/js/buttons.js:321 /media/js/buttons.js:419
+#: /media/js/buttons.js:325 /media/js/buttons.js:423
 msgid "Installed"
 msgstr "Nainštalované"
 
-#: /media/js/buttons.js:395
+#: /media/js/buttons.js:399
 msgid "free"
 msgstr "zadarmo"
 
-#: /media/js/buttons.js:400
+#: /media/js/buttons.js:404
 msgid "Unavailable"
 msgstr "Nedostupné"
 
-#: /media/js/buttons.js:425 /media/js/buttons.js:432
+#: /media/js/buttons.js:423 /media/js/buttons.js:450 /media/js/buttons.js:461
+msgid "Install"
+msgstr "Nainštalovať"
+
+#: /media/js/buttons.js:429 /media/js/buttons.js:436
 msgid "Play now!"
 msgstr "Hrať teraz!"
 
-#: /media/js/buttons.js:427
+#: /media/js/buttons.js:431
 msgid "Open website"
 msgstr "Otvoriť stránku"
 
-#: /media/js/buttons.js:434
+#: /media/js/buttons.js:438
 msgid "Open app"
 msgstr "Otvoriť aplikáciu"
 
-#: /media/js/buttons.js:438 /media/js/buttons.js:444
+#: /media/js/buttons.js:442 /media/js/buttons.js:448
 msgid "Install now!"
 msgstr "Nainštalovať!"
 
-#: /media/js/buttons.js:440
+#: /media/js/buttons.js:444
 msgid "Install for free"
 msgstr "Nainštalovať zadarmo"
 
-#: /media/js/buttons.js:449
+#: /media/js/buttons.js:453
 msgid "Install for {price}"
 msgstr "Nainštalovať za {price}"
 
-#: /media/js/buttons.js:455
+#: /media/js/buttons.js:459
 msgid "Open"
 msgstr "Otvoriť"
 
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "nedostupné pre váš región"
+
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "nedostupné pre vašu platformu"
+
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
 msgid "All Platforms"
 msgstr "Všetky platformy"
 
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:60
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
 msgid "Android Mobile"
 msgstr "Android (telefón)"
 
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
 msgid "Android Tablet"
 msgstr "Android (tablet)"
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:58
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
 msgid "Desktop"
 msgstr "Počítač"
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
+#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: /media/js/compat_filter.js:55
+#: /media/js/compat_filter.js:56
 msgid "My Device"
 msgstr "Moje zariadenie"
+
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:103
+msgid "For ages {0}+"
+msgstr "Pre vek {0}+"
+
+#: /media/js/content-ratings.js:109
+msgid "Generic"
+msgstr "Všeobecné"
+
+#: /media/js/content-ratings.js:116
+msgid "For all ages"
+msgstr "Pre všetky vekové skupiny"
+
+#: /media/js/content-ratings.js:125
+msgid "Rating Pending"
+msgstr "Čaká na hodnotenie"
+
+#: /media/js/content-ratings.js:126
+msgid "Rating Refused"
+msgstr "Hodnotenie odmietnuté"
+
+#: /media/js/content-ratings.js:129
+msgid "Everyone"
+msgstr "Všetci"
+
+#: /media/js/content-ratings.js:130
+msgid "Everyone 10+"
+msgstr "Všetci starší ako 10"
+
+#: /media/js/content-ratings.js:131
+msgid "Teen"
+msgstr "Dospievajúci"
+
+#: /media/js/content-ratings.js:132
+msgid "Mature 17+"
+msgstr "Dospelí 17+"
+
+#: /media/js/content-ratings.js:133
+msgid "Adults Only 18+"
+msgstr "Dospelí 18+"
+
+#: /media/js/content_filter.js:21
+msgid "all content"
+msgstr "celý obsah"
+
+#: /media/js/content_filter.js:22
+msgid "apps"
+msgstr "aplikácie"
+
+#: /media/js/content_filter.js:23
+msgid "websites"
+msgstr "webové stránky"
 
 #: /media/js/categories.js:6 /media/js/views/games/listing.js:10
 msgid "Games"
@@ -912,67 +965,6 @@ msgstr "Nástroje"
 #: /media/js/categories.js:30
 msgid "Weather"
 msgstr "Počasie"
-
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr "nedostupné pre váš región"
-
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr "nedostupné pre vašu platformu"
-
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:103
-msgid "For ages {0}+"
-msgstr "Pre vek {0}+"
-
-#: /media/js/content-ratings.js:109
-msgid "Generic"
-msgstr "Všeobecné"
-
-#: /media/js/content-ratings.js:116
-msgid "For all ages"
-msgstr "Pre všetky vekové skupiny"
-
-#: /media/js/content-ratings.js:125
-msgid "Rating Pending"
-msgstr "Čaká na hodnotenie"
-
-#: /media/js/content-ratings.js:126
-msgid "Rating Refused"
-msgstr "Hodnotenie odmietnuté"
-
-#: /media/js/content-ratings.js:129
-msgid "Everyone"
-msgstr "Všetci"
-
-#: /media/js/content-ratings.js:130
-msgid "Everyone 10+"
-msgstr "Všetci starší ako 10"
-
-#: /media/js/content-ratings.js:131
-msgid "Teen"
-msgstr "Dospievajúci"
-
-#: /media/js/content-ratings.js:132
-msgid "Mature 17+"
-msgstr "Dospelí 17+"
-
-#: /media/js/content-ratings.js:133
-msgid "Adults Only 18+"
-msgstr "Dospelí 18+"
-
-#: /media/js/content_filter.js:20
-msgid "all content"
-msgstr "celý obsah"
-
-#: /media/js/content_filter.js:21
-msgid "apps"
-msgstr "aplikácie"
-
-#: /media/js/content_filter.js:22
-msgid "websites"
-msgstr "webové stránky"
 
 #. Chess game desktop promo (bug 1175381).
 #: /media/js/desktop_promo.js:20

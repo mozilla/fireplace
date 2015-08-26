@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12T15:27:57.013Z\n"
+"POT-Creation-Date: 2015-08-26T16:26:19.957Z\n"
 "PO-Revision-Date: 2015-05-16 07:53+0000\n"
 "Last-Translator: Biraj <brnet00@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,17 +14,9 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1431762809.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
+#: /templates/category.html:7 /templates/app_list.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "বিস্তৃত করা"
-
-#: /templates/app_list.html:35 /templates/app_list.html:40
-msgid "No apps found."
-msgstr "কোনো অ্যাপ পাওয়া যায়নি।"
-
-#: /templates/app_list.html:42 /templates/category.html:39 /templates/langpacks.html:41 /templates/purchases.html:36
-msgid "An internal server error occurred. Please try again later."
-msgstr "একটি অন্তর্বর্তী সার্ভারের ত্রুটি হয়েছে। অনুগ্রহ করে পরে চেষ্টা করুন।"
 
 #: /templates/category.html:32 /templates/search.html:62
 msgid "No results found"
@@ -33,6 +25,14 @@ msgstr "কোনো ফলাফল পাওয়া যায় নি"
 #: /templates/category.html:37
 msgid "The category you requested does not exist."
 msgstr "আপনি যে বৈশিষ্ট্যটি অনুরোধ করেছেন সেটির অস্থিত্ব নেই।"
+
+#: /templates/category.html:39 /templates/app_list.html:42 /templates/langpacks.html:41 /templates/purchases.html:36
+msgid "An internal server error occurred. Please try again later."
+msgstr "একটি অন্তর্বর্তী সার্ভারের ত্রুটি হয়েছে। অনুগ্রহ করে পরে চেষ্টা করুন।"
+
+#: /templates/app_list.html:35 /templates/app_list.html:40
+msgid "No apps found."
+msgstr "কোনো অ্যাপ পাওয়া যায়নি।"
 
 #: /templates/desktop-promo.html:2
 msgid "Previous"
@@ -62,13 +62,13 @@ msgstr "বাতির করুন"
 msgid "Submit Feedback"
 msgstr "ফিডব্যাক জমা দিন"
 
+#: /templates/feedback.html:20 /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
+msgid "Feedback"
+msgstr "ফিডব্যাক"
+
 #: /templates/feedback.html:28 /templates/feedback.html:31
 msgid "Get Help"
 msgstr "সাহায্য পান"
-
-#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
-msgid "Feedback"
-msgstr "ফিডব্যাক"
 
 #: /templates/footer.html:9 /templates/footer.html:13 /templates/footer.html:17
 msgid "Support"
@@ -287,6 +287,16 @@ msgstr "নিযুক্ত হন"
 msgid "Region"
 msgstr "এলাকা"
 
+#: /templates/_macros/app_tile.html:113
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "রিভিউ"
+msgstr[1] "রিভিউসমূহ"
+
+#: /templates/_macros/app_tile.html:119
+msgid "Not yet reviewed"
+msgstr "এখন রিভিউ করা হয়নি"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "অ্যাপের পরিসংখ্যান"
@@ -298,6 +308,168 @@ msgstr "অ্যাপ ব্যবহারের পরিসংখ্যা�
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "যথেষ্ট পরিসংখ্যান নেই দেখাবার মতোন।"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:399
+msgid "Free"
+msgstr "মুক্ত"
+
+#: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
+msgid "View all"
+msgstr ""
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr ""
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr ""
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "আরও লোড করুন"
+
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
+msgstr "{app_name} স্ক্রিনশট"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "আগের সংস্করণের জন্য {version}"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "সম্পাদনা করুন"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "বাতিল করুন"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "রিপোর্ট করুন"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "রিভিউয়ের জন্য ফ্ল্যাগ করা হয়েছে"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "রেট করা {stars} {maxstars}-র মধ্যে"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr "কিছু কি রিপোর্ট করা জরুরি?"
+
+#: /templates/app/abuse.html:6
+msgid "Let us know if you find any issues regarding abuse about this app."
+msgstr "আমাদের জানান আপনি যদি কোনো সমস্যা পেয়ে থাকেন এই অ্যাপের অপব্যবহার সংক্রান্ত।"
+
+#: /templates/app/abuse.html:13
+msgid "Submit Report"
+msgstr "রিপোর্ট জমা দিন"
+
+#: /templates/app/abuse.html:21 /templates/app/index.html:214 /media/js/views/app/abuse.js:51
+msgid "Report Abuse"
+msgstr "অপব্যবহার হলে রিপোর্ট করুন"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:26 /templates/website/index.html:15
+msgid "Description"
+msgstr "বর্ণনা"
+
+#: /templates/app/index.html:32 /templates/app/index.html:46 /templates/website/index.html:21
+msgid "View All"
+msgstr "সব দেখুন"
+
+#: /templates/app/index.html:42
+msgid "Updates"
+msgstr "আপডেটসমূহ"
+
+#: /templates/app/index.html:53
+msgid "Last updated"
+msgstr "শেষ আপডেট"
+
+#: /templates/app/index.html:62
+msgid "Email Support"
+msgstr "ইমেইল সাপোর্ট"
+
+#: /templates/app/index.html:69
+msgid "Support Site"
+msgstr "সাপোর্ট সাইট"
+
+#: /templates/app/index.html:75
+msgid "Homepage"
+msgstr "হোমপেজ"
+
+#: /templates/app/index.html:88
+msgid "Statistics"
+msgstr "পরিসংখ্যান"
+
+#: /templates/app/index.html:95
+msgid "Edit Listing"
+msgstr "তালিকা সম্পাদনা করা"
+
+#: /templates/app/index.html:103
+msgid "Approve / Reject"
+msgstr "অনুমোদন / প্রত্যাখ্যান করুন"
+
+#: /templates/app/index.html:104
+msgid "Review History"
+msgstr "রিভিউ ইতিহাস"
+
+#: /templates/app/index.html:121 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "রিভিউ"
+
+#: /templates/app/index.html:132
+msgid "App not yet reviewed"
+msgstr "অ্যাপ এখনো পর্যালোচনা করা হয়নি"
+
+#: /templates/app/index.html:151
+msgid "Premium version available"
+msgstr "প্রিমিয়াম সংস্করণ উপলব্ধ"
+
+#: /templates/app/index.html:169
+msgid "More Information"
+msgstr "আরও তথ্য"
+
+#: /templates/app/index.html:172 /templates/games/index.html:51
+msgid "Developer"
+msgstr "ডেভেলপার"
+
+#: /templates/app/index.html:176
+msgid "Compatibility"
+msgstr "সামঞ্জস্যতা"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:179 /templates/app/index.html:186
+msgid ","
+msgstr ","
+
+#: /templates/app/index.html:191
+msgid "File Size"
+msgstr "ফাইলের পরিমাণ"
+
+#: /templates/app/index.html:196
+msgid "Most Recent Version"
+msgstr "সাম্প্রতিকতম সংস্করণ"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "অ্যাপে ফিরে যান"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "গোপনীয়তা নীতি লোড হচ্ছে..."
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "কেনার জন্য আপনাকে ধন্যবাদ"
 
 #. <mkt-selected-text> will be a noun like "apps" or "sites".
 #: /templates/_includes/app_list_filters.html:6
@@ -380,178 +552,6 @@ msgid_plural "{numReviews} Reviews"
 msgstr[0] "1 রিভিউ"
 msgstr[1] "{numReviews} রিভিউসমূহ"
 
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr "কিছু কি রিপোর্ট করা জরুরি?"
-
-#: /templates/app/abuse.html:6
-msgid "Let us know if you find any issues regarding abuse about this app."
-msgstr "আমাদের জানান আপনি যদি কোনো সমস্যা পেয়ে থাকেন এই অ্যাপের অপব্যবহার সংক্রান্ত।"
-
-#: /templates/app/abuse.html:13
-msgid "Submit Report"
-msgstr "রিপোর্ট জমা দিন"
-
-#: /templates/app/abuse.html:21 /templates/app/index.html:214 /media/js/views/app/abuse.js:51
-msgid "Report Abuse"
-msgstr "অপব্যবহার হলে রিপোর্ট করুন"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:26 /templates/website/index.html:15
-msgid "Description"
-msgstr "বর্ণনা"
-
-#: /templates/app/index.html:32 /templates/app/index.html:46 /templates/website/index.html:21
-msgid "View All"
-msgstr "সব দেখুন"
-
-#: /templates/app/index.html:42
-msgid "Updates"
-msgstr "আপডেটসমূহ"
-
-#: /templates/app/index.html:53
-msgid "Last updated"
-msgstr "শেষ আপডেট"
-
-#: /templates/app/index.html:62
-msgid "Email Support"
-msgstr "ইমেইল সাপোর্ট"
-
-#: /templates/app/index.html:69
-msgid "Support Site"
-msgstr "সাপোর্ট সাইট"
-
-#: /templates/app/index.html:75
-msgid "Homepage"
-msgstr "হোমপেজ"
-
-#: /templates/app/index.html:88
-msgid "Statistics"
-msgstr "পরিসংখ্যান"
-
-#: /templates/app/index.html:95
-msgid "Edit Listing"
-msgstr "তালিকা সম্পাদনা করা"
-
-#: /templates/app/index.html:103
-msgid "Approve / Reject"
-msgstr "অনুমোদন / প্রত্যাখ্যান করুন"
-
-#: /templates/app/index.html:104
-msgid "Review History"
-msgstr "রিভিউ ইতিহাস"
-
-#: /templates/app/index.html:121 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "রিভিউ"
-
-#: /templates/app/index.html:132
-msgid "App not yet reviewed"
-msgstr "অ্যাপ এখনো পর্যালোচনা করা হয়নি"
-
-#: /templates/app/index.html:151
-msgid "Premium version available"
-msgstr "প্রিমিয়াম সংস্করণ উপলব্ধ"
-
-#: /templates/app/index.html:169
-msgid "More Information"
-msgstr "আরও তথ্য"
-
-#: /templates/app/index.html:172 /templates/games/index.html:48
-msgid "Developer"
-msgstr "ডেভেলপার"
-
-#: /templates/app/index.html:176
-msgid "Compatibility"
-msgstr "সামঞ্জস্যতা"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:179 /templates/app/index.html:186
-msgid ","
-msgstr ","
-
-#: /templates/app/index.html:191
-msgid "File Size"
-msgstr "ফাইলের পরিমাণ"
-
-#: /templates/app/index.html:196
-msgid "Most Recent Version"
-msgstr "সাম্প্রতিকতম সংস্করণ"
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "অ্যাপে ফিরে যান"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "গোপনীয়তা নীতি লোড হচ্ছে..."
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "কেনার জন্য আপনাকে ধন্যবাদ"
-
-#: /templates/_macros/app_tile.html:113
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "রিভিউ"
-msgstr[1] "রিভিউসমূহ"
-
-#: /templates/_macros/app_tile.html:119
-msgid "Not yet reviewed"
-msgstr "এখন রিভিউ করা হয়নি"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:395
-msgid "Free"
-msgstr "মুক্ত"
-
-#: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
-msgid "View all"
-msgstr ""
-
-#: /templates/_macros/feed_websites.html:16
-msgid "Visit this top site!"
-msgstr ""
-
-#: /templates/_macros/feed_websites.html:50
-msgid "Show me another site"
-msgstr ""
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "আরও লোড করুন"
-
-#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr "{app_name} স্ক্রিনশট"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "আগের সংস্করণের জন্য {version}"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "সম্পাদনা করুন"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "বাতিল করুন"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "রিপোর্ট করুন"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "রিভিউয়ের জন্য ফ্ল্যাগ করা হয়েছে"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "রেট করা {stars} {maxstars}-র মধ্যে"
-
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
 msgstr ""
@@ -596,28 +596,24 @@ msgstr "আবার চেষ্টা করুন"
 msgid "PLAY GREAT DESKTOP GAMES"
 msgstr ""
 
-#: /templates/games/index.html:22
+#: /templates/games/index.html:23
 msgid "<span>by</span> {author}"
 msgstr ""
 
-#: /templates/games/index.html:44
+#: /templates/games/index.html:46
 msgid "Game"
 msgstr ""
 
-#: /templates/games/index.html:52
+#: /templates/games/index.html:56
 msgid "Category"
 msgstr ""
 
-#: /templates/games/index.html:76
+#: /templates/games/index.html:80
 msgid "Find more great games"
 msgstr ""
 
-#: /templates/games/listing.html:8
-msgid "Enjoy instant fun right on your desktop with our handpicked selection of app and browser-based games."
-msgstr ""
-
 #: /templates/games/listing.html:9
-msgid "Puzzle, action, adventure, and strategy titles&mdash;we're adding new games all the time so check back often."
+msgid "Enjoy instant fun with our handpicked selection of desktop web games you can play right in your browser."
 msgstr ""
 
 #: /templates/games/listing.html:12
@@ -723,90 +719,147 @@ msgstr ""
 msgid "Report an Issue"
 msgstr ""
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+#: /media/js/buttons.js:86 /media/js/buttons.js:158 /media/js/payments.js:134
 msgid "Payment cancelled."
 msgstr "পেমেন্ট বাতিল হয়েছে।"
 
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "কেনা হচ্ছে"
-
-#: /media/js/buttons.js:131 /media/js/buttons.js:370 /media/js/buttons.js:419 /media/js/buttons.js:446 /media/js/buttons.js:457
-msgid "Install"
-msgstr "ইন্সটল"
-
-#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
+#: /media/js/buttons.js:196 /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr "দুঃখিত, অ্যাপের ডাটা ফেচ করতে আমাদের সমস্যা হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন।"
 
 #. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
+#: /media/js/buttons.js:241
 msgid "Install failed. Please try again later."
 msgstr "ইন্সটল ব্যর্থ হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন।"
 
-#: /media/js/buttons.js:321 /media/js/buttons.js:419
+#: /media/js/buttons.js:325 /media/js/buttons.js:423
 msgid "Installed"
 msgstr "ইন্সটল করা হয়ে গেছে"
 
-#: /media/js/buttons.js:395
+#: /media/js/buttons.js:399
 msgid "free"
 msgstr ""
 
-#: /media/js/buttons.js:400
+#: /media/js/buttons.js:404
 msgid "Unavailable"
 msgstr "অপ্রাপ্য"
 
-#: /media/js/buttons.js:425 /media/js/buttons.js:432
+#: /media/js/buttons.js:423 /media/js/buttons.js:450 /media/js/buttons.js:461
+msgid "Install"
+msgstr "ইন্সটল"
+
+#: /media/js/buttons.js:429 /media/js/buttons.js:436
 msgid "Play now!"
 msgstr ""
 
-#: /media/js/buttons.js:427
+#: /media/js/buttons.js:431
 msgid "Open website"
 msgstr ""
 
-#: /media/js/buttons.js:434
+#: /media/js/buttons.js:438
 msgid "Open app"
 msgstr ""
 
-#: /media/js/buttons.js:438 /media/js/buttons.js:444
+#: /media/js/buttons.js:442 /media/js/buttons.js:448
 msgid "Install now!"
 msgstr ""
 
-#: /media/js/buttons.js:440
+#: /media/js/buttons.js:444
 msgid "Install for free"
 msgstr ""
 
-#: /media/js/buttons.js:449
+#: /media/js/buttons.js:453
 msgid "Install for {price}"
 msgstr ""
 
-#: /media/js/buttons.js:455
+#: /media/js/buttons.js:459
 msgid "Open"
 msgstr ""
 
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "আপনার জায়গার জন্য পাওয়া যায় না"
+
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "আপনার প্ল্যাটফর্মের জন্য পাওয়া যায় না"
+
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
 msgid "All Platforms"
 msgstr "সকল প্ল্যাটফর্ম"
 
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:60
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
 msgid "Android Mobile"
 msgstr "Android মোবাইল"
 
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
 msgid "Android Tablet"
 msgstr "Android ট্যাবলেট"
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:58
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
 msgid "Desktop"
 msgstr "ডেস্কটপ"
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
+#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: /media/js/compat_filter.js:55
+#: /media/js/compat_filter.js:56
 msgid "My Device"
 msgstr "আমার ডিভাইস"
+
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:103
+msgid "For ages {0}+"
+msgstr "{0}+ বয়সের জন্য"
+
+#: /media/js/content-ratings.js:109
+msgid "Generic"
+msgstr "শ্রেণীগত"
+
+#: /media/js/content-ratings.js:116
+msgid "For all ages"
+msgstr "সব বয়সের জন্য"
+
+#: /media/js/content-ratings.js:125
+msgid "Rating Pending"
+msgstr "রেটিং অপেক্ষারত"
+
+#: /media/js/content-ratings.js:126
+msgid "Rating Refused"
+msgstr "রেটিং প্রত্যাখ্যাত"
+
+#: /media/js/content-ratings.js:129
+msgid "Everyone"
+msgstr "প্রত্যেকে"
+
+#: /media/js/content-ratings.js:130
+msgid "Everyone 10+"
+msgstr "প্রত্যেকে ১০+"
+
+#: /media/js/content-ratings.js:131
+msgid "Teen"
+msgstr "টিন"
+
+#: /media/js/content-ratings.js:132
+msgid "Mature 17+"
+msgstr "পরিপক্ব ১৭+"
+
+#: /media/js/content-ratings.js:133
+msgid "Adults Only 18+"
+msgstr "শুধুমাত্র প্রাপ্তবয়স্ক ১৮+"
+
+#: /media/js/content_filter.js:21
+msgid "all content"
+msgstr ""
+
+#: /media/js/content_filter.js:22
+msgid "apps"
+msgstr ""
+
+#: /media/js/content_filter.js:23
+msgid "websites"
+msgstr ""
 
 #: /media/js/categories.js:6 /media/js/views/games/listing.js:10
 msgid "Games"
@@ -906,67 +959,6 @@ msgstr "উপযোগিতা"
 
 #: /media/js/categories.js:30
 msgid "Weather"
-msgstr ""
-
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr "আপনার জায়গার জন্য পাওয়া যায় না"
-
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr "আপনার প্ল্যাটফর্মের জন্য পাওয়া যায় না"
-
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:103
-msgid "For ages {0}+"
-msgstr "{0}+ বয়সের জন্য"
-
-#: /media/js/content-ratings.js:109
-msgid "Generic"
-msgstr "শ্রেণীগত"
-
-#: /media/js/content-ratings.js:116
-msgid "For all ages"
-msgstr "সব বয়সের জন্য"
-
-#: /media/js/content-ratings.js:125
-msgid "Rating Pending"
-msgstr "রেটিং অপেক্ষারত"
-
-#: /media/js/content-ratings.js:126
-msgid "Rating Refused"
-msgstr "রেটিং প্রত্যাখ্যাত"
-
-#: /media/js/content-ratings.js:129
-msgid "Everyone"
-msgstr "প্রত্যেকে"
-
-#: /media/js/content-ratings.js:130
-msgid "Everyone 10+"
-msgstr "প্রত্যেকে ১০+"
-
-#: /media/js/content-ratings.js:131
-msgid "Teen"
-msgstr "টিন"
-
-#: /media/js/content-ratings.js:132
-msgid "Mature 17+"
-msgstr "পরিপক্ব ১৭+"
-
-#: /media/js/content-ratings.js:133
-msgid "Adults Only 18+"
-msgstr "শুধুমাত্র প্রাপ্তবয়স্ক ১৮+"
-
-#: /media/js/content_filter.js:20
-msgid "all content"
-msgstr ""
-
-#: /media/js/content_filter.js:21
-msgid "apps"
-msgstr ""
-
-#: /media/js/content_filter.js:22
-msgid "websites"
 msgstr ""
 
 #. Chess game desktop promo (bug 1175381).

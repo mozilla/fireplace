@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12T15:27:57.013Z\n"
+"POT-Creation-Date: 2015-08-26T16:26:19.957Z\n"
 "PO-Revision-Date: 2015-08-19 15:09+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: none\n"
@@ -14,17 +14,9 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1439996962.0\n"
 
-#: /templates/app_list.html:7 /templates/category.html:7 /templates/purchases.html:7 /templates/search.html:8
+#: /templates/category.html:7 /templates/app_list.html:7 /templates/purchases.html:7 /templates/search.html:8
 msgid "Expand"
 msgstr "Utklappe"
-
-#: /templates/app_list.html:35 /templates/app_list.html:40
-msgid "No apps found."
-msgstr "Gjin apps fûn."
-
-#: /templates/app_list.html:42 /templates/category.html:39 /templates/langpacks.html:41 /templates/purchases.html:36
-msgid "An internal server error occurred. Please try again later."
-msgstr "Der is in ynterne serverflater bard. Probearje it letter nochris."
 
 #: /templates/category.html:32 /templates/search.html:62
 msgid "No results found"
@@ -33,6 +25,14 @@ msgstr "Gjin resultaten fûn"
 #: /templates/category.html:37
 msgid "The category you requested does not exist."
 msgstr "De troch jo frege kategory bestiet net."
+
+#: /templates/category.html:39 /templates/app_list.html:42 /templates/langpacks.html:41 /templates/purchases.html:36
+msgid "An internal server error occurred. Please try again later."
+msgstr "Der is in ynterne serverflater bard. Probearje it letter nochris."
+
+#: /templates/app_list.html:35 /templates/app_list.html:40
+msgid "No apps found."
+msgstr "Gjin apps fûn."
 
 #: /templates/desktop-promo.html:2
 msgid "Previous"
@@ -62,13 +62,13 @@ msgstr "Annulearje"
 msgid "Submit Feedback"
 msgstr "Kommentaar yntsjinje"
 
+#: /templates/feedback.html:20 /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
+msgid "Feedback"
+msgstr "Kommentaar"
+
 #: /templates/feedback.html:28 /templates/feedback.html:31
 msgid "Get Help"
 msgstr "Help krije"
-
-#: /templates/footer.html:6 /templates/header.html:85 /templates/nav.html:38 /media/js/views/feedback.js:50
-msgid "Feedback"
-msgstr "Kommentaar"
 
 #: /templates/footer.html:9 /templates/footer.html:13 /templates/footer.html:17
 msgid "Support"
@@ -287,6 +287,16 @@ msgstr "Meiewurkje"
 msgid "Region"
 msgstr "Regio"
 
+#: /templates/_macros/app_tile.html:113
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "beoardieling"
+msgstr[1] "beoardielingen"
+
+#: /templates/_macros/app_tile.html:119
+msgid "Not yet reviewed"
+msgstr "Noch net beoardield"
+
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "App-statistiken"
@@ -298,6 +308,168 @@ msgstr "Statistiken fan app-gebrûk"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Net genôch statistiken te toanen."
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&ndash; {attribution}"
+
+#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:399
+msgid "Free"
+msgstr "Fergees"
+
+#: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
+msgid "View all"
+msgstr "Alles werjaan"
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr "Besykje dizze topwebsite!"
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr "Noch in website toane"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Mear lade"
+
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
+msgstr "{app_name}-skermôfbylding"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Foar foarige ferzje {version}"
+
+#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
+msgid "Edit"
+msgstr "Bewurkje"
+
+#: /templates/_macros/review.html:35
+msgid "Delete"
+msgstr "Fuortsmite"
+
+#: /templates/_macros/review.html:41
+msgid "Report"
+msgstr "Rapportearje"
+
+#: /templates/_macros/review.html:43
+msgid "Flagged for review"
+msgstr "Markearre foar beoardieling"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Wurdearring: {stars} fan {maxstars} stjerren"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr "Wolle jo wat melde?"
+
+#: /templates/app/abuse.html:6
+msgid "Let us know if you find any issues regarding abuse about this app."
+msgstr "Lit it ús witte as jo problemen mei betrekking ta misbrûk fan dizze app ûnderfine."
+
+#: /templates/app/abuse.html:13
+msgid "Submit Report"
+msgstr "Rapport ferstjoere"
+
+#: /templates/app/abuse.html:21 /templates/app/index.html:214 /media/js/views/app/abuse.js:51
+msgid "Report Abuse"
+msgstr "Misbrûk melde"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:26 /templates/website/index.html:15
+msgid "Description"
+msgstr "Beskriuwing"
+
+#: /templates/app/index.html:32 /templates/app/index.html:46 /templates/website/index.html:21
+msgid "View All"
+msgstr "Alles werjaan"
+
+#: /templates/app/index.html:42
+msgid "Updates"
+msgstr "Fernijingen"
+
+#: /templates/app/index.html:53
+msgid "Last updated"
+msgstr "Lêst bywurke"
+
+#: /templates/app/index.html:62
+msgid "Email Support"
+msgstr "Stipe fia e-mail"
+
+#: /templates/app/index.html:69
+msgid "Support Site"
+msgstr "Stipewebsite"
+
+#: /templates/app/index.html:75
+msgid "Homepage"
+msgstr "Startside"
+
+#: /templates/app/index.html:88
+msgid "Statistics"
+msgstr "Statistiken"
+
+#: /templates/app/index.html:95
+msgid "Edit Listing"
+msgstr "Fermelding bewurkje"
+
+#: /templates/app/index.html:103
+msgid "Approve / Reject"
+msgstr "Goedkarre / Ofwize"
+
+#: /templates/app/index.html:104
+msgid "Review History"
+msgstr "Beoardielingsskiednis"
+
+#: /templates/app/index.html:121 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
+msgid "Reviews"
+msgstr "Beoardielingen"
+
+#: /templates/app/index.html:132
+msgid "App not yet reviewed"
+msgstr "App noch net beoardield"
+
+#: /templates/app/index.html:151
+msgid "Premium version available"
+msgstr "Premiumferzje beskikber"
+
+#: /templates/app/index.html:169
+msgid "More Information"
+msgstr "Mear ynformaasje"
+
+#: /templates/app/index.html:172 /templates/games/index.html:51
+msgid "Developer"
+msgstr "Untwikkeler"
+
+#: /templates/app/index.html:176
+msgid "Compatibility"
+msgstr "Kompatibiliteit"
+
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:179 /templates/app/index.html:186
+msgid ","
+msgstr ","
+
+#: /templates/app/index.html:191
+msgid "File Size"
+msgstr "Bestânsgrutte"
+
+#: /templates/app/index.html:196
+msgid "Most Recent Version"
+msgstr "Meast resinte ferzje"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Tebek nei app"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Privacybelied lade…"
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Tank foar jo oankeap"
 
 #. <mkt-selected-text> will be a noun like "apps" or "sites".
 #: /templates/_includes/app_list_filters.html:6
@@ -380,178 +552,6 @@ msgid_plural "{numReviews} Reviews"
 msgstr[0] "1 beoardieling"
 msgstr[1] "{numReviews} beoardielingen"
 
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr "Wolle jo wat melde?"
-
-#: /templates/app/abuse.html:6
-msgid "Let us know if you find any issues regarding abuse about this app."
-msgstr "Lit it ús witte as jo problemen mei betrekking ta misbrûk fan dizze app ûnderfine."
-
-#: /templates/app/abuse.html:13
-msgid "Submit Report"
-msgstr "Rapport ferstjoere"
-
-#: /templates/app/abuse.html:21 /templates/app/index.html:214 /media/js/views/app/abuse.js:51
-msgid "Report Abuse"
-msgstr "Misbrûk melde"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:26 /templates/website/index.html:15
-msgid "Description"
-msgstr "Beskriuwing"
-
-#: /templates/app/index.html:32 /templates/app/index.html:46 /templates/website/index.html:21
-msgid "View All"
-msgstr "Alles werjaan"
-
-#: /templates/app/index.html:42
-msgid "Updates"
-msgstr "Fernijingen"
-
-#: /templates/app/index.html:53
-msgid "Last updated"
-msgstr "Lêst bywurke"
-
-#: /templates/app/index.html:62
-msgid "Email Support"
-msgstr "Stipe fia e-mail"
-
-#: /templates/app/index.html:69
-msgid "Support Site"
-msgstr "Stipewebsite"
-
-#: /templates/app/index.html:75
-msgid "Homepage"
-msgstr "Startside"
-
-#: /templates/app/index.html:88
-msgid "Statistics"
-msgstr "Statistiken"
-
-#: /templates/app/index.html:95
-msgid "Edit Listing"
-msgstr "Fermelding bewurkje"
-
-#: /templates/app/index.html:103
-msgid "Approve / Reject"
-msgstr "Goedkarre / Ofwize"
-
-#: /templates/app/index.html:104
-msgid "Review History"
-msgstr "Beoardielingsskiednis"
-
-#: /templates/app/index.html:121 /templates/ratings/main.html:16 /media/js/views/app/ratings.js:11
-msgid "Reviews"
-msgstr "Beoardielingen"
-
-#: /templates/app/index.html:132
-msgid "App not yet reviewed"
-msgstr "App noch net beoardield"
-
-#: /templates/app/index.html:151
-msgid "Premium version available"
-msgstr "Premiumferzje beskikber"
-
-#: /templates/app/index.html:169
-msgid "More Information"
-msgstr "Mear ynformaasje"
-
-#: /templates/app/index.html:172 /templates/games/index.html:48
-msgid "Developer"
-msgstr "Untwikkeler"
-
-#: /templates/app/index.html:176
-msgid "Compatibility"
-msgstr "Kompatibiliteit"
-
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:179 /templates/app/index.html:186
-msgid ","
-msgstr ","
-
-#: /templates/app/index.html:191
-msgid "File Size"
-msgstr "Bestânsgrutte"
-
-#: /templates/app/index.html:196
-msgid "Most Recent Version"
-msgstr "Meast resinte ferzje"
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Tebek nei app"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Privacybelied lade…"
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Tank foar jo oankeap"
-
-#: /templates/_macros/app_tile.html:113
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "beoardieling"
-msgstr[1] "beoardielingen"
-
-#: /templates/_macros/app_tile.html:119
-msgid "Not yet reviewed"
-msgstr "Noch net beoardield"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&ndash; {attribution}"
-
-#: /templates/_macros/feed_item.html:71 /media/js/buttons.js:395
-msgid "Free"
-msgstr "Fergees"
-
-#: /templates/_macros/feed_item.html:85 /templates/_macros/feed_item.html:178
-msgid "View all"
-msgstr "Alles werjaan"
-
-#: /templates/_macros/feed_websites.html:16
-msgid "Visit this top site!"
-msgstr "Besykje dizze topwebsite!"
-
-#: /templates/_macros/feed_websites.html:50
-msgid "Show me another site"
-msgstr "Noch in website toane"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Mear lade"
-
-#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr "{app_name}-skermôfbylding"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Foar foarige ferzje {version}"
-
-#: /templates/_macros/review.html:24 /templates/_macros/review.html:28
-msgid "Edit"
-msgstr "Bewurkje"
-
-#: /templates/_macros/review.html:35
-msgid "Delete"
-msgstr "Fuortsmite"
-
-#: /templates/_macros/review.html:41
-msgid "Report"
-msgstr "Rapportearje"
-
-#: /templates/_macros/review.html:43
-msgid "Flagged for review"
-msgstr "Markearre foar beoardieling"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Wurdearring: {stars} fan {maxstars} stjerren"
-
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
 msgstr "Ynhâld net fûn"
@@ -596,33 +596,25 @@ msgstr "Probearje it opnij"
 msgid "PLAY GREAT DESKTOP GAMES"
 msgstr "SPYLJE GEWELDIGE DESKTOPSPULTSJES"
 
-#: /templates/games/index.html:22
+#: /templates/games/index.html:23
 msgid "<span>by</span> {author}"
 msgstr "<span>troch</span> {author}"
 
-#: /templates/games/index.html:44
+#: /templates/games/index.html:46
 msgid "Game"
 msgstr "Spultsje"
 
-#: /templates/games/index.html:52
+#: /templates/games/index.html:56
 msgid "Category"
 msgstr "Kategory"
 
-#: /templates/games/index.html:76
+#: /templates/games/index.html:80
 msgid "Find more great games"
 msgstr "Mear geweldige spultsjes fine"
 
-#: /templates/games/listing.html:8
-msgid "Enjoy instant fun right on your desktop with our handpicked selection of app and browser-based games."
-msgstr ""
-"Underfyn nocht op jo desktop mei ús hânmjittich keazen seleksje op apps en "
-"browsers basearre spultsjes."
-
 #: /templates/games/listing.html:9
-msgid "Puzzle, action, adventure, and strategy titles&mdash;we're adding new games all the time so check back often."
+msgid "Enjoy instant fun with our handpicked selection of desktop web games you can play right in your browser."
 msgstr ""
-"Puzzel-, aksje-, aventoer- en strategytitels &ndash; wy foegje kontinu nije "
-"spultsjes ta, dus kom regelmjittich werom."
 
 #: /templates/games/listing.html:12
 msgid "Learn more about why games and Mozilla go so well together."
@@ -728,90 +720,147 @@ msgstr "Beskriuw hjir it probleem. Wês spesifyk."
 msgid "Report an Issue"
 msgstr "In probleem melde"
 
-#: /media/js/buttons.js:81 /media/js/buttons.js:153 /media/js/payments.js:134
+#: /media/js/buttons.js:86 /media/js/buttons.js:158 /media/js/payments.js:134
 msgid "Payment cancelled."
 msgstr "Betelling annulearre."
 
-#: /media/js/buttons.js:117
-msgid "Purchasing"
-msgstr "Oankeapen"
-
-#: /media/js/buttons.js:131 /media/js/buttons.js:370 /media/js/buttons.js:419 /media/js/buttons.js:446 /media/js/buttons.js:457
-msgid "Install"
-msgstr "Ynstallearje"
-
-#: /media/js/buttons.js:192 /media/js/installer_direct.js:178
+#: /media/js/buttons.js:196 /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr "Sorry, der wienen problemen by it opheljen fan de gegevens oer dizze app. Probearje it letter nochris."
 
 #. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:237
+#: /media/js/buttons.js:241
 msgid "Install failed. Please try again later."
 msgstr "Ynstallaasje mislearre. Probearje it letter nochris."
 
-#: /media/js/buttons.js:321 /media/js/buttons.js:419
+#: /media/js/buttons.js:325 /media/js/buttons.js:423
 msgid "Installed"
 msgstr "Ynstallearre"
 
-#: /media/js/buttons.js:395
+#: /media/js/buttons.js:399
 msgid "free"
 msgstr "fergees"
 
-#: /media/js/buttons.js:400
+#: /media/js/buttons.js:404
 msgid "Unavailable"
 msgstr "Net beskikber"
 
-#: /media/js/buttons.js:425 /media/js/buttons.js:432
+#: /media/js/buttons.js:423 /media/js/buttons.js:450 /media/js/buttons.js:461
+msgid "Install"
+msgstr "Ynstallearje"
+
+#: /media/js/buttons.js:429 /media/js/buttons.js:436
 msgid "Play now!"
 msgstr "No spylje!"
 
-#: /media/js/buttons.js:427
+#: /media/js/buttons.js:431
 msgid "Open website"
 msgstr "Website iepenje"
 
-#: /media/js/buttons.js:434
+#: /media/js/buttons.js:438
 msgid "Open app"
 msgstr "App iepenje"
 
-#: /media/js/buttons.js:438 /media/js/buttons.js:444
+#: /media/js/buttons.js:442 /media/js/buttons.js:448
 msgid "Install now!"
 msgstr "No ynstallearje!"
 
-#: /media/js/buttons.js:440
+#: /media/js/buttons.js:444
 msgid "Install for free"
 msgstr "Fergees ynstallearje"
 
-#: /media/js/buttons.js:449
+#: /media/js/buttons.js:453
 msgid "Install for {price}"
 msgstr "Ynstallearje foar {price}"
 
-#: /media/js/buttons.js:455
+#: /media/js/buttons.js:459
 msgid "Open"
 msgstr "Iepenje"
 
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "net beskikber foar jo regio"
+
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "net beskikber foar jo platfoarm"
+
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:52
 msgid "All Platforms"
 msgstr "Alle platfoarmen"
 
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:60
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
 msgid "Android Mobile"
 msgstr "Android mobyl"
 
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:61
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:62
 msgid "Android Tablet"
 msgstr "Android-tablet"
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:58
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
 msgid "Desktop"
 msgstr "Desktop"
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:59
+#: /media/js/compat_filter.js:47 /media/js/compat_filter.js:60
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: /media/js/compat_filter.js:55
+#: /media/js/compat_filter.js:56
 msgid "My Device"
 msgstr "Myn apparaat"
+
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:103
+msgid "For ages {0}+"
+msgstr "Fanôf {0} jier"
+
+#: /media/js/content-ratings.js:109
+msgid "Generic"
+msgstr "Algemien"
+
+#: /media/js/content-ratings.js:116
+msgid "For all ages"
+msgstr "Foar alle leeftiden"
+
+#: /media/js/content-ratings.js:125
+msgid "Rating Pending"
+msgstr "Wacht op beoardieling"
+
+#: /media/js/content-ratings.js:126
+msgid "Rating Refused"
+msgstr "Beoardieling wegere"
+
+#: /media/js/content-ratings.js:129
+msgid "Everyone"
+msgstr "Eltsenien"
+
+#: /media/js/content-ratings.js:130
+msgid "Everyone 10+"
+msgstr "10 jier en âlder"
+
+#: /media/js/content-ratings.js:131
+msgid "Teen"
+msgstr "Teeners"
+
+#: /media/js/content-ratings.js:132
+msgid "Mature 17+"
+msgstr "17 jier en âlder"
+
+#: /media/js/content-ratings.js:133
+msgid "Adults Only 18+"
+msgstr "Allinnich folwoeksenen 18+"
+
+#: /media/js/content_filter.js:21
+msgid "all content"
+msgstr "alle ynhâld"
+
+#: /media/js/content_filter.js:22
+msgid "apps"
+msgstr "apps"
+
+#: /media/js/content_filter.js:23
+msgid "websites"
+msgstr "websites"
 
 #: /media/js/categories.js:6 /media/js/views/games/listing.js:10
 msgid "Games"
@@ -912,67 +961,6 @@ msgstr "Helpprogramma’s"
 #: /media/js/categories.js:30
 msgid "Weather"
 msgstr "It waar"
-
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr "net beskikber foar jo regio"
-
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr "net beskikber foar jo platfoarm"
-
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:103
-msgid "For ages {0}+"
-msgstr "Fanôf {0} jier"
-
-#: /media/js/content-ratings.js:109
-msgid "Generic"
-msgstr "Algemien"
-
-#: /media/js/content-ratings.js:116
-msgid "For all ages"
-msgstr "Foar alle leeftiden"
-
-#: /media/js/content-ratings.js:125
-msgid "Rating Pending"
-msgstr "Wacht op beoardieling"
-
-#: /media/js/content-ratings.js:126
-msgid "Rating Refused"
-msgstr "Beoardieling wegere"
-
-#: /media/js/content-ratings.js:129
-msgid "Everyone"
-msgstr "Eltsenien"
-
-#: /media/js/content-ratings.js:130
-msgid "Everyone 10+"
-msgstr "10 jier en âlder"
-
-#: /media/js/content-ratings.js:131
-msgid "Teen"
-msgstr "Teeners"
-
-#: /media/js/content-ratings.js:132
-msgid "Mature 17+"
-msgstr "17 jier en âlder"
-
-#: /media/js/content-ratings.js:133
-msgid "Adults Only 18+"
-msgstr "Allinnich folwoeksenen 18+"
-
-#: /media/js/content_filter.js:20
-msgid "all content"
-msgstr "alle ynhâld"
-
-#: /media/js/content_filter.js:21
-msgid "apps"
-msgstr "apps"
-
-#: /media/js/content_filter.js:22
-msgid "websites"
-msgstr "websites"
 
 #. Chess game desktop promo (bug 1175381).
 #: /media/js/desktop_promo.js:20
