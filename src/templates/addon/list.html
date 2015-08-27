@@ -1,0 +1,33 @@
+{% include '_macros/addon_tile.html' %}
+
+<section class="main">
+  <div class="subheader">
+    <h1>{{ _('Firefox OS Add-ons') }}</h1>
+  </div>
+</section>
+
+<section class="main full c">
+  {% defer (url=api('addon_list'), pluck='objects', as='addons', key='slug') %}
+    <ul class="addon-list">
+      {% for addon in addons %}
+        <li>
+          {{ addon_tile(addon) }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% placeholder %}
+    <p class="spinner padded alt"></p>
+  {% empty %}
+    <p class="no-results">
+      {{ _('No Firefox OS add-ons found.') }}
+    </p>
+  {% except %}
+    <p class="no-results">
+      {% if error == 400 or error == 404 %}
+        {{ _('No Firefox OS add-ons found.') }}
+      {% elif error == 500 %}
+        {{ _('An internal server error occurred. Please try again later.') }}
+      {% endif %}
+    </p>
+  {% end %}
+</section>

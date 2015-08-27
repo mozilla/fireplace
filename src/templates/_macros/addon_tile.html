@@ -1,0 +1,5 @@
+{% macro addon_tile(addon) %}
+  <article class="addon">
+    <h1><a href="{{ url('addon', [addon.slug]) }}">{{ addon.name }}</a></h1>
+  </article>
+{% endmacro %}
