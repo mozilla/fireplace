@@ -4,6 +4,7 @@ define('routes',
 
     router.addRoutes([
         {'pattern': '^/(app.html|index.html)?$', 'view_name': 'homepage'},
+        {'pattern': '^/addon/([^/<>"\']+)/?$', 'view_name': 'addon'},
         {'pattern': '^/app/([^/<>"\']+)/?$', 'view_name': 'app'},
         {'pattern': '^/app/([^/<>"\']+)/abuse$', 'view_name': 'app/abuse'},
         {'pattern': '^/app/([^/<>"\']+)/privacy$', 'view_name': 'app/privacy'},
@@ -46,6 +47,7 @@ define('routes',
 
     router.api.addRoutes({
         'account_info': '/api/v2/account/info/{0}',
+        'addon': '/api/v2/extensions/extension/{0}/?cache=1&vary=0',
         'app': '/api/v2/fireplace/app/{0}/?cache=1&vary=0',
         'app/privacy': '/api/v2/apps/app/{0}/privacy/?cache=1&vary=0',
         'app_abuse': '/api/v2/abuse/app/',

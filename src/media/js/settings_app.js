@@ -48,6 +48,7 @@ define('settings_app',
 
         // The list of models and their primary key mapping. Used by caching.
         model_prototypes: {
+            'addon': 'slug',
             'app': 'slug',
             'collection': 'slug',
 
