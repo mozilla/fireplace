@@ -1,12 +1,16 @@
 {% include '_macros/app_tile.html' %}
 {% include '_macros/more_button.html' %}
 
+
 <section class="main">
   <div class="subheader cat-header">
     <h1 class="category-header-icon cat-{{ category }} cat-icon">
       {{ category_name }}
       <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
     </h1>
+    {% if showPersonalizationSubmenu %}
+      {% include '_includes/personalization.html' %}
+    {% endif %}
   </div>
 </section>
 

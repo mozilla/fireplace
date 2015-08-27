@@ -1,0 +1,48 @@
+@import 'lib';
+
+
+.personalization {
+    border-top: 1px solid $greyscale-grey;
+    margin 0 10px;
+    text-align: center;
+    text-transform: uppercase;
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        line-height: 1;
+    }
+
+    a {
+        margin: 0;
+        padding: 10px;
+    }
+}
+
+@media $base-tablet {
+    .personalization {
+        border: 0;
+        margin: -40px 0 0;
+        padding: 0 0 48px 120px;
+        position: relative;
+
+        ul {
+            justify-content: flex-start;
+        }
+
+        li {
+            border-right: 2px solid #CCC;
+            margin-right: 10px;
+            padding-right: 10px;
+            &:last-child {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        a {
+            padding: 0;
+        }
+    }
+}
