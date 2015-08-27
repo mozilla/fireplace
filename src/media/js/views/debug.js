@@ -25,6 +25,11 @@ define('views/debug',
         z.page.trigger('navigate', '/');
     })
 
+    .on('click', '#enable-addons', function() {
+        settings.addonsEnabled = true;
+        z.page.trigger('navigate', '/');
+    })
+
     .on('click', '#enable-offline-cache', function() {
         storage.removeItem('offline_cache_disabled');
         persistent_console_debug.log('Offline cache enabled:', new Date());

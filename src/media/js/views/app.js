@@ -20,7 +20,7 @@ define('views/app',
         builder.start('app/index.html', {
             iarc: iarc,
             placeholder_app: {
-		loading: true,
+                loading: true,
                 author: gettext('Loading...'),
                 name: gettext('Loading...'),
                 previews: [{
