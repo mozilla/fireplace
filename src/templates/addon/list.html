@@ -7,9 +7,9 @@
 </section>
 
 <section class="main full c">
-  {% defer (url=api('addon_list'), pluck='objects', as='addons', key='slug') %}
+  {% defer (url=api('addon_list'), pluck='objects', as='addon', key='slug') %}
     <ul class="addon-list">
-      {% for addon in addons %}
+      {% for addon in this %}
         <li>
           {{ addon_tile(addon) }}
         </li>
