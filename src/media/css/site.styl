@@ -248,12 +248,16 @@ noscript {
 }
 
 /* For Firefox for Android. */
-input:not([disabled]):active,
-select:not([disabled]):active,
-textarea:not([disabled]):active,
-option:active,
-label:active {
-    background: transparent;
+button:not([disabled]),
+input:not([disabled]),
+select:not([disabled]),
+textarea:not([disabled]),
+option,
+label,
+a {
+    &:active:not([data-no-transparent]) {
+        background: transparent;
+    }
 }
 
 // Hide the regular UI for standalone pages.
