@@ -1,7 +1,11 @@
-{% defer (url=api('addon', [slug]), as='addon', key=slug) %}
-  <h2>Add-on: {{ this.name }}</h2>
-  <p>Version: {{ this.version }}</p>
-  <button>Install</button>
+{% defer (url=api('addon', [slug]), as='addon', key=slug, id='addon-data') %}
+  <div class="addon" data-slug="{{ slug }}">
+    <h2>Add-on: {{ this.name }}</h2>
+    <p>Version: {{ this.version }}</p>
+    <button class="addon-install-btn" data-id="{{ slug }}">
+      {{ _('Install') }}
+    </button>
+  </div>
 {% placeholder %}
   <h2>{{ placeholder_addon.name }}</h2>
   <p>{{ placeholder_addon.version }}</p>
