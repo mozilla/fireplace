@@ -25,7 +25,8 @@ define('webactivities',
     function handleActivity(name, data, def) {
         logger.log('Handled "' + name + '" activity: ' + JSON.stringify(data));
 
-        var src = data.src && utils.slugify(data.src) || 'activity-' + name;
+        var activity_src = 'activity-' + name;
+        var src = data.src && utils.slugify(data.src) || activity_src;
         var url, manifest_url, slug;
 
         switch (name) {
@@ -98,17 +99,30 @@ define('webactivities',
                 }
 
                 if (slug) {
-                    // Navigate to the ACL app detail page, it will be shown
-                    // during the install.
+                    // Navigate to the ACL app detail page and make its install
+                    // button spin to give the user something to look at while
+                    // the install is in progress.
                     var buttonSelector = '.install[data-slug=' + slug + ']';
-                    z.page.one('loaded', function(e) {
-                        // When we load the detail page we are going to, set
-                        // the install button as already spinning.
-                        buttons.spinButton($(buttonSelector));
+                    z.page.on('loaded', function(e) {
+                        if (utils.getVars().activity_src === activity_src) {
+                            // We don't want to do the spin on every page, the
+                            // user might come back to the ACL detail page once
+                            // the install is over. At the same time we can't
+                            // wait for *just* the next 'loaded' event, because
+                            // there might be 2 events fired if Marketplace was
+                            // not already opened (one for the homepage, one
+                            // for the detail page). So we do a check on a
+                            // 'activity_src' query parameter we add when
+                            // navigating to the page a few lines below.
+                            buttons.spinButton($(buttonSelector));
+                        }
                     });
-                    url = urls.reverse('app', [slug]);
-                    z.page.trigger('navigate',
-                                   [utils.urlparams(url, {src: src})]);
+                    z.page.trigger('navigate', [
+                        utils.urlparams(urls.reverse('app', [slug]), {
+                            src: src,
+                            activity_src: activity_src
+                        })
+                    ]);
                     // Fetch ACL app data for manifest and install.
                     req
                       .get(urls.api.url('app', [slug]))
