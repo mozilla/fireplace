@@ -27,7 +27,7 @@ define('views/debug',
 
     .on('click', '#enable-addons', function() {
         settings.addonsEnabled = true;
-        z.page.trigger('navigate', '/');
+        z.page.trigger('navigate', '/addons');
     })
 
     .on('click', '#enable-offline-cache', function() {
