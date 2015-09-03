@@ -1,4 +1,5 @@
 {% include '_macros/addon_tile.html' %}
+{% include '_macros/more_button.html' %}
 
 <section class="main">
   <div class="subheader">
@@ -7,13 +8,17 @@
 </section>
 
 <section class="main full c">
-  {% defer (url=api('addon_list'), pluck='objects', as='addon', key='slug') %}
+  {% defer (url=api('addon_list'), pluck='objects', as='addon', key='slug',
+            paginate='.addon-list') %}
     <ul class="addon-list">
       {% for addon in this %}
         <li>
           {{ addon_tile(addon) }}
         </li>
       {% endfor %}
+      {% if response.meta.next %}
+        {{ more_button(response.meta.next) }}
+      {% endif %}
     </ul>
   {% placeholder %}
     <p class="spinner padded alt"></p>
