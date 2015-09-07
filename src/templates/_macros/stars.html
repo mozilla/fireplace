@@ -2,9 +2,10 @@
   {% set rating = rating|round %}
   {% set rating_itemprop = 'ratingValue' if aggregate else 'reviewRating' %}
   <meta itemprop="worstRating" content="1">
-  <span class="stars{{ ' large' if detailpage }} stars-{{ rating }}" title="{{ title }}">
-    {{ _('Rated {stars} out of {maxstars} stars',
+  <div class="stars{{ ' large' if detailpage }} stars-{{ rating }}" title="{{ title }}">
+     <div class="stars-full stars-{{ rating }}">★★★★★</div><div class="stars-empty">☆☆☆☆☆</div>
+     {{ _('Rated {stars} out of {maxstars} stars',
          stars='<span itemprop="' + rating_itemprop + '">' + rating + '</span>',
          maxstars='<span itemprop="bestRating">5</span>') }}
-  </span>
+  </div>
 {% endmacro %}
