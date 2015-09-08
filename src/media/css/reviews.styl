@@ -105,7 +105,7 @@ select[name=rating] {
 }
 
 .rating, .stars {
-    height: 12px;
+    height: 16px;
 }
 
 mkt-prompt .simple-field.rating {
@@ -118,11 +118,13 @@ mkt-prompt .simple-field.rating {
 }
 
 .stars {
-    background: url(../img/pretty/stars.svg) no-repeat;
     background-size: 130px 12px;
+    color: transparent;
     display: inline-block;
-    hidetext();
+    font-size: 13px;
+    overflow: hidden;
     vertical-align: top;
+    white-space: nowrap;
     width: 65px;
 
     +rtl() {
@@ -133,6 +135,21 @@ mkt-prompt .simple-field.rating {
     &.stars-2 { background-position: -39px 0; }
     &.stars-1 { background-position: -52px 0; }
     &.stars-0 { background-position: -65px 0; }
+}
+
+.stars .stars-full {
+    color: $action-positive;
+    display: inline-block;
+
+    &.stars-4 { margin-left: -13px; }
+    &.stars-3 { margin-left: -26px; }
+    &.stars-2 { margin-left: -39px; }
+    &.stars-1 { margin-left: -52px; }
+    &.stars-0 { margin-left: -65px; }
+}
+.stars .stars-empty {
+    color: $action-disabled;
+    display: inline-block;
 }
 
 .stars.ratingwidget {
