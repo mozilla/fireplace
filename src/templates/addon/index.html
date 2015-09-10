@@ -1,7 +1,10 @@
 {% defer (url=api('addon', [slug]), as='addon', key=slug, id='addon-data') %}
   <div class="addon" data-slug="{{ slug }}">
     <h2>Add-on: {{ this.name }}</h2>
-    <p>Version: {{ this.version }}</p>
+    <p>Version: {{ this.latest_public_version.version }}</p>
+    {% if this.description %}
+      <p>Description: {{ this.description }}</p>
+    {% endif %}
     <button class="addon-install-btn" data-id="{{ slug }}">
       {{ _('Install') }}
     </button>
