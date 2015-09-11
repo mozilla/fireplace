@@ -1,5 +1,24 @@
-{% macro addon_tile(addon) %}
-  <article class="addon">
-    <h1><a href="{{ url('addon', [addon.slug]) }}">{{ addon.name }}</a></h1>
-  </article>
+{% macro addon_tile(addon, is_detail=False) %}
+{% set tag = 'div' if is_detail else 'a' %}
+  <{{ tag }} class="addon-tile"
+             data-content-type="addon"
+             {% if not is_detail %}
+               href="{{ url('addon', [addon.slug]) }}"
+             {% endif %}
+             data-slug="{{ addon.slug }}">
+    <div class="addon-tile-info">
+      <h3 class="mkt-addon-name" title="{{ addon.name }}" itemprop="name">
+        {{ addon.name }}
+      </h3>
+      {% if addon.author %}
+        <div class="author mkt-product-author"
+             title="{{ addon.author }}" itemprop="creator">
+          {{ addon.author }}
+        </div>
+      {% endif %}
+    </div>
+    <button class="button addon-install-btn">
+      {{ _('Install') }}
+    </button>
+  </{{ tag }}>
 {% endmacro %}

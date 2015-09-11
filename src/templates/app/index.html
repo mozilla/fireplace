@@ -10,7 +10,7 @@
 
 {% defer (url=endpoint, as='app', key=slug) %}
   {# Apply transformer to get categories etc. working. #}
-  {% set app = apps.transform(this) %}
+  {% set app = apps.transform(this, 'app') %}
   <section class="main full app-info">
     <div class="detail-flex-wrap">
       <div class="detail-left-side">
@@ -189,8 +189,8 @@
           </dl>
           {% if this.is_packaged and this.file_size %}
             <dl>
-                <dt>{{ _('File Size') }}</dt>
-                <dd>{{ this.file_size }}</dd>
+              <dt>{{ _('File Size') }}</dt>
+              <dd>{{ this.file_size }}</dd>
             </dl>
           {% endif %}
           <dl>

@@ -379,45 +379,45 @@ define('buttons',
         });
     }
 
-    function transformApp(app) {
-        if (app.isWebsite) {
+    function transform(product) {
+        if (product.isWebsite) {
             // Return here, don't need extra information for websites.
-            return app;
+            return product;
         }
 
-        var isLangpack = app.role == 'langpack';
-        var incompatible = apps.incompat(app);
-        var installed = z.apps.indexOf(app.manifest_url) !== -1;
+        var isLangpack = product.role == 'langpack';
+        var incompatible = apps.incompat(product);
+        var installed = z.apps.indexOf(product.manifest_url) !== -1;
 
         if (isLangpack) {
-            return _.extend(app, {
+            return _.extend(product, {
                 disabled: incompatible || installed,
                 isLangpack: true,
             });
         }
 
         var free = settings.meowEnabled ? gettext('free') : gettext('Free');
-        var isFree = !(app.price && app.price != '0.00');
-        var priceText = isFree ? free : app.price_locale;
+        var isFree = !(product.price && product.price != '0.00');
+        var priceText = isFree ? free : product.price_locale;
 
-        if (app.payment_required && !app.price) {
+        if (product.payment_required && !product.price) {
             priceText = gettext('Unavailable');
         }
 
-        return _.extend(app, {
+        return _.extend(product, {
             disabled: incompatible,
             isLangpack: isLangpack,
             incompatible: incompatible,
             installed: installed,
-            installedBefore: user.has_installed(app.id) ||
-                             user.has_purchased(app.id),
+            installedBefore: user.has_installed(product.id) ||
+                             user.has_purchased(product.id),
             isFree: isFree,
             priceText: priceText
         });
     }
 
     function getBtnText(app, isGame) {
-        app = transformApp(app);
+        app = transform(app);
 
         if (app.isLangpack) {
             return app.installed ? gettext('Installed') : gettext('Install');
@@ -472,6 +472,6 @@ define('buttons',
         markBtnsAsUninstalled: markBtnsAsUninstalled,
         revertButton: revertButton,
         spinButton: spinButton,
-        transformApp: transformApp
+        transform: transform
     };
 });

@@ -123,35 +123,40 @@ define('apps',
         return product[COMPAT_REASONS];
     }
 
-    function transform(app) {
-        if (app.__transformed) {
-            return app;
+    function transform(product, type) {
+        if (product.__transformed) {
+            return product;
         }
-        if (app.categories) {
+        if (product.categories) {
             // Transform categories to get a list of objects instead of a list
             // of slugs, to be able to display the translated category names
             // on the detail page.
-            app.categories = categories.filter(function(category) {
-                return app.categories.indexOf(category.slug) !== -1;
+            product.categories = categories.filter(function(category) {
+                return product.categories.indexOf(category.slug) !== -1;
             }).map(function(category) {
                 return _.extend({url: urls.reverse('category', [category.slug])},
                                 category);
             });
         }
-        // Normalize content types.
-        if (app.url) {
-            app.isWebsite = true;
-            app.previews = [];
-            app.contentType = 'website';
-            app.key = app.id;
-        } else {
-            app.isApp = true;
-            app.contentType = 'app';
-            app.short_name = app.name;
-            app.key = app.slug;
+        if (!type) {
+            type = 'app';
         }
-        app.__transformed = true;
-        return app;
+
+        // if type == 'app' => product.isApp = true
+        product['is' + type.charAt(0).toUpperCase() + type.substring(1)] = true;
+        product.contentType = type;
+
+        // Normalize content types.
+        if (product.isWebsite) {
+            product.previews = [];
+            product.key = product.id;
+        } else {
+            product.short_name = product.name;
+            product.key = product.slug;
+        }
+
+        product.__transformed = true;
+        return product;
     }
 
     return {
