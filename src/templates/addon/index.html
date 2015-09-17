@@ -2,6 +2,7 @@
   <div class="addon" data-slug="{{ slug }}">
     <h2>Add-on: {{ this.name }}</h2>
     <p>Version: {{ this.latest_public_version.version }}</p>
+    <p>Size: {{ this.latest_public_version.size|fileSize }}</p>
     {% if this.description %}
       <p>Description: {{ this.description }}</p>
     {% endif %}
