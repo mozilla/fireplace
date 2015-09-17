@@ -75,6 +75,17 @@ define('helpers_local',
         return array.slice(begin, end);
     };
 
+    filters.fileSize = function(int) {
+        var bytes = parseInt(int, 10);
+        if (bytes < 1024^2) {
+            return +(bytes/1024).toFixed(2) + ' KB';
+        } else if (bytes < 1024^3) {
+            return +(bytes/1024^2).toFixed(2) + ' MB';
+        } else {
+            return +(bytes/1024^3).toFixed(2) + ' GB';
+        }
+    };
+
     filters.rewriteCdnUrls = function(text){
         // When we get a page back from legal docs stored on the CDN, we
         // need to rewrite them to work locally within a packaged version
