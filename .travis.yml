@@ -17,6 +17,7 @@ node_js:
 - '0.10'
 addons:
   sauce_connect: true
+  firefox: "latest-esr"
 env:
   matrix:
   - RUN_TEST=uitest-phantom START_SERVER=1 UPLOAD_CAPTURES=1 MAKE_LANGPACKS=1
@@ -35,13 +36,15 @@ matrix:
   - env: RUN_TEST=sherlocked API=mock START_SERVER=1 MAKE_LANGPACKS=1
 before_script:
 - export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'
-- export SLIMERJSLAUNCHER=$(which firefox)
+- export SLIMERJSLAUNCHER=firefox/firefox
 - make install
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - if [ $START_SERVER ]; then bash tests/serve.sh; fi
 - if [ $MAKE_LANGPACKS ]; then commonplace langpacks; fi
 - if [ $RUN_TEST = 'uitest-slimer' ]; then make install-slimer; fi
+# Install the Firefox needed for slimer if we don't have it.
+- test "$RUN_TEST" = 'uitest-slimer' && test ! -e 'firefox/firefox' && make install-firefox; return 0
 script:
 - make $RUN_TEST
 - if [ $UPLOAD_CAPTURES ]; then make upload-captures; fi
@@ -51,3 +54,4 @@ cache:
   - "/tmp/python-env"
   - node_modules
   - bower_components
+  - firefox
