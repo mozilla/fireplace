@@ -82,3 +82,7 @@ test-iframe-package:
 
 sherlocked:
 	sleep 10 && node sherlocked.js
+
+install-firefox:
+	curl -O http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/latest-31.0esr/linux-x86_64/en-US/firefox-31.8.0esr.tar.bz2
+	tar jxf firefox-31.8.0esr.tar.bz2
