@@ -63,8 +63,11 @@ define('previews-buttons',
     z.body.on('click', '.arrow-btn:not(.arrow-btn-disabled)', function(e) {
         e.preventDefault();
         var slider = this.parentNode.slider;
-        this.classList.contains('arrow-btn-prev') ? slider.toPrev() :
-                                                    slider.toNext();
+        if (this.classList.contains('arrow-btn-prev')) {
+            slider.toPrev();
+        } else {
+            slider.toNext();
+        }
     });
 
     return {

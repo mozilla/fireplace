@@ -21,7 +21,7 @@ define('feed_websites',
         change: function(evt) {
             evt.preventDefault();
             document.getElementsByClassName(this.activeClass).forEach(function(element){
-                element.classList.remove(this.activeClass)
+                element.classList.remove(this.activeClass);
             }.bind(this));
             evt.target.parentNode.classList.add(this.activeClass);
         }
@@ -42,7 +42,7 @@ define('feed_websites',
                 this.count = this.slides.length;
                 this.counter = this.carousel.getElementsByClassName(this.counterClass)[0];
                 this.activate(0);
-            }            
+            }
         },
         change: function(evt) {
             evt.preventDefault();
@@ -54,7 +54,7 @@ define('feed_websites',
         },
         activate: function(n) {
             document.getElementsByClassName(this.activeClass).forEach(function(element){
-                element.classList.remove(this.activeClass)
+                element.classList.remove(this.activeClass);
             }.bind(this));
             this.slides[n].classList.add(this.activeClass);
             this.activeIndex = n;
