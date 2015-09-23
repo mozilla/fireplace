@@ -39,19 +39,35 @@ define('compat_filter',
     var EXCLUDE_DEVICE_FILTER_ENDPOINTS = ['feed-app', 'games-daily',
                                            'games-listing'];
 
+    var DEVICE_CHOICES = {
+        '': gettext('All Platforms'),
+        'android-mobile': gettext('Android Mobile'),
+        'android-tablet': gettext('Android Tablet'),
+        'desktop': gettext('Desktop'),
+        'firefoxos': gettext('Firefox OS'),
+    };
+
     // Calculate device filter choices.
     var DEVICE_FILTER_CHOICES = [
-        ['all', gettext('All Platforms')],
-        [caps.device_type(), gettext('My Device')],
+        ['all', gettext('All Platforms')]
     ];
+    if (caps.firefoxOS || caps.firefoxAndroid) {
+        DEVICE_FILTER_CHOICES.splice(1, 0, [caps.device_type(),
+                                            gettext('My Device')]);
+    } else {
+        DEVICE_FILTER_CHOICES = DEVICE_FILTER_CHOICES.concat([
+            ['desktop', gettext('Desktop')],
+            ['firefoxos', gettext('Firefox OS')],
+            ['android-mobile', gettext('Android Mobile')],
+            ['android-tablet', gettext('Android Tablet')]
+        ]);
+    }
 
     var actualPlatform = caps.device_platform();
     var actualFormFactor = caps.device_formfactor();
     var filterDeviceLSKey = 'filter-device';
     var filterDeviceFromLS = storage.getItem(filterDeviceLSKey);
     var filterDevice = filterDeviceFromLS || caps.device_type();
-
-    z.body.attr('data-platform', actualPlatform);
 
     z.body.on('change', '.compat-filter', function() {
         // Update device preferences and reload view to refresh changes.
@@ -66,7 +82,7 @@ define('compat_filter',
 
     // For mobile, set limit to 10.
     if (actualFormFactor == 'mobile' || actualPlatform == 'firefoxos') {
-      limit = 10;
+        limit = 10;
     }
 
     function isDeviceSelected(value) {
@@ -132,6 +148,7 @@ define('compat_filter',
     });
 
     return {
+        DEVICE_CHOICES: DEVICE_CHOICES,
         DEVICE_FILTER_CHOICES: DEVICE_FILTER_CHOICES,
         apiArgs: apiArgs,
         featureProfile: featureProfile,
