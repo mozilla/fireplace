@@ -111,6 +111,7 @@ define('helpers_local',
     /* Global variables, provided in default context. */
     globals.buttons = buttons;
     globals.CATEGORIES = categories;
+    globals.DEVICE_CHOICES = compatFilter.DEVICE_CHOICES;
     globals.feed = feed;
     globals.iarc_names = iarc.names;
     globals.NEWSLETTER_LANGUAGES = settings.NEWSLETTER_LANGUAGES;

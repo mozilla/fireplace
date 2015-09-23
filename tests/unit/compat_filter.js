@@ -57,6 +57,61 @@ define('tests/unit/compat_filter',
     }
 
     describe('compat_filter', function() {
+        it('set device to desktop',
+            helpers
+            .injector(desktopCapabilities, noStorage, noUtilsVars)
+            .run(['compat_filter'], function(compatFilter) {
+                testApiArgs(compatFilter, {
+                    dev: 'desktop',
+                    device: '',
+                    limit: 24,
+                    pro: undefined
+                });
+                assert.equal(compatFilter.isDeviceSelected('desktop'), true);
+            }));
+
+        it('set device to android mobile',
+            helpers
+            .injector(androidCapabilities('mobile'))
+            .run(['compat_filter'], function(compatFilter) {
+                testApiArgs(compatFilter, {
+                    dev: 'android',
+                    device: 'mobile',
+                    limit: '10',
+                    pro: undefined
+                });
+                assert.equal(compatFilter.isDeviceSelected('android-mobile'), true);
+                assert.equal(compatFilter.getFilterDevice(), 'android-mobile');
+            }));
+
+        it('set device android tablet',
+            helpers
+            .injector(androidCapabilities('tablet'))
+            .run(['compat_filter'], function(compatFilter) {
+                testApiArgs(compatFilter, {
+                    dev: 'android',
+                    device: 'tablet',
+                    limit: '24',
+                    pro: undefined
+                });
+                assert.equal(compatFilter.isDeviceSelected('android-tablet'), true);
+                assert.equal(compatFilter.getFilterDevice(), 'android-tablet');
+            }));
+
+        it('set device to firefoxos',
+            helpers
+            .injector(firefoxOSCapabilities, noStorage)
+            .run(['compat_filter'], function(compatFilter) {
+                testApiArgs(compatFilter, {
+                    dev: 'firefoxos',
+                    device: '',
+                    limit: '10',
+                    pro: compatFilter.featureProfile
+                });
+                assert.equal(compatFilter.isDeviceSelected('firefoxos'), true);
+                assert.equal(compatFilter.getFilterDevice(), 'firefoxos');
+            }));
+
         it('set feature profiles',
             helpers
             .injector(firefoxOSCapabilities, noStorage, noUtilsVars)
@@ -75,22 +130,6 @@ define('tests/unit/compat_filter',
 
                 // No profile if endpoint not supported.
                 assert.equal(compatFilter.apiArgs('').pro, undefined);
-            }));
-
-        it('sets initialDeviceText',
-            helpers
-            .injector(firefoxOSCapabilities, noStorage)
-            .run(['compat_filter'], function(compatFilter) {
-                assert.equal(compatFilter.initialDeviceText.toString(),
-                             'My Device');
-            }));
-
-        it('sets initialDeviceText for Android',
-            helpers
-            .injector(androidCapabilities('tablet'), noStorage)
-            .run(['compat_filter'], function(compatFilter) {
-                assert.equal(compatFilter.initialDeviceText.toString(),
-                             'My Device');
             }));
     });
 });

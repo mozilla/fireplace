@@ -39,10 +39,21 @@ define('compat_filter',
     var EXCLUDE_DEVICE_FILTER_ENDPOINTS = ['feed-app', 'games-daily',
                                            'games-listing'];
 
+    var DEVICE_CHOICES = {
+        '': gettext('All Platforms'),
+        'android-mobile': gettext('Android Mobile'),
+        'android-tablet': gettext('Android Tablet'),
+        'desktop': gettext('Desktop'),
+        'firefoxos': gettext('Firefox OS'),
+    };
+
     // Calculate device filter choices.
     var DEVICE_FILTER_CHOICES = [
         ['all', gettext('All Platforms')],
-        [caps.device_type(), gettext('My Device')],
+        ['desktop', gettext('Desktop')],
+        ['firefoxos', gettext('Firefox OS')],
+        ['android-mobile', gettext('Android Mobile')],
+        ['android-tablet', gettext('Android Tablet')]
     ];
 
     var actualPlatform = caps.device_platform();
@@ -66,7 +77,7 @@ define('compat_filter',
 
     // For mobile, set limit to 10.
     if (actualFormFactor == 'mobile' || actualPlatform == 'firefoxos') {
-      limit = 10;
+        limit = 10;
     }
 
     function isDeviceSelected(value) {
