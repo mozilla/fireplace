@@ -12,7 +12,7 @@ define('addon',
         r.onerror = function(e) {
             notification.notification({
                 message: 'Error installing add-on'
-            })
+            });
         };
         r.onsuccess = function(e) {
             notification.notification({
