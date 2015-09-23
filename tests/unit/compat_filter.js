@@ -57,6 +57,89 @@ define('tests/unit/compat_filter',
     }
 
     describe('compat_filter', function() {
+        it('set device to desktop',
+            helpers
+            .injector(desktopCapabilities, noStorage, noUtilsVars)
+            .run(['compat_filter'], function(compatFilter) {
+                testApiArgs(compatFilter, {
+                    dev: 'desktop',
+                    device: '',
+                    limit: 24,
+                    pro: undefined
+                });
+                assert.equal(compatFilter.isDeviceSelected('desktop'), true);
+            }));
+
+        it('set device to android mobile',
+            helpers
+            .injector(androidCapabilities('mobile'))
+            .run(['compat_filter'], function(compatFilter) {
+                testApiArgs(compatFilter, {
+                    dev: 'android',
+                    device: 'mobile',
+                    limit: '10',
+                    pro: undefined
+                });
+                assert.equal(compatFilter.isDeviceSelected('android-mobile'), true);
+                assert.equal(compatFilter.getFilterDevice(), 'android-mobile');
+            }));
+
+        it('has expected options for android-mobile',
+            helpers
+            .injector(androidCapabilities('mobile'))
+            .run(['compat_filter'], function(compatFilter) {
+                assert.equal(compatFilter.DEVICE_FILTER_CHOICES.length, 2);
+                assert.equal(compatFilter.DEVICE_FILTER_CHOICES[0][0], 'all');
+                assert.equal(compatFilter.DEVICE_FILTER_CHOICES[1][0], 'android-mobile');
+            }));
+
+
+        it('set device android tablet',
+            helpers
+            .injector(androidCapabilities('tablet'))
+            .run(['compat_filter'], function(compatFilter) {
+                testApiArgs(compatFilter, {
+                    dev: 'android',
+                    device: 'tablet',
+                    limit: '24',
+                    pro: undefined
+                });
+                assert.equal(compatFilter.isDeviceSelected('android-tablet'), true);
+                assert.equal(compatFilter.getFilterDevice(), 'android-tablet');
+            }));
+
+        it('has expected options for android-tablet',
+            helpers
+            .injector(androidCapabilities('tablet'))
+            .run(['compat_filter'], function(compatFilter) {
+                assert.equal(compatFilter.DEVICE_FILTER_CHOICES.length, 2);
+                assert.equal(compatFilter.DEVICE_FILTER_CHOICES[0][0], 'all');
+                assert.equal(compatFilter.DEVICE_FILTER_CHOICES[1][0], 'android-tablet');
+            }));
+
+        it('set device to firefoxos',
+            helpers
+            .injector(firefoxOSCapabilities, noStorage)
+            .run(['compat_filter'], function(compatFilter) {
+                testApiArgs(compatFilter, {
+                    dev: 'firefoxos',
+                    device: '',
+                    limit: '10',
+                    pro: compatFilter.featureProfile
+                });
+                assert.equal(compatFilter.isDeviceSelected('firefoxos'), true);
+                assert.equal(compatFilter.getFilterDevice(), 'firefoxos');
+            }));
+
+        it('has expected options for firefoxos',
+            helpers
+            .injector(firefoxOSCapabilities, noStorage)
+            .run(['compat_filter'], function(compatFilter) {
+                assert.equal(compatFilter.DEVICE_FILTER_CHOICES.length, 2);
+                assert.equal(compatFilter.DEVICE_FILTER_CHOICES[0][0], 'all');
+                assert.equal(compatFilter.DEVICE_FILTER_CHOICES[1][0], 'firefoxos');
+            }));
+
         it('set feature profiles',
             helpers
             .injector(firefoxOSCapabilities, noStorage, noUtilsVars)
@@ -81,7 +164,7 @@ define('tests/unit/compat_filter',
             helpers
             .injector(firefoxOSCapabilities, noStorage)
             .run(['compat_filter'], function(compatFilter) {
-                assert.equal(compatFilter.initialDeviceText.toString(),
+                assert.equal(compatFilter.initialDeviceText,
                              'My Device');
             }));
 
@@ -89,7 +172,7 @@ define('tests/unit/compat_filter',
             helpers
             .injector(androidCapabilities('tablet'), noStorage)
             .run(['compat_filter'], function(compatFilter) {
-                assert.equal(compatFilter.initialDeviceText.toString(),
+                assert.equal(compatFilter.initialDeviceText,
                              'My Device');
             }));
     });
