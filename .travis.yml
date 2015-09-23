@@ -16,12 +16,17 @@ python:
 node_js:
 - '0.10'
 addons:
+  artifacts:
+    paths:
+    - results
+  firefox: "latest-esr"
   sauce_connect: true
   firefox: "latest-esr"
 env:
   matrix:
   - RUN_TEST=uitest-phantom START_SERVER=1 UPLOAD_CAPTURES=1 MAKE_LANGPACKS=1
   - RUN_TEST=uitest-slimer START_SERVER=1 UPLOAD_CAPTURES=1 MAKE_LANGPACKS=1
+  - RUN_TEST=uitest-webqa START_SERVER=1 FIREPLACE_SETTINGS=src/media/js/settings_local_webqa.js
   - RUN_TEST=sherlocked API=mock START_SERVER=1 MAKE_LANGPACKS=1
   - RUN_TEST=lint
   - RUN_TEST=unittest
@@ -34,6 +39,7 @@ matrix:
   allow_failures:
   - env: RUN_TEST=uitest-phantom START_SERVER=1 UPLOAD_CAPTURES=1 MAKE_LANGPACKS=1
   - env: RUN_TEST=sherlocked API=mock START_SERVER=1 MAKE_LANGPACKS=1
+  - env: RUN_TEST=uitest-webqa START_SERVER=1 FIREPLACE_SETTINGS=src/media/js/settings_local_webqa.js
 before_script:
 - export PHANTOMJS_EXECUTABLE='phantomjs --local-to-remote-url-access=yes --ignore-ssl-errors=yes'
 - export SLIMERJSLAUNCHER=firefox/firefox
@@ -45,6 +51,7 @@ before_script:
 - if [ $RUN_TEST = 'uitest-slimer' ]; then make install-slimer; fi
 # Install the Firefox needed for slimer if we don't have it.
 - test "$RUN_TEST" = 'uitest-slimer' && test ! -e 'firefox/firefox' && make install-firefox; return 0
+- if [ $RUN_TEST = 'uitest-webqa' ]; then make install-webqa; fi
 script:
 - make $RUN_TEST
 - if [ $UPLOAD_CAPTURES ]; then make upload-captures; fi
@@ -55,3 +62,6 @@ cache:
   - node_modules
   - bower_components
   - firefox
+  - $HOME/.cache/pip
+  - .virtualenvs
+  - "webqa-tests"
