@@ -49,25 +49,20 @@ define('compat_filter',
 
     // Calculate device filter choices.
     var DEVICE_FILTER_CHOICES = [
-        ['all', gettext('All Platforms')]
+        ['all', gettext('All Platforms')],
+        ['desktop', gettext('Desktop')],
+        ['firefoxos', gettext('Firefox OS')],
+        ['android-mobile', gettext('Android Mobile')],
+        ['android-tablet', gettext('Android Tablet')]
     ];
-    if (caps.firefoxOS || caps.firefoxAndroid) {
-        DEVICE_FILTER_CHOICES.splice(1, 0, [caps.device_type(),
-                                            gettext('My Device')]);
-    } else {
-        DEVICE_FILTER_CHOICES = DEVICE_FILTER_CHOICES.concat([
-            ['desktop', gettext('Desktop')],
-            ['firefoxos', gettext('Firefox OS')],
-            ['android-mobile', gettext('Android Mobile')],
-            ['android-tablet', gettext('Android Tablet')]
-        ]);
-    }
 
     var actualPlatform = caps.device_platform();
     var actualFormFactor = caps.device_formfactor();
     var filterDeviceLSKey = 'filter-device';
     var filterDeviceFromLS = storage.getItem(filterDeviceLSKey);
     var filterDevice = filterDeviceFromLS || caps.device_type();
+
+    z.body.attr('data-platform', actualPlatform);
 
     z.body.on('change', '.compat-filter', function() {
         // Update device preferences and reload view to refresh changes.
@@ -148,7 +143,6 @@ define('compat_filter',
     });
 
     return {
-        DEVICE_CHOICES: DEVICE_CHOICES,
         DEVICE_FILTER_CHOICES: DEVICE_FILTER_CHOICES,
         apiArgs: apiArgs,
         featureProfile: featureProfile,
