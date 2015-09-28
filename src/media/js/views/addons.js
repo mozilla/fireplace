@@ -8,10 +8,6 @@ define('views/addons',
         builder.z('type', 'leaf');
         builder.z('title', gettext('Firefox OS Add-ons'));
         utils.headerTitle(gettext('Firefox OS Add-ons'));
-
-        // TODO: merge list.html and app_list.html into product_list.html
-        builder.start('addon/list.html', {
-            productListType: 'addons'
-        });
+        builder.start('addon/list.html');
     };
 });
