@@ -1,4 +1,4 @@
-{% include '_macros/app_tile.html' %}
+{% include '_macros/addon_tile.html' %}
 {% include '_macros/more_button.html' %}
 
 <section class="main">
@@ -7,13 +7,13 @@
   </div>
 </section>
 
-<section class="main full app-list-page c">
+<section class="main full c">
   {% defer (url=api('addon_list'), pluck='objects', as='addon', key='slug',
-            paginate='.app-list') %}
-    <ul class="app-list {{ 'paginated' if response.meta.next }}">
+            paginate='.addon-list') %}
+    <ul class="addon-list">
       {% for addon in this %}
-        <li class="app-list-app">
-          {{ app_tile(addon, src=trackingEvents.SRCS[productListType]) }}
+        <li>
+          {{ addon_tile(addon) }}
         </li>
       {% endfor %}
       {% if response.meta.next %}
