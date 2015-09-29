@@ -143,6 +143,7 @@ define('compat_filter',
     });
 
     return {
+        DEVICE_CHOICES: DEVICE_CHOICES,
         DEVICE_FILTER_CHOICES: DEVICE_FILTER_CHOICES,
         apiArgs: apiArgs,
         featureProfile: featureProfile,
