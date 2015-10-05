@@ -123,7 +123,7 @@ define('apps',
         return product[COMPAT_REASONS];
     }
 
-    function transform(product, type) {
+    function transform(product) {
         if (product.__transformed) {
             return product;
         }
@@ -138,19 +138,16 @@ define('apps',
                                 category);
             });
         }
-        if (!type) {
-            type = 'app';
-        }
-
-        // if type == 'app' => product.isApp = true
-        product['is' + type.charAt(0).toUpperCase() + type.substring(1)] = true;
-        product.contentType = type;
 
         // Normalize content types.
-        if (product.isWebsite) {
+        if (product.url) {
+            product.isWebsite = true;
             product.previews = [];
+            product.contentType = 'website';
             product.key = product.id;
         } else {
+            product.isApp = true;
+            product.contentType = 'app';
             product.short_name = product.name;
             product.key = product.slug;
         }

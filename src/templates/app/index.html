@@ -10,7 +10,7 @@
 
 {% defer (url=endpoint, as='app', key=slug) %}
   {# Apply transformer to get categories etc. working. #}
-  {% set app = apps.transform(this, 'app') %}
+  {% set app = apps.transform(this) %}
   <section class="main full app-info">
     <div class="detail-flex-wrap">
       <div class="detail-left-side">

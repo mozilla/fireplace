@@ -11,7 +11,7 @@
       tray -- whether or not to attach a preview/screenshot tray
       src -- if tile is a link, attach a src param for analytics purposes
   #}
-  {% set product = apps.transform(product, product.contentType) %}
+  {% set product = apps.transform(product) %}
   {% set name = product.name if is_detail else product.short_name or product.name %}
 
   {% set tag = 'div' if is_detail else 'a' %}

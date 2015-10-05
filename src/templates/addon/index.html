@@ -18,7 +18,7 @@
 {% end %}
 
 {% defer (url=endpoint, as='addon', key=slug, id='addon-data') %}
-  {% set addon = apps.transform(this, 'addon') %}
+  {% set addon = apps.transform(this) %}
   <section class="main full addon-details-info">
     <div>
       {% if addon.description %}
