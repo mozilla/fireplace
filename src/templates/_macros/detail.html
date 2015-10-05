@@ -32,14 +32,14 @@
   <div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication"
       data-{{ settings.model_prototypes[content_type] }}="{{ key }}">
   {% defer (url=url, key=key, id=content_type + '-data', as=content_type) %}
-    <section class="main full {{ content_type }}-header previews-expanded"><div>
+    <section class="main full {{ content_type }}-header product-header previews-expanded"><div>
       {{ app_tile(this, is_detail=True, tray=True, src=trackingEvents.SRCS.detail) }}
     </div></section>
   {% placeholder %}
-    <section class="main full {{ content_type }}-header previews-expanded"><div>
-        {% if placeholder %}
-            {{ app_tile(placeholder, is_detail=True, tray=True) }}
-        {% endif %}
+    <section class="main full {{ content_type }}-header product-header previews-expanded"><div>
+      {% if placeholder %}
+        {{ app_tile(placeholder, is_detail=True, tray=True) }}
+      {% endif %}
     </div></section>
   {% except %}
   {% end %}

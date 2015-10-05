@@ -6,7 +6,7 @@
 
 {% defer (url=endpoint, as='website', key=pk) %}
   {# Apply transformer to get categories etc. working. #}
-  {% set website = apps.transform(this) %}
+  {% set website = apps.transform(this, 'website') %}
   <section class="main full app-info website-detail">
     <div class="detail-flex-wrap">
       <div class="detail-left-side">

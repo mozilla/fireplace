@@ -26,6 +26,7 @@ $greater-than-mobile = unquote('(min-width: 330px)');
         text-decoration: none;
     }
     .icon {
+        align-self: flex-end;
         height: $icon-size;
         width: $icon-size;
     }
@@ -58,6 +59,12 @@ $greater-than-mobile = unquote('(min-width: 330px)');
             margin-top: 5px;
         }
     }
+    .app-tile-categories {
+        color: $action-neutral;
+        font-size: 13px;
+        list-style: none;
+        margin-top: 2px;
+    }
     +detail() {
         padding-bottom: 10px;
         padding-top: 10px;
@@ -88,16 +95,16 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 .mkt-tile-info {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     flex-wrap: wrap;
     max-width: unquote('calc(100% - 60px)');
-    padding-left: 10px;
+    padding-right: 10px;
 
     +rtl() {
-        padding-right: 10px;
+        padding-left: 10px;
     }
     +detail--wide() {
         flex-direction: row;
-        height: 150px;
         margin-top: 65px;
         max-width: none;
     }
@@ -106,12 +113,13 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     }
 }
 
-.mkt-app-name {
+.mkt-product-name {
     color: $tile-title;
     ellipsis();
     font-size: $app-title-size;
     font-weight: 200;
     line-height: 21px;
+    width: 100%;
 
     +detail() {
         font-size: $app-title-size;
@@ -131,7 +139,7 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     }
 }
 
-.mkt-app-author {
+.mkt-product-author {
     color: $greyscale-dark-grey;
     ellipsis();
     font-size: 15px;
@@ -253,8 +261,9 @@ $greater-than-mobile = unquote('(min-width: 330px)');
     margin-bottom: 10px;
 }
 
-.mkt-app-heading {
+.mkt-product-heading {
     display: flex;
+    flex-wrap: wrap;
 
     +detail--wide() {
         flex-wrap: wrap;
@@ -276,6 +285,9 @@ $greater-than-mobile = unquote('(min-width: 330px)');
 }
 
 @media $base-tablet {
+    .mkt-product-name {
+        top: 75px;
+    }
     .detail {
         .rating-link .long {
             +ltr() {
