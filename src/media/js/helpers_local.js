@@ -77,12 +77,14 @@ define('helpers_local',
 
     filters.fileSize = function(int) {
         var bytes = parseInt(int, 10);
-        if (bytes < 1024^2) {
-            return +(bytes/1024).toFixed(2) + ' KB';
-        } else if (bytes < 1024^3) {
-            return +(bytes/1024^2).toFixed(2) + ' MB';
+        if (bytes === 0) {
+            return '0';
+        } else if (bytes < Math.pow(1024, 2)) {
+            return +(bytes / 1024).toFixed(2) + ' KB';
+        } else if (bytes < Math.pow(1024, 3)) {
+            return +(bytes / Math.pow(1024, 2)).toFixed(2) + ' MB';
         } else {
-            return +(bytes/1024^3).toFixed(2) + ' GB';
+            return +(bytes / Math.pow(1024, 3)).toFixed(2) + ' GB';
         }
     };
 
@@ -177,6 +179,7 @@ define('helpers_local',
         },
         contentFilter: contentFilter,
         cast_app: models('app').cast,
+        fileSize: filters.fileSize,
         getGameCategory: getGameCategory,
         htmldir: htmldir,
         format: format.format,
