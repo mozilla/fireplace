@@ -11,12 +11,12 @@ var startTime = performance.now();
 init.done(function() {
 require(
     [// Modules actually used in main.
-     'apps', 'categories', 'core/cache', 'core/capabilities', 'core/format',
-     'core/log', 'core/navigation', 'core/nunjucks', 'core/requests',
-     'core/settings', 'core/site_config', 'core/l10n', 'core/urls',
-     'core/utils', 'core/user', 'core/z', 'consumer_info', 'jquery',
-     'newsletter', 'regions', 'underscore', 'update_banner', 'user_helpers',
-     'utils_local',
+     'apps', 'carrier', 'categories', 'core/cache', 'core/capabilities',
+     'core/format', 'core/log', 'core/navigation', 'core/nunjucks',
+     'core/requests', 'core/settings', 'core/site_config', 'core/l10n',
+     'core/urls', 'core/utils', 'core/user', 'core/z', 'consumer_info',
+     'jquery', 'newsletter', 'regions', 'underscore', 'update_banner',
+     'user_helpers', 'utils_local',
      // Modules we require to initialize global stuff.
      'addon', 'app_list', 'buttons', 'content-ratings', 'core/forms',
      'elements/categories', 'elements/header', 'elements/nav',
@@ -25,12 +25,12 @@ require(
      'overlay', 'perf_events', 'perf_helper', 'previews', 'reviews',
      'startup_errors', 'tracking_events', 'views/feedback', 'views/search',
      'webactivities'],
-    function(apps, categories, cache, caps, format,
-             log, navigation, nunjucks, requests,
-             settings, siteConfig, l10n, urls,
-             utils, user, z, consumerInfo, $,
-             newsletter, regions, _, updateBanner, userHelpers,
-             utilsLocal) {
+    function(apps, carrier, categories, cache, caps,
+             format, log, navigation, nunjucks,
+             requests, settings, siteConfig, l10n,
+             urls, utils, user, z, consumerInfo,
+             $, newsletter, regions, _, updateBanner,
+             userHelpers, utilsLocal) {
     'use strict';
     var logger = log('mkt');
 
@@ -121,7 +121,25 @@ require(
 
         z.body.toggleClass('logged-in', user.logged_in());
         z.page.trigger('reloaded_chrome');
+    }).on('install-success reload_chrome', function() {
+        carrier.hasInstallableApps().then(function(apps) {
+            var $currentBanner = $('mkt-banner[name="carrier-apps-banner"]');
+            if (apps) {
+                if ($currentBanner.length === 0) {
+                    $('.banners').append(
+                        nunjucks.env.render('_includes/carrier_apps_banner.html'));
+                }
+            } else if ($currentBanner) {
+                $currentBanner.each(function(i, banner) {
+                    banner.dismissBanner();
+                });
+            }
+        });
     }).trigger('reload_chrome');
+
+    z.body.on('dismiss-banner', '[name="carrier-apps-banner"]', function(e) {
+        carrier.completeLateCustomization();
+    });
 
     z.page.on('before_login before_logout', function() {
         cache.purge();
