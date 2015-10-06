@@ -2,45 +2,41 @@
 {% from "_macros/addon_tile.html" import addon_tile %}
 {% set endpoint = api('addon', [slug]) %}
 
-<div class="detail" itemscope itemtype="http://schema.org/SoftwareApplication"
-    data-addon="{{ key }}">
-{% defer (url=endpoint, key=slug, id='addon-header', as='addon') %}
-  <section class="main addon-header"><div>
-    {{ addon_tile(this, is_detail=True, src=trackingEvents.SRCS.detail) }}
-  </div></section>
-{% placeholder %}
-  <section class="main addon-header"><div>
-    {% if placeholder %}
-      {{ addon_tile(placeholder, is_detail=True) }}
+<article class="container-detail" data-addon="{{ key }}" itemscope
+         itemtype="http://schema.org/SoftwareApplication">
+  {% defer (url=endpoint, key=slug, id='addon-data', as='addon') %}
+    {% set addon = apps.transform(this) %}
+    <header class="addon-header">
+      {{ addon_tile(addon, is_detail=True, src=trackingEvents.SRCS.detail) }}
+    </header>
+    {% if addon.description %}
+      <section class="prose segment">
+        <h3>{{ _('Description') }}</h3>
+        <div class="description-wrapper truncated-wrapper truncated">
+          <p class="description" itemprop="description">
+            {{ addon.description|translate(addon)|nl2br }}
+          </p>
+        </div>
+        <a href="#" class="truncate-toggle view-all-tab">
+          {{ _('View All') }}
+        </a>
+      </section>
     {% endif %}
-  </div></section>
-{% except %}
-{% end %}
-
-{% defer (url=endpoint, as='addon', key=slug, id='addon-data') %}
-  {% set addon = apps.transform(this) %}
-  <section class="main full addon-details-info">
-    <div>
-      {% if addon.description %}
-        <section class="prose">
-          <div>
-            <h3>{{ _('Description') }}</h3>
-            <div class="description-wrapper truncated-wrapper truncated">
-              <p class="description" itemprop="description">
-                {{ addon.description|translate(addon)|nl2br }}
-              </p>
-            </div>
-            <a href="#" class="truncate-toggle view-all-tab">
-              {{ _('View All') }}
-            </a>
-          </div>
-        </section>
+    <section class="addon-meta segment">
+      <p>{{ _('version: {version}')|format(version=addon.latest_public_version.version) }}</p>
+      <p>{{ _('size: {size}')|format(size=addon.latest_public_version.size|fileSize) }}</p>
+      {% if addon.last_updated %}
+        <p>
+          {{ _('last updated: {date}')|format(date=addon.last_updated|date) }}
+        </p>
       {% endif %}
-      <div class="addon-meta">
-        <h3>{{ _('Version: {version}')|format(version=this.latest_public_version.version) }}</h3>
-        <h3>{{ _('Size: {size}')|format(size=this.latest_public_version.size|fileSize) }}</h3>
-        <h3>{{ _('Last Updated: {date}')|format(date=this.last_updated|date) }}</h3>
-      </div>
-    </div>
-  </section>
-{% end %}
+    </section>
+  {% placeholder %}
+    <header class="addon-header">
+      {% if placeholder %}
+        {{ addon_tile(placeholder, is_detail=True) }}
+      {% endif %}
+    </header>
+  {% except %}
+  {% end %}
+</article>
