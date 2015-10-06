@@ -15,6 +15,7 @@ define('views/langpacks',
     function transform_to_app(langpack) {
         /* Make a langpack as returned by the API look like an app product to
            make it easy to re-use all buttons/install code. */
+        langpack.isApp = true;
         langpack.is_packaged = true;
         langpack.premium_type = 'free';
         langpack.receipt_required = false;

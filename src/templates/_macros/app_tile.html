@@ -3,72 +3,79 @@
 {% from "_macros/previews.html" import preview_tray %}
 {% from "_macros/stars.html" import stars %}
 
-{% macro app_tile(app, feed_app=None, is_detail=False, tray=False, src=None) %}
+{% macro app_tile(product, feed_app=None, is_detail=False, tray=False, src=None) %}
   {#
-      app -- app object
+      product -- market item (app/website)
       feed_app - feed-app specific data
       is_detail - whether part of a detail page
       tray -- whether or not to attach a preview/screenshot tray
       src -- if tile is a link, attach a src param for analytics purposes
   #}
-  {% set app = apps.transform(app) %}
-  {% set name = app.name if is_detail else app.short_name or app.name %}
+  {% set product = apps.transform(product) %}
+  {% set name = product.name if is_detail else product.short_name or product.name %}
 
   {% set tag = 'div' if is_detail else 'a' %}
   <{{ tag }} class="mkt-tile{{ ' feed-app c' if feed_app }}"
-             data-slug="{{ app.slug }}" data-id="{{ app.id }}"
+             data-slug="{{ product.slug }}" data-id="{{ product.id }}"
              {% if not is_detail %}
-               href="{{ url(app.contentType, [app.key])|urlparams(src=src) }}"
+               href="{{ url(product.contentType, [product.key])|urlparams(src=src) }}"
              {% endif %}
-             data-content-type="{{ app.contentType }}"
+             data-content-type="{{ product.contentType }}"
              {{ 'itemscope itemtype="http://schema.org/SoftwareApplication"' if not is_detail }}>
-    <span class="mkt-app-heading">
-      {{ deferred_icon(app.icons[is_detail and '128' or '64'] or app.icons['64'], name|translate(app)) }}
+    <span class="mkt-product-heading">
+      <h3 class="mkt-product-name" itemprop="name"
+          title="{{ name|translate(product) }}">
+        {{ name|translate(product) }}
+      </h3>
       <span class="info mkt-tile-info">
-        <h3 class="mkt-app-name" itemprop="name"
-            title="{{ name|translate(app) }}">
-          {{ name|translate(app) }}
-        </h3>
-
-        {% if app.author %}
+        {% if product.author and is_detail %}
           {# TODO: When we get user profiles, update to be Person itemprop. #}
-          <div class="author mkt-app-author" itemprop="creator"
-               title="{{ app.author }}">
+          <div class="author mkt-product-author" itemprop="creator"
+               title="{{ product.author }}">
             {% if is_detail -%}
-              <a href="{{ url('search')|urlparams(author=app.author) }}">{{ app.author }}</a>
+              <a href="{{ url('search')|urlparams(author=product.author) }}">{{ product.author }}</a>
             {% else -%}
-              {{ app.author }}
+              {{ product.author }}
             {% endif -%}
           </div>
         {% endif %}
 
-        {% if app.isApp %}
+        {% if not is_detail %}
+          <ul class="app-tile-categories">
+            {% for cat in product.categories %}
+              <li>{{ cat.name }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if product.isApp %}
           {{ rating_link(is_detail=is_detail) }}
         {% endif %}
 
         {# Move the button below the icon/title on website detail. #}
-        {% if app.isApp or not is_detail %}
-          {{ market_button(app, data_attrs={
-            'manifest_url': app.manifest_url,
+        {% if not product.isWebsite or not is_detail %}
+          {{ market_button(product, data_attrs={
+            'manifest_url': product.manifest_url,
             'source': src,
-            'slug': app.slug
+            'slug': product.slug
           }) }}
         {% endif %}
       </span>
+      {{ deferred_icon(product.icons[is_detail and '128' or '64'] or product.icons['64'], name|translate(product)) }}
     </span>
 
     {{ feed_app_tile(feed_app) if feed_app }}
   </{{ tag }}>
 
   {% if is_detail %}
-    {% if app.isWebsite %}
-      {{ market_button(app, data_attrs={
-        'manifest_url': app.manifest_url,
+    {% if product.isWebsite %}
+      {{ market_button(product, data_attrs={
+        'manifest_url': product.manifest_url,
         'source': src,
-        'slug': app.slug
+        'slug': product.slug
       }) }}
     {% endif %}
-    {% set notices = [] if app.loading else app_notices(app) %}
+    {% set notices = [] if product.loading else app_notices(product) %}
     {% if notices.length %}
       <div class="app-notices full">
         {% for notice in notices %}
@@ -82,8 +89,8 @@
     {% include "_includes/post_install_message.html" %}
   {% endif %}
 
-  {% if tray and app.previews and len(app.previews) %}
-    {{ preview_tray(app, src, is_detail) }}
+  {% if tray and product.previews and len(product.previews) %}
+    {{ preview_tray(product, src, is_detail) }}
   {% endif %}
 {% endmacro %}
 
