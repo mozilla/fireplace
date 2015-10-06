@@ -1,13 +1,7 @@
 {% include '_macros/addon_tile.html' %}
 {% include '_macros/more_button.html' %}
 
-<section class="main">
-  <div class="subheader">
-    <h1>{{ _('Firefox OS Add-ons') }}</h1>
-  </div>
-</section>
-
-<section class="main full c">
+<section class="main full container-list">
   {% defer (url=api('addon_list'), pluck='objects', as='addon', key='slug',
             paginate='.addon-list') %}
     <ul class="addon-list">
