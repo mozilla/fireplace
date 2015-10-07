@@ -9,7 +9,6 @@ define('views/addon',
     return function(builder, args) {
         builder.z('type', 'leaf detail');
         builder.z('title', gettext('Loading...'));
-        utilsLocal.headerTitle(gettext('Add-on Detail'));
 
         truncator.init();
 
@@ -26,8 +25,10 @@ define('views/addon',
 
         builder.onload('addon-data', function(addon) {
             // Called after addon defer block is finished loading.
-            builder.z('title', utils.translate(addon.name));
+            var name = utils.translate(addon.name);
 
+            builder.z('title', name);
+            utilsLocal.headerTitle(name);
             truncator.removeUntruncated();
         });
     };
