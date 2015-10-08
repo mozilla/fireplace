@@ -1,6 +1,12 @@
 {% include '_macros/addon_tile.html' %}
 {% include '_macros/more_button.html' %}
 
+<section class="addon-promo">
+  <img src="{{ media('/fireplace/img/icons/addons.svg') }}" alt="">
+  <h1>Add-ons</h1>
+  <p>{{ _('Customize your device with powerful features. <a href="https://addons.mozilla.org/developers/">Learn more</a> about FxOS Add-ons.') }}</p>
+</section>
+
 <section class="main full container-list">
   {% defer (url=api('addon_list'), pluck='objects', as='addon', key='slug',
             paginate='.addon-list') %}
