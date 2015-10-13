@@ -109,17 +109,17 @@
 
 
 {% macro rating_link(is_detail=False) %}
-  <span class="rating mkt-app-rating {{ 'unrated' if not app.ratings.count }}"
+  <span class="rating mkt-app-rating {{ 'unrated' if not product.ratings.count }}"
        itemscope itemprop="aggregateRating"
        itemtype="http://schema.org/AggregateRating">
     {# Detail page ratings link to the ratings list page. #}
     {% if is_detail %}
-      {% if app.ratings.count %}
-        <a href="{{ url('app/ratings', [app.slug]) }}" class="rating-link">
-          {{ stars(app.ratings.average) }}
+      {% if product.ratings.count %}
+        <a href="{{ url('app/ratings', [product.slug]) }}" class="rating-link">
+          {{ stars(product.ratings.average) }}
           <span class="cnt long">
-            {{ app.ratings.count|numberfmt }} {{ _plural('Review', 'Reviews',
-                                                         n=app.ratings.count) }}
+            {{ product.ratings.count|numberfmt }} {{ _plural('Review', 'Reviews',
+                                                         n=product.ratings.count) }}
           </span>
         </a>
       {% else %}
@@ -129,7 +129,7 @@
       {% endif %}
     {% else %}
       {# Stars-only rating (member of an app listing). #}
-      {{ stars(app.ratings.average) }}
+      {{ stars(product.ratings.average) }}
     {% endif %}
   </span>
 {% endmacro %}
