@@ -1,6 +1,8 @@
 {% include '_macros/app_tile.html' %}
 {% include '_macros/more_button.html' %}
 
+{# TODO: This should probably be 'product_list.html' #}
+
 <section class="main">
   <div class="subheader">
     <h1>
@@ -10,12 +12,12 @@
   </div>
 </section>
 
+{% set isHomescreen = True if isHomescreenList else False %}
 {% set apiFn = api if require_user else anonApi %}
-{% set search_url = apiFn(endpoint_name)|urlparams(sort=sort, limit=24) if sort
-                    else apiFn(endpoint_name)|urlparams(limit=24) %}
+{% set search_url = apiFn(endpoint_name)|urlparams(sort=sort, limit=24, doc_type=listItemType, is_homescreen=isHomescreen) if sort
+                    else apiFn(endpoint_name)|urlparams(limit=24, doc_type=listItemType, is_homescreen=isHomescreen) %}
 
-<section class="main full app-list-page c">
-  {% include "_includes/app_list_filters.html" %}
+<section class="main full app-list-page {{ 'app-list-homescreens' if isHomescreenList }} c">
   {% defer (url=search_url, pluck='objects', as=appOrWebsite, paginate='.app-list') %}
     <ul class="app-list {{ 'paginated' if response.meta.next }}">
       {% for app in this %}

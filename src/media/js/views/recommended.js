@@ -20,6 +20,7 @@ define('views/recommended',
         builder.start('app_list.html', {
             appListType: 'recommended',
             endpoint_name: 'recommended',
+            listItemType: 'webapp.website',
             require_user: true,
             title: title
         });

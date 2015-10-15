@@ -16,7 +16,7 @@ define('views/category',
             builder.z('title', name);
         }
 
-        builder.z('type', 'root category app-list');
+        builder.z('type', 'root category app-list nav-apps');
         builder.z('show_cats', true);
         builder.z('cat', slug);
 
@@ -31,6 +31,7 @@ define('views/category',
         builder.start('category.html', {
             category: slug,
             category_name: name,
+            categories: categories,
             endpoint: urls.api.unsigned.url('category', [slug], params),
             popularUrl: utils.urlparams(urls.reverse('category', [slug]), {
                 src: popularSrc
@@ -43,6 +44,8 @@ define('views/category',
                                          settings.addonsEnabled),
             sort: params.sort,
             source: params.sort ? newSrc: popularSrc,
+        }).done(function() {
+            $('.header-categories-btn .cat-trigger').text(name);
         });
 
         trackingEvents.trackCategoryHit(slug);

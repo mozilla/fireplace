@@ -165,7 +165,7 @@ appList.appListPages.forEach(function(appListPage) {
                     test.assertNotExists(appNthChild(appListPage.appLimit + 1));
 
                     waitForLoadMore();
-                    casper.thenClick('.wordmark');
+                    casper.thenClick('.mkt-wordmark');
 
                     // Wait for the homepage to load before moving back.
                     helpers.waitForFeedItem(function() {

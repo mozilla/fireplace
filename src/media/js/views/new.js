@@ -7,12 +7,13 @@ define('views/new',
     return function(builder, args, params) {
         var title = gettext('New');
 
-        builder.z('type', 'root app-list new');
+        builder.z('type', 'root app-list new nav-apps');
         builder.z('title', title);
 
         builder.start('app_list.html', {
             appListType: 'new',
             endpoint_name: 'search',
+            listItemType: 'webapp',
             sort: 'reviewed',
             title: title,
         });

@@ -25,6 +25,7 @@ define('routes',
          'view_name': 'feed_landing'},
         {'pattern': '^/feedback$', 'view_name': 'feedback'},
         {'pattern': '^/games/([^/<>"\']+)$', 'view_name': 'games/listing'},
+        {'pattern': '^/homescreens/?$', 'view_name': 'homescreens'},
         {'pattern': '^/langpacks/([^/<>"\']+)$', 'view_name': 'langpacks'},
         {'pattern': '^/new$', 'view_name': 'new'},
         {'pattern': '^/newsletter-signup$', 'view_name': 'newsletter_signup'},
@@ -39,12 +40,13 @@ define('routes',
         {'pattern': '^/website/([^/<>"\']+)/?$', 'view_name': 'website'},
         {'pattern': '^/website/([^/<>"\']+)/issue/?$',
          'view_name': 'website/issue'},
+        {'pattern': '^/websites/?$', 'view_name': 'websites'}
     ]);
 
     // When this goes away we can remove settings_app from our deps.
-    var search = '/api/v2/fireplace/search/?cache=1&vary=0';
-    if (settings.meowEnabled) {
-        search = '/api/v2/fireplace/multi-search/?cache=1&vary=0';
+    var search = '/api/v2/fireplace/multi-search/?cache=1&vary=0';
+    if (settings.addonsEnabled) {
+        search += '&doc_type=webapp,extension,website';
     }
 
     router.api.addRoutes({

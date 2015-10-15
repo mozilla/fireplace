@@ -8,7 +8,7 @@ define('views/app/ratings/rating', ['core/l10n', 'core/urls'], function(l10n, ur
 
         builder.start('ratings/rating.html', {'slug': slug, id: id});
 
-        builder.z('type', 'leaf');
+        builder.z('type', 'leaf reviews nav-apps');
         builder.z('parent', urls.reverse('app/ratings', [slug]));
         builder.z('title', gettext('App Review'));
     };

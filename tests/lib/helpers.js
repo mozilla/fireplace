@@ -65,10 +65,12 @@ function filterUALogs(trackArgs) {
 }
 
 
+// TODO: Bring this back if a header title is added.
+/*
 function headerTitle() {
     return casper.fetchText('.mkt-header--title');
 }
-
+*/
 
 function isLeafPage() {
     var pageTypes = casper.getElementAttribute('body', 'data-page-type')
@@ -97,7 +99,7 @@ module.exports = {
     assertUASetSessionVar: assertUASetSessionVar,
     browser: browser,
     filterUALogs: filterUALogs,
-    headerTitle: headerTitle,
+    //headerTitle: headerTitle,
     isLeafPage: isLeafPage,
     waitForAppDetail: waitForAppDetail,
     waitForAppList: waitForAppList,

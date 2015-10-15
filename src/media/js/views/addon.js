@@ -7,7 +7,7 @@ define('views/addon',
     var gettext = l10n.gettext;
 
     return function(builder, args) {
-        builder.z('type', 'leaf detail');
+        builder.z('type', 'leaf detail nav-addons');
         builder.z('title', gettext('Loading...'));
 
         truncator.init();

@@ -369,7 +369,7 @@ casper.test.begin('Test install langpack', {
             test.assertSelectorHasText('.mkt-tile:first-child .mkt-app-button', 'Installed');
 
             // Navigate away.
-            casper.click('[data-mkt-nav--item="popular"] a');
+            casper.click('.global-nav-menu [data-nav-type~="apps"]');
         });
 
         casper.waitForSelector('[data-page-type~="popular"]', function() {

@@ -37,11 +37,6 @@ mkt-header-nav {
     }
 }
 
-// Add header's height back as padding. Overridden when header not fixed.
-body {
-    padding-top: $header-height;
-}
-
 // We hide the recommendations tab by default and enable it via JS if user is
 // logged in and opted in to recommendations.
 [data-mkt-nav--item~="recommended"],
@@ -80,17 +75,7 @@ body {
         flex-grow: 1;
         padding-right: $header-button-size;
     }
-    // Marketplace logo.
-    .wordmark {
-        image-replacement('../img/nav/header-logo.svg', 34px, 42px);
-        position: relative;
-        top: 3px;
 
-        +media--wide-tablet() {
-            image-replacement('../img/nav/header-logo-beta.svg', 34px, 42px);
-            margin: 0 30px;
-        }
-    }
     // Project name, appearing to the right of the Marketplace logo.
     .site-name {
         border-left: 1px solid $color--header--separator;

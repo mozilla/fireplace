@@ -4,7 +4,7 @@ casper.test.begin('Test base site', {
 
         helpers.waitForPageLoaded(function() {
             test.assertTitle('Firefox Marketplace');
-            test.assertVisible('mkt-header');
+            test.assertVisible('#global-header');
             test.assertVisible('.feed-home');
             test.assertDoesntExist('.mkt-tile .tray');
             test.assertNotVisible('.app-list-filters-expand-toggle');
@@ -70,7 +70,7 @@ casper.test.begin('Test that the banner is first on desktop', {
         helpers.startCasper({viewport: 'desktop'});
 
         helpers.waitForPageLoaded(function() {
-            test.assertExists('.banners ~ #mkt-nav--site-header');
+            test.assertExists('.banners ~ #global-header');
         });
 
         helpers.done(test);
@@ -83,8 +83,8 @@ casper.test.begin('Test that the banner is last on mobile', {
         helpers.startCasper();
 
         helpers.waitForPageLoaded(function() {
-            test.assertExists('#mkt-nav--site-header ~ main mkt-select.compat-filter');
-            test.assertExists('#mkt-nav--site-header ~ main .banners');
+            test.assertExists('#global-header ~ main mkt-select.compat-filter');
+            test.assertExists('#global-header ~ main .banners');
             test.assertExists('mkt-select.compat-filter + .banners');
         });
 

@@ -1,5 +1,6 @@
 {% include '_macros/app_tile.html' %}
 {% include '_macros/more_button.html' %}
+{% include 'categories.html' %}
 
 
 <section class="main">
@@ -16,8 +17,6 @@
 
 <section class="category app-list-page main full">
 {% defer (url=endpoint, pluck='objects', as=appOrWebsite, paginate='.app-list') %}
-  {% include "_includes/app_list_filters.html" %}
-
   <ul class="app-list {{ 'paginated' if response.meta.next }}">
     {% for app in this %}
       <li class="item result app-list-app">

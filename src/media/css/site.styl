@@ -18,6 +18,7 @@ body {
     // min-height needed so ff b2g/android can scroll to 0 (bug 872622).
     min-height: 300px;
     overflow-x: hidden;
+    padding-bottom: 60px; // Fixed mobile bottom nav spacing.
     transform-origin: 50% 400px;
     transition: transform 1s;
     // When the mobile nav is open the body width becomes 340px when the screen
@@ -42,6 +43,11 @@ body {
     }
 }
 
+.mobile-margined {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
 section.main {
     margin-left: auto;
     margin-right: auto;
@@ -57,7 +63,6 @@ section.main {
 section.full {
     background: $white;
     max-width: 100%;
-    padding: 0;
     width: 100%;
 
     > div {
@@ -284,6 +289,13 @@ label:active {
     html {
         background: $white;
     }
+    section.full {
+        padding: 0 0 50px 0;
+    }
+    .mobile-margined {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
 }
 
 @media $base-desktop {
@@ -313,6 +325,10 @@ label:active {
     section.main > div {
         padding-left: 30px;
         padding-right: 30px;
+    }
+    body {
+        // Remove padding for fixed mobile bottom nav.
+        padding-bottom: 0;
     }
 }
 

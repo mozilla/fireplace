@@ -5,27 +5,26 @@ function navSetUp(cb) {
 }
 
 
-casper.test.begin('Test mkt-nav toggle', {
+casper.test.begin('Test more menu toggle', {
     test: function(test) {
         helpers.startCasper();
 
         navSetUp(function() {
-            // Hidden at first.
-            test.assertDoesntExist('.mkt-nav--visible mkt-nav');
+            // Nav shown.
+            test.assertVisible('.global-nav');
 
-            // It opens when click toggle.
-            casper.click('mkt-nav-toggle');
-            test.assertExists('.mkt-nav--visible mkt-nav');
+            // More menu opens when clicked.
+            casper.click('.global-nav-menu [data-nav-type="more"]');
+            test.assertExists('.more-menu-overlay.overlay-visible');
 
-            // It closes when click toggle.
-            casper.click('mkt-nav-toggle');
-            test.assertDoesntExist('.mkt-nav--visible mkt-nav');
+            // It closes when we click the close button.
+            casper.click('.overlay-close');
+            test.assertDoesntExist('.more-menu-overlay.overlay-visible');
 
             // It closes when click link.
-            casper.click('mkt-nav-toggle');
-            test.assertExists('.mkt-nav--visible mkt-nav');
-            casper.click('[data-mkt-nav--item="popular"] a');
-            test.assertDoesntExist('.mkt-nav--visible mkt-nav');
+            casper.click('.global-nav-menu [data-nav-type="more"]');
+            casper.click('.nav-more-menu li:first-child a');
+            test.assertDoesntExist('.more-menu-overlay.overlay-visible');
         });
 
         helpers.done(test);
@@ -38,25 +37,11 @@ casper.test.begin('Test mkt-nav navigation', {
         helpers.startCasper();
 
         navSetUp(function() {
-            casper.click('mkt-nav-toggle');
-            test.assertExists('[data-mkt-nav--item="homepage"] .mkt-nav--active');
-            casper.click('[data-mkt-nav--item="new"] a');
+            casper.click('.global-nav-menu [data-nav-type="apps"]');
         });
 
-        casper.waitForSelector('[data-page-type~="new"]', function() {
-            test.assertExists('[data-mkt-nav--item="new"] .mkt-nav--active');
-            casper.click('mkt-nav-toggle');
-            casper.click('[data-mkt-nav--item="popular"] a');
-        });
-
-        casper.waitForSelector('[data-page-type~="popular"]', function() {
-            test.assertExists('[data-mkt-nav--item="popular"] .mkt-nav--active');
-            casper.click('mkt-nav-toggle');
-            casper.click('[data-mkt-nav--item="homepage"] a');
-        });
-
-        casper.waitForSelector('[data-page-type~="homepage"]', function() {
-            test.assertExists('[data-mkt-nav--item="homepage"] .mkt-nav--active');
+        casper.waitForSelector('[data-page-type~="nav-apps"]', function() {
+            test.assertExists('.app-list');
         });
 
         helpers.done(test);
@@ -64,33 +49,12 @@ casper.test.begin('Test mkt-nav navigation', {
 });
 
 
-casper.test.begin('Test mkt-nav subnavs', {
-    test: function(test) {
-        helpers.startCasper();
-
-        navSetUp(function() {
-            casper.evaluate(function() {
-                document.body.classList.remove('mkt-nav--subnav-visible');
-            });
-
-            casper.click('mkt-nav-toggle');
-            test.assertDoesntExist('.mkt-nav--subnav-visible');
-
-            casper.click('mkt-nav [data-mkt-nav--item="categories"] a');
-            test.assertExists('.mkt-nav--subnav-visible');
-        });
-
-        helpers.done(test);
-    }
-});
-
-
-casper.test.begin('Test mkt-nav back', {
+casper.test.begin('Test back button', {
     test: function(test) {
         helpers.startCasper('/app/foo');
 
         navSetUp(function() {
-            casper.click('.hamburger');
+            casper.click('.header-back-btn');
         });
 
         casper.waitForSelector('[data-page-type~="homepage"]');
@@ -100,12 +64,12 @@ casper.test.begin('Test mkt-nav back', {
 });
 
 
-casper.test.begin('Test mkt-nav back not on desktop', {
+casper.test.begin('Test header back button not on desktop', {
     test: function(test) {
         helpers.startCasper('/app/foo', {viewport: 'desktop'});
 
         navSetUp(function() {
-            test.assertNotVisible('.hamburger');
+            test.assertVisible('.global-nav-menu-desktop');
         });
 
         helpers.done(test);
@@ -113,38 +77,38 @@ casper.test.begin('Test mkt-nav back not on desktop', {
 });
 
 
-casper.test.begin('Test mkt-nav settings navigation', {
+casper.test.begin('Test settings navigation', {
     test: function(test) {
         helpers.startCasper();
 
         navSetUp(function() {
-            casper.click('mkt-nav-toggle');
+            casper.click('.global-nav-menu [data-nav-type="more"]');
 
-            test.assertVisible('[data-mkt-nav--item="feedback"]');
-            test.assertVisible('[data-mkt-nav--item="register"]');
-            test.assertVisible('[data-mkt-nav--item="login"]');
-            test.assertNotVisible('[data-mkt-nav--item="settings"]');
-            test.assertNotVisible('[data-mkt-nav--item="purchases"]');
-            test.assertNotVisible('[data-mkt-nav--item="logout"]');
+            test.assertVisible('.more-menu-feedback');
+            test.assertVisible('.more-menu-register');
+            test.assertVisible('.more-menu-sign-in');
+            test.assertNotVisible('.more-menu-settings');
+            test.assertNotVisible('.more-menu-my-apps');
+            test.assertNotVisible('.more-menu-sign-out');
 
-            casper.click('[data-mkt-nav--item="feedback"] a');
+            casper.click('.more-menu-feedback a');
         });
 
         casper.waitForSelector('[data-page-type~="feedback"]', function() {
-            casper.click('[data-mkt-nav--item="login"] a');
+            casper.click('.more-menu-sign-in a');
             helpers.fake_login();
         });
 
         casper.waitForSelector('.logged-in', function() {
-            casper.click('[data-mkt-nav--item="purchases"] a');
+            casper.click('.more-menu-my-apps a');
         });
 
         casper.waitForSelector('[data-page-type~="purchases"]', function() {
-            casper.click('[data-mkt-nav--item="settings"] a');
+            casper.click('.more-menu-settings a');
         });
 
         casper.waitForSelector('[data-page-type~="settings"]', function() {
-            casper.click('[data-mkt-nav--item="logout"] a');
+            casper.click('.more-menu-sign-out a');
         });
 
         casper.waitWhileSelector('.logged-in');
