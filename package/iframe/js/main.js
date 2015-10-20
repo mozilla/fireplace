@@ -7,7 +7,7 @@ var translations = require('./translations');
 
 logger.log('MKT_URL:', process.env.MKT_URL);
 
-function buildQS(profile) {
+function buildQS(profile, hasWebExtensions) {
     var qs = [];
 
     try {
@@ -68,6 +68,10 @@ function buildQS(profile) {
         qs.push('pro=' + encodeURIComponent(profile));
     }
 
+    if (hasWebExtensions) {
+        qs.push('addonsEnabled=true');
+    }
+
     return qs.join('&');
 }
 
@@ -100,8 +104,14 @@ if (isSystemDateIncorrect()) {
     if (typeof window.Promise !== 'undefined' &&
         typeof navigator.getFeature !== 'undefined') {
         logger.log('navigator.getFeature and window.Promise available');
-        features.generateFeatureProfile().then(function(profile) {
-            launchIframe(profile);
+        var allStartupPromises = Promise.all([
+            features.generateFeatureProfile(),
+            features.checkForWebExtensions(),
+        ]);
+        allStartupPromises.then(function(promises) {
+            logger.log('Generated profile: ' + promises[0]);
+            logger.log('Addons support: ' + promises[1]);
+            launchIframe(promises[0], promises[1]);
         });
     } else {
         logger.log('navigator.getFeature or window.Promise unavailable :(');
@@ -118,13 +128,14 @@ if (isSystemDateIncorrect()) {
     }, false);
 }
 
-function launchIframe(profile) {
+function launchIframe(profile, hasWebExtensions) {
     // Set the iframe src to the actual Marketplace.
     var iframe = document.getElementById('iframe');
     iframe.onerror = function() {
         document.body.classList.add('offline');
     };
-    iframe.src = process.env.MKT_URL + '/?' + buildQS(profile);
+    iframe.src = process.env.MKT_URL +
+                 '/?' + buildQS(profile, hasWebExtensions);
 }
 
 function toggleOffline(init) {
