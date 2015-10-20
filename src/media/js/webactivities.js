@@ -54,11 +54,14 @@ define('webactivities',
                 z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
                 break;
             case 'marketplace-category':
-                // Are we trying to load langpacks ?
+                // "langpacks" or "addons" are not real categories, so we need
+                // to pick a specific url for those.
                 if (data.slug == 'langpacks') {
                     url = urls.reverse('langpacks', [data.fxos_version]);
+                } else if (data.slug == 'addons') {
+                    url = urls.reverse('addons');
                 } else {
-                    // Load up a category page.
+                    // For regular categories we just reverse the category url.
                     url = urls.reverse('category', [data.slug]);
                 }
                 z.page.trigger('navigate', [utils.urlparams(url, {src: src})]);
