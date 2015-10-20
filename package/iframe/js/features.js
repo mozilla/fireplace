@@ -131,13 +131,19 @@ function generateFeatureProfile(features, navigator) {
             // we make changes.
             APP_FEATURES_VERSION
         ].join('.');
-        logger.log('Generated profile: ' + profile);
         return profile;
+    });
+}
+
+function checkForWebExtensions() {
+    return navigator.hasFeature('web-extensions').then(function(value) {
+        return value;
     });
 }
 
 module.exports = {
     FeaturesBitField: FeaturesBitField,
     buildFeaturesPromises: buildFeaturesPromises,
+    checkForWebExtensions: checkForWebExtensions,
     generateFeatureProfile: generateFeatureProfile,
 };

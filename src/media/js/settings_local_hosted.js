@@ -13,7 +13,7 @@ define('settings_local',
         iframe_potatolytics_src: origin + '/potatolytics.html',
         potatolytics_enabled: false,
         tracking_enabled: true,
-        addonsEnabled: false,
+        addonsEnabled: window.location.search.indexOf('addonsEnabled=true') !== -1,
         meowEnabled: true,
         gametimeEnabled: true,
     };
