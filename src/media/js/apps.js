@@ -147,6 +147,12 @@ define('apps',
             product.key = product.id;
         } else {
             product.isApp = true;
+            product.isAddon = (
+              !!product.mini_manifest_url &&
+              product.mini_manifest_url.indexOf('/extension/') !== -1);
+            if (product.isAddon) {
+              product.manifest_url = product.mini_manifest_url;
+            }
             product.contentType = 'app';
             product.short_name = product.name;
             product.key = product.slug;

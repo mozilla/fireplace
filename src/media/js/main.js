@@ -18,7 +18,7 @@ require(
      'jquery', 'newsletter', 'regions', 'underscore', 'update_banner',
      'user_helpers', 'utils_local',
      // Modules we require to initialize global stuff.
-     'addon', 'app_list', 'buttons', 'content-ratings', 'core/forms',
+     'app_list', 'buttons', 'content-ratings', 'core/forms',
      'elements/categories', 'elements/header', 'elements/nav',
      'elements/select', 'flipsnap', 'header_footer', 'helpers_local',
      'image-deferrer-mkt', 'core/login', 'core/models', 'marketplace-elements',
