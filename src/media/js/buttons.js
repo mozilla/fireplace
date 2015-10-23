@@ -23,6 +23,11 @@ define('buttons',
         markBtnsAsUninstalled();
     });
 
+    function _isAddon(product) {
+      return (product.mini_manifest_url &&
+              product.mini_manifest_url.indexOf('/extension/') !== -1);
+    }
+
     function setInstallBtnState($button, css_class) {
         // Sets install button state (its text and its classes, which
         // currently determines its click handler).
@@ -65,7 +70,8 @@ define('buttons',
         logger.log('Install requested for', product.name);
 
         // TODO: Have the API possibly return this (bug 889501).
-        product.receipt_required = (product.premium_type !== 'free' &&
+        product.receipt_required = (!!product.premium_type &&
+                                    product.premium_type !== 'free' &&
                                     product.premium_type !== 'free-inapp');
 
         // If it's a paid app, ask the user to sign in first.
@@ -215,7 +221,7 @@ define('buttons',
                 // Do the install immediately.
                 do_install().done(function() {
                     // ...then record the installation if necessary.
-                    if (product.role !== 'langpack') {
+                    if (product.role !== 'langpack' && !_isAddon(product)) {
                         requests.post(api_endpoint, post_data);
                         // We don't care if it fails or not because the user
                         // has already installed the app.
@@ -323,6 +329,11 @@ define('buttons',
 
         if (app.role == 'langpack') {
             $btn.attr('disabled', true).find('em').text(gettext('Installed'));
+        } else if (_isAddon(app)) {
+            $btn.removeClass('spinning')
+                .attr('disabled', true)
+                .find('em')
+                .text(gettext('Installed'));
         } else {
             setInstallBtnState($btn, 'launch install');
         }
@@ -385,9 +396,12 @@ define('buttons',
             return product;
         }
 
+        var isAddon = _isAddon(product);
+        var manifest_url = (isAddon ? product.mini_manifest_url :
+                            product.manifest_url);
         var isLangpack = product.role == 'langpack';
         var incompatible = apps.incompat(product);
-        var installed = z.apps.indexOf(product.manifest_url) !== -1;
+        var installed = z.apps.indexOf(manifest_url) !== -1;
 
         if (isLangpack) {
             return _.extend(product, {
@@ -405,7 +419,8 @@ define('buttons',
         }
 
         return _.extend(product, {
-            disabled: incompatible,
+            disabled: isAddon ? installed : incompatible,
+            isAddon: isAddon,
             isLangpack: isLangpack,
             incompatible: incompatible,
             installed: installed,
@@ -421,6 +436,11 @@ define('buttons',
 
         if (app.isLangpack) {
             return app.installed ? gettext('Installed') : gettext('Install');
+        }
+
+        if (app.isAddon) {
+          return (app.installed ? gettext('Installed') :
+                  gettext('Install Add-on'));
         }
 
         if (settings.meowEnabled) {

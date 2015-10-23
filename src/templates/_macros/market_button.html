@@ -4,7 +4,8 @@
 
   <button class="button mkt-app-button
                  {{ app_classes if product.isApp }}
-                 {{ 'launch' if product.installed }}
+                 {{ 'launch' if product.installed and not product.isAddon }}
+                 {{ 'mkt-addon-button' if product.isAddon }}
                  {{ 'paid' if product.payment_required }}
                  {{ 'incompatible' if product.incompatible }}"
         {{ data_attrs|make_data_attrs }}
