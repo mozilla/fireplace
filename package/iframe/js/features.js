@@ -1,9 +1,8 @@
 var logger = require('./logger');
 
-
 // Bump this number every time you add a feature. It must match zamboni's
 // settings.APP_FEATURES_VERSION.
-var APP_FEATURES_VERSION = 8;
+var APP_FEATURES_VERSION = 9;
 
 // See zamboni docs for the order - it matters, we'll push promises in the same
 // order to generate the features signature.
@@ -22,7 +21,8 @@ var FEATURES = [
     ['hardware.memory', 512],
     ['hardware.memory', 1024],
     true, // NFC
-    'acl.version', // OpenMobile ACL
+    'acl.version', // OpenMobile ACL,
+    'api.window.UDPSocket',
 ];
 
 function FeaturesBitField(size) {
