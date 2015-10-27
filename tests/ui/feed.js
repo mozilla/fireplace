@@ -236,12 +236,12 @@ casper.test.begin('Test Feed endpoint', {
                 vary: '0',
             });
 
-            casper.click('[data-mkt-nav--item="popular"] a');
+            casper.click('.global-nav-menu [data-nav-type="apps"]');
         });
 
         casper.waitForSelector('.app-list', function() {
             helpers.selectOption('#compat-filter', 'firefoxos');
-            casper.click('.wordmark');
+            casper.click('.mkt-wordmark');
         });
 
         casper.waitForSelector('.feed-home', function() {
@@ -294,12 +294,12 @@ casper.test.begin('Test Feed collection endpoint', {
                 }
             );
 
-            casper.click('[data-mkt-nav--item="popular"] a');
+            casper.click('.global-nav-menu [data-nav-type="apps"]');
         });
 
         casper.waitForSelector('.app-list', function() {
             helpers.selectOption('#compat-filter', 'firefoxos');
-            casper.click('.wordmark');
+            casper.click('.mkt-wordmark');
         });
 
         casper.waitForSelector('[data-tracking="grouped"]', function() {

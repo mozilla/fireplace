@@ -6,15 +6,16 @@ define('views/popular',
     var console = log('popular');
 
     return function(builder, args, params) {
-        var title = gettext('Popular');
+        var title = gettext('Popular Apps');
 
-        builder.z('type', 'root app-list popular');
+        builder.z('type', 'root app-list popular nav-apps');
         builder.z('title', title);
 
         builder.start('app_list.html', {
             appListType: 'popular',
             endpoint_name: 'search',
-            source: 'popular',
+            listItemType: 'webapp',
+            source: 'popular apps',
             title: title
         });
     };

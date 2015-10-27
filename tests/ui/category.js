@@ -3,6 +3,8 @@
     Note that most stuff is already tested in app_list.js.
 */
 
+var categoriesTrigger = '.header-categories-btn';
+
 casper.test.begin('Category app list sort tests', {
     test: function(test) {
         helpers.startCasper({path: '/category/games'});
@@ -50,9 +52,9 @@ casper.test.begin('Category mobile nav opens categories', {
 
         helpers.waitForPageLoaded();
 
-        casper.thenClick('mkt-nav-toggle', function() {
+        casper.thenClick(categoriesTrigger, function() {
             test.assert(casper.evaluate(function() {
-                return document.getElementById('categories').visible;
+                return document.querySelector('.cat-menu-overlay').visible;
             }));
         });
 
@@ -67,9 +69,9 @@ casper.test.begin('Category mobile does not nav open non-categories', {
 
         helpers.waitForPageLoaded();
 
-        casper.thenClick('mkt-nav-toggle', function() {
+        casper.thenClick(categoriesTrigger, function() {
             test.assertNot(casper.evaluate(function() {
-                return document.getElementById('categories').visible;
+                return document.querySelector('.cat-menu-overlay').visible;
             }));
         });
 

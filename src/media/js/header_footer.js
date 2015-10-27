@@ -3,20 +3,18 @@
     Set up event handlers related to components in the header and footer.
 */
 define('header_footer',
-    ['compat_filter', 'core/nunjucks', 'core/z', 'newsletter'],
-    function(compatFilter, nunjucks, z, newsletter) {
+    ['categories', 'compat_filter', 'core/nunjucks', 'core/z', 'newsletter'],
+    function(cats, compatFilter, nunjucks, z, newsletter) {
 
     function renderHeader() {
-        if (document.querySelector('mkt-header')) {
+        if (document.getElementById('global-header')) {
             return;
         }
 
         $('#site-header, main #site-nav').remove();
 
-        $('<div id="mkt-nav--site-header" class="mkt-nav--wrapper"></div>')
-            .append(nunjucks.env.render('header.html'))
-            .append(nunjucks.env.render('nav.html'))
-            .insertBefore('main');
+        $('main').before(nunjucks.env.render('header.html', {categories: cats}));
+        $('main').after(nunjucks.env.render('nav.html'));
 
         z.body.attr('data-mkt-nav--enabled', true);
     }
@@ -43,7 +41,7 @@ define('header_footer',
         }
 
         if (window.matchMedia('(min-width: 800px)').matches) {
-            $('#mkt-nav--site-header').before(bannerDiv);
+            $('#global-header').before(bannerDiv);
         } else {
             $('#page').before(bannerDiv);
         }

@@ -276,17 +276,6 @@ define('tracking_events',
             'click',
             filterDevice
         );
-    })
-
-    // Change content filtering options.
-    .on('change', '.content-filter', function() {
-        var filterContent = this.value;
-        setSessionVar(DIMENSIONS.contentType, filterContent);
-        sendEvent(
-            'Change content filter',
-            'click',
-            filterContent
-        );
     });
 
     // Navigate from collection tile to collection detail.

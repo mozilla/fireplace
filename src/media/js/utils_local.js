@@ -132,8 +132,9 @@ define('utils_local',
     }
 
     function headerTitle(title) {
-        document.getElementById('site-header')
+        document.getElementById('global-header')
                 .setAttribute('header-title', title);
+        $('.mkt-header--title').text(title);
     }
 
     return {

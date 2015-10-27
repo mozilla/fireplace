@@ -1,33 +1,30 @@
 function headerSetUp(cb) {
     helpers.waitForPageLoaded(function() {
-        casper.waitForSelector('mkt-header', cb);
+        casper.waitForSelector('.global-nav-menu-desktop', cb);
     });
 }
 
 
-casper.test.begin('Test mkt-header-nav navigation', {
+casper.test.begin('Test desktop navigation', {
     test: function(test) {
         helpers.startCasper({viewport: 'desktop'});
 
         headerSetUp(function() {
-            casper.click('[data-mkt-header-nav--item="new"] a');
+            casper.click('.global-nav-menu-desktop .new');
         });
 
         casper.waitForSelector('[data-page-type~="new"]', function() {
-            test.assertExists('[data-mkt-header-nav--item="new"] ' +
-                              '.mkt-header-nav--link-active');
-            casper.click('[data-mkt-header-nav--item="popular"] a');
+            test.assertExists('.new.header-nav-link-active');
+            casper.click('.global-nav-menu-desktop .popular');
         });
 
         casper.waitForSelector('[data-page-type~="popular"]', function() {
-            test.assertExists('[data-mkt-header-nav--item="popular"] ' +
-                              '.mkt-header-nav--link-active');
-            casper.click('[data-mkt-header-nav--item="homepage"] a');
+            test.assertExists('.popular.header-nav-link-active');
+            casper.click('.global-nav-menu-desktop .home');
         });
 
         casper.waitForSelector('[data-page-type~="homepage"]', function() {
-            test.assertExists('[data-mkt-header-nav--item="homepage"] ' +
-                              '.mkt-header-nav--link-active');
+            test.assertExists('.home.header-nav-link-active');
         });
 
         helpers.done(test);
@@ -41,15 +38,15 @@ casper.test.begin('Test categories toggle', {
 
         headerSetUp(function() {
             // Starts not visible.
-            test.assertDoesntExist('#header--categories.mkt-header-child--visible');
+            test.assertDoesntExist('.cat-menu-overlay.overlay-visible');
 
             // Click toggle to show.
-            casper.click('[data-mkt-header-nav--item="categories"] a');
-            test.assertVisible('#header--categories.mkt-header-child--visible');
+            casper.click('.nav-category-link');
+            test.assertExists('.cat-menu-overlay.overlay-visible');
 
             // Click toggle to hide.
-            casper.click('[data-mkt-header-nav--item="categories"] a');
-            test.assertDoesntExist('#header--categories.mkt-header-child--visible');
+            casper.click('.nav-category-link');
+            test.assertDoesntExist('.cat-menu-overlay.overlay-visible');
         });
 
         helpers.done(test);
@@ -62,13 +59,12 @@ casper.test.begin('Test header search toggle', {
         helpers.startCasper();
 
         headerSetUp(function() {
-            test.assertExists('mkt-header');
+            test.assertExists('.global-header');
             test.assertDoesntExist('header#site-header');
 
-            test.assertDoesntExist(
-                '.header--search.mkt-header-child--visible');
-            casper.click('mkt-header-child-toggle[for="header--search"]');
-            test.assertExists('.header--search.mkt-header-child--visible');
+            test.assertDoesntExist('.global-header.searching');
+            casper.click('.header--search-content .mkt-search-btn');
+            test.assertExists('.global-header.searching');
         });
 
         helpers.done(test);
@@ -98,12 +94,12 @@ casper.test.begin('Test search toggle hides categories subnav', {
         helpers.startCasper({viewport: 'desktop'});
 
         headerSetUp(function() {
-            casper.click('mkt-header-child-toggle[for="header--categories"]');
-            test.assertExists('#header--categories.mkt-header-child--visible');
+            casper.click('.nav-category-link');
+            test.assertExists('.cat-menu-overlay.overlay-visible');
 
-            casper.click('mkt-header-child-toggle[for="header--search"]');
-            test.assertDoesntExist('#header--categories.mkt-header-child--visible');
-            test.assertExists('.header--search.mkt-header-child--visible');
+            casper.click('.search-btn-desktop');
+            test.assertDoesntExist('.cat-menu-overlay.overlay-visible');
+            test.assertExists('.desktop-search.searching');
         });
 
         helpers.done(test);
@@ -113,15 +109,15 @@ casper.test.begin('Test search toggle hides categories subnav', {
 
 casper.test.begin('Test categories subnav hides search header child', {
     test: function(test) {
-        helpers.startCasper();
+        helpers.startCasper({viewport: 'desktop'});
 
         headerSetUp(function() {
-            casper.click('mkt-header-child-toggle[for="header--search"]');
-            test.assertExists('.header--search.mkt-header-child--visible');
+            casper.click('.search-btn-desktop');
+            test.assertExists('.desktop-search.searching');
 
-            casper.click('mkt-header-child-toggle[for="header--categories"]');
-            test.assertDoesntExist('.header--search.mkt-header-child--visible');
-            test.assertExists('#header--categories.mkt-header-child--visible');
+            casper.click('.nav-category-link');
+            test.assertDoesntExist('.desktop-search.searching');
+            test.assertExists('.cat-menu-overlay.overlay-visible');
         });
 
         helpers.done(test);
@@ -134,9 +130,9 @@ casper.test.begin('Test header settings visibility', {
         helpers.startCasper({viewport: 'desktop'});
 
         headerSetUp(function() {
-            test.assertVisible('mkt-header .persona');
-            test.assertVisible('mkt-header .persona.register');
-            test.assertDoesntExist('.header--settings.mkt-header-child--visible');
+            test.assertVisible('.global-nav-menu-desktop .persona');
+            test.assertVisible('.global-nav-menu-desktop .persona.register');
+            test.assertDoesntExist('.settings-menu-desktop.settings-menu-active');
         });
 
         helpers.done(test);
@@ -149,20 +145,16 @@ casper.test.begin('Test header settings toggle', {
         helpers.startCasper({viewport: 'desktop'});
 
         headerSetUp(function() {
-            casper.click('mkt-header .persona:not(.register)');
+            casper.click('.global-nav-menu-desktop .persona:not(.register)');
             helpers.fake_login();
         });
 
         casper.waitForSelector('.logged-in', function() {
-            test.assertNotVisible('mkt-header .persona');
-            test.assertNotVisible('mkt-header .persona.register');
-            casper.click('.header--settings-toggle');
+            test.assertNotVisible('.global-nav-menu-desktop .persona');
+            test.assertNotVisible('.global-nav-menu-desktop .persona.register');
+            casper.click('.mkt-settings-btn');
 
-            test.assertVisible('.header--settings.mkt-header-child--visible');
-            test.assertVisible('[data-mkt-header-child--item="feedback"]');
-            test.assertVisible('[data-mkt-header-child--item="settings"]');
-            test.assertVisible('[data-mkt-header-child--item="purchases"]');
-            test.assertVisible('[data-mkt-header-child--item="logout"]');
+            test.assertExists('.settings-menu-desktop.settings-menu-active');
         });
 
         helpers.done(test);

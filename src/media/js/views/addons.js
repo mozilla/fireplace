@@ -5,7 +5,7 @@ define('views/addons',
     var gettext = l10n.gettext;
 
     return function(builder, args) {
-        builder.z('type', 'leaf');
+        builder.z('type', 'root nav-addons');
         builder.z('title', gettext('Firefox OS Add-ons'));
         utils.headerTitle(gettext('Firefox OS Add-ons'));
         builder.start('addon/list.html');

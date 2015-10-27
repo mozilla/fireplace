@@ -36,7 +36,6 @@
 
   <section id="search-results" class="main full app-list-page search-results">
     <div>
-      {% include "_includes/app_list_filters.html" %}
       <ul class="app-list {{ 'paginated' if response.meta.next }}">
         {% for result in processor(this) %}
           <li class="item result app-list-app">
@@ -59,7 +58,6 @@
   {{ results_subheader(raw_query, 0) }}
 
   <section class="main search-empty app-list-page full">
-    {% include "_includes/app_list_filters.html" %}
     <h1 class="no-results">{{ _('No results found') }}</h1>
   </section>
 {% except %}

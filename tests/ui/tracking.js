@@ -86,10 +86,10 @@ casper.test.begin('Test UA package dimension set', {
 
 casper.test.begin('Test UA pageview on initial navigation', {
     test: function(test) {
-        helpers.startCasper();
+        helpers.startCasper({viewport: 'desktop'});
 
         helpers.waitForPageLoaded(function() {
-            casper.click('[data-mkt-nav--item="popular"] a');
+            casper.click('.global-nav-menu-desktop .popular');
         });
 
         casper.waitForSelector('.app-list', function() {

@@ -209,7 +209,7 @@ casper.test.begin('Test app detail page view', {
         var app;
         helpers.waitForPageLoaded(function() {
             app = appList.getAppData('.install');
-            casper.click('.wordmark');
+            casper.click('.mkt-wordmark');
         });
 
         casper.waitWhileSelector('[data-page-type~="detail"]', function() {

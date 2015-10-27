@@ -153,7 +153,7 @@ casper.test.begin('Test platform selector dropdown persist for site', {
 
         platformSelectorSetUp(function() {
             selectOption('firefoxos');
-            casper.click('.wordmark');
+            casper.click('.mkt-wordmark');
         });
 
         casper.waitForSelector('[data-page-type~="homepage"]', function() {
