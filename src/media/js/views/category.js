@@ -28,6 +28,9 @@ define('views/category',
                                        slug);
         var newSrc = format.format(trackingEvents.SRCS.categoryNew, slug);
 
+        // Optimistically update the category dropdown.
+        $('.header-categories-btn .cat-trigger').text(name);
+
         builder.start('category.html', {
             category: slug,
             category_name: name,
@@ -44,8 +47,6 @@ define('views/category',
                                          settings.addonsEnabled),
             sort: params.sort,
             source: params.sort ? newSrc: popularSrc,
-        }).done(function() {
-            $('.header-categories-btn .cat-trigger').text(name);
         });
 
         trackingEvents.trackCategoryHit(slug);
