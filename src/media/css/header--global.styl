@@ -214,7 +214,8 @@ $symbol-height = 32px;
 }
 
 @media $base-desktop {
-    .mkt-header--title {
+    .mkt-header--title,
+    .global-header {
         display: none;
     }
     [data-page-type~="leaf"] .mkt-wordmark {
@@ -250,5 +251,8 @@ $symbol-height = 32px;
                 font-weight: 300;
             }
         }
+    }
+    body {
+        padding-top: 60px;
     }
 }
