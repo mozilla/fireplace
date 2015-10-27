@@ -2,7 +2,7 @@
 {% from "_macros/addon_tile.html" import addon_tile %}
 {% set endpoint = api('addon', [slug]) %}
 
-<article class="container-detail" data-addon="{{ key }}" itemscope
+<article class="container-detail addon-detail" data-addon="{{ key }}" itemscope
          itemtype="http://schema.org/SoftwareApplication">
   {% defer (url=endpoint, key=slug, id='addon-data', as='addon') %}
     {% set addon = apps.transform(this) %}
