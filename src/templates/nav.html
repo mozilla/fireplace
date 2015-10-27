@@ -1,10 +1,12 @@
+{% set addonsEnabled = settings.addonsEnabled %}
+
 <nav id="navigation" class="global-nav">
   <ul class="global-nav-menu" data-nav-active="">
     <li>
       <a class="global-nav-link" data-nav-type="apps"
          href="{{ url('popular') }}">{{ _('Apps') }}</a>
     </li>
-    {% if settings.addonsEnabled %}
+    {% if addonsEnabled %}
       <li>
         <a class="global-nav-link" data-nav-type="addons"
            href="{{ url('addons') }}">Add-ons</a>
@@ -14,7 +16,7 @@
       <a class="global-nav-link" data-nav-type="websites"
          href="{{ url('websites') }}">{{ _('Sites') }}</a>
     </li>
-    {% if settings.addonsEnabled %}
+    {% if addonsEnabled %}
       <li class="item-homescreens">
         <a class="global-nav-link" data-nav-type="homescreens"
            href="{{ url('homescreens') }}">{{ _('Homescreens') }}</a>
@@ -45,9 +47,13 @@
   <ul class="nav-more-menu">
     <li><a href="/">{{ _('Home') }}</a></li>
     <li><a href="{{ url('popular') }}">{{ _('Apps') }}</a></li>
-    <li><a href="{{ url('addons') }}">{{ _('Add-ons') }}</a></li>
+    {% if addonsEnabled %}
+      <li><a href="{{ url('addons') }}">{{ _('Add-ons') }}</a></li>
+    {% endif %}
     <li><a href="{{ url('websites') }}">{{ _('Sites') }}</a></li>
-    <li><a href="{{ url('homescreens') }}">{{ _('Homescreens') }}</a></li>
+    {% if addonsEnabled %}
+      <li><a href="{{ url('homescreens') }}">{{ _('Homescreens') }}</a></li>
+    {% endif %}
     <li class="overlay-divider"></li>
     <li class="more-menu-register nav--settings--logged-out">
       <a class="persona register">{{ _('Register') }}</a>
@@ -65,7 +71,7 @@
       <a href="{{ url('purchases') }}">{{ _('My Apps') }}</a>
     </li>
     <li class="more-menu-feedback"><a href="{{ url('feedback') }}">{{ _('Feedback') }}</a></li>
-    <li class="more-menu-sign-out .nav--settings--logged-in"><a class="logout">{{ _('Sign out') }}</a></li>
+    <li class="more-menu-sign-out nav--settings--logged-in"><a class="logout">{{ _('Sign out') }}</a></li>
     {% if user.get_permission('developer') %}
       <li><a href="/developers/submissions" rel="external">{{ _('My Submissions') }}</a></li>
     {% endif %}

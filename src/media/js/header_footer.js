@@ -3,8 +3,12 @@
     Set up event handlers related to components in the header and footer.
 */
 define('header_footer',
-    ['categories', 'compat_filter', 'core/nunjucks', 'core/z', 'newsletter'],
-    function(cats, compatFilter, nunjucks, z, newsletter) {
+    ['categories', 'compat_filter', 'core/nunjucks', 'core/settings',
+     'core/storage', 'core/z', 'newsletter'],
+    function(cats, compatFilter, nunjucks, settings,
+             storage, z, newsletter) {
+
+    settings.addonsEnabled = !!storage.getItem('always_show_extensions');
 
     function renderHeader() {
         if (document.getElementById('global-header')) {
