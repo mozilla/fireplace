@@ -8,7 +8,7 @@ define('header_footer',
     function(cats, compatFilter, nunjucks, settings,
              storage, z, newsletter) {
 
-    settings.addonsEnabled = !!storage.getItem('always_show_extensions');
+    settings.addonsEnabled = settings.addonsEnabled || !!storage.getItem('always_show_extensions');
 
     function renderHeader() {
         if (document.getElementById('global-header')) {

@@ -213,6 +213,15 @@ $symbol-height = 32px;
     display: none;
 }
 
+.nav-menu-recommended,
+.more-menu-recommended {
+    display: none;
+
+    .show-recommendations & {
+        display: block;
+    }
+}
+
 @media $base-desktop {
     .mkt-header--title,
     .global-header {

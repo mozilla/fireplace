@@ -1,6 +1,8 @@
 {% set addonsEnabled = settings.addonsEnabled %}
 
 <nav id="navigation" class="global-nav">
+
+  {# Mobile (bottom) Nav Menu #}
   <ul class="global-nav-menu" data-nav-active="">
     <li>
       <a class="global-nav-link" data-nav-type="apps"
@@ -24,6 +26,8 @@
     {% endif %}
     <li><a class="global-nav-link" data-nav-type="more">{{ _('More') }}</a></li>
   </ul>
+
+  {# Desktop Nav Menu #}
   <div class="global-nav-menu-desktop">
     <h1 class="site">
       <a href="{{ url('homepage') }}" class="mkt-wordmark"><span>Firefox Marketplace</span></a>
@@ -32,8 +36,8 @@
       <li><a class="home" href="/">{{ _('Home') }}</a></li>
       <li><a class="popular" href="{{ url('popular') }}">{{ _('Popular') }}</a></li>
       <li><a class="new" href="{{ url('new') }}">{{ _('New') }}</a></li>
-      <li class="nav--settings--logged-in">
-        <a class="recommended" href="{{ url('recommended') }}">{{ _('Recommended') }}</a>
+      <li class="nav--settings--logged-in nav-menu-recommended">
+        <a class="recommended" href="{{ url('recommended') }}">{{ _('Recommended Apps') }}</a>
       </li>
       <li><a class="nav-category-link">{{ _('Categories') }}</a></li>
     </ul>
@@ -43,6 +47,8 @@
     <a class="mkt-settings-btn nav--settings--logged-in">{{ _('Settings') }}</a>
   </div>
 </nav>
+
+{# Mobile "More" Menu #}
 <div class="full-screen-overlay below more-menu-overlay">
   <ul class="nav-more-menu">
     <li><a href="/">{{ _('Home') }}</a></li>
@@ -65,7 +71,7 @@
       <a href="{{ url('settings') }}">{{ _('Settings') }}</a>
     </li>
     <li class="more-menu-recommended nav--settings--logged-in">
-      <a href="{{ url('recommended') }}">{{ _('Recommended') }}</a>
+      <a href="{{ url('recommended') }}">{{ _('Recommended Apps') }}</a>
     </li>
     <li class="more-menu-my-apps nav--settings--logged-in">
       <a href="{{ url('purchases') }}">{{ _('My Apps') }}</a>
