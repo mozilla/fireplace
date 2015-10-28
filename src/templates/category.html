@@ -1,5 +1,6 @@
 {% include '_macros/app_tile.html' %}
 {% include '_macros/more_button.html' %}
+{% include '_macros/sort_toggle.html' %}
 {% include 'categories.html' %}
 
 
@@ -12,6 +13,9 @@
     {% if showPersonalizationSubmenu %}
       {% include '_includes/personalization.html' %}
     {% endif %}
+  </div>
+  <div class="sort-toggle-container">
+    {{ category_sort_toggle(popularUrl, newUrl) }}
   </div>
 </section>
 

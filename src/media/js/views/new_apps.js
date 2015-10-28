@@ -5,7 +5,7 @@ define('views/new_apps',
     var gettext = l10n.gettext;
 
     return function(builder, args, params) {
-        var title = gettext('New');
+        var title = gettext('New Apps');
 
         builder.z('type', 'root app-list new nav-apps');
         builder.z('title', title);

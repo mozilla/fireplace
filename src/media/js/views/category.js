@@ -16,7 +16,11 @@ define('views/category',
             builder.z('title', name);
         }
 
-        builder.z('type', 'root category app-list nav-apps');
+        if (params.sort) {
+            builder.z('type', 'root category app-list new nav-apps');
+        } else {
+            builder.z('type', 'root category app-list popular nav-apps');
+        }
         builder.z('show_cats', true);
         builder.z('cat', slug);
 

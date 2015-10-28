@@ -1,23 +1,22 @@
 {% include '_macros/app_tile.html' %}
 {% include '_macros/more_button.html' %}
+{% include '_macros/sort_toggle.html' %}
 
-{% macro sort_toggle(product_type) %}
-  {% set popular_link = url('popular_websites') if product_type == 'website' else url('popular_apps') %}
-  {% set new_link = url('new_websites') if product_type == 'website' else url('new_apps') %}
-  <ul class="sort-toggle">
-    <li class="sort-toggle-popular"><a href="{{ popular_link }}">{{ _('Popular') }}</a></li>
-    <li class="sort-toggle-new"><a href="{{ new_link }}">{{ _('New') }}</a></li>
-  </ul>
-{% endmacro %}
+{% set isHomescreen = True if isHomescreenList else False %}
 
 <section class="main">
   <div class="subheader sort-toggle-container">
-    {{ sort_toggle(listItemType) }}
+    {{ sort_toggle(listItemType) if not isHomescreen }}
     <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
+  </div>
+  <div class="subheader desktop-subheader">
+    <h1>
+      {{ title }}
+      <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
+    </h1>
   </div>
 </section>
 
-{% set isHomescreen = True if isHomescreenList else False %}
 {% set apiFn = api if require_user else anonApi %}
 {% set search_url = apiFn(endpoint_name)|urlparams(sort=sort, limit=24, doc_type=listItemType, is_homescreen=isHomescreen) if sort
                     else apiFn(endpoint_name)|urlparams(limit=24, doc_type=listItemType, is_homescreen=isHomescreen) %}

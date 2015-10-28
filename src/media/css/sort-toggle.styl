@@ -10,8 +10,13 @@
     }
 }
 
-[data-page-type~="nav-websites"] .sort-toggle-container {
+[data-page-type~="nav-websites"] .sort-toggle-container,
+[data-page-type~="category"] .sort-toggle-container {
     justify-content: center;
+}
+
+[data-page-type~="category"] .sort-toggle-container {
+    margin-top: -10px;
 }
 
 .sort-toggle {
@@ -60,4 +65,29 @@
     background-color: $menu-blue;
     color: $white;
     text-decoration: none;
+}
+
+.desktop-subheader {
+    display: none;
+}
+
+@media $base-desktop {
+    .sort-toggle-container {
+        display: none;
+    }
+    .desktop-subheader {
+        display: block;
+    }
+    [data-page-type~="category"] .sort-toggle-container {
+        display: flex;
+        position: absolute;
+        top: 45px;
+
+        +ltr() {
+            right: 120px;
+        }
+        +rtl() {
+            left: 120px;
+        }
+    }
 }
