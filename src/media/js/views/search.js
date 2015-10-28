@@ -96,7 +96,7 @@ define('views/search',
         return query;
     }
 
-    z.body.on('submit', '.header--search-form', function(e) {
+    z.body.on('submit', '.header--search-form, .desktop--search-form', function(e) {
         e.preventDefault();
         e.stopPropagation();
         // A mapping of query => view name that can be used to navigate to a
@@ -115,19 +115,18 @@ define('views/search',
             ':settings': 'settings',
             ':terms': 'terms',
         };
-        var $q = $('#search-q');
-        var query = $q.val();
+
+        var query = $('#search-q').val() || $('#search-q-desktop').val();
         if (Object.keys(potato_views).indexOf(query) > -1) {
             z.page.trigger('navigate', urls.reverse(potato_views[query]));
-            $q.val('');
+            z.page.trigger('clearsearch');
             return;
         } else if (query === ':' || query === ':help') {
+            z.page.trigger('clearsearch');
             window.open('https://github.com/mozilla/fireplace/wiki/' +
                         'QuickSearch-(PotatoSearch™)');
-            $q.val('');
             return;
         }
-        $q.trigger('blur');
         z.page.trigger('search', {q: query});
         return;
     });
