@@ -17,7 +17,7 @@ define('views/recommended',
         builder.z('type', 'root app-list recommended nav-apps');
         builder.z('title', title);
 
-        builder.start('app_list.html', {
+        builder.start('product_list.html', {
             appListType: 'recommended',
             endpoint_name: 'recommended',
             listItemType: 'webapp.website',

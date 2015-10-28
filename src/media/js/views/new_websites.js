@@ -1,21 +1,21 @@
-define('views/homescreens',
+define('views/new_websites',
     ['core/l10n', 'utils_local'],
     function(l10n, utils) {
     'use strict';
     var gettext = l10n.gettext;
 
     return function(builder, args) {
-        var title = gettext('Popular Homescreens');
+        var title = gettext('New Sites');
 
-        builder.z('type', 'root nav-homescreens');
+        builder.z('type', 'root new nav-websites');
         builder.z('title', title);
         utils.headerTitle(title);
         builder.start('product_list.html', {
-            productListType: 'popularHomescreens',
+            productListType: 'newWebsites',
             endpoint_name: 'search',
-            listItemType: 'webapp',
-            isHomescreenList: true,
-            source: 'popular homescreens',
+            listItemType: 'website',
+            source: 'new websites',
+            sort: 'reviewed',
             title: title
         });
     };

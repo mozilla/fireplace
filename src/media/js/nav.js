@@ -6,7 +6,7 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
 
     // Search.
     z.page.on('showsearch', function(e, args) {
-        var args = args || {};
+        args = args || {};
 
         $('.global-header').addClass('searching');
         $('.global-nav-menu-desktop .mkt-search-btn').addClass('header-nav-link-active');
@@ -18,7 +18,7 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
         } else {
             setTimeout(function() {
                 $('#search-q').trigger('focus');
-            }, 500)
+            }, 400);
         }
     }).on('clearsearch', function() {
         $('#search-q, #search-q-desktop').val('');

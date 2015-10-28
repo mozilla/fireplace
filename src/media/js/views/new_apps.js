@@ -1,4 +1,4 @@
-define('views/new',
+define('views/new_apps',
     ['core/format', 'core/l10n', 'core/urls', 'core/utils'],
     function(format, l10n, urls, utils) {
     'use strict';
@@ -10,8 +10,8 @@ define('views/new',
         builder.z('type', 'root app-list new nav-apps');
         builder.z('title', title);
 
-        builder.start('app_list.html', {
-            appListType: 'new',
+        builder.start('product_list.html', {
+            productListType: 'new',
             endpoint_name: 'search',
             listItemType: 'webapp',
             sort: 'reviewed',

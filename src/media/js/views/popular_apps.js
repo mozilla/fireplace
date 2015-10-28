@@ -1,4 +1,4 @@
-define('views/popular',
+define('views/popular_apps',
     ['core/l10n', 'core/log', 'core/urls', 'core/utils'],
     function(l10n, log, urls, utils) {
     'use strict';
@@ -11,8 +11,8 @@ define('views/popular',
         builder.z('type', 'root app-list popular nav-apps');
         builder.z('title', title);
 
-        builder.start('app_list.html', {
-            appListType: 'popular',
+        builder.start('product_list.html', {
+            productListType: 'popular',
             endpoint_name: 'search',
             listItemType: 'webapp',
             source: 'popular apps',

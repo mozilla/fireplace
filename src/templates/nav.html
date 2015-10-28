@@ -6,7 +6,7 @@
   <ul class="global-nav-menu" data-nav-active="">
     <li>
       <a class="global-nav-link" data-nav-type="apps"
-         href="{{ url('popular') }}">{{ _('Apps') }}</a>
+         href="{{ url('popular_apps') }}">{{ _('Apps') }}</a>
     </li>
     {% if addonsEnabled %}
       <li>
@@ -16,7 +16,7 @@
     {% endif %}
     <li>
       <a class="global-nav-link" data-nav-type="websites"
-         href="{{ url('websites') }}">{{ _('Sites') }}</a>
+         href="{{ url('popular_websites') }}">{{ _('Sites') }}</a>
     </li>
     {% if addonsEnabled %}
       <li class="item-homescreens">
@@ -34,8 +34,8 @@
     </h1>
     <ul>
       <li><a class="home" href="/">{{ _('Home') }}</a></li>
-      <li><a class="popular" href="{{ url('popular') }}">{{ _('Popular') }}</a></li>
-      <li><a class="new" href="{{ url('new') }}">{{ _('New') }}</a></li>
+      <li><a class="popular" href="{{ url('popular_apps') }}">{{ _('Popular') }}</a></li>
+      <li><a class="new" href="{{ url('new_apps') }}">{{ _('New') }}</a></li>
       <li class="nav--settings--logged-in nav-menu-recommended">
         <a class="recommended" href="{{ url('recommended') }}">{{ _('Recommended Apps') }}</a>
       </li>
@@ -52,11 +52,11 @@
 <div class="full-screen-overlay below more-menu-overlay">
   <ul class="nav-more-menu">
     <li><a href="/">{{ _('Home') }}</a></li>
-    <li><a href="{{ url('popular') }}">{{ _('Apps') }}</a></li>
+    <li><a href="{{ url('popular_apps') }}">{{ _('Apps') }}</a></li>
     {% if addonsEnabled %}
       <li><a href="{{ url('addons') }}">{{ _('Add-ons') }}</a></li>
     {% endif %}
-    <li><a href="{{ url('websites') }}">{{ _('Sites') }}</a></li>
+    <li><a href="{{ url('popular_websites') }}">{{ _('Sites') }}</a></li>
     {% if addonsEnabled %}
       <li><a href="{{ url('homescreens') }}">{{ _('Homescreens') }}</a></li>
     {% endif %}

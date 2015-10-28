@@ -27,9 +27,9 @@ define('routes',
         {'pattern': '^/games/([^/<>"\']+)$', 'view_name': 'games/listing'},
         {'pattern': '^/homescreens/?$', 'view_name': 'homescreens'},
         {'pattern': '^/langpacks/([^/<>"\']+)$', 'view_name': 'langpacks'},
-        {'pattern': '^/new$', 'view_name': 'new'},
+        {'pattern': '^/new$', 'view_name': 'new_apps'},
         {'pattern': '^/newsletter-signup$', 'view_name': 'newsletter_signup'},
-        {'pattern': '^/popular$', 'view_name': 'popular'},
+        {'pattern': '^/popular$', 'view_name': 'popular_apps'},
         {'pattern': '^/privacy-policy$', 'view_name': 'privacy'},
         {'pattern': '^/purchases$', 'view_name': 'purchases'},
         {'pattern': '^/recommended$', 'view_name': 'recommended'},
@@ -40,7 +40,8 @@ define('routes',
         {'pattern': '^/website/([^/<>"\']+)/?$', 'view_name': 'website'},
         {'pattern': '^/website/([^/<>"\']+)/issue/?$',
          'view_name': 'website/issue'},
-        {'pattern': '^/websites/?$', 'view_name': 'websites'}
+        {'pattern': '^/websites/?$', 'view_name': 'popular_websites'},
+        {'pattern': '^/websites-new/?$', 'view_name': 'new_websites'}
     ]);
 
     // When this goes away we can remove settings_app from our deps.

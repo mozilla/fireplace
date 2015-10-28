@@ -1,14 +1,19 @@
 {% include '_macros/app_tile.html' %}
 {% include '_macros/more_button.html' %}
 
-{# TODO: This should probably be 'product_list.html' #}
+{% macro sort_toggle(product_type) %}
+  {% set popular_link = url('popular_websites') if product_type == 'website' else url('popular_apps') %}
+  {% set new_link = url('new_websites') if product_type == 'website' else url('new_apps') %}
+  <ul class="sort-toggle">
+    <li class="sort-toggle-popular"><a href="{{ popular_link }}">{{ _('Popular') }}</a></li>
+    <li class="sort-toggle-new"><a href="{{ new_link }}">{{ _('New') }}</a></li>
+  </ul>
+{% endmacro %}
 
 <section class="main">
-  <div class="subheader">
-    <h1>
-      {{ title }}
-      <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
-    </h1>
+  <div class="subheader sort-toggle-container">
+    {{ sort_toggle(listItemType) }}
+    <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
   </div>
 </section>
 
@@ -23,7 +28,7 @@
       {% for app in this %}
         {% set app = apps.transform(app) %}
         <li class="app-list-app {{ 'app-list-website' if app.isWebsite }}">
-          {{ app_tile(app, tray=True, src=trackingEvents.SRCS[appListType]) }}
+          {{ app_tile(app, tray=True, src=trackingEvents.SRCS[productListType]) }}
         </li>
       {% endfor %}
       {% if response.meta.next %}
@@ -35,12 +40,12 @@
     <p class="spinner padded alt"></p>
   {% empty %}
     <p class="no-results">
-      {{ _('No apps found.') }}
+      {{ _('The list returned no results.') }}
     </p>
   {% except %}
     <p class="no-results">
       {% if error == 400 or error == 404 %}
-        {{ _('No apps found.') }}
+        {{ _('The list returned no results.') }}
       {% elif error == 500 %}
         {{ _('An internal server error occurred. Please try again later.') }}
       {% endif %}
