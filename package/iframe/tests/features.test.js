@@ -109,7 +109,7 @@ describe('features', function() {
 
         features.generateFeatureProfile([], navigator).then(function(profile) {
             // First 47 bits are currently hardcoded to true.
-            assert.equal(profile, '=//////9/.47.8');
+            assert.equal(profile, '=//////9/.47.9');
             done();
         });
     });
@@ -121,7 +121,7 @@ describe('features', function() {
 
         features.generateFeatureProfile(values, navigator).then(function(profile) {
             // First 47 bits are currently hardcoded to true.
-            assert.equal(profile, '=////////Hw==.53.8');
+            assert.equal(profile, '=////////Hw==.53.9');
             done();
         });
     });
@@ -133,7 +133,7 @@ describe('features', function() {
 
         features.generateFeatureProfile(values, navigator).then(function(profile) {
             // First 47 bits are currently hardcoded to true.
-            assert.equal(profile, '=//////9/AA==.53.8');
+            assert.equal(profile, '=//////9/AA==.53.9');
             done();
         });
     });
