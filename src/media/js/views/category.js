@@ -16,7 +16,11 @@ define('views/category',
             builder.z('title', name);
         }
 
-        builder.z('type', 'root category app-list');
+        if (params.sort) {
+            builder.z('type', 'root category app-list new nav-apps');
+        } else {
+            builder.z('type', 'root category app-list popular nav-apps');
+        }
         builder.z('show_cats', true);
         builder.z('cat', slug);
 
@@ -28,9 +32,13 @@ define('views/category',
                                        slug);
         var newSrc = format.format(trackingEvents.SRCS.categoryNew, slug);
 
+        // Optimistically update the category dropdown.
+        $('.header-categories-btn .cat-trigger').text(name);
+
         builder.start('category.html', {
             category: slug,
             category_name: name,
+            categories: categories,
             endpoint: urls.api.unsigned.url('category', [slug], params),
             popularUrl: utils.urlparams(urls.reverse('category', [slug]), {
                 src: popularSrc

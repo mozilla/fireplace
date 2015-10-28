@@ -1,0 +1,420 @@
+@import 'lib';
+
+desktop-link-active() {
+    background-color: $menu-blue;
+    color: $white;
+    text-decoration: none;
+}
+
+.global-nav {
+    background-color: $white;
+    box-shadow: 0 -1px 1px rgba(0,0,0,.5);
+    bottom: 0;
+    height: 60px;
+    position: fixed;
+    width: 100%;
+    z-index: 20;
+}
+
+.global-nav-menu {
+    display: flex;
+    padding: 0 10px;
+
+    > li {
+        flex-grow: 1;
+        text-align: center;
+    }
+}
+
+.global-nav-link {
+    color: #000;
+    display: inline-block;
+    font-size: 11px;
+    height: 60px;
+    padding-top: 43px;
+    position: relative;
+    text-align: center;
+    width: 70px;
+
+    &:hover {
+        color: $menu-blue;
+        text-decoration: none;
+    }
+    &:active,
+    &:focus {
+        outline: 0;
+    }
+    &::before {
+        background: url(../img/nav/menu_sprite.svg) no-repeat;
+        content: "";
+        height: 30px;
+        left: 50%;
+        margin-left: -15px;
+        position: absolute;
+        top: 8px;
+        width: 30px;
+    }
+}
+
+// TODO: These could be stylus functions.
+[data-nav-type="apps"]::before { background-position: 0 -169px; }
+[data-page-type~="nav-apps"],
+[data-nav-active="apps"] {
+    [data-nav-type="apps"] {
+        color: $menu-blue;
+
+        &::before {
+            background-position: 0 -199px;
+        }
+    }
+}
+
+[data-nav-type="addons"]::before { background-position: 0 -109px; }
+[data-page-type~="nav-addons"],
+[data-nav-active="addons"] {
+    [data-nav-type="addons"] {
+        color: $menu-blue;
+
+        &::before {
+            background-position: 0 -139px;
+        }
+    }
+}
+
+[data-nav-type="homescreens"]::before { background-position: 0 -229px; }
+[data-page-type~="nav-homescreens"],
+[data-nav-active="homescreens"] {
+    [data-nav-type="homescreens"] {
+        color: $menu-blue;
+
+        &::before {
+            background-position: 0 -259px;
+        }
+    }
+}
+
+[data-nav-type="websites"]::before { background-position: 0 -49px; }
+[data-page-type~="nav-websites"],
+[data-nav-active="websites"] {
+    [data-nav-type="websites"] {
+        color: $menu-blue;
+
+        &::before {
+            background-position: 0 -79px;
+        }
+    }
+}
+
+[data-nav-type="more"]::before { background-position: 0 12px; }
+[data-nav-active="more"] [data-nav-type="more"]::before { background-position: 0 -18px; }
+
+.item-homescreens {
+    display: none;
+}
+
+// Menu overlay.
+.nav-more-menu {
+    position: relative;
+    padding: 70px 0 20px;
+
+    &::before {
+        width: 100%;
+        height: 55px;
+        background: url(../img/marketplace_logo.svg) no-repeat 5px 5px;
+        content: "";
+        position: absolute;
+        top: 5px;
+        border-bottom: 1px solid $white;
+    }
+}
+
+.full-screen-overlay {
+    height: 100vh;
+    overflow: auto;
+    padding: 10px 15px;
+    position: fixed;
+    top: 0;
+    transition: 200ms all ease;
+    width: 100vw;
+    z-index: 100;
+
+    a {
+        color: white;
+        display: block;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 2.4;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    ul {
+        list-style: none;
+    }
+    li {
+        padding: 0 0 0 5px;
+
+        +rtl() {
+            padding: 0 5px 0 0;
+        }
+    }
+    &.above { // Overlay will slide in from the top.
+        transform: translate(0, -100%);
+    }
+    &.below { // Overlay will slide in from the bottom.
+        transform: translate(0, 100%);
+    }
+    &.overlay-visible {
+        transform: translate(0, 0);
+    }
+    .overlay-divider {
+        border-top: 1px solid $white;
+        margin: 10px 0;
+    }
+    .cat-menu-all {
+        text-align: center;
+    }
+    .cat-menu-all a {
+        display: inline-block;
+        font-size: 15px;
+        padding: 10px 35px 10px 25px;
+        position: relative;
+        text-align: center;
+        transition: transform 150ms ease;
+
+        +rtl() {
+            padding: 10px 25px 10px 35px;
+        }
+
+        &:hover {
+          background: transparent;
+          color: $greyscale-white;
+          transform: translateY(-2px);
+        }
+
+        &::after {
+            background: url(../img/nav/expand_arrow.svg) no-repeat 0 0 / 10px 15px;
+            content: "";
+            height: 7px;
+            position: absolute;
+            top: 24px;
+            width: 10px;
+
+            +ltr() {
+                right: 17px;
+            }
+            +rtl() {
+                left: 17px;
+            }
+        }
+    }
+}
+
+.more-menu-overlay {
+    background: linear-gradient(to top, #9e0d55, #04245b);
+}
+.cat-menu-overlay {
+    background: linear-gradient(to top, #38dfc6, #4583e3);
+}
+
+.overlay-close {
+    background: url(../img/nav/clear.svg) no-repeat 0 0 / 40px 40px;
+    border: 0;
+    bottom: 20px;
+    height: 40px;
+    opacity: 0;
+    position: fixed;
+    right: 20px;
+    transition: 200ms opacity ease;
+    width: 40px;
+    z-index: -1;
+
+    &.overlay-close-visible {
+        opacity: 1;
+        z-index: 110;
+    }
+}
+
+.global-nav-menu-desktop,
+.settings-menu-desktop {
+    display: none;
+}
+
+// TODO: Define this breakpoint.
+@media (min-width: 400px) {
+    .item-homescreens {
+        display: block;
+    }
+}
+
+@media $base-desktop {
+    .global-nav-menu,
+    .more-menu-overlay {
+        display: none;
+    }
+    .global-nav-menu-desktop {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        flex-grow: 1;
+
+        ul {
+            align-items: center;
+            display: flex;
+            flex-grow: 1;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+        li a {
+            border-radius: 5px;
+            color: $greyscale-black;
+            display: inline-block;
+            line-height: 1;
+            padding: 10px;
+
+            &:hover,
+            &.header-nav-link-active {
+                desktop-link-active();
+            }
+            &:focus {
+                outline: 0;
+            }
+        }
+        .mkt-wordmark,
+        .mkt-search-btn,
+        .persona,
+        .mkt-settings-btn {
+            margin: 0 15px;
+        }
+        .persona {
+            border-radius: 5px;
+            border: 2px solid $menu-blue;
+            color: $menu-blue;
+            display: inline-block;
+            padding: 10px;
+
+            + .persona {
+                margin-left: 0px;
+            }
+            &:hover {
+                desktop-link-active();
+            }
+        }
+        .mkt-settings-btn {
+            background: url('../img/nav/user.svg') no-repeat 0 0 / 40px 140px;
+            text-indent: -100%;
+            height: 40px;
+
+            &:hover,
+            &.header-nav-link-active {
+                background-position: 0 -100px;
+            }
+        }
+    }
+    .global-nav {
+        display: flex;
+        position: absolute;
+        top: 0;
+        z-index: 120;
+    }
+    .cat-menu-overlay {
+        height: 350px;
+        position: absolute;
+
+        .app-categories {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            max-width: 1000px;
+
+            li {
+                text-align: center;
+                width: 25%;
+
+                &.cat-menu-all {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .cat-menu-overlay.above {
+        transform: translate(0, -120%);
+    }
+    .cat-menu-overlay.above.overlay-visible {
+        transform: translate(0, 60px);
+    }
+    [data-page-type~="category"] .cat-menu-overlay.above.overlay-visible {
+        transform: translate(0, -60px);
+    }
+    .more-menu-overlay {
+        transform: translate(-100vw, -100vh);
+    }
+    // Never show the cancel overlay button on desktop.
+    .overlay-close-visible {
+        display: none;
+    }
+    .settings-menu-desktop {
+        background-color: $menu-blue;
+        display: flex;
+        height: 60px;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        transition: all 0.3s ease;
+        width: 100vw;
+        z-index: 70;
+
+        ul {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            max-width: 1000px;
+            width: 100%;
+        }
+        li {
+            align-self: center;
+            text-align: center;
+        }
+        a {
+            border-radius: 5px;
+            color: white;
+            display: inline-block;
+            padding: 10px;
+
+            &:hover {
+                background: $white;
+                color: $menu-blue;
+                text-decoration: none;
+            }
+        }
+        &.settings-menu-active {
+            top: 60px;
+        }
+    }
+    [data-page-type~="homepage"] .global-nav-menu-desktop .home {
+        desktop-link-active();
+    }
+    [data-page-type~="popular"] .global-nav-menu-desktop .popular {
+        desktop-link-active();
+    }
+    [data-page-type~="new"] .global-nav-menu-desktop .new {
+        desktop-link-active();
+    }
+    [data-page-type~="recommended"] .global-nav-menu-desktop .recommended {
+        desktop-link-active();
+    }
+    .app-categories a:hover {
+        background-color: $greyscale-white;
+        border-radius: 5px;
+        color: #3EB7D3;
+    }
+    // Don't need large targets for desktop.
+    .full-screen-overlay a {
+        line-height: 2.2;
+    }
+}

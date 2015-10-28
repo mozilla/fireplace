@@ -14,12 +14,13 @@ define('views/recommended',
     return function(builder, args, params) {
         var title = gettext('Recommended');
 
-        builder.z('type', 'root app-list recommended');
+        builder.z('type', 'root app-list recommended nav-apps');
         builder.z('title', title);
 
-        builder.start('app_list.html', {
+        builder.start('product_list.html', {
             appListType: 'recommended',
             endpoint_name: 'recommended',
+            listItemType: 'webapp.website',
             require_user: true,
             title: title
         });

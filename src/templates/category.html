@@ -1,5 +1,7 @@
 {% include '_macros/app_tile.html' %}
 {% include '_macros/more_button.html' %}
+{% include '_macros/sort_toggle.html' %}
+{% include 'categories.html' %}
 
 
 <section class="main">
@@ -12,12 +14,13 @@
       {% include '_includes/personalization.html' %}
     {% endif %}
   </div>
+  <div class="sort-toggle-container">
+    {{ category_sort_toggle(popularUrl, newUrl) }}
+  </div>
 </section>
 
 <section class="category app-list-page main full">
 {% defer (url=endpoint, pluck='objects', as=appOrWebsite, paginate='.app-list') %}
-  {% include "_includes/app_list_filters.html" %}
-
   <ul class="app-list {{ 'paginated' if response.meta.next }}">
     {% for app in this %}
       <li class="item result app-list-app">

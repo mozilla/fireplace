@@ -1,0 +1,15 @@
+{% macro sort_toggle(product_type) %}
+  {% set popular_link = url('popular_websites') if product_type == 'website' else url('popular_apps') %}
+  {% set new_link = url('new_websites') if product_type == 'website' else url('new_apps') %}
+  <ul class="sort-toggle">
+    <li class="sort-toggle-popular"><a href="{{ popular_link }}">{{ _('Popular') }}</a></li>
+    <li class="sort-toggle-new"><a href="{{ new_link }}">{{ _('New') }}</a></li>
+  </ul>
+{% endmacro %}
+
+{% macro category_sort_toggle(popularUrl, newUrl) %}
+  <ul class="sort-toggle">
+    <li class="sort-toggle-popular"><a href="{{ popularUrl }}">{{ _('Popular') }}</a></li>
+    <li class="sort-toggle-new"><a href="{{ newUrl }}">{{ _('New') }}</a></li>
+  </ul>
+{% endmacro %}

@@ -13,7 +13,7 @@ define('views/app/ratings/edit',
     return function(builder, args) {
         var slug = decodeURIComponent(args[0]);
         var title = gettext('Edit Review');
-        builder.z('type', 'leaf');
+        builder.z('type', 'leaf reviews nav-apps');
         builder.z('title', title);
         utilsLocal.headerTitle(title);
 

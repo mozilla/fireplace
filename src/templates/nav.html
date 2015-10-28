@@ -1,53 +1,95 @@
-{% macro nav_item(href, title, slug, toggle) %}
-  <li class="mkt-nav--item" data-mkt-nav--item="{{ slug }}">
-    {% if toggle %}<mkt-nav-child-toggle for="{{ toggle }}">{% endif %}
-    <a class="mkt-nav--link" href="{{ href }}" title="{{ title }}">
-      {{ title }}
-    </a>
-    {% if toggle %}</mkt-nav-child-toggle>{% endif %}
-  </li>
-{% endmacro %}
+{% set addonsEnabled = settings.addonsEnabled %}
 
-{% macro nav_item_settings(href, title, slug, item_classes, link_classes) %}
-  <li class="mkt-nav--item mkt-nav--item--settings {{ item_classes or '' }}"
-      data-mkt-nav--item="{{ slug }}">
-    <a class="mkt-nav--link {{ link_classes or ''}}" href="{{ href }}"
-       title="{{ title }}">
-      {{ title }}
-    </a>
-  </li>
-{% endmacro %}
+<nav id="navigation" class="global-nav">
 
-<mkt-nav role="navigation" id="nav">
-  <mkt-nav-root>
-    {{ nav_item(url('homepage'), _('Home'), 'homepage') }}
-    {{ nav_item(url('popular'), _('Popular'), 'popular') }}
-    {{ nav_item(url('new'), _('New'), 'new') }}
-    {{ nav_item(url('recommended'), _('Recommended'), 'recommended') }}
-    {{ nav_item('#', _('Categories'), 'categories', 'categories') }}
+  {# Mobile (bottom) Nav Menu #}
+  <ul class="global-nav-menu" data-nav-active="">
+    <li>
+      <a class="global-nav-link" data-nav-type="apps"
+         href="{{ url('popular_apps') }}">{{ _('Apps') }}</a>
+    </li>
+    {% if addonsEnabled %}
+      <li>
+        <a class="global-nav-link" data-nav-type="addons"
+           href="{{ url('addons') }}">Add-ons</a>
+      </li>
+    {% endif %}
+    <li>
+      <a class="global-nav-link" data-nav-type="websites"
+         href="{{ url('popular_websites') }}">{{ _('Sites') }}</a>
+    </li>
+    {% if addonsEnabled %}
+      <li class="item-homescreens">
+        <a class="global-nav-link" data-nav-type="homescreens"
+           href="{{ url('homescreens') }}">{{ _('Homescreens') }}</a>
+      </li>
+    {% endif %}
+    <li><a class="global-nav-link" data-nav-type="more">{{ _('More') }}</a></li>
+  </ul>
 
-    <li class="mkt-nav-root--divider"></li>
+  {# Desktop Nav Menu #}
+  <div class="global-nav-menu-desktop">
+    <h1 class="site">
+      <a href="{{ url('homepage') }}" class="mkt-wordmark"><span>Firefox Marketplace</span></a>
+    </h1>
+    <ul>
+      <li><a class="home" href="/">{{ _('Home') }}</a></li>
+      <li><a class="popular" href="{{ url('popular_apps') }}">{{ _('Popular') }}</a></li>
+      <li><a class="new" href="{{ url('new_apps') }}">{{ _('New') }}</a></li>
+      <li class="nav--settings--logged-in nav-menu-recommended">
+        <a class="recommended" href="{{ url('recommended') }}">{{ _('Recommended Apps') }}</a>
+      </li>
+      <li><a class="nav-category-link">{{ _('Categories') }}</a></li>
+    </ul>
+    <a class="mkt-search-btn search-btn-desktop">{{ _('Search') }}</a>
+    <a class="persona register nav--settings--logged-out">{{ _('Register') }}</a>
+    <a class="persona nav--settings--logged-out">{{ _('Sign In') }}</a>
+    <a class="mkt-settings-btn nav--settings--logged-in">{{ _('Settings') }}</a>
+  </div>
+</nav>
 
-    {{ nav_item_settings('#', _('Register'), 'register',
-                         'nav--settings--logged-out', 'persona register') }}
-    {{ nav_item_settings('#', _('Sign In'), 'login',
-                         'nav--settings--logged-out', 'persona') }}
-    {{ nav_item_settings(url('settings'), _('Settings'), 'settings',
-                         'nav--settings--logged-in') }}
-    {{ nav_item_settings(url('purchases'), _('My Apps'), 'purchases',
-                         'nav--settings--logged-in') }}
-    {{ nav_item_settings(url('feedback'), _('Feedback'), 'feedback') }}
-    {{ nav_item_settings('#', _('Sign Out'), 'logout',
-                         'nav--settings--logged-in', 'logout') }}
-  </mkt-nav-root>
-
-  <mkt-nav-child id="categories">
-    <mkt-category-list></mkt-category-list>
-  </mkt-nav-child>
-
-  <mkt-nav-child-toggle>
-    <button class="mkt-nav--back">
-      <b/><b/><b/>
-    </button>
-  </mkt-nav-child-toggle>
-</mkt-nav>
+{# Mobile "More" Menu #}
+<div class="full-screen-overlay below more-menu-overlay">
+  <ul class="nav-more-menu">
+    <li><a href="/">{{ _('Home') }}</a></li>
+    <li><a href="{{ url('popular_apps') }}">{{ _('Apps') }}</a></li>
+    {% if addonsEnabled %}
+      <li><a href="{{ url('addons') }}">{{ _('Add-ons') }}</a></li>
+    {% endif %}
+    <li><a href="{{ url('popular_websites') }}">{{ _('Sites') }}</a></li>
+    {% if addonsEnabled %}
+      <li><a href="{{ url('homescreens') }}">{{ _('Homescreens') }}</a></li>
+    {% endif %}
+    <li class="overlay-divider"></li>
+    <li class="more-menu-register nav--settings--logged-out">
+      <a class="persona register">{{ _('Register') }}</a>
+    </li>
+    <li class="more-menu-sign-in nav--settings--logged-out">
+      <a class="persona">{{ _('Sign in') }}</a>
+    </li>
+    <li class="more-menu-settings nav--settings--logged-in">
+      <a href="{{ url('settings') }}">{{ _('Settings') }}</a>
+    </li>
+    <li class="more-menu-recommended nav--settings--logged-in">
+      <a href="{{ url('recommended') }}">{{ _('Recommended Apps') }}</a>
+    </li>
+    <li class="more-menu-my-apps nav--settings--logged-in">
+      <a href="{{ url('purchases') }}">{{ _('My Apps') }}</a>
+    </li>
+    <li class="more-menu-feedback"><a href="{{ url('feedback') }}">{{ _('Feedback') }}</a></li>
+    <li class="more-menu-sign-out nav--settings--logged-in"><a class="logout">{{ _('Sign out') }}</a></li>
+    {% if user.get_permission('developer') %}
+      <li><a href="/developers/submissions" rel="external">{{ _('My Submissions') }}</a></li>
+    {% endif %}
+    {% if user.get_permission('reviewer') %}
+      <li><a href="/reviewers/apps/queue/" rel="external">{{ _('Reviewer Tools') }}</a></li>
+    {% endif %}
+    {% if user.get_permission('lookup') %}
+      <li><a href="/lookup/" rel="external">{{ _('Lookup Tool') }}</a></li>
+    {% endif %}
+    <li class="overlay-divider"></li>
+    <li><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>
+    <li><a href="{{ url('terms') }}">{{ _('Terms of Use') }}</a></li>
+  </ul>
+</div>
+<button class="overlay-close"></button>

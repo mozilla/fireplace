@@ -151,6 +151,7 @@ define('apps',
               !!product.mini_manifest_url &&
               product.mini_manifest_url.indexOf('/extension/') !== -1);
             if (product.isAddon) {
+              product.is_packaged = true;
               product.manifest_url = product.mini_manifest_url;
             }
             product.contentType = 'app';

@@ -19,7 +19,7 @@ require(
      'user_helpers', 'utils_local',
      // Modules we require to initialize global stuff.
      'app_list', 'buttons', 'content-ratings', 'core/forms',
-     'elements/categories', 'elements/header', 'elements/nav',
+     'elements/categories', 'nav',
      'elements/select', 'flipsnap', 'header_footer', 'helpers_local',
      'image-deferrer-mkt', 'core/login', 'core/models', 'marketplace-elements',
      'overlay', 'perf_events', 'perf_helper', 'previews', 'reviews',
@@ -143,15 +143,6 @@ require(
 
     z.page.on('before_login before_logout', function() {
         cache.purge();
-    })
-
-    .on('logged_in logged_out', function() {
-        var nav = document.querySelector('mkt-nav');
-        if (nav) {
-            setTimeout(function() {
-                nav.toggle(false);
-            }, 50);
-        }
     });
 
     window.addEventListener(

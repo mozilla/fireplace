@@ -1,9 +1,9 @@
 define('helpers_local',
-    ['apps', 'buttons', 'categories', 'content_filter', 'compat_filter',
+    ['apps', 'buttons', 'categories', 'compat_filter',
      'content-ratings', 'core/format', 'core/helpers', 'core/models',
      'core/nunjucks', 'core/settings', 'core/urls', 'core/utils', 'core/z',
      'feed', 'regions', 'tracking_events', 'user_helpers', 'utils_local'],
-    function(apps, buttons, categories, contentFilter, compatFilter,
+    function(apps, buttons, categories, compatFilter,
              iarc, format, base_helpers, models,
              nunjucks, settings, urls, utils, z,
              feed, regions, trackingEvents, user_helpers, utils_local) {
@@ -177,7 +177,6 @@ define('helpers_local',
         appOrWebsite: function(obj) {
             return obj.manifest_url ? 'app' : 'website';
         },
-        contentFilter: contentFilter,
         cast_app: models('app').cast,
         fileSize: filters.fileSize,
         getGameCategory: getGameCategory,

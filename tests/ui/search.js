@@ -120,8 +120,6 @@ casper.test.begin('Test search author', {
             test.assertSelectorHasText('.search-results-header',
                                        '"test" returned 42 results');
 
-            // Test that the header title is set.
-            test.assertEqual(helpers.headerTitle(), 'Developer Listing');
         });
 
         helpers.done(test);
@@ -207,7 +205,7 @@ casper.test.begin('Test UA track keyword leading to app view', {
         });
 
         casper.waitForSelector('[data-page-type~="detail"]', function() {
-            casper.click('.wordmark');
+            casper.click('.mkt-wordmark');
         });
 
         casper.waitWhileSelector('[data-page-type~="detail"]', function() {

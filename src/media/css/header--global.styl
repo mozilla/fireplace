@@ -1,0 +1,267 @@
+@import 'lib';
+
+$symbol-height = 32px;
+
+.global-header {
+    background-color: $white;
+    display: flex;
+    min-height: 60px;
+    padding: 10px;
+
+    > * {
+        align-self: center;
+    }
+    > *:not(.header--search-form) {
+        opacity: 1;
+        transition: opacity 100ms linear;
+    }
+    &.searching {
+        .header--search-content {
+            transform: translate(0, 0);
+        }
+        > *:not(.header--search-form) {
+            opacity: 0;
+        }
+        .mkt-search-btn {
+            background-position: 0 -32px;
+        }
+        .header-categories-btn {
+            display: none;
+        }
+    }
+}
+
+// Marketplace logo.
+.mkt-wordmark {
+    image-replacement('../img/nav/header-logo.svg', 34px, $symbol-height);
+    background-size: cover;
+    position: relative;
+    top: 2px;
+}
+
+.mkt-search-btn {
+    image-replacement('../img/nav/search.svg', $symbol-height, $symbol-height);
+    background-size: $symbol-height 64px;
+    border: 0;
+
+    &:hover,
+    &.header-nav-link-active {
+        background-position: 0 -32px;
+    }
+}
+
+.header--search-input {
+    border: 0;
+    font-size: 18px;
+    flex-grow: 1;
+    height: $symbol-height;
+    margin: 0 5px 0 15px;
+}
+
+.header--search-content {
+    display: flex;
+    justify-content: space-between;
+    min-width: 300px;
+    margin-left: - $symbol-height;
+    position: relative;
+    transform: translate(calc(100% - 34px), 0);
+    transition: transform 200ms ease;
+
+    > * {
+        align-self: center;
+    }
+}
+
+.mkt-site-name {
+    display: none;
+}
+
+[data-page-type~=leaf] {
+    .header-back-btn {
+        display: inline-block;
+
+        +ltr() {
+            margin-left: -6px;
+        }
+        +rtl() {
+            margin-right: -6px;
+        }
+    }
+    .mkt-wordmark {
+        display: none;
+    }
+}
+
+.header-back-btn {
+    display: none;
+    hambacker();
+    hambacker-back();
+    height: 40px;
+    padding: 15px 10px 0;
+    width: 40px;
+}
+
+.mkt-search-clear-btn {
+    background-image: url(../img/nav/clear.svg);
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+}
+
+.header-categories-btn {
+    border-radius: 5px;
+    border: 3px solid #cacaca;
+    color: #0092ff;
+    display: none;
+    ellipsis();
+    font-size: 15px;
+    left: 50%;
+    line-height: 40px;
+    margin-left: -110px;
+    padding: 0 15px 0 5px;
+    position: absolute;
+    text-align: center;
+    top: 8px;
+    width: 215px;
+
+    &:hover {
+        text-decoration: none;
+    }
+    span {
+        display: none;
+    }
+    &::after {
+        background: url(../img/nav/expand_arrow.svg) no-repeat 0 -7px / 10px 15px;
+        content: "";
+        height: 7px;
+        position: absolute;
+        top: 15px;
+        width: 10px;
+    }
+    +ltr() {
+        &::after {
+            right: 10px;
+        }
+    }
+    +rtl() {
+        padding: 0 5px 0 15px;
+
+        &::after {
+            left: 10px;
+        }
+    }
+}
+
+// TODO: Uncomment once contextual categories are ready.
+// [data-page-type*="nav-"] .header-categories-btn {
+[data-page-type~="nav-apps"]:not([data-page-type~="detail"]) .header-categories-btn {
+    display: block;
+}
+
+// TODO: Uncomment once contextual categories are ready.
+// [data-page-type~="nav-addons"] .cat-trigger-addons,
+// [data-page-type~="nav-websites"] .cat-trigger-websites,
+// [data-page-type~="nav-homescreens"] .cat-trigger-homescreens,
+[data-page-type~="nav-apps"]:not([data-page-type~="detail"]) .cat-trigger-apps {
+    display: inline;
+}
+
+[data-page-type~="reviews"] .header-categories-btn {
+    display: none !important;
+}
+
+[data-page-type~="category"] {
+    .cat-trigger-apps {
+        display: none;
+    }
+    .cat-trigger {
+        display: inline;
+    }
+    .mkt-header--title {
+        display: none;
+    }
+}
+
+// TODO: This might not be necessary if the expand previews
+// toggle will be removed.
+[data-page-type~="nav-websites"],
+[data-page-type~="nav-addons"],
+[data-page-type~="nav-homescreens"] {
+    .app-list-filters-expand-toggle {
+        display: none !important;
+    }
+}
+
+.desktop-search {
+    display: none;
+}
+
+.mkt-header--title {
+    ellipsis();
+    flex-grow: 1;
+    font-size: 20px;
+    font-weight: 300;
+    left: 50%;
+    margin-left: -110px;
+    position: absolute;
+    text-align: center;
+    top: 5px;
+    width: 215px;
+}
+
+[data-page-type~="root"] .mkt-header--title {
+    display: none;
+}
+
+.nav-menu-recommended,
+.more-menu-recommended {
+    display: none;
+
+    .show-recommendations & {
+        display: block;
+    }
+}
+
+@media $base-desktop {
+    .mkt-header--title,
+    .global-header {
+        display: none;
+    }
+    [data-page-type~="leaf"] .mkt-wordmark {
+        display: inline-block;
+    }
+    .desktop-search {
+        background-color: $menu-blue;
+        display: flex;
+        height: 60px;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        transition: all 100ms ease;
+        width: 100vw;
+        z-index: 80;
+
+        &.searching {
+            top: 60px;
+        }
+        form {
+            display: flex;
+            width: 500px;
+        }
+        input {
+            align-self: center;
+            margin: 0;
+            width: 100%;
+
+            &[placeholder] {
+                color: $white;
+                opacity: 1;
+                font-size: 26px;
+                font-weight: 300;
+            }
+        }
+    }
+    body {
+        padding-top: 60px;
+    }
+}

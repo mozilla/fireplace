@@ -1,90 +1,44 @@
-{% macro mkt_header_nav_item(href, title, slug, toggle, link_classes) %}
-  <li class="mkt-header-nav--item" data-mkt-header-nav--item="{{ slug }}">
-    {% if toggle %}
-      <mkt-header-child-toggle class="header--{{ slug }}-toggle"
-                               for="header--{{ slug }}">
-    {% endif %}
-      <a class="mkt-header-nav--link {{ link_classes or '' }}"
-         href="{{ href }}" title="{{ title }}">
-        {{ title }}
-      </a>
-    {% if toggle %}
-      </mkt-header-child-toggle>
-    {% endif %}
-  </li>
-{% endmacro %}
+{% include "categories.html" %}
 
-{% macro mkt_header_child_item(href, title, slug, link_classes) %}
-  <li class="mkt-header-child--item" data-mkt-header-child--item="{{ slug }}">
-    <a class="mkt-header-child--link {{ link_classes or '' }}" href="{{ href }}"
-       title="{{ title }}">
-      {{ title }}
-    </a>
-  </li>
-{% endmacro %}
-
-<mkt-header id="site-header" class="header site-header">
-  {# TODO: remove IDs and classes when we stop using <header>. #}
-  <mkt-nav-toggle for="nav">
-    <button class="hamburger" title="{{ _('Toggle Menu') }}">
-        <b/><b/><b/>
-    </button>
-  </mkt-nav-toggle>
-
+<header id="global-header" class="global-header">
   <h1 class="site">
-    <a href="{{ url('homepage') }}" class="wordmark"><span>Firefox Marketplace</span></a>
-    <a href="{{ url('homepage') }}" class="site-name">Marketplace</a>
+    <a href="{{ url('homepage') }}" class="mkt-wordmark"><span>Firefox Marketplace</span></a>
+    <a href="{{ url('homepage') }}" class="mkt-site-name">Marketplace</a>
   </h1>
-  <h1 class="mkt-header--title"></h1>
-
-  <mkt-header-nav>
-    {{ mkt_header_nav_item(url('homepage'), _('Home'), 'homepage') }}
-    {{ mkt_header_nav_item(url('popular'), _('Popular'), 'popular') }}
-    {{ mkt_header_nav_item(url('new'), _('New'), 'new') }}
-    {{ mkt_header_nav_item(url('recommended'), _('Recommended'), 'recommended') }}
-    {{ mkt_header_nav_item('#', _('Categories'), 'categories', 'categories') }}
-  </mkt-header-nav>
-
-  <mkt-header-child-toggle class="header--search-toggle" for="header--search"
-                           title="{{ _('Toggle Search') }}">
-  </mkt-header-child-toggle>
-  <mkt-header-child-toggle class="header--settings-toggle header--settings--logged-in"
-                           for="header--settings"
-                           title="{{ _('Toggle Settings Menu') }}">
-  </mkt-header-child-toggle>
-
-  <a href="#" class="mkt-header--actions-link mkt-header--register persona register">
-    {{ _('Register') }}</a>
-  <a href="#" class="mkt-header--actions-link mkt-header--login persona">
-    {{ _('Sign In') }}</a>
-
-  <!--Categories menu.-->
-  <mkt-header-child id="header--categories">
-    <mkt-category-list></mkt-category-list>
-  </mkt-header-child>
-
-  <!--Search form.-->
-  <mkt-header-child id="header--search" class="header--search"
-                    data-header-child--input>
-    <form id="search" class="header--search-form" action="{{ url('search') }}"
-          novalidate>
+  <a class="header-back-btn"><b></b><b></b><b></b></a>
+  <a class="header-categories-btn">
+    <span class="cat-trigger-apps" data-default="{{ _('Categories') }}">
+      {{ _('Categories') }}
+    </span>
+    <span class="cat-trigger"></span>
+  </a>
+  <h2 class="mkt-header--title"></h2>
+  <form id="search" class="header--search-form" action="{{ url('search') }}"
+        novalidate>
+    <div class="header--search-content">
+      <a class="mkt-search-btn">{{ _('Search') }}</a>
       <input id="search-q" class="query-input header--search-input"
              type="search" name="q" title="" x-inputmode="verbatim"
              autocapitalize="off" autocomplete="off" autocorrect="off"
-             required value="">
-      <label class="header-child--input-placeholder" for="search-q">
-        {{ _('Search Marketplace&hellip;')|safe }}</label>
-    </form>
-  </mkt-header-child>
-
-  <!--User settings menu.-->
-  <mkt-header-child id="header--settings" class="header--settings
-                                                 mkt-header-child--link-list">
-    <ul>
-      {{ mkt_header_child_item(url('settings'), _('Settings'), 'settings') }}
-      {{ mkt_header_child_item(url('purchases'), _('My Apps'), 'purchases') }}
-      {{ mkt_header_child_item(url('feedback'), _('Feedback'), 'feedback') }}
-      {{ mkt_header_child_item('#', _('Sign Out'), 'logout', 'logout') }}
-    </ul>
-  </mkt-header-child>
-</mkt-header>
+             required value="" placeholder="{{ _('Search Marketplace&hellip;')|safe }}">
+      <a class="mkt-search-clear-btn"></a>
+    </div>
+  </form>
+</header>
+<div class="desktop-search">
+  <form id="desktop-search" class="desktop--search-form" action="{{ url('search') }}"
+        novalidate>
+    <input id="search-q-desktop" class="query-input header--search-input"
+           type="search" name="q" title="" x-inputmode="verbatim"
+           autocapitalize="off" autocomplete="off" autocorrect="off"
+           required value="" placeholder="{{ _('Search Marketplace&hellip;')|safe }}">
+  </form>
+</div>
+<div class="settings-menu-desktop">
+  <ul>
+    <li><a href="{{ url('settings') }}">{{ _('Settings') }}</a></li>
+    <li><a href="{{ url('purchases') }}">{{ _('My Apps') }}</a></li>
+    <li><a class="submit-feedback">{{ _('Feedback') }}</a></li>
+    <li><a class="logout">{{ _('Sign Out') }}</a></li>
+  </ul>
+</div>

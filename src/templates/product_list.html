@@ -1,8 +1,15 @@
 {% include '_macros/app_tile.html' %}
 {% include '_macros/more_button.html' %}
+{% include '_macros/sort_toggle.html' %}
+
+{% set isHomescreen = True if isHomescreenList else False %}
 
 <section class="main">
-  <div class="subheader">
+  <div class="subheader sort-toggle-container">
+    {{ sort_toggle(listItemType) if not isHomescreen }}
+    <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
+  </div>
+  <div class="subheader desktop-subheader">
     <h1>
       {{ title }}
       <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
@@ -11,17 +18,16 @@
 </section>
 
 {% set apiFn = api if require_user else anonApi %}
-{% set search_url = apiFn(endpoint_name)|urlparams(sort=sort, limit=24) if sort
-                    else apiFn(endpoint_name)|urlparams(limit=24) %}
+{% set search_url = apiFn(endpoint_name)|urlparams(sort=sort, limit=24, doc_type=listItemType, is_homescreen=isHomescreen) if sort
+                    else apiFn(endpoint_name)|urlparams(limit=24, doc_type=listItemType, is_homescreen=isHomescreen) %}
 
-<section class="main full app-list-page c">
-  {% include "_includes/app_list_filters.html" %}
+<section class="main full app-list-page {{ 'app-list-homescreens' if isHomescreenList }} c">
   {% defer (url=search_url, pluck='objects', as=appOrWebsite, paginate='.app-list') %}
     <ul class="app-list {{ 'paginated' if response.meta.next }}">
       {% for app in this %}
         {% set app = apps.transform(app) %}
         <li class="app-list-app {{ 'app-list-website' if app.isWebsite }}">
-          {{ app_tile(app, tray=True, src=trackingEvents.SRCS[appListType]) }}
+          {{ app_tile(app, tray=True, src=trackingEvents.SRCS[productListType]) }}
         </li>
       {% endfor %}
       {% if response.meta.next %}
@@ -33,12 +39,12 @@
     <p class="spinner padded alt"></p>
   {% empty %}
     <p class="no-results">
-      {{ _('No apps found.') }}
+      {{ _('The list returned no results.') }}
     </p>
   {% except %}
     <p class="no-results">
       {% if error == 400 or error == 404 %}
-        {{ _('No apps found.') }}
+        {{ _('The list returned no results.') }}
       {% elif error == 500 %}
         {{ _('An internal server error occurred. Please try again later.') }}
       {% endif %}

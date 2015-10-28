@@ -154,7 +154,10 @@ define('tracking_events',
         categoryPopular: '{0}-popular',
         detail: 'detail',
         new: 'new',
+        newWebsites: 'new-websites',
         popular: 'popular',
+        popularHomescreens: 'popular-homescreens',
+        popularWebsites: 'popular-websites',
         purchases: 'myapps',
         recommended: 'reco',
         search: 'search',
@@ -275,17 +278,6 @@ define('tracking_events',
             'Change platform filter',
             'click',
             filterDevice
-        );
-    })
-
-    // Change content filtering options.
-    .on('change', '.content-filter', function() {
-        var filterContent = this.value;
-        setSessionVar(DIMENSIONS.contentType, filterContent);
-        sendEvent(
-            'Change content filter',
-            'click',
-            filterContent
         );
     });
 

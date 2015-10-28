@@ -26,8 +26,14 @@ define('views/debug',
     })
 
     .on('click', '#enable-addons', function() {
+        storage.setItem('always_show_extensions', 1);
         settings.addonsEnabled = true;
-        z.page.trigger('navigate', '/addons');
+        window.location.href = '/';
+    })
+
+    .on('click', '#disable-addons', function() {
+        storage.removeItem('always_show_extensions');
+        window.location.href = '/';
     })
 
     .on('click', '#enable-offline-cache', function() {
