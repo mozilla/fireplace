@@ -1,4 +1,5 @@
 {% set addonsEnabled = settings.addonsEnabled %}
+{% set homescreensEnabled = settings.homescreensEnabled %}
 
 <nav id="navigation" class="global-nav">
 
@@ -18,7 +19,7 @@
       <a class="global-nav-link" data-nav-type="websites"
          href="{{ url('popular_websites') }}">{{ _('Sites') }}</a>
     </li>
-    {% if addonsEnabled %}
+    {% if homescreensEnabled %}
       <li class="item-homescreens">
         <a class="global-nav-link" data-nav-type="homescreens"
            href="{{ url('homescreens') }}">{{ _('Homescreens') }}</a>
@@ -57,7 +58,7 @@
       <li><a href="{{ url('addons') }}">{{ _('Add-ons') }}</a></li>
     {% endif %}
     <li><a href="{{ url('popular_websites') }}">{{ _('Sites') }}</a></li>
-    {% if addonsEnabled %}
+    {% if homescreensEnabled %}
       <li><a href="{{ url('homescreens') }}">{{ _('Homescreens') }}</a></li>
     {% endif %}
     <li class="overlay-divider"></li>

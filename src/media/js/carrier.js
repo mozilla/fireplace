@@ -1,7 +1,7 @@
 define('carrier',
-    ['consumer_info', 'core/defer', 'core/requests', 'core/storage',
-     'core/urls', 'core/user', 'underscore', 'user_helpers'],
-    function(consumerInfo, defer, requests, storage,
+    ['consumer_info', 'core/defer', 'core/requests', 'core/settings',
+     'core/storage', 'core/urls', 'core/user', 'underscore', 'user_helpers'],
+    function(consumerInfo, defer, requests, settings, storage,
              urls, user, _, userHelpers) {
     'use strict';
 
@@ -22,7 +22,8 @@ define('carrier',
     var STORAGE_KEY = 'late-customization-complete';
     var apiResponse;
 
-    if (carrier && region && !isLateCustomizationCompleted()) {
+    if (settings.lateCustomizationEnabled && carrier && region &&
+            !isLateCustomizationCompleted()) {
         apiResponse = requests.get(urls.api.url('late-customization', [], {
             carrier: carrier,
             region: region,

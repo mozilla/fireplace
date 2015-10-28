@@ -138,6 +138,35 @@ describe('features', function() {
         });
     });
 
+    it('checkForExtraFeatures works', function(done) {
+        var features = proxyquire('../js/features', {});
+        var navigator = new MockNavigator();
+        navigator.hasFeature = function(name) {
+            return new Promise(function(resolve, reject) {
+                // arbitrarily resolve web-extensions feature to true,
+                // others to false.
+                resolve(name === 'web-extensions' ? true : false);
+            });
+        };
+        features.checkForExtraFeatures(navigator).then(function(features) {
+            assert.deepEqual(features, {addonsEnabled: true, homescreensEnabled: false, lateCustomizationEnabled: false});
+            done();
+        });
+    });
+
+    it('checkForExtraFeatures with all features enabled works', function(done) {
+        var features = proxyquire('../js/features', {});
+        var navigator = new MockNavigator();
+        navigator.hasFeature = function(name) {
+            return new Promise(function(resolve, reject) {
+                resolve(true);
+            });
+        };
+        features.checkForExtraFeatures(navigator).then(function(features) {
+            assert.deepEqual(features, {addonsEnabled: true, homescreensEnabled: true, lateCustomizationEnabled: true});
+            done();
+        });
+    });
 });
 
 describe('features bitfield', function() {
