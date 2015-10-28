@@ -1,6 +1,8 @@
 <div class="full-screen-overlay above cat-menu-overlay">
   <ul class="app-categories">
-    <li class="cat-menu-all"><a href="{{ url('popular') }}">{{ _('All Apps') }}</a></li>
+    <li class="cat-menu-all">
+      <a href="{{ url('popular') }}">{{ _('Categories') }}</a>
+    </li>
     {% for cat in categories %}
       <li>
         <a href="{{ url('category', [cat.slug]) }}">{{ cat.name }}</a>

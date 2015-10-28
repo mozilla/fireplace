@@ -115,12 +115,12 @@ desktop-link-active() {
 // Menu overlay.
 .nav-more-menu {
     position: relative;
-    padding-top: 75px;
+    padding: 70px 0 20px;
 
     &::before {
         width: 100%;
-        height: 45px;
-        background: url(../img/marketplace_logo.svg) no-repeat;
+        height: 55px;
+        background: url(../img/marketplace_logo.svg) no-repeat 5px 5px;
         content: "";
         position: absolute;
         top: 5px;
@@ -134,7 +134,7 @@ desktop-link-active() {
     padding: 10px 15px;
     position: fixed;
     top: 0;
-    transition: .5s all ease;
+    transition: 200ms all ease;
     width: 100vw;
     z-index: 100;
 
@@ -170,31 +170,35 @@ desktop-link-active() {
     }
     .overlay-divider {
         border-top: 1px solid $white;
-        margin: 15px 0;
+        margin: 10px 0;
     }
     .cat-menu-all {
-        margin: 0 0 10px;
         text-align: center;
     }
     .cat-menu-all a {
         display: inline-block;
         font-size: 15px;
+        padding: 10px 35px 10px 25px;
         position: relative;
         text-align: center;
+
+        +rtl() {
+            padding: 10px 25px 10px 35px;
+        }
 
         &::after {
             background: url(../img/nav/expand_arrow.svg) no-repeat 0 0 / 10px 15px;
             content: "";
             height: 7px;
             position: absolute;
-            top: 12px;
+            top: 24px;
             width: 10px;
 
             +ltr() {
-                right: -20px;
+                right: 17px;
             }
             +rtl() {
-                left: -20px;
+                left: 17px;
             }
         }
     }
@@ -215,7 +219,7 @@ desktop-link-active() {
     opacity: 0;
     position: fixed;
     right: 20px;
-    transition: .6s opacity ease;
+    transition: 200ms opacity ease;
     width: 40px;
     z-index: -1;
 
