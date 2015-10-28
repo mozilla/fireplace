@@ -135,15 +135,70 @@ function generateFeatureProfile(features, navigator) {
     });
 }
 
-function checkForWebExtensions() {
-    return navigator.hasFeature('web-extensions').then(function(value) {
-        return value;
+/*
+ * Utility function that converts an object to an array of objects.
+ * Used because Promise.all() does not accept an object for its iterable, it
+ * really wants an array :(.
+ */
+function mapPromisesObjectToArray(obj) {
+    // Function that returns a function to use as the promise callback.
+    var makeArrayEntry = function(key) {
+        return function(value) {
+            return {name: key, value: value};
+        };
+    };
+
+    return Object.keys(obj).map(function(key) {
+        // Push a promise that resolves to a {name: ..., value: ...} object.
+        return obj[key].then(makeArrayEntry(key));
+    });
+}
+
+/*
+ * Utility function that converts an array of objects to an object.
+ * Companion to mapPromisesObjectToArray above.
+ */
+function mapArrayToObject(arr) {
+    var obj = {};
+
+    for (var i = 0; i < arr.length; i ++) {
+        // Build the object from each {name: ..., value: ...} object in the
+        // array.
+        obj[arr[i].name] = arr[i].value;
+    }
+
+    return obj;
+}
+
+/**
+ * Check for extra features that do not have feature flags.
+ *
+ * Returns a promise that is fulfilled when all checks are complete. Its value
+ * is an object containing booleans indicating whether the features are
+ * enabled, like this:
+ * {
+ *   addonsEnabled: true,
+ *   homescreensEnabled: false,
+ *   ...
+ * }
+ */
+function checkForExtraFeatures(navigator) {
+    navigator = navigator || window.navigator;
+
+   var promises = {
+        addonsEnabled: navigator.hasFeature('web-extensions'),
+        homescreensEnabled: navigator.hasFeature('manifest.role.homescreen'),
+        lateCustomizationEnabled: navigator.hasFeature('late-customization'),
+    };
+
+    return Promise.all(mapPromisesObjectToArray(promises)).then(function(res) {
+        return mapArrayToObject(res);
     });
 }
 
 module.exports = {
     FeaturesBitField: FeaturesBitField,
     buildFeaturesPromises: buildFeaturesPromises,
-    checkForWebExtensions: checkForWebExtensions,
+    checkForExtraFeatures: checkForExtraFeatures,
     generateFeatureProfile: generateFeatureProfile,
 };

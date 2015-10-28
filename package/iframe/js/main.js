@@ -7,7 +7,7 @@ var translations = require('./translations');
 
 logger.log('MKT_URL:', process.env.MKT_URL);
 
-function buildQS(profile, hasWebExtensions) {
+function buildQS(profile, extraFeatures) {
     var qs = [];
 
     try {
@@ -65,11 +65,17 @@ function buildQS(profile, hasWebExtensions) {
     }
 
     if (profile) {
+        logger.log('Generated profile: ' + profile);
         qs.push('pro=' + encodeURIComponent(profile));
     }
 
-    if (hasWebExtensions) {
-        qs.push('addonsEnabled=true');
+    if (extraFeatures) {
+        Object.keys(extraFeatures).forEach(function(key) {
+            logger.log(key + ': ' + extraFeatures[key]);
+            if (extraFeatures[key]) {
+                qs.push(key + '=true');
+            }
+        });
     }
 
     return qs.join('&');
@@ -106,12 +112,12 @@ if (isSystemDateIncorrect()) {
         logger.log('navigator.getFeature and window.Promise available');
         var allStartupPromises = Promise.all([
             features.generateFeatureProfile(),
-            features.checkForWebExtensions(),
+            features.checkForExtraFeatures(),
         ]);
         allStartupPromises.then(function(promises) {
-            logger.log('Generated profile: ' + promises[0]);
-            logger.log('Addons support: ' + promises[1]);
-            launchIframe(promises[0], promises[1]);
+            var featureProfile = promises[0];
+            var extraFeatures = promises[1];
+            launchIframe(featureProfile, extraFeatures);
         });
     } else {
         logger.log('navigator.getFeature or window.Promise unavailable :(');
