@@ -181,9 +181,16 @@ desktop-link-active() {
         padding: 10px 35px 10px 25px;
         position: relative;
         text-align: center;
+        transition: transform 150ms ease;
 
         +rtl() {
             padding: 10px 25px 10px 35px;
+        }
+
+        &:hover {
+          background: transparent;
+          color: $greyscale-white;
+          transform: translateY(-2px);
         }
 
         &::after {
@@ -402,7 +409,9 @@ desktop-link-active() {
         desktop-link-active();
     }
     .app-categories a:hover {
-        background-color: rgba(#4583e3, .4);
+        background-color: $greyscale-white;
+        border-radius: 5px;
+        color: #3EB7D3;
     }
     // Don't need large targets for desktop.
     .full-screen-overlay a {
