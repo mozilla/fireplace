@@ -45,7 +45,7 @@ define('views/app/abuse',
     });
 
     return function(builder, args) {
-        builder.z('type', 'leaf nav-apps');
+        builder.z('type', 'leaf spoke-header nav-apps');
         builder.z('parent', urls.reverse('app', [args[0]]));
         // L10n: Report abuse regarding an app.
         var title = gettext('Report Abuse');
