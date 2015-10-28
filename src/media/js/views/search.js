@@ -139,6 +139,7 @@ define('views/search',
     })
 
     .on('search', _pd(function(e, params) {
+        z.page.trigger('clearsearch');
         return z.page.trigger('navigate', [
             utils.urlparams(urls.reverse('search'), params),
             {search_query: params.q}
