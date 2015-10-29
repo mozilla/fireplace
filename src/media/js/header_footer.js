@@ -43,12 +43,9 @@ define('header_footer',
         if (!bannerDiv.length) {
             bannerDiv = '<div class="banners"></div>';
         }
-
-        if (window.matchMedia('(min-width: 800px)').matches) {
-            $('#global-header').before(bannerDiv);
-        } else {
-            $('#page').before(bannerDiv);
-        }
+        // Always show banners banners before anything else.
+        // TODO: Desktop fix for this also.
+        $('#global-header').before(bannerDiv);
     }
 
     z.page.on('reload_chrome', function() {
