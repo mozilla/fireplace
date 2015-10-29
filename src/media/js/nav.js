@@ -21,7 +21,7 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
             }, 400);
         }
     }).on('clearsearch', function() {
-        $('#search-q, #search-q-desktop').val('');
+        $('#search-q, #search-q-desktop').val('').trigger('blur');
         $('.global-header').removeClass('searching');
         $('.global-nav-menu-desktop .mkt-search-btn').removeClass('header-nav-link-active');
         $('.desktop-search').removeClass('searching');
