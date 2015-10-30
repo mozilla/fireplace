@@ -16,11 +16,14 @@
   <form id="search" class="header--search-form" action="{{ url('search') }}"
         novalidate>
     <div class="header--search-content">
+      <label for="search-q" class="search-empty">
+        {{ _('Search Marketplace&hellip;')|safe }}
+      </label>
       <a class="mkt-search-btn">{{ _('Search') }}</a>
       <input id="search-q" class="query-input header--search-input"
              type="search" name="q" title="" x-inputmode="verbatim"
              autocapitalize="off" autocomplete="off" autocorrect="off"
-             required value="" placeholder="{{ _('Search Marketplace&hellip;')|safe }}">
+             required value="">
       <a class="mkt-search-clear-btn"></a>
     </div>
   </form>
@@ -28,10 +31,13 @@
 <div class="desktop-search">
   <form id="desktop-search" class="desktop--search-form" action="{{ url('search') }}"
         novalidate>
+    <label for="search-q-desktop" class="search-empty">
+      {{ _('Search Marketplace&hellip;')|safe }}
+    </label>
     <input id="search-q-desktop" class="query-input header--search-input"
            type="search" name="q" title="" x-inputmode="verbatim"
            autocapitalize="off" autocomplete="off" autocorrect="off"
-           required value="" placeholder="{{ _('Search Marketplace&hellip;')|safe }}">
+           required value="">
   </form>
 </div>
 <div class="settings-menu-desktop">

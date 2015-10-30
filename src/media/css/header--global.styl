@@ -43,6 +43,7 @@ $symbol-height = 32px;
     image-replacement('../img/nav/search.svg', $symbol-height, $symbol-height);
     background-size: $symbol-height 64px;
     border: 0;
+    z-index: 3;
 
     &:hover,
     &.header-nav-link-active {
@@ -69,6 +70,20 @@ $symbol-height = 32px;
 
     > * {
         align-self: center;
+    }
+
+    label {
+      color: $greyscale-dark-grey;
+      display: none;
+      font-size: 18px;
+      left: 48px;
+      position: absolute;
+      top: 7px;
+      z-index: 1;
+
+      &.search-empty {
+        display: block;
+      }
     }
 }
 
@@ -247,17 +262,28 @@ $symbol-height = 32px;
             display: flex;
             width: 500px;
         }
+        label {
+            color: $white;
+            display: none;
+            font-size: 26px;
+            font-weight: 300;
+            margin-left: 1px;
+            opacity: 0.6;
+            position: absolute;
+            top: 17px;
+
+            &.search-empty {
+              display: block;
+            }
+        }
         input {
             align-self: center;
+            color: $white;
+            font-size: 26px;
+            font-weight: 300;
             margin: 0;
+            opacity: 1;
             width: 100%;
-
-            &[placeholder] {
-                color: $white;
-                opacity: 1;
-                font-size: 26px;
-                font-weight: 300;
-            }
         }
     }
     body {

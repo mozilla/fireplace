@@ -21,7 +21,7 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
             }, 400);
         }
     }).on('clearsearch', function() {
-        $('#search-q, #search-q-desktop').val('').trigger('blur');
+        $('#search-q, #search-q-desktop').val('').trigger('input').trigger('blur');
         $('.global-header').removeClass('searching');
         $('.global-nav-menu-desktop .mkt-search-btn').removeClass('header-nav-link-active');
         $('.desktop-search').removeClass('searching');
@@ -46,7 +46,13 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
         logger.log('header back button pressed');
         resetMenuState();
         navigation.back();
-    });
+    }).on('change, input', '#search-q, #search-q-desktop', updateSearchPlaceholder);
+
+    function updateSearchPlaceholder(evt) {
+      var $this = $(this);
+      var isEmpty = $this.val() === '';
+      $this.siblings('label').toggleClass('search-empty', isEmpty);
+    }
 
     function resetMenuState() {
         $('.global-nav-menu').attr('data-nav-active', '');
