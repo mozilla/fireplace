@@ -6,7 +6,7 @@
 
 <section class="site-terms-of-use main full prose">
   {% set url = '/docs/terms/' + language + '.html?20151009' %}
-  {% set fallback = '/docs/terms/' + settings.default_locale + '.html?20151009' %}
+  {% set fallback = '/docs/terms/' + settings.default_locale + '.html?20151030' %}
   {% fetch (url=media(url), fallback=media(fallback), filters=['rewriteCdnUrls']) %}
     <p class="spinner spaced alt"></p>
   {% endfetch %}
