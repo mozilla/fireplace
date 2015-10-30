@@ -6,7 +6,7 @@ define('views/website',
     return function(builder, args) {
         truncator.init();
 
-        builder.z('type', 'leaf detail website nav-websites');
+        builder.z('type', 'leaf detail website spoke-header nav-websites');
         builder.z('title', gettext('Loading...'));
         utilsLocal.headerTitle(gettext('Website Detail'));
 

@@ -5,7 +5,7 @@ define('views/app/ratings',
 
     return function(builder, args) {
         var slug = decodeURIComponent(args[0]);
-        builder.z('type', 'leaf reviews nav-apps');
+        builder.z('type', 'leaf reviews spoke-header nav-apps');
         builder.z('parent', urls.reverse('app', [slug]));
         // L10n: The title for the list of reviews
         builder.z('title', gettext('Reviews'));
