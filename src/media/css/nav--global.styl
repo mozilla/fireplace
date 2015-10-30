@@ -394,15 +394,9 @@ desktop-link-active() {
             top: 60px;
         }
     }
-    [data-page-type~="homepage"] .global-nav-menu-desktop .home {
-        desktop-link-active();
-    }
-    [data-page-type~="popular"] .global-nav-menu-desktop .popular {
-        desktop-link-active();
-    }
-    [data-page-type~="new"] .global-nav-menu-desktop .new {
-        desktop-link-active();
-    }
+    [data-page-type~="homepage"] .global-nav-menu-desktop .home,
+    [data-page-type~="popular"]:not([data-page-type~="category"]) .global-nav-menu-desktop .popular,
+    [data-page-type~="new"]:not([data-page-type~="category"]) .global-nav-menu-desktop .new,
     [data-page-type~="recommended"] .global-nav-menu-desktop .recommended {
         desktop-link-active();
     }
