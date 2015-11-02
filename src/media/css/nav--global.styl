@@ -44,9 +44,8 @@ desktop-link-active() {
     &:focus {
         outline: 0;
     }
-    &::before {
+    b {
         background: url(../img/nav/menu_sprite.svg) no-repeat;
-        content: "";
         height: 30px;
         left: 50%;
         margin-left: -15px;
@@ -57,56 +56,56 @@ desktop-link-active() {
 }
 
 // TODO: These could be stylus functions.
-[data-nav-type="apps"]::before { background-position: 0 -169px; }
+[data-nav-type="apps"] b { background-position: 0 -169px; }
 [data-page-type~="nav-apps"],
 [data-nav-active="apps"] {
     [data-nav-type="apps"] {
         color: $menu-blue;
 
-        &::before {
+        b {
             background-position: 0 -199px;
         }
     }
 }
 
-[data-nav-type="addons"]::before { background-position: 0 -109px; }
+[data-nav-type="addons"] b { background-position: 0 -109px; }
 [data-page-type~="nav-addons"],
 [data-nav-active="addons"] {
     [data-nav-type="addons"] {
         color: $menu-blue;
 
-        &::before {
+        b {
             background-position: 0 -139px;
         }
     }
 }
 
-[data-nav-type="homescreens"]::before { background-position: 0 -229px; }
+[data-nav-type="homescreens"] b { background-position: 0 -229px; }
 [data-page-type~="nav-homescreens"],
 [data-nav-active="homescreens"] {
     [data-nav-type="homescreens"] {
         color: $menu-blue;
 
-        &::before {
+        b {
             background-position: 0 -259px;
         }
     }
 }
 
-[data-nav-type="websites"]::before { background-position: 0 -49px; }
+[data-nav-type="websites"] b { background-position: 0 -49px; }
 [data-page-type~="nav-websites"],
 [data-nav-active="websites"] {
     [data-nav-type="websites"] {
         color: $menu-blue;
 
-        &::before {
+        b {
             background-position: 0 -79px;
         }
     }
 }
 
-[data-nav-type="more"]::before { background-position: 0 12px; }
-[data-nav-active="more"] [data-nav-type="more"]::before { background-position: 0 -18px; }
+[data-nav-type="more"] b { background-position: 0 12px; }
+[data-nav-active="more"] [data-nav-type="more"] b { background-position: 0 -18px; }
 
 .item-homescreens {
     display: none;

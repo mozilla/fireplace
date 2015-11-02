@@ -7,25 +7,25 @@
   <ul class="global-nav-menu" data-nav-active="">
     <li>
       <a class="global-nav-link" data-nav-type="apps"
-         href="{{ url('popular_apps') }}">{{ _('Apps') }}</a>
+         href="{{ url('popular_apps') }}"><b></b><span>{{ _('Apps') }}</span></a>
     </li>
     {% if addonsEnabled %}
       <li>
         <a class="global-nav-link" data-nav-type="addons"
-           href="{{ url('addons') }}">Add-ons</a>
+           href="{{ url('addons') }}"><b></b><span>{{ _('Add-ons') }}</span></a>
       </li>
     {% endif %}
     <li>
       <a class="global-nav-link" data-nav-type="websites"
-         href="{{ url('popular_websites') }}">{{ _('Sites') }}</a>
+         href="{{ url('popular_websites') }}"><b></b><span>{{ _('Sites') }}</span></a>
     </li>
     {% if homescreensEnabled %}
       <li class="item-homescreens">
         <a class="global-nav-link" data-nav-type="homescreens"
-           href="{{ url('homescreens') }}">{{ _('Homescreens') }}</a>
+           href="{{ url('homescreens') }}"><b></b><span>{{ _('Homescreens') }}</span></a>
       </li>
     {% endif %}
-    <li><a class="global-nav-link" data-nav-type="more">{{ _('More') }}</a></li>
+    <li><a class="global-nav-link" data-nav-type="more"><b></b><span>{{ _('More') }}</span></a></li>
   </ul>
 
   {# Desktop Nav Menu #}

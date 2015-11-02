@@ -67,11 +67,11 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
     }
 
     // Main mobile nav.
-    z.body.on('click', '.global-nav-menu a', function(e) {
-        var $this = $(e.target);
+    z.body.on('click', '.global-nav-menu', function(e) {
+        var $this = $(e.target).closest('.global-nav-link');
         setMenuState($this.data('nav-type'));
 
-        if ($this.data('nav-type') === 'more') {
+        if ($this.attr('data-nav-type') === 'more') {
             z.body.trigger('showoverlay', {selector: '.more-menu-overlay'});
         }
     })
