@@ -134,7 +134,7 @@ desktop-link-active() {
     padding: 10px 15px;
     position: fixed;
     top: 0;
-    transition: 200ms all ease;
+    transition: 200ms transform ease;
     width: 100vw;
     z-index: 100;
 
@@ -160,10 +160,10 @@ desktop-link-active() {
         }
     }
     &.above { // Overlay will slide in from the top.
-        transform: translate(0, -100%);
+        transform: translate(0, -100vh);
     }
     &.below { // Overlay will slide in from the bottom.
-        transform: translate(0, 100%);
+        transform: translate(0, 100vh);
     }
     &.overlay-visible {
         transform: translate(0, 0);
