@@ -166,22 +166,19 @@ $symbol-height = 32px;
     }
 }
 
-// TODO: Uncomment once contextual categories are ready.
-// [data-page-type*="nav-"] .header-categories-btn {
-[data-page-type~="nav-apps"]:not([data-page-type~="detail"]) .header-categories-btn {
+[data-page-type~="nav-apps"]:not([data-page-type~="spoke-header"]) .header-categories-btn {
     display: block;
 }
 
-// TODO: Uncomment once contextual categories are ready.
-// [data-page-type~="nav-addons"] .cat-trigger-addons,
-// [data-page-type~="nav-websites"] .cat-trigger-websites,
-// [data-page-type~="nav-homescreens"] .cat-trigger-homescreens,
-[data-page-type~="nav-apps"]:not([data-page-type~="detail"]) .cat-trigger-apps {
+[data-page-type~="nav-apps"]:not([data-page-type~="category"]) .cat-trigger-apps {
     display: inline;
 }
 
-[data-page-type~="reviews"] .header-categories-btn {
-    display: none !important;
+[data-page-type~="spoke-header"] {
+    .header-categories-btn,
+    #search {
+        display: none !important;
+    }
 }
 
 [data-page-type~="category"] {

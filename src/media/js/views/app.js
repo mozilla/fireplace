@@ -12,7 +12,7 @@ define('views/app',
     return function(builder, args) {
         truncator.init();
 
-        builder.z('type', 'leaf detail nav-apps');
+        builder.z('type', 'leaf detail spoke-header nav-apps');
         builder.z('title', gettext('Loading...'));
         utilsLocal.headerTitle(gettext('App Detail'));
 

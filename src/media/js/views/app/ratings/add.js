@@ -16,7 +16,7 @@ define('views/app/ratings/add',
 
     return function(builder, args) {
         var slug = decodeURIComponent(args[0]);
-        builder.z('type', 'leaf reviews nav-apps');
+        builder.z('type', 'leaf reviews spoke-header nav-apps');
         builder.z('title', gettext('Leave a Review'));
         utilsLocal.headerTitle(gettext('Write a Review'));
 
