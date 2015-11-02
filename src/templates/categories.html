@@ -9,4 +9,14 @@
       </li>
     {% endfor %}
   </ul>
+  <ul class="site-categories">
+    <li class="cat-menu-all">
+      <a href="{{ url('popular_websites') }}">{{ _('Categories') }}</a>
+    </li>
+    {% for cat in categories %}
+      <li>
+        <a href="{{ url('category_websites', [cat.slug]) }}">{{ cat.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
 </div>

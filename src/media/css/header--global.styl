@@ -166,7 +166,12 @@ $symbol-height = 32px;
     }
 }
 
-[data-page-type~="nav-apps"]:not([data-page-type~="spoke-header"]) .header-categories-btn {
+.cat-menu-overlay > ul {
+    display: none;
+}
+
+[data-page-type~="nav-apps"]:not([data-page-type~="spoke-header"]) .header-categories-btn,
+[data-page-type~="nav-apps"] .app-categories {
     display: block;
 }
 
@@ -238,6 +243,21 @@ $symbol-height = 32px;
 
     .show-recommendations & {
         display: block;
+    }
+}
+
+[data-page-type~="site-categories"] {
+    .header-categories-btn,
+    .site-categories {
+        display: block;
+    }
+    &:not([data-page-type~="category"]) {
+        .cat-trigger-apps {
+            display: inline;
+        }
+    }
+    .app-categories {
+        display: none;
     }
 }
 
