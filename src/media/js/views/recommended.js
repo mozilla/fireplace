@@ -1,6 +1,6 @@
 define('views/recommended',
-    ['core/l10n', 'core/urls', 'core/z'],
-    function(l10n, urls, z) {
+    ['core/l10n', 'core/urls', 'core/z', 'utils_local'],
+    function(l10n, urls, z, utilsLocal) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -12,10 +12,11 @@ define('views/recommended',
     });
 
     return function(builder, args, params) {
-        var title = gettext('Recommended');
+        var title = gettext('Recommended Apps');
 
-        builder.z('type', 'root app-list recommended nav-apps');
+        builder.z('type', 'leaf app-list spoke-header recommended nav-apps');
         builder.z('title', title);
+        utilsLocal.headerTitle(title);
 
         builder.start('product_list.html', {
             appListType: 'recommended',
