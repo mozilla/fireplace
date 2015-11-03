@@ -7,7 +7,7 @@ define('views/popular_websites',
     return function(builder, args) {
         var title = gettext('Popular Sites');
 
-        builder.z('type', 'root popular nav-websites');
+        builder.z('type', 'root popular site-categories nav-websites');
         builder.z('title', title);
         utils.headerTitle(title);
         builder.start('product_list.html', {

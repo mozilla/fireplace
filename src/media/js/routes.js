@@ -41,11 +41,13 @@ define('routes',
         {'pattern': '^/website/([^/<>"\']+)/issue/?$',
          'view_name': 'website/issue'},
         {'pattern': '^/websites/?$', 'view_name': 'popular_websites'},
-        {'pattern': '^/websites-new/?$', 'view_name': 'new_websites'}
+        {'pattern': '^/websites-new/?$', 'view_name': 'new_websites'},
+        {'pattern': '^/websites/category/([^/<>"\']+)$', 'view_name': 'category_websites'}
     ]);
 
     // When this goes away we can remove settings_app from our deps.
-    var search = '/api/v2/fireplace/multi-search/?cache=1&vary=0';
+    var baseSearch = '/api/v2/fireplace/multi-search/?cache=1&vary=0';
+    var search = baseSearch;
     if (settings.addonsEnabled) {
         search += '&doc_type=webapp,extension,website';
     }
@@ -57,7 +59,8 @@ define('routes',
         'app': '/api/v2/fireplace/app/{0}/?cache=1&vary=0',
         'app/privacy': '/api/v2/apps/app/{0}/privacy/?cache=1&vary=0',
         'app_abuse': '/api/v2/abuse/app/',
-        'category': search + '&cat={0}',
+        'category': baseSearch + '&cat={0}&doc_type=webapp',
+        'category_website': baseSearch + '&cat={0}&doc_type=website',
         // consumer_info should be cached by the browser, never served by the
         // CDN, we can keep the Vary header.
         'consumer_info': '/api/v2/fireplace/consumer-info/?cache=1',
