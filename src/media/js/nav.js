@@ -67,7 +67,7 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
     }
 
     // Main mobile nav.
-    z.body.on('click', '.global-nav-menu a', function(e) {
+    z.body.on('click touchend', '.global-nav-menu a', function(e) {
         var $this = $(e.target);
         setMenuState($this.data('nav-type'));
 
