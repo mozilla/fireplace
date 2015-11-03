@@ -1,8 +1,8 @@
 define('views/feedback',
-       ['core/capabilities', 'compat_filter', 'core/forms', 'core/l10n', 'linefit',
-        'core/notification', 'core/requests', 'templates', 'core/urls', 'core/utils', 'core/z'],
-       function(caps, compatFilter, forms, l10n, linefit,
-                notification, requests, nunjucks, urls, utils, z) {
+       ['core/capabilities', 'compat_filter', 'core/forms', 'core/l10n', 'core/notification',
+        'core/requests', 'templates', 'core/urls', 'core/utils', 'core/z', 'utils_local'],
+       function(caps, compatFilter, forms, l10n, notification,
+                requests, nunjucks, urls, utils, z, utilsLocal) {
     var gettext = l10n.gettext;
     var notify = notification.notification;
 
@@ -46,17 +46,15 @@ define('views/feedback',
     });
 
     return function(builder) {
-        builder.z('type', 'root settings feedback');
+        var title = gettext('Feedback');
+
+        builder.z('type', 'leaf settings spoke-header feedback');
         builder.z('title', gettext('Feedback'));
+        utilsLocal.headerTitle(title);
         builder.z('parent', urls.reverse('homepage'));
 
         builder.start('feedback.html').done(function() {
             addFeedbackModalDesktop();
-
-            var $linefit = $('.linefit');
-            if ($linefit.length) {
-                $('.linefit').linefit(2);
-            }
         });
     };
 });
