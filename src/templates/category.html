@@ -6,11 +6,13 @@
   <div class="subheader cat-header desktop-cat-header">
     <h1 class="category-header-icon cat-{{ category }} cat-icon">
       {{ category_name }}
-
       {% if not isWebsiteCategories %}
         <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
       {% endif %}
     </h1>
+    <div class="sort-toggle-container">
+      {{ category_sort_toggle(popularUrl, newUrl) if isWebsiteCategories else sort_toggle(popularUrl, newUrl) }}
+    </div>
   </div>
   <div class="subheader sort-toggle-container mobile-cat-header">
     {{ category_sort_toggle(popularUrl, newUrl) }}

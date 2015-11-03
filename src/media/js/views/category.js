@@ -47,8 +47,6 @@ define('views/category',
                 sort: 'reviewed',
                 src: newSrc
             }),
-            showPersonalizationSubmenu: (slug === 'personalization' &&
-                                         settings.addonsEnabled),
             sort: params.sort,
             source: params.sort ? newSrc: popularSrc,
         });
