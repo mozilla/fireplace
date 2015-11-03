@@ -7,7 +7,7 @@ define('views/new_websites',
     return function(builder, args) {
         var title = gettext('New Sites');
 
-        builder.z('type', 'root new nav-websites');
+        builder.z('type', 'root new site-categories nav-websites');
         builder.z('title', title);
         utils.headerTitle(title);
         builder.start('product_list.html', {
