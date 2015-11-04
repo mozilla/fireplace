@@ -39,13 +39,13 @@ mkt-header-nav {
 
 // We hide the recommendations tab by default and enable it via JS if user is
 // logged in and opted in to recommendations.
-[data-mkt-nav--item~="recommended"],
-[data-mkt-header-nav--item~="recommended"] {
+#navigation .nav-menu-recommended,
+.full-screen-overlay.more-menu-overlay .more-menu-recommended {
     display: none;
 }
-.show-recommendations [data-mkt-nav--item="recommended"],
-.show-recommendations [data-mkt-header-nav--item="recommended"] {
-    display: inline;
+.show-recommendations #navigation .nav-menu-recommended,
+.show-recommendations .more-menu-overlay .more-menu-recommended {
+    display: block;
 }
 
 #site-header {
