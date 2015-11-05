@@ -167,6 +167,16 @@ describe('features', function() {
             done();
         });
     });
+
+    it('checkForExtraFeatures returns empty object without hasFeature()', function(done) {
+        var features = proxyquire('../js/features', {});
+        var navigator = new MockNavigator();
+        navigator.hasFeature = undefined;
+        features.checkForExtraFeatures(navigator).then(function(features) {
+            assert.deepEqual(features, {});
+            done();
+        });
+    });
 });
 
 describe('features bitfield', function() {
