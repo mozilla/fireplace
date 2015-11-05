@@ -7,25 +7,25 @@
   <ul class="global-nav-menu" data-nav-active="">
     <li>
       <a class="global-nav-link" data-nav-type="apps"
-         href="{{ url('popular_apps') }}">{{ _('Apps') }}</a>
+         href="{{ url('popular_apps') }}"><b></b>{{ _('Apps') }}</a>
     </li>
     {% if addonsEnabled %}
       <li>
         <a class="global-nav-link" data-nav-type="addons"
-           href="{{ url('addons') }}">{{ _('Add-ons') }}</a>
+           href="{{ url('addons') }}"><b></b>{{ _('Add-ons') }}</a>
       </li>
     {% endif %}
     <li>
       <a class="global-nav-link" data-nav-type="websites"
-         href="{{ url('popular_websites') }}">{{ _('Sites') }}</a>
+         href="{{ url('popular_websites') }}"><b></b>{{ _('Sites') }}</a>
     </li>
     {% if homescreensEnabled %}
       <li class="item-homescreens">
         <a class="global-nav-link" data-nav-type="homescreens"
-           href="{{ url('homescreens') }}">{{ _('Homescreens') }}</a>
+           href="{{ url('homescreens') }}"><b></b>{{ _('Homescreens') }}</a>
       </li>
     {% endif %}
-    <li><a class="global-nav-link" data-nav-type="more">{{ _('More') }}</a></li>
+    <li><a class="global-nav-link" data-nav-type="more"><b></b>{{ _('More') }}</a></li>
   </ul>
 
   {# Desktop Nav Menu #}
@@ -92,5 +92,4 @@
     <li><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>
     <li><a href="{{ url('terms') }}">{{ _('Terms of Use') }}</a></li>
   </ul>
-  <button class="overlay-close"></button>
 </div>
