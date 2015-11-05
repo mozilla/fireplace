@@ -219,20 +219,20 @@ desktop-link-active() {
 }
 
 .overlay-close {
-    background: url(../img/nav/clear.svg) no-repeat center center / 40px 40px;
-    border-radius: 50%;
+    background: url(../img/nav/clear.svg) no-repeat 0 0 / 40px 40px;
     border: 0;
-    bottom: 5px;
-    height: 70px;
+    bottom: 20px;
+    height: 40px;
     opacity: 0;
     position: fixed;
-    right: 5px;
+    right: 20px;
     transition: 200ms opacity ease;
-    width: 70px;
-    z-index: 110;
+    width: 40px;
+    z-index: -1;
 
     &.overlay-close-visible {
         opacity: 1;
+        z-index: 110;
     }
 }
 
