@@ -80,11 +80,16 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
         z.body.trigger('showoverlay', {selector: '.cat-menu-overlay'});
     }).on('showoverlay', function(e, overlay) {
         $(overlay.selector).addClass('overlay-visible');
-        $('.overlay-close').addClass('overlay-close-visible');
         z.page.trigger('clearsearch');
+
+        // Inject overlay clear button.
+        setTimeout(function() {
+            $('body').append('<button class="overlay-close"></button>');
+            $('.overlay-close').addClass('overlay-close-visible');
+        }, 300);
     }).on('hideoverlay', function() {
+        $('.overlay-close').remove();
         $('.full-screen-overlay').removeClass('overlay-visible');
-        $('.overlay-close').removeClass('overlay-close-visible');
         $('.nav-category-link.header-nav-link-active').removeClass('header-nav-link-active');
     })
     // Close mobile overlay button.
