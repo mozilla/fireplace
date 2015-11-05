@@ -79,7 +79,6 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
     .on('click', '.header-categories-btn', function() {
         z.body.trigger('showoverlay', {selector: '.cat-menu-overlay'});
     }).on('showoverlay', function(e, overlay) {
-        z.body.addClass('overlayed');
         $(overlay.selector).addClass('overlay-visible');
         $('.overlay-close').addClass('overlay-close-visible');
         z.page.trigger('clearsearch');
@@ -87,7 +86,6 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
         $('.full-screen-overlay').removeClass('overlay-visible');
         $('.overlay-close').removeClass('overlay-close-visible');
         $('.nav-category-link.header-nav-link-active').removeClass('header-nav-link-active');
-        z.body.removeClass('overlayed');
     })
     // Close mobile overlay button.
     .on('click', '.overlay-close, .full-screen-overlay a', function() {
