@@ -55,6 +55,7 @@ FeaturesBitField.prototype.toBase64 = function() {
     return btoa(String.fromCharCode.apply(null, this.values));
 };
 
+
 function buildFeaturesPromises(features, navigator) {
     navigator = navigator || window.navigator;
     var promises = [];
@@ -184,6 +185,13 @@ function mapArrayToObject(arr) {
  */
 function checkForExtraFeatures(navigator) {
     navigator = navigator || window.navigator;
+
+    if (typeof navigator.hasFeature === 'undefined') {
+        return new Promise(function(resolve, reject) {
+            // Resolve immediately with no data if we haven't hasFeature().
+            resolve({});
+        })
+    }
 
    var promises = {
         addonsEnabled: navigator.hasFeature('web-extensions'),
