@@ -5,8 +5,8 @@
 </section>
 
 <section class="site-privacy-policy main full prose">
-  {% set url = '/docs/privacy/' + language + '.html?20151009' %}
-  {% set fallback = '/docs/privacy/' + settings.default_locale + '.html?20151030' %}
+  {% set url = '/docs/privacy/' + language + '.html?20151106' %}
+  {% set fallback = '/docs/privacy/' + settings.default_locale + '.html?20151106' %}
   {% fetch (url=media(url), fallback=media(fallback), filters=['rewriteCdnUrls']) %}
     <p class="spinner spaced alt"></p>
   {% endfetch %}
