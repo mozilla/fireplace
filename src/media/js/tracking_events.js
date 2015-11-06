@@ -166,14 +166,13 @@ define('tracking_events',
         brand: 'branded-editorial-element',
         collection: 'collection-element',
         shelf: 'operator-shelf-element',
-        desktopPromo: 'desktop-promo',
     };
 
     // Srcs that should be persistent all the way through to the app detail
     // page. This handles cases like Desktop Promo -> Collection -> App where
-    // Desktop Promo should receive attribution.
+    // Desktop Promo should receive attribution. No longer used due to desktop
+    // promo removal.
     var PERSISTENT_SRCS = {};
-    PERSISTENT_SRCS[SRCS.desktopPromo] = true;
 
     // Track logged in.
     setSessionVar(DIMENSIONS.isLoggedIn, user.logged_in());
@@ -358,15 +357,6 @@ define('tracking_events',
             'click',
             this.getAttribute('data-tracking') ||
             this.parentNode.getAttribute('data-tracking')
-        );
-    })
-
-    // Desktop promo click.
-    .on('click', '.desktop-promo-item', function() {
-        sendEvent(
-            'View Desktop Promo Item',
-            'click',
-            this.getAttribute('data-tracking')
         );
     })
 
