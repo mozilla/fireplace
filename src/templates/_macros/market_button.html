@@ -1,4 +1,4 @@
-{% macro market_button(product, data_attrs, isGame=False) %}
+{% macro market_button(product, data_attrs) %}
   {% set product = buttons.transform(product) %}
   {% set app_classes = 'mkt-app-button--install install' %}
 
@@ -11,11 +11,10 @@
         {{ data_attrs|make_data_attrs }}
         {{ 'disabled' if product.disabled }}
         data-product="{{ product|json }}"
-        {% if isGame %}data-is-game="true"{% endif %}
         {% if product.isWebsite %}href="{{ product.mobile_url or product.url }}"{% endif %}
         {% if product.manifest_url %}data-manifest_url="{{ product.manifest_url }}"{% endif %}>
     <em>
-      <span class="mkt-app-button-text">{{ buttons.getBtnText(product, isGame) }}</span>
+      <span class="mkt-app-button-text">{{ buttons.getBtnText(product) }}</span>
       <span class="mkt-app-button-spinner spin"></span>
     </em>
   </button>

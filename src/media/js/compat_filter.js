@@ -36,8 +36,7 @@ define('compat_filter',
     var featureProfile = utils.getVars().pro || '7fffffffffff0.51.6';
 
     // Don't do device filtering for these endpoints.
-    var EXCLUDE_DEVICE_FILTER_ENDPOINTS = ['feed-app', 'games-daily',
-                                           'games-listing'];
+    var EXCLUDE_DEVICE_FILTER_ENDPOINTS = ['feed-app'];
 
     var DEVICE_CHOICES = {
         '': gettext('All Platforms'),
