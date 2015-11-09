@@ -153,24 +153,6 @@ define('helpers_local',
         return document.documentElement.dir;
     }
 
-    var GAME_CATEGORIES = {
-        'featured-game-adventure': gettext('Adventure Game'),
-        'featured-game-action': gettext('Action Game'),
-        'featured-game-puzzle': gettext('Puzzle Game'),
-        'featured-game-strategy': gettext('Strategy Game')
-    };
-    function getGameCategory(game) {
-        var categories = game.tags || game.keywords;
-        if (!categories) {
-            return;
-        }
-        for (var i = 0; i < categories.length; i++) {
-            if (categories[i] in GAME_CATEGORIES) {
-                return GAME_CATEGORIES[categories[i]];
-            }
-        }
-    }
-
     var helpers = {
         apps: apps,
         app_notices: app_notices,
@@ -179,7 +161,6 @@ define('helpers_local',
         },
         cast_app: models('app').cast,
         fileSize: filters.fileSize,
-        getGameCategory: getGameCategory,
         htmldir: htmldir,
         format: format.format,
         getReviewId: getReviewId,

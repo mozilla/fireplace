@@ -1,10 +1,8 @@
 define('views/category_websites',
     ['categories', 'core/capabilities', 'core/format', 'core/settings',
-     'core/urls', 'core/utils', 'core/z', 'underscore', 'tracking_events',
-     'views/games/listing'],
+     'core/urls', 'core/utils', 'core/z', 'underscore', 'tracking_events'],
     function(categories, caps, format, settings,
-             urls, utils, z, _, trackingEvents,
-             gamesListing) {
+             urls, utils, z, _, trackingEvents) {
     'use strict';
 
     return function(builder, args, params) {
