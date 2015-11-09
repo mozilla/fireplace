@@ -2,19 +2,11 @@
 {% include '_macros/feed_websites.html' %}
 {% include '_macros/more_button.html' %}
 
-{% if showPromo %}
-  {% include 'desktop-promo.html' %}
-
-  <div class="desktop-promo-separator"></div>
-  <p class="desktop-promo-separator-text">{{ _('More to Explore') }}</p>
-{% endif %}
-
-
 {% defer (url=anonApi('feed')|urlparams(limit=10), id='feed-items') %}
   <div class="feed feed-items feed-home c" data-columns>
     {% if settings.meowEnabled and settings.homepageWebsitesEnabled %}
       {# If there are at least 3 featured sites, let's show the tabbed control. #}
-      {% if this.websites.length >= 3 %} 
+      {% if this.websites.length >= 3 %}
         {{ website_tabs(this.websites|sliceArray(0, 3)) }}
       {% endif %}
       {# If there are at least 3 more featured sites, let's show the carousel control. #}
