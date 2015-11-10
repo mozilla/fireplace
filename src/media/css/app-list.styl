@@ -53,7 +53,13 @@ $desktop-tile-padding = $tile-padding-y $tile-padding-x;
 
 // After pseudo element hides the last bottom border when a list is paginated.
 .paginated::after { bottom: 152px; }
-.previews-expanded.paginated::after { bottom: 112px; }
+.previews-expanded.paginated::after {
+     bottom: 112px;
+
+    +media--base-desktop() {
+        bottom: 72px;
+    }
+}
 
 .app-list-app {
     border-bottom: 1px solid $greyscale-light-grey;
