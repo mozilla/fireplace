@@ -117,6 +117,15 @@ define('apps',
             (!capabilities.packagedWebApps && product.is_packaged) ||
             !_.contains(product.device_types, device)) {
             reasons.push(gettext('not available for your platform'));
+        } else if (product.feature_compatibility === false) {
+            // If feature_compatibility is false (and not just null!), then it
+            // means the app requires features we don't have.
+            reasons.push(gettext('not compatible with your device'));
+        } else if (product.isAddon && !settings.addonsEnabled) {
+            // If we're dealing with an Addon but the setting is false, it
+            // means we're using an older version of Firefox OS or that we are
+            // in the browser and can't detect compatibility.
+            reasons.push(gettext('not compatible with your device'));
         }
 
         product[COMPAT_REASONS] = reasons.length ? reasons : undefined;
@@ -134,8 +143,9 @@ define('apps',
             product.categories = categories.filter(function(category) {
                 return product.categories.indexOf(category.slug) !== -1;
             }).map(function(category) {
-                return _.extend({url: urls.reverse('category', [category.slug])},
-                                category);
+                return _.extend({
+                    url: urls.reverse('category', [category.slug])
+                }, category);
             });
         }
 
@@ -158,6 +168,7 @@ define('apps',
             product.short_name = product.name;
             product.key = product.slug;
         }
+        product.isLangpack = product.role == 'langpack';
 
         product.__transformed = true;
         return product;
