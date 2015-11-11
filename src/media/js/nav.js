@@ -46,12 +46,12 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
         logger.log('header back button pressed');
         resetMenuState();
         navigation.back();
-    }).on('change, input', '#search-q, #search-q-desktop', updateSearchPlaceholder);
+    }).on('change input', '#search-q, #search-q-desktop', updateSearchPlaceholder);
 
     function updateSearchPlaceholder(evt) {
-      var $this = $(this);
-      var isEmpty = $this.val() === '';
-      $this.siblings('label').toggleClass('search-empty', isEmpty);
+        var $this = $(this);
+        var isEmpty = $this.val() === '';
+        $this.siblings('label').toggleClass('search-empty', isEmpty);
     }
 
     function resetMenuState() {
