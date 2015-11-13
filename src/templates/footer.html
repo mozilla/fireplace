@@ -19,9 +19,7 @@
       </li>
     {% endif %}
     <li><a href="/developers/">{{ _('Develop Apps') }}</a></li>
-    {% if user.get_permission('content_tools_login') %}
-      <li><a href="/content/" rel="external">{{ _('Develop Firefox OS Add-ons') }}</a></li>
-    {% endif %}
+    <li><a href="/content/" rel="external">{{ _('Develop Firefox OS Add-ons') }}</a></li>
     {% if user.get_permission('developer') %}
       <li><a href="/developers/submissions" rel="external">{{ _('My Submissions') }}</a></li>
     {% endif %}
