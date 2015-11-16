@@ -390,22 +390,21 @@ define('buttons',
     }
 
     function transform(product) {
+        product = apps.transform(product);
+
         if (product.isWebsite) {
             // Return here, don't need extra information for websites.
             return product;
         }
 
-        var isAddon = _isAddon(product);
-        var manifest_url = (isAddon ? product.mini_manifest_url :
+        var manifest_url = (product.isAddon ? product.mini_manifest_url :
                             product.manifest_url);
-        var isLangpack = product.role == 'langpack';
         var incompatible = apps.incompat(product);
         var installed = z.apps.indexOf(manifest_url) !== -1;
 
-        if (isLangpack) {
+        if (product.isLangpack) {
             return _.extend(product, {
                 disabled: incompatible || installed,
-                isLangpack: true,
             });
         }
 
@@ -418,9 +417,7 @@ define('buttons',
         }
 
         return _.extend(product, {
-            disabled: isAddon ? installed : incompatible,
-            isAddon: isAddon,
-            isLangpack: isLangpack,
+            disabled: incompatible,
             incompatible: incompatible,
             installed: installed,
             installedBefore: user.has_installed(product.id) ||
