@@ -11,6 +11,14 @@ define('tests/unit/helpers',
             });
             return injector;
         },
+        mockDeviceTypeCapabilities: function(hasWebApps) {
+            return function(injector) {
+                return injector.mock('core/capabilities', {
+                    device_type: function() {return 'foo';},
+                    webApps: hasWebApps
+                });
+            };
+        },
         mockSettings: function(settings) {
             return function(injector) {
                 injector.mock('core/settings', settings || {});
