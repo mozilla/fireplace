@@ -115,10 +115,10 @@
    Passed with events.
 */
 define('tracking_events',
-    ['compat_filter', 'consumer_info', 'core/capabilities', 'core/log',
+    ['apps', 'compat_filter', 'consumer_info', 'core/capabilities', 'core/log',
      'core/navigation', 'core/settings', 'core/user', 'core/utils', 'core/z',
      'jquery', 'tracking', 'user_helpers'],
-    function(compatFilter, consumerInfo, caps, log,
+    function(apps, compatFilter, consumerInfo, caps, log,
              navigation, settings, user, utils, z,
              $, tracking, userHelpers) {
     'use strict';
@@ -380,7 +380,7 @@ define('tracking_events',
         // dimensions set.
         opts = opts || {};
         var custom = {};
-        var item = $installBtn.data('product');
+        var item = apps.transform($installBtn.data('product'));
 
         custom[DIMENSIONS.appName] = item.name;
         custom[DIMENSIONS.appId] = item.id + '';
@@ -392,6 +392,12 @@ define('tracking_events',
             custom[DIMENSIONS.appPremiumType] = item.payment_required ?
                                                 'paid' : 'free';
             custom[DIMENSIONS.contentType] = 'webapp';
+        }
+
+        if (item.isAddon) {
+            custom[DIMENSIONS.contentType] = 'addon';
+        } else if (item.doc_type === 'homescreen') {
+            custom[DIMENSIONS.contentType] = 'homescreen';
         }
 
         if ($('[data-page-type~="detail"]').length) {
