@@ -1,6 +1,10 @@
 @import 'lib';
 
 $symbol-height = 32px;
+search-sprite() {
+    image-replacement('../img/nav/search.svg', $symbol-height, $symbol-height);
+    background-size: $symbol-height 64px;
+}
 
 .global-header {
     background-color: $white;
@@ -41,13 +45,21 @@ $symbol-height = 32px;
 }
 
 .mkt-search-btn {
-    image-replacement('../img/nav/search.svg', $symbol-height, $symbol-height);
-    background-size: $symbol-height 64px;
     border: 0;
+    search-sprite();
     z-index: 3;
 
     &:hover,
-    &.header-nav-link-active {
+    &.header-nav-link-active,
+    &:active {
+        background-position: 0 -32px;
+    }
+}
+
+.global-header,
+.global-nav-menu-desktop {
+    .mkt-search-btn:active {
+        search-sprite();
         background-position: 0 -32px;
     }
 }
