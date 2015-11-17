@@ -189,7 +189,6 @@ desktop-link-active() {
         &:hover {
           background: transparent;
           color: $greyscale-white;
-          transform: translateY(-2px);
         }
 
         &::after {
@@ -330,7 +329,7 @@ desktop-link-active() {
             align-items: center;
             display: flex;
             flex-wrap: wrap;
-            margin: 0 auto;
+            margin: 25px auto 0;
             max-width: 1000px;
 
             li {
@@ -408,5 +407,9 @@ desktop-link-active() {
     // Don't need large targets for desktop.
     .full-screen-overlay a {
         line-height: 2.2;
+    }
+    // Hide popular apps (all categories) link on desktop.
+    .full-screen-overlay .cat-menu-all a {
+        display: none;
     }
 }
