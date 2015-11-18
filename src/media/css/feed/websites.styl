@@ -10,12 +10,15 @@ body.desktop .feed-item-website-carousel {
 }
 
 .feed-item-website-tabs {
+    height: 195px;
     padding-top: 100px;
     position: relative;
+
     li {
         display: block;
         padding: 0;
         position: static;
+
         a,
         button,
         button:active {
@@ -64,8 +67,10 @@ body.desktop .feed-item-website-carousel {
 .feed-item-website-tabs-content {
     color: $white;
     display: none;
+    margin: -12px 0 0;
     padding: 20px 10px;
     text-align: center;
+
     .feed-item-website-tabs-active & {
         display: block;
     }
@@ -98,6 +103,23 @@ body.desktop .feed-item-website-carousel {
     }
     .feed-item-website-carousel-active {
         display: block;
+    }
+    .mkt-app-heading {
+        display: flex;
+        justify-content: space-between;
+    }
+    .mkt-tile-info {
+        +ltr() {
+            margin-left: 10px;
+        }
+        +rtl() {
+            margin-right: 10px;
+        }
+        .mkt-app-name {
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 24px;
+        }
     }
 }
 
