@@ -2,7 +2,9 @@ define('tests/unit/compat_filter',
     ['tests/unit/helpers'],
     function(helpers) {
 
-    var TEST_ENDPOINTS = ['category', 'recommended', 'installed', 'search'];
+    var TEST_ENDPOINTS = [
+        'app', 'category', 'recommended', 'installed', 'search'
+    ];
 
     function testApiArgs(compatFilter, expectedArgs) {
         TEST_ENDPOINTS.forEach(function(endpoint) {
