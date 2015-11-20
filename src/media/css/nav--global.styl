@@ -7,16 +7,17 @@ desktop-link-active() {
 }
 
 .global-nav {
-    background-color: $white;
-    box-shadow: 0 -1px 1px rgba(0,0,0,.5);
-    bottom: 0;
+    bottom: 10px;
     height: 60px;
+    padding-top: 10px;
     position: fixed;
     width: 100%;
     z-index: 20;
 }
 
 .global-nav-menu {
+    background-color: $white;
+    box-shadow: 0 -1px 1px rgba(0,0,0,.5);
     display: flex;
     padding: 0 10px;
 
@@ -217,7 +218,7 @@ desktop-link-active() {
 }
 
 .overlay-close {
-    background: url(../img/nav/clear.svg) no-repeat center center / 40px 40px;
+    background: transparent url(../img/nav/clear.svg) no-repeat center center / 40px 40px;
     border: 0;
     border-radius: 50%;
     bottom: 20px;
@@ -252,7 +253,11 @@ desktop-link-active() {
     .overlay-close {
         display: none;
     }
+    .global-nav {
+        padding-top: 0;
+    }
     .global-nav-menu-desktop {
+        background-color: $white;
         display: flex;
         align-items: center;
         justify-content: space-around;

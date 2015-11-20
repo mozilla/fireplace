@@ -30,7 +30,7 @@ define('compat_filter',
 
     // Endpoints where feat. profile enabled if conditions met. See apiArgs().
     var ENDPOINTS_WITH_FEATURE_PROFILE = [
-        'category', 'feed', 'feed-app', 'feed-brand', 'feed-collection',
+        'app', 'category', 'feed', 'feed-app', 'feed-brand', 'feed-collection',
         'feed-items', 'feed-shelf', 'installed', 'recommended', 'search'
     ];
     var featureProfile = utils.getVars().pro || '7fffffffffff0.51.6';

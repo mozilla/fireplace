@@ -46,12 +46,12 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
         logger.log('header back button pressed');
         resetMenuState();
         navigation.back();
-    }).on('change, input', '#search-q, #search-q-desktop', updateSearchPlaceholder);
+    }).on('change input', '#search-q, #search-q-desktop', updateSearchPlaceholder);
 
     function updateSearchPlaceholder(evt) {
-      var $this = $(this);
-      var isEmpty = $this.val() === '';
-      $this.siblings('label').toggleClass('search-empty', isEmpty);
+        var $this = $(evt.target);
+        var isEmpty = $this.val() === '';
+        $this.siblings('label').toggleClass('search-empty', isEmpty);
     }
 
     function resetMenuState() {
@@ -81,7 +81,10 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
     }).on('showoverlay', function(e, overlay) {
         $(overlay.selector).addClass('overlay-visible');
         z.page.trigger('clearsearch');
-        z.body.addClass('overlayed');
+
+        if (window.matchMedia('max-width: 1050px').matches) {
+            z.body.addClass('overlayed');
+        }
 
         // Inject overlay clear button.
         setTimeout(function() {
