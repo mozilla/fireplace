@@ -131,6 +131,43 @@ define('views/search',
         return;
     });
 
+    // On FxOS 1.1 the search form did not submit
+    // after hitting enter (so it did not work).
+    z.body.on('keydown', '#search-q', function(e) {
+        if(e.keyCode==13) { // Enter key
+            //$("#search")[0].submit();
+            var potato_views = {
+                ':categories': 'categories',
+                ':debug': 'debug',
+                ':debug_features': 'debug_features',
+                ':feedback': 'feedback',
+                ':homepage': 'homepage',
+                ':new_apps': 'new',
+                ':newsletter': 'newsletter_signup',
+                ':popular_apps': 'popular',
+                ':privacy': 'privacy',
+                ':recommended': 'recommended',
+                ':settings': 'settings',
+                ':terms': 'terms',
+            };
+            var $q = $('#search-q');
+            var query = $q.val();
+            if (Object.keys(potato_views).indexOf(query) > -1) {
+                z.page.trigger('navigate', urls.reverse(potato_views[query]));
+                $q.val('');
+                return;
+            } else if (query === ':' || query === ':help') {
+                window.open('https://github.com/mozilla/fireplace/wiki/' +
+                            'QuickSearch-(PotatoSearch™)');
+                $q.val('');
+                return;
+            }
+            $q.trigger('blur');
+            z.page.trigger('search', {q: query});
+            return;
+        }
+    });
+
     z.page.on('loaded_more', function() {
         previews.initialize();
         // Update "Showing 1-{total}" text.
