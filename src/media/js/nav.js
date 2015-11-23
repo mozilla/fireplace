@@ -7,18 +7,25 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
     // Search.
     z.page.on('showsearch', function(e, args) {
         args = args || {};
+        var $header = $('.global-header');
 
-        $('.global-header').addClass('searching');
+        // Remember whether search was already active.
+        var isSearchActive = $header.hasClass('searching');
+        $header.addClass('searching');
         $('.global-nav-menu-desktop .mkt-search-btn').addClass('header-nav-link-active');
+
         if (args.isDesktop) {
             $('.desktop-search').addClass('searching').find('input').trigger('focus');
             z.page.trigger('clearsettings');
             $('.compat-filter').removeClass('mkt-select--visible');
             z.body.trigger('hideoverlay');
         } else {
-            setTimeout(function() {
-                $('#search-q').trigger('focus');
-            }, 400);
+            // Focus the search input for mobile users (only when the form needs to slide in).
+            if (!isSearchActive) {
+                setTimeout(function() {
+                    $('#search-q').trigger('focus');
+                }, 400);
+            }
         }
     }).on('clearsearch', function() {
         $('#search-q, #search-q-desktop').val('').trigger('input').trigger('blur');
