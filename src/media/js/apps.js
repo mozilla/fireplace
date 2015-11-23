@@ -143,6 +143,12 @@ define('apps',
             product.categories = categories.filter(function(category) {
                 return product.categories.indexOf(category.slug) !== -1;
             }).map(function(category) {
+                // If the product is a website reverse its proper URL.
+                if (product.url) {
+                    return _.extend({
+                        url: urls.reverse('category_websites', [category.slug])
+                    }, category);
+                }
                 return _.extend({
                     url: urls.reverse('category', [category.slug])
                 }, category);
