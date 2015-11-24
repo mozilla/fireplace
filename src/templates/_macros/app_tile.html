@@ -1,3 +1,4 @@
+{% from "_macros/deferred_icon.html" import deferred_icon %}
 {% from "_macros/feed_app_tile.html" import feed_app_tile %}
 {% from "_macros/market_button.html" import market_button %}
 {% from "_macros/previews.html" import preview_tray %}
@@ -93,20 +94,6 @@
     {{ preview_tray(product, src, is_detail) }}
   {% endif %}
 {% endmacro %}
-
-
-{% macro deferred_icon(src, alt, width) %}
-  {% if not imgAlreadyDeferred(src) %}
-    {# Defer image loading. #}
-    <img class="icon deferred" src="{{ PLACEHOLDER_ICON }}"
-         data-src="{{ src }}" title="{{ alt or '' }}" alt="{{ alt or '' }}"
-         height="{{ width or 60 }}" width="{{ width or 60 }}" itemprop="image">
-  {% else %}
-    <img class="icon" src="{{ src }}" title="{{ alt or '' }}" alt="{{ alt or '' }}"
-         height="{{ width or 64 }}" width="{{ width or 64 }}" itemprop="image">
-  {% endif %}
-{% endmacro %}
-
 
 {% macro rating_link(is_detail=False) %}
   <span class="rating mkt-app-rating {{ 'unrated' if not product.ratings.count }}"

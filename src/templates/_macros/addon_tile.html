@@ -1,3 +1,4 @@
+{% from "_macros/deferred_icon.html" import deferred_icon %}
 {% from "_macros/market_button.html" import market_button %}
 
 {% macro addon_tile(addon, is_detail=False, src=None) %}
@@ -12,9 +13,6 @@
       <h3 class="mkt-addon-name" title="{{ addon.name }}" itemprop="name">
         {{ addon.name }}
       </h3>
-      <figure class="addon-icon">
-        <img src="{{ addon.icons['64'] }}" width="64" height="64" />
-      </figure>
       {% if addon.author %}
         <div class="author mkt-product-author"
              title="{{ addon.author }}" itemprop="creator">
@@ -27,5 +25,8 @@
       'slug': addon.slug,
       'source': src
     }) }}
+    <figure class="addon-icon">
+      {{ deferred_icon(addon.icons[is_detail and '128' or '64'] or addon.icons['64'], addon.name) }}
+    </figure>
   </{{ tag }}>
 {% endmacro %}
