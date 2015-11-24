@@ -33,7 +33,7 @@ appList.appListPages.forEach(function(appListPage) {
                 helpers.assertAPICallWasMade(appListPage.endpoint, endpointParams);
 
                 // Test app src.
-                var href = this.getElementAttribute('.mkt-tile:nth-child(1)',
+                var href = this.getElementAttribute('.mkt-tile[data-content-type="app"]',
                                                     'href');
                 if (appListPage.src) {
                     test.assert(href.indexOf('src=' + appListPage.src) !== -1,
@@ -45,11 +45,11 @@ appList.appListPages.forEach(function(appListPage) {
                 }
 
                 // Test authors are not a link.
-                test.assertDoesntExist('.mkt-tile .author a');
+                test.assertDoesntExist('.mkt-tile[data-content-type="app"] .author a');
 
                 // Test navigate to app.
                 if (!appListPage.noDetailPage) {
-                    casper.click('.app-list .mkt-tile');
+                    casper.click('.app-list .mkt-tile[data-content-type="app"]');
                     test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
                 }
             });
@@ -64,9 +64,12 @@ appList.appListPages.forEach(function(appListPage) {
                 waitForAppListPage(appListPage, function() {
                     // Test model cache.
                     var modelCount = casper.evaluate(function() {
-                        return Object.keys(
-                            window.require('core/models')('app')
-                                  .data_store.app).length;
+                        var models = window.require('core/models');
+                        var app_data_store = models('app').data_store.app;
+                        var website_data_store = models('website').data_store.website
+                        var nb_apps = Object.keys(app_data_store).length;
+                        var nb_websites = Object.keys(website_data_store).length;
+                        return (nb_apps + nb_websites);
                     });
                     test.assertEqual(modelCount,
                                      appListPage.appLimit,
@@ -132,21 +135,23 @@ appList.appListPages.forEach(function(appListPage) {
 
                         // Test model cache after load more.
                         if (!appListPage.noModelCache) {
-                            var modelKeys = casper.evaluate(function() {
-                                return Object.keys(
-                                    window.require('core/models')('app')
-                                        .data_store.app);
+                            var modelCount = casper.evaluate(function() {
+                                var models = window.require('core/models');
+                                var app_data_store = models('app').data_store.app;
+                                var website_data_store = models('website').data_store.website
+                                var nb_apps = Object.keys(app_data_store).length;
+                                var nb_websites = Object.keys(website_data_store).length;
+                                return (nb_apps + nb_websites);
                             });
-                            casper.echo(modelKeys);
                             test.assertEqual(
-                                modelKeys.length,
+                                modelCount,
                                 APP_LIMIT_LOADMORE,
                                 'Assert model cache after Load more');
                         }
 
                         // Test navigate to app.
                         if (!appListPage.noDetailPage) {
-                            casper.click('.app-list .mkt-tile');
+                            casper.click('.app-list .mkt-tile[data-content-type="app"]');
                             test.assertUrlMatch(/\/app\/[a-zA-Z0-9]+/);
                         }
                     });
@@ -182,14 +187,14 @@ appList.appListPages.forEach(function(appListPage) {
     if (!appListPage.noAppInstall) {
         casper.test.begin(appListPage.name + ' app install tests', {
             test: function(test) {
-                var installButton = '.app-list-app:first-child .install';
+                var installButton = '.mkt-tile[data-content-type="app"] .install';
                 waitForAppListPage(appListPage);
                 casper.waitForSelector(installButton, function() {
                     casper.click(installButton);
 
                     casper.waitForSelector('.launch', function() {
                         test.assertSelectorHasText(
-                            '.app-list-app:first-child .install',
+                            '.mkt-tile[data-content-type="app"] .install',
                             'Open');
                     });
                 });

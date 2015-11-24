@@ -84,9 +84,8 @@ casper.test.begin('Test search empty', {
             test.assertUrlMatch(/\/search\?q=empty/);
             test.assertVisible('#search-q');
             test.assertDoesntExist('.app-list');
-            test.assertExists('.app-list-filters', 'Check compatibility filtering is found');
+            test.assertExists('.compat-filter', 'Check compatibility filtering is found');
             test.assertExists('.no-results', 'Check no-results header is found');
-            test.assertNotVisible('.app-list-filters-expand-wrapper');
         });
 
         helpers.done(test);
@@ -201,7 +200,7 @@ casper.test.begin('Test UA track keyword leading to app view', {
         helpers.startCasper('/search?q=abc');
 
         helpers.waitForPageLoaded(function() {
-            casper.click('.mkt-tile');
+            casper.click('.mkt-tile[data-content-type="app"]');
         });
 
         casper.waitForSelector('[data-page-type~="detail"]', function() {
@@ -223,7 +222,7 @@ casper.test.begin('Test UA track keyword leading to app install on detail', {
         helpers.startCasper('/search?q=abc');
 
         helpers.waitForPageLoaded(function() {
-            casper.click('.mkt-tile');
+            casper.click('.mkt-tile[data-content-type="app"]');
         });
 
         casper.waitForSelector('[data-page-type~="detail"]', function() {

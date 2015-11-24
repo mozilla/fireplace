@@ -5,35 +5,45 @@ var constants = helpers.load('constants');
 
 var appListPages = [
     {
-        endpoint: '/api/v2/fireplace/search/',
-        endpointParams: {sort: 'reviewed'},
+        endpoint: '/api/v2/fireplace/multi-search/',
+        endpointParams: {
+            doc_type :"webapp", is_homescreen: "false", sort: 'reviewed',
+        },
         name: 'New',
         path: '/new',
         src: 'new',
     },
     {
-        endpoint: '/api/v2/fireplace/search/',
+        endpoint: '/api/v2/fireplace/multi-search/',
+        endpointParams: {
+            doc_type :"webapp", is_homescreen: "false",
+        },
         name: 'Popular',
         path: '/popular',
         src: 'popular',
     },
     {
         endpoint: '/api/v2/apps/recommend/',
+        endpointParams: {
+            doc_type :"webapp", is_homescreen: "false",
+        },
         name: 'Recommended',
         path: '/recommended',
         src: 'reco',
         noVary: true,
     },
     {
-        endpoint: '/api/v2/fireplace/search/',
-        endpointParams: {q: 'games'},
+        endpoint: '/api/v2/fireplace/multi-search/',
+        endpointParams: {q: 'rotfl'},
         name: 'Search',
-        path: '/search?q=games',
+        path: '/search?q=rotfl',
         src: 'search'
     },
     {
-        endpoint: '/api/v2/fireplace/search/',
-        endpointParams: {cat: 'games'},
+        endpoint: '/api/v2/fireplace/multi-search/',
+        endpointParams: {
+            cat: 'games', doc_type :"webapp",
+        },
         name: 'Category',
         path: '/category/games',
         src: 'games-popular'
@@ -108,8 +118,10 @@ function getAppData(installBtnSel) {
 
 function getEndpointParams(appListPage, extend) {
     var endpointParams = _.extend({
-        cache: '1', vary: '0', lang: 'en-US', region: 'us', dev: 'desktop',
-        limit: constants.APP_LIMIT + ''
+        // Default API parameters to expect, the tests can override them as
+        // needed.
+        cache: '1', dev: 'desktop', lang: 'en-US',
+        limit: constants.APP_LIMIT + '', region: 'us', vary: '0',
     }, appListPage.endpointParams || {});
 
     if (appListPage.noCache) {

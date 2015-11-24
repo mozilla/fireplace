@@ -21,8 +21,9 @@ define('views/recommended',
         builder.start('product_list.html', {
             appListType: 'recommended',
             endpoint_name: 'recommended',
-            listItemType: 'webapp.website',
+            listItemType: 'webapp',
             require_user: true,
+            src: 'reco',
             title: title
         });
     };
