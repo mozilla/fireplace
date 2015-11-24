@@ -153,16 +153,25 @@ define('helpers_local',
         return document.documentElement.dir;
     }
 
+    function getProductType(obj) {
+        switch (obj.doc_type) {
+            case 'website':
+                return 'website';
+            case 'extension':
+                return 'addon';
+            default:
+                return 'app';
+        }
+    }
+
     var helpers = {
         apps: apps,
         app_notices: app_notices,
-        appOrWebsite: function(obj) {
-            return obj.manifest_url ? 'app' : 'website';
-        },
         cast_app: models('app').cast,
         fileSize: filters.fileSize,
         htmldir: htmldir,
         format: format.format,
+        getProductType: getProductType,
         getReviewId: getReviewId,
         numberfmt: nunjucks.require('filters').numberfmt,
         indexOf: indexOf,

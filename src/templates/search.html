@@ -1,4 +1,5 @@
 {% include '_macros/app_tile.html' %}
+{% include '_macros/addon_tile.html' %}
 {% include '_macros/more_button.html' %}
 
 {% macro results_subheader(query, count) %}
@@ -30,7 +31,7 @@
   {% set api_url = api_url|urlparams(sort=params.sort) %}
 {% endif %}
 
-{% defer (url=api_url, pluck='objects', as=appOrWebsite, paginate='.app-list',
+{% defer (url=api_url, pluck='objects', as=getProductType, paginate='.app-list',
           id='searchresults') %}
 
   {{ results_subheader(raw_query, response.meta.total_count) }}
@@ -39,8 +40,13 @@
     <div>
       <ul class="app-list {{ 'paginated' if response.meta.next }}">
         {% for result in processor(this) %}
+          {# TODO: rename 'app-list-app' #}
           <li class="item result app-list-app">
-            {{ app_tile(result, tray=True, src=trackingEvents.SRCS.search) }}
+            {% if getProductType(result) == 'addon' %}
+              {{ addon_tile(result, src=trackingEvents.SRCS.search) }}
+            {% else %}
+              {{ app_tile(result, tray=True, src=trackingEvents.SRCS.search) }}
+            {% endif %}
           </li>
         {% endfor %}
 

@@ -1,11 +1,11 @@
 {% from "_macros/market_button.html" import market_button %}
 
-{% macro addon_tile(addon, is_detail=False) %}
+{% macro addon_tile(addon, is_detail=False, src=None) %}
 {% set tag = 'div' if is_detail else 'a' %}
   <{{ tag }} class="addon-tile"
              data-content-type="addon"
              {% if not is_detail %}
-               href="{{ url('addon', [addon.slug]) }}"
+               href="{{ url('addon', [addon.slug])|urlparams(src=src) }}"
              {% endif %}
              data-slug="{{ addon.slug }}">
     <div class="addon-tile-info">
@@ -24,7 +24,8 @@
     </div>
     {{ market_button(addon, data_attrs={
       'manifest_url': addon.mini_manifest_url,
-      'slug': addon.slug
+      'slug': addon.slug,
+      'source': src
     }) }}
   </{{ tag }}>
 {% endmacro %}

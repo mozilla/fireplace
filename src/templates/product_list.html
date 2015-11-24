@@ -22,7 +22,7 @@
                     else apiFn(endpoint_name)|urlparams(limit=24, doc_type=listItemType, is_homescreen=isHomescreen) %}
 
 <section class="main full app-list-page {{ 'app-list-homescreens' if isHomescreenList }} c">
-  {% defer (url=search_url, pluck='objects', as=appOrWebsite, paginate='.app-list') %}
+  {% defer (url=search_url, pluck='objects', as=getProductType, paginate='.app-list') %}
     <ul class="app-list {{ 'paginated' if response.meta.next }}">
       {% for app in this %}
         {% set app = apps.transform(app) %}
