@@ -46,15 +46,24 @@
 .addon-tile {
     display: block;
     min-height 64px;
-    padding-left: 79px; /* 64px icon + 15px padding */
     position: relative;
 }
 
 .addon-icon {
-    left: 0;
+    bottom: 0;
     margin: 0;
     position: absolute;
-    top: 0;
+
+    +ltr() {
+        right: 5px;
+    }
+    +rtl() {
+        left: 5px;
+    }
+    img {
+        // Until this gets flexboxed with UI-debt project.
+        margin-bottom: -7px;
+    }
 }
 
 a.addon-tile:hover {
