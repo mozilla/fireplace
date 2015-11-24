@@ -1,6 +1,6 @@
 define('views/addon',
     ['core/capabilities', 'core/l10n', 'core/settings',
-     'core/utils', 'truncator', 'utils_local'],
+     'core/utils', 'truncator', 'utils_local', 'views/addon/abuse'],
     function(caps, l10n, settings,
              utils, truncator, utilsLocal) {
     'use strict';

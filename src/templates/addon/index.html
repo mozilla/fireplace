@@ -3,7 +3,7 @@
 {% set endpoint = api('addon', [slug]) %}
 
 <article class="container-detail addon-detail" data-addon="{{ key }}" itemscope
-         itemtype="http://schema.org/SoftwareApplication">
+         itemtype="http://schema.org/SoftwareApplication" data-slug="{{ slug }}">
   {% defer (url=endpoint, key=slug, id='addon-data', as='addon') %}
     {% set addon = apps.transform(this) %}
     <header class="addon-header">
@@ -30,6 +30,13 @@
           {{ _('last updated: {date}')|format(date=addon.last_updated|date) }}
         </p>
       {% endif %}
+    </section>
+    <section class="addon-report-abuse">
+      <div>
+        <a class="button cancel abuse" data-tracking="Report abuse">
+          {{ _('Report to Mozilla') }}
+        </a>
+      </div>
     </section>
   {% placeholder %}
     <header class="addon-header">
