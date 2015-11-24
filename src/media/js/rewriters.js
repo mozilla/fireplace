@@ -42,16 +42,25 @@ define('rewriters',
         return [];
     }
 
-    var rewriteEndpoints = [
-        'feed',
-        'installed',
-        'recommended',
-        'reviews',
-        'search',
-        'langpacks'
+    // List of URLs to rewrite.
+    var rewriteURLs = [
+        urls.api.base.url('addon_list'),
+        // Do not include category endpoints: they are already covered, because
+        // we are rewriting search a few lines below, which is using the same
+        // base URL.
+        urls.api.base.url('feed'),
+        urls.api.base.url('installed'),
+        urls.api.base.url('langpacks'),
+        urls.api.base.url('late-customization'),
+        urls.api.base.url('recommended'),
+        urls.api.base.url('reviews'),
+        urls.api.base.url('search'),
     ];
 
-    return rewriteEndpoints.map(function(endpoint) {
-        return pagination(urls.api.base.url(endpoint));
+    // Return the list of rewriter functions. Caching code will call them all
+    // every time it writes something in the cache, so we filter them to make
+    // sure there are no duplicates.
+    return _.uniq(rewriteURLs).map(function(url) {
+        return pagination(url);
     });
 });

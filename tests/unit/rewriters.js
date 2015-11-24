@@ -6,7 +6,7 @@ define('tests/unit/rewriters',
         it('rewrites pagination stuff',
            helpers.injector()
            .mock('settings_app', {})
-           .mock('core/settings', {cache_rewriting_enabled: true,
+           .mock('core/settings', {addonsEnabled: true, cache_rewriting_enabled: true,
                                    api_url: 'https://foo.com'})
            .run(['core/urls', 'rewriters', 'route_api_args', 'routes'],
                 function(urls, rewriters, apiArgs, routes) {
@@ -31,6 +31,7 @@ define('tests/unit/rewriters',
                     }
                 };
 
+                // Call all rewriters like the cache module does.
                 for (var i = 0; i < rewriters.length; i++) {
                     rewriters[i](key, value, cache);
                 }
