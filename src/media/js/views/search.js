@@ -199,7 +199,7 @@ define('views/search',
         var queryParam;
         var query;
         var title = gettext('Search Results');
-        var pageTypes = 'search app-list';
+        var pageTypes = ['search', 'app-list'];
 
         // Get the first valid param and record its type.
         for (var i = 0; i < queryParams.length; i++) {
@@ -208,14 +208,20 @@ define('views/search',
             if (query) break;
         }
 
-        if (query && queryParam === 'author') {
-            pageTypes += ' leaf';
-            utilsLocal.headerTitle(gettext('Developer Listing'));
+        if (query) {
+            switch (queryParam) {
+                case 'author':
+                    utilsLocal.headerTitle(gettext('Developer Listing'));
+                    break;
+                case 'q':
+                    utilsLocal.headerTitle(title);
+            }
+            pageTypes.push('leaf');
         } else if (!settings.meowEnabled) {
-            pageTypes += ' leaf';
+            pageTypes.push('leaf');
         }
 
-        builder.z('type', pageTypes);
+        builder.z('type', pageTypes.join(' '));
         builder.z('search', query);
         builder.z('title', query || title);
 
