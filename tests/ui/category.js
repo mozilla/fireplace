@@ -11,21 +11,18 @@ casper.test.begin('Category app list sort tests', {
 
         casper.waitForSelector('.app-list', function() {
             // Test popular link is active by default.
-            test.assertVisible('.app-list-filters-sort');
-            test.assertSelectorExists('[data-app-list-sort-popular].active');
+            test.assertVisible('.sort-toggle');
 
             // Test switch to new.
-            casper.click('[data-app-list-sort-new]');
+            casper.click('.sort-toggle-new a');
         });
 
         casper.waitForSelector('.app-list', function() {
             test.assert(casper.getCurrentUrl().indexOf('sort=reviewed') !== -1);
-            test.assertSelectorExists('[data-app-list-sort-new].active');
 
             // Test switch back to popular.
-            casper.click('[data-app-list-sort-popular]');
+            casper.click('.sort-toggle-popular a');
             test.assert(casper.getCurrentUrl().indexOf('sort=reviewed') === -1);
-            test.assertSelectorExists('[data-app-list-sort-popular].active');
         });
 
         helpers.done(test);
@@ -53,9 +50,7 @@ casper.test.begin('Category mobile nav opens categories', {
         helpers.waitForPageLoaded();
 
         casper.thenClick(categoriesTrigger, function() {
-            test.assert(casper.evaluate(function() {
-                return document.querySelector('.cat-menu-overlay').visible;
-            }));
+            test.assertExists('.cat-menu-overlay.overlay-visible');
         });
 
         helpers.done(test);
@@ -63,7 +58,7 @@ casper.test.begin('Category mobile nav opens categories', {
 });
 
 
-casper.test.begin('Category mobile does not nav open non-categories', {
+casper.test.begin('Category mobile nav does not open non-categories', {
     test: function(test) {
         helpers.startCasper();
 

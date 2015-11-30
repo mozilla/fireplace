@@ -42,7 +42,7 @@ var appListPages = [
     {
         endpoint: '/api/v2/fireplace/multi-search/',
         endpointParams: {
-            cat: 'games', doc_type :"webapp",
+            cat: 'games', doc_type: 'webapp',
         },
         name: 'Category',
         path: '/category/games',
@@ -77,15 +77,15 @@ var appListPages = [
         path: '/feed/editorial/fun-games',
         src: 'branded-editorial-element',
     },
-    {
-        appLimit: 6,
-        endpoint: '/api/v2/fireplace/feed/shelves/telefonica-games/',
-        name: 'Shelf',
-        noExpandToggle: true,
-        noLoadMore: true,
-        path: '/feed/shelf/telefonica-games',
-        src: 'operator-shelf-element',
-    },
+    // {
+    //     appLimit: 6,
+    //     endpoint: '/api/v2/fireplace/feed/shelves/telefonica-games/',
+    //     name: 'Shelf',
+    //     noExpandToggle: true,
+    //     noLoadMore: true,
+    //     path: '/feed/shelf/telefonica-games',
+    //     src: 'operator-shelf-element',
+    // },
     {
         endpoint: '/api/v2/langpacks/',
         endpointParams: {fxos_version: '2.2'},

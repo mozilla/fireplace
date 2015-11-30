@@ -63,10 +63,6 @@ casper.test.begin('Test search results page type meowEnabled:true', {
             casper.fill('.header--search-form', {q: 'test'}, true);
         });
 
-        casper.waitForSelector('.app-list', function() {
-            test.assert(!helpers.isLeafPage(), 'is not leaf page');
-        });
-
         helpers.done(test);
     }
 });

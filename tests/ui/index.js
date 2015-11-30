@@ -20,7 +20,7 @@ casper.test.begin('Test footer at tablet width', {
         helpers.startCasper({viewport: 'tablet'});
 
         helpers.waitForPageLoaded(function() {
-            test.assertVisible('#site-footer');
+            test.assertNotVisible('#site-footer');
             test.assertNotVisible('#newsletter-footer');
         });
 
@@ -84,8 +84,6 @@ casper.test.begin('Test that the banner is last on mobile', {
 
         helpers.waitForPageLoaded(function() {
             test.assertExists('#global-header ~ main mkt-select.compat-filter');
-            test.assertExists('#global-header ~ main .banners');
-            test.assertExists('mkt-select.compat-filter + .banners');
         });
 
         helpers.done(test);
