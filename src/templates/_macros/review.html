@@ -19,6 +19,7 @@
     {{ this.body|escape|nl2br }}
   </div>
   {% if not detailpage %}
+   <time itemprop="datePublished">{{ this.created|date }}</time>
     <ul class="review-actions">
       {% if this.is_author or user.get_permission('reviewer') %}
         <li>
@@ -43,7 +44,6 @@
       </li>
       <li class="review-has-flagged">{{ _('Flagged for review') }}</li>
     </ul>
-    <time itemprop="datePublished">{{ this.created|date }}</time>
   {% endif %}
 </li>
 {% endmacro %}
