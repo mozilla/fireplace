@@ -1,6 +1,6 @@
 define('views/popular_websites',
-    ['core/l10n', 'utils_local'],
-    function(l10n, utils) {
+    ['core/l10n'],
+    function(l10n) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -9,7 +9,7 @@ define('views/popular_websites',
 
         builder.z('type', 'root popular site-categories nav-websites');
         builder.z('title', title);
-        utils.headerTitle(title);
+
         builder.start('product_list.html', {
             productListType: 'popularWebsites',
             endpoint_name: 'search',
