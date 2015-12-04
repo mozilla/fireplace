@@ -283,12 +283,19 @@ a {
     display: none;
 }
 
+.hide-on-mobile-tablet {
+    display: none;
+}
+
 @media $base-tablet {
     .hide-on-mobile {
         display: block;
     }
     .hide-on-tablet {
         display: none !important;
+    }
+    .hide-on-mobile-tablet {
+        display: none;
     }
     html {
         background: $white;
@@ -305,6 +312,9 @@ a {
 @media $base-desktop {
     .hide-on-desktop {
         display: none !important;
+    }
+    .hide-on-mobile-tablet {
+        display: block !important;
     }
     #page {
         padding-top: 18px;
