@@ -88,7 +88,7 @@ define('views/debug',
             profile: compatFilter.featureProfile
         })};
 
-        var ashesUrl = 'https://ashes.paas.allizom.org/post_report';
+        var ashesUrl = 'https://mkt-ashes.herokuapp.com/post_report';
         requests.post(ashesUrl, data).done(function(data) {
             notification.notification({message: 'Logs uploaded: ' + data.id,
                                        timeout: 30000});
