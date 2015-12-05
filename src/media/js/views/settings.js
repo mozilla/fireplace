@@ -1,11 +1,12 @@
 define('views/settings',
     ['core/cache', 'jquery', 'core/l10n', 'core/notification', 'core/requests', 'core/urls', 'core/user',
-     'user_helpers', 'core/utils', 'core/z'],
+     'user_helpers', 'core/utils', 'core/z', 'utils_local'],
     function(cache, $, l10n, notification, requests, urls, user, user_helpers,
-             utils, z) {
+             utils, z, utilsLocal) {
     var _pd = utils._pd;
     var gettext = l10n.gettext;
     var notify = notification.notification;
+    var title = gettext('Settings');
 
     function update_settings() {
         var acc_sett = $('.account-settings');
@@ -51,8 +52,9 @@ define('views/settings',
 
     return function(builder) {
         builder.z('type', 'root settings');
-        builder.z('title', gettext('Settings'));
+        builder.z('title', title);
         builder.z('parent', urls.reverse('homepage'));
+        utilsLocal.headerTitle(title);
 
         builder.start('settings.html');
     };

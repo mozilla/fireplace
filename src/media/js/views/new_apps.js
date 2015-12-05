@@ -7,7 +7,7 @@ define('views/new_apps',
     return function(builder, args, params) {
         var title = gettext('New Apps');
 
-        builder.z('type', 'root app-list new nav-apps');
+        builder.z('type', 'root app-list new app-categories nav-apps');
         builder.z('title', title);
 
         builder.start('product_list.html', {

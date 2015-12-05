@@ -242,8 +242,13 @@ search-sprite() {
     width: 215px;
 }
 
-[data-page-type~="root"] .mkt-header--title {
-    display: none;
+[data-page-type~="homepage"],
+[data-page-type~="app-categories"],
+[data-page-type~="site-categories"],
+[data-page-type~="purchases"] {
+    .mkt-header--title {
+        display: none;
+    }
 }
 
 .nav-menu-recommended,

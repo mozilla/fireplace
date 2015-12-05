@@ -1,6 +1,6 @@
 define('views/new_websites',
-    ['core/l10n', 'utils_local'],
-    function(l10n, utils) {
+    ['core/l10n'],
+    function(l10n) {
     'use strict';
     var gettext = l10n.gettext;
 
@@ -9,7 +9,7 @@ define('views/new_websites',
 
         builder.z('type', 'root new site-categories nav-websites');
         builder.z('title', title);
-        utils.headerTitle(title);
+
         builder.start('product_list.html', {
             productListType: 'newWebsites',
             endpoint_name: 'search',
