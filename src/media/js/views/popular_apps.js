@@ -8,7 +8,7 @@ define('views/popular_apps',
     return function(builder, args, params) {
         var title = gettext('Popular Apps');
 
-        builder.z('type', 'root app-list popular nav-apps');
+        builder.z('type', 'root app-list popular app-categories nav-apps');
         builder.z('title', title);
 
         builder.start('product_list.html', {
