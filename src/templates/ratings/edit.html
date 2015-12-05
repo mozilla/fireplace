@@ -1,13 +1,13 @@
 {% from "ratings/add.html" import review_prompt %}
 
 {% if not settings.meowEnabled %}
-  <header class="secondary-header">
+  <header class="secondary-header hide-on-mobile-tablet">
     <h2>{{ _('Edit Review') }}</h2>
   </header>
 {% endif %}
 
 {% defer (url=endpoint, id='main') %}
-  <div class="main add-review">
+  <div class="main add-review mobile-margined">
     {{ review_prompt(slug, false, normalize(this)) }}
   </div>
 {% placeholder %}
