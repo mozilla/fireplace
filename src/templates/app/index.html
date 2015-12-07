@@ -14,13 +14,6 @@
   <section class="main full app-info">
     <div class="detail-flex-wrap">
       <div class="detail-left-side">
-        {% if app.banner_regions and app.banner_message and
-              app.banner_regions.indexOf(user_helpers.region()) != -1 %}
-          <section class="region-banner">
-            <div>{{ app.banner_message|translate(app)|safe }}</div>
-          </section>
-        {% endif %}
-
         {% if app.description %}
           <section class="prose">
             <div>
