@@ -153,11 +153,11 @@ casper.test.begin('Test platform selector dropdown persist for site', {
 
         platformSelectorSetUp(function() {
             selectOption('firefoxos');
-            casper.click('.mkt-wordmark');
+            casper.click('.header-back-btn');
         });
 
         casper.waitForSelector('[data-page-type~="homepage"]', function() {
-            casper.click('[data-mkt-nav--item="popular"] a');
+            casper.click('.global-nav-link[data-nav-type="apps"]');
         });
 
         casper.waitForSelector('.app-list', function() {

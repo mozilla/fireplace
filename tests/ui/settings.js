@@ -16,7 +16,7 @@ casper.test.begin('Test settings', {
             helpers.fake_login();
         });
 
-        casper.waitUntilVisible('.account-settings .logout', function() {
+        casper.waitUntilVisible('.account-settings .account-settings-save', function() {
             test.assertNotVisible('.account-settings .persona');
             test.assertVisible('.account-settings-save button[type="submit"]');
             test.assertVisible('.account-settings .settings-email');
@@ -35,13 +35,16 @@ casper.test.begin('Test settings', {
                 'hello my name is rob hudson'
             );
 
-            casper.click('.account-settings-save .logout');
+            casper.click('.global-nav-menu [data-nav-type="more"]');
+        });
+
+        casper.waitUntilVisible('.more-menu-overlay.overlay-visible', function() {
+            casper.click('.logout');
         });
 
         casper.waitUntilVisible('.account-settings', function() {
             test.assertSelectorHasText('.account-settings-save .login', 'Sign In');
             test.assertSelectorHasText('.account-settings-save .register', 'Register');
-            test.assertNotVisible('.account-settings-save .logout');
         });
 
         helpers.done(test);
@@ -91,7 +94,7 @@ casper.test.begin('Test settings recommendations', {
         });
 
         // Sign out.
-        casper.thenClick('.account-settings-save .logout', function() {
+        casper.thenClick('.more-menu-overlay .logout', function() {
             // Test logging out removes the body class.
             test.assertNotExists('body.show-recommendations');
         });

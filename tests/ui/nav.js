@@ -1,6 +1,6 @@
 function navSetUp(cb) {
     helpers.waitForPageLoaded(function() {
-        casper.waitForSelector('mkt-nav', cb);
+        casper.waitForSelector('#navigation', cb);
     });
 }
 
@@ -18,8 +18,10 @@ casper.test.begin('Test more menu toggle', {
             test.assertExists('.more-menu-overlay.overlay-visible');
 
             // It closes when we click the close button.
-            casper.click('.overlay-close');
-            test.assertDoesntExist('.more-menu-overlay.overlay-visible');
+            casper.waitForSelector('.overlay-close', function() {
+                casper.click('.overlay-close');
+                test.assertDoesntExist('.more-menu-overlay.overlay-visible');
+            });
 
             // It closes when click link.
             casper.click('.global-nav-menu [data-nav-type="more"]');

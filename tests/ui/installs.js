@@ -268,8 +268,8 @@ installAttributionTestDefs.forEach(function(testDef) {
 
             var app;
             helpers.waitForPageLoaded(function() {
-                app = appList.getAppData('.install');
-                casper.click('.install');
+                app = appList.getAppData('[data-content-type="app"] .install');
+                casper.click('[data-content-type="app"] .install');
 
                 assertUAInstall(test,
                     'Click to install app',
