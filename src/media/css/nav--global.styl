@@ -225,11 +225,16 @@ desktop-link-active() {
     height: 40px;
     opacity: 0;
     position: fixed;
-    right: 20px;
     transition: 200ms opacity ease;
     width: 40px;
     z-index: 110;
 
+    +ltr() {
+        right: 20px;
+    }
+    +rtl() {
+        left: 20px;
+    }
     &.overlay-close-visible {
         opacity: 1;
     }
