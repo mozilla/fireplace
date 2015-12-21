@@ -177,7 +177,7 @@
             <dt>{{ _('Categories') }}</dt>
             {% for category in this.categories %}
               {# L10n: delimiter to separate list of words (e.g., "eggs, ham, cheese"). #}
-              <dd data-delimiter="{{ _(',') }}">{{ category.name }}</dd>
+              <dd data-delimiter="{{ _(',') }}"><a href="{{ url('category', [category.slug]) }}">{{ category.name }}</a></dd>
             {% endfor %}
           </dl>
           {% if this.is_packaged and this.file_size %}
