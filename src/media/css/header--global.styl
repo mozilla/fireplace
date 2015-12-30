@@ -1,9 +1,9 @@
 @import 'lib';
 
-$symbol-height = 32px;
+$symbol-height = 28px;
 search-sprite() {
     image-replacement('../img/nav/search.svg', $symbol-height, $symbol-height);
-    background-size: $symbol-height 64px;
+    background-size: $symbol-height 56px;
 }
 
 .global-header {
@@ -33,7 +33,7 @@ search-sprite() {
             opacity: 0;
         }
         .mkt-search-btn {
-            background-position: 0 -32px;
+            background-position: 0 (-1 * $symbol-height);
         }
         .header-categories-btn {
             display: none;
@@ -43,7 +43,7 @@ search-sprite() {
 
 // Marketplace logo.
 .mkt-wordmark {
-    image-replacement('../img/nav/header-logo.svg', 34px, $symbol-height);
+    image-replacement('../img/nav/header-logo.svg', $symbol-height, $symbol-height);
     background-size: cover;
     position: relative;
     top: 2px;
@@ -54,10 +54,16 @@ search-sprite() {
     search-sprite();
     z-index: 3;
 
+    +ltr() {
+        margin-left: 4px;
+    }
+    +rtl() {
+        margin-right: 4px;
+    }
     &:hover,
     &.header-nav-link-active,
     &:active {
-        background-position: 0 -32px;
+        background-position: 0 (-1 * $symbol-height);
     }
 }
 
@@ -65,7 +71,7 @@ search-sprite() {
 .global-nav-menu-desktop {
     .mkt-search-btn:active {
         search-sprite();
-        background-position: 0 -32px;
+        background-position: 0 (-1 * $symbol-height);
     }
 }
 
