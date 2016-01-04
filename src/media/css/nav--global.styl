@@ -6,6 +6,11 @@ desktop-link-active() {
     text-decoration: none;
 }
 
+menu-item-active() {
+    border-radius: 5px;
+    background-color: rgba(255,255,255,.3);
+}
+
 .global-nav {
     bottom: 10px;
     height: 60px;
@@ -153,10 +158,10 @@ desktop-link-active() {
         list-style: none;
     }
     li {
-        padding: 0 0 0 5px;
+        padding: 0 0 0 10px;
 
         +rtl() {
-            padding: 0 5px 0 0;
+            padding: 0 10px 0 0;
         }
     }
     &.above { // Overlay will slide in from the top.
@@ -208,6 +213,9 @@ desktop-link-active() {
             }
         }
     }
+    .overlay-menu-active {
+        menu-item-active();
+    }
 }
 
 .more-menu-overlay {
@@ -247,6 +255,19 @@ desktop-link-active() {
 .global-nav-menu-desktop,
 .settings-menu-desktop {
     display: none;
+}
+
+[data-page-type~="homepage"] [data-page="home"],
+[data-page-type~="nav-apps"]:not([data-page-type~="recommended"]) [data-page="apps"],
+[data-page-type~="nav-addons"] [data-page="addons"],
+[data-page-type~="nav-websites"] [data-page="websites"],
+[data-page-type~="feedback"] [data-page="feedback"],
+[data-page-type~="settings"]:not([data-page-type~="purchases"]):not([data-page-type~="feedback"]) [data-page="settings"],
+[data-page-type~="recommended"] [data-page="recommended"],
+[data-page-type~="purchases"] [data-page="purchases"],
+[data-page-type~="terms"] [data-page="terms"],
+[data-page-type~="privacy"] [data-page="privacy"] {
+    menu-item-active();
 }
 
 // TODO: Define this breakpoint.
@@ -425,5 +446,8 @@ desktop-link-active() {
     // Hide popular apps (all categories) link on desktop.
     .full-screen-overlay .cat-menu-all a {
         display: none;
+    }
+    .full-screen-overlay li {
+        padding: 0;
     }
 }

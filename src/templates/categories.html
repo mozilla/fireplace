@@ -4,7 +4,7 @@
       <a href="{{ url('popular_apps') }}">{{ _('Categories') }}</a>
     </li>
     {% for cat in categories %}
-      <li>
+      <li data-cat="{{ cat.slug }}">
         <a href="{{ url('category', [cat.slug]) }}">{{ cat.name }}</a>
       </li>
     {% endfor %}
@@ -14,7 +14,7 @@
       <a href="{{ url('popular_websites') }}">{{ _('Categories') }}</a>
     </li>
     {% for cat in categories %}
-      <li>
+      <li data-cat="{{ cat.slug }}">
         <a href="{{ url('category_websites', [cat.slug]) }}">{{ cat.name }}</a>
       </li>
     {% endfor %}

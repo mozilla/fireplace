@@ -9,7 +9,7 @@ define('views/privacy',
         var title = gettext('Privacy Policy');
 
         builder.start('privacy.html');
-        builder.z('type', 'leaf');
+        builder.z('type', 'leaf privacy');
         builder.z('title', title);
         utilsLocal.headerTitle(title);
     };

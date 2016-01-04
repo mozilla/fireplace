@@ -52,12 +52,12 @@
 {# Mobile "More" Menu #}
 <div class="full-screen-overlay below more-menu-overlay">
   <ul class="nav-more-menu">
-    <li><a href="/">{{ _('Home') }}</a></li>
-    <li><a href="{{ url('popular_apps') }}">{{ _('Apps') }}</a></li>
+    <li data-page="home"><a href="/">{{ _('Home') }}</a></li>
+    <li data-page="apps"><a href="{{ url('popular_apps') }}">{{ _('Apps') }}</a></li>
     {% if addonsEnabled %}
-      <li><a href="{{ url('addons') }}">{{ _('Add-ons') }}</a></li>
+      <li data-page="addons"><a href="{{ url('addons') }}">{{ _('Add-ons') }}</a></li>
     {% endif %}
-    <li><a href="{{ url('popular_websites') }}">{{ _('Sites') }}</a></li>
+    <li data-page="websites"><a href="{{ url('popular_websites') }}">{{ _('Sites') }}</a></li>
     {% if homescreensEnabled %}
       <li><a href="{{ url('homescreens') }}">{{ _('Homescreens') }}</a></li>
     {% endif %}
@@ -68,16 +68,16 @@
     <li class="more-menu-sign-in nav--settings--logged-out">
       <a class="persona">{{ _('Sign in') }}</a>
     </li>
-    <li class="more-menu-settings nav--settings--logged-in">
+    <li data-page="settings" class="more-menu-settings nav--settings--logged-in">
       <a href="{{ url('settings') }}">{{ _('Settings') }}</a>
     </li>
-    <li class="more-menu-recommended nav--settings--logged-in">
+    <li data-page="recommended" class="more-menu-recommended nav--settings--logged-in">
       <a href="{{ url('recommended') }}">{{ _('Recommended Apps') }}</a>
     </li>
-    <li class="more-menu-my-apps nav--settings--logged-in">
+    <li data-page="purchases" class="more-menu-my-apps nav--settings--logged-in">
       <a href="{{ url('purchases') }}">{{ _('My Apps') }}</a>
     </li>
-    <li class="more-menu-feedback"><a href="{{ url('feedback') }}">{{ _('Feedback') }}</a></li>
+    <li data-page="feedback" class="more-menu-feedback"><a href="{{ url('feedback') }}">{{ _('Feedback') }}</a></li>
     <li class="more-menu-sign-out nav--settings--logged-in"><a class="logout">{{ _('Sign out') }}</a></li>
     {% if user.get_permission('developer') %}
       <li><a href="/developers/submissions" rel="external">{{ _('My Submissions') }}</a></li>
@@ -89,7 +89,7 @@
       <li><a href="/lookup/" rel="external">{{ _('Lookup Tool') }}</a></li>
     {% endif %}
     <li class="overlay-divider"></li>
-    <li><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>
-    <li><a href="{{ url('terms') }}">{{ _('Terms of Use') }}</a></li>
+    <li data-page="privacy"><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>
+    <li data-page="terms"><a href="{{ url('terms') }}">{{ _('Terms of Use') }}</a></li>
   </ul>
 </div>

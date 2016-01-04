@@ -47,6 +47,10 @@ define('views/category',
             }),
             sort: params.sort,
             source: params.sort ? newSrc: popularSrc,
+        }).done(function() {
+            var $catMenu = $('.cat-menu-overlay');
+            $catMenu.find('li').removeClass('overlay-menu-active');
+            $catMenu.find('[data-cat="' + slug + '"]').addClass('overlay-menu-active');
         });
 
         trackingEvents.trackCategoryHit(slug);

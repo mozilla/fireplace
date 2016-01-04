@@ -8,7 +8,7 @@ define('views/terms',
     return function(builder) {
         builder.start('terms.html');
 
-        builder.z('type', 'leaf');
+        builder.z('type', 'leaf terms');
         var title = gettext('Terms of Use');
         builder.z('title', title);
         utilsLocal.headerTitle(title);
