@@ -242,9 +242,11 @@ define('buttons',
 
             }).fail(function() {
                 // L10n: App's install failed, but problem is temporary.
-                notification.notification({
-                    message: gettext('Install failed. Please try again later.')
-                });
+                if (!caps.firefoxOS) {
+                    notification.notification({
+                        message: gettext('Install failed. Please try again later.')
+                    });
+                }
 
                 // Could not record/generate receipt!
                 console.error('Could not generate receipt or record install for', product.name);
