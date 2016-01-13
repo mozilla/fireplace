@@ -1,10 +1,10 @@
 <section class="main">
-  <div class="subheader">
+  <div class="subheader hide-on-mobile-tablet">
     <h1>{{ _('Terms of Use') }}</h1>
   </div>
 </section>
 
-<section class="site-terms-of-use main full prose">
+<section class="site-terms-of-use main full prose mobile-margined">
   {% set url = '/docs/terms/' + language + '.html?20151106' %}
   {% set fallback = '/docs/terms/' + settings.default_locale + '.html?20151106' %}
   {% fetch (url=media(url), fallback=media(fallback), filters=['rewriteCdnUrls']) %}
