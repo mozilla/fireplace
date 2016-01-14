@@ -197,9 +197,6 @@ define('buttons',
                     if ($button.hasClass('spinning')) {
                         logger.log('Spinner timeout for ', product.name);
                         revertButton($button);
-                        notification.notification({
-                            message: gettext('Sorry, we had trouble fetching this app\'s data. Please try again later.')
-                        });
                     }
                 }, 25000);
             }
