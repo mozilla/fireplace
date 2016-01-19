@@ -5,6 +5,13 @@
 </section>
 
 <section class="site-privacy-policy main full prose mobile-margined">
+  {% if language == 'ro-RO' %}
+    {% set language = 'ro' %}
+  {% endif %}
+  {% if settings.default_locale == 'ro-RO' %}
+    {% set language = 'ro' %}
+  {% endif %}
+
   {% set url = '/docs/privacy/' + language + '.html?20151106' %}
   {% set fallback = '/docs/privacy/' + settings.default_locale + '.html?20151106' %}
   {% fetch (url=media(url), fallback=media(fallback), filters=['rewriteCdnUrls']) %}
