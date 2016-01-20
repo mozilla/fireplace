@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-06T22:19:37.446Z\n"
+"POT-Creation-Date: 2016-01-20T19:47:16.843Z\n"
 "PO-Revision-Date: 2015-11-03 11:41+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <team@aviary.pl>\n"
@@ -13,26 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 1.5\n"
-
-#: /templates/categories.html:3 /templates/categories.html:13 /templates/header.html:9 /templates/header.html:10 /templates/nav.html:42 /templates/app/index.html:176
-msgid "Categories"
-msgstr "Kategorie"
-
-#: /templates/category.html:9 /templates/category.html:19 /templates/product_list.html:9 /templates/product_list.html:14 /templates/purchases.html:7 /templates/search.html:9 /templates/search.html:16
-msgid "Expand"
-msgstr "Rozwiń"
-
-#: /templates/category.html:42 /templates/search.html:67
-msgid "No results found"
-msgstr "Nic nie znaleziono"
-
-#: /templates/category.html:47
-msgid "The category you requested does not exist."
-msgstr "Żądana kategoria nie istnieje."
-
-#: /templates/category.html:49 /templates/carrier.html:37 /templates/langpacks.html:41 /templates/product_list.html:48 /templates/purchases.html:35 /templates/addon/list.html:33
-msgid "An internal server error occurred. Please try again later."
-msgstr "Wystąpił wewnętrzny błąd serwera. Spróbuj ponownie później"
 
 #: /templates/carrier.html:6 /media/js/views/carrier.js:14
 msgid "Free Carrier Apps"
@@ -45,6 +25,26 @@ msgstr "Twój operator oferuje te darmowe aplikacje. Możesz pobrać je bez opł
 #: /templates/carrier.html:30 /templates/carrier.html:35
 msgid "No apps found."
 msgstr "Nie znaleziono aplikacji."
+
+#: /templates/carrier.html:37 /templates/category.html:49 /templates/langpacks.html:41 /templates/purchases.html:35 /templates/product_list.html:48 /templates/addon/list.html:33
+msgid "An internal server error occurred. Please try again later."
+msgstr "Wystąpił wewnętrzny błąd serwera. Spróbuj ponownie później"
+
+#: /templates/categories.html:3 /templates/categories.html:13 /templates/header.html:9 /templates/header.html:10 /templates/nav.html:42 /templates/app/index.html:176
+msgid "Categories"
+msgstr "Kategorie"
+
+#: /templates/category.html:9 /templates/category.html:19 /templates/purchases.html:7 /templates/product_list.html:9 /templates/product_list.html:14 /templates/search.html:9 /templates/search.html:16
+msgid "Expand"
+msgstr "Rozwiń"
+
+#: /templates/category.html:42 /templates/search.html:67
+msgid "No results found"
+msgstr "Nic nie znaleziono"
+
+#: /templates/category.html:47
+msgid "The category you requested does not exist."
+msgstr "Żądana kategoria nie istnieje."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -107,12 +107,12 @@ msgstr ""
 "Wyłączając miejsca, gdzie wskazano <a href=\"{legal_url}\" target=\"_blank\">inaczej</a>, zawartość tej witryny jest dostępna na licencji <a href=\"{cc_url}\" target=\"_blank\">Creative Commons "
 "Attribution Share-Alike License wer. 3.0</a> lub dowolnej nowszej wersji."
 
-#: /templates/footer.html:40 /templates/nav.html:91 /templates/settings.html:70 /templates/privacy.html:2 /templates/app/index.html:74 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
+#: /templates/footer.html:40 /templates/privacy.html:2 /templates/nav.html:91 /templates/settings.html:70 /templates/app/privacy.html:2 /templates/app/index.html:74 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Polityka prywatności"
 
-#: /templates/footer.html:41 /templates/nav.html:92 /templates/settings.html:71 /templates/terms.html:2 /media/js/views/terms.js:12
+#: /templates/footer.html:41 /templates/nav.html:92 /templates/terms.html:2 /templates/settings.html:71 /media/js/views/terms.js:12
 msgid "Terms of Use"
 msgstr "Warunki korzystania"
 
@@ -139,6 +139,22 @@ msgstr "Moje aplikacje"
 #: /templates/header.html:47
 msgid "Sign Out"
 msgstr "Wyloguj"
+
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Musisz użyć Firefoksa, by instalować aplikacje dla Firefoksa."
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "Pobierz"
+
+#: /templates/langpacks.html:34 /templates/langpacks.html:39
+msgid "No language packs found."
+msgstr "Nie znaleziono pakietów językowych."
+
+#: /templates/marketplace-update.html:2
+msgid "An update to Marketplace is available."
+msgstr "Dostępna jest aktualizacja Marketplace."
 
 #: /templates/nav.html:9 /templates/nav.html:55
 msgid "Apps"
@@ -176,11 +192,11 @@ msgstr "Nowe"
 msgid "Recommended Apps"
 msgstr ""
 
-#: /templates/nav.html:45 /templates/nav.html:65 /templates/settings.html:43 /templates/purchases.html:42
+#: /templates/nav.html:45 /templates/nav.html:65 /templates/purchases.html:42 /templates/settings.html:43
 msgid "Register"
 msgstr "Zarejestruj się"
 
-#: /templates/nav.html:46 /templates/settings.html:44 /templates/purchases.html:43
+#: /templates/nav.html:46 /templates/purchases.html:43 /templates/settings.html:44
 msgid "Sign In"
 msgstr "Zaloguj"
 
@@ -191,22 +207,6 @@ msgstr ""
 #: /templates/nav.html:80
 msgid "Sign out"
 msgstr ""
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Musisz użyć Firefoksa, by instalować aplikacje dla Firefoksa."
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "Pobierz"
-
-#: /templates/langpacks.html:34 /templates/langpacks.html:39
-msgid "No language packs found."
-msgstr "Nie znaleziono pakietów językowych."
-
-#: /templates/marketplace-update.html:2
-msgid "An update to Marketplace is available."
-msgstr "Dostępna jest aktualizacja Marketplace."
 
 #: /templates/newsletter.html:3
 msgid "Sign up for our newsletter"
@@ -235,6 +235,22 @@ msgstr "Dziękujemy za zamówienie!"
 #: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Otrzymasz e-mail z adresu mozilla@e.mozilla.org. Sprawdź w swojej skrzynce pierwszy e-mail od nas. Jeśli go nie widzisz, sprawdź filtr antyspamowy."
+
+#: /templates/purchases.html:41
+msgid "You must be signed in to view your apps."
+msgstr "Musisz się zalogować, by wyświetlić swoje aplikacje."
+
+#: /templates/purchases.html:30
+msgid "You have no apps"
+msgstr "Nie masz aplikacji"
+
+#: /templates/purchases.html:34 /templates/errors/fragment.html:1 /media/js/views/app.js:47
+msgid "Oh no!"
+msgstr "O nie!"
+
+#: /templates/product_list.html:41 /templates/product_list.html:46
+msgid "The list returned no results."
+msgstr ""
 
 #: /templates/settings.html:9
 msgid "General settings"
@@ -280,22 +296,6 @@ msgstr "Dołącz do nas"
 msgid "Region"
 msgstr "Region"
 
-#: /templates/product_list.html:41 /templates/product_list.html:46
-msgid "The list returned no results."
-msgstr ""
-
-#: /templates/purchases.html:41
-msgid "You must be signed in to view your apps."
-msgstr "Musisz się zalogować, by wyświetlić swoje aplikacje."
-
-#: /templates/purchases.html:30
-msgid "You have no apps"
-msgstr "Nie masz aplikacji"
-
-#: /templates/purchases.html:34 /templates/errors/fragment.html:1 /media/js/views/app.js:47
-msgid "Oh no!"
-msgstr "O nie!"
-
 #: /templates/search.html:8
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
@@ -339,6 +339,16 @@ msgstr "Twój dostawca oferuje darmowe aplikacje."
 msgid "Get them now!"
 msgstr "Pobierz je teraz!"
 
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Ocena treści"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Szczegóły oceny"
+
 #: /templates/_includes/os_x_banner.html:2
 msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
 msgstr "Twoja ustawienia komputera Mac mogą uniemożliwiać instalację aplikacji, które nie pochodzą z Mac App Store."
@@ -367,16 +377,6 @@ msgstr "Uruchom tę aplikację z <b>pulpitu Windows</b> lub menu <b>Start &#9658
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Uruchom tę aplikację z <b>panelu głównego</b>, <b>aktywatora aplikacji</b> lub <b>menu Aplikacje</b>"
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Ocena treści"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Szczegóły oceny"
-
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
 msgstr "Edytuj swoją opinię"
@@ -403,69 +403,6 @@ msgid_plural "{numReviews} Reviews"
 msgstr[0] "1 opinia"
 msgstr[1] "{numReviews} opinie"
 msgstr[2] "{numReviews} opinii"
-
-#: /templates/_macros/app_tile.html:107
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Opinia"
-msgstr[1] "Opinie"
-msgstr[2] "Opinie"
-
-#: /templates/_macros/app_tile.html:113
-msgid "Not yet reviewed"
-msgstr "Jeszcze nie sprawdzono"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:72 /media/js/buttons.js:411
-msgid "Free"
-msgstr "Bezpłatne"
-
-#: /templates/_macros/feed_item.html:86 /templates/_macros/feed_item.html:179
-msgid "View all"
-msgstr "Zobacz wszystkie"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Pobierz więcej"
-
-#: /templates/_macros/feed_websites.html:16
-msgid "Visit this top site!"
-msgstr "Odwiedź te stronę!"
-
-#: /templates/_macros/feed_websites.html:50
-msgid "Show me another site"
-msgstr "Pokaż mi inną stronę"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Dla poprzedniej wersji {version}"
-
-#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
-msgid "Edit"
-msgstr "Edytuj"
-
-#: /templates/_macros/review.html:36
-msgid "Delete"
-msgstr "Usuń"
-
-#: /templates/_macros/review.html:42
-msgid "Report"
-msgstr "Zgłoś"
-
-#: /templates/_macros/review.html:44
-msgid "Flagged for review"
-msgstr "Oznaczono do sprawdzenia"
-
-#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr "Zrzut {app_name}"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Oceniono jako {stars}/{maxstars}"
 
 #: /templates/addon/abuse.html:6
 msgid "Let us know if this add-on is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
@@ -502,6 +439,101 @@ msgstr "aktualizacja: {date}"
 #: /templates/addon/index.html:36 /media/js/views/addon/abuse.js:33
 msgid "Report to Mozilla"
 msgstr ""
+
+#: /templates/addon/list.html:6
+msgid "Customize your device with powerful features."
+msgstr "Dostosuj swoje urządzenie z zaawansowanymi funkcjami."
+
+#: /templates/addon/list.html:26 /templates/addon/list.html:31
+msgid "No Firefox OS add-ons found."
+msgstr "Nie znaleziono dodatków Firefox OS."
+
+#: /templates/_macros/app_tile.html:107
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Opinia"
+msgstr[1] "Opinie"
+msgstr[2] "Opinie"
+
+#: /templates/_macros/app_tile.html:113
+msgid "Not yet reviewed"
+msgstr "Jeszcze nie sprawdzono"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:72 /media/js/buttons.js:410
+msgid "Free"
+msgstr "Bezpłatne"
+
+#: /templates/_macros/feed_item.html:86 /templates/_macros/feed_item.html:179
+msgid "View all"
+msgstr "Zobacz wszystkie"
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr "Odwiedź te stronę!"
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr "Pokaż mi inną stronę"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Pobierz więcej"
+
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
+msgstr "Zrzut {app_name}"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Dla poprzedniej wersji {version}"
+
+#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
+msgid "Edit"
+msgstr "Edytuj"
+
+#: /templates/_macros/review.html:36
+msgid "Delete"
+msgstr "Usuń"
+
+#: /templates/_macros/review.html:42
+msgid "Report"
+msgstr "Zgłoś"
+
+#: /templates/_macros/review.html:44
+msgid "Flagged for review"
+msgstr "Oznaczono do sprawdzenia"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Oceniono jako {stars}/{maxstars}"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr "Chcesz coś zgłosić?"
+
+#: /templates/app/abuse.html:7
+msgid "Let us know if this app is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
+msgstr "Daj nam znać, jeśli ta aplikacja robi coś niedozwolonego <a href=\"{criteria_url}\">kryteriach sprawdzenia</a> i powinna zostać usunięta z Marketplace."
+
+#: /templates/app/abuse.html:12
+msgid "Examples of issues to report here are if the app is broken, contains mature content, contains malware, etc. The app developer will not see your comments."
+msgstr "Przykładowe problemy do zgłoszenia tutaj to aplikacja uszkodzona, zawierająca treści dla dorosłych, złośliwe oprogramowanie itp. Autor aplikacji nie zobaczy twoich komentarzy."
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Wróć do aplikacji"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Wczytywanie polityki prywatności…"
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Dziękujemy za zakup"
 
 #: /templates/app/index.html:35
 msgid "Updates"
@@ -580,41 +612,9 @@ msgstr "Najnowsza wersja"
 msgid "Report Abuse"
 msgstr "Zgłoś nadużycie"
 
-#: /templates/addon/list.html:6
-msgid "Customize your device with powerful features."
-msgstr "Dostosuj swoje urządzenie z zaawansowanymi funkcjami."
-
-#: /templates/addon/list.html:26 /templates/addon/list.html:31
-msgid "No Firefox OS add-ons found."
-msgstr "Nie znaleziono dodatków Firefox OS."
-
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr "Chcesz coś zgłosić?"
-
-#: /templates/app/abuse.html:7
-msgid "Let us know if this app is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
-msgstr "Daj nam znać, jeśli ta aplikacja robi coś niedozwolonego <a href=\"{criteria_url}\">kryteriach sprawdzenia</a> i powinna zostać usunięta z Marketplace."
-
-#: /templates/app/abuse.html:12
-msgid "Examples of issues to report here are if the app is broken, contains mature content, contains malware, etc. The app developer will not see your comments."
-msgstr "Przykładowe problemy do zgłoszenia tutaj to aplikacja uszkodzona, zawierająca treści dla dorosłych, złośliwe oprogramowanie itp. Autor aplikacji nie zobaczy twoich komentarzy."
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Wróć do aplikacji"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Wczytywanie polityki prywatności…"
-
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
 msgstr "Wystąpił błąd."
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Dziękujemy za zakup"
 
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
@@ -628,7 +628,7 @@ msgstr "Ups! Coś poszło nie tak i nastąpił tutaj koniec. Przepraszamy!"
 msgid "Try Again"
 msgstr "Spróbuj ponownie"
 
-#: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
+#: /templates/ratings/edit.html:4 /templates/ratings/add.html:8 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "Edytuj opinię"
 
@@ -692,22 +692,6 @@ msgstr "Niewłaściwie umieszczona prośba o pomoc lub zgłoszenie błędu"
 msgid "This app has no reviews."
 msgstr "Ta aplikacja nie ma opinii."
 
-#: /templates/website/index.html:34
-msgid "Explore more in {category_one} and {category_two}."
-msgstr "Odkryj więcej w {category_one} i {category_two}."
-
-#: /templates/website/index.html:38
-msgid "Explore more in {category}."
-msgstr "Odkryj więcej w {category}."
-
-#: /templates/website/index.html:47
-msgid "Is there something wrong or out-of-date with this website listing?"
-msgstr "Czy na tej stronie są jakieś problemy lub jest nieaktualna?"
-
-#: /templates/website/index.html:49 /templates/website/issue.html:14
-msgid "Report an issue"
-msgstr "Zgłoś problem"
-
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Ocena aplikacji"
@@ -724,6 +708,71 @@ msgstr "Informacje związane ze zgłaszaniem problemów z prawem autorskim lub z
 msgid "Describe the issue here. Please be specific."
 msgstr "Opisz tutaj swój problem. Podaj konkrety."
 
+#: /templates/website/issue.html:14 /templates/website/index.html:49
+msgid "Report an issue"
+msgstr "Zgłoś problem"
+
+#: /templates/website/index.html:34
+msgid "Explore more in {category_one} and {category_two}."
+msgstr "Odkryj więcej w {category_one} i {category_two}."
+
+#: /templates/website/index.html:38
+msgid "Explore more in {category}."
+msgstr "Odkryj więcej w {category}."
+
+#: /templates/website/index.html:47
+msgid "Is there something wrong or out-of-date with this website listing?"
+msgstr "Czy na tej stronie są jakieś problemy lub jest nieaktualna?"
+
+#: /media/js/buttons.js:91 /media/js/buttons.js:163 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Anulowano płatność."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/buttons.js:244
+msgid "Install failed. Please try again later."
+msgstr "Instalacja nie powiodła się. Spróbuj ponownie później."
+
+#: /media/js/buttons.js:329 /media/js/buttons.js:334 /media/js/buttons.js:433 /media/js/buttons.js:437
+msgid "Installed"
+msgstr "Zainstalowane"
+
+#: /media/js/buttons.js:410
+msgid "free"
+msgstr "bezpłatne"
+
+#: /media/js/buttons.js:415
+msgid "Unavailable"
+msgstr "Niedostępne"
+
+#: /media/js/buttons.js:433 /media/js/buttons.js:450 /media/js/buttons.js:460
+msgid "Install"
+msgstr "Zainstaluj"
+
+#: /media/js/buttons.js:438
+msgid "Install Add-on"
+msgstr ""
+
+#: /media/js/buttons.js:443
+msgid "Open website"
+msgstr "Otwórz stronę"
+
+#: /media/js/buttons.js:446
+msgid "Open app"
+msgstr "Otwórz aplikację"
+
+#: /media/js/buttons.js:448
+msgid "Install for free"
+msgstr "Zainstaluj za darmo"
+
+#: /media/js/buttons.js:452
+msgid "Install for {price}"
+msgstr "Instaluj za {price}"
+
+#: /media/js/buttons.js:458
+msgid "Open"
+msgstr "Otwórz"
+
 #: /media/js/apps.js:114
 msgid "not available for your region"
 msgstr "niedostępne w twoim regionie"
@@ -735,6 +784,26 @@ msgstr "niedostępne dla twojego systemu"
 #: /media/js/apps.js:123 /media/js/apps.js:128
 msgid "not compatible with your device"
 msgstr ""
+
+#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+msgid "All Platforms"
+msgstr "Wszystkie systemy"
+
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
+msgid "Android Mobile"
+msgstr "Telefon z Androidem"
+
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
+msgid "Android Tablet"
+msgstr "Tablet z Androidem"
+
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
+msgid "Desktop"
+msgstr "Desktop"
+
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
+msgid "Firefox OS"
+msgstr "Firefox OS"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -835,120 +904,6 @@ msgstr "Narzędzia"
 #: /media/js/categories.js:30
 msgid "Weather"
 msgstr "Pogoda"
-
-#: /media/js/buttons.js:91 /media/js/buttons.js:163 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Anulowano płatność."
-
-#: /media/js/buttons.js:201 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Przepraszamy, wystąpił problem z pobieraniem danych tej aplikacji. Spróbuj ponownie później."
-
-#. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:246
-msgid "Install failed. Please try again later."
-msgstr "Instalacja nie powiodła się. Spróbuj ponownie później."
-
-#: /media/js/buttons.js:330 /media/js/buttons.js:335 /media/js/buttons.js:434 /media/js/buttons.js:438
-msgid "Installed"
-msgstr "Zainstalowane"
-
-#: /media/js/buttons.js:411
-msgid "free"
-msgstr "bezpłatne"
-
-#: /media/js/buttons.js:416
-msgid "Unavailable"
-msgstr "Niedostępne"
-
-#: /media/js/buttons.js:434 /media/js/buttons.js:451 /media/js/buttons.js:461
-msgid "Install"
-msgstr "Zainstaluj"
-
-#: /media/js/buttons.js:439
-msgid "Install Add-on"
-msgstr ""
-
-#: /media/js/buttons.js:444
-msgid "Open website"
-msgstr "Otwórz stronę"
-
-#: /media/js/buttons.js:447
-msgid "Open app"
-msgstr "Otwórz aplikację"
-
-#: /media/js/buttons.js:449
-msgid "Install for free"
-msgstr "Zainstaluj za darmo"
-
-#: /media/js/buttons.js:453
-msgid "Install for {price}"
-msgstr "Instaluj za {price}"
-
-#: /media/js/buttons.js:459
-msgid "Open"
-msgstr "Otwórz"
-
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
-msgid "All Platforms"
-msgstr "Wszystkie systemy"
-
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
-msgid "Android Mobile"
-msgstr "Telefon z Androidem"
-
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
-msgid "Android Tablet"
-msgstr "Tablet z Androidem"
-
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
-msgid "Desktop"
-msgstr "Desktop"
-
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
-msgid "Firefox OS"
-msgstr "Firefox OS"
-
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:103
-msgid "For ages {0}+"
-msgstr "Wiek {0}+"
-
-#: /media/js/content-ratings.js:109
-msgid "Generic"
-msgstr "Rodzaj"
-
-#: /media/js/content-ratings.js:116
-msgid "For all ages"
-msgstr "Każdy wiek"
-
-#: /media/js/content-ratings.js:125
-msgid "Rating Pending"
-msgstr "Ocena oczekująca"
-
-#: /media/js/content-ratings.js:126
-msgid "Rating Refused"
-msgstr "Ocena odmowna"
-
-#: /media/js/content-ratings.js:129
-msgid "Everyone"
-msgstr "Wszyscy"
-
-#: /media/js/content-ratings.js:130
-msgid "Everyone 10+"
-msgstr "Wszyscy 10+"
-
-#: /media/js/content-ratings.js:131
-msgid "Teen"
-msgstr "Nastolatki"
-
-#: /media/js/content-ratings.js:132
-msgid "Mature 17+"
-msgstr "Młodociani 17+"
-
-#: /media/js/content-ratings.js:133
-msgid "Adults Only 18+"
-msgstr "Tylko dorośli 18+"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1328,6 +1283,47 @@ msgstr[0] "Załatw sprawy"
 msgstr[1] "Załatw sprawy"
 msgstr[2] "Załatw sprawy"
 
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:103
+msgid "For ages {0}+"
+msgstr "Wiek {0}+"
+
+#: /media/js/content-ratings.js:109
+msgid "Generic"
+msgstr "Rodzaj"
+
+#: /media/js/content-ratings.js:116
+msgid "For all ages"
+msgstr "Każdy wiek"
+
+#: /media/js/content-ratings.js:125
+msgid "Rating Pending"
+msgstr "Ocena oczekująca"
+
+#: /media/js/content-ratings.js:126
+msgid "Rating Refused"
+msgstr "Ocena odmowna"
+
+#: /media/js/content-ratings.js:129
+msgid "Everyone"
+msgstr "Wszyscy"
+
+#: /media/js/content-ratings.js:130
+msgid "Everyone 10+"
+msgstr "Wszyscy 10+"
+
+#: /media/js/content-ratings.js:131
+msgid "Teen"
+msgstr "Nastolatki"
+
+#: /media/js/content-ratings.js:132
+msgid "Mature 17+"
+msgstr "Młodociani 17+"
+
+#: /media/js/content-ratings.js:133
+msgid "Adults Only 18+"
+msgstr "Tylko dorośli 18+"
+
 #: /media/js/feed_websites.js:61
 msgid "{current} of {count}"
 msgstr "{current} z {count}"
@@ -1339,6 +1335,10 @@ msgstr "działa offline"
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
 msgstr "Nie można zainstalować spakowanych aplikacji"
+
+#: /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Przepraszamy, wystąpił problem z pobieraniem danych tej aplikacji. Spróbuj ponownie później."
 
 #: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
 msgid "App install error: {error}"
@@ -1456,21 +1456,17 @@ msgstr "Przepraszamy, jesteś teraz w trybie offline. Spróbuj ponownie późnie
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr "Przy następnym uruchomieniu aplikacji Firefox Marketplace zobaczysz zaktualizowaną wersję!"
 
-#: /media/js/views/app.js:17
-msgid "App Detail"
-msgstr "Szczegóły aplikacji"
-
 #: /media/js/views/addons.js:9 /media/js/views/addons.js:10
 msgid "Firefox OS Add-ons"
 msgstr "Dodatki Firefox OS"
 
+#: /media/js/views/app.js:17
+msgid "App Detail"
+msgstr "Szczegóły aplikacji"
+
 #: /media/js/views/feed_landing.js:16
 msgid "Collection Detail"
 msgstr "Szczegóły kolekcji"
-
-#: /media/js/views/new_apps.js:8
-msgid "New Apps"
-msgstr ""
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1480,20 +1476,8 @@ msgstr "Przesłano opinię. Dziękujemy!"
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Wystąpił problem z przesłaniem opinii. Spróbuj ponownie później."
 
-#: /media/js/views/new_websites.js:8
-msgid "New Sites"
-msgstr ""
-
-#: /media/js/views/popular_apps.js:9
-msgid "Popular Apps"
-msgstr ""
-
 #: /media/js/views/homescreens.js:8
 msgid "Popular Homescreens"
-msgstr ""
-
-#: /media/js/views/popular_websites.js:8
-msgid "Popular Sites"
 msgstr ""
 
 #: /media/js/views/langpacks.js:30
@@ -1504,13 +1488,25 @@ msgstr "Pakiety językowe"
 msgid "Firefox OS {version}"
 msgstr "Firefox OS {version}"
 
-#: /media/js/views/search.js:173
-msgid "Search Results"
-msgstr "Wyniki wyszukiwania"
+#: /media/js/views/new_apps.js:8
+msgid "New Apps"
+msgstr ""
 
-#: /media/js/views/search.js:186
-msgid "Developer Listing"
-msgstr "Strona programisty"
+#: /media/js/views/newsletter_signup.js:11
+msgid "Newsletter Signup"
+msgstr "Zgłoszenie na newsletter"
+
+#: /media/js/views/new_websites.js:8
+msgid "New Sites"
+msgstr ""
+
+#: /media/js/views/popular_apps.js:9
+msgid "Popular Apps"
+msgstr ""
+
+#: /media/js/views/popular_websites.js:8
+msgid "Popular Sites"
+msgstr ""
 
 #: /media/js/views/settings.js:41
 msgid "Your settings have been successfully saved"
@@ -1520,9 +1516,13 @@ msgstr "Twoje ustawienia zostały zapisane"
 msgid "Settings could not be saved"
 msgstr "Nie można zapisać ustawień"
 
-#: /media/js/views/newsletter_signup.js:11
-msgid "Newsletter Signup"
-msgstr "Zgłoszenie na newsletter"
+#: /media/js/views/search.js:173
+msgid "Search Results"
+msgstr "Wyniki wyszukiwania"
+
+#: /media/js/views/search.js:186
+msgid "Developer Listing"
+msgstr "Strona programisty"
 
 #: /media/js/views/website.js:11
 msgid "Website Detail"

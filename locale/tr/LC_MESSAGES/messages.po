@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-06T22:19:37.446Z\n"
+"POT-Creation-Date: 2016-01-20T19:47:16.843Z\n"
 "PO-Revision-Date: 2016-01-04 21:07+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: none\n"
@@ -14,26 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pontoon\n"
 "X-POOTLE-MTIME: 1440144460.0\n"
-
-#: /templates/categories.html:3 /templates/categories.html:13 /templates/header.html:9 /templates/header.html:10 /templates/nav.html:42 /templates/app/index.html:176
-msgid "Categories"
-msgstr "Kategoriler"
-
-#: /templates/category.html:9 /templates/category.html:19 /templates/product_list.html:9 /templates/product_list.html:14 /templates/purchases.html:7 /templates/search.html:9 /templates/search.html:16
-msgid "Expand"
-msgstr "Genişlet"
-
-#: /templates/category.html:42 /templates/search.html:67
-msgid "No results found"
-msgstr "Sonuç bulunamadı"
-
-#: /templates/category.html:47
-msgid "The category you requested does not exist."
-msgstr "İstediğiniz kategori mevcut değil."
-
-#: /templates/category.html:49 /templates/carrier.html:37 /templates/langpacks.html:41 /templates/product_list.html:48 /templates/purchases.html:35 /templates/addon/list.html:33
-msgid "An internal server error occurred. Please try again later."
-msgstr "Bir iç sunucu hatası oluştu. Lütfen sonra tekrar deneyin."
 
 #: /templates/carrier.html:6 /media/js/views/carrier.js:14
 msgid "Free Carrier Apps"
@@ -46,6 +26,26 @@ msgstr "Operatörünüz bu uygulamaları ücretsiz olarak sunuyor. Bu uygulamala
 #: /templates/carrier.html:30 /templates/carrier.html:35
 msgid "No apps found."
 msgstr "Hiç uygulama bulunamadı."
+
+#: /templates/carrier.html:37 /templates/category.html:49 /templates/langpacks.html:41 /templates/purchases.html:35 /templates/product_list.html:48 /templates/addon/list.html:33
+msgid "An internal server error occurred. Please try again later."
+msgstr "Bir iç sunucu hatası oluştu. Lütfen sonra tekrar deneyin."
+
+#: /templates/categories.html:3 /templates/categories.html:13 /templates/header.html:9 /templates/header.html:10 /templates/nav.html:42 /templates/app/index.html:176
+msgid "Categories"
+msgstr "Kategoriler"
+
+#: /templates/category.html:9 /templates/category.html:19 /templates/purchases.html:7 /templates/product_list.html:9 /templates/product_list.html:14 /templates/search.html:9 /templates/search.html:16
+msgid "Expand"
+msgstr "Genişlet"
+
+#: /templates/category.html:42 /templates/search.html:67
+msgid "No results found"
+msgstr "Sonuç bulunamadı"
+
+#: /templates/category.html:47
+msgid "The category you requested does not exist."
+msgstr "İstediğiniz kategori mevcut değil."
 
 #: /templates/feedback.html:5
 msgid "We want to hear from you!"
@@ -108,12 +108,12 @@ msgstr ""
 "Aksi <a href=\"{legal_url}\" target=\"_blank\">belirtilmedikçe</a>, bu sitedeki içerikler <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-Alike Lisansı v3.0</a> veya daha "
 "üst bir sürümle lisanslanmıştır."
 
-#: /templates/footer.html:40 /templates/nav.html:91 /templates/settings.html:70 /templates/privacy.html:2 /templates/app/index.html:74 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
+#: /templates/footer.html:40 /templates/privacy.html:2 /templates/nav.html:91 /templates/settings.html:70 /templates/app/privacy.html:2 /templates/app/index.html:74 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Gizlilik ilkeleri"
 
-#: /templates/footer.html:41 /templates/nav.html:92 /templates/settings.html:71 /templates/terms.html:2 /media/js/views/terms.js:12
+#: /templates/footer.html:41 /templates/nav.html:92 /templates/terms.html:2 /templates/settings.html:71 /media/js/views/terms.js:12
 msgid "Terms of Use"
 msgstr "Kullanım Koşulları"
 
@@ -140,6 +140,22 @@ msgstr "Uygulamalarım"
 #: /templates/header.html:47
 msgid "Sign Out"
 msgstr "Oturumu kapat"
+
+#: /templates/incompatible.html:1
+msgid "You must use Firefox to install Firefox apps."
+msgstr "Firefox uygulamalarını yüklemek için Firefox kullanmalısınız."
+
+#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "İndir"
+
+#: /templates/langpacks.html:34 /templates/langpacks.html:39
+msgid "No language packs found."
+msgstr "Hiç dil paketi bulunamadı."
+
+#: /templates/marketplace-update.html:2
+msgid "An update to Marketplace is available."
+msgstr "Marketplace için bir güncelleme var."
 
 #: /templates/nav.html:9 /templates/nav.html:55
 msgid "Apps"
@@ -177,11 +193,11 @@ msgstr "Yeni"
 msgid "Recommended Apps"
 msgstr "Önerilen uygulamalar"
 
-#: /templates/nav.html:45 /templates/nav.html:65 /templates/settings.html:43 /templates/purchases.html:42
+#: /templates/nav.html:45 /templates/nav.html:65 /templates/purchases.html:42 /templates/settings.html:43
 msgid "Register"
 msgstr "Kaydol"
 
-#: /templates/nav.html:46 /templates/settings.html:44 /templates/purchases.html:43
+#: /templates/nav.html:46 /templates/purchases.html:43 /templates/settings.html:44
 msgid "Sign In"
 msgstr "Giriş yap"
 
@@ -192,22 +208,6 @@ msgstr "Giriş yap"
 #: /templates/nav.html:80
 msgid "Sign out"
 msgstr "Çıkış yap"
-
-#: /templates/incompatible.html:1
-msgid "You must use Firefox to install Firefox apps."
-msgstr "Firefox uygulamalarını yüklemek için Firefox kullanmalısınız."
-
-#: /templates/incompatible.html:2 /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "İndir"
-
-#: /templates/langpacks.html:34 /templates/langpacks.html:39
-msgid "No language packs found."
-msgstr "Hiç dil paketi bulunamadı."
-
-#: /templates/marketplace-update.html:2
-msgid "An update to Marketplace is available."
-msgstr "Marketplace için bir güncelleme var."
 
 #: /templates/newsletter.html:3
 msgid "Sign up for our newsletter"
@@ -236,6 +236,22 @@ msgstr "Kaydolduğunuz için teşekkürler!"
 #: /templates/newsletter.html:35
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "mozilla@e.mozilla.org adresinden bir e-posta alacaksınız. Lütfen gelen kutunuzu kontrol edin. E-postayı göremezseniz spam filtrenizi kontrol edin."
+
+#: /templates/purchases.html:41
+msgid "You must be signed in to view your apps."
+msgstr "Uygulamalarınızı görmek için oturum açmalısınız."
+
+#: /templates/purchases.html:30
+msgid "You have no apps"
+msgstr "Hiç uygulamanız yok"
+
+#: /templates/purchases.html:34 /templates/errors/fragment.html:1 /media/js/views/app.js:47
+msgid "Oh no!"
+msgstr "Olamaz!"
+
+#: /templates/product_list.html:41 /templates/product_list.html:46
+msgid "The list returned no results."
+msgstr "Liste hiç sonuç döndürmedi."
 
 #: /templates/settings.html:9
 msgid "General settings"
@@ -281,22 +297,6 @@ msgstr "Aramıza Katılın"
 msgid "Region"
 msgstr "Bölge"
 
-#: /templates/product_list.html:41 /templates/product_list.html:46
-msgid "The list returned no results."
-msgstr "Liste hiç sonuç döndürmedi."
-
-#: /templates/purchases.html:41
-msgid "You must be signed in to view your apps."
-msgstr "Uygulamalarınızı görmek için oturum açmalısınız."
-
-#: /templates/purchases.html:30
-msgid "You have no apps"
-msgstr "Hiç uygulamanız yok"
-
-#: /templates/purchases.html:34 /templates/errors/fragment.html:1 /media/js/views/app.js:47
-msgid "Oh no!"
-msgstr "Olamaz!"
-
 #: /templates/search.html:8
 msgid "<b>{n}</b> Result"
 msgid_plural "<b>{n}</b> Results"
@@ -336,6 +336,16 @@ msgstr ""
 msgid "Get them now!"
 msgstr ""
 
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "İçerik uygunluğu"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:77
+msgid "Rating Details"
+msgstr "Puanlama ayrıntıları"
+
 #: /templates/_includes/os_x_banner.html:2
 msgid "Your Mac settings may prevent you from installing apps that do not come from the Mac App Store."
 msgstr "Mac ayarlarınız Mac App Store'dan gelmeyen uygulamaları yüklemenizi engelliyor olabilir."
@@ -364,16 +374,6 @@ msgstr "Bu uygulamayı <b>Windows masaüstünüzden</b> veya <b>Başlat &#9658; 
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Bu uygulamayı <b>dock</b>'unuzdan, <b>Uygulama seçiciden</b> veya <b>Uygulamalar menüsünden</b> çalıştırın."
 
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "İçerik uygunluğu"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:77
-msgid "Rating Details"
-msgstr "Puanlama ayrıntıları"
-
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
 msgstr "İncelemenizi düzenleyin"
@@ -398,67 +398,6 @@ msgstr "Tüm incelemeleri oku"
 msgid "1 Review"
 msgid_plural "{numReviews} Reviews"
 msgstr[0] "{numReviews} inceleme"
-
-#: /templates/_macros/app_tile.html:107
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "İnceleme"
-
-#: /templates/_macros/app_tile.html:113
-msgid "Not yet reviewed"
-msgstr "Henüz incelenmedi"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:72 /media/js/buttons.js:411
-msgid "Free"
-msgstr "Ücretsiz"
-
-#: /templates/_macros/feed_item.html:86 /templates/_macros/feed_item.html:179
-msgid "View all"
-msgstr "Tümünü göster"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Daha fazla yükle"
-
-#: /templates/_macros/feed_websites.html:16
-msgid "Visit this top site!"
-msgstr "Bu siteyi ziyaret edin!"
-
-#: /templates/_macros/feed_websites.html:50
-msgid "Show me another site"
-msgstr "Başka bir site göster"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Eski {version} sürümü için"
-
-#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
-msgid "Edit"
-msgstr "Düzenle"
-
-#: /templates/_macros/review.html:36
-msgid "Delete"
-msgstr "Sil"
-
-#: /templates/_macros/review.html:42
-msgid "Report"
-msgstr "Raporla"
-
-#: /templates/_macros/review.html:44
-msgid "Flagged for review"
-msgstr "İncelenmek üzere işaretlendi"
-
-#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr "{app_name} ekran görüntüsü"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "{maxstars} üzerinden {stars} puan almış"
 
 #: /templates/addon/abuse.html:6
 msgid "Let us know if this add-on is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
@@ -495,6 +434,99 @@ msgstr ""
 #: /templates/addon/index.html:36 /media/js/views/addon/abuse.js:33
 msgid "Report to Mozilla"
 msgstr ""
+
+#: /templates/addon/list.html:6
+msgid "Customize your device with powerful features."
+msgstr "Cihazınızı güçlü özelliklerle özelleştirin."
+
+#: /templates/addon/list.html:26 /templates/addon/list.html:31
+msgid "No Firefox OS add-ons found."
+msgstr "Hiç Firefox OS eklentisi bulunamadı."
+
+#: /templates/_macros/app_tile.html:107
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "İnceleme"
+
+#: /templates/_macros/app_tile.html:113
+msgid "Not yet reviewed"
+msgstr "Henüz incelenmedi"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:72 /media/js/buttons.js:410
+msgid "Free"
+msgstr "Ücretsiz"
+
+#: /templates/_macros/feed_item.html:86 /templates/_macros/feed_item.html:179
+msgid "View all"
+msgstr "Tümünü göster"
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr "Bu siteyi ziyaret edin!"
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr "Başka bir site göster"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Daha fazla yükle"
+
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
+msgstr "{app_name} ekran görüntüsü"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Eski {version} sürümü için"
+
+#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
+msgid "Edit"
+msgstr "Düzenle"
+
+#: /templates/_macros/review.html:36
+msgid "Delete"
+msgstr "Sil"
+
+#: /templates/_macros/review.html:42
+msgid "Report"
+msgstr "Raporla"
+
+#: /templates/_macros/review.html:44
+msgid "Flagged for review"
+msgstr "İncelenmek üzere işaretlendi"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "{maxstars} üzerinden {stars} puan almış"
+
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr "Bir şeyi rapor etmeniz mi gerekiyor?"
+
+#: /templates/app/abuse.html:7
+msgid "Let us know if this app is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
+msgstr ""
+
+#: /templates/app/abuse.html:12
+msgid "Examples of issues to report here are if the app is broken, contains mature content, contains malware, etc. The app developer will not see your comments."
+msgstr ""
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Uygulamaya dön"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Gizlilik ilkeleri yükleniyor..."
+
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Satın aldığınız için teşekkürler"
 
 #: /templates/app/index.html:35
 msgid "Updates"
@@ -573,41 +605,9 @@ msgstr "En yeni sürüm"
 msgid "Report Abuse"
 msgstr "Suistimal bildir"
 
-#: /templates/addon/list.html:6
-msgid "Customize your device with powerful features."
-msgstr "Cihazınızı güçlü özelliklerle özelleştirin."
-
-#: /templates/addon/list.html:26 /templates/addon/list.html:31
-msgid "No Firefox OS add-ons found."
-msgstr "Hiç Firefox OS eklentisi bulunamadı."
-
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr "Bir şeyi rapor etmeniz mi gerekiyor?"
-
-#: /templates/app/abuse.html:7
-msgid "Let us know if this app is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
-msgstr ""
-
-#: /templates/app/abuse.html:12
-msgid "Examples of issues to report here are if the app is broken, contains mature content, contains malware, etc. The app developer will not see your comments."
-msgstr ""
-
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Uygulamaya dön"
-
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Gizlilik ilkeleri yükleniyor..."
-
 #: /templates/errors/fragment.html:2
 msgid "An error occurred."
 msgstr "Bir hata oluştu."
-
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Satın aldığınız için teşekkürler"
 
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
@@ -621,7 +621,7 @@ msgstr ""
 msgid "Try Again"
 msgstr "Tekrar dene"
 
-#: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
+#: /templates/ratings/edit.html:4 /templates/ratings/add.html:8 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "İncelemeyi düzenle"
 
@@ -683,22 +683,6 @@ msgstr "İnceleme olarak yazılmış hata raporu veya destek talebi"
 msgid "This app has no reviews."
 msgstr "Bu uygulamanın hiç incelemesi yok."
 
-#: /templates/website/index.html:34
-msgid "Explore more in {category_one} and {category_two}."
-msgstr ""
-
-#: /templates/website/index.html:38
-msgid "Explore more in {category}."
-msgstr ""
-
-#: /templates/website/index.html:47
-msgid "Is there something wrong or out-of-date with this website listing?"
-msgstr ""
-
-#: /templates/website/index.html:49 /templates/website/issue.html:14
-msgid "Report an issue"
-msgstr ""
-
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Uygulama incelemesi"
@@ -715,6 +699,71 @@ msgstr ""
 msgid "Describe the issue here. Please be specific."
 msgstr ""
 
+#: /templates/website/issue.html:14 /templates/website/index.html:49
+msgid "Report an issue"
+msgstr ""
+
+#: /templates/website/index.html:34
+msgid "Explore more in {category_one} and {category_two}."
+msgstr ""
+
+#: /templates/website/index.html:38
+msgid "Explore more in {category}."
+msgstr ""
+
+#: /templates/website/index.html:47
+msgid "Is there something wrong or out-of-date with this website listing?"
+msgstr ""
+
+#: /media/js/buttons.js:91 /media/js/buttons.js:163 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Ödeme iptal edildi."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/buttons.js:244
+msgid "Install failed. Please try again later."
+msgstr "Yükleme başarısız oldu. Lütfen daha sonra tekrar deneyin."
+
+#: /media/js/buttons.js:329 /media/js/buttons.js:334 /media/js/buttons.js:433 /media/js/buttons.js:437
+msgid "Installed"
+msgstr "Yüklendi"
+
+#: /media/js/buttons.js:410
+msgid "free"
+msgstr "ücretsiz"
+
+#: /media/js/buttons.js:415
+msgid "Unavailable"
+msgstr "Kullanılamaz"
+
+#: /media/js/buttons.js:433 /media/js/buttons.js:450 /media/js/buttons.js:460
+msgid "Install"
+msgstr "Yükle"
+
+#: /media/js/buttons.js:438
+msgid "Install Add-on"
+msgstr ""
+
+#: /media/js/buttons.js:443
+msgid "Open website"
+msgstr ""
+
+#: /media/js/buttons.js:446
+msgid "Open app"
+msgstr ""
+
+#: /media/js/buttons.js:448
+msgid "Install for free"
+msgstr ""
+
+#: /media/js/buttons.js:452
+msgid "Install for {price}"
+msgstr ""
+
+#: /media/js/buttons.js:458
+msgid "Open"
+msgstr ""
+
 #: /media/js/apps.js:114
 msgid "not available for your region"
 msgstr "bölgenizde kullanılamıyor"
@@ -726,6 +775,26 @@ msgstr "platformunuzda kullanılamıyor"
 #: /media/js/apps.js:123 /media/js/apps.js:128
 msgid "not compatible with your device"
 msgstr ""
+
+#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+msgid "All Platforms"
+msgstr "Tüm platformlar"
+
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
+msgid "Android Mobile"
+msgstr "Android telefon"
+
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
+msgid "Android Tablet"
+msgstr "Android tablet"
+
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
+msgid "Desktop"
+msgstr "Masaüstü"
+
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
+msgid "Firefox OS"
+msgstr "Firefox OS"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -826,120 +895,6 @@ msgstr "Araçlar"
 #: /media/js/categories.js:30
 msgid "Weather"
 msgstr "Hava Durumu"
-
-#: /media/js/buttons.js:91 /media/js/buttons.js:163 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Ödeme iptal edildi."
-
-#: /media/js/buttons.js:201 /media/js/installer_direct.js:178
-msgid "Sorry, we had trouble fetching this app's data. Please try again later."
-msgstr "Bu uygulamanın verilerini çekerken bir sorun yaşadık. Lütfen daha sonra tekrar deneyin."
-
-#. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:246
-msgid "Install failed. Please try again later."
-msgstr "Yükleme başarısız oldu. Lütfen daha sonra tekrar deneyin."
-
-#: /media/js/buttons.js:330 /media/js/buttons.js:335 /media/js/buttons.js:434 /media/js/buttons.js:438
-msgid "Installed"
-msgstr "Yüklendi"
-
-#: /media/js/buttons.js:411
-msgid "free"
-msgstr "ücretsiz"
-
-#: /media/js/buttons.js:416
-msgid "Unavailable"
-msgstr "Kullanılamaz"
-
-#: /media/js/buttons.js:434 /media/js/buttons.js:451 /media/js/buttons.js:461
-msgid "Install"
-msgstr "Yükle"
-
-#: /media/js/buttons.js:439
-msgid "Install Add-on"
-msgstr ""
-
-#: /media/js/buttons.js:444
-msgid "Open website"
-msgstr ""
-
-#: /media/js/buttons.js:447
-msgid "Open app"
-msgstr ""
-
-#: /media/js/buttons.js:449
-msgid "Install for free"
-msgstr ""
-
-#: /media/js/buttons.js:453
-msgid "Install for {price}"
-msgstr ""
-
-#: /media/js/buttons.js:459
-msgid "Open"
-msgstr ""
-
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
-msgid "All Platforms"
-msgstr "Tüm platformlar"
-
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
-msgid "Android Mobile"
-msgstr "Android telefon"
-
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
-msgid "Android Tablet"
-msgstr "Android tablet"
-
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
-msgid "Desktop"
-msgstr "Masaüstü"
-
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
-msgid "Firefox OS"
-msgstr "Firefox OS"
-
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:103
-msgid "For ages {0}+"
-msgstr "{0}+ yaş için"
-
-#: /media/js/content-ratings.js:109
-msgid "Generic"
-msgstr "Genel"
-
-#: /media/js/content-ratings.js:116
-msgid "For all ages"
-msgstr "Her yaşa uygun"
-
-#: /media/js/content-ratings.js:125
-msgid "Rating Pending"
-msgstr "Derece bekleniyor"
-
-#: /media/js/content-ratings.js:126
-msgid "Rating Refused"
-msgstr "Derece reddedildi"
-
-#: /media/js/content-ratings.js:129
-msgid "Everyone"
-msgstr "Herkes"
-
-#: /media/js/content-ratings.js:130
-msgid "Everyone 10+"
-msgstr "Herkes 10+"
-
-#: /media/js/content-ratings.js:131
-msgid "Teen"
-msgstr "Gençler"
-
-#: /media/js/content-ratings.js:132
-msgid "Mature 17+"
-msgstr "Yetişkinlikler 17+"
-
-#: /media/js/content-ratings.js:133
-msgid "Adults Only 18+"
-msgstr "Yalnızca yetişkinler 18+"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1211,6 +1166,47 @@ msgid "Work & Business App"
 msgid_plural "Work & Business Apps"
 msgstr[0] "İş uygulamaları"
 
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:103
+msgid "For ages {0}+"
+msgstr "{0}+ yaş için"
+
+#: /media/js/content-ratings.js:109
+msgid "Generic"
+msgstr "Genel"
+
+#: /media/js/content-ratings.js:116
+msgid "For all ages"
+msgstr "Her yaşa uygun"
+
+#: /media/js/content-ratings.js:125
+msgid "Rating Pending"
+msgstr "Derece bekleniyor"
+
+#: /media/js/content-ratings.js:126
+msgid "Rating Refused"
+msgstr "Derece reddedildi"
+
+#: /media/js/content-ratings.js:129
+msgid "Everyone"
+msgstr "Herkes"
+
+#: /media/js/content-ratings.js:130
+msgid "Everyone 10+"
+msgstr "Herkes 10+"
+
+#: /media/js/content-ratings.js:131
+msgid "Teen"
+msgstr "Gençler"
+
+#: /media/js/content-ratings.js:132
+msgid "Mature 17+"
+msgstr "Yetişkinlikler 17+"
+
+#: /media/js/content-ratings.js:133
+msgid "Adults Only 18+"
+msgstr "Yalnızca yetişkinler 18+"
+
 #: /media/js/feed_websites.js:61
 msgid "{current} of {count}"
 msgstr ""
@@ -1222,6 +1218,10 @@ msgstr ""
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
 msgstr "Paket uygulamalar yüklenemedi"
+
+#: /media/js/installer_direct.js:178
+msgid "Sorry, we had trouble fetching this app's data. Please try again later."
+msgstr "Bu uygulamanın verilerini çekerken bir sorun yaşadık. Lütfen daha sonra tekrar deneyin."
 
 #: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
 msgid "App install error: {error}"
@@ -1337,21 +1337,17 @@ msgstr "Şu anda internete bağlı değilsiniz. Lütfen daha sonra tekrar deneyi
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr "Firefox Marketplace uygulamasını bir sonraki başlatmanızda güncelllenmiş sürümü göreceksiniz."
 
-#: /media/js/views/app.js:17
-msgid "App Detail"
-msgstr "Uygulama ayrıntıları"
-
 #: /media/js/views/addons.js:9 /media/js/views/addons.js:10
 msgid "Firefox OS Add-ons"
 msgstr ""
 
+#: /media/js/views/app.js:17
+msgid "App Detail"
+msgstr "Uygulama ayrıntıları"
+
 #: /media/js/views/feed_landing.js:16
 msgid "Collection Detail"
 msgstr "Koleksiyon ayrıntıları"
-
-#: /media/js/views/new_apps.js:8
-msgid "New Apps"
-msgstr "Yeni uygulamalar"
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1361,21 +1357,9 @@ msgstr "Geri bildiriminiz gönderildi. Teşekkürler!"
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Geri bildiriminiz gönderilirken bir sorun oluştu. Daha sonra tekrar deneyin."
 
-#: /media/js/views/new_websites.js:8
-msgid "New Sites"
-msgstr "Yeni siteler"
-
-#: /media/js/views/popular_apps.js:9
-msgid "Popular Apps"
-msgstr "Popüler uygulamalar"
-
 #: /media/js/views/homescreens.js:8
 msgid "Popular Homescreens"
 msgstr ""
-
-#: /media/js/views/popular_websites.js:8
-msgid "Popular Sites"
-msgstr "Popüler siteler"
 
 #: /media/js/views/langpacks.js:30
 msgid "Language Packs"
@@ -1385,13 +1369,25 @@ msgstr "Dil paketleri"
 msgid "Firefox OS {version}"
 msgstr "Firefox OS {version}"
 
-#: /media/js/views/search.js:173
-msgid "Search Results"
-msgstr "Arama Sonuçları"
+#: /media/js/views/new_apps.js:8
+msgid "New Apps"
+msgstr "Yeni uygulamalar"
 
-#: /media/js/views/search.js:186
-msgid "Developer Listing"
+#: /media/js/views/newsletter_signup.js:11
+msgid "Newsletter Signup"
 msgstr ""
+
+#: /media/js/views/new_websites.js:8
+msgid "New Sites"
+msgstr "Yeni siteler"
+
+#: /media/js/views/popular_apps.js:9
+msgid "Popular Apps"
+msgstr "Popüler uygulamalar"
+
+#: /media/js/views/popular_websites.js:8
+msgid "Popular Sites"
+msgstr "Popüler siteler"
 
 #: /media/js/views/settings.js:41
 msgid "Your settings have been successfully saved"
@@ -1401,8 +1397,12 @@ msgstr "Ayarlarınız başarıyla kaydedildi"
 msgid "Settings could not be saved"
 msgstr "Ayarlar kaydedilemedi"
 
-#: /media/js/views/newsletter_signup.js:11
-msgid "Newsletter Signup"
+#: /media/js/views/search.js:173
+msgid "Search Results"
+msgstr "Arama Sonuçları"
+
+#: /media/js/views/search.js:186
+msgid "Developer Listing"
 msgstr ""
 
 #: /media/js/views/website.js:11
