@@ -4,12 +4,13 @@
 {% from "_macros/previews.html" import preview_tray %}
 {% from "_macros/stars.html" import stars %}
 
-{% macro app_tile(product, feed_app=None, is_detail=False, tray=False, src=None) %}
+{% macro app_tile(product, feed_app=None, is_detail=False, tray=False, alt_style=False, src=None) %}
   {#
       product -- market item (app/website)
       feed_app - feed-app specific data
       is_detail - whether part of a detail page
       tray -- whether or not to attach a preview/screenshot tray
+      alt_style -- is this an alternate representation of the tile (cat hidden, author shown)
       src -- if tile is a link, attach a src param for analytics purposes
   #}
   {% set product = apps.transform(product) %}
@@ -29,7 +30,7 @@
         {{ name|translate(product) }}
       </h3>
       <span class="info mkt-tile-info">
-        {% if product.author and is_detail %}
+        {% if product.author and (is_detail or alt_style) %}
           {# TODO: When we get user profiles, update to be Person itemprop. #}
           <div class="author mkt-product-author" itemprop="creator"
                title="{{ product.author }}">
@@ -41,7 +42,7 @@
           </div>
         {% endif %}
 
-        {% if not is_detail %}
+        {% if not (is_detail or alt_style) %}
           <ul class="app-tile-categories">
             {% for cat in product.categories %}
               <li>{{ cat.name }}</li>
