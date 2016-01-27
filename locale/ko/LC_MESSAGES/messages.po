@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-20T19:47:16.843Z\n"
+"POT-Creation-Date: 2016-01-27T20:21:33.900Z\n"
 "PO-Revision-Date: 2016-01-05 02:55+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgstr ""
 msgid "No apps found."
 msgstr "앱을 찾을수 없습니다."
 
-#: /templates/carrier.html:37 /templates/category.html:49 /templates/langpacks.html:41 /templates/purchases.html:35 /templates/product_list.html:48 /templates/addon/list.html:33
+#: /templates/carrier.html:37 /templates/category.html:49 /templates/langpacks.html:41 /templates/product_list.html:48 /templates/purchases.html:35 /templates/addon/list.html:33
 msgid "An internal server error occurred. Please try again later."
 msgstr "내부 서버 오류가 발생하였습니다. 나중에 다시 시도해 주세요."
 
@@ -35,7 +35,7 @@ msgstr "내부 서버 오류가 발생하였습니다. 나중에 다시 시도�
 msgid "Categories"
 msgstr "카테고리"
 
-#: /templates/category.html:9 /templates/category.html:19 /templates/purchases.html:7 /templates/product_list.html:9 /templates/product_list.html:14 /templates/search.html:9 /templates/search.html:16
+#: /templates/category.html:9 /templates/category.html:19 /templates/product_list.html:9 /templates/product_list.html:14 /templates/purchases.html:7 /templates/search.html:9 /templates/search.html:16
 msgid "Expand"
 msgstr "확장"
 
@@ -55,11 +55,11 @@ msgstr "의견을 말씀해 주세요!"
 msgid "Give us your feedback. Let us know whether we are awesome or buggy."
 msgstr "의견을 말씀해 주세요. 잘 작동하는지 문제가 있는지 알려주세요."
 
-#: /templates/feedback.html:7 /templates/addon/abuse.html:15 /templates/app/abuse.html:16
+#: /templates/feedback.html:7 /templates/app/abuse.html:16 /templates/addon/abuse.html:15
 msgid "Let us know..."
 msgstr "알려주세요..."
 
-#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/addon/abuse.html:20 /templates/app/abuse.html:21 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:21 /templates/addon/abuse.html:20 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 #: /templates/website/issue.html:13
 msgid "Cancel"
 msgstr "취소"
@@ -108,12 +108,12 @@ msgstr ""
 "따로 <a href=\"{legal_url}\" target=\"_blank\">명시</a>된 경우를 제외하고 이 사이트의 내용은 <a href=\"{cc_url}\" target=\"_blank\">크리에이티브 커먼즈 저작자표시-동일 조건 변경 허락 3.0</a>이나 그 "
 "이후 버전 라이센스를 따릅니다."
 
-#: /templates/footer.html:40 /templates/privacy.html:2 /templates/nav.html:91 /templates/settings.html:70 /templates/app/privacy.html:2 /templates/app/index.html:74 /media/js/views/privacy.js:9
+#: /templates/footer.html:40 /templates/nav.html:91 /templates/privacy.html:2 /templates/settings.html:70 /templates/app/index.html:74 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "개인 정보 보호 정책"
 
-#: /templates/footer.html:41 /templates/nav.html:92 /templates/terms.html:2 /templates/settings.html:71 /media/js/views/terms.js:12
+#: /templates/footer.html:41 /templates/nav.html:92 /templates/settings.html:71 /templates/terms.html:2 /media/js/views/terms.js:12
 msgid "Terms of Use"
 msgstr "이용 약관"
 
@@ -141,6 +141,10 @@ msgstr "내 앱"
 msgid "Sign Out"
 msgstr "로그아웃"
 
+#: /templates/langpacks.html:34 /templates/langpacks.html:39
+msgid "No language packs found."
+msgstr "언어팩이 없습니다."
+
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
 msgstr "Firefox 앱을 설치하려면 Firefox를 사용해야 합니다."
@@ -148,10 +152,6 @@ msgstr "Firefox 앱을 설치하려면 Firefox를 사용해야 합니다."
 #: /templates/incompatible.html:2 /templates/marketplace-update.html:4
 msgid "Download"
 msgstr "다운로드"
-
-#: /templates/langpacks.html:34 /templates/langpacks.html:39
-msgid "No language packs found."
-msgstr "언어팩이 없습니다."
 
 #: /templates/marketplace-update.html:2
 msgid "An update to Marketplace is available."
@@ -237,6 +237,10 @@ msgstr "가입해주셔서 감사합니다!"
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "mozilla@e.mozilla.org에서 메일을 발송할 것입니다. 받은 편지함을 살펴보세요. 받지 못했다면 스팸 편지함을 확인해 보세요."
 
+#: /templates/product_list.html:41 /templates/product_list.html:46
+msgid "The list returned no results."
+msgstr "검색 결과가 없습니다."
+
 #: /templates/purchases.html:41
 msgid "You must be signed in to view your apps."
 msgstr "내 앱을 보기 위해서는 로그인을 해야 합니다."
@@ -249,9 +253,19 @@ msgstr "앱이 없음"
 msgid "Oh no!"
 msgstr "오, 이런!"
 
-#: /templates/product_list.html:41 /templates/product_list.html:46
-msgid "The list returned no results."
-msgstr "검색 결과가 없습니다."
+#: /templates/search.html:8
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "결과 <b>{n}</b>개"
+
+#: /templates/search.html:12
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b>로 검색한 결과 {n} 개"
+
+#: /templates/search.html:73
+msgid "No results found, try again later"
+msgstr "결과가 없습니다. 나중에 다시 시도해 주세요."
 
 #: /templates/settings.html:9
 msgid "General settings"
@@ -296,20 +310,6 @@ msgstr "참여"
 #: /templates/settings.html:36
 msgid "Region"
 msgstr "지역"
-
-#: /templates/search.html:8
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "결과 <b>{n}</b>개"
-
-#: /templates/search.html:12
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b>로 검색한 결과 {n} 개"
-
-#: /templates/search.html:73
-msgid "No results found, try again later"
-msgstr "결과가 없습니다. 나중에 다시 시도해 주세요."
 
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
@@ -399,111 +399,6 @@ msgid "1 Review"
 msgid_plural "{numReviews} Reviews"
 msgstr[0] "{numReviews} 리뷰"
 
-#: /templates/addon/abuse.html:6
-msgid "Let us know if this add-on is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
-msgstr ""
-
-#: /templates/addon/abuse.html:11
-msgid "Examples of issues to report here are if the add-on is completely broken, contains mature content, contains malware, etc. The add-on developer will not see your comments."
-msgstr ""
-
-#: /templates/addon/abuse.html:21 /templates/app/abuse.html:22
-msgid "Submit Report"
-msgstr "보고서 제출"
-
-#: /templates/addon/index.html:13 /templates/app/index.html:19 /templates/website/index.html:15
-msgid "Description"
-msgstr "설명"
-
-#: /templates/addon/index.html:20 /templates/app/index.html:25 /templates/app/index.html:39 /templates/website/index.html:21
-msgid "View All"
-msgstr "모두 보기"
-
-#: /templates/addon/index.html:25
-msgid "version: {version}"
-msgstr "버전: {version}"
-
-#: /templates/addon/index.html:26
-msgid "size: {size}"
-msgstr "크기: {size}"
-
-#: /templates/addon/index.html:29
-msgid "last updated: {date}"
-msgstr "마지막으로 업데이트한 날짜: {date}"
-
-#: /templates/addon/index.html:36 /media/js/views/addon/abuse.js:33
-msgid "Report to Mozilla"
-msgstr "Mozilla에 보고"
-
-#: /templates/addon/list.html:6
-msgid "Customize your device with powerful features."
-msgstr "당신의 기기를 엄청난 기능으로 꾸미세요."
-
-#: /templates/addon/list.html:26 /templates/addon/list.html:31
-msgid "No Firefox OS add-ons found."
-msgstr "Firefox OS 부가 기능을 발견하지 못했습니다."
-
-#: /templates/_macros/app_tile.html:107
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "리뷰"
-
-#: /templates/_macros/app_tile.html:113
-msgid "Not yet reviewed"
-msgstr "검토 안됨"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:72 /media/js/buttons.js:410
-msgid "Free"
-msgstr "무료"
-
-#: /templates/_macros/feed_item.html:86 /templates/_macros/feed_item.html:179
-msgid "View all"
-msgstr "모두 보기"
-
-#: /templates/_macros/feed_websites.html:16
-msgid "Visit this top site!"
-msgstr "이 상위 사이트를 방문 하십시오!"
-
-#: /templates/_macros/feed_websites.html:50
-msgid "Show me another site"
-msgstr "다른 사이트를 보기"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "더 보기"
-
-#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr "{app_name} 스크린샷"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "이전 버전 {version}"
-
-#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
-msgid "Edit"
-msgstr "수정"
-
-#: /templates/_macros/review.html:36
-msgid "Delete"
-msgstr "삭제"
-
-#: /templates/_macros/review.html:42
-msgid "Report"
-msgstr "보고"
-
-#: /templates/_macros/review.html:44
-msgid "Flagged for review"
-msgstr "사용자 평가에 플래그 달기"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "{maxstars}점 만점 중 {stars}점으로 평가됨"
-
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
 msgstr "보고가 필요합니까?"
@@ -516,17 +411,18 @@ msgstr ""
 msgid "Examples of issues to report here are if the app is broken, contains mature content, contains malware, etc. The app developer will not see your comments."
 msgstr ""
 
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "앱으로 돌아가기"
+#: /templates/app/abuse.html:22 /templates/addon/abuse.html:21
+msgid "Submit Report"
+msgstr "보고서 제출"
 
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "개인 정보 보호 정책 로딩중..."
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:19 /templates/addon/index.html:13 /templates/website/index.html:15
+msgid "Description"
+msgstr "설명"
 
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "구매해 주셔서 감사합니다."
+#: /templates/app/index.html:25 /templates/app/index.html:39 /templates/addon/index.html:20 /templates/website/index.html:21
+msgid "View All"
+msgstr "모두 보기"
 
 #: /templates/app/index.html:35
 msgid "Updates"
@@ -605,9 +501,110 @@ msgstr "가장 최신 버전"
 msgid "Report Abuse"
 msgstr "권리 침해 신고"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "오류가 발생했습니다."
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "구매해 주셔서 감사합니다."
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "앱으로 돌아가기"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "개인 정보 보호 정책 로딩중..."
+
+#: /templates/addon/abuse.html:6
+msgid "Let us know if this add-on is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
+msgstr ""
+
+#: /templates/addon/abuse.html:11
+msgid "Examples of issues to report here are if the add-on is completely broken, contains mature content, contains malware, etc. The add-on developer will not see your comments."
+msgstr ""
+
+#: /templates/addon/list.html:6
+msgid "Customize your device with powerful features."
+msgstr "당신의 기기를 엄청난 기능으로 꾸미세요."
+
+#: /templates/addon/list.html:26 /templates/addon/list.html:31
+msgid "No Firefox OS add-ons found."
+msgstr "Firefox OS 부가 기능을 발견하지 못했습니다."
+
+#: /templates/addon/index.html:25
+msgid "version: {version}"
+msgstr "버전: {version}"
+
+#: /templates/addon/index.html:26
+msgid "size: {size}"
+msgstr "크기: {size}"
+
+#: /templates/addon/index.html:29
+msgid "last updated: {date}"
+msgstr "마지막으로 업데이트한 날짜: {date}"
+
+#: /templates/addon/index.html:36 /media/js/views/addon/abuse.js:33
+msgid "Report to Mozilla"
+msgstr "Mozilla에 보고"
+
+#: /templates/_macros/app_tile.html:107
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "리뷰"
+
+#: /templates/_macros/app_tile.html:113
+msgid "Not yet reviewed"
+msgstr "검토 안됨"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:72 /media/js/buttons.js:410
+msgid "Free"
+msgstr "무료"
+
+#: /templates/_macros/feed_item.html:86 /templates/_macros/feed_item.html:179
+msgid "View all"
+msgstr "모두 보기"
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr "이 상위 사이트를 방문 하십시오!"
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr "다른 사이트를 보기"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "더 보기"
+
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
+msgstr "{app_name} 스크린샷"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "이전 버전 {version}"
+
+#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
+msgid "Edit"
+msgstr "수정"
+
+#: /templates/_macros/review.html:36
+msgid "Delete"
+msgstr "삭제"
+
+#: /templates/_macros/review.html:42
+msgid "Report"
+msgstr "보고"
+
+#: /templates/_macros/review.html:44
+msgid "Flagged for review"
+msgstr "사용자 평가에 플래그 달기"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "{maxstars}점 만점 중 {stars}점으로 평가됨"
 
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
@@ -621,7 +618,11 @@ msgstr ""
 msgid "Try Again"
 msgstr "다시 시도"
 
-#: /templates/ratings/edit.html:4 /templates/ratings/add.html:8 /media/js/views/app/ratings/edit.js:15
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "오류가 발생했습니다."
+
+#: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "사용자 평가 수정하기"
 
@@ -687,6 +688,22 @@ msgstr "리뷰가 없습니다."
 msgid "App Review"
 msgstr "앱 사용자 평가"
 
+#: /templates/website/index.html:34
+msgid "Explore more in {category_one} and {category_two}."
+msgstr ""
+
+#: /templates/website/index.html:38
+msgid "Explore more in {category}."
+msgstr ""
+
+#: /templates/website/index.html:47
+msgid "Is there something wrong or out-of-date with this website listing?"
+msgstr ""
+
+#: /templates/website/index.html:49 /templates/website/issue.html:14
+msgid "Report an issue"
+msgstr ""
+
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
 msgstr ""
@@ -699,21 +716,25 @@ msgstr ""
 msgid "Describe the issue here. Please be specific."
 msgstr ""
 
-#: /templates/website/issue.html:14 /templates/website/index.html:49
-msgid "Report an issue"
-msgstr ""
+#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+msgid "All Platforms"
+msgstr "모든 플랫폼"
 
-#: /templates/website/index.html:34
-msgid "Explore more in {category_one} and {category_two}."
-msgstr ""
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
+msgid "Android Mobile"
+msgstr "Android 모바일"
 
-#: /templates/website/index.html:38
-msgid "Explore more in {category}."
-msgstr ""
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
+msgid "Android Tablet"
+msgstr "Android 태블릿"
 
-#: /templates/website/index.html:47
-msgid "Is there something wrong or out-of-date with this website listing?"
-msgstr ""
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
+msgid "Desktop"
+msgstr "데스크톱"
+
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
+msgid "Firefox OS"
+msgstr "Firefox OS"
 
 #: /media/js/buttons.js:91 /media/js/buttons.js:163 /media/js/payments.js:134
 msgid "Payment cancelled."
@@ -776,25 +797,46 @@ msgstr "현재 플랫폼에서는 사용할 수 없음"
 msgid "not compatible with your device"
 msgstr "장치와 호환 되지 않음"
 
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
-msgid "All Platforms"
-msgstr "모든 플랫폼"
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:103
+msgid "For ages {0}+"
+msgstr "{0}+세 이상"
 
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
-msgid "Android Mobile"
-msgstr "Android 모바일"
+#: /media/js/content-ratings.js:109
+msgid "Generic"
+msgstr "일반"
 
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
-msgid "Android Tablet"
-msgstr "Android 태블릿"
+#: /media/js/content-ratings.js:116
+msgid "For all ages"
+msgstr "전체 연령가"
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
-msgid "Desktop"
-msgstr "데스크톱"
+#: /media/js/content-ratings.js:125
+msgid "Rating Pending"
+msgstr "등급 보류 중"
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
-msgid "Firefox OS"
-msgstr "Firefox OS"
+#: /media/js/content-ratings.js:126
+msgid "Rating Refused"
+msgstr "등급 거부"
+
+#: /media/js/content-ratings.js:129
+msgid "Everyone"
+msgstr "전체"
+
+#: /media/js/content-ratings.js:130
+msgid "Everyone 10+"
+msgstr "10세 이상+"
+
+#: /media/js/content-ratings.js:131
+msgid "Teen"
+msgstr "청소년"
+
+#: /media/js/content-ratings.js:132
+msgid "Mature 17+"
+msgstr "17세 이상+"
+
+#: /media/js/content-ratings.js:133
+msgid "Adults Only 18+"
+msgstr "18세 이상 성인+"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -1166,47 +1208,6 @@ msgid "Work & Business App"
 msgid_plural "Work & Business Apps"
 msgstr[0] "일 & 사업 앱"
 
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:103
-msgid "For ages {0}+"
-msgstr "{0}+세 이상"
-
-#: /media/js/content-ratings.js:109
-msgid "Generic"
-msgstr "일반"
-
-#: /media/js/content-ratings.js:116
-msgid "For all ages"
-msgstr "전체 연령가"
-
-#: /media/js/content-ratings.js:125
-msgid "Rating Pending"
-msgstr "등급 보류 중"
-
-#: /media/js/content-ratings.js:126
-msgid "Rating Refused"
-msgstr "등급 거부"
-
-#: /media/js/content-ratings.js:129
-msgid "Everyone"
-msgstr "전체"
-
-#: /media/js/content-ratings.js:130
-msgid "Everyone 10+"
-msgstr "10세 이상+"
-
-#: /media/js/content-ratings.js:131
-msgid "Teen"
-msgstr "청소년"
-
-#: /media/js/content-ratings.js:132
-msgid "Mature 17+"
-msgstr "17세 이상+"
-
-#: /media/js/content-ratings.js:133
-msgid "Adults Only 18+"
-msgstr "18세 이상 성인+"
-
 #: /media/js/feed_websites.js:61
 msgid "{current} of {count}"
 msgstr ""
@@ -1337,17 +1338,21 @@ msgstr "죄송합니다. 오프라인 상태이니 나중에 다시 시도해 �
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr "다음에 Firefox Marketplace 앱을 실행할때에 업데이트된 버전이 실행됩니다!"
 
-#: /media/js/views/addons.js:9 /media/js/views/addons.js:10
-msgid "Firefox OS Add-ons"
-msgstr "Firefox OS 부가 기능"
-
 #: /media/js/views/app.js:17
 msgid "App Detail"
 msgstr "앱 정보"
 
+#: /media/js/views/addons.js:9 /media/js/views/addons.js:10
+msgid "Firefox OS Add-ons"
+msgstr "Firefox OS 부가 기능"
+
 #: /media/js/views/feed_landing.js:16
 msgid "Collection Detail"
 msgstr "모음 정보"
+
+#: /media/js/views/homescreens.js:8
+msgid "Popular Homescreens"
+msgstr ""
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1356,10 +1361,6 @@ msgstr "사용자 의견이 전성되었습니다. 감사합니다!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "사용자 의견을 보내는 중에 오류가 발생하였씁니다. 나중에 다시 시도해 주세요."
-
-#: /media/js/views/homescreens.js:8
-msgid "Popular Homescreens"
-msgstr ""
 
 #: /media/js/views/langpacks.js:30
 msgid "Language Packs"
@@ -1373,13 +1374,13 @@ msgstr "Firefox OS {version}"
 msgid "New Apps"
 msgstr "새 앱"
 
-#: /media/js/views/newsletter_signup.js:11
-msgid "Newsletter Signup"
-msgstr "뉴스 레터 가입"
-
 #: /media/js/views/new_websites.js:8
 msgid "New Sites"
 msgstr "새 사이트"
+
+#: /media/js/views/newsletter_signup.js:11
+msgid "Newsletter Signup"
+msgstr "뉴스 레터 가입"
 
 #: /media/js/views/popular_apps.js:9
 msgid "Popular Apps"
@@ -1389,14 +1390,6 @@ msgstr "인기 앱"
 msgid "Popular Sites"
 msgstr "인기 사이트"
 
-#: /media/js/views/settings.js:41
-msgid "Your settings have been successfully saved"
-msgstr "설정이 저장되었습니다."
-
-#: /media/js/views/settings.js:47
-msgid "Settings could not be saved"
-msgstr "설정이 저장되지 않음"
-
 #: /media/js/views/search.js:173
 msgid "Search Results"
 msgstr "검색 결과"
@@ -1404,6 +1397,14 @@ msgstr "검색 결과"
 #: /media/js/views/search.js:186
 msgid "Developer Listing"
 msgstr "개발자 목록"
+
+#: /media/js/views/settings.js:41
+msgid "Your settings have been successfully saved"
+msgstr "설정이 저장되었습니다."
+
+#: /media/js/views/settings.js:47
+msgid "Settings could not be saved"
+msgstr "설정이 저장되지 않음"
 
 #: /media/js/views/website.js:11
 msgid "Website Detail"
@@ -1413,11 +1414,11 @@ msgstr "사이트 정보"
 msgid "Close"
 msgstr "닫기"
 
-#: /media/js/views/addon/abuse.js:16 /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
+#: /media/js/views/app/abuse.js:18 /media/js/views/addon/abuse.js:16 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
 msgstr "리포트가 전송되었습니다. 감사합니다."
 
-#: /media/js/views/addon/abuse.js:20 /media/js/views/app/abuse.js:24 /media/js/views/website/issue.js:22
+#: /media/js/views/app/abuse.js:24 /media/js/views/addon/abuse.js:20 /media/js/views/website/issue.js:22
 msgid "There was an issue submitting your report. Please try again later."
 msgstr "보고서를 제출하는 동안 오류가 발생하였습니다. 잠시후에 다시 시도해 주세요."
 

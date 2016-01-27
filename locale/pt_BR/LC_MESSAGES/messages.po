@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: marketplace-fireplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-20T19:47:16.843Z\n"
+"POT-Creation-Date: 2016-01-27T20:21:33.900Z\n"
 "PO-Revision-Date: 2015-12-03 20:21+0000\n"
 "Last-Translator: Rodrigo Padula <rodrigopadula@gmail.com>\n"
 "Language-Team: Português (Brasil) <dev-l10n-pt-br@lists.mozilla.org>\n"
@@ -28,7 +28,7 @@ msgstr "Sua operadora oferece esses aplicativos gratuitos. Você pode baixá-los
 msgid "No apps found."
 msgstr "Nenhum aplicativo encontrado."
 
-#: /templates/carrier.html:37 /templates/category.html:49 /templates/langpacks.html:41 /templates/purchases.html:35 /templates/product_list.html:48 /templates/addon/list.html:33
+#: /templates/carrier.html:37 /templates/category.html:49 /templates/langpacks.html:41 /templates/product_list.html:48 /templates/purchases.html:35 /templates/addon/list.html:33
 msgid "An internal server error occurred. Please try again later."
 msgstr "Ocorreu um erro interno no servidor. Tente novamente mais tarde."
 
@@ -36,7 +36,7 @@ msgstr "Ocorreu um erro interno no servidor. Tente novamente mais tarde."
 msgid "Categories"
 msgstr "Categorias"
 
-#: /templates/category.html:9 /templates/category.html:19 /templates/purchases.html:7 /templates/product_list.html:9 /templates/product_list.html:14 /templates/search.html:9 /templates/search.html:16
+#: /templates/category.html:9 /templates/category.html:19 /templates/product_list.html:9 /templates/product_list.html:14 /templates/purchases.html:7 /templates/search.html:9 /templates/search.html:16
 msgid "Expand"
 msgstr "Expandir"
 
@@ -56,11 +56,11 @@ msgstr "Queremos ouvir você!"
 msgid "Give us your feedback. Let us know whether we are awesome or buggy."
 msgstr "Dê a sua opinião. Diga se somos fantásticos ou não."
 
-#: /templates/feedback.html:7 /templates/addon/abuse.html:15 /templates/app/abuse.html:16
+#: /templates/feedback.html:7 /templates/app/abuse.html:16 /templates/addon/abuse.html:15
 msgid "Let us know..."
 msgstr "Deixe-nos saber..."
 
-#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/addon/abuse.html:20 /templates/app/abuse.html:21 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:21 /templates/addon/abuse.html:20 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 #: /templates/website/issue.html:13
 msgid "Cancel"
 msgstr "Cancelar"
@@ -109,12 +109,12 @@ msgstr ""
 "Exceto onde <a href=\"{legal_url}\" target=\"_blank\">especificado</a>, o conteúdo deste site é licenciado sob a <a href=\"{cc_url}\" target=\"_blank\">Licença Creative Commons Atribuição-"
 "CompartilhaIgual v3.0</a> ou qualquer versão posterior."
 
-#: /templates/footer.html:40 /templates/privacy.html:2 /templates/nav.html:91 /templates/settings.html:70 /templates/app/privacy.html:2 /templates/app/index.html:74 /media/js/views/privacy.js:9
+#: /templates/footer.html:40 /templates/nav.html:91 /templates/privacy.html:2 /templates/settings.html:70 /templates/app/index.html:74 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Política de privacidade"
 
-#: /templates/footer.html:41 /templates/nav.html:92 /templates/terms.html:2 /templates/settings.html:71 /media/js/views/terms.js:12
+#: /templates/footer.html:41 /templates/nav.html:92 /templates/settings.html:71 /templates/terms.html:2 /media/js/views/terms.js:12
 msgid "Terms of Use"
 msgstr "Termos de uso"
 
@@ -142,6 +142,10 @@ msgstr "Meus aplicativos"
 msgid "Sign Out"
 msgstr "Sair"
 
+#: /templates/langpacks.html:34 /templates/langpacks.html:39
+msgid "No language packs found."
+msgstr "Não foram encontrados pacotes de idioma."
+
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
 msgstr "Deve usar o Firefox para instalar aplicativos do Firefox."
@@ -149,10 +153,6 @@ msgstr "Deve usar o Firefox para instalar aplicativos do Firefox."
 #: /templates/incompatible.html:2 /templates/marketplace-update.html:4
 msgid "Download"
 msgstr "Baixar"
-
-#: /templates/langpacks.html:34 /templates/langpacks.html:39
-msgid "No language packs found."
-msgstr "Não foram encontrados pacotes de idioma."
 
 #: /templates/marketplace-update.html:2
 msgid "An update to Marketplace is available."
@@ -238,6 +238,10 @@ msgstr "Obrigado por se inscrever!"
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Você receberá um email de mozilla@e.mozilla.org. Por favor procure na sua caixa de entrada pela nossa primeira mensagem. Se não a encontrar, verifique o seu filtro de spam."
 
+#: /templates/product_list.html:41 /templates/product_list.html:46
+msgid "The list returned no results."
+msgstr "A lista não retornou resultados."
+
 #: /templates/purchases.html:41
 msgid "You must be signed in to view your apps."
 msgstr "Você deve se identificar para ver seus aplicativos."
@@ -250,9 +254,21 @@ msgstr "Você não possui aplicativos"
 msgid "Oh no!"
 msgstr "Oh não!"
 
-#: /templates/product_list.html:41 /templates/product_list.html:46
-msgid "The list returned no results."
-msgstr "A lista não retornou resultados."
+#: /templates/search.html:8
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Resultado"
+msgstr[1] "<b>{n}</b> Resultados"
+
+#: /templates/search.html:12
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> retornou {n} resultado"
+msgstr[1] "<b>\"{search_query}\"</b> retornou {n} resultados"
+
+#: /templates/search.html:73
+msgid "No results found, try again later"
+msgstr "Nenhum resultado encontrado, tente novamente mais tarde"
 
 #: /templates/settings.html:9
 msgid "General settings"
@@ -297,22 +313,6 @@ msgstr "Envolva-se"
 #: /templates/settings.html:36
 msgid "Region"
 msgstr "Região"
-
-#: /templates/search.html:8
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Resultado"
-msgstr[1] "<b>{n}</b> Resultados"
-
-#: /templates/search.html:12
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> retornou {n} resultado"
-msgstr[1] "<b>\"{search_query}\"</b> retornou {n} resultados"
-
-#: /templates/search.html:73
-msgid "No results found, try again later"
-msgstr "Nenhum resultado encontrado, tente novamente mais tarde"
 
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
@@ -403,112 +403,6 @@ msgid_plural "{numReviews} Reviews"
 msgstr[0] "Uma avaliação"
 msgstr[1] "{numReviews} avaliações"
 
-#: /templates/addon/abuse.html:6
-msgid "Let us know if this add-on is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
-msgstr "Nos informe se este complemento está fazendo algo que não é permitido nos <a href=\"{criteria_url}\">critérios de revisão</a> e deveria ser removido do Marketplace."
-
-#: /templates/addon/abuse.html:11
-msgid "Examples of issues to report here are if the add-on is completely broken, contains mature content, contains malware, etc. The add-on developer will not see your comments."
-msgstr "Exemplos de questões a serem reportados aqui são: complementos completamente quebrados, conteúdo adulto impróprio, malware e etc. O autor do complemento não verá seus comentários."
-
-#: /templates/addon/abuse.html:21 /templates/app/abuse.html:22
-msgid "Submit Report"
-msgstr "Enviar relato"
-
-#: /templates/addon/index.html:13 /templates/app/index.html:19 /templates/website/index.html:15
-msgid "Description"
-msgstr "Descrição"
-
-#: /templates/addon/index.html:20 /templates/app/index.html:25 /templates/app/index.html:39 /templates/website/index.html:21
-msgid "View All"
-msgstr "Ver todos"
-
-#: /templates/addon/index.html:25
-msgid "version: {version}"
-msgstr "versão: {version}"
-
-#: /templates/addon/index.html:26
-msgid "size: {size}"
-msgstr "tamanho: {size}"
-
-#: /templates/addon/index.html:29
-msgid "last updated: {date}"
-msgstr "última atualização: {date}"
-
-#: /templates/addon/index.html:36 /media/js/views/addon/abuse.js:33
-msgid "Report to Mozilla"
-msgstr "Reporte para a Mozilla"
-
-#: /templates/addon/list.html:6
-msgid "Customize your device with powerful features."
-msgstr "Personalize o seu dispositivo com recursos poderosos."
-
-#: /templates/addon/list.html:26 /templates/addon/list.html:31
-msgid "No Firefox OS add-ons found."
-msgstr "Nenhum complemento para o Firefox OS foi encontrado."
-
-#: /templates/_macros/app_tile.html:107
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Avaliação"
-msgstr[1] "Avaliações"
-
-#: /templates/_macros/app_tile.html:113
-msgid "Not yet reviewed"
-msgstr "Ainda não foi avaliado"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:72 /media/js/buttons.js:410
-msgid "Free"
-msgstr "Gratuito"
-
-#: /templates/_macros/feed_item.html:86 /templates/_macros/feed_item.html:179
-msgid "View all"
-msgstr "Ver tudo"
-
-#: /templates/_macros/feed_websites.html:16
-msgid "Visit this top site!"
-msgstr "Visite este site!"
-
-#: /templates/_macros/feed_websites.html:50
-msgid "Show me another site"
-msgstr "Mostre-me outro site"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Carregar mais"
-
-#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr "{app_name} captura de tela"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Para a versão anterior {version}"
-
-#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
-msgid "Edit"
-msgstr "Editar"
-
-#: /templates/_macros/review.html:36
-msgid "Delete"
-msgstr "Excluir"
-
-#: /templates/_macros/review.html:42
-msgid "Report"
-msgstr "Relatar"
-
-#: /templates/_macros/review.html:44
-msgid "Flagged for review"
-msgstr "Marcado para avaliação"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Avaliado em {stars} de {maxstars} estrelas"
-
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
 msgstr "Tem algo a relatar?"
@@ -521,17 +415,18 @@ msgstr "Nos informe se este alicativo estiver fazendo algo que não é permitido
 msgid "Examples of issues to report here are if the app is broken, contains mature content, contains malware, etc. The app developer will not see your comments."
 msgstr "Exemplos de problemas para reportar aqui, se o aplicativo estiver quebrado, contém conteúdo adulto, contém malware, etc. O desenvolvedor do aplicativo não verá seu comentário."
 
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Voltar para o aplicativo"
+#: /templates/app/abuse.html:22 /templates/addon/abuse.html:21
+msgid "Submit Report"
+msgstr "Enviar relato"
 
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Carregando política de privacidade..."
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:19 /templates/addon/index.html:13 /templates/website/index.html:15
+msgid "Description"
+msgstr "Descrição"
 
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Obrigado pela compra"
+#: /templates/app/index.html:25 /templates/app/index.html:39 /templates/addon/index.html:20 /templates/website/index.html:21
+msgid "View All"
+msgstr "Ver todos"
 
 #: /templates/app/index.html:35
 msgid "Updates"
@@ -610,9 +505,111 @@ msgstr "Versão mais recente"
 msgid "Report Abuse"
 msgstr "Denunciar abuso"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Ocorreu um erro."
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Obrigado pela compra"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Voltar para o aplicativo"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Carregando política de privacidade..."
+
+#: /templates/addon/abuse.html:6
+msgid "Let us know if this add-on is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
+msgstr "Nos informe se este complemento está fazendo algo que não é permitido nos <a href=\"{criteria_url}\">critérios de revisão</a> e deveria ser removido do Marketplace."
+
+#: /templates/addon/abuse.html:11
+msgid "Examples of issues to report here are if the add-on is completely broken, contains mature content, contains malware, etc. The add-on developer will not see your comments."
+msgstr "Exemplos de questões a serem reportados aqui são: complementos completamente quebrados, conteúdo adulto impróprio, malware e etc. O autor do complemento não verá seus comentários."
+
+#: /templates/addon/list.html:6
+msgid "Customize your device with powerful features."
+msgstr "Personalize o seu dispositivo com recursos poderosos."
+
+#: /templates/addon/list.html:26 /templates/addon/list.html:31
+msgid "No Firefox OS add-ons found."
+msgstr "Nenhum complemento para o Firefox OS foi encontrado."
+
+#: /templates/addon/index.html:25
+msgid "version: {version}"
+msgstr "versão: {version}"
+
+#: /templates/addon/index.html:26
+msgid "size: {size}"
+msgstr "tamanho: {size}"
+
+#: /templates/addon/index.html:29
+msgid "last updated: {date}"
+msgstr "última atualização: {date}"
+
+#: /templates/addon/index.html:36 /media/js/views/addon/abuse.js:33
+msgid "Report to Mozilla"
+msgstr "Reporte para a Mozilla"
+
+#: /templates/_macros/app_tile.html:107
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Avaliação"
+msgstr[1] "Avaliações"
+
+#: /templates/_macros/app_tile.html:113
+msgid "Not yet reviewed"
+msgstr "Ainda não foi avaliado"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:72 /media/js/buttons.js:410
+msgid "Free"
+msgstr "Gratuito"
+
+#: /templates/_macros/feed_item.html:86 /templates/_macros/feed_item.html:179
+msgid "View all"
+msgstr "Ver tudo"
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr "Visite este site!"
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr "Mostre-me outro site"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Carregar mais"
+
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
+msgstr "{app_name} captura de tela"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Para a versão anterior {version}"
+
+#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
+msgid "Edit"
+msgstr "Editar"
+
+#: /templates/_macros/review.html:36
+msgid "Delete"
+msgstr "Excluir"
+
+#: /templates/_macros/review.html:42
+msgid "Report"
+msgstr "Relatar"
+
+#: /templates/_macros/review.html:44
+msgid "Flagged for review"
+msgstr "Marcado para avaliação"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Avaliado em {stars} de {maxstars} estrelas"
 
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
@@ -626,7 +623,11 @@ msgstr "Opa! Algo deu errado. Sinto muito!"
 msgid "Try Again"
 msgstr "Tentar novamente"
 
-#: /templates/ratings/edit.html:4 /templates/ratings/add.html:8 /media/js/views/app/ratings/edit.js:15
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Ocorreu um erro."
+
+#: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "Editar avaliação"
 
@@ -696,6 +697,22 @@ msgstr "Esse aplicativo não tem avaliações"
 msgid "App Review"
 msgstr "Avaliações do aplicativo"
 
+#: /templates/website/index.html:34
+msgid "Explore more in {category_one} and {category_two}."
+msgstr "Explore mais em {category_one} e {category_two}."
+
+#: /templates/website/index.html:38
+msgid "Explore more in {category}."
+msgstr "Explore mais em {categoria}."
+
+#: /templates/website/index.html:47
+msgid "Is there something wrong or out-of-date with this website listing?"
+msgstr "Existe algo de errado ou desatualizado com esta listagem do site?"
+
+#: /templates/website/index.html:49 /templates/website/issue.html:14
+msgid "Report an issue"
+msgstr "Reportar um problema"
+
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
 msgstr "Nos informe se algo está faltando nesta lista do site ou se a informação precisa de ser atualizada."
@@ -708,21 +725,25 @@ msgstr "Para mais informação sobre como denunciar o problema de direitos autor
 msgid "Describe the issue here. Please be specific."
 msgstr "Descreva o problema aqui. Seja específico."
 
-#: /templates/website/issue.html:14 /templates/website/index.html:49
-msgid "Report an issue"
-msgstr "Reportar um problema"
+#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+msgid "All Platforms"
+msgstr "Todas as plataformas"
 
-#: /templates/website/index.html:34
-msgid "Explore more in {category_one} and {category_two}."
-msgstr "Explore mais em {category_one} e {category_two}."
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
+msgid "Android Mobile"
+msgstr "Celular Android"
 
-#: /templates/website/index.html:38
-msgid "Explore more in {category}."
-msgstr "Explore mais em {categoria}."
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
+msgid "Android Tablet"
+msgstr "Tablet Android"
 
-#: /templates/website/index.html:47
-msgid "Is there something wrong or out-of-date with this website listing?"
-msgstr "Existe algo de errado ou desatualizado com esta listagem do site?"
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
+msgid "Desktop"
+msgstr "Computador"
+
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
+msgid "Firefox OS"
+msgstr "Firefox OS"
 
 #: /media/js/buttons.js:91 /media/js/buttons.js:163 /media/js/payments.js:134
 msgid "Payment cancelled."
@@ -785,25 +806,46 @@ msgstr "indisponível para a sua plataforma"
 msgid "not compatible with your device"
 msgstr "não é compatível com o seu dispositivo"
 
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
-msgid "All Platforms"
-msgstr "Todas as plataformas"
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:103
+msgid "For ages {0}+"
+msgstr "Para idades superiores a {0}"
 
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
-msgid "Android Mobile"
-msgstr "Celular Android"
+#: /media/js/content-ratings.js:109
+msgid "Generic"
+msgstr "Gerais"
 
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
-msgid "Android Tablet"
-msgstr "Tablet Android"
+#: /media/js/content-ratings.js:116
+msgid "For all ages"
+msgstr "Para todas as idades"
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
-msgid "Desktop"
-msgstr "Computador"
+#: /media/js/content-ratings.js:125
+msgid "Rating Pending"
+msgstr "Sem avaliação"
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
-msgid "Firefox OS"
-msgstr "Firefox OS"
+#: /media/js/content-ratings.js:126
+msgid "Rating Refused"
+msgstr "Mal avaliados"
+
+#: /media/js/content-ratings.js:129
+msgid "Everyone"
+msgstr "Livre"
+
+#: /media/js/content-ratings.js:130
+msgid "Everyone 10+"
+msgstr "Livre para maiores de 10 anos"
+
+#: /media/js/content-ratings.js:131
+msgid "Teen"
+msgstr "Adolescentes"
+
+#: /media/js/content-ratings.js:132
+msgid "Mature 17+"
+msgstr "Maiores de 17 anos"
+
+#: /media/js/content-ratings.js:133
+msgid "Adults Only 18+"
+msgstr "Maiores de 18 anos"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -1229,47 +1271,6 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "Seja pontual"
 msgstr[1] "Seja pontual"
 
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:103
-msgid "For ages {0}+"
-msgstr "Para idades superiores a {0}"
-
-#: /media/js/content-ratings.js:109
-msgid "Generic"
-msgstr "Gerais"
-
-#: /media/js/content-ratings.js:116
-msgid "For all ages"
-msgstr "Para todas as idades"
-
-#: /media/js/content-ratings.js:125
-msgid "Rating Pending"
-msgstr "Sem avaliação"
-
-#: /media/js/content-ratings.js:126
-msgid "Rating Refused"
-msgstr "Mal avaliados"
-
-#: /media/js/content-ratings.js:129
-msgid "Everyone"
-msgstr "Livre"
-
-#: /media/js/content-ratings.js:130
-msgid "Everyone 10+"
-msgstr "Livre para maiores de 10 anos"
-
-#: /media/js/content-ratings.js:131
-msgid "Teen"
-msgstr "Adolescentes"
-
-#: /media/js/content-ratings.js:132
-msgid "Mature 17+"
-msgstr "Maiores de 17 anos"
-
-#: /media/js/content-ratings.js:133
-msgid "Adults Only 18+"
-msgstr "Maiores de 18 anos"
-
 #: /media/js/feed_websites.js:61
 msgid "{current} of {count}"
 msgstr "{current} de {count}"
@@ -1401,17 +1402,21 @@ msgstr "Desculpe, você está atualmente offline. Por favor, tente novamente mai
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr "A próxima vez que você iniciar o aplicativo Firefox Marketplace, você verá a versão atualizada!"
 
-#: /media/js/views/addons.js:9 /media/js/views/addons.js:10
-msgid "Firefox OS Add-ons"
-msgstr "Complementos para o Firefox OS"
-
 #: /media/js/views/app.js:17
 msgid "App Detail"
 msgstr "Detalhes do aplicativo"
 
+#: /media/js/views/addons.js:9 /media/js/views/addons.js:10
+msgid "Firefox OS Add-ons"
+msgstr "Complementos para o Firefox OS"
+
 #: /media/js/views/feed_landing.js:16
 msgid "Collection Detail"
 msgstr "Detalhes da coleção"
+
+#: /media/js/views/homescreens.js:8
+msgid "Popular Homescreens"
+msgstr "Telas iniciais populares"
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1420,10 +1425,6 @@ msgstr "Opinião enviada. Obrigado!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Houve um problema ao enviar sua opinião. Por favor, tente novamente em breve."
-
-#: /media/js/views/homescreens.js:8
-msgid "Popular Homescreens"
-msgstr "Telas iniciais populares"
 
 #: /media/js/views/langpacks.js:30
 msgid "Language Packs"
@@ -1437,13 +1438,13 @@ msgstr "Firefox OS {version}"
 msgid "New Apps"
 msgstr "Aplicativos novos"
 
-#: /media/js/views/newsletter_signup.js:11
-msgid "Newsletter Signup"
-msgstr "Assine o informativo"
-
 #: /media/js/views/new_websites.js:8
 msgid "New Sites"
 msgstr "Sites novos"
+
+#: /media/js/views/newsletter_signup.js:11
+msgid "Newsletter Signup"
+msgstr "Assine o informativo"
 
 #: /media/js/views/popular_apps.js:9
 msgid "Popular Apps"
@@ -1453,14 +1454,6 @@ msgstr "Aplicativos populares"
 msgid "Popular Sites"
 msgstr "Sites populares"
 
-#: /media/js/views/settings.js:41
-msgid "Your settings have been successfully saved"
-msgstr "As suas definições foram salvas com sucesso"
-
-#: /media/js/views/settings.js:47
-msgid "Settings could not be saved"
-msgstr "Não foi possível salvar as configurações"
-
 #: /media/js/views/search.js:173
 msgid "Search Results"
 msgstr "Resultados da pesquisa"
@@ -1468,6 +1461,14 @@ msgstr "Resultados da pesquisa"
 #: /media/js/views/search.js:186
 msgid "Developer Listing"
 msgstr "Lista de desenvolvedores"
+
+#: /media/js/views/settings.js:41
+msgid "Your settings have been successfully saved"
+msgstr "As suas definições foram salvas com sucesso"
+
+#: /media/js/views/settings.js:47
+msgid "Settings could not be saved"
+msgstr "Não foi possível salvar as configurações"
 
 #: /media/js/views/website.js:11
 msgid "Website Detail"
@@ -1477,11 +1478,11 @@ msgstr "Detalhes do site"
 msgid "Close"
 msgstr "Fechar"
 
-#: /media/js/views/addon/abuse.js:16 /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
+#: /media/js/views/app/abuse.js:18 /media/js/views/addon/abuse.js:16 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
 msgstr "Denúncia enviada. Obrigado!"
 
-#: /media/js/views/addon/abuse.js:20 /media/js/views/app/abuse.js:24 /media/js/views/website/issue.js:22
+#: /media/js/views/app/abuse.js:24 /media/js/views/addon/abuse.js:20 /media/js/views/website/issue.js:22
 msgid "There was an issue submitting your report. Please try again later."
 msgstr "Houve um problema ao enviar a sua denúncia. Por favor tente novamente."
 

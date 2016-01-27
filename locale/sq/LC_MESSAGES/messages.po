@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-20T19:47:16.843Z\n"
+"POT-Creation-Date: 2016-01-27T20:21:33.900Z\n"
 "PO-Revision-Date: 2015-12-23 19:48+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgstr "Operatori juaj ofron këto aplikacione falas. Mund t’i shkarkoni falas
 msgid "No apps found."
 msgstr "Nuk u gjetën aplikacione."
 
-#: /templates/carrier.html:37 /templates/category.html:49 /templates/langpacks.html:41 /templates/purchases.html:35 /templates/product_list.html:48 /templates/addon/list.html:33
+#: /templates/carrier.html:37 /templates/category.html:49 /templates/langpacks.html:41 /templates/product_list.html:48 /templates/purchases.html:35 /templates/addon/list.html:33
 msgid "An internal server error occurred. Please try again later."
 msgstr "Ndodhi një gabim i brendshëm shërbyesi. Ju lutemi, riprovoni më vonë."
 
@@ -35,7 +35,7 @@ msgstr "Ndodhi një gabim i brendshëm shërbyesi. Ju lutemi, riprovoni më von�
 msgid "Categories"
 msgstr "Kategori"
 
-#: /templates/category.html:9 /templates/category.html:19 /templates/purchases.html:7 /templates/product_list.html:9 /templates/product_list.html:14 /templates/search.html:9 /templates/search.html:16
+#: /templates/category.html:9 /templates/category.html:19 /templates/product_list.html:9 /templates/product_list.html:14 /templates/purchases.html:7 /templates/search.html:9 /templates/search.html:16
 msgid "Expand"
 msgstr "Zgjeroje"
 
@@ -55,11 +55,11 @@ msgstr "Dëshirojmë të dëgjojmë mendimet tuaja!"
 msgid "Give us your feedback. Let us know whether we are awesome or buggy."
 msgstr "Na jepni përshtypjet tuaja. Na bëni të ditur nëse jemi të mrekullueshëm apo me të meta."
 
-#: /templates/feedback.html:7 /templates/addon/abuse.html:15 /templates/app/abuse.html:16
+#: /templates/feedback.html:7 /templates/app/abuse.html:16 /templates/addon/abuse.html:15
 msgid "Let us know..."
 msgstr "Na e bëni të ditur..."
 
-#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/addon/abuse.html:20 /templates/app/abuse.html:21 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:21 /templates/addon/abuse.html:20 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 #: /templates/website/issue.html:13
 msgid "Cancel"
 msgstr "Anuloje"
@@ -108,12 +108,12 @@ msgstr ""
 "Hiq atje ku <a href=\"{legal_url}\" target=\"_blank\">shënohet</a> ndryshe, lënda e këtij sajti qarkullon sipas licencës <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
 "Alike License v3.0</a> ose cilitdo version të mëvonshëm."
 
-#: /templates/footer.html:40 /templates/privacy.html:2 /templates/nav.html:91 /templates/settings.html:70 /templates/app/privacy.html:2 /templates/app/index.html:74 /media/js/views/privacy.js:9
+#: /templates/footer.html:40 /templates/nav.html:91 /templates/privacy.html:2 /templates/settings.html:70 /templates/app/index.html:74 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Rregulla Privatësie"
 
-#: /templates/footer.html:41 /templates/nav.html:92 /templates/terms.html:2 /templates/settings.html:71 /media/js/views/terms.js:12
+#: /templates/footer.html:41 /templates/nav.html:92 /templates/settings.html:71 /templates/terms.html:2 /media/js/views/terms.js:12
 msgid "Terms of Use"
 msgstr "Kushte Përdorimi"
 
@@ -141,6 +141,10 @@ msgstr "Aplikacionet e Mia"
 msgid "Sign Out"
 msgstr "Dilni"
 
+#: /templates/langpacks.html:34 /templates/langpacks.html:39
+msgid "No language packs found."
+msgstr "Nuk u gjetën paketa gjuhësore."
+
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
 msgstr "Që të instaloni një aplikacion Firefox, duhet të përdorni Firefox-in."
@@ -148,10 +152,6 @@ msgstr "Që të instaloni një aplikacion Firefox, duhet të përdorni Firefox-i
 #: /templates/incompatible.html:2 /templates/marketplace-update.html:4
 msgid "Download"
 msgstr "Shkarkojeni"
-
-#: /templates/langpacks.html:34 /templates/langpacks.html:39
-msgid "No language packs found."
-msgstr "Nuk u gjetën paketa gjuhësore."
 
 #: /templates/marketplace-update.html:2
 msgid "An update to Marketplace is available."
@@ -237,6 +237,10 @@ msgstr "Faleminderit që u regjistruat!"
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Do të merrni një email nga mozilla@e.mozilla.org, ju lutemi, kontrolloni postën tuaj për një email prej nesh. Nëse nuk e shihni, kontrolloni filtrin tuaj për mesazhet e padëshiruar."
 
+#: /templates/product_list.html:41 /templates/product_list.html:46
+msgid "The list returned no results."
+msgstr "Lista nuk dha përfundime."
+
 #: /templates/purchases.html:41
 msgid "You must be signed in to view your apps."
 msgstr "Duhet të jeni i futur që të mund të shihni Aplikacionet tuaja."
@@ -249,9 +253,21 @@ msgstr "Nuk keni aplikacione"
 msgid "Oh no!"
 msgstr "Mooos!"
 
-#: /templates/product_list.html:41 /templates/product_list.html:46
-msgid "The list returned no results."
-msgstr "Lista nuk dha përfundime."
+#: /templates/search.html:8
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Përfundim"
+msgstr[1] "<b>{n}</b> Përfundime"
+
+#: /templates/search.html:12
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> dha {n} përfundim"
+msgstr[1] "<b>\"{search_query}\"</b> dha {n} përfundime"
+
+#: /templates/search.html:73
+msgid "No results found, try again later"
+msgstr "Nuk u gjetën përfundime, riprovoni më vonë"
 
 #: /templates/settings.html:9
 msgid "General settings"
@@ -296,22 +312,6 @@ msgstr "Përfshihuni"
 #: /templates/settings.html:36
 msgid "Region"
 msgstr "Rajon"
-
-#: /templates/search.html:8
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Përfundim"
-msgstr[1] "<b>{n}</b> Përfundime"
-
-#: /templates/search.html:12
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> dha {n} përfundim"
-msgstr[1] "<b>\"{search_query}\"</b> dha {n} përfundime"
-
-#: /templates/search.html:73
-msgid "No results found, try again later"
-msgstr "Nuk u gjetën përfundime, riprovoni më vonë"
 
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
@@ -402,112 +402,6 @@ msgid_plural "{numReviews} Reviews"
 msgstr[0] "1 Shqyrtim"
 msgstr[1] "{numReviews} Shqyrtime"
 
-#: /templates/addon/abuse.html:6
-msgid "Let us know if this add-on is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
-msgstr "Na e bëni të ditur nëse kjo shtesë kryen diçka për të cilën s’është lejuar te <a href=\"{criteria_url}\">kritere shqyrtimi</a> dhe se do të duhej hequr nga Marketplace-i."
-
-#: /templates/addon/abuse.html:11
-msgid "Examples of issues to report here are if the add-on is completely broken, contains mature content, contains malware, etc. The add-on developer will not see your comments."
-msgstr "Shembuj problemesh për t’u raportuar do të ishin: shtesa është tërësisht e dëmtuar, përmban lëndë për të rritur, përmban malware, etj. Zhvilluesi i shtesës nuk do t’i shohë komentet tuaja."
-
-#: /templates/addon/abuse.html:21 /templates/app/abuse.html:22
-msgid "Submit Report"
-msgstr "Parashtroni Njoftim"
-
-#: /templates/addon/index.html:13 /templates/app/index.html:19 /templates/website/index.html:15
-msgid "Description"
-msgstr "Përshkrim"
-
-#: /templates/addon/index.html:20 /templates/app/index.html:25 /templates/app/index.html:39 /templates/website/index.html:21
-msgid "View All"
-msgstr "Shihini të Tëra"
-
-#: /templates/addon/index.html:25
-msgid "version: {version}"
-msgstr "version: {version}"
-
-#: /templates/addon/index.html:26
-msgid "size: {size}"
-msgstr "madhësi: {size}"
-
-#: /templates/addon/index.html:29
-msgid "last updated: {date}"
-msgstr "përditësuar së fundi: {date}"
-
-#: /templates/addon/index.html:36 /media/js/views/addon/abuse.js:33
-msgid "Report to Mozilla"
-msgstr "Raportojani Mozilla-s"
-
-#: /templates/addon/list.html:6
-msgid "Customize your device with powerful features."
-msgstr "Personalizojeni pajisjen tuaj me veçori të fuqishme."
-
-#: /templates/addon/list.html:26 /templates/addon/list.html:31
-msgid "No Firefox OS add-ons found."
-msgstr "S’u gjetën për shtesa Firefox OS"
-
-#: /templates/_macros/app_tile.html:107
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Shqyrtim"
-msgstr[1] "Shqyrtime"
-
-#: /templates/_macros/app_tile.html:113
-msgid "Not yet reviewed"
-msgstr "Ende i pashqyrtuar"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:72 /media/js/buttons.js:410
-msgid "Free"
-msgstr "Falas"
-
-#: /templates/_macros/feed_item.html:86 /templates/_macros/feed_item.html:179
-msgid "View all"
-msgstr "Shihini krejt"
-
-#: /templates/_macros/feed_websites.html:16
-msgid "Visit this top site!"
-msgstr "Vizitojeni këtë kryesajt!"
-
-#: /templates/_macros/feed_websites.html:50
-msgid "Show me another site"
-msgstr "Tregomëni një tjetër sajt"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Ngarkoni më tepër"
-
-#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr "Foto ekrani e {app_name}"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Për versionin e mëparshëm {version}"
-
-#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
-msgid "Edit"
-msgstr "Përpunoni"
-
-#: /templates/_macros/review.html:36
-msgid "Delete"
-msgstr "Fshije"
-
-#: /templates/_macros/review.html:42
-msgid "Report"
-msgstr "Raportoje"
-
-#: /templates/_macros/review.html:44
-msgid "Flagged for review"
-msgstr "Me shenjë për shqyrtim"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Vlerësuar me {stars} nga {maxstars} yje gjithsej"
-
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
 msgstr "Doni të njoftoni diçka?"
@@ -521,17 +415,18 @@ msgid "Examples of issues to report here are if the app is broken, contains matu
 msgstr ""
 "Shembuj problemesh për t’i njoftuar këtu janë: nëse aplikacioni është i prishur, përmban lëndë për të rritur, përmban malware, etj. Programuesi i palikacionit nuk do t’i shohë komentent tuaja."
 
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Mbrapsht te aplikacioni"
+#: /templates/app/abuse.html:22 /templates/addon/abuse.html:21
+msgid "Submit Report"
+msgstr "Parashtroni Njoftim"
 
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Po ngarkohen Rregullat e Privatësisë..."
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:19 /templates/addon/index.html:13 /templates/website/index.html:15
+msgid "Description"
+msgstr "Përshkrim"
 
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Faleminderit për blerjen"
+#: /templates/app/index.html:25 /templates/app/index.html:39 /templates/addon/index.html:20 /templates/website/index.html:21
+msgid "View All"
+msgstr "Shihini të Tëra"
 
 #: /templates/app/index.html:35
 msgid "Updates"
@@ -610,9 +505,111 @@ msgstr "Versioni Më i Ri"
 msgid "Report Abuse"
 msgstr "Njoftoni Dhunim"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Ndodhi një gabim."
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Faleminderit për blerjen"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Mbrapsht te aplikacioni"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Po ngarkohen Rregullat e Privatësisë..."
+
+#: /templates/addon/abuse.html:6
+msgid "Let us know if this add-on is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
+msgstr "Na e bëni të ditur nëse kjo shtesë kryen diçka për të cilën s’është lejuar te <a href=\"{criteria_url}\">kritere shqyrtimi</a> dhe se do të duhej hequr nga Marketplace-i."
+
+#: /templates/addon/abuse.html:11
+msgid "Examples of issues to report here are if the add-on is completely broken, contains mature content, contains malware, etc. The add-on developer will not see your comments."
+msgstr "Shembuj problemesh për t’u raportuar do të ishin: shtesa është tërësisht e dëmtuar, përmban lëndë për të rritur, përmban malware, etj. Zhvilluesi i shtesës nuk do t’i shohë komentet tuaja."
+
+#: /templates/addon/list.html:6
+msgid "Customize your device with powerful features."
+msgstr "Personalizojeni pajisjen tuaj me veçori të fuqishme."
+
+#: /templates/addon/list.html:26 /templates/addon/list.html:31
+msgid "No Firefox OS add-ons found."
+msgstr "S’u gjetën për shtesa Firefox OS"
+
+#: /templates/addon/index.html:25
+msgid "version: {version}"
+msgstr "version: {version}"
+
+#: /templates/addon/index.html:26
+msgid "size: {size}"
+msgstr "madhësi: {size}"
+
+#: /templates/addon/index.html:29
+msgid "last updated: {date}"
+msgstr "përditësuar së fundi: {date}"
+
+#: /templates/addon/index.html:36 /media/js/views/addon/abuse.js:33
+msgid "Report to Mozilla"
+msgstr "Raportojani Mozilla-s"
+
+#: /templates/_macros/app_tile.html:107
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Shqyrtim"
+msgstr[1] "Shqyrtime"
+
+#: /templates/_macros/app_tile.html:113
+msgid "Not yet reviewed"
+msgstr "Ende i pashqyrtuar"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:72 /media/js/buttons.js:410
+msgid "Free"
+msgstr "Falas"
+
+#: /templates/_macros/feed_item.html:86 /templates/_macros/feed_item.html:179
+msgid "View all"
+msgstr "Shihini krejt"
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr "Vizitojeni këtë kryesajt!"
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr "Tregomëni një tjetër sajt"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Ngarkoni më tepër"
+
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
+msgstr "Foto ekrani e {app_name}"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Për versionin e mëparshëm {version}"
+
+#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
+msgid "Edit"
+msgstr "Përpunoni"
+
+#: /templates/_macros/review.html:36
+msgid "Delete"
+msgstr "Fshije"
+
+#: /templates/_macros/review.html:42
+msgid "Report"
+msgstr "Raportoje"
+
+#: /templates/_macros/review.html:44
+msgid "Flagged for review"
+msgstr "Me shenjë për shqyrtim"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Vlerësuar me {stars} nga {maxstars} yje gjithsej"
 
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
@@ -626,7 +623,11 @@ msgstr "Hmm! Diçka shkoi ters dhe përfunduat këtu. Na ndjeni!"
 msgid "Try Again"
 msgstr "Riprovoni"
 
-#: /templates/ratings/edit.html:4 /templates/ratings/add.html:8 /media/js/views/app/ratings/edit.js:15
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Ndodhi një gabim."
+
+#: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "Përpunoni Shqyrtimin"
 
@@ -696,6 +697,22 @@ msgstr "Nuk ka shqyrtime të këtij aplikacioni."
 msgid "App Review"
 msgstr "Shqyrtim Aplikacioni"
 
+#: /templates/website/index.html:34
+msgid "Explore more in {category_one} and {category_two}."
+msgstr "Shihni më tepër nga {category_one} dhe {category_two}."
+
+#: /templates/website/index.html:38
+msgid "Explore more in {category}."
+msgstr "Shihni më tepër nga {category}."
+
+#: /templates/website/index.html:47
+msgid "Is there something wrong or out-of-date with this website listing?"
+msgstr "Ka diçka që s’shkon apo të vjetruar te pjesa mbi këtë sajt?"
+
+#: /templates/website/index.html:49 /templates/website/issue.html:14
+msgid "Report an issue"
+msgstr "Njoftoni një problem"
+
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
 msgstr "Na e bëni të ditur nëse diçka mungon te pjesa mbi këtë sajt, apo kur të dhënat rreth tij duhen përditësuar."
@@ -708,21 +725,25 @@ msgstr "Për të dhëna se si të njoftohen probleme të drejtash kopjimi apo sh
 msgid "Describe the issue here. Please be specific."
 msgstr "Përshkruajeni çështjen këtu. Ju lutemi, jini i kthjellët në shpjegim."
 
-#: /templates/website/issue.html:14 /templates/website/index.html:49
-msgid "Report an issue"
-msgstr "Njoftoni një problem"
+#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+msgid "All Platforms"
+msgstr "Krejt Platformat"
 
-#: /templates/website/index.html:34
-msgid "Explore more in {category_one} and {category_two}."
-msgstr "Shihni më tepër nga {category_one} dhe {category_two}."
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
+msgid "Android Mobile"
+msgstr "Android në Celular"
 
-#: /templates/website/index.html:38
-msgid "Explore more in {category}."
-msgstr "Shihni më tepër nga {category}."
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
+msgid "Android Tablet"
+msgstr "Android në Tablet"
 
-#: /templates/website/index.html:47
-msgid "Is there something wrong or out-of-date with this website listing?"
-msgstr "Ka diçka që s’shkon apo të vjetruar te pjesa mbi këtë sajt?"
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
+msgid "Desktop"
+msgstr "Desktop"
+
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
+msgid "Firefox OS"
+msgstr "Firefox OS"
 
 #: /media/js/buttons.js:91 /media/js/buttons.js:163 /media/js/payments.js:134
 msgid "Payment cancelled."
@@ -785,25 +806,46 @@ msgstr "jo i passhëm për platformën tuaj"
 msgid "not compatible with your device"
 msgstr "i papërputhshëm me pajisjen tuaj"
 
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
-msgid "All Platforms"
-msgstr "Krejt Platformat"
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:103
+msgid "For ages {0}+"
+msgstr "Për mosha {0}+"
 
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
-msgid "Android Mobile"
-msgstr "Android në Celular"
+#: /media/js/content-ratings.js:109
+msgid "Generic"
+msgstr "Të përgjithshme"
 
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
-msgid "Android Tablet"
-msgstr "Android në Tablet"
+#: /media/js/content-ratings.js:116
+msgid "For all ages"
+msgstr "Për tërë moshat"
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
-msgid "Desktop"
-msgstr "Desktop"
+#: /media/js/content-ratings.js:125
+msgid "Rating Pending"
+msgstr "Në Pritje të Vlerësimit"
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
-msgid "Firefox OS"
-msgstr "Firefox OS"
+#: /media/js/content-ratings.js:126
+msgid "Rating Refused"
+msgstr "Iu Mohua Vlerësimi"
+
+#: /media/js/content-ratings.js:129
+msgid "Everyone"
+msgstr "Për këdo"
+
+#: /media/js/content-ratings.js:130
+msgid "Everyone 10+"
+msgstr "Për këdo 10+"
+
+#: /media/js/content-ratings.js:131
+msgid "Teen"
+msgstr "Adoleshentë"
+
+#: /media/js/content-ratings.js:132
+msgid "Mature 17+"
+msgstr "Për të rritur 17+"
+
+#: /media/js/content-ratings.js:133
+msgid "Adults Only 18+"
+msgstr "Vetëm për të Rritur 18+"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -1229,47 +1271,6 @@ msgid_plural "Work & Business Apps"
 msgstr[0] "Aplikacion Punë & Biznes"
 msgstr[1] "Aplikacione Punë & Biznes"
 
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:103
-msgid "For ages {0}+"
-msgstr "Për mosha {0}+"
-
-#: /media/js/content-ratings.js:109
-msgid "Generic"
-msgstr "Të përgjithshme"
-
-#: /media/js/content-ratings.js:116
-msgid "For all ages"
-msgstr "Për tërë moshat"
-
-#: /media/js/content-ratings.js:125
-msgid "Rating Pending"
-msgstr "Në Pritje të Vlerësimit"
-
-#: /media/js/content-ratings.js:126
-msgid "Rating Refused"
-msgstr "Iu Mohua Vlerësimi"
-
-#: /media/js/content-ratings.js:129
-msgid "Everyone"
-msgstr "Për këdo"
-
-#: /media/js/content-ratings.js:130
-msgid "Everyone 10+"
-msgstr "Për këdo 10+"
-
-#: /media/js/content-ratings.js:131
-msgid "Teen"
-msgstr "Adoleshentë"
-
-#: /media/js/content-ratings.js:132
-msgid "Mature 17+"
-msgstr "Për të rritur 17+"
-
-#: /media/js/content-ratings.js:133
-msgid "Adults Only 18+"
-msgstr "Vetëm për të Rritur 18+"
-
 #: /media/js/feed_websites.js:61
 msgid "{current} of {count}"
 msgstr "{current} nga {count}"
@@ -1401,17 +1402,21 @@ msgstr "Na ndjeni, hëpërhë jeni jashtë linje. Ju lutemi, riprovoni më vonë
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr "Herës tjetër që nisni aplikacionin Firefox Marketplace, do të shihni versionin e përditësuar!"
 
-#: /media/js/views/addons.js:9 /media/js/views/addons.js:10
-msgid "Firefox OS Add-ons"
-msgstr "Shtesa për Firefox OS"
-
 #: /media/js/views/app.js:17
 msgid "App Detail"
 msgstr "Hollësi Aplikacioni"
 
+#: /media/js/views/addons.js:9 /media/js/views/addons.js:10
+msgid "Firefox OS Add-ons"
+msgstr "Shtesa për Firefox OS"
+
 #: /media/js/views/feed_landing.js:16
 msgid "Collection Detail"
 msgstr "Hollësi Koleksioni"
+
+#: /media/js/views/homescreens.js:8
+msgid "Popular Homescreens"
+msgstr "Skena Kreu Popullore"
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1420,10 +1425,6 @@ msgstr "Përshtypjet u parashtruan. Faleminderit!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Pati një problem gjatë parashtrimit të përshtypjeve tuaja. Riprovoni së shpejti."
-
-#: /media/js/views/homescreens.js:8
-msgid "Popular Homescreens"
-msgstr "Skena Kreu Popullore"
 
 #: /media/js/views/langpacks.js:30
 msgid "Language Packs"
@@ -1437,13 +1438,13 @@ msgstr "Firefox OS {version}"
 msgid "New Apps"
 msgstr "Aplikacione të Reja"
 
-#: /media/js/views/newsletter_signup.js:11
-msgid "Newsletter Signup"
-msgstr "Pajtim te Buletini"
-
 #: /media/js/views/new_websites.js:8
 msgid "New Sites"
 msgstr "Sajte të Rinj"
+
+#: /media/js/views/newsletter_signup.js:11
+msgid "Newsletter Signup"
+msgstr "Pajtim te Buletini"
 
 #: /media/js/views/popular_apps.js:9
 msgid "Popular Apps"
@@ -1453,14 +1454,6 @@ msgstr "Aplikacione Popullore"
 msgid "Popular Sites"
 msgstr "Sajte Popullore"
 
-#: /media/js/views/settings.js:41
-msgid "Your settings have been successfully saved"
-msgstr "Rregullimet tuaja u ruajtën me sukses"
-
-#: /media/js/views/settings.js:47
-msgid "Settings could not be saved"
-msgstr "Rregullimet nuk u ruajtën dot"
-
 #: /media/js/views/search.js:173
 msgid "Search Results"
 msgstr "Përfundime Kërkimi"
@@ -1468,6 +1461,14 @@ msgstr "Përfundime Kërkimi"
 #: /media/js/views/search.js:186
 msgid "Developer Listing"
 msgstr "Listë Zhvilluesish"
+
+#: /media/js/views/settings.js:41
+msgid "Your settings have been successfully saved"
+msgstr "Rregullimet tuaja u ruajtën me sukses"
+
+#: /media/js/views/settings.js:47
+msgid "Settings could not be saved"
+msgstr "Rregullimet nuk u ruajtën dot"
 
 #: /media/js/views/website.js:11
 msgid "Website Detail"
@@ -1477,11 +1478,11 @@ msgstr "Hollësi Sajti"
 msgid "Close"
 msgstr "Mbylle"
 
-#: /media/js/views/addon/abuse.js:16 /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
+#: /media/js/views/app/abuse.js:18 /media/js/views/addon/abuse.js:16 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
 msgstr "Raporti u parashtrua. Faleminderit!"
 
-#: /media/js/views/addon/abuse.js:20 /media/js/views/app/abuse.js:24 /media/js/views/website/issue.js:22
+#: /media/js/views/app/abuse.js:24 /media/js/views/addon/abuse.js:20 /media/js/views/website/issue.js:22
 msgid "There was an issue submitting your report. Please try again later."
 msgstr "Pati një gabim gjatë parashtrimit të njoftimit tuaj. Ju lutemi, riprovoni më vonë."
 

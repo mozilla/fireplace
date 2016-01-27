@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-20T19:47:16.843Z\n"
+"POT-Creation-Date: 2016-01-27T20:21:33.900Z\n"
 "PO-Revision-Date: 2015-12-23 14:09+0000\n"
 "Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgstr "Vaš operater ponuja te brezplačne aplikacije. Prenesete jih lahko brez
 msgid "No apps found."
 msgstr "Ni najdenih aplikacij."
 
-#: /templates/carrier.html:37 /templates/category.html:49 /templates/langpacks.html:41 /templates/purchases.html:35 /templates/product_list.html:48 /templates/addon/list.html:33
+#: /templates/carrier.html:37 /templates/category.html:49 /templates/langpacks.html:41 /templates/product_list.html:48 /templates/purchases.html:35 /templates/addon/list.html:33
 msgid "An internal server error occurred. Please try again later."
 msgstr "Prišlo je do napake. Prosimo, poskusite ponovno kasneje."
 
@@ -35,7 +35,7 @@ msgstr "Prišlo je do napake. Prosimo, poskusite ponovno kasneje."
 msgid "Categories"
 msgstr "Kategorije"
 
-#: /templates/category.html:9 /templates/category.html:19 /templates/purchases.html:7 /templates/product_list.html:9 /templates/product_list.html:14 /templates/search.html:9 /templates/search.html:16
+#: /templates/category.html:9 /templates/category.html:19 /templates/product_list.html:9 /templates/product_list.html:14 /templates/purchases.html:7 /templates/search.html:9 /templates/search.html:16
 msgid "Expand"
 msgstr "Razširi"
 
@@ -55,11 +55,11 @@ msgstr "Zanima nas vaše mnenje!"
 msgid "Give us your feedback. Let us know whether we are awesome or buggy."
 msgstr "Zanima nas vaše mnenje. Želimo vedeti, ali smo odlični ali pomanjkljivi."
 
-#: /templates/feedback.html:7 /templates/addon/abuse.html:15 /templates/app/abuse.html:16
+#: /templates/feedback.html:7 /templates/app/abuse.html:16 /templates/addon/abuse.html:15
 msgid "Let us know..."
 msgstr "Sporočite nam..."
 
-#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/addon/abuse.html:20 /templates/app/abuse.html:21 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
+#: /templates/feedback.html:11 /templates/newsletter.html:28 /templates/app/abuse.html:21 /templates/addon/abuse.html:20 /templates/ratings/add.html:36 /templates/ratings/flag.html:17
 #: /templates/website/issue.html:13
 msgid "Cancel"
 msgstr "Prekliči"
@@ -108,12 +108,12 @@ msgstr ""
 "Če ni <a href=\"{legal_url}\" target=\"_blank\">navedeno</a> drugače, je vsebina te spletne strani na voljo pod dovoljenjem <a href=\"{cc_url}\" target=\"_blank\">Creative Commons Attribution Share-"
 "Alike License v3.0</a> ali pod katerokoli novejšo različico."
 
-#: /templates/footer.html:40 /templates/privacy.html:2 /templates/nav.html:91 /templates/settings.html:70 /templates/app/privacy.html:2 /templates/app/index.html:74 /media/js/views/privacy.js:9
+#: /templates/footer.html:40 /templates/nav.html:91 /templates/privacy.html:2 /templates/settings.html:70 /templates/app/index.html:74 /templates/app/privacy.html:2 /media/js/views/privacy.js:9
 #: /media/js/views/app/privacy.js:10
 msgid "Privacy Policy"
 msgstr "Politika zasebnosti"
 
-#: /templates/footer.html:41 /templates/nav.html:92 /templates/terms.html:2 /templates/settings.html:71 /media/js/views/terms.js:12
+#: /templates/footer.html:41 /templates/nav.html:92 /templates/settings.html:71 /templates/terms.html:2 /media/js/views/terms.js:12
 msgid "Terms of Use"
 msgstr "Pogoji uporabe"
 
@@ -141,6 +141,10 @@ msgstr "Moje aplikacije"
 msgid "Sign Out"
 msgstr "Odjava"
 
+#: /templates/langpacks.html:34 /templates/langpacks.html:39
+msgid "No language packs found."
+msgstr "Ne najdem jezikovnih paketov.                "
+
 #: /templates/incompatible.html:1
 msgid "You must use Firefox to install Firefox apps."
 msgstr "Za namestitev aplikacij Firefox, morate uporabiti Firefox."
@@ -148,10 +152,6 @@ msgstr "Za namestitev aplikacij Firefox, morate uporabiti Firefox."
 #: /templates/incompatible.html:2 /templates/marketplace-update.html:4
 msgid "Download"
 msgstr "Prenos"
-
-#: /templates/langpacks.html:34 /templates/langpacks.html:39
-msgid "No language packs found."
-msgstr "Ne najdem jezikovnih paketov.                "
 
 #: /templates/marketplace-update.html:2
 msgid "An update to Marketplace is available."
@@ -238,6 +238,10 @@ msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inb
 msgstr ""
 "Prejeli boste elektronsko sporočilo s strani mozilla@e.mozilla.org, prosimo preverite mapo Prejeto, ali ste prejeli prvo sporočilo z naše strani. Če ga ne najdete, preverite filter neželene pošte."
 
+#: /templates/product_list.html:41 /templates/product_list.html:46
+msgid "The list returned no results."
+msgstr "Na seznamu ni rezultatov."
+
 #: /templates/purchases.html:41
 msgid "You must be signed in to view your apps."
 msgstr "Za ogled vaših aplikacij morate biti prijavljeni."
@@ -250,9 +254,25 @@ msgstr "Nimate aplikacij"
 msgid "Oh no!"
 msgstr "O ne!"
 
-#: /templates/product_list.html:41 /templates/product_list.html:46
-msgid "The list returned no results."
-msgstr "Na seznamu ni rezultatov."
+#: /templates/search.html:8
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> rezultat"
+msgstr[1] "<b>{n}</b> rezultata"
+msgstr[2] "<b>{n}</b> rezultati"
+msgstr[3] "<b>{n}</b> rezultatov"
+
+#: /templates/search.html:12
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> vrnjen {n} rezultat"
+msgstr[1] "<b>\"{search_query}\"</b> vrnjena {n} rezultata"
+msgstr[2] "<b>\"{search_query}\"</b> vrnjeni {n} rezultati"
+msgstr[3] "<b>\"{search_query}\"</b> vrnjenih {n} rezultatov"
+
+#: /templates/search.html:73
+msgid "No results found, try again later"
+msgstr "Ni najdenih rezultatov, poskusite ponovno pozneje"
 
 #: /templates/settings.html:9
 msgid "General settings"
@@ -297,26 +317,6 @@ msgstr "Vključite se"
 #: /templates/settings.html:36
 msgid "Region"
 msgstr "Regija"
-
-#: /templates/search.html:8
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> rezultat"
-msgstr[1] "<b>{n}</b> rezultata"
-msgstr[2] "<b>{n}</b> rezultati"
-msgstr[3] "<b>{n}</b> rezultatov"
-
-#: /templates/search.html:12
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> vrnjen {n} rezultat"
-msgstr[1] "<b>\"{search_query}\"</b> vrnjena {n} rezultata"
-msgstr[2] "<b>\"{search_query}\"</b> vrnjeni {n} rezultati"
-msgstr[3] "<b>\"{search_query}\"</b> vrnjenih {n} rezultatov"
-
-#: /templates/search.html:73
-msgid "No results found, try again later"
-msgstr "Ni najdenih rezultatov, poskusite ponovno pozneje"
 
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
@@ -409,114 +409,6 @@ msgstr[1] "{numReviews} oceni"
 msgstr[2] "{numReviews} ocene"
 msgstr[3] "{numReviews} ocen"
 
-#: /templates/addon/abuse.html:6
-msgid "Let us know if this add-on is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
-msgstr "Sporočite nam, če ta dodatek počne kaj, kar v <a href=\"{criteria_url}\">merilih za pregled</a> ni dovoljeno in bi moral biti odstranjen iz Marketplacea."
-
-#: /templates/addon/abuse.html:11
-msgid "Examples of issues to report here are if the add-on is completely broken, contains mature content, contains malware, etc. The add-on developer will not see your comments."
-msgstr "Primeri težav, ki bi jih bilo treba prijaviti tukaj, so pokvarjen dodatek, vsebina za odrasle, zlonamerna programska oprema itd. Razvijalec dodatka ne bo videl vaših pripomb."
-
-#: /templates/addon/abuse.html:21 /templates/app/abuse.html:22
-msgid "Submit Report"
-msgstr "Pošlji poročilo"
-
-#: /templates/addon/index.html:13 /templates/app/index.html:19 /templates/website/index.html:15
-msgid "Description"
-msgstr "Opis"
-
-#: /templates/addon/index.html:20 /templates/app/index.html:25 /templates/app/index.html:39 /templates/website/index.html:21
-msgid "View All"
-msgstr "Prikaži vse"
-
-#: /templates/addon/index.html:25
-msgid "version: {version}"
-msgstr "različica: {version}"
-
-#: /templates/addon/index.html:26
-msgid "size: {size}"
-msgstr "velikost: {size}"
-
-#: /templates/addon/index.html:29
-msgid "last updated: {date}"
-msgstr "nazadnje posodobljeno: {date}"
-
-#: /templates/addon/index.html:36 /media/js/views/addon/abuse.js:33
-msgid "Report to Mozilla"
-msgstr "Prijavi Mozilli"
-
-#: /templates/addon/list.html:6
-msgid "Customize your device with powerful features."
-msgstr "Prilagodite svojo napravo z zmogljivimi značilnostmi."
-
-#: /templates/addon/list.html:26 /templates/addon/list.html:31
-msgid "No Firefox OS add-ons found."
-msgstr "Nobenega dodatka za Firefox OS ni bilo najdenega."
-
-#: /templates/_macros/app_tile.html:107
-msgid "Review"
-msgid_plural "Reviews"
-msgstr[0] "Ocena"
-msgstr[1] "Oceni"
-msgstr[2] "Ocene"
-msgstr[3] "Ocen"
-
-#: /templates/_macros/app_tile.html:113
-msgid "Not yet reviewed"
-msgstr "Še ni ocenjeno"
-
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
-
-#: /templates/_macros/feed_item.html:72 /media/js/buttons.js:410
-msgid "Free"
-msgstr "Brezplačen"
-
-#: /templates/_macros/feed_item.html:86 /templates/_macros/feed_item.html:179
-msgid "View all"
-msgstr "Prikaži vse"
-
-#: /templates/_macros/feed_websites.html:16
-msgid "Visit this top site!"
-msgstr "Obišči to glavno stran!"
-
-#: /templates/_macros/feed_websites.html:50
-msgid "Show me another site"
-msgstr "Pokaži mi drugo stran"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Naloži več"
-
-#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
-msgid "{app_name} screenshot"
-msgstr "{app_name} zajem zaslona"
-
-#: /templates/_macros/review.html:14
-msgid "For previous version {version}"
-msgstr "Za prejšnje različice {različica}"
-
-#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
-msgid "Edit"
-msgstr "Uredi"
-
-#: /templates/_macros/review.html:36
-msgid "Delete"
-msgstr "Izbriši"
-
-#: /templates/_macros/review.html:42
-msgid "Report"
-msgstr "Prijavi"
-
-#: /templates/_macros/review.html:44
-msgid "Flagged for review"
-msgstr "Označeno z zastavico za ocenjevanje"
-
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Ocena: {stars} od skupno {maxstars} zvezdic"
-
 #: /templates/app/abuse.html:5
 msgid "Need to report something?"
 msgstr "Želite karkoli sporočiti?"
@@ -529,17 +421,18 @@ msgstr "Povejte nam, če ta aplikacija počne kaj, kar v <a href=\"{criteria_url
 msgid "Examples of issues to report here are if the app is broken, contains mature content, contains malware, etc. The app developer will not see your comments."
 msgstr "Primeri težav, ki bi jih bilo treba prijaviti tukaj, so pokvarjena aplikacija, vsebina za odrasle, vsebujoča zlonamerna programska oprema itd. Razvijalec aplikacije ne bo videl vaših pripomb."
 
-#: /templates/app/privacy.html:8
-msgid "Back to app"
-msgstr "Nazaj k aplikaciji"
+#: /templates/app/abuse.html:22 /templates/addon/abuse.html:21
+msgid "Submit Report"
+msgstr "Pošlji poročilo"
 
-#: /templates/app/privacy.html:11
-msgid "Loading Privacy Policy..."
-msgstr "Nalagam Politiko zasebnosti ... "
+#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
+#: /templates/app/index.html:19 /templates/addon/index.html:13 /templates/website/index.html:15
+msgid "Description"
+msgstr "Opis"
 
-#: /templates/app/receipt.html:2
-msgid "Thank you for purchasing"
-msgstr "Zahvaljujemo se vam za nakup"
+#: /templates/app/index.html:25 /templates/app/index.html:39 /templates/addon/index.html:20 /templates/website/index.html:21
+msgid "View All"
+msgstr "Prikaži vse"
 
 #: /templates/app/index.html:35
 msgid "Updates"
@@ -618,9 +511,113 @@ msgstr "Najnovejša različica"
 msgid "Report Abuse"
 msgstr "Prijavi zlorabo"
 
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Prišlo je do napake."
+#: /templates/app/receipt.html:2
+msgid "Thank you for purchasing"
+msgstr "Zahvaljujemo se vam za nakup"
+
+#: /templates/app/privacy.html:8
+msgid "Back to app"
+msgstr "Nazaj k aplikaciji"
+
+#: /templates/app/privacy.html:11
+msgid "Loading Privacy Policy..."
+msgstr "Nalagam Politiko zasebnosti ... "
+
+#: /templates/addon/abuse.html:6
+msgid "Let us know if this add-on is doing something that isn't allowed in the <a href=\"{criteria_url}\">review criteria</a> and should be removed from the Marketplace."
+msgstr "Sporočite nam, če ta dodatek počne kaj, kar v <a href=\"{criteria_url}\">merilih za pregled</a> ni dovoljeno in bi moral biti odstranjen iz Marketplacea."
+
+#: /templates/addon/abuse.html:11
+msgid "Examples of issues to report here are if the add-on is completely broken, contains mature content, contains malware, etc. The add-on developer will not see your comments."
+msgstr "Primeri težav, ki bi jih bilo treba prijaviti tukaj, so pokvarjen dodatek, vsebina za odrasle, zlonamerna programska oprema itd. Razvijalec dodatka ne bo videl vaših pripomb."
+
+#: /templates/addon/list.html:6
+msgid "Customize your device with powerful features."
+msgstr "Prilagodite svojo napravo z zmogljivimi značilnostmi."
+
+#: /templates/addon/list.html:26 /templates/addon/list.html:31
+msgid "No Firefox OS add-ons found."
+msgstr "Nobenega dodatka za Firefox OS ni bilo najdenega."
+
+#: /templates/addon/index.html:25
+msgid "version: {version}"
+msgstr "različica: {version}"
+
+#: /templates/addon/index.html:26
+msgid "size: {size}"
+msgstr "velikost: {size}"
+
+#: /templates/addon/index.html:29
+msgid "last updated: {date}"
+msgstr "nazadnje posodobljeno: {date}"
+
+#: /templates/addon/index.html:36 /media/js/views/addon/abuse.js:33
+msgid "Report to Mozilla"
+msgstr "Prijavi Mozilli"
+
+#: /templates/_macros/app_tile.html:107
+msgid "Review"
+msgid_plural "Reviews"
+msgstr[0] "Ocena"
+msgstr[1] "Oceni"
+msgstr[2] "Ocene"
+msgstr[3] "Ocen"
+
+#: /templates/_macros/app_tile.html:113
+msgid "Not yet reviewed"
+msgstr "Še ni ocenjeno"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
+
+#: /templates/_macros/feed_item.html:72 /media/js/buttons.js:410
+msgid "Free"
+msgstr "Brezplačen"
+
+#: /templates/_macros/feed_item.html:86 /templates/_macros/feed_item.html:179
+msgid "View all"
+msgstr "Prikaži vse"
+
+#: /templates/_macros/feed_websites.html:16
+msgid "Visit this top site!"
+msgstr "Obišči to glavno stran!"
+
+#: /templates/_macros/feed_websites.html:50
+msgid "Show me another site"
+msgstr "Pokaži mi drugo stran"
+
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Naloži več"
+
+#: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
+msgid "{app_name} screenshot"
+msgstr "{app_name} zajem zaslona"
+
+#: /templates/_macros/review.html:14
+msgid "For previous version {version}"
+msgstr "Za prejšnje različice {različica}"
+
+#: /templates/_macros/review.html:25 /templates/_macros/review.html:29
+msgid "Edit"
+msgstr "Uredi"
+
+#: /templates/_macros/review.html:36
+msgid "Delete"
+msgstr "Izbriši"
+
+#: /templates/_macros/review.html:42
+msgid "Report"
+msgstr "Prijavi"
+
+#: /templates/_macros/review.html:44
+msgid "Flagged for review"
+msgstr "Označeno z zastavico za ocenjevanje"
+
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Ocena: {stars} od skupno {maxstars} zvezdic"
 
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
@@ -634,7 +631,11 @@ msgstr "Ups! Nekaj je šlo narobe in pristali ste tukaj. Oprostite!"
 msgid "Try Again"
 msgstr "Poskusi znova"
 
-#: /templates/ratings/edit.html:4 /templates/ratings/add.html:8 /media/js/views/app/ratings/edit.js:15
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Prišlo je do napake."
+
+#: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
 msgid "Edit Review"
 msgstr "Uredi oceno"
 
@@ -703,6 +704,22 @@ msgstr "Ta aplikacija nima ocen."
 msgid "App Review"
 msgstr "Ocena aplikacije"
 
+#: /templates/website/index.html:34
+msgid "Explore more in {category_one} and {category_two}."
+msgstr "Raziščite več v {category_one} in {category_two}."
+
+#: /templates/website/index.html:38
+msgid "Explore more in {category}."
+msgstr "Raziščite več v {category}."
+
+#: /templates/website/index.html:47
+msgid "Is there something wrong or out-of-date with this website listing?"
+msgstr "Ali je kaj narobe ali zastarelega s tem seznamom spletnih mest?"
+
+#: /templates/website/index.html:49 /templates/website/issue.html:14
+msgid "Report an issue"
+msgstr "Sporočite napako"
+
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
 msgstr "Obvestite nas, če v objavi na tej strani kaj manjka ali če bi bilo potrebno posodobiti podatke."
@@ -715,21 +732,25 @@ msgstr "Za informacije o prikazu prijave težav z avtorskimi pravicami ali blago
 msgid "Describe the issue here. Please be specific."
 msgstr "Težavo opišite tukaj. Bodite čimbolj natančni."
 
-#: /templates/website/issue.html:14 /templates/website/index.html:49
-msgid "Report an issue"
-msgstr "Sporočite napako"
+#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+msgid "All Platforms"
+msgstr "Vse platforme"
 
-#: /templates/website/index.html:34
-msgid "Explore more in {category_one} and {category_two}."
-msgstr "Raziščite več v {category_one} in {category_two}."
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
+msgid "Android Mobile"
+msgstr "Android Mobilnik"
 
-#: /templates/website/index.html:38
-msgid "Explore more in {category}."
-msgstr "Raziščite več v {category}."
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
+msgid "Android Tablet"
+msgstr "Android Tablica"
 
-#: /templates/website/index.html:47
-msgid "Is there something wrong or out-of-date with this website listing?"
-msgstr "Ali je kaj narobe ali zastarelega s tem seznamom spletnih mest?"
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
+msgid "Desktop"
+msgstr "Namizje"
+
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
+msgid "Firefox OS"
+msgstr "Firefox OS"
 
 #: /media/js/buttons.js:91 /media/js/buttons.js:163 /media/js/payments.js:134
 msgid "Payment cancelled."
@@ -792,25 +813,46 @@ msgstr "ni na voljo za vašo platformo"
 msgid "not compatible with your device"
 msgstr "ni na voljo za vašo napravo"
 
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
-msgid "All Platforms"
-msgstr "Vse platforme"
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:103
+msgid "For ages {0}+"
+msgstr "Za starost {0}+"
 
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
-msgid "Android Mobile"
-msgstr "Android Mobilnik"
+#: /media/js/content-ratings.js:109
+msgid "Generic"
+msgstr "Splošno"
 
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
-msgid "Android Tablet"
-msgstr "Android Tablica"
+#: /media/js/content-ratings.js:116
+msgid "For all ages"
+msgstr "Za vse starosti"
 
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
-msgid "Desktop"
-msgstr "Namizje"
+#: /media/js/content-ratings.js:125
+msgid "Rating Pending"
+msgstr "Ocena še ni pridobljena"
 
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
-msgid "Firefox OS"
-msgstr "Firefox OS"
+#: /media/js/content-ratings.js:126
+msgid "Rating Refused"
+msgstr "Ocena je bila zavrnjena"
+
+#: /media/js/content-ratings.js:129
+msgid "Everyone"
+msgstr "Vsi"
+
+#: /media/js/content-ratings.js:130
+msgid "Everyone 10+"
+msgstr "Za vse 10+"
+
+#: /media/js/content-ratings.js:131
+msgid "Teen"
+msgstr "Za najstnike"
+
+#: /media/js/content-ratings.js:132
+msgid "Mature 17+"
+msgstr "Za odrasle 17+"
+
+#: /media/js/content-ratings.js:133
+msgid "Adults Only 18+"
+msgstr "Samo za odrasle 18 +"
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -1344,47 +1386,6 @@ msgstr[1] "Aplikaciji za delo in posle"
 msgstr[2] "Aplikacije za delo in posle"
 msgstr[3] "Aplikacije za delo in posle"
 
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:103
-msgid "For ages {0}+"
-msgstr "Za starost {0}+"
-
-#: /media/js/content-ratings.js:109
-msgid "Generic"
-msgstr "Splošno"
-
-#: /media/js/content-ratings.js:116
-msgid "For all ages"
-msgstr "Za vse starosti"
-
-#: /media/js/content-ratings.js:125
-msgid "Rating Pending"
-msgstr "Ocena še ni pridobljena"
-
-#: /media/js/content-ratings.js:126
-msgid "Rating Refused"
-msgstr "Ocena je bila zavrnjena"
-
-#: /media/js/content-ratings.js:129
-msgid "Everyone"
-msgstr "Vsi"
-
-#: /media/js/content-ratings.js:130
-msgid "Everyone 10+"
-msgstr "Za vse 10+"
-
-#: /media/js/content-ratings.js:131
-msgid "Teen"
-msgstr "Za najstnike"
-
-#: /media/js/content-ratings.js:132
-msgid "Mature 17+"
-msgstr "Za odrasle 17+"
-
-#: /media/js/content-ratings.js:133
-msgid "Adults Only 18+"
-msgstr "Samo za odrasle 18 +"
-
 #: /media/js/feed_websites.js:61
 msgid "{current} of {count}"
 msgstr "{current} od {count}"
@@ -1518,17 +1519,21 @@ msgstr "Trenutno delate brez povezave. Poskusite znova kasneje."
 msgid "The next time you start the Firefox Marketplace app, you’ll see the updated version!"
 msgstr "Ob naslednjem zagonu aplikacije Firefox Marketplace boste videli posodobljeno različico!"
 
-#: /media/js/views/addons.js:9 /media/js/views/addons.js:10
-msgid "Firefox OS Add-ons"
-msgstr "Dodatki za Firefox OS"
-
 #: /media/js/views/app.js:17
 msgid "App Detail"
 msgstr "Podrobnosti aplikacije"
 
+#: /media/js/views/addons.js:9 /media/js/views/addons.js:10
+msgid "Firefox OS Add-ons"
+msgstr "Dodatki za Firefox OS"
+
 #: /media/js/views/feed_landing.js:16
 msgid "Collection Detail"
 msgstr "Podrobnosti zbirke"
+
+#: /media/js/views/homescreens.js:8
+msgid "Popular Homescreens"
+msgstr "Priljubljeni začetni zasloni"
 
 #: /media/js/views/feedback.js:23
 msgid "Feedback submitted. Thanks!"
@@ -1537,10 +1542,6 @@ msgstr "Povratne informacije poslane. Hvala!"
 #: /media/js/views/feedback.js:27
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "Pri pošiljanju vaših povratnih informacij je prišlo do težave. Poskusite znova kasneje."
-
-#: /media/js/views/homescreens.js:8
-msgid "Popular Homescreens"
-msgstr "Priljubljeni začetni zasloni"
 
 #: /media/js/views/langpacks.js:30
 msgid "Language Packs"
@@ -1554,13 +1555,13 @@ msgstr "Firefox OS {version}"
 msgid "New Apps"
 msgstr "Nove aplikacije"
 
-#: /media/js/views/newsletter_signup.js:11
-msgid "Newsletter Signup"
-msgstr "Naročilo na novice"
-
 #: /media/js/views/new_websites.js:8
 msgid "New Sites"
 msgstr "Nove strani"
+
+#: /media/js/views/newsletter_signup.js:11
+msgid "Newsletter Signup"
+msgstr "Naročilo na novice"
 
 #: /media/js/views/popular_apps.js:9
 msgid "Popular Apps"
@@ -1570,14 +1571,6 @@ msgstr "Priljubljene aplikacije"
 msgid "Popular Sites"
 msgstr "Priljubljene strani"
 
-#: /media/js/views/settings.js:41
-msgid "Your settings have been successfully saved"
-msgstr "Vaše nastavitve so bile uspešno shranjene"
-
-#: /media/js/views/settings.js:47
-msgid "Settings could not be saved"
-msgstr "Nastavitev ni bilo mogoče shraniti"
-
 #: /media/js/views/search.js:173
 msgid "Search Results"
 msgstr "Rezultati iskanja"
@@ -1585,6 +1578,14 @@ msgstr "Rezultati iskanja"
 #: /media/js/views/search.js:186
 msgid "Developer Listing"
 msgstr "Objavil razvijalec"
+
+#: /media/js/views/settings.js:41
+msgid "Your settings have been successfully saved"
+msgstr "Vaše nastavitve so bile uspešno shranjene"
+
+#: /media/js/views/settings.js:47
+msgid "Settings could not be saved"
+msgstr "Nastavitev ni bilo mogoče shraniti"
 
 #: /media/js/views/website.js:11
 msgid "Website Detail"
@@ -1594,11 +1595,11 @@ msgstr "Podrobnost spletne strani"
 msgid "Close"
 msgstr "Zapri"
 
-#: /media/js/views/addon/abuse.js:16 /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
+#: /media/js/views/app/abuse.js:18 /media/js/views/addon/abuse.js:16 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
 msgstr "Poročilo poslano. Hvala!"
 
-#: /media/js/views/addon/abuse.js:20 /media/js/views/app/abuse.js:24 /media/js/views/website/issue.js:22
+#: /media/js/views/app/abuse.js:24 /media/js/views/addon/abuse.js:20 /media/js/views/website/issue.js:22
 msgid "There was an issue submitting your report. Please try again later."
 msgstr "Pri pošiljanju vašega poročila je prišlo do težave. Poskusite znova kasneje."
 
