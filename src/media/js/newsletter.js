@@ -30,7 +30,7 @@ define('newsletter',
     }
 
     z.body.on('focus', '#newsletter-footer .email', function() {
-        expandDetails($(this).siblings('.newsletter-details'));
+        expandDetails($('.newsletter-details'));
     }).on('click', '.newsletter-signup-button', function() {
         expandDetails($(this).closest('form').find('.newsletter-details'));
     }).on('submit', '.newsletter form', utils._pd(function() {
