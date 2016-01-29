@@ -21,7 +21,7 @@
 
 .reviews-summary-large {
     text-align: center;
-    padding: 30px 0;
+    padding: 0 0 20px;
 
     .stars-wrapper {
         transform: scale(2.5);
@@ -67,6 +67,14 @@
     [data-page-type~="detail"] .reviews-wrapper {
         // Offset the margin-bottom from reviews.
         margin-bottom: -60px;
+    }
+    [data-page-type~="reviews"] {
+        .reviews-summary-large {
+            padding: 30px 0;
+        }
+        .detail-flex-wrap {
+            flex-direction: row-reverse;
+        }
     }
 }
 

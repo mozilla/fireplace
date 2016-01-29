@@ -12,12 +12,12 @@
     {% defer (url=apiParams('reviews', {'app': slug}), pluck='objects',
               id='ratings', paginate='.reviews-wrapper') %}
       <div class="detail-flex-wrap">
-        <div class="detail-left-side">
-          {% if not settings.meowEnabled %}
-            <h3>{{ _('Reviews') }}</h3>
-          {% endif %}
+        <div class="detail-right-side">
           {% include "_includes/reviews_summary.html" %}
-
+          {% set is_review_listing = true %}
+          {% include "_includes/reviews_sidebar.html" %}
+        </div>
+        <div class="detail-left-side">
           <ul class="reviews-wrapper">
             {% for _review in this %}
               {{ review(_review, slug=slug,
@@ -28,11 +28,6 @@
               {{ more_button(response.meta.next) }}
             {% endif %}
           </ul>
-        </div>
-
-        <div class="detail-right-side">
-          {% set is_review_listing = true %}
-          {% include "_includes/reviews_sidebar.html" %}
         </div>
       </div>
     {% placeholder %}
