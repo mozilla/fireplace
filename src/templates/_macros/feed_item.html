@@ -68,10 +68,6 @@
               <a class="icon-app-grid__app" href="{{ url('app', [app.slug])|urlparams(src=brand.src) }}">
                 {{ deferred_icon(app.icons['64']) }}
                 <h3 class="icon-app-grid__name">{{ app.name }}</h3>
-                <p class="icon-app-grid__price">
-                  {{ app.price_locale if app.price and app.price != '0.00' else
-                     _('Free') }}
-                </p>
               </a>
             </li>
           {% else %}
