@@ -88,7 +88,10 @@ define('buttons',
                 install(product, new_button, loginPopup);
             }).fail(function(){
                 logger.log('Purchase cancelled; login aborted');
-                notification.notification({message: gettext('Payment cancelled.')});
+                notification.notification({
+                    message: gettext('Payment cancelled.'),
+                    negativeAction: true
+                });
                 if (loginPopup) {
                     loginPopup.close();
                 }
@@ -160,7 +163,10 @@ define('buttons',
                 // Start the app's installation.
                 start_install();
             }, function() {
-                notification.notification({message: gettext('Payment cancelled.')});
+                notification.notification({
+                    message: gettext('Payment cancelled.'),
+                    negativeAction: true
+                });
                 logger.log('Purchase flow rejected for', product.name);
                 def.reject();
             }).always(function() {
@@ -241,7 +247,8 @@ define('buttons',
                 // L10n: App's install failed, but problem is temporary.
                 if (!caps.firefoxOS) {
                     notification.notification({
-                        message: gettext('Install failed. Please try again later.')
+                        message: gettext('Install failed. Please try again later.'),
+                        negativeAction: true
                     });
                 }
 
@@ -263,7 +270,7 @@ define('buttons',
                 def.resolve(installer, product, $button);
             }).fail(function(error) {
                 if (error) {
-                    notification.notification({message: error});
+                    notification.notification({message: error, negativeAction: true});
                 }
                 logger.log('App install deferred was rejected for ',
                            product.name);

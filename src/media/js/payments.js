@@ -145,6 +145,7 @@ define('payments',
             notify({
                 classes: 'error',
                 message: msg,
+                negativeAction: true,
                 timeout: 5000
             });
 

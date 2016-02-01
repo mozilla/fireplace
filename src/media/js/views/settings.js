@@ -44,7 +44,7 @@ define('views/settings',
             // there for navbar toggling.
             cache.bust(urls.api.url('consumer_info'));
         }).fail(function() {
-            notify({message: gettext('Settings could not be saved')});
+            notify({message: gettext('Settings could not be saved'), negativeAction: true});
         });
     }))
 

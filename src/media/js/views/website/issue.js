@@ -19,7 +19,10 @@ define('views/website/issue',
                            urls.reverse('website', [formData.website]));
         }).fail(function() {
             forms.toggleSubmitFormState($this, true);
-            notify({message: gettext('There was an issue submitting your report. Please try again later.')});
+            notify({
+                message: gettext('There was an issue submitting your report. Please try again later.'),
+                negativeAction: true
+            });
         });
     });
 
