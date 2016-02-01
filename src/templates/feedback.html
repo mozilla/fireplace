@@ -19,16 +19,5 @@
 <div class="main feedback mobile-margined">
   <div>
     {{ feedback_prompt() }}
-    <ul class="support-list">
-      <li>
-        {% if capabilities.firefoxOS %}
-          <a href="https://support.mozilla.org/products/firefox-os/marketplace"
-             class="button" target="_blank">{{ _('Get Help') }}</a>
-        {% elif capabilities.firefoxAndroid %}
-          <a href="https://support.mozilla.org/kb/install-android-apps-using-marketplace"
-             class="button" target="_blank">{{ _('Get Help') }}</a>
-        {% endif %}
-      </li>
-    </ul>
   </div>
 </div>
