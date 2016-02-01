@@ -259,7 +259,7 @@
           <h3 class="collection-group-header">{{ group.name }}</h3>
           <ul class="app-list collection-group">
             {% for app in group.apps %}
-              <li class="app-list-app">{{ app_tile(app, src=feed_item.src) }}</li>
+              <li class="app-list-app">{{ app_tile(app, alt_style=True, src=feed_item.src) }}</li>
             {% endfor %}
           </ul>
         </div>
@@ -270,7 +270,7 @@
       <div>
         <ul class="app-list">
           {% for app in feed_item.apps %}
-            <li class="app-list-app">{{ app_tile(app, src=feed_item.src) }}</li>
+            <li class="app-list-app">{{ app_tile(app, alt_style=True, src=feed_item.src) }}</li>
           {% endfor %}
         </ul>
       </div>

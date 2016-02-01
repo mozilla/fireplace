@@ -45,7 +45,7 @@
             {% if getProductType(result) == 'addon' %}
               {{ addon_tile(result, src=trackingEvents.SRCS.search) }}
             {% else %}
-              {{ app_tile(result, tray=True, src=trackingEvents.SRCS.search) }}
+              {{ app_tile(result, tray=True, alt_style=True, src=trackingEvents.SRCS.search) }}
             {% endif %}
           </li>
         {% endfor %}
