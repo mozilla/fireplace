@@ -262,11 +262,12 @@ menu-item-active() {
 [data-page-type~="nav-addons"] [data-page="addons"],
 [data-page-type~="nav-websites"] [data-page="websites"],
 [data-page-type~="feedback"] [data-page="feedback"],
-[data-page-type~="settings"]:not([data-page-type~="purchases"]):not([data-page-type~="feedback"]) [data-page="settings"],
+[data-page-type~="settings"]:not([data-page-type~="sub_setting"]) [data-page="settings"],
 [data-page-type~="recommended"] [data-page="recommended"],
 [data-page-type~="purchases"] [data-page="purchases"],
 [data-page-type~="terms"] [data-page="terms"],
-[data-page-type~="privacy"] [data-page="privacy"] {
+[data-page-type~="privacy"] [data-page="privacy"],
+[data-page-type~="newsletter"] [data-page="newsletter"] {
     menu-item-active();
 }
 

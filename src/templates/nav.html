@@ -61,7 +61,9 @@
     {% if homescreensEnabled %}
       <li><a href="{{ url('homescreens') }}">{{ _('Homescreens') }}</a></li>
     {% endif %}
+
     <li class="overlay-divider"></li>
+
     <li class="more-menu-register nav--settings--logged-out">
       <a class="persona register">{{ _('Register') }}</a>
     </li>
@@ -77,7 +79,6 @@
     <li data-page="purchases" class="more-menu-my-apps nav--settings--logged-in">
       <a href="{{ url('purchases') }}">{{ _('My Apps') }}</a>
     </li>
-    <li data-page="feedback" class="more-menu-feedback"><a href="{{ url('feedback') }}">{{ _('Feedback') }}</a></li>
     <li class="more-menu-sign-out nav--settings--logged-in"><a class="logout">{{ _('Sign out') }}</a></li>
     {% if user.get_permission('developer') %}
       <li><a href="/developers/submissions" rel="external">{{ _('My Submissions') }}</a></li>
@@ -88,7 +89,16 @@
     {% if user.get_permission('lookup') %}
       <li><a href="/lookup/" rel="external">{{ _('Lookup Tool') }}</a></li>
     {% endif %}
+
     <li class="overlay-divider"></li>
+
+    <li><a href="http://support.mozilla.org/products/firefox-os/marketplace">{{ _('Support') }}</a></li>
+    <li data-page="feedback" class="more-menu-feedback"><a href="{{ url('feedback') }}">{{ _('Feedback') }}</a></li>
+    <li><a href="http://wiki.mozilla.org/Marketplace/Contributing/Apps">{{ _('Get Involved') }}</a></li>
+    <li data-page="newsletter"><a href="{{ url('newsletter_signup') }}">{{ _('Newsletter Signup') }}</a></li>
+
+    <li class="overlay-divider"></li>
+
     <li data-page="privacy"><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>
     <li data-page="terms"><a href="{{ url('terms') }}">{{ _('Terms of Use') }}</a></li>
   </ul>

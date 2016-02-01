@@ -48,7 +48,7 @@ define('views/feedback',
     return function(builder) {
         var title = gettext('Feedback');
 
-        builder.z('type', 'leaf settings spoke-header feedback');
+        builder.z('type', 'leaf settings sub_setting spoke-header feedback');
         builder.z('title', gettext('Feedback'));
         utilsLocal.headerTitle(title);
         builder.z('parent', urls.reverse('homepage'));

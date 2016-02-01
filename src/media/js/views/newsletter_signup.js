@@ -7,7 +7,7 @@ define('views/newsletter_signup',
     var gettext = l10n.gettext;
 
     return function(builder, args) {
-        var pageTypes = (settings.meowEnabled ? 'leaf' : 'root') + ' settings';
+        var pageTypes = (settings.meowEnabled ? 'leaf' : 'root') + ' sub_setting newsletter settings';
         var title = gettext('Newsletter Signup');
         var context = {
             standalone_newsletter_signup: true,
