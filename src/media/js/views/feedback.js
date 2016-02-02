@@ -24,7 +24,8 @@ define('views/feedback',
         }).fail(function() {
             forms.toggleSubmitFormState($this, true);
             notify({
-                message: gettext('There was a problem submitting your feedback. Try again soon.')
+                message: gettext('There was a problem submitting your feedback. Try again soon.'),
+                negativeAction: true
             });
         });
     }));

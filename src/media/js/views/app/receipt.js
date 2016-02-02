@@ -10,7 +10,10 @@ define('views/app/receipt',
         var slug = decodeURIComponent(args[0]);
         if (!user.logged_in()) {
             // If the user isn't logged in, redirect to detail page.
-            notify({message: gettext('Please sign in to view the receipt')});
+            notify({
+                message: gettext('Please sign in to view the receipt'),
+                negativeAction: true
+            });
 
             z.page.trigger('divert', urls.reverse('app', [slug]));
             return;

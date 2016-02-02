@@ -1,7 +1,7 @@
 @import 'lib';
 
 #notification {
-    background-color: #3b3b3b;
+    background-color: #00a200;
     background-image: url(../img/grain.png);
     bottom: -62px;
     color: #fff;
@@ -23,6 +23,10 @@
     transition-property: bottom;
     width: 100%;
     z-index: 9999;
+
+    &.negative-action {
+        background-color: #a20000;
+    }
     &.show {
         bottom: 0;
         transition-duration: .3s;

@@ -69,7 +69,10 @@ define('newsletter',
         }).fail(function() {
             $processing.remove();
             $form.removeClass('processing-hidden');
-            notification.notification({message: gettext('There was an error submitting your newsletter sign up request')});
+            notification.notification({
+                message: gettext('There was an error submitting your newsletter sign up request'),
+                negativeAction: true
+            });
         });
     }));
 
