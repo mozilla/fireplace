@@ -50,7 +50,9 @@ define('views/app',
 
         builder.onload('app-data', function(app) {
             // Called after app defer block is finished loading.
-            builder.z('title', utils.translate(app.name));
+            var title = utils.translate(app.name);
+            builder.z('title', title);
+            utilsLocal.headerTitle(title);
 
             previews.initialize();
             previews.resizeDesktopDetailTray();
