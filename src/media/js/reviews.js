@@ -48,7 +48,10 @@ define('reviews',
                 appReviewsCache.objects[index].has_flagged = true;
                 cache.set(reviewsEndpoint, appReviewsCache);
             }).fail(function() {
-                notify({message: gettext('Sorry, there was an issue flagging the review. Please try again later.')});
+                notify({
+                    message: gettext('Sorry, there was an issue flagging the review. Please try again later.'),
+                    negativeAction: true
+                });
             });
         }));
     }
@@ -89,7 +92,10 @@ define('reviews',
             $('.review-buttons [data-edit-review]').removeAttr('data-edit-review')
                                                    .text(gettext('Write a Review'));
         }).fail(function() {
-            notify({message: gettext('Sorry, there was a problem deleting the review')});
+            notify({
+                message: gettext('Sorry, there was a problem deleting the review'),
+                negativeAction: true
+            });
         });
     }
 
@@ -255,7 +261,10 @@ define('reviews',
             z.page.trigger('navigate', urls.reverse('app', [slug]));
         }).fail(function() {
             forms.toggleSubmitFormState($this, true);
-            notify({message: gettext('Sorry, there was an error posting your review. Please try again later.')});
+            notify({
+                message: gettext('Sorry, there was an error posting your review. Please try again later.'),
+                negativeAction: true
+            });
         });
     }));
 
@@ -285,7 +294,10 @@ define('reviews',
             z.page.trigger('navigate', urls.reverse('app', [slug]));
         }).fail(function() {
             forms.toggleSubmitFormState($this, true);
-            notify({message: gettext('Sorry, there was an issue editing your review. Please try again later')});
+            notify({
+                message: gettext('Sorry, there was an issue editing your review. Please try again later'),
+                negativeAction: true
+            });
         });
     }));
 
