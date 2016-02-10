@@ -61,20 +61,4 @@
       </div>
     </div>
   </section>
-
-  <section class="main full hide-on-desktop account-settings-links">
-    <div>
-      <a href="https://wiki.mozilla.org/Marketplace/Contributing"
-         target="_blank" class="button">
-        {{ _('Get Involved') }}
-      </a>
-      <a href="{{ url('privacy') }}" class="button">{{ _('Privacy Policy') }}</a>
-      <a href="{{ url('terms') }}" class="button">{{ _('Terms of Use') }}</a>
-      {% if user.get_permission('reviewer') %}
-        <a href="/reviewers/apps/queue/" class="button action reviewer-tools hide-logged-out"
-           rel="external">{{ _('Reviewer Tools') }}</a>
-      {% endif %}
-      <a href="/content/" class="button" rel="external">{{ _('Develop Firefox OS Add-ons') }}</a>
-    </div>
-  </section>
 </form>
