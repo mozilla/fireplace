@@ -2,7 +2,7 @@
 {% include "_macros/more_button.html" %}
 
 <section class="main">
-  <div class="subheader">
+  <div class="subheader hide-on-mobile">
     <h1>
       {{ _('My Apps') }}
       <a class="app-list-filters-expand-toggle" title="{{ _('Expand') }}"></a>
@@ -10,7 +10,7 @@
   </div>
 </section>
 
-<section class="main full account purchases c" id="account-settings">
+<section class="main full account mobile-margined purchases c" id="account-settings">
   {% if user.logged_in() %}
     {% defer (url=api('installed'), pluck='objects', as='app', paginate='.app-list') %}
       <ul class="app-list only-logged-in {{ 'paginated' if response.meta.next }}">
