@@ -59,38 +59,6 @@ define('content-ratings',
         }
     };
 
-    var descriptor_icons = {
-        'pegi': {
-            'has_pegi_discrimination': _rating_path('descriptors/pegi_discrimination.png'),
-            'has_pegi_drugs': _rating_path('descriptors/pegi_drugs.png'),
-            'has_pegi_gambling': _rating_path('descriptors/pegi_gambling.png'),
-            'has_pegi_horror': _rating_path('descriptors/pegi_fear.png'),
-            'has_pegi_lang': _rating_path('descriptors/pegi_language.png'),
-            'has_pegi_nudity': _rating_path('descriptors/pegi_nudity.png'),
-            'has_pegi_online': _rating_path('descriptors/pegi_online.png'),
-            'has_pegi_scary': _rating_path('descriptors/pegi_fear.png'),
-            'has_pegi_sex_content': _rating_path('descriptors/pegi_sex.png'),
-            'has_pegi_violence': _rating_path('descriptors/pegi_violence.png'),
-
-            'has_pegi_digital_purchases': _rating_path('descriptors/pegi_inapp_purchase_option.png'),
-            'has_pegi_shares_info': _rating_path('descriptors/pegi_personal_data_sharing.png'),
-            'has_pegi_shares_location': _rating_path('descriptors/pegi_location_data_sharing.png'),
-            'has_pegi_users_interact': _rating_path('descriptors/pegi_social_interaction_functionality.png'),
-        }
-    };
-
-    var interactive_icons = {
-        // Only show the ESRB-branded interactive Elements icons for ESRB.
-        'esrb': {
-            'has_digital_purchases': _rating_path('interactives/ESRB_digital-purchases.png'),
-            'has_shares_info': _rating_path('interactives/ESRB_shares-info.png'),
-            'has_shares_location': _rating_path('interactives/ESRB_shares-location.png'),
-            'has_users_interact': _rating_path('interactives/ESRB_users-interact.png'),
-        },
-        // CLASSIND doesn't want to show Interactive Elements as part of their rating.
-        'classind': {},
-    };
-
     var detail_links = {
         'classind': 'http://www.culturadigital.br/classind',
         'esrb': 'http://www.esrb.org/ratings/ratings_guide.jsp',
@@ -147,14 +115,11 @@ define('content-ratings',
             '17': _rating_path('esrb_m_spa.png'),
             '18': _rating_path('esrb_ao_spa.png'),
         };
-        delete interactive_icons.esrb;  // TODO: add Spanish interactive icons.
     }
 
     return {
-        descriptor_icons: descriptor_icons,
         detail_links: detail_links,
         names: names,
-        interactive_icons: interactive_icons,
         rating_icons: rating_icons,
     };
 });
