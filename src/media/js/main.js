@@ -84,14 +84,8 @@ require(
         logger.log('Reloading chrome');
 
         if (!caps.webApps && !navigator.userAgent.match(/googlebot/i)) {
-            if (!document.getElementById('incompatibility-banner')) {
-                logger.log('Adding incompatibility banner');
-                $('.banners').append(nunjucks.env.render('incompatible.html'));
-            }
-        } else if (caps.osXInstallIssues) {
-            if ($('mkt-banner[name="mac-banner"]').length === 0) {
-                $('.banners').append(
-                    nunjucks.env.render('_includes/os_x_banner.html'));
+            if (!document.getElementById('march-banner')) {
+                $('.banners').append(nunjucks.env.render('march_banner.html'));
             }
         }
 
