@@ -14,9 +14,8 @@
                  alt="{{ iarc_names.ratings[this.body][this.rating] }}">
           </div>
 
-          {# Content descriptors as a list of text.
-             Only shown if there are not any descriptor icons (i.e. non-PEGI bodies). #}
-          {% if this.descriptors_text and not iarc.descriptor_icons[this.body] %}
+          {# Content descriptors as a list of text. #}
+          {% if this.descriptors_text %}
             <ul class="content-descriptors text">
               {% for descriptor_text in this.descriptors_text %}
                 <li>{{ descriptor_text }}</li>
@@ -29,42 +28,11 @@
         </div>
 
         <div class="content-ratings-right">
-          {% set desc_icons = iarc.descriptor_icons[this.body] %}
-          {% if desc_icons %}
-            {# Content descriptors as a grid of icons.
-               Only shown if there are descriptor icons (i.e. PEGI-only). #}
-            <div class="content-descriptors icons">
-              {% for descriptor_key in this.descriptors %}
-                {% set icon_src = desc_icons[descriptor_key] %}
-                {% if icon_src %}
-                  <img data-src="{{ icon_src }}" class="icon deferred"
-                       src="{{ PLACEHOLDER_ICON }}"
-                       title="{{ this.descriptors_text[loop.index0] }}"
-                       alt="{{ this.descriptors_text[loop.index0] }}">
-                {% endif %}
+          {% if this.interactives %}
+            <div class="interactive-elements text">
+              {% for interactive_text in this.interactives_text %}
+                <p>{{ interactive_text }}</p>
               {% endfor %}
-            </div>
-
-          {% elif this.interactives %}
-            <div class="interactive-elements {{ 'icons' if interactive_icons else 'text' }}">
-              {% set interactive_icons = iarc.interactive_icons[this.body] %}
-              {% if interactive_icons %}
-                {% for interactive_key in this.interactives %}
-                  {# Interactive elements as a row of icons (ESRB only). #}
-                  {% set icon_src = interactive_icons[interactive_key] %}
-                  {% if icon_src %}
-                    <img data-src="{{ icon_src }}" class="icon deferred"
-                         src="{{ PLACEHOLDER_ICON }}"
-                         title="{{ this.interactives_text[loop.index0] }}"
-                         alt="{{ this.interactives_text[loop.index0] }}">
-                  {% endif %}
-                {% endfor %}
-              {% else %}
-                {% for interactive_text in this.interactives_text %}
-                  {# Interactive elements as a column of text (non-PEGI/ESRB bodies). #}
-                  <p>{{ interactive_text }}</p>
-                {% endfor %}
-              {% endif %}
             </div>
           {% endif %}
         </div>
