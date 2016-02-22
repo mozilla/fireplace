@@ -10,13 +10,19 @@
              {% endif %}
              data-slug="{{ addon.slug }}">
     <div class="addon-tile-info">
-      <h3 class="mkt-addon-name" title="{{ addon.name }}" itemprop="name">
-        {{ addon.name }}
-      </h3>
+      {% if not is_detail %}
+        <h3 class="mkt-addon-name" title="{{ addon.name }}" itemprop="name">
+          {{ addon.name }}
+        </h3>
+      {% endif %}
       {% if addon.author %}
         <div class="author mkt-product-author"
              title="{{ addon.author }}" itemprop="creator">
-          {{ addon.author }}
+          {% if is_detail -%}
+            <a href="{{ url('search')|urlparams(author=addon.author) }}">{{ addon.author }}</a>
+          {% else -%}
+            {{ addon.author }}
+          {% endif -%}
         </div>
       {% endif %}
     </div>
