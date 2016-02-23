@@ -16,7 +16,9 @@ define('views/purchases', ['core/l10n', 'utils_local'], function(l10n, utilsLoca
             endpoint_name: 'installed'
         }).done(function() {
             // UX decision: "my apps" page's app list should always be collapsed.
-            $('.app-list').removeClass('previews-expanded');
+            setTimeout(function() {
+                $('.app-list').removeClass('previews-expanded');
+            }, 10);
         });
     };
 });
