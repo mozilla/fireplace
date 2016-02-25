@@ -83,7 +83,7 @@ require(
         // Do some last minute template compilation.
         logger.log('Reloading chrome');
 
-        if (!caps.webApps && !navigator.userAgent.match(/googlebot/i)) {
+        if (!caps.firefoxOS && !navigator.userAgent.match(/googlebot/i)) {
             if (!document.getElementById('march-banner')) {
                 $('.banners').append(nunjucks.env.render('march_banner.html'));
             }
