@@ -84,8 +84,8 @@ require(
         logger.log('Reloading chrome');
 
         if (!caps.firefoxOS && !navigator.userAgent.match(/googlebot/i)) {
-            if (!document.getElementById('march-banner')) {
-                $('.banners').append(nunjucks.env.render('march_banner.html'));
+            if (!document.getElementById('fxos-only-banner')) {
+                $('.banners').append(nunjucks.env.render('fxos_only_banner.html'));
             }
         }
 
