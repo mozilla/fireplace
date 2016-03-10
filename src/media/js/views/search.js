@@ -196,7 +196,7 @@ define('views/search',
         builder.z('type', pageTypes.join(' '));
         builder.z('search', query);
         builder.z('title', query || title);
-
+        utilsLocal.headerTitle(title);
 
         builder.start('search.html', {
             endpoint_name: 'search',

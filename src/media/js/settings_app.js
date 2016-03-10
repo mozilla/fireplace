@@ -32,7 +32,7 @@ define('settings_app',
 
         // The list of query string parameters that are not stripped when
         // removing navigation loops.
-        param_whitelist: ['q', 'sort', 'cat'],
+        param_whitelist: ['q', 'sort', 'cat', 'author'],
 
         // The list of query string parameters that are not replaced
         // reversing API URLs.
