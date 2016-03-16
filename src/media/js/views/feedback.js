@@ -1,7 +1,7 @@
 define('views/feedback',
-       ['core/capabilities', 'compat_filter', 'core/forms', 'core/l10n', 'core/notification',
+       ['core/capabilities', 'core/forms', 'core/l10n', 'core/notification',
         'core/requests', 'templates', 'core/urls', 'core/utils', 'core/z', 'utils_local'],
-       function(caps, compatFilter, forms, l10n, notification,
+       function(caps, forms, l10n, notification,
                 requests, nunjucks, urls, utils, z, utilsLocal) {
     var gettext = l10n.gettext;
     var notify = notification.notification;
@@ -13,7 +13,7 @@ define('views/feedback',
             chromeless: caps.chromeless ? 'Yes' : 'No',
             feedback: $this.find('[name="feedback"]').val(),
             from_url: window.location.pathname,
-            profile: compatFilter.featureProfile
+            profile: '7fffffffffff0.51.6' // Mock value since this was removed.
         });
 
         forms.toggleSubmitFormState($this);

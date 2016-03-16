@@ -1,9 +1,9 @@
 define('reviews',
-    ['compat_filter', 'core/cache', 'core/capabilities',
+    ['core/cache', 'core/capabilities',
      'core/forms', 'jquery', 'core/l10n', 'core/login', 'core/models',
      'core/notification', 'core/nunjucks', 'ratingwidget', 'core/requests', 'core/settings',
      'underscore', 'core/utils', 'core/urls', 'core/user', 'core/z'],
-    function(compat, cache, caps,
+    function(cache, caps,
              forms, $, l10n, login, models,
              notification, nunjucks, ratingwidget, requests, settings,
              _, utils, urls, user, z) {

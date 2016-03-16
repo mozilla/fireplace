@@ -166,13 +166,6 @@
             <dt>{{ _('Developer') }}</dt>
             <dd><a href="{{ url('search')|urlparams(author=this.author) }}">{{ this.author }}</a></dd>
           </dl>
-          <dl>
-            <dt>{{ _('Compatibility') }}</dt>
-            {% for device_type in this.device_types %}
-              {# L10n: delimiter to separate list of words (e.g., "eggs, ham, cheese"). #}
-              <dd data-delimiter="{{ _(',') }}">{{ DEVICE_CHOICES[device_type] }}</dd>
-            {% endfor %}
-          </dl>
           <dl class="app-metadata-categories">
             <dt>{{ _('Categories') }}</dt>
             {% for category in this.categories %}

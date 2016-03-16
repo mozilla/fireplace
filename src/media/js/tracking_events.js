@@ -115,10 +115,10 @@
    Passed with events.
 */
 define('tracking_events',
-    ['apps', 'compat_filter', 'consumer_info', 'core/capabilities', 'core/log',
+    ['apps', 'consumer_info', 'core/capabilities', 'core/log',
      'core/navigation', 'core/settings', 'core/user', 'core/utils', 'core/z',
      'jquery', 'tracking', 'user_helpers'],
-    function(apps, compatFilter, consumerInfo, caps, log,
+    function(apps, consumerInfo, caps, log,
              navigation, settings, user, utils, z,
              $, tracking, userHelpers) {
     'use strict';
@@ -182,9 +182,6 @@ define('tracking_events',
 
     // Track site section.
     setSessionVar(DIMENSIONS.siteSection, 'Consumer');
-
-    // Track selected active platform filter.
-    setSessionVar(DIMENSIONS.platformFilter, compatFilter.getFilterDevice());
 
     // Track detected platform.
     setSessionVar(DIMENSIONS.platform, caps.device_type());
@@ -268,17 +265,6 @@ define('tracking_events',
             );
         }
     })
-
-    // Change platform filtering options.
-    .on('change', '#compat-filter, .compat-filter', function() {
-        var filterDevice = this.value;
-        setSessionVar(DIMENSIONS.platformFilter, filterDevice);
-        sendEvent(
-            'Change platform filter',
-            'click',
-            filterDevice
-        );
-    });
 
     // Navigate from collection tile to collection detail.
     z.page.on('click', '.feed-collection .view-all-tab', function() {

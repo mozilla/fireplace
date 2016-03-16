@@ -239,35 +239,6 @@ casper.test.begin('Test Feed endpoint', {
             casper.click('.global-nav-menu [data-nav-type="apps"]');
         });
 
-        casper.waitForSelector('.app-list', function() {
-            helpers.selectOption('#compat-filter', 'firefoxos');
-            casper.click('.mkt-wordmark');
-        });
-
-        casper.waitForSelector('.feed-home', function() {
-            resources.forEach(function(resource) {
-                var target = resource.url;
-                var url = target.split('?')[0];
-                var params = target.split('?')[1];
-
-                var baseUrl = casper.evaluate(function() {
-                    return require('core/settings').api_url;
-                });
-
-                if (baseUrl + '/api/v2/feed/get/' == url &&
-                    utils.equals(helpers.parseQueryString(params), {
-                        cache: '21600',
-                        lang: 'en-US',
-                        limit: '10',
-                        region: 'us',
-                        vary: '0',
-                        dev: 'firefoxos'
-                    })) {
-                    test.fail('Feed resource with dev=firefoxos was found');
-                }
-            });
-        });
-
         helpers.done(test);
     }
 });
@@ -295,39 +266,6 @@ casper.test.begin('Test Feed collection endpoint', {
             );
 
             casper.click('.global-nav-menu [data-nav-type="apps"]');
-        });
-
-        casper.waitForSelector('.app-list', function() {
-            helpers.selectOption('#compat-filter', 'firefoxos');
-            casper.click('.mkt-wordmark');
-        });
-
-        casper.waitForSelector('[data-tracking="grouped"]', function() {
-            casper.click('[data-tracking="grouped"]');
-        });
-
-        casper.waitForSelector('.app-list', function() {
-            resources.forEach(function(resource) {
-                var target = resource.url;
-                var url = target.split('?')[0];
-                var params = target.split('?')[1];
-
-                var baseUrl = casper.evaluate(function() {
-                    return require('core/settings').api_url;
-                });
-
-                if (baseUrl + '/api/v2/feed/collections/grouped' == url &&
-                    utils.equals(helpers.parseQueryString(params), {
-                        cache: '',
-                        lang: 'en-US',
-                        limit: '10',
-                        region: 'us',
-                        vary: '0',
-                        dev: 'firefoxos'
-                    })) {
-                    test.fail('Feed coll resource with dev=firefoxos found');
-                }
-            });
         });
 
         helpers.done(test);

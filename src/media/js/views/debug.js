@@ -1,9 +1,9 @@
 define('views/debug',
-    ['core/cache', 'core/capabilities', 'carriers', 'compat_filter',
+    ['core/cache', 'core/capabilities', 'carriers',
      'core/log', 'core/models', 'core/notification', 'core/requests',
      'core/settings', 'core/storage', 'core/user', 'core/utils', 'core/z',
      'regions', 'utils_local', 'underscore'],
-    function(cache, capabilities, carriers, compatFilter,
+    function(cache, capabilities, carriers,
              log, models, notification, requests,
              settings, storage, user, utils, z,
              regions, utilsLocal, _) {
@@ -85,7 +85,7 @@ define('views/debug',
             capabilities: capabilities,
             settings: settings,
             report_version: 1.0,
-            profile: compatFilter.featureProfile
+            profile: '7fffffffffff0.51.6' // Mock value.
         })};
 
         var ashesUrl = 'https://mkt-ashes.herokuapp.com/post_report';
@@ -138,7 +138,7 @@ define('views/debug',
             carriers: carriers.CARRIER_SLUGS.sort(),
             filter: log.filter,
             persistent_logs: log.persistent.all,
-            profile: compatFilter.featureProfile,
+            profile: '7fffffffffff0.51.6', // Mock value.
             regions: _.sortBy(utilsLocal.items(regions.REGION_CHOICES_SLUG),
                 function(r) {
                     return r[1];

@@ -8,8 +8,8 @@ define('tests/unit/rewriters',
            .mock('settings_app', {})
            .mock('core/settings', {addonsEnabled: true, cache_rewriting_enabled: true,
                                    api_url: 'https://foo.com'})
-           .run(['core/urls', 'rewriters', 'route_api_args', 'routes'],
-                function(urls, rewriters, apiArgs, routes) {
+           .run(['core/urls', 'rewriters', 'routes'],
+                function(urls, rewriters, routes) {
 
                 var cache = {};
                 var first_result = cache[urls.api.params('search', {q: 'foo'})] = {
