@@ -13,7 +13,7 @@ define('views/homescreens',
         builder.start('product_list.html', {
             productListType: 'popularHomescreens',
             endpoint_name: 'search',
-            listItemType: 'webapp',
+            listItemType: 'homescreen',
             isHomescreenList: true,
             source: 'popular homescreens',
             title: title

@@ -18,8 +18,8 @@
 </section>
 
 {% set apiFn = api if require_user else anonApi %}
-{% set search_url = apiFn(endpoint_name)|urlparams(sort=sort, limit=24, doc_type=listItemType, is_homescreen=isHomescreen) if sort
-                    else apiFn(endpoint_name)|urlparams(limit=24, doc_type=listItemType, is_homescreen=isHomescreen) %}
+{% set search_url = apiFn(endpoint_name)|urlparams(sort=sort, limit=24, doc_type=listItemType) if sort
+                    else apiFn(endpoint_name)|urlparams(limit=24, doc_type=listItemType) %}
 
 <section class="main full app-list-page {{ 'app-list-homescreens' if isHomescreenList }} c">
   {% defer (url=search_url, pluck='objects', as=getProductType, paginate='.app-list') %}

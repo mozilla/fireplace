@@ -7,7 +7,7 @@ var appListPages = [
     {
         endpoint: '/api/v2/fireplace/multi-search/',
         endpointParams: {
-            doc_type :"webapp", is_homescreen: "false", sort: 'reviewed',
+            doc_type: 'webapp', sort: 'reviewed'
         },
         name: 'New',
         path: '/new',
@@ -16,7 +16,7 @@ var appListPages = [
     {
         endpoint: '/api/v2/fireplace/multi-search/',
         endpointParams: {
-            doc_type :"webapp", is_homescreen: "false",
+            doc_type: 'webapp'
         },
         name: 'Popular',
         path: '/popular',
@@ -25,7 +25,7 @@ var appListPages = [
     {
         endpoint: '/api/v2/apps/recommend/',
         endpointParams: {
-            doc_type :"webapp", is_homescreen: "false",
+            doc_type: 'webapp'
         },
         name: 'Recommended',
         path: '/recommended',
