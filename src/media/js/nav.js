@@ -1,5 +1,5 @@
-define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
-       function(log, navigation, views, z) {
+define('nav', ['core/capabilities', 'core/log', 'core/navigation', 'core/views', 'core/z'],
+       function(caps, log, navigation, views, z) {
     'use strict';
 
     var logger = log('nav');
@@ -159,4 +159,67 @@ define('nav', ['core/log', 'core/navigation', 'core/views', 'core/z'],
     .on('click', '.settings-menu-desktop a', function() {
         z.page.trigger('clearsettings');
     });
+
+    // Firefox OS 1.1 compatibility by https://github.com/jesobreira
+    if (caps.firefoxOS || navigator.userAgent.match(/Firefox\/18\.1/)) {
+
+        // we must recreate all the overlay events and animations with jQuery
+        var initLegacyOverlays = function() {
+            // loop until all the elements are ready
+            if ($('.above,.below,.header-categories-btn,.global-nav-link,#navigation,.cat-menu-all a').length) {
+                // hide it first
+                var $above = $('.above');
+                var $below = $('.below');
+                var docHeight = $(document).height();
+                var winWidth = $(window).width();
+
+                $above.slideUp();
+                $below.css({ // below is more complicated, since it comes from below
+                    'top': docHeight + 'px',
+                    'display': 'none'
+                });
+
+                // bug fix - removes "Categories" header link
+                $('.cat-menu-all a').attr('href', 'javascript:void(0);');
+
+                // sets width to 100% of the page
+                $('.above,.below,.global-nav-menu').width(winWidth);
+                // do it again if the user toggles portrait/landscape mode
+                z.win.on('saferesize', function() {
+                    $('.above,.below,.global-nav-menu').width(winWidth);
+                });
+
+                // open events
+                $('.header-categories-btn').click(function() {
+                    $above.slideDown();
+                });
+
+                $('.global-nav-link[data-nav-type=more]').click(function() {
+                    $below.css('display', 'block').animate({top: 0}, 300); // make visible and animate
+                });
+
+                // close events
+                z.doc.on('click', '.overlay-close, .cat-menu-all', function() {
+                    $above.slideUp();
+                    $below.animate({
+                        top: $(window).height() + 'px' // animate it to below the page
+                    }, 300, function() {
+                        $below.css('display', 'none'); // hide it again
+                    });
+                });
+                $('.app-categories li, .nav-more-menu li').click(function() {
+                    $above.slideUp();
+                    $below.animate({
+                        top: $(window).height() + 'px'  // animate it to below the page
+                    }, 300, function() {
+                        $below.css('display', 'none'); // hide it again
+                    });
+                });
+            } else {
+                // repeat this condition as long as we dont find all the needed elements
+                setTimeout(initLegacyOverlays, 500);
+            }
+        };
+        initLegacyOverlays();
+    }
 });
