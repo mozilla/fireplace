@@ -81,7 +81,7 @@ define('settings_app',
         upsell_enabled: true,
         cache_rewriting_enabled: true,
         potatolytics_enabled: false,
-        homepageWebsitesEnabled: true,
+        homepageWebsitesEnabled: false,
 
         // Waffle switches from the server.
         switches: [],  // Updated after consumer-info is called.
