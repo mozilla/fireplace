@@ -72,8 +72,7 @@ gulp.task('package',
             - Copying source files into a folder in package/builds.
             - Zipping the folder into a latest zip and a version zip.
     */
-    commonplace.generate_langpacks();
-
+    commonplace.generate_i18njs();
     [latestPackageZip, versionPackageZip].forEach(function(outputZipName) {
         zipPackage(latestPackageFolder, outputZipName);
     });
