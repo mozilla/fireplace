@@ -38,6 +38,9 @@ require(
     if (caps.device_type() === 'desktop') {
         z.body.addClass('desktop');
     }
+    if (caps.userAgent.match(/TV;/)) {
+        window.location.href = "/tv";
+    }
     if (settings.body_classes) {
         z.body.addClass(settings.body_classes);
     }
