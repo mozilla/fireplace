@@ -115,7 +115,7 @@ define('apps',
         }
         if (!product.isWebsite && !capabilities.webApps ||
             (!capabilities.packagedWebApps && product.is_packaged) ||
-            !_.contains(product.device_types, device)) {
+            device !== 'firefoxos') {
             reasons.push(gettext('not available for your platform'));
         } else if (product.feature_compatibility === false) {
             // If feature_compatibility is false (and not just null!), then it
