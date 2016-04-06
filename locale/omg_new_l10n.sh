@@ -144,7 +144,7 @@ echo "$CHANGES"
 echo "-----------------------------------------------"
 
 # Uses sendmail so we can set a real From address
-if confirm "Do you want to send that to $LOCALIZERS?"; then
+if confirm "Do you want to send that to $EMAIL_TO?"; then
     echo "$CHANGES" | /usr/lib/sendmail -t
 fi
 
