@@ -57,22 +57,9 @@ define('compat_filter',
 
     var actualPlatform = caps.device_platform();
     var actualFormFactor = caps.device_formfactor();
-    var filterDeviceLSKey = 'filter-device';
-    var filterDeviceFromLS = storage.getItem(filterDeviceLSKey);
-    var filterDevice = filterDeviceFromLS || caps.device_type();
+    var filterDevice = caps.device_type();
 
     z.body.attr('data-platform', actualPlatform);
-
-    z.body.on('change', '.compat-filter', function() {
-        // Update device preferences and reload view to refresh changes.
-        if (this.value === undefined) {
-            return;
-        }
-        filterDevice = this.value;
-        storage.setItem(filterDeviceLSKey, filterDevice);
-        logger.log('Filtering: ' + filterDevice);
-        views.reload();
-    });
 
     // For mobile, set limit to 10.
     if (actualFormFactor == 'mobile' || actualPlatform == 'firefoxos') {
