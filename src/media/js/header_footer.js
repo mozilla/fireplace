@@ -3,9 +3,9 @@
     Set up event handlers related to components in the header and footer.
 */
 define('header_footer',
-    ['categories', 'core/nunjucks', 'core/settings',
+    ['categories', 'compat_filter', 'core/nunjucks', 'core/settings',
      'core/storage', 'core/z', 'newsletter'],
-    function(cats, nunjucks, settings,
+    function(cats, compatFilter, nunjucks, settings,
              storage, z, newsletter) {
 
     settings.addonsEnabled = settings.addonsEnabled || !!storage.getItem('always_show_extensions');
@@ -29,6 +29,15 @@ define('header_footer',
         ));
     }
 
+    function renderPlatformSelector() {
+        if (document.querySelector('mkt-select.compat-filter')) {
+            return;
+        }
+
+        $(nunjucks.env.render('_includes/platform_selector.html'))
+            .insertBefore('#page');
+    }
+
     function renderBanners() {
         var bannerDiv = $('.banners');
         if (!bannerDiv.length) {
@@ -42,11 +51,13 @@ define('header_footer',
     z.page.on('reload_chrome', function() {
         renderHeader();
         renderFooter();
+        renderPlatformSelector();
         renderBanners();
     });
 
     return {
         renderHeader: renderHeader,
-        renderFooter: renderFooter
+        renderFooter: renderFooter,
+        renderPlatformSelector: renderPlatformSelector
     };
 });
