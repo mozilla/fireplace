@@ -29,15 +29,6 @@ define('header_footer',
         ));
     }
 
-    function renderPlatformSelector() {
-        if (document.querySelector('mkt-select.compat-filter')) {
-            return;
-        }
-
-        $(nunjucks.env.render('_includes/platform_selector.html'))
-            .insertBefore('#page');
-    }
-
     function renderBanners() {
         var bannerDiv = $('.banners');
         if (!bannerDiv.length) {
@@ -51,13 +42,11 @@ define('header_footer',
     z.page.on('reload_chrome', function() {
         renderHeader();
         renderFooter();
-        renderPlatformSelector();
         renderBanners();
     });
 
     return {
         renderHeader: renderHeader,
-        renderFooter: renderFooter,
-        renderPlatformSelector: renderPlatformSelector
+        renderFooter: renderFooter
     };
 });
