@@ -6,9 +6,9 @@
 */
 define('init',
     ['core/init', 'routes', 'settings_app', 'templates',
-     'core/cache', 'document-register-element', 'rewriters'],
+     'core/cache', 'document-register-element', 'route_api_args', 'rewriters'],
     function(init, routes, settingsApp, templates,
-             cache, elements, rewriters) {
+             cache, elements, routeApiArgs, rewriters) {
 
     ['every', 'forEach', 'map', 'filter', 'reduce', 'reduceRight', 'some'].forEach(function(prop) {
         NodeList.prototype[prop] = HTMLCollection.prototype[prop] = Array.prototype[prop];

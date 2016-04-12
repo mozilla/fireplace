@@ -1,9 +1,9 @@
 define('helpers_local',
-    ['apps', 'buttons', 'categories',
+    ['apps', 'buttons', 'categories', 'compat_filter',
      'content-ratings', 'core/format', 'core/helpers', 'core/models',
      'core/nunjucks', 'core/settings', 'core/urls', 'core/utils', 'core/z',
      'feed', 'regions', 'tracking_events', 'user_helpers', 'utils_local'],
-    function(apps, buttons, categories,
+    function(apps, buttons, categories, compatFilter,
              iarc, format, base_helpers, models,
              nunjucks, settings, urls, utils, z,
              feed, regions, trackingEvents, user_helpers, utils_local) {
@@ -113,12 +113,14 @@ define('helpers_local',
     /* Global variables, provided in default context. */
     globals.buttons = buttons;
     globals.CATEGORIES = categories;
+    globals.DEVICE_CHOICES = compatFilter.DEVICE_CHOICES;
     globals.feed = feed;
     globals.iarc_names = iarc.names;
     globals.NEWSLETTER_LANGUAGES = settings.NEWSLETTER_LANGUAGES;
     globals.user_helpers = user_helpers;
     globals.PLACEHOLDER_ICON = urls.media('fireplace/img/icons/placeholder.svg');
     globals.PLACEHOLDER_PREVIEW = urls.media('fireplace/img/icons/placeholder_preview.svg');
+    globals.compat_filter = compatFilter;
     globals.trackingEvents = trackingEvents;
 
     /* Helpers functions, provided in the default context. */
