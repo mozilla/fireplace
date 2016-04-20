@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-13T16:52:40.537Z\n"
+"POT-Creation-Date: 2016-04-20T17:37:57.000Z\n"
 "PO-Revision-Date: 2016-03-06 10:53+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,28 +35,7 @@ msgstr "Terjadi kesalahan internal server. Coba lagi nanti."
 msgid "Categories"
 msgstr "Kategori"
 
-#: /templates/feedback.html:5
-msgid "We want to hear from you!"
-msgstr "Kami ingin mendengar pendapat Anda!"
-
-#: /templates/feedback.html:6
-msgid "Give us your feedback. Let us know whether we are awesome or buggy."
-msgstr "Kirimkan masukan Anda. Kabari kami, yang jelek maupun yang keren."
-
-#: /templates/feedback.html:7 /templates/app/abuse.html:16 /templates/addon/abuse.html:15
-msgid "Let us know..."
-msgstr "Beri tahu kami..."
-
-#: /templates/feedback.html:11 /templates/newsletter.html:38 /templates/app/abuse.html:21 /templates/addon/abuse.html:20 /templates/ratings/flag.html:17 /templates/ratings/add.html:35
-#: /templates/website/issue.html:13
-msgid "Cancel"
-msgstr "Batal"
-
-#: /templates/feedback.html:12
-msgid "Submit Feedback"
-msgstr "Kirim Masukan"
-
-#: /templates/category.html:9 /templates/category.html:19 /templates/product_list.html:9 /templates/product_list.html:14 /templates/purchases.html:7 /templates/search.html:9 /templates/search.html:16
+#: /templates/category.html:9 /templates/category.html:19 /templates/product_list.html:9 /templates/product_list.html:14 /templates/search.html:9 /templates/search.html:16 /templates/purchases.html:7
 msgid "Expand"
 msgstr "Bentangkan"
 
@@ -67,6 +46,27 @@ msgstr "Tidak ada hasil yang ditemukan"
 #: /templates/category.html:47
 msgid "The category you requested does not exist."
 msgstr "Kategori yang diminta tidak ada."
+
+#: /templates/feedback.html:5
+msgid "We want to hear from you!"
+msgstr "Kami ingin mendengar pendapat Anda!"
+
+#: /templates/feedback.html:6
+msgid "Give us your feedback. Let us know whether we are awesome or buggy."
+msgstr "Kirimkan masukan Anda. Kabari kami, yang jelek maupun yang keren."
+
+#: /templates/feedback.html:7 /templates/addon/abuse.html:15 /templates/app/abuse.html:16
+msgid "Let us know..."
+msgstr "Beri tahu kami..."
+
+#: /templates/feedback.html:11 /templates/newsletter.html:38 /templates/addon/abuse.html:20 /templates/app/abuse.html:21 /templates/ratings/add.html:35 /templates/ratings/flag.html:17
+#: /templates/website/issue.html:13
+msgid "Cancel"
+msgstr "Batal"
+
+#: /templates/feedback.html:12
+msgid "Submit Feedback"
+msgstr "Kirim Masukan"
 
 #: /templates/footer.html:6 /templates/header.html:46 /templates/nav.html:93 /media/js/views/feedback.js:50 /media/js/views/feedback.js:53
 msgid "Feedback"
@@ -116,14 +116,6 @@ msgstr "Syarat Penggunaan"
 msgid "Report Trademark Abuse"
 msgstr "Laporkan Penyalahgunaan Merek Dagang"
 
-#: /templates/fxos_only_banner.html:1
-msgid "These applications can only be installed on devices running Firefox OS."
-msgstr ""
-
-#: /templates/fxos_only_banner.html:2
-msgid "You may view the catalog but not be able to install or run these apps on your platform."
-msgstr ""
-
 #: /templates/header.html:19 /templates/header.html:34
 msgid "Search Marketplace&hellip;"
 msgstr ""
@@ -144,17 +136,17 @@ msgstr "Dukungan"
 msgid "Sign Out"
 msgstr "Keluar"
 
+#: /templates/fxos_only_banner.html:1
+msgid "These applications can only be installed on devices running Firefox OS."
+msgstr ""
+
+#: /templates/fxos_only_banner.html:2
+msgid "You may view the catalog but not be able to install or run these apps on your platform."
+msgstr ""
+
 #: /templates/langpacks.html:34 /templates/langpacks.html:39
 msgid "No language packs found."
 msgstr "Tidak ada paket bahasa ditemukan."
-
-#: /templates/marketplace-update.html:2
-msgid "An update to Marketplace is available."
-msgstr "Tersedia pembaruan untuk Marketplace."
-
-#: /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "Unduh"
 
 #: /templates/newsletter.html:3
 msgid "Sign up for our newsletter"
@@ -191,6 +183,18 @@ msgstr "Terima kasih telah mendaftar!"
 #: /templates/newsletter.html:45
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Anda akan menerima email dari mozilla@e.mozilla.org. Periksa kotak masuk Anda untuk melihat email pertama dari kami. Jika tidak ditemukan, periksa filter spam Anda."
+
+#: /templates/marketplace-update.html:2
+msgid "An update to Marketplace is available."
+msgstr "Tersedia pembaruan untuk Marketplace."
+
+#: /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "Unduh"
+
+#: /templates/product_list.html:41 /templates/product_list.html:46
+msgid "The list returned no results."
+msgstr ""
 
 #: /templates/nav.html:9 /templates/nav.html:51
 msgid "Apps"
@@ -252,9 +256,19 @@ msgstr "Mari Berperan"
 msgid "Newsletter Signup"
 msgstr ""
 
-#: /templates/product_list.html:41 /templates/product_list.html:46
-msgid "The list returned no results."
-msgstr ""
+#: /templates/search.html:8
+msgid "<b>{n}</b> Result"
+msgid_plural "<b>{n}</b> Results"
+msgstr[0] "<b>{n}</b> Hasil"
+
+#: /templates/search.html:12
+msgid "<b>\"{search_query}\"</b> returned {n} result"
+msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
+msgstr[0] "<b>\"{search_query}\"</b> menghasilkan {n} hasil"
+
+#: /templates/search.html:78
+msgid "No results found, try again later"
+msgstr "Tidak ada hasil yang ditemukan, coba lagi nanti"
 
 #: /templates/purchases.html:41
 msgid "You must be signed in to view your apps."
@@ -292,30 +306,6 @@ msgstr "Simpan Perubahan"
 msgid "Region"
 msgstr "Wilayah"
 
-#: /templates/search.html:8
-msgid "<b>{n}</b> Result"
-msgid_plural "<b>{n}</b> Results"
-msgstr[0] "<b>{n}</b> Hasil"
-
-#: /templates/search.html:12
-msgid "<b>\"{search_query}\"</b> returned {n} result"
-msgid_plural "<b>\"{search_query}\"</b> returned {n} results"
-msgstr[0] "<b>\"{search_query}\"</b> menghasilkan {n} hasil"
-
-#: /templates/search.html:78
-msgid "No results found, try again later"
-msgstr "Tidak ada hasil yang ditemukan, coba lagi nanti"
-
-#. (es) Classificacao Indicativa.
-#: /templates/_includes/content_ratings.html:5
-msgid "Content Rating"
-msgstr "Peringkat Konten"
-
-#. (es) Classificacao Indicativa. Rating as in content rating.
-#: /templates/_includes/content_ratings.html:45
-msgid "Rating Details"
-msgstr "Detail Peringkat"
-
 #: /templates/usage.html:3 /media/js/views/usage.js:9
 msgid "App Statistics"
 msgstr "Statistik Aplikasi"
@@ -327,6 +317,25 @@ msgstr "Statistik penggunaan aplikasi"
 #: /templates/usage.html:11
 msgid "Not enough statistics to show."
 msgstr "Tidak cukup data untuk menampilkan statistik."
+
+#: /templates/_includes/carrier_apps_banner.html:2
+msgid "Your carrier offers some free apps."
+msgstr ""
+
+#. This is the link text for the carrier apps banner. "Your carrier offers some free apps. Get them now!"
+#: /templates/_includes/carrier_apps_banner.html:6
+msgid "Get them now!"
+msgstr ""
+
+#. (es) Classificacao Indicativa.
+#: /templates/_includes/content_ratings.html:5
+msgid "Content Rating"
+msgstr "Peringkat Konten"
+
+#. (es) Classificacao Indicativa. Rating as in content rating.
+#: /templates/_includes/content_ratings.html:45
+msgid "Rating Details"
+msgstr "Detail Peringkat"
 
 #: /templates/_includes/post_install_message.html:2
 msgid "Installed!"
@@ -343,20 +352,6 @@ msgstr "Jalankan aplikasi ini dari <b>desktop Windows</b> atau <b>Mulai &#9658;S
 #: /templates/_includes/post_install_message.html:11
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Jalankan aplikasi ini dari <b>dash</b>, <b>Pemilih aplikasi</b>, atau menu Aplikasi</b>."
-
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "{numReviews} Ulasan"
-
-#: /templates/_includes/carrier_apps_banner.html:2
-msgid "Your carrier offers some free apps."
-msgstr ""
-
-#. This is the link text for the carrier apps banner. "Your carrier offers some free apps. Get them now!"
-#: /templates/_includes/carrier_apps_banner.html:6
-msgid "Get them now!"
-msgstr ""
 
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
@@ -378,6 +373,55 @@ msgstr "Masuk untuk mengulas"
 msgid "Read all reviews"
 msgstr "Baca semua ulasan"
 
+#: /templates/addon/abuse.html:6
+msgid "Let us know if this add-on is doing something that isn't allowed in the <a href=\"{criteria_url}\" target=\"_blank\">review criteria</a> and should be removed from the Marketplace."
+msgstr ""
+
+#: /templates/addon/abuse.html:11
+msgid "Examples of issues to report here are if the add-on is completely broken, contains mature content, contains malware, etc. The add-on developer will not see your comments."
+msgstr ""
+
+#: /templates/addon/abuse.html:21 /templates/app/abuse.html:22
+msgid "Submit Report"
+msgstr "Kirimkan Laporan"
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "{numReviews} Ulasan"
+
+#: /templates/addon/index.html:13 /templates/app/index.html:19 /templates/website/index.html:15
+msgid "Description"
+msgstr "Deskripsi"
+
+#: /templates/addon/index.html:20 /templates/app/index.html:25 /templates/app/index.html:39 /templates/website/index.html:21
+msgid "View All"
+msgstr "Tampilkan Semua"
+
+#: /templates/addon/index.html:25
+msgid "version: {version}"
+msgstr ""
+
+#: /templates/addon/index.html:26
+msgid "size: {size}"
+msgstr ""
+
+#: /templates/addon/index.html:29
+msgid "last updated: {date}"
+msgstr ""
+
+#: /templates/addon/index.html:36 /media/js/views/addon/abuse.js:36
+msgid "Report to Mozilla"
+msgstr "Laporkan ke Mozilla"
+
+#: /templates/addon/list.html:6
+msgid "Customize your device with powerful features."
+msgstr ""
+
+#: /templates/addon/list.html:26 /templates/addon/list.html:31
+msgid "No Firefox OS add-ons found."
+msgstr ""
+
 #: /templates/_macros/app_tile.html:108
 msgid "Review"
 msgid_plural "Reviews"
@@ -386,6 +430,10 @@ msgstr[0] "Ulasan"
 #: /templates/_macros/app_tile.html:114
 msgid "Not yet reviewed"
 msgstr "Belum ada yang mengulas"
+
+#: /templates/_macros/feed_app_tile.html:14
+msgid "&mdash; {attribution}"
+msgstr "&mdash; {attribution}"
 
 #: /templates/_macros/feed_item.html:82 /templates/_macros/feed_item.html:175
 msgid "View all"
@@ -399,9 +447,9 @@ msgstr "Kunjungilah situs top ini!"
 msgid "Show me another site"
 msgstr ""
 
-#: /templates/_macros/feed_app_tile.html:14
-msgid "&mdash; {attribution}"
-msgstr "&mdash; {attribution}"
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Muat yang lain"
 
 #: /templates/_macros/review.html:14
 msgid "For previous version {version}"
@@ -427,18 +475,21 @@ msgstr "Ditandai untuk ditinjau"
 msgid "{app_name} screenshot"
 msgstr "Tangkapan layar {app_name}"
 
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Muat yang lain"
+#: /templates/_macros/stars.html:5
+msgid "Rated {stars} out of {maxstars} stars"
+msgstr "Diperingkat {stars} dari{maxstars} bintang"
 
-#. delimiter to separate list of words (e.g., "eggs, ham, cheese").
-#: /templates/app/index.html:19 /templates/addon/index.html:13 /templates/website/index.html:15
-msgid "Description"
-msgstr "Deskripsi"
+#: /templates/app/abuse.html:5
+msgid "Need to report something?"
+msgstr "Perlu melaporkan sesuatu?"
 
-#: /templates/app/index.html:25 /templates/app/index.html:39 /templates/addon/index.html:20 /templates/website/index.html:21
-msgid "View All"
-msgstr "Tampilkan Semua"
+#: /templates/app/abuse.html:7
+msgid "Let us know if this app is doing something that isn't allowed in the <a href=\"{criteria_url}\" target=\"_blank\">review criteria</a> and should be removed from the Marketplace."
+msgstr ""
+
+#: /templates/app/abuse.html:12
+msgid "Examples of issues to report here are if the app is broken, contains mature content, contains malware, etc. The app developer will not see your comments."
+msgstr "Contoh masalah untuk dilaporkan disini adalah bila aplikasi rusak, berisi konten dewasa, berisi malware, dsb. Pengembang aplikasi tidak akan melihat komentar anda."
 
 #: /templates/app/index.html:35
 msgid "Updates"
@@ -517,22 +568,6 @@ msgstr "Versi Terbaru"
 msgid "Report Abuse"
 msgstr "Laporkan Penyalahgunaan"
 
-#: /templates/app/abuse.html:5
-msgid "Need to report something?"
-msgstr "Perlu melaporkan sesuatu?"
-
-#: /templates/app/abuse.html:7
-msgid "Let us know if this app is doing something that isn't allowed in the <a href=\"{criteria_url}\" target=\"_blank\">review criteria</a> and should be removed from the Marketplace."
-msgstr ""
-
-#: /templates/app/abuse.html:12
-msgid "Examples of issues to report here are if the app is broken, contains mature content, contains malware, etc. The app developer will not see your comments."
-msgstr "Contoh masalah untuk dilaporkan disini adalah bila aplikasi rusak, berisi konten dewasa, berisi malware, dsb. Pengembang aplikasi tidak akan melihat komentar anda."
-
-#: /templates/app/abuse.html:22 /templates/addon/abuse.html:21
-msgid "Submit Report"
-msgstr "Kirimkan Laporan"
-
 #: /templates/app/privacy.html:8
 msgid "Back to app"
 msgstr "Kembali ke aplikasi"
@@ -541,49 +576,9 @@ msgstr "Kembali ke aplikasi"
 msgid "Loading Privacy Policy..."
 msgstr "Memuat Kebijakan Privasi..."
 
-#: /templates/_macros/stars.html:5
-msgid "Rated {stars} out of {maxstars} stars"
-msgstr "Diperingkat {stars} dari{maxstars} bintang"
-
 #: /templates/app/receipt.html:2
 msgid "Thank you for purchasing"
 msgstr "Terima kasih telah membeli"
-
-#: /templates/addon/index.html:25
-msgid "version: {version}"
-msgstr ""
-
-#: /templates/addon/index.html:26
-msgid "size: {size}"
-msgstr ""
-
-#: /templates/addon/index.html:29
-msgid "last updated: {date}"
-msgstr ""
-
-#: /templates/addon/index.html:36 /media/js/views/addon/abuse.js:36
-msgid "Report to Mozilla"
-msgstr "Laporkan ke Mozilla"
-
-#: /templates/addon/list.html:6
-msgid "Customize your device with powerful features."
-msgstr ""
-
-#: /templates/addon/list.html:26 /templates/addon/list.html:31
-msgid "No Firefox OS add-ons found."
-msgstr ""
-
-#: /templates/addon/abuse.html:6
-msgid "Let us know if this add-on is doing something that isn't allowed in the <a href=\"{criteria_url}\" target=\"_blank\">review criteria</a> and should be removed from the Marketplace."
-msgstr ""
-
-#: /templates/addon/abuse.html:11
-msgid "Examples of issues to report here are if the add-on is completely broken, contains mature content, contains malware, etc. The add-on developer will not see your comments."
-msgstr ""
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "Terjadi kesalahan."
 
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
@@ -593,37 +588,21 @@ msgstr ""
 msgid "Whoops! Something went wrong and you ended up here. Sorry!"
 msgstr "Aduh! Ada sesuatu yang salah dan anda berakhir di sini. Maaf!"
 
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "Terjadi kesalahan."
+
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
 msgstr "Coba Lagi"
-
-#: /templates/ratings/edit.html:4 /templates/ratings/add.html:8 /media/js/views/app/ratings/edit.js:15
-msgid "Edit Review"
-msgstr "Edit Ulasan"
 
 #: /templates/ratings/main.html:36
 msgid "This app has no reviews."
 msgstr "Aplikasi ini belum ada yang mengulas."
 
-#: /templates/ratings/flag.html:3 /templates/ratings/flag.html:26
-msgid "Flag Review"
-msgstr "Tandai Ulasan"
-
-#: /templates/ratings/flag.html:4
-msgid "See an issue with this review? Select a reason below."
-msgstr "Ada masalah dengan ulasan ini? Pilih alasannya di bawah."
-
-#: /templates/ratings/flag.html:7
-msgid "Spam or otherwise non-review content"
-msgstr "Spam atau tidak terkait dengan ulasan"
-
-#: /templates/ratings/flag.html:10
-msgid "Inappropriate language/dialog"
-msgstr "Bahasa/dialog tidak pantas"
-
-#: /templates/ratings/flag.html:13
-msgid "Misplaced bug report or support request"
-msgstr "Laporan bug salah tempat atau permintaan dukungan"
+#: /templates/ratings/add.html:8 /templates/ratings/edit.html:4 /media/js/views/app/ratings/edit.js:15
+msgid "Edit Review"
+msgstr "Edit Ulasan"
 
 #: /templates/ratings/add.html:8 /media/js/views/app/ratings/add.js:20
 msgid "Leave a Review"
@@ -661,25 +640,29 @@ msgstr "Perbarui Ulasan"
 msgid "Submit Review"
 msgstr "Kirimkan Ulasan"
 
+#: /templates/ratings/flag.html:3 /templates/ratings/flag.html:26
+msgid "Flag Review"
+msgstr "Tandai Ulasan"
+
+#: /templates/ratings/flag.html:4
+msgid "See an issue with this review? Select a reason below."
+msgstr "Ada masalah dengan ulasan ini? Pilih alasannya di bawah."
+
+#: /templates/ratings/flag.html:7
+msgid "Spam or otherwise non-review content"
+msgstr "Spam atau tidak terkait dengan ulasan"
+
+#: /templates/ratings/flag.html:10
+msgid "Inappropriate language/dialog"
+msgstr "Bahasa/dialog tidak pantas"
+
+#: /templates/ratings/flag.html:13
+msgid "Misplaced bug report or support request"
+msgstr "Laporan bug salah tempat atau permintaan dukungan"
+
 #: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
 msgid "App Review"
 msgstr "Tinjauan Aplikasi"
-
-#: /templates/website/issue.html:5
-msgid "Let us know if something is missing from this website listing or its information should be updated."
-msgstr ""
-
-#: /templates/website/issue.html:6
-msgid "For information on show to report a copyright or trademark issue <a href=\"{url}\" target=\"_blank\">see here</a>."
-msgstr ""
-
-#: /templates/website/issue.html:8
-msgid "Describe the issue here. Please be specific."
-msgstr ""
-
-#: /templates/website/issue.html:14 /templates/website/index.html:49
-msgid "Report an issue"
-msgstr "Laporkan masalah"
 
 #: /templates/website/index.html:34
 msgid "Explore more in {category_one} and {category_two}."
@@ -693,90 +676,21 @@ msgstr ""
 msgid "Is there something wrong or out-of-date with this website listing?"
 msgstr ""
 
-#: /media/js/apps.js:114
-msgid "not available for your region"
-msgstr "tidak tersedia untuk daerah Anda"
+#: /templates/website/index.html:49 /templates/website/issue.html:14
+msgid "Report an issue"
+msgstr "Laporkan masalah"
 
-#: /media/js/apps.js:119
-msgid "not available for your platform"
-msgstr "tidak tersedia untuk platform Anda"
+#: /templates/website/issue.html:5
+msgid "Let us know if something is missing from this website listing or its information should be updated."
+msgstr ""
 
-#: /media/js/apps.js:123 /media/js/apps.js:128
-msgid "not compatible with your device"
-msgstr "tidak kompatibel dengan perangkat anda"
+#: /templates/website/issue.html:6
+msgid "For information on show to report a copyright or trademark issue <a href=\"{url}\" target=\"_blank\">see here</a>."
+msgstr ""
 
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
-msgid "All Platforms"
-msgstr "Semua Platform"
-
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
-msgid "Android Mobile"
-msgstr "Ponsel Android"
-
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
-msgid "Android Tablet"
-msgstr "Tablet Android"
-
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
-msgid "Desktop"
-msgstr "Desktop"
-
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
-msgid "Firefox OS"
-msgstr "Firefox OS"
-
-#: /media/js/buttons.js:92 /media/js/buttons.js:167 /media/js/payments.js:134
-msgid "Payment cancelled."
-msgstr "Pembayaran dibatalkan."
-
-#. App's install failed, but problem is temporary.
-#: /media/js/buttons.js:250
-msgid "Install failed. Please try again later."
-msgstr "Instal gagal. Coba lagi nanti."
-
-#: /media/js/buttons.js:336 /media/js/buttons.js:341 /media/js/buttons.js:440 /media/js/buttons.js:444
-msgid "Installed"
-msgstr "Terinstal"
-
-#: /media/js/buttons.js:417
-msgid "free"
-msgstr "bebas"
-
-#: /media/js/buttons.js:417
-msgid "Free"
-msgstr "Gratis"
-
-#: /media/js/buttons.js:422
-msgid "Unavailable"
-msgstr "Tidak Tersedia"
-
-#: /media/js/buttons.js:440 /media/js/buttons.js:457 /media/js/buttons.js:467
-msgid "Install"
-msgstr "Pasang"
-
-#: /media/js/buttons.js:445
-msgid "Install Add-on"
-msgstr "Pasang Pengaya"
-
-#: /media/js/buttons.js:450
-msgid "Open website"
-msgstr "Buka situs"
-
-#: /media/js/buttons.js:453
-msgid "Open app"
-msgstr "Buka aplikasi"
-
-#: /media/js/buttons.js:455
-msgid "Install for free"
-msgstr "Pasang dengan bebas"
-
-#: /media/js/buttons.js:459
-msgid "Install for {price}"
-msgstr "Pasang dengan harga {price}"
-
-#: /media/js/buttons.js:465
-msgid "Open"
-msgstr "Terbuka"
+#: /templates/website/issue.html:8
+msgid "Describe the issue here. Please be specific."
+msgstr ""
 
 #: /media/js/categories.js:6
 msgid "Games"
@@ -877,6 +791,136 @@ msgstr "Utilitas"
 #: /media/js/categories.js:30
 msgid "Weather"
 msgstr "Cuaca"
+
+#: /media/js/apps.js:114
+msgid "not available for your region"
+msgstr "tidak tersedia untuk daerah Anda"
+
+#: /media/js/apps.js:119
+msgid "not available for your platform"
+msgstr "tidak tersedia untuk platform Anda"
+
+#: /media/js/apps.js:123 /media/js/apps.js:128
+msgid "not compatible with your device"
+msgstr "tidak kompatibel dengan perangkat anda"
+
+#: /media/js/buttons.js:92 /media/js/buttons.js:167 /media/js/payments.js:134
+msgid "Payment cancelled."
+msgstr "Pembayaran dibatalkan."
+
+#. App's install failed, but problem is temporary.
+#: /media/js/buttons.js:250
+msgid "Install failed. Please try again later."
+msgstr "Instal gagal. Coba lagi nanti."
+
+#: /media/js/buttons.js:336 /media/js/buttons.js:341 /media/js/buttons.js:440 /media/js/buttons.js:444
+msgid "Installed"
+msgstr "Terinstal"
+
+#: /media/js/buttons.js:417
+msgid "free"
+msgstr "bebas"
+
+#: /media/js/buttons.js:417
+msgid "Free"
+msgstr "Gratis"
+
+#: /media/js/buttons.js:422
+msgid "Unavailable"
+msgstr "Tidak Tersedia"
+
+#: /media/js/buttons.js:440 /media/js/buttons.js:457 /media/js/buttons.js:467
+msgid "Install"
+msgstr "Pasang"
+
+#: /media/js/buttons.js:445
+msgid "Install Add-on"
+msgstr "Pasang Pengaya"
+
+#: /media/js/buttons.js:450
+msgid "Open website"
+msgstr "Buka situs"
+
+#: /media/js/buttons.js:453
+msgid "Open app"
+msgstr "Buka aplikasi"
+
+#: /media/js/buttons.js:455
+msgid "Install for free"
+msgstr "Pasang dengan bebas"
+
+#: /media/js/buttons.js:459
+msgid "Install for {price}"
+msgstr "Pasang dengan harga {price}"
+
+#: /media/js/buttons.js:465
+msgid "Open"
+msgstr "Terbuka"
+
+#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+msgid "All Platforms"
+msgstr "Semua Platform"
+
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
+msgid "Android Mobile"
+msgstr "Ponsel Android"
+
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
+msgid "Android Tablet"
+msgstr "Tablet Android"
+
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
+msgid "Desktop"
+msgstr "Desktop"
+
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
+msgid "Firefox OS"
+msgstr "Firefox OS"
+
+#. For ages {0} and higher. (de) `ab {0} Jahren`.
+#: /media/js/content-ratings.js:71
+msgid "For ages {0}+"
+msgstr "Untuk usia {0}+"
+
+#: /media/js/content-ratings.js:77
+msgid "Generic"
+msgstr "Umum"
+
+#: /media/js/content-ratings.js:84
+msgid "For all ages"
+msgstr "Untuk semua usia"
+
+#: /media/js/content-ratings.js:93
+msgid "Rating Pending"
+msgstr "Pemeringkatan Ditunda"
+
+#: /media/js/content-ratings.js:94
+msgid "Rating Refused"
+msgstr "Peringkat Ditolak"
+
+#: /media/js/content-ratings.js:97
+msgid "Everyone"
+msgstr "Semua"
+
+#: /media/js/content-ratings.js:98
+msgid "Everyone 10+"
+msgstr "Semua 10+"
+
+#: /media/js/content-ratings.js:99
+msgid "Teen"
+msgstr "Remaja"
+
+#: /media/js/content-ratings.js:100
+msgid "Mature 17+"
+msgstr "Dewasa 17+"
+
+#: /media/js/content-ratings.js:101
+msgid "Adults Only 18+"
+msgstr "Dewasa Saja 18+"
+
+#: /media/js/feed_websites.js:61
+msgid "{current} of {count}"
+msgstr "{current} dari {count}"
 
 #: /media/js/edbrands.js:33
 msgid "App for Albania"
@@ -1148,54 +1192,9 @@ msgid "Work & Business App"
 msgid_plural "Work & Business Apps"
 msgstr[0] "Aplikasi Bisnis & Kerja"
 
-#. For ages {0} and higher. (de) `ab {0} Jahren`.
-#: /media/js/content-ratings.js:71
-msgid "For ages {0}+"
-msgstr "Untuk usia {0}+"
-
-#: /media/js/content-ratings.js:77
-msgid "Generic"
-msgstr "Umum"
-
-#: /media/js/content-ratings.js:84
-msgid "For all ages"
-msgstr "Untuk semua usia"
-
-#: /media/js/content-ratings.js:93
-msgid "Rating Pending"
-msgstr "Pemeringkatan Ditunda"
-
-#: /media/js/content-ratings.js:94
-msgid "Rating Refused"
-msgstr "Peringkat Ditolak"
-
-#: /media/js/content-ratings.js:97
-msgid "Everyone"
-msgstr "Semua"
-
-#: /media/js/content-ratings.js:98
-msgid "Everyone 10+"
-msgstr "Semua 10+"
-
-#: /media/js/content-ratings.js:99
-msgid "Teen"
-msgstr "Remaja"
-
-#: /media/js/content-ratings.js:100
-msgid "Mature 17+"
-msgstr "Dewasa 17+"
-
-#: /media/js/content-ratings.js:101
-msgid "Adults Only 18+"
-msgstr "Dewasa Saja 18+"
-
 #: /media/js/helpers_local.js:137
 msgid "works offline"
 msgstr ""
-
-#: /media/js/feed_websites.js:61
-msgid "{current} of {count}"
-msgstr "{current} dari {count}"
 
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
@@ -1339,13 +1338,13 @@ msgstr "Terjadi kesalahan ketika mengirim saran. Coba lagi nanti.               
 msgid "Collection Detail"
 msgstr ""
 
-#: /media/js/views/homescreens.js:8
-msgid "Popular Homescreens"
-msgstr ""
-
 #: /media/js/views/new_apps.js:8
 msgid "New Apps"
 msgstr "Aplikasi Baru"
+
+#: /media/js/views/homescreens.js:8
+msgid "Popular Homescreens"
+msgstr ""
 
 #: /media/js/views/langpacks.js:30
 msgid "Language Packs"
@@ -1367,14 +1366,6 @@ msgstr "Aplikasi Populer"
 msgid "Popular Sites"
 msgstr "Situs Populer"
 
-#: /media/js/views/settings.js:41
-msgid "Your settings have been successfully saved"
-msgstr "Setelan Anda berhasil disimpan"
-
-#: /media/js/views/settings.js:47
-msgid "Settings could not be saved"
-msgstr "Setelan tidak dapat disimpan              "
-
 #: /media/js/views/search.js:173
 msgid "Search Results"
 msgstr "Hasil Pencarian"
@@ -1383,9 +1374,21 @@ msgstr "Hasil Pencarian"
 msgid "Developer Listing"
 msgstr ""
 
+#: /media/js/views/settings.js:41
+msgid "Your settings have been successfully saved"
+msgstr "Setelan Anda berhasil disimpan"
+
+#: /media/js/views/settings.js:47
+msgid "Settings could not be saved"
+msgstr "Setelan tidak dapat disimpan              "
+
 #: /media/js/views/website.js:11
 msgid "Website Detail"
 msgstr ""
+
+#: /media/js/lib/marketplace-elements.js:119
+msgid "Close"
+msgstr "Tutup"
 
 #: /media/js/views/addon/abuse.js:16 /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
@@ -1410,7 +1413,3 @@ msgstr "Tanda Terima"
 #: /media/js/views/website/issue.js:32
 msgid "Report an Issue"
 msgstr "Laporkan Masalah"
-
-#: /media/js/lib/marketplace-elements.js:119
-msgid "Close"
-msgstr "Tutup"
