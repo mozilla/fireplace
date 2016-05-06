@@ -77,44 +77,20 @@ define('compat_filter',
     }
 
     function apiArgs(endpoint) {
-        // Return API args to use for API router's processor.
-        var args = {};
-        var pref = filterDevice;
+        // Force everything to be 'firefoxos' since that's all we support now.
+        var api = {
+            dev: 'firefoxos',
+            device: actualFormFactor,
+            limit: limit
+        };
 
-        if (pref && EXCLUDE_DEVICE_FILTER_ENDPOINTS.indexOf(endpoint) === -1) {
-            // If have device filter preference, extract it.
-            pref = pref.split('-');
-            if (pref.length > 1) {
-                args.dev = pref[0];
-                args.device = pref[1];
-            } else if (pref[0] != 'all') {
-                args.dev = pref[0];
-                args.device = '';
-            } else {
-                // 'all' means no dev/device filtering at all.
-                args.dev = '';
-                args.device = '';
-            }
-        } else {
-            // If filterDevice does not exist or is empty value, use default
-            // filtering according to actualPlatform and actualFormfactor.
-            args.dev = actualPlatform;
-            args.device = actualFormFactor;
-        }
-        args.limit = limit;
+        // Keep feature profile param if device is actually FxOS.
         if (actualPlatform === 'firefoxos' &&
-            actualPlatform === args.dev &&
-            actualFormFactor === args.device &&
             _.indexOf(ENDPOINTS_WITH_FEATURE_PROFILE, endpoint) >= 0) {
-            /*
-                Include feature profile, but only if we:
-                    Are using a Firefox OS device.
-                    Aren't showing 'all apps'.
-                    Are dealing with endpoint that can handle feature profile.
-            */
-            args.pro = featureProfile;
+            api.pro = featureProfile;
         }
-        return args;
+
+        return api;
     }
 
     function getFilterDevice() {
