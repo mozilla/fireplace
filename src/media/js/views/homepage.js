@@ -8,6 +8,7 @@ define('views/homepage',
     'use strict';
     var logger = log('homepage');
     var gettext = l10n.gettext;
+    var title = gettext('FirefoxOS Marketplace');
 
     z.page.on('click', '.loadmore.feed-item-item button', function() {
         // Manually handle pagination to insert elements into Salvattore.
@@ -52,6 +53,7 @@ define('views/homepage',
 
         builder.z('title', '');
         builder.z('type', 'root homepage');
+        utils_local.headerTitle(title);
 
         if ('src' in params) {
             delete params.src;
