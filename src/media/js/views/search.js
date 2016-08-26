@@ -117,7 +117,7 @@ define('views/search',
         };
 
         var query = $('#search-q').val() || $('#search-q-desktop').val();
-        var query = query.replace( /  +/g, ' ' );
+        var query = query.replace( /\s\s*/g, ' ' );
         if (Object.keys(potato_views).indexOf(query) > -1) {
             z.page.trigger('navigate', urls.reverse(potato_views[query]));
             z.page.trigger('clearsearch');
