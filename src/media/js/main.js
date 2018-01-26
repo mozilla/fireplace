@@ -86,6 +86,10 @@ require(
         // Do some last minute template compilation.
         logger.log('Reloading chrome');
 
+        if (!document.getElementById('shutdown-banner')) {
+          $('.banners').append(nunjucks.env.render('shutdown_banner.html'));
+        }
+
         if (!caps.firefoxOS && !navigator.userAgent.match(/googlebot/i)) {
             if (!document.getElementById('fxos-only-banner')) {
                 $('.banners').append(nunjucks.env.render('fxos_only_banner.html'));
