@@ -18,7 +18,7 @@ var localConfig = extend(true, {
         'marketplace-constants/dist/img/regions/*': 'src/media/img/icons/regions/',
         'marketplace-elements/marketplace-elements.js': config.LIB_DEST_PATH,
         'marketplace-elements/marketplace-elements.styl': 'src/media/css/',
-        'salvattore-moox/dist/salvattore.js': config.LIB_DEST_PATH,
+        'salvattore/dist/salvattore.js': config.LIB_DEST_PATH,
     },
     cssBundles: {
         'splash.css': ['splash.styl.css']
