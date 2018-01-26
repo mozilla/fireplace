@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-22T18:00:15.009Z\n"
+"POT-Creation-Date: 2018-01-26T21:24:49.660Z\n"
 "PO-Revision-Date: 2015-03-19 03:13+0000\n"
 "Last-Translator: Jordi <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <ca@dodds.net>\n"
@@ -14,26 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1426734823.0\n"
-
-#: /templates/category.html:9 /templates/category.html:19 /templates/purchases.html:7 /templates/product_list.html:9 /templates/product_list.html:14 /templates/search.html:9 /templates/search.html:16
-msgid "Expand"
-msgstr "Amplia"
-
-#: /templates/category.html:42 /templates/search.html:72
-msgid "No results found"
-msgstr "No s'ha trobat cap resultat"
-
-#: /templates/category.html:47
-msgid "The category you requested does not exist."
-msgstr "La categoria sol·licitada no existeix."
-
-#: /templates/category.html:49 /templates/carrier.html:37 /templates/langpacks.html:41 /templates/purchases.html:35 /templates/product_list.html:48 /templates/addon/list.html:33
-msgid "An internal server error occurred. Please try again later."
-msgstr "S'ha produït un error intern del servidor. Torneu-ho a provar més tard."
-
-#: /templates/categories.html:3 /templates/categories.html:13 /templates/header.html:9 /templates/header.html:10 /templates/nav.html:38 /templates/app/index.html:176
-msgid "Categories"
-msgstr "Categories"
 
 #: /templates/carrier.html:6 /media/js/views/carrier.js:14
 msgid "Free Carrier Apps"
@@ -47,13 +27,25 @@ msgstr ""
 msgid "No apps found."
 msgstr "No s'ha trobat cap aplicació."
 
-#: /templates/fxos_only_banner.html:1
-msgid "These applications can only be installed on devices running Firefox OS."
-msgstr ""
+#: /templates/carrier.html:37 /templates/category.html:49 /templates/langpacks.html:41 /templates/product_list.html:48 /templates/purchases.html:35 /templates/addon/list.html:33
+msgid "An internal server error occurred. Please try again later."
+msgstr "S'ha produït un error intern del servidor. Torneu-ho a provar més tard."
 
-#: /templates/fxos_only_banner.html:2
-msgid "You may view the catalog but not be able to install or run these apps on your platform."
-msgstr ""
+#: /templates/category.html:9 /templates/category.html:19 /templates/product_list.html:9 /templates/product_list.html:14 /templates/purchases.html:7 /templates/search.html:9 /templates/search.html:16
+msgid "Expand"
+msgstr "Amplia"
+
+#: /templates/category.html:42 /templates/search.html:72
+msgid "No results found"
+msgstr "No s'ha trobat cap resultat"
+
+#: /templates/category.html:47
+msgid "The category you requested does not exist."
+msgstr "La categoria sol·licitada no existeix."
+
+#: /templates/categories.html:3 /templates/categories.html:13 /templates/header.html:9 /templates/header.html:10 /templates/nav.html:38 /templates/app/index.html:176
+msgid "Categories"
+msgstr "Categories"
 
 #: /templates/footer.html:6 /templates/header.html:46 /templates/nav.html:93 /media/js/views/feedback.js:50 /media/js/views/feedback.js:53
 msgid "Feedback"
@@ -124,6 +116,14 @@ msgstr "Cancel·la"
 msgid "Submit Feedback"
 msgstr "Envia l'opinió"
 
+#: /templates/fxos_only_banner.html:1
+msgid "These applications can only be installed on devices running Firefox OS."
+msgstr ""
+
+#: /templates/fxos_only_banner.html:2
+msgid "You may view the catalog but not be able to install or run these apps on your platform."
+msgstr ""
+
 #: /templates/header.html:19 /templates/header.html:34
 msgid "Search Marketplace&hellip;"
 msgstr ""
@@ -143,6 +143,18 @@ msgstr "Les meves aplicacions"
 #: /templates/header.html:47
 msgid "Sign Out"
 msgstr "Finalitza la sessió"
+
+#: /templates/langpacks.html:34 /templates/langpacks.html:39
+msgid "No language packs found."
+msgstr "No s'ha trobat cap paquet d'idioma."
+
+#: /templates/marketplace-update.html:2
+msgid "An update to Marketplace is available."
+msgstr "Hi ha una actualització del Marketplace disponible."
+
+#: /templates/marketplace-update.html:4
+msgid "Download"
+msgstr "Baixa"
 
 #: /templates/nav.html:9 /templates/nav.html:51
 msgid "Apps"
@@ -204,18 +216,6 @@ msgstr "Col·laboreu-hi"
 msgid "Newsletter Signup"
 msgstr ""
 
-#: /templates/langpacks.html:34 /templates/langpacks.html:39
-msgid "No language packs found."
-msgstr "No s'ha trobat cap paquet d'idioma."
-
-#: /templates/marketplace-update.html:2
-msgid "An update to Marketplace is available."
-msgstr "Hi ha una actualització del Marketplace disponible."
-
-#: /templates/marketplace-update.html:4
-msgid "Download"
-msgstr "Baixa"
-
 #: /templates/newsletter.html:3
 msgid "Sign up for our newsletter"
 msgstr "Subscriviu-vos al nostre butlletí d'informació"
@@ -252,6 +252,16 @@ msgstr "Gràcies per subscriure-us!"
 msgid "You'll receive an email from mozilla@e.mozilla.org, please check your inbox for your first email from us. If you don’t see it, check your spam filter."
 msgstr "Rebreu un correu electrònic de mozilla@e.mozilla.org. Si no el veieu, comproveu el filtre del correu brossa."
 
+#: /templates/shutdown_banner.html:1
+msgid ""
+"The Marketplace will shut down on March 30th, 2018. If there are any apps that you would like, and have not downloaded yet, please do so before that date. See <a href=\"{url}\">the wiki</a> for "
+"more background."
+msgstr ""
+
+#: /templates/product_list.html:41 /templates/product_list.html:46
+msgid "The list returned no results."
+msgstr ""
+
 #: /templates/purchases.html:41
 msgid "You must be signed in to view your apps."
 msgstr "Heu d'haver iniciat una sessió per veure les vostres aplicacions."
@@ -263,10 +273,6 @@ msgstr "No teniu cap aplicació"
 #: /templates/purchases.html:34 /templates/errors/fragment.html:1 /media/js/views/app.js:47
 msgid "Oh no!"
 msgstr "Oh, no!"
-
-#: /templates/product_list.html:41 /templates/product_list.html:46
-msgid "The list returned no results."
-msgstr ""
 
 #: /templates/search.html:8
 msgid "<b>{n}</b> Result"
@@ -320,6 +326,15 @@ msgstr "Estadístiques d'ús de l'aplicació"
 msgid "Not enough statistics to show."
 msgstr "No hi ha prou estadístiques per mostrar."
 
+#: /templates/_includes/carrier_apps_banner.html:2
+msgid "Your carrier offers some free apps."
+msgstr ""
+
+#. This is the link text for the carrier apps banner. "Your carrier offers some free apps. Get them now!"
+#: /templates/_includes/carrier_apps_banner.html:6
+msgid "Get them now!"
+msgstr ""
+
 #. (es) Classificacao Indicativa.
 #: /templates/_includes/content_ratings.html:5
 msgid "Content Rating"
@@ -329,15 +344,6 @@ msgstr "Classificació del contingut"
 #: /templates/_includes/content_ratings.html:45
 msgid "Rating Details"
 msgstr "Detalls de la classificació"
-
-#: /templates/_includes/carrier_apps_banner.html:2
-msgid "Your carrier offers some free apps."
-msgstr ""
-
-#. This is the link text for the carrier apps banner. "Your carrier offers some free apps. Get them now!"
-#: /templates/_includes/carrier_apps_banner.html:6
-msgid "Get them now!"
-msgstr ""
 
 #: /templates/_includes/post_install_message.html:2
 msgid "Installed!"
@@ -354,6 +360,12 @@ msgstr "Executeu l'aplicació de l'<b>escriptori del Windows</b> o des d'<b>Inic
 #: /templates/_includes/post_install_message.html:11
 msgid "Launch this app from your <b>dash</b>, <b>Application picker</b>, or <b>Applications menu</b>."
 msgstr "Executeu l'aplicació des del <b>plafó</b>, el <b>selector d'aplicacions</b> o el <b>menú d'aplicacions</b>."
+
+#: /templates/_includes/reviews_summary.html:9
+msgid "1 Review"
+msgid_plural "{numReviews} Reviews"
+msgstr[0] "1 valoració"
+msgstr[1] "{numReviews} valoracions"
 
 #: /templates/_includes/reviews_sidebar.html:9
 msgid "Edit your Review"
@@ -375,12 +387,6 @@ msgstr "Inicieu la sessió per valorar"
 msgid "Read all reviews"
 msgstr "Llegeix totes les valoracions"
 
-#: /templates/_includes/reviews_summary.html:9
-msgid "1 Review"
-msgid_plural "{numReviews} Reviews"
-msgstr[0] "1 valoració"
-msgstr[1] "{numReviews} valoracions"
-
 #: /templates/_macros/app_tile.html:108
 msgid "Review"
 msgid_plural "Reviews"
@@ -395,6 +401,10 @@ msgstr "Encara no s'ha valorat"
 msgid "&mdash; {attribution}"
 msgstr "&mdash; {attribution}"
 
+#: /templates/_macros/feed_item.html:82 /templates/_macros/feed_item.html:175
+msgid "View all"
+msgstr ""
+
 #: /templates/_macros/feed_websites.html:16
 msgid "Visit this top site!"
 msgstr ""
@@ -403,17 +413,13 @@ msgstr ""
 msgid "Show me another site"
 msgstr ""
 
-#: /templates/_macros/feed_item.html:82 /templates/_macros/feed_item.html:175
-msgid "View all"
-msgstr ""
+#: /templates/_macros/more_button.html:3
+msgid "Load more"
+msgstr "Carrega'n més"
 
 #: /templates/_macros/previews.html:42 /templates/_macros/previews.html:45
 msgid "{app_name} screenshot"
 msgstr "Captura de pantalla de {app_name}"
-
-#: /templates/_macros/more_button.html:3
-msgid "Load more"
-msgstr "Carrega'n més"
 
 #: /templates/_macros/review.html:14
 msgid "For previous version {version}"
@@ -585,6 +591,10 @@ msgstr ""
 msgid "No Firefox OS add-ons found."
 msgstr ""
 
+#: /templates/errors/fragment.html:2
+msgid "An error occurred."
+msgstr "S'ha produït un error."
+
 #: /templates/errors/404.html:2
 msgid "Content Not Found"
 msgstr ""
@@ -592,10 +602,6 @@ msgstr ""
 #: /templates/errors/404.html:3
 msgid "Whoops! Something went wrong and you ended up here. Sorry!"
 msgstr ""
-
-#: /templates/errors/fragment.html:2
-msgid "An error occurred."
-msgstr "S'ha produït un error."
 
 #: /templates/errors/pagination.html:2
 msgid "Try Again"
@@ -639,10 +645,6 @@ msgstr "Actualitza la valoració"
 msgid "Submit Review"
 msgstr "Envia la valoració"
 
-#: /templates/ratings/main.html:36
-msgid "This app has no reviews."
-msgstr "Aquesta aplicació no té cap valoració."
-
 #: /templates/ratings/flag.html:3 /templates/ratings/flag.html:26
 msgid "Flag Review"
 msgstr "Informa sobre aquesta valoració"
@@ -663,9 +665,9 @@ msgstr "Llenguatge no apropiat"
 msgid "Misplaced bug report or support request"
 msgstr "Informe d'error o sol·licitud d'ajuda fora de lloc"
 
-#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
-msgid "App Review"
-msgstr "Valoració de l'aplicació"
+#: /templates/ratings/main.html:36
+msgid "This app has no reviews."
+msgstr "Aquesta aplicació no té cap valoració."
 
 #: /templates/website/index.html:34
 msgid "Explore more in {category_one} and {category_two}."
@@ -682,6 +684,10 @@ msgstr ""
 #: /templates/website/index.html:49 /templates/website/issue.html:14
 msgid "Report an issue"
 msgstr ""
+
+#: /templates/ratings/rating.html:4 /media/js/views/app/ratings/rating.js:13
+msgid "App Review"
+msgstr "Valoració de l'aplicació"
 
 #: /templates/website/issue.html:5
 msgid "Let us know if something is missing from this website listing or its information should be updated."
@@ -706,26 +712,6 @@ msgstr ""
 #: /media/js/apps.js:123 /media/js/apps.js:128
 msgid "not compatible with your device"
 msgstr ""
-
-#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
-msgid "All Platforms"
-msgstr ""
-
-#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
-msgid "Android Mobile"
-msgstr "Mòbil Android"
-
-#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
-msgid "Android Tablet"
-msgstr "Tauleta Android"
-
-#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
-msgid "Desktop"
-msgstr "Escriptori"
-
-#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
-msgid "Firefox OS"
-msgstr "Firefox OS"
 
 #: /media/js/buttons.js:92 /media/js/buttons.js:167 /media/js/payments.js:134
 msgid "Payment cancelled."
@@ -879,6 +865,26 @@ msgstr "Utilitats"
 #: /media/js/categories.js:30
 msgid "Weather"
 msgstr ""
+
+#: /media/js/compat_filter.js:42 /media/js/compat_filter.js:51
+msgid "All Platforms"
+msgstr ""
+
+#: /media/js/compat_filter.js:43 /media/js/compat_filter.js:54
+msgid "Android Mobile"
+msgstr "Mòbil Android"
+
+#: /media/js/compat_filter.js:44 /media/js/compat_filter.js:55
+msgid "Android Tablet"
+msgstr "Tauleta Android"
+
+#: /media/js/compat_filter.js:45 /media/js/compat_filter.js:52
+msgid "Desktop"
+msgstr "Escriptori"
+
+#: /media/js/compat_filter.js:46 /media/js/compat_filter.js:53
+msgid "Firefox OS"
+msgstr "Firefox OS"
 
 #. For ages {0} and higher. (de) `ab {0} Jahren`.
 #: /media/js/content-ratings.js:71
@@ -1253,6 +1259,10 @@ msgstr ""
 msgid "works offline"
 msgstr ""
 
+#: /media/js/installer_iframe.js:111 /media/js/installer_direct.js:180
+msgid "App install error: {error}"
+msgstr "Error d'instal·lació de l'aplicació: {error}"
+
 #: /media/js/installer_direct.js:140
 msgid "Unable to install packaged apps"
 msgstr ""
@@ -1260,10 +1270,6 @@ msgstr ""
 #: /media/js/installer_direct.js:178
 msgid "Sorry, we had trouble fetching this app's data. Please try again later."
 msgstr "S'ha produït un error en obtenir les dades de l'aplicació. Torneu-ho a provar més tard."
-
-#: /media/js/installer_direct.js:180 /media/js/installer_iframe.js:111
-msgid "App install error: {error}"
-msgstr "Error d'instal·lació de l'aplicació: {error}"
 
 #: /media/js/newsletter.js:73
 msgid "There was an error submitting your newsletter sign up request"
@@ -1384,10 +1390,6 @@ msgstr ""
 msgid "App Detail"
 msgstr ""
 
-#: /media/js/views/homepage.js:11
-msgid "FirefoxOS Marketplace"
-msgstr ""
-
 #: /media/js/views/feed_landing.js:16
 msgid "Collection Detail"
 msgstr ""
@@ -1404,6 +1406,14 @@ msgstr "S'ha tramès l'opinió. Gràcies!"
 msgid "There was a problem submitting your feedback. Try again soon."
 msgstr "S'ha produït un problema en enviar la vostra opinió. Proveu-ho una altra vegada aviat."
 
+#: /media/js/views/homepage.js:11
+msgid "FirefoxOS Marketplace"
+msgstr ""
+
+#: /media/js/views/new_apps.js:8
+msgid "New Apps"
+msgstr ""
+
 #: /media/js/views/new_websites.js:8
 msgid "New Sites"
 msgstr ""
@@ -1416,24 +1426,12 @@ msgstr "Paquets d'idioma"
 msgid "Firefox OS {version}"
 msgstr "Firefox OS {version}"
 
-#: /media/js/views/new_apps.js:8
-msgid "New Apps"
-msgstr ""
-
 #: /media/js/views/popular_apps.js:9
 msgid "Popular Apps"
 msgstr ""
 
 #: /media/js/views/popular_websites.js:8
 msgid "Popular Sites"
-msgstr ""
-
-#: /media/js/views/search.js:176
-msgid "Search Results"
-msgstr "Resultats de la cerca"
-
-#: /media/js/views/search.js:189
-msgid "Developer Listing"
 msgstr ""
 
 #: /media/js/views/settings.js:41
@@ -1444,6 +1442,14 @@ msgstr "La configuració s'ha desat correctament"
 msgid "Settings could not be saved"
 msgstr "No s'ha pogut desar la configuració"
 
+#: /media/js/views/search.js:176
+msgid "Search Results"
+msgstr "Resultats de la cerca"
+
+#: /media/js/views/search.js:189
+msgid "Developer Listing"
+msgstr ""
+
 #: /media/js/views/website.js:11
 msgid "Website Detail"
 msgstr ""
@@ -1452,12 +1458,16 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: /media/js/views/app/abuse.js:18 /media/js/views/addon/abuse.js:16 /media/js/views/website/issue.js:17
+#: /media/js/views/addon/abuse.js:16 /media/js/views/app/abuse.js:18 /media/js/views/website/issue.js:17
 msgid "Report submitted. Thanks!"
 msgstr ""
 
-#: /media/js/views/app/abuse.js:25 /media/js/views/addon/abuse.js:21 /media/js/views/website/issue.js:23
+#: /media/js/views/addon/abuse.js:21 /media/js/views/app/abuse.js:25 /media/js/views/website/issue.js:23
 msgid "There was an issue submitting your report. Please try again later."
+msgstr ""
+
+#: /media/js/views/app/ratings.js:12
+msgid "Read All Reviews"
 msgstr ""
 
 #: /media/js/views/app/receipt.js:14
@@ -1467,10 +1477,6 @@ msgstr "Inicieu una sessió per veure el rebut"
 #: /media/js/views/app/receipt.js:24
 msgid "Receipt"
 msgstr "Rebut"
-
-#: /media/js/views/app/ratings.js:12
-msgid "Read All Reviews"
-msgstr ""
 
 #: /media/js/views/website/issue.js:32
 msgid "Report an Issue"
